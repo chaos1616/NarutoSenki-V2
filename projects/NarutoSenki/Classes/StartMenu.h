@@ -158,7 +158,7 @@ public:
 
 	CCMenuItem*  lock_btn;
 	bool isLock;
-	 CCLabelTTF* notice_label;
+	CCLabelTTF* notice_label;
 
 	CCLabelTTF* totalGroupNum;
 	int maxGroupNum;
