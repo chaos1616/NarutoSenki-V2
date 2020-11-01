@@ -1258,17 +1258,17 @@ void GameLayer::checkBackgroundMusic(float dt)
 			{
 				if (_playNum == 0)
 				{
-					SimpleAudioEngine::sharedEngine()->playBackgroundMusic(CCString::createWithFormat("Audio/Music/Battle%d.mp3", int(2 + randomMap * 3))->getCString(), false);
+					SimpleAudioEngine::sharedEngine()->playBackgroundMusic(CCString::createWithFormat("Audio/Music/Battle%d.ogg", int(2 + randomMap * 3))->getCString(), false);
 					_playNum++;
 				}
 				else if (_playNum == 1)
 				{
-					SimpleAudioEngine::sharedEngine()->playBackgroundMusic(CCString::createWithFormat("Audio/Music/Battle%d.mp3", int(3 + randomMap * 3))->getCString(), false);
+					SimpleAudioEngine::sharedEngine()->playBackgroundMusic(CCString::createWithFormat("Audio/Music/Battle%d.ogg", int(3 + randomMap * 3))->getCString(), false);
 					_playNum++;
 				}
 				else if (_playNum == 2)
 				{
-					SimpleAudioEngine::sharedEngine()->playBackgroundMusic(CCString::createWithFormat("Audio/Music/Battle%d.mp3", int(1 + randomMap * 3))->getCString(), false);
+					SimpleAudioEngine::sharedEngine()->playBackgroundMusic(CCString::createWithFormat("Audio/Music/Battle%d.ogg", int(1 + randomMap * 3))->getCString(), false);
 					_playNum = 0;
 				}
 			}

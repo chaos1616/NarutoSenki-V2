@@ -35,28 +35,20 @@ extern bool isPlayed;
 #define CURRENT_VERSION 2.0
 
 //menu sound
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #define SELECT_SOUND "Audio/Menu/select.ogg"
 #define TRAINING_SOUND "Audio/Menu/training.ogg"
 #define NETWORK_SOUND "Audio/Menu/arcade.ogg"
 #define CREDITS_SOUND "Audio/Menu/credits.ogg"
 #define EXIT_SOUND "Audio/Menu/exit.ogg"
-#else
-#define SELECT_SOUND "Audio/Menu/select.ogg"
-#define TRAINING_SOUND "Audio/Menu/training.ogg"
-#define NETWORK_SOUND "Audio/Menu/arcade.ogg"
-#define CREDITS_SOUND "Audio/Menu/credits.ogg"
-#define EXIT_SOUND "Audio/Menu/exit.ogg"
-#endif
 
 /* MUSIC FILES */
-#define INTRO_MUSIC "Audio/Music/intro_music.mp3"
-#define LOADING_MUSIC "Audio/Music/loading_music.mp3"
-#define SELECT_MUSIC "Audio/Music/select_music.mp3"
-#define RANKING_MUSIC "Audio/Music/ranking_music.mp3"
-#define MENU_MUSIC "Audio/Music/menu_music.mp3"
-#define CREDITS_MUSIC "Audio/Music/credits_music.mp3"
-#define BATTLE_MUSIC "Audio/Music/Battle1.mp3"
+#define INTRO_MUSIC "Audio/Music/intro_music.ogg"
+#define LOADING_MUSIC "Audio/Music/loading_music.ogg"
+#define SELECT_MUSIC "Audio/Music/select_music.ogg"
+#define RANKING_MUSIC "Audio/Music/ranking_music.ogg"
+#define MENU_MUSIC "Audio/Music/menu_music.ogg"
+#define CREDITS_MUSIC "Audio/Music/credits_music.ogg"
+#define BATTLE_MUSIC "Audio/Music/Battle1.ogg"
 
 //tile map
 
@@ -109,7 +101,7 @@ enum gearType
 // Character Enumeration
 enum ninjaEnums
 {
-	Unknown		= -1,
+	UnknownNj	= -1,
     /* Begin Ninjas */
     Naruto		= 0,
     Sakura		= 1,

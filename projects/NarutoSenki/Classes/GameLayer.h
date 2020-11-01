@@ -9,6 +9,7 @@
 // #include <vector>
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#include "glfw3.h"
 #include <windows.h>
 #define _isPressed(vk_code) (GetAsyncKeyState(vk_code) & 0x8000 ? 1 : 0)
 #define isKeyDown(vk_code) (GetAsyncKeyState(vk_code) & 0x8000 ? 1 : 0)

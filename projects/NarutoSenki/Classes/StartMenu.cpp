@@ -405,7 +405,7 @@ bool StartMenu::init()
 			menu->setPositionX(105);
 			this->addChild(menu, 2);
 		};
-		CCLabelBMFont *versionLabel = CCLabelBMFont::create("v2.0", "Fonts/1.fnt");
+		CCLabelBMFont *versionLabel = CCLabelBMFont::create("2.0 Version", "Fonts/1.fnt");
 		versionLabel->setScale(0.3f);
 		versionLabel->setPosition(winSize.width - 60, 10);
 		this->addChild(versionLabel, 5);

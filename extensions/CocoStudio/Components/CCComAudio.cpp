@@ -127,15 +127,6 @@ bool CCComAudio::serialize(void* r)
 		}
 		if (strcmp(pClassName, "CCBackgroundAudio") == 0)
 		{
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-			// no MP3 support for CC_PLATFORM_WP8
-			std::string::size_type pos = strFilePath.find(".mp3");
-			if (pos  == strFilePath.npos)
-			{
-				continue;
-			}
-			strFilePath.replace(pos, strFilePath.length(), ".wav");
-#endif
 			preloadBackgroundMusic(strFilePath.c_str());
 			setLoop(bLoop);
 			playBackgroundMusic(strFilePath.c_str(), bLoop);

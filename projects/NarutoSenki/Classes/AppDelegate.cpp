@@ -11,9 +11,6 @@ AppDelegate::AppDelegate()
 
 AppDelegate::~AppDelegate()
 {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-    SimpleAudioEngine::end();
-#endif
 }
 
 bool AppDelegate::applicationDidFinishLaunching()

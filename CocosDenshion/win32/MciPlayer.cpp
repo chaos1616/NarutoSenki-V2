@@ -68,35 +68,27 @@ MciPlayer::~MciPlayer()
 
 void MciPlayer::Open(const char* pFileName, UINT uId)
 {
-// //     WCHAR * pBuf = NULL;
-//     do 
-//     {
-//         BREAK_IF(! pFileName || ! m_hWnd);
-//         int nLen = (int)strlen(pFileName);
-//         BREAK_IF(! nLen);
-// //         pBuf = new WCHAR[nLen + 1];
-// //         BREAK_IF(! pBuf);
-// //         MultiByteToWideChar(CP_ACP, 0, pFileName, nLen + 1, pBuf, nLen + 1);
+    do 
+    {
+        BREAK_IF(! pFileName || ! m_hWnd);
+        int nLen = (int)strlen(pFileName);
+        BREAK_IF(! nLen);
 
-//         Close();
+        Close();
 
-//         MCI_OPEN_PARMS mciOpen = {0};
-//         MCIERROR mciError;
-//         mciOpen.lpstrDeviceType = (LPCTSTR)MCI_ALL_DEVICE_ID;
-//         mciOpen.lpstrElementName = pFileName;
+        MCI_OPEN_PARMS mciOpen = {0};
+        MCIERROR mciError;
+        mciOpen.lpstrDeviceType = (LPCTSTR)MCI_ALL_DEVICE_ID;
+        mciOpen.lpstrElementName = pFileName;
 
-//         mciError = mciSendCommand(0,MCI_OPEN, MCI_OPEN_ELEMENT, (DWORD)&mciOpen);
-//         BREAK_IF(mciError);
+        mciError = mciSendCommand(0,MCI_OPEN, MCI_OPEN_ELEMENT, (DWORD)&mciOpen);
+        BREAK_IF(mciError);
 
-//         m_hDev = mciOpen.wDeviceID;
-//         m_nSoundID = uId;
-//         m_bPlaying = false;
-//     } while (0);
-	m_scr=dev->GetScreamer(pFileName);
-	assert(m_scr!=NULL && "Only suppost .ogg file!");
-	m_strFileName=pFileName;
-	
-	m_nSoundID=uId;
+        m_hDev = mciOpen.wDeviceID;
+        m_nSoundID = uId;
+        m_bPlaying = false;
+    } while (0);
+    m_nSoundID=uId;
 }
 
 void MciPlayer::Play(UINT uTimes /* = 1 */)
