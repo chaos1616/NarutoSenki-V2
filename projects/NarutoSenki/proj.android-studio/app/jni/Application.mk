@@ -1,4 +1,4 @@
-APP_STL := c++_static
+APP_STL := c++_shared
 
 APP_CPPFLAGS := -frtti -DCC_ENABLE_CHIPMUNK_INTEGRATION=1 -fsigned-char
 APP_LDFLAGS := -latomic

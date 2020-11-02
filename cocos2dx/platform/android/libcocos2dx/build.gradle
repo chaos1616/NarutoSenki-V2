@@ -23,8 +23,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    externalNativeBuild {
+        ndkBuild {
+            path file('../../../Android.mk')
+        }
+    }
 }
 
 dependencies {
-    compile fileTree(dir: '../java/libs', include: ['*.jar'])
+    implementation fileTree(dir: '../java/libs', include: ['*.jar'])
 }

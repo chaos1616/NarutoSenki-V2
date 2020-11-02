@@ -19,7 +19,6 @@ android {
                     targets 'cocos2dcpp'
                     // arguments 'NDK_TOOLCHAIN_VERSION=clang'
                      arguments '-j' + Runtime.runtime.availableProcessors()
-                    //
                     arguments 'NDK_TOOLCHAIN_VERSION=4.9'
                     // arguments 'APP_PLATFORM=android-'+PROP_APP_PLATFORM
 
@@ -30,10 +29,6 @@ android {
                                         project.file("../../../../external").absolutePath,
                                         project.file("../../../../extensions").absolutePath,
                                         project.file("../../../../CocosDenshion/android").absolutePath
-
-                                        // project.file("../../../../").absolutePath,
-                                        // project.file("../../cocos2d/cocos").absolutePath,
-                                        // project.file("../../cocos2d/external").absolutePath
                                         ]
                     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
                         // should use '/'

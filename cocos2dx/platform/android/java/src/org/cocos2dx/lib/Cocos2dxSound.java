@@ -177,7 +177,7 @@ public class Cocos2dxSound {
 		// remove record
 		for (final String pPath : this.mPathStreamIDsMap.keySet()) {
 			if (this.mPathStreamIDsMap.get(pPath).contains(pStreamID)) {
-				this.mPathStreamIDsMap.get(pPath).remove(this.mPathStreamIDsMap.get(pPath).indexOf(pStreamID));
+				this.mPathStreamIDsMap.get(pPath).remove((Integer) pStreamID);
 				break;
 			}
 		}

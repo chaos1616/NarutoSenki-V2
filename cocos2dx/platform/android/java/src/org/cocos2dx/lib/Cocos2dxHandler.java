@@ -41,7 +41,7 @@ public class Cocos2dxHandler extends Handler {
 	// ===========================================================
 	// Fields
 	// ===========================================================
-	private WeakReference<Cocos2dxActivity> mActivity;
+	private final WeakReference<Cocos2dxActivity> mActivity;
 	
 	// ===========================================================
 	// Constructors
