@@ -476,397 +476,397 @@ void RakingLayer::produceRanking(int type)
 void RakingLayer::postRequest(int code, CCString *useChar /* =NULL */)
 {
 
-	if (rankingDetail)
-	{
-		rankingDetail->removeFromParent();
-		rankingDetail = NULL;
-	}
-	postingCode = code;
-	rapidjson::Document doc;
-	unsigned long size;
-	const char *data;
-	if (postingCode == 400)
-	{
-		data = (const char *)CCFileUtils::sharedFileUtils()->getFileData("rank.json", "r", &size);
-	}
-	else
-	{
-		data = (const char *)CCFileUtils::sharedFileUtils()->getFileData("rank2.json", "r", &size);
-	}
+	// if (rankingDetail)
+	// {
+	// 	rankingDetail->removeFromParent();
+	// 	rankingDetail = NULL;
+	// }
+	// postingCode = code;
+	// rapidjson::Document doc;
+	// unsigned long size;
+	// const char *data;
+	// if (postingCode == 400)
+	// {
+	// 	data = (const char *)CCFileUtils::sharedFileUtils()->getFileData("rank.json", "r", &size);
+	// }
+	// else
+	// {
+	// 	data = (const char *)CCFileUtils::sharedFileUtils()->getFileData("rank2.json", "r", &size);
+	// }
 
-	std::string clearData(data);
-	size_t pos = clearData.rfind("]");
-	clearData = clearData.substr(0, pos + 1);
+	// std::string clearData(data);
+	// size_t pos = clearData.rfind("]");
+	// clearData = clearData.substr(0, pos + 1);
 
-	doc.Parse<kParseDefaultFlags>(clearData.c_str());
+	// doc.Parse<kParseDefaultFlags>(clearData.c_str());
 
-	Value &arr = doc;
-	int countRow = 0;
+	// Value &arr = doc;
+	// int countRow = 0;
 
-	if (arr.IsArray())
-	{
+	// if (arr.IsArray())
+	// {
 
-		for (SizeType i = 0; i < arr.Size(); i++)
-		{
+	// 	for (SizeType i = 0; i < arr.Size(); i++)
+	// 	{
 
-			Value &node = arr[i];
+	// 		Value &node = arr[i];
 
-			if (i == 0)
-			{
-				//排位
-				Value &sortValue = node["newid"];
-				int sortNO = sortValue.GetInt();
+	// 		if (i == 0)
+	// 		{
+	// 			//排位
+	// 			Value &sortValue = node["newid"];
+	// 			int sortNO = sortValue.GetInt();
 
-				if (sortNO == 0)
-				{
+	// 			if (sortNO == 0)
+	// 			{
 
-					CCDictionary *strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
-					const char *reply;
-					if (postingCode == 400)
-					{
-						reply = ((CCString *)strings->objectForKey("RankingNull"))->m_sString.c_str();
-					}
-					else
-					{
-						reply = ((CCString *)strings->objectForKey("RankingNull2"))->m_sString.c_str();
-					}
+	// 				CCDictionary *strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
+	// 				const char *reply;
+	// 				if (postingCode == 400)
+	// 				{
+	// 					reply = ((CCString *)strings->objectForKey("RankingNull"))->m_sString.c_str();
+	// 				}
+	// 				else
+	// 				{
+	// 					reply = ((CCString *)strings->objectForKey("RankingNull2"))->m_sString.c_str();
+	// 				}
 
-					rankingDetail = CCLabelTTF::create(CCString::createWithFormat("%s", reply)->getCString(), FONT_TYPE, 12);
-					rankingDetail->setAnchorPoint(ccp(0, 0.5f));
-					rankingDetail->setPosition(ccp(ranking_bg->getPositionX() - ranking_bg->getContentSize().width / 2 + 20, ranking_bg->getPositionY() - ranking_bg->getContentSize().height / 2 + 14));
-					ranking_layer->addChild(rankingDetail, 500);
-				}
-				else
-				{
-					CCDictionary *strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
-					const char *reply = ((CCString *)strings->objectForKey("RankingDetail"))->m_sString.c_str();
-					const char *reply2 = ((CCString *)strings->objectForKey("RankingDetail2"))->m_sString.c_str();
-					rankingDetail = CCLabelTTF::create(CCString::createWithFormat("%s %d %s", reply, sortNO, reply2)->getCString(), FONT_TYPE, 12);
-					rankingDetail->setAnchorPoint(ccp(0, 0.5f));
-					rankingDetail->setPosition(ccp(ranking_bg->getPositionX() - ranking_bg->getContentSize().width / 2 + 20, ranking_bg->getPositionY() - ranking_bg->getContentSize().height / 2 + 14));
-					ranking_layer->addChild(rankingDetail, 500);
-				}
-			}
-			else
-			{
+	// 				rankingDetail = CCLabelTTF::create(CCString::createWithFormat("%s", reply)->getCString(), FONT_TYPE, 12);
+	// 				rankingDetail->setAnchorPoint(ccp(0, 0.5f));
+	// 				rankingDetail->setPosition(ccp(ranking_bg->getPositionX() - ranking_bg->getContentSize().width / 2 + 20, ranking_bg->getPositionY() - ranking_bg->getContentSize().height / 2 + 14));
+	// 				ranking_layer->addChild(rankingDetail, 500);
+	// 			}
+	// 			else
+	// 			{
+	// 				CCDictionary *strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
+	// 				const char *reply = ((CCString *)strings->objectForKey("RankingDetail"))->m_sString.c_str();
+	// 				const char *reply2 = ((CCString *)strings->objectForKey("RankingDetail2"))->m_sString.c_str();
+	// 				rankingDetail = CCLabelTTF::create(CCString::createWithFormat("%s %d %s", reply, sortNO, reply2)->getCString(), FONT_TYPE, 12);
+	// 				rankingDetail->setAnchorPoint(ccp(0, 0.5f));
+	// 				rankingDetail->setPosition(ccp(ranking_bg->getPositionX() - ranking_bg->getContentSize().width / 2 + 20, ranking_bg->getPositionY() - ranking_bg->getContentSize().height / 2 + 14));
+	// 				ranking_layer->addChild(rankingDetail, 500);
+	// 			}
+	// 		}
+	// 		else
+	// 		{
 
-				Value &idValue = node["id"];
-				std::string idString = idValue.GetString();
-				int memberID = atoi(idString.c_str());
+	// 			Value &idValue = node["id"];
+	// 			std::string idString = idValue.GetString();
+	// 			int memberID = atoi(idString.c_str());
 
-				Value &nameValue = node["name"];
-				std::string name = nameValue.GetString();
+	// 			Value &nameValue = node["name"];
+	// 			std::string name = nameValue.GetString();
 
-				Value &npValue = node["np_id"];
-				std::string npString = npValue.GetString();
+	// 			Value &npValue = node["np_id"];
+	// 			std::string npString = npValue.GetString();
 
-				Value &groupNameValue = node["group_name"];
-				std::string groupName;
-				int groupID = 0;
-				if (groupNameValue.IsNull())
-				{
-					groupName = "";
-				}
-				else
-				{
-					groupName = groupNameValue.GetString();
+	// 			Value &groupNameValue = node["group_name"];
+	// 			std::string groupName;
+	// 			int groupID = 0;
+	// 			if (groupNameValue.IsNull())
+	// 			{
+	// 				groupName = "";
+	// 			}
+	// 			else
+	// 			{
+	// 				groupName = groupNameValue.GetString();
 
-					if (postingCode == 400 || postingCode == 500)
-					{
-						Value &gidValue = node["group_id"];
-						std::string groupString = gidValue.GetString();
-						groupID = atoi(groupString.c_str());
-					}
-				}
+	// 				if (postingCode == 400 || postingCode == 500)
+	// 				{
+	// 					Value &gidValue = node["group_id"];
+	// 					std::string groupString = gidValue.GetString();
+	// 					groupID = atoi(groupString.c_str());
+	// 				}
+	// 			}
 
-				int score;
-				Value &bpointValue = node["battle_point"];
-				std::string bpointString = bpointValue.GetString();
-				int bpoint = atof(bpointString.c_str()) * 100;
+	// 			int score;
+	// 			Value &bpointValue = node["battle_point"];
+	// 			std::string bpointString = bpointValue.GetString();
+	// 			int bpoint = atof(bpointString.c_str()) * 100;
 
-				Value &pointValue = node["point"];
-				std::string pointString = pointValue.GetString();
-				int point = atof(pointString.c_str());
+	// 			Value &pointValue = node["point"];
+	// 			std::string pointString = pointValue.GetString();
+	// 			int point = atof(pointString.c_str());
 
-				if (postingCode == 500)
-				{
-					score = bpoint;
-				}
-				else if (postingCode == 400)
-				{
-					score = point;
-				}
-				else if (postingCode == 600)
-				{
-					score = point;
-				}
-				else if (postingCode == 700)
-				{
-					score = bpoint;
-				}
-				else if (postingCode == 800)
-				{
-					score = point;
-				}
-				else if (postingCode == 900)
-				{
-					score = bpoint;
-				}
+	// 			if (postingCode == 500)
+	// 			{
+	// 				score = bpoint;
+	// 			}
+	// 			else if (postingCode == 400)
+	// 			{
+	// 				score = point;
+	// 			}
+	// 			else if (postingCode == 600)
+	// 			{
+	// 				score = point;
+	// 			}
+	// 			else if (postingCode == 700)
+	// 			{
+	// 				score = bpoint;
+	// 			}
+	// 			else if (postingCode == 800)
+	// 			{
+	// 				score = point;
+	// 			}
+	// 			else if (postingCode == 900)
+	// 			{
+	// 				score = bpoint;
+	// 			}
 
-				CCScrewItem *screwItem = CCScrewItem::create();
-				if (i % 2 != 0)
-				{
-					CCSprite *line_bg = CCSprite::createWithSpriteFrameName("ranking_line.png");
-					line_bg->setAnchorPoint(ccp(0, 0));
-					screwItem->addChild(line_bg);
-				}
+	// 			CCScrewItem *screwItem = CCScrewItem::create();
+	// 			if (i % 2 != 0)
+	// 			{
+	// 				CCSprite *line_bg = CCSprite::createWithSpriteFrameName("ranking_line.png");
+	// 				line_bg->setAnchorPoint(ccp(0, 0));
+	// 				screwItem->addChild(line_bg);
+	// 			}
 
-				if (i == 1)
-				{
-					CCSprite *num_icon;
-					if (postingCode == 500)
-					{
-						num_icon = CCSprite::createWithSpriteFrameName("num_top3.png");
-					}
-					else if (postingCode == 400)
-					{
-						num_icon = CCSprite::createWithSpriteFrameName("num_top2.png");
-					}
-					else
-					{
-						num_icon = CCSprite::createWithSpriteFrameName("num_top4.png");
-					}
-					num_icon->setAnchorPoint(ccp(0, 0));
-					num_icon->setPosition(ccp(1, 1));
-					screwItem->addChild(num_icon);
-				}
-				else if (i == 2)
-				{
-					CCSprite *num_icon = CCSprite::createWithSpriteFrameName("num_2.png");
-					num_icon->setAnchorPoint(ccp(0, 0));
-					num_icon->setPosition(ccp(1, 1));
-					screwItem->addChild(num_icon);
-				}
-				else if (i == 3)
-				{
-					CCSprite *num_icon = CCSprite::createWithSpriteFrameName("num_3.png");
-					num_icon->setAnchorPoint(ccp(0, 0));
-					num_icon->setPosition(ccp(1, 1));
-					screwItem->addChild(num_icon);
-				}
-				else
-				{
-					CCLabelTTF *numLabel = CCLabelTTF::create(CCString::createWithFormat("%d", i)->getCString(), "微软雅黑", 12);
-					numLabel->setPosition(ccp(13, 13));
-					screwItem->addChild(numLabel);
-				}
+	// 			if (i == 1)
+	// 			{
+	// 				CCSprite *num_icon;
+	// 				if (postingCode == 500)
+	// 				{
+	// 					num_icon = CCSprite::createWithSpriteFrameName("num_top3.png");
+	// 				}
+	// 				else if (postingCode == 400)
+	// 				{
+	// 					num_icon = CCSprite::createWithSpriteFrameName("num_top2.png");
+	// 				}
+	// 				else
+	// 				{
+	// 					num_icon = CCSprite::createWithSpriteFrameName("num_top4.png");
+	// 				}
+	// 				num_icon->setAnchorPoint(ccp(0, 0));
+	// 				num_icon->setPosition(ccp(1, 1));
+	// 				screwItem->addChild(num_icon);
+	// 			}
+	// 			else if (i == 2)
+	// 			{
+	// 				CCSprite *num_icon = CCSprite::createWithSpriteFrameName("num_2.png");
+	// 				num_icon->setAnchorPoint(ccp(0, 0));
+	// 				num_icon->setPosition(ccp(1, 1));
+	// 				screwItem->addChild(num_icon);
+	// 			}
+	// 			else if (i == 3)
+	// 			{
+	// 				CCSprite *num_icon = CCSprite::createWithSpriteFrameName("num_3.png");
+	// 				num_icon->setAnchorPoint(ccp(0, 0));
+	// 				num_icon->setPosition(ccp(1, 1));
+	// 				screwItem->addChild(num_icon);
+	// 			}
+	// 			else
+	// 			{
+	// 				CCLabelTTF *numLabel = CCLabelTTF::create(CCString::createWithFormat("%d", i)->getCString(), "微软雅黑", 12);
+	// 				numLabel->setPosition(ccp(13, 13));
+	// 				screwItem->addChild(numLabel);
+	// 			}
 
-				if (strcmp(npString.c_str(), "") != 0)
-				{
+	// 			if (strcmp(npString.c_str(), "") != 0)
+	// 			{
 
-					CCSprite *nameplate = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s.png", npString.c_str())->getCString());
-					nameplate->setAnchorPoint(ccp(0.5f, 0));
-					nameplate->setPosition(ccp(106, 0));
-					screwItem->addChild(nameplate);
+	// 				CCSprite *nameplate = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s.png", npString.c_str())->getCString());
+	// 				nameplate->setAnchorPoint(ccp(0.5f, 0));
+	// 				nameplate->setPosition(ccp(106, 0));
+	// 				screwItem->addChild(nameplate);
 
-					CCStrokeLabel *user_nameStr;
-					CCLabelTTF *user_name = CCLabelTTF::create(name.c_str(), FONT_TYPE, 12);
-					if (MemberID)
-					{
-						if (MemberID == memberID)
-						{
-							user_nameStr = CCStrokeLabel::create(user_name, ccc3(0, 0, 0), ccc3(236, 162, 8), 1.0f);
-						}
-						else
-						{
-							user_nameStr = CCStrokeLabel::create(user_name, ccc3(0, 0, 0), ccc3(255, 255, 255), 1.0f);
-						}
-					}
-					else
-					{
-						user_nameStr = CCStrokeLabel::create(user_name, ccc3(0, 0, 0), ccc3(255, 255, 255), 1.0f);
-					}
+	// 				CCStrokeLabel *user_nameStr;
+	// 				CCLabelTTF *user_name = CCLabelTTF::create(name.c_str(), FONT_TYPE, 12);
+	// 				if (MemberID)
+	// 				{
+	// 					if (MemberID == memberID)
+	// 					{
+	// 						user_nameStr = CCStrokeLabel::create(user_name, ccc3(0, 0, 0), ccc3(236, 162, 8), 1.0f);
+	// 					}
+	// 					else
+	// 					{
+	// 						user_nameStr = CCStrokeLabel::create(user_name, ccc3(0, 0, 0), ccc3(255, 255, 255), 1.0f);
+	// 					}
+	// 				}
+	// 				else
+	// 				{
+	// 					user_nameStr = CCStrokeLabel::create(user_name, ccc3(0, 0, 0), ccc3(255, 255, 255), 1.0f);
+	// 				}
 
-					user_nameStr->setPosition(ccp(106, 13));
-					screwItem->addChild(user_nameStr);
+	// 				user_nameStr->setPosition(ccp(106, 13));
+	// 				screwItem->addChild(user_nameStr);
 
-					bool isBlink = false;
-					const char *bannerPath;
-					if (strcmp(npString.c_str(), "np000") == 0 ||
-						strcmp(npString.c_str(), "np001") == 0 ||
-						point >= 99999)
-					{
-						bannerPath = "banner_black";
-						isBlink = true;
-					}
-					else if (point >= 48000)
-					{
-						bannerPath = "banner_blue";
-						isBlink = true;
-					}
-					else if (point >= 24000)
-					{
-						bannerPath = "banner_red";
-						isBlink = true;
-					}
-					else if (point >= 16000)
-					{
-						bannerPath = "banner_gold";
-						isBlink = true;
-					}
-					else if (point >= 12000)
-					{
-						bannerPath = "banner_gold";
-					}
-					else if (point >= 6000)
-					{
-						bannerPath = "banner_silver";
-					}
-					else
-					{
-						bannerPath = "banner_green";
-					}
+	// 				bool isBlink = false;
+	// 				const char *bannerPath;
+	// 				if (strcmp(npString.c_str(), "np000") == 0 ||
+	// 					strcmp(npString.c_str(), "np001") == 0 ||
+	// 					point >= 99999)
+	// 				{
+	// 					bannerPath = "banner_black";
+	// 					isBlink = true;
+	// 				}
+	// 				else if (point >= 48000)
+	// 				{
+	// 					bannerPath = "banner_blue";
+	// 					isBlink = true;
+	// 				}
+	// 				else if (point >= 24000)
+	// 				{
+	// 					bannerPath = "banner_red";
+	// 					isBlink = true;
+	// 				}
+	// 				else if (point >= 16000)
+	// 				{
+	// 					bannerPath = "banner_gold";
+	// 					isBlink = true;
+	// 				}
+	// 				else if (point >= 12000)
+	// 				{
+	// 					bannerPath = "banner_gold";
+	// 				}
+	// 				else if (point >= 6000)
+	// 				{
+	// 					bannerPath = "banner_silver";
+	// 				}
+	// 				else
+	// 				{
+	// 					bannerPath = "banner_green";
+	// 				}
 
-					CCSprite *nameBaner = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s.png", bannerPath)->getCString());
-					nameBaner->setAnchorPoint(ccp(0.5f, 0));
-					nameBaner->setPosition(ccp(106, 0));
-					screwItem->addChild(nameBaner);
+	// 				CCSprite *nameBaner = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s.png", bannerPath)->getCString());
+	// 				nameBaner->setAnchorPoint(ccp(0.5f, 0));
+	// 				nameBaner->setPosition(ccp(106, 0));
+	// 				screwItem->addChild(nameBaner);
 
-					if (isBlink)
-					{
+	// 				if (isBlink)
+	// 				{
 
-						CCSprite *blink = CCSprite::createWithSpriteFrameName("banner_blink5.png");
-						blink->setAnchorPoint(ccp(0.5f, 0));
-						blink->setPosition(ccp(106, 0));
+	// 					CCSprite *blink = CCSprite::createWithSpriteFrameName("banner_blink5.png");
+	// 					blink->setAnchorPoint(ccp(0.5f, 0));
+	// 					blink->setPosition(ccp(106, 0));
 
-						screwItem->addChild(blink);
+	// 					screwItem->addChild(blink);
 
-						CCArray *tempArray = CCArray::create();
+	// 					CCArray *tempArray = CCArray::create();
 
-						int i = 1;
+	// 					int i = 1;
 
-						CCArray *list = CCArray::create();
-						while (i < 7)
-						{
-							CCString *path = CCString::createWithFormat("banner_blink%d.png", i);
-							CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path->getCString());
-							tempArray->addObject(frame);
+	// 					CCArray *list = CCArray::create();
+	// 					while (i < 7)
+	// 					{
+	// 						CCString *path = CCString::createWithFormat("banner_blink%d.png", i);
+	// 						CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path->getCString());
+	// 						tempArray->addObject(frame);
 
-							i += 1;
-						}
+	// 						i += 1;
+	// 					}
 
-						CCAnimation *tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
-						CCAction *tempAction = CCAnimate::create(tempAnimation);
-						list->addObject(tempAction);
-						CCDelayTime *delay = CCDelayTime::create(1.0f);
-						list->addObject(delay);
+	// 					CCAnimation *tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
+	// 					CCAction *tempAction = CCAnimate::create(tempAnimation);
+	// 					list->addObject(tempAction);
+	// 					CCDelayTime *delay = CCDelayTime::create(1.0f);
+	// 					list->addObject(delay);
 
-						blink->runAction(CCRepeatForever::create(CCSequence::create(list)));
-					}
-				}
-				else
-				{
-					CCLabelTTF *user_name = CCLabelTTF::create(name.c_str(), FONT_TYPE, 12);
+	// 					blink->runAction(CCRepeatForever::create(CCSequence::create(list)));
+	// 				}
+	// 			}
+	// 			else
+	// 			{
+	// 				CCLabelTTF *user_name = CCLabelTTF::create(name.c_str(), FONT_TYPE, 12);
 
-					if (MemberID)
-					{
-						if (MemberID == memberID)
-						{
-							user_name->setColor(ccc3(236, 162, 8));
-						}
-					}
+	// 				if (MemberID)
+	// 				{
+	// 					if (MemberID == memberID)
+	// 					{
+	// 						user_name->setColor(ccc3(236, 162, 8));
+	// 					}
+	// 				}
 
-					user_name->setAnchorPoint(ccp(0.5f, 0.5));
-					user_name->setPosition(ccp(106, 13));
-					screwItem->addChild(user_name);
-				}
+	// 				user_name->setAnchorPoint(ccp(0.5f, 0.5));
+	// 				user_name->setPosition(ccp(106, 13));
+	// 				screwItem->addChild(user_name);
+	// 			}
 
-				CCLabelTTF *user_score = CCLabelTTF::create(CCString::createWithFormat("%d", score)->getCString(), FONT_TYPE, 12);
+	// 			CCLabelTTF *user_score = CCLabelTTF::create(CCString::createWithFormat("%d", score)->getCString(), FONT_TYPE, 12);
 
-				user_score->setAnchorPoint(ccp(0.5f, 0));
-				user_score->setPosition(ccp(214, 5));
-				screwItem->addChild(user_score);
+	// 			user_score->setAnchorPoint(ccp(0.5f, 0));
+	// 			user_score->setPosition(ccp(214, 5));
+	// 			screwItem->addChild(user_score);
 
-				if (groupID != 0)
-				{
-					CCLabelTTF *group_Name = CCLabelTTF::create(CCString::createWithFormat("%s", groupName.c_str())->getCString(), FONT_TYPE, 12);
+	// 			if (groupID != 0)
+	// 			{
+	// 				CCLabelTTF *group_Name = CCLabelTTF::create(CCString::createWithFormat("%s", groupName.c_str())->getCString(), FONT_TYPE, 12);
 
-					CCMenuItemLabel *item = CCMenuItemLabel::create(group_Name, this, menu_selector(RakingLayer::onSelectGroupBtn));
+	// 				CCMenuItemLabel *item = CCMenuItemLabel::create(group_Name, this, menu_selector(RakingLayer::onSelectGroupBtn));
 
-					CCMenu *pMenu = CCMenu::create(item, NULL);
-					pMenu->setPosition(ccp(304, 5));
-					item->setAnchorPoint(ccp(0.5f, 0));
-					item->setTag(groupID);
-					pMenu->setTouchPriority(1);
-					screwItem->addChild(pMenu);
-					screwItem->setTag(groupID);
-				}
-				else if (strcmp(groupName.c_str(), "") != 0)
-				{
-					CCLabelTTF *group_Name = CCLabelTTF::create(CCString::createWithFormat("%s", groupName.c_str())->getCString(), FONT_TYPE, 12);
+	// 				CCMenu *pMenu = CCMenu::create(item, NULL);
+	// 				pMenu->setPosition(ccp(304, 5));
+	// 				item->setAnchorPoint(ccp(0.5f, 0));
+	// 				item->setTag(groupID);
+	// 				pMenu->setTouchPriority(1);
+	// 				screwItem->addChild(pMenu);
+	// 				screwItem->setTag(groupID);
+	// 			}
+	// 			else if (strcmp(groupName.c_str(), "") != 0)
+	// 			{
+	// 				CCLabelTTF *group_Name = CCLabelTTF::create(CCString::createWithFormat("%s", groupName.c_str())->getCString(), FONT_TYPE, 12);
 
-					group_Name->setAnchorPoint(ccp(0.5f, 0));
-					group_Name->setPosition(ccp(304, 5));
-					screwItem->addChild(group_Name);
-				}
+	// 				group_Name->setAnchorPoint(ccp(0.5f, 0));
+	// 				group_Name->setPosition(ccp(304, 5));
+	// 				screwItem->addChild(group_Name);
+	// 			}
 
-				int row = i;
-				screwItem->setPosition(ccp(0, -row * 26 + 26));
-				screwItem->setAnchorPoint(ccp(0, 0));
+	// 			int row = i;
+	// 			screwItem->setPosition(ccp(0, -row * 26 + 26));
+	// 			screwItem->setAnchorPoint(ccp(0, 0));
 
-				_screwLayer1->addChild(screwItem, 10);
+	// 			_screwLayer1->addChild(screwItem, 10);
 
-				countRow++;
-			}
-		}
-		_screwLayer1->totalRow = countRow;
-	}
+	// 			countRow++;
+	// 		}
+	// 	}
+	// 	_screwLayer1->totalRow = countRow;
+	// }
 
-	if (!isPosting)
-	{
+	// if (!isPosting)
+	// {
 
-		isPosting = true;
-		postingCode = code;
-		//刷新按钮
-		if (!refreshBtn)
-		{
-			refreshBtn = CCSprite::createWithSpriteFrameName("refresh_btn.png");
-			refreshBtn->setPosition(ccp(winSize.width / 2, winSize.height / 2));
-			CCActionInterval *rt = CCRotateBy::create(0.3f, 180, 180);
-			refreshBtn->runAction(CCRepeatForever::create(rt));
-			this->addChild(refreshBtn, 1000);
-		}
-		cocos2d::extension::CCHttpRequest *request = new CCHttpRequest();
-		std::string codeFinal;
-		if (useChar)
-		{
-			codeFinal = CCString::createWithFormat("code=%d&id=%d&char=%s", code, MemberID, useChar->getCString())->getCString();
-		}
-		else
-		{
-			codeFinal = CCString::createWithFormat("code=%d&id=%d&group_id=%d", code, MemberID, GroupID ? GroupID : 0)->getCString();
-		}
+	// 	isPosting = true;
+	// 	postingCode = code;
+	// 	//刷新按钮
+	// 	if (!refreshBtn)
+	// 	{
+	// 		refreshBtn = CCSprite::createWithSpriteFrameName("refresh_btn.png");
+	// 		refreshBtn->setPosition(ccp(winSize.width / 2, winSize.height / 2));
+	// 		CCActionInterval *rt = CCRotateBy::create(0.3f, 180, 180);
+	// 		refreshBtn->runAction(CCRepeatForever::create(rt));
+	// 		this->addChild(refreshBtn, 1000);
+	// 	}
+	// 	cocos2d::extension::CCHttpRequest *request = new CCHttpRequest();
+	// 	std::string codeFinal;
+	// 	if (useChar)
+	// 	{
+	// 		codeFinal = CCString::createWithFormat("code=%d&id=%d&char=%s", code, MemberID, useChar->getCString())->getCString();
+	// 	}
+	// 	else
+	// 	{
+	// 		codeFinal = CCString::createWithFormat("code=%d&id=%d&group_id=%d", code, MemberID, GroupID ? GroupID : 0)->getCString();
+	// 	}
 
-		std::string url = SERVER "nsk/rank.php?" + codeFinal;
-		request->setUrl(url.c_str());
-		request->setRequestType(CCHttpRequest::kHttpGet);
-		if (code > 510)
-		{
-			request->setResponseCallback(this, httpresponse_selector(RakingLayer::onHttpRequestCompleted3));
-		}
-		else if (code > 310)
-		{
-			request->setResponseCallback(this, httpresponse_selector(RakingLayer::onHttpRequestCompleted2));
-		}
-		else
-		{
-			request->setResponseCallback(this, httpresponse_selector(RakingLayer::onHttpRequestCompleted));
-		}
+	// 	std::string url = SERVER "nsk/rank.php?" + codeFinal;
+	// 	request->setUrl(url.c_str());
+	// 	request->setRequestType(CCHttpRequest::kHttpGet);
+	// 	if (code > 510)
+	// 	{
+	// 		request->setResponseCallback(this, httpresponse_selector(RakingLayer::onHttpRequestCompleted3));
+	// 	}
+	// 	else if (code > 310)
+	// 	{
+	// 		request->setResponseCallback(this, httpresponse_selector(RakingLayer::onHttpRequestCompleted2));
+	// 	}
+	// 	else
+	// 	{
+	// 		request->setResponseCallback(this, httpresponse_selector(RakingLayer::onHttpRequestCompleted));
+	// 	}
 
-		request->setTag("Post_My_Data");
-		cocos2d::extension::CCHttpClient::getInstance()->send(request);
-		request->release();
-	}
+	// 	request->setTag("Post_My_Data");
+	// 	cocos2d::extension::CCHttpClient::getInstance()->send(request);
+	// 	request->release();
+	// }
 }
 
 void RakingLayer::onCancel(CCObject *sender)
@@ -1420,529 +1420,529 @@ void RakingLayer::onHttpRequestCompleted(CCHttpClient* client, CCHttpResponse* r
 void RakingLayer::onHttpRequestCompleted2(CCHttpClient* client, CCHttpResponse* response)
 {
 
-	isPosting = false;
-	//刷新按钮
-	if (refreshBtn)
-	{
-		refreshBtn->stopAllActions();
-		refreshBtn->removeFromParent();
-		refreshBtn = NULL;
-	}
+	// isPosting = false;
+	// //刷新按钮
+	// if (refreshBtn)
+	// {
+	// 	refreshBtn->stopAllActions();
+	// 	refreshBtn->removeFromParent();
+	// 	refreshBtn = NULL;
+	// }
 
-	if (!response)
-	{
-		return;
-	}
-	if (0 != strlen(response->getHttpRequest()->getTag()))
-	{
-		CCLog("%s completed", response->getHttpRequest()->getTag());
-	}
-	int statusCode = response->getResponseCode();
-	char statusString[64] = {};
-	sprintf(statusString, "Http status code:%d ,tag = %s", statusCode, response->getHttpRequest()->getTag());
-	CCLog("response code:%d", statusCode);
-	if (!response->isSucceed())
-	{
-		CCLog("response failed");
-		CCLog("error buffer:%s", response->getErrorBuffer());
-		CCTips *tip = CCTips::create("ServerError");
-		this->addChild(tip, 5000);
-		return;
-	}
-	std::vector<char> *buffer = response->getResponseData();
-	printf("Http response,dump data:");
+	// if (!response)
+	// {
+	// 	return;
+	// }
+	// if (0 != strlen(response->getHttpRequest()->getTag()))
+	// {
+	// 	CCLog("%s completed", response->getHttpRequest()->getTag());
+	// }
+	// int statusCode = response->getResponseCode();
+	// char statusString[64] = {};
+	// sprintf(statusString, "Http status code:%d ,tag = %s", statusCode, response->getHttpRequest()->getTag());
+	// CCLog("response code:%d", statusCode);
+	// if (!response->isSucceed())
+	// {
+	// 	CCLog("response failed");
+	// 	CCLog("error buffer:%s", response->getErrorBuffer());
+	// 	CCTips *tip = CCTips::create("ServerError");
+	// 	this->addChild(tip, 5000);
+	// 	return;
+	// }
+	// std::vector<char> *buffer = response->getResponseData();
+	// printf("Http response,dump data:");
 
-	Document doc;
-	//把vector转换成std::string
-	std::string buf(buffer->begin(), buffer->end());
-	//CCLog("%s",buf.c_str());
-	const char *json = (char *)buf.c_str();
-	doc.Parse<kParseDefaultFlags>(json);
-	Value &arr = doc;
-	int countRow = 0;
-	if (arr.IsArray())
-	{
+	// Document doc;
+	// //把vector转换成std::string
+	// std::string buf(buffer->begin(), buffer->end());
+	// //CCLog("%s",buf.c_str());
+	// const char *json = (char *)buf.c_str();
+	// doc.Parse<kParseDefaultFlags>(json);
+	// Value &arr = doc;
+	// int countRow = 0;
+	// if (arr.IsArray())
+	// {
 
-		for (SizeType i = 0; i < arr.Size(); i++)
-		{
+	// 	for (SizeType i = 0; i < arr.Size(); i++)
+	// 	{
 
-			Value &node = arr[i];
+	// 		Value &node = arr[i];
 
-			if (i == 0)
-			{
-				//排位
-				Value &sortValue = node["newid"];
-				int sortNO = sortValue.GetInt();
+	// 		if (i == 0)
+	// 		{
+	// 			//排位
+	// 			Value &sortValue = node["newid"];
+	// 			int sortNO = sortValue.GetInt();
 
-				if (sortNO == 0)
-				{
-					CCDictionary *strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
-					const char *reply = ((CCString *)strings->objectForKey("RankingNull"))->m_sString.c_str();
-					rankingDetail = CCLabelTTF::create(CCString::createWithFormat("%s", reply)->getCString(), FONT_TYPE, 12);
-					rankingDetail->setAnchorPoint(ccp(0, 0.5f));
-					rankingDetail->setPosition(ccp(ranking_bg->getPositionX() - ranking_bg->getContentSize().width / 2 + 20, ranking_bg->getPositionY() - ranking_bg->getContentSize().height / 2 + 14));
-					ranking_layer->addChild(rankingDetail, 500);
-				}
-				else
-				{
-					CCDictionary *strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
-					const char *reply = ((CCString *)strings->objectForKey("RankingDetail"))->m_sString.c_str();
-					const char *reply2 = ((CCString *)strings->objectForKey("RankingDetail2"))->m_sString.c_str();
-					rankingDetail = CCLabelTTF::create(CCString::createWithFormat("%s %d %s", reply, sortNO, reply2)->getCString(), FONT_TYPE, 12);
-					rankingDetail->setAnchorPoint(ccp(0, 0.5f));
-					rankingDetail->setPosition(ccp(ranking_bg->getPositionX() - ranking_bg->getContentSize().width / 2 + 20, ranking_bg->getPositionY() - ranking_bg->getContentSize().height / 2 + 14));
-					ranking_layer->addChild(rankingDetail, 500);
-				}
-			}
-			else
-			{
+	// 			if (sortNO == 0)
+	// 			{
+	// 				CCDictionary *strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
+	// 				const char *reply = ((CCString *)strings->objectForKey("RankingNull"))->m_sString.c_str();
+	// 				rankingDetail = CCLabelTTF::create(CCString::createWithFormat("%s", reply)->getCString(), FONT_TYPE, 12);
+	// 				rankingDetail->setAnchorPoint(ccp(0, 0.5f));
+	// 				rankingDetail->setPosition(ccp(ranking_bg->getPositionX() - ranking_bg->getContentSize().width / 2 + 20, ranking_bg->getPositionY() - ranking_bg->getContentSize().height / 2 + 14));
+	// 				ranking_layer->addChild(rankingDetail, 500);
+	// 			}
+	// 			else
+	// 			{
+	// 				CCDictionary *strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
+	// 				const char *reply = ((CCString *)strings->objectForKey("RankingDetail"))->m_sString.c_str();
+	// 				const char *reply2 = ((CCString *)strings->objectForKey("RankingDetail2"))->m_sString.c_str();
+	// 				rankingDetail = CCLabelTTF::create(CCString::createWithFormat("%s %d %s", reply, sortNO, reply2)->getCString(), FONT_TYPE, 12);
+	// 				rankingDetail->setAnchorPoint(ccp(0, 0.5f));
+	// 				rankingDetail->setPosition(ccp(ranking_bg->getPositionX() - ranking_bg->getContentSize().width / 2 + 20, ranking_bg->getPositionY() - ranking_bg->getContentSize().height / 2 + 14));
+	// 				ranking_layer->addChild(rankingDetail, 500);
+	// 			}
+	// 		}
+	// 		else
+	// 		{
 
-				Value &idValue = node["id"];
-				std::string idString = idValue.GetString();
-				int memberID = atoi(idString.c_str());
+	// 			Value &idValue = node["id"];
+	// 			std::string idString = idValue.GetString();
+	// 			int memberID = atoi(idString.c_str());
 
-				Value &nameValue = node["name"];
-				std::string name = nameValue.GetString();
+	// 			Value &nameValue = node["name"];
+	// 			std::string name = nameValue.GetString();
 
-				Value &npValue = node["np_id"];
-				std::string npString = npValue.GetString();
+	// 			Value &npValue = node["np_id"];
+	// 			std::string npString = npValue.GetString();
 
-				Value &groupNameValue = node["group_name"];
-				std::string groupName;
-				int groupID = 0;
-				if (groupNameValue.IsNull())
-				{
-					groupName = "";
-				}
-				else
-				{
-					groupName = groupNameValue.GetString();
+	// 			Value &groupNameValue = node["group_name"];
+	// 			std::string groupName;
+	// 			int groupID = 0;
+	// 			if (groupNameValue.IsNull())
+	// 			{
+	// 				groupName = "";
+	// 			}
+	// 			else
+	// 			{
+	// 				groupName = groupNameValue.GetString();
 
-					if (postingCode == 400 || postingCode == 500)
-					{
-						Value &gidValue = node["group_id"];
-						std::string groupString = gidValue.GetString();
-						groupID = atoi(groupString.c_str());
-					}
-				}
+	// 				if (postingCode == 400 || postingCode == 500)
+	// 				{
+	// 					Value &gidValue = node["group_id"];
+	// 					std::string groupString = gidValue.GetString();
+	// 					groupID = atoi(groupString.c_str());
+	// 				}
+	// 			}
 
-				int score;
-				Value &bpointValue = node["battle_point"];
-				std::string bpointString = bpointValue.GetString();
-				int bpoint = atof(bpointString.c_str()) * 100;
+	// 			int score;
+	// 			Value &bpointValue = node["battle_point"];
+	// 			std::string bpointString = bpointValue.GetString();
+	// 			int bpoint = atof(bpointString.c_str()) * 100;
 
-				Value &pointValue = node["point"];
-				std::string pointString = pointValue.GetString();
-				int point = atof(pointString.c_str());
+	// 			Value &pointValue = node["point"];
+	// 			std::string pointString = pointValue.GetString();
+	// 			int point = atof(pointString.c_str());
 
-				if (postingCode == 500)
-				{
-					score = bpoint;
-				}
-				else if (postingCode == 400)
-				{
-					score = point;
-				}
-				else if (postingCode == 600)
-				{
-					score = point;
-				}
-				else if (postingCode == 700)
-				{
-					score = bpoint;
-				}
-				else if (postingCode == 800)
-				{
-					score = point;
-				}
-				else if (postingCode == 900)
-				{
-					score = bpoint;
-				}
+	// 			if (postingCode == 500)
+	// 			{
+	// 				score = bpoint;
+	// 			}
+	// 			else if (postingCode == 400)
+	// 			{
+	// 				score = point;
+	// 			}
+	// 			else if (postingCode == 600)
+	// 			{
+	// 				score = point;
+	// 			}
+	// 			else if (postingCode == 700)
+	// 			{
+	// 				score = bpoint;
+	// 			}
+	// 			else if (postingCode == 800)
+	// 			{
+	// 				score = point;
+	// 			}
+	// 			else if (postingCode == 900)
+	// 			{
+	// 				score = bpoint;
+	// 			}
 
-				CCScrewItem *screwItem = CCScrewItem::create();
-				if (i % 2 != 0)
-				{
-					CCSprite *line_bg = CCSprite::createWithSpriteFrameName("ranking_line.png");
-					line_bg->setAnchorPoint(ccp(0, 0));
-					screwItem->addChild(line_bg);
-				}
+	// 			CCScrewItem *screwItem = CCScrewItem::create();
+	// 			if (i % 2 != 0)
+	// 			{
+	// 				CCSprite *line_bg = CCSprite::createWithSpriteFrameName("ranking_line.png");
+	// 				line_bg->setAnchorPoint(ccp(0, 0));
+	// 				screwItem->addChild(line_bg);
+	// 			}
 
-				if (i == 1)
-				{
-					CCSprite *num_icon;
-					if (postingCode == 500)
-					{
-						num_icon = CCSprite::createWithSpriteFrameName("num_top3.png");
-					}
-					else if (postingCode == 400)
-					{
-						num_icon = CCSprite::createWithSpriteFrameName("num_top2.png");
-					}
-					else
-					{
-						num_icon = CCSprite::createWithSpriteFrameName("num_top4.png");
-					}
-					num_icon->setAnchorPoint(ccp(0, 0));
-					num_icon->setPosition(ccp(1, 1));
-					screwItem->addChild(num_icon);
-				}
-				else if (i == 2)
-				{
-					CCSprite *num_icon = CCSprite::createWithSpriteFrameName("num_2.png");
-					num_icon->setAnchorPoint(ccp(0, 0));
-					num_icon->setPosition(ccp(1, 1));
-					screwItem->addChild(num_icon);
-				}
-				else if (i == 3)
-				{
-					CCSprite *num_icon = CCSprite::createWithSpriteFrameName("num_3.png");
-					num_icon->setAnchorPoint(ccp(0, 0));
-					num_icon->setPosition(ccp(1, 1));
-					screwItem->addChild(num_icon);
-				}
-				else
-				{
-					CCLabelTTF *numLabel = CCLabelTTF::create(CCString::createWithFormat("%d", i)->getCString(), "微软雅黑", 12);
-					numLabel->setPosition(ccp(13, 13));
-					screwItem->addChild(numLabel);
-				}
+	// 			if (i == 1)
+	// 			{
+	// 				CCSprite *num_icon;
+	// 				if (postingCode == 500)
+	// 				{
+	// 					num_icon = CCSprite::createWithSpriteFrameName("num_top3.png");
+	// 				}
+	// 				else if (postingCode == 400)
+	// 				{
+	// 					num_icon = CCSprite::createWithSpriteFrameName("num_top2.png");
+	// 				}
+	// 				else
+	// 				{
+	// 					num_icon = CCSprite::createWithSpriteFrameName("num_top4.png");
+	// 				}
+	// 				num_icon->setAnchorPoint(ccp(0, 0));
+	// 				num_icon->setPosition(ccp(1, 1));
+	// 				screwItem->addChild(num_icon);
+	// 			}
+	// 			else if (i == 2)
+	// 			{
+	// 				CCSprite *num_icon = CCSprite::createWithSpriteFrameName("num_2.png");
+	// 				num_icon->setAnchorPoint(ccp(0, 0));
+	// 				num_icon->setPosition(ccp(1, 1));
+	// 				screwItem->addChild(num_icon);
+	// 			}
+	// 			else if (i == 3)
+	// 			{
+	// 				CCSprite *num_icon = CCSprite::createWithSpriteFrameName("num_3.png");
+	// 				num_icon->setAnchorPoint(ccp(0, 0));
+	// 				num_icon->setPosition(ccp(1, 1));
+	// 				screwItem->addChild(num_icon);
+	// 			}
+	// 			else
+	// 			{
+	// 				CCLabelTTF *numLabel = CCLabelTTF::create(CCString::createWithFormat("%d", i)->getCString(), "微软雅黑", 12);
+	// 				numLabel->setPosition(ccp(13, 13));
+	// 				screwItem->addChild(numLabel);
+	// 			}
 
-				if (strcmp(npString.c_str(), "") != 0)
-				{
+	// 			if (strcmp(npString.c_str(), "") != 0)
+	// 			{
 
-					CCSprite *nameplate = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s.png", npString.c_str())->getCString());
-					nameplate->setAnchorPoint(ccp(0.5f, 0));
-					nameplate->setPosition(ccp(106, 0));
-					screwItem->addChild(nameplate);
+	// 				CCSprite *nameplate = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s.png", npString.c_str())->getCString());
+	// 				nameplate->setAnchorPoint(ccp(0.5f, 0));
+	// 				nameplate->setPosition(ccp(106, 0));
+	// 				screwItem->addChild(nameplate);
 
-					CCStrokeLabel *user_nameStr;
-					CCLabelTTF *user_name = CCLabelTTF::create(name.c_str(), FONT_TYPE, 12);
-					if (MemberID)
-					{
-						if (MemberID == memberID)
-						{
-							user_nameStr = CCStrokeLabel::create(user_name, ccc3(0, 0, 0), ccc3(236, 162, 8), 1.0f);
-						}
-						else
-						{
-							user_nameStr = CCStrokeLabel::create(user_name, ccc3(0, 0, 0), ccc3(255, 255, 255), 1.0f);
-						}
-					}
-					else
-					{
-						user_nameStr = CCStrokeLabel::create(user_name, ccc3(0, 0, 0), ccc3(255, 255, 255), 1.0f);
-					}
+	// 				CCStrokeLabel *user_nameStr;
+	// 				CCLabelTTF *user_name = CCLabelTTF::create(name.c_str(), FONT_TYPE, 12);
+	// 				if (MemberID)
+	// 				{
+	// 					if (MemberID == memberID)
+	// 					{
+	// 						user_nameStr = CCStrokeLabel::create(user_name, ccc3(0, 0, 0), ccc3(236, 162, 8), 1.0f);
+	// 					}
+	// 					else
+	// 					{
+	// 						user_nameStr = CCStrokeLabel::create(user_name, ccc3(0, 0, 0), ccc3(255, 255, 255), 1.0f);
+	// 					}
+	// 				}
+	// 				else
+	// 				{
+	// 					user_nameStr = CCStrokeLabel::create(user_name, ccc3(0, 0, 0), ccc3(255, 255, 255), 1.0f);
+	// 				}
 
-					user_nameStr->setPosition(ccp(106, 13));
-					screwItem->addChild(user_nameStr);
+	// 				user_nameStr->setPosition(ccp(106, 13));
+	// 				screwItem->addChild(user_nameStr);
 
-					bool isBlink = false;
-					const char *bannerPath;
-					if (strcmp(npString.c_str(), "np000") == 0 ||
-						strcmp(npString.c_str(), "np001") == 0 ||
-						point >= 99999)
-					{
-						bannerPath = "banner_black";
-						isBlink = true;
-					}
-					else if (point >= 48000)
-					{
-						bannerPath = "banner_blue";
-						isBlink = true;
-					}
-					else if (point >= 24000)
-					{
-						bannerPath = "banner_red";
-						isBlink = true;
-					}
-					else if (point >= 16000)
-					{
-						bannerPath = "banner_gold";
-						isBlink = true;
-					}
-					else if (point >= 12000)
-					{
-						bannerPath = "banner_gold";
-					}
-					else if (point >= 6000)
-					{
-						bannerPath = "banner_silver";
-					}
-					else
-					{
-						bannerPath = "banner_green";
-					}
+	// 				bool isBlink = false;
+	// 				const char *bannerPath;
+	// 				if (strcmp(npString.c_str(), "np000") == 0 ||
+	// 					strcmp(npString.c_str(), "np001") == 0 ||
+	// 					point >= 99999)
+	// 				{
+	// 					bannerPath = "banner_black";
+	// 					isBlink = true;
+	// 				}
+	// 				else if (point >= 48000)
+	// 				{
+	// 					bannerPath = "banner_blue";
+	// 					isBlink = true;
+	// 				}
+	// 				else if (point >= 24000)
+	// 				{
+	// 					bannerPath = "banner_red";
+	// 					isBlink = true;
+	// 				}
+	// 				else if (point >= 16000)
+	// 				{
+	// 					bannerPath = "banner_gold";
+	// 					isBlink = true;
+	// 				}
+	// 				else if (point >= 12000)
+	// 				{
+	// 					bannerPath = "banner_gold";
+	// 				}
+	// 				else if (point >= 6000)
+	// 				{
+	// 					bannerPath = "banner_silver";
+	// 				}
+	// 				else
+	// 				{
+	// 					bannerPath = "banner_green";
+	// 				}
 
-					CCSprite *nameBaner = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s.png", bannerPath)->getCString());
-					nameBaner->setAnchorPoint(ccp(0.5f, 0));
-					nameBaner->setPosition(ccp(106, 0));
-					screwItem->addChild(nameBaner);
+	// 				CCSprite *nameBaner = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s.png", bannerPath)->getCString());
+	// 				nameBaner->setAnchorPoint(ccp(0.5f, 0));
+	// 				nameBaner->setPosition(ccp(106, 0));
+	// 				screwItem->addChild(nameBaner);
 
-					if (isBlink)
-					{
+	// 				if (isBlink)
+	// 				{
 
-						CCSprite *blink = CCSprite::createWithSpriteFrameName("banner_blink5.png");
-						blink->setAnchorPoint(ccp(0.5f, 0));
-						blink->setPosition(ccp(106, 0));
+	// 					CCSprite *blink = CCSprite::createWithSpriteFrameName("banner_blink5.png");
+	// 					blink->setAnchorPoint(ccp(0.5f, 0));
+	// 					blink->setPosition(ccp(106, 0));
 
-						screwItem->addChild(blink);
+	// 					screwItem->addChild(blink);
 
-						CCArray *tempArray = CCArray::create();
+	// 					CCArray *tempArray = CCArray::create();
 
-						int i = 1;
+	// 					int i = 1;
 
-						CCArray *list = CCArray::create();
-						while (i < 7)
-						{
-							CCString *path = CCString::createWithFormat("banner_blink%d.png", i);
-							CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path->getCString());
-							tempArray->addObject(frame);
+	// 					CCArray *list = CCArray::create();
+	// 					while (i < 7)
+	// 					{
+	// 						CCString *path = CCString::createWithFormat("banner_blink%d.png", i);
+	// 						CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path->getCString());
+	// 						tempArray->addObject(frame);
 
-							i += 1;
-						}
+	// 						i += 1;
+	// 					}
 
-						CCAnimation *tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
-						CCAction *tempAction = CCAnimate::create(tempAnimation);
-						list->addObject(tempAction);
-						CCDelayTime *delay = CCDelayTime::create(1.0f);
-						list->addObject(delay);
+	// 					CCAnimation *tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
+	// 					CCAction *tempAction = CCAnimate::create(tempAnimation);
+	// 					list->addObject(tempAction);
+	// 					CCDelayTime *delay = CCDelayTime::create(1.0f);
+	// 					list->addObject(delay);
 
-						blink->runAction(CCRepeatForever::create(CCSequence::create(list)));
-					}
-				}
-				else
-				{
-					CCLabelTTF *user_name = CCLabelTTF::create(name.c_str(), FONT_TYPE, 12);
+	// 					blink->runAction(CCRepeatForever::create(CCSequence::create(list)));
+	// 				}
+	// 			}
+	// 			else
+	// 			{
+	// 				CCLabelTTF *user_name = CCLabelTTF::create(name.c_str(), FONT_TYPE, 12);
 
-					if (MemberID)
-					{
-						if (MemberID == memberID)
-						{
-							user_name->setColor(ccc3(236, 162, 8));
-						}
-					}
+	// 				if (MemberID)
+	// 				{
+	// 					if (MemberID == memberID)
+	// 					{
+	// 						user_name->setColor(ccc3(236, 162, 8));
+	// 					}
+	// 				}
 
-					user_name->setAnchorPoint(ccp(0.5f, 0.5));
-					user_name->setPosition(ccp(106, 13));
-					screwItem->addChild(user_name);
-				}
+	// 				user_name->setAnchorPoint(ccp(0.5f, 0.5));
+	// 				user_name->setPosition(ccp(106, 13));
+	// 				screwItem->addChild(user_name);
+	// 			}
 
-				CCLabelTTF *user_score = CCLabelTTF::create(CCString::createWithFormat("%d", score)->getCString(), FONT_TYPE, 12);
+	// 			CCLabelTTF *user_score = CCLabelTTF::create(CCString::createWithFormat("%d", score)->getCString(), FONT_TYPE, 12);
 
-				user_score->setAnchorPoint(ccp(0.5f, 0));
-				user_score->setPosition(ccp(214, 5));
-				screwItem->addChild(user_score);
+	// 			user_score->setAnchorPoint(ccp(0.5f, 0));
+	// 			user_score->setPosition(ccp(214, 5));
+	// 			screwItem->addChild(user_score);
 
-				if (groupID != 0)
-				{
-					CCLabelTTF *group_Name = CCLabelTTF::create(CCString::createWithFormat("%s", groupName.c_str())->getCString(), FONT_TYPE, 12);
+	// 			if (groupID != 0)
+	// 			{
+	// 				CCLabelTTF *group_Name = CCLabelTTF::create(CCString::createWithFormat("%s", groupName.c_str())->getCString(), FONT_TYPE, 12);
 
-					CCMenuItemLabel *item = CCMenuItemLabel::create(group_Name, this, menu_selector(RakingLayer::onSelectGroupBtn));
+	// 				CCMenuItemLabel *item = CCMenuItemLabel::create(group_Name, this, menu_selector(RakingLayer::onSelectGroupBtn));
 
-					CCMenu *pMenu = CCMenu::create(item, NULL);
-					pMenu->setPosition(ccp(304, 5));
-					item->setAnchorPoint(ccp(0.5f, 0));
-					item->setTag(groupID);
-					pMenu->setTouchPriority(1);
-					screwItem->addChild(pMenu);
-					screwItem->setTag(groupID);
-				}
-				else if (strcmp(groupName.c_str(), "") != 0)
-				{
-					CCLabelTTF *group_Name = CCLabelTTF::create(CCString::createWithFormat("%s", groupName.c_str())->getCString(), FONT_TYPE, 12);
+	// 				CCMenu *pMenu = CCMenu::create(item, NULL);
+	// 				pMenu->setPosition(ccp(304, 5));
+	// 				item->setAnchorPoint(ccp(0.5f, 0));
+	// 				item->setTag(groupID);
+	// 				pMenu->setTouchPriority(1);
+	// 				screwItem->addChild(pMenu);
+	// 				screwItem->setTag(groupID);
+	// 			}
+	// 			else if (strcmp(groupName.c_str(), "") != 0)
+	// 			{
+	// 				CCLabelTTF *group_Name = CCLabelTTF::create(CCString::createWithFormat("%s", groupName.c_str())->getCString(), FONT_TYPE, 12);
 
-					group_Name->setAnchorPoint(ccp(0.5f, 0));
-					group_Name->setPosition(ccp(304, 5));
-					screwItem->addChild(group_Name);
-				}
+	// 				group_Name->setAnchorPoint(ccp(0.5f, 0));
+	// 				group_Name->setPosition(ccp(304, 5));
+	// 				screwItem->addChild(group_Name);
+	// 			}
 
-				int row = i;
-				screwItem->setPosition(ccp(0, -row * 26 + 26));
-				screwItem->setAnchorPoint(ccp(0, 0));
+	// 			int row = i;
+	// 			screwItem->setPosition(ccp(0, -row * 26 + 26));
+	// 			screwItem->setAnchorPoint(ccp(0, 0));
 
-				_screwLayer1->addChild(screwItem, 10);
+	// 			_screwLayer1->addChild(screwItem, 10);
 
-				countRow++;
-			}
-		}
-		_screwLayer1->totalRow = countRow;
-	}
+	// 			countRow++;
+	// 		}
+	// 	}
+	// 	_screwLayer1->totalRow = countRow;
+	// }
 }
 
 void RakingLayer::onHttpRequestCompleted3(CCHttpClient* client, CCHttpResponse* response)
 {
 
-	isPosting = false;
-	//刷新按钮
-	if (refreshBtn)
-	{
-		refreshBtn->stopAllActions();
-		refreshBtn->removeFromParent();
-		refreshBtn = NULL;
-	}
+	// isPosting = false;
+	// //刷新按钮
+	// if (refreshBtn)
+	// {
+	// 	refreshBtn->stopAllActions();
+	// 	refreshBtn->removeFromParent();
+	// 	refreshBtn = NULL;
+	// }
 
-	if (!response)
-	{
-		return;
-	}
-	if (0 != strlen(response->getHttpRequest()->getTag()))
-	{
-		CCLog("%s completed", response->getHttpRequest()->getTag());
-	}
-	int statusCode = response->getResponseCode();
-	char statusString[64] = {};
-	sprintf(statusString, "Http status code:%d ,tag = %s", statusCode, response->getHttpRequest()->getTag());
-	CCLog("response code:%d", statusCode);
-	if (!response->isSucceed())
-	{
-		CCLog("response failed");
-		CCLog("error buffer:%s", response->getErrorBuffer());
-		CCTips *tip = CCTips::create("ServerError");
-		this->addChild(tip, 5000);
-		return;
-	}
-	std::vector<char> *buffer = response->getResponseData();
-	printf("Http response,dump data:");
+	// if (!response)
+	// {
+	// 	return;
+	// }
+	// if (0 != strlen(response->getHttpRequest()->getTag()))
+	// {
+	// 	CCLog("%s completed", response->getHttpRequest()->getTag());
+	// }
+	// int statusCode = response->getResponseCode();
+	// char statusString[64] = {};
+	// sprintf(statusString, "Http status code:%d ,tag = %s", statusCode, response->getHttpRequest()->getTag());
+	// CCLog("response code:%d", statusCode);
+	// if (!response->isSucceed())
+	// {
+	// 	CCLog("response failed");
+	// 	CCLog("error buffer:%s", response->getErrorBuffer());
+	// 	CCTips *tip = CCTips::create("ServerError");
+	// 	this->addChild(tip, 5000);
+	// 	return;
+	// }
+	// std::vector<char> *buffer = response->getResponseData();
+	// printf("Http response,dump data:");
 
-	Document doc;
-	//把vector转换成std::string
-	std::string buf(buffer->begin(), buffer->end());
-	//CCLog("%s",buf.c_str());
-	const char *json = (char *)buf.c_str();
-	doc.Parse<kParseDefaultFlags>(json);
-	Value &arr = doc;
-	int countRow = 0;
-	if (arr.IsArray())
-	{
+	// Document doc;
+	// //把vector转换成std::string
+	// std::string buf(buffer->begin(), buffer->end());
+	// //CCLog("%s",buf.c_str());
+	// const char *json = (char *)buf.c_str();
+	// doc.Parse<kParseDefaultFlags>(json);
+	// Value &arr = doc;
+	// int countRow = 0;
+	// if (arr.IsArray())
+	// {
 
-		for (SizeType i = 0; i < arr.Size(); i++)
-		{
+	// 	for (SizeType i = 0; i < arr.Size(); i++)
+	// 	{
 
-			Value &node = arr[i];
+	// 		Value &node = arr[i];
 
-			if (i == 0)
-			{
-				//排位
-				Value &sortValue = node["newid"];
-				int sortNO = sortValue.GetInt();
+	// 		if (i == 0)
+	// 		{
+	// 			//排位
+	// 			Value &sortValue = node["newid"];
+	// 			int sortNO = sortValue.GetInt();
 
-				if (sortNO == 0)
-				{
-					CCDictionary *strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
-					const char *reply = ((CCString *)strings->objectForKey("GroupNull"))->m_sString.c_str();
-					rankingDetail = CCLabelTTF::create(CCString::createWithFormat("%s", reply)->getCString(), FONT_TYPE, 12);
-					rankingDetail->setAnchorPoint(ccp(0, 0.5f));
-					rankingDetail->setPosition(ccp(ranking_bg->getPositionX() - ranking_bg->getContentSize().width / 2 + 20, ranking_bg->getPositionY() - ranking_bg->getContentSize().height / 2 + 14));
-					ranking_layer->addChild(rankingDetail, 500);
-				}
-				else
-				{
-					CCDictionary *strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
-					const char *reply = ((CCString *)strings->objectForKey("GroupDetail"))->m_sString.c_str();
-					const char *reply2 = ((CCString *)strings->objectForKey("RankingDetail2"))->m_sString.c_str();
-					rankingDetail = CCLabelTTF::create(CCString::createWithFormat("%s %d %s", reply, sortNO, reply2)->getCString(), FONT_TYPE, 12);
-					rankingDetail->setAnchorPoint(ccp(0, 0.5f));
-					rankingDetail->setPosition(ccp(ranking_bg->getPositionX() - ranking_bg->getContentSize().width / 2 + 20, ranking_bg->getPositionY() - ranking_bg->getContentSize().height / 2 + 14));
-					ranking_layer->addChild(rankingDetail, 500);
-				}
-			}
-			else
-			{
+	// 			if (sortNO == 0)
+	// 			{
+	// 				CCDictionary *strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
+	// 				const char *reply = ((CCString *)strings->objectForKey("GroupNull"))->m_sString.c_str();
+	// 				rankingDetail = CCLabelTTF::create(CCString::createWithFormat("%s", reply)->getCString(), FONT_TYPE, 12);
+	// 				rankingDetail->setAnchorPoint(ccp(0, 0.5f));
+	// 				rankingDetail->setPosition(ccp(ranking_bg->getPositionX() - ranking_bg->getContentSize().width / 2 + 20, ranking_bg->getPositionY() - ranking_bg->getContentSize().height / 2 + 14));
+	// 				ranking_layer->addChild(rankingDetail, 500);
+	// 			}
+	// 			else
+	// 			{
+	// 				CCDictionary *strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
+	// 				const char *reply = ((CCString *)strings->objectForKey("GroupDetail"))->m_sString.c_str();
+	// 				const char *reply2 = ((CCString *)strings->objectForKey("RankingDetail2"))->m_sString.c_str();
+	// 				rankingDetail = CCLabelTTF::create(CCString::createWithFormat("%s %d %s", reply, sortNO, reply2)->getCString(), FONT_TYPE, 12);
+	// 				rankingDetail->setAnchorPoint(ccp(0, 0.5f));
+	// 				rankingDetail->setPosition(ccp(ranking_bg->getPositionX() - ranking_bg->getContentSize().width / 2 + 20, ranking_bg->getPositionY() - ranking_bg->getContentSize().height / 2 + 14));
+	// 				ranking_layer->addChild(rankingDetail, 500);
+	// 			}
+	// 		}
+	// 		else
+	// 		{
 
-				Value &idValue = node["id"];
-				std::string groupString = idValue.GetString();
-				int groupID = atoi(groupString.c_str());
+	// 			Value &idValue = node["id"];
+	// 			std::string groupString = idValue.GetString();
+	// 			int groupID = atoi(groupString.c_str());
 
-				Value &groupNameValue = node["group_name"];
-				std::string groupName = groupNameValue.GetString();
+	// 			Value &groupNameValue = node["group_name"];
+	// 			std::string groupName = groupNameValue.GetString();
 
-				Value &pointValue = node["totalPoint"];
-				std::string pointString = pointValue.GetString();
-				int point;
-				if (postingCode == 700)
-				{
-					point = atof(pointString.c_str()) * 100;
-				}
-				else
-				{
-					point = atof(pointString.c_str());
-				}
+	// 			Value &pointValue = node["totalPoint"];
+	// 			std::string pointString = pointValue.GetString();
+	// 			int point;
+	// 			if (postingCode == 700)
+	// 			{
+	// 				point = atof(pointString.c_str()) * 100;
+	// 			}
+	// 			else
+	// 			{
+	// 				point = atof(pointString.c_str());
+	// 			}
 
-				CCScrewItem *screwItem = CCScrewItem::create();
-				if (i % 2 != 0)
-				{
-					CCSprite *line_bg = CCSprite::createWithSpriteFrameName("ranking_line.png");
-					line_bg->setAnchorPoint(ccp(0, 0));
-					screwItem->addChild(line_bg);
-				}
+	// 			CCScrewItem *screwItem = CCScrewItem::create();
+	// 			if (i % 2 != 0)
+	// 			{
+	// 				CCSprite *line_bg = CCSprite::createWithSpriteFrameName("ranking_line.png");
+	// 				line_bg->setAnchorPoint(ccp(0, 0));
+	// 				screwItem->addChild(line_bg);
+	// 			}
 
-				if (i == 1)
-				{
-					CCSprite *num_icon;
+	// 			if (i == 1)
+	// 			{
+	// 				CCSprite *num_icon;
 
-					num_icon = CCSprite::createWithSpriteFrameName("num_top5.png");
+	// 				num_icon = CCSprite::createWithSpriteFrameName("num_top5.png");
 
-					num_icon->setAnchorPoint(ccp(0, 0));
-					num_icon->setPosition(ccp(1, 1));
-					screwItem->addChild(num_icon);
-				}
-				else if (i == 2)
-				{
-					CCSprite *num_icon = CCSprite::createWithSpriteFrameName("num_2.png");
-					num_icon->setAnchorPoint(ccp(0, 0));
-					num_icon->setPosition(ccp(1, 1));
-					screwItem->addChild(num_icon);
-				}
-				else if (i == 3)
-				{
-					CCSprite *num_icon = CCSprite::createWithSpriteFrameName("num_3.png");
-					num_icon->setAnchorPoint(ccp(0, 0));
-					num_icon->setPosition(ccp(1, 1));
-					screwItem->addChild(num_icon);
-				}
-				else
-				{
-					CCLabelTTF *numLabel = CCLabelTTF::create(CCString::createWithFormat("%d", i)->getCString(), "微软雅黑", 12);
-					numLabel->setPosition(ccp(13, 13));
-					screwItem->addChild(numLabel);
-				}
+	// 				num_icon->setAnchorPoint(ccp(0, 0));
+	// 				num_icon->setPosition(ccp(1, 1));
+	// 				screwItem->addChild(num_icon);
+	// 			}
+	// 			else if (i == 2)
+	// 			{
+	// 				CCSprite *num_icon = CCSprite::createWithSpriteFrameName("num_2.png");
+	// 				num_icon->setAnchorPoint(ccp(0, 0));
+	// 				num_icon->setPosition(ccp(1, 1));
+	// 				screwItem->addChild(num_icon);
+	// 			}
+	// 			else if (i == 3)
+	// 			{
+	// 				CCSprite *num_icon = CCSprite::createWithSpriteFrameName("num_3.png");
+	// 				num_icon->setAnchorPoint(ccp(0, 0));
+	// 				num_icon->setPosition(ccp(1, 1));
+	// 				screwItem->addChild(num_icon);
+	// 			}
+	// 			else
+	// 			{
+	// 				CCLabelTTF *numLabel = CCLabelTTF::create(CCString::createWithFormat("%d", i)->getCString(), "微软雅黑", 12);
+	// 				numLabel->setPosition(ccp(13, 13));
+	// 				screwItem->addChild(numLabel);
+	// 			}
 
-				CCLabelTTF *group_name = CCLabelTTF::create(groupName.c_str(), FONT_TYPE, 12);
+	// 			CCLabelTTF *group_name = CCLabelTTF::create(groupName.c_str(), FONT_TYPE, 12);
 
-				if (GroupID)
-				{
-					if (GroupID == groupID)
-					{
-						group_name->setColor(ccc3(236, 162, 8));
-					}
-				}
-				CCMenuItemLabel *item = CCMenuItemLabel::create(group_name, this, menu_selector(RakingLayer::onSelectGroupBtn));
-				item->setTag(groupID);
+	// 			if (GroupID)
+	// 			{
+	// 				if (GroupID == groupID)
+	// 				{
+	// 					group_name->setColor(ccc3(236, 162, 8));
+	// 				}
+	// 			}
+	// 			CCMenuItemLabel *item = CCMenuItemLabel::create(group_name, this, menu_selector(RakingLayer::onSelectGroupBtn));
+	// 			item->setTag(groupID);
 
-				CCMenu *pMenu = CCMenu::create(item, NULL);
+	// 			CCMenu *pMenu = CCMenu::create(item, NULL);
 
-				pMenu->setPosition(ccp(108, 5));
-				item->setAnchorPoint(ccp(0.5f, 0));
-				screwItem->addChild(pMenu);
+	// 			pMenu->setPosition(ccp(108, 5));
+	// 			item->setAnchorPoint(ccp(0.5f, 0));
+	// 			screwItem->addChild(pMenu);
 
-				CCLabelTTF *user_score = CCLabelTTF::create(CCString::createWithFormat("%d", point)->getCString(), FONT_TYPE, 12);
+	// 			CCLabelTTF *user_score = CCLabelTTF::create(CCString::createWithFormat("%d", point)->getCString(), FONT_TYPE, 12);
 
-				user_score->setAnchorPoint(ccp(0.5f, 0));
-				user_score->setPosition(ccp(242, 5));
-				screwItem->addChild(user_score);
+	// 			user_score->setAnchorPoint(ccp(0.5f, 0));
+	// 			user_score->setPosition(ccp(242, 5));
+	// 			screwItem->addChild(user_score);
 
-				int row = i;
-				screwItem->setPosition(ccp(0, -row * 26 + 26));
-				screwItem->setAnchorPoint(ccp(0, 0));
+	// 			int row = i;
+	// 			screwItem->setPosition(ccp(0, -row * 26 + 26));
+	// 			screwItem->setAnchorPoint(ccp(0, 0));
 
-				_screwLayer1->addChild(screwItem, 10);
+	// 			_screwLayer1->addChild(screwItem, 10);
 
-				countRow++;
-			}
-		}
-		_screwLayer1->totalRow = countRow;
-	}
+	// 			countRow++;
+	// 		}
+	// 	}
+	// 	_screwLayer1->totalRow = countRow;
+	// }
 }
 
 void RakingLayer::onSelectGroupBtn(CCObject *sender)

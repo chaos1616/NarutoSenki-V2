@@ -502,11 +502,11 @@ void HPBar::loseHP(float percent)
 				const char *currentTeam;
 				if (_delegate->getDelegate()->zhenying > 0)
 				{
-					currentTeam = "Konoha";
+					currentTeam = Konoha;
 				}
 				else
 				{
-					currentTeam = "Akatsuki";
+					currentTeam = Akatsuki;
 				}
 
 				if (strcmp(currentSlayer->getGroup()->getCString(), currentTeam) == 0)

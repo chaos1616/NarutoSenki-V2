@@ -1,6 +1,8 @@
 #include "AppDelegate.h"
 #include "GameScene.h"
 #include "SimpleAudioEngine.h"
+#include "CCLuaEngine.h"
+#include "Lua_extensions_CCB.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -34,6 +36,20 @@ bool AppDelegate::applicationDidFinishLaunching()
     // run
     pDirector->runWithScene(pScene);
 
+    // init lua
+    CCLuaEngine *pEngine = CCLuaEngine::defaultEngine();
+    CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);
+
+    CCLuaStack *pStack = pEngine->getLuaStack();
+    lua_State *tolua_s = pStack->getLuaState();
+    tolua_extensions_ccb_open(tolua_s);
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
+    CCFileUtils::sharedFileUtils()->addSearchPath("../lua");
+#endif
+
+    std::string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("../lua/__main__.lua");
+    pEngine->executeScriptFile(path.c_str());
     return true;
 }
 

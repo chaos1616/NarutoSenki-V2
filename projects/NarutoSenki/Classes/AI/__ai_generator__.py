@@ -1,19 +1,16 @@
 import os
 
-temp = """#pragma once
+temp = '''#pragma once
 #include "Characters.h"
 
 class %s : public Hero
 {
-    void perform();
+    void perform()
+    {
+    %s
+    }
 };
-"""
-
-impl_section = '''
-void %s::perform()
-{
-%s
-}'''
+'''
 
 root = os.path.dirname(__file__)
 src = root+'/AI.hpp'
@@ -37,4 +34,4 @@ for name in names:
         class_name = name.replace('.hpp', '')
         with open(path, 'w') as fs:
             # fs.write(temp % (class_name, class_name, ''))
-            fs.write(temp % class_name)
+            fs.write(temp % class_name, '')

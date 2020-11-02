@@ -3,157 +3,217 @@
 
 class AI_Choji : public Hero
 {
-	void perform();
-};
-
-void AI_Choji::perform()
-{
-
-	_mainTarget = NULL;
-	this->findEnemy2("Hero");
-
-	if (_isCanGear06)
+	void perform()
 	{
-		if ((this->getActionState() == ACTION_STATE_FLOAT ||
-			 this->getActionState() == ACTION_STATE_AIRHURT ||
-			 this->getActionState() == ACTION_STATE_HURT ||
-			 this->getActionState() == ACTION_STATE_KOCKDOWN) &&
-			this->getHpPercent() < 0.5 && !_isBati && !_isWudi)
-		{
-			this->useGear(gear06);
-		}
-	}
-	if (atoi(this->getCoin()->getCString()) >= 500 && !_isControled && _delegate->_isHardCoreGame)
-	{
-		if (this->getGearArray()->count() == 0)
-		{
-			this->setGear(gear06);
-		}
-		else if (this->getGearArray()->count() == 1)
-		{
-			this->setGear(gear01);
-		}
-		else if (this->getGearArray()->count() == 2)
-		{
-			this->setGear(gear04);
-		}
-	}
 
-	if (this->checkRetri())
-	{
-		if (_mainTarget != NULL)
-		{
+		_mainTarget = NULL;
+		this->findEnemy2("Hero");
 
-			if (this->stepBack2())
+		if (_isCanGear06)
+		{
+			if ((this->getActionState() == ACTION_STATE_FLOAT ||
+				 this->getActionState() == ACTION_STATE_AIRHURT ||
+				 this->getActionState() == ACTION_STATE_HURT ||
+				 this->getActionState() == ACTION_STATE_KOCKDOWN) &&
+				this->getHpPercent() < 0.5 && !_isBati && !_isWudi)
 			{
-				return;
+				this->useGear(gear06);
 			}
 		}
-		else
+		if (atoi(this->getCoin()->getCString()) >= 500 && !_isControled && _delegate->_isHardCoreGame)
 		{
-			if (this->stepBack())
+			if (this->getGearArray()->count() == 0)
 			{
-				return;
+				this->setGear(gear06);
 			}
-		}
-	}
-
-	if (isBaseDanger && this->checkBase() && !_isControled)
-	{
-		bool needBack = false;
-		if (strcmp("Akatsuki", this->getGroup()->getCString()) == 0)
-		{
-			if (this->getPositionX() < 85 * 32)
+			else if (this->getGearArray()->count() == 1)
 			{
-				needBack = true;
+				this->setGear(gear01);
 			}
-		}
-		else
-		{
-			if (this->getPositionX() > 11 * 32)
+			else if (this->getGearArray()->count() == 2)
 			{
-				needBack = true;
+				this->setGear(gear04);
 			}
 		}
 
-		if (needBack)
+		if (this->checkRetri())
 		{
-			if (this->stepBack2())
-			{
-				return;
-			}
-		}
-	}
-
-	if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), "Flog") != 0)
-	{
-		CCPoint moveDirection;
-		CCPoint sp;
-
-		if (_mainTarget->_originY)
-		{
-			sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), this->getPosition());
-		}
-		else
-		{
-			sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
-		}
-		if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
-		{
-
-			if (_isCanSkill1 && !_isBati)
-			{
-				this->changeSide(sp);
-				this->attack(SKILL1);
-				return;
-			}
-			else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isBati)
+			if (_mainTarget != NULL)
 			{
 
-				if (abs(sp.x) > 96 || abs(sp.y) > 16)
+				if (this->stepBack2())
 				{
-					moveDirection = ccpNormalize(sp);
-					this->walk(moveDirection);
-					return;
-				}
-				this->changeSide(sp);
-				this->attack(SKILL3);
-				return;
-			}
-			else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControled && !_isBati)
-			{
-				if (abs(sp.x) < 160)
-				{
-					this->stepBack2();
-					return;
-				}
-				else
-				{
-
-					this->idle();
 					return;
 				}
 			}
-			else if (abs(sp.x) < 128)
+			else
 			{
-				if (abs(sp.x) > 32 || abs(sp.y) > 32)
+				if (this->stepBack())
 				{
-					moveDirection = ccpNormalize(sp);
-					this->walk(moveDirection);
 					return;
 				}
+			}
+		}
 
-				if (_isCanOugis1 && !_isControled && _mainTarget->getGP() < 5000 && !_isBati)
+		if (isBaseDanger && this->checkBase() && !_isControled)
+		{
+			bool needBack = false;
+			if (strcmp(Akatsuki, this->getGroup()->getCString()) == 0)
+			{
+				if (this->getPositionX() < 85 * 32)
+				{
+					needBack = true;
+				}
+			}
+			else
+			{
+				if (this->getPositionX() > 11 * 32)
+				{
+					needBack = true;
+				}
+			}
+
+			if (needBack)
+			{
+				if (this->stepBack2())
+				{
+					return;
+				}
+			}
+		}
+
+		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), "Flog") != 0)
+		{
+			CCPoint moveDirection;
+			CCPoint sp;
+
+			if (_mainTarget->_originY)
+			{
+				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), this->getPosition());
+			}
+			else
+			{
+				sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
+			}
+			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+			{
+
+				if (_isCanSkill1 && !_isBati)
 				{
 					this->changeSide(sp);
-					this->attack(OUGIS1);
+					this->attack(SKILL1);
+					return;
 				}
-				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isBati && _skillUPBuffValue)
+				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isBati)
+				{
+
+					if (abs(sp.x) > 96 || abs(sp.y) > 16)
+					{
+						moveDirection = ccpNormalize(sp);
+						this->walk(moveDirection);
+						return;
+					}
+					this->changeSide(sp);
+					this->attack(SKILL3);
+					return;
+				}
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControled && !_isBati)
+				{
+					if (abs(sp.x) < 160)
+					{
+						this->stepBack2();
+						return;
+					}
+					else
+					{
+
+						this->idle();
+						return;
+					}
+				}
+				else if (abs(sp.x) < 128)
+				{
+					if (abs(sp.x) > 32 || abs(sp.y) > 32)
+					{
+						moveDirection = ccpNormalize(sp);
+						this->walk(moveDirection);
+						return;
+					}
+
+					if (_isCanOugis1 && !_isControled && _mainTarget->getGP() < 5000 && !_isBati)
+					{
+						this->changeSide(sp);
+						this->attack(OUGIS1);
+					}
+					else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isBati && _skillUPBuffValue)
+					{
+						this->changeSide(sp);
+						this->attack(SKILL2);
+					}
+					else if (_isCanOugis2 && !_isControled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isBati)
+					{
+						this->changeSide(sp);
+						this->attack(OUGIS2);
+					}
+					else
+					{
+						this->changeSide(sp);
+						this->attack(NAttack);
+					}
+
+					return;
+				}
+			}
+		}
+		if (battleCondiction >= 0)
+		{
+			_mainTarget = NULL;
+			if (!this->findEnemy2("Flog"))
+			{
+				this->findEnemy2("Tower");
+			}
+		}
+		else
+		{
+			_mainTarget = NULL;
+			this->findEnemy2("Tower");
+		}
+
+		if (_mainTarget)
+		{
+
+			CCPoint moveDirection;
+			CCPoint sp;
+
+			if (_mainTarget->_originY)
+			{
+				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), this->getPosition());
+			}
+			else
+			{
+				sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
+			}
+
+			if (abs(sp.x) > 32 || abs(sp.y) > 32)
+			{
+				moveDirection = ccpNormalize(sp);
+				this->walk(moveDirection);
+				return;
+			}
+
+			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+			{
+				if (_isCanSkill2 && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 				{
 					this->changeSide(sp);
 					this->attack(SKILL2);
 				}
-				else if (_isCanOugis2 && !_isControled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isBati)
+				else if (_isCanOugis1 && !_isControled && isBaseDanger && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				{
+					this->changeSide(sp);
+					this->attack(OUGIS1);
+				}
+				else if (_isCanOugis2 && !_isControled && _delegate->_isOugis2Game && strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0 && !_isBati)
 				{
 					this->changeSide(sp);
 					this->attack(OUGIS2);
@@ -163,82 +223,20 @@ void AI_Choji::perform()
 					this->changeSide(sp);
 					this->attack(NAttack);
 				}
-
-				return;
 			}
-		}
-	}
-	if (battleCondiction >= 0)
-	{
-		_mainTarget = NULL;
-		if (!this->findEnemy2("Flog"))
-		{
-			this->findEnemy2("Tower");
-		}
-	}
-	else
-	{
-		_mainTarget = NULL;
-		this->findEnemy2("Tower");
-	}
-
-	if (_mainTarget)
-	{
-
-		CCPoint moveDirection;
-		CCPoint sp;
-
-		if (_mainTarget->_originY)
-		{
-			sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), this->getPosition());
-		}
-		else
-		{
-			sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
-		}
-
-		if (abs(sp.x) > 32 || abs(sp.y) > 32)
-		{
-			moveDirection = ccpNormalize(sp);
-			this->walk(moveDirection);
 			return;
 		}
 
-		if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+		if (_isHealling && this->getHpPercent() < 1)
 		{
-			if (_isCanSkill2 && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
 			{
-				this->changeSide(sp);
-				this->attack(SKILL2);
-			}
-			else if (_isCanOugis1 && !_isControled && isBaseDanger && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
-			{
-				this->changeSide(sp);
-				this->attack(OUGIS1);
-			}
-			else if (_isCanOugis2 && !_isControled && _delegate->_isOugis2Game && strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0 && !_isBati)
-			{
-				this->changeSide(sp);
-				this->attack(OUGIS2);
-			}
-			else
-			{
-				this->changeSide(sp);
-				this->attack(NAttack);
+				this->idle();
 			}
 		}
-		return;
-	}
-
-	if (_isHealling && this->getHpPercent() < 1)
-	{
-		if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+		else
 		{
-			this->idle();
+			this->stepOn();
 		}
 	}
-	else
-	{
-		this->stepOn();
-	}
-}
+};

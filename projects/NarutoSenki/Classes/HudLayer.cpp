@@ -1371,7 +1371,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 			cutPath2 = "CutBg.png";
 		}
 
-		if (strcmp(group->getCString(), "Konoha") == 0)
+		if (strcmp(group->getCString(), Konoha) == 0)
 		{
 			startPosY = 0;
 			startPosX = -48;
@@ -1404,7 +1404,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		CCAction *tempAction = CCAnimate::create(tempAnimation);
 
 		CCSprite *CutLine = CCSprite::createWithSpriteFrameName("CutLine_01.png");
-		if (strcmp(group->getCString(), "Konoha") == 0)
+		if (strcmp(group->getCString(), Konoha) == 0)
 		{
 			CutLine->setAnchorPoint(ccp(0, 0));
 			CutLine->setPosition(ccp(-48, 0));
@@ -1423,7 +1423,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		ougisLayer->addChild(CutLine);
 
 		CCSprite *CutLineUP = CCSprite::createWithSpriteFrameName("CutLineUP.png");
-		if (strcmp(group->getCString(), "Konoha") == 0)
+		if (strcmp(group->getCString(), Konoha) == 0)
 		{
 			CutLineUP->setAnchorPoint(ccp(0, 0));
 			CutLineUP->setPosition(ccp(-48, 2));
@@ -1440,7 +1440,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		ougisLayer->addChild(CutLineUP);
 
 		CCSprite *CutIn = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_CutIn.png", character->getCString())->getCString());
-		if (strcmp(group->getCString(), "Konoha") == 0)
+		if (strcmp(group->getCString(), Konoha) == 0)
 		{
 			CutIn->setAnchorPoint(ccp(0, 0));
 			CutIn->setPosition(ccp(-200, 10));
@@ -1455,7 +1455,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		ougisLayer->addChild(CutIn);
 
 		CCSprite *CutLineDown = CCSprite::createWithSpriteFrameName("CutLineDown.png");
-		if (strcmp(group->getCString(), "Konoha") == 0)
+		if (strcmp(group->getCString(), Konoha) == 0)
 		{
 			CutLineDown->setAnchorPoint(ccp(0, 0));
 			CutLineDown->setPosition(ccp(-48, 0));

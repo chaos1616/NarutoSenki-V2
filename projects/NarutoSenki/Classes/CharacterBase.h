@@ -1,9 +1,8 @@
-#pragma once
-#include "cocos2d.h"
+#ifndef __CHARACTER_BASE_H__
+#define __CHARACTER_BASE_H__
 #include "MyUtils/KTools.h"
 #include "GameLayer.h"
 #include "Defines.h"
-#include "SimpleAudioEngine.h"
 #include "Effect.h"
 
 
@@ -33,7 +32,7 @@ public:
 	CharacterBase(void);
 	~CharacterBase(void);
 
-	virtual void		setID(CCString* character,CCString* role,CCString* group);
+	virtual void		setID(CCString* character,CCString* role,CCString *group);
 	virtual	void		setHPbar();
 	virtual	void       	changeHPbar();
 	virtual	void		setShadows();
@@ -158,7 +157,7 @@ public:
 	CC_SYNTHESIZE(CCPoint,_spawnPoint,SpawnPoint);
 		
 	
-	CC_SYNTHESIZE(Hero*,_master,Master);
+	CC_SYNTHESIZE(HeroElement*,_master,Master);
 	CC_SYNTHESIZE(CharacterBase*,_controler,Controler);
 	CC_SYNTHESIZE(CharacterBase*,_secmaster,SecMaster);
 
@@ -496,4 +495,4 @@ protected:
 private:
 	bool				_affectedByTower;
 };
-
+#endif

@@ -827,7 +827,7 @@ void HeroElement::reborn(float dt)
 
 		if (this->getLV() < 4)
 		{
-			if (strcmp(this->getGroup()->getCString(), "Konoha") == 0)
+			if (strcmp(this->getGroup()->getCString(), Konoha) == 0)
 			{
 				this->setEXP(this->getEXP() + this->getDelegate()->kEXPBound);
 			}
@@ -866,11 +866,11 @@ void HeroElement::reborn(float dt)
 					asan = false;
 				}
 			}
-			if (strcmp(this->getGroup()->getCString(), "Konoha") == 0 && ksan)
+			if (strcmp(this->getGroup()->getCString(), Konoha) == 0 && ksan)
 			{
 				this->doAI();
 			}
-			else if (strcmp(this->getGroup()->getCString(), "Akatsuki") == 0 && asan)
+			else if (strcmp(this->getGroup()->getCString(), Akatsuki) == 0 && asan)
 			{
 				this->doAI();
 			}
@@ -1112,7 +1112,7 @@ void Flog::setAI(float dt)
 
 		if (abs(this->getPositionY() - this->_mainPosY) > 8)
 		{
-			if (strcmp(this->getGroup()->getCString(), "Konoha") == 0)
+			if (strcmp(this->getGroup()->getCString(), Konoha) == 0)
 			{
 				moveDirection = ccpNormalize(ccp(1, this->getPositionY() > this->_mainPosY ? -1 : 1));
 			}
@@ -1123,7 +1123,7 @@ void Flog::setAI(float dt)
 		}
 		else
 		{
-			if (strcmp(this->getGroup()->getCString(), "Konoha") == 0)
+			if (strcmp(this->getGroup()->getCString(), Konoha) == 0)
 			{
 				moveDirection = ccpNormalize(ccp(1, 0));
 			}
@@ -1142,7 +1142,7 @@ void Flog::dealloc()
 	this->setActionState(ACTION_STATE_DEAD);
 	this->stopAllActions();
 
-	if (strcmp(this->getGroup()->getCString(), "Konoha") == 0)
+	if (strcmp(this->getGroup()->getCString(), Konoha) == 0)
 	{
 		int index = _delegate->_KonohaFlogArray->indexOfObject(this);
 		_delegate->_KonohaFlogArray->removeObjectAtIndex(index);

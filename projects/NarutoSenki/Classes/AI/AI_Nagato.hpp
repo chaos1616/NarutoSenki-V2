@@ -3,10 +3,7 @@
 
 class AI_Nagato : public Hero
 {
-public:
-    void perform();
+    void perform()
+    {
+    }
 };
-
-void AI_Nagato::perform()
-{
-}

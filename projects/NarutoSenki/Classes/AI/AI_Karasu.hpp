@@ -3,148 +3,146 @@
 
 class AI_Karasu : public Hero
 {
-	void perform();
-};
-
-void AI_Karasu::perform()
-{
-
-	if (!this->findEnemy("Hero", winSize.width / 2 - 32, true))
+	void perform()
 	{
-		if (!this->findEnemy("Flog", winSize.width / 2 - 32, true))
-		{
-			this->_mainTarget = NULL;
-		}
-	}
 
-	if (_mainTarget)
-	{
-		CCPoint moveDirection;
-		if (abs(ccpSub(_master->getPosition(), this->getPosition()).x) > winSize.width / 2 - 48)
+		if (!this->findEnemy("Hero", winSize.width / 2 - 32, true))
 		{
-			if (this->getActionState() == ACTION_STATE_IDLE || this->getActionState() == ACTION_STATE_WALK || this->getActionState() == ACTION_STATE_ATTACK)
+			if (!this->findEnemy("Flog", winSize.width / 2 - 32, true))
 			{
-				moveDirection = ccpNormalize(ccpSub(_master->getPosition(), this->getPosition()));
-				this->walk(moveDirection);
-				return;
+				this->_mainTarget = NULL;
 			}
 		}
-		CCPoint sp;
-		if (_mainTarget->_originY)
-		{
-			sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), this->getPosition());
-		}
-		else
-		{
-			sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
-		}
 
-		if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+		if (_mainTarget)
 		{
-
-			if (abs(sp.x) > 32 || abs(sp.y) > 32)
+			CCPoint moveDirection;
+			if (abs(ccpSub(_master->getPosition(), this->getPosition()).x) > winSize.width / 2 - 48)
 			{
-				if (this->_master->getActionState() == ACTION_STATE_IDLE ||
-					this->_master->getActionState() == ACTION_STATE_WALK ||
-					this->_master->getActionState() == ACTION_STATE_ATTACK ||
-					this->_master->getActionState() == ACTION_STATE_SATTACK ||
-					this->_master->getActionState() == ACTION_STATE_OATTACK ||
-					this->_master->getActionState() == ACTION_STATE_O2ATTACK)
+				if (this->getActionState() == ACTION_STATE_IDLE || this->getActionState() == ACTION_STATE_WALK || this->getActionState() == ACTION_STATE_ATTACK)
 				{
-
-					moveDirection = ccpNormalize(sp);
+					moveDirection = ccpNormalize(ccpSub(_master->getPosition(), this->getPosition()));
 					this->walk(moveDirection);
 					return;
 				}
+			}
+			CCPoint sp;
+			if (_mainTarget->_originY)
+			{
+				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), this->getPosition());
 			}
 			else
 			{
-				if (this->getActionState() == ACTION_STATE_IDLE ||
-					this->getActionState() == ACTION_STATE_WALK ||
-					this->getActionState() == ACTION_STATE_ATTACK)
-				{
-					this->changeSide(sp);
-					this->attack(NAttack);
-				}
+				sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
 			}
-			return;
-		}
-		else
-		{
 
-			if (abs(sp.x) > 32 || abs(sp.y) > 16)
-			{
-				if (this->_master->getActionState() == ACTION_STATE_IDLE ||
-					this->_master->getActionState() == ACTION_STATE_WALK ||
-					this->_master->getActionState() == ACTION_STATE_ATTACK ||
-					this->_master->getActionState() == ACTION_STATE_SATTACK ||
-					this->_master->getActionState() == ACTION_STATE_OATTACK ||
-					this->_master->getActionState() == ACTION_STATE_O2ATTACK)
-				{
-					moveDirection = ccpNormalize(sp);
-					this->walk(moveDirection);
-					return;
-				}
-			}
-			else if (this->getActionState() == ACTION_STATE_IDLE ||
-					 this->getActionState() == ACTION_STATE_WALK ||
-					 this->getActionState() == ACTION_STATE_ATTACK)
+			if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 			{
 
-				if (_master->getActionState() == ACTION_STATE_IDLE ||
-					_master->getActionState() == ACTION_STATE_WALK ||
-					_master->getActionState() == ACTION_STATE_ATTACK)
+				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
-
-					if (_master->_isCanSkill2 && _mainTarget->getGP() < 5000 && (_master->_isControled || _master->_isAI == true))
+					if (this->_master->getActionState() == ACTION_STATE_IDLE ||
+						this->_master->getActionState() == ACTION_STATE_WALK ||
+						this->_master->getActionState() == ACTION_STATE_ATTACK ||
+						this->_master->getActionState() == ACTION_STATE_SATTACK ||
+						this->_master->getActionState() == ACTION_STATE_OATTACK ||
+						this->_master->getActionState() == ACTION_STATE_O2ATTACK)
 					{
 
-						this->changeSide(sp);
-
-						if (strcmp(_master->getRole()->getCString(), "Player") != 0)
-						{
-							_master->attack(SKILL2);
-						}
-						else if (strcmp(_master->getRole()->getCString(), "Player") == 0)
-						{
-							_master->attack(SKILL2);
-						}
+						moveDirection = ccpNormalize(sp);
+						this->walk(moveDirection);
+						return;
 					}
-					else
+				}
+				else
+				{
+					if (this->getActionState() == ACTION_STATE_IDLE ||
+						this->getActionState() == ACTION_STATE_WALK ||
+						this->getActionState() == ACTION_STATE_ATTACK)
 					{
-
 						this->changeSide(sp);
 						this->attack(NAttack);
 					}
 				}
+				return;
 			}
-			return;
-		}
-	}
+			else
+			{
 
-	if (abs(ccpSub(_master->getPosition(), this->getPosition()).x) > winSize.width / 2 - 64)
-	{
-		CCPoint moveDirection = ccpNormalize(ccpSub(_master->getPosition(), this->getPosition()));
-		this->walk(moveDirection);
-		return;
-	}
-	else
-	{
-		if (
-			this->_master->getActionState() == ACTION_STATE_WALK ||
-			this->_master->getActionState() == ACTION_STATE_ATTACK ||
-			this->_master->getActionState() == ACTION_STATE_SATTACK ||
-			this->_master->getActionState() == ACTION_STATE_OATTACK)
+				if (abs(sp.x) > 32 || abs(sp.y) > 16)
+				{
+					if (this->_master->getActionState() == ACTION_STATE_IDLE ||
+						this->_master->getActionState() == ACTION_STATE_WALK ||
+						this->_master->getActionState() == ACTION_STATE_ATTACK ||
+						this->_master->getActionState() == ACTION_STATE_SATTACK ||
+						this->_master->getActionState() == ACTION_STATE_OATTACK ||
+						this->_master->getActionState() == ACTION_STATE_O2ATTACK)
+					{
+						moveDirection = ccpNormalize(sp);
+						this->walk(moveDirection);
+						return;
+					}
+				}
+				else if (this->getActionState() == ACTION_STATE_IDLE ||
+						 this->getActionState() == ACTION_STATE_WALK ||
+						 this->getActionState() == ACTION_STATE_ATTACK)
+				{
+
+					if (_master->getActionState() == ACTION_STATE_IDLE ||
+						_master->getActionState() == ACTION_STATE_WALK ||
+						_master->getActionState() == ACTION_STATE_ATTACK)
+					{
+
+						if (_master->_isCanSkill2 && _mainTarget->getGP() < 5000 && (_master->_isControled || _master->_isAI == true))
+						{
+
+							this->changeSide(sp);
+
+							if (strcmp(_master->getRole()->getCString(), "Player") != 0)
+							{
+								_master->attack(SKILL2);
+							}
+							else if (strcmp(_master->getRole()->getCString(), "Player") == 0)
+							{
+								_master->attack(SKILL2);
+							}
+						}
+						else
+						{
+
+							this->changeSide(sp);
+							this->attack(NAttack);
+						}
+					}
+				}
+				return;
+			}
+		}
+
+		if (abs(ccpSub(_master->getPosition(), this->getPosition()).x) > winSize.width / 2 - 64)
 		{
-			this->stepOn();
+			CCPoint moveDirection = ccpNormalize(ccpSub(_master->getPosition(), this->getPosition()));
+			this->walk(moveDirection);
+			return;
 		}
 		else
 		{
-			if (this->_actionState == ACTION_STATE_WALK ||
-				this->_actionState == ACTION_STATE_ATTACK)
+			if (
+				this->_master->getActionState() == ACTION_STATE_WALK ||
+				this->_master->getActionState() == ACTION_STATE_ATTACK ||
+				this->_master->getActionState() == ACTION_STATE_SATTACK ||
+				this->_master->getActionState() == ACTION_STATE_OATTACK)
 			{
-				this->idle();
+				this->stepOn();
+			}
+			else
+			{
+				if (this->_actionState == ACTION_STATE_WALK ||
+					this->_actionState == ACTION_STATE_ATTACK)
+				{
+					this->idle();
+				}
 			}
 		}
 	}
-}
+};

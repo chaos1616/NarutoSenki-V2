@@ -3,12 +3,9 @@
 
 class AI_DogWall : public Hero
 {
-public:
-    void perform();
+    void perform()
+    {
+
+        this->attack(NAttack);
+    }
 };
-
-void AI_DogWall::perform()
-{
-
-    this->attack(NAttack);
-}

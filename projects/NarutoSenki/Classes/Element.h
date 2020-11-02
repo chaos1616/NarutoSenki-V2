@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __ELEMENTS_H__
+#define __ELEMENTS_H__
 #include "cocos2d.h"
 #include "CharacterBase.h"
 #include "HPBar.h"
@@ -20,7 +21,7 @@ public:
 	void	setShadows();
 	void    changeHPbar();
 	void	neicun(float dt);
-	virtual void setID(CCString* character,CCString* role,CCString* group);
+	virtual void setID(CCString* character,CCString* role,CCString *group);
 	virtual void setAI(float dt);
 
 
@@ -50,7 +51,7 @@ public:
 	float	_randomPosX;
 	float	_randomPosY;
 
-	void	setID(CCString* character,CCString* role,CCString* group);
+	void	setID(CCString* character,CCString* role,CCString *group);
 	
 
 protected: 
@@ -70,10 +71,9 @@ public:
 	void	initAction();
 	void	setHPbar();
 	void	dealloc();    
-	void	setID(CCString* character,CCString* role,CCString* group);
+	void	setID(CCString* character,CCString* role,CCString *group);
 
 };
-
 
 class Monster: public CharacterBase{
 public:
@@ -83,7 +83,7 @@ public:
 	CREATE_FUNC(Monster);
 	bool	init();
 	void	initAction(); 
-	void	setID(CCString* character,CCString* role,CCString* group);
+	void	setID(CCString* character,CCString* role,CCString *group);
 	void	setHPbar();
 	void    changeHPbar();
 	void	setDirectMove(unsigned int length,float delay,bool isReverse);
@@ -105,7 +105,7 @@ public:
 	CREATE_FUNC(Bullet);
 	bool	init();
 	void	initAction(); 
-	void	setID(CCString* character,CCString* role,CCString* group);
+	void	setID(CCString* character,CCString* role,CCString *group);
 	
 	void	setMove(unsigned int length,float delay,bool isReverse);
 	void	setEaseIn(unsigned int length,float delay);
@@ -118,3 +118,4 @@ protected:
 	void    dealloc2();
 
 };
+#endif

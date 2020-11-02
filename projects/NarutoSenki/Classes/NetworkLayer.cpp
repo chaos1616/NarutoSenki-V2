@@ -837,11 +837,11 @@ void NetworkLayer::onGameStart(CCObject *sender)
 		const char *groupName;
 		if (zhenying > 0)
 		{
-			groupName = "Konoha";
+			groupName = Konoha;
 		}
 		else
 		{
-			groupName = "Akatsuki";
+			groupName = Akatsuki;
 		}
 
 		CCString *tmpRole = CCString::create("Player");
@@ -916,11 +916,11 @@ void NetworkLayer::onGameStart(CCObject *sender)
 				tmpRole = CCString::create("Com");
 				if (zhenying > 0)
 				{
-					tmpGroup = CCString::create("Konoha");
+					tmpGroup = CCString::create(Konoha);
 				}
 				else
 				{
-					tmpGroup = CCString::create("Akatsuki");
+					tmpGroup = CCString::create(Akatsuki);
 				}
 				dic->setObject(tmpChar, "character");
 				dic->setObject(tmpRole, "role");
@@ -946,11 +946,11 @@ void NetworkLayer::onGameStart(CCObject *sender)
 				tmpRole = CCString::create("Com");
 				if (zhenying > 0)
 				{
-					tmpGroup = CCString::create("Akatsuki");
+					tmpGroup = CCString::create(Akatsuki);
 				}
 				else
 				{
-					tmpGroup = CCString::create("Konoha");
+					tmpGroup = CCString::create(Konoha);
 				}
 				dic->setObject(tmpChar, "character");
 				dic->setObject(tmpRole, "role");

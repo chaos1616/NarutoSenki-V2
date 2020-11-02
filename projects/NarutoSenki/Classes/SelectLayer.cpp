@@ -276,7 +276,7 @@ void SelectLayer::onGameStart(CCObject *sender)
 		int zhenying = 1;
 
 		CCString *tmpRole = CCString::create("Player");
-		CCString *tmpGroup = CCString::create("Konoha");
+		CCString *tmpGroup = CCString::create(Konoha);
 
 		dic->setObject(tmpChar, "character");
 		dic->setObject(tmpRole, "role");
@@ -320,8 +320,7 @@ void SelectLayer::onGameStart(CCObject *sender)
 				dic = CCDictionary::create();
 				tmpChar = CCString::create(hero->getCString());
 				tmpRole = CCString::create("Com");
-
-				tmpGroup = CCString::create("Konoha");
+				tmpGroup = CCString::create(Konoha);
 
 				dic->setObject(tmpChar, "character");
 				dic->setObject(tmpRole, "role");
@@ -346,7 +345,7 @@ void SelectLayer::onGameStart(CCObject *sender)
 				tmpChar = CCString::create(hero->getCString());
 				tmpRole = CCString::create("Com");
 
-				tmpGroup = CCString::create("Akatsuki");
+				tmpGroup = CCString::create(Akatsuki);
 
 				dic->setObject(tmpChar, "character");
 				dic->setObject(tmpRole, "role");

@@ -1,8 +1,8 @@
 #include "GameLayer.h"
-#include "Characters.h"
 #include "BGLayer.h"
 #include "HudLayer.h"
 #include "StartMenu.h"
+#include "AI/__AI__.hpp"
 
 int CError = 0;
 GameLayer *_gLayer = NULL;
@@ -186,25 +186,25 @@ void GameLayer::initGard()
 	int index = 0;
 	srand((int)time(0));
 	index = random(2);
-	Hero *Guardian = Hero::create();
+	HeroElement *Guardian;
 
 	const char *groupName;
 
 	if (zhenying > 0)
 	{
-		groupName = "Akatsuki";
+		groupName = Akatsuki;
 	}
 	else
 	{
-		groupName = "Konoha";
+		groupName = Konoha;
 	}
 	if (index == 0)
 	{
-		Guardian->setID(CCString::create("Roshi"), CCString::create("Com"), CCString::create(groupName));
+		Guardian = AIGenerator::create(CCString::create("Roshi"), CCString::create("Com"), CCString::create(groupName));
 	}
 	else if (index == 1)
 	{
-		Guardian->setID(CCString::create("Han"), CCString::create("Com"), CCString::create(groupName));
+		Guardian = AIGenerator::create(CCString::create("Han"), CCString::create("Com"), CCString::create(groupName));
 	}
 
 	if (zhenying > 0)
@@ -285,8 +285,7 @@ void GameLayer::initHeros()
 
 			if (i == 0)
 			{
-				currentPlayer = Hero::create();
-				currentPlayer->setID(player, role, group);
+				currentPlayer = AIGenerator::create(player, role, group);
 				currentPlayer->setDelegate(this);
 				currentPlayer->setPosition(spawnPoint);
 				currentPlayer->setSpawnPoint(spawnPoint);
@@ -301,8 +300,7 @@ void GameLayer::initHeros()
 			else
 			{
 
-				Hero *Com = Hero::create();
-				Com->setID(player, role, group);
+				HeroElement *Com = AIGenerator::create(player, role, group);
 				Com->setDelegate(this);
 				Com->setPosition(spawnPoint);
 				Com->setSpawnPoint(spawnPoint);
@@ -329,7 +327,7 @@ void GameLayer::initHeros()
 			CCString *group = CCString::create(tempdict->valueForKey("group")->getCString());
 
 			int mapPos = i;
-			if (strcmp(group->getCString(), "Akatsuki") == 0)
+			if (strcmp(group->getCString(), Akatsuki) == 0)
 			{
 				if (mapPos <= MapPosCount)
 				{
@@ -353,13 +351,12 @@ void GameLayer::initHeros()
 			if (i == 0)
 			{
 
-				if (strcmp(group->getCString(), "Akatsuki") == 0)
+				if (strcmp(group->getCString(), Akatsuki) == 0)
 				{
 					zhenying = 0;
 				}
 
-				currentPlayer = Hero::create();
-				currentPlayer->setID(player, role, group);
+				currentPlayer = AIGenerator::create(player, role, group);
 				currentPlayer->setDelegate(this);
 				currentPlayer->setPosition(spawnPoint);
 				currentPlayer->setSpawnPoint(spawnPoint);
@@ -379,8 +376,7 @@ void GameLayer::initHeros()
 			else
 			{
 
-				Hero *Com = Hero::create();
-				Com->setID(player, role, group);
+				HeroElement *Com = AIGenerator::create(player, role, group);
 				Com->setDelegate(this);
 				Com->setPosition(spawnPoint);
 				Com->setSpawnPoint(spawnPoint);
@@ -388,7 +384,7 @@ void GameLayer::initHeros()
 				Com->setHPbar();
 				Com->setShadows();
 				Com->idle();
-				if (strcmp(Com->getGroup()->getCString(), "Akatsuki") == 0)
+				if (strcmp(Com->getGroup()->getCString(), Akatsuki) == 0)
 				{
 					Com->_isFlipped = true;
 					Com->setFlipX(true);
@@ -490,7 +486,7 @@ void GameLayer::initFlogs()
 	{
 		aiFlog = Flog::create();
 		aiFlog->setDelegate(this);
-		aiFlog->setID(KonohaFlogName, CCString::create("Flog"), CCString::create("Konoha"));
+		aiFlog->setID(KonohaFlogName, CCString::create("Flog"), CCString::create(Konoha));
 		if (i < 3)
 		{
 			mainPosY = (5.5 - i / 1.5) * 32;
@@ -514,7 +510,7 @@ void GameLayer::initFlogs()
 	{
 		aiFlog = Flog::create();
 		aiFlog->setDelegate(this);
-		aiFlog->setID(AkatsukiFlogName, CCString::create("Flog"), CCString::create("Akatsuki"));
+		aiFlog->setID(AkatsukiFlogName, CCString::create("Flog"), CCString::create(Akatsuki));
 		if (i < 3)
 		{
 			mainPosY = (5.5 - i / 1.5) * 32;
@@ -547,7 +543,7 @@ void GameLayer::addFlog(float dt)
 	{
 		aiFlog = Flog::create();
 		aiFlog->setDelegate(this);
-		aiFlog->setID(KonohaFlogName, CCString::create("Flog"), CCString::create("Konoha"));
+		aiFlog->setID(KonohaFlogName, CCString::create("Flog"), CCString::create(Konoha));
 		if (i < 3)
 		{
 			mainPosY = (5.5 - i / 1.5) * 32;
@@ -569,7 +565,7 @@ void GameLayer::addFlog(float dt)
 	{
 		aiFlog = Flog::create();
 		aiFlog->setDelegate(this);
-		aiFlog->setID(AkatsukiFlogName, CCString::create("Flog"), CCString::create("Akatsuki"));
+		aiFlog->setID(AkatsukiFlogName, CCString::create("Flog"), CCString::create(Akatsuki));
 		if (i < 3)
 		{
 			mainPosY = (5.5 - i / 1.5) * 32;
@@ -637,13 +633,13 @@ void GameLayer::initTower()
 		tower->setDelegate(this);
 		char towerName[7] = "abcdef";
 		strncpy(towerName, name->getCString(), 6);
-		if (strcmp(towerName, "Konoha") == 0)
+		if (strcmp(towerName, Konoha) == 0)
 		{
-			tower->setID(name, CCString::create("Tower"), CCString::create("Konoha"));
+			tower->setID(name, CCString::create("Tower"), CCString::create(Konoha));
 		}
 		else
 		{
-			tower->setID(name, CCString::create("Tower"), CCString::create("Akatsuki"));
+			tower->setID(name, CCString::create("Tower"), CCString::create(Akatsuki));
 			tower->setFlipX(true);
 			tower->_isFlipped = true;
 		}
@@ -801,7 +797,7 @@ void GameLayer::checkTower()
 	CCARRAY_FOREACH(_TowerArray, pObject)
 	{
 		Tower *tower = (Tower *)pObject;
-		if (strcmp(tower->getGroup()->getCString(), "Konoha") == 0)
+		if (strcmp(tower->getGroup()->getCString(), Konoha) == 0)
 		{
 			konohaTowerCount++;
 		}
@@ -847,7 +843,7 @@ void GameLayer::checkTower()
 			continue;
 		}
 
-		if (strcmp(tmpHero->getGroup()->getCString(), "Konoha") == 0)
+		if (strcmp(tmpHero->getGroup()->getCString(), Konoha) == 0)
 		{
 			tmpHero->battleCondiction = konohaTowerCount - akatsukiTowerCount;
 			if (konohaTowerCount == 1)

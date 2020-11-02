@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __DEFINES_H__
+#define __DEFINES_H__
 #include "cocos2d.h"
 #include "cocos-ext.h"
 #include <map>
@@ -190,6 +191,9 @@ enum ninjaEnums
     /* End Ninjas */
     _Length
 };
+
+#define Akatsuki "Akatsuki"
+#define Konoha "Konoha"
 
 static const char *heroList[] = {
     "Konan", "Sakura", "Naruto", "Sai", "Deidara",
@@ -448,4 +452,5 @@ static const int heroNum = sizeof(heroList) / sizeof(char *);
 #define KEY_F11 0x7A
 #define KEY_F12 0x7B
 
+#endif
 #endif

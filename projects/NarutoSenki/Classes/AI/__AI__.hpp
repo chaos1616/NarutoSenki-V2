@@ -1,6 +1,9 @@
-#pragma once
+#ifndef __AI_HPP__
+#define __AI_HPP__
 #include "Defines.h"
+#include "Characters.h"
 
+// Implementations
 #include "AI_Akamaru.hpp"
 #include "AI_Asuma.hpp"
 #include "AI_Centipede.hpp"
@@ -68,9 +71,10 @@
 #include "AI_RikudoNarutoClone.hpp"
 
 #define AI_API
-#define abstract(varName) virtual void on_##varName() {}
+#define abstract(varName) \
+    virtual void on_##varName() {}
 
-class IAI
+class AIProvider
 {
     AI_API abstract(setClone);
 };
@@ -82,3 +86,130 @@ class IAI
 #define not_find_Hero(searchRange, masterRange) !this->findEnemy("Hero", searchRange, masterRange)
 #define not_find_Flog(searchRange, masterRange) !this->findEnemy("Flog", searchRange, masterRange)
 #define not_find_Tower(searchRange, masterRange) !this->findEnemy("Tower", searchRange, masterRange)
+
+namespace AIGenerator
+{
+    #include <iostream>
+    #include <typeinfo>
+    #include <map>
+    // int max_value = meta::reflect<int>().data<2048>(hash("max_int"));
+
+    #define __begin__ if(0) {}
+    #define is_begin(varStr) if (strcmp(varStr, name) == 0)
+    #define is(varStr) else if (strcmp(varStr, name) == 0)
+    #define is_or(varStr, varName) else if ((strcmp(varStr, varName) == 0) || (strcmp(name, varName) == 0))
+    #define is_or2(varStr, varName, varName2) else if ((strcmp(varStr, varName) == 0) || (strcmp(name, varName) == 0) || (strcmp(name, varName2) == 0))
+    #define is_or3(varStr, varName, varName2, varName3) else if ((strcmp(varStr, varName) == 0) || (strcmp(name, varName) == 0) || (strcmp(name, varName2) == 0) || (strcmp(name, varName3) == 0))
+    #define is_and(varStr, varName) else if ((strcmp(varStr, varName) == 0) && (strcmp(role->getCString(), name) == 0))
+    // Tags
+    #define clone_tag "Clone"
+
+    // static const map<std::string, type> ai_providers;
+
+    static HeroElement *create(CCString *character, CCString *role, CCString *group)
+    {
+        HeroElement *pAI;
+        // Init AI
+        // ninjaEnums id = hero->_id;
+        const char *name = character->getCString();
+        // string fn_name = "AI_";
+        // fn_name += name;
+        // std::hash<std::string_view> hash{};
+        // meta::func func = meta::resolve<Hero>().func(hash(fn_name));
+        // if (func)
+        // {
+        // }
+        // else
+        // {
+        // }
+
+        __begin__
+        is("Sakura") 				        pAI = new AI_Sakura();
+        is("Pain") 						    pAI = new AI_Pain();
+        is("MaskRaidon") 				    pAI = new AI_Mask();
+        is("MaskFudon") 				    pAI = new AI_Mask();
+        is("MaskKadon") 				    pAI = new AI_Mask();
+        is("Slug") 						    pAI = new AI_Slug();
+        is("Centipede") 				    pAI = new AI_Centipede();
+        is("Nagato") 					    pAI = new AI_Nagato();
+        is("Asuma") 					    pAI = new AI_Asuma();
+        is("DevaPath") 					    pAI = new AI_DevaPath();
+        is("AsuraPath") 				    pAI = new AI_AsuraPath();
+        is("AnimalPath") 				    pAI = new AI_AnimalPath();
+        is("Sai") 						    pAI = new AI_Sai();
+        is("Tenten") 					    pAI = new AI_Tenten();
+        is("Suigetsu") 					    pAI = new AI_Suigetsu();
+        is("Konan") 					    pAI = new AI_Konan();
+        is("Jiraiya") 					    pAI = new AI_Jiraiya();
+        is("Shikamaru") 				    pAI = new AI_Shikamaru();
+        is("Sasuke") 					    pAI = new AI_Sasuke();
+        is("ImmortalSasuke") 			    pAI = new AI_ImmortalSasuke();
+        is("Deidara") 					    pAI = new AI_Deidara();
+        is("Minato") 					    pAI = new AI_Minato();
+        is("DogWall") 					    pAI = new AI_DogWall();
+        is("Kakashi") 					    pAI = new AI_Kakashi();
+        is("Tobi") 						    pAI = new AI_Tobi();
+        is("Hinata") 					    pAI = new AI_Hinata();
+        is("Neji") 						    pAI = new AI_Neji();
+        is("Choji") 					    pAI = new AI_Choji();
+        is("Itachi") 					    pAI = new AI_Itachi();
+        is("Orochimaru") 				    pAI = new AI_Orochimaru();
+        is_and("Naruto", clone_tag) 		pAI = new AI_NarutoClone();
+        is("Naruto") 					    pAI = new AI_Naruto();
+        is("Kurama") 					    pAI = new AI_Kurama();
+        is_and("SageNaruto", clone_tag) 	pAI = new AI_SageNarutoClone();
+        is_and("RikudoNaruto", clone_tag)	pAI = new AI_RikudoNarutoClone();
+        is("SageNaruto") 				    pAI = new AI_SageNaruto();
+        is("RikudoNaruto") 				    pAI = new AI_RikudoNaruto();
+        is("Gaara") 					    pAI = new AI_Gaara();
+        is("Tobirama") 					    pAI = new AI_Tobirama();
+        is("Akamaru") 					    pAI = new AI_Akamaru();
+        is("Karasu") 					    pAI = new AI_Karasu();
+        is("Saso") 						    pAI = new AI_Saso();
+        is("Parents") 					    pAI = new AI_Parents();
+        is("Sanshouuo") 				    pAI = new AI_Sanshouuo();
+        is("Kankuro") 					    pAI = new AI_Kankuro();
+        is("Chiyo") 					    pAI = new AI_Chiyo();
+        is("Kiba") 						    pAI = new AI_Kiba();
+        is("SageJiraiya") 				    pAI = new AI_SageJiraiya();
+        is("Karin") 					    pAI = new AI_Karin();
+        is("Lee") 						    pAI = new AI_Lee();
+        is("RockLee") 					    pAI = new AI_RockLee();
+        is("Tsunade") 					    pAI = new AI_Tsunade();
+        is("Jugo") 						    pAI = new AI_Jugo();
+        is("Kisame") 					    pAI = new AI_Kisame();
+        is("Ino") 						    pAI = new AI_Ino();
+        is("Hidan") 					    pAI = new AI_Hidan();
+        is("Shino") 					    pAI = new AI_Shino();
+        is("Hiruzen") 					    pAI = new AI_Hiruzen();
+        is("Kakuzu") 					    pAI = new AI_Kakuzu();
+        is_or("Roshi", "Han") 			    pAI = new AI_Guardian();
+
+        if (!pAI)
+        {
+            CCLog("not found AI %s", name);
+            CCAssert(0, "Not found character");
+            return NULL;
+        }
+
+        if (pAI->init())
+        {
+            pAI->HeroElement::setID(character, role, group);
+            pAI->autorelease();
+            return pAI;
+        }
+        else
+        {
+            CCLOG("Set AI %s not found", name);
+            delete pAI;
+            pAI = NULL;
+            return NULL;
+        }
+    };
+
+    // static bool addAI(const char *name, type t)
+    // {
+    // }
+} // namespace AIGenerator
+
+#endif

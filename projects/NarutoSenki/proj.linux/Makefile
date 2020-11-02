@@ -5,7 +5,6 @@ SOURCES = main.cpp \
 	../Classes/ActionButton.cpp \
 	../Classes/CharacterBase.cpp \
 	../Classes/BGLayer.cpp \
-	../Classes/Characters.cpp \
 	../Classes/CreditsLayer.cpp \
 	../Classes/Effect.cpp \
 	../Classes/Element.cpp \
@@ -29,8 +28,8 @@ SOURCES = main.cpp \
 	../Classes/MyUtils/KTools.cpp \
 	../Classes/MyUtils/MD5ChecksumDefines.cpp \
 
-SHAREDLIBS = -lcocos2d -lcocosdenshion -lcurl -lsqlite3
-COCOS_LIBS = $(LIB_DIR)/libcocos2d.so $(LIB_DIR)/libcocosdenshion.so
+SHAREDLIBS = -lcocos2d -lcocosdenshion -lcurl -lsqlite3 -llua
+COCOS_LIBS = $(LIB_DIR)/libcocos2d.so $(LIB_DIR)/libcocosdenshion.so $(LIB_DIR)/liblua.so
 
 include ../../../cocos2dx/proj.linux/cocos2dx.mk
 
@@ -42,6 +41,9 @@ INCLUDES +=	 -I../ \
 	-I$(COCOS_ROOT)/external/ \
 	-I$(COCOS_ROOT)/external/chipmunk/include/chipmunk \
 	-I$(COCOS_ROOT)/external/libwebsockets/linux \
+	-I$(COCOS_ROOT)/scripting/lua/lua \
+    -I$(COCOS_ROOT)/scripting/lua/tolua \
+    -I$(COCOS_ROOT)/scripting/lua/cocos2dx_support \
 
 STATICLIBS += \
 	$(LIB_DIR)/libextension.a \
@@ -53,7 +55,8 @@ STATICLIBS += \
 $(TARGET): $(OBJECTS) $(STATICLIBS) $(COCOS_LIBS) $(CORE_MAKEFILE_LIST)
 	@mkdir -p $(@D)
 	@mkdir -p ../../../projects/NarutoSenki/__Bin__/Linux/Data
-	cp -R -n ../../../projects/NarutoSenki/Resources/* ../../../projects/NarutoSenki/__Bin__/Linux/Data
+	cp -R -n ../../../projects/NarutoSenki/Resources/* 	../../../projects/NarutoSenki/__Bin__/Linux/Data
+	cp -R -n ../../../projects/NarutoSenki/lua/* 		../../../projects/NarutoSenki/__Bin__/Linux/lua
 	$(LOG_LINK)$(CXX) $(CXXFLAGS) $(OBJECTS) -o $@ $(STATICLIBS) $(SHAREDLIBS) $(LIBS)
 	cp $(@D)/NarutoSenki ../../../projects/NarutoSenki/__Bin__/Linux
 

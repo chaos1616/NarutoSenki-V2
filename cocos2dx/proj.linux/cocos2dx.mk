@@ -87,8 +87,6 @@ STATICLIBS = $(STATICLIBS_DIR)/libfreetype.a \
     $(STATICLIBS_DIR)/libtiff.a \
     $(STATICLIBS_DIR)/libwebp.a \
     $(STATICLIBS_DIR)/libglfw3.a \
-    $(STATICLIBS_DIR)/libnakama-cpp.a \
-    $(STATICLIBS_DIR)/libprotobuf.a \
     $(STATICLIBS_DIR)/libwebsockets.a \
 
 

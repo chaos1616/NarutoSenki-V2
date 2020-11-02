@@ -217,7 +217,7 @@ void GameOver::listResult()
 
 		int realKillNum = atoi(hero->getKillNum()->getCString());
 
-		if (strcmp(hero->getGroup()->getCString(), "Konoha") == 0)
+		if (strcmp(hero->getGroup()->getCString(), Konoha) == 0)
 		{
 			konohaKill += realKillNum;
 		}
@@ -240,7 +240,7 @@ void GameOver::listResult()
 
 		float posX = winSize.width / 2 - result_bg->getContentSize().width / 2 + 2;
 
-		if (strcmp(hero->getGroup()->getCString(), "Konoha") == 0)
+		if (strcmp(hero->getGroup()->getCString(), Konoha) == 0)
 		{
 			avator_small->setPosition(ccp(posX, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 152 - (i * 25)));
 			killNum->setPosition(ccp(posX + 44, avator_small->getPositionY() + avator_small->getContentSize().height / 2));
@@ -282,7 +282,7 @@ void GameOver::listResult()
 	bool isTKO = false;
 	if (_totalSecond > 900 && _delegate->_isSurrender)
 	{
-		if (strcmp(_delegate->currentPlayer->getGroup()->getCString(), "Konoha") == 0)
+		if (strcmp(_delegate->currentPlayer->getGroup()->getCString(), Konoha) == 0)
 		{
 			if (konohaKill > akatsukiKill)
 			{

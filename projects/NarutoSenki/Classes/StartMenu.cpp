@@ -2186,104 +2186,104 @@ void StartMenu::onProfileBtn(CCObject *sender)
 void StartMenu::onProfileRequestCompleted(CCHttpClient* client, CCHttpResponse* response)
 {
 
-	isPosting = false;
-	if (refreshBtn)
-	{
-		refreshBtn->stopAllActions();
-		refreshBtn->removeFromParent();
-		refreshBtn = NULL;
-	}
+	// isPosting = false;
+	// if (refreshBtn)
+	// {
+	// 	refreshBtn->stopAllActions();
+	// 	refreshBtn->removeFromParent();
+	// 	refreshBtn = NULL;
+	// }
 
-	if (!response)
-	{
-		return;
-	}
-	if (0 != strlen(response->getHttpRequest()->getTag()))
-	{
-		CCLog("%s completed", response->getHttpRequest()->getTag());
-	}
-	int statusCode = response->getResponseCode();
-	char statusString[64] = {};
-	sprintf(statusString, "Http status code:%d ,tag = %s", statusCode, response->getHttpRequest()->getTag());
-	CCLog("response code:%d", statusCode);
-	if (!response->isSucceed())
-	{
-		CCLog("response failed");
-		CCLog("error buffer:%s", response->getErrorBuffer());
-		CCTips *tip = CCTips::create("ServerError");
-		this->addChild(tip, 5000);
-		return;
-	}
-	std::vector<char> *buffer = response->getResponseData();
-	printf("Http response,dump data:");
+	// if (!response)
+	// {
+	// 	return;
+	// }
+	// if (0 != strlen(response->getHttpRequest()->getTag()))
+	// {
+	// 	CCLog("%s completed", response->getHttpRequest()->getTag());
+	// }
+	// int statusCode = response->getResponseCode();
+	// char statusString[64] = {};
+	// sprintf(statusString, "Http status code:%d ,tag = %s", statusCode, response->getHttpRequest()->getTag());
+	// CCLog("response code:%d", statusCode);
+	// if (!response->isSucceed())
+	// {
+	// 	CCLog("response failed");
+	// 	CCLog("error buffer:%s", response->getErrorBuffer());
+	// 	CCTips *tip = CCTips::create("ServerError");
+	// 	this->addChild(tip, 5000);
+	// 	return;
+	// }
+	// std::vector<char> *buffer = response->getResponseData();
+	// printf("Http response,dump data:");
 
-	Document doc;
-	std::string buf(buffer->begin(), buffer->end());
-	const char *json = (char *)buf.c_str();
-	doc.Parse<kParseDefaultFlags>(json);
-	Value &arr = doc;
+	// Document doc;
+	// std::string buf(buffer->begin(), buffer->end());
+	// const char *json = (char *)buf.c_str();
+	// doc.Parse<kParseDefaultFlags>(json);
+	// Value &arr = doc;
 
-	if (arr.IsArray())
-	{
-		for (SizeType i = 0; i < arr.Size(); i++)
-		{
+	// if (arr.IsArray())
+	// {
+	// 	for (SizeType i = 0; i < arr.Size(); i++)
+	// 	{
 
-			Value &node = arr[i];
+	// 		Value &node = arr[i];
 
-			Value &nameValue = node["name"];
-			std::string nameString = nameValue.GetString();
+	// 		Value &nameValue = node["name"];
+	// 		std::string nameString = nameValue.GetString();
 
-			Value &battleValue = node["battle_point"];
-			std::string battleString = battleValue.GetString();
-			int battlePoint = atof(battleString.c_str()) * 100;
+	// 		Value &battleValue = node["battle_point"];
+	// 		std::string battleString = battleValue.GetString();
+	// 		int battlePoint = atof(battleString.c_str()) * 100;
 
-			Value &pointValue = node["point"];
-			std::string pointString = pointValue.GetString();
-			int point = atoi(pointString.c_str());
-			CValue = CCString::createWithFormat("%d", point)->getCString();
+	// 		Value &pointValue = node["point"];
+	// 		std::string pointString = pointValue.GetString();
+	// 		int point = atoi(pointString.c_str());
+	// 		CValue = CCString::createWithFormat("%d", point)->getCString();
 
-			Value &npValue = node["np_id"];
-			std::string npString = npValue.GetString();
+	// 		Value &npValue = node["np_id"];
+	// 		std::string npString = npValue.GetString();
 
-			Value &groupnameValue = node["group_name"];
-			if (!groupnameValue.IsNull())
-			{
-				std::string groupName = groupnameValue.GetString();
-				CCLabelTTF *group_name = CCLabelTTF::create(groupName.c_str(), FONT_TYPE, 12);
-				group_name->setPosition(ccp(winSize.width / 2 + 45, 182));
-				profile_layer->addChild(group_name);
-			}
+	// 		Value &groupnameValue = node["group_name"];
+	// 		if (!groupnameValue.IsNull())
+	// 		{
+	// 			std::string groupName = groupnameValue.GetString();
+	// 			CCLabelTTF *group_name = CCLabelTTF::create(groupName.c_str(), FONT_TYPE, 12);
+	// 			group_name->setPosition(ccp(winSize.width / 2 + 45, 182));
+	// 			profile_layer->addChild(group_name);
+	// 		}
 
-			CCLabelTTF *user_name = CCLabelTTF::create(nameString.c_str(), FONT_TYPE, 12);
-			user_name->setPosition(ccp(winSize.width / 2 + 45, 210));
-			profile_layer->addChild(user_name);
+	// 		CCLabelTTF *user_name = CCLabelTTF::create(nameString.c_str(), FONT_TYPE, 12);
+	// 		user_name->setPosition(ccp(winSize.width / 2 + 45, 210));
+	// 		profile_layer->addChild(user_name);
 
-			CCLabelTTF *user_battle = CCLabelTTF::create(CCString::createWithFormat("%d", battlePoint)->getCString(), FONT_TYPE, 10);
-			user_battle->setPosition(ccp(winSize.width / 2 - 35, 150));
-			//user_battle->enableStroke(ccc3(0,0,0),1);
-			profile_layer->addChild(user_battle);
+	// 		CCLabelTTF *user_battle = CCLabelTTF::create(CCString::createWithFormat("%d", battlePoint)->getCString(), FONT_TYPE, 10);
+	// 		user_battle->setPosition(ccp(winSize.width / 2 - 35, 150));
+	// 		//user_battle->enableStroke(ccc3(0,0,0),1);
+	// 		profile_layer->addChild(user_battle);
 
-			CCLabelTTF *user_point = CCLabelTTF::create(CCString::createWithFormat("%d", point)->getCString(), FONT_TYPE, 10);
-			user_point->setPosition(ccp(winSize.width / 2 + 72, 150));
-			//user_point->enableStroke(ccc3(0,0,0),1);
-			profile_layer->addChild(user_point);
-			const char *path;
+	// 		CCLabelTTF *user_point = CCLabelTTF::create(CCString::createWithFormat("%d", point)->getCString(), FONT_TYPE, 10);
+	// 		user_point->setPosition(ccp(winSize.width / 2 + 72, 150));
+	// 		//user_point->enableStroke(ccc3(0,0,0),1);
+	// 		profile_layer->addChild(user_point);
+	// 		const char *path;
 
-			if (strcmp(npString.c_str(), "") == 0)
-			{
-				path = "shinobiCard_null.png";
-			}
-			else
-			{
-				path = CCString::createWithFormat("%s.png", npString.c_str())->getCString();
-			}
-			CCMenuItem *np_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName(path), NULL, NULL, this, menu_selector(StartMenu::onNamePlate));
-			CCMenu *menu = CCMenu::create(np_btn, NULL);
-			np_btn->setAnchorPoint(ccp(0.5f, 0));
-			menu->setPosition(ccp(winSize.width / 2 + 16, 100));
-			profile_layer->addChild(menu);
-		}
-	}
+	// 		if (strcmp(npString.c_str(), "") == 0)
+	// 		{
+	// 			path = "shinobiCard_null.png";
+	// 		}
+	// 		else
+	// 		{
+	// 			path = CCString::createWithFormat("%s.png", npString.c_str())->getCString();
+	// 		}
+	// 		CCMenuItem *np_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName(path), NULL, NULL, this, menu_selector(StartMenu::onNamePlate));
+	// 		CCMenu *menu = CCMenu::create(np_btn, NULL);
+	// 		np_btn->setAnchorPoint(ccp(0.5f, 0));
+	// 		menu->setPosition(ccp(winSize.width / 2 + 16, 100));
+	// 		profile_layer->addChild(menu);
+	// 	}
+	// }
 }
 
 void StartMenu::onNamePlate(CCObject *sender)

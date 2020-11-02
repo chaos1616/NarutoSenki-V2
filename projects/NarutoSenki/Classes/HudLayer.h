@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __HUB_LAYER_H__
+#define __HUB_LAYER_H__
 #include "cocos2d.h"
 #include "Defines.h"
 #include "JoyStick.h"
@@ -150,3 +151,4 @@ protected:
 	virtual void onEnter();
 	virtual void onExit();
 };
+#endif

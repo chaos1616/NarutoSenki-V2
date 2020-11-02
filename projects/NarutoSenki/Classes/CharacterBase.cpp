@@ -1,5 +1,6 @@
 #include "HudLayer.h"
 #include "MyUtils/CCShake.h"
+#include "AI/__AI__.hpp"
 
 using namespace CocosDenshion;
 
@@ -277,7 +278,7 @@ void CharacterBase::update(float dt)
 				strcmp(this->_character->getCString(), "Han") != 0)
 			{
 
-				if (strcmp(this->_group->getCString(), "Konoha") == 0 && this->getPositionX() <= 11 * 32)
+				if (strcmp(this->_group->getCString(), Konoha) == 0 && this->getPositionX() <= 11 * 32)
 				{
 					_isHealling = true;
 					if (this->getHpPercent() < 1.0f)
@@ -285,7 +286,7 @@ void CharacterBase::update(float dt)
 						this->scheduleOnce(schedule_selector(CharacterBase::setRestore), 1.0f);
 					}
 				}
-				else if (strcmp(this->_group->getCString(), "Akatsuki") == 0 && this->getPositionX() >= 85 * 32)
+				else if (strcmp(this->_group->getCString(), Akatsuki) == 0 && this->getPositionX() >= 85 * 32)
 				{
 					_isHealling = true;
 					if (this->getHpPercent() < 1.0f)
@@ -1457,7 +1458,7 @@ void CharacterBase::setShadow(CCNode *sender, void *data)
 	CCSpriteFrame *frame = (CCSpriteFrame *)(file->objectForKey(1));
 	CCSprite *charN = CCSprite::createWithSpriteFrame(frame);
 	charN->setVisible(false);
-	if (strcmp(this->_group->getCString(), "Konoha") == 0)
+	if (strcmp(this->_group->getCString(), Konoha) == 0)
 	{
 		charN->setColor(ccGREEN);
 	}
@@ -2546,11 +2547,11 @@ void CharacterBase::setRestore2(float dt)
 		}
 
 		bool isZone = false;
-		if (strcmp("Akatsuki", _group->getCString()) == 0 && this->getPositionX() <= _delegate->currentMap->getTileSize().width * 2)
+		if (strcmp(Akatsuki, _group->getCString()) == 0 && this->getPositionX() <= _delegate->currentMap->getTileSize().width * 2)
 		{
 			isZone = true;
 		}
-		else if (strcmp("Konoha", _group->getCString()) == 0 && this->getPositionX() >= (_delegate->currentMap->getMapSize().width - 2) * _delegate->currentMap->getTileSize().width)
+		else if (strcmp(Konoha, _group->getCString()) == 0 && this->getPositionX() >= (_delegate->currentMap->getMapSize().width - 2) * _delegate->currentMap->getTileSize().width)
 		{
 			isZone = true;
 		}
@@ -3748,7 +3749,7 @@ void CharacterBase::healBuff(float dt)
 		CCObject *pObject;
 		CCArray *list;
 
-		if (strcmp("Akatsuki", _group->getCString()) == 0)
+		if (strcmp(Akatsuki, _group->getCString()) == 0)
 		{
 			list = _delegate->_AkatsukiFlogArray;
 		}
@@ -6199,12 +6200,12 @@ void CharacterBase::setBulletGroup(float dt)
 void CharacterBase::setClone(CCNode *sender, void *data)
 {
 	int cloneTime = *((int *)&data);
-	Hero *clone = Hero::create();
+	HeroElement *clone;
 
 	if (strcmp(this->getCharacter()->getCString(), "Nagato") == 0)
 	{
 
-		clone->setID(CCString::create("DevaPath"), CCString::create("Clone"), this->_group);
+		clone = AIGenerator::create(CCString::create("DevaPath"), CCString::create("Clone"), this->_group);
 		clone->_isBati = true;
 		if (strcmp(this->getRole()->getCString(), "Player") == 0)
 		{
@@ -6255,15 +6256,15 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 		{
 			if (!isRaidon)
 			{
-				clone->setID(CCString::create("MaskRaidon"), CCString::create("Kuilei"), this->_group);
+				clone = AIGenerator::create(CCString::create("MaskRaidon"), CCString::create("Kuilei"), this->_group);
 			}
 			else if (!isFudon)
 			{
-				clone->setID(CCString::create("MaskFudon"), CCString::create("Kuilei"), this->_group);
+				clone = AIGenerator::create(CCString::create("MaskFudon"), CCString::create("Kuilei"), this->_group);
 			}
 			else if (!isKadon)
 			{
-				clone->setID(CCString::create("MaskKadon"), CCString::create("Kuilei"), this->_group);
+				clone = AIGenerator::create(CCString::create("MaskKadon"), CCString::create("Kuilei"), this->_group);
 			}
 			clone->_isBati = true;
 			_monsterArray->addObject(clone);
@@ -6303,11 +6304,11 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 		}
 		if (cloneTime == 0)
 		{
-			clone->setID(CCString::create("Karasu"), CCString::create("Kuilei"), this->_group);
+			clone = AIGenerator::create(CCString::create("Karasu"), CCString::create("Kuilei"), this->_group);
 		}
 		else if (cloneTime == 1)
 		{
-			clone->setID(CCString::create("Sanshouuo"), CCString::create("Kuilei"), this->_group);
+			clone = AIGenerator::create(CCString::create("Sanshouuo"), CCString::create("Kuilei"), this->_group);
 			if (strcmp(this->getRole()->getCString(), "Player") == 0)
 			{
 				if (this->_delegate->getHudLayer()->skill4Button)
@@ -6318,7 +6319,7 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 		}
 		else if (cloneTime == 2)
 		{
-			clone->setID(CCString::create("Saso"), CCString::create("Kuilei"), this->_group);
+			clone = AIGenerator::create(CCString::create("Saso"), CCString::create("Kuilei"), this->_group);
 			if (strcmp(this->getRole()->getCString(), "Player") == 0)
 			{
 				if (this->_delegate->getHudLayer()->skill5Button)
@@ -6339,7 +6340,7 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 			_monsterArray->retain();
 		}
 
-		clone->setID(CCString::create("Parents"), CCString::create("Kuilei"), this->_group);
+		clone = AIGenerator::create(CCString::create("Parents"), CCString::create("Kuilei"), this->_group);
 		clone->setPosition(ccp(this->getPositionX(), this->getPositionY() - 3));
 		clone->_isBati = true;
 		_monsterArray->addObject(clone);
@@ -6353,7 +6354,7 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 			_monsterArray->retain();
 		}
 
-		clone->setID(CCString::create("Akamaru"), CCString::create("Clone"), this->_group);
+		clone = AIGenerator::create(CCString::create("Akamaru"), CCString::create("Clone"), this->_group);
 		clone->_isBati = true;
 		_monsterArray->addObject(clone);
 	}
@@ -6366,40 +6367,40 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 		}
 		if (cloneTime == 0)
 		{
-			clone->setID(CCString::create("AnimalPath"), CCString::create("Summon"), this->_group);
+			clone = AIGenerator::create(CCString::create("AnimalPath"), CCString::create("Summon"), this->_group);
 		}
 		else
 		{
-			clone->setID(CCString::create("AsuraPath"), CCString::create("Summon"), this->_group);
+			clone = AIGenerator::create(CCString::create("AsuraPath"), CCString::create("Summon"), this->_group);
 		}
 		_monsterArray->addObject(clone);
 		clone->_isBati = true;
 	}
 	else if (strcmp(this->getCharacter()->getCString(), "Tsunade") == 0)
 	{
-		clone->setID(CCString::create("Slug"), CCString::create("Summon"), this->_group);
+		clone = AIGenerator::create(CCString::create("Slug"), CCString::create("Summon"), this->_group);
 		clone->_isBati = true;
 	}
 	else if (strcmp(this->getCharacter()->getCString(), "Kakashi") == 0)
 	{
-		clone->setID(CCString::create("DogWall"), CCString::create("Summon"), this->_group);
+		clone = AIGenerator::create(CCString::create("DogWall"), CCString::create("Summon"), this->_group);
 		clone->setPosition(ccp(this->getPositionX() + (this->_isFlipped ? -56 : 56), this->getPositionY()));
 		clone->setAnchorPoint(ccp(0.5f, 0.1f));
 		clone->_isBati = true;
 	}
 	else if (strcmp(this->getCharacter()->getCString(), "Deidara") == 0)
 	{
-		clone->setID(CCString::create("Centipede"), CCString::create("Summon"), this->_group);
+		clone = AIGenerator::create(CCString::create("Centipede"), CCString::create("Summon"), this->_group);
 		clone->_isBati = true;
 	}
 	else if (strcmp(this->getCharacter()->getCString(), "Naruto") == 0)
 	{
-		clone->setID(this->getCharacter(), CCString::create("Clone"), this->_group);
+		clone = AIGenerator::create(this->getCharacter(), CCString::create("Clone"), this->_group);
 	}
 	else if (strcmp(this->getCharacter()->getCString(), "SageNaruto") == 0 ||
 			 (strcmp(this->getCharacter()->getCString(), "RikudoNaruto") == 0 && cloneTime == 10))
 	{
-		clone->setID(this->getCharacter(), CCString::create("Clone"), this->_group);
+		clone = AIGenerator::create(this->getCharacter(), CCString::create("Clone"), this->_group);
 		clone->setSkill1Action(clone->createAnimation(clone->skillSPC1Array, 10.0f, false, true));
 		clone->_sattackValue1 = _spcattackValue1;
 		clone->_sattackType1 = _spcattackType1;
@@ -6407,7 +6408,7 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 	}
 	else if (strcmp(this->getCharacter()->getCString(), "RikudoNaruto") == 0 && cloneTime == 9)
 	{
-		clone->setID(CCString::create("Kurama"), CCString::create("Clone"), this->_group);
+		clone = AIGenerator::create(CCString::create("Kurama"), CCString::create("Clone"), this->_group);
 		clone->_gardValue += 5000;
 		clone->_isBati = true;
 		clone->setWalkSpeed(320);
@@ -6417,12 +6418,12 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 
 	if (this->_master)
 	{
-		clone->setMaster((Hero *)this);
+		clone->setMaster((HeroElement *)this);
 		clone->setSecMaster(this->_master);
 	}
 	else
 	{
-		clone->setMaster((Hero *)this);
+		clone->setMaster((HeroElement *)this);
 	}
 
 	clone->setDelegate(_delegate);
@@ -6520,7 +6521,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	{
 		if (this->getSecMaster())
 		{
-			monster->setMaster((Hero *)this);
+			monster->setMaster((HeroElement *)this);
 			monster->setSecMaster(this->getSecMaster());
 		}
 		else
@@ -6531,7 +6532,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	}
 	else
 	{
-		monster->setMaster((Hero *)this);
+		monster->setMaster((HeroElement *)this);
 	}
 
 	monster->idle();
@@ -6930,7 +6931,7 @@ void CharacterBase::setMonPer(float dt)
 		this->setSound(this, callValue2);
 	}
 
-	monster->setMaster((Hero *)this);
+	monster->setMaster((HeroElement *)this);
 
 	monster->idle();
 	monster->setPosition(ccp(this->getPositionX() + (this->_isFlipped ? -32 : 32), this->_originY ? this->_originY : this->getPositionY()));
@@ -8389,7 +8390,7 @@ bool CharacterBase::findEnemy(const char *type, int searchRange, bool masterRang
 	}
 	else if (strcmp("Flog", type) == 0)
 	{
-		if (strcmp("Akatsuki", _group->getCString()) == 0)
+		if (strcmp(Akatsuki, _group->getCString()) == 0)
 		{
 			list = _delegate->_KonohaFlogArray;
 		}
@@ -8487,7 +8488,7 @@ bool CharacterBase::findEnemy2(const char *type)
 	}
 	else if (strcmp("Flog", type) == 0)
 	{
-		if (strcmp("Akatsuki", _group->getCString()) == 0)
+		if (strcmp(Akatsuki, _group->getCString()) == 0)
 		{
 			list = _delegate->_KonohaFlogArray;
 		}
@@ -8609,7 +8610,7 @@ bool CharacterBase::checkBase()
 		}
 		if (strcmp(this->_group->getCString(), target->_group->getCString()) != 0)
 		{
-			if (strcmp(this->_group->getCString(), "Konoha") == 0)
+			if (strcmp(this->_group->getCString(), Konoha) == 0)
 			{
 				if (target->getPositionX() <= 11 * 32)
 				{
@@ -8628,7 +8629,7 @@ bool CharacterBase::checkBase()
 		}
 	}
 
-	if (strcmp("Akatsuki", _group->getCString()) == 0)
+	if (strcmp(Akatsuki, _group->getCString()) == 0)
 	{
 		list = _delegate->_KonohaFlogArray;
 	}
@@ -8646,7 +8647,7 @@ bool CharacterBase::checkBase()
 		}
 		if (strcmp(this->_group->getCString(), target->_group->getCString()) != 0)
 		{
-			if (strcmp(this->_group->getCString(), "Konoha") == 0)
+			if (strcmp(this->_group->getCString(), Konoha) == 0)
 			{
 				if (target->getPositionX() <= 11 * 32)
 				{
@@ -8678,7 +8679,7 @@ bool CharacterBase::findTargetEnemy(const char *type, bool isTowerDected)
 	}
 	else if (strcmp("Flog", type) == 0)
 	{
-		if (strcmp("Akatsuki", _group->getCString()) == 0)
+		if (strcmp(Akatsuki, _group->getCString()) == 0)
 		{
 			list = _delegate->_KonohaFlogArray;
 		}
@@ -8774,7 +8775,7 @@ void CharacterBase::stepOn()
 
 	CCPoint moveDirection;
 
-	if (strcmp("Konoha", _group->getCString()) == 0)
+	if (strcmp(Konoha, _group->getCString()) == 0)
 	{
 		moveDirection = ccpNormalize(ccp(1, 0));
 	}
@@ -8823,11 +8824,11 @@ bool CharacterBase::checkRetri()
 		}
 		else
 		{
-			if (atoi(this->getHP()->getCString()) < 1500 && strcmp(this->getGroup()->getCString(), "Konoha") == 0)
+			if (atoi(this->getHP()->getCString()) < 1500 && strcmp(this->getGroup()->getCString(), Konoha) == 0)
 			{
 				this->setItem(Item1);
 			}
-			if (atoi(this->getHP()->getCString()) < 500 && strcmp(this->getGroup()->getCString(), "Akatsuki") == 0)
+			if (atoi(this->getHP()->getCString()) < 500 && strcmp(this->getGroup()->getCString(), Akatsuki) == 0)
 			{
 				this->setItem(Item1);
 			}
@@ -8836,7 +8837,7 @@ bool CharacterBase::checkRetri()
 
 	if (battleCondiction >= 0)
 	{
-		if (strcmp("Konoha", _group->getCString()) == 0)
+		if (strcmp(Konoha, _group->getCString()) == 0)
 		{
 			if (this->getPositionX() >= _delegate->currentMap->getTileSize().width * 60)
 			{
@@ -8867,7 +8868,7 @@ bool CharacterBase::stepBack()
 	}
 	CCPoint moveDirection;
 
-	if (strcmp("Konoha", _group->getCString()) == 0)
+	if (strcmp(Konoha, _group->getCString()) == 0)
 	{
 		moveDirection = ccpNormalize(ccp(-1, 0));
 	}
@@ -8963,13 +8964,13 @@ bool CharacterBase::stepBack2()
 		}
 	}
 
-	if (strcmp("Konoha", _group->getCString()) == 0 && this->getPositionX() >= _delegate->currentMap->getTileSize().width * 2)
+	if (strcmp(Konoha, _group->getCString()) == 0 && this->getPositionX() >= _delegate->currentMap->getTileSize().width * 2)
 	{
 		moveDirection = CCPoint(ccp(-1, _DiretionY));
 		this->walk(moveDirection);
 		return true;
 	}
-	else if (strcmp("Akatsuki", _group->getCString()) == 0 && this->getPositionX() <= (_delegate->currentMap->getMapSize().width - 2) * _delegate->currentMap->getTileSize().width)
+	else if (strcmp(Akatsuki, _group->getCString()) == 0 && this->getPositionX() <= (_delegate->currentMap->getMapSize().width - 2) * _delegate->currentMap->getTileSize().width)
 	{
 		moveDirection = CCPoint(ccp(1, _DiretionY));
 		this->walk(moveDirection);
@@ -9016,13 +9017,13 @@ void CharacterBase::changeSide(CCPoint sp)
 void CharacterBase::changeGroup()
 {
 
-	if (strcmp(this->getGroup()->getCString(), "Konoha") == 0)
+	if (strcmp(this->getGroup()->getCString(), Konoha) == 0)
 	{
-		this->setGroup(CCString::create("Akatsuki"));
+		this->setGroup(CCString::create(Akatsuki));
 	}
 	else
 	{
-		this->setGroup(CCString::create("Konoha"));
+		this->setGroup(CCString::create(Konoha));
 	}
 
 	if (this->_hpBar && strcmp(this->getRole()->getCString(), "Player") != 0)
