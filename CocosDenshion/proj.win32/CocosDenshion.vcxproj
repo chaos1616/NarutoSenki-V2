@@ -83,6 +83,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
       <LanguageStandard>Default</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <AdditionalDependencies>winmm.lib;libcocos2d.lib;alut.lib;OpenAL32.lib;libvorbis.lib;libvorbisfile.lib;libogg.lib;%(AdditionalDependencies)</AdditionalDependencies>

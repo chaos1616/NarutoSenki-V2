@@ -5,6 +5,7 @@ CONFIG_SCREEN_AUTOSCALE = 'FIXED_HEIGHT'
 
 require 'framework.init'
 
+-- if DEBUG == 0 then
 log = function(...) print(string.format(...)) end
 
 -- for CCLuaEngine traceback

@@ -42,6 +42,7 @@ extern bool isPlayed;
 #define NETWORK_SOUND   _soundPerfix "arcade.ogg"
 #define CREDITS_SOUND   _soundPerfix "credits.ogg"
 #define EXIT_SOUND      _soundPerfix "exit.ogg"
+#define MENU_INTRO      _soundPerfix "intro.ogg"
 
 /* MUSIC FILES */
 #define _musicPerfix    "Audio/Music/"

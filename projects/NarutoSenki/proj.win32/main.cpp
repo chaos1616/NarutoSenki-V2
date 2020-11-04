@@ -2,7 +2,6 @@
 #include "AppDelegate.h"
 #include "CCEGLView.h"
 #include "resource.h"
-//#define USE_WIN32_CONSOLE
 
 USING_NS_CC;
 
@@ -24,12 +23,20 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     //eglView->enterFullscreen(0, 0);
 
 #ifdef USE_WIN32_CONSOLE
-    CCFileUtils::sharedFileUtils()->addSearchPath("../projects/NarutoSenki");
+    AllocConsole();
+    freopen("CONIN$", "r", stdin);
+    freopen("CONOUT$", "w", stdout);
+    freopen("CONOUT$", "w", stderr);
 #endif
 
     HICON hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1));
     ::SendMessage(eglView->getHWnd(), WM_SETICON, true, LPARAM(hIcon));
 
     int ret = CCApplication::sharedApplication()->run();
+
+#ifdef USE_WIN32_CONSOLE
+    FreeConsole();
+#endif
+
     return ret;
 }

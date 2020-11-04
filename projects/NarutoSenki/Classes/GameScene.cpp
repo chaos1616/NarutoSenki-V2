@@ -75,7 +75,7 @@ void GameScene::onLogo()
 	logoMenu->setPosition(ccp(winSize.width / 2, winSize.height - logo_btn->getContentSize().height / 2));
 	introLayer->addChild(logoMenu, 3);
 
-	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/intro.ogg");
+	SimpleAudioEngine::sharedEngine()->playEffect(MENU_INTRO);
 
 	CCActionInterval *fade = CCFadeIn::create(1.5f);
 	CCFiniteTimeAction *call1 = CCCallFunc::create(this, callfunc_selector(GameScene::onPlayEffect2));
