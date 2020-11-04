@@ -85,12 +85,15 @@ void SelectButton::click()
 
 	if (this->getBtnType() == Menu)
 	{
-		if (strcmp(_charName->getCString(), "None2") == 0)
+		auto charName = _charName->getCString();
+		onSelect(charName);
+
+		if (strcmp(charName, "None2") == 0)
 		{
 			CCTips *tip = CCTips::create("LimitedChar");
 			this->_delegate2->addChild(tip, 5000);
 		}
-		else if (strcmp(_charName->getCString(), "None") != 0 && _isAviable)
+		else if (strcmp(charName, "None") != 0 && _isAviable)
 		{
 			SimpleAudioEngine::sharedEngine()->stopAllEffects();
 
@@ -130,7 +133,7 @@ void SelectButton::click()
 						this->getParent()->reorderChild(this, 500);
 					}
 
-					if (strcmp(_charName->getCString(), "Pain") == 0 || strcmp(_charName->getCString(), "Orochimaru") == 0)
+					if (strcmp(charName, "Pain") == 0 || strcmp(charName, "Orochimaru") == 0)
 					{
 						CCTips *tip = CCTips::create("LimitedChar");
 						this->_delegate2->addChild(tip, 5000);

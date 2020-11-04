@@ -75,7 +75,7 @@ typedef enum{
 	HURT,
 	ABHURT,
 	KOCKDOWN,
-	FLOAT,
+	FLOAT_AIR,
 	JUMP,
 	AIRHURT
 } State;
@@ -866,7 +866,13 @@ public:
 /* some_header.h */
 /* some_header.h */
 /* some_header.h */
-/* some_header.h */
+
+/* SkillLayer.h */
+class SelectButton : public CCSprite, public CCTouchDelegate{
+public:
+
+	virtual void onSelect(const char *name);
+};
 
 /* KTools.h */
 class KTools : public CCObject{

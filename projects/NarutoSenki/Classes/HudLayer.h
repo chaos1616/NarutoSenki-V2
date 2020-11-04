@@ -11,8 +11,8 @@
 
 USING_NS_CC;
 
-#define DESKTOP_UI_SCALE 0.8
-#define DESKTOP_UI_MASK_SCALE 0.8 + 0.04
+#define DESKTOP_UI_SCALE 0.8f
+#define DESKTOP_UI_MASK_SCALE 0.8f + 0.04f
 
 class GameLayer;
 

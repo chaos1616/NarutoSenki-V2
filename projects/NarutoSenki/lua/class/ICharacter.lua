@@ -4,9 +4,7 @@ require 'utils.utils'
 
 local ICharacter = CharacterBase or {}
 
-setmetatable(CharacterBase, {__index = CharacterBase})
-
-ICharacter._actionState = State.WALK
+ICharacter._actionState = ActionState.WALK
 
 ICharacter._idleAction = nil
 ICharacter._nattackAction = nil

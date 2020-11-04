@@ -373,7 +373,7 @@ void HPBar::loseHP(float percent)
 					{
 						_delegate->_isSticking = false;
 					}
-					if (_delegate->getActionState() == State::FLOAT ||
+					if (_delegate->getActionState() == State::FLOAT_AIR ||
 						_delegate->getActionState() == State::AIRHURT)
 					{
 						this->setPositionY(_delegate->_originY);

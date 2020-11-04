@@ -1,3 +1,4 @@
+#include "Defines.h"
 #include "Characters.h"
 #include "HudLayer.h"
 USING_NS_CC;
@@ -454,8 +455,8 @@ void HeroElement::setHPbar()
 	}
 	else if ((strcmp(getRole()->getCString(), "Com") == 0 ||
 			  strcmp(getRole()->getCString(), K_TAG_CLONE) == 0 ||
-			  strcmp(this->getRole()->getCString(), K_TAG_KUGUTSU) == 0 ||
-			  strcmp(this->getRole()->getCString(), K_TAG_SUMMON) == 0))
+			  strcmp(this->getRole()->getCString(), "Kugutsu") == 0 ||
+			  strcmp(this->getRole()->getCString(), "Summon") == 0))
 	{
 		_hpBar = HPBar::create("hp_bar_b.png");
 	}
@@ -621,8 +622,8 @@ void HeroElement::dealloc()
 	}
 
 	if (strcmp(this->getRole()->getCString(), K_TAG_CLONE) == 0 ||
-		strcmp(this->getRole()->getCString(), K_TAG_KUGUTSU) == 0 ||
-		strcmp(this->getRole()->getCString(), K_TAG_SUMMON) == 0)
+		strcmp(this->getRole()->getCString(), "Kugutsu") == 0 ||
+		strcmp(this->getRole()->getCString(), "Summon") == 0)
 	{
 		this->unschedule(schedule_selector(CharacterBase::setAI));
 		CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "acceptAttack");

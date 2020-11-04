@@ -1,3 +1,4 @@
+#include "Defines.h"
 #include "GameLayer.h"
 #include "BGLayer.h"
 #include "HudLayer.h"
@@ -1090,7 +1091,7 @@ void GameLayer::onLeft()
 		CharacterBase *player = (CharacterBase *)pObject;
 
 		if (strcmp(player->getRole()->getCString(), K_TAG_CLONE) == 0 ||
-			strcmp(player->getRole()->getCString(), K_TAG_SUMMON) == 0)
+			strcmp(player->getRole()->getCString(), "Summon") == 0)
 		{
 			continue;
 		}

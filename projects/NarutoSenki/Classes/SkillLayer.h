@@ -98,6 +98,8 @@ public:
 
 	void spriteToGrey();
 
+	virtual void onSelect(const char *name){};
+
 protected:
 	virtual void onEnter();
 	virtual void onExit();

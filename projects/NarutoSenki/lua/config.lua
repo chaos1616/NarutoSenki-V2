@@ -18,9 +18,11 @@ end
 -- defines
 GameScene = GameScene
 
+require 'hook'
+
 -- AI Module
 require 'ai.provider'
 
 require 'utils.utils'
 
-require 'class.ICharacter'
+-- require 'class.ICharacter'

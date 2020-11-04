@@ -10,7 +10,7 @@ local function main()
     cc.Director:sharedDirector():runWithScene(gameScene)
 
     local hero = AIGenerator:create('Lee', 'Player', 'Konoha')
-    log('\n\n\n---- hero isAI %s ----\n\n', tostring(hero:getCharacter():getCString()))
+    log('\n\n\n---- hero isAI %s ----\n\n', hero:getCharacter():getCString())
 
 end
 

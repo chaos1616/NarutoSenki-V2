@@ -13,7 +13,7 @@ public:
 	NetworkLayer(void);
 	~NetworkLayer(void);
 
-	virtual bool		init();
+	virtual bool			init();
 	static NetworkLayer*	create();
 	void    setSelected(CCObject* sender);
 

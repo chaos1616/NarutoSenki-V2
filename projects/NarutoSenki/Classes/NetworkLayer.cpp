@@ -142,64 +142,6 @@ bool NetworkLayer::init()
 		select_title->setPosition(ccp(2, winSize.height - select_title->getContentSize().height - 2));
 		this->addChild(select_title, 3);
 
-		// if (!SaveError)
-		// {
-
-		// 			if(!isPosting){
-
-		// 				isPosting=true;
-		// 				if(!refreshBtn){
-		// 					refreshBtn=CCSprite::createWithSpriteFrameName("refresh_btn.png");
-		// 					refreshBtn->setPosition(ccp(winSize.width/2,winSize.height/2));
-		// 					CCActionInterval* rt=CCRotateBy::create(0.3f,180,180);
-		// 					refreshBtn->runAction(CCRepeatForever::create(rt));
-		// 					this->addChild(refreshBtn,1000);
-
-		// 				}
-
-		// 				cocos2d::extension::CCHttpRequest* request = new  cocos2d::extension::CCHttpRequest();
-		// 				std::string codeFinal;
-
-		// 				std::string Andriodstr="";
-
-		// #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-		// 				JniMethodInfo minfo;
-		// 				bool isHave = JniHelper::getStaticMethodInfo(minfo,"net/zakume/game/NarutoSenki","getMacAdress", "()Ljava/lang/String;");
-
-		// 				if (isHave)
-		// 				{
-		// 					jstring jstr=(jstring) minfo.env->CallStaticObjectMethod(minfo.classID, minfo.methodID);
-		// 					Andriodstr = Andriodstr + JniHelper::jstring2string(jstr);
-
-		// 				}
-		// #endif
-		// 				std::string Imeistr="";
-
-		// #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-		// 				JniMethodInfo minfo2;
-		// 				bool isHave2 = JniHelper::getStaticMethodInfo(minfo2,"net/zakume/game/NarutoSenki","getImei", "()Ljava/lang/String;");
-
-		// 				if (isHave2)
-		// 				{
-		// 					jstring jstr2=(jstring) minfo2.env->CallStaticObjectMethod(minfo2.classID, minfo2.methodID);
-		// 					Imeistr = Imeistr + JniHelper::jstring2string(jstr2);
-
-		// 				}
-		// #endif
-
-		// 				std::string code1=CCString::createWithFormat("code=100&id=%d",MemberID)->getCString();
-		// 				std::string code2=CCString::createWithFormat("&version=%d",CURRENT_VERSION)->getCString();
-		// 				std::string url=SERVER"nsk/list.php?"+code1+code2+"&pw="+PWord+"&androidID="+Andriodstr+"&Imei="+Imeistr;
-		// 				request->setUrl(url.c_str());
-		// 				request->setRequestType( cocos2d::extension::CCHttpRequest::kHttpGet);
-
-		// 				request->setResponseCallback(this, httpresponse_selector(NetworkLayer::onListRequestCompleted));
-
-		// 				request->setTag("Post_My_Data");
-		// 				cocos2d::extension::CCHttpClient::getInstance()->send(request);
-		// 				request->release();
-
-		// 			}
 		_selectList = CCArray::create();
 		selectArray = CCArray::create();
 		_pageLayer1 = CCLayer::create();

@@ -39,9 +39,6 @@
     <ClCompile Include="..\Classes\HudLayer.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Characters.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\JoyStick.cpp">
       <Filter>Classes</Filter>
     </ClCompile>

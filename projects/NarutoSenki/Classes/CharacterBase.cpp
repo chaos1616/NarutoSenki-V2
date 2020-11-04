@@ -1,3 +1,5 @@
+#include "Defines.h"
+#include "CharacterBase.h"
 #include "HudLayer.h"
 #include "MyUtils/CCShake.h"
 #include "AI/__AI__.hpp"
@@ -633,7 +635,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 					attackerPosY = Attacker->getPositionY();
 				};
 
-				if (this->_actionState == State::FLOAT || this->_actionState == State::JUMP || this->_actionState == State::AIRHURT)
+				if (this->_actionState == State::FLOAT_AIR || this->_actionState == State::JUMP || this->_actionState == State::AIRHURT)
 				{
 					currentPosY = _originY;
 				}
@@ -827,7 +829,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "ac_hit") == 0)
 						{
-							if (this->_actionState == State::FLOAT || this->_actionState == State::AIRHURT)
+							if (this->_actionState == State::FLOAT_AIR || this->_actionState == State::AIRHURT)
 							{
 								this->airHurt();
 							}
@@ -2328,7 +2330,7 @@ void CharacterBase::useGear(gearType type)
 
 			if (this->getActionState() == State::IDLE ||
 				this->getActionState() == State::WALK ||
-				this->getActionState() == State::FLOAT ||
+				this->getActionState() == State::FLOAT_AIR ||
 				this->getActionState() == State::AIRHURT ||
 				this->getActionState() == State::HURT ||
 				this->getActionState() == State::KOCKDOWN)
@@ -2338,7 +2340,7 @@ void CharacterBase::useGear(gearType type)
 				{
 					this->_isSticking = false;
 				}
-				if (this->getActionState() == State::FLOAT ||
+				if (this->getActionState() == State::FLOAT_AIR ||
 					this->getActionState() == State::AIRHURT)
 				{
 					this->setPositionY(_originY);
@@ -2798,7 +2800,7 @@ void CharacterBase::setJump(CCNode *sender, void *data)
 {
 
 	if (
-		_actionState != State::FLOAT &&
+		_actionState != State::FLOAT_AIR &&
 		_actionState != State::AIRHURT &&
 		_actionState != State::HURT &&
 		_actionState != State::DEAD)
@@ -6256,15 +6258,15 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 		{
 			if (!isRaidon)
 			{
-				clone = AIProvider::createAI(CCString::create("MaskRaidon"), CCString::create(K_TAG_KUGUTSU), this->_group);
+				clone = AIProvider::createAI(CCString::create("MaskRaidon"), CCString::create("Kugutsu"), this->_group);
 			}
 			else if (!isFudon)
 			{
-				clone = AIProvider::createAI(CCString::create("MaskFudon"), CCString::create(K_TAG_KUGUTSU), this->_group);
+				clone = AIProvider::createAI(CCString::create("MaskFudon"), CCString::create("Kugutsu"), this->_group);
 			}
 			else if (!isKadon)
 			{
-				clone = AIProvider::createAI(CCString::create("MaskKadon"), CCString::create(K_TAG_KUGUTSU), this->_group);
+				clone = AIProvider::createAI(CCString::create("MaskKadon"), CCString::create("Kugutsu"), this->_group);
 			}
 			clone->_isBati = true;
 			_monsterArray->addObject(clone);
@@ -6304,11 +6306,11 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 		}
 		if (cloneTime == 0)
 		{
-			clone = AIProvider::createAI(CCString::create("Karasu"), CCString::create(K_TAG_KUGUTSU), this->_group);
+			clone = AIProvider::createAI(CCString::create("Karasu"), CCString::create("Kugutsu"), this->_group);
 		}
 		else if (cloneTime == 1)
 		{
-			clone = AIProvider::createAI(CCString::create("Sanshouuo"), CCString::create(K_TAG_KUGUTSU), this->_group);
+			clone = AIProvider::createAI(CCString::create("Sanshouuo"), CCString::create("Kugutsu"), this->_group);
 			if (strcmp(this->getRole()->getCString(), "Player") == 0)
 			{
 				if (this->_delegate->getHudLayer()->skill4Button)
@@ -6319,7 +6321,7 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 		}
 		else if (cloneTime == 2)
 		{
-			clone = AIProvider::createAI(CCString::create("Saso"), CCString::create(K_TAG_KUGUTSU), this->_group);
+			clone = AIProvider::createAI(CCString::create("Saso"), CCString::create("Kugutsu"), this->_group);
 			if (strcmp(this->getRole()->getCString(), "Player") == 0)
 			{
 				if (this->_delegate->getHudLayer()->skill5Button)
@@ -6340,7 +6342,7 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 			_monsterArray->retain();
 		}
 
-		clone = AIProvider::createAI(CCString::create("Parents"), CCString::create(K_TAG_KUGUTSU), this->_group);
+		clone = AIProvider::createAI(CCString::create("Parents"), CCString::create("Kugutsu"), this->_group);
 		clone->setPosition(ccp(this->getPositionX(), this->getPositionY() - 3));
 		clone->_isBati = true;
 		_monsterArray->addObject(clone);
@@ -6367,30 +6369,30 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 		}
 		if (cloneTime == 0)
 		{
-			clone = AIProvider::createAI(CCString::create("AnimalPath"), CCString::create(K_TAG_SUMMON), this->_group);
+			clone = AIProvider::createAI(CCString::create("AnimalPath"), CCString::create("Summon"), this->_group);
 		}
 		else
 		{
-			clone = AIProvider::createAI(CCString::create("AsuraPath"), CCString::create(K_TAG_SUMMON), this->_group);
+			clone = AIProvider::createAI(CCString::create("AsuraPath"), CCString::create("Summon"), this->_group);
 		}
 		_monsterArray->addObject(clone);
 		clone->_isBati = true;
 	}
 	else if (strcmp(this->getCharacter()->getCString(), "Tsunade") == 0)
 	{
-		clone = AIProvider::createAI(CCString::create("Slug"), CCString::create(K_TAG_SUMMON), this->_group);
+		clone = AIProvider::createAI(CCString::create("Slug"), CCString::create("Summon"), this->_group);
 		clone->_isBati = true;
 	}
 	else if (strcmp(this->getCharacter()->getCString(), "Kakashi") == 0)
 	{
-		clone = AIProvider::createAI(CCString::create("DogWall"), CCString::create(K_TAG_SUMMON), this->_group);
+		clone = AIProvider::createAI(CCString::create("DogWall"), CCString::create("Summon"), this->_group);
 		clone->setPosition(ccp(this->getPositionX() + (this->_isFlipped ? -56 : 56), this->getPositionY()));
 		clone->setAnchorPoint(ccp(0.5f, 0.1f));
 		clone->_isBati = true;
 	}
 	else if (strcmp(this->getCharacter()->getCString(), "Deidara") == 0)
 	{
-		clone = AIProvider::createAI(CCString::create("Centipede"), CCString::create(K_TAG_SUMMON), this->_group);
+		clone = AIProvider::createAI(CCString::create("Centipede"), CCString::create("Summon"), this->_group);
 		clone->_isBati = true;
 	}
 	else if (strcmp(this->getCharacter()->getCString(), "Naruto") == 0)
@@ -7719,7 +7721,7 @@ void CharacterBase::walk(CCPoint direction)
 
 bool CharacterBase::hurt()
 {
-	if (_actionState != State::SATTACK && _actionState != State::JUMP && _actionState != State::OATTACK && _actionState != State::O2ATTACK && _actionState != State::FLOAT && _actionState != State::DEAD && _actionState != State::KOCKDOWN && _actionState != State::AIRHURT && !_isSticking && !_isCatchOne && !_isBati)
+	if (_actionState != State::SATTACK && _actionState != State::JUMP && _actionState != State::OATTACK && _actionState != State::O2ATTACK && _actionState != State::FLOAT_AIR && _actionState != State::DEAD && _actionState != State::KOCKDOWN && _actionState != State::AIRHURT && !_isSticking && !_isCatchOne && !_isBati)
 	{
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
@@ -7780,9 +7782,9 @@ bool CharacterBase::hurt()
 bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, bool isStick, bool isStun)
 {
 
-	if ((_actionState != State::JUMP || isStick) && _actionState != State::O2ATTACK && (_actionState != State::FLOAT || isStick) && _actionState != State::DEAD && (_actionState != State::KOCKDOWN || isStick) && _actionState != State::AIRHURT && !_isSticking && !_isCatchOne && !_isBati)
+	if ((_actionState != State::JUMP || isStick) && _actionState != State::O2ATTACK && (_actionState != State::FLOAT_AIR || isStick) && _actionState != State::DEAD && (_actionState != State::KOCKDOWN || isStick) && _actionState != State::AIRHURT && !_isSticking && !_isCatchOne && !_isBati)
 	{
-		if (this->getActionState() == State::FLOAT ||
+		if (this->getActionState() == State::FLOAT_AIR ||
 			this->getActionState() == State::AIRHURT ||
 			this->getActionState() == State::JUMP)
 		{
@@ -7904,7 +7906,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 
 void CharacterBase::airHurt()
 {
-	if (_actionState == State::FLOAT || _actionState == State::AIRHURT)
+	if (_actionState == State::FLOAT_AIR || _actionState == State::AIRHURT)
 	{
 
 		if (strcmp(_role->getCString(), "Player") == 0)
@@ -7983,7 +7985,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 	}
 
 	if (_actionState != State::JUMP &&
-		_actionState != State::FLOAT &&
+		_actionState != State::FLOAT_AIR &&
 		_actionState != State::O2ATTACK &&
 		_actionState != State::OATTACK &&
 		_actionState != State::AIRHURT &&
@@ -8034,7 +8036,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 		{
 			_delegate->setSkillFinish(false);
 		}
-		_actionState = State::FLOAT;
+		_actionState = State::FLOAT_AIR;
 		this->stopAllActions();
 
 		float posX = this->getPositionX();
@@ -8289,7 +8291,7 @@ void CharacterBase::dead()
 		}
 	}
 
-	if (_actionState == State::FLOAT || _actionState == State::AIRHURT)
+	if (_actionState == State::FLOAT_AIR || _actionState == State::AIRHURT)
 	{
 		_actionState = State::DEAD;
 		this->unschedule(schedule_selector(CharacterBase::removeClone));
@@ -8312,7 +8314,7 @@ void CharacterBase::dead()
 	}
 
 	if (strcmp(_role->getCString(), K_TAG_CLONE) != 0 &&
-		strcmp(_role->getCString(), K_TAG_SUMMON) != 0)
+		strcmp(_role->getCString(), "Summon") != 0)
 	{
 
 		CCActionInterval *fadeOut = CCFadeOut::create(0.5);
@@ -8416,7 +8418,7 @@ bool CharacterBase::findEnemy(const char *type, int searchRange, bool masterRang
 		if (target->_actionState == State::DEAD ||
 			target->_isVisable == false ||
 			target->_isWudi ||
-			strcmp(target->_role->getCString(), K_TAG_KUGUTSU) == 0)
+			strcmp(target->_role->getCString(), "Kugutsu") == 0)
 		{
 			continue;
 		}
@@ -8426,7 +8428,7 @@ bool CharacterBase::findEnemy(const char *type, int searchRange, bool masterRang
 								   this->getActionState() == State::O2ATTACK)))
 		{
 			if (strcmp(target->_role->getCString(), K_TAG_CLONE) == 0 ||
-				strcmp(target->_role->getCString(), K_TAG_SUMMON) == 0 ||
+				strcmp(target->_role->getCString(), "Summon") == 0 ||
 				strcmp(target->_role->getCString(), "Monster") == 0)
 			{
 				continue;
@@ -8517,7 +8519,7 @@ bool CharacterBase::findEnemy2(const char *type)
 
 		if (target->_actionState == State::DEAD ||
 			target->_isVisable == false ||
-			strcmp(target->_role->getCString(), K_TAG_KUGUTSU) == 0)
+			strcmp(target->_role->getCString(), "Kugutsu") == 0)
 		{
 			continue;
 		}
@@ -8527,7 +8529,7 @@ bool CharacterBase::findEnemy2(const char *type)
 		if (abs(sp.x) < winSize.width / 2)
 		{
 			if (strcmp(target->_role->getCString(), K_TAG_CLONE) != 0 &&
-				strcmp(target->_role->getCString(), K_TAG_SUMMON) != 0)
+				strcmp(target->_role->getCString(), "Summon") != 0)
 			{
 				int baseSkillCombatPoint = 0;
 
@@ -8700,7 +8702,7 @@ bool CharacterBase::findTargetEnemy(const char *type, bool isTowerDected)
 		CharacterBase *target = (CharacterBase *)pObject;
 
 		if (strcmp(this->_group->getCString(), target->_group->getCString()) != 0 &&
-			strcmp(target->_role->getCString(), K_TAG_KUGUTSU) != 0 &&
+			strcmp(target->_role->getCString(), "Kugutsu") != 0 &&
 			target->_actionState != State::DEAD &&
 			target->_isVisable && !target->_isWudi)
 		{

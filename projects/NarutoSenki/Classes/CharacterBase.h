@@ -20,7 +20,7 @@ typedef enum{
 	HURT,
 	ABHURT,
 	KOCKDOWN,
-	FLOAT,
+	FLOAT_AIR,
 	JUMP,
 	AIRHURT
 } State;

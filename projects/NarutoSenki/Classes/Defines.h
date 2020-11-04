@@ -3,7 +3,6 @@
 #include "cocos2d.h"
 #include "cocos-ext.h"
 #include "MyUtils/Cocos2dxHelper.hpp"
-#include <map>
 
 USING_NS_CC;
 USING_NS_CC_EXT;
@@ -71,12 +70,10 @@ extern bool isPlayed;
 #define k_Guardian            "Guardian"
 
 // Tags
-// 分身
+// 分身 
 #define K_TAG_CLONE           "Clone"
-// 口寄せ
-#define K_TAG_SUMMON          "Summon"
-// 傀儡
-#define K_TAG_KUGUTSU         "Kugutsu"
+// 口寄せ  Summon
+// 傀儡    Kugutsu
 #define K_TAG_MON             "Mon"
 
 // Flogs

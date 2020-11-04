@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Cocos2d
-** Generated automatically by tolua++-1.0.92 on Tue Nov  3 21:38:42 2020.
+** Generated automatically by tolua++-1.0.92 on 11/04/20 13:46:13.
 */
 
 /****************************************************************************
@@ -485,6 +485,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"CCAction");
  tolua_usertype(tolua_S,"CCOrbitCamera");
  tolua_usertype(tolua_S,"CCLabelTTF");
+ tolua_usertype(tolua_S,"CCTouchDelegate");
  tolua_usertype(tolua_S,"CCScale9Sprite");
  tolua_usertype(tolua_S,"CCMoveTo");
  tolua_usertype(tolua_S,"CCTransitionSplitRows");
@@ -622,6 +623,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"CCRGBAProtocol");
  tolua_usertype(tolua_S,"LoadLayer");
  tolua_usertype(tolua_S,"CCTransitionCrossFade");
+ tolua_usertype(tolua_S,"SelectButton");
  tolua_usertype(tolua_S,"CCActionEase");
  tolua_usertype(tolua_S,"CCParallaxNode");
  tolua_usertype(tolua_S,"CCRotateTo");
@@ -76034,6 +76036,56 @@ static int tolua_Cocos2d_LoadLayer_onLoadFinish00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: onSelect of class  SelectButton */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_SelectButton_onSelect00
+static int tolua_Cocos2d_SelectButton_onSelect00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"SelectButton",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  SelectButton* self = (SelectButton*)  tolua_tousertype(tolua_S,1,0);
+  const char* name = ((const char*)  tolua_tostring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'onSelect'", NULL);
+#endif
+  {
+   self->onSelect(name);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'onSelect'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: __CCTouchDelegate__ of class  SelectButton */
+#ifndef TOLUA_DISABLE_tolua_get_SelectButton___CCTouchDelegate__
+static int tolua_get_SelectButton___CCTouchDelegate__(lua_State* tolua_S)
+{
+  SelectButton* self = (SelectButton*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable '__CCTouchDelegate__'",NULL);
+#endif
+#ifdef __cplusplus
+   tolua_pushusertype(tolua_S,(void*)static_cast<CCTouchDelegate*>(self), "CCTouchDelegate");
+#else
+   tolua_pushusertype(tolua_S,(void*)((CCTouchDelegate*)self), "CCTouchDelegate");
+#endif
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: readXMLToArray of class  KTools */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_KTools_readXMLToArray00
 static int tolua_Cocos2d_KTools_readXMLToArray00(lua_State* tolua_S)
@@ -79637,7 +79689,7 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"HURT",HURT);
   tolua_constant(tolua_S,"ABHURT",ABHURT);
   tolua_constant(tolua_S,"KOCKDOWN",KOCKDOWN);
-  tolua_constant(tolua_S,"FLOAT",FLOAT);
+  tolua_constant(tolua_S,"FLOAT_AIR",FLOAT_AIR);
   tolua_constant(tolua_S,"JUMP",JUMP);
   tolua_constant(tolua_S,"AIRHURT",AIRHURT);
   #ifdef __cplusplus
@@ -79994,6 +80046,11 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"preloadIMG",tolua_Cocos2d_LoadLayer_preloadIMG00);
    tolua_function(tolua_S,"playBGM",tolua_Cocos2d_LoadLayer_playBGM00);
    tolua_function(tolua_S,"onLoadFinish",tolua_Cocos2d_LoadLayer_onLoadFinish00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"SelectButton","SelectButton","CCSprite",NULL);
+  tolua_beginmodule(tolua_S,"SelectButton");
+   tolua_function(tolua_S,"onSelect",tolua_Cocos2d_SelectButton_onSelect00);
+   tolua_variable(tolua_S,"__CCTouchDelegate__",tolua_get_SelectButton___CCTouchDelegate__,NULL);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"KTools","KTools","CCObject",NULL);
   tolua_beginmodule(tolua_S,"KTools");

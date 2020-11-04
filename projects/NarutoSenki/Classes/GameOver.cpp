@@ -1,3 +1,4 @@
+#include "Defines.h"
 #include "GameOver.h"
 #include "GameLayer.h"
 #include "Characters.h"
@@ -188,8 +189,8 @@ void GameOver::listResult()
 
 		Hero *hero = (Hero *)pObject;
 		if (strcmp(hero->getRole()->getCString(), K_TAG_CLONE) == 0 ||
-			strcmp(hero->getRole()->getCString(), K_TAG_SUMMON) == 0 ||
-			strcmp(hero->getRole()->getCString(), K_TAG_KUGUTSU) == 0 ||
+			strcmp(hero->getRole()->getCString(), "Summon") == 0 ||
+			strcmp(hero->getRole()->getCString(), "Kugutsu") == 0 ||
 			strcmp(hero->getCharacter()->getCString(), Guardian_Han) == 0 ||
 			strcmp(hero->getCharacter()->getCString(), Guardian_Roshi) == 0)
 		{
@@ -525,8 +526,8 @@ void GameOver::listResult()
 						Hero *hero = (Hero *)pObject;
 						if (strcmp(hero->getRole()->getCString(), K_TAG_CLONE) == 0 ||
 							strcmp(hero->getRole()->getCString(), "Player") == 0 ||
-							strcmp(hero->getRole()->getCString(), K_TAG_SUMMON) == 0 ||
-							strcmp(hero->getRole()->getCString(), K_TAG_KUGUTSU) == 0 ||
+							strcmp(hero->getRole()->getCString(), "Summon") == 0 ||
+							strcmp(hero->getRole()->getCString(), "Kugutsu") == 0 ||
 							strcmp(hero->getCharacter()->getCString(), Guardian_Han) == 0 ||
 							strcmp(hero->getCharacter()->getCString(), Guardian_Roshi) == 0)
 						{

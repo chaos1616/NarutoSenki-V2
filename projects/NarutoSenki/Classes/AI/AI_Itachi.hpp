@@ -11,7 +11,7 @@ class AI_Itachi : public Hero
 
 		if (_isCanGear06)
 		{
-			if ((this->getActionState() == State::FLOAT ||
+			if ((this->getActionState() == State::FLOAT_AIR ||
 				 this->getActionState() == State::AIRHURT ||
 				 this->getActionState() == State::HURT ||
 				 this->getActionState() == State::KOCKDOWN) &&
