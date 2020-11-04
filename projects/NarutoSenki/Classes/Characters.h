@@ -12,10 +12,11 @@ class Hero : public HeroElement
 {
 private:
     virtual void perform(){};
+
 public:
-	bool init()
+    bool init()
     {
-	    bool bRet = false;
+        bool bRet = false;
         do
         {
             CC_BREAK_IF(!HeroElement::init());
@@ -28,7 +29,6 @@ public:
         return bRet;
     };
 
-	virtual void setAI(float dt) { perform(); };
-	void setID(CCString *character, CCString *role, CCString *group){};
+    virtual void setAI(float dt) { perform(); };
 };
 #endif

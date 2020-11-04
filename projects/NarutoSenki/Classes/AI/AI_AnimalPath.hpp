@@ -34,7 +34,7 @@ class AI_AnimalPath : public Hero
 				}
 				else
 				{
-					if (this->getActionState() == ACTION_STATE_IDLE || this->getActionState() == ACTION_STATE_WALK || this->getActionState() == ACTION_STATE_ATTACK)
+					if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
 					{
 
 						if (_isCanSkill1 && strcmp(_mainTarget->getRole()->getCString(), "Tower") != 0)
@@ -69,7 +69,7 @@ class AI_AnimalPath : public Hero
 					this->walk(moveDirection);
 					return;
 				}
-				else if (this->getActionState() == ACTION_STATE_IDLE || this->getActionState() == ACTION_STATE_WALK || this->getActionState() == ACTION_STATE_ATTACK)
+				else if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
 				{
 
 					if (_isCanSkill1)

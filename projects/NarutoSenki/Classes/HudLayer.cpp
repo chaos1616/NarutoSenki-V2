@@ -45,7 +45,7 @@ void MiniIcon::updateMap(CCObject *sender)
 
 	if (this->getCharNO() == poster->getCharNO())
 	{
-		if (poster->getActionState() == ACTION_STATE_DEAD || poster->_isVisable == false)
+		if (poster->getActionState() == State::DEAD || poster->_isVisable == false)
 		{
 			this->setVisible(false);
 		}
@@ -551,8 +551,8 @@ void HudLayer::initHeroInterface()
 			}
 			else if (strcmp(player->getRole()->getCString(), "Com") == 0)
 			{
-				if (strcmp(player->getCharacter()->getCString(), "Han") == 0 ||
-					strcmp(player->getCharacter()->getCString(), "Roshi") == 0)
+				if (strcmp(player->getCharacter()->getCString(), Guardian_Han) == 0 ||
+					strcmp(player->getCharacter()->getCString(), Guardian_Roshi) == 0)
 				{
 					path = "guardian_icon.png";
 				}
@@ -587,8 +587,8 @@ void HudLayer::addMapIcon()
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
 		CharacterBase *player = (CharacterBase *)pObject;
-		if (strcmp(player->getCharacter()->getCString(), "Han") == 0 ||
-			strcmp(player->getCharacter()->getCString(), "Roshi") == 0)
+		if (strcmp(player->getCharacter()->getCString(), Guardian_Han) == 0 ||
+			strcmp(player->getCharacter()->getCString(), Guardian_Roshi) == 0)
 		{
 			MiniIcon *mi;
 			const char *path = "guardian_icon.png";

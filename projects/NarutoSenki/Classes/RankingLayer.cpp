@@ -144,8 +144,8 @@ bool RakingLayer::init()
 		CC_BREAK_IF(!CCLayer::init());
 
 		//加载序列集
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Ranking.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Select.plist");
+		addSprites("Ranking.plist");
+		addSprites("Select.plist");
 
 		CCSprite *gold_left = CCSprite::createWithSpriteFrameName("gold_left.png");
 		gold_left->setAnchorPoint(ccp(0, 0));

@@ -1,8 +1,7 @@
-#include "cocos2d.h"
+#include "Defines.h"
 #include "StartMenu.h"
 #include "MyUtils/KTools.h"
 #include "SimpleAudioEngine.h"
-#include "Defines.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #include "glfw3.h"
@@ -10,7 +9,7 @@
 #include "windows.h"
 #endif
 
-class GameScene : public cocos2d::CCScene
+class GameScene : public CCScene
 {
 public:
 	GameScene(void);

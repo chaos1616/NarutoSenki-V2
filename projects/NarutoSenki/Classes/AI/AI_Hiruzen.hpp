@@ -91,7 +91,7 @@ class AI_Hiruzen : public Hero
 				sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
 			}
 
-			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
 
 				if (_isCanOugis2 && !_isControled && _delegate->_isOugis2Game && !_isBati && atoi(_mainTarget->getHP()->getCString()) < 10000 && !_mainTarget->_isCanGear06)
@@ -232,7 +232,7 @@ class AI_Hiruzen : public Hero
 				return;
 			}
 
-			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
 				if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && _isCanSkill1 && !_isBati)
 				{
@@ -254,7 +254,7 @@ class AI_Hiruzen : public Hero
 		}
 		if (_isHealling && this->getHpPercent() < 1)
 		{
-			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
 				this->idle();
 			}

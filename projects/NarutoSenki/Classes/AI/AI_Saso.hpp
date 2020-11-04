@@ -17,7 +17,7 @@ class AI_Saso : public Hero
 		CCPoint moveDirection;
 		if (abs(ccpSub(_master->getPosition(), this->getPosition()).x) > 64)
 		{
-			if (this->getActionState() == ACTION_STATE_IDLE || this->getActionState() == ACTION_STATE_WALK || this->getActionState() == ACTION_STATE_ATTACK)
+			if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
 			{
 				moveDirection = ccpNormalize(ccpSub(_master->getPosition(), this->getPosition()));
 				this->walk(moveDirection);
@@ -36,12 +36,12 @@ class AI_Saso : public Hero
 
 				if (abs(sp.x) > 48 || abs(sp.y) > 16)
 				{
-					if (this->_master->getActionState() == ACTION_STATE_IDLE ||
-						this->_master->getActionState() == ACTION_STATE_WALK ||
-						this->_master->getActionState() == ACTION_STATE_ATTACK ||
-						this->_master->getActionState() == ACTION_STATE_SATTACK ||
-						this->_master->getActionState() == ACTION_STATE_OATTACK ||
-						this->_master->getActionState() == ACTION_STATE_O2ATTACK)
+					if (this->_master->getActionState() == State::IDLE ||
+						this->_master->getActionState() == State::WALK ||
+						this->_master->getActionState() == State::ATTACK ||
+						this->_master->getActionState() == State::SATTACK ||
+						this->_master->getActionState() == State::OATTACK ||
+						this->_master->getActionState() == State::O2ATTACK)
 					{
 
 						moveDirection = ccpNormalize(sp);
@@ -50,7 +50,7 @@ class AI_Saso : public Hero
 				}
 				else
 				{
-					if (this->getActionState() == ACTION_STATE_IDLE || this->getActionState() == ACTION_STATE_WALK || this->getActionState() == ACTION_STATE_ATTACK)
+					if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
 					{
 						this->changeSide(sp);
 						this->attack(NAttack);
@@ -63,19 +63,19 @@ class AI_Saso : public Hero
 
 				if ((abs(sp.x) > 48 || abs(sp.y) > 16))
 				{
-					if (this->_master->getActionState() == ACTION_STATE_IDLE ||
-						this->_master->getActionState() == ACTION_STATE_WALK ||
-						this->_master->getActionState() == ACTION_STATE_ATTACK ||
-						this->_master->getActionState() == ACTION_STATE_SATTACK ||
-						this->_master->getActionState() == ACTION_STATE_OATTACK ||
-						this->_master->getActionState() == ACTION_STATE_O2ATTACK)
+					if (this->_master->getActionState() == State::IDLE ||
+						this->_master->getActionState() == State::WALK ||
+						this->_master->getActionState() == State::ATTACK ||
+						this->_master->getActionState() == State::SATTACK ||
+						this->_master->getActionState() == State::OATTACK ||
+						this->_master->getActionState() == State::O2ATTACK)
 					{
 						moveDirection = ccpNormalize(sp);
 						this->walk(moveDirection);
 						return;
 					}
 				}
-				else if (this->getActionState() == ACTION_STATE_IDLE || this->getActionState() == ACTION_STATE_WALK || this->getActionState() == ACTION_STATE_ATTACK)
+				else if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
 				{
 
 					if (_isCanSkill1 && _mainTarget->getGP() < 5000)
@@ -105,8 +105,8 @@ class AI_Saso : public Hero
 		else
 		{
 
-			if (this->_actionState == ACTION_STATE_WALK ||
-				this->_actionState == ACTION_STATE_ATTACK)
+			if (this->_actionState == State::WALK ||
+				this->_actionState == State::ATTACK)
 			{
 				this->idle();
 			}

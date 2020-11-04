@@ -11,10 +11,10 @@ class AI_Lee : public Hero
 
 		if (_isCanGear06)
 		{
-			if ((this->getActionState() == ACTION_STATE_FLOAT ||
-				 this->getActionState() == ACTION_STATE_AIRHURT ||
-				 this->getActionState() == ACTION_STATE_HURT ||
-				 this->getActionState() == ACTION_STATE_KOCKDOWN) &&
+			if ((this->getActionState() == State::FLOAT ||
+				 this->getActionState() == State::AIRHURT ||
+				 this->getActionState() == State::HURT ||
+				 this->getActionState() == State::KOCKDOWN) &&
 				this->getHpPercent() < 0.5 && !_isBati && !_isWudi)
 			{
 				this->useGear(gear06);
@@ -94,7 +94,7 @@ class AI_Lee : public Hero
 			{
 				sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
 			}
-			if ((_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK) && abs(sp.x) < 128)
+			if ((_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK) && abs(sp.x) < 128)
 			{
 				if (_isCanSkill1 && bamen < 5)
 				{
@@ -124,7 +124,7 @@ class AI_Lee : public Hero
 						this->walk(moveDirection);
 						return;
 					}
-					if (_isCanOugis1 && !_isControled && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && _mainTarget->getActionState() != ACTION_STATE_KOCKDOWN && !_mainTarget->_isSticking && bamen >= 1)
+					if (_isCanOugis1 && !_isControled && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && _mainTarget->getActionState() != State::KOCKDOWN && !_mainTarget->_isSticking && bamen >= 1)
 					{
 
 						this->changeSide(sp);
@@ -173,7 +173,7 @@ class AI_Lee : public Hero
 				return;
 			}
 
-			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
 				if (_isCanSkill2 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 				{
@@ -191,7 +191,7 @@ class AI_Lee : public Hero
 
 		if (_isHealling && this->getHpPercent() < 1)
 		{
-			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
 				this->idle();
 			}

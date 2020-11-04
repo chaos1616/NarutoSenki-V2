@@ -6,12 +6,9 @@
 #include "BGLayer.h"
 #include "HudLayer.h"
 
-
 #if (CC_TARGET_PLATFORM==CC_PLATFORM_ANDROID) 
 #include "../../../cocos2dx/platform/android/jni/JniHelper.h" 
 #endif  
-
-
 
 #ifdef _WIN32
 #include <io.h>

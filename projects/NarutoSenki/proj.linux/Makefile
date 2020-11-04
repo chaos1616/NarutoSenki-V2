@@ -42,8 +42,8 @@ INCLUDES +=	 -I../ \
 	-I$(COCOS_ROOT)/external/chipmunk/include/chipmunk \
 	-I$(COCOS_ROOT)/external/libwebsockets/linux \
 	-I$(COCOS_ROOT)/scripting/lua/lua \
-    -I$(COCOS_ROOT)/scripting/lua/tolua \
-    -I$(COCOS_ROOT)/scripting/lua/cocos2dx_support \
+	-I$(COCOS_ROOT)/scripting/lua/tolua \
+	-I$(COCOS_ROOT)/scripting/lua/cocos2dx_support \
 
 STATICLIBS += \
 	$(LIB_DIR)/libextension.a \
@@ -56,17 +56,18 @@ $(TARGET): $(OBJECTS) $(STATICLIBS) $(COCOS_LIBS) $(CORE_MAKEFILE_LIST)
 	@mkdir -p $(@D)
 	@mkdir -p ../../../projects/NarutoSenki/__Bin__/Linux/Data
 	cp -R -n ../../../projects/NarutoSenki/Resources/* 	../../../projects/NarutoSenki/__Bin__/Linux/Data
-	cp -R -n ../../../projects/NarutoSenki/lua/* 		../../../projects/NarutoSenki/__Bin__/Linux/lua
 	$(LOG_LINK)$(CXX) $(CXXFLAGS) $(OBJECTS) -o $@ $(STATICLIBS) $(SHAREDLIBS) $(LIBS)
 	cp $(@D)/NarutoSenki ../../../projects/NarutoSenki/__Bin__/Linux
 
 ####### Compile
 $(OBJ_DIR)/%.o: ../%.cpp $(CORE_MAKEFILE_LIST)
 	@mkdir -p $(@D)
+# 	$(LOG_CXX)$(CXX) $(CXXFLAGS) $(INCLUDES) $(DEFINES) -E -c $< -o $@
 	$(LOG_CXX)$(CXX) $(CXXFLAGS) $(INCLUDES) $(DEFINES) -c $< -o $@
 
 $(OBJ_DIR)/%.o: %.cpp $(CORE_MAKEFILE_LIST)
 	@mkdir -p $(@D)
+# 	$(LOG_CXX)$(CXX) $(CXXFLAGS) $(INCLUDES) $(DEFINES) -E -c $< -o $@
 	$(LOG_CXX)$(CXX) $(CXXFLAGS) $(INCLUDES) $(DEFINES) -c $< -o $@
 
 $(OBJ_DIR)/%.o: %.c $(CORE_MAKEFILE_LIST)

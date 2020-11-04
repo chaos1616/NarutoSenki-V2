@@ -83,7 +83,7 @@ class AI_SageNaruto : public Hero
 			{
 				sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
 			}
-			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
 
 				if (_isCanOugis2 && !_isControled && _delegate->_isOugis2Game && !_isBati)
@@ -182,7 +182,7 @@ class AI_SageNaruto : public Hero
 				return;
 			}
 
-			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
 				if (_isCanSkill2 && !_isBati)
 				{
@@ -200,7 +200,7 @@ class AI_SageNaruto : public Hero
 
 		if (_isHealling && this->getHpPercent() < 1)
 		{
-			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
 				this->idle();
 			}

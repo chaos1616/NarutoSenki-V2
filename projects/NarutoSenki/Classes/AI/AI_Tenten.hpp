@@ -91,7 +91,7 @@ class AI_Tenten : public Hero
 			{
 				sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
 			}
-			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
 
 				if (_isCanSkill1)
@@ -217,7 +217,7 @@ class AI_Tenten : public Hero
 				return;
 			}
 
-			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
 				if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && _isCanSkill1)
 				{
@@ -245,7 +245,7 @@ class AI_Tenten : public Hero
 
 		if (_isHealling && this->getHpPercent() < 1)
 		{
-			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
 				this->idle();
 			}

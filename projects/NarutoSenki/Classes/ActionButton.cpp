@@ -139,7 +139,7 @@ bool ActionButton::isCanClick()
 			if (this->getABType() == Item1)
 			{
 
-				if (!_delegate->ougisLayer && !_timeCout && !_isLock && _delegate->_delegate->currentPlayer->getActionState() != ACTION_STATE_DEAD)
+				if (!_delegate->ougisLayer && !_timeCout && !_isLock && _delegate->_delegate->currentPlayer->getActionState() != State::DEAD)
 				{
 					if (_delegate->offCoin(_cost))
 					{
@@ -160,7 +160,7 @@ bool ActionButton::isCanClick()
 
 				if (!_delegate->ougisLayer && !_timeCout && !_isLock)
 				{
-					if (this->_gearType == gear06 && _delegate->_delegate->currentPlayer->getActionState() != ACTION_STATE_DEAD)
+					if (this->_gearType == gear06 && _delegate->_delegate->currentPlayer->getActionState() != State::DEAD)
 					{
 						return true;
 					}

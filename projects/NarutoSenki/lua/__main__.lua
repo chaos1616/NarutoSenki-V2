@@ -1,27 +1,17 @@
-require 'base.cocos2dx'
-cclog = function(...)print(string.format(...)) end
-
--- for CCLuaEngine traceback
-function __G__TRACKBACK__(msg)
-    print("----------------------------------------")
-    print("LUA ERROR: " .. tostring(msg) .. "\n")
-    print(debug.traceback())
-    print("----------------------------------------")
-end
+require 'config'
 
 local function main()
     -- avoid memory leak
     collectgarbage("setpause", 100)
     collectgarbage("setstepmul", 5000)
+    log('--- Loaded Lua Scripts ---')
 
-    local sceneGame = CCScene:create()
-    CCDirector:sharedDirector():runWithScene(sceneGame)
+    local gameScene = GameScene:create()
+    cc.Director:sharedDirector():runWithScene(gameScene)
 
-    hero = class(CharacterBase, CCSprite)
-    -- hero = AIGenerator:create(CCString:create('Lee'), CCString:create(''), CCString:create('Konoha'))
-    cclog(hero.isHurtingTower)
+    local hero = AIGenerator:create('Lee', 'Player', 'Konoha')
+    log('\n\n\n---- hero isAI %s ----\n\n', tostring(hero:getCharacter():getCString()))
 
-    cclog('--- Loaded Lua Scripts ---')
 end
 
 xpcall(main, __G__TRACKBACK__)

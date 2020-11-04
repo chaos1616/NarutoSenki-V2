@@ -44,7 +44,7 @@ class AI_Hidan : public Hero
 							CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 							{
 								CharacterBase *tempHero = (CharacterBase *)pObject;
-								if (tempHero->getGroup() != this->getGroup() && atoi(tempHero->getHP()->getCString()) < 2000 && tempHero->getActionState() != ACTION_STATE_DEAD && (strcmp(tempHero->getRole()->getCString(), "Player") == 0 || strcmp(tempHero->getRole()->getCString(), "Com") == 0))
+								if (tempHero->getGroup() != this->getGroup() && atoi(tempHero->getHP()->getCString()) < 2000 && tempHero->getActionState() != State::DEAD && (strcmp(tempHero->getRole()->getCString(), "Player") == 0 || strcmp(tempHero->getRole()->getCString(), "Com") == 0))
 								{
 									this->attack(NAttack);
 									return;
@@ -66,10 +66,10 @@ class AI_Hidan : public Hero
 
 		if (_isCanGear06)
 		{
-			if ((this->getActionState() == ACTION_STATE_FLOAT ||
-				 this->getActionState() == ACTION_STATE_AIRHURT ||
-				 this->getActionState() == ACTION_STATE_HURT ||
-				 this->getActionState() == ACTION_STATE_KOCKDOWN) &&
+			if ((this->getActionState() == State::FLOAT ||
+				 this->getActionState() == State::AIRHURT ||
+				 this->getActionState() == State::HURT ||
+				 this->getActionState() == State::KOCKDOWN) &&
 				this->getHpPercent() < 0.5 && !_isBati && !_isWudi)
 			{
 				this->useGear(gear06);
@@ -149,7 +149,7 @@ class AI_Hidan : public Hero
 			{
 				sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
 			}
-			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
 
 				if (_isCanOugis2 && !_isControled && _delegate->_isOugis2Game && !_isBati)
@@ -241,7 +241,7 @@ class AI_Hidan : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), "Mon") != 0 && !_isBati)
+		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), K_TAG_MON) != 0 && !_isBati)
 		{
 
 			CCPoint moveDirection;
@@ -263,7 +263,7 @@ class AI_Hidan : public Hero
 				return;
 			}
 
-			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
 				if (_isCanSkill3 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger && !_isBati)
 				{
@@ -287,7 +287,7 @@ class AI_Hidan : public Hero
 		{
 			if (_isHealling && this->getHpPercent() < 1)
 			{
-				if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+				if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 				{
 					this->idle();
 				}
@@ -299,7 +299,7 @@ class AI_Hidan : public Hero
 		}
 		else
 		{
-			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
 				this->idle();
 			}

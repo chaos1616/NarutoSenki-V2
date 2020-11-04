@@ -39,7 +39,7 @@ class AI_Kurama : public Hero
 			}
 			else
 			{
-				if (this->getActionState() == ACTION_STATE_IDLE || this->getActionState() == ACTION_STATE_WALK || this->getActionState() == ACTION_STATE_ATTACK)
+				if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
 				{
 					this->changeSide(sp);
 					this->attack(NAttack);

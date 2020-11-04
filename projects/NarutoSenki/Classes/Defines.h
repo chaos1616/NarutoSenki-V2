@@ -2,6 +2,7 @@
 #define __DEFINES_H__
 #include "cocos2d.h"
 #include "cocos-ext.h"
+#include "MyUtils/Cocos2dxHelper.hpp"
 #include <map>
 
 USING_NS_CC;
@@ -36,29 +37,58 @@ extern bool isPlayed;
 #define CURRENT_VERSION 2.0
 
 //menu sound
-#define SELECT_SOUND "Audio/Menu/select.ogg"
-#define TRAINING_SOUND "Audio/Menu/training.ogg"
-#define NETWORK_SOUND "Audio/Menu/arcade.ogg"
-#define CREDITS_SOUND "Audio/Menu/credits.ogg"
-#define EXIT_SOUND "Audio/Menu/exit.ogg"
+#define _soundPerfix    "Audio/Menu/"
+#define SELECT_SOUND    _soundPerfix "select.ogg"
+#define TRAINING_SOUND  _soundPerfix "training.ogg"
+#define NETWORK_SOUND   _soundPerfix "arcade.ogg"
+#define CREDITS_SOUND   _soundPerfix "credits.ogg"
+#define EXIT_SOUND      _soundPerfix "exit.ogg"
 
 /* MUSIC FILES */
-#define INTRO_MUSIC "Audio/Music/intro_music.ogg"
-#define LOADING_MUSIC "Audio/Music/loading_music.ogg"
-#define SELECT_MUSIC "Audio/Music/select_music.ogg"
-#define RANKING_MUSIC "Audio/Music/ranking_music.ogg"
-#define MENU_MUSIC "Audio/Music/menu_music.ogg"
-#define CREDITS_MUSIC "Audio/Music/credits_music.ogg"
-#define BATTLE_MUSIC "Audio/Music/Battle1.ogg"
+#define _musicPerfix    "Audio/Music/"
+#define INTRO_MUSIC     _musicPerfix "intro_music.ogg"
+#define LOADING_MUSIC   _musicPerfix "loading_music.ogg"
+#define SELECT_MUSIC    _musicPerfix "select_music.ogg"
+#define RANKING_MUSIC   _musicPerfix "ranking_music.ogg"
+#define MENU_MUSIC      _musicPerfix "menu_music.ogg"
+#define CREDITS_MUSIC   _musicPerfix "credits_music.ogg"
+#define BATTLE_MUSIC    _musicPerfix "Battle1.ogg"
 
-//tile map
-
+// Tile maps (Made with Tiled)
 #define S_MAP01 "Tiles/1.tmx"
 #define S_MAP02 "Tiles/2.tmx"
 #define S_MAP03 "Tiles/3.tmx"
 #define S_MAP04 "Tiles/4.tmx"
 #define S_MAP05 "Tiles/5.tmx"
-// #define MAPS
+
+// Character File Name Generator
+#define mkpath(varName) "Element/" #varName "/" #varName ".plist"
+
+#define cName(varName, varType) "Element/" varType "/" #varName ".plist"
+
+// Types
+#define k_Flog                "Flog"
+#define k_Guardian            "Guardian"
+
+// Tags
+// 分身
+#define K_TAG_CLONE           "Clone"
+// 口寄せ
+#define K_TAG_SUMMON          "Summon"
+// 傀儡
+#define K_TAG_KUGUTSU         "Kugutsu"
+#define K_TAG_MON             "Mon"
+
+// Flogs
+#define kFlog_Kotetsu       cName(KotetsuFlog,      k_Flog)
+#define kFlog_FemalePain    cName(FemalePainFlog,   k_Flog)
+#define kFlog_Izumo         cName(IzumoFlog,        k_Flog)
+#define kFlog_Kakashi       cName(KakashiFlog,      k_Flog)
+#define kFlog_Pain          cName(PainFlog,         k_Flog)
+#define kFlog_Obito         cName(ObitoFlog,        k_Flog)
+// Guardians
+#define Guardian_Roshi      "Roshi"
+#define Guardian_Han        "Han"
 
 // game layer tag
 #define currentMapTag -5000
@@ -206,7 +236,7 @@ static const char *heroList[] = {
 static const int heroNum = sizeof(heroList) / sizeof(char *);
 
 // static const char *ninjaList = CREATE_LIST();
-// const char *ninjas = {
+// static const char *_character_list = {
 // 	/* Page One*/
 // 	"Naruto",		"Sakura",		"Sai",			"Kakashi",
 // 	"None",			"None",	 		"None",					  

@@ -23,7 +23,9 @@ public:
 	void prepareFileMD5();
 	void prepareFileSHA();
 
-	bool readXMLToArray(const char *filePath, CCArray *&array);
+	static bool readXMLToArray(const char *filePath, CCArray *&array);
+	static void prepareFileOGG(const char *listName, bool unload = false);
+
 	void initTableInDB();
 	void initColumeInDB();
 
@@ -41,7 +43,6 @@ public:
 	void dfsFolder(std::string folderPath, int depth = 0, int type = 0);
 
 	bool checkPackage();
-	void prepareFileOGG(const char *listName, int type = 0);
 
 	std::string getKeycode(std::string path);
 

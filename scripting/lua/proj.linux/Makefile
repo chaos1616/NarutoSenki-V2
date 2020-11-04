@@ -1,6 +1,8 @@
 TARGET = liblua.so
 
 INCLUDES += -I.. -I../lua -I../tolua -I../xxtea \
+	-I../../../projects/NarutoSenki/Classes \
+	-I../../../projects/NarutoSenki/Classes/AI \
         -I../Classes -I../../../CocosDenshion/include -I../../../extensions -I../../../external/chipmunk/include/chipmunk 
 
 SOURCES = ../lua/lapi.o \

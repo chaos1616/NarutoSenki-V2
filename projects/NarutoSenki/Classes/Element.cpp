@@ -63,18 +63,18 @@ void HeroElement::setID(CCString *character, CCString *role, CCString *group)
 	CCArray *animationArray = CCArray::create();
 	const char *filePath;
 
-	KTools *tool = KTools::create();
 
 	filePath = CCString::createWithFormat("Element/%s/%s.xml", this->getCharacter()->getCString(), this->getCharacter()->getCString())->getCString();
 
-	std::string key = tool->getKeycode(filePath);
-	int id = tool->checkMD5(filePath);
+	// KTools *tool = KTools::create();
+	// std::string key = tool->getKeycode(filePath);
+	// int id = tool->checkMD5(filePath);
 
 	// if(strcmp(key.c_str(),_delegate->KeyList[id])!=0){
 	//return;
 	// }
 
-	tool->readXMLToArray(filePath, animationArray);
+	KTools::readXMLToArray(filePath, animationArray);
 
 	//init Attribute; & indleFrame
 
@@ -93,8 +93,8 @@ void HeroElement::setID(CCString *character, CCString *role, CCString *group)
 		strcmp(this->getCharacter()->getCString(), "Choji") == 0 ||
 		strcmp(this->getCharacter()->getCString(), "Tsunade") == 0 ||
 		strcmp(this->getCharacter()->getCString(), "Hidan") == 0 ||
-		strcmp(this->getCharacter()->getCString(), "Roshi") == 0 ||
-		strcmp(this->getCharacter()->getCString(), "Han") == 0 ||
+		strcmp(this->getCharacter()->getCString(), Guardian_Roshi) == 0 ||
+		strcmp(this->getCharacter()->getCString(), Guardian_Han) == 0 ||
 		strcmp(this->getCharacter()->getCString(), "Hiruzen") == 0 ||
 		strcmp(this->getCharacter()->getCString(), "Sai") == 0 ||
 		strcmp(this->getCharacter()->getCString(), "Kiba") == 0 ||
@@ -149,8 +149,8 @@ void HeroElement::setID(CCString *character, CCString *role, CCString *group)
 		strcmp(this->getCharacter()->getCString(), "Tsunade") == 0 ||
 		strcmp(this->getCharacter()->getCString(), "Hidan") == 0 ||
 		strcmp(this->getCharacter()->getCString(), "Shino") == 0 ||
-		strcmp(this->getCharacter()->getCString(), "Roshi") == 0 ||
-		strcmp(this->getCharacter()->getCString(), "Han") == 0 ||
+		strcmp(this->getCharacter()->getCString(), Guardian_Roshi) == 0 ||
+		strcmp(this->getCharacter()->getCString(), Guardian_Han) == 0 ||
 		strcmp(this->getCharacter()->getCString(), "Hiruzen") == 0 ||
 		strcmp(this->getCharacter()->getCString(), "Sai") == 0 ||
 		strcmp(this->getCharacter()->getCString(), "Kiba") == 0 ||
@@ -224,8 +224,8 @@ void HeroElement::setID(CCString *character, CCString *role, CCString *group)
 		strcmp(this->getCharacter()->getCString(), "Tsunade") == 0 ||
 		strcmp(this->getCharacter()->getCString(), "Hidan") == 0 ||
 		strcmp(this->getCharacter()->getCString(), "Shino") == 0 ||
-		strcmp(this->getCharacter()->getCString(), "Roshi") == 0 ||
-		strcmp(this->getCharacter()->getCString(), "Han") == 0 ||
+		strcmp(this->getCharacter()->getCString(), Guardian_Roshi) == 0 ||
+		strcmp(this->getCharacter()->getCString(), Guardian_Han) == 0 ||
 		strcmp(this->getCharacter()->getCString(), "Hiruzen") == 0 ||
 		strcmp(this->getCharacter()->getCString(), "Kiba") == 0 ||
 		strcmp(this->getCharacter()->getCString(), "Akamaru") == 0 ||
@@ -331,8 +331,8 @@ void HeroElement::setID(CCString *character, CCString *role, CCString *group)
 			 strcmp(this->getCharacter()->getCString(), "Gaara") == 0 ||
 			 strcmp(this->getCharacter()->getCString(), "Hidan") == 0 ||
 			 strcmp(this->getCharacter()->getCString(), "Shino") == 0 ||
-			 strcmp(this->getCharacter()->getCString(), "Roshi") == 0 ||
-			 strcmp(this->getCharacter()->getCString(), "Han") == 0 ||
+			 strcmp(this->getCharacter()->getCString(), Guardian_Roshi) == 0 ||
+			 strcmp(this->getCharacter()->getCString(), Guardian_Han) == 0 ||
 			 strcmp(this->getCharacter()->getCString(), "Hiruzen") == 0 ||
 			 strcmp(this->getCharacter()->getCString(), "Kiba") == 0 ||
 			 strcmp(this->getCharacter()->getCString(), "Akamaru") == 0 ||
@@ -453,9 +453,9 @@ void HeroElement::setHPbar()
 		_hpBar = HPBar::create("hp_bar_r.png");
 	}
 	else if ((strcmp(getRole()->getCString(), "Com") == 0 ||
-			  strcmp(getRole()->getCString(), "Clone") == 0 ||
-			  strcmp(this->getRole()->getCString(), "Kuilei") == 0 ||
-			  strcmp(this->getRole()->getCString(), "Summon") == 0))
+			  strcmp(getRole()->getCString(), K_TAG_CLONE) == 0 ||
+			  strcmp(this->getRole()->getCString(), K_TAG_KUGUTSU) == 0 ||
+			  strcmp(this->getRole()->getCString(), K_TAG_SUMMON) == 0))
 	{
 		_hpBar = HPBar::create("hp_bar_b.png");
 	}
@@ -593,7 +593,7 @@ void HeroElement::dealloc()
 {
 
 	this->stopAllActions();
-	_actionState = ACTION_STATE_DEAD;
+	_actionState = State::DEAD;
 	if (strcmp(this->getCharacter()->getCString(), "Minato") != 0)
 	{
 
@@ -611,7 +611,7 @@ void HeroElement::dealloc()
 				CCNotificationCenter::sharedNotificationCenter()->removeObserver(mo, "acceptAttack");
 				mo->stopAllActions();
 				mo->unscheduleAllSelectors();
-				mo->setActionState(ACTION_STATE_DEAD);
+				mo->setActionState(State::DEAD);
 				mo->removeFromParent();
 				mo = NULL;
 			};
@@ -620,9 +620,9 @@ void HeroElement::dealloc()
 		}
 	}
 
-	if (strcmp(this->getRole()->getCString(), "Clone") == 0 ||
-		strcmp(this->getRole()->getCString(), "Kuilei") == 0 ||
-		strcmp(this->getRole()->getCString(), "Summon") == 0)
+	if (strcmp(this->getRole()->getCString(), K_TAG_CLONE) == 0 ||
+		strcmp(this->getRole()->getCString(), K_TAG_KUGUTSU) == 0 ||
+		strcmp(this->getRole()->getCString(), K_TAG_SUMMON) == 0)
 	{
 		this->unschedule(schedule_selector(CharacterBase::setAI));
 		CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "acceptAttack");
@@ -732,7 +732,7 @@ void HeroElement::dealloc()
 				Hero *tempHero = (Hero *)pObject;
 				if (tempHero->_isSticking)
 				{
-					if (tempHero->getActionState() != ACTION_STATE_DEAD)
+					if (tempHero->getActionState() != State::DEAD)
 					{
 						tempHero->removeLostBlood(0.1f);
 						tempHero->idle();
@@ -765,7 +765,7 @@ void HeroElement::dealloc()
 					CCNotificationCenter::sharedNotificationCenter()->removeObserver(mo, "acceptAttack");
 					mo->stopAllActions();
 					mo->unscheduleAllSelectors();
-					mo->setActionState(ACTION_STATE_DEAD);
+					mo->setActionState(State::DEAD);
 					mo->removeFromParent();
 				};
 				this->getMonsterArray()->removeAllObjects();
@@ -774,8 +774,8 @@ void HeroElement::dealloc()
 			}
 		}
 
-		if (strcmp(this->getCharacter()->getCString(), "Roshi") != 0 &&
-			strcmp(this->getCharacter()->getCString(), "Han") != 0)
+		if (strcmp(this->getCharacter()->getCString(), Guardian_Roshi) != 0 &&
+			strcmp(this->getCharacter()->getCString(), Guardian_Han) != 0)
 		{
 			if (rebornLabelTime == 3)
 			{
@@ -823,7 +823,7 @@ void HeroElement::reborn(float dt)
 		this->setOpacity(255);
 		this->setHP(CCString::create(this->getMaxHP()->getCString()));
 		this->setHPbar();
-		this->_actionState = ACTION_STATE_HURT;
+		this->_actionState = State::HURT;
 
 		if (this->getLV() < 4)
 		{
@@ -933,9 +933,7 @@ void Flog::setID(CCString *character, CCString *role, CCString *group)
 
 	filePath = CCString::createWithFormat("Element/Flog/%s.xml", this->getCharacter()->getCString(), this->getCharacter()->getCString())->getCString();
 
-	KTools *tool = KTools::create();
-
-	tool->readXMLToArray(filePath, animationArray);
+	KTools::readXMLToArray(filePath, animationArray);
 
 	//init Attribute; & indleFrame
 
@@ -1040,8 +1038,8 @@ void Flog::setHPbar()
 
 void Flog::setAI(float dt)
 {
-	if (this->getActionState() == ACTION_STATE_IDLE || this->getActionState() == ACTION_STATE_WALK ||
-		this->getActionState() == ACTION_STATE_ATTACK)
+	if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK ||
+		this->getActionState() == State::ATTACK)
 	{
 
 		if (!_randomPosY)
@@ -1054,7 +1052,7 @@ void Flog::setAI(float dt)
 
 		if (_mainTarget)
 		{
-			if (_mainTarget->getActionState() != ACTION_STATE_DEAD && !_mainTarget->_isWudi && _mainTarget->_isVisable &&
+			if (_mainTarget->getActionState() != State::DEAD && !_mainTarget->_isWudi && _mainTarget->_isVisable &&
 				strcmp(_mainTarget->getGroup()->getCString(), this->getGroup()->getCString()) != 0)
 			{
 
@@ -1099,7 +1097,7 @@ void Flog::setAI(float dt)
 			}
 			else
 			{
-				if (this->getActionState() != ACTION_STATE_ATTACK)
+				if (this->getActionState() != State::ATTACK)
 				{
 					this->changeSide(sp);
 					this->attack(NAttack);
@@ -1139,7 +1137,7 @@ void Flog::setAI(float dt)
 void Flog::dealloc()
 {
 	this->unschedule(schedule_selector(CharacterBase::setAI));
-	this->setActionState(ACTION_STATE_DEAD);
+	this->setActionState(State::DEAD);
 	this->stopAllActions();
 
 	if (strcmp(this->getGroup()->getCString(), Konoha) == 0)
@@ -1201,15 +1199,15 @@ void Tower::setID(CCString *character, CCString *role, CCString *group)
 		filePath = "Element/Tower/TowerDate.xml";
 	}
 
-	KTools *tool = KTools::create();
-	std::string key = tool->getKeycode(filePath);
-	int id = tool->checkMD5(filePath);
+	// KTools *tool = KTools::create();
+	// std::string key = tool->getKeycode(filePath);
+	// int id = tool->checkMD5(filePath);
 
 	// if(strcmp(key.c_str(),_delegate->KeyList[id])!=0){
 	//return;
 	// }
 
-	tool->readXMLToArray(filePath, animationArray);
+	KTools::readXMLToArray(filePath, animationArray);
 
 	//init Attribute; & indleFrame
 
@@ -1274,7 +1272,7 @@ void Tower::setHPbar()
 void Tower::dealloc()
 {
 	this->unschedule(schedule_selector(CharacterBase::setAI));
-	this->setActionState(ACTION_STATE_DEAD);
+	this->setActionState(State::DEAD);
 	this->stopAllActions();
 
 	CCObject *pObject;
@@ -1352,10 +1350,10 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 
 	filePath = CCString::createWithFormat("Element/Monster/%s.xml", this->getCharacter()->getCString(), this->getCharacter()->getCString())->getCString();
 
-	KTools *tool = KTools::create();
+	// KTools *tool = KTools::create();
 	// std::string key =tool->getKeycode(filePath);
 
-	tool->readXMLToArray(filePath, animationArray);
+	KTools::readXMLToArray(filePath, animationArray);
 
 	//init Attribute; & indleFrame
 
@@ -1506,8 +1504,8 @@ void Monster::setAI(float dt)
 		{
 			Hero *tempHero = (Hero *)pObject;
 			if (strcmp(this->getGroup()->getCString(), tempHero->getGroup()->getCString()) != 0 &&
-				tempHero->getActionState() != ACTION_STATE_DEAD &&
-				tempHero->getActionState() != ACTION_STATE_O2ATTACK &&
+				tempHero->getActionState() != State::DEAD &&
+				tempHero->getActionState() != State::O2ATTACK &&
 				!tempHero->_isWudi &&
 				!tempHero->_isBati &&
 				tempHero->_isVisable)
@@ -1531,8 +1529,7 @@ void Monster::setAI(float dt)
 		};
 		return;
 	}
-
-	if (strcmp(getCharacter()->getCString(), "Mouse") == 0)
+	else if (strcmp(getCharacter()->getCString(), "Mouse") == 0)
 	{
 
 		if (!this->findEnemy("Hero", 0))
@@ -1583,7 +1580,7 @@ void Monster::setAI(float dt)
 		{
 			if (abs(sp.x) > 48 || abs(sp.y) > 32)
 			{
-				this->setActionState(ACTION_STATE_WALK);
+				this->setActionState(State::WALK);
 				moveDirection = ccpNormalize(sp);
 				this->walk(moveDirection);
 				return;
@@ -1664,7 +1661,7 @@ void Monster::dealloc()
 {
 
 	this->unschedule(schedule_selector(CharacterBase::setAI));
-	this->setActionState(ACTION_STATE_DEAD);
+	this->setActionState(State::DEAD);
 	this->stopAllActions();
 
 	if (strcmp(this->getCharacter()->getCString(), "FudonSRK") == 0 ||
@@ -1879,15 +1876,14 @@ void Bullet::setID(CCString *character, CCString *role, CCString *group)
 
 	filePath = CCString::createWithFormat("Element/Bullet/%s.xml", this->getCharacter()->getCString(), this->getCharacter()->getCString())->getCString();
 
-	KTools *tool = KTools::create();
-	std::string key = tool->getKeycode(filePath);
-	int id = tool->checkMD5(filePath);
-
+	// KTools *tool = KTools::create();
+	// std::string key = tool->getKeycode(filePath);
+	// int id = tool->checkMD5(filePath);
 	// if(strcmp(key.c_str(),_delegate->KeyList[id])!=0){
 	//return;
 	// }
 
-	tool->readXMLToArray(filePath, animationArray);
+	KTools::readXMLToArray(filePath, animationArray);
 
 	//init Attribute; & idleFrame
 
@@ -1952,9 +1948,9 @@ void Bullet::dealloc()
 		if (strcmp(this->getCharacter()->getCString(), "HiraishinKunai") == 0)
 		{
 
-			if (_master->getActionState() == ACTION_STATE_SATTACK)
+			if (_master->getActionState() == State::SATTACK)
 			{
-				_master->setActionState(ACTION_STATE_ATTACK);
+				_master->setActionState(State::ATTACK);
 				_master->_markPoint = ccp(this->getPositionX(), this->_originY);
 				_master->changeAction2();
 				_master->_isCanSkill2 = true;

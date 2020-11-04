@@ -71,13 +71,10 @@
 #include "AI_RikudoNarutoClone.hpp"
 
 #define AI_API
-#define abstract(varName) \
-    virtual void on_##varName() {}
+#define abstract(varName) virtual void on_##varName() {}
 
-class AIProvider
-{
-    AI_API abstract(setClone);
-};
+//     AI_API abstract(setClone);
+
 
 // Utilities
 #define find_Hero(searchRange, masterRange) this->findEnemy("Hero", searchRange, masterRange)
@@ -87,26 +84,25 @@ class AIProvider
 #define not_find_Flog(searchRange, masterRange) !this->findEnemy("Flog", searchRange, masterRange)
 #define not_find_Tower(searchRange, masterRange) !this->findEnemy("Tower", searchRange, masterRange)
 
-namespace AIGenerator
+#include <iostream>
+#include <typeinfo>
+#include <map>
+// int max_value = meta::reflect<int>().data<2048>(hash("max_int"));
+
+#define __begin__ if(0) {}
+#define is_begin(varStr) if (strcmp(varStr, name) == 0)
+#define is(varStr) else if (strcmp(varStr, name) == 0)
+#define is_or(varStr, varName) else if ((strcmp(varStr, varName) == 0) || (strcmp(name, varName) == 0))
+#define is_or2(varStr, varName, varName2) else if ((strcmp(varStr, varName) == 0) || (strcmp(name, varName) == 0) || (strcmp(name, varName2) == 0))
+#define is_or3(varStr, varName, varName2, varName3) else if ((strcmp(varStr, varName) == 0) || (strcmp(name, varName) == 0) || (strcmp(name, varName2) == 0) || (strcmp(name, varName3) == 0))
+#define is_tag(tag) if (strcmp(role->getCString(), tag) == 0)
+
+class AIProvider
 {
-    #include <iostream>
-    #include <typeinfo>
-    #include <map>
-    // int max_value = meta::reflect<int>().data<2048>(hash("max_int"));
-
-    #define __begin__ if(0) {}
-    #define is_begin(varStr) if (strcmp(varStr, name) == 0)
-    #define is(varStr) else if (strcmp(varStr, name) == 0)
-    #define is_or(varStr, varName) else if ((strcmp(varStr, varName) == 0) || (strcmp(name, varName) == 0))
-    #define is_or2(varStr, varName, varName2) else if ((strcmp(varStr, varName) == 0) || (strcmp(name, varName) == 0) || (strcmp(name, varName2) == 0))
-    #define is_or3(varStr, varName, varName2, varName3) else if ((strcmp(varStr, varName) == 0) || (strcmp(name, varName) == 0) || (strcmp(name, varName2) == 0) || (strcmp(name, varName3) == 0))
-    #define is_and(varStr, varName) else if ((strcmp(varStr, varName) == 0) && (strcmp(role->getCString(), name) == 0))
-    // Tags
-    #define clone_tag "Clone"
-
     // static const map<std::string, type> ai_providers;
 
-    static HeroElement *create(CCString *character, CCString *role, CCString *group)
+public:
+    static HeroElement *createAI(CCString *character, CCString *role, CCString *group)
     {
         HeroElement *pAI;
         // Init AI
@@ -154,13 +150,10 @@ namespace AIGenerator
         is("Choji") 					    pAI = new AI_Choji();
         is("Itachi") 					    pAI = new AI_Itachi();
         is("Orochimaru") 				    pAI = new AI_Orochimaru();
-        is_and("Naruto", clone_tag) 		pAI = new AI_NarutoClone();
-        is("Naruto") 					    pAI = new AI_Naruto();
         is("Kurama") 					    pAI = new AI_Kurama();
-        is_and("SageNaruto", clone_tag) 	pAI = new AI_SageNarutoClone();
-        is_and("RikudoNaruto", clone_tag)	pAI = new AI_RikudoNarutoClone();
-        is("SageNaruto") 				    pAI = new AI_SageNaruto();
-        is("RikudoNaruto") 				    pAI = new AI_RikudoNaruto();
+        is("Naruto") 		                is_tag(K_TAG_CLONE) pAI = new AI_NarutoClone();         else pAI = new AI_Naruto();
+        is("SageNaruto") 				    is_tag(K_TAG_CLONE) pAI = new AI_SageNarutoClone();     else pAI = new AI_SageNaruto();
+        is("RikudoNaruto") 				    is_tag(K_TAG_CLONE) pAI = new AI_RikudoNarutoClone();   else pAI = new AI_RikudoNaruto();
         is("Gaara") 					    pAI = new AI_Gaara();
         is("Tobirama") 					    pAI = new AI_Tobirama();
         is("Akamaru") 					    pAI = new AI_Akamaru();
@@ -210,6 +203,6 @@ namespace AIGenerator
     // static bool addAI(const char *name, type t)
     // {
     // }
-} // namespace AIGenerator
+};
 
 #endif

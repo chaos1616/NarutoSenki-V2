@@ -85,11 +85,11 @@ bool LoadLayer::init()
 
 void LoadLayer::preloadIMG()
 {
+#define player_is(name) strcmp(player->getCString(), #name) == 0
 
 	CCObject *pObject = NULL;
 	int i = 0;
 	const char *path;
-	KTools *tool = KTools::create();
 
 	CCARRAY_FOREACH(tempHeros, pObject)
 	{
@@ -104,9 +104,9 @@ void LoadLayer::preloadIMG()
 		{
 
 			path = CCString::createWithFormat("Element/Skills/%s_Skill.plist", player->getCString())->getCString();
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(path);
+			addSprites(path);
 		}
-		tool->prepareFileOGG(player->getCString());
+		KTools::prepareFileOGG(player->getCString());
 
 		/*	if(strcmp(player->getCString(),"Chiyo")==0 ||
 		strcmp(player->getCString(),"Shikamaru")==0 ||
@@ -129,66 +129,67 @@ void LoadLayer::preloadIMG()
 		}*/
 
 		path = CCString::createWithFormat("Element/%s/%s.plist", player->getCString(), player->getCString())->getCString();
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(path);
-		if (strcmp(player->getCString(), "Jiraiya") == 0)
+		addSprites(path);
+		// Add extra sprites
+		if (player_is(Jiraiya))
 		{
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/SageJiraiya/SageJiraiya.plist");
-			tool->prepareFileOGG("SageJiraiya");
+			addSprites(mkpath(SageJiraiya));
+			KTools::prepareFileOGG("SageJiraiya");
 		}
-		else if (strcmp(player->getCString(), "Kankuro") == 0)
+		else if (player_is(Kankuro))
 		{
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Karasu/Karasu.plist");
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Sanshouuo/Sanshouuo.plist");
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Saso/Saso.plist");
+			addSprites(mkpath(Karasu));
+			addSprites(mkpath(Sanshouuo));
+			addSprites(mkpath(Saso));
 		}
-		else if (strcmp(player->getCString(), "Chiyo") == 0)
+		else if (player_is(Chiyo))
 		{
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Parents/Parents.plist");
+			addSprites(mkpath(Parents));
 		}
-		else if (strcmp(player->getCString(), "Kakuzu") == 0)
+		else if (player_is(Kakuzu))
 		{
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/MaskRaidon/MaskRaidon.plist");
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/MaskFudon/MaskFudon.plist");
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/MaskKadon/MaskKadon.plist");
+			addSprites(mkpath(MaskRaidon));
+			addSprites(mkpath(MaskFudon));
+			addSprites(mkpath(MaskKadon));
 		}
-		else if (strcmp(player->getCString(), "Naruto") == 0)
+		else if (player_is(Naruto))
 		{
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/RikudoNaruto/RikudoNaruto.plist");
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/SageNaruto/SageNaruto.plist");
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Kurama/Kurama.plist");
-			tool->prepareFileOGG("SageNaruto");
-			tool->prepareFileOGG("RikudoNaruto");
+			addSprites(mkpath(RikudoNaruto));
+			addSprites(mkpath(SageNaruto));
+			addSprites(mkpath(Kurama));
+			KTools::prepareFileOGG("SageNaruto");
+			KTools::prepareFileOGG("RikudoNaruto");
 		}
-		else if (strcmp(player->getCString(), "Lee") == 0)
+		else if (player_is(Lee))
 		{
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/RockLee/RockLee.plist");
+			addSprites(mkpath(RockLee));
 		}
-		else if (strcmp(player->getCString(), "Tsunade") == 0)
+		else if (player_is(Tsunade))
 		{
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Slug/Slug.plist");
+			addSprites(mkpath(Slug));
 		}
-		else if (strcmp(player->getCString(), "Kakashi") == 0)
+		else if (player_is(Kakashi))
 		{
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/DogWall/DogWall.plist");
+			addSprites(mkpath(DogWall));
 		}
-		else if (strcmp(player->getCString(), "Deidara") == 0)
+		else if (player_is(Deidara))
 		{
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Centipede/Centipede.plist");
+			addSprites(mkpath(Centipede));
 		}
-		else if (strcmp(player->getCString(), "Pain") == 0)
+		else if (player_is(Pain))
 		{
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/DevaPath/DevaPath.plist");
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/AsuraPath/AsuraPath.plist");
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/AnimalPath/AnimalPath.plist");
+			addSprites(mkpath(DevaPath));
+			addSprites(mkpath(AsuraPath));
+			addSprites(mkpath(AnimalPath));
 		}
-		else if (strcmp(player->getCString(), "Sasuke") == 0)
+		else if (player_is(Sasuke))
 		{
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/ImmortalSasuke/ImmortalSasuke.plist");
-			tool->prepareFileOGG("ImmortalSasuke");
+			addSprites(mkpath(ImmortalSasuke));
+			KTools::prepareFileOGG("ImmortalSasuke");
 		}
-		else if (strcmp(player->getCString(), "Kiba") == 0)
+		else if (player_is(Kiba))
 		{
-			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Akamaru/Akamaru.plist");
+			addSprites(mkpath(Akamaru));
 		}
 
 		if (i == 0 || ((i == 1 || i == 2) && _isHardCoreMode))
@@ -238,20 +239,20 @@ void LoadLayer::preloadIMG()
 	{
 		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Roshi/Roshi.plist");
 		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Han/Han.plist");
-		tool->prepareFileOGG("Roshi");
-		tool->prepareFileOGG("Han");
+		KTools::prepareFileOGG("Roshi");
+		KTools::prepareFileOGG("Han");
 	}
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Flog/KotetsuFlog.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Flog/FemalePainFlog.plist");
+	addSprites(kFlog_Kotetsu);
+	addSprites(kFlog_FemalePain);
 
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Flog/IzumoFlog.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Flog/KakashiFlog.plist");
+	addSprites(kFlog_Izumo);
+	addSprites(kFlog_Kakashi);
 
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Flog/PainFlog.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Flog/ObitoFlog.plist");
+	addSprites(kFlog_Pain);
+	addSprites(kFlog_Obito);
 
-	tool->prepareFileOGG("Effect");
-	tool->prepareFileOGG("Ougis");
+	KTools::prepareFileOGG("Effect");
+	KTools::prepareFileOGG("Ougis");
 
 	try
 	{
@@ -313,7 +314,7 @@ void LoadLayer::playBGM(float dt)
 	SimpleAudioEngine::sharedEngine()->playBackgroundMusic(LOADING_MUSIC, false);
 }
 
-void LoadLayer::onHttpRequestCompleted(CCHttpClient *client, CCHttpResponse* response)
+void LoadLayer::onHttpRequestCompleted(CCHttpClient *client, CCHttpResponse *response)
 {
 	/*AllocConsole();  
 	freopen("CONIN$", "r", stdin);  
@@ -408,20 +409,20 @@ void LoadLayer::preloadAudio()
 	bgSprite->setPosition(ccp(0, 0));
 	this->addChild(bgSprite, -5);
 
-	KTools *tool = KTools::create();
-	tool->prepareFileMD5();
-	std::string str2 = "fkhfnPG8";
-	tool->decode(str2);
-	std::string filePath = CCFileUtils::sharedFileUtils()->getWritablePath() + CCString::createWithFormat("%s.xml", str2.c_str())->getCString();
-	std::string strFileMD5 = CMD5Checksum::GetMD5(filePath);
-	remove(filePath.c_str());
-	CCString *code1 = CCString::createWithFormat("%s%s", strFileMD5.substr(16, 5).c_str(), strFileMD5.substr(6, 5).c_str());
-	if (strcmp(code1->getCString(), "e0213bffe1") != 0)
-	{
-		const char *soundpath = "Audio";
-		//return;
-		//tool->dfsFolder(soundpath,0,1);
-	}
+	// KTools *tool = KTools::create();
+	// tool->prepareFileMD5();
+	// std::string str2 = "fkhfnPG8";
+	// tool->decode(str2);
+	// std::string filePath = CCFileUtils::sharedFileUtils()->getWritablePath() + CCString::createWithFormat("%s.xml", str2.c_str())->getCString();
+	// std::string strFileMD5 = CMD5Checksum::GetMD5(filePath);
+	// remove(filePath.c_str());
+	// CCString *code1 = CCString::createWithFormat("%s%s", strFileMD5.substr(16, 5).c_str(), strFileMD5.substr(6, 5).c_str());
+	// if (strcmp(code1->getCString(), "e0213bffe1") != 0)
+	// {
+	// const char *soundpath = "Audio";
+	//return;
+	//tool->dfsFolder(soundpath,0,1);
+	// }
 
 	this->preloadIMG();
 }

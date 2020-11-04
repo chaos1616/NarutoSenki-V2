@@ -7,7 +7,7 @@ class AI_Kakuzu : public Hero
 	{
 
 		_mainTarget = NULL;
-		if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+		if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 		{
 
 			if (this->getHpPercent() > 0.3f && !_isControled && _isCanSkill1)
@@ -22,7 +22,7 @@ class AI_Kakuzu : public Hero
 					CharacterBase *target = (CharacterBase *)pObject;
 					if ((strcmp(target->getRole()->getCString(), "Player") == 0 ||
 						 strcmp(target->getRole()->getCString(), "Com") == 0) &&
-						target->getActionState() == ACTION_STATE_DEAD)
+						target->getActionState() == State::DEAD)
 					{
 						distance = ccpDistance(target->getPosition(), this->getPosition());
 						sp = ccpSub(target->getPosition(), this->getPosition());
@@ -157,7 +157,7 @@ class AI_Kakuzu : public Hero
 			{
 				sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
 			}
-			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
 
 				if (_isCanSkill3)
@@ -250,7 +250,7 @@ class AI_Kakuzu : public Hero
 				return;
 			}
 
-			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
 				if (_isCanOugis1 && !_isControled && !isSummonAble)
 				{
@@ -268,7 +268,7 @@ class AI_Kakuzu : public Hero
 
 		if (_isHealling && this->getHpPercent() < 1)
 		{
-			if (_actionState == ACTION_STATE_IDLE || _actionState == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
 				this->idle();
 			}

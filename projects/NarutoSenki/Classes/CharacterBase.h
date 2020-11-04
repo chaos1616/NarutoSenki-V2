@@ -9,21 +9,21 @@
 USING_NS_CC;
 using namespace CocosDenshion;
 
-enum actionState{
-	ACTION_STATE_DEAD,
-	ACTION_STATE_IDLE,
-	ACTION_STATE_WALK,
-	ACTION_STATE_ATTACK,
-	ACTION_STATE_SATTACK,
-	ACTION_STATE_OATTACK,
-	ACTION_STATE_O2ATTACK,
-	ACTION_STATE_HURT,
-	ACTION_STATE_ABHURT,
-	ACTION_STATE_KOCKDOWN,
-	ACTION_STATE_FLOAT,
-	ACTION_STATE_JUMP,
-	ACTION_STATE_AIRHURT
-};
+typedef enum{
+	DEAD,
+	IDLE,
+	WALK,
+	ATTACK,
+	SATTACK,
+	OATTACK,
+	O2ATTACK,
+	HURT,
+	ABHURT,
+	KOCKDOWN,
+	FLOAT,
+	JUMP,
+	AIRHURT
+} State;
 
 
 class HPBar;
@@ -39,7 +39,7 @@ public:
 	unsigned int		_deadNum;
 	unsigned int		_flogNum;
 	CC_SYNTHESIZE_RETAIN(CCString*, _killNum,KillNum);
-	
+
 
 
 
@@ -49,7 +49,7 @@ public:
 	CCObject*			_slayer;
 	CCObject*			_sticker;
 
-	
+
 
 	CharacterBase*		_mainTarget;
 
@@ -62,7 +62,7 @@ public:
 	bool				_isVisable;
 	//buff
 
-	
+
 	CC_SYNTHESIZE(unsigned int,_charNO,CharNO);
 
 	unsigned int		_healBuffValue;
@@ -71,9 +71,9 @@ public:
 	unsigned int		_skillUPBuffValue;
 	unsigned int		_skillChangeBuffValue;
 
-	
 
-	CCSprite*			_heartEffect;	
+
+	CCSprite*			_heartEffect;
 	Effect*				_healBuffEffect;
 	Effect*				_powerBuffEffect;
 	Effect*				_skillBuffEffect;
@@ -155,8 +155,8 @@ public:
 
 
 	CC_SYNTHESIZE(CCPoint,_spawnPoint,SpawnPoint);
-		
-	
+
+
 	CC_SYNTHESIZE(HeroElement*,_master,Master);
 	CC_SYNTHESIZE(CharacterBase*,_controler,Controler);
 	CC_SYNTHESIZE(CharacterBase*,_secmaster,SecMaster);
@@ -167,7 +167,6 @@ public:
 	int				_nattackRangeX;
 	int				_nattackRangeY;
 
-	
 
 	CC_SYNTHESIZE_RETAIN(CCString*, _sattackValue1,sAttackValue1);
 	//unsigned int    _sattackValue1;
@@ -178,7 +177,7 @@ public:
 	bool			_sattack1isDouble;
 	int				_sattackCombatPoint1;
 
-	
+
 	unsigned int	 _attackValue;
 	CC_SYNTHESIZE(CCString*, _attackType,AttackType);
 	int				_attackRangeX;
@@ -228,8 +227,7 @@ public:
 	CC_SYNTHESIZE(CCString*, _spcattackType1,spcAttack1Type);
 	int				_spcattackRangeX1;
 	int				_spcattackRangeY1;
-	unsigned int				_spcattackcoldDown1;
-
+	unsigned int	_spcattackcoldDown1;
 
 
 	CC_SYNTHESIZE_RETAIN(CCString*, _spcattackValue2,spcAttackValue2);
@@ -237,19 +235,19 @@ public:
 	CC_SYNTHESIZE(CCString*, _spcattackType2,spcAttack2Type);
 	int				_spcattackRangeX2;
 	int				_spcattackRangeY2;
-	unsigned int				_spcattackcoldDown2;
+	unsigned int	_spcattackcoldDown2;
 
 	CC_SYNTHESIZE_RETAIN(CCString*, _spcattackValue3,spcAttackValue3);
 	//unsigned int    _spcattackValue3;
 	CC_SYNTHESIZE(CCString*, _spcattackType3,spcAttack3Type);
 	int				_spcattackRangeX3;
 	int				_spcattackRangeY3;
-	unsigned int				_spcattackcoldDown3;
+	unsigned int	_spcattackcoldDown3;
 
 
 	CC_SYNTHESIZE_RETAIN(CCString*, _tempAttackValue1,tempAttackValue1);
 	int            _tempcoldDown1;
-	
+
 
 	CC_SYNTHESIZE(CCString*, _tempAttackType,TempAttackType);
 
@@ -258,20 +256,18 @@ public:
 	bool			_hurtFromRight;
 
 
-
 	CC_SYNTHESIZE(CCArray*,_damageArray,DamageArray);
-	
+
 	unsigned int damageEffectCount;
 	CC_SYNTHESIZE(CCArray*,_monsterArray,MonsterArray);
 
 	//movement
-	CC_SYNTHESIZE(cocos2d::CCPoint, _velocity, Velocity);
-	CC_SYNTHESIZE(cocos2d::CCPoint, _desiredPosition, DesiredPosition);
+	CC_SYNTHESIZE(CCPoint, _velocity, Velocity);
+	CC_SYNTHESIZE(CCPoint, _desiredPosition, DesiredPosition);
 
-	CC_SYNTHESIZE(actionState, _actionState, ActionState);
+	CC_SYNTHESIZE(State, _actionState, ActionState);
 	CC_SYNTHESIZE(GameLayer*, _delegate, Delegate);
 
-			
 
 
 	CC_SYNTHESIZE_RETAIN(CCAction*, _idleAction, IdleAction);
@@ -289,20 +285,20 @@ public:
 	CC_SYNTHESIZE_RETAIN(CCAction*, _skill3Action, Skill3Action);
 	CC_SYNTHESIZE_RETAIN(CCAction*, _skill4Action, Skill4Action);
 	CC_SYNTHESIZE_RETAIN(CCAction*, _skill5Action, Skill5Action);
-	
+
 
 	CC_SYNTHESIZE_RETAIN(CCActionInterval* ,_moveAction,MoveAction);
 	CC_SYNTHESIZE_RETAIN(CCAction* ,_floatUPAction,FloatUPAction);
 	CC_SYNTHESIZE_RETAIN(CCActionInterval* ,_jumpUPAction,JumpUPAction);
 
-	
+
 	void				update(float dt);
 	void				updateHpBarPosition(float dt);
 	void				acceptAttack(CCObject* object);
 
 
 	float				getHpPercent();
-	
+
 	bool				checkHasMovement();
 
 	void				idle();
@@ -314,15 +310,15 @@ public:
 	bool				hurt();
 	bool				hardHurt(int delayTime,bool isHurtAction,bool isCatch,bool isStick,bool isStun);
 	void				absorb(CCPoint position,bool isImmediate);
-	void				jump();
+	void				jump(){}; // No reference
 	void				knockDown();
 	void				dead();
 	void				floatUP(float floatHeight,bool isCancelSkill);
 	void				airHurt();
 	void				doAI();
 
-	
-	void				changeAction();
+
+	virtual void		changeAction();
 	void				changeAction2();
 	void				changeGroup();
 
@@ -330,7 +326,7 @@ public:
 	void				setActionResume();
 	void				setActionResume2();
 	void				reCatched(float dt);
-	
+
 	void				setShadow(CCNode* sender,void* data);
 	void				disableShadow(CCNode* sender);
 	void				enableShadow(CCNode* sender);
@@ -399,24 +395,19 @@ public:
 
 	void				lostBlood(float dt);
 	void				removeLostBlood(float dt);
-	
+
 	virtual void		setAI(float dt);
 	void				setSkillEffect(CCNode* sender,void* data);
 	void				setRestore2(float dt);
 
 
-
-
 protected:
-
-	
-	
 	void				readDate(CCArray* tmpDate,CCString* &attackType,CCString* &attackValue,int &attackRangeX,int &attackRangeY,unsigned int &coldDown,int &combatPoint);
 
 	CCAction*			createAnimation(CCArray* ationArray,float fps,bool isRepeat,bool isReturn);
 
 	CCDictionary*		callValue;
-	
+
 	void				setSound(CCNode* sender,void* data);
 	void				setDSound(CCNode* sender,void* data);
 	void				setMove(CCNode* sender,void* data);
@@ -429,7 +420,7 @@ protected:
 	void				setAttackBox(CCNode* sender,void* data);
 	void				setDamage(CCString* effectType,unsigned int attackValue,bool isFlipped);
 	void				setDamgeDisplay(unsigned int value,const char* type);
-	
+
 	void				setItemEffect(CCNode* sender,void* data);
 	void				setDamgeEffect(CCString* type);
 	void				setMonAttack(CCNode* sender,void* data);
@@ -438,8 +429,7 @@ protected:
 
 	void				setCharFlip();
 
-	
-	
+
 	void				setClone(CCNode* sender,void* data);
 	void				setMon(CCNode* sender,void* data);
 	void				setMonPer(float dt);
@@ -448,7 +438,6 @@ protected:
 
 	void				setTrap(CCNode* sender,void* data);
 
-	
 
 	void				setBuff(CCNode* sender,void* data);
 	void				setCommand(CCNode* sender,void* data);
@@ -462,7 +451,7 @@ protected:
 	void				removeSelf(float dt);
 	void				setJump(CCNode* sender,void* data);
 
-	
+
 	void				removeCoinDisplay(CCNode* sender,void* data);
 
 	CCRect				setHalfBox();
@@ -471,9 +460,8 @@ protected:
 	void				checkActionFinish(float dt);
 
 	void				setRestore(float dt);
-	
-	
-	
+
+
 	bool				findEnemy(const char* type,int searchRange,bool masterRange = false);
 	bool				findEnemy2(const char* type);
 	bool				findTargetEnemy(const char* type,bool isTowerDected);
@@ -485,7 +473,6 @@ protected:
 	void				stepOn();
 	void				changeSide(CCPoint sp);
 
-	
 
 	void				removeDamageDisplay();
 

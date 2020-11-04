@@ -187,11 +187,11 @@ void GameOver::listResult()
 	{
 
 		Hero *hero = (Hero *)pObject;
-		if (strcmp(hero->getRole()->getCString(), "Clone") == 0 ||
-			strcmp(hero->getRole()->getCString(), "Summon") == 0 ||
-			strcmp(hero->getRole()->getCString(), "Kuilei") == 0 ||
-			strcmp(hero->getCharacter()->getCString(), "Han") == 0 ||
-			strcmp(hero->getCharacter()->getCString(), "Roshi") == 0)
+		if (strcmp(hero->getRole()->getCString(), K_TAG_CLONE) == 0 ||
+			strcmp(hero->getRole()->getCString(), K_TAG_SUMMON) == 0 ||
+			strcmp(hero->getRole()->getCString(), K_TAG_KUGUTSU) == 0 ||
+			strcmp(hero->getCharacter()->getCString(), Guardian_Han) == 0 ||
+			strcmp(hero->getCharacter()->getCString(), Guardian_Roshi) == 0)
 		{
 			continue;
 		}
@@ -523,12 +523,12 @@ void GameOver::listResult()
 					{
 
 						Hero *hero = (Hero *)pObject;
-						if (strcmp(hero->getRole()->getCString(), "Clone") == 0 ||
+						if (strcmp(hero->getRole()->getCString(), K_TAG_CLONE) == 0 ||
 							strcmp(hero->getRole()->getCString(), "Player") == 0 ||
-							strcmp(hero->getRole()->getCString(), "Summon") == 0 ||
-							strcmp(hero->getRole()->getCString(), "Kuilei") == 0 ||
-							strcmp(hero->getCharacter()->getCString(), "Han") == 0 ||
-							strcmp(hero->getCharacter()->getCString(), "Roshi") == 0)
+							strcmp(hero->getRole()->getCString(), K_TAG_SUMMON) == 0 ||
+							strcmp(hero->getRole()->getCString(), K_TAG_KUGUTSU) == 0 ||
+							strcmp(hero->getCharacter()->getCString(), Guardian_Han) == 0 ||
+							strcmp(hero->getCharacter()->getCString(), Guardian_Roshi) == 0)
 						{
 							continue;
 						}

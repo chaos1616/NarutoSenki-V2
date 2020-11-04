@@ -366,15 +366,15 @@ void HPBar::loseHP(float percent)
 					}
 				}
 
-				if (reieveAble && _delegate->getActionState() != ACTION_STATE_O2ATTACK && !_delegate->_isWudi && _delegate->getActionState() != ACTION_STATE_DEAD)
+				if (reieveAble && _delegate->getActionState() != State::O2ATTACK && !_delegate->_isWudi && _delegate->getActionState() != State::DEAD)
 				{
 
 					if (_delegate->_isSticking)
 					{
 						_delegate->_isSticking = false;
 					}
-					if (_delegate->getActionState() == ACTION_STATE_FLOAT ||
-						_delegate->getActionState() == ACTION_STATE_AIRHURT)
+					if (_delegate->getActionState() == State::FLOAT ||
+						_delegate->getActionState() == State::AIRHURT)
 					{
 						this->setPositionY(_delegate->_originY);
 						_delegate->_originY = 0;
@@ -385,7 +385,7 @@ void HPBar::loseHP(float percent)
 					{
 
 						_delegate->getDelegate()->getHudLayer()->skill5Button->unLock();
-						_delegate->setActionState(ACTION_STATE_IDLE);
+						_delegate->setActionState(State::IDLE);
 						_delegate->getDelegate()->setSkillFinish(true);
 						_delegate->getDelegate()->getHudLayer()->skill5Button->click();
 						_delegate->getDelegate()->getHudLayer()->skill5Button->setLock();
@@ -396,7 +396,7 @@ void HPBar::loseHP(float percent)
 						if (_delegate->_isCanOugis2)
 						{
 
-							_delegate->setActionState(ACTION_STATE_IDLE);
+							_delegate->setActionState(State::IDLE);
 							_delegate->attack(OUGIS2);
 						}
 					}
@@ -422,7 +422,7 @@ void HPBar::loseHP(float percent)
 					return;
 				}
 
-				if (_delegate->getActionState() == ACTION_STATE_O2ATTACK)
+				if (_delegate->getActionState() == State::O2ATTACK)
 				{
 					return;
 				}
@@ -519,8 +519,8 @@ void HPBar::loseHP(float percent)
 					int teamKills = atoi(_delegate->getDelegate()->getHudLayer()->AkaLabel->getString()) + 1;
 					_delegate->getDelegate()->getHudLayer()->AkaLabel->setString(CCString::createWithFormat("%d", teamKills)->getCString());
 				}
-				if (strcmp(currentSlayer->getCharacter()->getCString(), "Han") != 0 &&
-					strcmp(currentSlayer->getCharacter()->getCString(), "Roshi") != 0)
+				if (strcmp(currentSlayer->getCharacter()->getCString(), Guardian_Han) != 0 &&
+					strcmp(currentSlayer->getCharacter()->getCString(), Guardian_Roshi) != 0)
 				{
 					int newValue = atoi(_delegate->getDelegate()->getTotalKills()->getCString()) + 1;
 					_delegate->getDelegate()->setTotalKills(CCString::createWithFormat("%d", newValue));
@@ -546,8 +546,8 @@ void HPBar::loseHP(float percent)
 				if (strcmp(currentSlayer->getRole()->getCString(), "Player") == 0)
 				{
 
-					if (strcmp(_delegate->getCharacter()->getCString(), "Han") == 0 ||
-						strcmp(_delegate->getCharacter()->getCString(), "Roshi") == 0)
+					if (strcmp(_delegate->getCharacter()->getCString(), Guardian_Han) == 0 ||
+						strcmp(_delegate->getCharacter()->getCString(), Guardian_Roshi) == 0)
 					{
 						_delegate->getDelegate()->setCoin("1000");
 						_delegate->setCoinDisplay(1000);
@@ -572,8 +572,8 @@ void HPBar::loseHP(float percent)
 					_delegate->getDelegate()->getHudLayer()->killLabel->setString(CCString::createWithFormat("%d", kills)->getCString());
 				}
 
-				if (strcmp(_delegate->getCharacter()->getCString(), "Han") == 0 ||
-					strcmp(_delegate->getCharacter()->getCString(), "Roshi") == 0)
+				if (strcmp(_delegate->getCharacter()->getCString(), Guardian_Han) == 0 ||
+					strcmp(_delegate->getCharacter()->getCString(), Guardian_Roshi) == 0)
 				{
 					currentSlayer->addCoin(1000);
 				}
@@ -608,8 +608,8 @@ void HPBar::loseHP(float percent)
 					{
 						if (_delegate->getDelegate()->_isHardCoreGame)
 						{
-							if (strcmp(_delegate->getCharacter()->getCString(), "Han") == 0 ||
-								strcmp(_delegate->getCharacter()->getCString(), "Roshi") == 0)
+							if (strcmp(_delegate->getCharacter()->getCString(), Guardian_Han) == 0 ||
+								strcmp(_delegate->getCharacter()->getCString(), Guardian_Roshi) == 0)
 							{
 								_delegate->getDelegate()->setCoin(CCString::createWithFormat("%d", 850)->getCString());
 								_delegate->setCoinDisplay(850);
@@ -629,8 +629,8 @@ void HPBar::loseHP(float percent)
 					}
 					if (_delegate->getDelegate()->_isHardCoreGame)
 					{
-						if (strcmp(_delegate->getCharacter()->getCString(), "Han") == 0 ||
-							strcmp(_delegate->getCharacter()->getCString(), "Roshi") == 0)
+						if (strcmp(_delegate->getCharacter()->getCString(), Guardian_Han) == 0 ||
+							strcmp(_delegate->getCharacter()->getCString(), Guardian_Roshi) == 0)
 						{
 							otherSlayer->addCoin(850);
 						}

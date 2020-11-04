@@ -100,7 +100,7 @@ void GameLayer::onEnter()
 
 	if (currentPlayer && !ougisChar)
 	{
-		if (currentPlayer->getActionState() == ACTION_STATE_WALK)
+		if (currentPlayer->getActionState() == State::WALK)
 		{
 			currentPlayer->idle();
 		}
@@ -163,17 +163,16 @@ void GameLayer::initTileMap()
 		filePath = S_MAP05;
 	}
 
-	KTools *tool = KTools::create();
-
-	std::string key = tool->getKeycode(filePath);
-	int id = tool->checkMD5(filePath);
-	if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-	{
-		// if (strcmp(key.c_str(), KeyList[id]) != 0)
-		// {
-		// 	return;
-		// }
-	}
+	// KTools *tool = KTools::create();
+	// std::string key = tool->getKeycode(filePath);
+	// int id = tool->checkMD5(filePath);
+	// if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	// {
+	// if (strcmp(key.c_str(), KeyList[id]) != 0)
+	// {
+	// 	return;
+	// }
+	// }
 
 	currentMap = CCTMXTiledMap::create(filePath);
 
@@ -200,11 +199,11 @@ void GameLayer::initGard()
 	}
 	if (index == 0)
 	{
-		Guardian = AIGenerator::create(CCString::create("Roshi"), CCString::create("Com"), CCString::create(groupName));
+		Guardian = AIProvider::createAI(CCString::create(Guardian_Roshi), CCString::create("Com"), CCString::create(groupName));
 	}
 	else if (index == 1)
 	{
-		Guardian = AIGenerator::create(CCString::create("Han"), CCString::create("Com"), CCString::create(groupName));
+		Guardian = AIProvider::createAI(CCString::create(Guardian_Han), CCString::create("Com"), CCString::create(groupName));
 	}
 
 	if (zhenying > 0)
@@ -244,7 +243,7 @@ void GameLayer::initHeros()
 	this->initEffects();
 
 	_CharacterArray = CCArray::create();
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/hpBar/hpBar.plist");
+	addSprites("Element/hpBar/hpBar.plist");
 	CCObject *pObject = NULL;
 	int i = 0;
 
@@ -285,7 +284,7 @@ void GameLayer::initHeros()
 
 			if (i == 0)
 			{
-				currentPlayer = AIGenerator::create(player, role, group);
+				currentPlayer = AIProvider::createAI(player, role, group);
 				currentPlayer->setDelegate(this);
 				currentPlayer->setPosition(spawnPoint);
 				currentPlayer->setSpawnPoint(spawnPoint);
@@ -300,7 +299,7 @@ void GameLayer::initHeros()
 			else
 			{
 
-				HeroElement *Com = AIGenerator::create(player, role, group);
+				HeroElement *Com = AIProvider::createAI(player, role, group);
 				Com->setDelegate(this);
 				Com->setPosition(spawnPoint);
 				Com->setSpawnPoint(spawnPoint);
@@ -356,7 +355,7 @@ void GameLayer::initHeros()
 					zhenying = 0;
 				}
 
-				currentPlayer = AIGenerator::create(player, role, group);
+				currentPlayer = AIProvider::createAI(player, role, group);
 				currentPlayer->setDelegate(this);
 				currentPlayer->setPosition(spawnPoint);
 				currentPlayer->setSpawnPoint(spawnPoint);
@@ -376,7 +375,7 @@ void GameLayer::initHeros()
 			else
 			{
 
-				HeroElement *Com = AIGenerator::create(player, role, group);
+				HeroElement *Com = AIProvider::createAI(player, role, group);
 				Com->setDelegate(this);
 				Com->setPosition(spawnPoint);
 				Com->setSpawnPoint(spawnPoint);
@@ -477,7 +476,7 @@ void GameLayer::initFlogs()
 	_KonohaFlogArray = CCArray::create();
 	_AkatsukiFlogArray = CCArray::create();
 
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/hpBar/flogBar.plist");
+	addSprites("Element/hpBar/flogBar.plist");
 
 	int i;
 	Flog *aiFlog;
@@ -589,23 +588,23 @@ void GameLayer::initTower()
 
 	if (randomMap == 0)
 	{
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Tower/Tower.plist");
+		addSprites("Element/Tower/Tower.plist");
 	}
 	else if (randomMap == 1)
 	{
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Tower/Tower2.plist");
+		addSprites("Element/Tower/Tower2.plist");
 	}
 	else if (randomMap == 2)
 	{
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Tower/Tower3.plist");
+		addSprites("Element/Tower/Tower3.plist");
 	}
 	else if (randomMap == 3)
 	{
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Tower/Tower4.plist");
+		addSprites("Element/Tower/Tower4.plist");
 	}
 	else if (randomMap == 4)
 	{
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Tower/Tower5.plist");
+		addSprites("Element/Tower/Tower5.plist");
 	}
 
 	CCTMXObjectGroup *metaGroup = currentMap->objectGroupNamed("meta");
@@ -677,15 +676,15 @@ void GameLayer::initTower()
 void GameLayer::initEffects()
 {
 
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Effects/SkillEffect.plist");
+	addSprites("Effects/SkillEffect.plist");
 	skillEffectBatch = CCSpriteBatchNode::create("Effects/SkillEffect.png");
 	this->addChild(skillEffectBatch, currentSkillTag);
 
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Effects/DamageEffect.plist");
+	addSprites("Effects/DamageEffect.plist");
 	damageEffectBatch = CCSpriteBatchNode::create("Effects/DamageEffect.png");
 	this->addChild(damageEffectBatch, currentDamageTag);
 
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Effects/Shadows.plist");
+	addSprites("Effects/Shadows.plist");
 	shadowBatch = CCSpriteBatchNode::create("Effects/Shadows.png");
 	this->addChild(shadowBatch, currentShadowTag);
 };
@@ -931,7 +930,7 @@ void GameLayer::clearDoubleClick()
 void GameLayer::JoyStickRelease()
 {
 
-	if (currentPlayer->getActionState() == ACTION_STATE_WALK)
+	if (currentPlayer->getActionState() == State::WALK)
 	{
 		currentPlayer->idle();
 	}
@@ -1085,15 +1084,13 @@ void GameLayer::onLeft()
 		CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Tower/Tower5.plist");
 	}
 
-	KTools *tool = KTools::create();
-
 	const char *path;
 	CCARRAY_FOREACH(_CharacterArray, pObject)
 	{
 		CharacterBase *player = (CharacterBase *)pObject;
 
-		if (strcmp(player->getRole()->getCString(), "Clone") == 0 ||
-			strcmp(player->getRole()->getCString(), "Summon") == 0)
+		if (strcmp(player->getRole()->getCString(), K_TAG_CLONE) == 0 ||
+			strcmp(player->getRole()->getCString(), K_TAG_SUMMON) == 0)
 		{
 			continue;
 		}
@@ -1104,13 +1101,13 @@ void GameLayer::onLeft()
 		if (strcmp(player->getRole()->getCString(), "Com") == 0 ||
 			strcmp(player->getRole()->getCString(), "Player") == 0)
 		{
-			tool->prepareFileOGG(player->getCharacter()->getCString(), 1);
+			KTools::prepareFileOGG(player->getCharacter()->getCString(), true);
 		}
 
 		if (strcmp(player->getCharacter()->getCString(), "Jiraiya") == 0)
 		{
 			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/SageJiraiya/SageJiraiya.plist");
-			tool->prepareFileOGG("SageJiraiya", 1);
+			KTools::prepareFileOGG("SageJiraiya", true);
 		}
 		else if (strcmp(player->getCharacter()->getCString(), "Kankuro") == 0)
 		{
@@ -1127,8 +1124,8 @@ void GameLayer::onLeft()
 		{
 			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/SageNaruto/SageNaruto.plist");
 			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/RikudoNaruto/RikudoNaruto.plist");
-			tool->prepareFileOGG("SageNaruto", 1);
-			tool->prepareFileOGG("RikudoNaruto", 1);
+			KTools::prepareFileOGG("SageNaruto", true);
+			KTools::prepareFileOGG("RikudoNaruto", true);
 		}
 		else if (strcmp(player->getCharacter()->getCString(), "RockLee") == 0)
 		{
@@ -1140,7 +1137,7 @@ void GameLayer::onLeft()
 		}
 		else if (strcmp(player->getCharacter()->getCString(), "Sasuke") == 0)
 		{
-			tool->prepareFileOGG("ImmortalSasuke", 1);
+			KTools::prepareFileOGG("ImmortalSasuke", true);
 			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/ImmortalSasuke/ImmortalSasuke.plist");
 		}
 		player->removeFromParentAndCleanup(true);
@@ -1150,12 +1147,12 @@ void GameLayer::onLeft()
 	{
 		CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Roshi/Roshi.plist");
 		CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Han/Han.plist");
-		tool->prepareFileOGG("Roshi", 1);
-		tool->prepareFileOGG("Han", 1);
+		KTools::prepareFileOGG(Guardian_Roshi, true);
+		KTools::prepareFileOGG(Guardian_Han, true);
 	}
 
-	tool->prepareFileOGG("Effect", 1);
-	tool->prepareFileOGG("Ougis", 1);
+	KTools::prepareFileOGG("Effect", true);
+	KTools::prepareFileOGG("Ougis", true);
 
 	_CharacterArray->removeAllObjects();
 	_CharacterArray = NULL;
@@ -1209,7 +1206,7 @@ void GameLayer::checkPost(float dt)
 	}
 }
 
-void GameLayer::onHttpRequestCompleted(CCHttpClient* client, CCHttpResponse* response)
+void GameLayer::onHttpRequestCompleted(CCHttpClient *client, CCHttpResponse *response)
 {
 
 	// isPosting = false;
@@ -1372,7 +1369,7 @@ void GameLayer::removeOugis()
 		if (!_gLayer->ougisChar)                                                                    \
 			_gLayer->currentPlayer->walk(ccp(horizontal_##name, vertical_##name));                  \
 	}                                                                                               \
-	else if (_gLayer->currentPlayer->getActionState() == ACTION_STATE_WALK)                         \
+	else if (_gLayer->currentPlayer->getActionState() == State::WALK)                         \
 	{                                                                                               \
 		_gLayer->_lastPressedMovementKey = -100;                                                    \
 		_gLayer->currentPlayer->idle();                                                             \

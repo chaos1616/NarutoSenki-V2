@@ -38,7 +38,7 @@ class AI_Guardian : public Hero
 				this->walk(moveDirection);
 				return;
 			}
-			else if (this->getActionState() == ACTION_STATE_IDLE || this->getActionState() == ACTION_STATE_WALK || this->getActionState() == ACTION_STATE_ATTACK)
+			else if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
 			{
 				bool isTurn = false;
 

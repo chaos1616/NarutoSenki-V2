@@ -21,7 +21,7 @@ class AI_Akamaru : public Hero
 
 		if (abs(ccpSub(_master->getPosition(), this->getPosition()).x) > winSize.width / 2 - 48)
 		{
-			if (this->getActionState() == ACTION_STATE_IDLE || this->getActionState() == ACTION_STATE_WALK || this->getActionState() == ACTION_STATE_ATTACK)
+			if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
 			{
 				moveDirection = ccpNormalize(ccpSub(_master->getPosition(), this->getPosition()));
 				this->walk(moveDirection);
@@ -52,7 +52,7 @@ class AI_Akamaru : public Hero
 				}
 				else
 				{
-					if (this->getActionState() == ACTION_STATE_IDLE || this->getActionState() == ACTION_STATE_WALK || _actionState == ACTION_STATE_ATTACK)
+					if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || _actionState == State::ATTACK)
 					{
 						this->changeSide(sp);
 						this->attack(NAttack);
@@ -72,11 +72,11 @@ class AI_Akamaru : public Hero
 				}
 				else
 				{
-					if (this->getActionState() == ACTION_STATE_IDLE || this->getActionState() == ACTION_STATE_WALK || this->getActionState() == ACTION_STATE_ATTACK)
+					if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
 					{
 
 						if (_master->_isCanSkill2 && _mainTarget->getGP() < 5000 && (_master->_isControled || _master->_isAI == true) &&
-							(_master->getActionState() == ACTION_STATE_IDLE || _master->getActionState() == ACTION_STATE_WALK || _master->getActionState() == ACTION_STATE_ATTACK))
+							(_master->getActionState() == State::IDLE || _master->getActionState() == State::WALK || _master->getActionState() == State::ATTACK))
 						{
 							this->changeSide(sp);
 							if (strcmp(_master->getRole()->getCString(), "Player") != 0)

@@ -22,19 +22,19 @@ bool AppDelegate::applicationDidFinishLaunching()
     CCEGLView *pEGLView = CCEGLView::sharedOpenGLView();
 
     pDirector->setOpenGLView(pEGLView);
-    pEGLView->setDesignResolutionSize(480, 320, kResolutionFixedHeight);
+    // pEGLView->setDesignResolutionSize(480, 320, kResolutionFixedHeight);
 
     // turn on display FPS
     pDirector->setDisplayStats(false);
 
     // set FPS. the default value is 1.0/60 if you don't call this
-    pDirector->setAnimationInterval(1.0 / 60);
+    // pDirector->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    CCScene *pScene = GameScene::create();
+    // CCScene *pScene = GameScene::create();
 
     // run
-    pDirector->runWithScene(pScene);
+    // pDirector->runWithScene(pScene);
 
     // init lua
     CCLuaEngine *pEngine = CCLuaEngine::defaultEngine();
@@ -45,6 +45,9 @@ bool AppDelegate::applicationDidFinishLaunching()
     tolua_extensions_ccb_open(tolua_s);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
+    pEngine->addSearchPath("lua");
+    pEngine->addSearchPath("../lua");
+    CCFileUtils::sharedFileUtils()->addSearchPath("lua");
     CCFileUtils::sharedFileUtils()->addSearchPath("../lua");
 #endif
 

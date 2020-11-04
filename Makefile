@@ -6,6 +6,7 @@ define MAKE_TARGET
 	+$(MAKE) -C CocosDenshion/proj.$(PLATFORM) $@
 	+$(MAKE) -C extensions/proj.$(PLATFORM) $@
 	+$(MAKE) -C cocos2dx/proj.$(PLATFORM) $@
+	+$(MAKE) -C scripting/lua/proj.$(PLATFORM) $@
 	+$(MAKE) -C projects/NarutoSenki/proj.$(PLATFORM) $@
 endef
 

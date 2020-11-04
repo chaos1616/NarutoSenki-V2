@@ -287,9 +287,9 @@ bool StartMenu::init()
 		//bgSprite->setPosition(ccp(0,0));
 		//this->addChild(bgSprite, -5);
 
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Menu.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Result.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("NamePlate.plist");
+		addSprites("Menu.plist");
+		addSprites("Result.plist");
+		addSprites("NamePlate.plist");
 		//produce groud
 
 		CCSprite *gold_left = CCSprite::createWithSpriteFrameName("gold_left.png");
@@ -2682,15 +2682,15 @@ void StartMenu::onTasksBtn(CCObject *sender)
 void StartMenu::onLoginBtn(CCObject *sender)
 {
 
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Result.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Record.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Record2.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("UI.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Report.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Ougis.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Ougis2.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Map.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Gears.plist");
+	addSprites("Result.plist");
+	addSprites("Record.plist");
+	addSprites("Record2.plist");
+	addSprites("UI.plist");
+	addSprites("Report.plist");
+	addSprites("Ougis.plist");
+	addSprites("Ougis2.plist");
+	addSprites("Map.plist");
+	addSprites("Gears.plist");
 	CCScene *pscene = CCScene::create();
 	RakingLayer *rakingLayer = RakingLayer::create();
 	// rakingLayer->setDelegate(this);
@@ -3195,13 +3195,13 @@ void StartMenu::onHardCoreCallBack()
 
 	// if (MemberID)
 	// {
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Select.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("UI.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Report.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Ougis.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Ougis2.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Map.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Gears.plist");
+	addSprites("Select.plist");
+	addSprites("UI.plist");
+	addSprites("Report.plist");
+	addSprites("Ougis.plist");
+	addSprites("Ougis2.plist");
+	addSprites("Map.plist");
+	addSprites("Gears.plist");
 
 	CCScene *selectScene = CCScene::create();
 	NetworkLayer *selectLayer = NetworkLayer::create();
@@ -3216,13 +3216,13 @@ void StartMenu::onHardCoreCallBack()
 
 void StartMenu::onNormalCallBack(CCObject *sender)
 {
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Select.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("UI.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Report.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Ougis.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Ougis2.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Map.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Gears.plist");
+	addSprites("Select.plist");
+	addSprites("UI.plist");
+	addSprites("Report.plist");
+	addSprites("Ougis.plist");
+	addSprites("Ougis2.plist");
+	addSprites("Map.plist");
+	addSprites("Gears.plist");
 
 	CCScene *selectScene = CCScene::create();
 	NetworkLayer *selectLayer = NetworkLayer::create();
@@ -3246,7 +3246,7 @@ void StartMenu::onTrainingCallBack()
 	}
 
 	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Select.plist");
+	addSprites("Select.plist");
 
 	// int i = 1;
 	int i = 0;
@@ -3267,12 +3267,12 @@ void StartMenu::onTrainingCallBack()
 	}
 	else if (i == 1)
 	{
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("UI.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Report.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Ougis.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Ougis2.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Map.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Gears.plist");
+		addSprites("UI.plist");
+		addSprites("Report.plist");
+		addSprites("Ougis.plist");
+		addSprites("Ougis2.plist");
+		addSprites("Map.plist");
+		addSprites("Gears.plist");
 
 		CCDictionary *dic = CCDictionary::create();
 
@@ -3404,12 +3404,12 @@ void StartMenu::onTrainingCallBack()
 	{
 
 		//4v4
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("UI.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Report.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Ougis.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Ougis2.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Map.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Gears.plist");
+		addSprites("UI.plist");
+		addSprites("Report.plist");
+		addSprites("Ougis.plist");
+		addSprites("Ougis2.plist");
+		addSprites("Map.plist");
+		addSprites("Gears.plist");
 
 		CCDictionary *dic = CCDictionary::create();
 

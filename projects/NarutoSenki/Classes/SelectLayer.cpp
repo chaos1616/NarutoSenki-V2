@@ -30,27 +30,26 @@ bool SelectLayer::init()
 	do
 	{
 		CC_BREAK_IF(!CCLayer::init());
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Record.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Record2.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("UI.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Report.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Ougis.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Ougis2.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Map.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Gears.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Select.plist");
+		addSprites("Record.plist");
+		addSprites("Record2.plist");
+		addSprites("UI.plist");
+		addSprites("Report.plist");
+		addSprites("Ougis.plist");
+		addSprites("Ougis2.plist");
+		addSprites("Map.plist");
+		addSprites("Gears.plist");
+		addSprites("Select.plist");
 
-		KTools *tool = KTools::create();
-
-		if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-		{
+		// KTools *tool = KTools::create();
+		// if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+		// {
 			// if (tool->checkMD5() == 0)
 			// {
 			// 	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
 			// 	CCDirector::sharedDirector()->end();
 			// 	return false;
 			// }
-		}
+		// }
 
 		const char *bg_src = "red_bg.png";
 

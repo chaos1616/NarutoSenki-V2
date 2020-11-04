@@ -22,7 +22,7 @@ class AI_Parents : public Hero
 
 		if (abs(ccpSub(_master->getPosition(), this->getPosition()).x) > 9 && !_skillChangeBuffValue)
 		{
-			if (this->getActionState() == ACTION_STATE_IDLE || this->getActionState() == ACTION_STATE_WALK || this->getActionState() == ACTION_STATE_ATTACK)
+			if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
 			{
 				moveDirection = ccpNormalize(ccpSub(_master->getPosition(), this->getPosition()));
 				this->walk(moveDirection);
@@ -43,7 +43,7 @@ class AI_Parents : public Hero
 				}
 				else
 				{
-					if ((this->getActionState() == ACTION_STATE_IDLE || this->getActionState() == ACTION_STATE_WALK || this->getActionState() == ACTION_STATE_ATTACK) && !_skillChangeBuffValue)
+					if ((this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK) && !_skillChangeBuffValue)
 					{
 						this->changeSide(sp);
 						this->attack(NAttack);
@@ -53,11 +53,11 @@ class AI_Parents : public Hero
 			}
 			else
 			{
-				if (this->getActionState() == ACTION_STATE_IDLE || this->getActionState() == ACTION_STATE_WALK || this->getActionState() == ACTION_STATE_ATTACK)
+				if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
 				{
-					if (_master->getActionState() == ACTION_STATE_IDLE ||
-						_master->getActionState() == ACTION_STATE_WALK ||
-						_master->getActionState() == ACTION_STATE_ATTACK)
+					if (_master->getActionState() == State::IDLE ||
+						_master->getActionState() == State::WALK ||
+						_master->getActionState() == State::ATTACK)
 					{
 
 						if (_master->_isCanSkill3 && _mainTarget->getGP() < 5000 && (_master->_isControled || _master->_isAI == true) && !_skillChangeBuffValue)
@@ -69,7 +69,7 @@ class AI_Parents : public Hero
 						}
 						else if (abs(sp.x) > 48 || abs(sp.y) > 32)
 						{
-							if (_skillChangeBuffValue && this->getActionState() != ACTION_STATE_ATTACK)
+							if (_skillChangeBuffValue && this->getActionState() != State::ATTACK)
 							{
 								moveDirection = ccpNormalize(sp);
 								this->walk(moveDirection);
@@ -101,7 +101,7 @@ class AI_Parents : public Hero
 
 		if (abs(ccpSub(_master->getPosition(), this->getPosition()).x) > 9)
 		{
-			if (this->getActionState() == ACTION_STATE_IDLE || this->getActionState() == ACTION_STATE_WALK)
+			if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK)
 			{
 				moveDirection = ccpNormalize(ccpSub(_master->getPosition(), this->getPosition()));
 				this->walk(moveDirection);
@@ -109,7 +109,7 @@ class AI_Parents : public Hero
 			}
 		}
 
-		if (this->_actionState == ACTION_STATE_WALK)
+		if (this->_actionState == State::WALK)
 		{
 			this->idle();
 		}
