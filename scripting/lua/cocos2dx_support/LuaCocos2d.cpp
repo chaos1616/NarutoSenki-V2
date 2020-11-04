@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Cocos2d
-** Generated automatically by tolua++-1.0.92 on 11/04/20 15:06:18.
+** Generated automatically by tolua++-1.0.92 on 11/04/20 16:02:29.
 */
 
 /****************************************************************************
@@ -75315,6 +75315,38 @@ static int tolua_Cocos2d_GameScene_create00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: init of class  GameScene */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_GameScene_init00
+static int tolua_Cocos2d_GameScene_init00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"GameScene",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  GameScene* self = (GameScene*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'init'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->init();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'init'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: new of class  Effect */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_Effect_new00
 static int tolua_Cocos2d_Effect_new00(lua_State* tolua_S)
@@ -80004,6 +80036,7 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
   tolua_cclass(tolua_S,"GameScene","GameScene","CCScene",NULL);
   tolua_beginmodule(tolua_S,"GameScene");
    tolua_function(tolua_S,"create",tolua_Cocos2d_GameScene_create00);
+   tolua_function(tolua_S,"init",tolua_Cocos2d_GameScene_init00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"Effect","Effect","CCSprite",tolua_collect_Effect);

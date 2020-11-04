@@ -865,7 +865,12 @@ public:
 /* some_header.h */
 /* some_header.h */
 /* some_header.h */
-/* some_header.h */
+
+/* GameScene.h */
+class GameScene : public CCScene{
+public:
+	virtual bool init();
+};
 
 /* SkillLayer.h */
 class SelectButton : public CCSprite, public CCTouchDelegate{

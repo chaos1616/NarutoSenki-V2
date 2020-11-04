@@ -53,7 +53,6 @@ if not exist "%CC_TEST_BIN%" (
     goto ERROR
 )
 
-call "%CC_TEST_BIN%"
 popd
 goto EOF
 
