@@ -2,6 +2,7 @@
 #include "cocos2d.h"
 #include "cocos-ext.h"
 #include "SimpleAudioEngine.h"
+#include "Defines.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
@@ -73,7 +74,6 @@ private:
 
 class SelectButton : public CCSprite, public CCTouchDelegate
 {
-
 public:
 	SelectButton(void);
 	~SelectButton(void);
@@ -98,13 +98,10 @@ public:
 
 	void spriteToGrey();
 
-	virtual void onSelect(const char *name){};
-
 protected:
 	virtual void onEnter();
 	virtual void onExit();
 	virtual bool ccTouchBegan(CCTouch *touch, CCEvent *event);
-	virtual void ccTouchEnded(CCTouch *touch, CCEvent *event);
 
 	bool containsTouchLocation(CCTouch *touch);
 };

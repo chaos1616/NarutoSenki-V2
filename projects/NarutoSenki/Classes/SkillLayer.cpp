@@ -1,6 +1,7 @@
 #include "SkillLayer.h"
 #include "SelectLayer.h"
 #include "NetworkLayer.h"
+
 USING_NS_CC_EXT;
 using namespace CocosDenshion;
 
@@ -39,7 +40,6 @@ bool SelectButton::init(const char *szImage)
 		this->setAnchorPoint(ccp(0, 0));
 
 		bRet = true;
-
 	} while (0);
 
 	return bRet;
@@ -64,7 +64,6 @@ CCRect SelectButton::getRect()
 
 bool SelectButton::containsTouchLocation(CCTouch *touch)
 {
-
 	return getRect().containsPoint(convertTouchToNodeSpace(touch));
 }
 
@@ -76,9 +75,6 @@ bool SelectButton::ccTouchBegan(CCTouch *touch, CCEvent *event)
 	click();
 	return true;
 }
-void SelectButton::ccTouchEnded(CCTouch *touch, CCEvent *event){
-
-};
 
 void SelectButton::click()
 {
@@ -86,7 +82,12 @@ void SelectButton::click()
 	if (this->getBtnType() == Menu)
 	{
 		auto charName = _charName->getCString();
-		onSelect(charName);
+
+		get_l;
+		lua_getglobal(L, "setSelectButton");
+		lua_pushstring(L, charName);
+		lua_pushboolean(L, _isAviable);
+		lua_call(L, 2, 0);
 
 		if (strcmp(charName, "None2") == 0)
 		{
@@ -155,7 +156,6 @@ void SelectButton::click()
 	}
 	else
 	{
-
 		_delegate3->setSkillExplain(_btnType);
 	}
 }
@@ -555,7 +555,7 @@ void SkillLayer::initInterface()
 	this->scheduleUpdate();
 }
 
-void SkillLayer::onSkillRequestCompleted(CCHttpClient* client, CCHttpResponse* response)
+void SkillLayer::onSkillRequestCompleted(CCHttpClient *client, CCHttpResponse *response)
 {
 
 	isPosting = false;

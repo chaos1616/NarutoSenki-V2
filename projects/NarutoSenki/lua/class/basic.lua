@@ -4,63 +4,53 @@
 
 --[[--
 	abType
-]]
-for key, value in getmetatable(_G) do
-    print(key,value)
-end
-
-local abType = _G['abType']
-local gearType = _G['gearType']
-local actionState = _G['State']
-
-AttackType = {
-    NAttack 	= abType.NAttack,
-    Item1	 	= abType.Item1,
-    GearItem 	= abType.GearItem,
-    GearBtn 	= abType.GearBtn,
-    SKILL1 		= abType.SKILL1,
-    SKILL2 		= abType.SKILL2,
-    SKILL3 		= abType.SKILL3,
-    OUGIS1 		= abType.OUGIS1,
-    OUGIS2 		= abType.OUGIS2
+]] AttackType = {
+    NAttack     = _G['NAttack'],
+    Item1       = _G['Item1'],
+    GearItem    = _G['GearItem'],
+    GearBtn     = _G['GearBtn'],
+    SKILL1      = _G['SKILL1'],
+    SKILL2      = _G['SKILL2'],
+    SKILL3      = _G['SKILL3'],
+    OUGIS1      = _G['OUGIS1'],
+    OUGIS2      = _G['OUGIS2']
 }
 
 --[[--
 	gearType
 ]]
 GearType = {
-    gear00 	= gearType.gear00,
-    gear01 	= gearType.gear01,
-    gear02 	= gearType.gear02,
-    gear03 	= gearType.gear03,
-    gear04 	= gearType.gear04,
-    gear05 	= gearType.gear05,
-    gear06 	= gearType.gear06,
-    gear07 	= gearType.gear07,
-    gear08 	= gearType.gear08,
-    None 	= gearType.None
+    gear00      = _G['gear00'],
+    gear01      = _G['gear01'],
+    gear02      = _G['gear02'],
+    gear03      = _G['gear03'],
+    gear04      = _G['gear04'],
+    gear05      = _G['gear05'],
+    gear06      = _G['gear06'],
+    gear07      = _G['gear07'],
+    gear08      = _G['gear08'],
+    None        = _G['None']
 }
 
 Team = {
-	Akatsuki = 'Akatsuki',
-	Konoha = 'Konoha'
-}
+    Akatsuki    = 'Akatsuki',
+    Konoha      = 'Konoha'}
 
 --[[--
 	Action State
 ]]
-ActionState = {
-    DEAD 		= actionState.DEAD,
-    IDLE 		= actionState.IDLE,
-    WALK 		= actionState.WALK,
-    ATTACK 		= actionState.ATTACK,
-    SATTACK 	= actionState.SATTACK,
-    OATTACK 	= actionState.OATTACK,
-    O2ATTACK 	= actionState.O2ATTACK,
-    HURT 		= actionState.HURT,
-    ABHURT 		= actionState.ABHURT,
-    KOCKDOWN 	= actionState.KOCKDOWN,
-    FLOAT 		= actionState.FLOAT,
-    JUMP 		= actionState.JUMP,
-    AIRHURT 	= actionState.AIRHURT
+State = {
+    DEAD        = _G['DEAD'],
+    IDLE        = _G['IDLE'],
+    WALK        = _G['WALK'],
+    ATTACK      = _G['ATTACK'],
+    SATTACK     = _G['SATTACK'],
+    OATTACK     = _G['OATTACK'],
+    O2ATTACK    = _G['O2ATTACK'],
+    HURT        = _G['HURT'],
+    ABHURT      = _G['ABHURT'],
+    KOCKDOWN    = _G['KOCKDOWN'],
+    FLOAT       = _G['FLOAT_AIR'], -- In windows it has the same define
+    JUMP        = _G['JUMP'],
+    AIRHURT     = _G['AIRHURT']
 }

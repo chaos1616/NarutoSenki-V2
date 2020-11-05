@@ -6,6 +6,7 @@ require 'framework.debug'
 tools = {}
 
 local kt = KTools
+local tips = CCTips
 local sharedDirector = CCDirector:sharedDirector()
 local sharedTextureCache = CCTextureCache:sharedTextureCache()
 local sharedSpriteFrameCache = CCSpriteFrameCache:sharedSpriteFrameCache()
@@ -25,7 +26,22 @@ function tools:addSprites(frameName)
     sharedSpriteFrameCache:addSpriteFramesWithFile(frameName)
 end
 
+function tools:setTip(str)
+	tips:create(str)
+end
+
 function newCStr(str) return CCString:create(str) end
+
+function table:has(val)
+	for _, v in ipairs(self) do
+		if v == val then
+			return true
+		end
+	end
+	return false
+end
+
+
 
 -- Defines
 -- ns = ns or {}

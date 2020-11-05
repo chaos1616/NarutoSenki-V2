@@ -875,8 +875,7 @@ public:
 /* SkillLayer.h */
 class SelectButton : public CCSprite, public CCTouchDelegate{
 public:
-
-	virtual void onSelect(const char *name);
+	void click();
 };
 
 /* KTools.h */

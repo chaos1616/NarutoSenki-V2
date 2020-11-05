@@ -17,8 +17,6 @@ function __G__TRACKBACK__(msg)
 end
 
 -- defines
-GameScene = GameScene
-
 require 'hook'
 
 -- AI Module

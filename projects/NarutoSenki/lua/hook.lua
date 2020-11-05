@@ -1,6 +1,7 @@
+require 'utils.utils'
+
 -- Hook for GameLayer
 hook = {}
-SelectButton = SelectButton or {}
 
 hook.onSelectedCallback = function(name)
     print('Invoke callback -> onSelectedCallback [ %s ]', name)
@@ -50,64 +51,89 @@ function hook:onInitEffects() end
 
 function hook:onInitHeros() end
 
---[[
-    SelcetButton
-]]
-function SelectButton:onselect(name)
-    if name then
-        -- print selected character name
-        print(string.format('\nSelect -> [ %s ]\n', name))
+-- SelectButton
+function SelectButton:init()
+    log('%s init ...', type(SelectButton))
+
+    -- handling touch events
+    local function onTouchBegan(x, y)
+        log('on touch: %s', self._isCanBuy)
+        return true
+    end
+
+    local function onTouch(eventType, x, y)
+        if eventType == "began" then return onTouchBegan(x, y) end
+    end
+
+    self:setTouchEnabled(true)
+    self:registerScriptTouchHandler(onTouch)
+end
+
+local notSupportedList = {'Pain'}
+
+function setSelectButton(name, isAvailable)
+    -- get current select point character name
+    if name == 'None2' then
+        tools:setTip('LimitedChar')
+    elseif name == 'None' then
+        -- pass
+    elseif isAvailable and not table.has(notSupportedList, name) then
+        log('Select character       -> %s ', name)
+    else
+        log('Not support character  -> %s ', name)
     end
 end
 
---[[
-    GameScene
+--[[    GameScene
 ]]
 function GameScene:init()
     log('Init Game Scene ...')
-    --[[
-bool bRet = false;
+    --[[bool bRet = false
 do
 {
-    CC_BREAK_IF(!CCScene::init());
+    CC_BREAK_IF(!CCScene::init())
 
     if (!CCUserDefault::sharedUserDefault()->getBoolForKey("isHavingSave"))
     {
 
-        CCUserDefault::sharedUserDefault()->setBoolForKey("isHavingSave", true);
-        CCUserDefault::sharedUserDefault()->setBoolForKey("isBGM", true);
-        CCUserDefault::sharedUserDefault()->setBoolForKey("isVoice", true);
+        CCUserDefault::sharedUserDefault()->setBoolForKey("isHavingSave", true)
+        CCUserDefault::sharedUserDefault()->setBoolForKey("isBGM", true)
+        CCUserDefault::sharedUserDefault()->setBoolForKey("isVoice", true)
 
-        CCUserDefault::sharedUserDefault()->flush();
+        CCUserDefault::sharedUserDefault()->flush()
     }
 
-    introLayer = CCLayer::create();
+    introLayer = CCLayer::create()
 
-    CCSprite *zakume = CCSprite::create("zakume.png");
-    zakume->setPosition(ccp(winSize.width / 2, winSize.height / 2));
-    CCActionInterval *fadein = CCFadeIn::create(1.5f);
-    CCActionInterval *fadeout = CCFadeOut::create(1.5f);
-    CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(GameScene::onLogo));
-    CCAction *seq = CCSequence::create(fadein, fadeout, call, NULL);
-    introLayer->addChild(zakume);
-    zakume->runAction(seq);
-    this->addChild(introLayer);
+    CCSprite *zakume = CCSprite::create("zakume.png")
+    zakume->setPosition(ccp(winSize.width / 2, winSize.height / 2))
+    CCActionInterval *fadein = CCFadeIn::create(1.5f)
+    CCActionInterval *fadeout = CCFadeOut::create(1.5f)
+    CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(GameScene::onLogo))
+    CCAction *seq = CCSequence::create(fadein, fadeout, call, NULL)
+    introLayer->addChild(zakume)
+    zakume->runAction(seq)
+    this->addChild(introLayer)
 
-    /*KTools* tool= KTools::create();
-    tool->initTableInDB();
-
-
-    tool->initColumeInDB();
+    /*KTools* tool= KTools::create()
+    tool->initTableInDB()
 
 
-    CCLayer* menuLayer=StartMenu::create();
-    this->addChild(menuLayer);*/
+    tool->initColumeInDB()
 
-    // CCDirector::sharedDirector()->sharedDispatcher()->addDelegate(this);
 
-    bRet = true;
-} while (0);
+    CCLayer* menuLayer=StartMenu::create()
+    this->addChild(menuLayer)*/
 
-return bRet;
-]] --
+    // CCDirector::sharedDirector()->sharedDispatcher()->addDelegate(this)
+
+    bRet = true
+} while (0)
+
+return bRet
+]]
 end
+
+-- for key, value in pairs(_G) do
+--     print(key,value)
+-- end
