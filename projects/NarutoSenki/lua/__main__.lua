@@ -8,10 +8,6 @@ local function main()
 
     local gameScene = GameScene:create()
     cc.Director:sharedDirector():runWithScene(gameScene)
-
-    local hero = AIGenerator:create('Lee', 'Player', 'Konoha')
-    log('\n\n\n---- hero isAI %s ----\n\n', hero:getCharacter():getCString())
-
 end
 
 xpcall(main, __G__TRACKBACK__)

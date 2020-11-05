@@ -21,14 +21,32 @@ function tools:loadOgg(name) kt:prepareFileOGG(name, false) end
 function tools:unloadOgg(name) kt:prepareFileOGG(name, true) end
 
 -- macros
-function tools:addSprites(frameName)
-    sharedSpriteFrameCache:addSpriteFramesWithFile(frameName)
+function tools.addSprites(name, ...)
+    -- assert(name ~= nil, 'addSprites: The name can not be nil')
+    sharedSpriteFrameCache:addSpriteFramesWithFile(name)
+
+    if ... and type(...) == 'table' then
+        for _, v in pairs(...) do
+            sharedSpriteFrameCache:addSpriteFramesWithFile(v)
+        end
+    end
+end
+
+function CCSprite:fullScreen()
+    self:setScaleX(display.width / self:getContentSize().width)
+end
+
+function tools.is_c_type(userdata, cType)
+    if type(userdata) == 'userdata' and tolua.type(userdata) == cType then
+        return true
+    end
+    return false
 end
 
 function newCStr(str) return CCString:create(str) end
 
 -- Defines
--- ns = ns or {}
+-- ns = {}
 -- ns.CharacterBase = CharacterBase
 -- ns.HeroElement = HeroElement -- Inheried CharacterBase
 -- ns.Flog = Flog -- Inheried CharacterBase
