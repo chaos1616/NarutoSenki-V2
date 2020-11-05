@@ -70,7 +70,17 @@ local switcher = {
 function AIGenerator:create(character, role, group)
     addCharacterSprites(character)
     prepare_extra_files(character, false)
-    return ap:createAI(newCStr(character), newCStr(role), newCStr(group))
+    local heroAI = ap:createAI(newCStr(character), newCStr(role), newCStr(group))
+    local spawnPoint = CCPoint(432, 80)
+    heroAI:setPosition(spawnPoint)
+    heroAI:setSpawnPoint(spawnPoint)
+    -- this->addChild(heroAI, -heroAI->getPositionY())
+    -- heroAI:setHPbar()
+    -- heroAI:setShadows()
+    -- heroAI:idle()
+    -- heroAI:setCharNO(i + 1)
+    -- heroAI:schedule(self:setRestore2, 1.0)
+    return heroAI
 end
 
 function AIGenerator:addCustom(characterName, extraFiles)
@@ -93,4 +103,3 @@ function mkpath(name)
 end
 
 function addCharacterSprites(name) t:addSprites(mkpath(name)) end
-

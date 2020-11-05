@@ -1,8 +1,10 @@
 #include "AppDelegate.h"
+#include "Defines.h"
 #include "GameScene.h"
 #include "SimpleAudioEngine.h"
 #include "CCLuaEngine.h"
 #include "Lua_extensions_CCB.h"
+#include "script_support/CCScriptSupport.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -13,6 +15,7 @@ AppDelegate::AppDelegate()
 
 AppDelegate::~AppDelegate()
 {
+    SimpleAudioEngine::sharedEngine()->end();
 }
 
 bool AppDelegate::applicationDidFinishLaunching()
@@ -46,7 +49,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 	pEngine->addSearchPath("../lua");
-	CCFileUtils::sharedFileUtils()->addSearchPath("../");
+	CCFileUtils::sharedFileUtils()->addSearchPath("../lua");
 #endif
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	pEngine->addSearchPath("../../lua");
@@ -78,7 +81,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	CCFileUtils::sharedFileUtils()->addSearchPath(root.c_str());
 #endif
 
-	std::string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("lua/__main__.lua");
+	std::string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("main.lua");
 	pEngine->executeScriptFile(path.c_str());
 	return true;
 }

@@ -1,6 +1,7 @@
+require 'utils.utils'
+
 -- Hook for GameLayer
 hook = {}
-SelectButton = SelectButton or {}
 
 local display = require 'framework.display'
 
@@ -52,18 +53,40 @@ function hook:onInitEffects() end
 
 function hook:onInitHeros() end
 
---[[
-    SelcetButton
-]]
-function SelectButton:onselect(name)
-    if name then
-        -- print selected character name
-        print(string.format('\nSelect : [ %s ]\n', name))
+-- SelectButton
+function SelectButton:init()
+    log('%s init ...', type(SelectButton))
+
+    -- handling touch events
+    local function onTouchBegan(x, y)
+        log('on touch: %s', self._isCanBuy)
+        return true
+    end
+
+    local function onTouch(eventType, x, y)
+        if eventType == "began" then return onTouchBegan(x, y) end
+    end
+
+    self:setTouchEnabled(true)
+    self:registerScriptTouchHandler(onTouch)
+end
+
+local notSupportedList = {'Pain'}
+
+function setSelectButton(name, isAvailable)
+    -- get current select point character name
+    if name == 'None2' then
+        tools:setTip('LimitedChar')
+    elseif name == 'None' then
+        -- pass
+    elseif isAvailable and not table.has(notSupportedList, name) then
+        log('Select character       -> %s ', name)
+    else
+        log('Not support character  -> %s ', name)
     end
 end
 
---[[
-    GameScene
+--[[    GameScene
 ]]
 function GameScene:init()
     log('Init Game Scene ...')
@@ -353,3 +376,7 @@ function NetworkLayer_Init(self)
 		-- 	self:setKeypadEnabled(true)
 		-- end
 end
+
+-- for key, value in pairs(_G) do
+--     print(key,value)
+-- end

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Cocos2d
-** Generated automatically by tolua++-1.0.92 on 11/04/20 16:02:29.
+** Generated automatically by tolua++-1.0.92 on Wed Nov  4 21:15:32 2020.
 */
 
 /****************************************************************************
@@ -76068,9 +76068,9 @@ static int tolua_Cocos2d_LoadLayer_onLoadFinish00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: onSelect of class  SelectButton */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_SelectButton_onSelect00
-static int tolua_Cocos2d_SelectButton_onSelect00(lua_State* tolua_S)
+/* method: init of class  SelectButton */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_SelectButton_init00
+static int tolua_Cocos2d_SelectButton_init00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -76084,18 +76084,50 @@ static int tolua_Cocos2d_SelectButton_onSelect00(lua_State* tolua_S)
 #endif
  {
   SelectButton* self = (SelectButton*)  tolua_tousertype(tolua_S,1,0);
-  const char* name = ((const char*)  tolua_tostring(tolua_S,2,0));
+  const char* szImage = ((const char*)  tolua_tostring(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'onSelect'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'init'", NULL);
 #endif
   {
-   self->onSelect(name);
+   bool tolua_ret = (bool)  self->init(szImage);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'init'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: click of class  SelectButton */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_SelectButton_click00
+static int tolua_Cocos2d_SelectButton_click00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"SelectButton",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  SelectButton* self = (SelectButton*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'click'", NULL);
+#endif
+  {
+   self->click();
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'onSelect'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'click'.",&tolua_err);
  return 0;
 #endif
 }
@@ -80082,7 +80114,8 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"SelectButton","SelectButton","CCSprite",NULL);
   tolua_beginmodule(tolua_S,"SelectButton");
-   tolua_function(tolua_S,"onSelect",tolua_Cocos2d_SelectButton_onSelect00);
+   tolua_function(tolua_S,"init",tolua_Cocos2d_SelectButton_init00);
+   tolua_function(tolua_S,"click",tolua_Cocos2d_SelectButton_click00);
    tolua_variable(tolua_S,"__CCTouchDelegate__",tolua_get_SelectButton___CCTouchDelegate__,NULL);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"KTools","KTools","CCObject",NULL);
