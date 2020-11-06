@@ -9,7 +9,7 @@ function makeUIControl_(control)
 
     control:setCascadeOpacityEnabled(true)
     control:setCascadeColorEnabled(true)
-    control:addNodeEventListener(c.NODE_EVENT, function(event)
+    control:registerScriptHandler(c.NODE_EVENT, function(event)
         if event.name == "cleanup" then
             control:removeAllEventListeners()
         end

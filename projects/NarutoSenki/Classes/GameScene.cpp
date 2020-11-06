@@ -4,18 +4,6 @@ using namespace CocosDenshion;
 USING_NS_CC;
 
 int adResult = 0;
-GameScene *_gScene;
-
-GameScene::GameScene(void)
-{
-	_gScene = this;
-
-	_menuLayer = NULL;
-	pushMenu = NULL;
-}
-GameScene::~GameScene(void)
-{
-}
 
 // on "init" you need to initialize your instance
 bool GameScene::init()
@@ -25,36 +13,12 @@ bool GameScene::init()
 	{
 		CC_BREAK_IF(!CCScene::init());
 
-		lua_call("GameScene_Init");
+		lua_call_init_func;
 
 		bRet = true;
 	} while (0);
 
 	return bRet;
-}
-
-void GameScene::onLogo()
-{
-
-	CCMenuItem *logo_btn = CCMenuItemSprite::create(CCSprite::create("logo.png"), NULL, NULL, this, menu_selector(GameScene::onLogoClick));
-	logo_btn->setAnchorPoint(ccp(0.5f, 0.5f));
-
-	logoMenu = CCMenu::create(logo_btn, NULL);
-	logoMenu->setPosition(ccp(winSize.width / 2, winSize.height - logo_btn->getContentSize().height / 2));
-	introLayer->addChild(logoMenu, 3);
-
-	SimpleAudioEngine::sharedEngine()->playEffect(MENU_INTRO);
-
-	CCActionInterval *fade = CCFadeIn::create(1.5f);
-	CCFiniteTimeAction *call1 = CCCallFunc::create(this, callfunc_selector(GameScene::onPlayEffect2));
-	CCFiniteTimeAction *call2 = CCCallFunc::create(this, callfunc_selector(GameScene::onFinish));
-
-	CCAction *seq = CCSequence::create(fade,
-									   call1,
-									   CCDelayTime::create(2.0f),
-									   call2,
-									   NULL);
-	logo_btn->runAction(seq);
 }
 
 void GameScene::onLogoClick(CCObject *sender)
@@ -77,47 +41,6 @@ void GameScene::onLogoClick(CCObject *sender)
 		SimpleAudioEngine::sharedEngine()->stopAllEffects();
 		SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/chang_btn.ogg");
-		this->onFinish();
+		lua_call_handler_auto;
 	}
-}
-
-void GameScene::onPlayEffect2()
-{
-
-	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/intro2.ogg");
-}
-
-void GameScene::onFinish()
-{
-
-	if (!pushMenu)
-	{
-		SimpleAudioEngine::sharedEngine()->playBackgroundMusic(INTRO_MUSIC, true);
-		CCMenuItem *btm_btn = CCMenuItemSprite::create(CCSprite::create("push_start.png"), NULL, NULL, this, menu_selector(GameScene::onPush));
-		pushMenu = CCMenu::create(btm_btn, NULL);
-
-		pushMenu->setPosition(ccp(winSize.width / 2, winSize.height / 2 - 100));
-		introLayer->addChild(pushMenu);
-		CCActionInterval *fade = CCFadeOut::create(0.5f);
-		CCActionInterval *seq = CCSequence::create(fade, fade->reverse(), NULL);
-		btm_btn->runAction(CCRepeatForever::create(seq));
-	}
-}
-
-void GameScene::onPush(CCObject *sender)
-{
-	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
-
-	KTools *tool = KTools::create();
-
-	tool->initTableInDB();
-
-	tool->initColumeInDB();
-
-	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
-
-	CCScene *menuScene = CCScene::create();
-	CCLayer *menuLayer = StartMenu::create();
-	menuScene->addChild(menuLayer);
-	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.0f, menuScene));
 }

@@ -27,7 +27,7 @@ function UIButton:ctor(events, initialState, options)
     makeUIControl_(self)
     self:setLayoutSizePolicy(display.FIXED_SIZE, display.FIXED_SIZE)
     self:setButtonEnabled(true)
-    self:addNodeEventListener(cc.NODE_TOUCH_EVENT, handler(self, self.onTouch_))
+    self:registerScriptHandler(cc.NODE_TOUCH_EVENT, handler(self, self.onTouch_))
 
     self.touchInSpriteOnly_ = options and options.touchInSprite
     self.currentImage_ = nil
@@ -51,7 +51,7 @@ function UIButton:ctor(events, initialState, options)
         self.flipY_ = false
     end
 
-    self:addNodeEventListener(cc.NODE_EVENT, function(event)
+    self:registerScriptHandler(cc.NODE_EVENT, function(event)
         if event.name == "enter" then
             self:updateButtonImage_()
         end

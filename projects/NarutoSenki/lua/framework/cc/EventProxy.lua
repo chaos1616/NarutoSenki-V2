@@ -6,7 +6,7 @@ function EventProxy:ctor(eventDispatcher, view)
     self.handles_ = {}
 
     if view then
-        cc(view):addNodeEventListener(cc.NODE_EVENT, function(event)
+        cc(view):registerScriptHandler(cc.NODE_EVENT, function(event)
             if event.name == "exit" then
                 self:removeAllEventListeners()
             end

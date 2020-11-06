@@ -8,11 +8,11 @@ USING_NS_CC;
 USING_NS_CC_EXT;
 
 //global parameter
-
 #define winSize CCDirector::sharedDirector()->getWinSize()
 #define random(x) (rand() % x)
 
-#define FONT_TYPE "微软雅黑"
+#define FONT_TYPE       "微软雅黑"
+#define VERSION_CODE    "v 2.01"
 
 // layer's tag
 #define BgTag 1

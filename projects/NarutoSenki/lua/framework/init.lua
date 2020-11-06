@@ -80,7 +80,6 @@ quick framework 初始化
 -   luaj: 提供从 Lua 调用 Java 方法的接口（仅限 Android 平台）
 -   luaoc: 提供从 Lua 调用 Objective-C 方法的接口（仅限 iOS 平台）
 -   cc: quick 框架扩展的基础类和组件
--   dragonbones: DragonBones 骨骼动画支持
 
 ]]
 

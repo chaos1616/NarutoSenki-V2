@@ -409,10 +409,9 @@ void LoadLayer::preloadAudio()
 	bgSprite->setPosition(ccp(0, 0));
 	this->addChild(bgSprite, -5);
 
-	// KTools *tool = KTools::create();
-	// tool->prepareFileMD5();
+	// KTools::prepareFileMD5();
 	// std::string str2 = "fkhfnPG8";
-	// tool->decode(str2);
+	// KTools::decode(str2);
 	// std::string filePath = CCFileUtils::sharedFileUtils()->getWritablePath() + CCString::createWithFormat("%s.xml", str2.c_str())->getCString();
 	// std::string strFileMD5 = CMD5Checksum::GetMD5(filePath);
 	// remove(filePath.c_str());
@@ -421,7 +420,7 @@ void LoadLayer::preloadAudio()
 	// {
 	// const char *soundpath = "Audio";
 	//return;
-	//tool->dfsFolder(soundpath,0,1);
+	//KTools::dfsFolder(soundpath,0,1);
 	// }
 
 	this->preloadIMG();
@@ -452,8 +451,6 @@ void LoadLayer::onLoadFinish(float dt)
 	gameScene->addChild(_gameLayer, GlTag);
 	gameScene->addChild(_bgLayer, BgTag);
 	gameScene->addChild(_hudLayer, HudTag);
-
-	KTools *tool = KTools::create();
 
 	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f, gameScene));
 }

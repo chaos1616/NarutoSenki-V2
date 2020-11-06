@@ -201,7 +201,7 @@ void ScrewLayer::ccTouchMoved(CCTouch *touch, CCEvent *event)
 {
 	// touch area
 	CCPoint curPoint = touch->getLocation();
-	if (prePosY == NULL)
+	if (prePosY == 0)
 	{
 		prePosY = curPoint.y;
 	}
@@ -349,16 +349,10 @@ bool GearLayer::init(CCRenderTexture *snapshoot)
 
 void GearLayer::confirmPurchase()
 {
-	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice") != false)
-	{
-		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
-	}
-
-	if (_delegate->currentPlayer->setGear(currentGear))
-	{
-	}
-
-	this->updatePlayerGear();
+	// this function for keyboard buy event
+	onGearBuy(nullptr);
+	// refresh HUB
+	this->getDelegate()->getHudLayer()->updateGears();
 }
 
 void GearLayer::onResume(CCObject *sender)
@@ -371,7 +365,15 @@ void GearLayer::onResume(CCObject *sender)
 
 void GearLayer::onGearBuy(CCObject *sender)
 {
-	confirmPurchase();
+	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice") != false)
+	{
+		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
+	}
+
+	if (_delegate->currentPlayer->setGear(currentGear))
+	{
+		this->updatePlayerGear();
+	}
 };
 
 void GearLayer::updatePlayerGear()

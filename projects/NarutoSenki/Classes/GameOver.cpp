@@ -170,8 +170,6 @@ void GameOver::listResult()
 		}
 	}
 
-	KTools *tool = KTools::create();
-
 	if (_totalSecond < 2 * 30 + 5 && _isWin)
 	{
 		SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
@@ -323,9 +321,9 @@ void GameOver::listResult()
 			tempReward = "ONNN";
 		}
 
-		tool->decode(tempReward);
+		KTools::decode(tempReward);
 
-		CCString *cl = tool->readFromSQLite();
+		CCString *cl = KTools::readFromSQLite();
 		int rewardNum;
 		if (_isWin)
 		{
@@ -351,7 +349,7 @@ void GameOver::listResult()
 		if (adResult == 1 && _isWin)
 		{
 			std::string tempEtra = "idd4";
-			tool->decode(tempEtra);
+			KTools::decode(tempEtra);
 			tempCoin = rewardNum + atoi(cl->getCString()) + atoi(tempEtra.c_str());
 			extraCoin = CCString::createWithFormat("+%d", 500);
 		}
@@ -362,7 +360,7 @@ void GameOver::listResult()
 		}
 
 		CCString *realCoin = CCString::createWithFormat("%d", tempCoin);
-		tool->saveToSQLite("GameRecord", "coin", realCoin->getCString(), false);
+		KTools::saveToSQLite("GameRecord", "coin", realCoin->getCString(), false);
 
 		CCLabelBMFont *extraLabel = CCLabelBMFont::create(extraCoin->getCString(), "Fonts/yellow.fnt");
 		extraLabel->setScale(0.5f);
@@ -489,7 +487,7 @@ void GameOver::listResult()
 
 			if (_isWin)
 			{
-				CCString *winNum = tool->readSQLite("CharRecord", "name", resultChar->getCString(), "column1");
+				CCString *winNum = KTools::readSQLite("CharRecord", "name", resultChar->getCString(), "column1");
 				int tempWin = 0;
 
 				if (resultScore >= 140)
@@ -508,7 +506,7 @@ void GameOver::listResult()
 				CCString *realWin = CCString::createWithFormat("%d", tempWin);
 				if (CError != 1)
 				{
-					tool->saveSQLite("CharRecord", "name", resultChar->getCString(), "column1", (char *)realWin->getCString(), false);
+					KTools::saveSQLite("CharRecord", "name", resultChar->getCString(), "column1", (char *)realWin->getCString(), false);
 				}
 							if (_delegate->_isRandomChar && resultScore >= 120)
 				{
@@ -543,7 +541,7 @@ void GameOver::listResult()
 						if (strcmp(hero->getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) == 0)
 						{
 
-							CCString *winNum = tool->readSQLite("CharRecord", "name", hero->getCharacter()->getCString(), "column1");
+							CCString *winNum = KTools::readSQLite("CharRecord", "name", hero->getCharacter()->getCString(), "column1");
 							int tempWin = 0;
 							if (resultScore >= 140)
 							{
@@ -557,17 +555,17 @@ void GameOver::listResult()
 							CCString *realWin = CCString::createWithFormat("%d", tempWin);
 							if (CError != 1)
 							{
-								tool->saveSQLite("CharRecord", "name", hero->getCharacter()->getCString(), "column1", (char *)realWin->getCString(), false);
+								KTools::saveSQLite("CharRecord", "name", hero->getCharacter()->getCString(), "column1", (char *)realWin->getCString(), false);
 							}
 						}
 					}
 				}
-				CCString *recordTime = tool->readSQLite("CharRecord", "name", resultChar->getCString(), "column3");
+				CCString *recordTime = KTools::readSQLite("CharRecord", "name", resultChar->getCString(), "column3");
 				if (recordTime->length() == 0)
 				{
 					if (CError != 1)
 					{
-						tool->saveSQLite("CharRecord", "name", resultChar->getCString(), "column3", (char *)tempTime->getCString(), false);
+						KTools::saveSQLite("CharRecord", "name", resultChar->getCString(), "column3", (char *)tempTime->getCString(), false);
 					}
 				}
 				else
@@ -614,7 +612,7 @@ void GameOver::listResult()
 					{
 						if (CError != 1)
 						{
-							tool->saveSQLite("CharRecord", "name", resultChar->getCString(), "column3", (char *)tempTime->getCString(), false);
+							KTools::saveSQLite("CharRecord", "name", resultChar->getCString(), "column3", (char *)tempTime->getCString(), false);
 						}
 					}
 				}
@@ -622,11 +620,11 @@ void GameOver::listResult()
 
 		} /*else{
 
-			 CCString* loseNum=tool->readSQLite("Achievement","name",resultChar->getCString(),"column2"); 
+			 CCString* loseNum=KTools::readSQLite("Achievement","name",resultChar->getCString(),"column2"); 
 			 int tempLose=atoi(loseNum->getCString())+1;
 			 CCString* realLose=CCString::createWithFormat("%d",tempLose);
 			 if(CError!=1){
-			 tool->saveSQLite("Achievement","name",resultChar->getCString(),"column2",(char*) realLose->getCString(),false);
+			 KTools::saveSQLite("Achievement","name",resultChar->getCString(),"column2",(char*) realLose->getCString(),false);
 			 }
 			 }	*/
 	}
@@ -672,9 +670,7 @@ void GameOver::onUPloadBtn(CCObject *sender)
 
 	// 	}
 
-	// 	KTools* tool=KTools::create();
-
-	// 	tool->prepareFileSHA();
+	// 	KTools::prepareFileSHA();
 	// 	std::string filePath=CCFileUtils::sharedFileUtils()->getWritablePath()+"SHA.xml";
 	// 	std::string strFileMD5 =CMD5Checksum::GetMD5(filePath);
 	// 	remove(filePath.c_str());
@@ -682,7 +678,7 @@ void GameOver::onUPloadBtn(CCObject *sender)
 	// 	cocos2d::extension::CCHttpRequest* request = new CCHttpRequest();
 
 	// 	std::string code="code=1000";
-	// 	std::string mem=tool->encodeData(CCString::createWithFormat("%d",MemberID)->getCString());
+	// 	std::string mem=KTools::encodeData(CCString::createWithFormat("%d",MemberID)->getCString());
 	// 	std::string code2=CCString::createWithFormat("&version=%d",CURRENT_VERSION)->getCString();
 	// 	std::string code3=CCString::createWithFormat("&score=%0.2f",finnalScore)->getCString();
 	// 	std::string code4=CCString::createWithFormat("&use_char=%s",this->_delegate->currentPlayer->getCharacter()->getCString())->getCString();

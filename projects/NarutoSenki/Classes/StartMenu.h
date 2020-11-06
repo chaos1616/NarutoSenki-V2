@@ -2,7 +2,6 @@
 #include "Defines.h"
 #include "cocos2d.h"
 #include "SelectLayer.h"
-#include "NetworkLayer.h"
 #include "CreditsLayer.h"
 
 #include "cocos-ext.h"
@@ -75,8 +74,6 @@ class StartMenu : public CCLayer{
 public:
 	StartMenu(void);
 	~StartMenu(void);
-
-
 
 	bool				init();
 	void				onTrainingCallBack();
@@ -180,7 +177,6 @@ public:
 	CC_SYNTHESIZE_RETAIN(CCArray*,_menu_array, Menus);
 	CREATE_FUNC(StartMenu);
 
-    
 	void onLoginRequestCompleted(CCHttpClient* client, CCHttpResponse* response);
 	void onGroupRequestCompleted(CCHttpClient* client, CCHttpResponse* response);
 	void onGroupManageRequestCompleted(CCHttpClient* client, CCHttpResponse* response);
@@ -196,7 +192,4 @@ public:
 protected:
 	void onEnter();
 	void onExit();
-
-
 };
-

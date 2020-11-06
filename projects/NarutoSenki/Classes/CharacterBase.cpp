@@ -7448,6 +7448,8 @@ void CharacterBase::attack(abType type)
 		_attackRangeY = _sattackRangeY5;
 		this->oAttack(OUGIS2);
 		break;
+	default:
+		break;
 	};
 };
 
@@ -7547,6 +7549,8 @@ void CharacterBase::sAttack(abType type)
 
 			this->scheduleOnce(schedule_selector(CharacterBase::enableSkill3), _sattackcoldDown3);
 			break;
+		default:
+			break;
 		}
 	}
 };
@@ -7593,6 +7597,8 @@ void CharacterBase::oAttack(abType type)
 		case OUGIS2:
 			_actionState = State::O2ATTACK;
 			this->runAction(_skill5Action);
+			break;
+		default:
 			break;
 		}
 	}

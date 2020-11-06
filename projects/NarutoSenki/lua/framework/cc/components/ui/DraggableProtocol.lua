@@ -9,7 +9,7 @@ end
 function DraggableProtocol:setDraggableEnable(bEnable)
 	if bEnable then
 		self.target_:setTouchEnabled(true)
-		self.target_:addNodeEventListener(cc.NODE_TOUCH_EVENT, function (event)
+		self.target_:registerScriptHandler(cc.NODE_TOUCH_EVENT, function (event)
 	        	return self:dragOnTouch_(event)
 	    	end)
 	else

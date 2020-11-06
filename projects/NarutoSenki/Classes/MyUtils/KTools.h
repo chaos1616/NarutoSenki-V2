@@ -9,58 +9,44 @@
 USING_NS_CC;
 
 class CMD5Checksum;
-class SelectLayer;
-class NetworkLayer;
 class KTools : public CCObject
 {
 public:
-	KTools(void);
-	~KTools(void);
-
-	bool init();
-	CREATE_FUNC(KTools);
-
-	void prepareFileMD5();
-	void prepareFileSHA();
+	static void prepareFileMD5();
+	static void prepareFileSHA();
 
 	static bool readXMLToArray(const char *filePath, CCArray *&array);
 	static void prepareFileOGG(const char *listName, bool unload = false);
 
-	void initTableInDB();
-	void initColumeInDB();
+	static void initTableInDB();
+	static void initColumeInDB();
 
-	sqlite3 *prepareTableInDB();
+	static sqlite3 *prepareTableInDB();
 
-	bool checkData();
-	void updateData();
-	bool saveToSQLite(const char *table = "GameRecord", const char *column = NULL, const char *value = NULL, bool isBuy = false);
-	CCString *readFromSQLite(const char *table = "GameRecord", const char *column = NULL, const char *value = NULL);
+	static bool checkData();
+	static void updateData();
+	static bool saveToSQLite(const char *table = "GameRecord", const char *column = NULL, const char *value = NULL, bool isBuy = false);
+	static CCString *readFromSQLite(const char *table = "GameRecord", const char *column = NULL, const char *value = NULL);
 
-	void encode(std::string &str, int randomKey);
-	void decode(std::string &str);
-	int checkMD5(std::string findPath = "");
+	static void encode(std::string &str, int randomKey);
+	static void decode(std::string &str);
+	static int checkMD5(std::string findPath = "");
 
-	void dfsFolder(std::string folderPath, int depth = 0, int type = 0);
+	static void dfsFolder(std::string folderPath, int depth = 0, int type = 0);
 
-	bool checkPackage();
+	static bool checkPackage();
 
-	std::string getKeycode(std::string path);
+	static std::string getKeycode(std::string path);
 
-	CCString *readSQLite(const char *table, const char *column, const char *value, const char *targetColumn);
-	void saveSQLite(const char *table, const char *relatedColumn, const char *value, const char *targetColumn, char *targetValue, bool isPlus);
+	static CCString *readSQLite(const char *table, const char *column, const char *value, const char *targetColumn);
+	static void saveSQLite(const char *table, const char *relatedColumn, const char *value, const char *targetColumn, char *targetValue, bool isPlus);
 
-	CC_SYNTHESIZE(SelectLayer *, _delegate, Delegate);
-	CC_SYNTHESIZE(NetworkLayer *, _delegate2, Delegate2);
-
-	std::string encodeData(std::string data);
+	static std::string encodeData(std::string data);
 };
 
 class CCTips : public CCSprite
 {
 public:
-	CCTips(void);
-	~CCTips(void);
-
 	virtual bool init(const char *tips);
 	static CCTips *create(const char *tips);
 

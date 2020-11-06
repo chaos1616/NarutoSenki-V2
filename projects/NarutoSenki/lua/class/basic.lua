@@ -54,3 +54,44 @@ State = {
     JUMP        = _G['JUMP'],
     AIRHURT     = _G['AIRHURT']
 }
+
+local _None = 'None'
+
+ns.CharactersLayout = {
+    -- Page One
+    -- {
+        'Naruto',		'Sakura',		'Sai',			'Kakashi',
+        _None,			_None,	 		_None,
+        'Shikamaru',	'Ino', 			'Choji',		'Asuma',
+        'Kiba', 		'Hinata', 		'Shino',
+        'Neji', 		'Tenten', 		'Lee', 			_None,
+        _None, 		    _None, 		    _None,
+    -- },
+    -- Page Two
+    -- {
+        _None, 		    'Tobirama',		'Hiruzen', 		'Minato',
+        'Jiraiya', 		'Tsunade', 		'Orochimaru',
+        _None, 		    'Deidara', 		'Kakuzu', 		'Hidan',
+        'Tobi', 		'Konan', 		'Pain',
+        'Itachi', 		'Kisame',		_None, 		    _None,
+        _None, 		    _None, 		    _None,
+    -- },
+    -- Page Three
+    -- {
+        'Sasuke', 		'Karin', 		'Suigetsu', 	'Jugo',
+        _None, 		    _None, 		    _None,
+        'Gaara',		_None,	 		'Kankuro',	 	'Chiyo',
+        _None, 		    _None, 		    _None,
+        _None, 		    _None, 		    _None, 		    _None,
+        _None, 		    _None, 		    _None,
+    -- },
+    -- Page Four
+    -- {
+        _None,			_None,			_None,			_None,
+        _None,			_None,			_None,
+        _None,			_None,			_None,			_None,
+        _None,			_None,			_None,
+        _None,			_None,			_None,			_None,
+        _None,			_None,			_None,
+    -- },
+}

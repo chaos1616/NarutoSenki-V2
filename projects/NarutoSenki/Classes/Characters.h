@@ -11,7 +11,7 @@ USING_NS_CC;
 class Hero : public HeroElement
 {
 private:
-    virtual void perform(){};
+    virtual void perform() = 0;
 
 public:
     bool init()

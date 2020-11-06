@@ -164,9 +164,8 @@ void GameLayer::initTileMap()
 		filePath = S_MAP05;
 	}
 
-	// KTools *tool = KTools::create();
-	// std::string key = tool->getKeycode(filePath);
-	// int id = tool->checkMD5(filePath);
+	// std::string key = KTools::getKeycode(filePath);
+	// int id = KTools::checkMD5(filePath);
 	// if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	// {
 	// if (strcmp(key.c_str(), KeyList[id]) != 0)
@@ -866,9 +865,8 @@ void GameLayer::checkTower()
 	}
 
 	std::string bag = "";
-	KTools *tool = KTools::create();
 	std::string str = "rix2~eoyqi2keqi";
-	tool->decode(str);
+	KTools::decode(str);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	// JniMethodInfo minfo2;

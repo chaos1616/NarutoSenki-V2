@@ -70,7 +70,8 @@ local switcher = {
 function AIGenerator:create(character, role, group)
     addCharacterSprites(character)
     prepare_extra_files(character, false)
-    local heroAI = ap:createAI(newCStr(character), newCStr(role), newCStr(group))
+    local heroAI = ap:createAI(CCString:create(character),
+                               CCString:create(role), CCString:create(group))
     local spawnPoint = CCPoint(432, 80)
     heroAI:setPosition(spawnPoint)
     heroAI:setSpawnPoint(spawnPoint)

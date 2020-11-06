@@ -94,7 +94,7 @@
         <eventName type="setMove">8</eventName>
          <eventName type="setDelay">10</eventName>
         <frameName>Kisame_NAttack_07.png</frameName>
-        <eventName type="setSound">Audio/Effect/.ogg</eventName>
+        <!-- <eventName type="setSound">Audio/Effect/.ogg</eventName> -->
         <eventName type="setAttackBox">n_hit</eventName>
         <eventName type="setDelay">10</eventName>
         <frameName>Kisame_NAttack_08.png</frameName>

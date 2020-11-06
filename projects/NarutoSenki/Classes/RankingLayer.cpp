@@ -1,7 +1,4 @@
 ﻿#include "RankingLayer.h"
-#include "NetworkLayer.h"
-USING_NS_CC_EXT;
-using namespace CocosDenshion;
 
 /*----------------------
 init RankCharButton

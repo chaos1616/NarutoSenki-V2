@@ -1,6 +1,5 @@
 #include "KTools.h"
-#include "SelectLayer.h"
-#include "NetworkLayer.h"
+#include "Defines.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "../../../cocos2dx/platform/android/jni/JniHelper.h"
 #endif
@@ -16,29 +15,6 @@
 
 using namespace tinyxml2;
 using namespace CocosDenshion;
-
-KTools::KTools(void)
-{
-	_delegate = NULL;
-	_delegate2 = NULL;
-}
-
-KTools::~KTools(void)
-{
-}
-
-bool KTools::init()
-{
-	bool bRet = false;
-	do
-	{
-
-		bRet = true;
-
-	} while (0);
-
-	return bRet;
-}
 
 void KTools::prepareFileMD5()
 {
@@ -229,7 +205,7 @@ void KTools::initTableInDB()
 			return;
 		}
 
-		this->updateData();
+		KTools::updateData();
 	}
 
 	bool isExisted_;
@@ -274,7 +250,7 @@ void KTools::initTableInDB()
 			}
 		}
 
-		this->updateData();
+		KTools::updateData();
 	}
 
 	sqlite3_close(pDB);
@@ -309,11 +285,11 @@ void KTools::initColumeInDB()
 		CCString *coin = CCString::create("uuuuu<");
 		sql = CCString::createWithFormat("update GameRecord set coin='%s'", coin->getCString());
 		sqlite3_exec(pDB, sql->getCString(), NULL, NULL, &errorMsg);
-		this->updateData();
+		KTools::updateData();
 	}
 
 	/*std::string folderPath =CCFileUtils::sharedFileUtils()->getWritablePath()+"DLC";
-	this->dfsFolder(folderPath);*/
+	KTools::dfsFolder(folderPath);*/
 }
 
 void KTools::dfsFolder(std::string folderPath, int depth /* = 0 */, int type /* =0 */)
@@ -338,11 +314,11 @@ void KTools::dfsFolder(std::string folderPath, int depth /* = 0 */, int type /* 
 				std::string newPath = folderPath + "\\" + FileInfo.name;
 				if (type == 0)
 				{
-					this->dfsFolder(newPath, 0);
+					KTools::dfsFolder(newPath, 0);
 				}
 				else if (type == 1)
 				{
-					this->dfsFolder(newPath, 0, 1);
+					KTools::dfsFolder(newPath, 0, 1);
 				}
 			}
 		}
@@ -496,6 +472,7 @@ sqlite3 *KTools::prepareTableInDB()
 
 	return pDB;
 }
+
 bool KTools::saveToSQLite(const char *table /* ="GameRecord"*/, const char *column /* =NULL */, const char *value /* =NULL */, bool isBuy /*= false */)
 {
 
@@ -518,7 +495,7 @@ bool KTools::saveToSQLite(const char *table /* ="GameRecord"*/, const char *colu
 			return false;
 		}
 
-		this->updateData();
+		KTools::updateData();
 
 		return true;
 	}
@@ -670,7 +647,7 @@ void KTools::saveSQLite(const char *table, const char *relatedColumn, const char
 
 		sqlite3_free_table(result);
 
-		this->updateData();
+		KTools::updateData();
 
 		sqlite3_close(pDB);
 		return;
@@ -691,14 +668,6 @@ std::string KTools::encodeData(std::string data)
 	//delete sha1;
 	//free(digest);
 	return dataMD5;
-}
-
-CCTips::CCTips(void)
-{
-}
-
-CCTips::~CCTips(void)
-{
 }
 
 bool CCTips::init(const char *tips)

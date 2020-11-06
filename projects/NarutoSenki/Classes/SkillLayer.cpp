@@ -1,6 +1,5 @@
 #include "SkillLayer.h"
 #include "SelectLayer.h"
-#include "NetworkLayer.h"
 
 USING_NS_CC_EXT;
 using namespace CocosDenshion;
@@ -17,9 +16,8 @@ SelectButton::SelectButton(void)
 	_isUnlock = false;
 	_clickTime = 0;
 	_isAviable = true;
-	_delegate1 = NULL;
-	_delegate2 = NULL;
-	_delegate3 = NULL;
+	_selectLayer = NULL;
+	_skillLayer = NULL;
 	_charName = NULL;
 }
 
@@ -83,7 +81,7 @@ void SelectButton::click()
 	{
 		auto charName = _charName->getCString();
 
-		get_l;
+		lua_getL;
 		lua_getglobal(L, "setSelectButton");
 		lua_pushstring(L, charName);
 		lua_pushboolean(L, _isAviable);
@@ -92,23 +90,23 @@ void SelectButton::click()
 		if (strcmp(charName, "None2") == 0)
 		{
 			CCTips *tip = CCTips::create("LimitedChar");
-			this->_delegate2->addChild(tip, 5000);
+			this->_selectLayer->addChild(tip, 5000);
 		}
 		else if (strcmp(charName, "None") != 0 && _isAviable)
 		{
 			SimpleAudioEngine::sharedEngine()->stopAllEffects();
 
-			if (_delegate2)
+			if (_selectLayer)
 			{
-				// if (_delegate2->_playerSelect && adResult != 1)
-				// {
-				// 	return;
-				// }
-				if (!_delegate2->_com2Select)
+				if (_selectLayer->_playerSelect && adResult != 1)
+				{
+					return;
+				}
+				if (!_selectLayer->_com2Select)
 				{
 
 					CCObject *pObject;
-					CCARRAY_FOREACH(_delegate2->selectArray, pObject)
+					CCARRAY_FOREACH(_selectLayer->selectArray, pObject)
 					{
 						SelectButton *selectBtn = (SelectButton *)pObject;
 						if (strcmp(selectBtn->getCharName()->getCString(), this->getCharName()->getCString()) != 0)
@@ -137,26 +135,26 @@ void SelectButton::click()
 					if (strcmp(charName, "Pain") == 0 || strcmp(charName, "Orochimaru") == 0)
 					{
 						CCTips *tip = CCTips::create("LimitedChar");
-						this->_delegate2->addChild(tip, 5000);
+						_selectLayer->addChild(tip, 5000);
 					}
 					else
 					{
 						this->_clickTime++;
 					}
 
-					_delegate2->setSelected(this);
+					_selectLayer->setSelected(this);
 				}
 			}
-			else if (_delegate1)
+			else if (_selectLayer)
 			{
 				SimpleAudioEngine::sharedEngine()->playEffect(SELECT_SOUND);
-				_delegate1->setSelected(this);
+				_selectLayer->setSelected(this);
 			}
 		}
 	}
 	else
 	{
-		_delegate3->setSkillExplain(_btnType);
+		_skillLayer->setSkillExplain(_btnType);
 	}
 }
 
@@ -196,7 +194,6 @@ SkillLayer::SkillLayer(void)
 	_autoMove = true;
 
 	_delegate = NULL;
-	_delegate2 = NULL;
 
 	refreshBtn = NULL;
 	isPosting = false;
@@ -273,7 +270,6 @@ bool SkillLayer::init()
 		CCMenuItem *start_bt = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("return_btn.png"), NULL, NULL, this, menu_selector(SkillLayer::onCancel));
 		CCMenu *menu = CCMenu::create(start_bt, NULL);
 		menu->setPosition(winSize.width - 38, 86);
-		//menu->setPosition(winSize.width/2+skillSprite->getContentSize().width/2-10,winSize.height/2+skillSprite->getContentSize().height/2-12);
 		this->addChild(menu, 5);
 
 		bRet = true;
@@ -289,13 +285,8 @@ void SkillLayer::initInterface()
 	const char *bg_src;
 	if (_delegate)
 	{
-		bg_src = "red_bg.png";
-		selectHero = _delegate->_selectHero;
-	}
-	else if (_delegate2)
-	{
 		bg_src = "blue_bg.png";
-		selectHero = _delegate2->_selectHero;
+		selectHero = _delegate->_selectHero;
 	}
 
 	CCSprite *bgSprite = CCSprite::create(bg_src);
@@ -304,10 +295,7 @@ void SkillLayer::initInterface()
 	bgSprite->setPosition(ccp(0, 0));
 	this->addChild(bgSprite, -5);
 
-	//FIXME:
-	KTools *tool = KTools::create();
-
-	// if(!tool->checkData()){
+	// if(!KTools::checkData()){
 	// 	return;
 	// }
 
@@ -341,7 +329,7 @@ void SkillLayer::initInterface()
 	goldBG->setPosition(ccp(winSize.width / 2 + skillSprite->getContentSize().width / 4 + 25, winSize.height / 2 + skillSprite->getContentSize().width / 2 - 74));
 	this->addChild(goldBG, 9);
 
-	CCString *cl = tool->readFromSQLite();
+	CCString *cl = KTools::readFromSQLite();
 	coinLabel = CCLabelBMFont::create(cl->getCString(), "Fonts/1.fnt");
 	coinLabel->setScale(0.3f);
 	coinLabel->setAnchorPoint(ccp(0.5, 0));
@@ -384,9 +372,9 @@ void SkillLayer::initInterface()
 	bonds->setPosition(ccp(goldBG->getPositionX() - goldBG->getContentSize().width / 2 + 15, goldBG->getPositionY() + 4));
 	this->addChild(bonds, 20);
 
-	CCString *winNum = tool->readSQLite("CharRecord", "name", selectHero, "column1");
+	CCString *winNum = KTools::readSQLite("CharRecord", "name", selectHero, "column1");
 	std::string bondString = winNum->getCString();
-	// CCString *totalNum = tool->readSQLite("CharRecord", "name", selectHero, "column2");
+	// CCString *totalNum = KTools::readSQLite("CharRecord", "name", selectHero, "column2");
 
 	const char *rank_src;
 	bool isBlink = false;
@@ -496,7 +484,7 @@ void SkillLayer::initInterface()
 	detailBG1->setPosition(ccp(skillSprite->getPositionX() - skillSprite->getContentSize().width / 2 + 8, skillSprite->getPositionY() - skillSprite->getContentSize().height / 2 + 74));
 	this->addChild(detailBG1, 5);
 
-	CCString *recordTime = tool->readSQLite("CharRecord", "name", selectHero, "column3");
+	CCString *recordTime = KTools::readSQLite("CharRecord", "name", selectHero, "column3");
 	CCLabelBMFont *bestLabel;
 	if (strcmp(recordTime->getCString(), "") == 0)
 	{
@@ -524,34 +512,6 @@ void SkillLayer::initInterface()
 	recordLabel->setPosition(ccp(detailBG2->getPositionX() + 12, detailBG2->getPositionY() + 7));
 	this->addChild(recordLabel, 6);
 	this->updateSkillGroup();
-
-	/*else if(_delegate2){
-
-	 if(!refreshBtn){
-	 refreshBtn=CCSprite::createWithSpriteFrameName("refresh_btn.png");
-	 refreshBtn->setPosition(ccp(winSize.width/2,winSize.height/2));
-	 CCActionInterval* rt=CCRotateBy::create(0.3f,180,180);
-	 refreshBtn->runAction(CCRepeatForever::create(rt));
-	 this->addChild(refreshBtn,1000);
-
-	 }
-
-	 CCHttpRequest* request = new  CCHttpRequest(); 
-	 std::string codeFinal;
-	 std::string code2=CCString::createWithFormat("&version=%d",CURRENT_VERSION)->getCString();
-	 std::string code1=CCString::createWithFormat("code=200&id=%d&char=%s",MemberID,_delegate2->_selectHero)->getCString();
-	 std::string url=SERVER"nsk/list.php?"+code1+code2;
-	 request->setUrl(url.c_str());  
-	 request->setRequestType( CCHttpRequest::kHttpGet);  
-
-	 request->setResponseCallback(this, httpresponse_selector(SkillLayer::onSkillRequestCompleted));  
-
-
-	 request->setTag("Post_My_Data");  
-	 CCHttpClient::getInstance()->send(request);  
-	 request->release();  
-	 }*/
-
 	this->scheduleUpdate();
 }
 
@@ -640,8 +600,7 @@ void SkillLayer::onSkillRequestCompleted(CCHttpClient *client, CCHttpResponse *r
 		goldBG->setPosition(ccp(winSize.width / 2 + skillSprite->getContentSize().width / 4 + 25, winSize.height / 2 + skillSprite->getContentSize().width / 2 - 74));
 		this->addChild(goldBG, 9);
 
-		KTools *tool = KTools::create();
-		CCString *cl = tool->readFromSQLite();
+		CCString *cl = KTools::readFromSQLite();
 		coinLabel = CCLabelBMFont::create(cl->getCString(), "Fonts/1.fnt");
 		coinLabel->setScale(0.3f);
 		coinLabel->setAnchorPoint(ccp(0, 0));
@@ -758,16 +717,13 @@ void SkillLayer::updateSkillGroup()
 		skill_btn->setPosition(ccp((i - 1) * 46, 0));
 
 		skill_btn->setBtnType((sbtnType)(i + 2));
+
 		if (this->_delegate)
 		{
 			skill_btn->setDelegate1(this->_delegate);
 		}
-		else
-		{
-			skill_btn->setDelegate2(this->_delegate2);
-		}
 
-		skill_btn->setDelegate3(this);
+		skill_btn->setDelegate2(this);
 		skillGroup->addChild(skill_btn);
 	}
 

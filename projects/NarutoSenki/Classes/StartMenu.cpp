@@ -113,7 +113,7 @@ bool MenuButton::ccTouchBegan(CCTouch *touch, CCEvent *event)
 void MenuButton::ccTouchMoved(CCTouch *touch, CCEvent *event)
 {
 	// touch area
-	if (prePosY == NULL)
+	if (prePosY == 0)
 	{
 		prePosY = touch->getLocation().y;
 	}
@@ -276,8 +276,6 @@ bool StartMenu::init()
 	{
 		CC_BREAK_IF(!CCLayer::init());
 
-		SimpleAudioEngine::sharedEngine()->setEffectsVolume(0.5);
-
 		//CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
 
 		//CCSprite* bgSprite = CCSprite::create("red_bg.png");
@@ -405,9 +403,9 @@ bool StartMenu::init()
 			menu->setPositionX(105);
 			this->addChild(menu, 2);
 		};
-		CCLabelBMFont *versionLabel = CCLabelBMFont::create("2.0 Version", "Fonts/1.fnt");
+		CCLabelBMFont *versionLabel = CCLabelBMFont::create(VERSION_CODE, "Fonts/1.fnt");
 		versionLabel->setScale(0.3f);
-		versionLabel->setPosition(winSize.width - 60, 10);
+		versionLabel->setPosition(winSize.width - 20, 10);
 		this->addChild(versionLabel, 5);
 
 		CCSprite *avator = CCSprite::createWithSpriteFrameName("avator1.png");
@@ -475,6 +473,7 @@ bool StartMenu::init()
 
 	return bRet;
 }
+
 void StartMenu::onEnter()
 {
 	CCLayer::onEnter();
@@ -501,6 +500,7 @@ void StartMenu::onEnter()
 #endif
 	}
 }
+
 void StartMenu::onExit()
 {
 	CCLayer::onExit();
@@ -531,6 +531,7 @@ void StartMenu::setOfferWall()
 		this->addChild(menu3, 5);
 	}
 }
+
 void StartMenu::setGroup()
 {
 	CCMenuItemSprite *group_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("group_btn.png"), NULL, NULL, this, menu_selector(StartMenu::onGroupBtn));
@@ -539,6 +540,7 @@ void StartMenu::setGroup()
 	menu3->setPosition(winSize.width - 70, winSize.height - 110);
 	this->addChild(menu3, 5);
 }
+
 void StartMenu::onGroupBtn(CCObject *sender)
 {
 
@@ -668,6 +670,7 @@ void StartMenu::onGroupBtn(CCObject *sender)
 		}
 	}
 }
+
 void StartMenu::onGroupManageRequestCompleted(CCHttpClient* client, CCHttpResponse* response)
 {
 
@@ -903,6 +906,7 @@ void StartMenu::onGroupManageRequestCompleted(CCHttpClient* client, CCHttpRespon
 		this->onInputBoxClose(0);
 	}
 }
+
 void StartMenu::onQuitBtn(CCObject *sender)
 {
 
@@ -941,6 +945,7 @@ void StartMenu::onQuitBtn(CCObject *sender)
 
 	this->addChild(input_layer, 700);
 }
+
 void StartMenu::onQuitComfirm(CCObject *sender)
 {
 
@@ -953,10 +958,9 @@ void StartMenu::onQuitComfirm(CCObject *sender)
 	std::string code;
 	if (MemberID == item->getTag())
 	{
-		KTools *tool = KTools::create();
-		CCString *cl = tool->readFromSQLite();
+		CCString *cl = KTools::readFromSQLite();
 		std::string tempCost2 = "EFDDD";
-		tool->decode(tempCost2);
+		KTools::decode(tempCost2);
 
 		int tempCoin = cl->intValue() - atoi(tempCost2.c_str());
 		if (tempCoin >= 0)
@@ -1141,14 +1145,13 @@ void StartMenu::onQuitGroupRequestCompleted(CCHttpClient* client, CCHttpResponse
 			CCTips *tip = CCTips::create("DissovleSuccessed");
 			this->addChild(tip, 5000);
 
-			KTools *tool = KTools::create();
-			CCString *cl = tool->readFromSQLite();
+			CCString *cl = KTools::readFromSQLite();
 			std::string tempCost2 = "EFDDD";
-			tool->decode(tempCost2);
+			KTools::decode(tempCost2);
 			unsigned int tempCoin = cl->intValue() - atoi(tempCost2.c_str());
 
 			CCString *coin = CCString::createWithFormat("%d", tempCoin);
-			tool->saveToSQLite("GameRecord", "coin", coin->getCString(), true);
+			KTools::saveToSQLite("GameRecord", "coin", coin->getCString(), true);
 
 			this->onIterfaceClose(0);
 			this->onInputBoxClose(0);
@@ -1206,6 +1209,7 @@ void StartMenu::onNoticeBtn(CCObject *sender)
 		}
 	}
 }
+
 void StartMenu::onNoticeComfirm(CCObject *sender)
 {
 
@@ -1311,6 +1315,7 @@ void StartMenu::onLockBtn(CCObject *sender)
 		}
 	}
 }
+
 void StartMenu::onGPWComfirm(CCObject *sender)
 {
 
@@ -1676,6 +1681,7 @@ void StartMenu::onJoinGroup(CCObject *sender)
 		}
 	}
 }
+
 void StartMenu::onJoinComfirm(CCObject *sender)
 {
 	CCMenuItemLabel *item = (CCMenuItemLabel *)sender;
@@ -1992,10 +1998,9 @@ void StartMenu::onCreateComfirm(CCObject *sender)
 		}
 	}
 
-	KTools *tool = KTools::create();
-	CCString *cl = tool->readFromSQLite();
+	CCString *cl = KTools::readFromSQLite();
 	std::string tempCost2 = "EFDDD";
-	tool->decode(tempCost2);
+	KTools::decode(tempCost2);
 
 	int tempCoin = cl->intValue() - atoi(tempCost2.c_str());
 	if (tempCoin >= 0)
@@ -2095,14 +2100,13 @@ void StartMenu::onCreateRequestCompleted(CCHttpClient* client, CCHttpResponse* r
 		CCTips *tip = CCTips::create("GroupSuccessed");
 		this->addChild(tip, 5000);
 
-		KTools *tool = KTools::create();
-		CCString *cl = tool->readFromSQLite();
+		CCString *cl = KTools::readFromSQLite();
 		std::string tempCost2 = "EFDDD";
-		tool->decode(tempCost2);
+		KTools::decode(tempCost2);
 		unsigned int tempCoin = cl->intValue() - atoi(tempCost2.c_str());
 
 		CCString *coin = CCString::createWithFormat("%d", tempCoin);
-		tool->saveToSQLite("GameRecord", "coin", coin->getCString(), true);
+		KTools::saveToSQLite("GameRecord", "coin", coin->getCString(), true);
 
 		this->onIterfaceClose(0);
 		this->onInputBoxClose(0);
@@ -2564,10 +2568,9 @@ void StartMenu::onNamePlateComfrim(CCObject *sender)
 {
 
 	CCMenuItem *item = (CCMenuItem *)sender;
-	KTools *tool = KTools::create();
-	CCString *cl = tool->readFromSQLite();
+	CCString *cl = KTools::readFromSQLite();
 	std::string tempCost2 = "EFDDD";
-	tool->decode(tempCost2);
+	KTools::decode(tempCost2);
 
 	int tempCoin = cl->intValue() - atoi(tempCost2.c_str());
 	if (tempCoin >= 0)
@@ -2644,14 +2647,13 @@ void StartMenu::onNamePlateRequestCompleted(CCHttpClient* client, CCHttpResponse
 		CCTips *tip = CCTips::create("ManagementSuccessed");
 		this->addChild(tip, 5000);
 
-		KTools *tool = KTools::create();
-		CCString *cl = tool->readFromSQLite();
+		CCString *cl = KTools::readFromSQLite();
 		std::string tempCost2 = "EFDDD";
-		tool->decode(tempCost2);
+		KTools::decode(tempCost2);
 		unsigned int tempCoin = cl->intValue() - atoi(tempCost2.c_str());
 
 		CCString *coin = CCString::createWithFormat("%d", tempCoin);
-		tool->saveToSQLite("GameRecord", "coin", coin->getCString(), true);
+		KTools::saveToSQLite("GameRecord", "coin", coin->getCString(), true);
 
 		this->onIterfaceClose(0);
 		this->onInputBoxClose(0);
@@ -2779,7 +2781,7 @@ void StartMenu::onLoginOn(CCObject *sender)
 	if (strcmp(CCUserDefault::sharedUserDefault()->getStringForKey("password").c_str(), data2.c_str()) != 0)
 	{
 		KTools *tool = new KTools();
-		result = tool->encodeData(data2);
+		result = KTools::encodeData(data2);
 	}
 	else
 	{
@@ -2915,6 +2917,7 @@ void StartMenu::setNotice()
 		request->release();  */
 	}
 }
+
 void StartMenu::onNoticeRequestCompleted(CCHttpClient* client, CCHttpResponse* response)
 {
 	if (!response)
@@ -2981,6 +2984,7 @@ void StartMenu::onNoticeRequestCompleted(CCHttpClient* client, CCHttpResponse* r
 		this->onInputBoxClose(0);
 	}
 }
+
 void StartMenu::onLoginRequestCompleted(CCHttpClient* client, CCHttpResponse* response)
 {
 	//AllocConsole();
@@ -3192,7 +3196,6 @@ void StartMenu::onHardLayerCallBack()
 
 void StartMenu::onHardCoreCallBack()
 {
-
 	// if (MemberID)
 	// {
 	addSprites("Select.plist");
@@ -3204,8 +3207,7 @@ void StartMenu::onHardCoreCallBack()
 	addSprites("Gears.plist");
 
 	CCScene *selectScene = CCScene::create();
-	NetworkLayer *selectLayer = NetworkLayer::create();
-	KTools *tool = KTools::create();
+	SelectLayer *selectLayer = SelectLayer::create();
 
 	selectScene->addChild(selectLayer);
 	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.5f, selectScene));
@@ -3225,16 +3227,10 @@ void StartMenu::onNormalCallBack(CCObject *sender)
 	addSprites("Gears.plist");
 
 	CCScene *selectScene = CCScene::create();
-	NetworkLayer *selectLayer = NetworkLayer::create();
-	KTools *tool = KTools::create();
+	SelectLayer *selectLayer = SelectLayer::create();
 
 	selectScene->addChild(selectLayer);
 	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.5f, selectScene));
-
-	/*CCScene* selectScene=CCScene::create();
-	SelectLayer* selectLayer=SelectLayer::create();
-	selectScene->addChild(selectLayer);
-	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.5f,selectScene));	*/
 }
 
 void StartMenu::onTrainingCallBack()

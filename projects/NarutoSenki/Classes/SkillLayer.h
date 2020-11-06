@@ -21,10 +21,9 @@ enum sbtnType
 };
 
 class SelectLayer;
-class NetworkLayer;
+
 class SkillLayer : public CCLayer
 {
-
 public:
 	SkillLayer(void);
 	~SkillLayer(void);
@@ -61,7 +60,6 @@ public:
 	CCProgressTimer *bonds;
 
 	CC_SYNTHESIZE(SelectLayer *, _delegate, Delegate);
-	CC_SYNTHESIZE(NetworkLayer *, _delegate2, Delegate2);
 
 private:
 	void onCancel(CCObject *sender);
@@ -92,9 +90,8 @@ public:
 	bool _isCanBuy2;
 	bool _isUnlock;
 
-	CC_SYNTHESIZE(SelectLayer *, _delegate1, Delegate1);
-	CC_SYNTHESIZE(NetworkLayer *, _delegate2, Delegate2);
-	CC_SYNTHESIZE(SkillLayer *, _delegate3, Delegate3);
+	CC_SYNTHESIZE(SelectLayer *, _selectLayer, Delegate1);
+	CC_SYNTHESIZE(SkillLayer *, _skillLayer, Delegate2);
 
 	void spriteToGrey();
 

@@ -16,7 +16,6 @@ SOURCES = main.cpp \
 	../Classes/HudLayer.cpp \
 	../Classes/JoyStick.cpp \
 	../Classes/LoadLayer.cpp \
-	../Classes/NetworkLayer.cpp \
 	../Classes/PauseLayer.cpp \
 	../Classes/RankingLayer.cpp \
 	../Classes/SelectLayer.cpp \
@@ -54,8 +53,6 @@ STATICLIBS += \
 ####### Build rules
 $(TARGET): $(OBJECTS) $(STATICLIBS) $(COCOS_LIBS) $(CORE_MAKEFILE_LIST)
 	@mkdir -p $(@D)
-	@mkdir -p ../../../projects/NarutoSenki/__Bin__/Linux/Data
-	cp -R -n ../../../projects/NarutoSenki/Resources/* 	../../../projects/NarutoSenki/__Bin__/Linux/Data
 	$(LOG_LINK)$(CXX) $(CXXFLAGS) $(OBJECTS) -o $@ $(STATICLIBS) $(SHAREDLIBS) $(LIBS)
 	cp $(@D)/NarutoSenki ../../../projects/NarutoSenki/__Bin__/Linux
 

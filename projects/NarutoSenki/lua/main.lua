@@ -7,11 +7,8 @@ local function main()
     log('--- Loaded Lua Scripts ---')
 
     local gameScene = GameScene:create()
-    cc.Director:sharedDirector():runWithScene(gameScene)
-
-    local hero = AIGenerator:create('Lee', 'Com', 'Konoha')
-    log('\n\n\n---- hero isAI %s ----\n\n', hero:getCharacter():getCString())
-
+    hook.registerInitHandlerOnly(gameScene, GameScene.init)
+    CCDirector:sharedDirector():runWithScene(gameScene)
 end
 
 xpcall(main, __G__TRACKBACK__)

@@ -14,7 +14,6 @@ $#include "GameOver.h"
 $#include "HudLayer.h"
 $#include "JoyStick.h"
 $#include "LoadLayer.h"
-$#include "NetworkLayer.h"
 $#include "PauseLayer.h"
 $#include "RankingLayer.h"
 $#include "SelectLayer.h"
@@ -771,7 +770,7 @@ public:
 /* __AI__.hpp */
 class AIProvider
 {
-    static HeroElement* createAI(CCString *character, CCString *role, CCString *group);
+    static HeroElement *createAI(CCString *character, CCString *role, CCString *group);
 }
 
 /* ------- UI Layer ------- */
@@ -780,7 +779,24 @@ class AIProvider
 /* GameScene.h */
 class GameScene : public CCScene
 {
-    static CCScene *create();
+public:
+    static GameScene* create();
+
+	CCLayer *getIntroLayer();
+	void setIntroLayer(CCLayer *var);
+
+	CCMenu *getLogoMenu();
+	void setLogoMenu(CCMenu *var);
+
+	void onLogoClick(CCObject *sender);
+};
+
+/* StartMenu.h */
+class StartMenu : public CCLayer{
+public:
+	static StartMenu* create();
+
+
 };
 
 /* Effect.h */
@@ -864,12 +880,12 @@ public:
 /* some_header.h */
 /* some_header.h */
 /* some_header.h */
-/* some_header.h */
 
-/* GameScene.h */
-class GameScene : public CCScene{
+/* SelectLayer.h */
+class SelectLayer : public CCLayer
+{
 public:
-	virtual bool init();
+	static SelectLayer *create();
 };
 
 /* SkillLayer.h */
@@ -881,8 +897,36 @@ public:
 /* KTools.h */
 class KTools : public CCObject{
 public:
+	static void prepareFileMD5();
+	static void prepareFileSHA();
+
 	static bool readXMLToArray(const char *filePath, CCArray *array);
 	static void prepareFileOGG(const char *listName, bool unload = false);
+
+	static void initTableInDB();
+	static void initColumeInDB();
+
+	static sqlite3 *prepareTableInDB();
+
+	static bool checkData();
+	static void updateData();
+	static bool saveToSQLite(const char *table = "GameRecord", const char *column = NULL, const char *value = NULL, bool isBuy = false);
+	static CCString *readFromSQLite(const char *table = "GameRecord", const char *column = NULL, const char *value = NULL);
+
+	static void encode(std::string &str, int randomKey);
+	static void decode(std::string &str);
+	static int checkMD5(std::string findPath = "");
+
+	static void dfsFolder(std::string folderPath, int depth = 0, int type = 0);
+
+	static bool checkPackage();
+
+	static std::string getKeycode(std::string path);
+
+	static CCString *readSQLite(const char *table, const char *column, const char *value, const char *targetColumn);
+	static void saveSQLite(const char *table, const char *relatedColumn, const char *value, const char *targetColumn, char *targetValue, bool isPlus);
+
+	static std::string encodeData(std::string data);
 };
 
 /* CCTips.h */

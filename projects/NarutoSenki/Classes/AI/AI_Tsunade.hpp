@@ -131,7 +131,7 @@ class AI_Tsunade : public Hero
 						this->walk(moveDirection);
 						return;
 					}
-					else if ((abs(sp.x) > 32) || (abs(sp.y) > 32) && (!_isCanSkill2) && (!_isBati) && (!_isCanOugis1))
+					else if ((abs(sp.x) > 32) || (abs(sp.y) > 32 && !_isCanSkill2 && !_isBati && !_isCanOugis1))
 					{
 						moveDirection = ccpNormalize(sp);
 						this->walk(moveDirection);

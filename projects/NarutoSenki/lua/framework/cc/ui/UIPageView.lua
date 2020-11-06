@@ -19,11 +19,11 @@ function UIPageView:ctor(params)
 	self.bCirc = params.bCirc or false
 
 	self:setClippingRegion(self.viewRect_)
-	-- self:addNodeEventListener(cc.NODE_ENTER_FRAME_EVENT, function(...)
+	-- self:registerScriptHandler(cc.NODE_ENTER_FRAME_EVENT, function(...)
 	-- 		self:update_(...)
 	-- 	end)
 	self:setTouchEnabled(true)
-	self:addNodeEventListener(cc.NODE_TOUCH_EVENT, function (event)
+	self:registerScriptHandler(cc.NODE_TOUCH_EVENT, function (event)
         	return self:onTouch_(event)
     	end)
 end

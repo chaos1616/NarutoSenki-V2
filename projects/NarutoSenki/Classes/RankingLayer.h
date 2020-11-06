@@ -1,16 +1,14 @@
 #pragma once
-#include "cocos2d.h"
 #include "SimpleAudioEngine.h"
 #include "Defines.h"
-#include "cocos-ext.h"
+#include "MyUtils/KTools.h"
 #include "MyUtils/CCScrewLayer.h"
 #include "MyUtils/CCStrokeLabel.h"
 
-USING_NS_CC;
-USING_NS_CC_EXT;
-
-class NetworkLayer;
+using namespace CocosDenshion;
 using namespace rapidjson; 
+
+class SelectLayer;
 
 class RakingLayer : public CCLayer{
 
@@ -51,7 +49,7 @@ public:
 	
 
 	CCSprite* refreshBtn;
-	CC_SYNTHESIZE(NetworkLayer*,_delegate,Delegate);
+	CC_SYNTHESIZE(SelectLayer*,_delegate,Delegate);
 
 	void postRequest(int code,CCString* useChar=NULL);
 

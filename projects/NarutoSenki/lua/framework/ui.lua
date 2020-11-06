@@ -219,9 +219,9 @@ function ui.newImageMenuItem(params)
     local item = CCMenuItemSprite:create(imageNormal, imageSelected, imageDisabled)
     if item then
         if type(listener) == "function" then
-            item:addNodeEventListener(cc.MENU_ITEM_CLICKED_EVENT, function(tag)
+            item:registerScriptTapHandler(function()
                 if sound then audio.playSound(sound) end
-                listener(tag)
+                listener(item)
             end)
         end
         if x and y then item:setPosition(x, y) end
@@ -264,7 +264,7 @@ function ui.newTTFLabelMenuItem(params)
     local item = CCMenuItemLabel:create(label)
     if item then
         if type(listener) == "function" then
-            item:addNodeEventListener(cc.MENU_ITEM_CLICKED_EVENT, function(tag)
+            item:registerScriptHandler(function(tag)
                 if sound then audio.playSound(sound) end
                 listener(tag)
             end)

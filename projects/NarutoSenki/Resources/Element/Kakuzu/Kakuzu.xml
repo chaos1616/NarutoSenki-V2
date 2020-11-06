@@ -33,7 +33,7 @@
         <eventName type="setMove">32</eventName>
         <frameName>Kakuzu_Hurt_01.png</frameName>
         <frameName>Kakuzu_Hurt_02.png</frameName>
-        <eventName type="setSound">Audio/Kakuzu/Kakuzu_hurt.ogg</eventName>
+        <!-- <eventName type="setSound">Audio/Kakuzu/Kakuzu_hurt.ogg</eventName> -->
       </frame>
     </action>
    

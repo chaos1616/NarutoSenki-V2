@@ -65,7 +65,7 @@ function UISlider:ctor(direction, images, options)
     self:updateButtonPosition_()
 
     self:setTouchEnabled(true)
-    self:addNodeEventListener(cc.NODE_TOUCH_EVENT, function(event)
+    self:registerScriptHandler(cc.NODE_TOUCH_EVENT, function(event)
         return self:onTouch_(event.name, event.x, event.y)
     end)
 end

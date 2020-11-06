@@ -22,6 +22,10 @@ require 'hook'
 -- AI Module
 require 'ai.provider'
 
+require 'ui.init'
+
 require 'utils.utils'
+require 'utils.save'
 
 -- require 'class.ICharacter'
+require 'class.basic'
