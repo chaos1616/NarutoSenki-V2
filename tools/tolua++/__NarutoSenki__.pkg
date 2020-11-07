@@ -98,9 +98,8 @@ public:
 	public: virtual CCString* getCoin();
 	public: virtual void setCoin(CCString* var);
 
-//	CCObject* _slayer;
-//	CCObject* _sticker;
-
+//	CharacterBase* _slayer;
+//	CharacterBase* _sticker;
 //	CharacterBase* _mainTarget;
 
 //	bool isHurtingTower;
@@ -235,9 +234,9 @@ public:
 	public: virtual CCPoint getSpawnPoint();
 	public: virtual  void setSpawnPoint(CCPoint var);
 
-//	protected: HeroElement* _master;
-	public: virtual HeroElement* getMaster();
-	public: virtual  void setMaster(HeroElement* var);
+//	protected: CharacterBase* _master;
+	public: virtual CharacterBase* getMaster();
+	public: virtual  void setMaster(CharacterBase* var);
 //	protected: CharacterBase* _controler;
 	public: virtual CharacterBase* getControler();
 	public: virtual  void setControler(CharacterBase* var);

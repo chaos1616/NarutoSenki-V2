@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Cocos2d
-** Generated automatically by tolua++-1.0.92 on Fri Nov  6 20:48:21 2020.
+** Generated automatically by tolua++-1.0.92 on Sat Nov  7 18:56:09 2020.
 */
 
 /****************************************************************************
@@ -68548,8 +68548,8 @@ static int tolua_Cocos2d_CharacterBase_getMaster00(lua_State* tolua_S)
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaster'", NULL);
 #endif
   {
-   HeroElement* tolua_ret = (HeroElement*)  self->getMaster();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"HeroElement");
+   CharacterBase* tolua_ret = (CharacterBase*)  self->getMaster();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"CharacterBase");
   }
  }
  return 1;
@@ -68569,7 +68569,7 @@ static int tolua_Cocos2d_CharacterBase_setMaster00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"CharacterBase",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"HeroElement",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"CharacterBase",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -68577,7 +68577,7 @@ static int tolua_Cocos2d_CharacterBase_setMaster00(lua_State* tolua_S)
 #endif
  {
   CharacterBase* self = (CharacterBase*)  tolua_tousertype(tolua_S,1,0);
-  HeroElement* var = ((HeroElement*)  tolua_tousertype(tolua_S,2,0));
+  CharacterBase* var = ((CharacterBase*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaster'", NULL);
 #endif

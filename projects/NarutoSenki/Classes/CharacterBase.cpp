@@ -750,7 +750,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 							if (strcmp(Attacker->getCharacter()->getCString(), "Kakuzu") == 0 && this->_sticker)
 							{
-								CharacterBase *stHero = (CharacterBase *)_sticker;
+								CharacterBase *stHero = _sticker;
 								if (strcmp(stHero->getCharacter()->getCString(), "Kakuzu") == 0 && stHero->hearts <= 4)
 								{
 
@@ -1542,7 +1542,7 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 	int criticalValue;
 	unsigned int realValue;
 
-	CharacterBase *attacker = (CharacterBase *)_slayer;
+	CharacterBase *attacker = _slayer;
 	CharacterBase *currentAttacker;
 	if (attacker->getMaster())
 	{
@@ -6067,7 +6067,7 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 	}
 	else
 	{
-		bullet->_master = (HeroElement *)this;
+		bullet->_master = this;
 	}
 
 	if (this->_isFlipped)
@@ -6169,7 +6169,7 @@ void CharacterBase::setBulletGroup(float dt)
 		bullet->setID(CCString::create("HugeSRK"), CCString::create("Bullet"), this->_group);
 		rangeX = 76;
 
-		bullet->_master = (HeroElement *)this;
+		bullet->_master = this;
 		bullet->setScale(0.8f);
 
 		if (this->_isFlipped)
@@ -6420,12 +6420,12 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 
 	if (this->_master)
 	{
-		clone->setMaster((HeroElement *)this);
+		clone->setMaster(this);
 		clone->setSecMaster(this->_master);
 	}
 	else
 	{
-		clone->setMaster((HeroElement *)this);
+		clone->setMaster(this);
 	}
 
 	clone->setDelegate(_delegate);
@@ -6523,7 +6523,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	{
 		if (this->getSecMaster())
 		{
-			monster->setMaster((HeroElement *)this);
+			monster->setMaster(this);
 			monster->setSecMaster(this->getSecMaster());
 		}
 		else
@@ -6534,7 +6534,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	}
 	else
 	{
-		monster->setMaster((HeroElement *)this);
+		monster->setMaster(this);
 	}
 
 	monster->idle();
@@ -6933,7 +6933,7 @@ void CharacterBase::setMonPer(float dt)
 		this->setSound(this, callValue2);
 	}
 
-	monster->setMaster((HeroElement *)this);
+	monster->setMaster(this);
 
 	monster->idle();
 	monster->setPosition(ccp(this->getPositionX() + (this->_isFlipped ? -32 : 32), this->_originY ? this->_originY : this->getPositionY()));
@@ -7009,7 +7009,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 
 					Bullet *trap = Bullet::create();
 					trap->setDelegate(_delegate);
-					trap->_master = (HeroElement *)this;
+					trap->_master = this;
 					trap->setID(trapType, CCString::create(K_TAG_MON), _group);
 					trap->setAnchorPoint(ccp(0.5, 0));
 					trap->setPosition(ccp(targetPoint.x, targetPoint.y + 32));
@@ -7024,7 +7024,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 					{
 						Bullet *trap = Bullet::create();
 						trap->setDelegate(_delegate);
-						trap->_master = (HeroElement *)this;
+						trap->_master = this;
 						trap->setID(trapType, CCString::create(K_TAG_MON), _group);
 						trap->setAnchorPoint(ccp(0.5, 0));
 						trap->setPosition(ccp(targetPoint.x + (i - 1) * 60, targetPoint.y));
@@ -7039,7 +7039,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 
 					Bullet *trap = Bullet::create();
 					trap->setDelegate(_delegate);
-					trap->_master = (HeroElement *)this;
+					trap->_master = this;
 					trap->setID(trapType, CCString::create(K_TAG_MON), _group);
 					trap->setAnchorPoint(ccp(0.5, 0));
 					trap->setPosition(ccp(targetPoint.x, targetPoint.y - 32));
@@ -7060,7 +7060,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 				{
 					Bullet *trap = Bullet::create();
 					trap->setDelegate(_delegate);
-					trap->_master = (HeroElement *)this;
+					trap->_master = this;
 					trap->setID(trapType, CCString::create(K_TAG_MON), _group);
 
 					trap->setPosition(ccp(this->getPositionX() + (_isFlipped ? -112 : 112), this->getPositionY() + (48 - i * 24)));
@@ -7077,7 +7077,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 				{
 					Bullet *trap = Bullet::create();
 					trap->setDelegate(_delegate);
-					trap->_master = (HeroElement *)this;
+					trap->_master = this;
 					trap->setID(trapType, CCString::create(K_TAG_MON), _group);
 					trap->setPosition(ccp(this->getPositionX() + (_isFlipped ? -80 : 80), this->getPositionY() + (32 - i * 24)));
 					trap->idle();
@@ -7090,7 +7090,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 			{
 				Bullet *trap = Bullet::create();
 				trap->setDelegate(_delegate);
-				trap->_master = (HeroElement *)this;
+				trap->_master = this;
 				trap->setID(trapType, CCString::create(K_TAG_MON), _group);
 				trap->setPosition(ccp(this->getPositionX() + (_isFlipped ? -48 : 48), this->getPositionY() + 22));
 				trap->idle();
@@ -7107,7 +7107,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 			Bullet *trap = Bullet::create();
 			trap->setDelegate(_delegate);
 			trap->setAnchorPoint(ccp(0.5f, 0));
-			trap->_master = (HeroElement *)this;
+			trap->_master = this;
 			trap->setID(trapType, CCString::create(K_TAG_MON), _group);
 
 			if (i == 0)
@@ -7143,7 +7143,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 				{
 					Monster *trap = Monster::create();
 					trap->setDelegate(_delegate);
-					trap->_master = (HeroElement *)this;
+					trap->_master = this;
 					trap->setID(trapType, CCString::create(K_TAG_MON), _group);
 					trap->setPosition(ccp(tempHero->getPositionX(), tempHero->getPositionY()));
 					trap->idle();
@@ -7867,7 +7867,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 		else
 		{
 			_isSticking = true;
-			CharacterBase *attacker = (CharacterBase *)_slayer;
+			CharacterBase *attacker = _slayer;
 			CCString *path;
 			if (strcmp(attacker->getCharacter()->getCString(), "Kakuzu") == 0)
 			{

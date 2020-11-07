@@ -4,6 +4,7 @@ require 'framework.debug'
 -- Ktools
 --
 tools = {}
+device = CCDevice
 
 local kt = KTools
 local tips = CCTips
@@ -69,6 +70,11 @@ end
 
 function table:has(val)
     for _, v in ipairs(self) do if v == val then return true end end
+    return false
+end
+
+function table:hasKey(key)
+    for k, _ in ipairs(self) do if k == key then return true end end
     return false
 end
 
