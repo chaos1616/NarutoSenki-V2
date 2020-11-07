@@ -46,8 +46,9 @@ public:
 	CC_SYNTHESIZE_RETAIN(CCString*, _coin,Coin);
 
 
-	CharacterBase*			_slayer;
-	CharacterBase*			_sticker;
+	CCObject*			_slayer;
+	CCObject*			_sticker;
+
 
 
 	CharacterBase*		_mainTarget;
@@ -156,7 +157,7 @@ public:
 	CC_SYNTHESIZE(CCPoint,_spawnPoint,SpawnPoint);
 
 
-	CC_SYNTHESIZE(Hero*,_master,Master);
+	CC_SYNTHESIZE(HeroElement*,_master,Master);
 	CC_SYNTHESIZE(CharacterBase*,_controler,Controler);
 	CC_SYNTHESIZE(CharacterBase*,_secmaster,SecMaster);
 

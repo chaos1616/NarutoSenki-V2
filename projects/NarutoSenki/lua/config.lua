@@ -26,10 +26,6 @@ require 'ui.init'
 
 require 'utils.utils'
 require 'utils.save'
-require 'utils.math'
 
 -- require 'class.ICharacter'
 require 'class.basic'
-
--- locals
-require 'i18n.init'

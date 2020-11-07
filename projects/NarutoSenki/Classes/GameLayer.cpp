@@ -185,7 +185,7 @@ void GameLayer::initGard()
 	int index = 0;
 	srand((int)time(0));
 	index = random(2);
-	Hero *Guardian;
+	HeroElement *Guardian;
 
 	const char *groupName;
 
@@ -299,7 +299,7 @@ void GameLayer::initHeros()
 			else
 			{
 
-				Hero *Com = AIProvider::createAI(player, role, group);
+				HeroElement *Com = AIProvider::createAI(player, role, group);
 				Com->setDelegate(this);
 				Com->setPosition(spawnPoint);
 				Com->setSpawnPoint(spawnPoint);
@@ -375,7 +375,7 @@ void GameLayer::initHeros()
 			else
 			{
 
-				Hero *Com = AIProvider::createAI(player, role, group);
+				HeroElement *Com = AIProvider::createAI(player, role, group);
 				Com->setDelegate(this);
 				Com->setPosition(spawnPoint);
 				Com->setSpawnPoint(spawnPoint);

@@ -3,12 +3,12 @@
 #include "HudLayer.h"
 USING_NS_CC;
 
-Hero::Hero(void)
+HeroElement::HeroElement(void)
 {
 	rebornSprite = NULL;
 }
 
-Hero::~Hero(void)
+HeroElement::~HeroElement(void)
 {
 	CC_SAFE_RELEASE(callValue);
 	CC_SAFE_RELEASE(_nattackType);
@@ -38,7 +38,7 @@ Hero::~Hero(void)
 	CC_SAFE_RELEASE(idleArray);
 }
 
-bool Hero::init()
+bool HeroElement::init()
 {
 	bool bRet = false;
 	do
@@ -47,14 +47,14 @@ bool Hero::init()
 		CC_BREAK_IF(!CharacterBase::init());
 		this->setAnchorPoint(ccp(0.5, 0));
 		this->scheduleUpdate();
-		//this->schedule(schedule_selector(Hero::neicun),0.5f);
+		//this->schedule(schedule_selector(HeroElement::neicun),0.5f);
 		bRet = true;
 	} while (0);
 
 	return bRet;
 };
 
-void Hero::setID(CCString *character, CCString *role, CCString *group)
+void HeroElement::setID(CCString *character, CCString *role, CCString *group)
 {
 
 	this->setCharacter(character);
@@ -413,7 +413,7 @@ void Hero::setID(CCString *character, CCString *role, CCString *group)
 	CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", NULL);
 };
 
-void Hero::initAction()
+void HeroElement::initAction()
 {
 
 	this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
@@ -433,7 +433,7 @@ void Hero::initAction()
 	this->setSkill5Action(createAnimation(skill5Array, 10.0f, false, true));
 };
 
-void Hero::setShadows()
+void HeroElement::setShadows()
 {
 
 	if (!_shadow)
@@ -445,7 +445,7 @@ void Hero::setShadows()
 	}
 }
 
-void Hero::setHPbar()
+void HeroElement::setHPbar()
 {
 
 	if (strcmp(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) != 0)
@@ -469,7 +469,7 @@ void Hero::setHPbar()
 	this->changeHPbar();
 };
 
-void Hero::changeHPbar()
+void HeroElement::changeHPbar()
 {
 
 	if (_exp >= 500 && _level == 1)
@@ -580,13 +580,16 @@ void Hero::changeHPbar()
 		_hpBar->getHPBottom()->setDisplayFrame(frame);
 	}
 }
+void HeroElement::setAI(float dt)
+{
+}
 
-void Hero::neicun(float dt)
+void HeroElement::neicun(float dt)
 {
 	//CCLOG("%d",callValue->retainCount());
 }
 
-void Hero::dealloc()
+void HeroElement::dealloc()
 {
 
 	this->stopAllActions();
@@ -776,12 +779,12 @@ void Hero::dealloc()
 		{
 			if (rebornLabelTime == 3)
 			{
-				this->scheduleOnce(schedule_selector(Hero::reborn), 3.0f);
+				this->scheduleOnce(schedule_selector(HeroElement::reborn), 3.0f);
 			}
 			else
 			{
 				rebornLabelTime = this->getRebornTime();
-				this->scheduleOnce(schedule_selector(Hero::reborn), this->getRebornTime());
+				this->scheduleOnce(schedule_selector(HeroElement::reborn), this->getRebornTime());
 			}
 			if (!this->rebornSprite)
 			{
@@ -799,17 +802,17 @@ void Hero::dealloc()
 				rebornSprite->setPosition(ccp(this->getContentSize().width / 2, this->getContentSize().height / 2));
 				this->addChild(rebornSprite);
 			}
-			this->schedule(schedule_selector(Hero::countDown), 1);
+			this->schedule(schedule_selector(HeroElement::countDown), 1);
 		}
 	}
 }
-void Hero::countDown(float dt)
+void HeroElement::countDown(float dt)
 {
 
 	rebornLabelTime -= 1;
 	rebornLabel->setString(CCString::createWithFormat("%d", rebornLabelTime)->getCString());
 }
-void Hero::reborn(float dt)
+void HeroElement::reborn(float dt)
 {
 
 	this->setPosition(this->getSpawnPoint());
@@ -844,7 +847,7 @@ void Hero::reborn(float dt)
 		this->idle();
 		if (rebornSprite)
 		{
-			this->unschedule(schedule_selector(Hero::countDown));
+			this->unschedule(schedule_selector(HeroElement::countDown));
 			rebornSprite->removeFromParent();
 			rebornSprite = NULL;
 		}

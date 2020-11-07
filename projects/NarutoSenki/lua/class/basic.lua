@@ -4,8 +4,7 @@
 
 --[[--
 	abType
-]]
-AttackType = {
+]] AttackType = {
     NAttack     = _G['NAttack'],
     Item1       = _G['Item1'],
     GearItem    = _G['GearItem'],
@@ -95,10 +94,4 @@ ns.CharactersLayout = {
         _None,			_None,			_None,			_None,
         _None,			_None,			_None,
     -- },
-}
-
-ns.CharacterTags = {
-	Clone		= 'Clone',
-	Summon 		= 'Summon',
-	Mon 		= 'Mon'
 }

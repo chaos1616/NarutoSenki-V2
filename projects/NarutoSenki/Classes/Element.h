@@ -1,128 +1,121 @@
-#ifndef __ELEMENT_H__
-#define __ELEMENT_H__
+#ifndef __ELEMENTS_H__
+#define __ELEMENTS_H__
+#include "cocos2d.h"
 #include "CharacterBase.h"
 #include "HPBar.h"
-#include "Characters.h"
+#include "cocos-ext.h"
+
+USING_NS_CC;
 
 class HPBar;
 
-typedef enum __AIFeatures
-{
-	NoFeature,
-	HasClone,
-} AIFeatures;
-
-class Hero : public CharacterBase
-{
-private:
-	virtual void perform() = 0;
-
+class HeroElement : public CharacterBase  {
 public:
-	Hero(void);
-	~Hero(void);
+	HeroElement(void);
+	~HeroElement(void);
 
-	bool init();
-	void initAction();
-	void setHPbar();
-	void setShadows();
-	void changeHPbar();
-	void neicun(float dt);
-	virtual void setID(CCString *character, CCString *role, CCString *group);
-	void setAI(float dt) { perform(); };
+	//CREATE_FUNC(HeroElement);
+	bool	init();
+	void	initAction();
+	void	setHPbar();
+	void	setShadows();
+	void    changeHPbar();
+	void	neicun(float dt);
+	virtual void setID(CCString* character,CCString* role,CCString *group);
+	virtual void setAI(float dt);
 
-	CCSprite *rebornSprite;
-	CCLabelBMFont *rebornLabel;
-	void reborn(float dt);
-	void dealloc();
 
-	void setAIFeature(AIFeatures var) { features = var; };
-	AIFeatures getAIFeature() const { return features; };
+	CCSprite* rebornSprite;
+	CCLabelBMFont* rebornLabel;
+	void	reborn(float dt);
+	void	dealloc();
 
-	virtual bool setSource(const char *target) = 0;
-
-protected:
-	AIFeatures features;
-
-	void countDown(float dt);
+protected: 
+	
+	
+	void	countDown(float dt);
 };
 
-class Flog : public CharacterBase
-{
+
+class Flog: public CharacterBase{
 public:
 	Flog(void);
 	~Flog(void);
 
 	CREATE_FUNC(Flog);
-	bool init();
-	void initAction();
-	void setHPbar();
+	bool	init();
+	void	initAction();
+	void	setHPbar();
 
-	float _mainPosY;
-	float _randomPosX;
-	float _randomPosY;
+	float   _mainPosY;
+	float	_randomPosX;
+	float	_randomPosY;
 
-	void setID(CCString *character, CCString *role, CCString *group);
+	void	setID(CCString* character,CCString* role,CCString *group);
+	
 
-protected:
-	void dealloc();
-	void setAI(float dt);
+protected: 
+	void	dealloc();
+	void	setAI(float dt);
+
+
 };
 
-class Tower : public CharacterBase
-{
+class Tower: public CharacterBase{
 public:
 	Tower(void);
 	~Tower(void);
 
 	CREATE_FUNC(Tower);
-	bool init();
-	void initAction();
-	void setHPbar();
-	void dealloc();
-	void setID(CCString *character, CCString *role, CCString *group);
+	bool	init();
+	void	initAction();
+	void	setHPbar();
+	void	dealloc();    
+	void	setID(CCString* character,CCString* role,CCString *group);
+
 };
 
-class Monster : public CharacterBase
-{
+class Monster: public CharacterBase{
 public:
 	Monster(void);
 	~Monster(void);
 
 	CREATE_FUNC(Monster);
-	bool init();
-	void initAction();
-	void setID(CCString *character, CCString *role, CCString *group);
-	void setHPbar();
-	void changeHPbar();
-	void setDirectMove(unsigned int length, float delay, bool isReverse);
-	void setEaseIn(unsigned int length, float delay);
-	void setDirectMoveBy(unsigned int length, float delay);
-
-protected:
-	void dealloc();
-	void dealloc2();
-	void setAI(float dt);
-	void setResume();
+	bool	init();
+	void	initAction(); 
+	void	setID(CCString* character,CCString* role,CCString *group);
+	void	setHPbar();
+	void    changeHPbar();
+	void	setDirectMove(unsigned int length,float delay,bool isReverse);
+	void	setEaseIn(unsigned int length,float delay);
+	void	setDirectMoveBy(unsigned int length,float delay);
+protected: 
+	void	dealloc();
+	void	dealloc2();
+	void	setAI(float dt);
+	void	setResume();
+	
 };
 
-class Bullet : public CharacterBase
-{
+class Bullet: public CharacterBase{
 public:
 	Bullet(void);
 	~Bullet(void);
 
 	CREATE_FUNC(Bullet);
-	bool init();
-	void initAction();
-	void setID(CCString *character, CCString *role, CCString *group);
+	bool	init();
+	void	initAction(); 
+	void	setID(CCString* character,CCString* role,CCString *group);
+	
+	void	setMove(unsigned int length,float delay,bool isReverse);
+	void	setEaseIn(unsigned int length,float delay);
+	
+	void    setAttack(float dt);
 
-	void setMove(unsigned int length, float delay, bool isReverse);
-	void setEaseIn(unsigned int length, float delay);
+protected: 
+	
+	void	dealloc();
+	void    dealloc2();
 
-	void setAttack(float dt);
-
-protected:
-	void dealloc();
-	void dealloc2();
 };
 #endif

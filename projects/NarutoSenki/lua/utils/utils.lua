@@ -72,11 +72,6 @@ function table:has(val)
     return false
 end
 
-function table:hasKey(key)
-    for k, _ in ipairs(self) do if k == key then return true end end
-    return false
-end
-
 -- Defines
 ns = {}
 
