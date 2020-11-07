@@ -2,10 +2,14 @@
 #define __DEFINES_H__
 #include "cocos2d.h"
 #include "cocos-ext.h"
+#include "SimpleAudioEngine.h"
+
 #include "MyUtils/Cocos2dxHelper.hpp"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
+using namespace CocosDenshion;
+using namespace rapidjson; 
 
 //global parameter
 #define winSize CCDirector::sharedDirector()->getWinSize()

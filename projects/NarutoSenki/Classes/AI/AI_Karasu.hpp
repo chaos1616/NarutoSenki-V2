@@ -6,34 +6,34 @@ class AI_Karasu : public Hero
 	void perform()
 	{
 
-		if (!this->findEnemy("Hero", winSize.width / 2 - 32, true))
+		if (!findEnemy("Hero", winSize.width / 2 - 32, true))
 		{
-			if (!this->findEnemy("Flog", winSize.width / 2 - 32, true))
+			if (!findEnemy("Flog", winSize.width / 2 - 32, true))
 			{
-				this->_mainTarget = NULL;
+				_mainTarget = NULL;
 			}
 		}
 
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			if (abs(ccpSub(_master->getPosition(), this->getPosition()).x) > winSize.width / 2 - 48)
+			if (abs(ccpSub(_master->getPosition(), getPosition()).x) > winSize.width / 2 - 48)
 			{
-				if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
+				if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
 				{
-					moveDirection = ccpNormalize(ccpSub(_master->getPosition(), this->getPosition()));
-					this->walk(moveDirection);
+					moveDirection = ccpNormalize(ccpSub(_master->getPosition(), getPosition()));
+					walk(moveDirection);
 					return;
 				}
 			}
 			CCPoint sp;
 			if (_mainTarget->_originY)
 			{
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), this->getPosition());
+				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
 			}
 			else
 			{
-				sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
+				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
 
 			if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
@@ -41,27 +41,27 @@ class AI_Karasu : public Hero
 
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
-					if (this->_master->getActionState() == State::IDLE ||
-						this->_master->getActionState() == State::WALK ||
-						this->_master->getActionState() == State::ATTACK ||
-						this->_master->getActionState() == State::SATTACK ||
-						this->_master->getActionState() == State::OATTACK ||
-						this->_master->getActionState() == State::O2ATTACK)
+					if (_master->getActionState() == State::IDLE ||
+						_master->getActionState() == State::WALK ||
+						_master->getActionState() == State::ATTACK ||
+						_master->getActionState() == State::SATTACK ||
+						_master->getActionState() == State::OATTACK ||
+						_master->getActionState() == State::O2ATTACK)
 					{
 
 						moveDirection = ccpNormalize(sp);
-						this->walk(moveDirection);
+						walk(moveDirection);
 						return;
 					}
 				}
 				else
 				{
-					if (this->getActionState() == State::IDLE ||
-						this->getActionState() == State::WALK ||
-						this->getActionState() == State::ATTACK)
+					if (getActionState() == State::IDLE ||
+						getActionState() == State::WALK ||
+						getActionState() == State::ATTACK)
 					{
-						this->changeSide(sp);
-						this->attack(NAttack);
+						changeSide(sp);
+						attack(NAttack);
 					}
 				}
 				return;
@@ -71,21 +71,21 @@ class AI_Karasu : public Hero
 
 				if (abs(sp.x) > 32 || abs(sp.y) > 16)
 				{
-					if (this->_master->getActionState() == State::IDLE ||
-						this->_master->getActionState() == State::WALK ||
-						this->_master->getActionState() == State::ATTACK ||
-						this->_master->getActionState() == State::SATTACK ||
-						this->_master->getActionState() == State::OATTACK ||
-						this->_master->getActionState() == State::O2ATTACK)
+					if (_master->getActionState() == State::IDLE ||
+						_master->getActionState() == State::WALK ||
+						_master->getActionState() == State::ATTACK ||
+						_master->getActionState() == State::SATTACK ||
+						_master->getActionState() == State::OATTACK ||
+						_master->getActionState() == State::O2ATTACK)
 					{
 						moveDirection = ccpNormalize(sp);
-						this->walk(moveDirection);
+						walk(moveDirection);
 						return;
 					}
 				}
-				else if (this->getActionState() == State::IDLE ||
-						 this->getActionState() == State::WALK ||
-						 this->getActionState() == State::ATTACK)
+				else if (getActionState() == State::IDLE ||
+						 getActionState() == State::WALK ||
+						 getActionState() == State::ATTACK)
 				{
 
 					if (_master->getActionState() == State::IDLE ||
@@ -96,7 +96,7 @@ class AI_Karasu : public Hero
 						if (_master->_isCanSkill2 && _mainTarget->getGP() < 5000 && (_master->_isControled || _master->_isAI == true))
 						{
 
-							this->changeSide(sp);
+							changeSide(sp);
 
 							if (strcmp(_master->getRole()->getCString(), "Player") != 0)
 							{
@@ -110,8 +110,8 @@ class AI_Karasu : public Hero
 						else
 						{
 
-							this->changeSide(sp);
-							this->attack(NAttack);
+							changeSide(sp);
+							attack(NAttack);
 						}
 					}
 				}
@@ -119,28 +119,28 @@ class AI_Karasu : public Hero
 			}
 		}
 
-		if (abs(ccpSub(_master->getPosition(), this->getPosition()).x) > winSize.width / 2 - 64)
+		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > winSize.width / 2 - 64)
 		{
-			CCPoint moveDirection = ccpNormalize(ccpSub(_master->getPosition(), this->getPosition()));
-			this->walk(moveDirection);
+			CCPoint moveDirection = ccpNormalize(ccpSub(_master->getPosition(), getPosition()));
+			walk(moveDirection);
 			return;
 		}
 		else
 		{
 			if (
-				this->_master->getActionState() == State::WALK ||
-				this->_master->getActionState() == State::ATTACK ||
-				this->_master->getActionState() == State::SATTACK ||
-				this->_master->getActionState() == State::OATTACK)
+				_master->getActionState() == State::WALK ||
+				_master->getActionState() == State::ATTACK ||
+				_master->getActionState() == State::SATTACK ||
+				_master->getActionState() == State::OATTACK)
 			{
-				this->stepOn();
+				stepOn();
 			}
 			else
 			{
-				if (this->_actionState == State::WALK ||
-					this->_actionState == State::ATTACK)
+				if (_actionState == State::WALK ||
+					_actionState == State::ATTACK)
 				{
-					this->idle();
+					idle();
 				}
 			}
 		}

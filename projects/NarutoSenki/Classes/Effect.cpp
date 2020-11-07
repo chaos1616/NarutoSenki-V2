@@ -2,12 +2,12 @@
 #include "CharacterBase.h"
 using namespace CocosDenshion;
 
-Effect::Effect(void)
+Effect::Effect()
 {
 }
 
 
-Effect::~Effect(void)
+Effect::~Effect()
 {
 }
 

@@ -1,8 +1,5 @@
 #pragma once
-#include "cocos2d.h"
-#include "SimpleAudioEngine.h"
 #include "Defines.h"
-#include "cocos-ext.h"
 #include "PauseLayer.h"
 #include "GearLayer.h"
 #include "GameOver.h"
@@ -17,14 +14,9 @@
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #include "glfw3.h"
 #define _isPressed(__WINDOW__, __KEY__) glfwGetKey(__WINDOW__, __KEY__)
-#endif
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "../../../cocos2dx/platform/android/jni/JniHelper.h"
 #endif
-
-USING_NS_CC;
-USING_NS_CC_EXT;
 
 class HeroElement;
 class BGLayer;
@@ -33,8 +25,8 @@ class HudLayer;
 class GameLayer : public CCLayer
 {
 public:
-	GameLayer(void);
-	~GameLayer(void);
+	GameLayer();
+	~GameLayer();
 
 	CCTMXTiledMap *currentMap;
 	HeroElement *currentPlayer;
@@ -98,7 +90,6 @@ public:
 	void JoyStickUpdate(CCPoint direction);
 
 	CC_SYNTHESIZE(bool, _isSkillFinish, SkillFinish);
-	void checkPost(float dt);
 	void checkTower();
 	void checkBackgroundMusic();
 
@@ -118,10 +109,9 @@ public:
 	void removeOugisMark(int type);
 	void setOugis(CCNode *sender);
 	void removeOugis();
+
 	CCNode *ougisChar;
-
 	CCNode *controlChar;
-
 	CCLayer *blend;
 
 	void onLeft();
@@ -146,7 +136,6 @@ public:
 	static bool checkHasAnyMovement();
 
 protected:
-	void onHttpRequestCompleted(CCHttpClient* client, CCHttpResponse* response);
 	virtual void onEnter();
 	virtual void onExit();
 

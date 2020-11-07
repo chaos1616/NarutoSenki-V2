@@ -14,7 +14,7 @@ GLFWwindow *_window = NULL;
 
 using namespace CocosDenshion;
 
-GameLayer::GameLayer(void)
+GameLayer::GameLayer()
 {
 	_isAttackButtonRelease = true;
 	_isSkillFinish = true;
@@ -60,7 +60,7 @@ GameLayer::GameLayer(void)
 #endif
 }
 
-GameLayer::~GameLayer(void)
+GameLayer::~GameLayer()
 {
 	//CC_SAFE_RELEASE(totalKills);
 	CC_SAFE_RELEASE(totalTM);
@@ -402,10 +402,6 @@ void GameLayer::initHeros()
 	this->initTower();
 
 	this->schedule(schedule_selector(GameLayer::updateViewPoint), 0.00f);
-
-	/*if(strcmp(currentPlayer->getCharacter()->getCString(),"Asuma")==0){
-		this->schedule(schedule_selector(GameLayer::checkPost),10.0f);
-	}*/
 
 	//NOTE: Set all characters speed to zero. (Control movement before game real start)
 	CCARRAY_FOREACH(_CharacterArray, pObject)
@@ -1171,68 +1167,6 @@ void GameLayer::onLeft()
 
 	menuScene->addChild(menuLayer);
 	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f, menuScene));
-}
-
-void GameLayer::checkPost(float dt)
-{
-
-	if (!isPosting && postTime < 10)
-	{
-
-		// isPosting = true;
-		// postTime++;
-		// cocos2d::extension::CCHttpRequest *request = new cocos2d::extension::CCHttpRequest();
-		// std::string codeFinal;
-
-		// std::string code2 = "&pw=" + PWord;
-		// std::string code1 = CCString::createWithFormat("code=50&id=%d", MemberID)->getCString();
-		// std::string code3 = CCString::createWithFormat("&version=%d", CURRENT_VERSION)->getCString();
-		// std::string url = SERVER "nsk/list.php?" + code1 + code2 + code3;
-		// request->setUrl(url.c_str());
-		// request->setRequestType(cocos2d::extension::CCHttpRequest::kHttpGet);
-
-		// request->setResponseCallback(this, httpresponse_selector(GameLayer::onHttpRequestCompleted));
-
-		// request->setTag("Post_My_Data");
-		// cocos2d::extension::CCHttpClient::getInstance()->send(request);
-		// request->release();
-	}
-	else
-	{
-		SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
-		CCDirector::sharedDirector()->end();
-		return;
-	}
-}
-
-void GameLayer::onHttpRequestCompleted(CCHttpClient *client, CCHttpResponse *response)
-{
-
-	// isPosting = false;
-
-	// cocos2d::extension::CCHttpResponse *response = (cocos2d::extension::CCHttpResponse *)data;
-	// if (!response)
-	// {
-	// 	return;
-	// }
-
-	// int statusCode = response->getResponseCode();
-	// char statusString[64] = {};
-
-	// if (!response->isSucceed())
-	// {
-	// 	return;
-	// }
-	// std::vector<char> *buffer = response->getResponseData();
-
-	// Document doc;
-
-	// std::string buf(buffer->begin(), buffer->end());
-
-	// if (strcmp(buf.c_str(), "postOK") == 0)
-	// {
-	// 	this->unschedule(schedule_selector(GameLayer::checkPost));
-	// }
 }
 
 void GameLayer::checkBackgroundMusic(float dt)

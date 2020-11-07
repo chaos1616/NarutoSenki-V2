@@ -2,14 +2,14 @@
 #include "HudLayer.h"
 USING_NS_CC;
 
-HPBar::HPBar(void)
+HPBar::HPBar()
 {
 
 	hpBar = NULL;
 	hpBottom = NULL;
 };
 
-HPBar::~HPBar(void){};
+HPBar::~HPBar(){};
 
 bool HPBar::init(const char *szImage)
 {

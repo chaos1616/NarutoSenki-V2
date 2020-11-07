@@ -1,15 +1,10 @@
 #ifndef __HUB_LAYER_H__
 #define __HUB_LAYER_H__
-#include "cocos2d.h"
-#include "Defines.h"
-#include "JoyStick.h"
-#include "GameLayer.h"
-#include "Characters.h"
 #include "Defines.h"
 #include "ActionButton.h"
-#include "SimpleAudioEngine.h"
-
-USING_NS_CC;
+#include "Characters.h"
+#include "JoyStick.h"
+#include "GameLayer.h"
 
 #define DESKTOP_UI_SCALE 0.8f
 #define DESKTOP_UI_MASK_SCALE 0.8f + 0.04f
@@ -19,7 +14,7 @@ class GameLayer;
 class MiniIcon : public CCSprite
 {
 public:
-	MiniIcon(void);
+	MiniIcon();
 	~MiniIcon();
 
 	CC_SYNTHESIZE(unsigned int, _charNO, CharNO);
@@ -36,8 +31,8 @@ public:
 class HudLayer : public CCLayer
 {
 public:
-	HudLayer(void);
-	~HudLayer(void);
+	HudLayer();
+	~HudLayer();
 
 	void updateSQL(float dt);
 	bool isOpenSQL;

@@ -6,6 +6,6 @@ class AI_DogWall : public Hero
     void perform()
     {
 
-        this->attack(NAttack);
+        attack(NAttack);
     }
 };

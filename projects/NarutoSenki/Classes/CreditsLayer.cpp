@@ -2,11 +2,11 @@
 using namespace CocosDenshion;
 #include "StartMenu.h"
 
-CreditsLayer::CreditsLayer(void)
+CreditsLayer::CreditsLayer()
 {
 }
 
-CreditsLayer::~CreditsLayer(void)
+CreditsLayer::~CreditsLayer()
 {
 }
 

@@ -3,12 +3,12 @@
 /*----------------------
 init RankCharButton
 ----------------------*/
-RankCharButton::RankCharButton(void)
+RankCharButton::RankCharButton()
 {
 	_btnType = NULL;
 }
 
-RankCharButton::~RankCharButton(void)
+RankCharButton::~RankCharButton()
 {
 }
 
@@ -114,7 +114,7 @@ RankCharButton *RankCharButton::create(const char *szImage)
 	}
 }
 
-RakingLayer::RakingLayer(void)
+RakingLayer::RakingLayer()
 {
 	_screwLayer1 = NULL;
 	isPosting = false;
@@ -128,7 +128,7 @@ RakingLayer::RakingLayer(void)
 	isGroupSelect = false;
 }
 
-RakingLayer::~RakingLayer(void)
+RakingLayer::~RakingLayer()
 {
 }
 

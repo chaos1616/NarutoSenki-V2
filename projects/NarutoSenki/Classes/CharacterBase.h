@@ -29,8 +29,8 @@ typedef enum{
 class HPBar;
 class CharacterBase :public CCSprite{
 public:
-	CharacterBase(void);
-	~CharacterBase(void);
+	CharacterBase();
+	~CharacterBase();
 
 	virtual void		setID(CCString* character,CCString* role,CCString *group);
 	virtual	void		setHPbar();

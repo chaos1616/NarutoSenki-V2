@@ -7,7 +7,7 @@ USING_NS_CC_EXT;
 using namespace CocosDenshion;
 #include <fstream>
 
-GameOver::GameOver(void)
+GameOver::GameOver()
 {
 	exitLayer = NULL;
 	cheatLayer = NULL;
@@ -15,7 +15,7 @@ GameOver::GameOver(void)
 	refreshBtn = NULL;
 }
 
-GameOver::~GameOver(void)
+GameOver::~GameOver()
 {
 	CCAnimationCache::purgeSharedAnimationCache();
 	CCSpriteFrameCache::sharedSpriteFrameCache()->removeUnusedSpriteFrames();

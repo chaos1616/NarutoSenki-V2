@@ -1,11 +1,5 @@
 #pragma once
-#include "cocos2d.h"
-#include "cocos-ext.h"
-#include "SimpleAudioEngine.h"
 #include "Defines.h"
-
-USING_NS_CC;
-USING_NS_CC_EXT;
 
 // declare menuButton
 enum sbtnType
@@ -25,8 +19,8 @@ class SelectLayer;
 class SkillLayer : public CCLayer
 {
 public:
-	SkillLayer(void);
-	~SkillLayer(void);
+	SkillLayer();
+	~SkillLayer();
 
 	bool init();
 
@@ -73,8 +67,8 @@ private:
 class SelectButton : public CCSprite, public CCTouchDelegate
 {
 public:
-	SelectButton(void);
-	~SelectButton(void);
+	SelectButton();
+	~SelectButton();
 
 	CC_SYNTHESIZE_RETAIN(CCString *, _charName, CharName);
 
@@ -100,5 +94,5 @@ protected:
 	virtual void onExit();
 	virtual bool ccTouchBegan(CCTouch *touch, CCEvent *event);
 
-	bool containsTouchLocation(CCTouch *touch);
+	inline bool containsTouchLocation(CCTouch *touch);
 };

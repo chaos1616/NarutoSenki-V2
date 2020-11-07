@@ -15,8 +15,8 @@ class GameLayer;
 class GameOver : public CCLayer{
 
 public:
-	GameOver(void);
-	~GameOver(void);
+	GameOver();
+	~GameOver();
 
 	bool	init(CCRenderTexture* snapshoot);
 	CC_SYNTHESIZE(bool,_isWin,Win);

@@ -7,115 +7,105 @@
 
 USING_NS_CC;
 
-class HPBar;
-
-class HeroElement : public CharacterBase  {
+class HeroElement : public CharacterBase
+{
 public:
-	HeroElement(void);
-	~HeroElement(void);
+	HeroElement();
+	~HeroElement();
 
-	//CREATE_FUNC(HeroElement);
-	bool	init();
-	void	initAction();
-	void	setHPbar();
-	void	setShadows();
-	void    changeHPbar();
-	void	neicun(float dt);
-	virtual void setID(CCString* character,CCString* role,CCString *group);
-	virtual void setAI(float dt);
+	bool init();
+	void initAction();
+	void setHPbar();
+	void setShadows();
+	void changeHPbar();
+	void neicun(float dt);
 
+	CCSprite *rebornSprite;
+	CCLabelBMFont *rebornLabel;
+	void reborn(float dt);
+	void dealloc();
 
-	CCSprite* rebornSprite;
-	CCLabelBMFont* rebornLabel;
-	void	reborn(float dt);
-	void	dealloc();
-
-protected: 
-	
-	
-	void	countDown(float dt);
+protected:
+	void countDown(float dt);
 };
 
-
-class Flog: public CharacterBase{
+class Flog : public CharacterBase
+{
 public:
-	Flog(void);
-	~Flog(void);
+	Flog();
+	~Flog();
 
 	CREATE_FUNC(Flog);
-	bool	init();
-	void	initAction();
-	void	setHPbar();
+	bool init();
+	void initAction();
+	void setHPbar();
 
-	float   _mainPosY;
-	float	_randomPosX;
-	float	_randomPosY;
+	float _mainPosY;
+	float _randomPosX;
+	float _randomPosY;
 
-	void	setID(CCString* character,CCString* role,CCString *group);
-	
+	void setID(CCString *character, CCString *role, CCString *group);
 
-protected: 
-	void	dealloc();
-	void	setAI(float dt);
-
-
+protected:
+	void dealloc();
+	void setAI(float dt);
 };
 
-class Tower: public CharacterBase{
+class Tower : public CharacterBase
+{
 public:
-	Tower(void);
-	~Tower(void);
+	Tower();
+	~Tower();
 
 	CREATE_FUNC(Tower);
-	bool	init();
-	void	initAction();
-	void	setHPbar();
-	void	dealloc();    
-	void	setID(CCString* character,CCString* role,CCString *group);
-
+	bool init();
+	void initAction();
+	void setHPbar();
+	void dealloc();
+	void setID(CCString *character, CCString *role, CCString *group);
 };
 
-class Monster: public CharacterBase{
+class Monster : public CharacterBase
+{
 public:
-	Monster(void);
-	~Monster(void);
+	Monster();
+	~Monster();
 
 	CREATE_FUNC(Monster);
-	bool	init();
-	void	initAction(); 
-	void	setID(CCString* character,CCString* role,CCString *group);
-	void	setHPbar();
-	void    changeHPbar();
-	void	setDirectMove(unsigned int length,float delay,bool isReverse);
-	void	setEaseIn(unsigned int length,float delay);
-	void	setDirectMoveBy(unsigned int length,float delay);
-protected: 
-	void	dealloc();
-	void	dealloc2();
-	void	setAI(float dt);
-	void	setResume();
-	
+	bool init();
+	void initAction();
+	void setID(CCString *character, CCString *role, CCString *group);
+	void setHPbar();
+	void changeHPbar();
+	void setDirectMove(unsigned int length, float delay, bool isReverse);
+	void setEaseIn(unsigned int length, float delay);
+	void setDirectMoveBy(unsigned int length, float delay);
+
+protected:
+	void dealloc();
+	void dealloc2();
+	void setAI(float dt);
+	void setResume();
 };
 
-class Bullet: public CharacterBase{
+class Bullet : public CharacterBase
+{
 public:
-	Bullet(void);
-	~Bullet(void);
+	Bullet();
+	~Bullet();
 
 	CREATE_FUNC(Bullet);
-	bool	init();
-	void	initAction(); 
-	void	setID(CCString* character,CCString* role,CCString *group);
-	
-	void	setMove(unsigned int length,float delay,bool isReverse);
-	void	setEaseIn(unsigned int length,float delay);
-	
-	void    setAttack(float dt);
+	bool init();
+	void initAction();
+	void setID(CCString *character, CCString *role, CCString *group);
 
-protected: 
-	
-	void	dealloc();
-	void    dealloc2();
+	void setMove(unsigned int length, float delay, bool isReverse);
+	void setEaseIn(unsigned int length, float delay);
 
+	void setAttack(float dt);
+
+protected:
+	void dealloc();
+	void dealloc2();
 };
 #endif

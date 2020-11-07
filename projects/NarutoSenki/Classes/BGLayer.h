@@ -3,24 +3,24 @@
 #include "GameLayer.h"
 
 USING_NS_CC;
+
 class GameLayer;
 
-class BGLayer: public CCLayer{
+class BGLayer : public CCLayer
+{
 
 public:
-	BGLayer(void);
-	~BGLayer(void);
+	BGLayer();
+	~BGLayer();
 
-	CCTexture2D*	texMap;
-	CCSprite*		bgMap;
+	CCTexture2D *texMap;
+	CCSprite *bgMap;
 
-	GameLayer*			_delegate;
+	GameLayer *_delegate;
 
-	void	setDelegate(GameLayer* layer);
-	void	initBg();
+	void setDelegate(GameLayer *layer);
+	void initBg();
 	virtual bool init();
 
 	CREATE_FUNC(BGLayer);
-
 };
-

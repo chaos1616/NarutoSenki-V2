@@ -23,16 +23,16 @@ class AI_Hidan : public Hero
 
 					if (_mainTarget->_originY)
 					{
-						sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), this->getPosition());
+						sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
 					}
 					else
 					{
-						sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
+						sp = ccpSub(_mainTarget->getPosition(), getPosition());
 					}
 					if ((abs(sp.x) > 8 || abs(sp.y) > 8))
 					{
 						moveDirection = ccpNormalize(sp);
-						this->walk(moveDirection);
+						walk(moveDirection);
 						return;
 					}
 					else
@@ -44,14 +44,14 @@ class AI_Hidan : public Hero
 							CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 							{
 								CharacterBase *tempHero = (CharacterBase *)pObject;
-								if (tempHero->getGroup() != this->getGroup() && atoi(tempHero->getHP()->getCString()) < 2000 && tempHero->getActionState() != State::DEAD && (strcmp(tempHero->getRole()->getCString(), "Player") == 0 || strcmp(tempHero->getRole()->getCString(), "Com") == 0))
+								if (tempHero->getGroup() != getGroup() && atoi(tempHero->getHP()->getCString()) < 2000 && tempHero->getActionState() != State::DEAD && (strcmp(tempHero->getRole()->getCString(), "Player") == 0 || strcmp(tempHero->getRole()->getCString(), "Com") == 0))
 								{
-									this->attack(NAttack);
+									attack(NAttack);
 									return;
 								}
 							}
 
-							this->idle();
+							idle();
 							return;
 						}
 					}
@@ -61,67 +61,67 @@ class AI_Hidan : public Hero
 
 		if (!_isFound)
 		{
-			this->findEnemy2("Hero");
+			findEnemy2("Hero");
 		}
 
 		if (_isCanGear06)
 		{
-			if ((this->getActionState() == State::FLOAT_AIR ||
-				 this->getActionState() == State::AIRHURT ||
-				 this->getActionState() == State::HURT ||
-				 this->getActionState() == State::KOCKDOWN) &&
-				this->getHpPercent() < 0.5 && !_isBati && !_isWudi)
+			if ((getActionState() == State::FLOAT_AIR ||
+				 getActionState() == State::AIRHURT ||
+				 getActionState() == State::HURT ||
+				 getActionState() == State::KOCKDOWN) &&
+				getHpPercent() < 0.5 && !_isBati && !_isWudi)
 			{
-				this->useGear(gear06);
+				useGear(gear06);
 			}
 		}
-		if (atoi(this->getCoin()->getCString()) >= 500 && !_isControled && _delegate->_isHardCoreGame)
+		if (atoi(getCoin()->getCString()) >= 500 && !_isControled && _delegate->_isHardCoreGame)
 		{
-			if (this->getGearArray()->count() == 0)
+			if (getGearArray()->count() == 0)
 			{
-				this->setGear(gear06);
+				setGear(gear06);
 			}
-			else if (this->getGearArray()->count() == 1)
+			else if (getGearArray()->count() == 1)
 			{
-				this->setGear(gear01);
+				setGear(gear01);
 			}
-			else if (this->getGearArray()->count() == 2)
+			else if (getGearArray()->count() == 2)
 			{
-				this->setGear(gear07);
+				setGear(gear07);
 			}
 		}
 
-		if (this->checkRetri() && !_isBati && !_isFound)
+		if (checkRetri() && !_isBati && !_isFound)
 		{
 			if (_mainTarget != NULL)
 			{
-				if (this->stepBack2())
+				if (stepBack2())
 				{
 					return;
 				}
 			}
 			else
 			{
-				if (this->stepBack())
+				if (stepBack())
 				{
 					return;
 				}
 			}
 		}
 
-		if (isBaseDanger && this->checkBase() && !_isControled && !_isBati && !_isFound)
+		if (isBaseDanger && checkBase() && !_isControled && !_isBati && !_isFound)
 		{
 			bool needBack = false;
-			if (strcmp(Akatsuki, this->getGroup()->getCString()) == 0)
+			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
 			{
-				if (this->getPositionX() < 85 * 32)
+				if (getPositionX() < 85 * 32)
 				{
 					needBack = true;
 				}
 			}
 			else
 			{
-				if (this->getPositionX() > 11 * 32)
+				if (getPositionX() > 11 * 32)
 				{
 					needBack = true;
 				}
@@ -129,7 +129,7 @@ class AI_Hidan : public Hero
 
 			if (needBack)
 			{
-				if (this->stepBack2())
+				if (stepBack2())
 				{
 					return;
 				}
@@ -143,11 +143,11 @@ class AI_Hidan : public Hero
 
 			if (_mainTarget->_originY)
 			{
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), this->getPosition());
+				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
 			}
 			else
 			{
-				sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
+				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
@@ -157,17 +157,17 @@ class AI_Hidan : public Hero
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);
-						this->walk(moveDirection);
+						walk(moveDirection);
 						return;
 					}
 					if (_isCanSkill1 && !_isBati && !_isFound)
 					{
-						this->changeSide(sp);
-						this->attack(SKILL1);
+						changeSide(sp);
+						attack(SKILL1);
 						return;
 					}
-					this->changeSide(sp);
-					this->attack(OUGIS2);
+					changeSide(sp);
+					attack(OUGIS2);
 					return;
 				}
 				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isBati)
@@ -176,25 +176,25 @@ class AI_Hidan : public Hero
 					if (abs(sp.x) > 56 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);
-						this->walk(moveDirection);
+						walk(moveDirection);
 						return;
 					}
 
-					this->changeSide(sp);
-					this->attack(SKILL2);
+					changeSide(sp);
+					attack(SKILL2);
 					return;
 				}
 				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControled && !_isBati && !_isFound)
 				{
 					if (abs(sp.x) < 160)
 					{
-						this->stepBack2();
+						stepBack2();
 						return;
 					}
 					else
 					{
 
-						this->idle();
+						idle();
 						return;
 					}
 				}
@@ -203,29 +203,29 @@ class AI_Hidan : public Hero
 					if ((abs(sp.x) > 48 || abs(sp.y) > 32) && !_isBati)
 					{
 						moveDirection = ccpNormalize(sp);
-						this->walk(moveDirection);
+						walk(moveDirection);
 						return;
 					}
 					if (_isCanOugis1 && !_isBati && !_isControled && _mainTarget->getGP() < 5000)
 					{
-						this->changeSide(sp);
-						this->attack(OUGIS1);
+						changeSide(sp);
+						attack(OUGIS1);
 					}
 					else if (_isCanSkill3 && !_isBati)
 					{
-						this->changeSide(sp);
-						this->attack(SKILL3);
+						changeSide(sp);
+						attack(SKILL3);
 					}
 					else
 					{
 						if (!_isBati)
 						{
-							this->changeSide(sp);
-							this->attack(NAttack);
+							changeSide(sp);
+							attack(NAttack);
 						}
 						else
 						{
-							this->idle();
+							idle();
 						}
 					}
 
@@ -235,9 +235,9 @@ class AI_Hidan : public Hero
 		}
 		if (!_mainTarget && !_isFound && !_isBati)
 		{
-			if (!this->findEnemy2("Flog"))
+			if (!findEnemy2("Flog"))
 			{
-				this->findEnemy2("Tower");
+				findEnemy2("Tower");
 			}
 		}
 
@@ -249,17 +249,17 @@ class AI_Hidan : public Hero
 
 			if (_mainTarget->_originY)
 			{
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), this->getPosition());
+				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
 			}
 			else
 			{
-				sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
+				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
 				moveDirection = ccpNormalize(sp);
-				this->walk(moveDirection);
+				walk(moveDirection);
 				return;
 			}
 
@@ -267,41 +267,41 @@ class AI_Hidan : public Hero
 			{
 				if (_isCanSkill3 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger && !_isBati)
 				{
-					this->changeSide(sp);
-					this->attack(SKILL3);
+					changeSide(sp);
+					attack(SKILL3);
 				}
 				else if (_isCanSkill2 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger && !_isBati)
 				{
-					this->changeSide(sp);
-					this->attack(SKILL2);
+					changeSide(sp);
+					attack(SKILL2);
 				}
 				else
 				{
-					this->changeSide(sp);
-					this->attack(NAttack);
+					changeSide(sp);
+					attack(NAttack);
 				}
 			}
 			return;
 		}
 		if (!_isBati)
 		{
-			if (_isHealling && this->getHpPercent() < 1)
+			if (_isHealling && getHpPercent() < 1)
 			{
 				if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 				{
-					this->idle();
+					idle();
 				}
 			}
 			else
 			{
-				this->stepOn();
+				stepOn();
 			}
 		}
 		else
 		{
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
-				this->idle();
+				idle();
 			}
 		}
 	}

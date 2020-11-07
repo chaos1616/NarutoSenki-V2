@@ -105,11 +105,11 @@ struct sqlite3_api_routines {
   int  (*get_autocommit)(sqlite3*);
   void * (*get_auxdata)(sqlite3_context*,int);
   int  (*get_table)(sqlite3*,const char*,char***,int*,int*,char**);
-  int  (*global_recover)(void);
+  int  (*global_recover)();
   void  (*interruptx)(sqlite3*);
   sqlite_int64  (*last_insert_rowid)(sqlite3*);
-  const char * (*libversion)(void);
-  int  (*libversion_number)(void);
+  const char * (*libversion)();
+  int  (*libversion_number)();
   void *(*malloc)(int);
   char * (*mprintf)(const char*,...);
   int  (*open)(const char*,sqlite3**);
@@ -140,7 +140,7 @@ struct sqlite3_api_routines {
   int  (*step)(sqlite3_stmt*);
   int  (*table_column_metadata)(sqlite3*,const char*,const char*,const char*,
                                 char const**,char const**,int*,int*,int*);
-  void  (*thread_cleanup)(void);
+  void  (*thread_cleanup)();
   int  (*total_changes)(sqlite3*);
   void * (*trace)(sqlite3*,void(*xTrace)(void*,const char*),void*);
   int  (*transfer_bindings)(sqlite3_stmt*,sqlite3_stmt*);
@@ -182,7 +182,7 @@ struct sqlite3_api_routines {
                              void(*)(void*));
   int (*file_control)(sqlite3*,const char*,int,void*);
   sqlite3_int64 (*memory_highwater)(int);
-  sqlite3_int64 (*memory_used)(void);
+  sqlite3_int64 (*memory_used)();
   sqlite3_mutex *(*mutex_alloc)(int);
   void (*mutex_enter)(sqlite3_mutex*);
   void (*mutex_free)(sqlite3_mutex*);
@@ -197,7 +197,7 @@ struct sqlite3_api_routines {
   sqlite3_vfs *(*vfs_find)(const char*);
   int (*vfs_register)(sqlite3_vfs*,int);
   int (*vfs_unregister)(sqlite3_vfs*);
-  int (*xthreadsafe)(void);
+  int (*xthreadsafe)();
   void (*result_zeroblob)(sqlite3_context*,int);
   void (*result_error_code)(sqlite3_context*,int);
   int (*test_control)(int, ...);
@@ -226,7 +226,7 @@ struct sqlite3_api_routines {
   int (*extended_errcode)(sqlite3*);
   void (*log)(int,const char*,...);
   sqlite3_int64 (*soft_heap_limit64)(sqlite3_int64);
-  const char *(*sourceid)(void);
+  const char *(*sourceid)();
   int (*stmt_status)(sqlite3_stmt*,int,int);
   int (*strnicmp)(const char*,const char*,int);
   int (*unlock_notify)(sqlite3*,void(*)(void**,int),void*);
@@ -480,7 +480,7 @@ struct sqlite3_api_routines {
   /* This case when the file is being statically linked into the 
   ** application */
 # define SQLITE_EXTENSION_INIT1     /*no-op*/
-# define SQLITE_EXTENSION_INIT2(v)  (void)v; /* unused parameter */
+# define SQLITE_EXTENSION_INIT2(v)  ()v; /* unused parameter */
 # define SQLITE_EXTENSION_INIT3     /*no-op*/
 #endif
 

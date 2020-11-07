@@ -31,7 +31,7 @@
 
 	@synthesize window, glView;
 
-	-(void) applicationDidFinishLaunching:(NSNotification *)aNotification
+	-() applicationDidFinishLaunching:(NSNotification *)aNotification
 	{create the windownote that using NSResizableWindowMask causes the window to be a littlesmaller and therefore ipad graphics are not loaded
         NSRect rect = NSMakeRect(200, 200, 960, 480);
 		window = [[NSWindow alloc] initWithContentRect:rect
@@ -64,7 +64,7 @@
 		return YES;
 	}
 
-	-(void) dealloc
+	-() dealloc
 	{
 		cocos2d::CCDirector::sharedDirector()->end();
 		[super dealloc];

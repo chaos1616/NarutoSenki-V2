@@ -1,14 +1,12 @@
 #pragma once
-#include "cocos2d.h"
 #include "Defines.h"
-#include "SimpleAudioEngine.h"
 #include "GameLayer.h"
 #include "BGLayer.h"
 #include "HudLayer.h"
 
-#if (CC_TARGET_PLATFORM==CC_PLATFORM_ANDROID) 
-#include "../../../cocos2dx/platform/android/jni/JniHelper.h" 
-#endif  
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+#include "../../../cocos2dx/platform/android/jni/JniHelper.h"
+#endif
 
 #ifdef _WIN32
 #include <io.h>
@@ -19,18 +17,13 @@
 #include <sys/stat.h>
 #endif
 
-USING_NS_CC;
-USING_NS_CC_EXT;
-using namespace rapidjson; 
-
-class LoadLayer : public CCLayer{
-
+class LoadLayer : public CCLayer
+{
 public:
-	LoadLayer(void);
-	~LoadLayer(void);
+	LoadLayer();
+	~LoadLayer();
 
-
-	CCArray* tempHeros;
+	CCArray *tempHeros;
 	bool init();
 
 	//void dfsFolder(std::string folderPath, int depth);
@@ -38,9 +31,9 @@ public:
 
 	CREATE_FUNC(LoadLayer);
 
-	CC_SYNTHESIZE_RETAIN(GameLayer*,_gameLayer,GameLayer);
-	CC_SYNTHESIZE_RETAIN(BGLayer*,_bgLayer,BGLayer);
-	CC_SYNTHESIZE_RETAIN(HudLayer*,_hudLayer,HudLayer);
+	CC_SYNTHESIZE_RETAIN(GameLayer *, _gameLayer, GameLayer);
+	CC_SYNTHESIZE_RETAIN(BGLayer *, _bgLayer, BGLayer);
+	CC_SYNTHESIZE_RETAIN(HudLayer *, _hudLayer, HudLayer);
 	bool _isHardCoreMode;
 	bool _isRandomChar;
 
@@ -50,17 +43,14 @@ public:
 	void onLoadFinish(float dt);
 
 	bool isPosting;
-	void onHttpRequestCompleted(CCHttpClient* client, CCHttpResponse* response);
+	void onHttpRequestCompleted(CCHttpClient *client, CCHttpResponse *response);
 
-	CCArray* DLCArray;
+	CCArray *DLCArray;
+
 private:
-	
-	void preloadPlist(CCObject* obj);
+	void preloadPlist(CCObject *obj);
 
 protected:
 	void onEnter();
 	void onExit();
-
-
 };
-

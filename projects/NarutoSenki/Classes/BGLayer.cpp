@@ -1,11 +1,11 @@
 #include "BGLayer.h"
 
-BGLayer::BGLayer(void)
+BGLayer::BGLayer()
 {
 	texMap = NULL;
 }
 
-BGLayer::~BGLayer(void)
+BGLayer::~BGLayer()
 {
 }
 
@@ -14,7 +14,6 @@ bool BGLayer::init()
 	bool bRet = false;
 	do
 	{
-
 		CC_BREAK_IF(!CCLayer::init());
 
 		bRet = true;

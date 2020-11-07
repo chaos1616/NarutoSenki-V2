@@ -10,8 +10,8 @@ USING_NS_CC;
 class SelectLayer : public CCLayer
 {
 public:
-	SelectLayer(void);
-	~SelectLayer(void);
+	SelectLayer();
+	~SelectLayer();
 
 	virtual bool init();
 

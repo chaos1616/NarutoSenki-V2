@@ -1,14 +1,14 @@
 #include "JoyStick.h"
 #include "HudLayer.h"
 
-JoyStick::JoyStick(void)
+JoyStick::JoyStick()
 {
 	_delegate=NULL;
 	
 }
 
 
-JoyStick::~JoyStick(void)
+JoyStick::~JoyStick()
 {
 }
 

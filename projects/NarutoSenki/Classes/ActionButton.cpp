@@ -1,7 +1,7 @@
 #include "ActionButton.h"
 #include "HudLayer.h"
 
-ActionButton::ActionButton(void)
+ActionButton::ActionButton()
 {
 	_isDoubleSkill = false;
 	_freezeAction = NULL;
@@ -24,7 +24,7 @@ ActionButton::ActionButton(void)
 	gearSign = NULL;
 }
 
-ActionButton::~ActionButton(void)
+ActionButton::~ActionButton()
 {
 	CC_SAFE_RELEASE(_timeCout);
 	CC_SAFE_RELEASE(_coldDown);

@@ -6,14 +6,14 @@ class AI_Mask : public Hero
 	void perform()
 	{
 
-		if (strcmp(this->getCharacter()->getCString(), "MaskRaidon") == 0)
+		if (strcmp(getCharacter()->getCString(), "MaskRaidon") == 0)
 		{
 
-			if (!this->findEnemy("Flog", 0))
+			if (!findEnemy("Flog", 0))
 			{
-				if (!this->findEnemy("Hero", 0))
+				if (!findEnemy("Hero", 0))
 				{
-					if (!this->findEnemy("Tower", 0))
+					if (!findEnemy("Tower", 0))
 					{
 						_mainTarget = NULL;
 					}
@@ -23,11 +23,11 @@ class AI_Mask : public Hero
 		else
 		{
 
-			if (!this->findEnemy("Hero", 0))
+			if (!findEnemy("Hero", 0))
 			{
-				if (!this->findEnemy("Flog", 0))
+				if (!findEnemy("Flog", 0))
 				{
-					if (!this->findEnemy("Tower", 0))
+					if (!findEnemy("Tower", 0))
 					{
 						_mainTarget = NULL;
 					}
@@ -41,11 +41,11 @@ class AI_Mask : public Hero
 			CCPoint sp;
 			if (_mainTarget->_originY)
 			{
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), this->getPosition());
+				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
 			}
 			else
 			{
-				sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
+				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
 
 			if (strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0)
@@ -55,15 +55,15 @@ class AI_Mask : public Hero
 				{
 
 					moveDirection = ccpNormalize(sp);
-					this->walk(moveDirection);
+					walk(moveDirection);
 				}
 				else
 				{
-					if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
+					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
 					{
 
-						this->changeSide(sp);
-						this->attack(NAttack);
+						changeSide(sp);
+						attack(NAttack);
 					}
 				}
 				return;
@@ -75,34 +75,34 @@ class AI_Mask : public Hero
 				{
 
 					moveDirection = ccpNormalize(sp);
-					this->walk(moveDirection);
+					walk(moveDirection);
 					return;
 				}
 				else if ((abs(sp.x) > 48 || abs(sp.y) > 16) && !_isCanSkill1)
 				{
 
 					moveDirection = ccpNormalize(sp);
-					this->walk(moveDirection);
+					walk(moveDirection);
 					return;
 				}
-				else if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
+				else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
 				{
 
 					if (_isCanSkill1 && _mainTarget->getGP() < 5000)
 					{
-						this->changeSide(sp);
-						this->attack(SKILL1);
+						changeSide(sp);
+						attack(SKILL1);
 					}
 					else
 					{
-						this->changeSide(sp);
-						this->attack(NAttack);
+						changeSide(sp);
+						attack(NAttack);
 					}
 				}
 				return;
 			}
 		}
 
-		this->stepOn();
+		stepOn();
 	}
 };

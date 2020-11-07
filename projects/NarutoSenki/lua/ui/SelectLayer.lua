@@ -144,19 +144,19 @@ function SelectLayer:init()
 
     local page1_btn = ui.newImageMenuItem(
                           {
-            imageNormal = '#page1_off.png',
+            image = '#page1_off.png',
             imagePressed = '#page1_on.png',
             listener = SelectLayer.onPage1Btn
         })
     local page2_btn = ui.newImageMenuItem(
                           {
-            imageNormal = '#page2_off.png',
+            image = '#page2_off.png',
             imagePressed = '#page2_on.png',
             listener = SelectLayer.onPage2Btn
         })
     local page3_btn = ui.newImageMenuItem(
                           {
-            imageNormal = '#page3_off.png',
+            image = '#page3_off.png',
             imagePressed = '#page3_on.png',
             listener = SelectLayer.onPage3Btn
         })
@@ -233,7 +233,7 @@ function SelectLayer:init()
 
     local ranking_btn = ui.newImageMenuItem(
                             {
-            imageNormal = '#ranking_btn.png',
+            image = '#ranking_btn.png',
             listener = SelectLayer.onRankingBtn
         })
     ranking_btn:setAnchorPoint(1, 0.5)
@@ -243,7 +243,7 @@ function SelectLayer:init()
 
     local start_bt = ui.newImageMenuItem(
                          {
-            imageNormal = '#start_btn.png',
+            image = '#start_btn.png',
             listener = SelectLayer.onGameStart
         })
     local menu = ui.newMenu({start_bt})
@@ -253,7 +253,7 @@ function SelectLayer:init()
 
     local skill_bt = ui.newImageMenuItem(
                          {
-            imageNormal = '#skill_btn.png',
+            image = '#skill_btn.png',
             listener = SelectLayer.onSkillMenu
         })
     local menu2 = ui.newMenu({skill_bt})

@@ -7,13 +7,13 @@ using namespace CocosDenshion;
 /*----------------------
 init GearButton ;
 ----------------------*/
-GearButton::GearButton(void)
+GearButton::GearButton()
 {
 	soIcon = NULL;
 	_isBuyed = false;
 }
 
-GearButton::~GearButton(void)
+GearButton::~GearButton()
 {
 }
 
@@ -154,13 +154,13 @@ GearButton *GearButton::create(const char *szImage)
 	}
 }
 
-ScrewLayer::ScrewLayer(void)
+ScrewLayer::ScrewLayer()
 {
 	_delegate = NULL;
 	_gearArray = NULL;
 }
 
-ScrewLayer::~ScrewLayer(void)
+ScrewLayer::~ScrewLayer()
 {
 }
 
@@ -257,13 +257,13 @@ void ScrewLayer::ccTouchEnded(CCTouch *touch, CCEvent *event)
 	}
 };
 
-GearLayer::GearLayer(void)
+GearLayer::GearLayer()
 {
 	currentGear_layer = NULL;
 	currentGear = None;
 }
 
-GearLayer::~GearLayer(void)
+GearLayer::~GearLayer()
 {
 	_delegate->_isGear = false;
 }

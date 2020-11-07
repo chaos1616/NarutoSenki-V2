@@ -6,29 +6,29 @@ class AI_Hinata : public Hero
 	void perform()
 	{
 		_mainTarget = NULL;
-		this->findEnemy2("Hero");
-		if (atoi(this->getCoin()->getCString()) >= 500 && !_isControled && _delegate->_isHardCoreGame)
+		findEnemy2("Hero");
+		if (atoi(getCoin()->getCString()) >= 500 && !_isControled && _delegate->_isHardCoreGame)
 		{
-			if (this->getGearArray()->count() == 0)
+			if (getGearArray()->count() == 0)
 			{
-				this->setGear(gear00);
+				setGear(gear00);
 			}
-			else if (this->getGearArray()->count() == 1)
+			else if (getGearArray()->count() == 1)
 			{
-				this->setGear(gear01);
+				setGear(gear01);
 			}
-			else if (this->getGearArray()->count() == 2)
+			else if (getGearArray()->count() == 2)
 			{
-				this->setGear(gear02);
+				setGear(gear02);
 			}
 		}
 
-		if (this->checkRetri())
+		if (checkRetri())
 		{
 			if (_mainTarget != NULL)
 			{
 
-				if (this->stepBack2())
+				if (stepBack2())
 				{
 					return;
 				}
@@ -38,28 +38,28 @@ class AI_Hinata : public Hero
 
 				if (_isCanGear00)
 				{
-					this->useGear(gear00);
+					useGear(gear00);
 				}
-				if (this->stepBack())
+				if (stepBack())
 				{
 					return;
 				}
 			}
 		}
 
-		if (isBaseDanger && this->checkBase() && !_isControled)
+		if (isBaseDanger && checkBase() && !_isControled)
 		{
 			bool needBack = false;
-			if (strcmp(Akatsuki, this->getGroup()->getCString()) == 0)
+			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
 			{
-				if (this->getPositionX() < 85 * 32)
+				if (getPositionX() < 85 * 32)
 				{
 					needBack = true;
 				}
 			}
 			else
 			{
-				if (this->getPositionX() > 11 * 32)
+				if (getPositionX() > 11 * 32)
 				{
 					needBack = true;
 				}
@@ -69,9 +69,9 @@ class AI_Hinata : public Hero
 			{
 				if (_isCanGear00)
 				{
-					this->useGear(gear00);
+					useGear(gear00);
 				}
-				if (this->stepBack2())
+				if (stepBack2())
 				{
 					return;
 				}
@@ -85,11 +85,11 @@ class AI_Hinata : public Hero
 
 			if (_mainTarget->_originY)
 			{
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), this->getPosition());
+				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
 			}
 			else
 			{
-				sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
+				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
@@ -101,16 +101,16 @@ class AI_Hinata : public Hero
 					{
 						if (_isCanGear00)
 						{
-							this->useGear(gear00);
+							useGear(gear00);
 						}
 						moveDirection = ccpNormalize(sp);
-						this->walk(moveDirection);
+						walk(moveDirection);
 						return;
 					}
 
-					this->changeSide(sp);
+					changeSide(sp);
 
-					this->attack(OUGIS2);
+					attack(OUGIS2);
 					return;
 				}
 				else if (_isCanOugis1 && !_isControled && _mainTarget->getGP() < 5000)
@@ -120,20 +120,20 @@ class AI_Hinata : public Hero
 					{
 						if (_isCanGear00)
 						{
-							this->useGear(gear00);
+							useGear(gear00);
 						}
 						moveDirection = ccpNormalize(sp);
-						this->walk(moveDirection);
+						walk(moveDirection);
 						return;
 					}
-					this->changeSide(sp);
-					this->attack(OUGIS1);
+					changeSide(sp);
+					attack(OUGIS1);
 					return;
 				}
 				else if (_isCanSkill1)
 				{
-					this->changeSide(sp);
-					this->attack(SKILL1);
+					changeSide(sp);
+					attack(SKILL1);
 					return;
 				}
 				else if ((_isCanSkill2 || _isCanSkill3) && _mainTarget->getGP() < 5000 && _skillUPBuffValue)
@@ -142,23 +142,23 @@ class AI_Hinata : public Hero
 					{
 						if (_isCanGear00)
 						{
-							this->useGear(gear00);
+							useGear(gear00);
 						}
 						moveDirection = ccpNormalize(sp);
-						this->walk(moveDirection);
+						walk(moveDirection);
 						return;
 					}
 					if (_isCanSkill2)
 					{
-						this->changeSide(sp);
-						this->attack(SKILL2);
+						changeSide(sp);
+						attack(SKILL2);
 						return;
 					}
 
 					if (_isCanSkill3)
 					{
-						this->changeSide(sp);
-						this->attack(SKILL3);
+						changeSide(sp);
+						attack(SKILL3);
 						return;
 					}
 				}
@@ -166,13 +166,13 @@ class AI_Hinata : public Hero
 				{
 					if (abs(sp.x) < 160)
 					{
-						this->stepBack2();
+						stepBack2();
 						return;
 					}
 					else
 					{
 
-						this->idle();
+						idle();
 						return;
 					}
 				}
@@ -181,13 +181,13 @@ class AI_Hinata : public Hero
 					if (abs(sp.x) > 32 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);
-						this->walk(moveDirection);
+						walk(moveDirection);
 						return;
 					}
 					else
 					{
-						this->changeSide(sp);
-						this->attack(NAttack);
+						changeSide(sp);
+						attack(NAttack);
 					}
 
 					return;
@@ -195,9 +195,9 @@ class AI_Hinata : public Hero
 			}
 		}
 		_mainTarget = NULL;
-		if (!this->findEnemy2("Flog"))
+		if (!findEnemy2("Flog"))
 		{
-			this->findEnemy2("Tower");
+			findEnemy2("Tower");
 		}
 
 		if (_mainTarget)
@@ -208,17 +208,17 @@ class AI_Hinata : public Hero
 
 			if (_mainTarget->_originY)
 			{
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), this->getPosition());
+				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
 			}
 			else
 			{
-				sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
+				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
 				moveDirection = ccpNormalize(sp);
-				this->walk(moveDirection);
+				walk(moveDirection);
 				return;
 			}
 
@@ -226,37 +226,37 @@ class AI_Hinata : public Hero
 			{
 				if (_isCanSkill2 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
 				{
-					this->changeSide(sp);
-					this->attack(SKILL2);
+					changeSide(sp);
+					attack(SKILL2);
 				}
 				else if (_isCanSkill3 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
 				{
-					this->changeSide(sp);
-					this->attack(SKILL3);
+					changeSide(sp);
+					attack(SKILL3);
 				}
 				else
 				{
-					this->changeSide(sp);
-					this->attack(NAttack);
+					changeSide(sp);
+					attack(NAttack);
 				}
 			}
 			return;
 		}
 
-		if (_isHealling && this->getHpPercent() < 1)
+		if (_isHealling && getHpPercent() < 1)
 		{
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
-				this->idle();
+				idle();
 			}
 		}
 		else
 		{
 			if (_isCanGear00)
 			{
-				this->useGear(gear00);
+				useGear(gear00);
 			}
-			this->stepOn();
+			stepOn();
 		}
 	}
 };

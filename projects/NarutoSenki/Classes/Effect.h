@@ -6,21 +6,20 @@ USING_NS_CC;
 
 class CharacterBase;
 
-class Effect : public CCSprite{
+class Effect : public CCSprite
+{
 public:
-	Effect(void);
-	~Effect(void);
+	Effect();
+	~Effect();
 
-	virtual bool			init(const char *szImage,CCObject* Attacker);
-	static Effect*			create(const char *szImage,CCObject* Attacker);
+	virtual bool init(const char *szImage, CCObject *Attacker);
+	static Effect *create(const char *szImage, CCObject *Attacker);
 
-	CharacterBase* at;
+	CharacterBase *at;
 
 private:
-	
-	void					removeEffect();
-	void					removeFontEffect();
-	CCAction*				createEffectAnimation(const char* file,int frameCount,float fps,bool isRepeat);
-	CCAction*				createFontAnimation();
+	void removeEffect();
+	void removeFontEffect();
+	CCAction *createEffectAnimation(const char *file, int frameCount, float fps, bool isRepeat);
+	CCAction *createFontAnimation();
 };
-

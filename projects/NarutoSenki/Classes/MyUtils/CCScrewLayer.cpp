@@ -1,7 +1,7 @@
 #include "CCScrewLayer.h"
 
 
-CCScrewLayer::CCScrewLayer(void)
+CCScrewLayer::CCScrewLayer()
 {
 	itemArray=NULL;
 	totalRow=100;
@@ -10,7 +10,7 @@ CCScrewLayer::CCScrewLayer(void)
 }
 
 
-CCScrewLayer::~CCScrewLayer(void)
+CCScrewLayer::~CCScrewLayer()
 {
 }
 
@@ -83,14 +83,14 @@ void CCScrewLayer::ccTouchEnded(CCTouch* touch,CCEvent* event){
 /*----------------------
 init CCScrewItem ;
 ----------------------*/
-CCScrewItem::CCScrewItem(void)
+CCScrewItem::CCScrewItem()
 {
 	 linemenu=NULL;
 	 lockItem=NULL;
 }
 
 
-CCScrewItem::~CCScrewItem(void)
+CCScrewItem::~CCScrewItem()
 {
 
 }

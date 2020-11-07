@@ -8,8 +8,8 @@ class HudLayer;
 
 class ActionButton : public CCSprite,public CCTouchDelegate{
 public:
-	ActionButton(void);
-	~ActionButton(void);
+	ActionButton();
+	~ActionButton();
 
 	int						_clickNum;
 	float					_clickTime;

@@ -771,9 +771,71 @@ class AIProvider
 {
     static HeroElement *createAI(CCString *character, CCString *role, CCString *group);
 }
+/* ------- AI BEGIN ------- */
+class AI_Sakura : public Hero { AI_Sakura(); ~AI_Sakura(); };
+class AI_Pain : public Hero { AI_Pain(); ~AI_Pain(); };
+class AI_Mask : public Hero { AI_Mask(); ~AI_Mask(); };
+class AI_Mask : public Hero { AI_Mask(); ~AI_Mask(); };
+class AI_Mask : public Hero { AI_Mask(); ~AI_Mask(); };
+class AI_Slug : public Hero { AI_Slug(); ~AI_Slug(); };
+class AI_Centipede : public Hero { AI_Centipede(); ~AI_Centipede(); };
+class AI_Nagato : public Hero { AI_Nagato(); ~AI_Nagato(); };
+class AI_Asuma : public Hero { AI_Asuma(); ~AI_Asuma(); };
+class AI_DevaPath : public Hero { AI_DevaPath(); ~AI_DevaPath(); };
+class AI_AsuraPath : public Hero { AI_AsuraPath(); ~AI_AsuraPath(); };
+class AI_AnimalPath : public Hero { AI_AnimalPath(); ~AI_AnimalPath(); };
+class AI_Sai : public Hero { AI_Sai(); ~AI_Sai(); };
+class AI_Tenten : public Hero { AI_Tenten(); ~AI_Tenten(); };
+class AI_Suigetsu : public Hero { AI_Suigetsu(); ~AI_Suigetsu(); };
+class AI_Konan : public Hero { AI_Konan(); ~AI_Konan(); };
+class AI_Jiraiya : public Hero { AI_Jiraiya(); ~AI_Jiraiya(); };
+class AI_Shikamaru : public Hero { AI_Shikamaru(); ~AI_Shikamaru(); };
+class AI_Sasuke : public Hero { AI_Sasuke(); ~AI_Sasuke(); };
+class AI_ImmortalSasuke : public Hero { AI_ImmortalSasuke(); ~AI_ImmortalSasuke(); };
+class AI_Deidara : public Hero { AI_Deidara(); ~AI_Deidara(); };
+class AI_Minato : public Hero { AI_Minato(); ~AI_Minato(); };
+class AI_DogWall : public Hero { AI_DogWall(); ~AI_DogWall(); };
+class AI_Kakashi : public Hero { AI_Kakashi(); ~AI_Kakashi(); };
+class AI_Tobi : public Hero { AI_Tobi(); ~AI_Tobi(); };
+class AI_Hinata : public Hero { AI_Hinata(); ~AI_Hinata(); };
+class AI_Neji : public Hero { AI_Neji(); ~AI_Neji(); };
+class AI_Choji : public Hero { AI_Choji(); ~AI_Choji(); };
+class AI_Itachi : public Hero { AI_Itachi(); ~AI_Itachi(); };
+class AI_Orochimaru : public Hero { AI_Orochimaru(); ~AI_Orochimaru(); };
+class AI_Kurama : public Hero { AI_Kurama(); ~AI_Kurama(); };
+class AI_Naruto : public Hero { AI_Naruto(); ~AI_Naruto(); };
+class AI_NarutoClone : public Hero { AI_NarutoClone(); ~AI_NarutoClone(); };
+class AI_SageNaruto : public Hero { AI_SageNaruto(); ~AI_SageNaruto(); };
+class AI_SageNarutoClone : public Hero { AI_SageNarutoClone(); ~AI_SageNarutoClone(); };
+class AI_RikudoNaruto : public Hero { AI_RikudoNaruto(); ~AI_RikudoNaruto(); };
+class AI_RikudoNarutoClone : public Hero { AI_RikudoNarutoClone(); ~AI_RikudoNarutoClone(); };
+class AI_Gaara : public Hero { AI_Gaara(); ~AI_Gaara(); };
+class AI_Tobirama : public Hero { AI_Tobirama(); ~AI_Tobirama(); };
+class AI_Akamaru : public Hero { AI_Akamaru(); ~AI_Akamaru(); };
+class AI_Karasu : public Hero { AI_Karasu(); ~AI_Karasu(); };
+class AI_Saso : public Hero { AI_Saso(); ~AI_Saso(); };
+class AI_Parents : public Hero { AI_Parents(); ~AI_Parents(); };
+class AI_Sanshouuo : public Hero { AI_Sanshouuo(); ~AI_Sanshouuo(); };
+class AI_Kankuro : public Hero { AI_Kankuro(); ~AI_Kankuro(); };
+class AI_Chiyo : public Hero { AI_Chiyo(); ~AI_Chiyo(); };
+class AI_Kiba : public Hero { AI_Kiba(); ~AI_Kiba(); };
+class AI_SageJiraiya : public Hero { AI_SageJiraiya(); ~AI_SageJiraiya(); };
+class AI_Karin : public Hero { AI_Karin(); ~AI_Karin(); };
+class AI_Lee : public Hero { AI_Lee(); ~AI_Lee(); };
+class AI_RockLee : public Hero { AI_RockLee(); ~AI_RockLee(); };
+class AI_Tsunade : public Hero { AI_Tsunade(); ~AI_Tsunade(); };
+class AI_Jugo : public Hero { AI_Jugo(); ~AI_Jugo(); };
+class AI_Kisame : public Hero { AI_Kisame(); ~AI_Kisame(); };
+class AI_Ino : public Hero { AI_Ino(); ~AI_Ino(); };
+class AI_Hidan : public Hero { AI_Hidan(); ~AI_Hidan(); };
+class AI_Shino : public Hero { AI_Shino(); ~AI_Shino(); };
+class AI_Hiruzen : public Hero { AI_Hiruzen(); ~AI_Hiruzen(); };
+class AI_Kakuzu : public Hero { AI_Kakuzu(); ~AI_Kakuzu(); };
+class AI_Guardian : public Hero { AI_Guardian(); ~AI_Guardian(); };
+/* ------- AI END ------- */
+
 
 /* ------- UI Layer ------- */
-
 
 /* GameScene.h */
 class GameScene : public CCScene

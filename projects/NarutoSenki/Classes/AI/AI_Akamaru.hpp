@@ -6,25 +6,25 @@ class AI_Akamaru : public Hero
 	void perform()
 	{
 
-		if (!this->findEnemy("Hero", winSize.width / 2 - 32, true))
+		if (!findEnemy("Hero", winSize.width / 2 - 32, true))
 		{
-			if (!this->findEnemy("Flog", winSize.width / 2 - 32, true))
+			if (!findEnemy("Flog", winSize.width / 2 - 32, true))
 			{
-				if (!this->findEnemy("Tower", winSize.width / 2 - 32, true))
+				if (!findEnemy("Tower", winSize.width / 2 - 32, true))
 				{
-					this->_mainTarget = NULL;
+					_mainTarget = NULL;
 				}
 			}
 		}
 
 		CCPoint moveDirection;
 
-		if (abs(ccpSub(_master->getPosition(), this->getPosition()).x) > winSize.width / 2 - 48)
+		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > winSize.width / 2 - 48)
 		{
-			if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
+			if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
 			{
-				moveDirection = ccpNormalize(ccpSub(_master->getPosition(), this->getPosition()));
-				this->walk(moveDirection);
+				moveDirection = ccpNormalize(ccpSub(_master->getPosition(), getPosition()));
+				walk(moveDirection);
 				return;
 			}
 		}
@@ -35,11 +35,11 @@ class AI_Akamaru : public Hero
 			CCPoint sp;
 			if (_mainTarget->_originY)
 			{
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), this->getPosition());
+				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
 			}
 			else
 			{
-				sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
+				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
 
 			if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
@@ -48,14 +48,14 @@ class AI_Akamaru : public Hero
 				if (abs(sp.x) > 48 || abs(sp.y) > 32)
 				{
 					moveDirection = ccpNormalize(sp);
-					this->walk(moveDirection);
+					walk(moveDirection);
 				}
 				else
 				{
-					if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || _actionState == State::ATTACK)
+					if (getActionState() == State::IDLE || getActionState() == State::WALK || _actionState == State::ATTACK)
 					{
-						this->changeSide(sp);
-						this->attack(NAttack);
+						changeSide(sp);
+						attack(NAttack);
 					}
 				}
 				return;
@@ -67,18 +67,18 @@ class AI_Akamaru : public Hero
 				{
 
 					moveDirection = ccpNormalize(sp);
-					this->walk(moveDirection);
+					walk(moveDirection);
 					return;
 				}
 				else
 				{
-					if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
+					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
 					{
 
 						if (_master->_isCanSkill2 && _mainTarget->getGP() < 5000 && (_master->_isControled || _master->_isAI == true) &&
 							(_master->getActionState() == State::IDLE || _master->getActionState() == State::WALK || _master->getActionState() == State::ATTACK))
 						{
-							this->changeSide(sp);
+							changeSide(sp);
 							if (strcmp(_master->getRole()->getCString(), "Player") != 0)
 							{
 								_master->attack(SKILL2);
@@ -90,8 +90,8 @@ class AI_Akamaru : public Hero
 						}
 						else
 						{
-							this->changeSide(sp);
-							this->attack(NAttack);
+							changeSide(sp);
+							attack(NAttack);
 						}
 					}
 				}
@@ -100,17 +100,17 @@ class AI_Akamaru : public Hero
 			}
 		}
 
-		if (abs(ccpSub(_master->getPosition(), this->getPosition()).x) > winSize.width / 2 - 64)
+		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > winSize.width / 2 - 64)
 		{
 
-			CCPoint moveDirection = ccpNormalize(ccpSub(_master->getPosition(), this->getPosition()));
-			this->walk(moveDirection);
+			CCPoint moveDirection = ccpNormalize(ccpSub(_master->getPosition(), getPosition()));
+			walk(moveDirection);
 			return;
 		}
 		else
 		{
 
-			this->stepOn();
+			stepOn();
 		}
 	}
 };

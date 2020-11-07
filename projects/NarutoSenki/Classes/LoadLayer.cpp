@@ -7,11 +7,9 @@
 #include <direct.h>
 #endif
 
-USING_NS_CC_EXT;
 using namespace std;
-using namespace CocosDenshion;
 
-LoadLayer::LoadLayer(void)
+LoadLayer::LoadLayer()
 {
 	tempHeros = NULL;
 	loadNum = 0;
@@ -24,7 +22,7 @@ LoadLayer::LoadLayer(void)
 	DLCArray = NULL;
 }
 
-LoadLayer::~LoadLayer(void)
+LoadLayer::~LoadLayer()
 {
 
 	CC_SAFE_RELEASE(tempHeros);

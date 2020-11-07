@@ -6,26 +6,26 @@ class AI_Parents : public Hero
 	void perform()
 	{
 
-		if (!this->findEnemy("Hero", winSize.width / 2 - 32, true))
+		if (!findEnemy("Hero", winSize.width / 2 - 32, true))
 		{
 
-			if (!this->findEnemy("Flog", 48, true))
+			if (!findEnemy("Flog", 48, true))
 			{
-				if (!this->findEnemy("Tower", 48, true))
+				if (!findEnemy("Tower", 48, true))
 				{
-					this->_mainTarget = NULL;
+					_mainTarget = NULL;
 				}
 			}
 		}
 
 		CCPoint moveDirection;
 
-		if (abs(ccpSub(_master->getPosition(), this->getPosition()).x) > 9 && !_skillChangeBuffValue)
+		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > 9 && !_skillChangeBuffValue)
 		{
-			if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
+			if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
 			{
-				moveDirection = ccpNormalize(ccpSub(_master->getPosition(), this->getPosition()));
-				this->walk(moveDirection);
+				moveDirection = ccpNormalize(ccpSub(_master->getPosition(), getPosition()));
+				walk(moveDirection);
 				return;
 			}
 		}
@@ -33,7 +33,7 @@ class AI_Parents : public Hero
 		{
 
 			CCPoint sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
-								ccp(this->getPositionX(), _originY ? _originY : this->getPositionY()));
+								ccp(getPositionX(), _originY ? _originY : getPositionY()));
 
 			if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 || strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0)
 			{
@@ -43,17 +43,17 @@ class AI_Parents : public Hero
 				}
 				else
 				{
-					if ((this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK) && !_skillChangeBuffValue)
+					if ((getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK) && !_skillChangeBuffValue)
 					{
-						this->changeSide(sp);
-						this->attack(NAttack);
+						changeSide(sp);
+						attack(NAttack);
 					}
 				}
 				return;
 			}
 			else
 			{
-				if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
+				if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
 				{
 					if (_master->getActionState() == State::IDLE ||
 						_master->getActionState() == State::WALK ||
@@ -63,16 +63,16 @@ class AI_Parents : public Hero
 						if (_master->_isCanSkill3 && _mainTarget->getGP() < 5000 && (_master->_isControled || _master->_isAI == true) && !_skillChangeBuffValue)
 						{
 
-							this->changeSide(sp);
+							changeSide(sp);
 
 							_master->attack(SKILL3);
 						}
 						else if (abs(sp.x) > 48 || abs(sp.y) > 32)
 						{
-							if (_skillChangeBuffValue && this->getActionState() != State::ATTACK)
+							if (_skillChangeBuffValue && getActionState() != State::ATTACK)
 							{
 								moveDirection = ccpNormalize(sp);
-								this->walk(moveDirection);
+								walk(moveDirection);
 								return;
 							}
 						}
@@ -82,14 +82,14 @@ class AI_Parents : public Hero
 							if (_master->_isCanSkill2 && _mainTarget->getGP() < 5000 && (_master->_isControled || _master->_isAI == true) && !_skillChangeBuffValue)
 							{
 
-								this->changeSide(sp);
+								changeSide(sp);
 								_master->attack(SKILL2);
 							}
 							else
 							{
 
-								this->changeSide(sp);
-								this->attack(NAttack);
+								changeSide(sp);
+								attack(NAttack);
 							}
 						}
 					}
@@ -99,19 +99,19 @@ class AI_Parents : public Hero
 			}
 		}
 
-		if (abs(ccpSub(_master->getPosition(), this->getPosition()).x) > 9)
+		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > 9)
 		{
-			if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK)
+			if (getActionState() == State::IDLE || getActionState() == State::WALK)
 			{
-				moveDirection = ccpNormalize(ccpSub(_master->getPosition(), this->getPosition()));
-				this->walk(moveDirection);
+				moveDirection = ccpNormalize(ccpSub(_master->getPosition(), getPosition()));
+				walk(moveDirection);
 				return;
 			}
 		}
 
-		if (this->_actionState == State::WALK)
+		if (_actionState == State::WALK)
 		{
-			this->idle();
+			idle();
 		}
 	}
 };

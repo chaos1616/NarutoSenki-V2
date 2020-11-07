@@ -6,7 +6,7 @@
 
 using namespace CocosDenshion;
 
-CharacterBase::CharacterBase(void)
+CharacterBase::CharacterBase()
 {
 
 	_actionState = State::WALK;
@@ -173,7 +173,7 @@ CharacterBase::CharacterBase(void)
 	_affectedByTower = false;
 }
 
-CharacterBase::~CharacterBase(void)
+CharacterBase::~CharacterBase()
 {
 }
 

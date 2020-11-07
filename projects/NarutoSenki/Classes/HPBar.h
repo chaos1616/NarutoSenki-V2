@@ -4,8 +4,8 @@
 
 class HPBar : public CCSprite
 {
-	HPBar(void);
-	~HPBar(void);
+	HPBar();
+	~HPBar();
 
 	CC_SYNTHESIZE(CharacterBase *, _delegate, Delegate);
 	virtual bool init(const char *szImage);

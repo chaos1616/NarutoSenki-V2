@@ -1,9 +1,5 @@
 #pragma once
-#include "cocos2d.h"
-#include "SimpleAudioEngine.h"
 #include "Defines.h"
-
-USING_NS_CC;
 
 class GameLayer;
 class ScrewLayer;
@@ -18,8 +14,8 @@ class GearLayer : public CCLayer
 {
 
 public:
-	GearLayer(void);
-	~GearLayer(void);
+	GearLayer();
+	~GearLayer();
 
 	bool init(CCRenderTexture *snapshoot);
 	static GearLayer *create(CCRenderTexture *snapshoot);
@@ -51,8 +47,8 @@ class GearButton : public CCSprite, public CCTouchDelegate
 {
 
 public:
-	GearButton(void);
-	~GearButton(void);
+	GearButton();
+	~GearButton();
 
 	gearType _gearType;
 	gearbtnType _btnType;
@@ -80,15 +76,15 @@ protected:
 	virtual void ccTouchMoved(CCTouch *touch, CCEvent *event);
 	virtual void ccTouchEnded(CCTouch *touch, CCEvent *event);
 
-	bool containsTouchLocation(CCTouch *touch);
+	inline bool containsTouchLocation(CCTouch *touch);
 };
 
 class ScrewLayer : public CCLayer
 {
 
 public:
-	ScrewLayer(void);
-	~ScrewLayer(void);
+	ScrewLayer();
+	~ScrewLayer();
 
 	float prePosY;
 	virtual bool init();

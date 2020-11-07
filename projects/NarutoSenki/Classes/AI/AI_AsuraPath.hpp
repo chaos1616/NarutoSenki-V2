@@ -6,11 +6,11 @@ class AI_AsuraPath : public Hero
 	void perform()
 	{
 
-		if (!this->findEnemy("Hero", 0))
+		if (!findEnemy("Hero", 0))
 		{
-			if (!this->findEnemy("Flog", 0))
+			if (!findEnemy("Flog", 0))
 			{
-				if (!this->findEnemy("Tower", 0))
+				if (!findEnemy("Tower", 0))
 				{
 					_mainTarget = NULL;
 				}
@@ -20,7 +20,7 @@ class AI_AsuraPath : public Hero
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
+			CCPoint sp = ccpSub(_mainTarget->getPosition(), getPosition());
 
 			if (strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0 ||
 				strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
@@ -30,14 +30,14 @@ class AI_AsuraPath : public Hero
 				{
 
 					moveDirection = ccpNormalize(sp);
-					this->walk(moveDirection);
+					walk(moveDirection);
 				}
 				else
 				{
-					if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
+					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
 					{
-						this->changeSide(sp);
-						this->attack(NAttack);
+						changeSide(sp);
+						attack(NAttack);
 					}
 				}
 				return;
@@ -49,47 +49,47 @@ class AI_AsuraPath : public Hero
 				{
 
 					moveDirection = ccpNormalize(sp);
-					this->walk(moveDirection);
+					walk(moveDirection);
 					return;
 				}
 				else if ((abs(sp.x) > 32 || abs(sp.y) > 32) && !_isCanSkill1)
 				{
 
 					moveDirection = ccpNormalize(sp);
-					this->walk(moveDirection);
+					walk(moveDirection);
 					return;
 				}
-				else if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
+				else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
 				{
 					if (_isCanSkill1)
 					{
 
-						if (abs(sp.x) < 64 && this->getPositionX() > 64 &&
-							this->getPositionX() < (95 * 32 - 64))
+						if (abs(sp.x) < 64 && getPositionX() > 64 &&
+							getPositionX() < (95 * 32 - 64))
 						{
-							if (this->stepBack())
+							if (stepBack())
 								return;
 						}
 					}
 
 					if (_isCanSkill1)
 					{
-						this->changeSide(sp);
+						changeSide(sp);
 
-						this->attack(SKILL1);
-						this->scheduleOnce(schedule_selector(Hero::enableSkill1), _sattackcoldDown1);
+						attack(SKILL1);
+						scheduleOnce(schedule_selector(Hero::enableSkill1), _sattackcoldDown1);
 					}
 					else
 					{
 
-						this->changeSide(sp);
-						this->attack(NAttack);
+						changeSide(sp);
+						attack(NAttack);
 					}
 				}
 				return;
 			}
 		}
 
-		this->stepOn();
+		stepOn();
 	}
 };

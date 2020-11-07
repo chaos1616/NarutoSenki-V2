@@ -5,8 +5,8 @@ USING_NS_CC;
 class CCScrewLayer : public CCLayer{
 
 public:
-	CCScrewLayer(void);
-	~CCScrewLayer(void);
+	CCScrewLayer();
+	~CCScrewLayer();
 
 	float			prePosY;
 	virtual	bool	init();
@@ -32,8 +32,8 @@ protected:
 class CCScrewItem : public CCSprite, public CCTouchDelegate{
 
 public:
-	CCScrewItem(void);
-	~CCScrewItem(void);
+	CCScrewItem();
+	~CCScrewItem();
 	virtual	bool	init();
 
 	CREATE_FUNC(CCScrewItem);

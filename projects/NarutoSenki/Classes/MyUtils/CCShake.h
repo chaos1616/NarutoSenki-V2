@@ -20,7 +20,7 @@ protected:
 
 	void startWithTarget(cocos2d::CCNode *pTarget);  
 	void update(float time);  
-	void stop(void);  
+	void stop();  
 
 
 	// Initial position of the shaked node  

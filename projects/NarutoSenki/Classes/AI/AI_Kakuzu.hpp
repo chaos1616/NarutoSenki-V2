@@ -10,22 +10,22 @@ class AI_Kakuzu : public Hero
 		if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 		{
 
-			if (this->getHpPercent() > 0.3f && !_isControled && _isCanSkill1)
+			if (getHpPercent() > 0.3f && !_isControled && _isCanSkill1)
 			{
 				CCObject *pObject;
 				float distance;
 				float curDistance = 0;
 				CCPoint sp;
 
-				CCARRAY_FOREACH(this->getDelegate()->_CharacterArray, pObject)
+				CCARRAY_FOREACH(getDelegate()->_CharacterArray, pObject)
 				{
 					CharacterBase *target = (CharacterBase *)pObject;
 					if ((strcmp(target->getRole()->getCString(), "Player") == 0 ||
 						 strcmp(target->getRole()->getCString(), "Com") == 0) &&
 						target->getActionState() == State::DEAD)
 					{
-						distance = ccpDistance(target->getPosition(), this->getPosition());
-						sp = ccpSub(target->getPosition(), this->getPosition());
+						distance = ccpDistance(target->getPosition(), getPosition());
+						sp = ccpSub(target->getPosition(), getPosition());
 
 						if (abs(sp.x) < (winSize.width / 2))
 						{
@@ -52,23 +52,23 @@ class AI_Kakuzu : public Hero
 					CCPoint moveDirection;
 					if (_mainTarget->_originY)
 					{
-						sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), this->getPosition());
+						sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
 					}
 					else
 					{
-						sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
+						sp = ccpSub(_mainTarget->getPosition(), getPosition());
 					}
 
 					if (abs(sp.x) > 32 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);
-						this->walk(moveDirection);
+						walk(moveDirection);
 						return;
 					}
 					else
 					{
-						this->changeSide(sp);
-						this->attack(SKILL1);
+						changeSide(sp);
+						attack(SKILL1);
 					}
 
 					return;
@@ -76,61 +76,61 @@ class AI_Kakuzu : public Hero
 			}
 		}
 
-		this->findEnemy2("Hero");
-		if (atoi(this->getCoin()->getCString()) >= 500 && !_isControled && _delegate->_isHardCoreGame)
+		findEnemy2("Hero");
+		if (atoi(getCoin()->getCString()) >= 500 && !_isControled && _delegate->_isHardCoreGame)
 		{
-			if (this->getGearArray()->count() == 0)
+			if (getGearArray()->count() == 0)
 			{
-				this->setGear(gear03);
+				setGear(gear03);
 			}
-			else if (this->getGearArray()->count() == 1)
+			else if (getGearArray()->count() == 1)
 			{
-				this->setGear(gear08);
+				setGear(gear08);
 			}
-			else if (this->getGearArray()->count() == 2)
+			else if (getGearArray()->count() == 2)
 			{
-				this->setGear(gear04);
+				setGear(gear04);
 			}
 		}
 
-		if (this->checkRetri())
+		if (checkRetri())
 		{
 			if (_mainTarget != NULL)
 			{
-				if (this->stepBack2())
+				if (stepBack2())
 				{
 					return;
 				}
 			}
 			else
 			{
-				if (this->stepBack())
+				if (stepBack())
 				{
 					return;
 				}
 			}
 		}
 
-		if (isBaseDanger && this->checkBase() && !_isControled)
+		if (isBaseDanger && checkBase() && !_isControled)
 		{
 			bool needBack = false;
-			if (strcmp(Akatsuki, this->getGroup()->getCString()) == 0)
+			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
 			{
-				if (this->getPositionX() < 85 * 32)
+				if (getPositionX() < 85 * 32)
 				{
 					needBack = true;
 				}
 			}
 			else
 			{
-				if (this->getPositionX() > 11 * 32)
+				if (getPositionX() > 11 * 32)
 				{
 					needBack = true;
 				}
 			}
 			if (needBack)
 			{
-				if (this->stepBack2())
+				if (stepBack2())
 				{
 					return;
 				}
@@ -151,24 +151,24 @@ class AI_Kakuzu : public Hero
 
 			if (_mainTarget->_originY)
 			{
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), this->getPosition());
+				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
 			}
 			else
 			{
-				sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
+				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
 
 				if (_isCanSkill3)
 				{
-					this->changeSide(sp);
-					this->attack(SKILL3);
+					changeSide(sp);
+					attack(SKILL3);
 					return;
 				}
 				else if (_isCanOugis1 && !_isControled && isSummonAble)
 				{
-					this->attack(OUGIS1);
+					attack(OUGIS1);
 					return;
 				}
 				else if (_isCanSkill2)
@@ -177,29 +177,29 @@ class AI_Kakuzu : public Hero
 					if (abs(sp.x) > 96 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);
-						this->walk(moveDirection);
+						walk(moveDirection);
 						return;
 					}
 
 					if (_isCanGear03)
 					{
-						this->useGear(gear03);
+						useGear(gear03);
 					}
 
-					this->changeSide(sp);
-					this->attack(SKILL2);
+					changeSide(sp);
+					attack(SKILL2);
 					return;
 				}
 				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 5000 && !_isHealling && !_isControled)
 				{
 					if (abs(sp.x) < 160)
 					{
-						this->stepBack2();
+						stepBack2();
 						return;
 					}
 					else
 					{
-						this->idle();
+						idle();
 						return;
 					}
 				}
@@ -208,14 +208,14 @@ class AI_Kakuzu : public Hero
 					if (abs(sp.x) > 32 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);
-						this->walk(moveDirection);
+						walk(moveDirection);
 						return;
 					}
 					else
 					{
 
-						this->changeSide(sp);
-						this->attack(NAttack);
+						changeSide(sp);
+						attack(NAttack);
 					}
 
 					return;
@@ -223,9 +223,9 @@ class AI_Kakuzu : public Hero
 			}
 		}
 
-		if (!this->findEnemy2("Flog"))
+		if (!findEnemy2("Flog"))
 		{
-			this->findEnemy2("Tower");
+			findEnemy2("Tower");
 		}
 
 		if (_mainTarget)
@@ -236,17 +236,17 @@ class AI_Kakuzu : public Hero
 
 			if (_mainTarget->_originY)
 			{
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), this->getPosition());
+				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
 			}
 			else
 			{
-				sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
+				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
 				moveDirection = ccpNormalize(sp);
-				this->walk(moveDirection);
+				walk(moveDirection);
 				return;
 			}
 
@@ -254,28 +254,28 @@ class AI_Kakuzu : public Hero
 			{
 				if (_isCanOugis1 && !_isControled && !isSummonAble)
 				{
-					this->changeSide(sp);
-					this->attack(OUGIS1);
+					changeSide(sp);
+					attack(OUGIS1);
 				}
 				else
 				{
-					this->changeSide(sp);
-					this->attack(NAttack);
+					changeSide(sp);
+					attack(NAttack);
 				}
 			}
 			return;
 		}
 
-		if (_isHealling && this->getHpPercent() < 1)
+		if (_isHealling && getHpPercent() < 1)
 		{
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
-				this->idle();
+				idle();
 			}
 		}
 		else
 		{
-			this->stepOn();
+			stepOn();
 		}
 	}
 };

@@ -7,7 +7,7 @@ using namespace CocosDenshion;
 /*----------------------
 init MenuButton ;
 ----------------------*/
-SelectButton::SelectButton(void)
+SelectButton::SelectButton()
 {
 
 	_btnType = Menu;
@@ -21,7 +21,7 @@ SelectButton::SelectButton(void)
 	_charName = NULL;
 }
 
-SelectButton::~SelectButton(void)
+SelectButton::~SelectButton()
 {
 }
 
@@ -184,7 +184,7 @@ SelectButton *SelectButton::create(const char *szImage)
 
 //SkillLayer
 
-SkillLayer::SkillLayer(void)
+SkillLayer::SkillLayer()
 {
 	_skillExplain = NULL;
 	buyLayer = NULL;
@@ -199,7 +199,7 @@ SkillLayer::SkillLayer(void)
 	isPosting = false;
 }
 
-SkillLayer::~SkillLayer(void)
+SkillLayer::~SkillLayer()
 {
 }
 

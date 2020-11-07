@@ -4,11 +4,11 @@
 
 using namespace CocosDenshion;
 
-MiniIcon::MiniIcon(void)
+MiniIcon::MiniIcon()
 {
 }
 
-MiniIcon::~MiniIcon(void)
+MiniIcon::~MiniIcon()
 {
 
 	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "updateMap");
@@ -86,7 +86,7 @@ MiniIcon *MiniIcon::create(const char *szImage, bool isNotification)
 	}
 }
 
-HudLayer::HudLayer(void)
+HudLayer::HudLayer()
 {
 	_joyStick = NULL;
 
@@ -117,7 +117,7 @@ HudLayer::HudLayer(void)
 	bcdLabel2 = NULL;
 }
 
-HudLayer::~HudLayer(void)
+HudLayer::~HudLayer()
 {
 }
 

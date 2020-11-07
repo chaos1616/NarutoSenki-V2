@@ -10,7 +10,7 @@ using namespace CocosDenshion;
 #include "../../../cocos2dx/platform/android/jni/JniHelper.h"
 #endif
 
-SelectLayer::SelectLayer(void)
+SelectLayer::SelectLayer()
 {
 	_heroHalf = NULL;
 	_heroName = NULL;
@@ -44,7 +44,7 @@ SelectLayer::SelectLayer(void)
 	_teamSelector = NULL;
 }
 
-SelectLayer::~SelectLayer(void)
+SelectLayer::~SelectLayer()
 {
 	CC_SAFE_RELEASE(selectArray);
 }

@@ -6,11 +6,11 @@ class AI_Kurama : public Hero
 	void perform()
 	{
 
-		if (!this->findEnemy("Hero", 0))
+		if (!findEnemy("Hero", 0))
 		{
-			if (!this->findEnemy("Flog", 0))
+			if (!findEnemy("Flog", 0))
 			{
-				if (!this->findEnemy("Tower", 0))
+				if (!findEnemy("Tower", 0))
 				{
 					_mainTarget = NULL;
 				}
@@ -24,30 +24,30 @@ class AI_Kurama : public Hero
 			CCPoint sp;
 			if (_mainTarget->_originY)
 			{
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), this->getPosition());
+				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
 			}
 			else
 			{
-				sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
+				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
 
 			if (abs(sp.x) > 156 || abs(sp.y) > 48)
 			{
 
 				moveDirection = ccpNormalize(sp);
-				this->walk(moveDirection);
+				walk(moveDirection);
 			}
 			else
 			{
-				if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK || this->getActionState() == State::ATTACK)
+				if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
 				{
-					this->changeSide(sp);
-					this->attack(NAttack);
+					changeSide(sp);
+					attack(NAttack);
 				}
 			}
 			return;
 		}
 
-		this->stepOn();
+		stepOn();
 	}
 };
