@@ -102,9 +102,9 @@ class AIProvider
     // static const map<std::string, type> ai_providers;
 
 public:
-    static HeroElement *createAI(CCString *character, CCString *role, CCString *group)
+    static Hero *createAI(CCString *character, CCString *role, CCString *group)
     {
-        HeroElement *pAI;
+        Hero *pAI;
         // Init AI
         // ninjaEnums id = hero->_id;
         const char *name = character->getCString();
@@ -187,7 +187,7 @@ public:
 
         if (pAI->init())
         {
-            pAI->HeroElement::setID(character, role, group);
+            pAI->Hero::setID(character, role, group);
             pAI->autorelease();
             return pAI;
         }

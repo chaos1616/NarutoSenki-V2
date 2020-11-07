@@ -761,6 +761,9 @@ class Hero : public HeroElement{
     // virtual void perform();
 
 public:
+	Hero(void);
+	~Hero(void);
+
 	bool init();
 
 	virtual void setAI(float dt);
@@ -771,7 +774,307 @@ public:
 class AIProvider
 {
     static HeroElement *createAI(CCString *character, CCString *role, CCString *group);
-}
+};
+class AI_Sakura : public Hero
+{
+	AI_Sakura(void);
+	~AI_Sakura(void);
+};
+class AI_Pain : public Hero
+{
+	AI_Pain(void);
+	~AI_Pain(void);
+};
+class AI_Mask : public Hero
+{
+	AI_Mask(void);
+	~AI_Mask(void);
+};
+class AI_Mask : public Hero
+{
+	AI_Mask(void);
+	~AI_Mask(void);
+};
+class AI_Mask : public Hero
+{
+	AI_Mask(void);
+	~AI_Mask(void);
+};
+class AI_Slug : public Hero
+{
+	AI_Slug(void);
+	~AI_Slug(void);
+};
+class AI_Centipede : public Hero
+{
+	AI_Centipede(void);
+	~AI_Centipede(void);
+};
+class AI_Nagato : public Hero
+{
+	AI_Nagato(void);
+	~AI_Nagato(void);
+};
+class AI_Asuma : public Hero
+{
+	AI_Asuma(void);
+	~AI_Asuma(void);
+};
+class AI_DevaPath : public Hero
+{
+	AI_DevaPath(void);
+	~AI_DevaPath(void);
+};
+class AI_AsuraPath : public Hero
+{
+	AI_AsuraPath(void);
+	~AI_AsuraPath(void);
+};
+class AI_AnimalPath : public Hero
+{
+	AI_AnimalPath(void);
+	~AI_AnimalPath(void);
+};
+class AI_Sai : public Hero
+{
+	AI_Sai(void);
+	~AI_Sai(void);
+};
+class AI_Tenten : public Hero
+{
+	AI_Tenten(void);
+	~AI_Tenten(void);
+};
+class AI_Suigetsu : public Hero
+{
+	AI_Suigetsu(void);
+	~AI_Suigetsu(void);
+};
+class AI_Konan : public Hero
+{
+	AI_Konan(void);
+	~AI_Konan(void);
+};
+class AI_Jiraiya : public Hero
+{
+	AI_Jiraiya(void);
+	~AI_Jiraiya(void);
+};
+class AI_Shikamaru : public Hero
+{
+	AI_Shikamaru(void);
+	~AI_Shikamaru(void);
+};
+class AI_Sasuke : public Hero
+{
+	AI_Sasuke(void);
+	~AI_Sasuke(void);
+};
+class AI_ImmortalSasuke : public Hero
+{
+	AI_ImmortalSasuke(void);
+	~AI_ImmortalSasuke(void);
+};
+class AI_Deidara : public Hero
+{
+	AI_Deidara(void);
+	~AI_Deidara(void);
+};
+class AI_Minato : public Hero
+{
+	AI_Minato(void);
+	~AI_Minato(void);
+};
+class AI_DogWall : public Hero
+{
+	AI_DogWall(void);
+	~AI_DogWall(void);
+};
+class AI_Kakashi : public Hero
+{
+	AI_Kakashi(void);
+	~AI_Kakashi(void);
+};
+class AI_Tobi : public Hero
+{
+	AI_Tobi(void);
+	~AI_Tobi(void);
+};
+class AI_Hinata : public Hero
+{
+	AI_Hinata(void);
+	~AI_Hinata(void);
+};
+class AI_Neji : public Hero
+{
+	AI_Neji(void);
+	~AI_Neji(void);
+};
+class AI_Choji : public Hero
+{
+	AI_Choji(void);
+	~AI_Choji(void);
+};
+class AI_Itachi : public Hero
+{
+	AI_Itachi(void);
+	~AI_Itachi(void);
+};
+class AI_Orochimaru : public Hero
+{
+	AI_Orochimaru(void);
+	~AI_Orochimaru(void);
+};
+class AI_Kurama : public Hero
+{
+	AI_Kurama(void);
+	~AI_Kurama(void);
+};
+class AI_Naruto : public Hero
+{
+	AI_Naruto(void);
+	~AI_Naruto(void);
+};
+class AI_NarutoClone : public Hero
+{
+	AI_NarutoClone(void);
+	~AI_NarutoClone(void);
+};      
+class AI_SageNaruto : public Hero
+{
+	AI_SageNaruto(void);
+	~AI_SageNaruto(void);
+};
+class AI_SageNarutoClone : public Hero
+{
+	AI_SageNarutoClone(void);
+	~AI_SageNarutoClone(void);
+};  
+class AI_RikudoNaruto : public Hero
+{
+	AI_RikudoNaruto(void);
+	~AI_RikudoNaruto(void);
+};
+class AI_RikudoNarutoClone : public Hero
+{
+	AI_RikudoNarutoClone(void);
+	~AI_RikudoNarutoClone(void);
+};
+class AI_Gaara : public Hero
+{
+	AI_Gaara(void);
+	~AI_Gaara(void);
+};
+class AI_Tobirama : public Hero
+{
+	AI_Tobirama(void);
+	~AI_Tobirama(void);
+};
+class AI_Akamaru : public Hero
+{
+	AI_Akamaru(void);
+	~AI_Akamaru(void);
+};
+class AI_Karasu : public Hero
+{
+	AI_Karasu(void);
+	~AI_Karasu(void);
+};
+class AI_Saso : public Hero
+{
+	AI_Saso(void);
+	~AI_Saso(void);
+};
+class AI_Parents : public Hero
+{
+	AI_Parents(void);
+	~AI_Parents(void);
+};
+class AI_Sanshouuo : public Hero
+{
+	AI_Sanshouuo(void);
+	~AI_Sanshouuo(void);
+};
+class AI_Kankuro : public Hero
+{
+	AI_Kankuro(void);
+	~AI_Kankuro(void);
+};
+class AI_Chiyo : public Hero
+{
+	AI_Chiyo(void);
+	~AI_Chiyo(void);
+};
+class AI_Kiba : public Hero
+{
+	AI_Kiba(void);
+	~AI_Kiba(void);
+};
+class AI_SageJiraiya : public Hero
+{
+	AI_SageJiraiya(void);
+	~AI_SageJiraiya(void);
+};
+class AI_Karin : public Hero
+{
+	AI_Karin(void);
+	~AI_Karin(void);
+};
+class AI_Lee : public Hero
+{
+	AI_Lee(void);
+	~AI_Lee(void);
+};
+class AI_RockLee : public Hero
+{
+	AI_RockLee(void);
+	~AI_RockLee(void);
+};
+class AI_Tsunade : public Hero
+{
+	AI_Tsunade(void);
+	~AI_Tsunade(void);
+};
+class AI_Jugo : public Hero
+{
+	AI_Jugo(void);
+	~AI_Jugo(void);
+};
+class AI_Kisame : public Hero
+{
+	AI_Kisame(void);
+	~AI_Kisame(void);
+};
+class AI_Ino : public Hero
+{
+	AI_Ino(void);
+	~AI_Ino(void);
+};
+class AI_Hidan : public Hero
+{
+	AI_Hidan(void);
+	~AI_Hidan(void);
+};
+class AI_Shino : public Hero
+{
+	AI_Shino(void);
+	~AI_Shino(void);
+};
+class AI_Hiruzen : public Hero
+{
+	AI_Hiruzen(void);
+	~AI_Hiruzen(void);
+};
+class AI_Kakuzu : public Hero
+{
+	AI_Kakuzu(void);
+	~AI_Kakuzu(void);
+};
+class AI_Guardian : public Hero
+{
+	AI_Guardian(void);
+	~AI_Guardian(void);
+};
 
 /* ------- UI Layer ------- */
 

@@ -77,7 +77,7 @@ void HPBar::loseHP(float percent)
 
 		if (_delegate->getDelegate()->_isGuardian)
 		{
-			CharacterBase *_slayer = (CharacterBase *)_delegate->_slayer;
+			CharacterBase *_slayer = _delegate->_slayer;
 			if (_slayer)
 			{
 				if (strcmp(this->_delegate->getCharacter()->getCString(), gardTower) == 0)
@@ -95,7 +95,7 @@ void HPBar::loseHP(float percent)
 	if (percent <= 0)
 	{
 
-		CharacterBase *_slayer = (CharacterBase *)_delegate->_slayer;
+		CharacterBase *_slayer = _delegate->_slayer;
 		CharacterBase *currentSlayer;
 
 		if (strcmp(_delegate->getRole()->getCString(), "Flog") == 0)

@@ -26,7 +26,7 @@
 USING_NS_CC;
 USING_NS_CC_EXT;
 
-class HeroElement;
+class Hero;
 class BGLayer;
 class HudLayer;
 
@@ -37,7 +37,7 @@ public:
 	~GameLayer(void);
 
 	CCTMXTiledMap *currentMap;
-	HeroElement *currentPlayer;
+	Hero *currentPlayer;
 	CCPoint spawnPoint;
 
 	unsigned int _second;
