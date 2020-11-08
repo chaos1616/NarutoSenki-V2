@@ -22,6 +22,8 @@ public:
 
 	CCSprite *rebornSprite;
 	CCLabelBMFont *rebornLabel;
+	virtual void setID(CCString *character, CCString *role, CCString *group){};
+	virtual void setAI(float dt){};
 	void reborn(float dt);
 	void dealloc();
 

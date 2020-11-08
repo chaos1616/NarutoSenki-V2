@@ -41,7 +41,7 @@ public:
 
 	float prePosY;
 
-	CC_SYNTHESIZE(StartMenu *, _delegate, Delegate);
+	CC_SYNTHESIZE(StartMenu *, _startMenu, Delegate);
 
 protected:
 	virtual void onEnter();
@@ -61,6 +61,7 @@ public:
 	~StartMenu();
 
 	bool init();
+
 	void onTrainingCallBack();
 	void onHardCoreOn(CCObject *sender);
 	void onHardCoreOff(CCObject *sender);
@@ -69,22 +70,15 @@ public:
 	void onNormalCallBack(CCObject *sender);
 	void onCreditsCallBack();
 	void onExitCallBack();
+
 	void onNewsBtn(CCObject *sender);
 	void onLoginBtn(CCObject *sender);
-
-	void onInputBoxClose(CCObject *sender);
 
 	void scrollMenu(int posY);
 	CCSprite *menuText;
 
 	MenuButton *hardCore_btn;
-
 	CCLayer *hardCoreLayer;
-
-	CCLayer *profile_layer;
-	CCLayer *group_layer;
-
-	CCLayer *input_layer;
 
 	static const int _pos01 = 48;
 	static const int _pos02 = 92;
@@ -92,15 +86,6 @@ public:
 
 	bool isClockwise;
 	bool isDrag;
-	bool isNewAviable;
-	bool isBondAviable;
-
-	bool isTasking;
-	bool isPosting;
-
-	CCLabelTTF *notice_label;
-
-	CCLabelTTF *totalGroupNum;
 
 	CCMenuItem *login_btn;
 	void setNotice();
@@ -108,8 +93,6 @@ public:
 	CCLayer *notice_layer;
 	void update(float dt);
 	CCLabelTTF *noticeLabel;
-
-	CCScrewLayer *_screwLayer1;
 
 	virtual void keyBackClicked();
 

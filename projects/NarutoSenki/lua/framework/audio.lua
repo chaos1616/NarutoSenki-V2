@@ -28,7 +28,7 @@ THE SOFTWARE.
 
 ]]
 
-local audio = {}
+audio = {}
 
 local sharedEngine = SimpleAudioEngine:sharedEngine()
 

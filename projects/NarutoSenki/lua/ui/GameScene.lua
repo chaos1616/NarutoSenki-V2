@@ -1,21 +1,20 @@
 -- GameScene
 local gameScene = GameScene
 
-gameScene.pushMenu = nil
+local Cheats = 0
+local pushMenu, logoMenu, introLayer
 
 function GameScene:init()
     log('Initial GameScene ...')
 
-    local ud = CCUserDefault:sharedUserDefault()
-    if not ud:getBoolForKey('isHavingSave') then
-        ud:setBoolForKey('isHavingSave', true)
-        ud:setBoolForKey('isBGM', true)
-        ud:setBoolForKey('isVoice', true)
-        ud:flush()
+    if not save.getBool('isHavingSave') then
+        save.bool('isHavingSave', true)
+        save.bool('isBGM', true)
+        save.bool('isVoice', true)
+        save.flush()
     end
 
-    local introLayer = display.newLayer()
-    self:setIntroLayer(introLayer)
+    introLayer = display.newLayer()
 
     local logoImage = display.newSprite('zakume.png', display.width / 2,
                                         display.height / 2)
@@ -38,11 +37,10 @@ function GameScene:onLogo()
         })
     logo_btn:setAnchorPoint(0.5, 0.5)
 
-    local logoMenu = ui.newMenu({logo_btn})
+    logoMenu = ui.newMenu({logo_btn})
     logoMenu:setPosition(display.width / 2,
                          display.height - logo_btn:getContentSize().height / 2)
-    self:getIntroLayer():addChild(logoMenu, 3)
-    self:setLogoMenu(logoMenu)
+    introLayer:addChild(logoMenu, 3)
 
     -- register c++ handler to onFinish function
     hook.registerInitHandlerOnly(self, GameScene.onFinish)
@@ -57,7 +55,6 @@ end
 function GameScene:onPlayEffect() audio.playEffect('Audio/Menu/intro2.ogg') end
 
 function GameScene:onFinish()
-    local pushMenu = self.pushMenu
     if not pushMenu then
         audio.playMusic(ns.music.INTRO_MUSIC, true)
 
@@ -68,7 +65,7 @@ function GameScene:onFinish()
             })
         pushMenu = ui.newMenu({btm_btn})
         pushMenu:setPosition(display.width / 2, display.height / 2 - 100)
-        self:getIntroLayer():addChild(pushMenu)
+        introLayer:addChild(pushMenu)
 
         local fade = CCFadeOut:create(0.5)
         local seq = transition.sequence({fade, fade:reverse()})
@@ -81,15 +78,39 @@ function GameScene:onPush()
 
     tools.initSqliteDB()
 
-    audio:stopMusic(true)
+    audio.stopMusic(true)
 
     local menuScene = CCScene:create()
     local menuLayer = StartMenu:create()
     menuScene:addChild(menuLayer)
 
-    -- auto call c++ layer StartMenu::init after lua called
-    -- hook.registerInitHandlerOnly(menuLayer, StartMenu.init)
-
     CCDirector:sharedDirector():replaceScene(
         CCTransitionFade:create(1.0, menuScene))
+end
+
+function GameScene:onLogoClick(sender)
+    Cheats = Cheats + 1
+
+    if Cheats == 10 then
+        audio.stopAllSounds()
+        logoMenu:removeFromParent()
+
+        local logo_btn = ui.newImageMenuItem(
+                             {
+                image = 'logo2.png',
+                listener = handler(self, GameScene.onLogoClick)
+            })
+        logo_btn:setAnchorPoint(0.5, 0.5)
+
+        logoMenu = ui.newMenu({logo_btn})
+        logoMenu:setPosition(display.width / 2, display.height -
+                                 logo_btn:getContentSize().height / 2)
+        introLayer:addChild(logoMenu, 3)
+    elseif Cheats > 10 then
+        audio.stopAllSounds()
+        audio.stopMusic(true)
+        audio.playSound('Audio/Menu/chang_btn.ogg')
+
+        GameScene:onFinish()
+    end
 end

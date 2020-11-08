@@ -104,7 +104,7 @@ class AIProvider
 public:
     static HeroElement *createAI(CCString *character, CCString *role, CCString *group)
     {
-        HeroElement *pAI;
+        Hero *pAI;
         // Init AI
         // ninjaEnums id = hero->_id;
         const char *name = character->getCString();
@@ -187,7 +187,7 @@ public:
 
         if (pAI->init())
         {
-            pAI->HeroElement::setID(character, role, group);
+            pAI->setID(character, role, group);
             pAI->autorelease();
             return pAI;
         }

@@ -27,7 +27,7 @@ THE SOFTWARE.
 为图像创造效果
 
 ]]
-local transition = {}
+transition = {}
 
 local ACTION_EASING = {}
 ACTION_EASING["BACKIN"]           = {CCEaseBackIn, 1}

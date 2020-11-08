@@ -2,7 +2,6 @@ require 'utils.utils'
 
 local selectLayer = SelectLayer
 
--- SelectLayter::init
 function SelectLayer:init()
     log('Initial SelectLayer...')
 
@@ -262,7 +261,7 @@ function SelectLayer:init()
     self:addChild(menu2, 5)
 
     if save.getBool('isBGM') then
-        audio:playMusic(ns.music.SELECT_MUSIC, true)
+        audio.playMusic(ns.music.SELECT_MUSIC, true)
     end
 
     -- if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID then

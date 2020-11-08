@@ -31,6 +31,10 @@ THE SOFTWARE.
 local c = cc
 local Node = c.Node
 
+function Node:removeFromParent()
+    self:removeFromParentAndCleanup(true)
+end
+
 function Node:align(anchorPoint, x, y)
     self:setAnchorPoint(display.ANCHOR_POINTS[anchorPoint])
     if x and y then self:setPosition(x, y) end

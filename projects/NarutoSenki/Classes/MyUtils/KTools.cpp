@@ -14,7 +14,6 @@
 #endif
 
 using namespace tinyxml2;
-using namespace CocosDenshion;
 
 void KTools::prepareFileMD5()
 {

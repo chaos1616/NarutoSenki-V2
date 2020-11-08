@@ -237,38 +237,6 @@ static const char *heroList[] = {
     "Hiruzen", "Kiba", "Jugo", "Lee"};
 static const int heroNum = sizeof(heroList) / sizeof(char *);
 
-// static const char *ninjaList = CREATE_LIST();
-// static const char *_character_list = {
-// 	/* Page One*/
-// 	"Naruto",		"Sakura",		"Sai",			"Kakashi",
-// 	"None",			"None",	 		"None",					  
-// 	"Shikamaru",	"Ino", 			"Choji",		"Asuma",
-// 	"Kiba", 		"Hinata", 		"Shino",
-// 	"Neji", 		"Tenten", 		"Lee", 			"None",
-// 	"None", 		"None", 		"None",
-// 	/* Page Two */
-// 	"None", 		"Tobirama",		"Hiruzen", 		"Minato",
-// 	"Jiraiya", 		"Tsunade", 		"Orochimaru",
-// 	"None", 		"Deidara", 		"Kakuzu", 		"Hidan",
-// 	"Tobi", 		"Konan", 		"Pain",
-// 	"Itachi", 		"Kisame",		"None", 		"None",
-// 	"None", 		"None", 		"None",
-// 	/* Page Three */
-// 	"Sasuke", 		"Karin", 		"Suigetsu", 	"Jugo",
-// 	"None", 		"None", 		"None",
-// 	"Gaara",		"None",	 		"Kankuro",	 	"Chiyo",
-// 	"None", 		"None", 		"None",
-// 	"None", 		"None", 		"None", 		"None",
-// 	"None", 		"None", 		"None",
-// 	/* Page Four */
-// 	"None",			"None",			"None",			"None",
-// 	"None",			"None",			"None",
-// 	"None",			"None",			"None",			"None",
-// 	"None",			"None",			"None",
-// 	"None",			"None",			"None",			"None",
-// 	"None",			"None",			"None",						
-// };
-
 // Resloutions
 
 #define RES_X = 480

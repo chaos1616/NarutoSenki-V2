@@ -2,7 +2,6 @@
 #include "GameLayer.h"
 #include "HudLayer.h"
 #include "Characters.h"
-using namespace CocosDenshion;
 
 /*----------------------
 init GearButton ;

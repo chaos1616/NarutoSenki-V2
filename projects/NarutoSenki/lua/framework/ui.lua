@@ -27,7 +27,7 @@ THE SOFTWARE.
 创建和管理用户界面
 
 ]]
-local ui = {}
+ui = {}
 
 ui.DEFAULT_TTF_FONT      = "Arial"
 ui.DEFAULT_TTF_FONT_SIZE = 24

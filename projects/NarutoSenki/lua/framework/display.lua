@@ -62,7 +62,7 @@ display 模块封装了绝大部分与显示有关的功能，并负责根据 co
 -   display.COLOR_BLACK 黑色, ccc3(0, 0, 0)
 
 ]]
-local display = {}
+display = {}
 
 local sharedDirector         = CCDirector:sharedDirector()
 local sharedTextureCache     = CCTextureCache:sharedTextureCache()
@@ -1218,7 +1218,7 @@ function display.newAnimation(frames, time)
     for i = 1, count do
         array:addObject(frames[i])
     end
-    time = time or 1.0 / count
+    time = time or (1.0 / count)
     return CCAnimation:createWithSpriteFrames(array, time)
 end
 

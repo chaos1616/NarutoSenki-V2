@@ -1,10 +1,7 @@
-#include "Defines.h"
 #include "GameOver.h"
 #include "GameLayer.h"
 #include "Characters.h"
 
-USING_NS_CC_EXT;
-using namespace CocosDenshion;
 #include <fstream>
 
 GameOver::GameOver()
@@ -659,92 +656,6 @@ void GameOver::onUPloadBtn(CCObject *sender)
 	this->addChild(tip, 5000);
 
 	return;
-	// if(!isPosting && strcmp(PWord.c_str(),"")!=0){
-	// 	isPosting=true;
-	// 	if(!refreshBtn){
-	// 		refreshBtn=CCSprite::createWithSpriteFrameName("refresh_btn.png");
-	// 		refreshBtn->setPosition(ccp(winSize.width/2,winSize.height/2));
-	// 		CCActionInterval* rt=CCRotateBy::create(0.3f,180,180);
-	// 		refreshBtn->runAction(CCRepeatForever::create(rt));
-	// 		this->addChild(refreshBtn,1000);
-
-	// 	}
-
-	// 	KTools::prepareFileSHA();
-	// 	std::string filePath=CCFileUtils::sharedFileUtils()->getWritablePath()+"SHA.xml";
-	// 	std::string strFileMD5 =CMD5Checksum::GetMD5(filePath);
-	// 	remove(filePath.c_str());
-
-	// 	cocos2d::extension::CCHttpRequest* request = new CCHttpRequest();
-
-	// 	std::string code="code=1000";
-	// 	std::string mem=KTools::encodeData(CCString::createWithFormat("%d",MemberID)->getCString());
-	// 	std::string code2=CCString::createWithFormat("&version=%d",CURRENT_VERSION)->getCString();
-	// 	std::string code3=CCString::createWithFormat("&score=%0.2f",finnalScore)->getCString();
-	// 	std::string code4=CCString::createWithFormat("&use_char=%s",this->_delegate->currentPlayer->getCharacter()->getCString())->getCString();
-	// 	std::string code5=CCString::createWithFormat("%s%s",strFileMD5.substr(16,5).c_str(),strFileMD5.substr(6,5).c_str())->getCString();
-
-	// 	std::string codeFinal=code+"&member_id="+mem+"&pw="+PWord+code2+code3+code4+"&detail="+detailRecord+"&path="+code5;
-	// 	std::string url=SERVER"nsk/record.php?"+codeFinal;
-	// 	request->setUrl(url.c_str());
-	// 	request->setRequestType(CCHttpRequest::kHttpGet);
-	// 	request->setResponseCallback(this, httpresponse_selector(GameOver::onHttpRequestCompleted));
-	// 	request->setTag("Post_My_Data");
-	// 	cocos2d::extension::CCHttpClient::getInstance()->send(request);
-	// 	request->release();
-
-	// }
-}
-
-void GameOver::onHttpRequestCompleted(CCHttpClient* client, CCHttpResponse* response)
-{
-
-	// isPosting=false;
-	// if(refreshBtn){
-	// 	refreshBtn->stopAllActions();
-	// 	refreshBtn->removeFromParent();
-	// 	refreshBtn=NULL;
-	// }
-	// cocos2d::extension::CCHttpResponse *response = (cocos2d::extension::CCHttpResponse*)data;
-	// if (!response)
-	// {
-	// 	return;
-	// }
-	// if (0 != strlen(response->getHttpRequest()->getTag()))
-	// {
-	// CCLog("%s completed", response->getHttpRequest()->getTag());
-	// }
-	// int statusCode = response->getResponseCode();
-	// char statusString[64] = {};
-	// sprintf(statusString ,"Http status code:%d ,tag = %s" ,statusCode ,response->getHttpRequest()->getTag());
-	// CCLog("response code:%d" ,statusCode);
-	// if (!response->isSucceed())
-	// {
-	// CCLog("response failed");
-	// CCLog("error buffer:%s" ,response->getErrorBuffer());
-	// CCTips *tip=CCTips::create("ServerError");
-	// this->addChild(tip,5000);
-	// return;
-	// }
-	// std::vector<char> *buffer = response->getResponseData();
-	// printf("Http response,dump data:");
-
-	// std::string buf(buffer->begin(),buffer->end());
-
-	// if(strcmp(buf.c_str(),"true")==0){
-	// 	if(upload_btn){
-	// 		upload_btn->removeFromParent();
-	// 		upload_btn=NULL;
-	// 	}
-
-	// 	CCTips *tip=CCTips::create("UploadSuccess");
-	// 	this->addChild(tip,5000);
-
-	// }else{
-	// 	CCTips *tip=CCTips::create(buf.c_str());
-	// 	this->addChild(tip,5000);
-
-	// }
 }
 
 void GameOver::onBackToMenu(CCObject *sender)

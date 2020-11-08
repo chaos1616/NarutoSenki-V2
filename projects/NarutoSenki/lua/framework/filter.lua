@@ -8,7 +8,7 @@
 
 ]]
 
-local filter = {}
+filter = {}
 
 local FILTERS = {
 -- colors

@@ -57,8 +57,6 @@ bool SelectLayer::init()
 	{
 		CC_BREAK_IF(!CCLayer::init());
 
-		lua_call_init_func;
-
 		// if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 		// {
 		// if (KTools::checkMD5() == 0)
@@ -201,11 +199,6 @@ bool SelectLayer::init()
 				select_btn->setPosition(ccp(winSize.width / 2 - 36 + (Column - 1) * 27 + Column / 4 * 10, winSize.height - 112 - (72 * (Row - 6))));
 				_pageLayer3->addChild(select_btn, -Column);
 			}
-			// else if (Page == 3)
-			// {
-			// 	select_btn->setPosition(ccp(winSize.width / 2 - 36 + (Column - 1) * 27 + Column / 4 * 10, winSize.height - 112 - (72 * (Row - 9))));
-			// 	_pageLayer4->addChild(select_btn, -Column);
-			// }
 
 			selectArray->addObject(select_btn);
 		};

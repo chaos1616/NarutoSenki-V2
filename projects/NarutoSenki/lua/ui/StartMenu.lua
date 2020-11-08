@@ -7,5 +7,5 @@ function StartMenu:init()
     -- init
     log('Initial StartMenu...')
 
-    audio:setSoundsVolume(0.5);
+    audio.setSoundsVolume(0.5);
 end

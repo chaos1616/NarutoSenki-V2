@@ -78,7 +78,7 @@ bool GameLayer::init()
 	do
 	{
 		CC_BREAK_IF(!CCLayer::init());
-		//CCTexture2D::setDefaultAlphaPixelFormat(kCCTexture2DPixelFormat_RGBA4444);
+		CCTexture2D::setDefaultAlphaPixelFormat(kCCTexture2DPixelFormat_RGBA8888);
 
 		this->setTouchEnabled(true);
 

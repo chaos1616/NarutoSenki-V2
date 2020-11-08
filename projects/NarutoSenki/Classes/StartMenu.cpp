@@ -1,8 +1,5 @@
 #include "StartMenu.h"
 
-using namespace CocosDenshion;
-USING_NS_CC_EXT;
-
 int Cheats = 0;
 int MemberID = 0;
 int GroupID = 0;
@@ -126,13 +123,13 @@ void MenuButton::ccTouchMoved(CCTouch *touch, CCEvent *event)
 			{
 				if (touch->getLocation().y < prePosY)
 				{
-					_delegate->isClockwise = true;
+					_startMenu->isClockwise = true;
 				}
 				else
 				{
-					_delegate->isClockwise = false;
+					_startMenu->isClockwise = false;
 				}
-				_delegate->isDrag = true;
+				_startMenu->isDrag = true;
 			}
 		}
 	}
@@ -141,44 +138,44 @@ void MenuButton::ccTouchMoved(CCTouch *touch, CCEvent *event)
 void MenuButton::ccTouchEnded(CCTouch *touch, CCEvent *event)
 {
 
-	if (_isTop && !_delegate->isDrag)
+	if (_isTop && !_startMenu->isDrag)
 	{
 
 		switch (_btnType)
 		{
 		case Training:
 			SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
-			_delegate->onTrainingCallBack();
+			_startMenu->onTrainingCallBack();
 			break;
 		case Credits:
 			SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
-			_delegate->onCreditsCallBack();
+			_startMenu->onCreditsCallBack();
 			break;
 		case Exit:
 			SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
-			_delegate->onExitCallBack();
+			_startMenu->onExitCallBack();
 			break;
 		case Network:
 			SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
-			_delegate->onHardCoreCallBack();
+			_startMenu->onHardCoreCallBack();
 			break;
 		case HardCore:
 			SimpleAudioEngine::sharedEngine()->playEffect(SELECT_SOUND);
 			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("menu05_text.png");
-			_delegate->menuText->setDisplayFrame(frame);
+			_startMenu->menuText->setDisplayFrame(frame);
 
 			if (CCUserDefault::sharedUserDefault()->getBoolForKey("isHardCore") == true)
 			{
 				CCUserDefault::sharedUserDefault()->setBoolForKey("isHardCore", false);
-				if (_delegate->hardCore_btn)
+				if (_startMenu->hardCore_btn)
 				{
 					CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("menu02_2.png");
-					_delegate->hardCore_btn->setDisplayFrame(frame);
+					_startMenu->hardCore_btn->setDisplayFrame(frame);
 				}
 			}
 			else
 			{
-				_delegate->onHardLayerCallBack();
+				_startMenu->onHardLayerCallBack();
 			}
 
 			break;
@@ -188,8 +185,8 @@ void MenuButton::ccTouchEnded(CCTouch *touch, CCEvent *event)
 	{
 		SimpleAudioEngine::sharedEngine()->playEffect(SELECT_SOUND);
 		prePosY = 0;
-		_delegate->scrollMenu(this->getPositionY());
-		_delegate->isDrag = false;
+		_startMenu->scrollMenu(this->getPositionY());
+		_startMenu->isDrag = false;
 	}
 };
 
@@ -242,25 +239,14 @@ StartMenu::StartMenu()
 	_menu_array = NULL;
 	isClockwise = false;
 	isDrag = false;
-	isNewAviable = false;
 	hardCore_btn = NULL;
 	hardCoreLayer = NULL;
-	isBondAviable = false;
-	isTasking = false;
-	isPosting = false;
-	input_layer = NULL;
+
 	notice_layer = NULL;
-	profile_layer = NULL;
 
 	noticeLabel = NULL;
 
 	login_btn = NULL;
-	group_layer = NULL;
-
-	totalGroupNum = NULL;
-
-	notice_label = NULL;
-	_screwLayer1 = NULL;
 }
 
 StartMenu::~StartMenu()
@@ -572,16 +558,6 @@ void StartMenu::setNotice()
 	}
 }
 
-void StartMenu::onInputBoxClose(CCObject *sender)
-{
-	if (input_layer)
-	{
-		input_layer->removeAllChildren();
-		input_layer->removeFromParent();
-		input_layer = NULL;
-	}
-}
-
 void StartMenu::onNewsBtn(CCObject *sender)
 {
 
@@ -711,12 +687,6 @@ void StartMenu::onNormalCallBack(CCObject *sender)
 
 void StartMenu::onTrainingCallBack()
 {
-
-	if (input_layer || profile_layer || group_layer)
-	{
-		return;
-	}
-
 	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
 	addSprites("Select.plist");
 
@@ -999,12 +969,6 @@ void StartMenu::onTrainingCallBack()
 
 void StartMenu::onCreditsCallBack()
 {
-
-	if (input_layer || profile_layer || group_layer)
-	{
-
-		return;
-	}
 	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
 	CCScene *creditsScene = CCScene::create();
 	CreditsLayer *creditsLayer = CreditsLayer::create();

@@ -1,14 +1,8 @@
 #pragma once
-#include "cocos2d.h"
-#include "SimpleAudioEngine.h"
 #include "Defines.h"
-#include "cocos-ext.h"
 #if (CC_TARGET_PLATFORM==CC_PLATFORM_ANDROID) 
 #include "../../../cocos2dx/platform/android/jni/JniHelper.h" 
 #endif  
-USING_NS_CC;
-USING_NS_CC_EXT;
-
 
 class GameLayer;
 
@@ -44,6 +38,5 @@ private:
 	void	onLeft(CCObject* sender);
 	void	onUPloadBtn(CCObject* sender);
 	CC_SYNTHESIZE(GameLayer*,_delegate,Delegate);
-	void onHttpRequestCompleted(CCHttpClient* client, CCHttpResponse* response);
 };
 
