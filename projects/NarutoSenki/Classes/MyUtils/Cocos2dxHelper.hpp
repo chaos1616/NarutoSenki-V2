@@ -11,26 +11,22 @@ using namespace cocos2d;
 #define get_luastack CCLuaEngine::defaultEngine()->getLuaStack()
 #define lua_getL auto L = CCLuaEngine::defaultEngine()->getLuaStack()->getLuaState();
 
-#define lua_callfunc(func_name)  \
+#define lua_call_func(func_name)  \
 	lua_getL;                    \
 	lua_getglobal(L, func_name); \
 	lua_call(L, 0, 0);
 
 #define lua_call_init_func lua_call_handler_auto
 
-#define lua_call_handler_auto                                  \
-	if (m_nScriptHandler != 0)                                 \
-	{                                                          \
-		auto pStack = get_luastack;                            \
-		pStack->pushCCObject(this, typeof(this));              \
-		pStack->executeFunctionByHandler(m_nScriptHandler, 1); \
-		m_nScriptHandler = 0; /* Only called once */           \
+#define lua_call_handler_auto                         \
+	if (m_nScriptHandler != 0)                        \
+	{                                                 \
+		int handler = m_nScriptHandler;               \
+		auto pStack = get_luastack;                   \
+		pStack->executeFunctionByHandler(handler, 0); \
+		m_nScriptHandler = 0; /* Only called once */  \
 	}
 
-#define lua_call_handler                                       \
-	if (m_nScriptHandler != 0)                                 \
-	{                                                          \
-		auto pStack = get_luastack;                            \
-		pStack->pushCCObject(this, typeof(this));              \
-		pStack->executeFunctionByHandler(m_nScriptHandler, 1); \
-	}
+#define lua_call_handler(handler) \
+	auto pStack = get_luastack;   \
+	pStack->executeFunctionByHandler(handler, 0);\

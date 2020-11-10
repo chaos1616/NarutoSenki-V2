@@ -23,14 +23,19 @@ public:
 	~SkillLayer();
 
 	bool init();
-
 	void initInterface();
 
 	CREATE_FUNC(SkillLayer);
-	CCSprite *_skillExplain;
 
-	bool isPosting;
-	CCSprite *refreshBtn;
+	void update(float dt);
+	void setSkillExplain(sbtnType type);
+
+	PROP(SelectLayer *, _selectLayer, Delegate);
+
+private:
+	const char *selectHero;
+
+	CCSprite *_skillExplain;
 
 	CCLabelBMFont *coinLabel;
 
@@ -43,25 +48,15 @@ public:
 	CCSprite *fengSprite;
 	CCSprite *fengSprite2;
 	CCSprite *skillGroup;
-
 	CCSprite *skillSprite;
 
-	void update(float dt);
-
-	const char *selectHero;
-
-	void setSkillExplain(sbtnType type);
 	CCProgressTimer *bonds;
 
-	CC_SYNTHESIZE(SelectLayer *, _delegate, Delegate);
-
-private:
 	void onCancel(CCObject *sender);
 
 	void updateSkillGroup();
 	void onChangeBtn(CCObject *sender);
 	void onResume(CCObject *sender);
-	void onSkillRequestCompleted(CCHttpClient *client, CCHttpResponse *response);
 };
 
 class SelectButton : public CCSprite, public CCTouchDelegate
@@ -70,22 +65,23 @@ public:
 	SelectButton();
 	~SelectButton();
 
+	static SelectButton *create(const char *szImage);
+
 	CC_SYNTHESIZE_RETAIN(CCString *, _charName, CharName);
 
 	bool _isAviable;
 	virtual bool init(const char *szImage);
-	static SelectButton *create(const char *szImage);
 	CCRect getRect();
 	void click();
 	int _clickTime;
-	CC_SYNTHESIZE(sbtnType, _btnType, BtnType);
+	PROP(sbtnType, _btnType, BtnType);
 
 	bool _isCanBuy;
 	bool _isCanBuy2;
 	bool _isUnlock;
 
-	CC_SYNTHESIZE(SelectLayer *, _selectLayer, Delegate1);
-	CC_SYNTHESIZE(SkillLayer *, _skillLayer, Delegate2);
+	PROP(SelectLayer *, _selectLayer, SelectLayer);
+	PROP(SkillLayer *, _skillLayer, SkillLayer);
 
 	void spriteToGrey();
 

@@ -219,11 +219,15 @@ function ui.newImageMenuItem(params)
     local item = CCMenuItemSprite:create(imageNormal, imageSelected, imageDisabled)
     if item then
         if type(listener) == "function" then
-            item:registerScriptTapHandler(function()
-                if sound then audio.playSound(sound) end
-                listener(item)
-            end)
-        end
+            if sound then
+                item:registerScriptTapHandler(function()
+                    audio.playSound(sound)
+                    listener()
+                end)
+            else
+                item:registerScriptTapHandler(listener)
+                end
+            end
         if x and y then item:setPosition(x, y) end
         if tag then item:setTag(tag) end
     end
@@ -396,7 +400,7 @@ function ui.newTTFLabel(params)
     local x, y       = params.x, params.y
     local dimensions = params.dimensions or CCSizeMake(0, 0)
     local outlineWidth = params.outlineWidth or 0
-    local outlineColor 
+    local outlineColor
 
     if outlineWidth > 0 then
         outlineColor = params.outlineColor or ccc3(46,28,18)

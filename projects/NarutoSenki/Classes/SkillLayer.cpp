@@ -1,9 +1,6 @@
 #include "SkillLayer.h"
 #include "SelectLayer.h"
 
-USING_NS_CC_EXT;
-using namespace CocosDenshion;
-
 /*----------------------
 init MenuButton ;
 ----------------------*/
@@ -31,12 +28,11 @@ bool SelectButton::init(const char *szImage)
 	do
 	{
 		CC_BREAK_IF(!CCSprite::init());
-		const char *path;
-
-		path = CCString::createWithFormat("%s", szImage)->getCString();
-		this->initWithSpriteFrameName(path);
-		this->setAnchorPoint(ccp(0, 0));
-
+		if (szImage)
+		{
+			this->initWithSpriteFrameName(szImage);
+			this->setAnchorPoint(ccp(0, 0));
+		}
 		bRet = true;
 	} while (0);
 
@@ -48,6 +44,7 @@ void SelectButton::onEnter()
 	CCSprite::onEnter();
 	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 }
+
 void SelectButton::onExit()
 {
 	CCSprite::onExit();
@@ -81,11 +78,13 @@ void SelectButton::click()
 	{
 		auto charName = _charName->getCString();
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 		lua_getL;
 		lua_getglobal(L, "setSelectButton");
 		lua_pushstring(L, charName);
 		lua_pushboolean(L, _isAviable);
 		lua_call(L, 2, 0);
+#endif
 
 		if (strcmp(charName, "None2") == 0)
 		{
@@ -98,7 +97,7 @@ void SelectButton::click()
 
 			if (_selectLayer)
 			{
-				if (_selectLayer->_playerSelect && adResult != 1)
+				if (_selectLayer->_playerSelect && !enableCustomSelect)
 				{
 					return;
 				}
@@ -106,7 +105,7 @@ void SelectButton::click()
 				{
 
 					CCObject *pObject;
-					CCARRAY_FOREACH(_selectLayer->selectArray, pObject)
+					CCARRAY_FOREACH(_selectLayer->getSelectButtons(), pObject)
 					{
 						SelectButton *selectBtn = (SelectButton *)pObject;
 						if (strcmp(selectBtn->getCharName()->getCString(), this->getCharName()->getCString()) != 0)
@@ -193,10 +192,7 @@ SkillLayer::SkillLayer()
 	fengSprite2 = NULL;
 	_autoMove = true;
 
-	_delegate = NULL;
-
-	refreshBtn = NULL;
-	isPosting = false;
+	_selectLayer = NULL;
 }
 
 SkillLayer::~SkillLayer()
@@ -283,10 +279,10 @@ void SkillLayer::initInterface()
 {
 
 	const char *bg_src;
-	if (_delegate)
+	if (_selectLayer)
 	{
 		bg_src = "blue_bg.png";
-		selectHero = _delegate->_selectHero;
+		selectHero = _selectLayer->_selectHero;
 	}
 
 	CCSprite *bgSprite = CCSprite::create(bg_src);
@@ -515,138 +511,6 @@ void SkillLayer::initInterface()
 	this->scheduleUpdate();
 }
 
-void SkillLayer::onSkillRequestCompleted(CCHttpClient *client, CCHttpResponse *response)
-{
-
-	isPosting = false;
-	if (refreshBtn)
-	{
-		refreshBtn->stopAllActions();
-		refreshBtn->removeFromParent();
-		refreshBtn = NULL;
-	}
-
-	if (!response)
-	{
-		return;
-	}
-	if (0 != strlen(response->getHttpRequest()->getTag()))
-	{
-		//CCLog("%s completed", response->getHttpRequest()->getTag());
-	}
-	int statusCode = response->getResponseCode();
-	char statusString[64] = {};
-	sprintf(statusString, "Http status code:%d ,tag = %s", statusCode, response->getHttpRequest()->getTag());
-	CCLog("response code:%d", statusCode);
-	if (!response->isSucceed())
-	{
-		CCLog("response failed");
-		CCLog("error buffer:%s", response->getErrorBuffer());
-		CCTips *tip = CCTips::create("ServerError");
-		this->addChild(tip, 5000);
-		return;
-	}
-	std::vector<char> *buffer = response->getResponseData();
-	printf("Http response,dump data:");
-
-	Document doc;
-	std::string buf(buffer->begin(), buffer->end());
-	const char *json = (char *)buf.c_str();
-	doc.Parse<kParseDefaultFlags>(json);
-	Value &arr = doc;
-
-	std::string bondString = "0";
-	std::string scoreString = "0";
-	if (arr.IsArray())
-	{
-
-		for (SizeType i = 0; i < arr.Size(); i++)
-		{
-
-			Value &node = arr[i];
-			if (i == 0)
-			{
-				Value &bondValue = node["bonds"];
-				bondString = bondValue.GetString();
-			}
-			else
-			{
-				Value &scoreValue = node["score"];
-				scoreString = scoreValue.GetString();
-			}
-		}
-
-		CCMenuItem *change_bt = NULL;
-		if (strcmp(selectHero, "Naruto") == 0 ||
-			strcmp(selectHero, "Jiraiya") == 0 ||
-			strcmp(selectHero, "Sasuke") == 0)
-		{
-
-			change_bt = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("change_btn.png"), NULL, NULL, this, menu_selector(SkillLayer::onChangeBtn));
-		}
-
-		if (change_bt)
-		{
-			changemenu = CCMenu::create(change_bt, NULL);
-			changemenu->setPosition(ccp(winSize.width / 2, winSize.height / 2 - skillSprite->getContentSize().height / 2 + 120));
-			CCActionInterval *fd = CCFadeOut::create(1.0f);
-			CCAction *seq = CCRepeatForever::create(CCSequence::create(fd, fd->reverse(), NULL));
-			change_bt->runAction(seq);
-			this->addChild(changemenu, 15);
-		}
-
-		CCSprite *goldBG = CCSprite::createWithSpriteFrameName("gold_bg.png");
-		goldBG->setAnchorPoint(ccp(0.5, 0));
-		goldBG->setPosition(ccp(winSize.width / 2 + skillSprite->getContentSize().width / 4 + 25, winSize.height / 2 + skillSprite->getContentSize().width / 2 - 74));
-		this->addChild(goldBG, 9);
-
-		CCString *cl = KTools::readFromSQLite();
-		coinLabel = CCLabelBMFont::create(cl->getCString(), "Fonts/1.fnt");
-		coinLabel->setScale(0.3f);
-		coinLabel->setAnchorPoint(ccp(0, 0));
-		coinLabel->setPosition(ccp(goldBG->getPositionX() - goldBG->getContentSize().width / 2 + 23, goldBG->getPositionY() + 4));
-		this->addChild(coinLabel, 10);
-
-		CCSprite *bondBG = CCSprite::createWithSpriteFrameName("golds_1.png");
-		bondBG->setAnchorPoint(ccp(0.5, 0));
-		bondBG->setPosition(ccp(goldBG->getPositionX() - goldBG->getContentSize().width / 2 + 15, goldBG->getPositionY() + 4));
-		this->addChild(bondBG, 15);
-
-		CCSprite *bondBG2 = CCSprite::createWithSpriteFrameName("golds_2.png");
-		bonds = CCProgressTimer::create(bondBG2);
-		bonds->setType(kCCProgressTimerTypeBar);
-		bonds->setAnchorPoint(ccp(0.5, 0));
-		bonds->setMidpoint(ccp(0, 0));
-		bonds->setBarChangeRate(ccp(0, 1));
-
-		if (atoi(cl->getCString()) >= 99999)
-		{
-			bonds->setPercentage(100);
-		}
-		else if (atoi(cl->getCString()) >= 80000)
-		{
-			bonds->setPercentage(80);
-		}
-		else if (atoi(cl->getCString()) >= 60000)
-		{
-			bonds->setPercentage(60);
-		}
-		else if (atoi(cl->getCString()) >= 40000)
-		{
-			bonds->setPercentage(40);
-		}
-		else if (atoi(cl->getCString()) >= 20000)
-		{
-			bonds->setPercentage(20);
-		}
-
-		bonds->setPosition(ccp(goldBG->getPositionX() - goldBG->getContentSize().width / 2 + 15, goldBG->getPositionY() + 4));
-		this->addChild(bonds, 20);
-
-		this->updateSkillGroup();
-	}
-}
-
 void SkillLayer::onChangeBtn(CCObject *sender)
 {
 
@@ -718,12 +582,12 @@ void SkillLayer::updateSkillGroup()
 
 		skill_btn->setBtnType((sbtnType)(i + 2));
 
-		if (this->_delegate)
+		if (_selectLayer)
 		{
-			skill_btn->setDelegate1(this->_delegate);
+			skill_btn->setSelectLayer(_selectLayer);
 		}
 
-		skill_btn->setDelegate2(this);
+		skill_btn->setSkillLayer(this);
 		skillGroup->addChild(skill_btn);
 	}
 

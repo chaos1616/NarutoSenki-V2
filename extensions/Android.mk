@@ -130,7 +130,6 @@ CocoStudio/Trigger/ObjectFactory.cpp \
 CocoStudio/Trigger/TriggerBase.cpp \
 CocoStudio/Trigger/TriggerMng.cpp \
 CocoStudio/Trigger/TriggerObj.cpp \
-CocoStudio/CocoStudio.cpp \
 spine/Animation.cpp \
 spine/AnimationState.cpp \
 spine/AnimationStateData.cpp \

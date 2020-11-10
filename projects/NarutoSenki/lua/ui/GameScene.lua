@@ -2,7 +2,9 @@
 local gameScene = GameScene
 
 local Cheats = 0
-local pushMenu, logoMenu, introLayer
+local pushMenu = nil
+local logoMenu = nil
+local introLayer = nil
 
 function GameScene:init()
     log('Initial GameScene ...')
@@ -21,7 +23,7 @@ function GameScene:init()
 
     local seq = transition.sequence({
         CCFadeIn:create(1.5), CCFadeOut:create(1.5),
-        CCCallFunc:create(handler(self, GameScene.onLogo))
+        CCCallFunc:create(GameScene.onLogo)
     })
     introLayer:addChild(logoImage)
     logoImage:runAction(seq)
@@ -30,11 +32,7 @@ end
 
 function GameScene:onLogo()
     local logo_btn = ui.newImageMenuItem(
-                         {
-            image = 'logo.png',
-            listener = handler(self, GameScene.onLogoClick),
-            sound = ns.menu.MENU_INTRO
-        })
+                         {image = 'logo.png', listener = GameScene.onLogoClick})
     logo_btn:setAnchorPoint(0.5, 0.5)
 
     logoMenu = ui.newMenu({logo_btn})
@@ -42,17 +40,43 @@ function GameScene:onLogo()
                          display.height - logo_btn:getContentSize().height / 2)
     introLayer:addChild(logoMenu, 3)
 
-    -- register c++ handler to onFinish function
-    hook.registerInitHandlerOnly(self, GameScene.onFinish)
+    audio.playSound(ns.menu.MENU_INTRO)
 
     local seq = transition.sequence({
-        CCFadeIn:create(1.5), CCDelayTime:create(2.0),
-        CCCallFunc:create(handler(self, GameScene.onFinish))
+        CCFadeIn:create(1.5),
+        CCCallFunc:create(function()
+            return audio.playSound(ns.menu.MENU_INTRO2)
+        end), CCDelayTime:create(2.0), CCCallFunc:create(GameScene.onFinish)
     })
     logo_btn:runAction(seq)
 end
 
-function GameScene:onPlayEffect() audio.playEffect('Audio/Menu/intro2.ogg') end
+function GameScene:onLogoClick()
+    Cheats = Cheats + 1
+
+    if Cheats == 10 then
+        audio.stopAllSounds()
+        logoMenu:removeFromParent()
+
+        local logo_btn = ui.newImageMenuItem(
+                             {
+                image = 'logo2.png',
+                listener = GameScene.onLogoClick
+            })
+        logo_btn:setAnchorPoint(0.5, 0.5)
+
+        logoMenu = ui.newMenu({logo_btn})
+        logoMenu:setPosition(display.width / 2, display.height -
+                                 logo_btn:getContentSize().height / 2)
+        introLayer:addChild(logoMenu, 3)
+    elseif Cheats > 10 then
+        audio.stopAllSounds()
+        audio.stopMusic(true)
+        audio.playSound(ns.menu.LOGO_CLICK)
+
+        GameScene:onFinish()
+    end
+end
 
 function GameScene:onFinish()
     if not pushMenu then
@@ -61,7 +85,7 @@ function GameScene:onFinish()
         local btm_btn = ui.newImageMenuItem(
                             {
                 image = 'push_start.png',
-                listener = handler(self, GameScene.onPush)
+                listener = GameScene.onPush
             })
         pushMenu = ui.newMenu({btm_btn})
         pushMenu:setPosition(display.width / 2, display.height / 2 - 100)
@@ -74,43 +98,19 @@ function GameScene:onFinish()
 end
 
 function GameScene:onPush()
-    audio.playSound('Audio/Menu/confirm.ogg')
-
     tools.initSqliteDB()
 
     audio.stopMusic(true)
+    -- play sound and delayed change sccene
+    -- Cleanup audio engine in StartMenu
+    audio.playSound(ns.menu.CONFIRM)
 
     local menuScene = CCScene:create()
     local menuLayer = StartMenu:create()
     menuScene:addChild(menuLayer)
 
-    CCDirector:sharedDirector():replaceScene(
-        CCTransitionFade:create(1.0, menuScene))
-end
+    -- for auto call c++ layer StartMenu::init after lua called
+    hook.registerInitHandlerOnly(menuLayer)
 
-function GameScene:onLogoClick(sender)
-    Cheats = Cheats + 1
-
-    if Cheats == 10 then
-        audio.stopAllSounds()
-        logoMenu:removeFromParent()
-
-        local logo_btn = ui.newImageMenuItem(
-                             {
-                image = 'logo2.png',
-                listener = handler(self, GameScene.onLogoClick)
-            })
-        logo_btn:setAnchorPoint(0.5, 0.5)
-
-        logoMenu = ui.newMenu({logo_btn})
-        logoMenu:setPosition(display.width / 2, display.height -
-                                 logo_btn:getContentSize().height / 2)
-        introLayer:addChild(logoMenu, 3)
-    elseif Cheats > 10 then
-        audio.stopAllSounds()
-        audio.stopMusic(true)
-        audio.playSound('Audio/Menu/chang_btn.ogg')
-
-        GameScene:onFinish()
-    end
+    director.replaceSceneWithFade(menuScene, 1.0)
 end

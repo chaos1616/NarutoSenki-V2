@@ -7628,8 +7628,8 @@ void CharacterBase::idle()
 		_isSticking = false;
 		_knockLength = 0;
 		_originY = 0;
-		_sticker = NULL;
-		_knockDiretion = NULL;
+		_sticker = nullptr;
+		_knockDiretion = false;
 
 		this->unschedule(schedule_selector(CharacterBase::stopMove));
 
@@ -7643,7 +7643,7 @@ void CharacterBase::idle()
 			}
 		};
 
-		if (_delegate->_isAttackButtonRelease == false &&
+		if (!_delegate->_isAttackButtonRelease &&
 			isPlayer &&
 			_attackType && !_isAllAttackLocked)
 		{

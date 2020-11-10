@@ -8,7 +8,6 @@ class GameLayer;
 
 class BGLayer : public CCLayer
 {
-
 public:
 	BGLayer();
 	~BGLayer();

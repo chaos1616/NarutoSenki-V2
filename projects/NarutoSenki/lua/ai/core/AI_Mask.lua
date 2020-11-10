@@ -23,10 +23,11 @@ function AI_Mask:perform()
         local sp
 
         if (self._mainTarget._originY) then
-            sp = ccpSub(ccp(self._mainTarget:getPositionX(),
-                            self._mainTarget._originY), self:getPosition())
+            sp = ccpSub(CCPoint(self._mainTarget:getPositionX(),
+                                self._mainTarget._originY), self:getPosition())
         else
-            sp = ccpSub(self._mainTarget:getPosition(), self:getPosition())
+            sp = ccpSub(CCPoint(self._mainTarget:getPosition(),
+                                self:getPosition()))
         end
 
         if self._mainTarget:getRole():getCString() == 'Tower' then

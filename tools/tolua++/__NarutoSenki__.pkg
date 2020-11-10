@@ -15,7 +15,6 @@ $#include "HudLayer.h"
 $#include "JoyStick.h"
 $#include "LoadLayer.h"
 $#include "PauseLayer.h"
-$#include "RankingLayer.h"
 $#include "SelectLayer.h"
 $#include "SkillLayer.h"
 $#include "StartMenu.h"
@@ -956,8 +955,6 @@ class AI_Guardian : public Hero {
 class GameScene : public CCScene
 {
 public:
-	virtual bool init();
-
     static GameScene* create();
 };
 
@@ -965,6 +962,8 @@ public:
 class StartMenu : public CCLayer{
 public:
 	static StartMenu* create();
+
+	void setHandle(LUA_FUNCTION handler);
 };
 
 /* Effect.h */
@@ -1033,10 +1032,6 @@ public:
 	void playBGM(float dt);
 	void onLoadFinish(float dt);
 
-	// bool isPosting;
-	// void onHttpRequestCompleted(CCHttpClient* client, CCHttpResponse* response);
-
-	// CCArray* DLCArray;
 // private:
 	// 	void preloadPlist(CCObject* obj);
 
@@ -1045,20 +1040,49 @@ public:
 //	void onExit();
 };
 
-/* some_header.h */
-/* some_header.h */
-/* some_header.h */
-
 /* SelectLayer.h */
 class SelectLayer : public CCLayer
 {
 public:
 	static SelectLayer *create();
+
+	void setSelectButtons(CCArray *var);
+
+	void setSelectHero(const char *var);
+	void setSelectList(CCArray *var);
+	void setComSelector1(CCSprite *var);
+	void setComLabel1(CCSprite *var);
+	void setComSelector2(CCSprite *var);
+	void setComLabel2(CCSprite *var);
+	void setHeroHalf(CCSprite *var);
+	void setHeroName(CCSprite *var);
+	void setSelectImg(CCSprite *var);
+
+	void onGameStart();
 };
 
 /* SkillLayer.h */
+class SkillLayer : public CCLayer{
+public:
+	static SkillLayer* create();
+
+	void initInterface();
+	SelectLayer * getDelegate();
+	void setDelegate(SelectLayer * var);
+};
 class SelectButton : public CCSprite, public CCTouchDelegate{
 public:
+	SelectButton();
+	~SelectButton();
+	static SelectButton *create(const char *szImage);
+
+	CCString *getCharName();
+	virtual void setCharName(CCString * var);
+
+	SelectLayer *getSelectLayer();
+	void setSelectLayer(SelectLayer *var);
+	SkillLayer *getSkillLayer();
+	void setSkillLayer(SkillLayer *var);
 	void click();
 };
 
@@ -1101,4 +1125,44 @@ public:
 class CCTips : public CCSprite{
 public:
 	static CCTips *create(const char *tips);
+};
+
+class CCTouchDelegate
+{
+public:
+    CCTouchDelegate() {};
+    virtual ~CCTouchDelegate(){};
+
+    virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
+    // optional
+
+    virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
+
+    // optional
+     virtual void ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent);
+     virtual void ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent);
+     virtual void ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent);
+     virtual void ccTouchesCancelled(CCSet *pTouches, CCEvent *pEvent);
+
+};
+class CCTargetedTouchDelegate : public CCTouchDelegate
+{
+public:
+	virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
+
+	// optional
+	virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
+	virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+	virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
+};
+class CCStandardTouchDelegate : public CCTouchDelegate
+{
+public:
+	// optional
+	virtual void ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent);
+	virtual void ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent);
+	virtual void ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent);
+	virtual void ccTouchesCancelled(CCSet *pTouches, CCEvent *pEvent);
 };

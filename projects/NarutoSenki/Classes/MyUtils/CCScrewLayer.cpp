@@ -41,7 +41,7 @@ void CCScrewLayer::onExit()
 bool CCScrewLayer::ccTouchBegan(CCTouch *touch, CCEvent *event)
 {
 
-	prePosY = NULL;
+	prePosY = 0;
 	return true;
 };
 
@@ -49,7 +49,7 @@ void CCScrewLayer::ccTouchMoved(CCTouch *touch, CCEvent *event)
 {
 	// touch area
 	CCPoint curPoint = touch->getLocation();
-	if (prePosY == NULL)
+	if (prePosY == 0)
 	{
 		prePosY = curPoint.y;
 	}
@@ -67,7 +67,7 @@ void CCScrewLayer::ccTouchMoved(CCTouch *touch, CCEvent *event)
 
 void CCScrewLayer::ccTouchEnded(CCTouch *touch, CCEvent *event)
 {
-	prePosY = NULL;
+	prePosY = 0;
 
 	//CCLOG("y:%f",this->getPositionY());
 	if (this->getPositionY() > totalRow * line_height - line_height)

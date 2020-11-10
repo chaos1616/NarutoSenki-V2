@@ -84,40 +84,21 @@
 #define not_find_Flog(searchRange, masterRange) !this->findEnemy("Flog", searchRange, masterRange)
 #define not_find_Tower(searchRange, masterRange) !this->findEnemy("Tower", searchRange, masterRange)
 
-#include <iostream>
-#include <typeinfo>
-#include <map>
-// int max_value = meta::reflect<int>().data<2048>(hash("max_int"));
-
 #define __begin__ if(0) {}
 #define is_begin(varStr) if (strcmp(varStr, name) == 0)
 #define is(varStr) else if (strcmp(varStr, name) == 0)
-#define is_or(varStr, varName) else if ((strcmp(varStr, varName) == 0) || (strcmp(name, varName) == 0))
+#define is_or(varName1, varName2) else if ((strcmp(name, varName1) == 0) || (strcmp(name, varName2) == 0))
 #define is_or2(varStr, varName, varName2) else if ((strcmp(varStr, varName) == 0) || (strcmp(name, varName) == 0) || (strcmp(name, varName2) == 0))
 #define is_or3(varStr, varName, varName2, varName3) else if ((strcmp(varStr, varName) == 0) || (strcmp(name, varName) == 0) || (strcmp(name, varName2) == 0) || (strcmp(name, varName3) == 0))
 #define is_tag(tag) if (strcmp(role->getCString(), tag) == 0)
 
 class AIProvider
 {
-    // static const map<std::string, type> ai_providers;
-
 public:
     static HeroElement *createAI(CCString *character, CCString *role, CCString *group)
     {
         Hero *pAI;
-        // Init AI
-        // ninjaEnums id = hero->_id;
         const char *name = character->getCString();
-        // string fn_name = "AI_";
-        // fn_name += name;
-        // std::hash<std::string_view> hash{};
-        // meta::func func = meta::resolve<Hero>().func(hash(fn_name));
-        // if (func)
-        // {
-        // }
-        // else
-        // {
-        // }
 
         __begin__
         is("Sakura") 				        pAI = new AI_Sakura();

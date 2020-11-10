@@ -6,9 +6,8 @@
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "../../../cocos2dx/platform/android/jni/JniHelper.h"
-#endif
-
-#ifdef _WIN32
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#include <direct.h>
 #include <io.h>
 #else
 #include <unistd.h>
@@ -41,16 +40,4 @@ public:
 	void preloadIMG();
 	void playBGM(float dt);
 	void onLoadFinish(float dt);
-
-	bool isPosting;
-	void onHttpRequestCompleted(CCHttpClient *client, CCHttpResponse *response);
-
-	CCArray *DLCArray;
-
-private:
-	void preloadPlist(CCObject *obj);
-
-protected:
-	void onEnter();
-	void onExit();
 };

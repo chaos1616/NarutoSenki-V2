@@ -1,7 +1,6 @@
-require 'framework.functions'
-require 'class.basic'
-require 'utils.utils'
-
+--
+-- CharacterBase
+--
 local ICharacter = CharacterBase or {}
 
 ICharacter._actionState = ActionState.WALK

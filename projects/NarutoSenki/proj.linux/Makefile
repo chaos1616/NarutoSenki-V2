@@ -17,7 +17,6 @@ SOURCES = main.cpp \
 	../Classes/JoyStick.cpp \
 	../Classes/LoadLayer.cpp \
 	../Classes/PauseLayer.cpp \
-	../Classes/RankingLayer.cpp \
 	../Classes/SelectLayer.cpp \
 	../Classes/SkillLayer.cpp \
 	../Classes/StartMenu.cpp \

@@ -1,4 +1,5 @@
 #include "StartMenu.h"
+#include "MyUtils/Cocos2dxHelper.hpp"
 
 int Cheats = 0;
 int MemberID = 0;
@@ -16,7 +17,7 @@ extern "C"
 {
 	void Java_re_naruto_game_NarutoSenki_onBannerInit(JNIEnv *env, jobject thiz, jint points)
 	{
-		adResult = points;
+		enableCustomSelect = points;
 	}
 }
 #endif
@@ -137,10 +138,8 @@ void MenuButton::ccTouchMoved(CCTouch *touch, CCEvent *event)
 
 void MenuButton::ccTouchEnded(CCTouch *touch, CCEvent *event)
 {
-
 	if (_isTop && !_startMenu->isDrag)
 	{
-
 		switch (_btnType)
 		{
 		case Training:
@@ -155,9 +154,9 @@ void MenuButton::ccTouchEnded(CCTouch *touch, CCEvent *event)
 			SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
 			_startMenu->onExitCallBack();
 			break;
-		case Network:
+		case Custom:
 			SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
-			_startMenu->onHardCoreCallBack();
+			_startMenu->enterCustomMode();
 			break;
 		case HardCore:
 			SimpleAudioEngine::sharedEngine()->playEffect(SELECT_SOUND);
@@ -203,7 +202,7 @@ void MenuButton::playSound()
 		// _delegate->hardCore_btn->setVisible(true);
 		// }
 		break;
-	case Network:
+	case Custom:
 		SimpleAudioEngine::sharedEngine()->playEffect(NETWORK_SOUND);
 		break;
 	case Credits:
@@ -260,6 +259,10 @@ bool StartMenu::init()
 	{
 		CC_BREAK_IF(!CCLayer::init());
 
+		addSprites("Menu.plist");
+		addSprites("Result.plist");
+		addSprites("NamePlate.plist");
+
 		//CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
 
 		//CCSprite* bgSprite = CCSprite::create("red_bg.png");
@@ -269,11 +272,7 @@ bool StartMenu::init()
 		//bgSprite->setPosition(ccp(0,0));
 		//this->addChild(bgSprite, -5);
 
-		addSprites("Menu.plist");
-		addSprites("Result.plist");
-		addSprites("NamePlate.plist");
 		//produce groud
-
 		CCSprite *gold_left = CCSprite::createWithSpriteFrameName("gold_left.png");
 		gold_left->setAnchorPoint(ccp(0, 0));
 		gold_left->setPosition(ccp(0, 20));
@@ -329,7 +328,7 @@ bool StartMenu::init()
 
 		MenuButton *network_btn = MenuButton::create("menu01.png");
 		network_btn->setDelegate(this);
-		network_btn->setBtnType(Network);
+		network_btn->setBtnType(Custom);
 		network_btn->setScale(0.5f);
 		network_btn->setPositionY(_pos03);
 		_menu_array->addObject(network_btn);
@@ -389,7 +388,7 @@ bool StartMenu::init()
 		};
 		CCLabelBMFont *versionLabel = CCLabelBMFont::create(VERSION_CODE, "Fonts/1.fnt");
 		versionLabel->setScale(0.3f);
-		versionLabel->setPosition(winSize.width - 20, 10);
+		versionLabel->setPosition(winSize.width - 25, 10);
 		this->addChild(versionLabel, 5);
 
 		CCSprite *avator = CCSprite::createWithSpriteFrameName("avator1.png");
@@ -452,7 +451,8 @@ bool StartMenu::init()
 void StartMenu::onEnter()
 {
 	CCLayer::onEnter();
-	SimpleAudioEngine::sharedEngine()->end();
+	// SimpleAudioEngine::sharedEngine()->end();
+	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
 
 	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isBGM") != false)
 	{
@@ -479,26 +479,11 @@ void StartMenu::onEnter()
 void StartMenu::onExit()
 {
 	CCLayer::onExit();
+	SimpleAudioEngine::sharedEngine()->end();
 }
 
 void StartMenu::onLoginBtn(CCObject *sender)
 {
-
-	addSprites("Result.plist");
-	addSprites("Record.plist");
-	addSprites("Record2.plist");
-	addSprites("UI.plist");
-	addSprites("Report.plist");
-	addSprites("Ougis.plist");
-	addSprites("Ougis2.plist");
-	addSprites("Map.plist");
-	addSprites("Gears.plist");
-	CCScene *pscene = CCScene::create();
-	RakingLayer *rakingLayer = RakingLayer::create();
-	// rakingLayer->setDelegate(this);
-	pscene->addChild(rakingLayer);
-	CCDirector::sharedDirector()->pushScene(pscene);
-
 	CCTips *tip = CCTips::create("ServerMainten");
 	this->addChild(tip, 5000);
 	return;
@@ -646,43 +631,43 @@ void StartMenu::onHardLayerCallBack()
 	}
 }
 
-void StartMenu::onHardCoreCallBack()
+void StartMenu::enterCustomMode()
 {
-	// if (MemberID)
-	// {
-	addSprites("Select.plist");
-	addSprites("UI.plist");
-	addSprites("Report.plist");
-	addSprites("Ougis.plist");
-	addSprites("Ougis2.plist");
-	addSprites("Map.plist");
-	addSprites("Gears.plist");
-
-	CCScene *selectScene = CCScene::create();
-	SelectLayer *selectLayer = SelectLayer::create();
-
-	selectScene->addChild(selectLayer);
-	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.5f, selectScene));
-	// }
-	CCTips *tip = CCTips::create("ServerMainten");
-	this->addChild(tip, 5000);
+	enableCustomSelect = true;
+	enterSelectLayer();
 }
 
-void StartMenu::onNormalCallBack(CCObject *sender)
+void StartMenu::enterTrainingMode()
 {
-	addSprites("Select.plist");
-	addSprites("UI.plist");
-	addSprites("Report.plist");
-	addSprites("Ougis.plist");
-	addSprites("Ougis2.plist");
-	addSprites("Map.plist");
-	addSprites("Gears.plist");
+	enableCustomSelect = false;
+	enterSelectLayer();
+}
 
-	CCScene *selectScene = CCScene::create();
-	SelectLayer *selectLayer = SelectLayer::create();
+void StartMenu::enterSelectLayer()
+{
+	// call lua StartMenu:enterSelectPanel
+	if (_handler != 0)
+	{
+		lua_call_handler(_handler);
+	}
+	else
+	{
+		addSprites("Select.plist");
+		addSprites("UI.plist");
+		addSprites("Report.plist");
+		addSprites("Ougis.plist");
+		addSprites("Ougis2.plist");
+		addSprites("Map.plist");
+		addSprites("Gears.plist");
 
-	selectScene->addChild(selectLayer);
-	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.5f, selectScene));
+		auto selectScene = CCScene::create();
+		auto selectLayer = SelectLayer::create();
+
+		this->addChild(selectLayer);
+		CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(
+			1.5f, selectScene));
+		CCLOG("StartMenu lua handler can not be null");
+	}
 }
 
 void StartMenu::onTrainingCallBack()
@@ -690,13 +675,7 @@ void StartMenu::onTrainingCallBack()
 	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
 	addSprites("Select.plist");
 
-	// int i = 1;
 	int i = 0;
-
-	// if (adResult != 1)
-	// {
-	// 	Cheats = 0;
-	// }
 
 	if (Cheats > 10)
 	{
@@ -705,7 +684,7 @@ void StartMenu::onTrainingCallBack()
 
 	if (i == 0)
 	{
-		this->onNormalCallBack(NULL);
+		this->enterTrainingMode();
 	}
 	else if (i == 1)
 	{
@@ -837,7 +816,6 @@ void StartMenu::onTrainingCallBack()
 		CCScene *loadScene = CCScene::create();
 		LoadLayer *loadLayer = LoadLayer::create();
 		loadLayer->tempHeros = tempHeros;
-		loadLayer->_isHardCoreMode = true;
 		loadScene->addChild(loadLayer);
 		loadLayer->preloadAudio();
 		CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.5f, loadScene));
@@ -1106,7 +1084,7 @@ void StartMenu::scrollMenu(int posY)
 			case Training:
 				src = "menu02_text.png";
 				break;
-			case Network:
+			case Custom:
 				src = "menu01_text.png";
 				break;
 			case Credits:
@@ -1140,11 +1118,13 @@ void StartMenu::keyBackClicked()
 	// 	minfo.env->DeleteLocalRef(jTitle);
 	// 	minfo.env->DeleteLocalRef(jMsg);
 	// }
+#else
+	CCDirector::sharedDirector()->end();
+	exit(0);
 #endif
 };
 
 void StartMenu::onExitCallBack()
 {
-
 	this->keyBackClicked();
 }

@@ -50,31 +50,17 @@ function hook:onInitEffects() end
 
 function hook:onInitHeros() end
 
--- SelectButton
-function SelectButton:init()
-    log('%s init ...', type(SelectButton))
-
-    -- handling touch events
-    local function onTouchBegan(x, y)
-        log('on touch: %s', self._isCanBuy)
-        return true
-    end
-
-    local function onTouch(eventType, x, y)
-        if eventType == "began" then return onTouchBegan(x, y) end
-    end
-
-    self:setTouchEnabled(true)
-    self:registerScriptTouchHandler(onTouch)
-end
-
 -- for key, value in pairs(_G) do
 --     print(key,value)
 -- end
 
-function hook.registerInitHandlerOnly(target, handler)
-    target:registerScriptHandler(function (event)
-        handler(target)
+function hook.registerHandle(target, handler)
+    target:registerScriptHandler(function(event) handler(target) end)
+end
+
+function hook.registerInitHandlerOnly(target)
+    target:registerScriptHandler(function(event)
+        target:init()
         target:unregisterScriptHandler()
     end)
 end

@@ -1,19 +1,13 @@
 #pragma once
-#include "cocos2d.h"
-#include "SimpleAudioEngine.h"
-#include "cocos-ext.h"
+#include "Defines.h"
 #include "LoadLayer.h"
 #include "SkillLayer.h"
-#include "RankingLayer.h"
-USING_NS_CC;
 
 class SelectLayer : public CCLayer
 {
 public:
 	SelectLayer();
 	~SelectLayer();
-
-	virtual bool init();
 
 	static SelectLayer *create();
 
@@ -24,50 +18,37 @@ public:
 	const char *_com1Select;
 	const char *_com2Select;
 
-	bool isPosting;
-	CCSprite *refreshBtn;
+	PROP(CCArray *, selectButtons, SelectButtons);
+	PROP(bool, _isRandomChar, IsRandomChar);
 
-	CCLayer *_teamSelector;
+	void setSelectHero(const char *var) { _selectHero = var; };
 
-	CC_SYNTHESIZE_RETAIN(CCSprite *, _comSelector1, ComSelector1);
-	CC_SYNTHESIZE_RETAIN(CCSprite *, _comLabel1, ComLabel1);
+	void setSelectList(CCArray *var) { _selectList = var; };
+	void setComSelector1(CCSprite *var) { _comSelector1 = var; };
+	void setComLabel1(CCSprite *var) { _comLabel1 = var; };
+	void setComSelector2(CCSprite *var) { _comSelector2 = var; };
+	void setComLabel2(CCSprite *var) { _comLabel2 = var; };
+	void setHeroHalf(CCSprite *var) { _heroHalf = var; };
+	void setHeroName(CCSprite *var) { _heroName = var; };
+	void setSelectImg(CCSprite *var) { _selectImg = var; };
 
-	CC_SYNTHESIZE_RETAIN(CCSprite *, _comSelector2, ComSelector2);
-	CC_SYNTHESIZE_RETAIN(CCSprite *, _comLabel2, ComLabel2);
-
-	CCArray *selectArray;
-
-	CC_SYNTHESIZE_RETAIN(CCLayer *, _pageLayer1, Page1);
-	CC_SYNTHESIZE_RETAIN(CCLayer *, _pageLayer2, Page2);
-	CC_SYNTHESIZE_RETAIN(CCLayer *, _pageLayer3, Page3);
-
-	CCMenuItemSprite *page1_btn;
-	CCMenuItemSprite *page2_btn;
-	CCMenuItemSprite *page3_btn;
-
-	void onPage1Btn(CCObject *sender);
-	void onPage2Btn(CCObject *sender);
-	void onPage3Btn(CCObject *sender);
-
-	CC_SYNTHESIZE_RETAIN(CCArray *, _selectList, SelectList);
-	CCMenu *page_menu;
-
-	bool isStart;
-	bool SaveError;
-	bool _isHardCoreMode;
-	bool _isRandomChar;
-
-	CC_SYNTHESIZE_RETAIN(CCSprite *, _heroHalf, HeroHalf);
-	CC_SYNTHESIZE_RETAIN(CCSprite *, _heroName, HeroName);
-	CC_SYNTHESIZE_RETAIN(CCSprite *, _selectImg, SelectImg);
+	void onGameStart();
 
 	virtual void keyBackClicked();
 
 private:
-	void onRankingBtn(CCObject *sender);
-	void onQuestBtn(CCObject *sender);
-	void onGameStart(CCObject *sender);
-	void onSkillMenu(CCObject *sender);
-	void onError(CCObject *sender);
+	bool isStart;
+
+	CCArray *_selectList;
+
+	CCSprite *_comSelector1;
+	CCSprite *_comLabel1;
+	CCSprite *_comSelector2;
+	CCSprite *_comLabel2;
+
+	CCSprite *_heroHalf;
+	CCSprite *_heroName;
+	CCSprite *_selectImg;
+
 	void onBackToMenu(CCObject *sender);
 };

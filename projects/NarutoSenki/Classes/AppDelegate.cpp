@@ -15,14 +15,14 @@ AppDelegate::AppDelegate()
 
 AppDelegate::~AppDelegate()
 {
-    SimpleAudioEngine::sharedEngine()->end();
+	SimpleAudioEngine::sharedEngine()->end();
 }
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
 	// initialize director
-	CCDirector* pDirector = CCDirector::sharedDirector();
-	CCEGLView* pEGLView = CCEGLView::sharedOpenGLView();
+	CCDirector *pDirector = CCDirector::sharedDirector();
+	CCEGLView *pEGLView = CCEGLView::sharedOpenGLView();
 
 	pDirector->setOpenGLView(pEGLView);
 	// pEGLView->setDesignResolutionSize(480, 320, kResolutionFixedHeight);
@@ -34,16 +34,21 @@ bool AppDelegate::applicationDidFinishLaunching()
 	// pDirector->setAnimationInterval(1.0 / 60);
 
 	// init lua
-	CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
+	CCLuaEngine *pEngine = CCLuaEngine::defaultEngine();
 	CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);
 
-	CCLuaStack* pStack = pEngine->getLuaStack();
-	lua_State* tolua_s = pStack->getLuaState();
+	CCLuaStack *pStack = pEngine->getLuaStack();
+	lua_State *tolua_s = pStack->getLuaState();
 	tolua_extensions_ccb_open(tolua_s);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 	pEngine->addSearchPath("../lua");
 	CCFileUtils::sharedFileUtils()->addSearchPath("../lua");
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	pStack->setXXTEAKeyAndSign("2dxLua", strlen("2dxLua"), "XXTEA", strlen("XXTEA"));
+	pEngine->addSearchPath("lua");
+	CCFileUtils::sharedFileUtils()->addSearchPath("lua");
+	CCLOG("------ Android WritablePath -> %s", CCFileUtils::sharedFileUtils()->getWritablePath().c_str());
 #endif
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	pEngine->addSearchPath("../../lua");

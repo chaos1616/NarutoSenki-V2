@@ -61,7 +61,7 @@ end
 
 --[[--
     Get string value by key, if the key doesn't exist, a default value will return.
-    You can set the default value, or it is "".
+    You can set the default value, or it is ''.
 ]]
 function save.getString(key, default)
     local value = u:getStringForKey(key)
@@ -109,3 +109,11 @@ function save.purgeSharedUserDefault() u:purgeSharedUserDefault() end
 function save.getDataFilePath() return u:getXMLFilePath():c_str() end
 
 function save.isDataFileExist() return u:isXMLFileExist() end
+
+--
+-- save extensions for NarutoSenki
+--
+function save.isBGM() return save.getBool('isBGM') end
+function save.isVoice() return save.getBool('isVoice') end
+function save.isPreload() return save.getBool('isPreload') end
+function save.isHardCore() return save.getBool('isHardCore') end

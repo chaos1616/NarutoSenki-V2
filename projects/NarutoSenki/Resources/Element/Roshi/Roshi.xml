@@ -37,7 +37,7 @@
         <eventName type="setMove">32</eventName>
         <frameName>Roshi_Hurt_01.png</frameName>
         <frameName>Roshi_Hurt_02.png</frameName>
-        <eventName type="setSound">Audio/Roshi/Roshi_hurt.ogg</eventName>
+        <!-- <eventName type="setSound">Audio/Roshi/Roshi_hurt.ogg</eventName> -->
       </frame>
     </action>
    

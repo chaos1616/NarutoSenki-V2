@@ -1,11 +1,7 @@
 #ifndef __ELEMENTS_H__
 #define __ELEMENTS_H__
-#include "cocos2d.h"
 #include "CharacterBase.h"
 #include "HPBar.h"
-#include "cocos-ext.h"
-
-USING_NS_CC;
 
 class HeroElement : public CharacterBase
 {

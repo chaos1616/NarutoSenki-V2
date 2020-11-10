@@ -1,8 +1,5 @@
-#include "cocos-ext.h"
 #include "HudLayer.h"
 #include "MyUtils/CCShake.h"
-
-using namespace CocosDenshion;
 
 MiniIcon::MiniIcon()
 {
@@ -19,7 +16,6 @@ bool MiniIcon::init(const char *szImage, bool isNotification)
 	bool bRet = false;
 	do
 	{
-
 		CC_BREAK_IF(!CCSprite::init());
 		this->initWithSpriteFrameName(szImage);
 

@@ -343,7 +343,7 @@ void GameOver::listResult()
 
 		CCString *extraCoin;
 		int tempCoin;
-		if (adResult == 1 && _isWin)
+		if (enableCustomSelect && _isWin)
 		{
 			std::string tempEtra = "idd4";
 			KTools::decode(tempEtra);
@@ -375,7 +375,7 @@ void GameOver::listResult()
 
 	const char *imgSrc = "";
 
-	if (_isWin && adResult == 1)
+	if (_isWin && enableCustomSelect)
 	{
 		if (resultScore >= 140 && _delegate->_isHardCoreGame && _delegate->_isRandomChar)
 		{
@@ -437,7 +437,7 @@ void GameOver::listResult()
 			this->addChild(koSprite,8);
 		}*/
 
-		if (_isWin && adResult == 1 && _delegate->_isHardCoreGame)
+		if (_isWin && enableCustomSelect && _delegate->_isHardCoreGame)
 		{
 
 			finnalScore = resultScore + float(_delegate->currentPlayer->_flogNum) / 100;
@@ -505,7 +505,7 @@ void GameOver::listResult()
 				{
 					KTools::saveSQLite("CharRecord", "name", resultChar->getCString(), "column1", (char *)realWin->getCString(), false);
 				}
-							if (_delegate->_isRandomChar && resultScore >= 120)
+				if (_delegate->_isRandomChar && resultScore >= 120)
 				{
 					CCObject *pObject;
 

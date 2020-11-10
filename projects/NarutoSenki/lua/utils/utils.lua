@@ -5,9 +5,10 @@ require 'framework.debug'
 --
 tools = {}
 device = CCDevice
+director = {}
+tips = {}
 
 local kt = KTools
-local tips = CCTips
 local sharedDirector = CCDirector:sharedDirector()
 local sharedTextureCache = CCTextureCache:sharedTextureCache()
 local sharedSpriteFrameCache = CCSpriteFrameCache:sharedSpriteFrameCache()
@@ -29,8 +30,6 @@ function tools.addSprites(...)
         sharedSpriteFrameCache:addSpriteFramesWithFile(v)
     end
 end
-
-function tools.setTip(str) tips:create(str) end
 
 function tools.is_c_type(userdata, cType)
     if type(userdata) == 'userdata' and tolua.type(userdata) == cType then
@@ -68,15 +67,40 @@ function CCSprite:fullScreen()
     self:setScaleX(display.width / self:getContentSize().width)
 end
 
+function CCNode:setTip(str)
+    local tip = CCTips:create(str)
+    self:addChild(tip, 5000)
+end
+
+--[[
+    check has value in table
+]]
 function table:has(val)
     for _, v in ipairs(self) do if v == val then return true end end
     return false
 end
 
+--[[
+    check has key in table
+]]
 function table:hasKey(key)
     for k, _ in ipairs(self) do if k == key then return true end end
     return false
 end
+
+function director.replaceSceneWithFade(scene, time)
+    if scene ~= nil and type(time) == 'number' and time > 0 then
+        sharedDirector:replaceScene(CCTransitionFade:create(time, scene))
+    end
+end
+
+function director.pushScene(scene)
+    if scene ~= nil then sharedDirector:pushScene(scene) end
+end
+
+function director.sharedDirector() return sharedDirector end
+
+function director.exit() sharedDirector:endToLua() end
 
 -- Defines
 ns = {}

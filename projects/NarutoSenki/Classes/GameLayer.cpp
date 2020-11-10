@@ -67,8 +67,10 @@ GameLayer::~GameLayer()
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	CCDirector::sharedDirector()->getOpenGLView()->setAccelerometerKeyHook(NULL);
+	CC_SAFE_DELETE(_gLayer);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 	glfwSetKeyCallback(_window, NULL);
+	CC_SAFE_DELETE(_gLayer);
 #endif
 }
 
@@ -114,6 +116,7 @@ void GameLayer::onEnter()
 		this->onGameOver(false);
 	}
 };
+
 void GameLayer::onExit()
 {
 	CCLayer::onExit();
@@ -1024,25 +1027,35 @@ void GameLayer::onGear()
 
 void GameLayer::onGameOver(bool isWin)
 {
+	// Stop all keyboard events
+	_gLayer = nullptr;
 
-	if (CError != 1)
+	if (_isPause)
 	{
-		CCRenderTexture *snapshoot = CCRenderTexture::create(winSize.width, winSize.height);
-		CCScene *f = CCDirector::sharedDirector()->getRunningScene();
-		CCObject *pObject = f->getChildren()->objectAtIndex(0);
-		BGLayer *bg = (BGLayer *)pObject;
-		snapshoot->begin();
-		bg->visit();
-		this->visit();
-		snapshoot->end();
-
-		CCScene *pscene = CCScene::create();
-		GameOver *layer = GameOver::create(snapshoot);
-		layer->setWin(isWin);
-		layer->setDelegate(this);
-		pscene->addChild(layer);
-		CCDirector::sharedDirector()->pushScene(pscene);
+		_isPause = false;
+		CCDirector::sharedDirector()->popScene();
 	}
+	if (_isGear)
+	{
+		_isGear = false;
+		CCDirector::sharedDirector()->popScene();
+	}
+
+	CCRenderTexture *snapshoot = CCRenderTexture::create(winSize.width, winSize.height);
+	CCScene *f = CCDirector::sharedDirector()->getRunningScene();
+	CCObject *pObject = f->getChildren()->objectAtIndex(0);
+	BGLayer *bg = (BGLayer *)pObject;
+	snapshoot->begin();
+	bg->visit();
+	this->visit();
+	snapshoot->end();
+
+	CCScene *pscene = CCScene::create();
+	GameOver *layer = GameOver::create(snapshoot);
+	layer->setWin(isWin);
+	layer->setDelegate(this);
+	pscene->addChild(layer);
+	CCDirector::sharedDirector()->pushScene(pscene);
 };
 
 void GameLayer::onLeft()
@@ -1053,7 +1066,6 @@ void GameLayer::onLeft()
 
 	CCARRAY_FOREACH(childArray, pObject)
 	{
-
 		CharacterBase *ac = (CharacterBase *)pObject;
 		CCNotificationCenter::sharedNotificationCenter()->removeObserver(ac, "acceptAttack");
 	}
@@ -1162,11 +1174,9 @@ void GameLayer::onLeft()
 	CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("UI.plist");
 	CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Map.plist");
 
-	CCScene *menuScene = CCScene::create();
-	StartMenu *menuLayer = StartMenu::create();
+	SimpleAudioEngine::sharedEngine()->end();
 
-	menuScene->addChild(menuLayer);
-	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f, menuScene));
+	lua_call_func("onGameOver");
 }
 
 void GameLayer::checkBackgroundMusic(float dt)
@@ -1302,7 +1312,7 @@ void GameLayer::removeOugis()
 		if (!_gLayer->ougisChar)                                                                    \
 			_gLayer->currentPlayer->walk(ccp(horizontal_##name, vertical_##name));                  \
 	}                                                                                               \
-	else if (_gLayer->currentPlayer->getActionState() == State::WALK)                         \
+	else if (_gLayer->currentPlayer->getActionState() == State::WALK)                               \
 	{                                                                                               \
 		_gLayer->_lastPressedMovementKey = -100;                                                    \
 		_gLayer->currentPlayer->idle();                                                             \
@@ -1325,10 +1335,13 @@ void GameLayer::removeOugis()
 
 bool GameLayer::checkHasAnyMovement()
 {
-	if (_gLayer->_lastPressedMovementKey != -100)
+	if (_gLayer)
 	{
-		keyEventHandle(_window, _gLayer->_lastPressedMovementKey, 0, 1, 0);
-		return true;
+		if (_gLayer->_lastPressedMovementKey != -100)
+		{
+			keyEventHandle(_window, _gLayer->_lastPressedMovementKey, 0, 1, 0);
+			return true;
+		}
 	}
 	return false;
 }

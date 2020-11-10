@@ -10,7 +10,7 @@
 // declare menuButton
 enum btnType
 {
-	Network,
+	Custom,
 	Training,
 	Exit,
 	Credits,
@@ -55,7 +55,6 @@ protected:
 
 class StartMenu : public CCLayer
 {
-
 public:
 	StartMenu();
 	~StartMenu();
@@ -66,8 +65,11 @@ public:
 	void onHardCoreOn(CCObject *sender);
 	void onHardCoreOff(CCObject *sender);
 	void onHardLayerCallBack();
-	void onHardCoreCallBack();
-	void onNormalCallBack(CCObject *sender);
+
+	void enterCustomMode();
+	void enterTrainingMode();
+	void enterSelectLayer();
+
 	void onCreditsCallBack();
 	void onExitCallBack();
 
@@ -96,10 +98,15 @@ public:
 
 	virtual void keyBackClicked();
 
+	void setHandle(LUA_FUNCTION handler) { _handler = handler; };
+
 	CC_SYNTHESIZE_RETAIN(CCArray *, _menu_array, Menus);
 	CREATE_FUNC(StartMenu);
 
 protected:
 	void onEnter();
 	void onExit();
+
+private:
+	int _handler;
 };

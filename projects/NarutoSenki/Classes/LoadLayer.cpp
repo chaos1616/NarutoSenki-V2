@@ -3,10 +3,6 @@
 #include <time.h>
 #include <fstream>
 
-#ifdef _WIN32
-#include <direct.h>
-#endif
-
 using namespace std;
 
 LoadLayer::LoadLayer()
@@ -16,10 +12,8 @@ LoadLayer::LoadLayer()
 	_hudLayer = NULL;
 	_bgLayer = NULL;
 	_hudLayer = NULL;
-	_isHardCoreMode = false;
+	_isHardCoreMode = true;
 	_isRandomChar = false;
-	isPosting = false;
-	DLCArray = NULL;
 }
 
 LoadLayer::~LoadLayer()
@@ -100,31 +94,10 @@ void LoadLayer::preloadIMG()
 		if (strcmp(player->getCString(), "Kiba") != 0 &&
 			strcmp(player->getCString(), "Kakuzu") != 0)
 		{
-
 			path = CCString::createWithFormat("Element/Skills/%s_Skill.plist", player->getCString())->getCString();
 			addSprites(path);
 		}
 		KTools::prepareFileOGG(player->getCString());
-
-		/*	if(strcmp(player->getCString(),"Chiyo")==0 ||
-		strcmp(player->getCString(),"Shikamaru")==0 ||
-		strcmp(player->getCString(),"Kisame")==0
-		){
-
-		std::string filePath=CCFileUtils::sharedFileUtils()->getWritablePath()+CCString::createWithFormat("/DLC/%s.xml",player->getCString())->getCString();
-		bool isExisted=CCFileUtils::sharedFileUtils()->isFileExist(filePath);
-
-		if(!isExisted){
-		if(!DLCArray){
-		DLCArray=CCArray::create();
-		DLCArray->retain();
-		}
-		CCDictionary* dic=CCDictionary::create();
-		dic->setObject(player,"character");
-		DLCArray->addObject(dic);
-		}
-
-		}*/
 
 		path = CCString::createWithFormat("Element/%s/%s.plist", player->getCString(), player->getCString())->getCString();
 		addSprites(path);
@@ -275,117 +248,12 @@ void LoadLayer::preloadIMG()
 	loading->runAction(fadeseq);
 
 	this->scheduleOnce(schedule_selector(LoadLayer::playBGM), 1.0f);
-
-	if (!DLCArray)
-	{
-		this->scheduleOnce(schedule_selector(LoadLayer::onLoadFinish), 3.0f);
-	}
-	else
-	{
-		CCObject *tmpObject;
-		int i = 0;
-		CCARRAY_FOREACH(DLCArray, tmpObject)
-		{
-			CCDictionary *tempdict = (CCDictionary *)tmpObject;
-			CCString *heroString = CCString::create(tempdict->valueForKey("character")->getCString());
-			isPosting = true;
-			cocos2d::extension::CCHttpRequest *request = new cocos2d::extension::CCHttpRequest();
-			std::string codeFinal;
-			std::string code1 = CCString::createWithFormat("code=300&id=%d", MemberID)->getCString();
-			std::string code2 = CCString::createWithFormat("&version=%d", CURRENT_VERSION)->getCString();
-			std::string code3 = CCString::createWithFormat("&char=%s", heroString->getCString())->getCString();
-			std::string url = SERVER "nsk/list.php?" + code1 + code2 + "&pw=" + PWord + code3;
-
-			request->setUrl(url.c_str());
-			request->setRequestType(CCHttpRequest::kHttpGet);
-			request->setResponseCallback(this, httpresponse_selector(LoadLayer::onHttpRequestCompleted));
-			request->setTag(heroString->getCString());
-			cocos2d::extension::CCHttpClient::getInstance()->send(request);
-			request->release();
-			i++;
-		}
-	}
+	this->scheduleOnce(schedule_selector(LoadLayer::onLoadFinish), 3.0f);
 }
 
 void LoadLayer::playBGM(float dt)
 {
 	SimpleAudioEngine::sharedEngine()->playBackgroundMusic(LOADING_MUSIC, false);
-}
-
-void LoadLayer::onHttpRequestCompleted(CCHttpClient *client, CCHttpResponse *response)
-{
-	/*AllocConsole();  
-	freopen("CONIN$", "r", stdin);  
-	freopen("CONOUT$", "w", stdout);  
-	freopen("CONOUT$", "w", stderr);*/
-	isPosting = false;
-
-	if (!response)
-	{
-		return;
-	}
-	if (0 != strlen(response->getHttpRequest()->getTag()))
-	{
-		CCLog("%s completed", response->getHttpRequest()->getTag());
-	}
-	int statusCode = response->getResponseCode();
-	char statusString[64] = {};
-
-	if (!response->isSucceed())
-	{
-		CCLog("response failed");
-		CCLog("error buffer:%s", response->getErrorBuffer());
-		CCTips *tip = CCTips::create("ServerError");
-		this->addChild(tip, 5000);
-		return;
-	}
-
-	std::vector<char> *buffer = response->getResponseData();
-	std::string buf(buffer->begin(), buffer->end());
-
-	/*for (unsigned int i = 0; i < buffer->size(); i ++)  
-	{  
-	printf("%c" ,(*buffer)[i]);
-	}  */
-
-	std::string foldName = CCFileUtils::sharedFileUtils()->getWritablePath() + "DLC";
-
-#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
-	mkdir(foldName.c_str(), S_IRWXU | S_IRWXG | S_IRWXO);
-#else
-	_mkdir(foldName.c_str());
-#endif
-
-	std::string fileName = CCString::createWithFormat("%s.xml", response->getHttpRequest()->getTag())->getCString();
-	//std::string filePath = CCFileUtils::sharedFileUtils()->getWritablePath()+"DLC" + fileName;
-
-	const char *filePath;
-
-	filePath = CCString::createWithFormat("%s/DLC/%s.xml", CCFileUtils::sharedFileUtils()->getWritablePath().c_str(), response->getHttpRequest()->getTag())->getCString();
-
-	std::ofstream fos(filePath);
-	if (!fos)
-		cerr << "error";
-	fos << buf;
-	fos.close();
-	//std::remove(filePath.c_str());
-
-	CCObject *tmpObject;
-	int i = 0;
-	CCARRAY_FOREACH(DLCArray, tmpObject)
-	{
-		CCDictionary *tempdict = (CCDictionary *)tmpObject;
-		CCString *heroString = CCString::create(tempdict->valueForKey("character")->getCString());
-		if (strcmp(heroString->getCString(), response->getHttpRequest()->getTag()) == 0)
-		{
-			DLCArray->removeObject(tmpObject);
-		}
-	}
-
-	if (DLCArray->count() <= 0)
-	{
-		this->scheduleOnce(schedule_selector(LoadLayer::onLoadFinish), 3.0f);
-	}
 }
 
 void LoadLayer::preloadAudio()
@@ -451,39 +319,4 @@ void LoadLayer::onLoadFinish(float dt)
 	gameScene->addChild(_hudLayer, HudTag);
 
 	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f, gameScene));
-}
-
-void LoadLayer::preloadPlist(CCObject *obj)
-{
-
-	CCTexture2D *texture = (CCTexture2D *)obj;
-
-	CCObject *pObject = tempHeros->objectAtIndex(loadNum);
-	CCDictionary *tempdict = (CCDictionary *)pObject;
-	CCString *player = CCString::create(tempdict->valueForKey("character")->getCString());
-	const char *name = player->getCString();
-
-	const char *path = CCString::createWithFormat("Element/%s/%s.plist", name, name)->getCString();
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(path, texture); //ͨ.plistļCCSpriteFrameCache
-
-	loadNum++;
-
-	if (loadNum < 6)
-	{
-		this->preloadIMG();
-	}
-	else
-	{
-		this->onLoadFinish(0.2f);
-	}
-}
-
-void LoadLayer::onEnter()
-{
-	CCLayer::onEnter();
-}
-
-void LoadLayer::onExit()
-{
-	CCLayer::onExit();
 }

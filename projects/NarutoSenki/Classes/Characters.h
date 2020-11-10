@@ -1,12 +1,6 @@
 #ifndef __CHARACTERS_H__
 #define __CHARACTERS_H__
-#include "cocos2d.h"
 #include "Element.h"
-
-#include <utility>
-#include <functional>
-
-USING_NS_CC;
 
 typedef enum __AIFeatures
 {

@@ -76,6 +76,7 @@ namespace CocosDenshion
 	static int checkALError(const char *funcName)
 	{
 		int err = alGetError();
+		return err;
 
 		if (err != AL_NO_ERROR)
 		{

@@ -1,6 +1,5 @@
 #include "Characters.h"
 #include "HudLayer.h"
-USING_NS_CC;
 
 HPBar::HPBar()
 {
@@ -134,8 +133,6 @@ void HPBar::loseHP(float percent)
 					currentSlayer = _slayer;
 				}
 			}
-
-			//ȫ
 
 			if (currentSlayer->getLV() != 6)
 			{

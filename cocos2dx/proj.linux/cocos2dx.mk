@@ -89,22 +89,11 @@ STATICLIBS = $(STATICLIBS_DIR)/libfreetype.a \
     $(STATICLIBS_DIR)/libglfw3.a \
     $(STATICLIBS_DIR)/libwebsockets.a \
 
-
-# ifneq ($(OPENAL),1)
-# ifeq ($(LBITS),64)
-FMOD_LIBDIR = $(COCOS_ROOT)/CocosDenshion/third_party/fmod/lib64/api/lib
-SHAREDLIBS += -lfmod
-# else
-# FMOD_LIBDIR = $(COCOS_ROOT)/CocosDenshion/third_party/fmod/api/lib
-# SHAREDLIBS += -lfmod
-# endif
-# endif
-
 SHAREDLIBS += -lglfw3 -lGLEW -lfontconfig -lpthread -lGL -lgtk-3 -lglib-2.0 -lgobject-2.0 -lgthread-2.0
 SHAREDLIBS += -L$(FMOD_LIBDIR) -Wl,-rpath,$(abspath $(FMOD_LIBDIR))
 SHAREDLIBS += -L$(LIB_DIR) -Wl,-rpath,$(abspath $(LIB_DIR))
 
-LIBS = -lrt -lz -lm -lX11 -lfreetype -ldl -lGLEW -lGL
+LIBS = -lrt -lz -lm -lX11 -lfreetype -ldl
 
 clean:
 	rm -rf $(OBJ_DIR)

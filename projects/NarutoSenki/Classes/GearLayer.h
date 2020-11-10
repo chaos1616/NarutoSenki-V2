@@ -25,7 +25,9 @@ public:
 	CCLabelBMFont *coinLabel;
 
 	CCSprite *gearDetail;
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	CCSprite *gearDetailIcon;
+#endif
 	CCSprite *gears_bg;
 
 	gearType currentGear;

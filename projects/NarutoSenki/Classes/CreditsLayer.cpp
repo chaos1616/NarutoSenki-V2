@@ -96,8 +96,6 @@ void CreditsLayer::keyBackClicked()
 #else
 	//TODO:
 #endif
-	CCScene *menuScene = CCScene::create();
-	CCLayer *menuLayer = StartMenu::create();
-	menuScene->addChild(menuLayer);
-	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.5f, menuScene));
+
+	lua_call_func("CreditsLayer_BackToStartMenu")
 }

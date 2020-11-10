@@ -142,7 +142,7 @@ COCOS_ROOT = ../..
 
 include cocos2dx.mk
 
-CXXFLAGS += -Wno-sequence-point -std=c++20
+CXXFLAGS += -Wno-sequence-point
 CCFLAGS += -Wno-sequence-point
 
 TARGET := $(LIB_DIR)/$(TARGET)

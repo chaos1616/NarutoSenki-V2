@@ -33,12 +33,6 @@ echoLog = DEPRECATED(printLog, "echoLog", "printLog")
 echoError = DEPRECATED(printError, "echoError", "printError")
 echoInfo = DEPRECATED(printInfo, "echoInfo", "printInfo")
 
--- functions
-tonum = DEPRECATED(checknumber, "tonum", "checknumber")
-toint = DEPRECATED(checkint, "toint", "checkint")
-tobool = DEPRECATED(checkbool, "tobool", "checkbool")
-totable = DEPRECATED(checktable, "totable", "checktable")
-
 table.insertTo = DEPRECATED(table.insertto, "table.insertTo", "table.insertto")
 table.indexOf = DEPRECATED(table.indexof, "table.indexOf", "table.indexof")
 table.keyOfItem = DEPRECATED(table.keyof, "table.keyOfItem", "table.keyof")

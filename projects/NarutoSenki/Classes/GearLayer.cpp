@@ -106,8 +106,11 @@ void GearButton::click()
 
 	CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("gearDetail_%02d.png", gearType(_gearType))->getCString());
 	_delegate->gearDetail->setDisplayFrame(frame);
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	CCSpriteFrame *icon = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("gear_%02d.png", gearType(_gearType))->getCString());
 	_delegate->gearDetailIcon->setDisplayFrame(icon);
+#endif
 }
 
 bool GearButton::ccTouchBegan(CCTouch *touch, CCEvent *event)
@@ -320,10 +323,12 @@ bool GearLayer::init(CCRenderTexture *snapshoot)
 		gearDetail->setPosition(ccp(gears_bg->getPositionX() + gears_bg->getContentSize().width / 2 - 54, 210));
 		this->addChild(gearDetail, 600);
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 		gearDetailIcon = CCSprite::createWithSpriteFrameName("gear_00.png");
 		gearDetailIcon->setAnchorPoint(ccp(0.5f, 0));
 		gearDetailIcon->setPosition(ccp(gears_bg->getPositionX() + gears_bg->getContentSize().width / 2 - 54, 90));
 		this->addChild(gearDetailIcon, 600);
+#endif
 
 		CCMenuItem *buy_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("gearBuy_btn.png"),
 													   CCSprite::createWithSpriteFrameName("gearBuy_btn2.png"), this, menu_selector(GearLayer::onGearBuy));

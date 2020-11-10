@@ -25,13 +25,12 @@ LOCAL_SRC_FILES := ../cocos2dx_support/CCLuaBridge.cpp \
           ../tolua/tolua_to.c \
           ../cocos2dx_support/tolua_fix.c \
           ../xxtea/xxtea.cpp
-          
+
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../luajit/include \
                            $(LOCAL_PATH)/../tolua \
                            $(LOCAL_PATH)/../cocos2dx_support \
                            $(LOCAL_PATH)/../xxtea
-          
-          
+
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/ \
                     $(LOCAL_PATH)/../luajit/include \
                     $(LOCAL_PATH)/../tolua \
@@ -42,13 +41,14 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/ \
                     $(LOCAL_PATH)/../../../cocos2dx/kazmath/include \
                     $(LOCAL_PATH)/../../../CocosDenshion/include \
                     $(LOCAL_PATH)/../../../extensions \
-                    $(LOCAL_PATH)/../xxtea
+                    $(LOCAL_PATH)/../xxtea \
+                    $(LOCAL_PATH)/../../../external/sqlite3/src \
+                    $(LOCAL_PATH)/../../../projects/NarutoSenki/Classes \
+                    $(LOCAL_PATH)/../../../projects/NarutoSenki/Classes/MyTools \
 
 LOCAL_WHOLE_STATIC_LIBRARIES := luajit_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos_extension_static
 
-LOCAL_CFLAGS += -Wno-psabi
-LOCAL_EXPORT_CFLAGS += -Wno-psabi
 
 include $(BUILD_STATIC_LIBRARY)
 

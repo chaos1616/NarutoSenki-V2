@@ -93,6 +93,7 @@ class AI_Kakashi : public Hero
 			{
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
+
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
 			{
 

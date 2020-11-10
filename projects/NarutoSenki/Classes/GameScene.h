@@ -6,7 +6,7 @@
 class GameScene : public CCScene
 {
 public:
-	virtual bool init();
+	bool init();
 
 	CREATE_FUNC(GameScene);
 };

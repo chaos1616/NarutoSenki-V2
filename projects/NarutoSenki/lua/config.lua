@@ -10,10 +10,10 @@ log = function(...) print(string.format(...)) end
 
 -- for CCLuaEngine traceback
 function __G__TRACKBACK__(msg)
-    print("----------------------------------------")
-    print("LUA ERROR: " .. tostring(msg) .. "\n")
+    print('----------------------------------------')
+    print('LUA ERROR: ' .. tostring(msg) .. '\n')
     print(debug.traceback())
-    print("----------------------------------------")
+    print('----------------------------------------')
 end
 
 -- defines
