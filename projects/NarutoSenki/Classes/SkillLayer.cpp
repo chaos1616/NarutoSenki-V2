@@ -144,7 +144,7 @@ void SelectButton::click()
 					_selectLayer->setSelected(this);
 				}
 			}
-			else if (_selectLayer)
+			else
 			{
 				SimpleAudioEngine::sharedEngine()->playEffect(SELECT_SOUND);
 				_selectLayer->setSelected(this);
@@ -370,7 +370,6 @@ void SkillLayer::initInterface()
 
 	CCString *winNum = KTools::readSQLite("CharRecord", "name", selectHero, "column1");
 	std::string bondString = winNum->getCString();
-	// CCString *totalNum = KTools::readSQLite("CharRecord", "name", selectHero, "column2");
 
 	const char *rank_src;
 	bool isBlink = false;

@@ -24,6 +24,7 @@ require 'ai.provider'
 
 require 'ui.init'
 
+require 'utils.event'
 require 'utils.utils'
 require 'utils.save'
 require 'utils.math'

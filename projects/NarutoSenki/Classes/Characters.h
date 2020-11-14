@@ -61,32 +61,6 @@ public:
 		CCArray *tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
 		idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		if (strcmp(this->getCharacter()->getCString(), "Kakashi") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Deidara") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Suigetsu") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Jugo") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Gaara") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Itachi") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "ImmortalSasuke") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Sasuke") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Choji") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Tsunade") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Hidan") == 0 ||
-			strcmp(this->getCharacter()->getCString(), Guardian_Roshi) == 0 ||
-			strcmp(this->getCharacter()->getCString(), Guardian_Han) == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Hiruzen") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Sai") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Kiba") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Akamaru") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Konan") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Naruto") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "SageNaruto") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "RikudoNaruto") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Kisame") == 0)
-		{
-			idleArray->retain();
-		}
-
 		CCString *tmpName;
 		CCString *tmpHpMax;
 		int tmpWidth;
@@ -115,36 +89,6 @@ public:
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(1));
 		walkArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		if (strcmp(this->getCharacter()->getCString(), "Konan") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Deidara") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Suigetsu") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Jugo") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Itachi") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "ImmortalSasuke") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Sasuke") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Lee") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "RockLee") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Choji") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Tsunade") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Hidan") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Shino") == 0 ||
-			strcmp(this->getCharacter()->getCString(), Guardian_Roshi) == 0 ||
-			strcmp(this->getCharacter()->getCString(), Guardian_Han) == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Hiruzen") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Sai") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Kiba") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Akamaru") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Gaara") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Naruto") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "SageNaruto") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "RikudoNaruto") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Tobi") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Parents") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Kisame") == 0)
-		{
-			walkArray->retain();
-		}
-
 		//init HurtFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(2));
 		hurtArray = (CCArray *)(tmpAction->objectAtIndex(1));
@@ -162,14 +106,6 @@ public:
 		//init KnockDownFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(4));
 		knockDownArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-		if (strcmp(this->getCharacter()->getCString(), "Itachi") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Sasuke") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Naruto") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "SageNaruto") == 0)
-		{
-			knockDownArray->retain();
-		}
 
 		//init FloatFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(5));
@@ -189,37 +125,6 @@ public:
 		_nattackType->retain();
 
 		nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-		if (strcmp(this->getCharacter()->getCString(), "Sai") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Tenten") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Suigetsu") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Jugo") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Choji") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Itachi") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Minato") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "ImmortalSasuke") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Sasuke") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Choji") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Tsunade") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Hidan") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Shino") == 0 ||
-			strcmp(this->getCharacter()->getCString(), Guardian_Roshi) == 0 ||
-			strcmp(this->getCharacter()->getCString(), Guardian_Han) == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Hiruzen") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Kiba") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Akamaru") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Naruto") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "SageNaruto") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "RikudoNaruto") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Deidara") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Gaara") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Sakura") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Parents") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "Kisame") == 0)
-		{
-
-			nattackArray->retain();
-		}
 
 		//init skill1 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(8));

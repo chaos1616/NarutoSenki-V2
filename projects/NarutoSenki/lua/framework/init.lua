@@ -116,8 +116,6 @@ transition = require(cc.PACKAGE_NAME .. ".transition")
 display    = require(cc.PACKAGE_NAME .. ".display")
 filter     = require(cc.PACKAGE_NAME .. ".filter")
 audio      = require(cc.PACKAGE_NAME .. ".audio")
-ui         = require(cc.PACKAGE_NAME .. ".ui")
--- network    = require(cc.PACKAGE_NAME .. ".network")
 json       = require(cc.PACKAGE_NAME .. ".json")
 
 require(cc.PACKAGE_NAME .. ".cc.init")

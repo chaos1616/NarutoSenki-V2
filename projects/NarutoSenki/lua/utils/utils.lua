@@ -23,7 +23,6 @@ end
 function tools.loadOgg(name) kt:prepareFileOGG(name, false) end
 function tools.unloadOgg(name) kt:prepareFileOGG(name, true) end
 
--- macros
 function tools.addSprites(...)
     assert(not ... ~= nil, 'addSprites: The table can not be nil')
     for _, v in ipairs {...} do
@@ -51,6 +50,34 @@ function tools.printTable(mt)
     else
         log('Invalid type %s is not a table object', type(mt))
     end
+end
+
+-- Sqlite Utils
+
+--[[
+@param string table     = 'GameRecord'
+@param string column    = nil
+@param string value     = nil
+
+@return string
+]]
+function tools.readFromSQLite(table, column, value)
+    local ret =
+        kt:readFromSQLite(table and table or "GameRecord", column, value)
+    return ret and ret:getCString() or nil
+end
+
+--[[
+@param string table
+@param string column
+@param string value
+@param string targetColumn
+
+@return string
+]]
+function tools.readSQLite(table, column, value, targetColumn)
+    local ret = kt:readSQLite(table, column, value, targetColumn)
+    return ret and ret:getCString() or nil
 end
 
 function tools.printUserdata(ud)
@@ -97,6 +124,8 @@ end
 function director.pushScene(scene)
     if scene ~= nil then sharedDirector:pushScene(scene) end
 end
+
+function director.popScene() sharedDirector:popScene() end
 
 function director.sharedDirector() return sharedDirector end
 

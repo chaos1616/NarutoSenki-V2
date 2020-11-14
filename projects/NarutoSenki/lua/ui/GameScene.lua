@@ -1,13 +1,15 @@
+--
 -- GameScene
+--
 local gameScene = GameScene
-
-local Cheats = 0
-local pushMenu = nil
-local logoMenu = nil
-local introLayer = nil
 
 function GameScene:init()
     log('Initial GameScene ...')
+
+    self.cheats = 0
+    self.pushMenu = nil
+    self.logoMenu = nil
+    self.introLayer = nil
 
     if not save.getBool('isHavingSave') then
         save.bool('isHavingSave', true)
@@ -16,29 +18,33 @@ function GameScene:init()
         save.flush()
     end
 
-    introLayer = display.newLayer()
+    self.introLayer = display.newLayer()
 
     local logoImage = display.newSprite('zakume.png', display.width / 2,
                                         display.height / 2)
 
     local seq = transition.sequence({
-        CCFadeIn:create(1.5), CCFadeOut:create(1.5),
-        CCCallFunc:create(GameScene.onLogo)
+        CCFadeIn:create(1.25), CCFadeOut:create(1.25),
+        CCCallFunc:create(handler(self, GameScene.onLogo))
     })
-    introLayer:addChild(logoImage)
     logoImage:runAction(seq)
-    self:addChild(introLayer)
+
+    self.introLayer:addChild(logoImage)
+    self:addChild(self.introLayer)
 end
 
 function GameScene:onLogo()
     local logo_btn = ui.newImageMenuItem(
-                         {image = 'logo.png', listener = GameScene.onLogoClick})
+                         {
+            image = 'logo.png',
+            listener = handler(self, GameScene.onLogoClick)
+        })
     logo_btn:setAnchorPoint(0.5, 0.5)
 
-    logoMenu = ui.newMenu({logo_btn})
-    logoMenu:setPosition(display.width / 2,
-                         display.height - logo_btn:getContentSize().height / 2)
-    introLayer:addChild(logoMenu, 3)
+    self.logoMenu = ui.newMenu({logo_btn})
+    self.logoMenu:setPosition(display.width / 2, display.height -
+                                  logo_btn:getContentSize().height / 2)
+    self.introLayer:addChild(self.logoMenu)
 
     audio.playSound(ns.menu.MENU_INTRO)
 
@@ -46,50 +52,49 @@ function GameScene:onLogo()
         CCFadeIn:create(1.5),
         CCCallFunc:create(function()
             return audio.playSound(ns.menu.MENU_INTRO2)
-        end), CCDelayTime:create(2.0), CCCallFunc:create(GameScene.onFinish)
+        end), CCDelayTime:create(2.0),
+        CCCallFunc:create(handler(self, GameScene.onFinish))
     })
     logo_btn:runAction(seq)
 end
 
 function GameScene:onLogoClick()
-    Cheats = Cheats + 1
+    self.cheats = self.cheats + 1
 
-    if Cheats == 10 then
+    if self.cheats == 10 then
         audio.stopAllSounds()
-        logoMenu:removeFromParent()
+        self.logoMenu:removeFromParent()
 
         local logo_btn = ui.newImageMenuItem(
                              {
                 image = 'logo2.png',
-                listener = GameScene.onLogoClick
+                listener = handler(self, GameScene.onLogoClick)
             })
         logo_btn:setAnchorPoint(0.5, 0.5)
 
-        logoMenu = ui.newMenu({logo_btn})
-        logoMenu:setPosition(display.width / 2, display.height -
-                                 logo_btn:getContentSize().height / 2)
-        introLayer:addChild(logoMenu, 3)
-    elseif Cheats > 10 then
+        self.logoMenu = ui.newMenu({logo_btn})
+        self.logoMenu:setPosition(display.width / 2, display.height -
+                                      logo_btn:getContentSize().height / 2)
+        self.introLayer:addChild(self.logoMenu, 3)
+    elseif self.cheats > 10 then
         audio.stopAllSounds()
         audio.stopMusic(true)
         audio.playSound(ns.menu.LOGO_CLICK)
-
-        GameScene:onFinish()
     end
 end
 
 function GameScene:onFinish()
-    if not pushMenu then
+    if not self.pushMenu then
         audio.playMusic(ns.music.INTRO_MUSIC, true)
 
         local btm_btn = ui.newImageMenuItem(
                             {
                 image = 'push_start.png',
-                listener = GameScene.onPush
+                listener = handler(self, GameScene.onPush)
             })
-        pushMenu = ui.newMenu({btm_btn})
-        pushMenu:setPosition(display.width / 2, display.height / 2 - 100)
-        introLayer:addChild(pushMenu)
+        self.pushMenu = ui.newMenu({btm_btn})
+        self.pushMenu:setPosition(display.width / 2, display.height / 2 - 100)
+        self.introLayer:addChild(self.pushMenu)
 
         local fade = CCFadeOut:create(0.5)
         local seq = transition.sequence({fade, fade:reverse()})

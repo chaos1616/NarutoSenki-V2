@@ -77,8 +77,11 @@ public:
 	PROP(sbtnType, _btnType, BtnType);
 
 	bool _isCanBuy;
+	void setCanBuy(bool val) { _isCanBuy = val; };
 	bool _isCanBuy2;
+	void setCanBuy2(bool val) { _isCanBuy2 = val; };
 	bool _isUnlock;
+	void setUnlock(bool val) { _isUnlock = val; };
 
 	PROP(SelectLayer *, _selectLayer, SelectLayer);
 	PROP(SkillLayer *, _skillLayer, SkillLayer);

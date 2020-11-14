@@ -54,8 +54,10 @@ ns.menu = {
 
 require 'ui.GameScene'
 
+require 'ui.SelectButton'
+
 require 'ui.StartMenu'
+
 require 'ui.CreditLayer'
 require 'ui.SelectLayer'
 require 'ui.SkillLayer'
-require 'ui.SelectButton'

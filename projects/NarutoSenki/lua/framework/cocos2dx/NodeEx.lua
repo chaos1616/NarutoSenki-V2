@@ -98,50 +98,12 @@ function Node:setNodeEventEnabled(enabled, listener)
                 end
             end
         end
-        self.__node_event_handle__ = self:registerScriptHandler(c.NODE_EVENT, listener)
+        self.__node_event_handle__ = self:registerScriptHandler(listener)
     elseif self.__node_event_handle__ then
         self:unregisterScriptHandler(self.__node_event_handle__)
         self.__node_event_handle__ = nil
     end
     return self
-end
-
--- function Node:removeScriptEventListenersByEvent(event)
--- end
-
--- function Node:registerScriptHandler(listener)
--- end
-
--- function Node:unregisterScriptHandler()
--- end
-
-function Node:addTouchEventListener(handler)
-    PRINT_DEPRECATED("Node.addTouchEventListener() is deprecated, please use Node.registerScriptHandler()")
-    return self:registerScriptHandler(c.NODE_TOUCH_EVENT, function(event)
-        return handler(event.name, event.x, event.y, event.prevX, event.prevY)
-    end)
-end
-
-function Node:registerScriptTouchHandler(handler, isMultiTouches)
-    PRINT_DEPRECATED("Node.registerScriptTouchHandler() is deprecated, please use Node.registerScriptHandler()")
-    if isMultiTouches then
-        self:setTouchMode(c.TOUCH_MODE_ALL_AT_ONCE)
-    else
-        self:setTouchMode(c.TOUCH_MODE_ONE_BY_ONE)
-    end
-    return self:registerScriptHandler(c.NODE_TOUCH_EVENT, function(event)
-        if event.mode == c.TOUCH_MODE_ALL_AT_ONCE then
-            local points = {}
-            for id, p in pairs(event.points) do
-                points[#points + 1] = p.x
-                points[#points + 1] = p.y
-                points[#points + 1] = p.id
-            end
-            return handler(event.name, points)
-        else
-            return handler(event.name, event.x, event.y, event.prevX, event.prevY)
-        end
-    end)
 end
 
 Node.scheduleUpdate_ = Node.scheduleUpdate

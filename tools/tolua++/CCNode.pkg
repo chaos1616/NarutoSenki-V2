@@ -144,4 +144,6 @@ class CCNodeRGBA : public CCNode, public CCRGBAProtocol
     
     virtual void setOpacityModifyRGB(bool bValue);
     virtual bool isOpacityModifyRGB();
+
+    static CCNodeRGBA * create();
 };
