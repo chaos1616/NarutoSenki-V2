@@ -18,7 +18,6 @@ SOURCES = main.cpp \
 	../Classes/LoadLayer.cpp \
 	../Classes/PauseLayer.cpp \
 	../Classes/SelectLayer.cpp \
-	../Classes/SkillLayer.cpp \
 	../Classes/StartMenu.cpp \
 	../Classes/MyUtils/CCScrewLayer.cpp \
 	../Classes/MyUtils/CCShake.cpp \
@@ -34,6 +33,7 @@ include ../../../cocos2dx/proj.linux/cocos2dx.mk
 INCLUDES +=	 -I../ \
 	-I../../ \
 	-I../Classes \
+	-I../Classes/Core \
 	-I$(COCOS_ROOT)/CocosDenshion/include \
 	-I$(COCOS_ROOT)/extensions/ \
 	-I$(COCOS_ROOT)/external/ \

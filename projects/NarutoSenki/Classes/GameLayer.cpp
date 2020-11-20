@@ -1,15 +1,15 @@
 #include "Defines.h"
+#include "CharacterBase.h"
 #include "GameLayer.h"
 #include "BGLayer.h"
 #include "HudLayer.h"
 #include "StartMenu.h"
-#include "AI/__AI__.hpp"
+#include "Core/Provider.hpp"
 
-int CError = 0;
-GameLayer *_gLayer = NULL;
+GameLayer *_gLayer = nullptr;
 bool _isFullScreen = false;
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-GLFWwindow *_window = NULL;
+GLFWwindow *_window = nullptr;
 #endif
 
 using namespace CocosDenshion;
@@ -19,9 +19,9 @@ GameLayer::GameLayer()
 	_isAttackButtonRelease = true;
 	_isSkillFinish = true;
 
-	_KonohaFlogArray = NULL;
-	_AkatsukiFlogArray = NULL;
-	_CharacterArray = NULL;
+	_KonohaFlogArray = nullptr;
+	_AkatsukiFlogArray = nullptr;
+	_CharacterArray = nullptr;
 
 	_second = 0;
 	_minute = 0;
@@ -30,8 +30,8 @@ GameLayer::GameLayer()
 	kEXPBound = 25;
 	aEXPBound = 25;
 
-	totalKills = NULL;
-	totalTM = NULL;
+	totalKills = nullptr;
+	totalTM = nullptr;
 	_isShacking = false;
 	_isSurrender = false;
 	_isGuardian = false;
@@ -39,13 +39,13 @@ GameLayer::GameLayer()
 	_isStarted = false;
 	_isExiting = false;
 
-	ougisChar = NULL;
-	controlChar = NULL;
+	ougisChar = nullptr;
+	controlChar = nullptr;
 	_isOugis2Game = false;
 	_isHardCoreGame = false;
 	_isRandomChar = false;
 	zhenying = 1;
-	currentPlayer = NULL;
+	currentPlayer = nullptr;
 	isPosting = false;
 	postTime = 0;
 
@@ -66,10 +66,10 @@ GameLayer::~GameLayer()
 	CC_SAFE_RELEASE(totalTM);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	CCDirector::sharedDirector()->getOpenGLView()->setAccelerometerKeyHook(NULL);
+	CCDirector::sharedDirector()->getOpenGLView()->setAccelerometerKeyHook(nullptr);
 	CC_SAFE_DELETE(_gLayer);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-	glfwSetKeyCallback(_window, NULL);
+	glfwSetKeyCallback(_window, nullptr);
 	CC_SAFE_DELETE(_gLayer);
 #endif
 }
@@ -82,7 +82,7 @@ bool GameLayer::init()
 		CC_BREAK_IF(!CCLayer::init());
 		CCTexture2D::setDefaultAlphaPixelFormat(kCCTexture2DPixelFormat_RGBA8888);
 
-		this->setTouchEnabled(true);
+		setTouchEnabled(true);
 
 		bRet = true;
 
@@ -97,7 +97,7 @@ void GameLayer::onEnter()
 {
 	if (_isExiting)
 	{
-		this->onLeft();
+		onLeft();
 		return;
 	}
 
@@ -113,9 +113,9 @@ void GameLayer::onEnter()
 
 	if (_isSurrender)
 	{
-		this->onGameOver(false);
+		onGameOver(false);
 	}
-};
+}
 
 void GameLayer::onExit()
 {
@@ -128,9 +128,9 @@ void GameLayer::onExit()
 		CC_SAFE_RELEASE(_KonohaFlogArray);
 		CC_SAFE_RELEASE(_AkatsukiFlogArray);
 		CC_SAFE_RELEASE(_CharacterArray);
-		_gLayer = NULL;
+		_gLayer = nullptr;
 	}
-};
+}
 
 void GameLayer::initTileMap()
 {
@@ -179,7 +179,7 @@ void GameLayer::initTileMap()
 
 	currentMap = CCTMXTiledMap::create(filePath);
 
-	this->addChild(currentMap, currentMapTag);
+	addChild(currentMap, currentMapTag);
 }
 
 void GameLayer::initGard()
@@ -188,7 +188,7 @@ void GameLayer::initGard()
 	int index = 0;
 	srand((int)time(0));
 	index = random(2);
-	HeroElement *Guardian;
+	Hero *Guardian;
 
 	const char *groupName;
 
@@ -202,11 +202,11 @@ void GameLayer::initGard()
 	}
 	if (index == 0)
 	{
-		Guardian = AIProvider::createAI(CCString::create(Guardian_Roshi), CCString::create("Com"), CCString::create(groupName));
+		Guardian = Provider::create(CCString::create(Guardian_Roshi), CCString::create("Com"), CCString::create(groupName));
 	}
 	else if (index == 1)
 	{
-		Guardian = AIProvider::createAI(CCString::create(Guardian_Han), CCString::create("Com"), CCString::create(groupName));
+		Guardian = Provider::create(CCString::create(Guardian_Han), CCString::create("Com"), CCString::create(groupName));
 	}
 
 	if (zhenying > 0)
@@ -221,7 +221,7 @@ void GameLayer::initGard()
 	}
 	Guardian->setDelegate(this);
 
-	this->addChild(Guardian, -Guardian->getPositionY());
+	addChild(Guardian, -Guardian->getPositionY());
 	Guardian->setLV(6);
 	Guardian->setHPbar();
 	Guardian->setShadows();
@@ -242,12 +242,12 @@ void GameLayer::initGard()
 void GameLayer::initHeros()
 {
 
-	this->initTileMap();
-	this->initEffects();
+	initTileMap();
+	initEffects();
 
 	_CharacterArray = CCArray::create();
 	addSprites("Element/hpBar/hpBar.plist");
-	CCObject *pObject = NULL;
+	CCObject *pObject = nullptr;
 	int i = 0;
 
 	CCTMXObjectGroup *group = currentMap->objectGroupNamed("object");
@@ -287,11 +287,11 @@ void GameLayer::initHeros()
 
 			if (i == 0)
 			{
-				currentPlayer = AIProvider::createAI(player, role, group);
+				currentPlayer = (CharacterBase *)Provider::create(player, role, group);
 				currentPlayer->setDelegate(this);
 				currentPlayer->setPosition(spawnPoint);
 				currentPlayer->setSpawnPoint(spawnPoint);
-				this->addChild(currentPlayer, -currentPlayer->getPositionY());
+				addChild(currentPlayer, -currentPlayer->getPositionY());
 				currentPlayer->setHPbar();
 				currentPlayer->setShadows();
 				currentPlayer->idle();
@@ -302,11 +302,11 @@ void GameLayer::initHeros()
 			else
 			{
 
-				HeroElement *Com = AIProvider::createAI(player, role, group);
+				Hero *Com = Provider::create(player, role, group);
 				Com->setDelegate(this);
 				Com->setPosition(spawnPoint);
 				Com->setSpawnPoint(spawnPoint);
-				this->addChild(Com, -Com->getPositionY());
+				addChild(Com, -Com->getPositionY());
 				Com->setHPbar();
 				Com->setShadows();
 				Com->idle();
@@ -315,7 +315,7 @@ void GameLayer::initHeros()
 				_CharacterArray->addObject(Com);
 			}
 			i++;
-		};
+		}
 	}
 	else
 	{
@@ -358,11 +358,11 @@ void GameLayer::initHeros()
 					zhenying = 0;
 				}
 
-				currentPlayer = AIProvider::createAI(player, role, group);
+				currentPlayer = (CharacterBase *)Provider::create(player, role, group);
 				currentPlayer->setDelegate(this);
 				currentPlayer->setPosition(spawnPoint);
 				currentPlayer->setSpawnPoint(spawnPoint);
-				this->addChild(currentPlayer, -currentPlayer->getPositionY());
+				addChild(currentPlayer, -currentPlayer->getPositionY());
 				currentPlayer->setHPbar();
 				currentPlayer->setShadows();
 				currentPlayer->idle();
@@ -378,11 +378,11 @@ void GameLayer::initHeros()
 			else
 			{
 
-				HeroElement *Com = AIProvider::createAI(player, role, group);
+				Hero *Com = Provider::create(player, role, group);
 				Com->setDelegate(this);
 				Com->setPosition(spawnPoint);
 				Com->setSpawnPoint(spawnPoint);
-				this->addChild(Com, -Com->getPositionY());
+				addChild(Com, -Com->getPositionY());
 				Com->setHPbar();
 				Com->setShadows();
 				Com->idle();
@@ -397,14 +397,14 @@ void GameLayer::initHeros()
 				_CharacterArray->addObject(Com);
 			}
 			i++;
-		};
+		}
 	}
 
 	_CharacterArray->retain();
 
-	this->initTower();
+	initTower();
 
-	this->schedule(schedule_selector(GameLayer::updateViewPoint), 0.00f);
+	schedule(schedule_selector(GameLayer::updateViewPoint), 0.00f);
 
 	//NOTE: Set all characters speed to zero. (Control movement before game real start)
 	CCARRAY_FOREACH(_CharacterArray, pObject)
@@ -413,12 +413,12 @@ void GameLayer::initHeros()
 		tempHero->setWalkSpeed(0);
 	}
 
-	this->scheduleOnce(schedule_selector(GameLayer::onKaichang), 0.5f);
-};
+	scheduleOnce(schedule_selector(GameLayer::onKaichang), 0.5f);
+}
 
 void GameLayer::onKaichang(float dt)
 {
-	this->getHudLayer()->onKaichang();
+	getHudLayer()->onKaichang();
 
 	if (_isHardCoreGame)
 	{
@@ -429,20 +429,20 @@ void GameLayer::onKaichang(float dt)
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/battle_start.ogg");
 	}
 
-	this->scheduleOnce(schedule_selector(GameLayer::onGameStart), 0.75f);
+	scheduleOnce(schedule_selector(GameLayer::onGameStart), 0.75f);
 }
 
 void GameLayer::onGameStart(float dt)
 {
 	_isStarted = true;
 
-	this->getHudLayer()->Kaichang->removeFromParent();
-	this->getHudLayer()->Kaichang = NULL;
-	this->getHudLayer()->initHeroInterface();
-	this->schedule(schedule_selector(GameLayer::updateGameTime), 1.0f);
-	this->schedule(schedule_selector(GameLayer::checkBackgroundMusic), 2.0f);
-	this->schedule(schedule_selector(GameLayer::addFlog), 15.0f);
-	this->initFlogs();
+	getHudLayer()->Kaichang->removeFromParent();
+	getHudLayer()->Kaichang = nullptr;
+	getHudLayer()->initHeroInterface();
+	schedule(schedule_selector(GameLayer::updateGameTime), 1.0f);
+	schedule(schedule_selector(GameLayer::checkBackgroundMusic), 2.0f);
+	schedule(schedule_selector(GameLayer::addFlog), 15.0f);
+	initFlogs();
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	CCDirector::sharedDirector()->getOpenGLView()->setAccelerometerKeyHook((cocos2d::CCEGLView::LPFN_ACCELEROMETER_KEYHOOK)(&GameLayer::LPFN_ACCELEROMETER_KEYHOOK));
@@ -451,7 +451,7 @@ void GameLayer::onGameStart(float dt)
 #endif
 
 	CCObject *pObject;
-	CCARRAY_FOREACH(this->_CharacterArray, pObject)
+	CCARRAY_FOREACH(_CharacterArray, pObject)
 	{
 		CharacterBase *tempChar = (CharacterBase *)pObject;
 
@@ -496,7 +496,7 @@ void GameLayer::initFlogs()
 		aiFlog->_mainPosY = mainPosY;
 		aiFlog->setPosition(ccp(13 * 32, aiFlog->_mainPosY));
 		aiFlog->setHPbar();
-		this->addChild(aiFlog, -int(aiFlog->getPositionY()));
+		addChild(aiFlog, -int(aiFlog->getPositionY()));
 		aiFlog->idle();
 		aiFlog->doAI();
 		_KonohaFlogArray->addObject(aiFlog);
@@ -523,11 +523,11 @@ void GameLayer::initFlogs()
 		aiFlog->idle();
 		aiFlog->doAI();
 		_AkatsukiFlogArray->addObject(aiFlog);
-		this->addChild(aiFlog, -aiFlog->getPositionY());
+		addChild(aiFlog, -aiFlog->getPositionY());
 	}
 
 	_AkatsukiFlogArray->retain();
-};
+}
 void GameLayer::addFlog(float dt)
 {
 
@@ -556,7 +556,7 @@ void GameLayer::addFlog(float dt)
 		aiFlog->idle();
 		aiFlog->doAI();
 		_KonohaFlogArray->addObject(aiFlog);
-		this->addChild(aiFlog, -int(aiFlog->getPositionY()));
+		addChild(aiFlog, -int(aiFlog->getPositionY()));
 	}
 
 	for (i = 0; i < 6; i++)
@@ -578,7 +578,7 @@ void GameLayer::addFlog(float dt)
 		aiFlog->idle();
 		aiFlog->doAI();
 		_AkatsukiFlogArray->addObject(aiFlog);
-		this->addChild(aiFlog, -aiFlog->getPositionY());
+		addChild(aiFlog, -aiFlog->getPositionY());
 	}
 }
 
@@ -663,30 +663,30 @@ void GameLayer::initTower()
 		tower->setHPbar();
 		tower->_hpBar->setVisible(false);
 		tower->idle();
-		this->addChild(tower, -tower->getPositionY());
+		addChild(tower, -tower->getPositionY());
 
 		_TowerArray->addObject(tower);
 		_TowerArray->retain();
 
 		i++;
 	}
-};
+}
 
 void GameLayer::initEffects()
 {
 
 	addSprites("Effects/SkillEffect.plist");
 	skillEffectBatch = CCSpriteBatchNode::create("Effects/SkillEffect.png");
-	this->addChild(skillEffectBatch, currentSkillTag);
+	addChild(skillEffectBatch, currentSkillTag);
 
 	addSprites("Effects/DamageEffect.plist");
 	damageEffectBatch = CCSpriteBatchNode::create("Effects/DamageEffect.png");
-	this->addChild(damageEffectBatch, currentDamageTag);
+	addChild(damageEffectBatch, currentDamageTag);
 
 	addSprites("Effects/Shadows.plist");
 	shadowBatch = CCSpriteBatchNode::create("Effects/Shadows.png");
-	this->addChild(shadowBatch, currentShadowTag);
-};
+	addChild(shadowBatch, currentShadowTag);
+}
 
 void GameLayer::updateGameTime(float dt)
 {
@@ -697,10 +697,10 @@ void GameLayer::updateGameTime(float dt)
 		_second = 0;
 	}
 	CCString *tempTime = CCString::createWithFormat("%02d:%02d", _minute, _second);
-	this->_hudLayer->gameClock->setString(tempTime->getCString());
+	_hudLayer->gameClock->setString(tempTime->getCString());
 
-	int newValue = atoi(this->getTotalTM()->getCString()) + 1;
-	this->setTotalTM(CCString::createWithFormat("%d", newValue));
+	int newValue = to_int(getTotalTM()->getCString()) + 1;
+	setTotalTM(CCString::createWithFormat("%d", newValue));
 }
 
 void GameLayer::updateViewPoint(float dt)
@@ -731,55 +731,60 @@ void GameLayer::updateViewPoint(float dt)
 	CCPoint centerPoint = ccp(winSize.width / 2, y);
 	CCPoint viewPoint = ccpSub(centerPoint, actualPoint);
 
-	this->setPosition(viewPoint);
+	setPosition(viewPoint);
 	// CCDirector::sharedDirector()->getScheduler()->setTimeScale(1.0f);
+}
+
+void GameLayer::setTowerState(unsigned int charNO)
+{
+	_hudLayer->setTowerState(charNO);
 };
 
 void GameLayer::setHPLose(float percent)
 {
-	this->_hudLayer->setHPLose(percent);
+	_hudLayer->setHPLose(percent);
 }
 void GameLayer::setCKRLose(bool isCRK2)
 {
-	this->_hudLayer->setCKRLose(isCRK2);
+	_hudLayer->setCKRLose(isCRK2);
 }
 
 void GameLayer::setReport(const char *name1, const char *name2, CCString *killNum)
 {
-	this->_hudLayer->setReport(name1, name2, killNum);
+	_hudLayer->setReport(name1, name2, killNum);
 }
 
 void GameLayer::resetStatusBar()
 {
-	this->_hudLayer->status_hpbar->setRotation(0);
+	_hudLayer->status_hpbar->setRotation(0);
 }
 
 void GameLayer::setCoin(const char *value)
 {
-	this->_hudLayer->setCoin(value);
+	_hudLayer->setCoin(value);
 }
 void GameLayer::removeOugisMark(int type)
 {
 	if (type == 1)
 	{
-		if (this->_hudLayer->skill4Button)
+		if (_hudLayer->skill4Button)
 		{
-			if (this->_hudLayer->skill4Button->lockLabel1)
+			if (_hudLayer->skill4Button->lockLabel1)
 			{
-				this->_hudLayer->skill4Button->lockLabel1->removeFromParent();
-				this->_hudLayer->skill4Button->lockLabel1 = NULL;
+				_hudLayer->skill4Button->lockLabel1->removeFromParent();
+				_hudLayer->skill4Button->lockLabel1 = nullptr;
 			}
 		}
 	}
 	else
 	{
 
-		if (this->_hudLayer->skill5Button)
+		if (_hudLayer->skill5Button)
 		{
-			if (this->_hudLayer->skill5Button->lockLabel1)
+			if (_hudLayer->skill5Button->lockLabel1)
 			{
-				this->_hudLayer->skill5Button->lockLabel1->removeFromParent();
-				this->_hudLayer->skill5Button->lockLabel1 = NULL;
+				_hudLayer->skill5Button->lockLabel1->removeFromParent();
+				_hudLayer->skill5Button->lockLabel1 = nullptr;
 			}
 		}
 	}
@@ -829,7 +834,7 @@ void GameLayer::checkTower()
 
 	if (postTime >= 9)
 	{
-		currentPlayer = NULL;
+		currentPlayer = nullptr;
 	}
 
 	CCARRAY_FOREACH(_CharacterArray, pObject)
@@ -863,53 +868,28 @@ void GameLayer::checkTower()
 		}
 	}
 
-	std::string bag = "";
-	std::string str = "rix2~eoyqi2keqi";
-	KTools::decode(str);
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-	// JniMethodInfo minfo2;
-	// bool isHave2 = JniHelper::getStaticMethodInfo(minfo2, "net/zakume/game/NarutoSenki", "getCurrentName", "()Ljava/lang/String;");
-
-	// if (isHave2)
-	// {
-	// 	jstring jstr2 = (jstring)minfo2.env->CallStaticObjectMethod(minfo2.classID, minfo2.methodID);
-	// 	bag = bag + JniHelper::jstring2string(jstr2);
-	// }
-	// else
-	// {
-	// 	_CharacterArray = NULL;
-	// }
-
-	// if (strcmp(bag.c_str(), "") != 0 && strcmp(bag.c_str(), str.c_str()) != 0)
-	// {
-	// 	_CharacterArray = NULL;
-	// }
-
-#endif
-
 	if (konohaTowerCount == 0 || akatsukiTowerCount == 0)
 	{
 		if (zhenying > 0)
 		{
 			if (konohaTowerCount == 0)
 			{
-				this->onGameOver(false);
+				onGameOver(false);
 			}
 			else
 			{
-				this->onGameOver(true);
+				onGameOver(true);
 			}
 		}
 		else
 		{
 			if (akatsukiTowerCount == 0)
 			{
-				this->onGameOver(false);
+				onGameOver(false);
 			}
 			else
 			{
-				this->onGameOver(true);
+				onGameOver(true);
 			}
 		}
 	}
@@ -920,7 +900,7 @@ void GameLayer::clearDoubleClick()
 	if (_hudLayer->skill1Button->getDoubleSkill() &&
 		_hudLayer->skill1Button->_clickNum >= 1)
 	{
-		_hudLayer->skill1Button->setFreezeAction(NULL);
+		_hudLayer->skill1Button->setFreezeAction(nullptr);
 		_hudLayer->skill1Button->beganAnimation();
 	}
 }
@@ -957,7 +937,7 @@ void GameLayer::attackButtonClick(abType type)
 	else
 	{
 		currentPlayer->attack(type);
-	};
+	}
 }
 void GameLayer::gearButtonClick(gearType type)
 {
@@ -983,7 +963,7 @@ void GameLayer::onPause()
 	snapshoot->begin();
 	bg->visit();
 
-	this->visit();
+	visit();
 	snapshoot->end();
 
 	CCScene *pscene = CCScene::create();
@@ -1001,7 +981,7 @@ void GameLayer::onGear()
 
 	_isGear = true;
 
-	if (this->_isHardCoreGame)
+	if (_isHardCoreGame)
 	{
 
 		CCRenderTexture *snapshoot = CCRenderTexture::create(winSize.width, winSize.height);
@@ -1011,7 +991,7 @@ void GameLayer::onGear()
 		snapshoot->begin();
 		bg->visit();
 
-		this->visit();
+		visit();
 		snapshoot->end();
 
 		CCScene *pscene = CCScene::create();
@@ -1047,7 +1027,7 @@ void GameLayer::onGameOver(bool isWin)
 	BGLayer *bg = (BGLayer *)pObject;
 	snapshoot->begin();
 	bg->visit();
-	this->visit();
+	visit();
 	snapshoot->end();
 
 	CCScene *pscene = CCScene::create();
@@ -1056,12 +1036,12 @@ void GameLayer::onGameOver(bool isWin)
 	layer->setDelegate(this);
 	pscene->addChild(layer);
 	CCDirector::sharedDirector()->pushScene(pscene);
-};
+}
 
 void GameLayer::onLeft()
 {
 
-	CCArray *childArray = this->getChildren();
+	CCArray *childArray = getChildren();
 	CCObject *pObject;
 
 	CCARRAY_FOREACH(childArray, pObject)
@@ -1150,7 +1130,7 @@ void GameLayer::onLeft()
 		player->removeFromParentAndCleanup(true);
 	}
 
-	if (this->_isHardCoreGame)
+	if (_isHardCoreGame)
 	{
 		CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Roshi/Roshi.plist");
 		CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Han/Han.plist");
@@ -1162,14 +1142,14 @@ void GameLayer::onLeft()
 	KTools::prepareFileOGG("Ougis", true);
 
 	_CharacterArray->removeAllObjects();
-	_CharacterArray = NULL;
+	_CharacterArray = nullptr;
 
 	_TowerArray->removeAllObjects();
-	_TowerArray = NULL;
+	_TowerArray = nullptr;
 	_KonohaFlogArray->removeAllObjects();
-	_KonohaFlogArray = NULL;
+	_KonohaFlogArray = nullptr;
 	_AkatsukiFlogArray->removeAllObjects();
-	_AkatsukiFlogArray = NULL;
+	_AkatsukiFlogArray = nullptr;
 
 	CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("UI.plist");
 	CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Map.plist");
@@ -1215,9 +1195,9 @@ void GameLayer::checkBackgroundMusic(float dt)
 void GameLayer::setOugis(CCNode *sender)
 {
 
-	if (!this->_hudLayer->ougisLayer)
+	if (!_hudLayer->ougisLayer)
 	{
-		CCArray *childArray = this->getChildren();
+		CCArray *childArray = getChildren();
 		ougisChar = sender;
 		CharacterBase *Sender = (CharacterBase *)sender;
 		CCObject *pObject;
@@ -1228,13 +1208,13 @@ void GameLayer::setOugis(CCNode *sender)
 
 			object->pauseSchedulerAndActions();
 		}
-		this->pauseSchedulerAndActions();
+		pauseSchedulerAndActions();
 
-		this->updateViewPoint(0.01);
+		updateViewPoint(0.01);
 
 		blend = CCLayerColor::create(ccc4(0, 0, 0, 200), winSize.width, winSize.height);
-		blend->setPosition(ccp(-this->getPositionX(), 0));
-		this->addChild(blend, 1000);
+		blend->setPosition(ccp(-getPositionX(), 0));
+		addChild(blend, 1000);
 		sender->setZOrder(2000);
 
 		if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice") != false)
@@ -1249,17 +1229,17 @@ void GameLayer::setOugis(CCNode *sender)
 void GameLayer::removeOugis()
 {
 	ougisChar->setZOrder(-ougisChar->getPositionY());
-	CCArray *childArray = this->getChildren();
+	CCArray *childArray = getChildren();
 	CCObject *pObject;
 	CCARRAY_FOREACH(childArray, pObject)
 	{
 		CCNode *object = (CCNode *)pObject;
 		object->resumeSchedulerAndActions();
 	}
-	this->resumeSchedulerAndActions();
+	resumeSchedulerAndActions();
 
 	blend->removeFromParent();
-	ougisChar = NULL;
+	ougisChar = nullptr;
 }
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
@@ -1349,7 +1329,7 @@ bool GameLayer::checkHasAnyMovement()
 /** NOTE: Impl key listener */
 void GameLayer::keyEventHandle(GLFWwindow *window, int key, int scancode, int keyState, int mods)
 {
-	if (_gLayer == NULL)
+	if (_gLayer == nullptr)
 		return;
 
 	switch (key)
@@ -1430,20 +1410,23 @@ void GameLayer::keyEventHandle(GLFWwindow *window, int key, int scancode, int ke
 	/* Item buttons */
 	// Item 1 & Purchase
 	case KEY_B:
-		if (_gLayer->_isGear && keyState)
-			_gLayer->_gearLayer->confirmPurchase();
-		else if (keyState)
-			_gLayer->_hudLayer->getItem2Button()->click();
+		if (keyState)
+		{
+			if (_gLayer->_isGear)
+				_gLayer->_gearLayer->confirmPurchase();
+			else
+				_gLayer->_hudLayer->getItem3Button()->click();
+		}
 		break;
 	// Item 2
 	case KEY_N:
 		if (keyState)
-			_gLayer->_hudLayer->getItem3Button()->click();
+			_gLayer->_hudLayer->getItem4Button()->click();
 		break;
 	// Item 3
 	case KEY_M:
 		if (keyState)
-			_gLayer->_hudLayer->getItem4Button()->click();
+			_gLayer->_hudLayer->getItem2Button()->click();
 		break;
 	case KEY_ESCAPE:
 	case KEY_ENTER:
@@ -1483,14 +1466,14 @@ void GameLayer::keyEventHandle(GLFWwindow *window, int key, int scancode, int ke
 		// 	glfwGetWindowSize(_window, &width, &height);
 		// 	if (_isFullScreen)
 		// 	{
-		// 		glfwSetWindowMonitor(_window, NULL, videoMode->width / 2, videoMode->height / 2, WIDTH, HEIGHT, videoMode->refreshRate);
+		// 		glfwSetWindowMonitor(_window, nullptr, videoMode->width / 2, videoMode->height / 2, WIDTH, HEIGHT, videoMode->refreshRate);
 		// 		glfwSetWindowPos(_window,
 		// 						 (videoMode->width - WIDTH) / 2,
 		// 						 (videoMode->height - HEIGHT) * 0.35f);
 		// 	}
 		// 	else
 		// 	{
-		// 		glfwSetWindowMonitor(_window, NULL, 0, 0, videoMode->width, videoMode->height, videoMode->refreshRate);
+		// 		glfwSetWindowMonitor(_window, nullptr, 0, 0, videoMode->width, videoMode->height, videoMode->refreshRate);
 		// 		CCDirector::sharedDirector()->getOpenGLView()->updateFrameSize(videoMode->width,videoMode->height);
 		// 	}
 		// 	_isFullScreen = !_isFullScreen;
@@ -1507,11 +1490,11 @@ void GameLayer::LPFN_ACCELEROMETER_KEYHOOK(UINT message, WPARAM wParam, LPARAM l
 	{
 	case WM_SYSKEYDOWN:
 	case WM_KEYDOWN:
-		keyEventHandle(NULL, wParam, 0, 1, 0);
+		keyEventHandle(nullptr, wParam, 0, 1, 0);
 		break;
 	case WM_SYSKEYUP:
 	case WM_KEYUP:
-		keyEventHandle(NULL, wParam, 0, 0, 0);
+		keyEventHandle(nullptr, wParam, 0, 0, 0);
 		break;
 	}
 }

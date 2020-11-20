@@ -1,3 +1,7 @@
+--
+-- Cocos2dx Event
+--
+ns.UITexType = {Local = 0, Plist = 1}
 
 ns.TouchEventType = {began = 0, moved = 1, ended = 2, canceled = 3}
 

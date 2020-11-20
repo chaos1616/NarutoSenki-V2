@@ -1,8 +1,7 @@
-#ifndef __HUB_LAYER_H__
-#define __HUB_LAYER_H__
+#pragma once
 #include "Defines.h"
 #include "ActionButton.h"
-#include "Characters.h"
+#include "Core/Hero.hpp"
 #include "JoyStick.h"
 #include "GameLayer.h"
 
@@ -142,8 +141,9 @@ public:
 	void updateGears();
 	void initGearButton();
 
+	void updateSkillButtons();
+
 protected:
 	virtual void onEnter();
 	virtual void onExit();
 };
-#endif

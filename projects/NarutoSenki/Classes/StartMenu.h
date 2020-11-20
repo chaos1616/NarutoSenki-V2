@@ -79,7 +79,6 @@ public:
 	void scrollMenu(int posY);
 	CCSprite *menuText;
 
-	MenuButton *hardCore_btn;
 	CCLayer *hardCoreLayer;
 
 	static const int _pos01 = 48;

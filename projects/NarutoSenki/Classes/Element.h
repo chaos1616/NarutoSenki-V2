@@ -1,5 +1,4 @@
-#ifndef __ELEMENTS_H__
-#define __ELEMENTS_H__
+#pragma once
 #include "CharacterBase.h"
 #include "HPBar.h"
 
@@ -14,53 +13,15 @@ public:
 	void setHPbar();
 	void setShadows();
 	void changeHPbar();
-	void neicun(float dt);
+	void checkRefCount(float dt);
 
 	CCSprite *rebornSprite;
 	CCLabelBMFont *rebornLabel;
-	virtual void setID(CCString *character, CCString *role, CCString *group){};
-	virtual void setAI(float dt){};
 	void reborn(float dt);
 	void dealloc();
 
 protected:
 	void countDown(float dt);
-};
-
-class Flog : public CharacterBase
-{
-public:
-	Flog();
-	~Flog();
-
-	CREATE_FUNC(Flog);
-	bool init();
-	void initAction();
-	void setHPbar();
-
-	float _mainPosY;
-	float _randomPosX;
-	float _randomPosY;
-
-	void setID(CCString *character, CCString *role, CCString *group);
-
-protected:
-	void dealloc();
-	void setAI(float dt);
-};
-
-class Tower : public CharacterBase
-{
-public:
-	Tower();
-	~Tower();
-
-	CREATE_FUNC(Tower);
-	bool init();
-	void initAction();
-	void setHPbar();
-	void dealloc();
-	void setID(CCString *character, CCString *role, CCString *group);
 };
 
 class Monster : public CharacterBase
@@ -86,24 +47,8 @@ protected:
 	void setResume();
 };
 
-class Bullet : public CharacterBase
-{
-public:
-	Bullet();
-	~Bullet();
+#include "Core/Tower/Tower.hpp"
 
-	CREATE_FUNC(Bullet);
-	bool init();
-	void initAction();
-	void setID(CCString *character, CCString *role, CCString *group);
+#include "Core/Warrior/Flog.hpp"
 
-	void setMove(unsigned int length, float delay, bool isReverse);
-	void setEaseIn(unsigned int length, float delay);
-
-	void setAttack(float dt);
-
-protected:
-	void dealloc();
-	void dealloc2();
-};
-#endif
+#include "Core/Bullet/Bullet.hpp"

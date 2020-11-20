@@ -3,6 +3,8 @@
 --
 ns.StartMenu = StartMenu
 
+ns.enableCustomSelect = false
+
 function StartMenu:init()
     log('Initial StartMenu...')
 
@@ -69,9 +71,7 @@ function StartMenu:init()
     self:setHandle(StartMenu.enterSelectPanel)
 end
 
-function StartMenu:enterSelectPanel()
-    log('Enter select character panel...')
-
+function StartMenu.enterSelectPanel(enableCustomSelect)
     tools.addSprites('Select.plist')
     tools.addSprites('UI.plist')
     tools.addSprites('Report.plist')
@@ -82,6 +82,8 @@ function StartMenu:enterSelectPanel()
 
     local selectScene = CCScene:create()
     local selectLayer = SelectLayer:create()
+    selectLayer.mode = enableCustomSelect and GameMode.CustomTraining or
+                           GameMode.Training
 
     hook.registerInitHandlerOnly(selectLayer)
 
@@ -93,7 +95,7 @@ function onGameOver()
     local menuScene = CCScene:create()
     local menuLayer = StartMenu:create()
 
-    hook.registerInitHandlerOnly(menuLayer, StartMenu.init)
+    hook.registerInitHandlerOnly(menuLayer)
     menuScene:addChild(menuLayer)
     director.replaceSceneWithFade(menuScene, 2.0)
 end

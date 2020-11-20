@@ -185,9 +185,6 @@
     <ClInclude Include="..\Classes\MyUtils\CCScrewLayer.h">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\SkillLayer.h">
-      <Filter>Include</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\NetworkLayer.h">
       <Filter>Include</Filter>
     </ClInclude>

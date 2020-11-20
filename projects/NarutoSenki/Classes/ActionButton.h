@@ -59,10 +59,9 @@ public:
 	//CC_SYNTHESIZE_RETAIN(CCProgressTimer*,markSprite,MarkSprite);
 	CC_SYNTHESIZE(HudLayer *, _delegate, Delegate);
 	virtual void beganAnimation(bool isLock = false);
-
-protected:
 	void updateCDLabel(float dt);
 
+protected:
 	virtual void onEnter();
 	virtual void onExit();
 	virtual bool ccTouchBegan(CCTouch *touch, CCEvent *event);

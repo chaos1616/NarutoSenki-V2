@@ -17,16 +17,16 @@ bool MiniIcon::init(const char *szImage, bool isNotification)
 	do
 	{
 		CC_BREAK_IF(!CCSprite::init());
-		this->initWithSpriteFrameName(szImage);
+		initWithSpriteFrameName(szImage);
 
 		if (isNotification)
 		{
-			this->setAnchorPoint(ccp(0.5f, 0));
-			CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(MiniIcon::updateMap), "updateMap", NULL);
+			setAnchorPoint(ccp(0.5f, 0));
+			CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(MiniIcon::updateMap), "updateMap", nullptr);
 		}
 		else
 		{
-			this->setAnchorPoint(ccp(0.5f, 0.5f));
+			setAnchorPoint(ccp(0.5f, 0.5f));
 		}
 
 		bRet = true;
@@ -39,23 +39,24 @@ void MiniIcon::updateMap(CCObject *sender)
 {
 	CharacterBase *poster = (CharacterBase *)sender;
 
-	if (this->getCharNO() == poster->getCharNO())
+	if (getCharNO() == poster->getCharNO())
 	{
 		if (poster->getActionState() == State::DEAD || poster->_isVisable == false)
 		{
-			this->setVisible(false);
+			setVisible(false);
 		}
 		else
 		{
-			this->setVisible(true);
-			this->updatePosition(poster->getPosition());
+			setVisible(true);
+			updatePosition(poster->getPosition());
 		}
 	}
 }
+
 void MiniIcon::updateState()
 {
 	CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("tower_icon3.png");
-	this->setDisplayFrame(frame);
+	setDisplayFrame(frame);
 }
 
 void MiniIcon::updatePosition(CCPoint location)
@@ -63,8 +64,8 @@ void MiniIcon::updatePosition(CCPoint location)
 	int x = floor(location.x / 32);
 	int y = floor(location.y / 32) * 5;
 
-	this->setPosition(ccp(x, y));
-	this->_delegate->reorderChild(this, 500);
+	setPosition(ccp(x, y));
+	_delegate->reorderChild(this, 500);
 }
 
 MiniIcon *MiniIcon::create(const char *szImage, bool isNotification)
@@ -78,39 +79,39 @@ MiniIcon *MiniIcon::create(const char *szImage, bool isNotification)
 	else
 	{
 		delete mi;
-		return NULL;
+		return nullptr;
 	}
 }
 
 HudLayer::HudLayer()
 {
-	_joyStick = NULL;
+	_joyStick = nullptr;
 
-	_reportListArray = NULL;
+	_reportListArray = nullptr;
 	_buffCount = 0;
-	_towerIconArray = NULL;
-	reportSPCSprite = NULL;
+	_towerIconArray = nullptr;
+	reportSPCSprite = nullptr;
 
 	_isAllButtonLocked = false;
 
 	isOpenSQL = false;
-	skill4Button = NULL;
-	skill5Button = NULL;
-	ougisLayer = NULL;
+	skill4Button = nullptr;
+	skill5Button = nullptr;
+	ougisLayer = nullptr;
 
-	gear1Button = NULL;
-	gear2Button = NULL;
-	gear3Button = NULL;
-	gearMenu = NULL;
+	gear1Button = nullptr;
+	gear2Button = nullptr;
+	gear3Button = nullptr;
+	gearMenu = nullptr;
 
-	item1Button = NULL;
-	item2Button = NULL;
-	item3Button = NULL;
-	item4Button = NULL;
-	Kaichang = NULL;
+	item1Button = nullptr;
+	item2Button = nullptr;
+	item3Button = nullptr;
+	item4Button = nullptr;
+	Kaichang = nullptr;
 
-	bcdLabel1 = NULL;
-	bcdLabel2 = NULL;
+	bcdLabel1 = nullptr;
+	bcdLabel2 = nullptr;
 }
 
 HudLayer::~HudLayer()
@@ -124,7 +125,8 @@ void HudLayer::onEnter()
 		return;
 	}
 	CCLayer::onEnter();
-};
+}
+
 void HudLayer::onExit()
 {
 	CCLayer::onExit();
@@ -134,7 +136,7 @@ void HudLayer::onExit()
 		CC_SAFE_RELEASE(_reportListArray);
 		CC_SAFE_RELEASE(_towerIconArray);
 	}
-};
+}
 
 bool HudLayer::init()
 {
@@ -147,7 +149,7 @@ bool HudLayer::init()
 		texUI = CCTextureCache::sharedTextureCache()->addImage("UI.png");
 		uiBatch = CCSpriteBatchNode::createWithTexture(texUI);
 
-		this->addChild(uiBatch);
+		addChild(uiBatch);
 
 		bRet = true;
 
@@ -159,7 +161,7 @@ bool HudLayer::init()
 void HudLayer::setDelegate(GameLayer *layer)
 {
 	_delegate = layer;
-};
+}
 
 void HudLayer::JoyStickRelease()
 {
@@ -178,12 +180,12 @@ void HudLayer::initGearButton()
 		gearMenu->removeFromParentAndCleanup(true);
 	}
 
-	CCMenuItem *gear_button = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_avator.png", _delegate->currentPlayer->getCharacter()->getCString())->getCString()), NULL, NULL, this, menu_selector(HudLayer::gearButtonClick));
+	CCMenuItem *gear_button = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_avator.png", _delegate->currentPlayer->getCharacter()->getCString())->getCString()), nullptr, nullptr, this, menu_selector(HudLayer::gearButtonClick));
 	gear_button->setAnchorPoint(ccp(0, 0));
-	gearMenu = CCMenu::create(gear_button, NULL);
+	gearMenu = CCMenu::create(gear_button, nullptr);
 	gearMenu->setPosition(ccp(0, winSize.height - gear_button->getContentSize().height));
 	gearMenu->setTouchPriority(10);
-	this->addChild(gearMenu, 100);
+	addChild(gearMenu, 100);
 }
 
 void HudLayer::onKaichang()
@@ -211,7 +213,7 @@ void HudLayer::onKaichang()
 
 	Kaichang->setAnchorPoint(ccp(0.5f, 0.5f));
 	Kaichang->setPosition(ccp(winSize.width / 2 + 32, winSize.height / 2));
-	this->addChild(Kaichang, 5000);
+	addChild(Kaichang, 5000);
 	Kaichang->runAction(seq);
 }
 
@@ -234,12 +236,12 @@ void HudLayer::initHeroInterface()
 
 	status_hpbar = CCSprite::createWithSpriteFrameName("status_hpbar.png");
 	status_hpbar->setPosition(ccp(53, winSize.height - 54));
-	this->addChild(status_hpbar, 40);
+	addChild(status_hpbar, 40);
 
 	status_hpMark = CCSprite::createWithSpriteFrameName("status_hpMark.png");
 	status_hpMark->setAnchorPoint(ccp(0, 0));
 	status_hpMark->setPosition(ccp(54, winSize.height - 105));
-	this->addChild(status_hpMark, 45);
+	addChild(status_hpMark, 45);
 
 	CCSprite *tmpSprite = CCSprite::createWithSpriteFrameName("status_ckrbar.png");
 	status_expbar = CCProgressTimer::create(tmpSprite);
@@ -247,34 +249,34 @@ void HudLayer::initHeroInterface()
 	status_expbar->setPercentage(0);
 	status_expbar->setReverseDirection(true);
 	status_expbar->setPosition(ccp(54, winSize.height - 54));
-	this->addChild(status_expbar, 50);
-	CCMenuItem *menu_button = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("minimap_bg.png"), NULL, NULL, this, menu_selector(HudLayer::pauseButtonClick));
+	addChild(status_expbar, 50);
+	CCMenuItem *menu_button = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("minimap_bg.png"), nullptr, nullptr, this, menu_selector(HudLayer::pauseButtonClick));
 	menu_button->setAnchorPoint(ccp(1, 1));
-	pauseNenu = CCMenu::create(menu_button, NULL);
+	pauseNenu = CCMenu::create(menu_button, nullptr);
 	pauseNenu->setPosition(ccp(winSize.width, winSize.height));
-	this->addChild(pauseNenu);
+	addChild(pauseNenu);
 
 	CCSprite *killIcon = CCSprite::createWithSpriteFrameName("kill_icon.png");
 	killIcon->setAnchorPoint(ccp(0, 1));
 	killIcon->setPosition(ccp(winSize.width - 114, winSize.height - 46));
-	this->addChild(killIcon, 5000);
+	addChild(killIcon, 5000);
 
 	killLabel = CCLabelBMFont::create("0", "Fonts/1.fnt");
 	killLabel->setScale(0.26f);
 	killLabel->setAnchorPoint(ccp(0, 1));
 	killLabel->setPosition(ccp(killIcon->getPositionX() + killIcon->getContentSize().width / 2 + 5, winSize.height - 56));
-	this->addChild(killLabel, 5001);
+	addChild(killLabel, 5001);
 
 	CCSprite *deadIcon = CCSprite::createWithSpriteFrameName("dead_icon.png");
 	deadIcon->setAnchorPoint(ccp(0, 1));
 	deadIcon->setPosition(ccp(winSize.width - 114 + 26, winSize.height - 47));
-	this->addChild(deadIcon, 5000);
+	addChild(deadIcon, 5000);
 
 	deadLabel = CCLabelBMFont::create("0", "Fonts/1.fnt");
 	deadLabel->setScale(0.26f);
 	deadLabel->setAnchorPoint(ccp(0, 1));
 	deadLabel->setPosition(ccp(deadIcon->getPositionX() + deadIcon->getContentSize().width / 2 + 5, winSize.height - 56));
-	this->addChild(deadLabel, 5001);
+	addChild(deadLabel, 5001);
 
 	KonoLabel = CCLabelBMFont::create("0", "Fonts/blue.fnt");
 	KonoLabel->setScale(0.35f);
@@ -297,44 +299,44 @@ void HudLayer::initHeroInterface()
 		KonoLabel->setPosition(ccp(winSize.width - 32, winSize.height - 46));
 	}
 
-	this->addChild(KonoLabel, 5000);
-	this->addChild(AkaLabel, 5000);
+	addChild(KonoLabel, 5000);
+	addChild(AkaLabel, 5000);
 	CCLabelBMFont *hengLabel = CCLabelBMFont::create(":", "Fonts/1.fnt");
 	hengLabel->setScale(0.5f);
 	hengLabel->setAnchorPoint(ccp(0.5f, 1));
 	hengLabel->setPosition(ccp(winSize.width - 37, KonoLabel->getPositionY() + 2));
-	this->addChild(hengLabel, 5000);
+	addChild(hengLabel, 5000);
 
-	this->initGearButton();
+	initGearButton();
 
-	hpLabel = CCLabelBMFont::create(this->_delegate->currentPlayer->getHP()->getCString(), "Fonts/1.fnt");
+	hpLabel = CCLabelBMFont::create(_delegate->currentPlayer->getHP()->getCString(), "Fonts/1.fnt");
 	hpLabel->setScale(0.35f);
 	hpLabel->setPosition(ccp(0, winSize.height - 54));
 	hpLabel->setAnchorPoint(ccp(0, 0));
 
-	this->addChild(hpLabel, 5000);
+	addChild(hpLabel, 5000);
 
 	expLabel = CCLabelBMFont::create(CCString::createWithFormat("%i%%",
-																int(this->_delegate->currentPlayer->getEXP() - ((this->_delegate->currentPlayer->getLV() - 1) * 500) / 500))
+																int(_delegate->currentPlayer->getEXP() - ((_delegate->currentPlayer->getLV() - 1) * 500) / 500))
 										 ->getCString(),
 									 "Fonts/1.fnt");
 	expLabel->setScale(0.35f);
 	expLabel->setPosition(ccp(94, winSize.height - 54));
 	expLabel->setAnchorPoint(ccp(0.5f, 0));
 
-	this->addChild(expLabel, 5000);
+	addChild(expLabel, 5000);
 
 	gameClock = CCLabelBMFont::create("00:00", "Fonts/1.fnt");
 	gameClock->setAnchorPoint(ccp(0.5f, 0));
 	gameClock->setScale(0.4f);
 	gameClock->setPosition(ccp(25, 0));
-	this->addChild(gameClock, 5000);
+	addChild(gameClock, 5000);
 
 	coinLabel = CCLabelBMFont::create("50", "Fonts/arial.fnt");
 	coinLabel->setAnchorPoint(ccp(0, 0));
 	coinLabel->setPosition(ccp(121, winSize.height - 61));
 
-	this->addChild(coinLabel, 5000);
+	addChild(coinLabel, 5000);
 
 	//init NATTACK Button
 	nAttackButton = ActionButton::create("n_attack.png");
@@ -351,7 +353,7 @@ void HudLayer::initHeroInterface()
 	if (_delegate->currentPlayer->_sattack1isDouble)
 	{
 		skill1Button->setDoubleSkill(true);
-	};
+	}
 	uiBatch->addChild(skill1Button);
 
 	skill2Button = ActionButton::create(CCString::createWithFormat("%s_skill2.png", _delegate->currentPlayer->getCharacter()->getCString())->getCString());
@@ -361,7 +363,7 @@ void HudLayer::initHeroInterface()
 	if (_delegate->currentPlayer->_sattack2isDouble)
 	{
 		skill2Button->setDoubleSkill(true);
-	};
+	}
 	if (strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Kankuro") == 0 ||
 		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Chiyo") == 0 ||
 		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Kiba") == 0)
@@ -377,7 +379,7 @@ void HudLayer::initHeroInterface()
 	if (_delegate->currentPlayer->_sattack3isDouble)
 	{
 		skill3Button->setDoubleSkill(true);
-	};
+	}
 	if (strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Kiba") == 0 ||
 		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Chiyo") == 0 ||
 		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Lee") == 0)
@@ -415,7 +417,6 @@ void HudLayer::initHeroInterface()
 
 	//init Item
 	item2Button = ActionButton::create("item2.png");
-	item2Button->setPosition(ccp(winSize.width - 44, skill3Button->getPositionY() + skill3Button->getContentSize().height + 8));
 	item2Button->setCD(CCString::createWithFormat("%d", 15000));
 	item2Button->setDelegate(this);
 	item2Button->setABType(GearItem);
@@ -425,18 +426,6 @@ void HudLayer::initHeroInterface()
 	item2Button->setVisible(false);
 
 	item3Button = ActionButton::create("item3.png");
-	if (skill5Button)
-	{
-		item3Button->setPosition(ccp(skill5Button->getPositionX() - skill5Button->getContentSize().width - 8, 2));
-	}
-	else if (skill4Button)
-	{
-		item3Button->setPosition(ccp(skill4Button->getPositionX() - skill4Button->getContentSize().width - 8, 2));
-	}
-	else
-	{
-		item3Button->setPosition(ccp(skill1Button->getPositionX() - skill1Button->getContentSize().width - 8, 2));
-	}
 	item3Button->setCD(CCString::createWithFormat("%d", 15000));
 	item3Button->setDelegate(this);
 	item3Button->setABType(GearItem);
@@ -446,7 +435,6 @@ void HudLayer::initHeroInterface()
 	item3Button->setVisible(false);
 
 	item4Button = ActionButton::create("item4.png");
-	item4Button->setPosition(ccp(skill2Button->getPositionX() - skill2Button->getContentSize().width - 8, skill2Button->getPositionY()));
 	item4Button->setCD(CCString::createWithFormat("%d", 15000));
 	item4Button->setDelegate(this);
 	item4Button->setABType(GearItem);
@@ -464,6 +452,14 @@ void HudLayer::initHeroInterface()
 	skill5Button->setPosition(ccp(skill4Button->getPositionX() - skill5Button->getContentSize().width - 8, 2));
 
 	item1Button->setPosition(ccp(8, skill3Button->getPositionY() + skill3Button->getContentSize().height));
+	item2Button->setPosition(ccp(winSize.width - 44, skill3Button->getPositionY() + skill3Button->getContentSize().height + 8));
+	if (skill5Button)
+		item3Button->setPosition(ccp(skill5Button->getPositionX() - skill5Button->getContentSize().width - 8, 2));
+	else if (skill4Button)
+		item3Button->setPosition(ccp(skill4Button->getPositionX() - skill4Button->getContentSize().width - 8, 2));
+	else
+		item3Button->setPosition(ccp(skill1Button->getPositionX() - skill1Button->getContentSize().width - 8, 2));
+	item4Button->setPosition(ccp(skill2Button->getPositionX() - skill2Button->getContentSize().width - 8, skill2Button->getPositionY()));
 #else
 	float width = skill1Button->getContentSize().width;
 
@@ -481,10 +477,18 @@ void HudLayer::initHeroInterface()
 	skill5Button->setScale(DESKTOP_UI_SCALE);
 
 	item1Button->setScale(DESKTOP_UI_SCALE);
-	item1Button->setPosition(ccp(8, 8 + nAttackButton->getContentSize().height + skill1Button->getContentSize().height));
 	item2Button->setScale(DESKTOP_UI_SCALE);
 	item3Button->setScale(DESKTOP_UI_SCALE);
 	item4Button->setScale(DESKTOP_UI_SCALE);
+
+	// Ramen	Item
+	item1Button->setPosition(ccp(8, 8 + nAttackButton->getContentSize().height + skill1Button->getContentSize().height));
+	// First 	Item (Speed Up & Stealth)
+	item3Button->setPosition(ccp(winSize.width - skill1Button->getContentSize().width - 64, 2));
+	// Second 	Item (変わり身の術)
+	item4Button->setPosition(ccp(winSize.width - 95, 50));
+	// Third 	Item (Trap)
+	item2Button->setPosition(ccp(winSize.width - 44, 8 + nAttackButton->getContentSize().height + 8));
 #endif
 
 	// Set mask
@@ -500,7 +504,7 @@ void HudLayer::initHeroInterface()
 	item4Button->setMarkSprite("skill_freeze.png");
 
 	//init gear
-	this->updateGears();
+	updateGears();
 	miniLayer = CCLayer::create();
 	miniLayer->setAnchorPoint(ccp(0, 0));
 	miniLayer->setPosition(ccp(winSize.width - 112, winSize.height - 38));
@@ -573,7 +577,7 @@ void HudLayer::initHeroInterface()
 		}
 	}
 
-	this->addChild(miniLayer, 500);
+	addChild(miniLayer, 500);
 }
 
 void HudLayer::addMapIcon()
@@ -611,7 +615,7 @@ void HudLayer::updateGears()
 
 		gear1Button->setMarkSprite("gear_freeze.png");
 		gear1Button->_gearType = None;
-		this->addChild(gear1Button, 200);
+		addChild(gear1Button, 200);
 
 		gear2Button = ActionButton::create("gearbg.png");
 		gear2Button->setPosition(ccp(35, winSize.height - 112));
@@ -621,7 +625,7 @@ void HudLayer::updateGears()
 		gear2Button->setABType(GearBtn);
 		gear2Button->setMarkSprite("gear_freeze.png");
 
-		this->addChild(gear2Button, 200);
+		addChild(gear2Button, 200);
 
 		gear3Button = ActionButton::create("gearbg.png");
 		gear3Button->setPosition(ccp(70, winSize.height - 92));
@@ -631,7 +635,7 @@ void HudLayer::updateGears()
 
 		gear3Button->setABType(GearBtn);
 		gear3Button->setMarkSprite("gear_freeze.png");
-		this->addChild(gear3Button, 200);
+		addChild(gear3Button, 200);
 
 		return;
 	}
@@ -656,25 +660,25 @@ void HudLayer::updateGears()
 				gear3Button->setGearType(tmpGear->intValue());
 			}
 
-			if (tmpGear->intValue() == 6 && this->getItem2Button()->_gearType == None)
+			if (tmpGear->intValue() == 6 && getItem2Button()->_gearType == None)
 			{
-				this->getItem2Button()->_gearType = gearType(tmpGear->intValue());
-				this->getItem2Button()->setVisible(true);
-				this->getItem2Button()->_isLock = false;
+				getItem2Button()->_gearType = gearType(tmpGear->intValue());
+				getItem2Button()->setVisible(true);
+				getItem2Button()->_isLock = false;
 			}
-			else if (tmpGear->intValue() == 0 && this->getItem3Button()->_gearType == None)
+			else if (tmpGear->intValue() == 0 && getItem3Button()->_gearType == None)
 			{
 
-				this->getItem3Button()->_gearType = gearType(tmpGear->intValue());
-				this->getItem3Button()->_isLock = false;
-				this->getItem3Button()->setVisible(true);
+				getItem3Button()->_gearType = gearType(tmpGear->intValue());
+				getItem3Button()->_isLock = false;
+				getItem3Button()->setVisible(true);
 			}
-			else if (tmpGear->intValue() == 3 && this->getItem4Button()->_gearType == None)
+			else if (tmpGear->intValue() == 3 && getItem4Button()->_gearType == None)
 			{
 
-				this->getItem4Button()->setVisible(true);
-				this->getItem4Button()->_gearType = gearType(tmpGear->intValue());
-				this->getItem4Button()->_isLock = false;
+				getItem4Button()->setVisible(true);
+				getItem4Button()->_gearType = gearType(tmpGear->intValue());
+				getItem4Button()->_isLock = false;
 			}
 
 			i++;
@@ -687,7 +691,7 @@ void HudLayer::setHPLose(float percent)
 	CCRotateTo *ra = CCRotateTo::create(0.2f, -((1 - percent) * 180), -((1 - percent) * 180));
 	status_hpbar->runAction(ra);
 
-	int hp = atoi(_delegate->currentPlayer->getHP()->getCString());
+	int hp = to_int(_delegate->currentPlayer->getHP()->getCString());
 	hpLabel->setString(CCString::createWithFormat("%d", int(hp))->getCString());
 }
 
@@ -788,8 +792,8 @@ void HudLayer::setCoin(const char *value)
 {
 
 	const char *cl = coinLabel->getString();
-	int tempCoin = atoi(cl);
-	tempCoin += atoi(value);
+	int tempCoin = to_int(cl);
+	tempCoin += to_int(value);
 	CCString *realCoin = CCString::createWithFormat("%d", tempCoin);
 	coinLabel->setString(realCoin->getCString());
 }
@@ -798,13 +802,13 @@ bool HudLayer::offCoin(const char *value)
 {
 
 	const char *cl = coinLabel->getString();
-	int tempCoin = atoi(cl);
-	if (tempCoin - atoi(value) >= 0)
+	int tempCoin = to_int(cl);
+	if (tempCoin - to_int(value) >= 0)
 	{
-		tempCoin -= atoi(value);
+		tempCoin -= to_int(value);
 		CCString *realCoin = CCString::createWithFormat("%d", tempCoin);
 		coinLabel->setString(realCoin->getCString());
-		_delegate->currentPlayer->minusCoin(atoi(value));
+		_delegate->currentPlayer->minusCoin(to_int(value));
 		return true;
 	}
 	else
@@ -833,14 +837,14 @@ void HudLayer::setReport(const char *name1, const char *name2, CCString *killNum
 		return;
 	}
 
-	reportSprite = this->createReport(name1, name2, length);
+	reportSprite = createReport(name1, name2, length);
 	reportSprite->setPosition(ccp(winSize.width / 2 - length / 2, winSize.height - 80));
-	this->addChild(reportSprite, 500);
+	addChild(reportSprite, 500);
 
 	CCActionInterval *su = CCScaleBy::create(0.2f, 1.0f);
 	CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(HudLayer::setReportCache));
 	CCDelayTime *delay = CCDelayTime::create(2.0f);
-	CCAction *seq = CCSequence::create(su, su->reverse(), delay, call, NULL);
+	CCAction *seq = CCSequence::create(su, su->reverse(), delay, call, nullptr);
 	reportSprite->runAction(seq);
 
 	CCDictionary *dic = CCDictionary::create();
@@ -861,7 +865,7 @@ void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 #endif
 
 	CCSprite *buffSprite = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_%s.png", _delegate->currentPlayer->getCharacter()->getCString(), buffName)->getCString());
-	if (buffSprite == NULL)
+	if (buffSprite == nullptr)
 		return;
 	buffSprite->setAnchorPoint(ccp(0, 0));
 	buffSprite->setPosition(ccp(8, item1Button->getPositionY() + 76 - 28 * _buffCount));
@@ -875,7 +879,7 @@ void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 			bcdLabel1->setPosition(ccp(5, 5));
 			bcdLabel1->setAnchorPoint(ccp(0.5, 0.5));
 			buffSprite->addChild(bcdLabel1);
-			this->schedule(schedule_selector(HudLayer::updateBuffDisplay), 1.0f);
+			schedule(schedule_selector(HudLayer::updateBuffDisplay), 1.0f);
 		}
 		else
 		{
@@ -884,7 +888,7 @@ void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 			bcdLabel2->setPosition(ccp(5, 5));
 			bcdLabel2->setAnchorPoint(ccp(0.5, 0.5));
 			buffSprite->addChild(bcdLabel2);
-			this->schedule(schedule_selector(HudLayer::updateBuffDisplay2), 1.0f);
+			schedule(schedule_selector(HudLayer::updateBuffDisplay2), 1.0f);
 		}
 	}
 
@@ -900,7 +904,7 @@ void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 	buffSprite->setTag(0);
 
 	buffSprite->retain();
-	this->addChild(buffSprite, 500);
+	addChild(buffSprite, 500);
 	_buffCount++;
 }
 
@@ -909,14 +913,14 @@ void HudLayer::updateBuffDisplay(float dt)
 
 	if (bcdLabel1)
 	{
-		if (atoi(bcdLabel1->getString()) > 0)
+		if (to_int(bcdLabel1->getString()) > 0)
 		{
-			bcdLabel1->setString(CCString::createWithFormat("%d", atoi(bcdLabel1->getString()) - 1)->getCString());
+			bcdLabel1->setString(CCString::createWithFormat("%d", to_int(bcdLabel1->getString()) - 1)->getCString());
 		}
 		else
 		{
 			bcdLabel1->removeFromParentAndCleanup(true);
-			bcdLabel1 = NULL;
+			bcdLabel1 = nullptr;
 			_buffCount--;
 		}
 	}
@@ -927,14 +931,14 @@ void HudLayer::updateBuffDisplay2(float dt)
 
 	if (bcdLabel2)
 	{
-		if (atoi(bcdLabel2->getString()) > 0)
+		if (to_int(bcdLabel2->getString()) > 0)
 		{
-			bcdLabel2->setString(CCString::createWithFormat("%d", atoi(bcdLabel2->getString()) - 1)->getCString());
+			bcdLabel2->setString(CCString::createWithFormat("%d", to_int(bcdLabel2->getString()) - 1)->getCString());
 		}
 		else
 		{
 			bcdLabel2->removeFromParentAndCleanup(true);
-			bcdLabel2 = NULL;
+			bcdLabel2 = nullptr;
 			_buffCount--;
 		}
 	}
@@ -966,7 +970,7 @@ void HudLayer::clearSPCReport()
 	{
 		reportSPCSprite->stopAllActions();
 		reportSPCSprite->removeFromParent();
-		reportSPCSprite = NULL;
+		reportSPCSprite = nullptr;
 	}
 }
 
@@ -975,7 +979,7 @@ void HudLayer::stopSPCReport()
 	if (reportSPCSprite)
 	{
 		reportSPCSprite->stopAllActions();
-		this->unschedule(schedule_selector(HudLayer::updateSPCReprot));
+		unschedule(schedule_selector(HudLayer::updateSPCReprot));
 		reportSPCSprite->setPosition(ccp(winSize.width / 2, winSize.height - 105));
 		reportSPCSprite->setScale(1.0f);
 		CCDelayTime *delay = CCDelayTime::create(1.6f);
@@ -1011,14 +1015,14 @@ void HudLayer::setReportCache()
 			CCString *killnum = CCString::create(tempdict->valueForKey("kills")->getCString());
 
 			float length;
-			reportSprite = this->createReport(name1->getCString(), name2->getCString(), length);
+			reportSprite = createReport(name1->getCString(), name2->getCString(), length);
 			reportSprite->setPosition(ccp(winSize.width / 2 - length / 2, winSize.height - 80));
-			this->addChild(reportSprite, 500);
+			addChild(reportSprite, 500);
 
 			CCActionInterval *su = CCScaleBy::create(0.2f, 1.1f);
 			CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(HudLayer::setReportCache));
 			CCDelayTime *delay = CCDelayTime::create(2.0f);
-			CCAction *seq = CCSequence::create(su, su->reverse(), delay, call, NULL);
+			CCAction *seq = CCSequence::create(su, su->reverse(), delay, call, nullptr);
 
 			reportSprite->runAction(seq);
 
@@ -1050,9 +1054,9 @@ void HudLayer::setReportCache()
 						reportSPCSprite->stopAllActions();
 						reportSPCSprite->removeFromParent();
 					}
-					reportSPCSprite = this->createSPCReport(killnum->getCString(), num2);
+					reportSPCSprite = createSPCReport(killnum->getCString(), num2);
 					reportSPCSprite->setPosition(ccp(winSize.width / 2, winSize.height - 115));
-					this->addChild(reportSPCSprite, 500);
+					addChild(reportSPCSprite, 500);
 					CCFadeIn *fn = CCFadeIn::create(0.8f);
 					CCMoveBy *mv = CCMoveBy::create(0.8f, ccp(0, 10));
 					CCSpawn *sp = CCSpawn::createWithTwoActions(fn, mv);
@@ -1074,10 +1078,10 @@ void HudLayer::setReportCache()
 						reportSPCSprite->removeFromParent();
 					}
 
-					reportSPCSprite = this->createSPCReport(killnum->getCString(), num2);
+					reportSPCSprite = createSPCReport(killnum->getCString(), num2);
 					reportSPCSprite->setScale(2.0);
 					reportSPCSprite->setPosition(ccp(winSize.width / 2, winSize.height - 105));
-					this->addChild(reportSPCSprite, 500);
+					addChild(reportSPCSprite, 500);
 					CCScaleTo *st = CCScaleTo::create(0.8f, 1.0f, 1.0f);
 					CCFiniteTimeAction *call2 = CCCallFunc::create(this, callfunc_selector(HudLayer::stopSPCReport));
 					CCAction *seq2 = CCSequence::createWithTwoActions(st, call2);
@@ -1086,7 +1090,7 @@ void HudLayer::setReportCache()
 					CCFiniteTimeAction *sk = CCRepeatForever::create(CCShake::create(0.2f, 4));
 					reportSPCSprite->runAction(sk);
 
-					this->schedule(schedule_selector(HudLayer::updateSPCReprot), 0.2f);
+					schedule(schedule_selector(HudLayer::updateSPCReprot), 0.2f);
 				}
 			}
 
@@ -1099,9 +1103,10 @@ void HudLayer::setReportCache()
 	{
 
 		_reportListArray->removeAllObjects();
-		_reportListArray = NULL;
+		_reportListArray = nullptr;
 	}
 }
+
 CCSprite *HudLayer::createSPCReport(const char *killNum, int num)
 {
 
@@ -1114,25 +1119,25 @@ CCSprite *HudLayer::createSPCReport(const char *killNum, int num)
 	if (num == 1)
 	{
 
-		if (atoi(killNum) < 10)
+		if (to_int(killNum) < 10)
 		{
 			reportSPCSprite = CCSprite::createWithSpriteFrameName("DoubleKill_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill2_1.ogg");
 		}
-		else if (atoi(killNum) < 20)
+		else if (to_int(killNum) < 20)
 		{
 			reportSPCSprite = CCSprite::createWithSpriteFrameName("KillingSpree_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill2_2.ogg");
 		}
-		else if (atoi(killNum) < 30)
+		else if (to_int(killNum) < 30)
 		{
 			reportSPCSprite = CCSprite::createWithSpriteFrameName("Unstoppable_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill2_3.ogg");
 		}
-		else if (atoi(killNum) >= 30)
+		else if (to_int(killNum) >= 30)
 		{
 			reportSPCSprite = CCSprite::createWithSpriteFrameName("Godlike_rpf.png");
 			if (isBrocast)
@@ -1142,25 +1147,25 @@ CCSprite *HudLayer::createSPCReport(const char *killNum, int num)
 	else if (num == 2)
 	{
 
-		if (atoi(killNum) < 10)
+		if (to_int(killNum) < 10)
 		{
 			reportSPCSprite = CCSprite::createWithSpriteFrameName("TripeKill_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill3_1.ogg");
 		}
-		else if (atoi(killNum) < 20)
+		else if (to_int(killNum) < 20)
 		{
 			reportSPCSprite = CCSprite::createWithSpriteFrameName("Domination_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill3_2.ogg");
 		}
-		else if (atoi(killNum) < 30)
+		else if (to_int(killNum) < 30)
 		{
 			reportSPCSprite = CCSprite::createWithSpriteFrameName("Rampage_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill3_3.ogg");
 		}
-		else if (atoi(killNum) >= 30)
+		else if (to_int(killNum) >= 30)
 		{
 			reportSPCSprite = CCSprite::createWithSpriteFrameName("Holyshit_rpf.png");
 			if (isBrocast)
@@ -1176,6 +1181,7 @@ CCSprite *HudLayer::createSPCReport(const char *killNum, int num)
 
 	return reportSPCSprite;
 }
+
 CCSprite *HudLayer::createReport(const char *name1, const char *name2, float &length)
 {
 
@@ -1266,10 +1272,10 @@ bool HudLayer::getSkillFinish()
 	if (!_delegate->getSkillFinish())
 	{
 		return false;
-	};
+	}
 
 	return true;
-};
+}
 
 bool HudLayer::getOugisEnable(bool isCKR2)
 {
@@ -1298,7 +1304,8 @@ bool HudLayer::getOugisEnable(bool isCKR2)
 			return false;
 		}
 	}
-};
+}
+
 void HudLayer::costCKR(int value, bool isCKR2)
 {
 	if (!isCKR2)
@@ -1315,7 +1322,7 @@ void HudLayer::costCKR(int value, bool isCKR2)
 		}
 
 		_delegate->currentPlayer->setCKR(CCString::createWithFormat("%f", ckr));
-		this->setCKRLose(false);
+		setCKRLose(false);
 	}
 	else
 	{
@@ -1332,7 +1339,7 @@ void HudLayer::costCKR(int value, bool isCKR2)
 		}
 
 		_delegate->currentPlayer->setCKR2(CCString::createWithFormat("%f", ckr));
-		this->setCKRLose(true);
+		setCKRLose(true);
 	}
 }
 
@@ -1342,7 +1349,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 	if (!ougisLayer)
 	{
 		CCObject *pObject;
-		CCArray *childArray = this->getChildren();
+		CCArray *childArray = getChildren();
 		CCARRAY_FOREACH(childArray, pObject)
 		{
 			CCNode *object = (CCNode *)pObject;
@@ -1468,7 +1475,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		ougisLayer->addChild(CutLineDown);
 
 		ougisLayer->setPosition(ccp(0, 0));
-		this->addChild(ougisLayer, -100);
+		addChild(ougisLayer, -100);
 
 		CCDelayTime *delay = CCDelayTime::create(1.0f);
 		CCFiniteTimeAction *call = CCCallFuncN::create(this, callfuncN_selector(HudLayer::removeOugis));
@@ -1478,12 +1485,11 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 
 void HudLayer::removeOugis(CCNode *sender)
 {
-
 	ougisLayer->removeFromParent();
-	ougisLayer = NULL;
+	ougisLayer = nullptr;
 
 	CCObject *pObject;
-	CCArray *childArray = this->getChildren();
+	CCArray *childArray = getChildren();
 	CCARRAY_FOREACH(childArray, pObject)
 	{
 		CCNode *object = (CCNode *)pObject;
@@ -1491,4 +1497,48 @@ void HudLayer::removeOugis(CCNode *sender)
 	}
 
 	_delegate->removeOugis();
+}
+
+void HudLayer::updateSkillButtons()
+{
+	auto player = _delegate->currentPlayer;
+	if (!player)
+		return;
+	std::string charName = player->getCharacter()->getCString();
+	if (charName.length() == 0)
+		return;
+
+	auto cache = CCSpriteFrameCache::sharedSpriteFrameCache();
+	cc_timeval timeVal;
+	CCTime::gettimeofdayCocos2d(&timeVal, 0);
+	float now = timeVal.tv_sec + timeVal.tv_usec / 1000;
+	float diff, delayed;
+
+//TODO: Support Ino Ougis2 to display other hero's skills CD
+#define updateButtonInfo(index)                                                                                         \
+	skill##index##Button->setDisplayFrame(cache->spriteFrameByName((charName + "_skill" #index ".png").c_str())); \
+	skill##index##Button->setCD(CCString::createWithFormat("%d", player->_sattackcoldDown1 * 1000));              \
+	skill##index##Button->_isColdChanged = true;                                                                  \
+	// float skill##index##ClickTime = skill##index##Button->_clickTime;                                             \
+	// diff = skill##index##ClickTime - now;                                                                               \
+	// skill##index##Button->beganAnimation();                                                                       \
+	// delayed = diff - floorf(diff / 10);                                                                           \
+	// if (delayed > 0.01f)                                                                                                \
+	// {                                                                                                                   \
+	// 	skill##index##Button->unschedule(schedule_selector(ActionButton::updateCDLabel));                         \
+	// 	skill##index##Button->schedule(schedule_selector(ActionButton::updateCDLabel), delayed);                  \
+	// }
+
+	// NOTE: If the character has awakened but has no corresponding icon
+	// then the skills icons before the awakening state should be used
+	if (charName == "RockLee")
+	{
+		charName = "Lee";
+	}
+
+	updateButtonInfo(1);
+	updateButtonInfo(2);
+	updateButtonInfo(3);
+	updateButtonInfo(4);
+	updateButtonInfo(5);
 }

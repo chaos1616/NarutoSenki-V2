@@ -316,7 +316,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClInclude Include="..\Classes\PauseLayer.h" />
     <ClInclude Include="..\Classes\RankingLayer.h" />
     <ClInclude Include="..\Classes\SelectLayer.h" />
-    <ClInclude Include="..\Classes\SkillLayer.h" />
     <ClInclude Include="..\Classes\StartMenu.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="resource.h" />

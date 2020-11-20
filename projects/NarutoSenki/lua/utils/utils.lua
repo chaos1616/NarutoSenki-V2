@@ -1,5 +1,3 @@
-require 'framework.debug'
-
 --
 -- Ktools
 --
@@ -7,6 +5,7 @@ tools = {}
 device = CCDevice
 director = {}
 tips = {}
+fmt = string.format
 
 local kt = KTools
 local sharedDirector = CCDirector:sharedDirector()
@@ -115,6 +114,13 @@ function table:hasKey(key)
     return false
 end
 
+function table.toCCArray(table)
+    local arr = CCArray:create()
+    arr:retain()
+    for _, value in pairs(table) do arr:addObject(CCString:create(value)) end
+    return arr
+end
+
 function director.replaceSceneWithFade(scene, time)
     if scene ~= nil and type(time) == 'number' and time > 0 then
         sharedDirector:replaceScene(CCTransitionFade:create(time, scene))
@@ -130,16 +136,3 @@ function director.popScene() sharedDirector:popScene() end
 function director.sharedDirector() return sharedDirector end
 
 function director.exit() sharedDirector:endToLua() end
-
--- Defines
-ns = {}
-
--- ns.CharacterBase = CharacterBase
--- ns.HeroElement = HeroElement -- Inheried CharacterBase
--- ns.Flog = Flog -- Inheried CharacterBase
--- ns.Tower = Tower -- Inheried CharacterBase
--- ns.Monster = Monster -- Inheried CharacterBase
--- ns.Bullet = Bullet -- Inheried CharacterBase
--- ns.Hero = Hero -- Inheried HeroElement
-
--- ns.HPBar = HPBar

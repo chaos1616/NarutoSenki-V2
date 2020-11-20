@@ -1,11 +1,11 @@
-#include "Characters.h"
+#include "Core/Hero.hpp"
 #include "HudLayer.h"
 
 HPBar::HPBar()
 {
 
-	hpBar = NULL;
-	hpBottom = NULL;
+	hpBar = nullptr;
+	hpBottom = nullptr;
 };
 
 HPBar::~HPBar(){};
@@ -22,7 +22,7 @@ bool HPBar::init(const char *szImage)
 
 		hpBar = CCSprite::createWithSpriteFrameName(szImage);
 		hpBar->setAnchorPoint(ccp(0, 0));
-		this->addChild(hpBar, 1);
+		addChild(hpBar, 1);
 
 		if (strcmp(fileName, "hp") == 0)
 		{
@@ -35,7 +35,7 @@ bool HPBar::init(const char *szImage)
 			hpBar->setPosition(ccp(1, 1));
 		}
 		hpBottom->setAnchorPoint(ccp(0, 0));
-		this->addChild(hpBottom, -1);
+		addChild(hpBottom, -1);
 
 		bRet = true;
 
@@ -66,7 +66,7 @@ void HPBar::loseHP(float percent)
 			gardTower = "KonohaCenter";
 		}
 
-		if (strcmp(this->_delegate->getCharacter()->getCString(), gardTower) == 0)
+		if (strcmp(_delegate->getCharacter()->getCString(), gardTower) == 0)
 		{
 			if (!_delegate->getDelegate()->_isGuardian && percent <= 0.8)
 			{
@@ -79,7 +79,7 @@ void HPBar::loseHP(float percent)
 			CharacterBase *_slayer = (CharacterBase *)_delegate->_slayer;
 			if (_slayer)
 			{
-				if (strcmp(this->_delegate->getCharacter()->getCString(), gardTower) == 0)
+				if (strcmp(_delegate->getCharacter()->getCString(), gardTower) == 0)
 				{
 					_slayer->isHurtingTower = true;
 				}
@@ -94,7 +94,7 @@ void HPBar::loseHP(float percent)
 	if (percent <= 0)
 	{
 
-		CharacterBase *_slayer = (CharacterBase *)_delegate->_slayer;
+		CharacterBase *_slayer = _delegate->_slayer;
 		CharacterBase *currentSlayer;
 
 		if (strcmp(_delegate->getRole()->getCString(), "Flog") == 0)
@@ -102,9 +102,9 @@ void HPBar::loseHP(float percent)
 
 			if (_slayer->getSecMaster() && strcmp(_slayer->getCharacter()->getCString(), "KageHand") != 0 && strcmp(_slayer->getCharacter()->getCString(), "KageHands") != 0)
 			{
-				if (_slayer->getSecMaster()->getControler())
+				if (_slayer->getSecMaster()->getController())
 				{
-					currentSlayer = _slayer->getSecMaster()->getControler();
+					currentSlayer = _slayer->getSecMaster()->getController();
 				}
 				else
 				{
@@ -113,9 +113,9 @@ void HPBar::loseHP(float percent)
 			}
 			else if (_slayer->getMaster())
 			{
-				if (_slayer->getMaster()->getControler())
+				if (_slayer->getMaster()->getController())
 				{
-					currentSlayer = _slayer->getMaster()->getControler();
+					currentSlayer = _slayer->getMaster()->getController();
 				}
 				else
 				{
@@ -124,9 +124,9 @@ void HPBar::loseHP(float percent)
 			}
 			else
 			{
-				if (_slayer->getControler())
+				if (_slayer->getController())
 				{
-					currentSlayer = _slayer->getControler();
+					currentSlayer = _slayer->getController();
 				}
 				else
 				{
@@ -191,9 +191,9 @@ void HPBar::loseHP(float percent)
 
 			if (_slayer->getSecMaster() && strcmp(_slayer->getCharacter()->getCString(), "KageHand") != 0 && strcmp(_slayer->getCharacter()->getCString(), "KageHands") != 0 && strcmp(_slayer->getCharacter()->getCString(), "SmallSlug") != 0)
 			{
-				if (_slayer->getSecMaster()->getControler())
+				if (_slayer->getSecMaster()->getController())
 				{
-					currentSlayer = _slayer->getSecMaster()->getControler();
+					currentSlayer = _slayer->getSecMaster()->getController();
 				}
 				else
 				{
@@ -202,9 +202,9 @@ void HPBar::loseHP(float percent)
 			}
 			else if (_slayer->getMaster())
 			{
-				if (_slayer->getMaster()->getControler())
+				if (_slayer->getMaster()->getController())
 				{
-					currentSlayer = _slayer->getMaster()->getControler();
+					currentSlayer = _slayer->getMaster()->getController();
 				}
 				else
 				{
@@ -213,9 +213,9 @@ void HPBar::loseHP(float percent)
 			}
 			else
 			{
-				if (_slayer->getControler())
+				if (_slayer->getController())
 				{
-					currentSlayer = _slayer->getControler();
+					currentSlayer = _slayer->getController();
 				}
 				else
 				{
@@ -246,7 +246,7 @@ void HPBar::loseHP(float percent)
 				{
 					if (_delegate->getDelegate()->_isHardCoreGame)
 					{
-						if (atoi(this->_delegate->getMaxHP()->getCString()) > 40000)
+						if (to_int(_delegate->getMaxHP()->getCString()) > 40000)
 						{
 							_delegate->getDelegate()->setCoin("1000");
 							_delegate->setCoinDisplay(1000);
@@ -268,7 +268,7 @@ void HPBar::loseHP(float percent)
 
 				if (_delegate->getDelegate()->_isHardCoreGame)
 				{
-					if (atoi(this->_delegate->getMaxHP()->getCString()) > 40000)
+					if (to_int(_delegate->getMaxHP()->getCString()) > 40000)
 					{
 						currentSlayer->addCoin(1000);
 					}
@@ -302,7 +302,7 @@ void HPBar::loseHP(float percent)
 
 						if (_delegate->getDelegate()->_isHardCoreGame)
 						{
-							if (atoi(this->_delegate->getMaxHP()->getCString()) > 40000)
+							if (to_int(_delegate->getMaxHP()->getCString()) > 40000)
 							{
 								_delegate->getDelegate()->setCoin("850");
 								_delegate->setCoinDisplay(850);
@@ -324,7 +324,7 @@ void HPBar::loseHP(float percent)
 
 					if (_delegate->getDelegate()->_isHardCoreGame)
 					{
-						if (atoi(this->_delegate->getMaxHP()->getCString()) > 40000)
+						if (to_int(_delegate->getMaxHP()->getCString()) > 40000)
 						{
 							otherSlayer->addCoin(850);
 						}
@@ -370,10 +370,10 @@ void HPBar::loseHP(float percent)
 					{
 						_delegate->_isSticking = false;
 					}
-					if (_delegate->getActionState() == State::FLOAT_AIR ||
+					if (_delegate->getActionState() == State::FLOAT ||
 						_delegate->getActionState() == State::AIRHURT)
 					{
-						this->setPositionY(_delegate->_originY);
+						setPositionY(_delegate->_originY);
 						_delegate->_originY = 0;
 						_delegate->getDelegate()->reorderChild(_delegate, -_delegate->getPositionY());
 					}
@@ -425,16 +425,16 @@ void HPBar::loseHP(float percent)
 				}
 			}
 
-			if (_delegate->_isControled)
+			if (_delegate->_isControlled)
 			{
 				_delegate->_isSuicide = true;
-				currentSlayer = _delegate->getControler();
+				currentSlayer = _delegate->getController();
 			}
 			else if (_slayer->getSecMaster() && strcmp(_slayer->getCharacter()->getCString(), "KageHand") != 0 && strcmp(_slayer->getCharacter()->getCString(), "KageHands") != 0 && strcmp(_slayer->getCharacter()->getCString(), "SmallSlug") != 0 && strcmp(_slayer->getCharacter()->getCString(), "FakeItachi") != 0)
 			{
-				if (_slayer->getSecMaster()->getControler())
+				if (_slayer->getSecMaster()->getController())
 				{
-					currentSlayer = _slayer->getSecMaster()->getControler();
+					currentSlayer = _slayer->getSecMaster()->getController();
 				}
 				else
 				{
@@ -443,9 +443,9 @@ void HPBar::loseHP(float percent)
 			}
 			else if (_slayer->getMaster())
 			{
-				if (_slayer->getMaster()->getControler())
+				if (_slayer->getMaster()->getController())
 				{
-					currentSlayer = _slayer->getMaster()->getControler();
+					currentSlayer = _slayer->getMaster()->getController();
 				}
 				else
 				{
@@ -454,9 +454,9 @@ void HPBar::loseHP(float percent)
 			}
 			else
 			{
-				if (_slayer->getControler())
+				if (_slayer->getController())
 				{
-					currentSlayer = _slayer->getControler();
+					currentSlayer = _slayer->getController();
 				}
 				else
 				{
@@ -492,7 +492,7 @@ void HPBar::loseHP(float percent)
 			if (strcmp(currentSlayer->getRole()->getCString(), "Flog") != 0)
 			{
 
-				int realKillNum = atoi(currentSlayer->getKillNum()->getCString()) + 1;
+				int realKillNum = to_int(currentSlayer->getKillNum()->getCString()) + 1;
 				currentSlayer->setKillNum(CCString::createWithFormat("%d", realKillNum));
 				_delegate->getDelegate()->setReport(currentSlayer->getCharacter()->getCString(), _delegate->getCharacter()->getCString(), currentSlayer->getKillNum());
 
@@ -508,18 +508,18 @@ void HPBar::loseHP(float percent)
 
 				if (strcmp(currentSlayer->getGroup()->getCString(), currentTeam) == 0)
 				{
-					int teamKills = atoi(_delegate->getDelegate()->getHudLayer()->KonoLabel->getString()) + 1;
+					int teamKills = to_int(_delegate->getDelegate()->getHudLayer()->KonoLabel->getString()) + 1;
 					_delegate->getDelegate()->getHudLayer()->KonoLabel->setString(CCString::createWithFormat("%d", teamKills)->getCString());
 				}
 				else
 				{
-					int teamKills = atoi(_delegate->getDelegate()->getHudLayer()->AkaLabel->getString()) + 1;
+					int teamKills = to_int(_delegate->getDelegate()->getHudLayer()->AkaLabel->getString()) + 1;
 					_delegate->getDelegate()->getHudLayer()->AkaLabel->setString(CCString::createWithFormat("%d", teamKills)->getCString());
 				}
 				if (strcmp(currentSlayer->getCharacter()->getCString(), Guardian_Han) != 0 &&
 					strcmp(currentSlayer->getCharacter()->getCString(), Guardian_Roshi) != 0)
 				{
-					int newValue = atoi(_delegate->getDelegate()->getTotalKills()->getCString()) + 1;
+					int newValue = to_int(_delegate->getDelegate()->getTotalKills()->getCString()) + 1;
 					_delegate->getDelegate()->setTotalKills(CCString::createWithFormat("%d", newValue));
 				}
 
@@ -565,7 +565,7 @@ void HPBar::loseHP(float percent)
 
 					_delegate->getDelegate()->getHudLayer()->setEXPLose(0);
 					const char *kl = _delegate->getDelegate()->getHudLayer()->killLabel->getString();
-					int kills = atoi(kl) + 1;
+					int kills = to_int(kl) + 1;
 					_delegate->getDelegate()->getHudLayer()->killLabel->setString(CCString::createWithFormat("%d", kills)->getCString());
 				}
 
@@ -668,6 +668,6 @@ HPBar *HPBar::create(const char *szImage)
 	else
 	{
 		delete hb;
-		return NULL;
+		return nullptr;
 	}
 }

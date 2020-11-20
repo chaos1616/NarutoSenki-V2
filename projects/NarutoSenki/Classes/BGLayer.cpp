@@ -2,7 +2,7 @@
 
 BGLayer::BGLayer()
 {
-	texMap = NULL;
+	texMap = nullptr;
 }
 
 BGLayer::~BGLayer()
@@ -50,11 +50,11 @@ void BGLayer::initBg()
 	bgMap->setAnchorPoint(ccp(0, 0));
 	bgMap->setPosition(ccp(0, 192));
 
-	this->addChild(bgMap);
+	addChild(bgMap);
 }
 
 void BGLayer::setDelegate(GameLayer *layer)
 {
 	_delegate = layer;
-	this->initBg();
+	initBg();
 }

@@ -566,14 +566,14 @@ function ui.createOutline(node,outlineWidth,color,opacity,src,dst)
     -- blendFuc.dst = GL_ONE_MINUS_SRC_COLOR
     node:setBlendFunc(blendFuc)
     -- 这里考虑到锚点的位置，如果锚点刚好在中心处，代码可能会更好理解点
-    local bottomLeftX = node:getTexture():getContentSize().width * node:getAnchorPoint().x + outlineWidth 
+    local bottomLeftX = node:getTexture():getContentSize().width * node:getAnchorPoint().x + outlineWidth
     local bottomLeftY = node:getTexture():getContentSize().height * node:getAnchorPoint().y + outlineWidth
 
     local positionOffsetX = node:getTexture():getContentSize().width * node:getAnchorPoint().x - node:getTexture():getContentSize().width / 2
     local positionOffsetY = node:getTexture():getContentSize().height * node:getAnchorPoint().y - node:getTexture():getContentSize().height / 2
 
     local rtPosition = ccp(originX - positionOffsetX, originY - positionOffsetY)
-    
+
     local function degrees2radians(angle)
         return angle * 0.01745329252
     end
@@ -596,5 +596,3 @@ function ui.createOutline(node,outlineWidth,color,opacity,src,dst)
     node.stroke = rt
     return rt
 end
-
-return ui

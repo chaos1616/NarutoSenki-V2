@@ -1,3 +1,6 @@
+--
+-- Config
+--
 -- design resoluation configuration
 CONFIG_SCREEN_WIDTH = 480
 CONFIG_SCREEN_HEIGHT = 320
@@ -16,21 +19,19 @@ function __G__TRACKBACK__(msg)
     print('----------------------------------------')
 end
 
--- defines
-require 'hook'
+ns = {}
 
--- AI Module
-require 'ai.provider'
-
-require 'ui.init'
-
+-- Load utils
+require 'utils.hook'
 require 'utils.event'
 require 'utils.utils'
 require 'utils.save'
 require 'utils.math'
 
--- require 'class.ICharacter'
-require 'class.basic'
+require 'core.init'
 
--- locals
-require 'i18n.init'
+-- UI Module
+require 'ui.init'
+
+-- Character Module
+require 'class.basic'

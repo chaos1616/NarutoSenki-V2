@@ -35,7 +35,8 @@ GearType = {
 
 Team = {
     Akatsuki    = 'Akatsuki',
-    Konoha      = 'Konoha'}
+    Konoha      = 'Konoha'
+}
 
 --[[--
 	Action State
@@ -51,7 +52,7 @@ State = {
     HURT        = _G['HURT'],
     ABHURT      = _G['ABHURT'],
     KOCKDOWN    = _G['KOCKDOWN'],
-    FLOAT       = _G['FLOAT_AIR'], -- In windows it has the same define
+    FLOAT       = _G['FLOAT'],
     JUMP        = _G['JUMP'],
     AIRHURT     = _G['AIRHURT']
 }
@@ -86,7 +87,10 @@ ns.CharactersLayout = {
 }
 
 ns.CharacterTags = {
-	Clone		= 'Clone',
-	Summon 		= 'Summon',
-	Mon 		= 'Mon'
+    -- 分身
+    Bunshin		= 'Clone',
+    -- 傀儡
+	Kugutsu 	= 'Summon',
+    -- 口寄せ
+    Kuchiyose   = 'Mon'
 }

@@ -76,6 +76,8 @@ function GameScene:onLogoClick()
         self.logoMenu:setPosition(display.width / 2, display.height -
                                       logo_btn:getContentSize().height / 2)
         self.introLayer:addChild(self.logoMenu, 3)
+
+        self:onFinish()
     elseif self.cheats > 10 then
         audio.stopAllSounds()
         audio.stopMusic(true)
@@ -106,7 +108,7 @@ function GameScene:onPush()
     tools.initSqliteDB()
 
     audio.stopMusic(true)
-    -- play sound and delayed change sccene
+    -- Play sound and delayed change scene
     -- Cleanup audio engine in StartMenu
     audio.playSound(ns.menu.CONFIRM)
 

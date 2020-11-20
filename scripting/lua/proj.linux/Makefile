@@ -1,9 +1,15 @@
 TARGET = liblua.so
 
-INCLUDES += -I.. -I../lua -I../tolua -I../xxtea \
+INCLUDES += -I.. \
+        -I../lua \
+        -I../tolua \
+        -I../xxtea \
+        -I../../../CocosDenshion/include \
+        -I../../../extensions \
+        -I../../../external/chipmunk/include/chipmunk \
+        -I../Classes \
 	-I../../../projects/NarutoSenki/Classes \
-	-I../../../projects/NarutoSenki/Classes/AI \
-        -I../Classes -I../../../CocosDenshion/include -I../../../extensions -I../../../external/chipmunk/include/chipmunk 
+	-I../../../projects/NarutoSenki/Classes/Core \
 
 SOURCES = ../lua/lapi.o \
           ../lua/lauxlib.c \

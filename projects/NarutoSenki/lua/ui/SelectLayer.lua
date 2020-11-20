@@ -1,29 +1,39 @@
 --
 -- SelectLayer
 --
-Konoha = 'Konoha'
-Akatsuki = 'Akatsuki'
-
-ns.enableCustomSelect = false
 
 function SelectLayer:init()
     log('Initial SelectLayer...')
+
+    if self.mode == GameMode.Training then
+        self.enableCustomSelect = false
+    elseif self.mode == GameMode.CustomTraining then
+        self.enableCustomSelect = true
+    end
+    self.enableHardCore = false
 
     self.pageNum = 3
 
     self._comLabel1 = nil
     self._comLabel2 = nil
+    self._com1Select = nil
+    self._com2Select = nil
+
+    self._heroName = nil
+    self._heroHalfImage = nil
+
     self.pageLayers = {}
     self.pageButtons = {}
 
-    self._selectHero = nil
+    self._playerSelect = nil
+    self.selectHero = nil
 
     tools.addSprites('Record.plist', 'Record2.plist', 'UI.plist',
                      'Report.plist', 'Ougis.plist', 'Ougis2.plist', 'Map.plist',
                      'Gears.plist')
 
-    -- if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) then
-    -- if (KTools:checkMD5() == 0) then
+    -- if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID then
+    -- if not KTools:checkMD5() then
     -- 	SimpleAudioEngine:sharedEngine():stopBackgroundMusic()
     -- 	CCDirector:sharedDirector():end()
     -- 	return false
@@ -32,12 +42,7 @@ function SelectLayer:init()
 
     local width, height = display.width, display.height
 
-    local bg_src
-    if ns.enableCustomSelect then
-        bg_src = 'red_bg.png'
-    else
-        bg_src = 'blue_bg.png'
-    end
+    local bg_src = self.enableCustomSelect and 'red_bg.png' or 'blue_bg.png'
     local bgSprite = display.newSprite(bg_src, 0, 0)
     bgSprite:setAnchorPoint(0, 0)
     bgSprite:fullScreen()
@@ -175,6 +180,7 @@ function SelectLayer:init()
 
     self.selectButtons = selectButtons
     self.selectNameList = selectNameList
+    self:setSelectList(table.toCCArray(selectNameList))
 
     local hero = selectNameList[1]
     if hero then
@@ -199,52 +205,16 @@ function SelectLayer:init()
     local blink = CCBlink:create(0.6, 1)
     selectImg:runAction(CCRepeatForever:create(blink))
     self._selectImg = selectImg
-    self._selectHero = selectBtn._charName
+    self.selectHero = selectBtn._charName
 
-    if ns.enableCustomSelect then
-        local teamSelector = display.newLayer()
-
-        local teamBg = display.newSprite('#team_bg.png', 0, 185)
-        teamBg:setAnchorPoint(0, 0)
-        teamSelector:addChild(teamBg)
-
-        local comSelector1 = display.newSprite('#unknow_select.png', 2, 194)
-        comSelector1:setAnchorPoint(0, 0)
-        teamSelector:addChild(comSelector1)
-
-        self._comLabel1 = display.newSprite('#com_label.png')
-        -- self._comLabel1:setAnchorPoint(0.5, 0.5) -- default is {0.5, 0.5}
-        self._comLabel1:setPosition(comSelector1:getPositionX() +
-                                        comSelector1:getContentSize().width + 2 +
-                                        18, comSelector1:getPositionY() +
-                                        comSelector1:getContentSize().height / 2)
-        teamSelector:addChild(self._comLabel1)
-
-        local comSelector2 = display.newSprite('#unknow_select.png')
-        comSelector2:setAnchorPoint(0, 0)
-        comSelector2:setPosition(comSelector1:getPositionX() +
-                                     comSelector1:getContentSize().width + 40,
-                                 comSelector1:getPositionY())
-        teamSelector:addChild(comSelector2)
-
-        self._comLabel2 = display.newSprite('#com_label.png')
-        -- self._comLabel2:setAnchorPoint(0.5, 0.5)
-        self._comLabel2:setPosition(comSelector2:getPositionX() +
-                                        comSelector2:getContentSize().width + 2 +
-                                        18, comSelector2:getPositionY() +
-                                        comSelector2:getContentSize().height / 2)
-        teamSelector:addChild(self._comLabel2)
-
-        self:addChild(teamSelector, 50)
-
-        self._comSelector1 = comSelector1
-        self._comSelector2 = comSelector2
+    if self.mode == GameMode.CustomTraining then
+        self:initCustomTrainingMode()
     end
 
     local ranking_btn = ui.newImageMenuItem(
                             {
             image = '#ranking_btn.png',
-            listener = handler(self, SelectLayer.onRankingBtn)
+            listener = handler(self, SelectLayer.onRankingButtonClick)
         })
     ranking_btn:setAnchorPoint(1, 0.5)
     local menu3 = ui.newMenu({ranking_btn})
@@ -265,7 +235,7 @@ function SelectLayer:init()
     local skill_btn = ui.newImageMenuItem(
                           {
             image = '#skill_btn.png',
-            listener = handler(self, SelectLayer.onSkillMenu)
+            listener = handler(self, SelectLayer.onSkillMenuButtonClick)
         })
     local menu2 = ui.newMenu({skill_btn})
     menu2:setAnchorPoint(0, 0)
@@ -279,21 +249,79 @@ function SelectLayer:init()
     -- end
 end
 
+function SelectLayer:initCustomTrainingMode()
+    log('Initial Custom Training Mode...')
+    local teamSelector = display.newLayer()
+    -- local uiLayer = TouchGroup:create()
+    -- teamSelector:addChild(uiLayer, 5)
+
+    -- local hardcore_switch_btn = CheckBox:create()
+    -- hardcore_switch_btn:loadTextures( -- load textures
+    -- "check_bg.png", "check_bg.png", "check.png", "", "", ns.UITexType.Local)
+    -- -- "", -- backGround
+    -- -- "", -- backGroundSelected
+    -- -- "", -- cross
+    -- -- "", -- backGroundDisabled
+    -- -- "", -- frontCrossDisabled
+    -- -- ns.UITexType.Plist)
+    -- hardcore_switch_btn:setPosition(
+    --     CCPoint(text:getContentSize().width + 5, 260))
+    -- hardcore_switch_btn:setScale(0.4)
+    -- hardcore_switch_btn:addEventListenerCheckBox(
+    --     function(_, event)
+    --         self.enableHardCore = event == ns.CheckBoxEventType.selected
+    --         -- log('Is enable hardcore [ %s ]', tostring(self.enableHardCore))
+    --     end)
+    -- uiLayer:addWidget(hardcore_switch_btn)
+
+    local teamBg = display.newSprite('#team_bg.png', 0, 185)
+    teamBg:setAnchorPoint(0, 0)
+    teamSelector:addChild(teamBg)
+
+    local comSelector1 = display.newSprite('#unknow_select.png', 2, 194)
+    comSelector1:setAnchorPoint(0, 0)
+    teamSelector:addChild(comSelector1)
+
+    self._comLabel1 = display.newSprite('#com_label.png')
+    self._comLabel1:setPosition(comSelector1:getPositionX() +
+                                    comSelector1:getContentSize().width + 2 + 18,
+                                comSelector1:getPositionY() +
+                                    comSelector1:getContentSize().height / 2)
+    teamSelector:addChild(self._comLabel1)
+
+    local comSelector2 = display.newSprite('#unknow_select.png')
+    comSelector2:setAnchorPoint(0, 0)
+    comSelector2:setPosition(comSelector1:getPositionX() +
+                                 comSelector1:getContentSize().width + 40,
+                             comSelector1:getPositionY())
+    teamSelector:addChild(comSelector2)
+
+    self._comLabel2 = display.newSprite('#com_label.png')
+    self._comLabel2:setPosition(comSelector2:getPositionX() +
+                                    comSelector2:getContentSize().width + 2 + 18,
+                                comSelector2:getPositionY() +
+                                    comSelector2:getContentSize().height / 2)
+    teamSelector:addChild(self._comLabel2)
+
+    self:addChild(teamSelector, 50)
+
+    self._comSelector1 = comSelector1
+    self._comSelector2 = comSelector2
+end
+
 function SelectLayer:onQuestBtn()
     -- not support
     self:setTip('ComingSoon')
 end
 
-function SelectLayer:onRankingBtn()
+function SelectLayer:onRankingButtonClick()
     -- not support
     self:setTip('ComingSoon')
 end
 
-function SelectLayer:onSkillMenu()
+function SelectLayer:onSkillMenuButtonClick()
     local scene = CCScene:create()
-    local skillLayer = SkillLayer:new()
-    skillLayer._selectLayer = self
-    skillLayer:initInterface()
+    local skillLayer = SkillLayer:create(self)
     scene:addChild(skillLayer)
 
     director.pushScene(scene)
@@ -328,14 +356,15 @@ function SelectLayer:setSelected(btn)
 
     if not self.enableCustomSelect and self._playerSelect then return end
 
-    self._selectHero = btn._charName
+    self.selectHero = btn._charName
 
     local fd = CCFadeOut:create(1.0)
     local seq = CCRepeatForever:create(transition.sequence({fd, fd:reverse()}))
 
     if not self._playerSelect then
         if btn._clickTime >= 2 then
-            self._playerSelect = self._selectHero
+            self:setSelectHero(btn._charName)
+            self._playerSelect = self.selectHero
 
             if not self.enableCustomSelect then
                 self._selectImg:removeFromParent()
@@ -358,30 +387,33 @@ function SelectLayer:setSelected(btn)
         self:addChild(self._heroName, 5)
     elseif not self._com1Select then
         self._comSelector1:setDisplayFrame(
-            display.newSprite('#' .. self._selectHero .. '_small.png'))
+            display.newSpriteFrame(self.selectHero .. '_small.png'))
 
         if btn._clickTime >= 2 then
-            self._com1Select = self._selectHero
+            self._com1Select = self.selectHero
+            self:setCom1Select(self._com1Select)
 
             self._comLabel1:stopAllActions()
             self._comLabel1:setOpacity(255)
-            self._comLabel1:setDisplayFrame(display.newSprite('#com_label2.png'))
+            self._comLabel1:setDisplayFrame(
+                display.newSpriteFrame('com_label2.png'))
             self._comLabel2:runAction(seq)
-        elseif not self._com2Select then
-            self._comSelector2:setDisplayFrame(
-                display.newSprite('#' .. self._selectHero .. '_small.png'))
+        end
+    elseif not self._com2Select then
+        self._comSelector2:setDisplayFrame(
+            display.newSpriteFrame(self.selectHero .. '_small.png'))
 
-            if btn._clickTime >= 2 then
-                self._com2Select = self._selectHero
+        if btn._clickTime >= 2 then
+            self._com2Select = self.selectHero
+            self:setCom2Select(self._com2Select)
 
-                self._comLabel2:stopAllActions()
-                self._comLabel2:setOpacity(255)
-                self._comLabel2:setDisplayFrame(
-                    display.newSprite('#com_label2.png'))
+            self._comLabel2:stopAllActions()
+            self._comLabel2:setOpacity(255)
+            self._comLabel2:setDisplayFrame(
+                display.newSpriteFrame('com_label2.png'))
 
-                self._selectImg:removeFromParent()
-                self._selectImg = nil
-            end
+            self._selectImg:removeFromParent()
+            self._selectImg = nil
         end
     end
 end

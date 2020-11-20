@@ -1,7 +1,9 @@
 #ifndef __CCPLATFORMDEFINE_H__
 #define __CCPLATFORMDEFINE_H__
 
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 #include "android/log.h"
+#endif
 
 #define CC_DLL
 

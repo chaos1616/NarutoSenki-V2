@@ -7,11 +7,11 @@ using namespace std;
 
 LoadLayer::LoadLayer()
 {
-	tempHeros = NULL;
+	tempHeros = nullptr;
 	loadNum = 0;
-	_hudLayer = NULL;
-	_bgLayer = NULL;
-	_hudLayer = NULL;
+	_hudLayer = nullptr;
+	_bgLayer = nullptr;
+	_hudLayer = nullptr;
 	_isHardCoreMode = true;
 	_isRandomChar = false;
 }
@@ -34,18 +34,18 @@ bool LoadLayer::init()
 		CCSprite *menu_bar_b = CCSprite::create("menu_bar2.png");
 		menu_bar_b->setAnchorPoint(ccp(0, 0));
 		FULL_SCREEN_SPRITE(menu_bar_b);
-		this->addChild(menu_bar_b, 2);
+		addChild(menu_bar_b, 2);
 
 		CCSprite *menu_bar_t = CCSprite::create("menu_bar3.png");
 		menu_bar_t->setAnchorPoint(ccp(0, 0));
 		menu_bar_t->setPosition(ccp(0, winSize.height - menu_bar_t->getContentSize().height));
 		FULL_SCREEN_SPRITE(menu_bar_t);
-		this->addChild(menu_bar_t, 2);
+		addChild(menu_bar_t, 2);
 
 		CCSprite *loading_title = CCSprite::createWithSpriteFrameName("loading_title.png");
 		loading_title->setAnchorPoint(ccp(0, 0));
 		loading_title->setPosition(ccp(2, winSize.height - loading_title->getContentSize().height - 2));
-		this->addChild(loading_title, 3);
+		addChild(loading_title, 3);
 
 		//produce the cloud
 		CCSprite *cloud_left = CCSprite::createWithSpriteFrameName("cloud.png");
@@ -53,20 +53,20 @@ bool LoadLayer::init()
 		cloud_left->setFlipX(true);
 		cloud_left->setFlipY(true);
 		cloud_left->setAnchorPoint(ccp(0, 0));
-		this->addChild(cloud_left, 1);
+		addChild(cloud_left, 1);
 
 		CCActionInterval *cmv1 = CCMoveBy::create(1, ccp(-15, 0));
-		CCAction *cseq1 = CCRepeatForever::create(CCSequence::create(cmv1, cmv1->reverse(), NULL));
+		CCAction *cseq1 = CCRepeatForever::create(CCSequence::create(cmv1, cmv1->reverse(), nullptr));
 		cloud_left->runAction(cseq1);
 
 		CCSprite *cloud_right = CCSprite::createWithSpriteFrameName("cloud.png");
 		cloud_right->setPosition(ccp(winSize.width - cloud_right->getContentSize().width,
 									 winSize.height - (cloud_right->getContentSize().height + 15)));
 		cloud_right->setAnchorPoint(ccp(0, 0));
-		this->addChild(cloud_right, 1);
+		addChild(cloud_right, 1);
 
 		CCActionInterval *cmv2 = CCMoveBy::create(1, ccp(15, 0));
-		CCAction *cseq2 = CCRepeatForever::create(CCSequence::create(cmv2, cmv2->reverse(), NULL));
+		CCAction *cseq2 = CCRepeatForever::create(CCSequence::create(cmv2, cmv2->reverse(), nullptr));
 		cloud_right->runAction(cseq2);
 
 		bRet = true;
@@ -79,7 +79,7 @@ void LoadLayer::preloadIMG()
 {
 #define player_is(name) strcmp(player->getCString(), #name) == 0
 
-	CCObject *pObject = NULL;
+	CCObject *pObject = nullptr;
 	int i = 0;
 	const char *path;
 
@@ -198,7 +198,7 @@ void LoadLayer::preloadIMG()
 			CCAction *seq;
 			seq = CCRepeatForever::create(CCSequence::create(seqArray));
 
-			this->addChild(loadingAvator);
+			addChild(loadingAvator);
 			loadingAvator->runAction(seq);
 		}
 
@@ -231,7 +231,7 @@ void LoadLayer::preloadIMG()
 		int num = rand() % 3 + 1;
 		CCSprite *tips = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("tip%d.png", num)->getCString());
 		tips->setPosition(ccp(winSize.width / 2, winSize.height / 2));
-		this->addChild(tips);
+		addChild(tips);
 	}
 	catch (...)
 	{
@@ -243,12 +243,12 @@ void LoadLayer::preloadIMG()
 
 	loading->setPosition(ccp(winSize.width - 120, 45));
 	CCActionInterval *fade = CCFadeOut::create(1.0f);
-	CCAction *fadeseq = CCRepeatForever::create(CCSequence::create(fade, fade->reverse(), NULL));
-	this->addChild(loading);
+	CCAction *fadeseq = CCRepeatForever::create(CCSequence::create(fade, fade->reverse(), nullptr));
+	addChild(loading);
 	loading->runAction(fadeseq);
 
-	this->scheduleOnce(schedule_selector(LoadLayer::playBGM), 1.0f);
-	this->scheduleOnce(schedule_selector(LoadLayer::onLoadFinish), 3.0f);
+	scheduleOnce(schedule_selector(LoadLayer::playBGM), 1.0f);
+	scheduleOnce(schedule_selector(LoadLayer::onLoadFinish), 3.0f);
 }
 
 void LoadLayer::playBGM(float dt)
@@ -273,7 +273,7 @@ void LoadLayer::preloadAudio()
 	FULL_SCREEN_SPRITE(bgSprite);
 	bgSprite->setAnchorPoint(ccp(0, 0));
 	bgSprite->setPosition(ccp(0, 0));
-	this->addChild(bgSprite, -5);
+	addChild(bgSprite, -5);
 
 	// KTools::prepareFileMD5();
 	// std::string str2 = "fkhfnPG8";
@@ -289,7 +289,7 @@ void LoadLayer::preloadAudio()
 	//KTools::dfsFolder(soundpath,0,1);
 	// }
 
-	this->preloadIMG();
+	preloadIMG();
 }
 
 void LoadLayer::onLoadFinish(float dt)

@@ -9,125 +9,22 @@
 
 SelectLayer::SelectLayer()
 {
-	_heroHalf = NULL;
-	_heroName = NULL;
-	_selectImg = NULL;
-
-	_selectList = NULL;
-
-	_comSelector1 = NULL;
-	_comLabel1 = NULL;
-
-	_comSelector2 = NULL;
-	_comLabel2 = NULL;
+	_selectList = nullptr;
+	_com1Select = nullptr;
+	_com2Select = nullptr;
 
 	isStart = false;
 	_isRandomChar = false;
 
-	_playerSelect = NULL;
-	_com1Select = NULL;
-	_com2Select = NULL;
-	selectButtons = NULL;
+	_playerSelect = nullptr;
 }
 
 SelectLayer::~SelectLayer()
 {
-	CC_SAFE_RELEASE(selectButtons);
-}
-
-void SelectLayer::setSelected(CCObject *sender)
-{
-	SelectButton *btn = (SelectButton *)sender;
-	if (_selectImg)
-	{
-		_selectImg->setPosition(ccp(btn->getPositionX() - 2, btn->getPositionY() - 2));
-	}
-
-	if (!enableCustomSelect && _playerSelect)
-	{
-		return;
-	}
-
-	_selectHero = btn->getCharName()->getCString();
-
-	CCActionInterval *fd = CCFadeOut::create(1.0f);
-	CCAction *seq = CCRepeatForever::create(CCSequence::create(fd, fd->reverse(), NULL));
-
-	if (!_playerSelect)
-	{
-
-		if (btn->_clickTime >= 2)
-		{
-			_playerSelect = _selectHero;
-
-			if (!enableCustomSelect)
-			{
-				_selectImg->removeFromParent();
-				_selectImg = NULL;
-			}
-			else
-			{
-				_comLabel1->runAction(seq);
-			}
-		}
-
-		_heroHalf->removeFromParent();
-		const char *charName = btn->getCharName()->getCString();
-
-		const char *path = CCString::createWithFormat("%s_half.png", charName)->getCString();
-		_heroHalf = CCSprite::createWithSpriteFrameName(path);
-
-		_heroHalf->setAnchorPoint(ccp(0, 0));
-		_heroHalf->setPosition(ccp(10, 10));
-		this->addChild(_heroHalf, 1);
-
-		_heroName->removeFromParent();
-		const char *namePath = CCString::createWithFormat("%s_font.png", charName)->getCString();
-		_heroName = CCSprite::createWithSpriteFrameName(namePath);
-		_heroName->setAnchorPoint(ccp(0.5f, 0));
-		_heroName->setPosition(ccp(100, 20));
-		this->addChild(_heroName, 5);
-	}
-	else if (!_com1Select)
-	{
-		CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("%s_small.png", _selectHero)->getCString());
-		_comSelector1->setDisplayFrame(frame);
-
-		if (btn->_clickTime >= 2)
-		{
-			_com1Select = _selectHero;
-
-			_comLabel1->stopAllActions();
-			_comLabel1->setOpacity(255);
-			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("com_label2.png");
-			_comLabel1->setDisplayFrame(frame);
-			_comLabel2->runAction(seq);
-		}
-	}
-	else if (!_com2Select)
-	{
-
-		CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("%s_small.png", _selectHero)->getCString());
-		_comSelector2->setDisplayFrame(frame);
-
-		if (btn->_clickTime >= 2)
-		{
-			_com2Select = _selectHero;
-
-			_comLabel2->stopAllActions();
-			_comLabel2->setOpacity(255);
-			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("com_label2.png");
-			_comLabel2->setDisplayFrame(frame);
-
-			_selectImg->removeFromParent();
-			_selectImg = NULL;
-		}
-	}
 }
 
 void SelectLayer::onGameStart()
 {
-
 	if (!isStart)
 	{
 		isStart = true;
@@ -304,10 +201,8 @@ void SelectLayer::onGameStart()
 	}
 }
 
-void SelectLayer::keyBackClicked()
-{
-	lua_call_func("backToStartMenu")
-}
+void SelectLayer::keyBackClicked(){
+	lua_call_func("backToStartMenu")}
 
 SelectLayer *SelectLayer::create()
 {
@@ -321,6 +216,6 @@ SelectLayer *SelectLayer::create()
 	else
 	{
 		delete sl;
-		return NULL;
+		return nullptr;
 	}
 }

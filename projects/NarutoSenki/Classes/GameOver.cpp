@@ -1,15 +1,15 @@
 #include "GameOver.h"
 #include "GameLayer.h"
-#include "Characters.h"
+#include "Core/Hero.hpp"
 
 #include <fstream>
 
 GameOver::GameOver()
 {
-	exitLayer = NULL;
-	cheatLayer = NULL;
+	exitLayer = nullptr;
+	cheatLayer = nullptr;
 	isPosting = false;
-	refreshBtn = NULL;
+	refreshBtn = nullptr;
 }
 
 GameOver::~GameOver()
@@ -34,36 +34,36 @@ bool GameOver::init(CCRenderTexture *snapshoot)
 		CCSprite *bg = CCSprite::createWithTexture(bgTexture);
 		bg->setAnchorPoint(ccp(0, 0));
 		bg->setFlipY(true);
-		this->addChild(bg, 0);
+		addChild(bg, 0);
 
 		CCLayer *blend = CCLayerColor::create(ccc4(0, 0, 0, 150), winSize.width, winSize.height);
-		this->addChild(blend, 1);
+		addChild(blend, 1);
 
 		//produce the menu_bar
 		CCSprite *menu_bar_b = CCSprite::create("menu_bar2.png");
 		menu_bar_b->setAnchorPoint(ccp(0, 0));
 		FULL_SCREEN_SPRITE(menu_bar_b);
-		this->addChild(menu_bar_b, 2);
+		addChild(menu_bar_b, 2);
 
 		CCSprite *menu_bar_t = CCSprite::create("menu_bar3.png");
 		menu_bar_t->setAnchorPoint(ccp(0, 0));
 		menu_bar_t->setPosition(ccp(0, winSize.height - menu_bar_t->getContentSize().height));
 		FULL_SCREEN_SPRITE(menu_bar_t);
-		this->addChild(menu_bar_t, 2);
+		addChild(menu_bar_t, 2);
 
 		CCSprite *result_title = CCSprite::createWithSpriteFrameName("result_title.png");
 		result_title->setAnchorPoint(ccp(0, 0));
 		result_title->setPosition(ccp(2, winSize.height - result_title->getContentSize().height - 2));
-		this->addChild(result_title, 3);
+		addChild(result_title, 3);
 
 		result_bg = CCSprite::createWithSpriteFrameName("gameover_bg.png");
 		result_bg->setAnchorPoint(ccp(0.5f, 0.5f));
 		result_bg->setScale(0.5f);
 		result_bg->setPosition(ccp(winSize.width / 2, winSize.height / 2 - 6));
-		this->addChild(result_bg, 4);
+		addChild(result_bg, 4);
 
 		CCScaleTo *su = CCScaleTo::create(0.2f, 1.0);
-		CCAction *seq = CCSequence::create(su, CCCallFunc::create(this, callfunc_selector(GameOver::listResult)), NULL);
+		CCAction *seq = CCSequence::create(su, CCCallFunc::create(this, callfunc_selector(GameOver::listResult)), nullptr);
 		result_bg->runAction(seq);
 
 		bRet = true;
@@ -110,12 +110,12 @@ void GameOver::listResult()
 
 	half->setAnchorPoint(ccp(0, 0));
 	half->setPosition(ccp(winSize.width / 2 + result_bg->getContentSize().width / 2 - half->getContentSize().width, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 9));
-	this->addChild(half, 5);
+	addChild(half, 5);
 
 	CCSprite *list_bg = CCSprite::createWithSpriteFrameName("list_bg.png");
 	list_bg->setAnchorPoint(ccp(0, 0));
 	list_bg->setPosition(ccp(winSize.width / 2 - result_bg->getContentSize().width / 2 + 2, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 26));
-	this->addChild(list_bg, 5);
+	addChild(list_bg, 5);
 
 	int _hour = _delegate->_minute / 60;
 	int _minute = _delegate->_minute % 60;
@@ -123,7 +123,7 @@ void GameOver::listResult()
 	CCSprite *timeBG = CCSprite::createWithSpriteFrameName("time_bg.png");
 	timeBG->setAnchorPoint(ccp(0, 0));
 	timeBG->setPosition(ccp(winSize.width / 2 + result_bg->getContentSize().width / 2 - 11 - timeBG->getContentSize().width, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 46));
-	this->addChild(timeBG, 6);
+	addChild(timeBG, 6);
 
 	CCString *tempTime = CCString::createWithFormat("%02d:%02d:%02d", _hour, _minute, _delegate->_second);
 
@@ -131,13 +131,13 @@ void GameOver::listResult()
 	gameClock->setAnchorPoint(ccp(0.5f, 0));
 	gameClock->setPosition(ccp(timeBG->getPositionX() + timeBG->getContentSize().width / 2, timeBG->getPositionY() + 3));
 	gameClock->setScale(0.48f);
-	this->addChild(gameClock, 7);
+	addChild(gameClock, 7);
 
 	float _totalSecond = _delegate->_minute * 60 + _delegate->_second;
 	float resultScore = 0;
-	int killDead = atoi(_delegate->currentPlayer->getKillNum()->getCString()) - _delegate->currentPlayer->_deadNum;
+	int killDead = to_int(_delegate->currentPlayer->getKillNum()->getCString()) - _delegate->currentPlayer->_deadNum;
 
-	if (_totalSecond != atoi(_delegate->getTotalTM()->getCString()))
+	if (_totalSecond != to_int(_delegate->getTotalTM()->getCString()))
 	{
 		SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
 		CCDirector::sharedDirector()->end();
@@ -201,9 +201,9 @@ void GameOver::listResult()
 			}
 		}
 
-		if (hero->_isControled)
+		if (hero->_isControlled)
 		{
-			hero->_isControled = false;
+			hero->_isControlled = false;
 			hero->changeGroup();
 		}
 
@@ -211,7 +211,7 @@ void GameOver::listResult()
 		CCSprite *avator_small = CCSprite::createWithSpriteFrameName(path->getCString());
 		avator_small->setAnchorPoint(ccp(0, 0));
 
-		int realKillNum = atoi(hero->getKillNum()->getCString());
+		int realKillNum = to_int(hero->getKillNum()->getCString());
 
 		if (strcmp(hero->getGroup()->getCString(), Konoha) == 0)
 		{
@@ -259,23 +259,22 @@ void GameOver::listResult()
 			CCARRAY_FOREACH(hero->getGearArray(), pObject)
 			{
 				CCString *tmpGear = (CCString *)pObject;
-				CCSprite *gearIcon = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("gear_%02d.png", atoi(tmpGear->getCString()))->getCString());
+				CCSprite *gearIcon = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("gear_%02d.png", to_int(tmpGear->getCString()))->getCString());
 				gearIcon->setPosition(ccp(flogNum->getPositionX() + 22 + i * 19, flogNum->getPositionY() - 1));
 				gearIcon->setScale(0.5f);
-				this->addChild(gearIcon, 7);
+				addChild(gearIcon, 7);
 				i++;
 			}
 		}
 
-		this->addChild(avator_small, 7);
-		this->addChild(killNum, 7);
-		this->addChild(deadNum, 7);
-		this->addChild(flogNum, 7);
+		addChild(avator_small, 7);
+		addChild(killNum, 7);
+		addChild(deadNum, 7);
+		addChild(flogNum, 7);
 
 		i++;
 	}
 
-	bool isTKO = false;
 	if (_totalSecond > 900 && _delegate->_isSurrender)
 	{
 		if (strcmp(_delegate->currentPlayer->getGroup()->getCString(), Konoha) == 0)
@@ -283,7 +282,6 @@ void GameOver::listResult()
 			if (konohaKill > akatsukiKill)
 			{
 				_isWin = true;
-				isTKO = true;
 			}
 		}
 		else
@@ -291,7 +289,6 @@ void GameOver::listResult()
 			if (akatsukiKill > konohaKill)
 			{
 				_isWin = true;
-				isTKO = true;
 			}
 		}
 	}
@@ -299,14 +296,14 @@ void GameOver::listResult()
 	if (Cheats <= 10)
 	{
 
-		if (akatsukiKill + konohaKill != atoi(_delegate->getTotalKills()->getCString()))
+		if (akatsukiKill + konohaKill != to_int(_delegate->getTotalKills()->getCString()))
 		{
 			SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
 			CCDirector::sharedDirector()->end();
 			return;
 		}
 
-		int realKillNum = atoi(_delegate->currentPlayer->getKillNum()->getCString());
+		int realKillNum = to_int(_delegate->currentPlayer->getKillNum()->getCString());
 
 		std::string tempReward = "";
 		if (_delegate->_isHardCoreGame)
@@ -324,7 +321,7 @@ void GameOver::listResult()
 		int rewardNum;
 		if (_isWin)
 		{
-			rewardNum = realKillNum * 75 + atoi(tempReward.c_str());
+			rewardNum = realKillNum * 75 + to_int(tempReward.c_str());
 		}
 		else
 		{
@@ -334,12 +331,12 @@ void GameOver::listResult()
 		CCSprite *coinBG = CCSprite::createWithSpriteFrameName("coin_bg.png");
 		coinBG->setAnchorPoint(ccp(0, 0));
 		coinBG->setPosition(ccp(winSize.width / 2 + result_bg->getContentSize().width / 2 - coinBG->getContentSize().width - 11, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 12));
-		this->addChild(coinBG, 6);
+		addChild(coinBG, 6);
 
 		CCSprite *adExtra = CCSprite::createWithSpriteFrameName("adExtra.png");
 		adExtra->setAnchorPoint(ccp(0.5f, 0));
 		adExtra->setPosition(ccp(coinBG->getPositionX() + 70, coinBG->getPositionY() + 22));
-		this->addChild(adExtra, 7);
+		addChild(adExtra, 7);
 
 		CCString *extraCoin;
 		int tempCoin;
@@ -347,12 +344,12 @@ void GameOver::listResult()
 		{
 			std::string tempEtra = "idd4";
 			KTools::decode(tempEtra);
-			tempCoin = rewardNum + atoi(cl->getCString()) + atoi(tempEtra.c_str());
+			tempCoin = rewardNum + to_int(cl->getCString()) + to_int(tempEtra.c_str());
 			extraCoin = CCString::createWithFormat("+%d", 500);
 		}
 		else
 		{
-			tempCoin = rewardNum + atoi(cl->getCString());
+			tempCoin = rewardNum + to_int(cl->getCString());
 			extraCoin = CCString::createWithFormat("+%d", 0);
 		}
 
@@ -363,79 +360,41 @@ void GameOver::listResult()
 		extraLabel->setScale(0.5f);
 		extraLabel->setAnchorPoint(ccp(0.5f, 0));
 		extraLabel->setPosition(ccp(coinBG->getPositionX() + 68, coinBG->getPositionY() + 3));
-		this->addChild(extraLabel, 7);
+		addChild(extraLabel, 7);
 
 		CCString *rewardCoin = CCString::createWithFormat("%d", rewardNum);
 		CCLabelBMFont *rewardLabel = CCLabelBMFont::create(rewardCoin->getCString(), "Fonts/yellow.fnt");
 		rewardLabel->setAnchorPoint(ccp(0.5f, 0));
 		rewardLabel->setPosition(ccp(coinBG->getPositionX() + 28, coinBG->getPositionY() + 3));
 		rewardLabel->setScale(0.55f);
-		this->addChild(rewardLabel, 7);
+		addChild(rewardLabel, 7);
 	}
 
-	const char *imgSrc = "";
+	const char *imgSrc;
 
 	if (_isWin && enableCustomSelect)
 	{
-		if (resultScore >= 140 && _delegate->_isHardCoreGame && _delegate->_isRandomChar)
-		{
-			imgSrc = "result_SSSR.png";
-		}
-		else if (resultScore >= 120 && _delegate->_isHardCoreGame && _delegate->_isRandomChar)
-		{
-			imgSrc = "result_SSR.png";
-		}
-		else if (resultScore >= 100 && _delegate->_isHardCoreGame && _delegate->_isRandomChar)
-		{
-			imgSrc = "result_SR.png";
-		}
-		else if (resultScore >= 140)
-		{
-			imgSrc = "result_SSS.png";
-		}
-		else if (resultScore >= 120)
-		{
-			imgSrc = "result_SS.png";
-		}
-		else if (resultScore >= 100)
-		{
-			imgSrc = "result_S.png";
-		}
-		else if (resultScore >= 80)
-		{
-			imgSrc = "result_A.png";
-		}
-		else if (resultScore >= 60)
-		{
-			imgSrc = "result_B.png";
-		}
-		else
-		{
-			imgSrc = "result_C.png";
-		}
+		if (resultScore >= 140 && _delegate->_isHardCoreGame && _delegate->_isRandomChar) imgSrc = "result_SSSR.png";
+		else if (resultScore >= 120 && _delegate->_isHardCoreGame && _delegate->_isRandomChar) imgSrc = "result_SSR.png";
+		else if (resultScore >= 100 && _delegate->_isHardCoreGame && _delegate->_isRandomChar) imgSrc = "result_SR.png";
+		else if (resultScore >= 140) imgSrc = "result_SSS.png";
+		else if (resultScore >= 120) imgSrc = "result_SS.png";
+		else if (resultScore >= 100) imgSrc = "result_S.png";
+		else if (resultScore >= 80) imgSrc = "result_A.png";
+		else if (resultScore >= 60) imgSrc = "result_B.png";
+		else imgSrc = "result_C.png";
 	}
 	else if (!_isWin)
 	{
 		imgSrc = "result_Defeat.png";
 	}
 
-	if (strcmp(imgSrc, "") != 0)
+	if (imgSrc)
 	{
 		CCSprite *recordSprite = CCSprite::createWithSpriteFrameName(imgSrc);
 		recordSprite->setAnchorPoint(ccp(0, 0));
 		recordSprite->setPosition(ccp(winSize.width / 2 + result_bg->getContentSize().width / 2 - recordSprite->getContentSize().width - 12, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 88));
-		this->addChild(recordSprite, 7);
-		/*CCSprite* koSprite=NULL;
-		if(isTKO && resultScore<120){
-			koSprite=CCSprite::createWithSpriteFrameName("twin.png");
-		}else if(_isWin && resultScore<120){
-			koSprite=CCSprite::createWithSpriteFrameName("dwin.png");
-		}
-		if(koSprite){
-			koSprite->setAnchorPoint(ccp(0.5f,0.5f));
-			koSprite->setPosition(ccp(recordSprite->getPositionX()+recordSprite->getContentSize().width/2,recordSprite->getPositionY()+8));
-			this->addChild(koSprite,8);
-		}*/
+		addChild(recordSprite, 7);
 
 		if (_isWin && enableCustomSelect && _delegate->_isHardCoreGame)
 		{
@@ -447,13 +406,13 @@ void GameOver::listResult()
 			recordScore->setAnchorPoint(ccp(1, 0.5f));
 			recordScore->setPosition(ccp(recordSprite->getPositionX() + recordSprite->getContentSize().width, recordSprite->getPositionY() - 7));
 			recordScore->setScale(0.35f);
-			this->addChild(recordScore, 10);
+			addChild(recordScore, 10);
 
-			upload_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("upload_btn.png"), CCSprite::createWithSpriteFrameName("upload_btn.png"), NULL, this, menu_selector(GameOver::onUPloadBtn));
-			CCMenu *upMenu = CCMenu::create(upload_btn, NULL);
+			upload_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("upload_btn.png"), CCSprite::createWithSpriteFrameName("upload_btn.png"), nullptr, this, menu_selector(GameOver::onUPloadBtn));
+			CCMenu *upMenu = CCMenu::create(upload_btn, nullptr);
 			upload_btn->setAnchorPoint(ccp(1.0, 0));
 			upMenu->setPosition(ccp(winSize.width / 2 + result_bg->getContentSize().width / 2 - 14, winSize.height / 2 + result_bg->getContentSize().height / 2 - 62));
-			this->addChild(upMenu, 7);
+			addChild(upMenu, 7);
 
 			detailRecord = CCString::createWithFormat("%02d:%02d,%s,%d,%d", _minute, _delegate->_second, _delegate->currentPlayer->getKillNum()->getCString(), _delegate->currentPlayer->_deadNum, _delegate->currentPlayer->_flogNum)->getCString();
 		}
@@ -489,29 +448,27 @@ void GameOver::listResult()
 
 				if (resultScore >= 140)
 				{
-					tempWin = atoi(winNum->getCString()) + 3;
+					tempWin = to_int(winNum->getCString()) + 3;
 				}
 				else if (resultScore >= 120)
 				{
-					tempWin = atoi(winNum->getCString()) + 2;
+					tempWin = to_int(winNum->getCString()) + 2;
 				}
 				else
 				{
-					tempWin = atoi(winNum->getCString()) + 1;
+					tempWin = to_int(winNum->getCString()) + 1;
 				}
 
 				CCString *realWin = CCString::createWithFormat("%d", tempWin);
-				if (CError != 1)
-				{
-					KTools::saveSQLite("CharRecord", "name", resultChar->getCString(), "column1", (char *)realWin->getCString(), false);
-				}
+				KTools::saveSQLite("CharRecord", "name", resultChar->getCString(), "column1", (char *)realWin->getCString(), false);
+
 				if (_delegate->_isRandomChar && resultScore >= 120)
 				{
 					CCObject *pObject;
 
-					if (_delegate->currentPlayer->_isControled)
+					if (_delegate->currentPlayer->_isControlled)
 					{
-						_delegate->currentPlayer->_isControled = false;
+						_delegate->currentPlayer->_isControlled = false;
 						_delegate->currentPlayer->changeGroup();
 					}
 
@@ -529,9 +486,9 @@ void GameOver::listResult()
 							continue;
 						}
 
-						if (hero->_isControled)
+						if (hero->_isControlled)
 						{
-							hero->_isControled = false;
+							hero->_isControlled = false;
 							hero->changeGroup();
 						}
 
@@ -542,28 +499,22 @@ void GameOver::listResult()
 							int tempWin = 0;
 							if (resultScore >= 140)
 							{
-								tempWin = atoi(winNum->getCString()) + 2;
+								tempWin = to_int(winNum->getCString()) + 2;
 							}
 							else
 							{
-								tempWin = atoi(winNum->getCString()) + 1;
+								tempWin = to_int(winNum->getCString()) + 1;
 							}
 
 							CCString *realWin = CCString::createWithFormat("%d", tempWin);
-							if (CError != 1)
-							{
-								KTools::saveSQLite("CharRecord", "name", hero->getCharacter()->getCString(), "column1", (char *)realWin->getCString(), false);
-							}
+							KTools::saveSQLite("CharRecord", "name", hero->getCharacter()->getCString(), "column1", (char *)realWin->getCString(), false);
 						}
 					}
 				}
 				CCString *recordTime = KTools::readSQLite("CharRecord", "name", resultChar->getCString(), "column3");
 				if (recordTime->length() == 0)
 				{
-					if (CError != 1)
-					{
-						KTools::saveSQLite("CharRecord", "name", resultChar->getCString(), "column3", (char *)tempTime->getCString(), false);
-					}
+					KTools::saveSQLite("CharRecord", "name", resultChar->getCString(), "column3", (char *)tempTime->getCString(), false);
 				}
 				else
 				{
@@ -572,20 +523,20 @@ void GameOver::listResult()
 					std::string recordMinute = bestTime.substr(3, 2);
 					std::string recordSecond = bestTime.substr(6, 2);
 					bool isNewRecord = false;
-					if (atoi(recordHour.c_str()) > _hour)
+					if (to_int(recordHour.c_str()) > _hour)
 					{
 						isNewRecord = true;
 					}
-					else if (atoi(recordHour.c_str()) == _hour)
+					else if (to_int(recordHour.c_str()) == _hour)
 					{
 
-						if (atoi(recordMinute.c_str()) > _minute)
+						if (to_int(recordMinute.c_str()) > _minute)
 						{
 							isNewRecord = true;
 						}
-						else if (atoi(recordMinute.c_str()) == _minute)
+						else if (to_int(recordMinute.c_str()) == _minute)
 						{
-							if (atoi(recordSecond.c_str()) > _delegate->_second)
+							if (to_int(recordSecond.c_str()) > _delegate->_second)
 							{
 								isNewRecord = true;
 							}
@@ -607,31 +558,19 @@ void GameOver::listResult()
 
 					if (isNewRecord)
 					{
-						if (CError != 1)
-						{
-							KTools::saveSQLite("CharRecord", "name", resultChar->getCString(), "column3", (char *)tempTime->getCString(), false);
-						}
+						KTools::saveSQLite("CharRecord", "name", resultChar->getCString(), "column3", (char *)tempTime->getCString(), false);
 					}
 				}
 			}
-
-		} /*else{
-
-			 CCString* loseNum=KTools::readSQLite("Achievement","name",resultChar->getCString(),"column2"); 
-			 int tempLose=atoi(loseNum->getCString())+1;
-			 CCString* realLose=CCString::createWithFormat("%d",tempLose);
-			 if(CError!=1){
-			 KTools::saveSQLite("Achievement","name",resultChar->getCString(),"column2",(char*) realLose->getCString(),false);
-			 }
-			 }	*/
+		}
 	}
 
 	if (Cheats <= 10)
 	{
-		CCLabelBMFont *version = CCLabelBMFont::create("The Last Fixed", "Fonts/1.fnt");
+		CCLabelBMFont *version = CCLabelBMFont::create("v2.0", "Fonts/1.fnt");
 		version->setPosition(ccp(winSize.width / 2 + 94, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 6));
 		version->setScale(0.3f);
-		this->addChild(version, 5);
+		addChild(version, 5);
 	}
 	else
 	{
@@ -639,13 +578,13 @@ void GameOver::listResult()
 		CCLabelBMFont *version = CCLabelBMFont::create("The Carnival", "Fonts/1.fnt");
 		version->setPosition(ccp(winSize.width / 2 + 94, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 6));
 		version->setScale(0.3f);
-		this->addChild(version, 5);
+		addChild(version, 5);
 	}
 
-	CCMenuItem *btm_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("close_btn1.png"), CCSprite::createWithSpriteFrameName("close_btn2.png"), NULL, this, menu_selector(GameOver::onBackToMenu));
-	CCMenu *overMenu = CCMenu::create(btm_btn, NULL);
+	CCMenuItem *btm_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("close_btn1.png"), CCSprite::createWithSpriteFrameName("close_btn2.png"), nullptr, this, menu_selector(GameOver::onBackToMenu));
+	CCMenu *overMenu = CCMenu::create(btm_btn, nullptr);
 	overMenu->setPosition(ccp(winSize.width / 2 + result_bg->getContentSize().width / 2 - 12, winSize.height / 2 + result_bg->getContentSize().height / 2 - 18));
-	this->addChild(overMenu, 7);
+	addChild(overMenu, 7);
 
 	_delegate->_isSurrender = false;
 }
@@ -653,7 +592,7 @@ void GameOver::onUPloadBtn(CCObject *sender)
 {
 
 	CCTips *tip = CCTips::create("ServerMainten");
-	this->addChild(tip, 5000);
+	addChild(tip, 5000);
 
 	return;
 }
@@ -678,7 +617,7 @@ void GameOver::onBackToMenu(CCObject *sender)
 		CCMenuItem *yes_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("yes_btn1.png"), CCSprite::createWithSpriteFrameName("yes_btn2.png"), this, menu_selector(GameOver::onLeft));
 		CCMenuItem *no_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("no_btn1.png"), CCSprite::createWithSpriteFrameName("no_btn2.png"), this, menu_selector(GameOver::onCancel));
 
-		CCMenu *confirm_menu = CCMenu::create(yes_btn, no_btn, NULL);
+		CCMenu *confirm_menu = CCMenu::create(yes_btn, no_btn, nullptr);
 		confirm_menu->alignItemsHorizontallyWithPadding(24);
 		confirm_menu->setPosition(ccp(winSize.width / 2, winSize.height / 2 - 30));
 
@@ -686,7 +625,7 @@ void GameOver::onBackToMenu(CCObject *sender)
 		exitLayer->addChild(confirm_menu, 2);
 		exitLayer->addChild(comfirm_title, 2);
 		exitLayer->addChild(btm_text, 2);
-		this->addChild(exitLayer, 500);
+		addChild(exitLayer, 500);
 	}
 };
 
@@ -704,7 +643,7 @@ void GameOver::onCancel(CCObject *sender)
 
 	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/cancel.ogg");
 	exitLayer->removeFromParent();
-	exitLayer = NULL;
+	exitLayer = nullptr;
 }
 
 GameOver *GameOver::create(CCRenderTexture *snapshoot)
@@ -718,6 +657,6 @@ GameOver *GameOver::create(CCRenderTexture *snapshoot)
 	else
 	{
 		delete pl;
-		return NULL;
+		return nullptr;
 	}
 }

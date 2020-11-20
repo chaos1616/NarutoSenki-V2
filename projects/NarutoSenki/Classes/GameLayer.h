@@ -1,9 +1,8 @@
 #pragma once
 #include "Defines.h"
-#include "PauseLayer.h"
 #include "GearLayer.h"
 #include "GameOver.h"
-// #include <vector>
+#include "PauseLayer.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #include "glfw3.h"
@@ -18,7 +17,7 @@
 #include "../../../cocos2dx/platform/android/jni/JniHelper.h"
 #endif
 
-class HeroElement;
+class CharacterBase;
 class BGLayer;
 class HudLayer;
 
@@ -29,7 +28,7 @@ public:
 	~GameLayer();
 
 	CCTMXTiledMap *currentMap;
-	HeroElement *currentPlayer;
+	CharacterBase *currentPlayer;
 	CCPoint spawnPoint;
 
 	unsigned int _second;
@@ -55,6 +54,7 @@ public:
 	void checkBackgroundMusic(float dt);
 
 	CC_SYNTHESIZE(HudLayer *, _hudLayer, HudLayer);
+	void setTowerState(unsigned int charNO);
 
 	CC_SYNTHESIZE_RETAIN(CCString *, totalKills, TotalKills);
 	CC_SYNTHESIZE_RETAIN(CCString *, totalTM, TotalTM);
@@ -75,7 +75,6 @@ public:
 	void initGard();
 	void initEffects();
 
-	//void update(float dt);
 	void updateViewPoint(float dt);
 	void updateGameTime(float dt);
 
@@ -111,7 +110,7 @@ public:
 	void removeOugis();
 
 	CCNode *ougisChar;
-	CCNode *controlChar;
+	CharacterBase *controlChar;
 	CCLayer *blend;
 
 	void onLeft();
@@ -127,7 +126,6 @@ public:
 	bool _isExiting;
 
 	CREATE_FUNC(GameLayer);
-	// std::vector<char *> KeyList;
 
 	bool _isGear;
 	bool _isPause;

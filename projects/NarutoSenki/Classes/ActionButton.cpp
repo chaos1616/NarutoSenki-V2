@@ -4,24 +4,24 @@
 ActionButton::ActionButton()
 {
 	_isDoubleSkill = false;
-	_freezeAction = NULL;
-	markSprite = NULL;
+	_freezeAction = nullptr;
+	markSprite = nullptr;
 	_clickTime = 0;
 	_clickNum = 0;
-	cdLabel = NULL;
+	cdLabel = nullptr;
 	_isMarkVisable = true;
-	_timeCout = NULL;
+	_timeCout = nullptr;
 	_isLock = false;
-	_coldDown = NULL;
+	_coldDown = nullptr;
 	_isColdChanged = false;
 	_gearType = None;
 
-	proressblinkSprite = NULL;
-	proressmarkSprite = NULL;
-	proressblinkSprite = NULL;
-	progressPointSprite = NULL;
-	proressblinkMask = NULL;
-	gearSign = NULL;
+	proressblinkSprite = nullptr;
+	proressmarkSprite = nullptr;
+	proressblinkSprite = nullptr;
+	progressPointSprite = nullptr;
+	proressblinkMask = nullptr;
+	gearSign = nullptr;
 }
 
 ActionButton::~ActionButton()
@@ -36,8 +36,8 @@ bool ActionButton::init(const char *szImage)
 	do
 	{
 		CC_BREAK_IF(!CCSprite::init());
-		this->initWithSpriteFrameName(szImage);
-		this->setAnchorPoint(ccp(0, 0));
+		initWithSpriteFrameName(szImage);
+		setAnchorPoint(ccp(0, 0));
 
 		bRet = true;
 
@@ -51,6 +51,7 @@ void ActionButton::onEnter()
 	CCSprite::onEnter();
 	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, -50, true);
 }
+
 void ActionButton::onExit()
 {
 	CCSprite::onExit();
@@ -59,9 +60,10 @@ void ActionButton::onExit()
 
 CCRect ActionButton::getRect()
 {
-	CCSize size = this->getContentSize();
+	CCSize size = getContentSize();
 	return CCRect(0, 0, size.width, size.height);
 }
+
 bool ActionButton::containsTouchLocation(CCTouch *touch)
 {
 	return getRect().containsPoint(convertTouchToNodeSpace(touch));
@@ -71,7 +73,7 @@ bool ActionButton::ccTouchBegan(CCTouch *touch, CCEvent *event)
 {
 
 	// touch area
-	if (!this->containsTouchLocation(touch) || _delegate->_isAllButtonLocked)
+	if (!containsTouchLocation(touch) || _delegate->_isAllButtonLocked)
 	{
 		return false;
 	}
@@ -79,6 +81,7 @@ bool ActionButton::ccTouchBegan(CCTouch *touch, CCEvent *event)
 
 	return true;
 }
+
 void ActionButton::ccTouchEnded(CCTouch *touch, CCEvent *event)
 {
 	if (_abType == NAttack)
@@ -87,12 +90,12 @@ void ActionButton::ccTouchEnded(CCTouch *touch, CCEvent *event)
 
 void ActionButton::click()
 {
-	if ((_delegate && this->isCanClick()))
+	if ((_delegate && isCanClick()))
 	{
 
 		if (!_isDoubleSkill)
 		{
-			this->beganAnimation();
+			beganAnimation();
 		}
 
 		if (!_delegate->_isAllButtonLocked)
@@ -107,7 +110,7 @@ void ActionButton::click()
 			}
 		}
 	}
-};
+}
 
 bool ActionButton::isCanClick()
 {
@@ -115,12 +118,12 @@ bool ActionButton::isCanClick()
 
 	cc_timeval timeVal;
 	CCTime::gettimeofdayCocos2d(&timeVal, 0);
-	float curTime = timeVal.tv_sec * 1000 + timeVal.tv_usec / 1000;
+	float curTime = timeVal.tv_sec + timeVal.tv_usec / 1000;
 
-	if (this->_abType != NAttack)
+	if (_abType != NAttack)
 	{
 
-		if (this->_isDoubleSkill)
+		if (_isDoubleSkill)
 		{
 			//double click solution
 			if (_clickNum == 0 && _delegate->getSkillFinish() && !_timeCout && !_delegate->ougisLayer)
@@ -136,7 +139,7 @@ bool ActionButton::isCanClick()
 		{
 
 			// isSkillFinish consider the AttackAction is done or not to prevent the skill invalid release
-			if (this->getABType() == Item1)
+			if (_abType == Item1)
 			{
 
 				if (!_delegate->ougisLayer && !_timeCout && !_isLock && _delegate->_delegate->currentPlayer->getActionState() != State::DEAD)
@@ -147,35 +150,35 @@ bool ActionButton::isCanClick()
 					}
 				}
 			}
-			else if (this->_abType == GearBtn)
+			else if (_abType == GearBtn)
 			{
 				if (!_isLock)
 				{
-					this->_delegate->_delegate->onGear();
+					_delegate->_delegate->onGear();
 				}
 				return false;
 			}
-			else if (this->_abType == GearItem)
+			else if (_abType == GearItem)
 			{
 
 				if (!_delegate->ougisLayer && !_timeCout && !_isLock)
 				{
-					if (this->_gearType == gear06 && _delegate->_delegate->currentPlayer->getActionState() != State::DEAD)
+					if (_gearType == gear06 && _delegate->_delegate->currentPlayer->getActionState() != State::DEAD)
 					{
 						return true;
 					}
-					else if (this->_gearType == gear00 && _delegate->getSkillFinish())
+					else if (_gearType == gear00 && _delegate->getSkillFinish())
 					{
 						return true;
 					}
-					else if (this->_gearType == gear03)
+					else if (_gearType == gear03)
 					{
 						return true;
 					}
 				}
 			}
 			//ougis click solution
-			else if (this->_abType == OUGIS1)
+			else if (_abType == OUGIS1)
 			{
 				if (_delegate->getSkillFinish() && _delegate->getOugisEnable(false) && !_isLock && !_delegate->ougisLayer)
 				{
@@ -183,7 +186,7 @@ bool ActionButton::isCanClick()
 					return true;
 				}
 			}
-			else if (this->_abType == OUGIS2)
+			else if (_abType == OUGIS2)
 			{
 
 				if (_delegate->getSkillFinish() && _delegate->getOugisEnable(true) && !_isLock && !_delegate->ougisLayer)
@@ -207,16 +210,16 @@ bool ActionButton::isCanClick()
 	{
 		return true;
 	}
-};
+}
 
 void ActionButton::beganAnimation(bool isLock)
 {
 	//record the click time
 	cc_timeval timeVal;
 	CCTime::gettimeofdayCocos2d(&timeVal, 0);
-	_clickTime = timeVal.tv_sec * 1000 + timeVal.tv_usec / 1000;
+	_clickTime = timeVal.tv_sec + timeVal.tv_usec / 1000;
 
-	if (markSprite && this->getABType() != OUGIS1 && this->getABType() != OUGIS2)
+	if (markSprite && getABType() != OUGIS1 && getABType() != OUGIS2)
 	{
 		if (!_freezeAction || _isColdChanged)
 		{
@@ -224,39 +227,39 @@ void ActionButton::beganAnimation(bool isLock)
 			{
 				_isColdChanged = false;
 			}
-			this->createFreezeAnimation();
-		};
+			createFreezeAnimation();
+		}
 
-		this->setTimeCout(this->getCD());
+		setTimeCout(getCD());
 		if (cdLabel)
 		{
 			cdLabel->removeFromParent();
-			this->unschedule(schedule_selector(ActionButton::updateCDLabel));
+			unschedule(schedule_selector(ActionButton::updateCDLabel));
 		}
-		if (this->getABType() != Item1)
+		if (getABType() != Item1)
 		{
 
-			cdLabel = CCLabelBMFont::create(CCString::createWithFormat("%d", int(this->getCD()->intValue()) / 1000)->getCString(), "Fonts/1.fnt");
+			cdLabel = CCLabelBMFont::create(CCString::createWithFormat("%d", int(getCD()->intValue()) / 1000)->getCString(), "Fonts/1.fnt");
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 			cdLabel->setScale(0.3f);
-			cdLabel->setPosition(ccp(this->getPositionX() + this->getContentSize().width * this->getScale() / 2,
-									 this->getPositionY() + this->getContentSize().height * this->getScale() / 2));
+			cdLabel->setPosition(ccp(getPositionX() + getContentSize().width * getScale() / 2,
+									 getPositionY() + getContentSize().height * getScale() / 2));
 #else
 			cdLabel->setScale(0.4f);
-			cdLabel->setPosition(ccp(this->getPositionX() + this->getContentSize().width / 2,
-									 this->getPositionY() + this->getContentSize().height / 2));
+			cdLabel->setPosition(ccp(getPositionX() + getContentSize().width / 2,
+									 getPositionY() + getContentSize().height / 2));
 #endif
 
-			this->_delegate->addChild(cdLabel, 200);
+			_delegate->addChild(cdLabel, 200);
 		}
-		this->schedule(schedule_selector(ActionButton::updateCDLabel), 1.0f);
+		schedule(schedule_selector(ActionButton::updateCDLabel), 1.0f);
 
 		markSprite->stopAllActions();
 
 		markSprite->runAction(_freezeAction);
 	}
-};
+}
 
 void ActionButton::setGearType(int tmpGearType)
 {
@@ -265,13 +268,13 @@ void ActionButton::setGearType(int tmpGearType)
 	gearIcon->setAnchorPoint(ccp(0.5f, 0.5f));
 	gearIcon->setScale(0.85f);
 	gearIcon->setPosition(ccp(18, 18));
-	this->addChild(gearIcon);
-	this->_gearType = gearType(tmpGearType);
+	addChild(gearIcon);
+	_gearType = gearType(tmpGearType);
 
-	if (this->gearSign)
+	if (gearSign)
 	{
-		this->gearSign->removeFromParent();
-		this->gearSign = NULL;
+		gearSign->removeFromParent();
+		gearSign = nullptr;
 	}
 }
 
@@ -281,10 +284,10 @@ void ActionButton::updateCDLabel(float dt)
 	if (!_delegate->ougisLayer)
 	{
 
-		if (atoi(this->getTimeCout()->getCString()) > 1000)
+		if (to_int(getTimeCout()->getCString()) > 1000)
 		{
-			int tempCout = atoi(this->getTimeCout()->getCString()) - 1000;
-			this->setTimeCout(CCString::createWithFormat("%d", tempCout));
+			int tempCout = to_int(getTimeCout()->getCString()) - 1000;
+			setTimeCout(CCString::createWithFormat("%d", tempCout));
 			if (cdLabel)
 			{
 				cdLabel->setString(CCString::createWithFormat("%d", tempCout / 1000)->getCString());
@@ -292,16 +295,16 @@ void ActionButton::updateCDLabel(float dt)
 		}
 		else
 		{
-			this->unschedule(schedule_selector(ActionButton::updateCDLabel));
-			this->setTimeCout(NULL);
+			unschedule(schedule_selector(ActionButton::updateCDLabel));
+			setTimeCout(nullptr);
 			if (cdLabel)
 			{
 				cdLabel->removeFromParent();
-				cdLabel = NULL;
+				cdLabel = nullptr;
 			}
 		}
-	};
-};
+	}
+}
 
 void ActionButton::setMarkSprite(const char *mark)
 {
@@ -310,32 +313,32 @@ void ActionButton::setMarkSprite(const char *mark)
 	markSprite->setType(kCCProgressTimerTypeRadial);
 
 	markSprite->setReverseDirection(true);
-	markSprite->setPosition(this->getPosition());
+	markSprite->setPosition(getPosition());
 	markSprite->setAnchorPoint(ccp(0, 0));
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #else
 	markSprite->setScale(DESKTOP_UI_MASK_SCALE);
 #endif
-	this->_delegate->addChild(markSprite, 500);
+	_delegate->addChild(markSprite, 500);
 
-	if (this->getABType() == GearBtn)
+	if (getABType() == GearBtn)
 	{
 		if (_delegate->_delegate->_isHardCoreGame)
 		{
 			gearSign = CCSprite::createWithSpriteFrameName("gearsign.png");
-			gearSign->setPosition(ccp(this->getPositionX() + 17, this->getPositionY() + 17));
-			this->_delegate->addChild(gearSign, 500);
+			gearSign->setPosition(ccp(getPositionX() + 17, getPositionY() + 17));
+			_delegate->addChild(gearSign, 500);
 		}
 	}
-};
+}
 
 void ActionButton::setOugisMark()
 {
 	ougismarkSprite = CCSprite::createWithSpriteFrameName("skill_freeze.png");
-	ougismarkSprite->setPosition(this->getPosition());
+	ougismarkSprite->setPosition(getPosition());
 	ougismarkSprite->setAnchorPoint(ccp(0, 0));
-	this->_delegate->addChild(ougismarkSprite, 500);
-	if (this->getABType() == OUGIS1)
+	_delegate->addChild(ougismarkSprite, 500);
+	if (getABType() == OUGIS1)
 	{
 		lockLabel1 = CCLabelBMFont::create("LV2", "Fonts/1.fnt");
 	}
@@ -348,14 +351,14 @@ void ActionButton::setOugisMark()
 	ougismarkSprite->setScale(DESKTOP_UI_SCALE);
 
 	lockLabel1->setScale(0.3f);
-	lockLabel1->setPosition(ccp(this->getPositionX() + this->getContentSize().width * this->getScale() / 2,
-								this->getPositionY() + this->getContentSize().height * this->getScale() / 2));
+	lockLabel1->setPosition(ccp(getPositionX() + getContentSize().width * getScale() / 2,
+								getPositionY() + getContentSize().height * getScale() / 2));
 #else
 	lockLabel1->setScale(0.4f);
-	lockLabel1->setPosition(ccp(this->getPositionX() + this->getContentSize().width / 2,
-								this->getPositionY() + this->getContentSize().height / 2));
+	lockLabel1->setPosition(ccp(getPositionX() + getContentSize().width / 2,
+								getPositionY() + getContentSize().height / 2));
 #endif
-	this->_delegate->addChild(lockLabel1, 200);
+	_delegate->addChild(lockLabel1, 200);
 }
 
 void ActionButton::setProgressMark()
@@ -368,17 +371,17 @@ void ActionButton::setProgressMark()
 
 	proressmarkSprite = CCSprite::createWithSpriteFrameName("icon_bg2.png");
 
-	clipper->setPosition(this->getPosition());
+	clipper->setPosition(getPosition());
 	clipper->addChild(proressmarkSprite);
 
 	proressmarkSprite->setAnchorPoint(ccp(0.5f, 0.5f));
 	proressmarkSprite->setPosition(ccp(proressmarkSprite->getContentSize().width / 2, proressmarkSprite->getContentSize().height / 2));
 	//50,120,180
 
-	this->_delegate->addChild(clipper, -50);
+	_delegate->addChild(clipper, -50);
 
 	proressblinkSprite = CCSprite::createWithSpriteFrameName("icon_bg3.png");
-	proressblinkSprite->setPosition(this->getPosition());
+	proressblinkSprite->setPosition(getPosition());
 	proressblinkSprite->setAnchorPoint(ccp(0.5f, 0.5f));
 	proressblinkSprite->setPosition(ccp(proressmarkSprite->getContentSize().width / 2, proressmarkSprite->getContentSize().height / 2));
 
@@ -390,39 +393,39 @@ void ActionButton::setProgressMark()
 	clipper->setScale(0.8f);
 #endif
 
-	if (this->getABType() == OUGIS1)
+	if (getABType() == OUGIS1)
 	{
 		progressPointSprite = CCSprite::createWithSpriteFrameName("icon_bg4.png");
 		proressmarkSprite->setRotation(-50);
 		proressblinkSprite->setRotation(-50);
-		progressPointSprite->setPosition(this->getPosition());
+		progressPointSprite->setPosition(getPosition());
 	}
 	else
 	{
 		progressPointSprite = CCSprite::createWithSpriteFrameName("icon_bg5.png");
 		proressmarkSprite->setRotation(-85);
 		proressblinkSprite->setRotation(-85);
-		progressPointSprite->setPosition(ccp(this->getPositionX() + 1, this->getPositionY()));
+		progressPointSprite->setPosition(ccp(getPositionX() + 1, getPositionY()));
 	}
 
 	progressPointSprite->setAnchorPoint(ccp(0, 0));
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 	progressPointSprite->setScale(0.8f);
 #endif
-	this->_delegate->addChild(progressPointSprite, -25);
+	_delegate->addChild(progressPointSprite, -25);
 
 	CCFadeOut *fd2 = CCFadeOut::create(0.5f);
 	proressblinkMask = CCSprite::createWithSpriteFrameName("icon_bg6.png");
-	proressblinkMask->setPosition(this->getPosition());
+	proressblinkMask->setPosition(getPosition());
 	proressblinkMask->setAnchorPoint(ccp(0, 0));
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 	proressblinkMask->setScale(0.8f);
 #endif
 	proressblinkMask->runAction(CCRepeatForever::create(fd2));
 
-	this->_delegate->addChild(proressblinkMask, 200);
+	_delegate->addChild(proressblinkMask, 200);
 
-	if (this->getABType() == OUGIS2)
+	if (getABType() == OUGIS2)
 	{
 
 		if (_delegate->skill4Button)
@@ -441,7 +444,7 @@ void ActionButton::updateProgressMark()
 {
 	float ckr = atof(_delegate->_delegate->currentPlayer->getCKR()->getCString());
 	float ckr2 = atof(_delegate->_delegate->currentPlayer->getCKR2()->getCString());
-	if (this->getABType() == OUGIS1)
+	if (getABType() == OUGIS1)
 	{
 		if (ckr < 15000)
 		{
@@ -582,7 +585,7 @@ void ActionButton::setLock()
 	}
 	else
 	{
-		this->setMarkSprite("skill_freeze.png");
+		setMarkSprite("skill_freeze.png");
 	}
 
 	if (proressblinkMask)
@@ -603,7 +606,7 @@ void ActionButton::unLock()
 	float ckr = atof(_delegate->_delegate->currentPlayer->getCKR()->getCString());
 	float ckr2 = atof(_delegate->_delegate->currentPlayer->getCKR2()->getCString());
 
-	if (this->getABType() == OUGIS1)
+	if (getABType() == OUGIS1)
 	{
 		if (ckr >= 15000)
 		{
@@ -613,7 +616,7 @@ void ActionButton::unLock()
 			}
 		}
 	}
-	else if (this->getABType() == OUGIS2)
+	else if (getABType() == OUGIS2)
 	{
 		if (ckr2 >= 25000)
 		{
@@ -640,15 +643,15 @@ void ActionButton::createFreezeAnimation()
 	if (_isDoubleSkill)
 	{
 		CCFiniteTimeAction *callback = CCCallFunc::create(this, callfunc_selector(ActionButton::clearClick));
-		freezeAction = CCSequence::create(to, to1, callback, NULL);
+		freezeAction = CCSequence::create(to, to1, callback, nullptr);
 	}
 	else
 	{
-		freezeAction = CCSequence::create(to, to1, NULL);
+		freezeAction = CCSequence::create(to, to1, nullptr);
 	}
 
-	this->setFreezeAction(freezeAction);
-};
+	setFreezeAction(freezeAction);
+}
 
 void ActionButton::clearClick()
 {
@@ -657,22 +660,22 @@ void ActionButton::clearClick()
 
 void ActionButton::clearOugisMark()
 {
-	if (this->ougismarkSprite)
+	if (ougismarkSprite)
 	{
-		this->ougismarkSprite->removeAllChildrenWithCleanup(true);
+		ougismarkSprite->removeAllChildrenWithCleanup(true);
 	}
 
-	if (this->clipper)
+	if (clipper)
 	{
-		this->clipper->removeFromParentAndCleanup(true);
+		clipper->removeFromParentAndCleanup(true);
 	}
-	if (this->progressPointSprite)
+	if (progressPointSprite)
 	{
-		this->progressPointSprite->removeFromParent();
+		progressPointSprite->removeFromParent();
 	}
-	if (this->proressblinkMask)
+	if (proressblinkMask)
 	{
-		this->proressblinkMask->removeFromParent();
+		proressblinkMask->removeFromParent();
 	}
 }
 
@@ -687,6 +690,6 @@ ActionButton *ActionButton::create(const char *szImage)
 	else
 	{
 		delete ab;
-		return NULL;
+		return nullptr;
 	}
 }

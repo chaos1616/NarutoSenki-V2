@@ -11,7 +11,7 @@ using namespace cocos2d;
 #define get_luastack CCLuaEngine::defaultEngine()->getLuaStack()
 #define lua_getL auto L = CCLuaEngine::defaultEngine()->getLuaStack()->getLuaState();
 
-#define lua_call_func(func_name)  \
+#define lua_call_func(func_name) \
 	lua_getL;                    \
 	lua_getglobal(L, func_name); \
 	lua_call(L, 0, 0);
@@ -29,4 +29,4 @@ using namespace cocos2d;
 
 #define lua_call_handler(handler) \
 	auto pStack = get_luastack;   \
-	pStack->executeFunctionByHandler(handler, 0);\
+	pStack->executeFunctionByHandler(handler, 0);

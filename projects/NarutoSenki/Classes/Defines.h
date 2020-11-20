@@ -9,7 +9,6 @@
 USING_NS_CC;
 USING_NS_CC_EXT;
 using namespace CocosDenshion;
-using namespace rapidjson;
 
 //global parameter
 #define winSize CCDirector::sharedDirector()->getWinSize()
@@ -28,7 +27,6 @@ using namespace rapidjson;
 #define MapPosCount 2
 
 extern int Cheats;
-extern int CError;
 extern bool enableCustomSelect;
 extern int MemberID;
 extern int GroupID;
@@ -131,99 +129,6 @@ enum gearType
     None
 };
 
-// Character Enumeration
-enum ninjaEnums
-{
-    UnknownNj = -1,
-    /* Begin Ninjas */
-    Naruto = 0,
-    Sakura = 1,
-    Sai = 2,
-    Kakashi = 3,
-    // None		= 4,
-    // None		= 5,
-    // None		= 6,
-    Shikamaru = 7,
-    Ino = 8,
-    Choji = 9,
-    Asuma = 10,
-    Kiba = 11,
-    Hinata = 12,
-    Shino = 13,
-    Neji = 14,
-    Tenten = 15,
-    Lee = 16,
-    // None		= 17,
-    // None		= 18,
-    // None		= 19,
-    // None		= 20,
-    // None		= 21,
-    Tobirama = 22,
-    Hiruzen = 23,
-    Minato = 24,
-    Jiraiya = 25,
-    Tsunade = 26,
-    Orochimaru = 27,
-    // None		= 28,
-    Deidara = 29,
-    Kakuzu = 30,
-    Hidan = 31,
-    Tobi = 32,
-    Konan = 33,
-    Pain = 34,
-    Itachi = 35,
-    Kisame = 36,
-    // None		= 37,
-    // None		= 38,
-    // None		= 39,
-    // None		= 40,
-    // None		= 41,
-    Sasuke = 42,
-    Karin = 43,
-    Suigetsu = 44,
-    Jugo = 45,
-    // None		= 46,
-    // None		= 47,
-    // None		= 48,
-    Gaara = 49,
-    // None		= 50,
-    Kankuro = 51,
-    Chiyo = 52,
-    // None		= 53,
-    // None		= 54,
-    // None		= 55,
-    // None		= 56,
-    // None		= 57,
-    // None		= 58,
-    // None		= 59,
-    // None		= 60,
-    // None		= 61,
-    // None		= 62,
-    // None		= 63,
-    // None		= 64,
-    // None		= 65,
-    // None		= 66,
-    // None		= 67,
-    // None		= 68,
-    // None		= 69,
-    // None		= 70,
-    // None		= 71,
-    // None		= 72,
-    // None		= 73,
-    // None		= 74,
-    // None		= 75,
-    // None		= 76,
-    // None		= 77,
-    // None		= 78,
-    // None		= 79,
-    // None		= 80,
-    // None		= 81,
-    // None		= 82,
-    // None		= 83,
-    /* End Ninjas */
-    _Length
-};
-
 #define Akatsuki "Akatsuki"
 #define Konoha "Konoha"
 
@@ -254,6 +159,10 @@ static const int heroNum = sizeof(heroList) / sizeof(char *);
 #define WIDTH 1600
 #define HEIGHT 900
 
+/** Macros */
+#define to_uint(str) strtoul(str, NULL, 10)
+#define to_int(str) atoi(str)
+
 // Keyboard controls
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #include "glfw3.h"
@@ -264,10 +173,10 @@ static const int heroNum = sizeof(heroList) / sizeof(char *);
 /* Printkeys */
 #define KEY_SPACE GLFW_KEY_SPACE
 #define KEY_APOSTROPHE GLFW_KEY_APOSTROPHE /* ' */
-#define KEY_COMMA GLFW_KEY_COMMA           /* , */
-#define KEY_MINUS GLFW_KEY_MINUS           /* - */
-#define KEY_PERIOD GLFW_KEY_PERIOD         /* . */
-#define KEY_SLASH GLFW_KEY_SLASH           /* / */
+#define KEY_COMMA GLFW_KEY_COMMA /* , */
+#define KEY_MINUS GLFW_KEY_MINUS /* - */
+#define KEY_PERIOD GLFW_KEY_PERIOD /* . */
+#define KEY_SLASH GLFW_KEY_SLASH /* / */
 
 #define KEY_0 GLFW_KEY_0
 #define KEY_1 GLFW_KEY_1
@@ -281,7 +190,7 @@ static const int heroNum = sizeof(heroList) / sizeof(char *);
 #define KEY_9 GLFW_KEY_9
 
 #define KEY_SEMICOLON GLFW_KEY_SEMICOLON /* ; */
-#define KEY_EQUAL GLFW_KEY_EQUAL         /* = */
+#define KEY_EQUAL GLFW_KEY_EQUAL /* = */
 #define KEY_A GLFW_KEY_A
 #define KEY_B GLFW_KEY_B
 #define KEY_C GLFW_KEY_C
@@ -308,12 +217,12 @@ static const int heroNum = sizeof(heroList) / sizeof(char *);
 #define KEY_X GLFW_KEY_X
 #define KEY_Y GLFW_KEY_Y
 #define KEY_Z GLFW_KEY_Z
-#define KEY_LEFT_BRACKET GLFW_KEY_LEFT_BRACKET   /* [ */
-#define KEY_BACKSLASH GLFW_KEY_BACKSLASH         /* \ */
+#define KEY_LEFT_BRACKET GLFW_KEY_LEFT_BRACKET /* [ */
+#define KEY_BACKSLASH GLFW_KEY_BACKSLASH /* \ */
 #define KEY_RIGHT_BRACKET GLFW_KEY_RIGHT_BRACKET /* ] */
-#define KEY_GRAVE_ACCENT GLFW_KEY_GRAVE_ACCENT   /* ` */
-#define KEY_WORLD_1 GLFW_KEY_WORLD_1             /* non-US #1 */
-#define KEY_WORLD_2 GLFW_KEY_WORLD_2             /* non-US #2 */
+#define KEY_GRAVE_ACCENT GLFW_KEY_GRAVE_ACCENT /* ` */
+#define KEY_WORLD_1 GLFW_KEY_WORLD_1 /* non-US #1 */
+#define KEY_WORLD_2 GLFW_KEY_WORLD_2 /* non-US #2 */
 
 /* Functeys */
 #define KEY_ESCAPE GLFW_KEY_ESCAPE

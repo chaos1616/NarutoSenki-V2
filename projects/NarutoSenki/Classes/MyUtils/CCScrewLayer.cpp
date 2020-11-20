@@ -2,7 +2,7 @@
 
 CCScrewLayer::CCScrewLayer()
 {
-	itemArray = NULL;
+	itemArray = nullptr;
 	totalRow = 100;
 	minY = 154;
 	line_height = 26;
@@ -56,9 +56,9 @@ void CCScrewLayer::ccTouchMoved(CCTouch *touch, CCEvent *event)
 	else
 	{
 		float distanceY = curPoint.y - prePosY;
-		if (this->getPositionY() < totalRow * line_height || distanceY < 0)
+		if (getPositionY() < totalRow * line_height || distanceY < 0)
 		{
-			this->setPositionY(this->getPositionY() + distanceY);
+			setPositionY(getPositionY() + distanceY);
 		}
 
 		prePosY = curPoint.y;
@@ -69,14 +69,14 @@ void CCScrewLayer::ccTouchEnded(CCTouch *touch, CCEvent *event)
 {
 	prePosY = 0;
 
-	//CCLOG("y:%f",this->getPositionY());
-	if (this->getPositionY() > totalRow * line_height - line_height)
+	//CCLOG("y:%f",getPositionY());
+	if (getPositionY() > totalRow * line_height - line_height)
 	{
-		this->setPositionY(totalRow * line_height);
+		setPositionY(totalRow * line_height);
 	}
-	if (this->getPositionY() < minY)
+	if (getPositionY() < minY)
 	{
-		this->setPositionY(minY);
+		setPositionY(minY);
 	}
 };
 
@@ -85,8 +85,8 @@ init CCScrewItem ;
 ----------------------*/
 CCScrewItem::CCScrewItem()
 {
-	linemenu = NULL;
-	lockItem = NULL;
+	linemenu = nullptr;
+	lockItem = nullptr;
 }
 
 CCScrewItem::~CCScrewItem()
@@ -120,7 +120,7 @@ void CCScrewItem::onExit()
 
 CCRect CCScrewItem::getRect2()
 {
-	CCSize size = this->getContentSize();
+	CCSize size = getContentSize();
 	return CCRect(0, 0, size.width, size.height);
 }
 
@@ -133,7 +133,7 @@ bool CCScrewItem::containsTouchLocation(CCTouch *touch)
 bool CCScrewItem::ccTouchBegan(CCTouch *touch, CCEvent *event)
 {
 	// touch area
-	if (!this->containsTouchLocation(touch))
+	if (!containsTouchLocation(touch))
 		return false;
 
 	return true;

@@ -118,7 +118,7 @@ filter     = require(cc.PACKAGE_NAME .. ".filter")
 audio      = require(cc.PACKAGE_NAME .. ".audio")
 json       = require(cc.PACKAGE_NAME .. ".json")
 
-require(cc.PACKAGE_NAME .. ".cc.init")
+require(cc.PACKAGE_NAME .. ".ui")
 
 if LOAD_DEPRECATED_API then
     require(cc.PACKAGE_NAME .. ".deprecated")

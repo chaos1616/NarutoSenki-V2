@@ -2,28 +2,25 @@
 #include "CharacterBase.h"
 #include "HudLayer.h"
 #include "MyUtils/CCShake.h"
-#include "AI/__AI__.hpp"
-
-using namespace CocosDenshion;
+#include "Core/Provider.hpp"
 
 CharacterBase::CharacterBase()
 {
-
 	_actionState = State::WALK;
 
-	_idleAction = NULL;
-	_nattackAction = NULL;
-	_walkAction = NULL;
-	_hurtAction = NULL;
-	_airHurtAction = NULL;
-	_knockDownAction = NULL;
-	_floatAction = NULL;
-	_deadAction = NULL;
-	_skill1Action = NULL;
-	_skill2Action = NULL;
-	_skill3Action = NULL;
-	_skill4Action = NULL;
-	_skill5Action = NULL;
+	_idleAction = nullptr;
+	_nattackAction = nullptr;
+	_walkAction = nullptr;
+	_hurtAction = nullptr;
+	_airHurtAction = nullptr;
+	_knockDownAction = nullptr;
+	_floatAction = nullptr;
+	_deadAction = nullptr;
+	_skill1Action = nullptr;
+	_skill2Action = nullptr;
+	_skill3Action = nullptr;
+	_skill4Action = nullptr;
+	_skill5Action = nullptr;
 
 	gearCKRValue = 0;
 	gearRecoverValue = 0;
@@ -50,9 +47,9 @@ CharacterBase::CharacterBase()
 	_sattack3isDouble = false;
 	_sattack4isDouble = false;
 
-	_moveAction = NULL;
-	_jumpUPAction = NULL;
-	_floatUPAction = NULL;
+	_moveAction = nullptr;
+	_jumpUPAction = nullptr;
+	_floatUPAction = nullptr;
 
 	_hurtFromLeft = false;
 	_hurtFromRight = false;
@@ -62,7 +59,7 @@ CharacterBase::CharacterBase()
 	_isHealling = false;
 	_isVisable = true;
 	_isSticking = false;
-	_isControled = false;
+	_isControlled = false;
 
 	_isCanSkill1 = true;
 	_isCanSkill2 = true;
@@ -87,67 +84,67 @@ CharacterBase::CharacterBase()
 	_sattackCombatPoint4 = 0;
 	_sattackCombatPoint5 = 0;
 
-	_role = NULL;
-	_group = NULL;
-	_character = NULL;
-	_killNum = NULL;
-	_coin = NULL;
+	_role = nullptr;
+	_group = nullptr;
+	_character = nullptr;
+	_killNum = nullptr;
+	_coin = nullptr;
 
-	_master = NULL;
-	_controler = NULL;
-	_secmaster = NULL;
-	_slayer = NULL;
-	_sticker = NULL;
+	_master = nullptr;
+	_controller = nullptr;
+	_secmaster = nullptr;
+	_slayer = nullptr;
+	_sticker = nullptr;
 
-	_mainTarget = NULL;
+	_mainTarget = nullptr;
 
 	_deadNum = 0;
 	_flogNum = 0;
 
 	_knockLength = 0;
-	_knockDiretion = NULL;
+	_knockDiretion = false;
 
-	_effectType = NULL;
+	_effectType = nullptr;
 
-	_damageArray = NULL;
-	_monsterArray = NULL;
+	_damageArray = nullptr;
+	_monsterArray = nullptr;
 
 	_originY = 0;
 
-	_nattackValue = NULL;
-	_sattackValue1 = NULL;
-	_sattackValue2 = NULL;
-	_sattackValue3 = NULL;
-	_sattackValue4 = NULL;
-	_sattackValue5 = NULL;
-	_spcattackValue1 = NULL;
-	_spcattackValue2 = NULL;
-	_spcattackValue3 = NULL;
-	_tempAttackValue1 = NULL;
+	_nattackValue = nullptr;
+	_sattackValue1 = nullptr;
+	_sattackValue2 = nullptr;
+	_sattackValue3 = nullptr;
+	_sattackValue4 = nullptr;
+	_sattackValue5 = nullptr;
+	_spcattackValue1 = nullptr;
+	_spcattackValue2 = nullptr;
+	_spcattackValue3 = nullptr;
+	_tempAttackValue1 = nullptr;
 
-	_healBuffEffect = NULL;
-	_powerBuffEffect = NULL;
-	_skillBuffEffect = NULL;
-	_healItemEffect = NULL;
-	_speedItemEffect = NULL;
-	_dehealBuffEffect = NULL;
+	_healBuffEffect = nullptr;
+	_powerBuffEffect = nullptr;
+	_skillBuffEffect = nullptr;
+	_healItemEffect = nullptr;
+	_speedItemEffect = nullptr;
+	_dehealBuffEffect = nullptr;
 
 	_buffStartTime = 0;
 	_debuffStartTime = 0;
-	_heartEffect = NULL;
+	_heartEffect = nullptr;
 
-	_shadow = NULL;
+	_shadow = nullptr;
 
 	_healBuffValue = 0;
 	_skillUPBuffValue = 0;
 	_skillChangeBuffValue = 0;
 	_dehealBuffValue = 0;
 	_powerUPBuffValue = 0;
-	_hpBar = NULL;
-	_maxHP = NULL;
-	_hp = NULL;
-	_ckr = NULL;
-	_ckr2 = NULL;
+	_hpBar = nullptr;
+	_maxHP = nullptr;
+	_hp = nullptr;
+	_ckr = nullptr;
+	_ckr2 = nullptr;
 
 	_gardValue = 0;
 	_exp = 0;
@@ -166,9 +163,9 @@ CharacterBase::CharacterBase()
 
 	_isAI = false;
 
-	cpLabel = NULL;
+	cpLabel = nullptr;
 
-	_gearArray = NULL;
+	_gearArray = nullptr;
 
 	_affectedByTower = false;
 }
@@ -198,7 +195,6 @@ void CharacterBase::readDate(CCArray *tmpDate, CCString *&attackType, CCString *
 			break;
 		case 1:
 			attackValue = CCString::create(tmpDict->valueForKey("attackValue")->getCString());
-			//tmpDict->valueForKey("attackValue")->intValue();
 			break;
 		case 2:
 			attackRangeX = tmpDict->valueForKey("attackRangeX")->intValue();
@@ -210,9 +206,9 @@ void CharacterBase::readDate(CCArray *tmpDate, CCString *&attackType, CCString *
 			coldDown = tmpDict->valueForKey("coldDown")->intValue();
 		case 5:
 			combatPoint = tmpDict->valueForKey("combatPoint")->intValue();
-		};
-	};
-};
+		}
+	}
+}
 
 void CharacterBase::onEnter()
 {
@@ -222,78 +218,78 @@ void CharacterBase::onEnter()
 void CharacterBase::onExit()
 {
 	CCSprite::onExit();
-};
+}
 
 void CharacterBase::update(float dt)
 {
 
 	if (_healBuffEffect)
 	{
-		_healBuffEffect->setPositionX(this->getContentSize().width / 2 + (_isFlipped ? 2 : -2));
+		_healBuffEffect->setPositionX(getContentSize().width / 2 + (_isFlipped ? 2 : -2));
 	}
 	if (_powerBuffEffect)
 	{
-		_powerBuffEffect->setPositionX(this->getContentSize().width / 2 + (_isFlipped ? 2 : -2));
+		_powerBuffEffect->setPositionX(getContentSize().width / 2 + (_isFlipped ? 2 : -2));
 	}
 	if (_skillBuffEffect)
 	{
-		_skillBuffEffect->setPositionX(this->getContentSize().width / 2);
+		_skillBuffEffect->setPositionX(getContentSize().width / 2);
 	}
 
 	if (_heartEffect)
 	{
-		_heartEffect->setPositionX(this->getContentSize().width / 2 + (_isFlipped ? 22 : -22));
+		_heartEffect->setPositionX(getContentSize().width / 2 + (_isFlipped ? 22 : -22));
 	}
 
 	if (_healItemEffect)
 	{
-		_healItemEffect->setPosition(ccp(_isFlipped ? this->getContentSize().width / 2 + 16 : this->getContentSize().width / 2 - 16,
-										 this->_height));
+		_healItemEffect->setPosition(ccp(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
+										 _height));
 	}
 
 	if (_speedItemEffect)
 	{
-		_speedItemEffect->setPosition(ccp(_isFlipped ? this->getContentSize().width / 2 + 16 : this->getContentSize().width / 2 - 16,
-										  this->_height));
+		_speedItemEffect->setPosition(ccp(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
+										  _height));
 	}
 
 	/*if(_kaguraEffect){
-		_kaguraEffect->setPosition(ccp(this->getPositionX(),this->getPositionY()+this->getContentSize().height/2));
+		_kaguraEffect->setPosition(ccp(getPositionX(),getPositionY()+getContentSize().height/2));
 	}*/
 
 	if (_dehealBuffEffect)
 	{
-		_dehealBuffEffect->setPositionX(this->getContentSize().width / 2);
+		_dehealBuffEffect->setPositionX(getContentSize().width / 2);
 	}
 
 	if (_shadow)
 	{
-		_shadow->setPosition(ccp(this->getPositionX(), _originY ? _originY : this->getPositionY()));
+		_shadow->setPosition(ccp(getPositionX(), _originY ? _originY : getPositionY()));
 	}
 
-	if (!_isControled && _actionState != State::DEAD)
+	if (!_isControlled && _actionState != State::DEAD)
 	{
-		if (strcmp(this->_role->getCString(), "Player") == 0 || strcmp(this->_role->getCString(), "Com") == 0)
+		if (strcmp(_role->getCString(), "Player") == 0 || strcmp(_role->getCString(), "Com") == 0)
 		{
 
-			if (strcmp(this->_character->getCString(), Guardian_Roshi) != 0 &&
-				strcmp(this->_character->getCString(), Guardian_Han) != 0)
+			if (strcmp(_character->getCString(), Guardian_Roshi) != 0 &&
+				strcmp(_character->getCString(), Guardian_Han) != 0)
 			{
 
-				if (strcmp(this->_group->getCString(), Konoha) == 0 && this->getPositionX() <= 11 * 32)
+				if (strcmp(_group->getCString(), Konoha) == 0 && getPositionX() <= 11 * 32)
 				{
 					_isHealling = true;
-					if (this->getHpPercent() < 1.0f)
+					if (getHpPercent() < 1.0f)
 					{
-						this->scheduleOnce(schedule_selector(CharacterBase::setRestore), 1.0f);
+						scheduleOnce(schedule_selector(CharacterBase::setRestore), 1.0f);
 					}
 				}
-				else if (strcmp(this->_group->getCString(), Akatsuki) == 0 && this->getPositionX() >= 85 * 32)
+				else if (strcmp(_group->getCString(), Akatsuki) == 0 && getPositionX() >= 85 * 32)
 				{
 					_isHealling = true;
-					if (this->getHpPercent() < 1.0f)
+					if (getHpPercent() < 1.0f)
 					{
-						this->scheduleOnce(schedule_selector(CharacterBase::setRestore), 1.0f);
+						scheduleOnce(schedule_selector(CharacterBase::setRestore), 1.0f);
 					}
 				}
 				else
@@ -307,14 +303,14 @@ void CharacterBase::update(float dt)
 	if (_actionState == State::WALK)
 	{
 
-		_desiredPosition = ccpAdd(this->getPosition(), ccpMult(_velocity, dt));
+		_desiredPosition = ccpAdd(getPosition(), ccpMult(_velocity, dt));
 
-		if (strcmp(this->_role->getCString(), "Player") == 0 && !_isAI && !_isWudi && !_isBati)
+		if (strcmp(_role->getCString(), "Player") == 0 && !_isAI && !_isWudi && !_isBati)
 		{
 
 			//save the stop Area
 			CCObject *pObject;
-			CCARRAY_FOREACH(this->_delegate->_TowerArray, pObject)
+			CCARRAY_FOREACH(_delegate->_TowerArray, pObject)
 			{
 
 				Tower *tower = (Tower *)pObject;
@@ -331,74 +327,74 @@ void CharacterBase::update(float dt)
 						_affectedByTower = true;
 
 						float anchorYpoint = metaY + metaHeight / 2;
-						if (this->getPositionY() > anchorYpoint)
+						if (getPositionY() > anchorYpoint)
 						{
-							_velocity = ccp(0, 1 * this->_walkSpeed * winSize.width / 1280);
+							_velocity = ccp(0, 1 * _walkSpeed * winSize.width / 1280);
 						}
 						else
 						{
-							_velocity = ccp(0, -1 * this->_walkSpeed * winSize.width / 1280);
+							_velocity = ccp(0, -1 * _walkSpeed * winSize.width / 1280);
 						}
-						_desiredPosition = ccpAdd(this->getPosition(), ccpMult(_velocity, dt));
+						_desiredPosition = ccpAdd(getPosition(), ccpMult(_velocity, dt));
 					}
 				}
-			};
+			}
 
 			if (_affectedByTower && checkHasMovement())
 			{
 				_affectedByTower = false;
 			}
-		};
+		}
 
 		float posX = MIN(_delegate->currentMap->getMapSize().width * _delegate->currentMap->getTileSize().width,
 						 MAX(0, _desiredPosition.x));
 
 		float poxY = MIN(_delegate->currentMap->getTileSize().height * 5.5, MAX(0, _desiredPosition.y));
 
-		this->setPosition(ccp(posX, poxY));
-		_delegate->reorderChild(this, -this->getPositionY());
-		if (strcmp(this->getRole()->getCString(), "Player") == 0 || strcmp(this->getRole()->getCString(), "Com") == 0)
+		setPosition(ccp(posX, poxY));
+		_delegate->reorderChild(this, -getPositionY());
+		if (strcmp(getRole()->getCString(), "Player") == 0 || strcmp(getRole()->getCString(), "Com") == 0)
 		{
 			CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", this);
 		}
-	};
+	}
 
 	// Update hp bar position after all action
 	if (_hpBar)
 	{
-		_hpBar->setPositionX(this->getContentSize().width / 2 - this->_hpBar->getHPBottom()->getContentSize().width / 2);
+		_hpBar->setPositionX(getContentSize().width / 2 - _hpBar->getHPBottom()->getContentSize().width / 2);
 	}
-};
+}
 
 void CharacterBase::updateHpBarPosition(float dt)
 {
 	if (_hpBar)
 	{
-		_hpBar->setPositionX(this->getContentSize().width / 2 - this->_hpBar->getHPBottom()->getContentSize().width / 2);
-		_hpBar->setPositionY(this->getHeight());
+		_hpBar->setPositionX(getContentSize().width / 2 - _hpBar->getHPBottom()->getContentSize().width / 2);
+		_hpBar->setPositionY(getHeight());
 	}
 }
 
 void CharacterBase::acceptAttack(CCObject *object)
 {
 
-	if (strcmp(this->getCharacter()->getCString(), "Tobi") == 0)
+	if (strcmp(getCharacter()->getCString(), "Tobi") == 0)
 	{
 
-		CharacterBase *currentSlayer = NULL;
-		if (this->_slayer)
+		CharacterBase *currentSlayer = nullptr;
+		if (_slayer)
 		{
-			currentSlayer = (CharacterBase *)this->_slayer;
+			currentSlayer = _slayer;
 		}
-		if (_skillChangeBuffValue && (this->getActionState() == State::IDLE ||
-									  this->getActionState() == State::WALK ||
-									  this->getActionState() == State::ATTACK))
+		if (_skillChangeBuffValue && (getActionState() == State::IDLE ||
+									  getActionState() == State::WALK ||
+									  getActionState() == State::ATTACK))
 		{
-			if (this->getOpacity() == 255)
+			if (getOpacity() == 255)
 			{
-				this->scheduleOnce(schedule_selector(CharacterBase::disableBuff), 0.2f);
+				scheduleOnce(schedule_selector(CharacterBase::disableBuff), 0.2f);
 			}
-			this->setOpacity(150);
+			setOpacity(150);
 			return;
 		}
 	}
@@ -409,11 +405,11 @@ void CharacterBase::acceptAttack(CCObject *object)
 		isBizhong = true;
 	}
 
-	if (strcmp(this->_group->getCString(), Attacker->_group->getCString()) != 0 && _isVisable && (!_isWudi || isBizhong) && this->getActionState() != State::DEAD)
+	if (strcmp(_group->getCString(), Attacker->_group->getCString()) != 0 && _isVisable && (!_isWudi || isBizhong) && getActionState() != State::DEAD)
 	{
 
 		// Tower
-		if (strcmp(this->_role->getCString(), "Tower") == 0)
+		if (strcmp(_role->getCString(), "Tower") == 0)
 		{
 
 			bool isHit = false;
@@ -421,7 +417,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 				strcmp(Attacker->_effectType->getCString(), "f_hit") != 0 && strcmp(Attacker->_effectType->getCString(), "c_hit") != 0 && strcmp(Attacker->_effectType->getCString(), "o_hit") != 0 && strcmp(Attacker->_effectType->getCString(), "b_hit") != 0 && strcmp(Attacker->_effectType->getCString(), "bc_hit") != 0)
 			{
 
-				if (this->setHitBox().intersectsRect(Attacker->setHalfBox()))
+				if (setHitBox().intersectsRect(Attacker->setHalfBox()))
 				{
 					isHit = true;
 				}
@@ -430,9 +426,9 @@ void CharacterBase::acceptAttack(CCObject *object)
 			{
 
 				bool isHitX = false;
-				float distanceX = ccpSub(Attacker->getPosition(), this->getPosition()).x;
+				float distanceX = ccpSub(Attacker->getPosition(), getPosition()).x;
 
-				float tempRange1 = Attacker->_attackRangeX + Attacker->getContentSize().width / 2 + this->getContentSize().width / 2;
+				float tempRange1 = Attacker->_attackRangeX + Attacker->getContentSize().width / 2 + getContentSize().width / 2;
 
 				if (!Attacker->_isFlipped && distanceX < 0 && -distanceX < tempRange1)
 				{
@@ -443,11 +439,11 @@ void CharacterBase::acceptAttack(CCObject *object)
 				{
 					_hurtFromRight = true;
 					isHitX = true;
-				};
+				}
 
 				if (isHitX)
 				{
-					if (abs(this->getPositionY() - Attacker->getPositionY()) <= Attacker->_attackRangeY)
+					if (abs(getPositionY() - Attacker->getPositionY()) <= Attacker->_attackRangeY)
 					{
 						isHit = true;
 					}
@@ -458,22 +454,22 @@ void CharacterBase::acceptAttack(CCObject *object)
 			{
 
 				_slayer = Attacker;
-				this->setDamage(Attacker->_effectType, Attacker->_attackValue, Attacker->_isFlipped);
+				setDamage(Attacker->_effectType, Attacker->_attackValue, Attacker->_isFlipped);
 				if (_hpBar)
 				{
-					_hpBar->loseHP(this->getHpPercent());
+					_hpBar->loseHP(getHpPercent());
 				}
 
-				if (!this->_isHitOne)
+				if (!_isHitOne)
 				{
-					this->_isHitOne = true;
+					_isHitOne = true;
 					CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::disableShack));
 					CCDelayTime *delay = CCDelayTime::create(0.5f);
 					CCArray *list = CCArray::create();
 					list->addObject(CCShake::createWithStrength(0.1f, 2, 0));
 					list->addObject(delay);
 					list->addObject(call);
-					this->runAction(CCSequence::create(list));
+					runAction(CCSequence::create(list));
 				}
 			}
 
@@ -484,21 +480,21 @@ void CharacterBase::acceptAttack(CCObject *object)
 		else if (strcmp(Attacker->_role->getCString(), "Bullet") == 0)
 		{
 
-			if (this->setHitBox().intersectsRect(Attacker->setHitBox()))
+			if (setHitBox().intersectsRect(Attacker->setHitBox()))
 			{
 
-				if (strcmp(this->getCharacter()->getCString(), "Hidan") == 0 && this->_skillChangeBuffValue)
+				if (strcmp(getCharacter()->getCString(), "Hidan") == 0 && _skillChangeBuffValue)
 				{
 
 					bool _isCounter = false;
 					if (_monsterArray && _monsterArray->count() > 0)
 					{
 						CCObject *pObject;
-						CCARRAY_FOREACH(this->_monsterArray, pObject)
+						CCARRAY_FOREACH(_monsterArray, pObject)
 						{
 							CharacterBase *tempMonster = (CharacterBase *)pObject;
-							float distanceX = ccpSub(tempMonster->getPosition(), this->getPosition()).x;
-							float distanceY = ccpSub(tempMonster->getPosition(), this->getPosition()).y;
+							float distanceX = ccpSub(tempMonster->getPosition(), getPosition()).x;
+							float distanceY = ccpSub(tempMonster->getPosition(), getPosition()).y;
 							if (abs(distanceX) < 40 && abs(distanceY) < 15)
 							{
 								_isCounter = true;
@@ -524,7 +520,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 						{
 							Hero *tempHero = (Hero *)pObject;
-							if (strcmp(this->_group->getCString(), tempHero->_group->getCString()) != 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::DEAD)
+							if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::DEAD)
 							{
 								tempHero->_slayer = this;
 								tempHero->setDamage(Attacker->_effectType, Attacker->_attackValue / 2, Attacker->_isFlipped);
@@ -540,15 +536,15 @@ void CharacterBase::acceptAttack(CCObject *object)
 				}
 
 				_slayer = Attacker;
-				this->setDamage(Attacker->_effectType, Attacker->_attackValue, Attacker->_isFlipped);
+				setDamage(Attacker->_effectType, Attacker->_attackValue, Attacker->_isFlipped);
 				if (_hpBar)
 				{
-					_hpBar->loseHP(this->getHpPercent());
+					_hpBar->loseHP(getHpPercent());
 				}
 				if (strcmp(Attacker->_character->getCString(), "HiraishinKunai") == 0 ||
 					strcmp(Attacker->_character->getCString(), "Shintenshin") == 0)
 				{
-					if ((strcmp(this->_role->getCString(), "Player") == 0 || strcmp(this->_role->getCString(), "Com") == 0) && strcmp(this->_character->getCString(), Guardian_Roshi) != 0 && strcmp(this->_character->getCString(), Guardian_Han) != 0 && this->_actionState != State::DEAD)
+					if ((strcmp(_role->getCString(), "Player") == 0 || strcmp(_role->getCString(), "Com") == 0) && strcmp(_character->getCString(), Guardian_Roshi) != 0 && strcmp(_character->getCString(), Guardian_Han) != 0 && _actionState != State::DEAD)
 					{
 
 						Attacker->stopAllActions();
@@ -559,8 +555,8 @@ void CharacterBase::acceptAttack(CCObject *object)
 							Attacker->_isCatchOne = true;
 							if (Attacker->_master)
 							{
-								this->_isControled = true;
-								this->_controler = Attacker->_master;
+								_isControlled = true;
+								_controller = Attacker->_master;
 
 								if (Attacker->_master->getActionState() == State::O2ATTACK)
 								{
@@ -571,17 +567,24 @@ void CharacterBase::acceptAttack(CCObject *object)
 									Attacker->_master->_isWudi = false;
 								}
 
-								if (strcmp(_controler->getRole()->getCString(), "Player") == 0)
+								if (strcmp(_controller->getRole()->getCString(), "Player") == 0)
 								{
-									this->_delegate->controlChar = this;
+									unschedule(schedule_selector(CharacterBase::setAI));
+									_isAI = false;
+									// Set controlled character to player
+									_delegate->currentPlayer = this;
+									_delegate->getHudLayer()->updateSkillButtons();
+									idle();
+
+									_delegate->controlChar = this;
 								}
 
-								if (strcmp(this->getRole()->getCString(), "Player") == 0)
+								if (strcmp(getRole()->getCString(), "Player") == 0)
 								{
-									this->doAI();
-									this->_delegate->getHudLayer()->_isAllButtonLocked = true;
+									doAI();
+									_delegate->getHudLayer()->_isAllButtonLocked = true;
 								}
-								this->changeGroup();
+								changeGroup();
 							}
 						}
 					}
@@ -595,9 +598,9 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 			bool isHitX = false;
 
-			float distanceX = ccpSub(Attacker->getPosition(), this->getPosition()).x;
+			float distanceX = ccpSub(Attacker->getPosition(), getPosition()).x;
 
-			float tempRange1 = Attacker->_attackRangeX + Attacker->getContentSize().width / 2 + this->getContentSize().width / 2;
+			float tempRange1 = Attacker->_attackRangeX + Attacker->getContentSize().width / 2 + getContentSize().width / 2;
 
 			if (strcmp(Attacker->_attackType->getCString(), "aAttack") == 0)
 			{
@@ -618,7 +621,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 				{
 					_hurtFromRight = true;
 					isHitX = true;
-				};
+				}
 			}
 
 			if (isHitX)
@@ -633,16 +636,16 @@ void CharacterBase::acceptAttack(CCObject *object)
 				else
 				{
 					attackerPosY = Attacker->getPositionY();
-				};
+				}
 
-				if (this->_actionState == State::FLOAT_AIR || this->_actionState == State::JUMP || this->_actionState == State::AIRHURT)
+				if (_actionState == State::FLOAT || _actionState == State::JUMP || _actionState == State::AIRHURT)
 				{
 					currentPosY = _originY;
 				}
 				else
 				{
-					currentPosY = this->getPositionY();
-				};
+					currentPosY = getPositionY();
+				}
 
 				if (abs(currentPosY - attackerPosY) <= Attacker->_attackRangeY)
 				{
@@ -656,17 +659,17 @@ void CharacterBase::acceptAttack(CCObject *object)
 					_slayer = Attacker;
 
 					//flog hurt
-					if (strcmp(this->_role->getCString(), "Flog") == 0)
+					if (strcmp(_role->getCString(), "Flog") == 0)
 					{
 						if (strcmp(hitType, "o_hit") == 0)
 						{
-							this->setKnockLength(48);
-							this->setKnockDiretion(Attacker->_isFlipped);
-							this->hurt();
+							setKnockLength(48);
+							setKnockDiretion(Attacker->_isFlipped);
+							hurt();
 						}
 						else if (strcmp(hitType, "ac_hit") == 0)
 						{
-							this->airHurt();
+							airHurt();
 						}
 						else if (strcmp(hitType, "f_hit") == 0 || strcmp(hitType, "bf_hit") == 0)
 						{
@@ -674,16 +677,16 @@ void CharacterBase::acceptAttack(CCObject *object)
 							{
 								if (_isFlipped)
 								{
-									this->setFlipX(false);
+									setFlipX(false);
 									_isFlipped = false;
 								}
 								else
 								{
-									this->setFlipX(true);
+									setFlipX(true);
 									_isFlipped = true;
 								}
 							}
-							this->floatUP(64, true);
+							floatUP(64, true);
 						}
 						else if (strcmp(hitType, "f2_hit") == 0)
 						{
@@ -691,16 +694,16 @@ void CharacterBase::acceptAttack(CCObject *object)
 							{
 								if (_isFlipped)
 								{
-									this->setFlipX(false);
+									setFlipX(false);
 									_isFlipped = false;
 								}
 								else
 								{
-									this->setFlipX(true);
+									setFlipX(true);
 									_isFlipped = true;
 								}
 							}
-							this->floatUP(128, true);
+							floatUP(128, true);
 						}
 						else if (strcmp(hitType, "b_hit") == 0)
 						{
@@ -708,47 +711,47 @@ void CharacterBase::acceptAttack(CCObject *object)
 							{
 								if (_isFlipped)
 								{
-									this->setFlipX(false);
+									setFlipX(false);
 									_isFlipped = false;
 								}
 								else
 								{
-									this->setFlipX(true);
+									setFlipX(true);
 									_isFlipped = true;
 								}
 							}
-							this->floatUP(16, false);
+							floatUP(16, false);
 						}
 						else if (strcmp(hitType, "ab_hit") == 0)
 						{
-							this->absorb(Attacker->getPosition(), true);
+							absorb(Attacker->getPosition(), true);
 						}
 						else if (strcmp(hitType, "s_hit") == 0)
 						{
-							this->absorb(Attacker->getPosition(), false);
+							absorb(Attacker->getPosition(), false);
 						}
 
 					} // hero hurt
-					else if (strcmp(this->_role->getCString(), "Player") == 0 || strcmp(this->_role->getCString(), "Com") == 0 || strcmp(this->_role->getCString(), K_TAG_CLONE) == 0)
+					else if (strcmp(_role->getCString(), "Player") == 0 || strcmp(_role->getCString(), "Com") == 0 || strcmp(_role->getCString(), K_TAG_CLONE) == 0)
 					{
 
 						if (strcmp(hitType, "l_hit") == 0)
 						{
-							if (!this->_isBati)
+							if (!_isBati)
 							{
-								this->setKnockLength(32);
+								setKnockLength(32);
 							}
-							this->hurt();
+							hurt();
 						}
 						else if (strcmp(hitType, "c_hit") == 0 ||
 								 strcmp(hitType, "bc_hit") == 0)
 						{
-							if (!this->_isBati)
+							if (!_isBati)
 							{
-								this->setKnockLength(1);
+								setKnockLength(1);
 							}
 
-							if (strcmp(Attacker->getCharacter()->getCString(), "Kakuzu") == 0 && this->_sticker)
+							if (strcmp(Attacker->getCharacter()->getCString(), "Kakuzu") == 0 && _sticker)
 							{
 								CharacterBase *stHero = _sticker;
 								if (strcmp(stHero->getCharacter()->getCString(), "Kakuzu") == 0 && stHero->hearts <= 4)
@@ -774,7 +777,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 										{
 											countMON++;
 										}
-									};
+									}
 									if (countMON < 3 && Attacker->getLV() >= 2)
 									{
 										if (_delegate->getHudLayer()->skill4Button)
@@ -784,15 +787,15 @@ void CharacterBase::acceptAttack(CCObject *object)
 									}
 								}
 							}
-							this->hurt();
+							hurt();
 						}
 						else if (strcmp(hitType, "ts_hit") == 0)
 						{
-							if (!this->_isBati)
+							if (!_isBati)
 							{
-								this->setKnockLength(1);
+								setKnockLength(1);
 							}
-							if (this->hurt() &&
+							if (hurt() &&
 								(!Attacker->_isCatchOne || strcmp(Attacker->getCharacter()->getCString(), "FakeMinato") == 0))
 							{
 								Attacker->_isCatchOne = true;
@@ -800,98 +803,98 @@ void CharacterBase::acceptAttack(CCObject *object)
 								{
 									if (strcmp(Attacker->getCharacter()->getCString(), "FakeMinato") == 0)
 									{
-										this->setPosition(ccp(Attacker->getMaster()->_isFlipped ? Attacker->getMaster()->getPositionX() - 64 : Attacker->getMaster()->getPositionX() + 64,
-															  Attacker->getMaster()->getPositionY() + 2));
+										setPosition(ccp(Attacker->getMaster()->_isFlipped ? Attacker->getMaster()->getPositionX() - 64 : Attacker->getMaster()->getPositionX() + 64,
+														Attacker->getMaster()->getPositionY() + 2));
 									}
 									else
 									{
-										this->setPosition(ccp(Attacker->getMaster()->_isFlipped ? Attacker->getMaster()->getPositionX() - 48 : Attacker->getMaster()->getPositionX() + 48,
-															  Attacker->getMaster()->getPositionY()));
+										setPosition(ccp(Attacker->getMaster()->_isFlipped ? Attacker->getMaster()->getPositionX() - 48 : Attacker->getMaster()->getPositionX() + 48,
+														Attacker->getMaster()->getPositionY()));
 									}
 
 									CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", this);
-									_delegate->reorderChild(this, -this->getPositionY());
+									_delegate->reorderChild(this, -getPositionY());
 								}
 							}
 						}
 						else if (strcmp(hitType, "sl_hit") == 0)
 						{
-							if (!this->_isBati)
+							if (!_isBati)
 							{
-								this->setKnockLength(1);
+								setKnockLength(1);
 							}
-							this->hurt();
-							if (this->getWalkSpeed() == 224)
+							hurt();
+							if (getWalkSpeed() == 224)
 							{
-								this->setWalkSpeed(112);
-								this->schedule(schedule_selector(CharacterBase::disableDebuff), 3);
+								setWalkSpeed(112);
+								schedule(schedule_selector(CharacterBase::disableDebuff), 3);
 							}
 						}
 						else if (strcmp(hitType, "ac_hit") == 0)
 						{
-							if (this->_actionState == State::FLOAT_AIR || this->_actionState == State::AIRHURT)
+							if (_actionState == State::FLOAT || _actionState == State::AIRHURT)
 							{
-								this->airHurt();
+								airHurt();
 							}
 							else
 							{
-								if (!this->_isBati)
+								if (!_isBati)
 								{
-									this->setKnockLength(1);
+									setKnockLength(1);
 								}
-								this->hurt();
+								hurt();
 							}
 						}
 						else if (strcmp(hitType, "o_hit") == 0)
 						{
-							if (this->_actionState != State::OATTACK ||
-								(this->_actionState == State::OATTACK &&
+							if (_actionState != State::OATTACK ||
+								(_actionState == State::OATTACK &&
 								 (Attacker->_actionState == State::O2ATTACK ||
 								  Attacker->_actionState == State::OATTACK)))
 							{
-								if (!this->_isBati)
+								if (!_isBati)
 								{
-									this->setKnockLength(48);
+									setKnockLength(48);
 								}
-								this->setKnockDiretion(Attacker->_isFlipped);
-								this->hardHurt(500, true, false, false, false);
+								setKnockDiretion(Attacker->_isFlipped);
+								hardHurt(500, true, false, false, false);
 							}
 						}
 						else if (strcmp(hitType, "o2_hit") == 0)
 						{
-							if (!this->_isBati)
+							if (!_isBati)
 							{
-								this->setKnockLength(1);
+								setKnockLength(1);
 							}
-							this->setKnockDiretion(Attacker->_isFlipped);
-							this->hardHurt(1000, true, false, false, true);
+							setKnockDiretion(Attacker->_isFlipped);
+							hardHurt(1000, true, false, false, true);
 						}
 						else if (strcmp(hitType, "ob_hit") == 0)
 						{
-							if (!this->_isBati)
+							if (!_isBati)
 							{
-								this->setKnockLength(1);
+								setKnockLength(1);
 							}
-							this->setKnockDiretion(Attacker->_isFlipped);
-							this->hardHurt(2000, true, false, false, true);
+							setKnockDiretion(Attacker->_isFlipped);
+							hardHurt(2000, true, false, false, true);
 
-							if (this->_dehealBuffEffect)
+							if (_dehealBuffEffect)
 							{
-								this->_dehealBuffValue += 1000;
+								_dehealBuffValue += 1000;
 							}
 							else
 							{
-								this->_dehealBuffValue = 1000;
-								this->setBuffEffect("dhBuff");
-								this->schedule(schedule_selector(CharacterBase::dehealBuff), 1);
+								_dehealBuffValue = 1000;
+								setBuffEffect("dhBuff");
+								schedule(schedule_selector(CharacterBase::dehealBuff), 1);
 							}
-							this->scheduleOnce(schedule_selector(CharacterBase::disableBuff), 5);
+							scheduleOnce(schedule_selector(CharacterBase::disableBuff), 5);
 						}
 						else if (strcmp(hitType, "ct_hit") == 0)
 						{
 
-							if (this->_actionState != State::OATTACK ||
-								(this->_actionState == State::OATTACK &&
+							if (_actionState != State::OATTACK ||
+								(_actionState == State::OATTACK &&
 								 (Attacker->_actionState == State::O2ATTACK ||
 								  Attacker->_actionState == State::OATTACK)))
 							{
@@ -907,18 +910,18 @@ void CharacterBase::acceptAttack(CCObject *object)
 											strcmp(Attacker->getCharacter()->getCString(), "Sabaku") == 0 ||
 											strcmp(Attacker->getCharacter()->getCString(), "Shenwei2") == 0)
 										{
-											if (this->hardHurt(3000, false, true, false, false))
+											if (hardHurt(3000, false, true, false, false))
 											{
 												Attacker->_isCatchOne = true;
-												this->scheduleOnce(schedule_selector(CharacterBase::reCatched), 2.9f);
+												scheduleOnce(schedule_selector(CharacterBase::reCatched), 2.9f);
 											}
 										}
 										else if (strcmp(Attacker->getCharacter()->getCString(), "SandBall") == 0)
 										{
-											if (this->hardHurt(1000, false, true, false, false))
+											if (hardHurt(1000, false, true, false, false))
 											{
 												Attacker->_isCatchOne = true;
-												this->scheduleOnce(schedule_selector(CharacterBase::reCatched), 0.9f);
+												scheduleOnce(schedule_selector(CharacterBase::reCatched), 0.9f);
 											}
 										}
 										else if (strcmp(Attacker->getMaster()->getCharacter()->getCString(), "Shikamaru") == 0)
@@ -926,27 +929,28 @@ void CharacterBase::acceptAttack(CCObject *object)
 											bool pianyi = false;
 											if (strcmp(Attacker->getCharacter()->getCString(), "KageHand") == 0)
 											{
-												if (pianyi = this->hardHurt(6000, false, false, true, false))
+												pianyi = hardHurt(6000, false, false, true, false);
+												if (pianyi)
 												{
 
 													Attacker->stopAllActions();
 													Attacker->schedule(schedule_selector(CharacterBase::getSticker), 0.1f);
-													this->schedule(schedule_selector(CharacterBase::lostBlood), 1.0f);
-													this->lostBloodValue = 400;
-													this->scheduleOnce(schedule_selector(CharacterBase::removeLostBlood), 6.0f);
+													schedule(schedule_selector(CharacterBase::lostBlood), 1.0f);
+													lostBloodValue = 400;
+													scheduleOnce(schedule_selector(CharacterBase::removeLostBlood), 6.0f);
 												}
 											}
 											else if (strcmp(Attacker->getCharacter()->getCString(), "QuanRen") == 0 ||
 													 strcmp(Attacker->getCharacter()->getCString(), "KageBom") == 0)
 											{
-												pianyi = this->hardHurt(3000, false, false, true, false);
+												pianyi = hardHurt(3000, false, false, true, false);
 											}
 
 											if (pianyi)
 											{
 												Attacker->_isCatchOne = true;
-												this->setPosition(CCPointMake(Attacker->getPositionX(), Attacker->getPositionY() + 1));
-												_delegate->reorderChild(this, -this->getPositionY());
+												setPosition(CCPointMake(Attacker->getPositionX(), Attacker->getPositionY() + 1));
+												_delegate->reorderChild(this, -getPositionY());
 											}
 										}
 										else if (strcmp(Attacker->getMaster()->getCharacter()->getCString(), "Itachi") == 0 ||
@@ -957,17 +961,17 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 											if (strcmp(Attacker->getMaster()->getCharacter()->getCString(), "Chiyo") == 0)
 											{
-												pianyi = this->hardHurt(2000, false, false, true, false);
+												pianyi = hardHurt(2000, false, false, true, false);
 											}
 											else
 											{
-												pianyi = this->hardHurt(3000, false, false, true, false);
+												pianyi = hardHurt(3000, false, false, true, false);
 											}
 											if (pianyi)
 											{
 												Attacker->_isCatchOne = true;
-												this->setPosition(CCPointMake(Attacker->getPositionX() + 2, Attacker->getPositionY() - 2));
-												_delegate->reorderChild(this, -this->getPositionY());
+												setPosition(CCPointMake(Attacker->getPositionX() + 2, Attacker->getPositionY() - 2));
+												_delegate->reorderChild(this, -getPositionY());
 											}
 										}
 									}
@@ -978,37 +982,37 @@ void CharacterBase::acceptAttack(CCObject *object)
 											strcmp(Attacker->getCharacter()->getCString(), "RockLee") == 0)
 										{
 
-											if (this->hardHurt(1000, false, true, false, false))
+											if (hardHurt(1000, false, true, false, false))
 											{
 												Attacker->_isCatchOne = true;
-												this->scheduleOnce(schedule_selector(CharacterBase::reCatched), 1.1f);
+												scheduleOnce(schedule_selector(CharacterBase::reCatched), 1.1f);
 											}
 										}
 										else if (strcmp(Attacker->getCharacter()->getCString(), "Kakuzu") == 0)
 										{
 											bool pianyi = false;
 
-											if (!this->_isBati)
+											if (!_isBati)
 											{
-												this->setKnockLength(1);
+												setKnockLength(1);
 											}
-											pianyi = this->hardHurt(1500, false, false, true, true);
+											pianyi = hardHurt(1500, false, false, true, true);
 
 											if (pianyi)
 											{
 												Attacker->_isCatchOne = true;
-												this->setPosition(CCPointMake(Attacker->getPositionX() + (Attacker->_isFlipped ? -28 : 28), Attacker->getPositionY() - 1));
-												this->setFlipX(Attacker->_isFlipped ? false : true);
-												_delegate->reorderChild(this, -this->getPositionY());
+												setPosition(CCPointMake(Attacker->getPositionX() + (Attacker->_isFlipped ? -28 : 28), Attacker->getPositionY() - 1));
+												setFlipX(Attacker->_isFlipped ? false : true);
+												_delegate->reorderChild(this, -getPositionY());
 											}
 										}
 										else if (strcmp(Attacker->getCharacter()->getCString(), "Tobi") == 0)
 										{
-											if (!this->_isBati)
+											if (!_isBati)
 											{
-												this->setKnockLength(1);
+												setKnockLength(1);
 											}
-											this->hardHurt(1000, true, false, false, false);
+											hardHurt(1000, true, false, false, false);
 										}
 									}
 								}
@@ -1020,21 +1024,21 @@ void CharacterBase::acceptAttack(CCObject *object)
 							{
 								if (_isFlipped)
 								{
-									this->setFlipX(false);
+									setFlipX(false);
 									_isFlipped = false;
 								}
 								else
 								{
-									this->setFlipX(true);
+									setFlipX(true);
 									_isFlipped = true;
 								}
 							}
-							if (this->_actionState != State::OATTACK ||
-								(this->_actionState == State::OATTACK &&
+							if (_actionState != State::OATTACK ||
+								(_actionState == State::OATTACK &&
 								 (Attacker->_actionState == State::O2ATTACK ||
 								  Attacker->_actionState == State::OATTACK)))
 							{
-								this->floatUP(64, true);
+								floatUP(64, true);
 							}
 						}
 						else if (strcmp(hitType, "f2_hit") == 0)
@@ -1044,21 +1048,21 @@ void CharacterBase::acceptAttack(CCObject *object)
 							{
 								if (_isFlipped)
 								{
-									this->setFlipX(false);
+									setFlipX(false);
 									_isFlipped = false;
 								}
 								else
 								{
-									this->setFlipX(true);
+									setFlipX(true);
 									_isFlipped = true;
 								}
 							}
-							if (this->_actionState != State::OATTACK ||
-								(this->_actionState == State::OATTACK &&
+							if (_actionState != State::OATTACK ||
+								(_actionState == State::OATTACK &&
 								 (Attacker->_actionState == State::O2ATTACK ||
 								  Attacker->_actionState == State::OATTACK)))
 							{
-								this->floatUP(128, true);
+								floatUP(128, true);
 							}
 						}
 						else if (strcmp(hitType, "b_hit") == 0)
@@ -1068,47 +1072,47 @@ void CharacterBase::acceptAttack(CCObject *object)
 							{
 								if (_isFlipped)
 								{
-									this->setFlipX(false);
+									setFlipX(false);
 									_isFlipped = false;
 								}
 								else
 								{
-									this->setFlipX(true);
+									setFlipX(true);
 									_isFlipped = true;
 								}
 							}
 
-							if (this->_actionState != State::OATTACK ||
-								(this->_actionState == State::OATTACK &&
+							if (_actionState != State::OATTACK ||
+								(_actionState == State::OATTACK &&
 								 (Attacker->_actionState == State::O2ATTACK ||
 								  Attacker->_actionState == State::OATTACK)))
 							{
-								this->floatUP(16, false);
+								floatUP(16, false);
 							}
 						}
 						else if (strcmp(hitType, "ab_hit") == 0)
 						{
 
-							this->absorb(Attacker->getPosition(), true);
+							absorb(Attacker->getPosition(), true);
 						}
 						else if (strcmp(hitType, "s_hit") == 0)
 						{
-							this->absorb(Attacker->getPosition(), false);
+							absorb(Attacker->getPosition(), false);
 						}
 					}
 
-					if (strcmp(this->getCharacter()->getCString(), "Hidan") == 0 && this->_skillChangeBuffValue)
+					if (strcmp(getCharacter()->getCString(), "Hidan") == 0 && _skillChangeBuffValue)
 					{
 
 						bool _isCounter = false;
 						if (_monsterArray && _monsterArray->count() > 0)
 						{
 							CCObject *pObject;
-							CCARRAY_FOREACH(this->_monsterArray, pObject)
+							CCARRAY_FOREACH(_monsterArray, pObject)
 							{
 								CharacterBase *tempMonster = (CharacterBase *)pObject;
-								float distanceX = ccpSub(tempMonster->getPosition(), this->getPosition()).x;
-								float distanceY = ccpSub(tempMonster->getPosition(), this->getPosition()).y;
+								float distanceX = ccpSub(tempMonster->getPosition(), getPosition()).x;
+								float distanceY = ccpSub(tempMonster->getPosition(), getPosition()).y;
 								if (abs(distanceX) < 40 && abs(distanceY) < 15)
 								{
 									_isCounter = true;
@@ -1151,7 +1155,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 							CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 							{
 								Hero *tempHero = (Hero *)pObject;
-								if (strcmp(this->_group->getCString(), tempHero->_group->getCString()) != 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::DEAD)
+								if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::DEAD)
 								{
 									tempHero->_slayer = this;
 									tempHero->setDamage(Attacker->_effectType, Attacker->_attackValue / 2, Attacker->_isFlipped);
@@ -1166,7 +1170,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 					}
 
-					if (strcmp(this->getCharacter()->getCString(), "Kakuzu") == 0 && this->_skillChangeBuffValue)
+					if (strcmp(getCharacter()->getCString(), "Kakuzu") == 0 && _skillChangeBuffValue)
 					{
 
 						if (!Attacker->_master)
@@ -1186,17 +1190,17 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 					}
 
-					this->setDamage(Attacker->_effectType, Attacker->_attackValue, Attacker->_isFlipped);
+					setDamage(Attacker->_effectType, Attacker->_attackValue, Attacker->_isFlipped);
 					//lose the hp
 					if (_hpBar)
 					{
-						_hpBar->loseHP(this->getHpPercent());
+						_hpBar->loseHP(getHpPercent());
 					}
 				}
 			}
 		}
-	};
-};
+	}
+}
 
 CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool isRepeat, bool isReturn)
 {
@@ -1211,7 +1215,7 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 	CCARRAY_FOREACH(ationArray, tObject)
 	{
 		CCDictionary *dic = (CCDictionary *)tObject;
-		CCDictElement *ele = NULL;
+		CCDictElement *ele = nullptr;
 
 		CCDICT_FOREACH(dic, ele)
 		{
@@ -1317,11 +1321,11 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 					strcpy(str, keyValue);
 					p = strtok(str, split);
 					int i = 1;
-					while (p != NULL)
+					while (p != nullptr)
 					{
 						callValue->setObject(CCString::create(p), i);
 						i++;
-						p = strtok(NULL, split);
+						p = strtok(nullptr, split);
 					}
 
 					//CCFiniteTimeAction *call = CCCallFuncND::create(this,callfuncND_selector(CharacterBase::setFontEffect),(void*)callValue);
@@ -1411,13 +1415,13 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 				animeFrames->removeAllObjects();
 			}
 		}
-	};
+	}
 	if (animeFrames->count() > 0)
 	{
 		tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, float(1.0 / fps));
 		tempAction = CCAnimate::create(tempAnimation);
 		seqArray->addObject(tempAction);
-	};
+	}
 
 	if (isRepeat)
 	{
@@ -1442,12 +1446,12 @@ void CharacterBase::setCharFlip()
 
 	if (_isFlipped)
 	{
-		this->setFlipX(false);
+		setFlipX(false);
 		_isFlipped = false;
 	}
 	else
 	{
-		this->setFlipX(true);
+		setFlipX(true);
 		_isFlipped = true;
 	}
 }
@@ -1460,7 +1464,7 @@ void CharacterBase::setShadow(CCNode *sender, void *data)
 	CCSpriteFrame *frame = (CCSpriteFrame *)(file->objectForKey(1));
 	CCSprite *charN = CCSprite::createWithSpriteFrame(frame);
 	charN->setVisible(false);
-	if (strcmp(this->_group->getCString(), Konoha) == 0)
+	if (strcmp(_group->getCString(), Konoha) == 0)
 	{
 		charN->setColor(ccGREEN);
 	}
@@ -1472,11 +1476,11 @@ void CharacterBase::setShadow(CCNode *sender, void *data)
 	charN->setOpacity(180);
 	charN->setAnchorPoint(ccp(0.5, 0));
 	charN->setFlipX(_isFlipped);
-	charN->setPosition(this->getPosition());
+	charN->setPosition(getPosition());
 	CCDelayTime *delay = CCDelayTime::create(0.1f);
 	CCFiniteTimeAction *call = CCCallFuncN::create(charN, callfuncN_selector(CharacterBase::enableShadow));
 	charN->runAction(CCSequence::createWithTwoActions(delay, call));
-	_delegate->addChild(charN, -this->getPositionY() - 1);
+	_delegate->addChild(charN, -getPositionY() - 1);
 }
 
 void CharacterBase::enableShadow(CCNode *sender)
@@ -1504,18 +1508,18 @@ void CharacterBase::setOugis(CCNode *sender)
 
 CCRect CharacterBase::setHalfBox()
 {
-	CCRect halfbox = CCRectMake(_isFlipped ? this->getPositionX() - this->getContentSize().width / 2 : this->getPositionX(),
-								this->getPositionY() + this->getContentSize().height / 2,
-								this->getContentSize().width / 2,
-								this->getContentSize().height / 2);
+	CCRect halfbox = CCRectMake(_isFlipped ? getPositionX() - getContentSize().width / 2 : getPositionX(),
+								getPositionY() + getContentSize().height / 2,
+								getContentSize().width / 2,
+								getContentSize().height / 2);
 	return halfbox;
-};
+}
 
 CCRect CharacterBase::setHitBox()
 {
-	CCRect hitbox = this->boundingBox();
+	CCRect hitbox = boundingBox();
 	return hitbox;
-};
+}
 
 void CharacterBase::disableHpBar(float dt)
 {
@@ -1535,9 +1539,9 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 			_hpBar->setVisible(true);
 		}
 
-		this->unschedule(schedule_selector(CharacterBase::disableHpBar));
-		this->scheduleOnce(schedule_selector(CharacterBase::disableHpBar), 2.0f);
-	};
+		unschedule(schedule_selector(CharacterBase::disableHpBar));
+		scheduleOnce(schedule_selector(CharacterBase::disableHpBar), 2.0f);
+	}
 
 	int criticalValue;
 	unsigned int realValue;
@@ -1600,20 +1604,20 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 					jianshang += 0.25;
 				}
 
-				if (strcmp(this->getCharacter()->getCString(), "Kakuzu") == 0 && _skillChangeBuffValue)
+				if (strcmp(getCharacter()->getCString(), "Kakuzu") == 0 && _skillChangeBuffValue)
 				{
 					jianshang += 0.25;
 				}
 
-				if (strcmp(this->_character->getCString(), "Chiyo") == 0)
+				if (strcmp(_character->getCString(), "Chiyo") == 0)
 				{
 					CCObject *pObject;
-					CCARRAY_FOREACH(this->getMonsterArray(), pObject)
+					CCARRAY_FOREACH(getMonsterArray(), pObject)
 					{
 						Monster *mo = (Monster *)pObject;
 						if (strcmp(mo->getCharacter()->getCString(), "Parents") == 0 && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK)
 						{
-							CCPoint sp = ccpSub(mo->getPosition(), this->getPosition());
+							CCPoint sp = ccpSub(mo->getPosition(), getPosition());
 							if (sp.x <= 48)
 							{
 								jianshang += 0.25;
@@ -1634,28 +1638,28 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 		}
 	}
 
-	if (atoi(_hp->getCString()) - realValue < 0)
+	if (to_uint(_hp->getCString()) - realValue < 0)
 	{
-		this->setHP(CCString::createWithFormat("%d", 0));
+		setHP(CCString::createWithFormat("%d", 0));
 	}
 	else
 	{
-		this->setHP(CCString::createWithFormat("%d", atoi(this->getHP()->getCString()) - realValue));
+		setHP(CCString::createWithFormat("%ld", to_uint(getHP()->getCString()) - realValue));
 	}
 
-	if (strcmp(this->getRole()->getCString(), K_TAG_CLONE) == 0)
+	if (strcmp(getRole()->getCString(), K_TAG_CLONE) == 0)
 	{
 
 		int boundValue = 0;
-		if (strcmp(this->getCharacter()->getCString(), "Naruto") == 0)
+		if (strcmp(getCharacter()->getCString(), "Naruto") == 0)
 		{
 			boundValue = realValue * 15 / 100;
 		}
-		else if (strcmp(this->getCharacter()->getCString(), "SageNaruto") == 0)
+		else if (strcmp(getCharacter()->getCString(), "SageNaruto") == 0)
 		{
 			boundValue = realValue * 25 / 100;
 		}
-		else if (strcmp(this->getCharacter()->getCString(), "RikudoNaruto") == 0)
+		else if (strcmp(getCharacter()->getCString(), "RikudoNaruto") == 0)
 		{
 			boundValue = realValue * 35 / 100;
 		}
@@ -1681,7 +1685,7 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 		if (_master)
 		{
 
-			if (_master->getLV() >= 2 && !_master->_isControled)
+			if (_master->getLV() >= 2 && !_master->_isControlled)
 			{
 				if (45000 - atof(_master->getCKR()->getCString()) >= boundValue)
 				{
@@ -1704,7 +1708,7 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 				}
 			}
 
-			if (_master->getLV() >= 4 && !_master->_isControled)
+			if (_master->getLV() >= 4 && !_master->_isControlled)
 			{
 
 				if (50000 - atof(_master->getCKR2()->getCString()) >= boundValue)
@@ -1768,7 +1772,7 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 		}
 
 		bool isGainable = true;
-		if (strcmp(this->getCharacter()->getCString(), "Tsunade") == 0 && this->_skillChangeBuffValue)
+		if (strcmp(getCharacter()->getCString(), "Tsunade") == 0 && _skillChangeBuffValue)
 		{
 			isGainable = false;
 		}
@@ -1777,19 +1781,19 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 			isGainable = false;
 		}
 
-		if (_level >= 2 && !_isControled && isGainable)
+		if (_level >= 2 && !_isControlled && isGainable)
 		{
-			if (45000 - atof(this->getCKR()->getCString()) >= boundValue)
+			if (45000 - atof(getCKR()->getCString()) >= boundValue)
 			{
-				float newValue = atof(this->getCKR()->getCString()) + boundValue;
-				this->setCKR(CCString::createWithFormat("%f", newValue));
+				float newValue = atof(getCKR()->getCString()) + boundValue;
+				setCKR(CCString::createWithFormat("%f", newValue));
 			}
 			else
 			{
-				this->setCKR(CCString::create("45000"));
+				setCKR(CCString::create("45000"));
 			}
 
-			if (atof(this->getCKR()->getCString()) >= 15000)
+			if (atof(getCKR()->getCString()) >= 15000)
 			{
 				_isCanOugis1 = true;
 			}
@@ -1800,20 +1804,20 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 			}
 		}
 
-		if (_level >= 4 && !_isControled && isGainable)
+		if (_level >= 4 && !_isControlled && isGainable)
 		{
 
-			if (50000 - atof(this->getCKR2()->getCString()) >= boundValue)
+			if (50000 - atof(getCKR2()->getCString()) >= boundValue)
 			{
-				float newValue = atof(this->getCKR2()->getCString()) + boundValue;
-				this->setCKR2(CCString::createWithFormat("%f", newValue));
+				float newValue = atof(getCKR2()->getCString()) + boundValue;
+				setCKR2(CCString::createWithFormat("%f", newValue));
 			}
 			else
 			{
-				this->setCKR2(CCString::create("50000"));
+				setCKR2(CCString::create("50000"));
 			}
 
-			if (atof(this->getCKR2()->getCString()) >= 25000)
+			if (atof(getCKR2()->getCString()) >= 25000)
 			{
 				_isCanOugis2 = true;
 			}
@@ -1848,7 +1852,7 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 		if (gainValue != 0)
 		{
 
-			if (currentAttacker->_level >= 2 && !currentAttacker->_isControled)
+			if (currentAttacker->_level >= 2 && !currentAttacker->_isControlled)
 			{
 
 				if (45000 - atof(currentAttacker->getCKR()->getCString()) >= gainValue)
@@ -1872,7 +1876,7 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 				}
 			}
 
-			if (currentAttacker->_level >= 4 && !currentAttacker->_isControled)
+			if (currentAttacker->_level >= 4 && !currentAttacker->_isControlled)
 			{
 
 				if (50000 - atof(currentAttacker->getCKR2()->getCString()) >= gainValue)
@@ -1899,7 +1903,7 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 	}
 
 	if (strcmp(_role->getCString(), "Player") == 0 || (strcmp(_role->getCString(), "Tower") != 0 &&
-													   abs(ccpSub(this->getPosition(), _delegate->currentPlayer->getPosition()).x) < winSize.width / 2))
+													   abs(ccpSub(getPosition(), _delegate->currentPlayer->getPosition()).x) < winSize.width / 2))
 	{
 
 		//create damage value display
@@ -1921,30 +1925,30 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 
 			if (criticalValue <= 20)
 			{
-				this->setDamgeDisplay(realValue, "white");
+				setDamgeDisplay(realValue, "white");
 			}
 			else if (criticalValue <= 40)
 			{
-				this->setDamgeDisplay(realValue, "yellow");
+				setDamgeDisplay(realValue, "yellow");
 			}
 			else
 			{
-				this->setDamgeDisplay(realValue, "red");
+				setDamgeDisplay(realValue, "red");
 			}
 		}
 
 		//create damage effect
 
-		if (strcmp(this->_role->getCString(), "Flog") == 0 && strcmp(attacker->_role->getCString(), "Flog") != 0)
+		if (strcmp(_role->getCString(), "Flog") == 0 && strcmp(attacker->_role->getCString(), "Flog") != 0)
 		{
 			if (strcmp(effectType->getCString(), "a_hit") == 0)
 			{
-				this->setDamgeEffect(CCString::create("a_hit"));
+				setDamgeEffect(CCString::create("a_hit"));
 			}
 		}
 		else if (strcmp(attacker->_role->getCString(), "Flog") != 0)
 		{
-			this->setDamgeEffect(effectType);
+			setDamgeEffect(effectType);
 		}
 	}
 }
@@ -1963,13 +1967,13 @@ void CharacterBase::setCoinDisplay(int num)
 	rewardLabel->setScale(0.3f);
 	coinDisplay->addChild(rewardLabel);
 
-	coinDisplay->setPosition(ccp(this->getPositionX(), this->getPositionY() + this->getContentSize().height / 2));
+	coinDisplay->setPosition(ccp(getPositionX(), getPositionY() + getContentSize().height / 2));
 	_delegate->addChild(coinDisplay, 5000);
 
 	CCActionInterval *mv = CCMoveBy::create(0.5f, ccp(0, 12));
 	CCActionInterval *fadeOut = CCFadeOut::create(0.8f);
-	CCFiniteTimeAction *call = CCCallFuncND::create(coinDisplay, callfuncND_selector(CharacterBase::removeCoinDisplay), NULL);
-	CCActionInterval *sp = CCSpawn::create(fadeOut, mv, NULL);
+	CCFiniteTimeAction *call = CCCallFuncND::create(coinDisplay, callfuncND_selector(CharacterBase::removeCoinDisplay), nullptr);
+	CCActionInterval *sp = CCSpawn::create(fadeOut, mv, nullptr);
 	CCArray *seqArray = CCArray::create();
 	seqArray->addObject(sp);
 	seqArray->addObject(call);
@@ -1980,7 +1984,7 @@ void CharacterBase::setCoinDisplay(int num)
 void CharacterBase::removeCoinDisplay(CCNode *sender, void *data)
 {
 	sender->removeFromParent();
-	sender = NULL;
+	sender = nullptr;
 }
 
 void CharacterBase::setDamgeDisplay(unsigned int value, const char *type)
@@ -1993,15 +1997,15 @@ void CharacterBase::setDamgeDisplay(unsigned int value, const char *type)
 														  CCString::createWithFormat("Fonts/%s.fnt", type)->getCString());
 		damageFont->setAnchorPoint(ccp(0.5, 0.5));
 
-		if (strcmp(this->_role->getCString(), "Flog") == 0)
+		if (strcmp(_role->getCString(), "Flog") == 0)
 		{
 			damageFont->setScale(0.6f);
-			damageFont->setPosition(ccp(this->getPositionX() + rand() % 16, this->getPositionY() + this->getHeight() + rand() % 4));
+			damageFont->setPosition(ccp(getPositionX() + rand() % 16, getPositionY() + getHeight() + rand() % 4));
 		}
 		else
 		{
 			damageFont->setScale(0.8f);
-			damageFont->setPosition(ccp(this->getPositionX() + rand() % 16, this->getPositionY() + this->getHeight() + rand() % 16));
+			damageFont->setPosition(ccp(getPositionX() + rand() % 16, getPositionY() + getHeight() + rand() % 16));
 		}
 
 		_delegate->addChild(damageFont, currentNumberTag);
@@ -2012,7 +2016,7 @@ void CharacterBase::setDamgeDisplay(unsigned int value, const char *type)
 
 		CCActionInterval *mv = CCMoveBy::create(0.4f, ccp(0, 12));
 		CCActionInterval *fadeOut = CCFadeOut::create(0.4f);
-		CCActionInterval *sp = CCSpawn::create(fadeOut, mv, NULL);
+		CCActionInterval *sp = CCSpawn::create(fadeOut, mv, nullptr);
 
 		CCArray *seqArray = CCArray::create();
 		seqArray->addObject(sd);
@@ -2023,7 +2027,7 @@ void CharacterBase::setDamgeDisplay(unsigned int value, const char *type)
 
 		damageFont->runAction(seq);
 	}
-};
+}
 
 void CharacterBase::removeDamageDisplay()
 {
@@ -2033,14 +2037,14 @@ void CharacterBase::removeDamageDisplay()
 		CCLabelBMFont *damageFont = (CCLabelBMFont *)pObject;
 		damageFont->removeFromParent();
 		_damageArray->removeObjectAtIndex(0);
-		damageFont = NULL;
+		damageFont = nullptr;
 	}
 }
 
 void CharacterBase::setDamgeEffect(CCString *type)
 {
 	CCString *str = type;
-	if (strcmp(_role->getCString(), "Player") == 0 || abs(ccpSub(this->getPosition(), _delegate->currentPlayer->getPosition()).x) < winSize.width / 2)
+	if (strcmp(_role->getCString(), "Player") == 0 || abs(ccpSub(getPosition(), _delegate->currentPlayer->getPosition()).x) < winSize.width / 2)
 	{
 
 		if (damageEffectCount < 2)
@@ -2070,7 +2074,7 @@ void CharacterBase::setSkillEffect(CCNode *sender, void *data)
 	CCString *str = (CCString *)(file->objectForKey(1));
 
 	if (strcmp(_role->getCString(), "Player") == 0 ||
-		abs(ccpSub(this->getPosition(), _delegate->currentPlayer->getPosition()).x) < winSize.width / 2)
+		abs(ccpSub(getPosition(), _delegate->currentPlayer->getPosition()).x) < winSize.width / 2)
 	{
 
 		Effect *ef = Effect::create(str->getCString(), this);
@@ -2088,73 +2092,73 @@ void CharacterBase::setSkillEffect(CCNode *sender, void *data)
 			_delegate->skillEffectBatch->addChild(ef);
 		}
 	}
-};
+}
 
 void CharacterBase::setItem(abType type)
 {
 
-	if (_isControled)
+	if (_isControlled)
 	{
 		return;
 	}
 
-	if ((strcmp(this->getCharacter()->getCString(), "Kankuro") == 0 ||
-		 strcmp(this->getCharacter()->getCString(), "Chiyo") == 0 ||
-		 strcmp(this->getCharacter()->getCString(), "Kiba") == 0 ||
-		 strcmp(this->getCharacter()->getCString(), "Kakuzu") == 0) &&
-		this->getMonsterArray() && getMonsterArray()->count() > 0)
+	if ((strcmp(getCharacter()->getCString(), "Kankuro") == 0 ||
+		 strcmp(getCharacter()->getCString(), "Chiyo") == 0 ||
+		 strcmp(getCharacter()->getCString(), "Kiba") == 0 ||
+		 strcmp(getCharacter()->getCString(), "Kakuzu") == 0) &&
+		getMonsterArray() && getMonsterArray()->count() > 0)
 	{
 		CCObject *pObject;
-		CCARRAY_FOREACH(this->getMonsterArray(), pObject)
+		CCARRAY_FOREACH(getMonsterArray(), pObject)
 		{
 			Monster *mo = (Monster *)pObject;
 			if (strcmp(mo->getCharacter()->getCString(), "Traps") != 0)
 			{
 				mo->setItem(Item1);
 			}
-		};
+		}
 	}
 	_isCanItem1 = false;
-	if (strcmp(this->getRole()->getCString(), "Player") == 0)
+	if (strcmp(getRole()->getCString(), "Player") == 0)
 	{
-		if (this->_isAI)
+		if (_isAI)
 		{
 			_delegate->getHudLayer()->offCoin(CCString::createWithFormat("%d", 50)->getCString());
 		}
 	}
 	else
 	{
-		this->minusCoin(50);
+		minusCoin(50);
 	}
-	this->scheduleOnce(schedule_selector(Hero::enableItem1), 5.0f);
+	scheduleOnce(schedule_selector(Hero::enableItem1), 5.0f);
 
 	if (_hpBar)
 	{
 
 		int hpRestore = 3000 + gearRecoverValue;
-		if (atoi(_maxHP->getCString()) - atoi(_hp->getCString()) <= hpRestore)
+		if (to_uint(_maxHP->getCString()) - to_uint(_hp->getCString()) <= hpRestore)
 		{
-			this->setHP(CCString::create(this->getMaxHP()->getCString()));
+			setHP(CCString::create(getMaxHP()->getCString()));
 			if (_hpBar)
 			{
-				_hpBar->loseHP(this->getHpPercent());
+				_hpBar->loseHP(getHpPercent());
 			}
 		}
 		else
 		{
-			this->setHP(CCString::createWithFormat("%d", atoi(_hp->getCString()) + hpRestore));
+			setHP(CCString::createWithFormat("%ld", to_uint(_hp->getCString()) + hpRestore));
 			if (_hpBar)
 			{
-				_hpBar->loseHP(this->getHpPercent());
+				_hpBar->loseHP(getHpPercent());
 			}
 		}
 
 		if (!_isHealling && !_healItemEffect)
 		{
 			_healItemEffect = Effect::create("hp_restore", this);
-			_healItemEffect->setPosition(ccp(_isFlipped ? this->getContentSize().width / 2 + 16 : this->getContentSize().width / 2 - 16,
-											 this->_height));
-			this->addChild(_healItemEffect);
+			_healItemEffect->setPosition(ccp(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
+											 _height));
+			addChild(_healItemEffect);
 			//_isHealling=true;
 		}
 	}
@@ -2162,9 +2166,9 @@ void CharacterBase::setItem(abType type)
 
 bool CharacterBase::setGear(gearType type)
 {
-
 	int gearCost = 0;
-	if (type == gear00 || type == gear03 || type == gear06)
+	// The cost of [ 00 03 06 ] is 500
+	if (type % 3 == 0)
 	{
 		gearCost = 500;
 	}
@@ -2173,81 +2177,81 @@ bool CharacterBase::setGear(gearType type)
 		gearCost = 1000;
 	}
 
-	if (this->getGearArray()->count() <= 2 && atoi(this->getCoin()->getCString()) >= gearCost)
+	if (getGearArray()->count() <= 2 && to_int(getCoin()->getCString()) >= gearCost)
 	{
 		CCString *gearItem = CCString::createWithFormat("%d", gearType(type));
-		this->getGearArray()->addObject(gearItem);
+		getGearArray()->addObject(gearItem);
 
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
+		if (strcmp(getRole()->getCString(), "Player") == 0)
 		{
 			_delegate->getHudLayer()->offCoin(CCString::createWithFormat("%d", gearCost)->getCString());
 		}
 		else
 		{
-			this->minusCoin(gearCost);
+			minusCoin(gearCost);
 		}
 
 		switch (type)
 		{
 		case gear00:
-			this->_isCanGear00 = true;
+			_isCanGear00 = true;
 			break;
 		case gear01:
-			this->gearCKRValue = 25;
+			gearCKRValue = 25;
 			break;
 		case gear02:
-			this->isAttackGainCKR = true;
+			isAttackGainCKR = true;
 			break;
 		case gear03:
-			this->_isCanGear03 = true;
+			_isCanGear03 = true;
 			break;
 		case gear04:
 
-			if (this->gettempAttackValue1())
+			if (gettempAttackValue1())
 			{
-				this->settempAttackValue1(CCString::createWithFormat("%d", atoi(this->gettempAttackValue1()->getCString()) + 160));
+				settempAttackValue1(CCString::createWithFormat("%d", to_int(gettempAttackValue1()->getCString()) + 160));
 			}
-			this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->getnAttackValue()->getCString()) + 160));
-			this->isPofang = true;
+			setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 160));
+			isPofang = true;
 
 			break;
 		case gear05:
 
-			this->isGearCD = true;
+			isGearCD = true;
 
-			this->_sattackcoldDown1 -= 5;
-			this->_sattackcoldDown2 -= 5;
-			this->_sattackcoldDown3 -= 5;
+			_sattackcoldDown1 -= 5;
+			_sattackcoldDown2 -= 5;
+			_sattackcoldDown3 -= 5;
 
-			if (strcmp(this->getRole()->getCString(), "Player") == 0)
+			if (strcmp(getRole()->getCString(), "Player") == 0)
 			{
-				this->_delegate->getHudLayer()->skill1Button->setCD(CCString::createWithFormat("%d", this->_sattackcoldDown1 * 1000));
-				this->_delegate->getHudLayer()->skill2Button->setCD(CCString::createWithFormat("%d", this->_sattackcoldDown2 * 1000));
-				this->_delegate->getHudLayer()->skill3Button->setCD(CCString::createWithFormat("%d", this->_sattackcoldDown3 * 1000));
+				_delegate->getHudLayer()->skill1Button->setCD(CCString::createWithFormat("%d", _sattackcoldDown1 * 1000));
+				_delegate->getHudLayer()->skill2Button->setCD(CCString::createWithFormat("%d", _sattackcoldDown2 * 1000));
+				_delegate->getHudLayer()->skill3Button->setCD(CCString::createWithFormat("%d", _sattackcoldDown3 * 1000));
 
-				this->_delegate->getHudLayer()->skill1Button->_isColdChanged = true;
-				this->_delegate->getHudLayer()->skill2Button->_isColdChanged = true;
-				this->_delegate->getHudLayer()->skill3Button->_isColdChanged = true;
+				_delegate->getHudLayer()->skill1Button->_isColdChanged = true;
+				_delegate->getHudLayer()->skill2Button->_isColdChanged = true;
+				_delegate->getHudLayer()->skill3Button->_isColdChanged = true;
 			}
 
 			break;
 		case gear06:
-			this->_isCanGear06 = true;
+			_isCanGear06 = true;
 			break;
 		case gear07:
 			gearRecoverValue = 3000;
-			this->_delegate->getHudLayer()->item1Button->setCD(CCString::createWithFormat("%d", 3000));
-			this->_delegate->getHudLayer()->item1Button->_isColdChanged = true;
+			_delegate->getHudLayer()->item1Button->setCD(CCString::createWithFormat("%d", 3000));
+			_delegate->getHudLayer()->item1Button->_isColdChanged = true;
 			break;
 		case gear08:
-			int tempMaxHP = atoi(this->getMaxHP()->getCString());
+			unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
 			tempMaxHP += 6000;
-			this->setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+			setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 			if (_hpBar)
 			{
-				_hpBar->loseHP(this->getHpPercent());
+				_hpBar->loseHP(getHpPercent());
 			}
-			this->isHujia = true;
+			isHujia = true;
 
 			break;
 		}
@@ -2263,34 +2267,34 @@ bool CharacterBase::setGear(gearType type)
 void CharacterBase::useGear(gearType type)
 {
 
-	if (_isControled)
+	if (_isControlled)
 	{
 		return;
 	}
 
 	if (type == gear00)
 	{
-		if (this->getActionState() == State::ATTACK ||
-			this->getActionState() == State::WALK ||
-			this->getActionState() == State::IDLE)
+		if (getActionState() == State::ATTACK ||
+			getActionState() == State::WALK ||
+			getActionState() == State::IDLE)
 		{
-			if (this->getWalkSpeed() == 224)
+			if (getWalkSpeed() == 224)
 			{
-				this->setWalkSpeed(320);
+				setWalkSpeed(320);
 
 				_isCanGear00 = false;
 
 				_speedItemEffect = Effect::create("speedUp", this);
-				this->addChild(_speedItemEffect);
+				addChild(_speedItemEffect);
 
-				this->scheduleOnce(schedule_selector(CharacterBase::enableGear00), 15.0f);
-				if (strcmp(_role->getCString(), "Player") == 0 || strcmp(this->getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) == 0)
+				scheduleOnce(schedule_selector(CharacterBase::enableGear00), 15.0f);
+				if (strcmp(_role->getCString(), "Player") == 0 || strcmp(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) == 0)
 				{
-					this->setOpacity(150);
+					setOpacity(150);
 				}
 				else
 				{
-					this->setVisible(false);
+					setVisible(false);
 				}
 				if (_hpBar)
 				{
@@ -2300,13 +2304,13 @@ void CharacterBase::useGear(gearType type)
 				{
 					_shadow->setVisible(false);
 				}
-				this->_isVisable = false;
+				_isVisable = false;
 
 				CCDictionary *callValue2 = CCDictionary::create();
 				callValue2->setObject(CCString::create("Audio/Effect/suzou_effect.ogg"), 1);
-				this->setSound(this, callValue2);
+				setSound(this, callValue2);
 
-				this->schedule(schedule_selector(CharacterBase::disableGear1), 3.0f);
+				schedule(schedule_selector(CharacterBase::disableGear1), 3.0f);
 			}
 		}
 	}
@@ -2316,56 +2320,56 @@ void CharacterBase::useGear(gearType type)
 
 		CCDictionary *tmpValue = CCDictionary::create();
 		tmpValue->setObject(CCString::create("Traps"), 1);
-		this->setMon(this, (void *)tmpValue);
+		setMon(this, (void *)tmpValue);
 
-		this->scheduleOnce(schedule_selector(CharacterBase::enableGear03), 15.0f);
+		scheduleOnce(schedule_selector(CharacterBase::enableGear03), 15.0f);
 	}
 	else if (type == gear06)
 	{
 		_isCanGear06 = false;
-		this->scheduleOnce(schedule_selector(CharacterBase::enableGear06), 15.0f);
+		scheduleOnce(schedule_selector(CharacterBase::enableGear06), 15.0f);
 
 		if (!_isWudi && !_isBati)
 		{
 
-			if (this->getActionState() == State::IDLE ||
-				this->getActionState() == State::WALK ||
-				this->getActionState() == State::FLOAT_AIR ||
-				this->getActionState() == State::AIRHURT ||
-				this->getActionState() == State::HURT ||
-				this->getActionState() == State::KOCKDOWN)
+			if (getActionState() == State::IDLE ||
+				getActionState() == State::WALK ||
+				getActionState() == State::FLOAT ||
+				getActionState() == State::AIRHURT ||
+				getActionState() == State::HURT ||
+				getActionState() == State::KOCKDOWN)
 			{
 
-				if (this->_isSticking)
+				if (_isSticking)
 				{
-					this->_isSticking = false;
+					_isSticking = false;
 				}
-				if (this->getActionState() == State::FLOAT_AIR ||
-					this->getActionState() == State::AIRHURT)
+				if (getActionState() == State::FLOAT ||
+					getActionState() == State::AIRHURT)
 				{
-					this->setPositionY(_originY);
+					setPositionY(_originY);
 					_originY = 0;
-					_delegate->reorderChild(this, -this->getPositionY());
+					_delegate->reorderChild(this, -getPositionY());
 				}
 
-				this->idle();
+				idle();
 
 				CCDictionary *callValue = CCDictionary::create();
 				callValue->setObject(CCString::create("tishen"), 1);
-				this->setSkillEffect(this, callValue);
-				this->scheduleOnce(schedule_selector(CharacterBase::disableGear2), 1.0f);
+				setSkillEffect(this, callValue);
+				scheduleOnce(schedule_selector(CharacterBase::disableGear2), 1.0f);
 
 				CCDictionary *callValue2 = CCDictionary::create();
 				callValue2->setObject(CCString::create("Audio/Effect/poof2.ogg"), 1);
-				this->setSound(this, callValue2);
+				setSound(this, callValue2);
 
-				if (strcmp(_role->getCString(), "Player") == 0 || strcmp(this->getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) == 0)
+				if (strcmp(_role->getCString(), "Player") == 0 || strcmp(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) == 0)
 				{
-					this->setOpacity(150);
+					setOpacity(150);
 				}
 				else
 				{
-					this->setVisible(false);
+					setVisible(false);
 				}
 				if (_hpBar)
 				{
@@ -2376,7 +2380,7 @@ void CharacterBase::useGear(gearType type)
 					_shadow->setVisible(false);
 				}
 
-				this->_isVisable = false;
+				_isVisable = false;
 			}
 		}
 	}
@@ -2385,11 +2389,11 @@ void CharacterBase::useGear(gearType type)
 void CharacterBase::disableGear1(float dt)
 {
 
-	if (!_isVisable && this->_actionState != State::HURT)
+	if (!_isVisable && _actionState != State::HURT)
 	{
 
-		this->setOpacity(255);
-		this->setVisible(true);
+		setOpacity(255);
+		setVisible(true);
 
 		if (_hpBar)
 		{
@@ -2405,10 +2409,10 @@ void CharacterBase::disableGear1(float dt)
 	else
 	{
 
-		this->unschedule(schedule_selector(CharacterBase::disableGear1));
-		if (this->getWalkSpeed() == 320)
+		unschedule(schedule_selector(CharacterBase::disableGear1));
+		if (getWalkSpeed() == 320)
 		{
-			this->setWalkSpeed(224);
+			setWalkSpeed(224);
 		}
 	}
 }
@@ -2416,8 +2420,8 @@ void CharacterBase::disableGear1(float dt)
 void CharacterBase::disableGear2(float dt)
 {
 
-	this->setOpacity(255);
-	this->setVisible(true);
+	setOpacity(255);
+	setVisible(true);
 
 	if (_hpBar)
 	{
@@ -2452,18 +2456,18 @@ void CharacterBase::enableGear06(float dt)
 
 void CharacterBase::addCoin(int num)
 {
-	this->setCoin(CCString::createWithFormat("%d", atoi(this->getCoin()->getCString()) + num));
+	setCoin(CCString::createWithFormat("%d", to_int(getCoin()->getCString()) + num));
 }
 
 void CharacterBase::minusCoin(int num)
 {
-	if (atoi(this->getCoin()->getCString()) > num)
+	if (to_int(getCoin()->getCString()) > num)
 	{
-		this->setCoin(CCString::createWithFormat("%d", atoi(this->getCoin()->getCString()) - num));
+		setCoin(CCString::createWithFormat("%d", to_int(getCoin()->getCString()) - num));
 	}
 	else
 	{
-		this->setCoin(CCString::createWithFormat("%d", 0));
+		setCoin(CCString::createWithFormat("%d", 0));
 	}
 }
 
@@ -2472,21 +2476,21 @@ void CharacterBase::setRestore(float dt)
 	if (_hpBar)
 	{
 
-		if (atoi(_maxHP->getCString()) - atoi(_hp->getCString()) <= 800)
+		if (to_uint(_maxHP->getCString()) - to_uint(_hp->getCString()) <= 800)
 		{
-			this->setHP(CCString::create(this->getMaxHP()->getCString()));
-			_hpBar->loseHP(this->getHpPercent());
+			setHP(CCString::create(getMaxHP()->getCString()));
+			_hpBar->loseHP(getHpPercent());
 		}
 		else
 		{
-			this->setHP(CCString::createWithFormat("%d", atoi(_hp->getCString()) + 800));
-			_hpBar->loseHP(this->getHpPercent());
+			setHP(CCString::createWithFormat("%ld", to_uint(_hp->getCString()) + 800));
+			_hpBar->loseHP(getHpPercent());
 		}
 
 		_healItemEffect = Effect::create("hp_restore", this);
-		_healItemEffect->setPosition(ccp(_isFlipped ? this->getContentSize().width / 2 + 16 : this->getContentSize().width / 2 - 16,
-										 this->_height));
-		this->addChild(_healItemEffect);
+		_healItemEffect->setPosition(ccp(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
+										 _height));
+		addChild(_healItemEffect);
 	}
 }
 
@@ -2497,92 +2501,92 @@ void CharacterBase::setRestore2(float dt)
 	{
 		if (bamen >= 8)
 		{
-			if (atoi(_hp->getCString()) - 1000 > 0)
+			if (to_uint(_hp->getCString()) - 1000 > 0)
 			{
-				this->setHP(CCString::createWithFormat("%d", atoi(_hp->getCString()) - 1000));
-				_hpBar->loseHP(this->getHpPercent());
+				setHP(CCString::createWithFormat("%ld", to_uint(_hp->getCString()) - 1000));
+				_hpBar->loseHP(getHpPercent());
 			}
 			else
 			{
-				this->setHP(CCString::createWithFormat("%d", 100));
-				_hpBar->loseHP(this->getHpPercent());
+				setHP(CCString::createWithFormat("%d", 100));
+				_hpBar->loseHP(getHpPercent());
 			}
 		}
 		else if (bamen >= 5)
 		{
-			if (atoi(_hp->getCString()) - 200 > 0)
+			if (to_uint(_hp->getCString()) - 200 > 0)
 			{
-				this->setHP(CCString::createWithFormat("%d", atoi(_hp->getCString()) - 200));
-				_hpBar->loseHP(this->getHpPercent());
+				setHP(CCString::createWithFormat("%ld", to_uint(_hp->getCString()) - 200));
+				_hpBar->loseHP(getHpPercent());
 			}
 			else
 			{
-				this->setHP(CCString::createWithFormat("%d", 100));
-				_hpBar->loseHP(this->getHpPercent());
+				setHP(CCString::createWithFormat("%d", 100));
+				_hpBar->loseHP(getHpPercent());
 			}
 		}
 		else if (bamen >= 4)
 		{
-			if (atoi(_hp->getCString()) - 150 > 0)
+			if (to_uint(_hp->getCString()) - 150 > 0)
 			{
-				this->setHP(CCString::createWithFormat("%d", atoi(_hp->getCString()) - 150));
-				_hpBar->loseHP(this->getHpPercent());
+				setHP(CCString::createWithFormat("%ld", to_uint(_hp->getCString()) - 150));
+				_hpBar->loseHP(getHpPercent());
 			}
 			else
 			{
-				this->setHP(CCString::createWithFormat("%d", 100));
-				_hpBar->loseHP(this->getHpPercent());
+				setHP(CCString::createWithFormat("%d", 100));
+				_hpBar->loseHP(getHpPercent());
 			}
 		}
 		else if (bamen >= 3)
 		{
-			if (atoi(_hp->getCString()) - 100 > 0)
+			if (to_uint(_hp->getCString()) - 100 > 0)
 			{
-				this->setHP(CCString::createWithFormat("%d", atoi(_hp->getCString()) - 100));
-				_hpBar->loseHP(this->getHpPercent());
+				setHP(CCString::createWithFormat("%ld", to_uint(_hp->getCString()) - 100));
+				_hpBar->loseHP(getHpPercent());
 			}
 			else
 			{
-				this->setHP(CCString::createWithFormat("%d", 100));
-				_hpBar->loseHP(this->getHpPercent());
+				setHP(CCString::createWithFormat("%d", 100));
+				_hpBar->loseHP(getHpPercent());
 			}
 		}
 
 		bool isZone = false;
-		if (strcmp(Akatsuki, _group->getCString()) == 0 && this->getPositionX() <= _delegate->currentMap->getTileSize().width * 2)
+		if (strcmp(Akatsuki, _group->getCString()) == 0 && getPositionX() <= _delegate->currentMap->getTileSize().width * 2)
 		{
 			isZone = true;
 		}
-		else if (strcmp(Konoha, _group->getCString()) == 0 && this->getPositionX() >= (_delegate->currentMap->getMapSize().width - 2) * _delegate->currentMap->getTileSize().width)
+		else if (strcmp(Konoha, _group->getCString()) == 0 && getPositionX() >= (_delegate->currentMap->getMapSize().width - 2) * _delegate->currentMap->getTileSize().width)
 		{
 			isZone = true;
 		}
 		if (isZone)
 		{
 
-			if (atoi(_hp->getCString()) - 1000 > 0)
+			if (to_uint(_hp->getCString()) - 1000 > 0)
 			{
-				this->setHP(CCString::createWithFormat("%d", atoi(_hp->getCString()) - 1000));
-				_hpBar->loseHP(this->getHpPercent());
+				setHP(CCString::createWithFormat("%ld", to_uint(_hp->getCString()) - 1000));
+				_hpBar->loseHP(getHpPercent());
 			}
 			else
 			{
-				this->setHP(CCString::createWithFormat("%d", 100));
-				_hpBar->loseHP(this->getHpPercent());
+				setHP(CCString::createWithFormat("%d", 100));
+				_hpBar->loseHP(getHpPercent());
 			}
 		}
 
-		if (this->getActionState() == State::IDLE && this->getHpPercent() < 1)
+		if (getActionState() == State::IDLE && getHpPercent() < 1)
 		{
-			if (atoi(_maxHP->getCString()) - atoi(_hp->getCString()) <= 300)
+			if (to_uint(_maxHP->getCString()) - to_uint(_hp->getCString()) <= 300)
 			{
-				this->setHP(CCString::create(this->getMaxHP()->getCString()));
-				_hpBar->loseHP(this->getHpPercent());
+				setHP(CCString::create(getMaxHP()->getCString()));
+				_hpBar->loseHP(getHpPercent());
 			}
 			else
 			{
-				this->setHP(CCString::createWithFormat("%d", atoi(_hp->getCString()) + 300));
-				_hpBar->loseHP(this->getHpPercent());
+				setHP(CCString::createWithFormat("%ld", to_uint(_hp->getCString()) + 300));
+				_hpBar->loseHP(getHpPercent());
 			}
 		}
 	}
@@ -2593,13 +2597,13 @@ void CharacterBase::disableEffect()
 	if (_healItemEffect)
 	{
 		_healItemEffect->removeFromParentAndCleanup(true);
-		_healItemEffect = NULL;
+		_healItemEffect = nullptr;
 	}
 
 	if (_speedItemEffect)
 	{
 		_speedItemEffect->removeFromParentAndCleanup(true);
-		_speedItemEffect = NULL;
+		_speedItemEffect = nullptr;
 	}
 }
 
@@ -2610,13 +2614,13 @@ void CharacterBase::setSound(CCNode *sender, void *data)
 	{
 		bool _isPlayable = false;
 		if (strcmp(_role->getCString(), "Player") == 0 ||
-			abs(ccpSub(this->getPosition(), _delegate->currentPlayer->getPosition()).x) < winSize.width / 2)
+			abs(ccpSub(getPosition(), _delegate->currentPlayer->getPosition()).x) < winSize.width / 2)
 		{
 			_isPlayable = true;
 		}
 		if (_delegate->controlChar)
 		{
-			if (abs(ccpSub(this->getPosition(), _delegate->controlChar->getPosition()).x) < winSize.width / 2)
+			if (abs(ccpSub(getPosition(), _delegate->controlChar->getPosition()).x) < winSize.width / 2)
 			{
 
 				_isPlayable = true;
@@ -2631,7 +2635,7 @@ void CharacterBase::setSound(CCNode *sender, void *data)
 			SimpleAudioEngine::sharedEngine()->playEffect(str->getCString());
 		}
 	}
-};
+}
 
 void CharacterBase::setDSound(CCNode *sender, void *data)
 {
@@ -2640,19 +2644,19 @@ void CharacterBase::setDSound(CCNode *sender, void *data)
 	{
 		bool _isPlayable = false;
 		if (strcmp(_role->getCString(), "Player") == 0 ||
-			abs(ccpSub(this->getPosition(), _delegate->currentPlayer->getPosition()).x) < winSize.width / 2)
+			abs(ccpSub(getPosition(), _delegate->currentPlayer->getPosition()).x) < winSize.width / 2)
 		{
 			_isPlayable = true;
 		}
 		if (_delegate->controlChar)
 		{
-			if (abs(ccpSub(this->getPosition(), _delegate->controlChar->getPosition()).x) < winSize.width / 2)
+			if (abs(ccpSub(getPosition(), _delegate->controlChar->getPosition()).x) < winSize.width / 2)
 			{
 				_isPlayable = true;
 			}
 		}
 
-		if (_isPlayable && this->_isHitOne)
+		if (_isPlayable && _isHitOne)
 		{
 			CCDictionary *file = (CCDictionary *)data;
 			CCString *str = (CCString *)(file->objectForKey(1));
@@ -2660,7 +2664,7 @@ void CharacterBase::setDSound(CCNode *sender, void *data)
 			SimpleAudioEngine::sharedEngine()->playEffect(str->getCString());
 		}
 	}
-};
+}
 
 void CharacterBase::setAttackBox(CCNode *sender, void *data)
 {
@@ -2672,29 +2676,29 @@ void CharacterBase::setAttackBox(CCNode *sender, void *data)
 	if (_actionState == State::HURT)
 	{
 
-		if (strcmp(this->getCharacter()->getCString(), "Sasuke") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "ImmortalSasuke") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "DevaPath") == 0)
+		if (strcmp(getCharacter()->getCString(), "Sasuke") == 0 ||
+			strcmp(getCharacter()->getCString(), "ImmortalSasuke") == 0 ||
+			strcmp(getCharacter()->getCString(), "DevaPath") == 0)
 		{
 
-			if (atoi(_maxHP->getCString()) - atoi(_hp->getCString()) <= 260)
+			if (to_uint(_maxHP->getCString()) - to_uint(_hp->getCString()) <= 260)
 			{
-				this->setHP(CCString::create(this->getMaxHP()->getCString()));
-				_hpBar->loseHP(this->getHpPercent());
+				setHP(CCString::create(getMaxHP()->getCString()));
+				_hpBar->loseHP(getHpPercent());
 			}
 			else
 			{
-				this->setHP(CCString::createWithFormat("%d", atoi(_hp->getCString()) + 260));
-				_hpBar->loseHP(this->getHpPercent());
+				setHP(CCString::createWithFormat("%ld", to_uint(_hp->getCString()) + 260));
+				_hpBar->loseHP(getHpPercent());
 			}
 
 			if (_role && strcmp(_role->getCString(), "Player") == 0)
 			{
-				_delegate->setHPLose(this->getHpPercent());
+				_delegate->setHPLose(getHpPercent());
 			}
 
 			_attackType = _spcattackType1;
-			_attackValue = atoi(_spcattackValue1->getCString());
+			_attackValue = to_int(_spcattackValue1->getCString());
 			_attackRangeX = _spcattackRangeX1;
 			_attackRangeY = _spcattackRangeY1;
 		}
@@ -2705,7 +2709,7 @@ void CharacterBase::setAttackBox(CCNode *sender, void *data)
 	if (strcmp(_role->getCString(), "Player") == 0)
 	{
 
-		if ((_actionState == State::OATTACK || _actionState == State::O2ATTACK) && this->_isHitOne == true && !_delegate->_isShacking)
+		if ((_actionState == State::OATTACK || _actionState == State::O2ATTACK) && _isHitOne == true && !_delegate->_isShacking)
 		{
 			_delegate->_isShacking = true;
 			CCScene *f = CCDirector::sharedDirector()->getRunningScene();
@@ -2714,11 +2718,11 @@ void CharacterBase::setAttackBox(CCNode *sender, void *data)
 		}
 		if (_delegate->_isAttackButtonRelease && _actionState == State::ATTACK && !_isOnlySkillLocked && !_isAI)
 		{
-			this->idle();
+			idle();
 			return;
 		}
 	}
-};
+}
 
 void CharacterBase::getSticker(float dt)
 {
@@ -2728,27 +2732,27 @@ void CharacterBase::getSticker(float dt)
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
 		Hero *tempHero = (Hero *)pObject;
-		CharacterBase *tempSticker = NULL;
+		CharacterBase *tempSticker = nullptr;
 		if (tempHero->_sticker)
 		{
 			tempSticker = (CharacterBase *)tempHero->_sticker;
 		}
-		if (tempSticker && strcmp(tempSticker->getCharacter()->getCString(), this->getCharacter()->getCString()) == 0 && tempHero->_isSticking)
+		if (tempSticker && strcmp(tempSticker->getCharacter()->getCString(), getCharacter()->getCString()) == 0 && tempHero->_isSticking)
 		{
 			return;
 		}
-	};
+	}
 
-	this->unschedule(schedule_selector(CharacterBase::getSticker));
-	this->dealloc();
+	unschedule(schedule_selector(CharacterBase::getSticker));
+	dealloc();
 }
 
 void CharacterBase::disableShack()
 {
 	_delegate->_isShacking = false;
-	if (strcmp(this->getRole()->getCString(), "Tower") == 0)
+	if (strcmp(getRole()->getCString(), "Tower") == 0)
 	{
-		this->_isHitOne = false;
+		_isHitOne = false;
 	}
 }
 
@@ -2757,25 +2761,25 @@ void CharacterBase::setMove(CCNode *sender, void *data)
 
 	int moveLength = 0;
 
-	if (this->getKnockLength())
+	if (getKnockLength())
 	{
-		if (this->getKnockLength() == 1)
+		if (getKnockLength() == 1)
 		{
 			return;
 		}
-		moveLength = this->getKnockLength();
+		moveLength = getKnockLength();
 	}
 	else
 	{
 		moveLength = *((int *)&data);
 	}
 
-	if (this->getPositionX() > _delegate->currentMap->getTileSize().width &&
-		this->getPositionX() < (_delegate->currentMap->getMapSize().width - 1) * _delegate->currentMap->getTileSize().width)
+	if (getPositionX() > _delegate->currentMap->getTileSize().width &&
+		getPositionX() < (_delegate->currentMap->getMapSize().width - 1) * _delegate->currentMap->getTileSize().width)
 	{
 
 		CCActionInterval *mv;
-		if (this->_actionState == State::HURT)
+		if (_actionState == State::HURT)
 		{
 			if (!_knockDiretion)
 			{
@@ -2786,21 +2790,21 @@ void CharacterBase::setMove(CCNode *sender, void *data)
 
 				mv = CCMoveBy::create(0.1f, ccp(_knockDiretion ? -moveLength : moveLength, 0));
 			}
-			this->runAction(mv);
+			runAction(mv);
 		}
 		else
 		{
 			mv = CCMoveBy::create(0.1f, ccp(_isFlipped ? -moveLength : moveLength, 0));
-			this->runAction(mv);
-		};
+			runAction(mv);
+		}
 	}
-};
+}
 
 void CharacterBase::setJump(CCNode *sender, void *data)
 {
 
 	if (
-		_actionState != State::FLOAT_AIR &&
+		_actionState != State::FLOAT &&
 		_actionState != State::AIRHURT &&
 		_actionState != State::HURT &&
 		_actionState != State::DEAD)
@@ -2809,8 +2813,8 @@ void CharacterBase::setJump(CCNode *sender, void *data)
 		_actionState = State::JUMP;
 
 		bool jumpDirection = (bool)data;
-		float posX = this->getPositionX();
-		float posY = this->getPositionY();
+		float posX = getPositionX();
+		float posY = getPositionY();
 		_originY = posY;
 
 		if (!jumpDirection)
@@ -2822,24 +2826,24 @@ void CharacterBase::setJump(CCNode *sender, void *data)
 			_jumpUPAction = CCJumpTo::create(0.8f, ccp(posX + (_isFlipped ? -64 : 64), posY), 64, 1);
 		}
 
-		this->runAction(_jumpUPAction);
+		runAction(_jumpUPAction);
 	}
 }
 
 void CharacterBase::setCharge(CCNode *sender, void *data)
 {
 	int moveLength = *((int *)&data);
-	if ((this->getPositionX() < _delegate->currentMap->getTileSize().width && _isFlipped) ||
-		(this->getPositionX() > (_delegate->currentMap->getMapSize().width - 1) * _delegate->currentMap->getTileSize().width && !_isFlipped))
+	if ((getPositionX() < _delegate->currentMap->getTileSize().width && _isFlipped) ||
+		(getPositionX() > (_delegate->currentMap->getMapSize().width - 1) * _delegate->currentMap->getTileSize().width && !_isFlipped))
 	{
 		return;
 	}
 	else
 	{
 		_moveAction = CCMoveBy::create(0.1f, ccp(_isFlipped ? -moveLength * winSize.width / 1280 : moveLength * winSize.width / 1280, 0));
-		this->runAction(_moveAction);
+		runAction(_moveAction);
 	}
-};
+}
 
 // with out getCollider
 void CharacterBase::setChargeB(CCNode *sender, void *data)
@@ -2855,17 +2859,17 @@ void CharacterBase::setChargeB(CCNode *sender, void *data)
 		delay = 0.1f;
 	}
 
-	if ((this->getPositionX() < _delegate->currentMap->getTileSize().width && _isFlipped) ||
-		(this->getPositionX() > (_delegate->currentMap->getMapSize().width - 1) * _delegate->currentMap->getTileSize().width && !_isFlipped))
+	if ((getPositionX() < _delegate->currentMap->getTileSize().width && _isFlipped) ||
+		(getPositionX() > (_delegate->currentMap->getMapSize().width - 1) * _delegate->currentMap->getTileSize().width && !_isFlipped))
 	{
 		return;
 	}
 	else
 	{
 		_moveAction = CCMoveBy::create(delay, ccp(_isFlipped ? -moveLength * winSize.width / 1280 : moveLength * winSize.width / 1280, 0));
-		this->runAction(_moveAction);
+		runAction(_moveAction);
 	}
-};
+}
 
 void CharacterBase::setCommand(CCNode *sender, void *data)
 {
@@ -2878,31 +2882,31 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 	{
 		if (_hpBar)
 		{
-			this->setHP(CCString::create(this->getMaxHP()->getCString()));
-			_hpBar->loseHP(this->getHpPercent());
-			_hpBar->setPositionY(this->getHeight());
+			setHP(CCString::create(getMaxHP()->getCString()));
+			_hpBar->loseHP(getHpPercent());
+			_hpBar->setPositionY(getHeight());
 		}
 	}
 	else if (strcmp(commandType->getCString(), "setInvincible") == 0)
 	{
-		this->_isWudi = true;
+		_isWudi = true;
 	}
 	else if (strcmp(commandType->getCString(), "setGainCKR") == 0)
 	{
 		int boundValue = 1500;
 		if (_level >= 2)
 		{
-			if (45000 - atof(this->getCKR()->getCString()) >= boundValue)
+			if (45000 - atof(getCKR()->getCString()) >= boundValue)
 			{
-				float newValue = atof(this->getCKR()->getCString()) + boundValue;
-				this->setCKR(CCString::createWithFormat("%f", newValue));
+				float newValue = atof(getCKR()->getCString()) + boundValue;
+				setCKR(CCString::createWithFormat("%f", newValue));
 			}
 			else
 			{
-				this->setCKR(CCString::create("45000"));
+				setCKR(CCString::create("45000"));
 			}
 
-			if (atof(this->getCKR()->getCString()) >= 15000)
+			if (atof(getCKR()->getCString()) >= 15000)
 			{
 				_isCanOugis1 = true;
 			}
@@ -2913,20 +2917,20 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 			}
 		}
 
-		if (_level >= 4 && !_isControled)
+		if (_level >= 4 && !_isControlled)
 		{
 
-			if (50000 - atof(this->getCKR2()->getCString()) >= boundValue)
+			if (50000 - atof(getCKR2()->getCString()) >= boundValue)
 			{
-				float newValue = atof(this->getCKR2()->getCString()) + boundValue;
-				this->setCKR2(CCString::createWithFormat("%f", newValue));
+				float newValue = atof(getCKR2()->getCString()) + boundValue;
+				setCKR2(CCString::createWithFormat("%f", newValue));
 			}
 			else
 			{
-				this->setCKR2(CCString::create("50000"));
+				setCKR2(CCString::create("50000"));
 			}
 
-			if (atof(this->getCKR2()->getCString()) >= 25000)
+			if (atof(getCKR2()->getCString()) >= 25000)
 			{
 				_isCanOugis2 = true;
 			}
@@ -2939,27 +2943,27 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 	}
 	else if (strcmp(commandType->getCString(), "reInvincible") == 0)
 	{
-		this->_isWudi = false;
+		_isWudi = false;
 	}
 	else if (strcmp(commandType->getCString(), "setInvisible") == 0)
 	{
-		this->setVisible(false);
-		this->_isVisable = false;
+		setVisible(false);
+		_isVisable = false;
 	}
 	else if (strcmp(commandType->getCString(), "reInvisible") == 0)
 	{
-		this->setVisible(true);
+		setVisible(true);
 		_isVisable = true;
 	}
 	else if (strcmp(commandType->getCString(), "setTransport2") == 0)
 	{
 		CCObject *pObject;
-		int tsPosX = this->getPositionX();
-		int tsPosY = this->getPositionY();
+		int tsPosX = getPositionX();
+		int tsPosY = getPositionY();
 
-		if (this->getMonsterArray() && this->_actionState != State::ATTACK)
+		if (getMonsterArray() && _actionState != State::ATTACK)
 		{
-			CCARRAY_FOREACH(this->getMonsterArray(), pObject)
+			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 
 				Monster *mo = (Monster *)pObject;
@@ -2969,10 +2973,10 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 					tsPosY = mo->getPositionY();
 					mo->attack(NAttack);
 				}
-			};
+			}
 		}
 
-		this->setPosition(ccp(tsPosX, tsPosY));
+		setPosition(ccp(tsPosX, tsPosY));
 		CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", this);
 
 		_delegate->reorderChild(this, -tsPosY);
@@ -2980,27 +2984,27 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 	else if (strcmp(commandType->getCString(), "setTransport") == 0)
 	{
 		CCObject *pObject;
-		int tsPosX = this->getPositionX();
-		int tsPosY = this->getPositionY();
+		int tsPosX = getPositionX();
+		int tsPosY = getPositionY();
 
 		if (_mainTarget)
 		{
 
 			if (_mainTarget->_isFlipped)
 			{
-				this->setFlipX(true);
-				this->_isFlipped = true;
+				setFlipX(true);
+				_isFlipped = true;
 			}
 			else
 			{
-				this->setFlipX(false);
-				this->_isFlipped = false;
+				setFlipX(false);
+				_isFlipped = false;
 			}
 		}
 
-		if (strcmp(this->getCharacter()->getCString(), "Sakura") == 0)
+		if (strcmp(getCharacter()->getCString(), "Sakura") == 0)
 		{
-			float posY = this->getPositionY();
+			float posY = getPositionY();
 			if (!_originY)
 			{
 				if (posY == 0)
@@ -3009,7 +3013,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 				}
 				_originY = posY;
 			}
-			this->setPosition(ccp(this->getPositionX(), this->getPositionY() + 64));
+			setPosition(ccp(getPositionX(), getPositionY() + 64));
 			return;
 		}
 		else
@@ -3029,53 +3033,53 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 			}
 		}
 
-		this->setPosition(ccp(tsPosX, tsPosY));
+		setPosition(ccp(tsPosX, tsPosY));
 		CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", this);
 
-		if (strcmp(this->getCharacter()->getCString(), "Yominuma") != 0)
+		if (strcmp(getCharacter()->getCString(), "Yominuma") != 0)
 		{
 			_delegate->reorderChild(this, -tsPosY);
 		}
 	}
 	else if (strcmp(commandType->getCString(), "reTransport") == 0)
 	{
-		this->setPosition(ccp(this->getPositionX(), _originY));
+		setPosition(ccp(getPositionX(), _originY));
 		_originY = 0;
 	}
 	else if (strcmp(commandType->getCString(), "setDead") == 0)
 	{
-		this->_isSuicide = true;
-		this->dead();
+		_isSuicide = true;
+		dead();
 	}
 	else if (strcmp(commandType->getCString(), "findTarget") == 0)
 	{
 
-		if (!this->findEnemy("Hero", 0))
+		if (!findEnemy("Hero", 0))
 		{
-			if (!this->findEnemy("Flog", 0) || strcmp(this->getCharacter()->getCString(), "RikudoNaruto") == 0 ||
-				strcmp(this->getCharacter()->getCString(), "SageNaruto") == 0)
+			if (!findEnemy("Flog", 0) || strcmp(getCharacter()->getCString(), "RikudoNaruto") == 0 ||
+				strcmp(getCharacter()->getCString(), "SageNaruto") == 0)
 			{
-				_mainTarget = NULL;
+				_mainTarget = nullptr;
 			}
-		};
+		}
 
 		if (_mainTarget)
 		{
-			if (strcmp(this->getCharacter()->getCString(), "Dogs") == 0 ||
-				strcmp(this->getCharacter()->getCString(), "Yominuma") == 0 ||
-				strcmp(this->getCharacter()->getCString(), "SandBall") == 0 ||
-				strcmp(this->getCharacter()->getCString(), "Sabaku") == 0 ||
-				strcmp(this->getCharacter()->getCString(), "Yataikuzu") == 0 ||
-				strcmp(this->getCharacter()->getCString(), "Lee") == 0 ||
-				strcmp(this->getCharacter()->getCString(), "RockLee") == 0)
+			if (strcmp(getCharacter()->getCString(), "Dogs") == 0 ||
+				strcmp(getCharacter()->getCString(), "Yominuma") == 0 ||
+				strcmp(getCharacter()->getCString(), "SandBall") == 0 ||
+				strcmp(getCharacter()->getCString(), "Sabaku") == 0 ||
+				strcmp(getCharacter()->getCString(), "Yataikuzu") == 0 ||
+				strcmp(getCharacter()->getCString(), "Lee") == 0 ||
+				strcmp(getCharacter()->getCString(), "RockLee") == 0)
 			{
 				_markPoint = ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY());
 			}
-			else if (strcmp(this->getCharacter()->getCString(), "Tsukuyomi") == 0)
+			else if (strcmp(getCharacter()->getCString(), "Tsukuyomi") == 0)
 			{
 				_markPoint = ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY() + 2);
 			}
-			else if (strcmp(this->getCharacter()->getCString(), "KageFeng") == 0)
+			else if (strcmp(getCharacter()->getCString(), "KageFeng") == 0)
 			{
 
 				_markPoint = ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY - 6 : _mainTarget->getPositionY() - 6);
@@ -3094,12 +3098,12 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
 			Hero *tempHero = (Hero *)pObject;
-			if (strcmp(this->_group->getCString(), tempHero->_group->getCString()) == 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState == State::DEAD && tempHero->rebornSprite)
+			if (strcmp(_group->getCString(), tempHero->_group->getCString()) == 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState == State::DEAD && tempHero->rebornSprite)
 			{
 				tempHero->unschedule(schedule_selector(Hero::reborn));
 				tempHero->reborn(0.1f);
 			}
-		};
+		}
 	}
 	else if (strcmp(commandType->getCString(), "setTrade") == 0)
 	{
@@ -3113,42 +3117,42 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 				tempHero->_actionState == State::DEAD && tempHero->rebornSprite && tempHero->hearts > 0 && strcmp(tempHero->_character->getCString(), "Kakuzu") != 0)
 			{
 
-				CCPoint sp = ccpSub(tempHero->getPosition(), this->getPosition());
+				CCPoint sp = ccpSub(tempHero->getPosition(), getPosition());
 				if (abs(sp.x) <= 48 && abs(sp.y) <= 48)
 				{
 					tempHero->hearts -= 1;
-					if (strcmp(this->_group->getCString(), tempHero->_group->getCString()) != 0)
+					if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0)
 					{
 
-						int tempMaxHP = atoi(this->getMaxHP()->getCString());
+						unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
 						tempMaxHP += 100;
-						this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) + 5));
-						this->setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+						setnAttackValue(CCString::createWithFormat("%d", to_int(_nattackValue->getCString()) + 5));
+						setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 
 						if (_hpBar)
 						{
-							_hpBar->loseHP(this->getHpPercent());
+							_hpBar->loseHP(getHpPercent());
 						}
 					}
 
-					if (strcmp(this->getRole()->getCString(), "Player") == 0)
+					if (strcmp(getRole()->getCString(), "Player") == 0)
 					{
 						if (_delegate->_isHardCoreGame)
 						{
-							this->getDelegate()->setCoin(CCString::createWithFormat("%d", 50 + (tempHero->getLV() - 1) * 10)->getCString());
-							this->setCoinDisplay(50 + (tempHero->getLV() - 1) * 10);
-							this->addCoin(50 + (tempHero->getLV() - 1) * 10);
+							getDelegate()->setCoin(CCString::createWithFormat("%d", 50 + (tempHero->getLV() - 1) * 10)->getCString());
+							setCoinDisplay(50 + (tempHero->getLV() - 1) * 10);
+							addCoin(50 + (tempHero->getLV() - 1) * 10);
 						}
 						else
 						{
-							this->getDelegate()->setCoin("50");
-							this->setCoinDisplay(50);
-							this->addCoin(50);
+							getDelegate()->setCoin("50");
+							setCoinDisplay(50);
+							addCoin(50);
 						}
 					}
 				}
 			}
-		};
+		}
 	}
 	else if (strcmp(commandType->getCString(), "addExtern") == 0)
 	{
@@ -3156,7 +3160,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 		CCArray *tempArray = CCArray::create();
 
 		int i = 1;
-		if (strcmp(this->getCharacter()->getCString(), "Tenten") == 0)
+		if (strcmp(getCharacter()->getCString(), "Tenten") == 0)
 		{
 			while (i < 11)
 			{
@@ -3175,17 +3179,17 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 		list->addObject(call);
 		CCAction *seq = CCSequence::create(list);
 
-		CCSprite *tempChar = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_Extern_01.png", this->getCharacter()->getCString())->getCString());
+		CCSprite *tempChar = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_Extern_01.png", getCharacter()->getCString())->getCString());
 
 		tempChar->setAnchorPoint(ccp(0.5f, 0));
-		tempChar->setPosition(this->getPosition());
-		this->_delegate->addChild(tempChar, -this->_originY);
+		tempChar->setPosition(getPosition());
+		_delegate->addChild(tempChar, -_originY);
 
 		tempChar->runAction(seq);
 	}
 	else if (strcmp(commandType->getCString(), "pauseJump") == 0)
 	{
-		this->getActionManager()->addAction(_jumpUPAction, this, false);
+		getActionManager()->addAction(_jumpUPAction, this, false);
 	}
 	else if (strcmp(commandType->getCString(), "setCounter") == 0)
 	{
@@ -3194,11 +3198,11 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 		if (_monsterArray && _monsterArray->count() > 0)
 		{
 			CCObject *pObject;
-			CCARRAY_FOREACH(this->_monsterArray, pObject)
+			CCARRAY_FOREACH(_monsterArray, pObject)
 			{
 				CharacterBase *tempMonster = (CharacterBase *)pObject;
-				float distanceX = ccpSub(tempMonster->getPosition(), this->getPosition()).x;
-				float distanceY = ccpSub(tempMonster->getPosition(), this->getPosition()).y;
+				float distanceX = ccpSub(tempMonster->getPosition(), getPosition()).x;
+				float distanceY = ccpSub(tempMonster->getPosition(), getPosition()).y;
 				if (abs(distanceX) < 40 && abs(distanceY) < 15)
 				{
 					_isCounter = true;
@@ -3212,20 +3216,20 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 			CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 			{
 				Hero *tempHero = (Hero *)pObject;
-				if (strcmp(this->_group->getCString(), tempHero->_group->getCString()) != 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::DEAD)
+				if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::DEAD)
 				{
 					if (tempHero->_hpBar)
 					{
 
 						tempHero->_slayer = this;
-						if (atoi(tempHero->_hp->getCString()) <= 2000)
+						if (to_int(tempHero->_hp->getCString()) <= 2000)
 						{
-							tempHero->setDamage(CCString::create("c_hit"), atoi(tempHero->_hp->getCString()), false);
+							tempHero->setDamage(CCString::create("c_hit"), to_int(tempHero->_hp->getCString()), false);
 						}
 						else
 						{
 							tempHero->setDamage(CCString::create("c_hit"), 2000, false);
-						};
+						}
 
 						tempHero->_hpBar->loseHP(tempHero->getHpPercent());
 
@@ -3239,27 +3243,27 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 		}
 		else
 		{
-			if (this->_hpBar)
+			if (_hpBar)
 			{
 				_slayer = this;
-				if (atoi(this->_hp->getCString()) <= 2000)
+				if (to_uint(_hp->getCString()) <= 2000)
 				{
-					this->setDamage(CCString::create("c_hit"), atoi(this->_hp->getCString()), false);
+					setDamage(CCString::create("c_hit"), to_uint(_hp->getCString()), false);
 				}
 				else
 				{
-					this->setDamage(CCString::create("c_hit"), 2000, false);
-				};
-				this->_hpBar->loseHP(this->getHpPercent());
+					setDamage(CCString::create("c_hit"), 2000, false);
+				}
+				_hpBar->loseHP(getHpPercent());
 
-				if (strcmp(this->_role->getCString(), "Player") == 0)
+				if (strcmp(_role->getCString(), "Player") == 0)
 				{
-					_delegate->setHPLose(this->getHpPercent());
+					_delegate->setHPLose(getHpPercent());
 				}
 			}
 		}
 
-		this->setActionResume();
+		setActionResume();
 	}
 }
 
@@ -3271,8 +3275,8 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 	if (strcmp(_attackType->getCString(), "hBuff") == 0)
 	{
 		_healBuffValue = buffValue;
-		this->schedule(schedule_selector(CharacterBase::healBuff), 1);
-		this->setBuffEffect("hBuff");
+		schedule(schedule_selector(CharacterBase::healBuff), 1);
+		setBuffEffect("hBuff");
 	}
 	else if (strcmp(_attackType->getCString(), "sBuff") == 0 ||
 			 strcmp(_attackType->getCString(), "rsBuff") == 0 ||
@@ -3281,12 +3285,12 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 	{
 
 		_skillUPBuffValue = buffValue;
-		this->scheduleOnce(schedule_selector(CharacterBase::disableBuff), buffStayTime);
-		this->setBuffEffect(_attackType->getCString());
+		scheduleOnce(schedule_selector(CharacterBase::disableBuff), buffStayTime);
+		setBuffEffect(_attackType->getCString());
 
-		this->setsAttackValue1(CCString::createWithFormat("%d", atoi(this->_sattackValue1->getCString()) + _skillUPBuffValue));
-		this->setsAttackValue2(CCString::createWithFormat("%d", atoi(this->_sattackValue2->getCString()) + _skillUPBuffValue));
-		this->setsAttackValue3(CCString::createWithFormat("%d", atoi(this->_sattackValue3->getCString()) + _skillUPBuffValue));
+		setsAttackValue1(CCString::createWithFormat("%d", to_int(_sattackValue1->getCString()) + _skillUPBuffValue));
+		setsAttackValue2(CCString::createWithFormat("%d", to_int(_sattackValue2->getCString()) + _skillUPBuffValue));
+		setsAttackValue3(CCString::createWithFormat("%d", to_int(_sattackValue3->getCString()) + _skillUPBuffValue));
 
 		if (strcmp(_attackType->getCString(), "hsBuff") == 0)
 		{
@@ -3294,9 +3298,9 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 			CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 			{
 				CharacterBase *tempHero = (CharacterBase *)pObject;
-				if (strcmp(this->_group->getCString(), tempHero->_group->getCString()) != 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::HURT && tempHero->_actionState != State::DEAD)
+				if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::HURT && tempHero->_actionState != State::DEAD)
 				{
-					float distanceX = ccpSub(tempHero->getPosition(), this->getPosition()).x;
+					float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
 					if (distanceX < winSize.width / 2)
 					{
 						if (!tempHero->_isVisable)
@@ -3323,8 +3327,8 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 						}
 					}
 				}
-			};
-			if (strcmp(this->getCharacter()->getCString(), "Neji") == 0)
+			}
+			if (strcmp(getCharacter()->getCString(), "Neji") == 0)
 			{
 				_isBati = true;
 			}
@@ -3335,89 +3339,89 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 
 		_skillChangeBuffValue = buffValue;
 
-		if (strcmp(this->_character->getCString(), "Shino") == 0 ||
-			strcmp(this->_character->getCString(), "Sai") == 0 ||
-			strcmp(this->_character->getCString(), "Deidara") == 0)
+		if (strcmp(_character->getCString(), "Shino") == 0 ||
+			strcmp(_character->getCString(), "Sai") == 0 ||
+			strcmp(_character->getCString(), "Deidara") == 0)
 		{
 
 			if (_skillChangeBuffValue == 17)
 			{
-				this->scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
+				scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
 			}
 			else if (_skillChangeBuffValue == 18)
 			{
-				this->unschedule(schedule_selector(CharacterBase::resumeAction));
-				this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-				this->scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
+				unschedule(schedule_selector(CharacterBase::resumeAction));
+				setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+				scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
 			}
 		}
-		else if (strcmp(this->_character->getCString(), "Kiba") == 0)
+		else if (strcmp(_character->getCString(), "Kiba") == 0)
 		{
 			if (_skillChangeBuffValue == 18)
 			{
-				this->scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
+				scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
 			}
 		}
-		else if ((strcmp(this->_character->getCString(), "ImmortalSasuke") == 0 ||
-				  strcmp(this->_character->getCString(), "Sasuke") == 0) &&
+		else if ((strcmp(_character->getCString(), "ImmortalSasuke") == 0 ||
+				  strcmp(_character->getCString(), "Sasuke") == 0) &&
 				 _skillChangeBuffValue == 18)
 		{
-			this->unschedule(schedule_selector(CharacterBase::resumeAction));
-			this->unschedule(schedule_selector(CharacterBase::disableBuff));
+			unschedule(schedule_selector(CharacterBase::resumeAction));
+			unschedule(schedule_selector(CharacterBase::disableBuff));
 
-			this->_isTaunt = false;
-			this->setHurtAction(createAnimation(hurtArray, 10.0f, false, true));
-			this->disableBuff(0);
+			_isTaunt = false;
+			setHurtAction(createAnimation(hurtArray, 10.0f, false, true));
+			disableBuff(0);
 
-			this->scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
+			scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
 		}
-		else if (strcmp(this->_character->getCString(), "Minato") == 0)
+		else if (strcmp(_character->getCString(), "Minato") == 0)
 		{
 			if (_skillChangeBuffValue == 18)
 			{
-				this->scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
+				scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
 			}
 		}
 		else
 		{
-			if (strcmp(this->_character->getCString(), "Kankuro") != 0 &&
-				strcmp(this->_character->getCString(), "Chiyo") != 0 &&
-				strcmp(this->_character->getCString(), Guardian_Roshi) != 0 &&
-				strcmp(this->_character->getCString(), Guardian_Han) != 0 &&
-				strcmp(this->_character->getCString(), "Hiruzen") != 0 &&
-				strcmp(this->_character->getCString(), "Suigetsu") != 0 &&
-				strcmp(this->_character->getCString(), "Jugo") != 0 &&
-				strcmp(this->_character->getCString(), "Kisame") != 0 &&
-				strcmp(this->_character->getCString(), "Parents") != 0 &&
-				strcmp(this->_character->getCString(), "Lee") != 0 &&
-				strcmp(this->_character->getCString(), "RockLee") != 0)
+			if (strcmp(_character->getCString(), "Kankuro") != 0 &&
+				strcmp(_character->getCString(), "Chiyo") != 0 &&
+				strcmp(_character->getCString(), Guardian_Roshi) != 0 &&
+				strcmp(_character->getCString(), Guardian_Han) != 0 &&
+				strcmp(_character->getCString(), "Hiruzen") != 0 &&
+				strcmp(_character->getCString(), "Suigetsu") != 0 &&
+				strcmp(_character->getCString(), "Jugo") != 0 &&
+				strcmp(_character->getCString(), "Kisame") != 0 &&
+				strcmp(_character->getCString(), "Parents") != 0 &&
+				strcmp(_character->getCString(), "Lee") != 0 &&
+				strcmp(_character->getCString(), "RockLee") != 0)
 			{
-				this->scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
+				scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
 			}
 		}
 
-		this->changeAction();
+		changeAction();
 	}
 	else if (strcmp(_attackType->getCString(), "tBuff") == 0)
 	{
 
 		_skillChangeBuffValue = buffValue;
-		this->scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
-		this->scheduleOnce(schedule_selector(CharacterBase::disableBuff), buffStayTime);
-		this->setBuffEffect(_attackType->getCString());
+		scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
+		scheduleOnce(schedule_selector(CharacterBase::disableBuff), buffStayTime);
+		setBuffEffect(_attackType->getCString());
 
-		this->changeAction();
+		changeAction();
 	}
 	else if (strcmp(_attackType->getCString(), "stBuff") == 0)
 	{
 
-		if (strcmp(_role->getCString(), "Player") == 0 || strcmp(this->getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) == 0)
+		if (strcmp(_role->getCString(), "Player") == 0 || strcmp(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) == 0)
 		{
-			this->setOpacity(150);
+			setOpacity(150);
 		}
 		else
 		{
-			this->setVisible(false);
+			setVisible(false);
 		}
 		if (_hpBar)
 		{
@@ -3427,13 +3431,13 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 		{
 			_shadow->setVisible(false);
 		}
-		this->_isVisable = false;
-		this->scheduleOnce(schedule_selector(CharacterBase::disableBuff), buffStayTime);
+		_isVisable = false;
+		scheduleOnce(schedule_selector(CharacterBase::disableBuff), buffStayTime);
 	}
 	else if (strcmp(_attackType->getCString(), "GroupHeal") == 0 ||
 			 strcmp(_attackType->getCString(), "GroupBuff") == 0)
 	{
-		if (this->_healBuffValue)
+		if (_healBuffValue)
 		{
 			_healBuffValue += buffValue;
 		}
@@ -3442,12 +3446,12 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 			_healBuffValue = buffValue;
 		}
 
-		this->schedule(schedule_selector(CharacterBase::healBuff), 1);
+		schedule(schedule_selector(CharacterBase::healBuff), 1);
 	}
-	if (strcmp(this->getRole()->getCString(), "Player") == 0)
+	if (strcmp(getRole()->getCString(), "Player") == 0)
 	{
 
-		this->_delegate->getHudLayer()->setBuffDisplay(_attackType->getCString(), buffStayTime);
+		_delegate->getHudLayer()->setBuffDisplay(_attackType->getCString(), buffStayTime);
 	}
 }
 
@@ -3456,25 +3460,25 @@ void CharacterBase::setBuffEffect(const char *type)
 	if (_skillBuffEffect)
 	{
 		_skillBuffEffect->removeFromParent();
-		_skillBuffEffect = NULL;
+		_skillBuffEffect = nullptr;
 	}
 
 	if (_healBuffEffect)
 	{
 		_healBuffEffect->removeFromParent();
-		_healBuffEffect = NULL;
+		_healBuffEffect = nullptr;
 	}
 
 	if (strcmp(type, "hBuff") == 0)
 	{
 		_healBuffEffect = Effect::create(type, this);
-		this->addChild(_healBuffEffect);
+		addChild(_healBuffEffect);
 	}
 	else if (strcmp(type, "hsBuff") == 0)
 	{
 		_skillBuffEffect = Effect::create(type, this);
 		_skillBuffEffect->setPositionY(14);
-		this->addChild(_skillBuffEffect);
+		addChild(_skillBuffEffect);
 	}
 	else if (strcmp(type, "tBuff") == 0 ||
 			 strcmp(type, "dcBuff") == 0 ||
@@ -3482,12 +3486,12 @@ void CharacterBase::setBuffEffect(const char *type)
 			 strcmp(type, "bmBuff") == 0)
 	{
 		_skillBuffEffect = Effect::create(type, this);
-		this->addChild(_skillBuffEffect);
+		addChild(_skillBuffEffect);
 	}
 	else if (strcmp(type, "dhBuff") == 0)
 	{
 		_dehealBuffEffect = Effect::create(type, this);
-		this->addChild(_dehealBuffEffect);
+		addChild(_dehealBuffEffect);
 	}
 }
 
@@ -3496,17 +3500,17 @@ void CharacterBase::removeBuffEffect(const char *type)
 	if (strcmp(type, "hBuff") == 0 && _healBuffEffect)
 	{
 		_healBuffEffect->removeFromParent();
-		_healBuffEffect = NULL;
+		_healBuffEffect = nullptr;
 	}
 	else if (strcmp(type, "sBuff") == 0 && _skillBuffEffect)
 	{
 		_skillBuffEffect->removeFromParent();
-		_skillBuffEffect = NULL;
+		_skillBuffEffect = nullptr;
 	}
 	else if (strcmp(type, "dhBuff") == 0 && _dehealBuffEffect)
 	{
 		_dehealBuffEffect->removeFromParent();
-		_dehealBuffEffect = NULL;
+		_dehealBuffEffect = nullptr;
 	}
 
 	else if (strcmp(type, "all") == 0)
@@ -3514,25 +3518,25 @@ void CharacterBase::removeBuffEffect(const char *type)
 		if (_healBuffEffect)
 		{
 			_healBuffEffect->removeFromParent();
-			_healBuffEffect = NULL;
+			_healBuffEffect = nullptr;
 			_healBuffValue = 0;
 			_buffStartTime = 0;
 		}
 		if (_powerBuffEffect)
 		{
 			_powerBuffEffect->removeFromParent();
-			_powerBuffEffect = NULL;
+			_powerBuffEffect = nullptr;
 		}
 		if (_skillBuffEffect)
 		{
 			_skillBuffEffect->removeFromParent();
-			_skillBuffEffect = NULL;
+			_skillBuffEffect = nullptr;
 		}
 		if (_dehealBuffEffect)
 		{
 			_dehealBuffEffect->removeFromParent();
 			_dehealBuffValue = 0;
-			_dehealBuffEffect = NULL;
+			_dehealBuffEffect = nullptr;
 			_debuffStartTime = 0;
 		}
 	}
@@ -3542,26 +3546,26 @@ void CharacterBase::disableBuff(float dt)
 {
 	if (_skillUPBuffValue)
 	{
-		this->setsAttackValue1(CCString::createWithFormat("%d", atoi(this->_sattackValue1->getCString()) - _skillUPBuffValue));
-		this->setsAttackValue2(CCString::createWithFormat("%d", atoi(this->_sattackValue2->getCString()) - _skillUPBuffValue));
-		this->setsAttackValue3(CCString::createWithFormat("%d", atoi(this->_sattackValue3->getCString()) - _skillUPBuffValue));
+		setsAttackValue1(CCString::createWithFormat("%d", to_int(_sattackValue1->getCString()) - _skillUPBuffValue));
+		setsAttackValue2(CCString::createWithFormat("%d", to_int(_sattackValue2->getCString()) - _skillUPBuffValue));
+		setsAttackValue3(CCString::createWithFormat("%d", to_int(_sattackValue3->getCString()) - _skillUPBuffValue));
 		_skillUPBuffValue = 0;
 
-		if (strcmp(this->getCharacter()->getCString(), "Neji") == 0)
+		if (strcmp(getCharacter()->getCString(), "Neji") == 0)
 		{
 			_isBati = false;
 		}
-		this->removeBuffEffect("sBuff");
+		removeBuffEffect("sBuff");
 	}
 	else if (_skillBuffEffect)
 	{
-		this->removeBuffEffect("sBuff");
+		removeBuffEffect("sBuff");
 	}
-	else if (!_isVisable && this->_actionState != State::HURT)
+	else if (!_isVisable && _actionState != State::HURT)
 	{
 
-		this->setOpacity(255);
-		this->setVisible(true);
+		setOpacity(255);
+		setVisible(true);
 
 		if (_hpBar)
 		{
@@ -3574,25 +3578,25 @@ void CharacterBase::disableBuff(float dt)
 
 		_isVisable = true;
 	}
-	else if (_skillChangeBuffValue && strcmp(this->getCharacter()->getCString(), "Tobi") == 0)
+	else if (_skillChangeBuffValue && strcmp(getCharacter()->getCString(), "Tobi") == 0)
 	{
-		this->setOpacity(255);
+		setOpacity(255);
 	}
 }
 
 void CharacterBase::disableDebuff(float dt)
 {
 
-	if ((strcmp(this->getCharacter()->getCString(), "ImmortalSasuke") == 0 ||
-		 strcmp(this->getCharacter()->getCString(), "Itachi") == 0) &&
+	if ((strcmp(getCharacter()->getCString(), "ImmortalSasuke") == 0 ||
+		 strcmp(getCharacter()->getCString(), "Itachi") == 0) &&
 		_isBati)
 	{
 		return;
 	}
 
-	if (this->getWalkSpeed() == 112)
+	if (getWalkSpeed() == 112)
 	{
-		this->setWalkSpeed(224);
+		setWalkSpeed(224);
 	}
 }
 
@@ -3614,12 +3618,12 @@ void CharacterBase::healBuff(float dt)
 
 	if (_buffStartTime && curTime - _buffStartTime >= limitTime)
 	{
-		this->unschedule(schedule_selector(CharacterBase::healBuff));
-		this->removeBuffEffect("hBuff");
+		unschedule(schedule_selector(CharacterBase::healBuff));
+		removeBuffEffect("hBuff");
 		_healBuffValue = 0;
 		_buffStartTime = 0;
 		return;
-	};
+	}
 	if (strcmp(_character->getCString(), "Karin") == 0)
 	{
 
@@ -3627,15 +3631,15 @@ void CharacterBase::healBuff(float dt)
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
 			Hero *tempHero = (Hero *)pObject;
-			if (strcmp(this->_group->getCString(), tempHero->_group->getCString()) == 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::DEAD)
+			if (strcmp(_group->getCString(), tempHero->_group->getCString()) == 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::DEAD)
 			{
-				float distanceX = ccpSub(tempHero->getPosition(), this->getPosition()).x;
-				float tempRange1 = 128 + this->getContentSize().width / 2;
+				float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
+				float tempRange1 = 128 + getContentSize().width / 2;
 				if (abs(distanceX) <= tempRange1 &&
-					abs(tempHero->getPositionY() - this->getPositionY()) <= 128)
+					abs(tempHero->getPositionY() - getPositionY()) <= 128)
 				{
 
-					if (atoi(tempHero->getMaxHP()->getCString()) - atoi(tempHero->getHP()->getCString()) <= _healBuffValue)
+					if (to_uint(tempHero->getMaxHP()->getCString()) - to_uint(tempHero->getHP()->getCString()) <= _healBuffValue)
 					{
 						tempHero->setHP(CCString::create(tempHero->getMaxHP()->getCString()));
 						if (tempHero->_hpBar)
@@ -3645,12 +3649,12 @@ void CharacterBase::healBuff(float dt)
 					}
 					else
 					{
-						tempHero->setHP(CCString::createWithFormat("%d", atoi(tempHero->getHP()->getCString()) + int(_healBuffValue)));
+						tempHero->setHP(CCString::createWithFormat("%ld", to_uint(tempHero->getHP()->getCString()) + int(_healBuffValue)));
 						if (tempHero->_hpBar)
 						{
 							tempHero->_hpBar->loseHP(tempHero->getHpPercent());
 						}
-					};
+					}
 
 					if (strcmp(tempHero->getRole()->getCString(), "Player") == 0)
 					{
@@ -3667,9 +3671,9 @@ void CharacterBase::healBuff(float dt)
 						tmpEffect->setPosition(ccp(tempHero->getContentSize().width / 2, tempHero->getContentSize().height / 2));
 						tempHero->addChild(tmpEffect);
 					}
-				};
+				}
 			}
-		};
+		}
 	}
 	else if (strcmp(_character->getCString(), "Chiyo") == 0)
 	{
@@ -3678,9 +3682,9 @@ void CharacterBase::healBuff(float dt)
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
 			Hero *tempHero = (Hero *)pObject;
-			if (strcmp(this->_group->getCString(), tempHero->_group->getCString()) == 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && strcmp(tempHero->_character->getCString(), "Chiyo") != 0)
+			if (strcmp(_group->getCString(), tempHero->_group->getCString()) == 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && strcmp(tempHero->_character->getCString(), "Chiyo") != 0)
 			{
-				CCPoint sp = ccpSub(tempHero->getPosition(), this->getPosition());
+				CCPoint sp = ccpSub(tempHero->getPosition(), getPosition());
 				if (abs(sp.x) <= winSize.width / 2)
 				{
 
@@ -3743,7 +3747,7 @@ void CharacterBase::healBuff(float dt)
 					}
 				}
 			}
-		};
+		}
 	}
 	else if (strcmp(_character->getCString(), "Slug") == 0)
 	{
@@ -3763,15 +3767,15 @@ void CharacterBase::healBuff(float dt)
 		CCARRAY_FOREACH(list, pObject)
 		{
 			CharacterBase *tempHero = (CharacterBase *)pObject;
-			if (strcmp(this->_group->getCString(), tempHero->_group->getCString()) == 0 && tempHero->_actionState != State::DEAD)
+			if (strcmp(_group->getCString(), tempHero->_group->getCString()) == 0 && tempHero->_actionState != State::DEAD)
 			{
-				float distanceX = ccpSub(tempHero->getPosition(), this->getPosition()).x;
-				float tempRange1 = 128 + this->getContentSize().width / 2;
+				float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
+				float tempRange1 = 128 + getContentSize().width / 2;
 				if (abs(distanceX) <= tempRange1 &&
-					abs(tempHero->getPositionY() - this->getPositionY()) <= 128)
+					abs(tempHero->getPositionY() - getPositionY()) <= 128)
 				{
 
-					if (atoi(tempHero->getMaxHP()->getCString()) - atoi(tempHero->getHP()->getCString()) <= _healBuffValue)
+					if (to_uint(tempHero->getMaxHP()->getCString()) - to_uint(tempHero->getHP()->getCString()) <= _healBuffValue)
 					{
 						tempHero->setHP(CCString::create(tempHero->getMaxHP()->getCString()));
 						if (tempHero->_hpBar)
@@ -3781,38 +3785,38 @@ void CharacterBase::healBuff(float dt)
 					}
 					else
 					{
-						tempHero->setHP(CCString::createWithFormat("%d", atoi(tempHero->getHP()->getCString()) + int(_healBuffValue)));
+						tempHero->setHP(CCString::createWithFormat("%ld", to_uint(tempHero->getHP()->getCString()) + int(_healBuffValue)));
 						if (tempHero->_hpBar)
 						{
 							tempHero->_hpBar->loseHP(tempHero->getHpPercent());
 						}
-					};
-				};
+					}
+				}
 			}
 		}
 	}
 	else if (strcmp(_character->getCString(), "Sakura") == 0 ||
 			 strcmp(_character->getCString(), "Tsunade") == 0)
 	{
-		if (atoi(_maxHP->getCString()) - atoi(_hp->getCString()) <= _healBuffValue)
+		if (to_uint(_maxHP->getCString()) - to_uint(_hp->getCString()) <= _healBuffValue)
 		{
-			this->setHP(CCString::create(_maxHP->getCString()));
+			setHP(CCString::create(_maxHP->getCString()));
 			if (_hpBar)
 			{
-				_hpBar->loseHP(this->getHpPercent());
+				_hpBar->loseHP(getHpPercent());
 			}
 		}
 		else
 		{
-			this->setHP(CCString::createWithFormat("%d", atoi(_hp->getCString()) + int(_healBuffValue)));
+			setHP(CCString::createWithFormat("%ld", to_uint(_hp->getCString()) + int(_healBuffValue)));
 			if (_hpBar)
 			{
-				_hpBar->loseHP(this->getHpPercent());
+				_hpBar->loseHP(getHpPercent());
 			}
-		};
+		}
 		if (_role && strcmp(_role->getCString(), "Player") == 0)
 		{
-			_delegate->setHPLose(this->getHpPercent());
+			_delegate->setHPLose(getHpPercent());
 		}
 	}
 }
@@ -3828,13 +3832,13 @@ void CharacterBase::dehealBuff(float dt)
 
 	if (_debuffStartTime && abs(_debuffStartTime - curTime) > 10000)
 	{
-		this->unschedule(schedule_selector(CharacterBase::dehealBuff));
-		this->setWalkSpeed(_originSpeed);
-		this->removeBuffEffect("dhBuff");
+		unschedule(schedule_selector(CharacterBase::dehealBuff));
+		setWalkSpeed(_originSpeed);
+		removeBuffEffect("dhBuff");
 		_dehealBuffValue = 0;
 		_debuffStartTime = 0;
 		return;
-	};
+	}
 
 	CCObject *pObject;
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
@@ -3844,23 +3848,23 @@ void CharacterBase::dehealBuff(float dt)
 		{
 			_slayer = tempHero;
 		}
-	};
-	if (atoi(_hp->getCString()) <= _dehealBuffValue)
+	}
+	if (to_uint(_hp->getCString()) <= _dehealBuffValue)
 	{
-		this->setDamage(CCString::create("c_hit"), _dehealBuffValue, false);
+		setDamage(CCString::create("c_hit"), _dehealBuffValue, false);
 	}
 	else
 	{
-		this->setDamage(CCString::create("c_hit"), _dehealBuffValue, false);
-	};
+		setDamage(CCString::create("c_hit"), _dehealBuffValue, false);
+	}
 	if (_hpBar)
 	{
-		_hpBar->loseHP(this->getHpPercent());
+		_hpBar->loseHP(getHpPercent());
 	}
 
 	if (strcmp(_role->getCString(), "Player") == 0)
 	{
-		_delegate->setHPLose(this->getHpPercent());
+		_delegate->setHPLose(getHpPercent());
 	}
 }
 
@@ -3877,938 +3881,55 @@ void CharacterBase::lostBlood(float dt)
 		}
 	}
 
-	if (atoi(_hp->getCString()) <= lostBloodValue)
+	if (to_uint(_hp->getCString()) <= lostBloodValue)
 	{
-		this->setDamage(CCString::create("c_hit"), lostBloodValue, false);
+		setDamage(CCString::create("c_hit"), lostBloodValue, false);
 	}
 	else
 	{
-		this->setDamage(CCString::create("c_hit"), lostBloodValue, false);
-	};
+		setDamage(CCString::create("c_hit"), lostBloodValue, false);
+	}
 
 	if (_hpBar)
 	{
-		_hpBar->loseHP(this->getHpPercent());
+		_hpBar->loseHP(getHpPercent());
 	}
 
 	if (strcmp(_role->getCString(), "Player") == 0)
 	{
-		_delegate->setHPLose(this->getHpPercent());
+		_delegate->setHPLose(getHpPercent());
 	}
 }
 
 void CharacterBase::removeLostBlood(float dt)
 {
-	this->lostBloodValue = 0;
-	this->unschedule(schedule_selector(CharacterBase::lostBlood));
+	lostBloodValue = 0;
+	unschedule(schedule_selector(CharacterBase::lostBlood));
 }
 
 void CharacterBase::changeAction()
 {
-
-	if (strcmp(this->_character->getCString(), "Tenten") == 0 ||
-		strcmp(this->_character->getCString(), "Shino") == 0)
-	{
-		this->setNAttackAction(createAnimation(skillSPC1Array, 10.0f, false, true));
-	}
-	else if (strcmp(this->_character->getCString(), "Choji") == 0)
-	{
-
-		_isBati = true;
-		this->setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
-		this->setIdleAction(createAnimation(skillSPC4Array, 5.0f, true, false));
-		this->setWalkAction(createAnimation(skillSPC2Array, 5.0f, true, false));
-
-		_tempAttackType = _nattackType;
-		_nattackType = _spcattackType3;
-
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) + 460));
-		_nattackRangeX = 32;
-		_nattackRangeY = 48;
-		this->_isOnlySkillLocked = true;
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->setLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->setLock();
-			}
-		}
-		this->_gardValue += 5000;
-
-		if (_hpBar)
-		{
-			_hpBar->setPositionY(108);
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Sakura") == 0)
-	{
-
-		this->setNAttackAction(createAnimation(skillSPC1Array, 10.0f, false, true));
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) + 400));
-	}
-	else if (strcmp(this->_character->getCString(), "Kakuzu") == 0)
-	{
-
-		this->setBuffEffect("jdBuff");
-	}
-	else if (strcmp(this->_character->getCString(), "Sai") == 0 ||
-			 strcmp(this->_character->getCString(), "Deidara") == 0)
-	{
-
-		if (_skillChangeBuffValue == 17)
-		{
-			this->setNAttackAction(createAnimation(skillSPC1Array, 10.0f, false, true));
-		}
-		else if (_skillChangeBuffValue == 18)
-		{
-
-			this->_isAllAttackLocked = true;
-			this->_isBati = true;
-
-			this->setWalkSpeed(320);
-			_originSpeed = 320;
-
-			if (strcmp(this->getRole()->getCString(), "Player") == 0)
-			{
-				if (_delegate->getHudLayer()->skill4Button)
-				{
-					_delegate->getHudLayer()->skill4Button->setLock();
-				}
-				if (_delegate->getHudLayer()->skill5Button)
-				{
-					_delegate->getHudLayer()->skill5Button->setLock();
-				}
-			}
-
-			this->setIdleAction(createAnimation(skillSPC2Array, 5.0f, true, false));
-			this->setWalkAction(createAnimation(skillSPC3Array, 5.0f, true, false));
-
-			if (_hpBar)
-			{
-				_hpBar->setPositionY(120);
-			}
-			this->schedule(schedule_selector(CharacterBase::setMonPer), 0.5f);
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Naruto") == 0)
-	{
-
-		this->setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
-		this->setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
-		this->setKnockDownAction(createAnimation(skillSPC4Array, 10.0f, false, true));
-
-		this->setWalkSpeed(320);
-
-		_originSpeed = 320;
-
-		this->_isOnlySkillLocked = true;
-
-		this->settempAttackValue1(CCString::createWithFormat("%d", atoi(_nattackValue->getCString())));
-		this->setnAttackValue(CCString::createWithFormat("%d", 960));
-
-		_nattackRangeX = _spcattackRangeX3;
-		_nattackRangeY = _spcattackRangeY3;
-		_tempAttackType = _nattackType;
-		_nattackType = _spcattackType3;
-
-		this->_gardValue += 5000;
-		_isBati = true;
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->setLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->setLock();
-			}
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "SageNaruto") == 0 ||
-			 strcmp(this->_character->getCString(), "RikudoNaruto") == 0)
-	{
-
-		this->_gardValue += 5000;
-		_isBati = true;
-		this->isPofang = true;
-		this->_isOnlySkillLocked = true;
-
-		this->setIdleAction(createAnimation(skillSPC4Array, 5.0f, true, false));
-		this->setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
-
-		if (strcmp(this->_character->getCString(), "RikudoNaruto") == 0)
-		{
-			this->settempAttackValue1(CCString::createWithFormat("%d", atoi(_nattackValue->getCString())));
-			this->setnAttackValue(CCString::createWithFormat("%d", 560));
-		}
-
-		this->setWalkSpeed(320);
-		_originSpeed = 320;
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->setLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->setLock();
-			}
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Konan") == 0)
-	{
-
-		this->_isAllAttackLocked = true;
-		this->_isBati = true;
-
-		_attackType = _spcattackType2;
-		_attackValue = atoi(_spcattackValue2->getCString());
-		_attackRangeX = _spcattackRangeX2;
-		_attackRangeY = _spcattackRangeY2;
-
-		this->setWalkSpeed(320);
-		_originSpeed = 320;
-
-		this->setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
-		this->setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
-		if (_hpBar)
-		{
-			_hpBar->setPositionY(90);
-		}
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->setLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->setLock();
-			}
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Kiba") == 0)
-	{
-		if (_skillChangeBuffValue == 17)
-		{
-			_isBati = false;
-
-			if (strcmp(this->getRole()->getCString(), "Player") == 0)
-			{
-				_delegate->getHudLayer()->skill1Button->setLock();
-				_delegate->getHudLayer()->skill2Button->unLock();
-				_delegate->getHudLayer()->skill3Button->unLock();
-			}
-
-			this->setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
-			this->setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
-			this->setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
-			if (_hpBar)
-			{
-				_hpBar->setPositionY(65);
-			}
-			_skillChangeBuffValue = 0;
-		}
-		else if (_skillChangeBuffValue == 18)
-		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(this->getMonsterArray(), pObject)
-			{
-				Monster *mo = (Monster *)pObject;
-				if (strcmp(mo->getCharacter()->getCString(), "Akamaru") == 0)
-				{
-					mo->attack(SKILL2);
-				}
-			};
-
-			this->_powerUPBuffValue = 360;
-			this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) + _powerUPBuffValue));
-			this->setNAttackAction(createAnimation(skillSPC4Array, 10.0f, false, true));
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Akamaru") == 0)
-	{
-		this->_powerUPBuffValue = 360;
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) + _powerUPBuffValue));
-		this->setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
-		this->setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
-
-		if (this->getActionState() == State::ATTACK)
-		{
-			_actionState = State::WALK;
-			this->idle();
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Sasuke") == 0)
-	{
-
-		if (_skillChangeBuffValue == 17)
-		{
-			this->_isTaunt = true;
-			this->setHurtAction(createAnimation(skillSPC5Array, 10.0f, false, true));
-
-			CCObject *pObject;
-			CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
-			{
-				CharacterBase *tempHero = (CharacterBase *)pObject;
-				if (strcmp(this->_group->getCString(), tempHero->_group->getCString()) != 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::HURT && tempHero->_actionState != State::DEAD)
-				{
-					float distanceX = ccpSub(tempHero->getPosition(), this->getPosition()).x;
-					if (distanceX < winSize.width / 2)
-					{
-						if (!tempHero->_isVisable)
-						{
-							if (strcmp(tempHero->getCharacter()->getCString(), "Konan") == 0 ||
-								strcmp(tempHero->getCharacter()->getCString(), "Deidara") == 0)
-							{
-								tempHero->unschedule(schedule_selector(CharacterBase::disableBuff));
-							}
-
-							tempHero->setOpacity(255);
-							tempHero->setVisible(true);
-
-							if (tempHero->_hpBar)
-							{
-								tempHero->_hpBar->setVisible(true);
-							}
-							if (tempHero->_shadow)
-							{
-								tempHero->_shadow->setVisible(true);
-							}
-
-							tempHero->_isVisable = true;
-						}
-					}
-				}
-			};
-		}
-		else if (_skillChangeBuffValue == 18)
-		{
-
-			this->setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
-			this->setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
-			this->setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
-			this->setKnockDownAction(createAnimation(skillSPC4Array, 10.0f, false, true));
-
-			this->setWalkSpeed(320);
-			_originSpeed = 320;
-
-			this->_isOnlySkillLocked = true;
-			this->settempAttackValue1(CCString::createWithFormat("%d", atoi(_nattackValue->getCString())));
-			this->setnAttackValue(CCString::createWithFormat("%d", 560));
-
-			_nattackRangeX = _spcattackRangeX3;
-			_nattackRangeY = _spcattackRangeY3;
-			_tempAttackType = _nattackType;
-			_nattackType = _spcattackType3;
-
-			this->_gardValue += 5000;
-			_isBati = true;
-
-			if (strcmp(this->getRole()->getCString(), "Player") == 0)
-			{
-				if (_delegate->getHudLayer()->skill4Button)
-				{
-					_delegate->getHudLayer()->skill4Button->setLock();
-				}
-				if (_delegate->getHudLayer()->skill5Button)
-				{
-					_delegate->getHudLayer()->skill5Button->setLock();
-				}
-			}
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "ImmortalSasuke") == 0)
-	{
-
-		if (_skillChangeBuffValue == 17)
-		{
-			this->_isTaunt = true;
-			this->setHurtAction(createAnimation(skillSPC1Array, 10.0f, false, true));
-
-			CCObject *pObject;
-			CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
-			{
-				CharacterBase *tempHero = (CharacterBase *)pObject;
-				if (strcmp(this->_group->getCString(), tempHero->_group->getCString()) != 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::HURT && tempHero->_actionState != State::DEAD)
-				{
-					float distanceX = ccpSub(tempHero->getPosition(), this->getPosition()).x;
-					if (distanceX < winSize.width / 2)
-					{
-						if (!tempHero->_isVisable)
-						{
-							if (strcmp(tempHero->getCharacter()->getCString(), "Konan") == 0 ||
-								strcmp(tempHero->getCharacter()->getCString(), "Deidara") == 0)
-							{
-								tempHero->unschedule(schedule_selector(CharacterBase::disableBuff));
-							}
-
-							tempHero->setOpacity(255);
-							tempHero->setVisible(true);
-
-							if (tempHero->_hpBar)
-							{
-								tempHero->_hpBar->setVisible(true);
-							}
-							if (tempHero->_shadow)
-							{
-								tempHero->_shadow->setVisible(true);
-							}
-
-							tempHero->_isVisable = true;
-						}
-					}
-				}
-			};
-		}
-		else if (_skillChangeBuffValue == 18)
-		{
-			this->setIdleAction(createAnimation(skillSPC4Array, 5.0f, true, false));
-			this->setWalkAction(createAnimation(skillSPC3Array, 10.0f, true, false));
-			this->setNAttackAction(createAnimation(skillSPC2Array, 10.0f, false, true));
-			this->setWalkSpeed(112);
-			this->_originSpeed = 112;
-
-			this->settempAttackValue1(CCString::createWithFormat("%d", atoi(_nattackValue->getCString())));
-			this->setnAttackValue(CCString::createWithFormat("%d", 1160));
-
-			_nattackRangeX = 156;
-			_nattackRangeY = 64;
-
-			this->_gardValue += 5000;
-			this->_isBati = true;
-			this->_isOnlySkillLocked = true;
-
-			if (strcmp(this->getRole()->getCString(), "Player") == 0)
-			{
-				if (_delegate->getHudLayer()->skill4Button)
-				{
-					_delegate->getHudLayer()->skill4Button->setLock();
-				}
-				if (_delegate->getHudLayer()->skill5Button)
-				{
-					_delegate->getHudLayer()->skill5Button->setLock();
-				}
-			}
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Tobi") == 0)
-	{
-
-		this->setWalkAction(createAnimation(skillSPC1Array, 10.0f, true, false));
-
-		this->setWalkSpeed(320);
-
-		_originSpeed = 320;
-
-		CCObject *pObject;
-		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
-		{
-			CharacterBase *tempHero = (CharacterBase *)pObject;
-			if (strcmp(this->_group->getCString(), tempHero->_group->getCString()) != 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::HURT && tempHero->_actionState != State::DEAD)
-			{
-				float distanceX = ccpSub(tempHero->getPosition(), this->getPosition()).x;
-				if (distanceX < winSize.width / 2)
-				{
-					if (!tempHero->_isVisable)
-					{
-						if (strcmp(tempHero->getCharacter()->getCString(), "Konan") == 0 ||
-							strcmp(tempHero->getCharacter()->getCString(), "Deidara") == 0)
-						{
-							tempHero->unschedule(schedule_selector(CharacterBase::disableBuff));
-						}
-
-						tempHero->setOpacity(255);
-						tempHero->setVisible(true);
-
-						if (tempHero->_hpBar)
-						{
-							tempHero->_hpBar->setVisible(true);
-						}
-						if (tempHero->_shadow)
-						{
-							tempHero->_shadow->setVisible(true);
-						}
-
-						tempHero->_isVisable = true;
-					}
-				}
-			}
-		};
-	}
-	else if (strcmp(this->_character->getCString(), "Gaara") == 0)
-	{
-		this->setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
-		this->setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
-
-		this->_isOnlySkillLocked = true;
-
-		this->_gardValue += 5000;
-		_isBati = true;
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->setLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->setLock();
-			}
-		}
-
-		if (_hpBar)
-		{
-			_hpBar->setPositionY(134);
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Itachi") == 0)
-	{
-
-		this->setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
-		this->setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
-		this->setKnockDownAction(createAnimation(skillSPC4Array, 10.0f, false, true));
-		this->setWalkSpeed(112);
-		this->_originSpeed = 112;
-
-		this->_isOnlySkillLocked = true;
-
-		this->settempAttackValue1(CCString::createWithFormat("%d", atoi(_nattackValue->getCString())));
-		this->setnAttackValue(CCString::createWithFormat("%d", 560));
-
-		_nattackRangeX = 128;
-		_nattackRangeY = 64;
-
-		this->_gardValue += 5000;
-		_isBati = true;
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->setLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->setLock();
-			}
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Kakashi") == 0)
-	{
-
-		this->setSkill1Action(createAnimation(skillSPC1Array, 10.0f, false, true));
-		this->setSkill2Action(createAnimation(skillSPC2Array, 10.0f, false, true));
-		this->setIdleAction(createAnimation(skillSPC3Array, 5.0f, true, false));
-		this->settempAttackValue1(CCString::createWithFormat("%d", atoi(_sattackValue1->getCString())));
-		this->setsAttackValue1(_spcattackValue1);
-
-		CCObject *pObject;
-		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
-		{
-			CharacterBase *tempHero = (CharacterBase *)pObject;
-			if (strcmp(this->_group->getCString(), tempHero->_group->getCString()) != 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::HURT && tempHero->_actionState != State::DEAD)
-			{
-				float distanceX = ccpSub(tempHero->getPosition(), this->getPosition()).x;
-				if (distanceX < winSize.width / 2)
-				{
-					if (!tempHero->_isVisable)
-					{
-						if (strcmp(tempHero->getCharacter()->getCString(), "Konan") == 0 ||
-							strcmp(tempHero->getCharacter()->getCString(), "Deidara") == 0)
-						{
-							tempHero->unschedule(schedule_selector(CharacterBase::disableBuff));
-						}
-
-						tempHero->setOpacity(255);
-						tempHero->setVisible(true);
-
-						if (tempHero->_hpBar)
-						{
-							tempHero->_hpBar->setVisible(true);
-						}
-						if (tempHero->_shadow)
-						{
-							tempHero->_shadow->setVisible(true);
-						}
-
-						tempHero->_isVisable = true;
-					}
-				}
-			}
-		};
-
-		if (strcmp(this->_role->getCString(), "Player") == 0)
-		{
-			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Kakashi_skill1_1.png");
-			_delegate->getHudLayer()->skill1Button->setDisplayFrame(frame);
-			frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Kakashi_skill2_1.png");
-			_delegate->getHudLayer()->skill2Button->setDisplayFrame(frame);
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Hiruzen") == 0)
-	{
-		_isBati = true;
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
-		this->settempAttackValue1(CCString::createWithFormat("%d", atoi(_nattackValue->getCString())));
-		this->setnAttackValue(CCString::createWithFormat("%d", 560));
-
-		this->_isOnlySkillLocked = true;
-
-		this->setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
-		this->setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->setLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->setLock();
-			}
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Suigetsu") == 0)
-	{
-
-		this->settempAttackValue1(CCString::createWithFormat("%d", atoi(_nattackValue->getCString())));
-		this->setnAttackValue(CCString::createWithFormat("%d", 1960));
-
-		this->_isOnlySkillLocked = true;
-
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
-
-		_isBati = true;
-
-		this->setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
-		this->setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->setLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->setLock();
-			}
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Kisame") == 0)
-	{
-
-		this->settempAttackValue1(CCString::createWithFormat("%d", atoi(_nattackValue->getCString())));
-		this->setnAttackValue(CCString::createWithFormat("%d", 660));
-
-		this->_isOnlySkillLocked = true;
-
-		_nattackRangeX = 32;
-		_nattackRangeY = 48;
-
-		this->setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
-		this->setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
-
-		this->setWalkSpeed(112);
-		_originSpeed = 112;
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->setLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->setLock();
-			}
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Jugo") == 0)
-	{
-
-		this->settempAttackValue1(CCString::createWithFormat("%d", atoi(_nattackValue->getCString())));
-		this->setnAttackValue(CCString::createWithFormat("%d", 1960));
-
-		this->_isOnlySkillLocked = true;
-
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
-
-		this->setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
-		this->setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
-
-		this->setWalkSpeed(320);
-		_originSpeed = 320;
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->setLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->setLock();
-			}
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Parents") == 0)
-	{
-
-		this->settempAttackValue1(CCString::createWithFormat("%d", atoi(_nattackValue->getCString())));
-		this->setnAttackValue(CCString::createWithFormat("%d", 2460));
-
-		this->_isOnlySkillLocked = true;
-
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
-
-		this->setWalkAction(createAnimation(skillSPC1Array, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(skillSPC2Array, 10.0f, false, true));
-
-		if (strcmp(this->getMaster()->getRole()->getCString(), "Player") == 0)
-		{
-			if (this->_delegate->getHudLayer()->skill2Button)
-			{
-				this->_delegate->getHudLayer()->skill2Button->setLock();
-			}
-		}
-		this->setWalkSpeed(460);
-	}
-	else if (strcmp(this->_character->getCString(), "Kankuro") == 0)
-	{
-
-		if (strcmp(this->_role->getCString(), "Player") == 0)
-		{
-			_delegate->getHudLayer()->skill1Button->setLock();
-			_delegate->getHudLayer()->skill2Button->unLock();
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Chiyo") == 0)
-	{
-
-		if (strcmp(this->_role->getCString(), "Player") == 0)
-		{
-			_delegate->getHudLayer()->skill1Button->setLock();
-			_delegate->getHudLayer()->skill2Button->unLock();
-			_delegate->getHudLayer()->skill3Button->unLock();
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Minato") == 0)
-	{
-
-		if (_skillChangeBuffValue == 17)
-		{
-
-			this->setSkill1Action(createAnimation(skillSPC1Array, 10.0f, false, true));
-
-			if (strcmp(this->_role->getCString(), "Player") == 0)
-			{
-
-				CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Minato_skill1_1.png");
-				_delegate->getHudLayer()->skill1Button->setDisplayFrame(frame);
-				if (_delegate->getHudLayer()->skill1Button->_clickNum < 2)
-				{
-					_delegate->getHudLayer()->skill1Button->_clickNum++;
-				}
-			}
-		}
-		else if (_skillChangeBuffValue == 18)
-		{
-
-			this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) + 200));
-
-			_nattackRangeX = 16;
-			_nattackRangeY = 48;
-
-			this->setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Lee") == 0 ||
-			 strcmp(this->_character->getCString(), "RockLee") == 0)
-	{
-		if (bamen == 0 && !this->_heartEffect)
-		{
-			_heartEffect = CCSprite::createWithSpriteFrameName("Bamen_Effect_00.png");
-			_heartEffect->setPosition(ccp(this->getContentSize().width + 40, 60));
-			this->addChild(_heartEffect);
-		}
-		if (bamen < 5)
-		{
-			bamen += 1;
-			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Bamen_Effect_%02d.png", this->bamen - 1)->getCString());
-			this->_heartEffect->setDisplayFrame(frame);
-		}
-		else
-		{
-			return;
-		}
-
-		if (bamen == 1)
-		{
-			this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) + 30));
-			if (strcmp(this->getRole()->getCString(), "Player") == 0)
-			{
-				if (_delegate->getHudLayer()->skill4Button)
-				{
-					_delegate->getHudLayer()->skill4Button->unLock();
-				}
-			}
-		}
-		else if (bamen == 2)
-		{
-			this->setsAttackValue2(CCString::createWithFormat("%d", atoi(this->_sattackValue2->getCString()) + 100));
-		}
-		else if (bamen == 3)
-		{
-			if (!_skillBuffEffect)
-			{
-				this->setBuffEffect("bmBuff");
-			}
-			this->setTransform();
-
-			if (strcmp(this->getRole()->getCString(), "Player") == 0)
-			{
-				_delegate->getHudLayer()->skill3Button->unLock();
-			}
-
-			if (strcmp(this->getRole()->getCString(), "Player") == 0)
-			{
-				if (_delegate->getHudLayer()->skill5Button)
-				{
-					_delegate->getHudLayer()->skill5Button->unLock();
-				}
-			}
-		}
-		else if (bamen == 4)
-		{
-			this->setsAttackValue2(CCString::createWithFormat("%d", atoi(this->_sattackValue2->getCString()) + 100));
-			this->setsAttackValue3(CCString::createWithFormat("%d", atoi(this->_sattackValue3->getCString()) + 100));
-		}
-		else if (bamen == 5)
-		{
-			this->setWalkAction(createAnimation(skillSPC1Array, 10.0f, true, false));
-			this->setWalkSpeed(320);
-			_originSpeed = 320;
-			this->setsAttackValue2(CCString::createWithFormat("%d", atoi(this->_sattackValue2->getCString()) + 100));
-			this->setsAttackValue3(CCString::createWithFormat("%d", atoi(this->_sattackValue3->getCString()) + 100));
-			this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) + 60));
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Tsunade") == 0)
-	{
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) + 250));
-		this->_isOnlySkillLocked = true;
-		_nattackRangeX = 32;
-		_nattackRangeY = 48;
-		_tempAttackType = _nattackType;
-		_nattackType = _spcattackType3;
-
-		_isBati = true;
-		_healBuffValue = 3000;
-		this->schedule(schedule_selector(CharacterBase::healBuff), 1);
-
-		this->setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
-		this->setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->setLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->setLock();
-			}
-		}
-	}
-	else if (strcmp(this->_character->getCString(), Guardian_Roshi) == 0 ||
-			 strcmp(this->_character->getCString(), Guardian_Han) == 0)
-	{
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) + 700));
-		_nattackRangeX = 0;
-		_nattackRangeY = 48;
-		_tempAttackType = _nattackType;
-		_nattackType = _spcattackType2;
-
-		_isBati = true;
-		isPofang = true;
-		if (_hpBar)
-		{
-			_hpBar->setPositionY(120);
-		}
-		this->setWalkAction(createAnimation(skillSPC1Array, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(skillSPC2Array, 10.0f, false, true));
-		this->setIdleAction(createAnimation(skillSPC3Array, 5.0f, true, false));
-	}
-	else if (strcmp(this->_character->getCString(), "Hidan") == 0)
-	{
-
-		_isBati = true;
-		_isTaunt = true;
-		this->_isOnlySkillLocked = true;
-		this->setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
-		this->setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->setLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->setLock();
-			}
-		}
-	}
 }
+
 void CharacterBase::changeAction2()
 {
 
-	if (strcmp(this->_character->getCString(), "Minato") == 0)
+	if (strcmp(_character->getCString(), "Minato") == 0)
 	{
 
-		_attackValue = atoi(_spcattackValue2->getCString());
-		this->setAttackType(this->getspcAttack2Type());
+		_attackValue = to_int(_spcattackValue2->getCString());
+		setAttackType(getspcAttack2Type());
 		_attackRangeX = _spcattackRangeX2;
 		_attackRangeY = _spcattackRangeY2;
 
-		this->setSkill2Action(createAnimation(skillSPC2Array, 10.0f, false, true));
+		setSkill2Action(createAnimation(skillSPC2Array, 10.0f, false, true));
 	}
 }
 
 void CharacterBase::reCatched(float dt)
 {
-	this->setVisible(true);
-	this->_isVisable = true;
+	setVisible(true);
+	_isVisable = true;
 
 	if (_shadow)
 	{
@@ -4818,1226 +3939,55 @@ void CharacterBase::reCatched(float dt)
 
 void CharacterBase::resumeAction(float dt)
 {
-
-	if (strcmp(this->_character->getCString(), "Tenten") == 0 ||
-		strcmp(this->_character->getCString(), "Shino") == 0)
-	{
-		this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-	}
-	else if (strcmp(this->_character->getCString(), "Kakuzu") == 0)
-	{
-		this->removeBuffEffect("sBuff");
-	}
-	else if (strcmp(this->_character->getCString(), "Choji") == 0)
-	{
-
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) - 460));
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
-		_nattackType = _tempAttackType;
-		_tempAttackType = NULL;
-
-		this->_isOnlySkillLocked = false;
-		_isBati = false;
-		this->_gardValue -= 5000;
-
-		this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-		this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-
-		if (_actionState != State::DEAD)
-		{
-			_actionState = State::WALK;
-			this->idle();
-		}
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->unLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->unLock();
-			}
-		}
-
-		if (_hpBar)
-		{
-			_hpBar->setPositionY(this->getHeight());
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Sakura") == 0)
-	{
-		this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) - 400));
-	}
-	else if (strcmp(this->_character->getCString(), "Sai") == 0 ||
-			 strcmp(this->_character->getCString(), "Deidara") == 0)
-	{
-
-		if (_skillChangeBuffValue == 17)
-		{
-			this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-		}
-		else if (_skillChangeBuffValue == 18)
-		{
-
-			this->_isBati = false;
-			this->_isAllAttackLocked = false;
-			_originSpeed = 224;
-
-			this->setWalkSpeed(224);
-
-			if (strcmp(this->getRole()->getCString(), "Player") == 0)
-			{
-				if (_delegate->getHudLayer()->skill4Button)
-				{
-					_delegate->getHudLayer()->skill4Button->unLock();
-				}
-				if (_delegate->getHudLayer()->skill5Button)
-				{
-					_delegate->getHudLayer()->skill5Button->unLock();
-				}
-			}
-
-			this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-			this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-
-			if (_actionState != State::DEAD)
-			{
-				_actionState = State::WALK;
-				this->idle();
-			}
-			if (_hpBar)
-			{
-				_hpBar->setPositionY(this->getHeight());
-			}
-
-			this->unschedule(schedule_selector(CharacterBase::setMonPer));
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Gaara") == 0)
-	{
-		this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-
-		this->_isOnlySkillLocked = false;
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->unLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->unLock();
-			}
-		}
-		_gardValue -= 5000;
-		_isBati = false;
-
-		if (_actionState != State::DEAD)
-		{
-			_actionState = State::WALK;
-			this->idle();
-		}
-		if (_hpBar)
-		{
-			_hpBar->setPositionY(this->getHeight());
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Konan") == 0)
-	{
-
-		_isAllAttackLocked = false;
-		_isBati = false;
-
-		_originSpeed = 224;
-
-		this->setWalkSpeed(224);
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->unLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->unLock();
-			}
-		}
-
-		this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-
-		if (_actionState != State::DEAD)
-		{
-			_actionState = State::WALK;
-			this->idle();
-		}
-		if (_hpBar)
-		{
-			_hpBar->setPositionY(this->getHeight());
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Naruto") == 0)
-	{
-
-		this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-
-		this->_isOnlySkillLocked = false;
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->unLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->unLock();
-			}
-		}
-
-		this->setWalkSpeed(224);
-
-		_originSpeed = 224;
-		if (_tempAttackValue1)
-		{
-			this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_tempAttackValue1->getCString())));
-			_tempAttackValue1 = NULL;
-		}
-		isPofang = false;
-
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
-		_nattackType = _tempAttackType;
-		_gardValue -= 5000;
-		_isBati = false;
-
-		if (_actionState != State::DEAD)
-		{
-			_actionState = State::WALK;
-			this->knockDown();
-		}
-
-		this->setKnockDownAction(createAnimation(knockDownArray, 10.0f, false, true));
-	}
-	else if (strcmp(this->_character->getCString(), "SageNaruto") == 0 ||
-			 strcmp(this->_character->getCString(), "RikudoNaruto") == 0)
-	{
-
-		this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-
-		this->_isOnlySkillLocked = false;
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->unLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->unLock();
-			}
-		}
-
-		this->setWalkSpeed(224);
-
-		_originSpeed = 224;
-
-		_gardValue -= 5000;
-		_isBati = false;
-		isPofang = false;
-
-		if (_actionState != State::DEAD)
-		{
-
-			if (strcmp(this->_character->getCString(), "SageNaruto") == 0 && this->getLV() == 6)
-			{
-				_actionState = State::WALK;
-				this->setKnockDownAction(createAnimation(skillSPC5Array, 10.0f, false, true));
-				this->knockDown();
-				this->setKnockDownAction(createAnimation(knockDownArray, 10.0f, false, true));
-				_skillChangeBuffValue = 0;
-				return;
-			}
-			_actionState = State::WALK;
-			this->idle();
-		}
-
-		if (_tempAttackValue1)
-		{
-			this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_tempAttackValue1->getCString())));
-			_tempAttackValue1 = NULL;
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Kakashi") == 0)
-	{
-		this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		this->setSkill1Action(createAnimation(skill1Array, 10.0f, false, true));
-		this->setSkill2Action(createAnimation(skill2Array, 10.0f, false, true));
-
-		this->setsAttackValue1(CCString::createWithFormat("%d", atoi(_tempAttackValue1->getCString())));
-
-		if (strcmp(this->_role->getCString(), "Player") == 0)
-		{
-
-			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Kakashi_skill1.png");
-			_delegate->getHudLayer()->skill1Button->setDisplayFrame(frame);
-			frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Kakashi_skill2.png");
-			_delegate->getHudLayer()->skill2Button->setDisplayFrame(frame);
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Itachi") == 0)
-	{
-
-		this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-
-		this->_isOnlySkillLocked = false;
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->unLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->unLock();
-			}
-		}
-
-		this->setWalkSpeed(224);
-
-		_originSpeed = 224;
-		if (_tempAttackValue1)
-		{
-			this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_tempAttackValue1->getCString())));
-			_tempAttackValue1 = NULL;
-		}
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
-		_gardValue -= 5000;
-		_isBati = false;
-
-		if (_actionState != State::DEAD)
-		{
-			_actionState = State::WALK;
-			this->knockDown();
-		}
-
-		this->setKnockDownAction(createAnimation(knockDownArray, 10.0f, false, true));
-
-		if (this->getMonsterArray() && getMonsterArray()->count() > 0)
-		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(this->getMonsterArray(), pObject)
-			{
-				Monster *mo = (Monster *)pObject;
-				mo->removeFromParent();
-			};
-			this->getMonsterArray()->removeAllObjects();
-			this->setMonsterArray(NULL);
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Kiba") == 0)
-	{
-
-		if (_powerUPBuffValue)
-		{
-			this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) - _powerUPBuffValue));
-			this->setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
-			_powerUPBuffValue = 0;
-		}
-
-		if (_actionState == State::IDLE ||
-			_actionState == State::WALK ||
-			_actionState == State::ATTACK)
-		{
-			_actionState = State::WALK;
-			this->idle();
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Akamaru") == 0)
-	{
-
-		if (_powerUPBuffValue)
-		{
-			this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) - _powerUPBuffValue));
-			this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-			this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-			this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-			_powerUPBuffValue = 0;
-
-			if (_actionState == State::IDLE ||
-				_actionState == State::WALK ||
-				_actionState == State::ATTACK)
-			{
-				_actionState = State::WALK;
-				this->idle();
-			}
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Minato") == 0)
-	{
-
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) - 200));
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
-		this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-
-		_markPoint = ccp(0, 0);
-		_startPoint = ccp(0, 0);
-	}
-	else if ((strcmp(this->_character->getCString(), "Sasuke") == 0 ||
-			  strcmp(this->_character->getCString(), "ImmortalSasuke") == 0) &&
-			 this->_isTaunt)
-	{
-
-		this->_isTaunt = false;
-		this->setHurtAction(createAnimation(hurtArray, 10.0f, false, true));
-	}
-	else if (strcmp(this->_character->getCString(), "Sasuke") == 0 && _skillChangeBuffValue == 18)
-	{
-
-		this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-
-		this->_isOnlySkillLocked = false;
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->unLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->unLock();
-			}
-		}
-
-		this->setWalkSpeed(224);
-
-		_originSpeed = 224;
-		if (_tempAttackValue1)
-		{
-			this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_tempAttackValue1->getCString())));
-			_tempAttackValue1 = NULL;
-		}
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
-		_nattackType = _tempAttackType;
-		_gardValue -= 5000;
-		_isBati = false;
-
-		if (_actionState != State::DEAD)
-		{
-			_actionState = State::WALK;
-			this->knockDown();
-		}
-
-		this->setKnockDownAction(createAnimation(knockDownArray, 10.0f, false, true));
-	}
-	else if (strcmp(this->_character->getCString(), "ImmortalSasuke") == 0 && _skillChangeBuffValue == 18)
-	{
-
-		this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-
-		this->_isOnlySkillLocked = false;
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->unLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->unLock();
-			}
-		}
-
-		this->setWalkSpeed(224);
-
-		_originSpeed = 224;
-		if (_tempAttackValue1)
-		{
-			this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_tempAttackValue1->getCString())));
-			_tempAttackValue1 = NULL;
-		}
-		_gardValue -= 5000;
-		_isBati = false;
-
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
-
-		if (this->getMonsterArray() && getMonsterArray()->count() > 0)
-		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(this->getMonsterArray(), pObject)
-			{
-				Monster *mo = (Monster *)pObject;
-				mo->removeFromParent();
-			};
-			this->getMonsterArray()->removeAllObjects();
-			this->setMonsterArray(NULL);
-		}
-
-		if (this->_actionState != State::DEAD)
-		{
-			this->_actionState = State::WALK;
-			this->idle();
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Tobi") == 0)
-	{
-
-		this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-
-		if (this->getOpacity() != 255)
-		{
-			this->setOpacity(255);
-		}
-
-		this->setWalkSpeed(224);
-
-		_originSpeed = 224;
-
-		if (this->_actionState == State::WALK)
-		{
-			this->idle();
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Tsunade") == 0)
-	{
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) - 250));
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
-		_nattackType = _tempAttackType;
-		_tempAttackType = NULL;
-
-		this->_isOnlySkillLocked = false;
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->unLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->unLock();
-			}
-		}
-		_isBati = false;
-
-		this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-		this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-
-		if (_actionState != State::DEAD)
-		{
-			_actionState = State::WALK;
-			this->idle();
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Ino") == 0 && _isBati)
-	{
-		CCObject *pObject;
-		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
-		{
-			Hero *tempHero = (Hero *)pObject;
-			if (tempHero->_isControled)
-			{
-				tempHero->_isControled = false;
-				tempHero->changeGroup();
-				if (strcmp(tempHero->getRole()->getCString(), "Player") == 0)
-				{
-					tempHero->_isAI = false;
-					tempHero->unschedule(schedule_selector(CharacterBase::setAI));
-					this->_delegate->getHudLayer()->_isAllButtonLocked = false;
-				}
-				if (strcmp(this->getRole()->getCString(), "Player") == 0)
-				{
-					this->_delegate->controlChar = NULL;
-				}
-				if (this->getActionState() != State::DEAD)
-				{
-					this->idle();
-				}
-				tempHero->_controler = NULL;
-			}
-		};
-
-		_isBati = false;
-	}
-	else if (strcmp(this->_character->getCString(), "Hidan") == 0)
-	{
-
-		_isBati = false;
-		_isTaunt = false;
-		this->_isOnlySkillLocked = false;
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->unLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->unLock();
-			}
-		}
-
-		this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-		this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-
-		if (this->getMonsterArray() && getMonsterArray()->count() > 0)
-		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(this->getMonsterArray(), pObject)
-			{
-				CharacterBase *mo = (CharacterBase *)pObject;
-				int index = _delegate->_CharacterArray->indexOfObject(mo);
-				if (index >= 0)
-				{
-					_delegate->_CharacterArray->removeObjectAtIndex(index);
-				}
-				mo->setActionState(State::DEAD);
-				CCNotificationCenter::sharedNotificationCenter()->removeObserver(mo, "acceptAttack");
-				mo->removeFromParent();
-				mo = NULL;
-			};
-
-			this->getMonsterArray()->removeAllObjects();
-			_monsterArray = NULL;
-		}
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			this->_delegate->getHudLayer()->skill1Button->unLock();
-		}
-		if (_actionState != State::DEAD)
-		{
-			_actionState = State::WALK;
-			this->idle();
-		}
-	}
-
 	_skillChangeBuffValue = 0;
 }
+
 void CharacterBase::setActionResume()
 {
-
-	if (strcmp(this->_character->getCString(), "Suigetsu") == 0)
-	{
-
-		if (_skillChangeBuffValue)
-		{
-
-			this->_isBati = false;
-			if (_tempAttackValue1)
-			{
-				this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_tempAttackValue1->getCString())));
-				_tempAttackValue1 = NULL;
-			}
-			_isOnlySkillLocked = false;
-			if (strcmp(this->getRole()->getCString(), "Player") == 0)
-			{
-				if (_delegate->getHudLayer()->skill4Button)
-				{
-					_delegate->getHudLayer()->skill4Button->unLock();
-				}
-				if (_delegate->getHudLayer()->skill5Button)
-				{
-					_delegate->getHudLayer()->skill5Button->unLock();
-				}
-			}
-
-			_nattackRangeX = 16;
-			_nattackRangeY = 48;
-
-			this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-			this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-			this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-
-			_skillChangeBuffValue = 0;
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Jugo") == 0)
-	{
-
-		if (_skillChangeBuffValue)
-		{
-
-			if (_tempAttackValue1)
-			{
-				this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_tempAttackValue1->getCString())));
-				_tempAttackValue1 = NULL;
-			}
-			_isOnlySkillLocked = false;
-			if (strcmp(this->getRole()->getCString(), "Player") == 0)
-			{
-				if (_delegate->getHudLayer()->skill4Button)
-				{
-					_delegate->getHudLayer()->skill4Button->unLock();
-				}
-				if (_delegate->getHudLayer()->skill5Button)
-				{
-					_delegate->getHudLayer()->skill5Button->unLock();
-				}
-			}
-
-			_nattackRangeX = 16;
-			_nattackRangeY = 48;
-
-			this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-			this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-			this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-
-			_skillChangeBuffValue = 0;
-
-			this->setWalkSpeed(224);
-
-			_originSpeed = 224;
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Kisame") == 0)
-	{
-
-		if (_skillChangeBuffValue)
-		{
-
-			if (_tempAttackValue1)
-			{
-				this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_tempAttackValue1->getCString())));
-				_tempAttackValue1 = NULL;
-			}
-			_isOnlySkillLocked = false;
-			if (strcmp(this->getRole()->getCString(), "Player") == 0)
-			{
-				if (_delegate->getHudLayer()->skill4Button)
-				{
-					_delegate->getHudLayer()->skill4Button->unLock();
-				}
-				if (_delegate->getHudLayer()->skill5Button)
-				{
-					_delegate->getHudLayer()->skill5Button->unLock();
-				}
-			}
-
-			_nattackRangeX = 16;
-			_nattackRangeY = 48;
-
-			this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-			this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-			this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-
-			_skillChangeBuffValue = 0;
-
-			this->setWalkSpeed(224);
-
-			_originSpeed = 224;
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Parents") == 0)
-	{
-
-		if (_skillChangeBuffValue)
-		{
-
-			if (_tempAttackValue1)
-			{
-				this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_tempAttackValue1->getCString())));
-				_tempAttackValue1 = NULL;
-			}
-			_isOnlySkillLocked = false;
-
-			_nattackRangeX = 16;
-			_nattackRangeY = 48;
-
-			this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-			this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-
-			_skillChangeBuffValue = 0;
-
-			this->setWalkSpeed(224);
-
-			_originSpeed = 224;
-
-			if (strcmp(this->getMaster()->getRole()->getCString(), "Player") == 0)
-			{
-				if (this->_delegate->getHudLayer()->skill2Button)
-				{
-					this->_delegate->getHudLayer()->skill2Button->unLock();
-				}
-			}
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Kakuzu") == 0 && _skillChangeBuffValue)
-	{
-		this->unschedule(schedule_selector(CharacterBase::resumeAction));
-		this->removeBuffEffect("sBuff");
-
-		_skillChangeBuffValue = 0;
-	}
-	else if (strcmp(this->_character->getCString(), "Tobi") == 0 && _skillChangeBuffValue)
-	{
-
-		this->unschedule(schedule_selector(CharacterBase::resumeAction));
-		this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-
-		if (this->getOpacity() != 255)
-		{
-			this->setOpacity(255);
-		}
-
-		this->setWalkSpeed(224);
-
-		_originSpeed = 224;
-
-		_skillChangeBuffValue = 0;
-	}
-	else if (strcmp(this->_character->getCString(), "Kiba") == 0)
-	{
-
-		if (_powerUPBuffValue)
-		{
-			this->unschedule(schedule_selector(CharacterBase::resumeAction));
-			this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) - _powerUPBuffValue));
-			_powerUPBuffValue = 0;
-		}
-		_isBati = true;
-		this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			_delegate->getHudLayer()->skill1Button->unLock();
-			_delegate->getHudLayer()->skill2Button->setLock();
-			_delegate->getHudLayer()->skill3Button->setLock();
-		}
-		if (_hpBar)
-		{
-			_hpBar->setPositionY(this->getHeight());
-		}
-
-		if (_actionState == State::IDLE ||
-			_actionState == State::WALK ||
-			_actionState == State::ATTACK)
-		{
-			_actionState = State::WALK;
-			this->idle();
-		}
-
-		_skillChangeBuffValue = 0;
-	}
-	else if (strcmp(this->_character->getCString(), "Hiruzen") == 0 && _skillChangeBuffValue)
-	{
-
-		_isBati = false;
-		_isOnlySkillLocked = false;
-		if (_tempAttackValue1)
-		{
-			this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_tempAttackValue1->getCString())));
-			_tempAttackValue1 = NULL;
-		}
-		this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->unLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->unLock();
-			}
-		}
-
-		_skillChangeBuffValue = 0;
-	}
-	else if (strcmp(this->_character->getCString(), "Kankuro") == 0)
-	{
-
-		if (strcmp(this->_role->getCString(), "Player") == 0)
-		{
-			_delegate->getHudLayer()->skill1Button->unLock();
-			_delegate->getHudLayer()->skill2Button->setLock();
-		}
-		_skillChangeBuffValue = 0;
-	}
-	else if (strcmp(this->_character->getCString(), "Chiyo") == 0)
-	{
-
-		if (strcmp(this->_role->getCString(), "Player") == 0)
-		{
-			_delegate->getHudLayer()->skill1Button->unLock();
-			_delegate->getHudLayer()->skill2Button->setLock();
-			_delegate->getHudLayer()->skill3Button->setLock();
-		}
-		_skillChangeBuffValue = 0;
-	}
-	else if (strcmp(this->_character->getCString(), "Minato") == 0)
-	{
-		this->setSkill1Action(createAnimation(skill1Array, 10.0f, false, true));
-		_skillChangeBuffValue = 0;
-	}
-	else if ((strcmp(this->_character->getCString(), "Sasuke") == 0 ||
-			  strcmp(this->_character->getCString(), "ImmortalSasuke") == 0) &&
-			 this->_isTaunt)
-	{
-
-		this->unschedule(schedule_selector(CharacterBase::resumeAction));
-		this->_isTaunt = false;
-		this->setHurtAction(createAnimation(hurtArray, 10.0f, false, true));
-		_skillChangeBuffValue = 0;
-	}
-	else if (strcmp(this->_character->getCString(), "ImmortalSasuke") == 0 && _skillChangeBuffValue)
-	{
-		if (_skillChangeBuffValue == 18)
-		{
-
-			this->unschedule(schedule_selector(CharacterBase::resumeAction));
-
-			this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-			this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-			this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-
-			this->_isOnlySkillLocked = false;
-			if (strcmp(this->getRole()->getCString(), "Player") == 0)
-			{
-				if (_delegate->getHudLayer()->skill4Button)
-				{
-					_delegate->getHudLayer()->skill4Button->unLock();
-				}
-				if (_delegate->getHudLayer()->skill5Button)
-				{
-					_delegate->getHudLayer()->skill5Button->unLock();
-				}
-			}
-
-			this->setWalkSpeed(224);
-
-			_originSpeed = 224;
-			if (_tempAttackValue1)
-			{
-				this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_tempAttackValue1->getCString())));
-				_tempAttackValue1 = NULL;
-			}
-			_gardValue -= 5000;
-			_isBati = false;
-
-			_nattackRangeX = 16;
-			_nattackRangeY = 48;
-
-			_skillChangeBuffValue = 0;
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Itachi") == 0 && _skillChangeBuffValue)
-	{
-
-		if (_skillChangeBuffValue == 17)
-		{
-
-			this->unschedule(schedule_selector(CharacterBase::resumeAction));
-
-			this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-			this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-			this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-			this->setKnockDownAction(createAnimation(knockDownArray, 10.0f, false, true));
-
-			this->_isOnlySkillLocked = false;
-			if (strcmp(this->getRole()->getCString(), "Player") == 0)
-			{
-				if (_delegate->getHudLayer()->skill4Button)
-				{
-					_delegate->getHudLayer()->skill4Button->unLock();
-				}
-				if (_delegate->getHudLayer()->skill5Button)
-				{
-					_delegate->getHudLayer()->skill5Button->unLock();
-				}
-			}
-
-			this->setWalkSpeed(224);
-
-			_originSpeed = 224;
-			if (_tempAttackValue1)
-			{
-				this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_tempAttackValue1->getCString())));
-				_tempAttackValue1 = NULL;
-			}
-			_nattackRangeX = 16;
-			_nattackRangeY = 48;
-			_gardValue -= 5000;
-			_isBati = false;
-
-			_skillChangeBuffValue = 0;
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Choji") == 0 && _skillChangeBuffValue)
-	{
-
-		this->unschedule(schedule_selector(CharacterBase::resumeAction));
-
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) - 460));
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
-		_nattackType = _tempAttackType;
-		_tempAttackType = NULL;
-
-		this->_isOnlySkillLocked = false;
-		_isBati = false;
-		this->_gardValue -= 5000;
-
-		this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-		this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->unLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->unLock();
-			}
-		}
-
-		if (_hpBar)
-		{
-			_hpBar->setPositionY(this->getHeight());
-		}
-
-		_skillChangeBuffValue = 0;
-	}
-	else if (strcmp(this->_character->getCString(), "Gaara") == 0 && _skillChangeBuffValue)
-	{
-		this->unschedule(schedule_selector(CharacterBase::resumeAction));
-		this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-		this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-
-		this->_isOnlySkillLocked = false;
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->unLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->unLock();
-			}
-		}
-		_gardValue -= 5000;
-		_isBati = false;
-		_skillChangeBuffValue = 0;
-
-		if (_hpBar)
-		{
-			_hpBar->setPositionY(this->getHeight());
-		}
-	}
-	else if (strcmp(this->_character->getCString(), "Ino") == 0)
-	{
-
-		this->unschedule(schedule_selector(CharacterBase::resumeAction));
-		CCObject *pObject;
-		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
-		{
-			Hero *tempHero = (Hero *)pObject;
-			if (tempHero->_isControled)
-			{
-				tempHero->_isControled = false;
-				tempHero->changeGroup();
-				if (strcmp(tempHero->getRole()->getCString(), "Player") == 0)
-				{
-					tempHero->unschedule(schedule_selector(CharacterBase::setAI));
-					tempHero->_isAI = false;
-					this->_delegate->getHudLayer()->_isAllButtonLocked = false;
-				}
-				if (strcmp(this->getRole()->getCString(), "Player") == 0)
-				{
-					this->_delegate->controlChar = NULL;
-				}
-				tempHero->_controler = NULL;
-			}
-		};
-
-		_isBati = false;
-	}
-	else if (strcmp(this->_character->getCString(), "Hidan") == 0 && _skillChangeBuffValue)
-	{
-
-		this->unschedule(schedule_selector(CharacterBase::resumeAction));
-		_isBati = false;
-		_isTaunt = false;
-		this->_isOnlySkillLocked = false;
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->unLock();
-			}
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->unLock();
-			}
-		}
-		this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-		this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-
-		if (this->getMonsterArray() && getMonsterArray()->count() > 0)
-		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(this->getMonsterArray(), pObject)
-			{
-				CharacterBase *mo = (CharacterBase *)pObject;
-				int index = _delegate->_CharacterArray->indexOfObject(mo);
-				if (index >= 0)
-				{
-					_delegate->_CharacterArray->removeObjectAtIndex(index);
-				}
-				mo->setActionState(State::DEAD);
-				CCNotificationCenter::sharedNotificationCenter()->removeObserver(mo, "acceptAttack");
-				mo->removeFromParent();
-				mo = NULL;
-			};
-			this->getMonsterArray()->removeAllObjects();
-			_monsterArray = NULL;
-		}
-
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			this->_delegate->getHudLayer()->skill1Button->unLock();
-		}
-
-		if (_actionState != State::DEAD)
-		{
-			_actionState = State::WALK;
-			this->idle();
-		}
-
-		_skillChangeBuffValue = 0;
-	}
-	else if (strcmp(this->_character->getCString(), "Deidara") == 0 ||
-			 strcmp(this->_character->getCString(), "Sai") == 0)
-	{
-
-		if (_skillChangeBuffValue)
-		{
-			this->unschedule(schedule_selector(CharacterBase::resumeAction));
-
-			if (_skillChangeBuffValue == 17)
-			{
-				this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-			}
-			else if (_skillChangeBuffValue == 18)
-			{
-
-				this->_isBati = false;
-				this->_isAllAttackLocked = false;
-				_originSpeed = 224;
-
-				this->setWalkSpeed(224);
-
-				if (strcmp(this->getRole()->getCString(), "Player") == 0)
-				{
-					if (_delegate->getHudLayer()->skill4Button)
-					{
-						_delegate->getHudLayer()->skill4Button->unLock();
-					}
-					if (_delegate->getHudLayer()->skill5Button)
-					{
-						_delegate->getHudLayer()->skill5Button->unLock();
-					}
-				}
-
-				this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-				this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-
-				if (_hpBar)
-				{
-					_hpBar->setPositionY(this->getHeight());
-				}
-				this->unschedule(schedule_selector(CharacterBase::setMonPer));
-			}
-
-			_skillChangeBuffValue = 0;
-		}
-	}
 }
 
 void CharacterBase::setActionResume2()
 {
 
-	if (strcmp(this->_character->getCString(), "Minato") == 0)
+	if (strcmp(_character->getCString(), "Minato") == 0)
 	{
-		this->setSkill2Action(createAnimation(skill2Array, 10.0f, false, true));
+		setSkill2Action(createAnimation(skill2Array, 10.0f, false, true));
 	}
 }
 
 void CharacterBase::getCollider()
 {
-	this->schedule(schedule_selector(CharacterBase::stopMove), 0.0f);
+	schedule(schedule_selector(CharacterBase::stopMove), 0.0f);
 }
 
 void CharacterBase::stopMove(float dt)
 {
 
-	if (this->getPositionX() <= _delegate->currentMap->getTileSize().width ||
-		this->getPositionX() >= (_delegate->currentMap->getMapSize().width - 1) * _delegate->currentMap->getTileSize().width)
+	if (getPositionX() <= _delegate->currentMap->getTileSize().width ||
+		getPositionX() >= (_delegate->currentMap->getMapSize().width - 1) * _delegate->currentMap->getTileSize().width)
 	{
-		this->unschedule(schedule_selector(CharacterBase::stopMove));
-		this->getActionManager()->removeAction(_moveAction);
+		unschedule(schedule_selector(CharacterBase::stopMove));
+		getActionManager()->removeAction(_moveAction);
 		return;
-	};
+	}
 
 	CCObject *pObject;
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
 		Hero *tempHero = (Hero *)pObject;
-		if (strcmp(this->_group->getCString(), tempHero->_group->getCString()) != 0 && tempHero->_isVisable && tempHero->_actionState != State::DEAD && tempHero->_actionState != State::JUMP && !tempHero->_isWudi)
+		if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && tempHero->_isVisable && tempHero->_actionState != State::DEAD && tempHero->_actionState != State::JUMP && !tempHero->_isWudi)
 		{
-			float distanceX = ccpSub(tempHero->getPosition(), this->getPosition()).x;
-			float tempRange1 = _attackRangeX + this->getContentSize().width / 2;
+			float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
+			float tempRange1 = _attackRangeX + getContentSize().width / 2;
 			if (abs(distanceX) <= tempRange1 &&
-				abs(tempHero->getPositionY() - this->getPositionY()) <= this->_attackRangeY)
+				abs(tempHero->getPositionY() - getPositionY()) <= _attackRangeY)
 			{
-				this->unschedule(schedule_selector(CharacterBase::stopMove));
-				this->getActionManager()->removeAction(_moveAction);
+				unschedule(schedule_selector(CharacterBase::stopMove));
+				getActionManager()->removeAction(_moveAction);
 				return;
 			}
 		}
-	};
+	}
 }
 
 void CharacterBase::stopJump(CCNode *sender, void *data)
@@ -6046,8 +3996,8 @@ void CharacterBase::stopJump(CCNode *sender, void *data)
 
 	if (_actionState == State::JUMP)
 	{
-		this->getActionManager()->pauseTarget(this);
-		this->scheduleOnce(schedule_selector(CharacterBase::resumePauseStuff), float(stopTime) / 100);
+		getActionManager()->pauseTarget(this);
+		scheduleOnce(schedule_selector(CharacterBase::resumePauseStuff), float(stopTime) / 100);
 	}
 }
 
@@ -6059,38 +4009,38 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 
 	Bullet *bullet = Bullet::create();
 	bullet->setDelegate(_delegate);
-	bullet->setID(bulletType, CCString::create("Bullet"), this->_group);
+	bullet->setID(bulletType, CCString::create("Bullet"), _group);
 	bullet->idle();
 	if (_master)
 	{
-		bullet->_master = this->_master;
+		bullet->_master = _master;
 	}
 	else
 	{
 		bullet->_master = this;
 	}
 
-	if (this->_isFlipped)
+	if (_isFlipped)
 	{
 		bullet->setFlipX(true);
 		bullet->_isFlipped = true;
 	}
 
-	_delegate->addChild(bullet, -this->getPositionY());
+	_delegate->addChild(bullet, -getPositionY());
 
 	if (strcmp(bulletType->getCString(), "PaperSrk") == 0)
 	{
 		bullet->setScale(0.8f);
-		bullet->setPosition(ccp(this->getPositionX() + (this->_isFlipped ? -32 : 32),
-								this->getPositionY() + 52));
+		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32),
+								getPositionY() + 52));
 		bullet->attack(NAttack);
 		bullet->setMove(192, 2.0f, false);
 	}
 	else if (strcmp(bulletType->getCString(), "PaperSpear") == 0)
 	{
 		bullet->setScale(0.8f);
-		bullet->setPosition(ccp(this->getPositionX() + (this->_isFlipped ? -68 : 68),
-								this->getPositionY() + 42));
+		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -68 : 68),
+								getPositionY() + 42));
 		bullet->attack(NAttack);
 		bullet->setMove(192, 2.0f, false);
 	}
@@ -6099,23 +4049,23 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 		float rangeX = 76;
 
 		bullet->setScale(0.8f);
-		bullet->setPosition(ccp(this->getPositionX() + (this->_isFlipped ? -rangeX : rangeX),
-								this->getPositionY() + this->getHeight() / 2));
-		if (this->_skillUPBuffValue)
+		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -rangeX : rangeX),
+								getPositionY() + getHeight() / 2));
+		if (_skillUPBuffValue)
 		{
-			bullet->setnAttackValue(CCString::createWithFormat("%d", atoi(bullet->_nattackValue->getCString()) + this->_skillUPBuffValue));
+			bullet->setnAttackValue(CCString::createWithFormat("%d", to_int(bullet->_nattackValue->getCString()) + _skillUPBuffValue));
 		}
 
 		bullet->scheduleOnce(schedule_selector(Bullet::setAttack), 0.5f);
-		this->scheduleOnce(schedule_selector(CharacterBase::setBulletGroup), 0.2f);
+		scheduleOnce(schedule_selector(CharacterBase::setBulletGroup), 0.2f);
 		bullet->setEaseIn(224, 5.0f);
 	}
 	else if (strcmp(bulletType->getCString(), "FlyKnife") == 0 ||
 			 strcmp(bulletType->getCString(), "TentenSRK") == 0)
 	{
 		bullet->setScale(0.8f);
-		bullet->setPosition(ccp(this->getPositionX() + (this->_isFlipped ? -32 : 32),
-								this->getPositionY() + this->getHeight() / 2));
+		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32),
+								getPositionY() + getHeight() / 2));
 
 		bullet->setEaseIn(224, 2.0f);
 		bullet->attack(NAttack);
@@ -6132,17 +4082,17 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 		if (strcmp(bulletType->getCString(), "HiraishinKunai") == 0)
 		{
 			bullet->setScale(0.8f);
-			bullet->setPosition(ccp(this->getPositionX() + (this->_isFlipped ? -42 : 42),
-									this->getPositionY() + this->getHeight() / 2));
+			bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -42 : 42),
+									getPositionY() + getHeight() / 2));
 		}
 		else
 		{
 			bullet->setAnchorPoint(ccp(0.5f, 0));
-			bullet->setPosition(ccp(this->getPositionX() + (this->_isFlipped ? -42 : 42),
-									this->getPositionY()));
+			bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -42 : 42),
+									getPositionY()));
 		}
 
-		bullet->_originY = this->getPositionY();
+		bullet->_originY = getPositionY();
 		bullet->setEaseIn(196, 2.0f);
 		bullet->attack(NAttack);
 		_monsterArray->addObject(bullet);
@@ -6150,8 +4100,8 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 	else
 	{
 
-		bullet->setPosition(ccp(this->getPositionX() + (this->_isFlipped ? -32 : 32),
-								this->getPositionY() + this->getContentSize().height / 2));
+		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32),
+								getPositionY() + getContentSize().height / 2));
 
 		bullet->attack(NAttack);
 		bullet->setMove(192, 2.0f, false);
@@ -6166,32 +4116,32 @@ void CharacterBase::setBulletGroup(float dt)
 		bullet->setDelegate(_delegate);
 		float rangeX = 0;
 
-		bullet->setID(CCString::create("HugeSRK"), CCString::create("Bullet"), this->_group);
+		bullet->setID(CCString::create("HugeSRK"), CCString::create("Bullet"), _group);
 		rangeX = 76;
 
 		bullet->_master = this;
 		bullet->setScale(0.8f);
 
-		if (this->_isFlipped)
+		if (_isFlipped)
 		{
 			bullet->setFlipX(true);
 			bullet->_isFlipped = true;
 		}
 		if (i == 0)
 		{
-			CCPoint location = ccp(this->getPositionX() + (_isFlipped ? -rangeX : rangeX), this->getPositionY() + (this->getHeight() / 2 + 23));
+			CCPoint location = ccp(getPositionX() + (_isFlipped ? -rangeX : rangeX), getPositionY() + (getHeight() / 2 + 23));
 			bullet->setPosition(location);
 		}
 		else
 		{
-			CCPoint location = ccp(this->getPositionX() + (_isFlipped ? -rangeX : rangeX), this->getPositionY() + (this->getHeight() / 2 - 23));
+			CCPoint location = ccp(getPositionX() + (_isFlipped ? -rangeX : rangeX), getPositionY() + (getHeight() / 2 - 23));
 			bullet->setPosition(location);
 		}
 		_delegate->addChild(bullet, currentSkillTag);
 		bullet->idle();
-		if (this->_skillUPBuffValue)
+		if (_skillUPBuffValue)
 		{
-			bullet->setnAttackValue(CCString::createWithFormat("%d", atoi(bullet->_nattackValue->getCString()) + this->_skillUPBuffValue));
+			bullet->setnAttackValue(CCString::createWithFormat("%d", to_int(bullet->_nattackValue->getCString()) + _skillUPBuffValue));
 		}
 
 		bullet->scheduleOnce(schedule_selector(Bullet::setAttack), 0.5f);
@@ -6199,229 +4149,25 @@ void CharacterBase::setBulletGroup(float dt)
 	}
 }
 
+Hero *CharacterBase::createClone(unsigned int cloneTime)
+{
+	return nullptr;
+}
+
 void CharacterBase::setClone(CCNode *sender, void *data)
 {
-	int cloneTime = *((int *)&data);
-	HeroElement *clone;
-
-	if (strcmp(this->getCharacter()->getCString(), "Nagato") == 0)
+	unsigned int cloneTime = *((int *)&data);
+	Hero *clone = createClone(cloneTime);
+	if (!clone)
 	{
-
-		clone = AIProvider::createAI(CCString::create("DevaPath"), CCString::create(K_TAG_CLONE), this->_group);
-		clone->_isBati = true;
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			if (this->_delegate->getHudLayer()->skill5Button)
-			{
-				this->_delegate->getHudLayer()->skill5Button->setLock();
-			}
-		}
-
-		_skillChangeBuffValue = 100;
-	}
-	else if (strcmp(this->getCharacter()->getCString(), "Kakuzu") == 0)
-	{
-		if (!_monsterArray)
-		{
-			_monsterArray = CCArray::create();
-			_monsterArray->retain();
-		}
-		bool isRaidon = false;
-		bool isFudon = false;
-		bool isKadon = false;
-		int countMon = 0;
-		if (getMonsterArray() && getMonsterArray()->count() > 0)
-		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(getMonsterArray(), pObject)
-			{
-				Monster *mo = (Monster *)pObject;
-				if (strcmp(mo->getCharacter()->getCString(), "MaskRaidon") == 0)
-				{
-					countMon++;
-					isRaidon = true;
-				}
-				if (strcmp(mo->getCharacter()->getCString(), "MaskFudon") == 0)
-				{
-					countMon++;
-					isFudon = true;
-				}
-				if (strcmp(mo->getCharacter()->getCString(), "MaskKadon") == 0)
-				{
-					countMon++;
-					isKadon = true;
-				}
-			};
-		}
-
-		if (this->hearts > 0 && (!isRaidon || !isKadon || !isFudon))
-		{
-			if (!isRaidon)
-			{
-				clone = AIProvider::createAI(CCString::create("MaskRaidon"), CCString::create("Kugutsu"), this->_group);
-			}
-			else if (!isFudon)
-			{
-				clone = AIProvider::createAI(CCString::create("MaskFudon"), CCString::create("Kugutsu"), this->_group);
-			}
-			else if (!isKadon)
-			{
-				clone = AIProvider::createAI(CCString::create("MaskKadon"), CCString::create("Kugutsu"), this->_group);
-			}
-			clone->_isBati = true;
-			_monsterArray->addObject(clone);
-
-			this->hearts -= 1;
-			if (this->_heartEffect)
-			{
-				CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", this->hearts)->getCString());
-				this->_heartEffect->setDisplayFrame(frame);
-			}
-
-			if (this->hearts < 1 || countMon >= 2)
-			{
-
-				if (strcmp(this->getRole()->getCString(), "Player") == 0)
-				{
-					if (_delegate->getHudLayer()->skill4Button)
-					{
-						_delegate->getHudLayer()->skill4Button->setLock();
-					}
-				}
-			}
-		}
-		else
-		{
-			clone = NULL;
-			return;
-		}
-	}
-	else if (strcmp(this->getCharacter()->getCString(), "Kankuro") == 0)
-	{
-
-		if (!_monsterArray)
-		{
-			_monsterArray = CCArray::create();
-			_monsterArray->retain();
-		}
-		if (cloneTime == 0)
-		{
-			clone = AIProvider::createAI(CCString::create("Karasu"), CCString::create("Kugutsu"), this->_group);
-		}
-		else if (cloneTime == 1)
-		{
-			clone = AIProvider::createAI(CCString::create("Sanshouuo"), CCString::create("Kugutsu"), this->_group);
-			if (strcmp(this->getRole()->getCString(), "Player") == 0)
-			{
-				if (this->_delegate->getHudLayer()->skill4Button)
-				{
-					this->_delegate->getHudLayer()->skill4Button->setLock();
-				}
-			}
-		}
-		else if (cloneTime == 2)
-		{
-			clone = AIProvider::createAI(CCString::create("Saso"), CCString::create("Kugutsu"), this->_group);
-			if (strcmp(this->getRole()->getCString(), "Player") == 0)
-			{
-				if (this->_delegate->getHudLayer()->skill5Button)
-				{
-					this->_delegate->getHudLayer()->skill5Button->setLock();
-				}
-			}
-		}
-		clone->_isBati = true;
-		_monsterArray->addObject(clone);
-	}
-	else if (strcmp(this->getCharacter()->getCString(), "Chiyo") == 0)
-	{
-
-		if (!_monsterArray)
-		{
-			_monsterArray = CCArray::create();
-			_monsterArray->retain();
-		}
-
-		clone = AIProvider::createAI(CCString::create("Parents"), CCString::create("Kugutsu"), this->_group);
-		clone->setPosition(ccp(this->getPositionX(), this->getPositionY() - 3));
-		clone->_isBati = true;
-		_monsterArray->addObject(clone);
-	}
-	else if (strcmp(this->getCharacter()->getCString(), "Kiba") == 0)
-	{
-
-		if (!_monsterArray)
-		{
-			_monsterArray = CCArray::create();
-			_monsterArray->retain();
-		}
-
-		clone = AIProvider::createAI(CCString::create("Akamaru"), CCString::create(K_TAG_CLONE), this->_group);
-		clone->_isBati = true;
-		_monsterArray->addObject(clone);
-	}
-	else if (strcmp(this->getCharacter()->getCString(), "DevaPath") == 0)
-	{
-		if (!_monsterArray)
-		{
-			_monsterArray = CCArray::create();
-			_monsterArray->retain();
-		}
-		if (cloneTime == 0)
-		{
-			clone = AIProvider::createAI(CCString::create("AnimalPath"), CCString::create("Summon"), this->_group);
-		}
-		else
-		{
-			clone = AIProvider::createAI(CCString::create("AsuraPath"), CCString::create("Summon"), this->_group);
-		}
-		_monsterArray->addObject(clone);
-		clone->_isBati = true;
-	}
-	else if (strcmp(this->getCharacter()->getCString(), "Tsunade") == 0)
-	{
-		clone = AIProvider::createAI(CCString::create("Slug"), CCString::create("Summon"), this->_group);
-		clone->_isBati = true;
-	}
-	else if (strcmp(this->getCharacter()->getCString(), "Kakashi") == 0)
-	{
-		clone = AIProvider::createAI(CCString::create("DogWall"), CCString::create("Summon"), this->_group);
-		clone->setPosition(ccp(this->getPositionX() + (this->_isFlipped ? -56 : 56), this->getPositionY()));
-		clone->setAnchorPoint(ccp(0.5f, 0.1f));
-		clone->_isBati = true;
-	}
-	else if (strcmp(this->getCharacter()->getCString(), "Deidara") == 0)
-	{
-		clone = AIProvider::createAI(CCString::create("Centipede"), CCString::create("Summon"), this->_group);
-		clone->_isBati = true;
-	}
-	else if (strcmp(this->getCharacter()->getCString(), "Naruto") == 0)
-	{
-		clone = AIProvider::createAI(this->getCharacter(), CCString::create(K_TAG_CLONE), this->_group);
-	}
-	else if (strcmp(this->getCharacter()->getCString(), "SageNaruto") == 0 ||
-			 (strcmp(this->getCharacter()->getCString(), "RikudoNaruto") == 0 && cloneTime == 10))
-	{
-		clone = AIProvider::createAI(this->getCharacter(), CCString::create(K_TAG_CLONE), this->_group);
-		clone->setSkill1Action(clone->createAnimation(clone->skillSPC1Array, 10.0f, false, true));
-		clone->_sattackValue1 = _spcattackValue1;
-		clone->_sattackType1 = _spcattackType1;
-		clone->_sattackcoldDown1 = _spcattackcoldDown1;
-	}
-	else if (strcmp(this->getCharacter()->getCString(), "RikudoNaruto") == 0 && cloneTime == 9)
-	{
-		clone = AIProvider::createAI(CCString::create("Kurama"), CCString::create(K_TAG_CLONE), this->_group);
-		clone->_gardValue += 5000;
-		clone->_isBati = true;
-		clone->setWalkSpeed(320);
-		clone->_originSpeed = 320;
-		clone->isPofang = true;
+		CCLOG("Current character %s can not create clone", _character->getCString());
+		return;
 	}
 
-	if (this->_master)
+	if (_master)
 	{
 		clone->setMaster(this);
-		clone->setSecMaster(this->_master);
+		clone->setSecMaster(_master);
 	}
 	else
 	{
@@ -6429,28 +4175,28 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 	}
 
 	clone->setDelegate(_delegate);
-	clone->setPosition(ccp(this->getPositionX() + (this->_isFlipped ? -32 : 32), this->getPositionY() - 1));
+	clone->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32), getPositionY() - 1));
 
-	if (strcmp(this->getCharacter()->getCString(), "SageNaruto") == 0 ||
-		strcmp(this->getCharacter()->getCString(), "Naruto") == 0 ||
-		(strcmp(this->getCharacter()->getCString(), "RikudoNaruto") == 0 && cloneTime == 10))
+	if (strcmp(getCharacter()->getCString(), "SageNaruto") == 0 ||
+		strcmp(getCharacter()->getCString(), "Naruto") == 0 ||
+		(strcmp(getCharacter()->getCString(), "RikudoNaruto") == 0 && cloneTime == 10))
 	{
-		clone->setHP(CCString::create(this->getHP()->getCString()));
+		clone->setHP(CCString::create(getHP()->getCString()));
 	}
 	else
 	{
-		clone->setHP(CCString::create(this->getMaxHP()->getCString()));
+		clone->setHP(CCString::create(getMaxHP()->getCString()));
 	}
 
-	clone->setMaxHP(CCString::create(this->getMaxHP()->getCString()));
-	clone->_exp = this->_exp;
-	clone->setnAttackValue(CCString::createWithFormat("%d", atoi(this->getnAttackValue()->getCString())));
-	clone->_gardValue = this->_gardValue;
-	clone->_level = this->_level;
+	clone->setMaxHP(CCString::create(getMaxHP()->getCString()));
+	clone->_exp = _exp;
+	clone->setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString())));
+	clone->_gardValue = _gardValue;
+	clone->_level = _level;
 	clone->setHPbar();
 	clone->_hpBar->getHPBAR()->setScaleX(clone->getHpPercent());
 
-	if (strcmp(this->getCharacter()->getCString(), "RikudoNaruto") == 0 && cloneTime == 9)
+	if (strcmp(getCharacter()->getCString(), "RikudoNaruto") == 0 && cloneTime == 9)
 	{
 		if (clone->_hpBar)
 		{
@@ -6458,12 +4204,12 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 		}
 		clone->setnAttackValue(CCString::createWithFormat("1060"));
 	}
-	else if (strcmp(this->getCharacter()->getCString(), "Kakashi") == 0)
+	else if (strcmp(getCharacter()->getCString(), "Kakashi") == 0)
 	{
 		clone->setnAttackValue(CCString::createWithFormat("1060"));
 	}
 
-	if (this->isPofang)
+	if (isPofang)
 	{
 		clone->isPofang = true;
 	}
@@ -6473,8 +4219,8 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 		clone->isHujia = true;
 	}
 
-	clone->setFlipX(this->_isFlipped);
-	clone->_isFlipped = this->_isFlipped;
+	clone->setFlipX(_isFlipped);
+	clone->_isFlipped = _isFlipped;
 	CCDictionary *callValue = CCDictionary::create();
 	callValue->setObject(CCString::create("smk"), 1);
 	clone->setSkillEffect(clone, callValue);
@@ -6483,12 +4229,7 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 	_delegate->addChild(clone, -clone->getPositionY());
 	clone->doAI();
 
-	if (strcmp(this->getCharacter()->getCString(), "Naruto") == 0 ||
-		strcmp(this->getCharacter()->getCString(), "SageNaruto") == 0 ||
-		strcmp(this->getCharacter()->getCString(), "Kakashi") == 0 ||
-		strcmp(this->getCharacter()->getCString(), "RikudoNaruto") == 0 ||
-		strcmp(this->getCharacter()->getCString(), "Tsunade") == 0 ||
-		strcmp(this->getCharacter()->getCString(), "Deidara") == 0)
+	if (cloneTime > 0)
 	{
 		clone->scheduleOnce(schedule_selector(Hero::removeClone), float(cloneTime));
 	}
@@ -6496,7 +4237,7 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 
 void CharacterBase::removeClone(float dt)
 {
-	this->dead();
+	dead();
 }
 
 void CharacterBase::setMon(CCNode *sender, void *data)
@@ -6517,18 +4258,18 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	Monster *monster = Monster::create();
 	monster->setDelegate(_delegate);
 
-	monster->setID(monsterType, CCString::create(K_TAG_MON), this->_group);
+	monster->setID(monsterType, CCString::create(K_TAG_MON), _group);
 
-	if (this->getMaster())
+	if (getMaster())
 	{
-		if (this->getSecMaster())
+		if (getSecMaster())
 		{
 			monster->setMaster(this);
-			monster->setSecMaster(this->getSecMaster());
+			monster->setSecMaster(getSecMaster());
 		}
 		else
 		{
-			monster->setMaster(this->getMaster());
+			monster->setMaster(getMaster());
 			monster->setSecMaster((CharacterBase *)this);
 		}
 	}
@@ -6538,7 +4279,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	}
 
 	monster->idle();
-	monster->setPosition(ccp(this->getPositionX() + (this->_isFlipped ? -32 : 32), this->_originY ? this->_originY : this->getPositionY()));
+	monster->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32), _originY ? _originY : getPositionY()));
 	monster->setFlipX(_isFlipped);
 	monster->_isFlipped = _isFlipped;
 
@@ -6552,59 +4293,59 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		strcmp(monsterType->getCString(), "FakeMinato") == 0)
 	{
 
-		monster->setPosition(ccp(this->getPositionX(), this->_originY ? _originY : this->getPositionY()));
+		monster->setPosition(ccp(getPositionX(), _originY ? _originY : getPositionY()));
 		_monsterArray->addObject(monster);
 		monster->attack(NAttack);
 	}
 	else if (strcmp(monsterType->getCString(), "LeeBom") == 0)
 	{
 		//monster->setAnchorPoint(ccp(0.5,0.5f));
-		monster->setPosition(ccp(this->getPositionX(), this->getPositionY()));
+		monster->setPosition(ccp(getPositionX(), getPositionY()));
 		_monsterArray->addObject(monster);
 		monster->attack(NAttack);
 	}
 	else if (strcmp(monsterType->getCString(), "FakeItachi") == 0)
 	{
-		monster->setPosition(ccp(this->getPositionX(), this->_originY ? _originY : this->getPositionY() - 4));
+		monster->setPosition(ccp(getPositionX(), _originY ? _originY : getPositionY() - 4));
 		_monsterArray->addObject(monster);
 		monster->attack(NAttack);
 	}
 	else if (strcmp(monsterType->getCString(), "Tenmu") == 0)
 	{
-		monster->setPosition(ccp(this->getPositionX(), this->_originY));
+		monster->setPosition(ccp(getPositionX(), _originY));
 		monster->setAnchorPoint(ccp(0.5, -0.1f));
 		monster->attack(NAttack);
 	}
 	else if (strcmp(monsterType->getCString(), "Kaiten") == 0)
 	{
 
-		monster->setPosition(ccp(this->getPositionX(), this->getPositionY()));
+		monster->setPosition(ccp(getPositionX(), getPositionY()));
 		monster->setAnchorPoint(ccp(0.5, 0.25f));
 		monster->attack(NAttack);
 	}
 	else if (strcmp(monsterType->getCString(), "Crash") == 0 ||
 			 strcmp(monsterType->getCString(), "Crash2") == 0)
 	{
-		monster->setPosition(ccp(this->getPositionX() + (this->_isFlipped ? -32 : 32), this->_originY ? this->_originY : this->getPositionY()));
+		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32), _originY ? _originY : getPositionY()));
 		monster->setAnchorPoint(ccp(0.5, 0.25f));
 		monster->attack(NAttack);
 	}
 	else if (strcmp(monsterType->getCString(), "SansyoRed") == 0)
 	{
 
-		monster->setPosition(ccp(_isFlipped ? this->getPositionX() - 240 : this->getPositionX() + 240, this->getPositionY() - 32));
+		monster->setPosition(ccp(_isFlipped ? getPositionX() - 240 : getPositionX() + 240, getPositionY() - 32));
 		monster->attack(NAttack);
 	}
 	else if (strcmp(monsterType->getCString(), "SansyoGreen") == 0)
 	{
 
-		monster->setPosition(ccp(_isFlipped ? this->getPositionX() - 144 : this->getPositionX() + 144, this->getPositionY() - 32 + 1));
+		monster->setPosition(ccp(_isFlipped ? getPositionX() - 144 : getPositionX() + 144, getPositionY() - 32 + 1));
 		monster->attack(NAttack);
 	}
 	else if (strcmp(monsterType->getCString(), "SansyoBlue") == 0)
 	{
 
-		monster->setPosition(ccp(_isFlipped ? this->getPositionX() - 48 : this->getPositionX() + 48, this->getPositionY() - 32 + 2));
+		monster->setPosition(ccp(_isFlipped ? getPositionX() - 48 : getPositionX() + 48, getPositionY() - 32 + 2));
 		monster->attack(NAttack);
 	}
 	else if (strcmp(monsterType->getCString(), "SmallSlug") == 0)
@@ -6620,7 +4361,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		}
 		else
 		{
-			monster = NULL;
+			monster = nullptr;
 			return;
 		}
 	}
@@ -6635,13 +4376,13 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	else if (strcmp(monsterType->getCString(), "PaperRain") == 0 ||
 			 strcmp(monsterType->getCString(), "Steam") == 0)
 	{
-		monster->setPosition(ccp(_isFlipped ? this->getPositionX() - 16 : this->getPositionX() + 16, this->_originY));
+		monster->setPosition(ccp(_isFlipped ? getPositionX() - 16 : getPositionX() + 16, _originY));
 		_monsterArray->addObject(monster);
 		monster->attack(NAttack);
 	}
 	else if (strcmp(monsterType->getCString(), "FireRain") == 0)
 	{
-		monster->setPosition(ccp(_isFlipped ? this->getPositionX() - 75 : this->getPositionX() + 75, this->_originY - 1));
+		monster->setPosition(ccp(_isFlipped ? getPositionX() - 75 : getPositionX() + 75, _originY - 1));
 		_monsterArray->addObject(monster);
 		monster->attack(NAttack);
 	}
@@ -6649,14 +4390,14 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 			 strcmp(monsterType->getCString(), "Tuji2") == 0 ||
 			 strcmp(monsterType->getCString(), "Suiji") == 0)
 	{
-		monster->setPositionY(this->getPositionY() - 24);
-		monster->setPositionX(this->getPositionX() + (_isFlipped ? -64 : 64));
+		monster->setPositionY(getPositionY() - 24);
+		monster->setPositionX(getPositionX() + (_isFlipped ? -64 : 64));
 		_monsterArray->addObject(monster);
 		monster->attack(NAttack);
 	}
 	else if (strcmp(monsterType->getCString(), "ThunderWave") == 0)
 	{
-		monster->setPosition(ccp(this->getPositionX(), this->getPositionY() - 1));
+		monster->setPosition(ccp(getPositionX(), getPositionY() - 1));
 		_monsterArray->addObject(monster);
 		monster->attack(NAttack);
 	}
@@ -6664,7 +4405,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 			 strcmp(monsterType->getCString(), "JibakuEX") == 0 ||
 			 strcmp(monsterType->getCString(), "Shenwei") == 0)
 	{
-		monster->setPosition(ccp(this->getPositionX() + (_isFlipped ? -96 : 96), this->getPositionY()));
+		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -96 : 96), getPositionY()));
 		_monsterArray->addObject(monster);
 		monster->attack(NAttack);
 	}
@@ -6672,13 +4413,13 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	{
 		monster->setFlipX(_isFlipped);
 		monster->isPofang = true;
-		monster->setPosition(ccp(this->getPositionX() + (_isFlipped ? -(16 + this->getContentSize().width) : (16 + this->getContentSize().width)), this->getPositionY() - 32));
+		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -(16 + getContentSize().width) : (16 + getContentSize().width)), getPositionY() - 32));
 		_monsterArray->addObject(monster);
 		monster->attack(NAttack);
 	}
 	else if (strcmp(monsterType->getCString(), "Qilin") == 0)
 	{
-		monster->setPosition(ccp(this->getPositionX() + (_isFlipped ? -4 : 4), this->getPositionY() - 6));
+		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -4 : 4), getPositionY() - 6));
 		_monsterArray->addObject(monster);
 		monster->attack(NAttack);
 	}
@@ -6696,13 +4437,13 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 			 strcmp(monsterType->getCString(), "Tsukuyomi") == 0 ||
 			 strcmp(monsterType->getCString(), "Shark") == 0)
 	{
-		monster->setPosition(ccp(this->getPositionX() + (this->_isFlipped == true ? -48 : 48), this->getPositionY() - 4));
+		monster->setPosition(ccp(getPositionX() + (_isFlipped == true ? -48 : 48), getPositionY() - 4));
 		monster->attack(NAttack);
 	}
 	else if (strcmp(monsterType->getCString(), "Suijin") == 0 ||
 			 strcmp(monsterType->getCString(), "BugPillar") == 0)
 	{
-		monster->setPosition(ccp(this->getPositionX() + (this->_isFlipped == true ? -64 : 64), this->getPositionY() + 1));
+		monster->setPosition(ccp(getPositionX() + (_isFlipped == true ? -64 : 64), getPositionY() + 1));
 		monster->attack(NAttack);
 	}
 	else if (strcmp(monsterType->getCString(), "Mine") == 0)
@@ -6712,15 +4453,15 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		monster->setSkillEffect(monster, callValue);
 		_monsterArray->addObject(monster);
 		monster->doAI();
-		if (strcmp(this->getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) != 0)
+		if (strcmp(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) != 0)
 		{
 			monster->setVisible(false);
 		}
 	}
 	else if (strcmp(monsterType->getCString(), "Kage") == 0)
 	{
-		this->_isCatchOne = true;
-		monster->setPosition(ccp(this->getPositionX() + (_isFlipped ? -this->getContentSize().width / 2 + 4 : this->getContentSize().width / 2 - 4), this->getPositionY()));
+		_isCatchOne = true;
+		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -getContentSize().width / 2 + 4 : getContentSize().width / 2 - 4), getPositionY()));
 		if (_isFlipped)
 		{
 			monster->setAnchorPoint(ccp(1, 0));
@@ -6730,18 +4471,18 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 			monster->setAnchorPoint(ccp(0, 0));
 		}
 
-		this->stopAllActions();
+		stopAllActions();
 		_monsterArray->addObject(monster);
 		monster->attack(NAttack);
 		monster->doAI();
 	}
 	else if (strcmp(monsterType->getCString(), "KageHand") == 0)
 	{
-		CCPoint dir = CCPointMake(_isFlipped ? this->getPositionX() - this->getContentSize().width : this->getPositionX() + this->getContentSize().width, this->getPositionY());
+		CCPoint dir = CCPointMake(_isFlipped ? getPositionX() - getContentSize().width : getPositionX() + getContentSize().width, getPositionY());
 		monster->setPosition(dir);
-		this->stopAllActions();
+		stopAllActions();
 
-		if (this->getMaster())
+		if (getMaster())
 		{
 			_master->_monsterArray->addObject(monster);
 		}
@@ -6750,18 +4491,18 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	else if (strcmp(monsterType->getCString(), "KageHands") == 0)
 	{
 
-		if (this->getMaster())
+		if (getMaster())
 		{
 			_master->_monsterArray->addObject(monster);
 		}
 
-		monster->setPosition(ccp(this->getPositionX(), this->getPositionY()));
+		monster->setPosition(ccp(getPositionX(), getPositionY()));
 		monster->setAnchorPoint(ccp(0.5f, 0.15f));
 		monster->attack(NAttack);
 	}
 	else if (strcmp(monsterType->getCString(), "QuanRen") == 0)
 	{
-		monster->setPosition(ccp(_isFlipped ? this->getPositionX() - 64 : this->getPositionX() + 64, this->_originY));
+		monster->setPosition(ccp(_isFlipped ? getPositionX() - 64 : getPositionX() + 64, _originY));
 		_monsterArray->addObject(monster);
 		monster->attack(NAttack);
 	}
@@ -6773,23 +4514,23 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	else if (strcmp(monsterType->getCString(), "HiraishinMark") == 0)
 	{
 		_monsterArray->addObject(monster);
-		this->_isCanSkill1 = true;
+		_isCanSkill1 = true;
 	}
 	else if (strcmp(monsterType->getCString(), "CircleMark") == 0)
 	{
-		monster->setPosition(ccp(this->getPositionX(), this->getPositionY()));
+		monster->setPosition(ccp(getPositionX(), getPositionY()));
 		monster->setAnchorPoint(ccp(0.5f, 0.5f));
 		_monsterArray->addObject(monster);
 		monster->attack(NAttack);
 
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
+		if (strcmp(getRole()->getCString(), "Player") == 0)
 		{
-			this->_delegate->getHudLayer()->skill1Button->setLock();
+			_delegate->getHudLayer()->skill1Button->setLock();
 		}
 	}
 	else if (strcmp(monsterType->getCString(), "InkDragon") == 0)
 	{
-		monster->setPosition(ccp(_isFlipped ? this->getPositionX() - 128 : this->getPositionX() + 128, this->getPositionY()));
+		monster->setPosition(ccp(_isFlipped ? getPositionX() - 128 : getPositionX() + 128, getPositionY()));
 		monster->attack(NAttack);
 		monster->setDirectMove(156, 2.0f, false);
 	}
@@ -6801,7 +4542,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	else if (strcmp(monsterType->getCString(), "FudonSRK2") == 0 ||
 			 strcmp(monsterType->getCString(), "FudonSRK") == 0)
 	{
-		monster->setPosition(ccp(this->getPositionX() + (this->_isFlipped == true ? -48 : 48), this->getPositionY()));
+		monster->setPosition(ccp(getPositionX() + (_isFlipped == true ? -48 : 48), getPositionY()));
 
 		monster->attack(NAttack);
 		bool isFollow = false;
@@ -6809,11 +4550,11 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		if (_mainTarget)
 		{
 
-			if (_mainTarget->getPositionX() > this->getPositionX() && !_isFlipped)
+			if (_mainTarget->getPositionX() > getPositionX() && !_isFlipped)
 			{
 				isFollow = true;
 			}
-			else if (_mainTarget->getPositionX() <= this->getPositionX() && _isFlipped)
+			else if (_mainTarget->getPositionX() <= getPositionX() && _isFlipped)
 			{
 				isFollow = true;
 			}
@@ -6821,12 +4562,12 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 
 		if (isFollow)
 		{
-			monster->_mainTarget = this->_mainTarget;
+			monster->_mainTarget = _mainTarget;
 			monster->doAI();
 		}
 		else
 		{
-			if (this->_isFlipped)
+			if (_isFlipped)
 			{
 				moveDirection = ccpNormalize(ccp(-1, 0));
 			}
@@ -6860,14 +4601,14 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	{
 		monster->attack(NAttack);
 		monster->setAnchorPoint(ccp(0.5f, 0.28f));
-		monster->setPosition(ccp(this->getPositionX() + (this->_isFlipped == true ? -24 : 24), this->getPositionY()));
+		monster->setPosition(ccp(getPositionX() + (_isFlipped == true ? -24 : 24), getPositionY()));
 		monster->setEaseIn(224, 1.0f);
 	}
 	else if (strcmp(monsterType->getCString(), "Wave") == 0)
 	{
 		monster->attack(NAttack);
 		monster->setAnchorPoint(ccp(0.5f, 0.1f));
-		monster->setPosition(ccp(this->getPositionX() + (this->_isFlipped == true ? -24 : 24), this->getPositionY()));
+		monster->setPosition(ccp(getPositionX() + (_isFlipped == true ? -24 : 24), getPositionY()));
 		monster->setEaseIn(224, 1.0f);
 	}
 	else if (strcmp(monsterType->getCString(), "InkBird") == 0 ||
@@ -6889,23 +4630,23 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		monster->setFlipX(_isFlipped);
 		monster->setAnchorPoint(ccp(0.5f, 0));
 		monster->setPosition(ccp(146 / 2 - 10, -40));
-		this->addChild(monster, -1000);
+		addChild(monster, -1000);
 	}
 	else if (strcmp(monsterType->getCString(), "SasukeSusano") == 0)
 	{
 		monster->setFlipX(_isFlipped);
 		monster->setAnchorPoint(ccp(0.5f, 0));
 		monster->setPosition(ccp(141 / 2, -6));
-		this->addChild(monster, -1000);
+		addChild(monster, -1000);
 	}
 	else if (strcmp(monsterType->getCString(), "CircleMark") == 0 ||
 			 strcmp(monsterType->getCString(), "Yominuma") == 0)
 	{
-		this->_delegate->addChild(monster, -5000);
+		_delegate->addChild(monster, -5000);
 	}
 	else
 	{
-		this->_delegate->addChild(monster, -monster->getPositionY());
+		_delegate->addChild(monster, -monster->getPositionY());
 	}
 }
 
@@ -6921,29 +4662,29 @@ void CharacterBase::setMonPer(float dt)
 	Monster *monster = Monster::create();
 	monster->setDelegate(_delegate);
 
-	if (strcmp(this->getCharacter()->getCString(), "Deidara") == 0)
+	if (strcmp(getCharacter()->getCString(), "Deidara") == 0)
 	{
-		monster->setID(CCString::create("Spider"), CCString::create(K_TAG_MON), this->_group);
+		monster->setID(CCString::create("Spider"), CCString::create(K_TAG_MON), _group);
 	}
-	else if (strcmp(this->getCharacter()->getCString(), "Sai") == 0)
+	else if (strcmp(getCharacter()->getCString(), "Sai") == 0)
 	{
-		monster->setID(CCString::create("Mouse"), CCString::create(K_TAG_MON), this->_group);
+		monster->setID(CCString::create("Mouse"), CCString::create(K_TAG_MON), _group);
 		CCDictionary *callValue2 = CCDictionary::create();
 		callValue2->setObject(CCString::create("Audio/Sai/ink_mouse.ogg"), 1);
-		this->setSound(this, callValue2);
+		setSound(this, callValue2);
 	}
 
 	monster->setMaster(this);
 
 	monster->idle();
-	monster->setPosition(ccp(this->getPositionX() + (this->_isFlipped ? -32 : 32), this->_originY ? this->_originY : this->getPositionY()));
+	monster->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32), _originY ? _originY : getPositionY()));
 	monster->setFlipX(_isFlipped);
 	monster->_isFlipped = _isFlipped;
 
 	_monsterArray->addObject(monster);
 	monster->doAI();
 
-	this->_delegate->addChild(monster, -monster->getPositionY());
+	_delegate->addChild(monster, -monster->getPositionY());
 }
 
 void CharacterBase::setTrap(CCNode *sender, void *data)
@@ -6959,9 +4700,9 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
 			CharacterBase *tempHero = (CharacterBase *)pObject;
-			if (strcmp(this->_group->getCString(), tempHero->_group->getCString()) != 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::HURT && tempHero->_actionState != State::DEAD)
+			if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::HURT && tempHero->_actionState != State::DEAD)
 			{
-				float distanceX = ccpSub(tempHero->getPosition(), this->getPosition()).x;
+				float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
 				if (distanceX < winSize.width / 2)
 				{
 					if (!tempHero->_isVisable)
@@ -6988,9 +4729,9 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 					}
 				}
 			}
-		};
+		}
 
-		if (strcmp(this->getCharacter()->getCString(), "ImmortalSasuke") == 0)
+		if (strcmp(getCharacter()->getCString(), "ImmortalSasuke") == 0)
 		{
 			CCPoint targetPoint;
 			if (_mainTarget)
@@ -6999,7 +4740,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 			}
 			else
 			{
-				targetPoint = this->getPosition();
+				targetPoint = getPosition();
 			}
 
 			for (int z = 0; z < 3; z++)
@@ -7016,7 +4757,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 					trap->idle();
 					trap->attack(NAttack);
 					trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 4.0f);
-					this->_delegate->addChild(trap, -trap->getPositionY());
+					_delegate->addChild(trap, -trap->getPositionY());
 				}
 				else if (z == 1)
 				{
@@ -7031,7 +4772,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 						trap->idle();
 						trap->attack(NAttack);
 						trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 4.0f);
-						this->_delegate->addChild(trap, -trap->getPositionY());
+						_delegate->addChild(trap, -trap->getPositionY());
 					}
 				}
 				else if (z == 2)
@@ -7046,7 +4787,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 					trap->idle();
 					trap->attack(NAttack);
 					trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 4.0f);
-					this->_delegate->addChild(trap, -trap->getPositionY());
+					_delegate->addChild(trap, -trap->getPositionY());
 				}
 			}
 			return;
@@ -7063,11 +4804,11 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 					trap->_master = this;
 					trap->setID(trapType, CCString::create(K_TAG_MON), _group);
 
-					trap->setPosition(ccp(this->getPositionX() + (_isFlipped ? -112 : 112), this->getPositionY() + (48 - i * 24)));
+					trap->setPosition(ccp(getPositionX() + (_isFlipped ? -112 : 112), getPositionY() + (48 - i * 24)));
 					trap->idle();
 					trap->attack(NAttack);
 					trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 2.5f);
-					this->_delegate->addChild(trap, -trap->getPositionY());
+					_delegate->addChild(trap, -trap->getPositionY());
 				}
 			}
 			else if (z == 1)
@@ -7079,11 +4820,11 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 					trap->setDelegate(_delegate);
 					trap->_master = this;
 					trap->setID(trapType, CCString::create(K_TAG_MON), _group);
-					trap->setPosition(ccp(this->getPositionX() + (_isFlipped ? -80 : 80), this->getPositionY() + (32 - i * 24)));
+					trap->setPosition(ccp(getPositionX() + (_isFlipped ? -80 : 80), getPositionY() + (32 - i * 24)));
 					trap->idle();
 					trap->attack(NAttack);
 					trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 2.5f);
-					this->_delegate->addChild(trap, -trap->getPositionY());
+					_delegate->addChild(trap, -trap->getPositionY());
 				}
 			}
 			else
@@ -7092,11 +4833,11 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 				trap->setDelegate(_delegate);
 				trap->_master = this;
 				trap->setID(trapType, CCString::create(K_TAG_MON), _group);
-				trap->setPosition(ccp(this->getPositionX() + (_isFlipped ? -48 : 48), this->getPositionY() + 22));
+				trap->setPosition(ccp(getPositionX() + (_isFlipped ? -48 : 48), getPositionY() + 22));
 				trap->idle();
 				trap->attack(NAttack);
 				trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 2.5f);
-				this->_delegate->addChild(trap, -trap->getPositionY());
+				_delegate->addChild(trap, -trap->getPositionY());
 			}
 		}
 	}
@@ -7112,20 +4853,20 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 
 			if (i == 0)
 			{
-				trap->setPosition(ccp(this->getPositionX() + (_isFlipped ? -24 : 24), this->getPositionY() - 24));
+				trap->setPosition(ccp(getPositionX() + (_isFlipped ? -24 : 24), getPositionY() - 24));
 			}
 			else if (i == 1)
 			{
 
-				trap->setPosition(ccp(this->getPositionX() + (_isFlipped ? 24 : -24), this->getPositionY() - 24));
+				trap->setPosition(ccp(getPositionX() + (_isFlipped ? 24 : -24), getPositionY() - 24));
 			}
 			else if (i == 2)
 			{
-				trap->setPosition(ccp(this->getPositionX(), this->getPositionY() + 24));
+				trap->setPosition(ccp(getPositionX(), getPositionY() + 24));
 			}
 
 			trap->attack(NAttack);
-			this->_delegate->addChild(trap, -trap->getPositionY());
+			_delegate->addChild(trap, -trap->getPositionY());
 		}
 	}
 	else if (strcmp(trapType->getCString(), "KageBom") == 0)
@@ -7135,9 +4876,9 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
 			Hero *tempHero = (Hero *)pObject;
-			if (strcmp(this->_group->getCString(), tempHero->_group->getCString()) != 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::DEAD && tempHero->_isVisable && !tempHero->_isSticking)
+			if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::DEAD && tempHero->_isVisable && !tempHero->_isSticking)
 			{
-				float distanceX = ccpSub(tempHero->getPosition(), this->getPosition()).x;
+				float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
 				float tempRange1 = winSize.width / 2;
 				if (abs(distanceX) <= tempRange1)
 				{
@@ -7148,35 +4889,35 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 					trap->setPosition(ccp(tempHero->getPositionX(), tempHero->getPositionY()));
 					trap->idle();
 					trap->attack(NAttack);
-					this->_delegate->addChild(trap, -trap->getPositionY());
+					_delegate->addChild(trap, -trap->getPositionY());
 				}
 			}
-		};
+		}
 	}
-};
+}
 
 void CharacterBase::removeSelf(float dt)
 {
-	this->dealloc();
+	dealloc();
 }
 
 void CharacterBase::setMonAttack(CCNode *sender, void *data)
 {
 	int skillNum = *((int *)&data);
-	if (this->getMonsterArray())
+	if (getMonsterArray())
 	{
 		CCObject *pObject;
-		CCARRAY_FOREACH(this->getMonsterArray(), pObject)
+		CCARRAY_FOREACH(getMonsterArray(), pObject)
 		{
 			Monster *mo = (Monster *)pObject;
 			if (strcmp(mo->getCharacter()->getCString(), "Traps") != 0)
 			{
 
-				if (strcmp(this->getCharacter()->getCString(), "Kiba") == 0)
+				if (strcmp(getCharacter()->getCString(), "Kiba") == 0)
 				{
 					mo->attack(SKILL1);
 				}
-				else if (strcmp(this->getCharacter()->getCString(), "Kankuro") == 0)
+				else if (strcmp(getCharacter()->getCString(), "Kankuro") == 0)
 				{
 
 					if (strcmp(mo->getCharacter()->getCString(), "Karasu") == 0)
@@ -7191,7 +4932,7 @@ void CharacterBase::setMonAttack(CCNode *sender, void *data)
 						}
 					}
 				}
-				else if (strcmp(this->getCharacter()->getCString(), "Chiyo") == 0)
+				else if (strcmp(getCharacter()->getCString(), "Chiyo") == 0)
 				{
 
 					if (strcmp(mo->getCharacter()->getCString(), "Parents") == 0)
@@ -7206,143 +4947,140 @@ void CharacterBase::setMonAttack(CCNode *sender, void *data)
 						}
 					}
 				}
-				else if (strcmp(this->getCharacter()->getCString(), "Itachi") == 0 ||
-						 strcmp(this->getCharacter()->getCString(), "ImmortalSasuke") == 0)
+				else if (strcmp(getCharacter()->getCString(), "Itachi") == 0 ||
+						 strcmp(getCharacter()->getCString(), "ImmortalSasuke") == 0)
 				{
-					if (this->_actionState == State::ATTACK)
+					if (_actionState == State::ATTACK)
 					{
 						mo->attack(NAttack);
 					}
 				}
 			}
-		};
+		}
 	}
 	else
 	{
 		return;
 	}
-};
+}
 
 void CharacterBase::setTransform()
 {
 
 	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "acceptAttack");
-	this->unschedule(schedule_selector(CharacterBase::dehealBuff));
+	unschedule(schedule_selector(CharacterBase::dehealBuff));
 
-	if (strcmp(this->_character->getCString(), "Lee") == 0 ||
-		strcmp(this->_character->getCString(), "RockLee") == 0)
+	if (strcmp(_character->getCString(), "Lee") == 0 ||
+		strcmp(_character->getCString(), "RockLee") == 0)
 	{
 
-		this->removeBuffEffect("dhBuff");
+		removeBuffEffect("dhBuff");
 	}
 	else
 	{
 
 		if (_skillUPBuffValue)
 		{
-			this->unschedule(schedule_selector(CharacterBase::disableBuff));
-			this->disableBuff(0.1f);
+			unschedule(schedule_selector(CharacterBase::disableBuff));
+			disableBuff(0.1f);
 		}
 
-		this->removeBuffEffect("all");
+		removeBuffEffect("all");
 	}
 
-	int tempMaxHP = atoi(this->getMaxHP()->getCString());
-
-	int tempHP = atoi(this->getHP()->getCString());
-	CCString *tempAttackValue = CCString::createWithFormat("%s", this->getnAttackValue()->getCString());
-	const char *charName;
+	CCString *tempAttackValue = CCString::createWithFormat("%s", getnAttackValue()->getCString());
 	if (strcmp(_character->getCString(), "Naruto") == 0)
 	{
-		this->setID(CCString::create("SageNaruto"), _role, _group);
-		charName = "SageNaruto";
+		setID(CCString::create("SageNaruto"), _role, _group);
 	}
 	else if (strcmp(_character->getCString(), "SageNaruto") == 0)
 	{
-		this->setID(CCString::create("RikudoNaruto"), _role, _group);
-		charName = "RikudoNaruto";
+		setID(CCString::create("RikudoNaruto"), _role, _group);
 	}
 	else if (strcmp(_character->getCString(), "Jiraiya") == 0)
 	{
-		this->setID(CCString::create("SageJiraiya"), _role, _group);
-		charName = "SageJiraiya";
+		setID(CCString::create("SageJiraiya"), _role, _group);
 	}
 	else if (strcmp(_character->getCString(), "Sasuke") == 0)
 	{
-		this->setID(CCString::create("ImmortalSasuke"), _role, _group);
-		charName = "ImmortalSasuke";
+		setID(CCString::create("ImmortalSasuke"), _role, _group);
 	}
 	else if (strcmp(_character->getCString(), "Lee") == 0)
 	{
-		this->setID(CCString::create("RockLee"), _role, _group);
-		charName = "Lee";
+		setID(CCString::create("RockLee"), _role, _group);
 	}
 	else if (strcmp(_character->getCString(), "RockLee") == 0)
 	{
-		this->setID(CCString::create("Lee"), _role, _group);
-		charName = "Lee";
+		setID(CCString::create("Lee"), _role, _group);
 	}
-	this->setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-	this->setHP(CCString::createWithFormat("%d", tempHP));
+	setMaxHP(CCString::createWithFormat("%ld", to_uint(getMaxHP()->getCString())));
+	setHP(CCString::createWithFormat("%ld", to_uint(getHP()->getCString())));
 	if (_hpBar)
 	{
-		_hpBar->setPositionY(this->getHeight());
-		_hpBar->loseHP(this->getHpPercent());
+		_hpBar->setPositionY(getHeight());
+		_hpBar->loseHP(getHpPercent());
 	}
 
 	if (isGearCD)
 	{
-		this->_sattackcoldDown1 -= 5;
-		this->_sattackcoldDown2 -= 5;
-		this->_sattackcoldDown3 -= 5;
+		_sattackcoldDown1 -= 5;
+		_sattackcoldDown2 -= 5;
+		_sattackcoldDown3 -= 5;
 	}
 
 	if (_role && strcmp(_role->getCString(), "Player") == 0)
 	{
-		_delegate->setHPLose(this->getHpPercent());
+		_delegate->setHPLose(getHpPercent());
 	}
 
-	this->setnAttackValue(tempAttackValue);
+	setnAttackValue(tempAttackValue);
 
-	if (strcmp(this->_role->getCString(), "Player") == 0 &&
-		strcmp(this->_character->getCString(), "RockLee") != 0 &&
-		strcmp(this->_character->getCString(), "Lee") != 0)
+	// Update HudLayer
+	if (strcmp(_role->getCString(), "Player") == 0)
 	{
+		auto charName = _character->getCString();
 		_delegate->getHudLayer()->skill1Button->setCD(CCString::createWithFormat("%d", _sattackcoldDown1 * 1000));
 		_delegate->getHudLayer()->skill2Button->setCD(CCString::createWithFormat("%d", _sattackcoldDown2 * 1000));
 		_delegate->getHudLayer()->skill3Button->setCD(CCString::createWithFormat("%d", _sattackcoldDown3 * 1000));
 
-		this->_delegate->getHudLayer()->skill1Button->_isColdChanged = true;
-		this->_delegate->getHudLayer()->skill2Button->_isColdChanged = true;
-		this->_delegate->getHudLayer()->skill3Button->_isColdChanged = true;
+		_delegate->getHudLayer()->skill1Button->_isColdChanged = true;
+		_delegate->getHudLayer()->skill2Button->_isColdChanged = true;
+		_delegate->getHudLayer()->skill3Button->_isColdChanged = true;
 
 		CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("%s_skill1.png", charName)->getCString());
-		_delegate->getHudLayer()->skill1Button->setDisplayFrame(frame);
+		if (frame)
+		{
+			_delegate->getHudLayer()->skill1Button->setDisplayFrame(frame);
+		}
 		frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("%s_skill2.png", charName)->getCString());
-		_delegate->getHudLayer()->skill2Button->setDisplayFrame(frame);
-
+		if (frame)
+		{
+			_delegate->getHudLayer()->skill2Button->setDisplayFrame(frame);
+		}
 		frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("%s_skill3.png", charName)->getCString());
-		_delegate->getHudLayer()->skill3Button->setDisplayFrame(frame);
-
+		if (frame)
+		{
+			_delegate->getHudLayer()->skill3Button->setDisplayFrame(frame);
+		}
 		frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("%s_skill4.png", charName)->getCString());
-		if (_delegate->getHudLayer()->skill4Button)
+		if (frame && _delegate->getHudLayer()->skill4Button)
 		{
 			_delegate->getHudLayer()->skill4Button->setDisplayFrame(frame);
 		}
 
 		frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("%s_skill5.png", charName)->getCString());
-		if (_delegate->getHudLayer()->skill5Button)
+		if (frame && _delegate->getHudLayer()->skill5Button)
 		{
 			_delegate->getHudLayer()->skill5Button->setDisplayFrame(frame);
 		}
-		this->_delegate->getHudLayer()->initGearButton();
+		_delegate->getHudLayer()->initGearButton();
 	}
 }
 
 float CharacterBase::getHpPercent()
 {
 
-	float p = float(atoi(_hp->getCString())) / float(atoi(_maxHP->getCString()));
+	float p = _hp->floatValue() / _maxHP->floatValue();
 	return p;
 }
 
@@ -7354,31 +5092,31 @@ void CharacterBase::attack(abType type)
 		if (!_delegate->getSkillFinish() && !_isOnlySkillLocked)
 		{
 			return;
-		};
+		}
 	}
 
 	switch (type)
 	{
 	case NAttack:
-		_attackValue = atoi(this->getnAttackValue()->getCString());
+		_attackValue = to_int(getnAttackValue()->getCString());
 		_attackType = _nattackType;
 		_attackRangeX = _nattackRangeX;
 		_attackRangeY = _nattackRangeY;
-		this->nAttack();
+		nAttack();
 		break;
 
 	case SKILL1:
 
 		if (strcmp(_role->getCString(), "Player") == 0)
 		{
-			if (_isControled)
+			if (_isControlled)
 				_delegate->getHudLayer()->skill1Button->click();
 		}
-		_attackValue = atoi(_sattackValue1->getCString());
+		_attackValue = to_int(_sattackValue1->getCString());
 		_attackType = _sattackType1;
 		_attackRangeX = _sattackRangeX1;
 		_attackRangeY = _sattackRangeY1;
-		this->sAttack(SKILL1);
+		sAttack(SKILL1);
 
 		break;
 
@@ -7386,72 +5124,72 @@ void CharacterBase::attack(abType type)
 
 		if (strcmp(_role->getCString(), "Player") == 0)
 		{
-			if (_isControled)
+			if (_isControlled)
 				_delegate->getHudLayer()->skill2Button->click();
 		}
-		_attackValue = atoi(_sattackValue2->getCString());
+		_attackValue = to_int(_sattackValue2->getCString());
 		_attackType = _sattackType2;
 		_attackRangeX = _sattackRangeX2;
 		_attackRangeY = _sattackRangeY2;
-		this->sAttack(SKILL2);
+		sAttack(SKILL2);
 
 		break;
 
 	case SKILL3:
 		if (strcmp(_role->getCString(), "Player") == 0)
 		{
-			if (_isControled)
+			if (_isControlled)
 				_delegate->getHudLayer()->skill3Button->click();
 		}
-		_attackValue = atoi(_sattackValue3->getCString());
+		_attackValue = to_int(_sattackValue3->getCString());
 		_attackType = _sattackType3;
 		_attackRangeX = _sattackRangeX3;
 		_attackRangeY = _sattackRangeY3;
-		this->sAttack(SKILL3);
+		sAttack(SKILL3);
 
 		break;
 
 	case OUGIS1:
-		if (strcmp(_role->getCString(), "Player") != 0 || this->_isAI)
+		if (strcmp(_role->getCString(), "Player") != 0 || _isAI)
 		{
-			float newValue = atof(this->getCKR()->getCString()) - 15000;
+			float newValue = atof(getCKR()->getCString()) - 15000;
 			;
-			this->setCKR(CCString::createWithFormat("%f", newValue));
-			if (atof(this->getCKR()->getCString()) < 15000)
+			setCKR(CCString::createWithFormat("%f", newValue));
+			if (atof(getCKR()->getCString()) < 15000)
 			{
 				_isCanOugis1 = false;
 			}
 		}
 
-		_attackValue = atoi(_sattackValue4->getCString());
+		_attackValue = to_int(_sattackValue4->getCString());
 		_attackType = _sattackType4;
 		_attackRangeX = _sattackRangeX4;
 		_attackRangeY = _sattackRangeY4;
-		this->oAttack(OUGIS1);
+		oAttack(OUGIS1);
 		break;
 
 	case OUGIS2:
 
-		if (strcmp(_role->getCString(), "Player") != 0 || this->_isAI)
+		if (strcmp(_role->getCString(), "Player") != 0 || _isAI)
 		{
-			float newValue = atof(this->getCKR2()->getCString()) - 25000;
-			this->setCKR2(CCString::createWithFormat("%f", newValue));
-			if (atof(this->getCKR2()->getCString()) < 25000)
+			float newValue = atof(getCKR2()->getCString()) - 25000;
+			setCKR2(CCString::createWithFormat("%f", newValue));
+			if (atof(getCKR2()->getCString()) < 25000)
 			{
 				_isCanOugis2 = false;
 			}
 		}
 
-		_attackValue = atoi(_sattackValue5->getCString());
+		_attackValue = to_int(_sattackValue5->getCString());
 		_attackType = _sattackType5;
 		_attackRangeX = _sattackRangeX5;
 		_attackRangeY = _sattackRangeY5;
-		this->oAttack(OUGIS2);
+		oAttack(OUGIS2);
 		break;
 	default:
 		break;
-	};
-};
+	}
+}
 
 void CharacterBase::nAttack()
 {
@@ -7463,16 +5201,16 @@ void CharacterBase::nAttack()
 			if (strcmp(_role->getCString(), "Player") == 0)
 			{
 				_delegate->setSkillFinish(false);
-			};
+			}
 			if (strcmp(_role->getCString(), "Bullet") != 0)
 			{
-				this->stopAllActions();
-			};
+				stopAllActions();
+			}
 			_actionState = State::ATTACK;
-			this->runAction(_nattackAction);
+			runAction(_nattackAction);
 		}
 	}
-};
+}
 
 void CharacterBase::sAttack(abType type)
 {
@@ -7480,14 +5218,14 @@ void CharacterBase::sAttack(abType type)
 	{
 		if (!_isVisable)
 		{
-			if (strcmp(this->getCharacter()->getCString(), "Konan") == 0 ||
-				strcmp(this->getCharacter()->getCString(), "Deidara") == 0)
+			if (strcmp(getCharacter()->getCString(), "Konan") == 0 ||
+				strcmp(getCharacter()->getCString(), "Deidara") == 0)
 			{
-				this->unschedule(schedule_selector(CharacterBase::disableBuff));
+				unschedule(schedule_selector(CharacterBase::disableBuff));
 			}
 
-			this->setOpacity(255);
-			this->setVisible(true);
+			setOpacity(255);
+			setVisible(true);
 
 			if (_hpBar)
 			{
@@ -7501,7 +5239,7 @@ void CharacterBase::sAttack(abType type)
 			_isVisable = true;
 		}
 
-		this->stopAllActions();
+		stopAllActions();
 
 		switch (type)
 		{
@@ -7512,12 +5250,12 @@ void CharacterBase::sAttack(abType type)
 				if (strcmp(_role->getCString(), "Player") == 0)
 				{
 					_delegate->setSkillFinish(false);
-				};
-				this->runAction(_skill1Action);
+				}
+				runAction(_skill1Action);
 			}
 			_isCanSkill1 = false;
 
-			this->scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcoldDown1);
+			scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcoldDown1);
 			break;
 		case SKILL2:
 			if (_isCanSkill2)
@@ -7526,13 +5264,13 @@ void CharacterBase::sAttack(abType type)
 				if (strcmp(_role->getCString(), "Player") == 0)
 				{
 					_delegate->setSkillFinish(false);
-				};
-				this->runAction(_skill2Action);
+				}
+				runAction(_skill2Action);
 			}
 
 			_isCanSkill2 = false;
 
-			this->scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sattackcoldDown2);
+			scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sattackcoldDown2);
 
 			break;
 		case SKILL3:
@@ -7542,18 +5280,18 @@ void CharacterBase::sAttack(abType type)
 				if (strcmp(_role->getCString(), "Player") == 0)
 				{
 					_delegate->setSkillFinish(false);
-				};
-				this->runAction(_skill3Action);
+				}
+				runAction(_skill3Action);
 			}
 			_isCanSkill3 = false;
 
-			this->scheduleOnce(schedule_selector(CharacterBase::enableSkill3), _sattackcoldDown3);
+			scheduleOnce(schedule_selector(CharacterBase::enableSkill3), _sattackcoldDown3);
 			break;
 		default:
 			break;
 		}
 	}
-};
+}
 
 void CharacterBase::oAttack(abType type)
 {
@@ -7563,17 +5301,17 @@ void CharacterBase::oAttack(abType type)
 		if (strcmp(_role->getCString(), "Player") == 0)
 		{
 			_delegate->setSkillFinish(false);
-		};
+		}
 		if (!_isVisable)
 		{
-			if (strcmp(this->getCharacter()->getCString(), "Konan") == 0 ||
-				strcmp(this->getCharacter()->getCString(), "Deidara") == 0)
+			if (strcmp(getCharacter()->getCString(), "Konan") == 0 ||
+				strcmp(getCharacter()->getCString(), "Deidara") == 0)
 			{
-				this->unschedule(schedule_selector(CharacterBase::disableBuff));
+				unschedule(schedule_selector(CharacterBase::disableBuff));
 			}
 
-			this->setOpacity(255);
-			this->setVisible(true);
+			setOpacity(255);
+			setVisible(true);
 
 			if (_hpBar)
 			{
@@ -7587,16 +5325,16 @@ void CharacterBase::oAttack(abType type)
 			_isVisable = true;
 		}
 
-		this->stopAllActions();
+		stopAllActions();
 		switch (type)
 		{
 		case OUGIS1:
 			_actionState = State::OATTACK;
-			this->runAction(_skill4Action);
+			runAction(_skill4Action);
 			break;
 		case OUGIS2:
 			_actionState = State::O2ATTACK;
-			this->runAction(_skill5Action);
+			runAction(_skill5Action);
 			break;
 		default:
 			break;
@@ -7619,7 +5357,7 @@ void CharacterBase::idle()
 	if (_actionState != State::IDLE && _actionState != State::DEAD)
 	{
 		_actionState = State::IDLE;
-		this->stopAllActions();
+		stopAllActions();
 		_backY = 0;
 		_hurtFromLeft = false;
 		_hurtFromRight = false;
@@ -7631,7 +5369,7 @@ void CharacterBase::idle()
 		_sticker = nullptr;
 		_knockDiretion = false;
 
-		this->unschedule(schedule_selector(CharacterBase::stopMove));
+		unschedule(schedule_selector(CharacterBase::stopMove));
 
 		bool isPlayer = strcmp(_role->getCString(), "Player") == 0;
 
@@ -7641,67 +5379,71 @@ void CharacterBase::idle()
 			{
 				_delegate->setSkillFinish(true);
 			}
-		};
+		}
 
 		if (!_delegate->_isAttackButtonRelease &&
 			isPlayer &&
 			_attackType && !_isAllAttackLocked)
 		{
 			_delegate->setSkillFinish(true);
-			this->attack(NAttack);
+			attack(NAttack);
 		}
 		else
 		{
 			if (isPlayer && checkHasMovement())
 				return;
 
-			this->runAction(_idleAction);
-		};
+			runAction(_idleAction);
+		}
 	}
-};
+}
 
 void CharacterBase::walk(CCPoint direction)
 {
-	if (_actionState == State::IDLE || _actionState == State::WALK || (_actionState == State::ATTACK && strcmp(this->getRole()->getCString(), "Player") != 0))
+	if (_actionState == State::IDLE || _actionState == State::WALK || (_actionState == State::ATTACK && strcmp(getRole()->getCString(), "Player") != 0))
 	{
 
 		isHurtingTower = false;
 
 		if (_actionState == State::ATTACK &&
-			(strcmp(this->getCharacter()->getCString(), "Suigetsu") == 0 ||
-			 strcmp(this->getCharacter()->getCString(), "Jugo") == 0 ||
-			 strcmp(this->getCharacter()->getCString(), "Hiruzen") == 0 ||
-			 strcmp(this->getCharacter()->getCString(), "Kisame") == 0) &&
+			(strcmp(getCharacter()->getCString(), "Suigetsu") == 0 ||
+			 strcmp(getCharacter()->getCString(), "Jugo") == 0 ||
+			 strcmp(getCharacter()->getCString(), "Hiruzen") == 0 ||
+			 strcmp(getCharacter()->getCString(), "Kisame") == 0) &&
 			_isOnlySkillLocked)
 		{
-			if (strcmp(this->getRole()->getCString(), "Player") != 0)
+			if (strcmp(getRole()->getCString(), "Player") != 0)
 			{
 				return;
 			}
 		}
 		else if (_actionState == State::IDLE || _actionState == State::ATTACK)
 		{
-			this->stopAllActions();
-			this->runAction(_walkAction);
-		};
+			stopAllActions();
+			runAction(_walkAction);
+		}
 
 		_actionState = State::WALK;
 
-		_isFlipped = direction.x > 0 ? false : true;
-		this->setFlipX(_isFlipped);
-		if (_healBuffEffect)
+		//NOTE: FIXED when direction.x is zero bug still set to flipped
+		if (direction.x != 0)
 		{
-			_healBuffEffect->setFlipX(_isFlipped);
+			_isFlipped = direction.x > 0 ? false : true;
+			setFlipX(_isFlipped);
+			if (_healBuffEffect)
+			{
+				_healBuffEffect->setFlipX(_isFlipped);
+			}
 		}
 
-		if (strcmp(this->_character->getCString(), "Itachi") == 0 ||
-			strcmp(this->_character->getCString(), "ImmortalSasuke") == 0 ||
-			strcmp(this->_character->getCString(), "Chiyo") == 0)
+		if (strcmp(_character->getCString(), "Itachi") == 0 ||
+			strcmp(_character->getCString(), "ImmortalSasuke") == 0 ||
+			strcmp(_character->getCString(), "Chiyo") == 0)
 		{
-			if (this->getMonsterArray() && getMonsterArray()->count() > 0)
+			if (getMonsterArray() && getMonsterArray()->count() > 0)
 			{
 				CCObject *pObject;
-				CCARRAY_FOREACH(this->getMonsterArray(), pObject)
+				CCARRAY_FOREACH(getMonsterArray(), pObject)
 				{
 					Monster *mo = (Monster *)pObject;
 					if (strcmp(mo->getCharacter()->getCString(), "ItachiSusano") == 0 ||
@@ -7717,44 +5459,44 @@ void CharacterBase::walk(CCPoint direction)
 							mo->_isFlipped = _isFlipped;
 						}
 					}
-				};
+				}
 			}
 		}
 
 		_velocity = ccp(direction.x * _walkSpeed * winSize.width / 1280, direction.y * _walkSpeed * winSize.width / 1280);
-	};
-};
+	}
+}
 
 bool CharacterBase::hurt()
 {
-	if (_actionState != State::SATTACK && _actionState != State::JUMP && _actionState != State::OATTACK && _actionState != State::O2ATTACK && _actionState != State::FLOAT_AIR && _actionState != State::DEAD && _actionState != State::KOCKDOWN && _actionState != State::AIRHURT && !_isSticking && !_isCatchOne && !_isBati)
+	if (_actionState != State::SATTACK && _actionState != State::JUMP && _actionState != State::OATTACK && _actionState != State::O2ATTACK && _actionState != State::FLOAT && _actionState != State::DEAD && _actionState != State::KOCKDOWN && _actionState != State::AIRHURT && !_isSticking && !_isCatchOne && !_isBati)
 	{
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
 			Hero *tempHero = (Hero *)pObject;
-			if (strcmp(this->_group->getCString(), tempHero->_group->getCString()) == 0 &&
+			if (strcmp(_group->getCString(), tempHero->_group->getCString()) == 0 &&
 				strcmp(tempHero->_character->getCString(), "Chiyo") == 0 &&
 				tempHero->_actionState != State::DEAD &&
 				tempHero->_buffStartTime)
 			{
 
-				CCPoint sp = ccpSub(tempHero->getPosition(), this->getPosition());
+				CCPoint sp = ccpSub(tempHero->getPosition(), getPosition());
 				if (abs(sp.x) <= winSize.width / 2)
 				{
 					return false;
 				}
 			}
 		}
-		if (strcmp(this->_character->getCString(), "Chiyo") == 0)
+		if (strcmp(_character->getCString(), "Chiyo") == 0)
 		{
 			CCObject *pObject;
-			CCARRAY_FOREACH(this->getMonsterArray(), pObject)
+			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				Monster *mo = (Monster *)pObject;
 				if (strcmp(mo->getCharacter()->getCString(), "Parents") == 0 && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK && mo->getActionState() != State::DEAD)
 				{
-					CCPoint sp = ccpSub(mo->getPosition(), this->getPosition());
+					CCPoint sp = ccpSub(mo->getPosition(), getPosition());
 					if (sp.x <= 48)
 					{
 
@@ -7770,7 +5512,7 @@ bool CharacterBase::hurt()
 		}
 
 		_actionState = State::HURT;
-		this->stopAllActions();
+		stopAllActions();
 		if (_hurtAction)
 		{
 
@@ -7779,35 +5521,35 @@ bool CharacterBase::hurt()
 			CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::idle));
 			list->addObject(call);
 			CCAction *seq = CCSequence::create(list);
-			this->runAction(seq);
+			runAction(seq);
 		}
 		return true;
 	}
 	return false;
-};
+}
 bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, bool isStick, bool isStun)
 {
 
-	if ((_actionState != State::JUMP || isStick) && _actionState != State::O2ATTACK && (_actionState != State::FLOAT_AIR || isStick) && _actionState != State::DEAD && (_actionState != State::KOCKDOWN || isStick) && _actionState != State::AIRHURT && !_isSticking && !_isCatchOne && !_isBati)
+	if ((_actionState != State::JUMP || isStick) && _actionState != State::O2ATTACK && (_actionState != State::FLOAT || isStick) && _actionState != State::DEAD && (_actionState != State::KOCKDOWN || isStick) && _actionState != State::AIRHURT && !_isSticking && !_isCatchOne && !_isBati)
 	{
-		if (this->getActionState() == State::FLOAT_AIR ||
-			this->getActionState() == State::AIRHURT ||
-			this->getActionState() == State::JUMP)
+		if (getActionState() == State::FLOAT ||
+			getActionState() == State::AIRHURT ||
+			getActionState() == State::JUMP)
 		{
-			this->setPositionY(_originY);
+			setPositionY(_originY);
 			_originY = 0;
-			_delegate->reorderChild(this, -this->getPositionY());
+			_delegate->reorderChild(this, -getPositionY());
 		}
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
 			Hero *tempHero = (Hero *)pObject;
-			if (strcmp(this->_group->getCString(), tempHero->_group->getCString()) == 0 &&
+			if (strcmp(_group->getCString(), tempHero->_group->getCString()) == 0 &&
 				strcmp(tempHero->_character->getCString(), "Chiyo") == 0 &&
 				tempHero->_actionState != State::DEAD &&
 				tempHero->_buffStartTime)
 			{
-				CCPoint sp = ccpSub(tempHero->getPosition(), this->getPosition());
+				CCPoint sp = ccpSub(tempHero->getPosition(), getPosition());
 				if (abs(sp.x) <= winSize.width / 2)
 				{
 					return false;
@@ -7815,15 +5557,15 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 			}
 		}
 
-		if (strcmp(this->_character->getCString(), "Chiyo") == 0)
+		if (strcmp(_character->getCString(), "Chiyo") == 0)
 		{
 			CCObject *pObject;
-			CCARRAY_FOREACH(this->getMonsterArray(), pObject)
+			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				Monster *mo = (Monster *)pObject;
 				if (strcmp(mo->getCharacter()->getCString(), "Parents") == 0 && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK && mo->getActionState() != State::DEAD)
 				{
-					CCPoint sp = ccpSub(mo->getPosition(), this->getPosition());
+					CCPoint sp = ccpSub(mo->getPosition(), getPosition());
 					if (sp.x <= 48)
 					{
 						if (mo->_isCanSkill3)
@@ -7847,8 +5589,8 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 
 		if (isCatch)
 		{
-			this->setVisible(false);
-			this->_isVisable = false;
+			setVisible(false);
+			_isVisable = false;
 
 			if (_shadow)
 			{
@@ -7857,7 +5599,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 		}
 
 		_actionState = State::HURT;
-		this->stopAllActions();
+		stopAllActions();
 		CCArray *list = CCArray::create();
 
 		if (isHurtAction)
@@ -7871,11 +5613,11 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 			CCString *path;
 			if (strcmp(attacker->getCharacter()->getCString(), "Kakuzu") == 0)
 			{
-				path = CCString::createWithFormat("%s_AirHurt_02.png", this->getCharacter()->getCString());
+				path = CCString::createWithFormat("%s_AirHurt_02.png", getCharacter()->getCString());
 			}
 			else
 			{
-				path = CCString::createWithFormat("%s_Hurt_02.png", this->getCharacter()->getCString());
+				path = CCString::createWithFormat("%s_Hurt_02.png", getCharacter()->getCString());
 			}
 
 			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path->getCString());
@@ -7902,7 +5644,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 		list->addObject(call);
 
 		CCAction *seq = CCSequence::create(list);
-		this->runAction(seq);
+		runAction(seq);
 
 		return true;
 	}
@@ -7912,7 +5654,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 
 void CharacterBase::airHurt()
 {
-	if (_actionState == State::FLOAT_AIR || _actionState == State::AIRHURT)
+	if (_actionState == State::FLOAT || _actionState == State::AIRHURT)
 	{
 
 		if (strcmp(_role->getCString(), "Player") == 0)
@@ -7922,20 +5664,20 @@ void CharacterBase::airHurt()
 
 		if (_actionState == State::AIRHURT)
 		{
-			this->getActionManager()->removeAction(_airHurtAction);
-			this->unschedule(schedule_selector(CharacterBase::resumePauseStuff));
+			getActionManager()->removeAction(_airHurtAction);
+			unschedule(schedule_selector(CharacterBase::resumePauseStuff));
 		}
 		_actionState = State::AIRHURT;
-		this->runAction(_airHurtAction);
-		this->getActionManager()->pauseTarget(this);
-		this->scheduleOnce(schedule_selector(CharacterBase::resumePauseStuff), 0.2f);
+		runAction(_airHurtAction);
+		getActionManager()->pauseTarget(this);
+		scheduleOnce(schedule_selector(CharacterBase::resumePauseStuff), 0.2f);
 	}
-};
+}
 
 void CharacterBase::resumePauseStuff(float dt)
 {
 
-	this->getActionManager()->resumeTarget(this);
+	getActionManager()->resumeTarget(this);
 }
 
 void CharacterBase::absorb(CCPoint position, bool isImmediate)
@@ -7961,16 +5703,16 @@ void CharacterBase::absorb(CCPoint position, bool isImmediate)
 		CCArray *list = CCArray::create();
 		if (isImmediate)
 		{
-			this->stopAllActions();
+			stopAllActions();
 			mv = CCMoveTo::create(0.2f, position);
 			list->addObject(_hurtAction);
-			this->runAction(mv);
+			runAction(mv);
 		}
 		else
 		{
-			CCPoint direction = ccpSub(this->getPosition(), position);
-			position.x = direction.x > 0 ? this->getPositionX() - 16 : this->getPositionX() + 16;
-			position.y = direction.y > 0 ? this->getPositionY() - 8 : this->getPositionY() + 8;
+			CCPoint direction = ccpSub(getPosition(), position);
+			position.x = direction.x > 0 ? getPositionX() - 16 : getPositionX() + 16;
+			position.y = direction.y > 0 ? getPositionY() - 8 : getPositionY() + 8;
 			mv = CCMoveTo::create(0.2f, position);
 			list->addObject(mv);
 		}
@@ -7978,7 +5720,7 @@ void CharacterBase::absorb(CCPoint position, bool isImmediate)
 		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::idle));
 		list->addObject(call);
 		CCAction *seq = CCSequence::create(list);
-		this->runAction(seq);
+		runAction(seq);
 	}
 }
 
@@ -7991,7 +5733,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 	}
 
 	if (_actionState != State::JUMP &&
-		_actionState != State::FLOAT_AIR &&
+		_actionState != State::FLOAT &&
 		_actionState != State::O2ATTACK &&
 		_actionState != State::OATTACK &&
 		_actionState != State::AIRHURT &&
@@ -8004,12 +5746,12 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
 			Hero *tempHero = (Hero *)pObject;
-			if (strcmp(this->_group->getCString(), tempHero->_group->getCString()) == 0 &&
+			if (strcmp(_group->getCString(), tempHero->_group->getCString()) == 0 &&
 				strcmp(tempHero->_character->getCString(), "Chiyo") == 0 &&
 				tempHero->_actionState != State::DEAD &&
 				tempHero->_buffStartTime)
 			{
-				CCPoint sp = ccpSub(tempHero->getPosition(), this->getPosition());
+				CCPoint sp = ccpSub(tempHero->getPosition(), getPosition());
 				if (abs(sp.x) <= winSize.width / 2)
 				{
 					return;
@@ -8017,15 +5759,15 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 			}
 		}
 
-		if (strcmp(this->_character->getCString(), "Chiyo") == 0)
+		if (strcmp(_character->getCString(), "Chiyo") == 0)
 		{
 			CCObject *pObject;
-			CCARRAY_FOREACH(this->getMonsterArray(), pObject)
+			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				Monster *mo = (Monster *)pObject;
 				if (strcmp(mo->getCharacter()->getCString(), "Parents") == 0 && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK && mo->getActionState() != State::DEAD)
 				{
-					CCPoint sp = ccpSub(mo->getPosition(), this->getPosition());
+					CCPoint sp = ccpSub(mo->getPosition(), getPosition());
 					if (sp.x <= 48)
 					{
 						if (mo->_isCanSkill3)
@@ -8042,11 +5784,11 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 		{
 			_delegate->setSkillFinish(false);
 		}
-		_actionState = State::FLOAT_AIR;
-		this->stopAllActions();
+		_actionState = State::FLOAT;
+		stopAllActions();
 
-		float posX = this->getPositionX();
-		float posY = this->getPositionY();
+		float posX = getPositionX();
+		float posY = getPositionY();
 		_originY = posY;
 		CCActionInterval *_floatAwayAction;
 
@@ -8064,10 +5806,10 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 		}
 
 		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::knockDown));
-		_floatUPAction = CCSequence::create(_floatAwayAction, call, NULL);
+		_floatUPAction = CCSequence::create(_floatAwayAction, call, nullptr);
 
-		this->runAction(_floatUPAction);
-		this->runAction(_floatAction);
+		runAction(_floatUPAction);
+		runAction(_floatAction);
 	}
 }
 
@@ -8076,9 +5818,9 @@ void CharacterBase::knockDown()
 	if (_actionState != State::KOCKDOWN && _actionState != State::DEAD)
 	{
 		_actionState = State::KOCKDOWN;
-		this->stopAllActions();
+		stopAllActions();
 
-		this->runAction(_knockDownAction);
+		runAction(_knockDownAction);
 	}
 }
 
@@ -8094,50 +5836,62 @@ void CharacterBase::dead()
 	_startPoint = ccp(0, 0);
 	_markPoint = ccp(0, 0);
 
-	_sticker = NULL;
+	_sticker = nullptr;
 
-	this->setWalkSpeed(224);
-	this->_originSpeed = 224;
+	setWalkSpeed(224);
+	_originSpeed = 224;
 
-	this->unscheduleUpdate();
+	unscheduleUpdate();
 
-	if (_isControled)
+	if (_isControlled)
 	{
-		_isControled = false;
-		this->changeGroup();
-		if (strcmp(_controler->getRole()->getCString(), "Player") == 0)
+		_isControlled = false;
+		if (strcmp(_controller->getRole()->getCString(), "Player") == 0)
 		{
-			this->_delegate->controlChar = NULL;
-		}
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
-		{
-			this->_isAI = false;
-			this->_delegate->getHudLayer()->_isAllButtonLocked = false;
+			if (strcmp(_controller->getCharacter()->getCString(), "Ino") == 0)
+			{
+				_isAI = true;
+				_isControlled = false;
+				doAI();
+
+				_delegate->currentPlayer = _controller;
+				_delegate->getHudLayer()->updateSkillButtons();
+			}
+
+			_delegate->controlChar = nullptr;
 		}
 
-		if (this->_controler->getActionState() != State::DEAD)
+		changeGroup(); // Need apply after check if controller is Ino
+
+		if (strcmp(getRole()->getCString(), "Player") == 0)
 		{
-			this->_controler->unschedule(schedule_selector(CharacterBase::resumeAction));
-			this->_controler->idle();
-			this->_controler->_isBati = false;
+			_isAI = false;
+			_delegate->getHudLayer()->_isAllButtonLocked = false;
 		}
 
-		this->_controler = NULL;
+		if (_controller->getActionState() != State::DEAD)
+		{
+			_controller->unschedule(schedule_selector(CharacterBase::resumeAction));
+			_controller->idle();
+			_controller->_isBati = false;
+		}
+
+		_controller = nullptr;
 	}
 
-	if (strcmp(this->getCharacter()->getCString(), "Minato") != 0)
+	if (strcmp(getCharacter()->getCString(), "Minato") == 0)
 	{
-		this->setActionResume();
+		setActionResume2();
 	}
 	else
 	{
-		this->setActionResume2();
+		setActionResume();
 	}
 
-	this->removeLostBlood(0.1f);
-	this->unschedule(schedule_selector(CharacterBase::stopMove));
-	this->unschedule(schedule_selector(CharacterBase::setAI));
-	this->unschedule(schedule_selector(CharacterBase::disableHpBar));
+	removeLostBlood(0.1f);
+	unschedule(schedule_selector(CharacterBase::stopMove));
+	unschedule(schedule_selector(CharacterBase::setAI));
+	unschedule(schedule_selector(CharacterBase::disableHpBar));
 
 	if (strcmp(_role->getCString(), "Player") == 0)
 	{
@@ -8148,20 +5902,20 @@ void CharacterBase::dead()
 
 	//kill all buffEffect
 
-	if (strcmp(this->_role->getCString(), "Player") == 0 || strcmp(this->_role->getCString(), "Com") == 0)
+	if (strcmp(_role->getCString(), "Player") == 0 || strcmp(_role->getCString(), "Com") == 0)
 	{
 
-		this->unschedule(schedule_selector(CharacterBase::healBuff));
-		this->_buffStartTime = 0;
-		this->unschedule(schedule_selector(CharacterBase::dehealBuff));
-		if (strcmp(this->getCharacter()->getCString(), "RockLee") != 0 &&
-			strcmp(this->getCharacter()->getCString(), "Lee") != 0)
+		unschedule(schedule_selector(CharacterBase::healBuff));
+		_buffStartTime = 0;
+		unschedule(schedule_selector(CharacterBase::dehealBuff));
+		if (strcmp(getCharacter()->getCString(), "RockLee") != 0 &&
+			strcmp(getCharacter()->getCString(), "Lee") != 0)
 		{
-			this->removeBuffEffect("all");
+			removeBuffEffect("all");
 		}
 		else
 		{
-			this->removeBuffEffect("dhBuff");
+			removeBuffEffect("dhBuff");
 		}
 
 		if (_isSuicide)
@@ -8174,10 +5928,10 @@ void CharacterBase::dead()
 			rebornLabelTime = 0;
 			_deadNum++;
 
-			if (strcmp(this->_role->getCString(), "Player") == 0)
+			if (strcmp(_role->getCString(), "Player") == 0)
 			{
 				const char *dl = _delegate->getHudLayer()->deadLabel->getString();
-				int deads = atoi(dl) + 1;
+				int deads = to_int(dl) + 1;
 				_delegate->getHudLayer()->deadLabel->setString(CCString::createWithFormat("%d", deads)->getCString());
 			}
 		}
@@ -8185,9 +5939,9 @@ void CharacterBase::dead()
 		if (!_isVisable)
 		{
 
-			this->setOpacity(255);
+			setOpacity(255);
 
-			this->setVisible(true);
+			setVisible(true);
 			if (_hpBar)
 			{
 				_hpBar->setVisible(true);
@@ -8198,28 +5952,28 @@ void CharacterBase::dead()
 				_shadow->setVisible(true);
 			}
 			_isVisable = true;
-		};
-	};
+		}
+	}
 	if (_hpBar)
 	{
 		_hpBar->removeFromParent();
-		_hpBar = NULL;
+		_hpBar = nullptr;
 	}
 
 	if (hearts < 1)
 	{
 		hearts += 1;
-	};
+	}
 
-	if (strcmp(this->getCharacter()->getCString(), "Kakuzu") == 0)
+	if (strcmp(getCharacter()->getCString(), "Kakuzu") == 0)
 	{
 		if (_heartEffect)
 		{
-			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", this->hearts)->getCString());
-			this->_heartEffect->setDisplayFrame(frame);
+			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", hearts)->getCString());
+			_heartEffect->setDisplayFrame(frame);
 		}
 
-		if (strcmp(this->getRole()->getCString(), "Player") == 0 && this->getLV() >= 2)
+		if (strcmp(getRole()->getCString(), "Player") == 0 && getLV() >= 2)
 		{
 			if (_delegate->getHudLayer()->skill4Button)
 			{
@@ -8231,30 +5985,30 @@ void CharacterBase::dead()
 	if (bamen > 0)
 	{
 
-		if (strcmp(this->getCharacter()->getCString(), "Lee") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "RockLee") == 0)
+		if (strcmp(getCharacter()->getCString(), "Lee") == 0 ||
+			strcmp(getCharacter()->getCString(), "RockLee") == 0)
 		{
 
 			if (bamen == 5)
 			{
 
-				this->setWalkSpeed(224);
+				setWalkSpeed(224);
 				_originSpeed = 224;
-				this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-				this->setsAttackValue3(CCString::createWithFormat("%d", atoi(this->_sattackValue3->getCString()) - 100));
-				this->setsAttackValue2(CCString::createWithFormat("%d", atoi(this->_sattackValue2->getCString()) - 100));
-				this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) - 60));
+				setWalkAction(createAnimation(walkArray, 10.0f, true, false));
+				setsAttackValue3(CCString::createWithFormat("%d", to_int(_sattackValue3->getCString()) - 100));
+				setsAttackValue2(CCString::createWithFormat("%d", to_int(_sattackValue2->getCString()) - 100));
+				setnAttackValue(CCString::createWithFormat("%d", to_int(_nattackValue->getCString()) - 60));
 			}
 			else if (bamen == 4)
 			{
-				this->setsAttackValue3(CCString::createWithFormat("%d", atoi(this->_sattackValue3->getCString()) - 100));
-				this->setsAttackValue2(CCString::createWithFormat("%d", atoi(this->_sattackValue2->getCString()) - 100));
+				setsAttackValue3(CCString::createWithFormat("%d", to_int(_sattackValue3->getCString()) - 100));
+				setsAttackValue2(CCString::createWithFormat("%d", to_int(_sattackValue2->getCString()) - 100));
 			}
 			else if (bamen == 3)
 			{
-				this->setTransform();
+				setTransform();
 
-				if (strcmp(this->getRole()->getCString(), "Player") == 0)
+				if (strcmp(getRole()->getCString(), "Player") == 0)
 				{
 					if (_delegate->getHudLayer()->skill3Button)
 					{
@@ -8265,56 +6019,56 @@ void CharacterBase::dead()
 				if (_skillBuffEffect)
 				{
 					_skillBuffEffect->removeFromParent();
-					_skillBuffEffect = NULL;
+					_skillBuffEffect = nullptr;
 				}
 			}
 			else if (bamen == 2)
 			{
-				this->setsAttackValue2(CCString::createWithFormat("%d", atoi(this->_sattackValue2->getCString()) - 100));
+				setsAttackValue2(CCString::createWithFormat("%d", to_int(_sattackValue2->getCString()) - 100));
 			}
 			else if (bamen == 1)
 			{
-				if (strcmp(this->getRole()->getCString(), "Player") == 0)
+				if (strcmp(getRole()->getCString(), "Player") == 0)
 				{
 					if (_delegate->getHudLayer()->skill4Button)
 					{
 						_delegate->getHudLayer()->skill4Button->setLock();
 					}
 				}
-				this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->_nattackValue->getCString()) - 30));
+				setnAttackValue(CCString::createWithFormat("%d", to_int(_nattackValue->getCString()) - 30));
 			}
 			bamen -= 1;
 			if (bamen == 0)
 			{
-				this->_heartEffect->removeFromParent();
-				this->_heartEffect = NULL;
+				_heartEffect->removeFromParent();
+				_heartEffect = nullptr;
 			}
 			else
 			{
-				CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Bamen_Effect_%02d.png", this->bamen - 1)->getCString());
-				this->_heartEffect->setDisplayFrame(frame);
+				CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Bamen_Effect_%02d.png", bamen - 1)->getCString());
+				_heartEffect->setDisplayFrame(frame);
 			}
 		}
 	}
 
-	if (_actionState == State::FLOAT_AIR || _actionState == State::AIRHURT)
+	if (_actionState == State::FLOAT || _actionState == State::AIRHURT)
 	{
 		_actionState = State::DEAD;
-		this->unschedule(schedule_selector(CharacterBase::removeClone));
-		this->schedule(schedule_selector(CharacterBase::checkActionFinish), 0.0f);
+		unschedule(schedule_selector(CharacterBase::removeClone));
+		schedule(schedule_selector(CharacterBase::checkActionFinish), 0.0f);
 		return;
 	}
 	else if (_actionState == State::JUMP)
 	{
-		this->setPositionY(_originY);
+		setPositionY(_originY);
 		_originY = 0;
-		_delegate->reorderChild(this, -this->getPositionY());
+		_delegate->reorderChild(this, -getPositionY());
 	}
 
-	this->stopAllActions();
+	stopAllActions();
 	_actionState = State::DEAD;
 
-	if (strcmp(this->_role->getCString(), "Player") == 0 || strcmp(this->_role->getCString(), "Com") == 0)
+	if (strcmp(_role->getCString(), "Player") == 0 || strcmp(_role->getCString(), "Com") == 0)
 	{
 		CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", this);
 	}
@@ -8334,25 +6088,25 @@ void CharacterBase::dead()
 		}
 		seqArray->addObject(call);
 		CCAction *seq = CCSequence::create(seqArray);
-		this->runAction(seq);
+		runAction(seq);
 	}
 	else
 	{
-		this->unschedule(schedule_selector(CharacterBase::removeClone));
+		unschedule(schedule_selector(CharacterBase::removeClone));
 		CCDictionary *callValue = CCDictionary::create();
 		callValue->setObject(CCString::create("smk"), 1);
-		this->setSkillEffect(this, callValue);
-		this->dealloc();
+		setSkillEffect(this, callValue);
+		dealloc();
 	}
-};
+}
 
 void CharacterBase::checkActionFinish(float dt)
 {
 
-	if (this->getActionManager()->numberOfRunningActionsInTarget(this) == 0)
+	if (getActionManager()->numberOfRunningActionsInTarget(this) == 0)
 	{
-		this->unschedule(schedule_selector(CharacterBase::checkActionFinish));
-		this->stopAllActions();
+		unschedule(schedule_selector(CharacterBase::checkActionFinish));
+		stopAllActions();
 		CCActionInterval *fadeOut = CCFadeOut::create(0.5);
 		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::dealloc));
 		CCArray *seqArray = CCArray::create();
@@ -8366,8 +6120,8 @@ void CharacterBase::checkActionFinish(float dt)
 		}
 		seqArray->addObject(call);
 		CCAction *seq = CCSequence::create(seqArray);
-		this->runAction(seq);
-	};
+		runAction(seq);
+	}
 }
 
 void CharacterBase::dealloc()
@@ -8384,8 +6138,8 @@ void CharacterBase::setAI(float dt)
 
 void CharacterBase::doAI()
 {
-	this->_isAI = true;
-	this->schedule(schedule_selector(CharacterBase::setAI), 0.1f);
+	_isAI = true;
+	schedule(schedule_selector(CharacterBase::setAI), 0.1f);
 }
 
 bool CharacterBase::findEnemy(const char *type, int searchRange, bool masterRange)
@@ -8428,10 +6182,10 @@ bool CharacterBase::findEnemy(const char *type, int searchRange, bool masterRang
 		{
 			continue;
 		}
-		if ((this->getActionState() == State::OATTACK ||
-			 this->getActionState() == State::O2ATTACK) ||
-			(this->getMaster() && (this->getMaster()->getActionState() == State::OATTACK ||
-								   this->getActionState() == State::O2ATTACK)))
+		if ((getActionState() == State::OATTACK ||
+			 getActionState() == State::O2ATTACK) ||
+			(getMaster() && (getMaster()->getActionState() == State::OATTACK ||
+							 getActionState() == State::O2ATTACK)))
 		{
 			if (strcmp(target->_role->getCString(), K_TAG_CLONE) == 0 ||
 				strcmp(target->_role->getCString(), "Summon") == 0 ||
@@ -8441,18 +6195,18 @@ bool CharacterBase::findEnemy(const char *type, int searchRange, bool masterRang
 			}
 		}
 
-		if (strcmp(this->_group->getCString(), target->_group->getCString()) != 0)
+		if (strcmp(_group->getCString(), target->_group->getCString()) != 0)
 		{
 
-			if (masterRange && this->getMaster())
+			if (masterRange && getMaster())
 			{
-				distance = ccpDistance(target->getPosition(), this->getMaster()->getPosition());
-				sp = ccpSub(target->getPosition(), this->getMaster()->getPosition());
+				distance = ccpDistance(target->getPosition(), getMaster()->getPosition());
+				sp = ccpSub(target->getPosition(), getMaster()->getPosition());
 			}
 			else
 			{
-				distance = ccpDistance(target->getPosition(), this->getPosition());
-				sp = ccpSub(target->getPosition(), this->getPosition());
+				distance = ccpDistance(target->getPosition(), getPosition());
+				sp = ccpSub(target->getPosition(), getPosition());
 			}
 
 			if (abs(sp.x) < (searchRange ? searchRange : winSize.width / 2))
@@ -8472,10 +6226,10 @@ bool CharacterBase::findEnemy(const char *type, int searchRange, bool masterRang
 					findSome = true;
 					curDistance = distance;
 					_mainTarget = target;
-				};
+				}
 			}
 		}
-	};
+	}
 	if (findSome)
 	{
 		return true;
@@ -8484,7 +6238,7 @@ bool CharacterBase::findEnemy(const char *type, int searchRange, bool masterRang
 	{
 		return false;
 	}
-};
+}
 
 bool CharacterBase::findEnemy2(const char *type)
 {
@@ -8530,8 +6284,8 @@ bool CharacterBase::findEnemy2(const char *type)
 			continue;
 		}
 
-		distance = ccpDistance(target->getPosition(), this->getPosition());
-		sp = ccpSub(target->getPosition(), this->getPosition());
+		distance = ccpDistance(target->getPosition(), getPosition());
+		sp = ccpSub(target->getPosition(), getPosition());
 		if (abs(sp.x) < winSize.width / 2)
 		{
 			if (strcmp(target->_role->getCString(), K_TAG_CLONE) != 0 &&
@@ -8552,7 +6306,7 @@ bool CharacterBase::findEnemy2(const char *type)
 					baseSkillCombatPoint += _sattackCombatPoint3;
 				}
 
-				if (strcmp(this->_group->getCString(), target->_group->getCString()) == 0)
+				if (strcmp(_group->getCString(), target->_group->getCString()) == 0)
 				{
 					if (abs(sp.x) < _delegate->currentMap->getTileSize().width * 3)
 					{
@@ -8560,7 +6314,7 @@ bool CharacterBase::findEnemy2(const char *type)
 						if (strcmp(target->_character->getCString(), Guardian_Roshi) != 0 && strcmp(target->_character->getCString(), Guardian_Han) != 0)
 						{
 
-							friendCombatPoint += baseSkillCombatPoint + atoi(target->getHP()->getCString()) +
+							friendCombatPoint += baseSkillCombatPoint + to_int(target->getHP()->getCString()) +
 												 (atof(target->getCKR()->getCString()) / 15000) * target->_sattackCombatPoint4 + (atof(target->getCKR2()->getCString()) / 25000) * target->_sattackCombatPoint5;
 						}
 					}
@@ -8570,7 +6324,7 @@ bool CharacterBase::findEnemy2(const char *type)
 
 					if (strcmp(target->_character->getCString(), Guardian_Roshi) != 0 && strcmp(target->_character->getCString(), Guardian_Han) != 0)
 					{
-						enemyCombatPoint += baseSkillCombatPoint + atoi(target->getHP()->getCString()) + (atof(target->getCKR()->getCString()) / 15000) * target->_sattackCombatPoint4 + (atof(target->getCKR2()->getCString()) / 25000) * target->_sattackCombatPoint5;
+						enemyCombatPoint += baseSkillCombatPoint + to_int(target->getHP()->getCString()) + (atof(target->getCKR()->getCString()) / 15000) * target->_sattackCombatPoint4 + (atof(target->getCKR2()->getCString()) / 25000) * target->_sattackCombatPoint5;
 					}
 
 					if (!target->_isWudi && (target->getPositionX() >= _delegate->currentMap->getTileSize().width * 3 && target->getPositionX() <= (_delegate->currentMap->getMapSize().width - 3) * _delegate->currentMap->getTileSize().width))
@@ -8586,7 +6340,7 @@ bool CharacterBase::findEnemy2(const char *type)
 							findSome = true;
 							curDistance = distance;
 							_mainTarget = target;
-						};
+						}
 					}
 				}
 			}
@@ -8601,7 +6355,7 @@ bool CharacterBase::findEnemy2(const char *type)
 	{
 		return false;
 	}
-};
+}
 
 bool CharacterBase::checkBase()
 {
@@ -8616,9 +6370,9 @@ bool CharacterBase::checkBase()
 		{
 			continue;
 		}
-		if (strcmp(this->_group->getCString(), target->_group->getCString()) != 0)
+		if (strcmp(_group->getCString(), target->_group->getCString()) != 0)
 		{
-			if (strcmp(this->_group->getCString(), Konoha) == 0)
+			if (strcmp(_group->getCString(), Konoha) == 0)
 			{
 				if (target->getPositionX() <= 11 * 32)
 				{
@@ -8653,9 +6407,9 @@ bool CharacterBase::checkBase()
 		{
 			continue;
 		}
-		if (strcmp(this->_group->getCString(), target->_group->getCString()) != 0)
+		if (strcmp(_group->getCString(), target->_group->getCString()) != 0)
 		{
-			if (strcmp(this->_group->getCString(), Konoha) == 0)
+			if (strcmp(_group->getCString(), Konoha) == 0)
 			{
 				if (target->getPositionX() <= 11 * 32)
 				{
@@ -8707,13 +6461,13 @@ bool CharacterBase::findTargetEnemy(const char *type, bool isTowerDected)
 	{
 		CharacterBase *target = (CharacterBase *)pObject;
 
-		if (strcmp(this->_group->getCString(), target->_group->getCString()) != 0 &&
+		if (strcmp(_group->getCString(), target->_group->getCString()) != 0 &&
 			strcmp(target->_role->getCString(), "Kugutsu") != 0 &&
 			target->_actionState != State::DEAD &&
 			target->_isVisable && !target->_isWudi)
 		{
 			// float gardZone;
-			if (this->getDelegate()->zhenying > 0)
+			if (getDelegate()->zhenying > 0)
 			{
 				if (target->getPositionX() >= 81 * 32)
 				{
@@ -8760,7 +6514,7 @@ bool CharacterBase::findTargetEnemy(const char *type, bool isTowerDected)
 				}
 			}
 		}
-	};
+	}
 	if (!isTowerDected)
 	{
 		if (findSome == true)
@@ -8776,7 +6530,7 @@ bool CharacterBase::findTargetEnemy(const char *type, bool isTowerDected)
 	{
 		return false;
 	}
-};
+}
 
 void CharacterBase::stepOn()
 {
@@ -8790,13 +6544,14 @@ void CharacterBase::stepOn()
 	else
 	{
 		moveDirection = ccpNormalize(ccp(-1, 0));
-	};
+	}
 
-	this->walk(moveDirection);
+	walk(moveDirection);
 }
+
 bool CharacterBase::checkRetri()
 {
-	if (_isCanItem1 && atoi(this->getCoin()->getCString()) >= 50)
+	if (_isCanItem1 && to_int(getCoin()->getCString()) >= 50)
 	{
 		if (_delegate->_isHardCoreGame)
 		{
@@ -8804,41 +6559,41 @@ bool CharacterBase::checkRetri()
 			{
 				if (!_isHealling)
 				{
-					if (atoi(this->getMaxHP()->getCString()) - atoi(this->getHP()->getCString()) >= 3000 + gearRecoverValue && this->getGearArray()->count() > 1)
+					if (to_uint(getMaxHP()->getCString()) - to_uint(getHP()->getCString()) >= 3000 + gearRecoverValue && getGearArray()->count() > 1)
 					{
-						this->setItem(Item1);
+						setItem(Item1);
 					}
-					else if (atoi(this->getHP()->getCString()) < 5000 && this->getGearArray()->count() > 0)
+					else if (to_uint(getHP()->getCString()) < 5000 && getGearArray()->count() > 0)
 					{
-						this->setItem(Item1);
+						setItem(Item1);
 					}
-					else if (atoi(this->getHP()->getCString()) < 1500)
+					else if (to_uint(getHP()->getCString()) < 1500)
 					{
-						this->setItem(Item1);
+						setItem(Item1);
 					}
 				}
 			}
 			else
 			{
-				if (atoi(this->getMaxHP()->getCString()) - atoi(this->getHP()->getCString()) >= 3000 + gearRecoverValue && !_isHealling && this->getGearArray()->count() > 0)
+				if (to_uint(getMaxHP()->getCString()) - to_uint(getHP()->getCString()) >= 3000 + gearRecoverValue && !_isHealling && getGearArray()->count() > 0)
 				{
-					this->setItem(Item1);
+					setItem(Item1);
 				}
-				else if (atoi(this->getHP()->getCString()) < 3000)
+				else if (to_uint(getHP()->getCString()) < 3000)
 				{
-					this->setItem(Item1);
+					setItem(Item1);
 				}
 			}
 		}
 		else
 		{
-			if (atoi(this->getHP()->getCString()) < 1500 && strcmp(this->getGroup()->getCString(), Konoha) == 0)
+			if (to_uint(getHP()->getCString()) < 1500 && strcmp(getGroup()->getCString(), Konoha) == 0)
 			{
-				this->setItem(Item1);
+				setItem(Item1);
 			}
-			if (atoi(this->getHP()->getCString()) < 500 && strcmp(this->getGroup()->getCString(), Akatsuki) == 0)
+			if (to_uint(getHP()->getCString()) < 500 && strcmp(getGroup()->getCString(), Akatsuki) == 0)
 			{
-				this->setItem(Item1);
+				setItem(Item1);
 			}
 		}
 	}
@@ -8847,21 +6602,21 @@ bool CharacterBase::checkRetri()
 	{
 		if (strcmp(Konoha, _group->getCString()) == 0)
 		{
-			if (this->getPositionX() >= _delegate->currentMap->getTileSize().width * 60)
+			if (getPositionX() >= _delegate->currentMap->getTileSize().width * 60)
 			{
 				return false;
 			}
 		}
 		else
 		{
-			if (this->getPositionX() <= _delegate->currentMap->getTileSize().width * 36)
+			if (getPositionX() <= _delegate->currentMap->getTileSize().width * 36)
 			{
 				return false;
 			}
 		}
 	}
 
-	if (atoi(this->getHP()->getCString()) < 1500 && !_isControled)
+	if (to_uint(getHP()->getCString()) < 1500 && !_isControlled)
 	{
 		return true;
 	}
@@ -8870,7 +6625,7 @@ bool CharacterBase::checkRetri()
 
 bool CharacterBase::stepBack()
 {
-	if (_isControled)
+	if (_isControlled)
 	{
 		return false;
 	}
@@ -8883,23 +6638,23 @@ bool CharacterBase::stepBack()
 	else
 	{
 		moveDirection = ccpNormalize(ccp(1, 0));
-	};
+	}
 
-	if (this->getPositionX() >= _delegate->currentMap->getTileSize().width * 2 &&
-		this->getPositionX() <= (_delegate->currentMap->getMapSize().width - 2) * _delegate->currentMap->getTileSize().width)
+	if (getPositionX() >= _delegate->currentMap->getTileSize().width * 2 &&
+		getPositionX() <= (_delegate->currentMap->getMapSize().width - 2) * _delegate->currentMap->getTileSize().width)
 	{
-		this->walk(moveDirection);
+		walk(moveDirection);
 		return true;
 	}
 	else
 	{
 		return false;
-	};
+	}
 }
 
 bool CharacterBase::stepBack2()
 {
-	if (_isControled)
+	if (_isControlled)
 	{
 		return false;
 	}
@@ -8914,29 +6669,29 @@ bool CharacterBase::stepBack2()
 		if (randomDirection > 5)
 		{
 
-			if (this->getPositionY() + 96 < _delegate->currentMap->getTileSize().height * 5.5)
+			if (getPositionY() + 96 < _delegate->currentMap->getTileSize().height * 5.5)
 			{
 				_DiretionY = 1;
-				_backY = this->getPositionY() + 96;
+				_backY = getPositionY() + 96;
 			}
 			else
 			{
 				_DiretionY = -1;
-				_backY = this->getPositionY() - 96;
+				_backY = getPositionY() - 96;
 			}
 		}
 		else
 		{
 
-			if (this->getPositionY() - 96 > 16)
+			if (getPositionY() - 96 > 16)
 			{
 				_DiretionY = -1;
-				_backY = this->getPositionY() - 96;
+				_backY = getPositionY() - 96;
 			}
 			else
 			{
 				_DiretionY = 1;
-				_backY = this->getPositionY() + 96;
+				_backY = getPositionY() + 96;
 			}
 		}
 	}
@@ -8945,26 +6700,26 @@ bool CharacterBase::stepBack2()
 
 		if (randomDirection > 5)
 		{
-			if (_DiretionY == 1 && (this->getPositionY() >= _backY || this->getPositionY() > _delegate->currentMap->getTileSize().height * 5))
+			if (_DiretionY == 1 && (getPositionY() >= _backY || getPositionY() > _delegate->currentMap->getTileSize().height * 5))
 			{
 				_DiretionY = -1;
-				_backY = this->getPositionY() - 96;
+				_backY = getPositionY() - 96;
 			}
-			else if (_DiretionY == -1 && (this->getPositionY() <= _backY || this->getPositionY() < 16))
+			else if (_DiretionY == -1 && (getPositionY() <= _backY || getPositionY() < 16))
 			{
 				_DiretionY = 1;
-				_backY = this->getPositionY() + 96;
+				_backY = getPositionY() + 96;
 			}
 		}
 		else
 		{
 
-			if (_DiretionY == 1 && this->getPositionY() <= _delegate->currentMap->getTileSize().height * 5)
+			if (_DiretionY == 1 && getPositionY() <= _delegate->currentMap->getTileSize().height * 5)
 			{
 				_DiretionY = 1;
 				_backY = _delegate->currentMap->getTileSize().height * 5;
 			}
-			else if (this->getPositionY() > 16)
+			else if (getPositionY() > 16)
 			{
 				_DiretionY = -1;
 				_backY = 16;
@@ -8972,16 +6727,16 @@ bool CharacterBase::stepBack2()
 		}
 	}
 
-	if (strcmp(Konoha, _group->getCString()) == 0 && this->getPositionX() >= _delegate->currentMap->getTileSize().width * 2)
+	if (strcmp(Konoha, _group->getCString()) == 0 && getPositionX() >= _delegate->currentMap->getTileSize().width * 2)
 	{
 		moveDirection = CCPoint(ccp(-1, _DiretionY));
-		this->walk(moveDirection);
+		walk(moveDirection);
 		return true;
 	}
-	else if (strcmp(Akatsuki, _group->getCString()) == 0 && this->getPositionX() <= (_delegate->currentMap->getMapSize().width - 2) * _delegate->currentMap->getTileSize().width)
+	else if (strcmp(Akatsuki, _group->getCString()) == 0 && getPositionX() <= (_delegate->currentMap->getMapSize().width - 2) * _delegate->currentMap->getTileSize().width)
 	{
 		moveDirection = CCPoint(ccp(1, _DiretionY));
-		this->walk(moveDirection);
+		walk(moveDirection);
 		return true;
 	}
 	else
@@ -8994,22 +6749,22 @@ void CharacterBase::changeSide(CCPoint sp)
 {
 	if (sp.x > 0)
 	{
-		this->setFlipX(false);
-		this->_isFlipped = false;
+		setFlipX(false);
+		_isFlipped = false;
 	}
 	else
 	{
-		this->setFlipX(true);
-		this->_isFlipped = true;
+		setFlipX(true);
+		_isFlipped = true;
 	}
 
-	if (strcmp(this->_character->getCString(), "Itachi") == 0 ||
-		strcmp(this->_character->getCString(), "ImmortalSasuke") == 0)
+	if (strcmp(_character->getCString(), "Itachi") == 0 ||
+		strcmp(_character->getCString(), "ImmortalSasuke") == 0)
 	{
-		if (this->getMonsterArray() && getMonsterArray()->count() > 0)
+		if (getMonsterArray() && getMonsterArray()->count() > 0)
 		{
 			CCObject *pObject;
-			CCARRAY_FOREACH(this->getMonsterArray(), pObject)
+			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				Monster *mo = (Monster *)pObject;
 				if (strcmp(mo->getCharacter()->getCString(), "ItachiSusano") == 0 ||
@@ -9017,7 +6772,7 @@ void CharacterBase::changeSide(CCPoint sp)
 
 					mo->_isFlipped = _isFlipped;
 				mo->setFlipX(_isFlipped);
-			};
+			}
 		}
 	}
 }
@@ -9025,28 +6780,28 @@ void CharacterBase::changeSide(CCPoint sp)
 void CharacterBase::changeGroup()
 {
 
-	if (strcmp(this->getGroup()->getCString(), Konoha) == 0)
+	if (strcmp(getGroup()->getCString(), Konoha) == 0)
 	{
-		this->setGroup(CCString::create(Akatsuki));
+		setGroup(CCString::create(Akatsuki));
 	}
 	else
 	{
-		this->setGroup(CCString::create(Konoha));
+		setGroup(CCString::create(Konoha));
 	}
 
-	if (this->_hpBar && strcmp(this->getRole()->getCString(), "Player") != 0)
+	if (_hpBar && strcmp(getRole()->getCString(), "Player") != 0)
 	{
 		if (strcmp(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) != 0)
 		{
-			this->_hpBar->changeBar("hp_bar_r.png");
+			_hpBar->changeBar("hp_bar_r.png");
 		}
 		else if (strcmp(getRole()->getCString(), "Com") == 0)
 		{
-			this->_hpBar->changeBar("hp_bar_b.png");
+			_hpBar->changeBar("hp_bar_b.png");
 		}
 	}
 
-	if (strcmp(this->getRole()->getCString(), "Player") == 0)
+	if (strcmp(getRole()->getCString(), "Player") == 0)
 	{
 
 		for (int i = 0; i < 4; i++)
@@ -9076,7 +6831,7 @@ void CharacterBase::changeGroup()
 				CharacterBase *target = (CharacterBase *)pObject;
 				if (target->_hpBar)
 				{
-					if (strcmp(this->_group->getCString(), target->_group->getCString()) != 0)
+					if (strcmp(_group->getCString(), target->_group->getCString()) != 0)
 					{
 
 						if (strcmp(target->getRole()->getCString(), "Flog") == 0)
@@ -9111,7 +6866,7 @@ void CharacterBase::changeGroup()
 				}
 			}
 		}
-	};
+	}
 }
 
 void CharacterBase::enableItem1(float dt)

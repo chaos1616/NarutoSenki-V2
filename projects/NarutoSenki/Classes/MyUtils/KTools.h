@@ -29,8 +29,8 @@ public:
 
 	static bool checkData();
 	static void updateData();
-	static bool saveToSQLite(const char *table = "GameRecord", const char *column = NULL, const char *value = NULL, bool isBuy = false);
-	static CCString *readFromSQLite(const char *table = "GameRecord", const char *column = NULL, const char *value = NULL);
+	static bool saveToSQLite(const char *table = "GameRecord", const char *column = nullptr, const char *value = nullptr, bool isBuy = false);
+	static CCString *readFromSQLite(const char *table = "GameRecord", const char *column = nullptr, const char *value = nullptr);
 
 	static void encode(std::string &str, int randomKey);
 	static void decode(std::string &str);

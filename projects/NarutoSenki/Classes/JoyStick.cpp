@@ -3,7 +3,7 @@
 
 JoyStick::JoyStick()
 {
-	_delegate = NULL;
+	_delegate = nullptr;
 }
 
 JoyStick::~JoyStick()
@@ -16,17 +16,17 @@ bool JoyStick::init()
 	do
 	{
 		CC_BREAK_IF(!CCSprite::init());
-		this->initWithSpriteFrameName("JoyStickBg.png");
-		this->setAnchorPoint(ccp(0, 0));
+		initWithSpriteFrameName("JoyStickBg.png");
+		setAnchorPoint(ccp(0, 0));
 
 		_joyStickControl = CCSprite::createWithSpriteFrameName("JoyStick.png");
 		_joyStickControl->setAnchorPoint(ccp(0, 0));
 
-		_defaultPotion = ccp(this->getContentSize().width / 2 - _joyStickControl->getContentSize().width / 2,
-							 this->getContentSize().height / 2 - _joyStickControl->getContentSize().height / 2);
+		_defaultPotion = ccp(getContentSize().width / 2 - _joyStickControl->getContentSize().width / 2,
+							 getContentSize().height / 2 - _joyStickControl->getContentSize().height / 2);
 
 		_joyStickControl->setPosition(_defaultPotion);
-		this->addChild(_joyStickControl);
+		addChild(_joyStickControl);
 
 		bRet = true;
 
@@ -62,7 +62,7 @@ void JoyStick::ccTouchMoved(CCTouch *touch, CCEvent *event)
 {
 	if (!_delegate->_isAllButtonLocked)
 	{
-		this->updateDirectionForTouchLocation(touch);
+		updateDirectionForTouchLocation(touch);
 	}
 };
 
@@ -78,8 +78,8 @@ void JoyStick::ccTouchEnded(CCTouch *touch, CCEvent *event)
 void JoyStick::updateDirectionForTouchLocation(CCTouch *touch)
 {
 
-	CCPoint startPoint = ccp(32 + this->getContentSize().width / 2,
-							 32 + this->getContentSize().height / 2);
+	CCPoint startPoint = ccp(32 + getContentSize().width / 2,
+							 32 + getContentSize().height / 2);
 	CCPoint curPoint = touch->getLocation();
 	//����
 	CCPoint sp = ccpSub(curPoint, startPoint);
@@ -130,7 +130,7 @@ void JoyStick::updateDirectionForTouchLocation(CCTouch *touch)
 		_direction = ccp(-1.0, 1.0);
 	};
 
-	this->updateJoyStick(distance, _direction);
+	updateJoyStick(distance, _direction);
 	_delegate->JoyStickUpdate(_direction);
 }
 

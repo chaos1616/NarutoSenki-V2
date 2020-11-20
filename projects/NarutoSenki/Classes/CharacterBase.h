@@ -1,15 +1,10 @@
-#ifndef __CHARACTER_BASE_H__
-#define __CHARACTER_BASE_H__
+#pragma once
 #include "MyUtils/KTools.h"
 #include "GameLayer.h"
 #include "Defines.h"
 #include "Effect.h"
 
-
-USING_NS_CC;
-using namespace CocosDenshion;
-
-typedef enum{
+enum class State {
 	DEAD,
 	IDLE,
 	WALK,
@@ -20,14 +15,16 @@ typedef enum{
 	HURT,
 	ABHURT,
 	KOCKDOWN,
-	FLOAT_AIR,
+	FLOAT,
 	JUMP,
 	AIRHURT
-} State;
+};
 
 
 class HPBar;
-class CharacterBase :public CCSprite{
+class Hero;
+
+class CharacterBase : public CCSprite{
 public:
 	CharacterBase();
 	~CharacterBase();
@@ -39,9 +36,6 @@ public:
 	unsigned int		_deadNum;
 	unsigned int		_flogNum;
 	CC_SYNTHESIZE_RETAIN(CCString*, _killNum,KillNum);
-
-
-
 
 	CC_SYNTHESIZE_RETAIN(CCString*, _coin,Coin);
 
@@ -96,7 +90,7 @@ public:
 	CCPoint				_startPoint;
 
 	bool				_isAI;
-	bool				_isControled;
+	bool				_isControlled;
 
 	CC_SYNTHESIZE_RETAIN(CCLabelTTF*,cpLabel,CPLabel);
 	//attributes
@@ -104,8 +98,6 @@ public:
 	CC_SYNTHESIZE_RETAIN(CCString*, _group,Group);
 	CC_SYNTHESIZE_RETAIN(CCString*, _character,Character);
 	CC_SYNTHESIZE_RETAIN(CCArray*,_gearArray,GearArray);
-
-	ninjaEnums 			_id;
 
 	int 				rebornLabelTime;
 	int 				battleCondiction;
@@ -136,8 +128,6 @@ public:
 
 	CC_SYNTHESIZE(int, _walkSpeed, WalkSpeed);
 	int _originSpeed;
-	//CC_SYNTHESIZE(float,_maxHP,MaxHP);
-	//CC_SYNTHESIZE(float,_hp,HP);
 
 	CC_SYNTHESIZE_RETAIN(CCString*,_maxHP,MaxHP);
 	CC_SYNTHESIZE_RETAIN(CCString*,_hp,HP);
@@ -155,18 +145,16 @@ public:
 
 
 	CC_SYNTHESIZE(CharacterBase*,_master,Master);
-	CC_SYNTHESIZE(CharacterBase*,_controler,Controler);
+	CC_SYNTHESIZE(CharacterBase*,_controller,Controller);
 	CC_SYNTHESIZE(CharacterBase*,_secmaster,SecMaster);
 
 	CC_SYNTHESIZE_RETAIN(CCString*,_nattackValue,nAttackValue);
-	//unsigned int   _nattackValue ;
 	CC_SYNTHESIZE(CCString*, _nattackType,nAttackType);
 	int				_nattackRangeX;
 	int				_nattackRangeY;
 
 
 	CC_SYNTHESIZE_RETAIN(CCString*, _sattackValue1,sAttackValue1);
-	//unsigned int    _sattackValue1;
 	CC_SYNTHESIZE(CCString*, _sattackType1,sAttack1Type);
 	int				_sattackRangeX1;
 	int				_sattackRangeY1;
@@ -181,7 +169,6 @@ public:
 	int				_attackRangeY;
 
 	CC_SYNTHESIZE_RETAIN(CCString*, _sattackValue2,sAttackValue2);
-	//unsigned int    _sattackValue2;
 	CC_SYNTHESIZE(CCString*, _sattackType2,sAttack2Type);
 	int				_sattackRangeX2;
 	int				_sattackRangeY2;
@@ -190,7 +177,6 @@ public:
 	int				_sattackCombatPoint2;
 
 	CC_SYNTHESIZE_RETAIN(CCString*, _sattackValue3,sAttackValue3);
-	//unsigned int    _sattackValue3;
 	CC_SYNTHESIZE(CCString*, _sattackType3,sAttack3Type);
 	int				_sattackRangeX3;
 	int				_sattackRangeY3;
@@ -199,7 +185,6 @@ public:
 	int				_sattackCombatPoint3;
 
 	CC_SYNTHESIZE_RETAIN(CCString*, _sattackValue4,sAttackValue4);
-	//unsigned int    _sattackValue4;
 	CC_SYNTHESIZE(CCString*, _sattackType4,sAttack4Type);
 	int				_sattackRangeX4;
 	int				_sattackRangeY4;
@@ -208,7 +193,6 @@ public:
 	int				_sattackCombatPoint4;
 
 	CC_SYNTHESIZE_RETAIN(CCString*, _sattackValue5,sAttackValue5);
-	//unsigned int    _sattackValue5;
 	CC_SYNTHESIZE(CCString*, _sattackType5,sAttack5Type);
 	int				_sattackRangeX5;
 	int				_sattackRangeY5;
@@ -220,7 +204,6 @@ public:
 	int friendCombatPoint;
 
 	CC_SYNTHESIZE_RETAIN(CCString*, _spcattackValue1,spcAttackValue1);
-	//unsigned int    _spcattackValue1;
 	CC_SYNTHESIZE(CCString*, _spcattackType1,spcAttack1Type);
 	int				_spcattackRangeX1;
 	int				_spcattackRangeY1;
@@ -228,14 +211,12 @@ public:
 
 
 	CC_SYNTHESIZE_RETAIN(CCString*, _spcattackValue2,spcAttackValue2);
-	//unsigned int    _spcattackValue2;
 	CC_SYNTHESIZE(CCString*, _spcattackType2,spcAttack2Type);
 	int				_spcattackRangeX2;
 	int				_spcattackRangeY2;
 	unsigned int	_spcattackcoldDown2;
 
 	CC_SYNTHESIZE_RETAIN(CCString*, _spcattackValue3,spcAttackValue3);
-	//unsigned int    _spcattackValue3;
 	CC_SYNTHESIZE(CCString*, _spcattackType3,spcAttack3Type);
 	int				_spcattackRangeX3;
 	int				_spcattackRangeY3;
@@ -309,18 +290,19 @@ public:
 	void				absorb(CCPoint position,bool isImmediate);
 	void				jump(){}; // No reference
 	void				knockDown();
-	void				dead();
+	virtual void		dead();
 	void				floatUP(float floatHeight,bool isCancelSkill);
 	void				airHurt();
-	void				doAI();
+
+	virtual void		doAI();
 
 
 	virtual void		changeAction();
 	void				changeAction2();
 	void				changeGroup();
 
-	void				resumeAction(float dt);
-	void				setActionResume();
+	virtual void		resumeAction(float dt);
+	virtual void		setActionResume();
 	void				setActionResume2();
 	void				reCatched(float dt);
 
@@ -397,12 +379,10 @@ public:
 	void				setSkillEffect(CCNode* sender,void* data);
 	void				setRestore2(float dt);
 
-
-protected:
 	void				readDate(CCArray* tmpDate,CCString* &attackType,CCString* &attackValue,int &attackRangeX,int &attackRangeY,unsigned int &coldDown,int &combatPoint);
-
 	CCAction*			createAnimation(CCArray* ationArray,float fps,bool isRepeat,bool isReturn);
 
+protected:
 	CCDictionary*		callValue;
 
 	void				setSound(CCNode* sender,void* data);
@@ -427,6 +407,7 @@ protected:
 	void				setCharFlip();
 
 
+	virtual Hero*		createClone(unsigned int cloneTime);
 	void				setClone(CCNode* sender,void* data);
 	void				setMon(CCNode* sender,void* data);
 	void				setMonPer(float dt);
@@ -440,7 +421,7 @@ protected:
 	void				setCommand(CCNode* sender,void* data);
 	void				setBuffEffect(const char* type);
 	void				removeBuffEffect(const char* type);
-	void				disableBuff(float dt);
+	public: void		disableBuff(float dt);
 	void				healBuff(float dt);
 	void				dehealBuff(float dt);
 
@@ -479,4 +460,3 @@ protected:
 private:
 	bool				_affectedByTower;
 };
-#endif

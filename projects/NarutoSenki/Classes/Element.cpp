@@ -1,11 +1,10 @@
+#include "Core/Hero.hpp"
 #include "Defines.h"
-#include "Characters.h"
 #include "HudLayer.h"
-USING_NS_CC;
 
 HeroElement::HeroElement()
 {
-	rebornSprite = NULL;
+	rebornSprite = nullptr;
 }
 
 HeroElement::~HeroElement()
@@ -45,34 +44,34 @@ bool HeroElement::init()
 	{
 		CC_BREAK_IF(!CharacterBase::init());
 
-		this->setAnchorPoint(ccp(0.5, 0));
-		this->scheduleUpdate();
-		//this->schedule(schedule_selector(HeroElement::neicun),0.5f);
+		setAnchorPoint(ccp(0.5, 0));
+		scheduleUpdate();
+		//schedule(schedule_selector(HeroElement::checkRefCount),0.5f);
 		bRet = true;
 	} while (0);
 
 	return bRet;
-};
+}
 
 void HeroElement::initAction()
 {
 
-	this->setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-	this->setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-	this->setHurtAction(createAnimation(hurtArray, 10.0f, false, false));
+	setIdleAction(createAnimation(idleArray, 5.0f, true, false));
+	setWalkAction(createAnimation(walkArray, 10.0f, true, false));
+	setHurtAction(createAnimation(hurtArray, 10.0f, false, false));
 
-	this->setAirHurtAction(createAnimation(airHurtArray, 10.0f, false, false));
-	this->setKnockDownAction(createAnimation(knockDownArray, 10.0f, false, true));
-	this->setDeadAction(createAnimation(deadArray, 10.0f, false, false));
-	this->setFloatAction(createAnimation(floatArray, 10.0f, false, false));
+	setAirHurtAction(createAnimation(airHurtArray, 10.0f, false, false));
+	setKnockDownAction(createAnimation(knockDownArray, 10.0f, false, true));
+	setDeadAction(createAnimation(deadArray, 10.0f, false, false));
+	setFloatAction(createAnimation(floatArray, 10.0f, false, false));
 
-	this->setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-	this->setSkill1Action(createAnimation(skill1Array, 10.0f, false, true));
-	this->setSkill2Action(createAnimation(skill2Array, 10.0f, false, true));
-	this->setSkill3Action(createAnimation(skill3Array, 10.0f, false, true));
-	this->setSkill4Action(createAnimation(skill4Array, 10.0f, false, true));
-	this->setSkill5Action(createAnimation(skill5Array, 10.0f, false, true));
-};
+	setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+	setSkill1Action(createAnimation(skill1Array, 10.0f, false, true));
+	setSkill2Action(createAnimation(skill2Array, 10.0f, false, true));
+	setSkill3Action(createAnimation(skill3Array, 10.0f, false, true));
+	setSkill4Action(createAnimation(skill4Array, 10.0f, false, true));
+	setSkill5Action(createAnimation(skill5Array, 10.0f, false, true));
+}
 
 void HeroElement::setShadows()
 {
@@ -81,8 +80,8 @@ void HeroElement::setShadows()
 	{
 		_shadow = CCSprite::createWithSpriteFrameName("shadows.png");
 		_shadow->setAnchorPoint(ccp(0.5, 0.5));
-		_shadow->setPosition(this->getPosition());
-		this->getDelegate()->shadowBatch->addChild(_shadow);
+		_shadow->setPosition(getPosition());
+		getDelegate()->shadowBatch->addChild(_shadow);
 	}
 }
 
@@ -95,8 +94,8 @@ void HeroElement::setHPbar()
 	}
 	else if ((strcmp(getRole()->getCString(), "Com") == 0 ||
 			  strcmp(getRole()->getCString(), K_TAG_CLONE) == 0 ||
-			  strcmp(this->getRole()->getCString(), "Kugutsu") == 0 ||
-			  strcmp(this->getRole()->getCString(), "Summon") == 0))
+			  strcmp(getRole()->getCString(), "Kugutsu") == 0 ||
+			  strcmp(getRole()->getCString(), "Summon") == 0))
 	{
 		_hpBar = HPBar::create("hp_bar_b.png");
 	}
@@ -104,11 +103,11 @@ void HeroElement::setHPbar()
 	{
 		_hpBar = HPBar::create("hp_bar.png");
 	}
-	_hpBar->setPositionY(this->getHeight());
+	_hpBar->setPositionY(getHeight());
 	_hpBar->setDelegate(this);
-	this->addChild(_hpBar);
-	this->changeHPbar();
-};
+	addChild(_hpBar);
+	changeHPbar();
+}
 
 void HeroElement::changeHPbar()
 {
@@ -116,25 +115,25 @@ void HeroElement::changeHPbar()
 	if (_exp >= 500 && _level == 1)
 	{
 		_level = 2;
-		float newValue = atof(this->getCKR()->getCString()) + 15001;
-		this->setCKR(CCString::createWithFormat("%f", newValue));
+		float newValue = atof(getCKR()->getCString()) + 15001;
+		setCKR(CCString::createWithFormat("%f", newValue));
 		_isCanOugis1 = true;
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
+		if (strcmp(getRole()->getCString(), "Player") == 0)
 		{
 
-			this->getDelegate()->setCKRLose(false);
-			this->getDelegate()->removeOugisMark(1);
+			getDelegate()->setCKRLose(false);
+			getDelegate()->removeOugisMark(1);
 
-			if (strcmp(this->getCharacter()->getCString(), "Kakuzu") == 0 && this->hearts < 1)
+			if (strcmp(getCharacter()->getCString(), "Kakuzu") == 0 && hearts < 1)
 			{
 				if (_delegate->getHudLayer()->skill4Button)
 				{
 					_delegate->getHudLayer()->skill4Button->setLock();
 				}
 			}
-			if (strcmp(this->getCharacter()->getCString(), "Lee") == 0)
+			if (strcmp(getCharacter()->getCString(), "Lee") == 0)
 			{
-				if (this->bamen < 1)
+				if (bamen < 1)
 				{
 					if (_delegate->getHudLayer()->skill4Button)
 					{
@@ -143,34 +142,34 @@ void HeroElement::changeHPbar()
 				}
 			}
 		}
-		int tempMaxHP = atoi(this->getMaxHP()->getCString());
+		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 500;
-		this->setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->getnAttackValue()->getCString()) + 9));
+		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 9));
 		_rebornTime += 1;
 	}
 	else if (_exp >= 1000 && _level == 2)
 	{
 		_level = 3;
-		int tempMaxHP = atoi(this->getMaxHP()->getCString());
+		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 1000;
-		this->setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->getnAttackValue()->getCString()) + 18));
+		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 18));
 		_rebornTime += 2;
 	}
 	else if (_exp >= 1500 && _level == 3)
 	{
 		_level = 4;
-		float newValue = atof(this->getCKR2()->getCString()) + 25001;
-		this->setCKR2(CCString::createWithFormat("%f", newValue));
+		float newValue = atof(getCKR2()->getCString()) + 25001;
+		setCKR2(CCString::createWithFormat("%f", newValue));
 		_isCanOugis2 = true;
-		if (strcmp(this->getRole()->getCString(), "Player") == 0)
+		if (strcmp(getRole()->getCString(), "Player") == 0)
 		{
 
-			this->getDelegate()->setCKRLose(true);
-			this->getDelegate()->removeOugisMark(2);
+			getDelegate()->setCKRLose(true);
+			getDelegate()->removeOugisMark(2);
 
-			if (strcmp(this->getCharacter()->getCString(), "Kakuzu") == 0)
+			if (strcmp(getCharacter()->getCString(), "Kakuzu") == 0)
 			{
 				if (_delegate->getHudLayer()->skill5Button)
 				{
@@ -178,9 +177,9 @@ void HeroElement::changeHPbar()
 				}
 			}
 
-			if (strcmp(this->getCharacter()->getCString(), "Lee") == 0)
+			if (strcmp(getCharacter()->getCString(), "Lee") == 0)
 			{
-				if (this->bamen < 3)
+				if (bamen < 3)
 				{
 					if (_delegate->getHudLayer()->skill5Button)
 					{
@@ -189,29 +188,29 @@ void HeroElement::changeHPbar()
 				}
 			}
 		}
-		int tempMaxHP = atoi(this->getMaxHP()->getCString());
+		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 2000;
-		this->setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->getnAttackValue()->getCString()) + 27));
+		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 27));
 		_rebornTime += 3;
 	}
 	else if (_exp >= 2000 && _level == 4)
 	{
 		_level = 5;
-		int tempMaxHP = atoi(this->getMaxHP()->getCString());
+		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 2500;
-		this->setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->getnAttackValue()->getCString()) + 36));
+		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 36));
 		;
 		_rebornTime += 4;
 	}
 	else if (_exp >= 2500 && _level == 5)
 	{
 		_level = 6;
-		int tempMaxHP = atoi(this->getMaxHP()->getCString());
+		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 3000;
-		this->setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->getnAttackValue()->getCString()) + 45));
+		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 45));
 		_rebornTime += 5;
 	}
 
@@ -222,7 +221,7 @@ void HeroElement::changeHPbar()
 	}
 }
 
-void HeroElement::neicun(float dt)
+void HeroElement::checkRefCount(float dt)
 {
 	//CCLOG("%d",callValue->retainCount());
 }
@@ -230,15 +229,15 @@ void HeroElement::neicun(float dt)
 void HeroElement::dealloc()
 {
 
-	this->stopAllActions();
+	stopAllActions();
 	_actionState = State::DEAD;
-	if (strcmp(this->getCharacter()->getCString(), "Minato") != 0)
+	if (strcmp(getCharacter()->getCString(), "Minato") != 0)
 	{
 
-		if (this->getMonsterArray() && getMonsterArray()->count() > 0)
+		if (getMonsterArray() && getMonsterArray()->count() > 0)
 		{
 			CCObject *pObject;
-			CCARRAY_FOREACH(this->getMonsterArray(), pObject)
+			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				CharacterBase *mo = (CharacterBase *)pObject;
 				int index = _delegate->_CharacterArray->indexOfObject(mo);
@@ -251,18 +250,18 @@ void HeroElement::dealloc()
 				mo->unscheduleAllSelectors();
 				mo->setActionState(State::DEAD);
 				mo->removeFromParent();
-				mo = NULL;
-			};
-			this->getMonsterArray()->removeAllObjects();
-			_monsterArray = NULL;
+				mo = nullptr;
+			}
+			getMonsterArray()->removeAllObjects();
+			_monsterArray = nullptr;
 		}
 	}
 
-	if (strcmp(this->getRole()->getCString(), K_TAG_CLONE) == 0 ||
-		strcmp(this->getRole()->getCString(), "Kugutsu") == 0 ||
-		strcmp(this->getRole()->getCString(), "Summon") == 0)
+	if (strcmp(getRole()->getCString(), K_TAG_CLONE) == 0 ||
+		strcmp(getRole()->getCString(), "Kugutsu") == 0 ||
+		strcmp(getRole()->getCString(), "Summon") == 0)
 	{
-		this->unschedule(schedule_selector(CharacterBase::setAI));
+		unschedule(schedule_selector(CharacterBase::setAI));
 		CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "acceptAttack");
 		int index = _delegate->_CharacterArray->indexOfObject(this);
 		if (index >= 0)
@@ -270,7 +269,7 @@ void HeroElement::dealloc()
 			_delegate->_CharacterArray->removeObjectAtIndex(index);
 		}
 
-		if (_master && this->_master->getMonsterArray())
+		if (_master && _master->getMonsterArray())
 		{
 			int index = _master->getMonsterArray()->indexOfObject(this);
 			if (index >= 0)
@@ -279,40 +278,40 @@ void HeroElement::dealloc()
 			}
 		}
 
-		if (strcmp(this->getCharacter()->getCString(), "DevaPath") == 0)
+		if (strcmp(getCharacter()->getCString(), "DevaPath") == 0)
 		{
 
-			this->getMaster()->_skillChangeBuffValue = 0;
+			getMaster()->_skillChangeBuffValue = 0;
 
-			if (strcmp(this->getMaster()->getRole()->getCString(), "Player") == 0)
+			if (strcmp(getMaster()->getRole()->getCString(), "Player") == 0)
 			{
-				if (this->_delegate->getHudLayer()->skill5Button)
+				if (_delegate->getHudLayer()->skill5Button)
 				{
-					this->_delegate->getHudLayer()->skill5Button->unLock();
+					_delegate->getHudLayer()->skill5Button->unLock();
 				}
 			}
 		}
-		else if (strcmp(this->getCharacter()->getCString(), "Akamaru") == 0 ||
-				 strcmp(this->getCharacter()->getCString(), "Karasu") == 0 ||
-				 strcmp(this->getCharacter()->getCString(), "Parents") == 0)
+		else if (strcmp(getCharacter()->getCString(), "Akamaru") == 0 ||
+				 strcmp(getCharacter()->getCString(), "Karasu") == 0 ||
+				 strcmp(getCharacter()->getCString(), "Parents") == 0)
 		{
 			_master->setActionResume();
 		}
-		else if (strcmp(this->getCharacter()->getCString(), "Sanshouuo") == 0)
+		else if (strcmp(getCharacter()->getCString(), "Sanshouuo") == 0)
 		{
 
-			if (strcmp(this->getMaster()->getRole()->getCString(), "Player") == 0)
+			if (strcmp(getMaster()->getRole()->getCString(), "Player") == 0)
 			{
 
-				if (this->_delegate->getHudLayer()->skill4Button)
+				if (_delegate->getHudLayer()->skill4Button)
 				{
-					this->_delegate->getHudLayer()->skill4Button->unLock();
+					_delegate->getHudLayer()->skill4Button->unLock();
 				}
 			}
 		}
-		else if (strcmp(this->getCharacter()->getCString(), "MaskFudon") == 0 ||
-				 strcmp(this->getCharacter()->getCString(), "MaskRaidon") == 0 ||
-				 strcmp(this->getCharacter()->getCString(), "MaskKadon") == 0)
+		else if (strcmp(getCharacter()->getCString(), "MaskFudon") == 0 ||
+				 strcmp(getCharacter()->getCString(), "MaskRaidon") == 0 ||
+				 strcmp(getCharacter()->getCString(), "MaskKadon") == 0)
 		{
 
 			if (_master->hearts > 0)
@@ -326,42 +325,42 @@ void HeroElement::dealloc()
 				}
 			}
 		}
-		else if (strcmp(this->getCharacter()->getCString(), "Saso") == 0)
+		else if (strcmp(getCharacter()->getCString(), "Saso") == 0)
 		{
 
-			if (strcmp(this->getMaster()->getRole()->getCString(), "Player") == 0)
+			if (strcmp(getMaster()->getRole()->getCString(), "Player") == 0)
 			{
 
-				if (this->_delegate->getHudLayer()->skill5Button)
+				if (_delegate->getHudLayer()->skill5Button)
 				{
-					this->_delegate->getHudLayer()->skill5Button->unLock();
+					_delegate->getHudLayer()->skill5Button->unLock();
 				}
 			}
 		}
 
-		this->removeFromParentAndCleanup(true);
+		removeFromParentAndCleanup(true);
 	}
 	else
 	{
 
-		if (strcmp(this->getCharacter()->getCString(), "Kankuro") == 0)
+		if (strcmp(getCharacter()->getCString(), "Kankuro") == 0)
 		{
 
-			if (strcmp(this->getRole()->getCString(), "Player") == 0)
+			if (strcmp(getRole()->getCString(), "Player") == 0)
 			{
 
-				if (this->_delegate->getHudLayer()->skill4Button)
+				if (_delegate->getHudLayer()->skill4Button)
 				{
-					this->_delegate->getHudLayer()->skill4Button->unLock();
+					_delegate->getHudLayer()->skill4Button->unLock();
 				}
-				if (this->_delegate->getHudLayer()->skill5Button)
+				if (_delegate->getHudLayer()->skill5Button)
 				{
-					this->_delegate->getHudLayer()->skill5Button->unLock();
+					_delegate->getHudLayer()->skill5Button->unLock();
 				}
 			}
 		}
-		else if (strcmp(this->getCharacter()->getCString(), "Shikamaru") == 0 ||
-				 strcmp(this->getCharacter()->getCString(), "Choji") == 0)
+		else if (strcmp(getCharacter()->getCString(), "Shikamaru") == 0 ||
+				 strcmp(getCharacter()->getCString(), "Choji") == 0)
 		{
 
 			CCObject *pObject;
@@ -376,23 +375,23 @@ void HeroElement::dealloc()
 						tempHero->idle();
 					}
 				}
-			};
-		}
-		else if (strcmp(this->getCharacter()->getCString(), "Hidan") == 0)
-		{
-
-			if (strcmp(this->getRole()->getCString(), "Player") == 0)
-			{
-				this->_delegate->getHudLayer()->skill1Button->unLock();
 			}
 		}
-		if (strcmp(this->getCharacter()->getCString(), "Minato") != 0)
+		else if (strcmp(getCharacter()->getCString(), "Hidan") == 0)
 		{
 
-			if (this->getMonsterArray() && getMonsterArray()->count() > 0)
+			if (strcmp(getRole()->getCString(), "Player") == 0)
+			{
+				_delegate->getHudLayer()->skill1Button->unLock();
+			}
+		}
+		if (strcmp(getCharacter()->getCString(), "Minato") != 0)
+		{
+
+			if (getMonsterArray() && getMonsterArray()->count() > 0)
 			{
 				CCObject *pObject;
-				CCARRAY_FOREACH(this->getMonsterArray(), pObject)
+				CCARRAY_FOREACH(getMonsterArray(), pObject)
 				{
 					CharacterBase *mo = (CharacterBase *)pObject;
 					int index = _delegate->_CharacterArray->indexOfObject(mo);
@@ -405,26 +404,26 @@ void HeroElement::dealloc()
 					mo->unscheduleAllSelectors();
 					mo->setActionState(State::DEAD);
 					mo->removeFromParent();
-				};
-				this->getMonsterArray()->removeAllObjects();
-				_monsterArray = NULL;
+				}
+				getMonsterArray()->removeAllObjects();
+				_monsterArray = nullptr;
 				_monsterArray->release();
 			}
 		}
 
-		if (strcmp(this->getCharacter()->getCString(), Guardian_Roshi) != 0 &&
-			strcmp(this->getCharacter()->getCString(), Guardian_Han) != 0)
+		if (strcmp(getCharacter()->getCString(), Guardian_Roshi) != 0 &&
+			strcmp(getCharacter()->getCString(), Guardian_Han) != 0)
 		{
 			if (rebornLabelTime == 3)
 			{
-				this->scheduleOnce(schedule_selector(HeroElement::reborn), 3.0f);
+				scheduleOnce(schedule_selector(HeroElement::reborn), 3.0f);
 			}
 			else
 			{
-				rebornLabelTime = this->getRebornTime();
-				this->scheduleOnce(schedule_selector(HeroElement::reborn), this->getRebornTime());
+				rebornLabelTime = getRebornTime();
+				scheduleOnce(schedule_selector(HeroElement::reborn), getRebornTime());
 			}
-			if (!this->rebornSprite)
+			if (!rebornSprite)
 			{
 
 				rebornSprite = CCSprite::create();
@@ -437,10 +436,10 @@ void HeroElement::dealloc()
 				rebornLabel->setPosition(ccp(skullSpirte->getContentSize().width, 0));
 				rebornSprite->addChild(rebornLabel);
 
-				rebornSprite->setPosition(ccp(this->getContentSize().width / 2, this->getContentSize().height / 2));
-				this->addChild(rebornSprite);
+				rebornSprite->setPosition(ccp(getContentSize().width / 2, getContentSize().height / 2));
+				addChild(rebornSprite);
 			}
-			this->schedule(schedule_selector(HeroElement::countDown), 1);
+			schedule(schedule_selector(HeroElement::countDown), 1);
 		}
 	}
 }
@@ -455,497 +454,71 @@ void HeroElement::countDown(float dt)
 void HeroElement::reborn(float dt)
 {
 
-	this->setPosition(this->getSpawnPoint());
+	setPosition(getSpawnPoint());
 
-	if (this->getPosition().equals(this->getSpawnPoint()))
+	if (getPosition().equals(getSpawnPoint()))
 	{
-		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", NULL);
-		this->setOpacity(255);
-		this->setHP(CCString::create(this->getMaxHP()->getCString()));
-		this->setHPbar();
-		this->_actionState = State::HURT;
+		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", nullptr);
+		setOpacity(255);
+		setHP(CCString::create(getMaxHP()->getCString()));
+		setHPbar();
+		_actionState = State::HURT;
 
-		if (this->getLV() < 4)
+		if (getLV() < 4)
 		{
-			if (strcmp(this->getGroup()->getCString(), Konoha) == 0)
-			{
-				this->setEXP(this->getEXP() + this->getDelegate()->kEXPBound);
-			}
+			if (strcmp(getGroup()->getCString(), Konoha) == 0)
+				setEXP(getEXP() + getDelegate()->kEXPBound);
 			else
-			{
-				this->setEXP(this->getEXP() + this->getDelegate()->aEXPBound);
-			}
+				setEXP(getEXP() + getDelegate()->aEXPBound);
 
-			this->changeHPbar();
+			changeHPbar();
 
-			if (strcmp(this->getRole()->getCString(), "Player") == 0)
+			if (strcmp(getRole()->getCString(), "Player") == 0)
 			{
 				_delegate->getHudLayer()->setEXPLose(0);
 			}
 		}
 
-		this->idle();
+		if (strcmp(getGroup()->getCString(), Konoha) == 0)
+		{
+			if (_isFlipped)
+			{
+				setFlipX(false);
+				_isFlipped = false;
+			}
+		}
+		else
+		{
+			if (!_isFlipped)
+			{
+				setFlipX(true);
+				_isFlipped = true;
+			}
+		}
+		idle();
 		if (rebornSprite)
 		{
-			this->unschedule(schedule_selector(HeroElement::countDown));
+			unschedule(schedule_selector(HeroElement::countDown));
 			rebornSprite->removeFromParent();
-			rebornSprite = NULL;
+			rebornSprite = nullptr;
 		}
-		if (strcmp(this->getRole()->getCString(), "Player") != 0)
+		if (strcmp(getRole()->getCString(), "Player") != 0)
 		{
-			bool ksan = true;
-			bool asan = true;
-			if (CError == 1)
-			{
-				if (_delegate->zhenying > 0)
-				{
-					ksan = false;
-				}
-				else
-				{
-					asan = false;
-				}
-			}
-			if (strcmp(this->getGroup()->getCString(), Konoha) == 0 && ksan)
-			{
-				this->doAI();
-			}
-			else if (strcmp(this->getGroup()->getCString(), Akatsuki) == 0 && asan)
-			{
-				this->doAI();
-			}
+			doAI();
 		}
 		else
 		{
-			if (this->_isAI)
+			if (_isAI)
 			{
-				this->doAI();
+				doAI();
 			}
 			_delegate->getHudLayer()->status_hpbar->setOpacity(255);
-			_delegate->setHPLose(this->getHpPercent());
+			_delegate->setHPLose(getHpPercent());
 		}
-		this->scheduleUpdate();
+		scheduleUpdate();
 	}
-	_delegate->reorderChild(this, -this->getPositionY());
+	_delegate->reorderChild(this, -getPositionY());
 }
-
-/*---------------
-init flog
----------------*/
-
-Flog::Flog()
-{
-	_randomPosX = 0;
-	_randomPosY = 0;
-}
-
-Flog::~Flog()
-{
-	CC_SAFE_RELEASE(callValue);
-	CC_SAFE_RELEASE(_nattackType);
-	CC_SAFE_RELEASE(_damageArray);
-}
-
-bool Flog::init()
-{
-	bool bRet = false;
-	do
-	{
-
-		CC_BREAK_IF(!CharacterBase::init());
-		this->setAnchorPoint(ccp(0.5, 0));
-		this->scheduleUpdate();
-		bRet = true;
-	} while (0);
-
-	return bRet;
-};
-
-void Flog::setID(CCString *character, CCString *role, CCString *group)
-{
-
-	this->setCharacter(character);
-	this->setRole(role);
-	this->setGroup(group);
-
-	CCArray *animationArray = CCArray::create();
-	const char *filePath;
-
-	filePath = CCString::createWithFormat("Element/Flog/%s.xml", this->getCharacter()->getCString(), this->getCharacter()->getCString())->getCString();
-
-	KTools::readXMLToArray(filePath, animationArray);
-
-	//init Attribute; & indleFrame
-
-	CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
-	CCArray *tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
-	idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-	CCString *tmpName;
-	CCString *tmpHpMax;
-	int tmpWidth;
-	int tmpHeight;
-	unsigned int tmpSpeed;
-	int tmpCombatPoint;
-
-	this->readDate(tmpDate, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
-	this->setMaxHP(CCString::createWithFormat("%d", atoi(tmpHpMax->getCString())));
-	this->setHP(CCString::create(this->getMaxHP()->getCString()));
-	this->setHeight(tmpHeight);
-	this->setWalkSpeed(tmpSpeed);
-
-	this->setKillNum(CCString::createWithFormat("%d", 0));
-
-	if (!this->getCKR() && !this->getCKR2())
-	{
-		this->setCKR(CCString::create("0"));
-		this->setCKR2(CCString::create("0"));
-	}
-
-	//init WalkFrame
-	tmpAction = (CCArray *)(animationArray->objectAtIndex(1));
-	walkArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-	//init HurtFrame
-	tmpAction = (CCArray *)(animationArray->objectAtIndex(2));
-	hurtArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-	//init AirHurtFrame
-	tmpAction = (CCArray *)(animationArray->objectAtIndex(3));
-	airHurtArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-	//init KnockDownFrame
-	tmpAction = (CCArray *)(animationArray->objectAtIndex(4));
-	knockDownArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-	//init FloatFrame
-	tmpAction = (CCArray *)(animationArray->objectAtIndex(5));
-	floatArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-	//init DeadFrame
-	tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
-	deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-	//init nAttack data & Frame Array
-	tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
-	tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
-	unsigned int tmpCD;
-	CCString *tmpValue;
-	this->readDate(tmpDate, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
-	this->setnAttackValue(tmpValue);
-	_nattackType->retain();
-	nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-	_damageArray = CCArray::create();
-	_damageArray->retain();
-
-	this->setCoin(CCString::create("50"));
-
-	this->initAction();
-	CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", NULL);
-};
-
-void Flog::initAction()
-{
-
-	this->setIdleAction(createAnimation(idleArray, 5.0, true, false));
-	this->setWalkAction(createAnimation(walkArray, 10.0, true, false));
-	this->setHurtAction(createAnimation(hurtArray, 10.0, false, true));
-
-	this->setAirHurtAction(createAnimation(airHurtArray, 10.0f, false, false));
-	this->setKnockDownAction(createAnimation(knockDownArray, 10.0f, false, true));
-	this->setDeadAction(createAnimation(deadArray, 10.0f, false, false));
-
-	this->setFloatAction(createAnimation(floatArray, 10.0f, false, false));
-
-	this->setNAttackAction(createAnimation(nattackArray, 10.0, false, true));
-};
-
-void Flog::setHPbar()
-{
-	if (strcmp(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) != 0)
-	{
-		_hpBar = HPBar::create("flog_bar_r.png");
-	}
-	else
-	{
-		_hpBar = HPBar::create("flog_bar.png");
-	}
-	_hpBar->setPositionY(this->getHeight());
-	_hpBar->setDelegate(this);
-	this->addChild(_hpBar);
-};
-
-void Flog::setAI(float dt)
-{
-	if (this->getActionState() == State::IDLE || this->getActionState() == State::WALK ||
-		this->getActionState() == State::ATTACK)
-	{
-
-		if (!_randomPosY)
-		{
-			_randomPosY = rand() % 8 + 4;
-			_randomPosX = (rand() % 32 + 20);
-		}
-
-		bool hasTarget = false;
-
-		if (_mainTarget)
-		{
-			if (_mainTarget->getActionState() != State::DEAD && !_mainTarget->_isWudi && _mainTarget->_isVisable &&
-				strcmp(_mainTarget->getGroup()->getCString(), this->getGroup()->getCString()) != 0)
-			{
-
-				hasTarget = true;
-			}
-		}
-
-		if (!hasTarget)
-		{
-
-			if (!this->findEnemy("Flog", 0))
-			{
-
-				if (!this->findEnemy("Hero", 64))
-				{
-
-					if (!this->findEnemy("Tower", 0))
-					{
-
-						_mainTarget = NULL;
-					};
-				}
-			}
-		}
-
-		CCPoint moveDirection;
-
-		if (_mainTarget)
-		{
-			CCPoint sp = ccpSub(_mainTarget->getPosition(), this->getPosition());
-			if (abs(sp.x) > _randomPosX || abs(sp.y) > _randomPosY)
-			{
-
-				if (abs(sp.x) > 64 && strcmp(_mainTarget->getRole()->getCString(), "Flog") != 0 && strcmp(_mainTarget->getRole()->getCString(), "Tower") != 0)
-				{
-					_mainTarget = NULL;
-					return;
-				}
-
-				moveDirection = ccpNormalize(sp);
-				this->walk(moveDirection);
-			}
-			else
-			{
-				if (this->getActionState() != State::ATTACK)
-				{
-					this->changeSide(sp);
-					this->attack(NAttack);
-				}
-			}
-			return;
-		}
-
-		// no target then step on
-
-		if (abs(this->getPositionY() - this->_mainPosY) > 8)
-		{
-			if (strcmp(this->getGroup()->getCString(), Konoha) == 0)
-			{
-				moveDirection = ccpNormalize(ccp(1, this->getPositionY() > this->_mainPosY ? -1 : 1));
-			}
-			else
-			{
-				moveDirection = ccpNormalize(ccp(-1, this->getPositionY() > this->_mainPosY ? -1 : 1));
-			}
-		}
-		else
-		{
-			if (strcmp(this->getGroup()->getCString(), Konoha) == 0)
-			{
-				moveDirection = ccpNormalize(ccp(1, 0));
-			}
-			else
-			{
-				moveDirection = ccpNormalize(ccp(-1, 0));
-			}
-		}
-		this->walk(moveDirection);
-	}
-}
-
-void Flog::dealloc()
-{
-	this->unschedule(schedule_selector(CharacterBase::setAI));
-	this->setActionState(State::DEAD);
-	this->stopAllActions();
-
-	if (strcmp(this->getGroup()->getCString(), Konoha) == 0)
-	{
-		int index = _delegate->_KonohaFlogArray->indexOfObject(this);
-		_delegate->_KonohaFlogArray->removeObjectAtIndex(index);
-	}
-	else
-	{
-		int index = _delegate->_AkatsukiFlogArray->indexOfObject(this);
-		_delegate->_AkatsukiFlogArray->removeObjectAtIndex(index);
-	};
-	this->removeFromParent();
-}
-
-/*---------------
-init Tower
----------------*/
-
-Tower::Tower()
-{
-}
-
-Tower::~Tower()
-{
-}
-
-bool Tower::init()
-{
-	bool bRet = false;
-	do
-	{
-
-		CC_BREAK_IF(!CharacterBase::init());
-		this->setAnchorPoint(ccp(0.5, 0.5));
-		this->scheduleUpdate();
-		bRet = true;
-	} while (0);
-
-	return bRet;
-};
-
-void Tower::setID(CCString *character, CCString *role, CCString *group)
-{
-
-	this->setCharacter(character);
-	this->setRole(role);
-	this->setGroup(group);
-
-	CCArray *animationArray = CCArray::create();
-	const char *filePath;
-
-	if (strcmp(this->getCharacter()->getCString(), "KonohaCenter") == 0 || strcmp(this->getCharacter()->getCString(), "AkatsukiCenter") == 0)
-	{
-		filePath = "Element/Tower/CenterDate.xml";
-	}
-	else
-	{
-		filePath = "Element/Tower/TowerDate.xml";
-	}
-
-	// std::string key = KTools::getKeycode(filePath);
-	// int id = KTools::checkMD5(filePath);
-
-	// if(strcmp(key.c_str(),_delegate->KeyList[id])!=0){
-	//return;
-	// }
-
-	KTools::readXMLToArray(filePath, animationArray);
-
-	//init Attribute; & indleFrame
-
-	CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
-	CCArray *tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
-	idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-	CCString *tmpName;
-	CCString *tmpHpMax;
-	int tmpWidth;
-	int tmpHeight;
-	unsigned int tmpSpeed;
-	int tmpCombatPoint;
-
-	this->readDate(tmpDate, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
-	this->setMaxHP(CCString::createWithFormat("%d", atoi(tmpHpMax->getCString())));
-	this->setHP(CCString::create(this->getMaxHP()->getCString()));
-
-	this->setHeight(tmpHeight);
-	this->setWalkSpeed(tmpSpeed);
-
-	if (!this->getCKR() && !this->getCKR2())
-	{
-		this->setCKR(CCString::create("0"));
-		this->setCKR2(CCString::create("0"));
-	}
-
-	//init DeadFrame
-	tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
-	deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-	this->setCoin(CCString::create("50"));
-
-	this->initAction();
-
-	CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", NULL);
-}
-
-void Tower::initAction()
-{
-	this->setDeadAction(createAnimation(deadArray, 10.0f, false, false));
-	this->setIdleAction(createAnimation(idleArray, 5.0, true, false));
-};
-
-void Tower::setHPbar()
-{
-
-	if (strcmp(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) != 0)
-	{
-		_hpBar = HPBar::create("hp_bar_r.png");
-	}
-	else
-	{
-		_hpBar = HPBar::create("hp_bar.png");
-	}
-	_hpBar->getHPBAR()->setPosition(ccp(1, 1));
-	_hpBar->setPositionY(this->getHeight());
-	_hpBar->setDelegate(this);
-	this->addChild(_hpBar);
-};
-
-void Tower::dealloc()
-{
-	this->unschedule(schedule_selector(CharacterBase::setAI));
-	this->setActionState(State::DEAD);
-	this->stopAllActions();
-
-	CCObject *pObject;
-	CCArray *list;
-	for (int i = 0; i < 2; i++)
-	{
-		if (i == 0)
-		{
-			list = _delegate->_KonohaFlogArray;
-		}
-		else if (i == 1)
-		{
-			list = _delegate->_AkatsukiFlogArray;
-		}
-
-		CCARRAY_FOREACH(list, pObject)
-		{
-			CharacterBase *tempFlog = (CharacterBase *)pObject;
-			if (tempFlog->_mainTarget)
-			{
-				if (tempFlog->_mainTarget == (CharacterBase *)this)
-				{
-					tempFlog->_mainTarget = NULL;
-				}
-			}
-		}
-	}
-
-	int index = _delegate->_TowerArray->indexOfObject(this);
-	_delegate->_TowerArray->removeObjectAtIndex(index);
-	_delegate->getHudLayer()->setTowerState(this->getCharNO());
-	_delegate->checkTower();
-	this->removeFromParentAndCleanup(true);
-};
 
 /*---------------
 init Monster
@@ -969,25 +542,25 @@ bool Monster::init()
 	{
 
 		CC_BREAK_IF(!CharacterBase::init());
-		this->setAnchorPoint(ccp(0.5, 0));
-		this->scheduleUpdate();
+		setAnchorPoint(ccp(0.5, 0));
+		scheduleUpdate();
 		bRet = true;
 	} while (0);
 
 	return bRet;
-};
+}
 
 void Monster::setID(CCString *character, CCString *role, CCString *group)
 {
 
-	this->setCharacter(character);
-	this->setRole(role);
-	this->setGroup(group);
+	setCharacter(character);
+	setRole(role);
+	setGroup(group);
 
 	CCArray *animationArray = CCArray::create();
 	const char *filePath;
 
-	filePath = CCString::createWithFormat("Element/Monster/%s.xml", this->getCharacter()->getCString(), this->getCharacter()->getCString())->getCString();
+	filePath = CCString::createWithFormat("Element/Monster/%s.xml", getCharacter()->getCString(), getCharacter()->getCString())->getCString();
 
 	// std::string key =KTools::getKeycode(filePath);
 
@@ -1006,17 +579,17 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	unsigned int tmpSpeed;
 	int tmpCombatPoint;
 
-	this->readDate(tmpDate, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
-	this->setMaxHP(CCString::createWithFormat("%d", atoi(tmpHpMax->getCString())));
-	this->setHP(CCString::create(this->getMaxHP()->getCString()));
+	readDate(tmpDate, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
+	setMaxHP(CCString::createWithFormat("%ld", to_uint(tmpHpMax->getCString())));
+	setHP(CCString::create(getMaxHP()->getCString()));
 
-	this->setHeight(tmpHeight);
-	this->setWalkSpeed(tmpSpeed);
+	setHeight(tmpHeight);
+	setWalkSpeed(tmpSpeed);
 
-	if (!this->getCKR() && !this->getCKR2())
+	if (!getCKR() && !getCKR2())
 	{
-		this->setCKR(CCString::create("0"));
-		this->setCKR2(CCString::create("0"));
+		setCKR(CCString::create("0"));
+		setCKR2(CCString::create("0"));
 	}
 
 	//init WalkFrame
@@ -1032,35 +605,35 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
 	unsigned int tmpCD;
 	CCString *tmpValue;
-	this->readDate(tmpDate, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
-	this->setnAttackValue(tmpValue);
+	readDate(tmpDate, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
+	setnAttackValue(tmpValue);
 	_nattackType->retain();
 	nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-	this->setCoin(CCString::create("50"));
+	setCoin(CCString::create("50"));
 
-	this->initAction();
-};
+	initAction();
+}
 
 void Monster::initAction()
 {
 
-	this->setIdleAction(createAnimation(idleArray, 5.0, true, false));
-	this->setWalkAction(createAnimation(walkArray, 10.0, true, false));
-	this->setDeadAction(createAnimation(deadArray, 10.0f, false, false));
-	if (strcmp(this->getCharacter()->getCString(), "Kage") == 0 ||
-		strcmp(this->getCharacter()->getCString(), "KageHand") == 0 ||
-		strcmp(this->getCharacter()->getCString(), "FudonSRK") == 0 ||
-		strcmp(this->getCharacter()->getCString(), "FudonSRK2") == 0 ||
-		strcmp(this->getCharacter()->getCString(), "Kubi") == 0)
+	setIdleAction(createAnimation(idleArray, 5.0, true, false));
+	setWalkAction(createAnimation(walkArray, 10.0, true, false));
+	setDeadAction(createAnimation(deadArray, 10.0f, false, false));
+	if (strcmp(getCharacter()->getCString(), "Kage") == 0 ||
+		strcmp(getCharacter()->getCString(), "KageHand") == 0 ||
+		strcmp(getCharacter()->getCString(), "FudonSRK") == 0 ||
+		strcmp(getCharacter()->getCString(), "FudonSRK2") == 0 ||
+		strcmp(getCharacter()->getCString(), "Kubi") == 0)
 	{
-		this->setNAttackAction(createAnimation(nattackArray, 10.0, false, false));
+		setNAttackAction(createAnimation(nattackArray, 10.0, false, false));
 	}
 	else
 	{
-		this->setNAttackAction(createAnimation(nattackArray, 10.0, false, true));
+		setNAttackAction(createAnimation(nattackArray, 10.0, false, true));
 	}
-};
+}
 
 void Monster::setHPbar()
 {
@@ -1074,11 +647,11 @@ void Monster::setHPbar()
 		_hpBar = HPBar::create("hp_bar_b.png");
 	}
 
-	_hpBar->setPositionY(this->getHeight());
+	_hpBar->setPositionY(getHeight());
 	_hpBar->setDelegate(this);
-	this->addChild(_hpBar);
-	this->changeHPbar();
-};
+	addChild(_hpBar);
+	changeHPbar();
+}
 
 void Monster::changeHPbar()
 {
@@ -1086,42 +659,42 @@ void Monster::changeHPbar()
 	if (_exp >= 500 && _level == 1)
 	{
 		_level = 2;
-		int tempMaxHP = atoi(this->getMaxHP()->getCString());
+		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 1000;
-		this->setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->getnAttackValue()->getCString()) + 9));
+		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 9));
 	}
 	else if (_exp >= 1000 && _level == 2)
 	{
 		_level = 3;
-		int tempMaxHP = atoi(this->getMaxHP()->getCString());
+		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 1500;
-		this->setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->getnAttackValue()->getCString()) + 18));
+		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 18));
 	}
 	else if (_exp >= 1500 && _level == 3)
 	{
 		_level = 4;
-		int tempMaxHP = atoi(this->getMaxHP()->getCString());
+		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 2000;
-		this->setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->getnAttackValue()->getCString()) + 27));
+		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 27));
 	}
 	else if (_exp >= 2000 && _level == 4)
 	{
 		_level = 5;
-		int tempMaxHP = atoi(this->getMaxHP()->getCString());
+		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 2500;
-		this->setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->getnAttackValue()->getCString()) + 36));
+		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 36));
 	}
 	else if (_exp >= 2500 && _level == 5)
 	{
 		_level = 6;
-		int tempMaxHP = atoi(this->getMaxHP()->getCString());
+		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 3000;
-		this->setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		this->setnAttackValue(CCString::createWithFormat("%d", atoi(this->getnAttackValue()->getCString()) + 48));
+		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 48));
 	}
 
 	if (_hpBar)
@@ -1141,7 +714,7 @@ void Monster::setAI(float dt)
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
 			Hero *tempHero = (Hero *)pObject;
-			if (strcmp(this->getGroup()->getCString(), tempHero->getGroup()->getCString()) != 0 &&
+			if (strcmp(getGroup()->getCString(), tempHero->getGroup()->getCString()) != 0 &&
 				tempHero->getActionState() != State::DEAD &&
 				tempHero->getActionState() != State::O2ATTACK &&
 				!tempHero->_isWudi &&
@@ -1149,41 +722,41 @@ void Monster::setAI(float dt)
 				tempHero->_isVisable)
 			{
 
-				CCPoint sp = ccpSub(tempHero->getPosition(), this->getPosition());
-				float distanceY = tempHero->_originY ? abs(this->getPositionY() - tempHero->_originY) : abs(sp.y);
-				float distanceX = _isFlipped ? tempHero->getPositionX() - this->getPositionX() + this->getContentSize().width : tempHero->getPositionX() - this->getPositionX() - this->getContentSize().width;
+				CCPoint sp = ccpSub(tempHero->getPosition(), getPosition());
+				float distanceY = tempHero->_originY ? abs(getPositionY() - tempHero->_originY) : abs(sp.y);
+				float distanceX = _isFlipped ? tempHero->getPositionX() - getPositionX() + getContentSize().width : tempHero->getPositionX() - getPositionX() - getContentSize().width;
 				if (abs(distanceX) < 32 && distanceY < 48)
 				{
-					if (!this->_monsterArray)
+					if (!_monsterArray)
 					{
 						CCDictionary *dic = CCDictionary::create();
 						CCString *monterName = CCString::create("KageHand");
 						dic->setObject(monterName, 1);
-						this->setMon(this, (void *)dic);
-						this->unschedule(schedule_selector(CharacterBase::setAI));
+						setMon(this, (void *)dic);
+						unschedule(schedule_selector(CharacterBase::setAI));
 					}
 				}
 			}
-		};
+		}
 		return;
 	}
 	else if (strcmp(getCharacter()->getCString(), "Mouse") == 0)
 	{
 
-		if (!this->findEnemy("Hero", 0))
+		if (!findEnemy("Hero", 0))
 		{
-			_mainTarget = NULL;
+			_mainTarget = nullptr;
 		}
 	}
 	else if (strcmp(getCharacter()->getCString(), "Spider") == 0 ||
 			 strcmp(getCharacter()->getCString(), "ClayBird") == 0)
 	{
 
-		if (!this->findEnemy("Hero", 0))
+		if (!findEnemy("Hero", 0))
 		{
-			if (!this->findEnemy("Tower", 0))
+			if (!findEnemy("Tower", 0))
 			{
-				_mainTarget = NULL;
+				_mainTarget = nullptr;
 			}
 		}
 	}
@@ -1194,11 +767,11 @@ void Monster::setAI(float dt)
 	else
 	{
 
-		if (!this->findEnemy("Hero", 0))
+		if (!findEnemy("Hero", 0))
 		{
-			if (!this->findEnemy("Flog", 0))
+			if (!findEnemy("Flog", 0))
 			{
-				_mainTarget = NULL;
+				_mainTarget = nullptr;
 			}
 		}
 	}
@@ -1211,71 +784,71 @@ void Monster::setAI(float dt)
 		CCPoint sp;
 
 		sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
-					ccp(this->getPositionX(), _originY ? _originY : this->getPositionY()));
+					ccp(getPositionX(), _originY ? _originY : getPositionY()));
 
-		if (strcmp(this->getCharacter()->getCString(), "FudonSRK2") == 0 ||
-			strcmp(this->getCharacter()->getCString(), "FudonSRK") == 0)
+		if (strcmp(getCharacter()->getCString(), "FudonSRK2") == 0 ||
+			strcmp(getCharacter()->getCString(), "FudonSRK") == 0)
 		{
 			if (abs(sp.x) > 48 || abs(sp.y) > 32)
 			{
-				this->setActionState(State::WALK);
+				setActionState(State::WALK);
 				moveDirection = ccpNormalize(sp);
-				this->walk(moveDirection);
+				walk(moveDirection);
 				return;
 			}
 
 			if (strcmp(_mainTarget->getRole()->getCString(), "Player") == 0 ||
 				strcmp(_mainTarget->getRole()->getCString(), "Com") == 0)
 			{
-				this->stopAllActions();
-				this->dealloc();
+				stopAllActions();
+				dealloc();
 			}
 		}
-		else if (strcmp(this->getCharacter()->getCString(), "Traps") == 0)
+		else if (strcmp(getCharacter()->getCString(), "Traps") == 0)
 		{
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
 			}
 			else
 			{
-				this->attack(NAttack);
+				attack(NAttack);
 			}
 		}
 		else if (abs(sp.x) > 32 || abs(sp.y) > 16)
 		{
 
-			if (strcmp(this->getCharacter()->getCString(), "Dogs") != 0 &&
-				strcmp(this->getCharacter()->getCString(), "Mine") != 0 &&
-				strcmp(this->getCharacter()->getCString(), "Traps") != 0 &&
-				strcmp(this->getCharacter()->getCString(), "Yominuma") != 0 &&
-				strcmp(this->getCharacter()->getCString(), "Tsukuyomi") != 0)
+			if (strcmp(getCharacter()->getCString(), "Dogs") != 0 &&
+				strcmp(getCharacter()->getCString(), "Mine") != 0 &&
+				strcmp(getCharacter()->getCString(), "Traps") != 0 &&
+				strcmp(getCharacter()->getCString(), "Yominuma") != 0 &&
+				strcmp(getCharacter()->getCString(), "Tsukuyomi") != 0)
 			{
 				moveDirection = ccpNormalize(sp);
 
-				this->walk(moveDirection);
+				walk(moveDirection);
 			}
 		}
 		else
 		{
 
-			if (strcmp(this->getCharacter()->getCString(), "Mine") == 0)
+			if (strcmp(getCharacter()->getCString(), "Mine") == 0)
 			{
 
 				if (strcmp(_mainTarget->getRole()->getCString(), "Player") == 0 ||
 					strcmp(_mainTarget->getRole()->getCString(), "Com") == 0)
 				{
-					this->attack(NAttack);
-					this->unschedule(schedule_selector(CharacterBase::setAI));
+					attack(NAttack);
+					unschedule(schedule_selector(CharacterBase::setAI));
 				}
 			}
 			else
 			{
-				this->changeSide(sp);
-				this->attack(NAttack);
+				changeSide(sp);
+				attack(NAttack);
 
 				if (strcmp(getCharacter()->getCString(), "SmallSlug") != 0)
 				{
-					this->unschedule(schedule_selector(CharacterBase::setAI));
+					unschedule(schedule_selector(CharacterBase::setAI));
 				}
 			}
 		}
@@ -1286,11 +859,11 @@ void Monster::setAI(float dt)
 			strcmp(getCharacter()->getCString(), "Spider") == 0 ||
 			strcmp(getCharacter()->getCString(), "ClayBird") == 0)
 		{
-			this->stepOn();
+			stepOn();
 		}
 		else
 		{
-			this->idle();
+			idle();
 		}
 	}
 }
@@ -1298,23 +871,23 @@ void Monster::setAI(float dt)
 void Monster::dealloc()
 {
 
-	this->unschedule(schedule_selector(CharacterBase::setAI));
-	this->setActionState(State::DEAD);
-	this->stopAllActions();
+	unschedule(schedule_selector(CharacterBase::setAI));
+	setActionState(State::DEAD);
+	stopAllActions();
 
-	if (strcmp(this->getCharacter()->getCString(), "FudonSRK") == 0 ||
-		strcmp(this->getCharacter()->getCString(), "FudonSRK2") == 0)
+	if (strcmp(getCharacter()->getCString(), "FudonSRK") == 0 ||
+		strcmp(getCharacter()->getCString(), "FudonSRK2") == 0)
 	{
 
 		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc2));
 		CCArray *seqArray = CCArray::create();
-		seqArray->addObject(this->getDeadAction());
+		seqArray->addObject(getDeadAction());
 		seqArray->addObject(call);
 		CCAction *seq = CCSequence::create(seqArray);
-		this->runAction(seq);
+		runAction(seq);
 		return;
 	}
-	if (strcmp(this->getCharacter()->getCString(), "HiraishinMark") == 0)
+	if (strcmp(getCharacter()->getCString(), "HiraishinMark") == 0)
 	{
 
 		_master->_isCanSkill1 = false;
@@ -1340,12 +913,12 @@ void Monster::dealloc()
 				_master->getMonsterArray()->removeObjectAtIndex(index);
 				mo->removeFromParentAndCleanup(true);
 			}
-		};
+		}
 
 		return;
 	}
 
-	if (strcmp(this->getCharacter()->getCString(), "SmallSlug") == 0)
+	if (strcmp(getCharacter()->getCString(), "SmallSlug") == 0)
 	{
 		if (_secmaster && _secmaster->getMonsterArray())
 		{
@@ -1369,286 +942,108 @@ void Monster::dealloc()
 		}
 	}
 
-	if (strcmp(this->getCharacter()->getCString(), "KageHand") == 0 ||
-		strcmp(this->getCharacter()->getCString(), "Kage") == 0)
+	if (strcmp(getCharacter()->getCString(), "KageHand") == 0 ||
+		strcmp(getCharacter()->getCString(), "Kage") == 0)
 	{
 
 		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc2));
 
 		CCArray *seqArray = CCArray::create();
-		seqArray->addObject(this->getDeadAction());
+		seqArray->addObject(getDeadAction());
 		seqArray->addObject(call);
 
 		CCFiniteTimeAction *call2 = CCCallFunc::create(this, callfunc_selector(Monster::setResume));
 		seqArray->addObject(call2);
 
 		CCAction *seq = CCSequence::create(seqArray);
-		this->runAction(seq);
+		runAction(seq);
 	}
 	else
 	{
 
-		this->removeFromParentAndCleanup(true);
+		removeFromParentAndCleanup(true);
 	}
 }
 
 void Monster::setDirectMove(unsigned int length, float delay, bool isReverse)
 {
 
-	CCPoint direction = ccp(this->_isFlipped ? this->getPosition().x - length : this->getPosition().x + length,
-							this->getPositionY());
-	CCPoint direction2 = this->getPosition();
+	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
+							getPositionY());
+	CCPoint direction2 = getPosition();
 	CCActionInterval *mv = CCMoveTo::create(delay, direction);
 	CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc));
 	CCAction *seq;
 	if (!isReverse)
 	{
-		seq = CCSequence::create(mv, call, NULL);
+		seq = CCSequence::create(mv, call, nullptr);
 	}
 	else
 	{
 		CCActionInterval *mv2 = CCMoveTo::create(delay, direction2);
-		seq = CCSequence::create(mv, mv2, call, NULL);
+		seq = CCSequence::create(mv, mv2, call, nullptr);
 	}
 
-	this->runAction(seq);
+	runAction(seq);
 }
 void Monster::setEaseIn(unsigned int length, float delay)
 {
 
-	CCPoint direction = ccp(this->_isFlipped ? this->getPosition().x - length : this->getPosition().x + length,
-							this->getPositionY());
+	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
+							getPositionY());
 	CCActionInterval *mv = CCMoveTo::create(1.0f, direction);
 	CCActionInterval *eo = CCEaseIn::create(mv, delay);
 
 	CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc));
-	CCAction *seq = CCSequence::create(eo, call, NULL);
-	this->runAction(seq);
+	CCAction *seq = CCSequence::create(eo, call, nullptr);
+	runAction(seq);
 }
 
 void Monster::setDirectMoveBy(unsigned int length, float delay)
 {
 
-	CCPoint direction = ccp(this->_isFlipped ? this->getPosition().x - length : this->getPosition().x + length,
-							this->getPositionY());
+	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
+							getPositionY());
 
 	if (_mainTarget)
 	{
 
-		CCActionInterval *mv = CCMoveBy::create(0.1f, ccp(_mainTarget->getPositionX() > this->getPositionX() ? 16 : -16, _mainTarget->getPositionY() > this->getPositionY() ? 16 : -16));
+		CCActionInterval *mv = CCMoveBy::create(0.1f, ccp(_mainTarget->getPositionX() > getPositionX() ? 16 : -16, _mainTarget->getPositionY() > getPositionY() ? 16 : -16));
 
-		this->runAction(CCRepeatForever::create(mv));
-		_mainTarget = NULL;
-		_master->_mainTarget = NULL;
+		runAction(CCRepeatForever::create(mv));
+		_mainTarget = nullptr;
+		_master->_mainTarget = nullptr;
 	}
 	else
 	{
-		CCActionInterval *mv = CCMoveBy::create(0.1f, ccp(this->_isFlipped ? -16 : 16, 0));
+		CCActionInterval *mv = CCMoveBy::create(0.1f, ccp(_isFlipped ? -16 : 16, 0));
 
-		this->runAction(CCRepeatForever::create(mv));
+		runAction(CCRepeatForever::create(mv));
 	}
 
 	CCDelayTime *dl = CCDelayTime::create(delay);
 	CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc));
-	CCAction *seq = CCSequence::create(dl, call, NULL);
-	this->runAction(seq);
+	CCAction *seq = CCSequence::create(dl, call, nullptr);
+	runAction(seq);
 }
 
 void Monster::setResume()
 {
 
-	if (this->getSecMaster())
+	if (getSecMaster())
 	{
-		this->getSecMaster()->dealloc();
+		getSecMaster()->dealloc();
 	}
 	else
 	{
 
-		if (this->getMaster() && strcmp(this->getMaster()->getCharacter()->getCString(), "Shikamaru") == 0)
+		if (getMaster() && strcmp(getMaster()->getCharacter()->getCString(), "Shikamaru") == 0)
 		{
-			this->getMaster()->idle();
+			getMaster()->idle();
 		}
 	}
 }
 void Monster::dealloc2()
 {
-	this->removeFromParentAndCleanup(true);
-}
-
-/*---------------
-init Bullet
----------------*/
-
-Bullet::Bullet()
-{
-}
-
-Bullet::~Bullet()
-{
-}
-
-bool Bullet::init()
-{
-	bool bRet = false;
-	do
-	{
-
-		//CC_BREAK_IF(!CharacterBase::initWithSpriteFrameName("coin.png"));
-		CC_BREAK_IF(!CharacterBase::init());
-		this->scheduleUpdate();
-		bRet = true;
-	} while (0);
-
-	return bRet;
-};
-
-void Bullet::setID(CCString *character, CCString *role, CCString *group)
-{
-
-	this->setCharacter(character);
-	this->setRole(role);
-	this->setGroup(group);
-
-	CCArray *animationArray = CCArray::create();
-	const char *filePath;
-
-	filePath = CCString::createWithFormat("Element/Bullet/%s.xml", this->getCharacter()->getCString(), this->getCharacter()->getCString())->getCString();
-
-	// std::string key = KTools::getKeycode(filePath);
-	// int id = KTools::checkMD5(filePath);
-	// if(strcmp(key.c_str(),_delegate->KeyList[id])!=0){
-	//return;
-	// }
-
-	KTools::readXMLToArray(filePath, animationArray);
-
-	//init Attribute; & idleFrame
-
-	CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
-	CCArray *tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
-	idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-	//init nAttack data & Frame Array
-	tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
-	tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
-	unsigned int tmpCD;
-	int tmpCombatPoint;
-	CCString *tmpValue;
-
-	this->readDate(tmpDate, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
-	this->setnAttackValue(tmpValue);
-	_nattackType->retain();
-	nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-	if (strcmp(this->getCharacter()->getCString(), "Amaterasu") == 0)
-	{
-		//init DeadFrame
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
-		deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
-	}
-
-	this->setCoin(CCString::create("50"));
-
-	this->initAction();
-};
-
-void Bullet::initAction()
-{
-
-	this->setIdleAction(createAnimation(idleArray, 5.0, true, false));
-	this->setNAttackAction(createAnimation(nattackArray, 10.0, true, false));
-	if (strcmp(this->getCharacter()->getCString(), "Amaterasu") == 0 ||
-		strcmp(this->getCharacter()->getCString(), "SusanoTama") == 0)
-	{
-		this->setDeadAction(createAnimation(deadArray, 10.0f, false, false));
-	}
-};
-
-void Bullet::dealloc()
-{
-
-	this->stopAllActions();
-
-	if (strcmp(this->getCharacter()->getCString(), "Amaterasu") == 0)
-	{
-
-		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Bullet::dealloc2));
-		CCArray *seqArray = CCArray::create();
-		seqArray->addObject(this->getDeadAction());
-		seqArray->addObject(call);
-		CCAction *seq = CCSequence::create(seqArray);
-		this->runAction(seq);
-	}
-	else
-	{
-
-		if (strcmp(this->getCharacter()->getCString(), "HiraishinKunai") == 0)
-		{
-
-			if (_master->getActionState() == State::SATTACK)
-			{
-				_master->setActionState(State::ATTACK);
-				_master->_markPoint = ccp(this->getPositionX(), this->_originY);
-				_master->changeAction2();
-				_master->_isCanSkill2 = true;
-				_master->sAttack(SKILL2);
-			}
-		}
-
-		if (_master && _master->getMonsterArray())
-		{
-			int index = _master->getMonsterArray()->indexOfObject(this);
-			if (index >= 0)
-			{
-				_master->getMonsterArray()->removeObjectAtIndex(index);
-			}
-		}
-		this->removeFromParentAndCleanup(true);
-	}
-}
-
-void Bullet::dealloc2()
-{
-
-	this->removeFromParentAndCleanup(true);
-}
-
-void Bullet::setMove(unsigned int length, float delay, bool isReverse)
-{
-	CCPoint direction = ccp(this->_isFlipped ? this->getPosition().x - length : this->getPosition().x + length,
-							this->getPositionY());
-	CCPoint direction2 = this->getPosition();
-	CCActionInterval *mv = CCMoveTo::create(delay, direction);
-	CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Bullet::dealloc));
-	CCAction *seq;
-	if (!isReverse)
-	{
-
-		seq = CCSequence::create(mv, call, NULL);
-	}
-	else
-	{
-		CCActionInterval *mv2 = CCMoveTo::create(delay, direction2);
-		seq = CCSequence::create(mv, mv2, call, NULL);
-	}
-
-	this->runAction(seq);
-}
-
-void Bullet::setEaseIn(unsigned int length, float delay)
-{
-
-	CCPoint direction = ccp(this->_isFlipped ? this->getPosition().x - length : this->getPosition().x + length,
-							this->getPositionY());
-	CCActionInterval *mv = CCMoveTo::create(1.0f, direction);
-	CCActionInterval *eo = CCEaseIn::create(mv, delay);
-
-	CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Bullet::dealloc));
-	CCAction *seq = CCSequence::create(eo, call, NULL);
-	this->runAction(seq);
-}
-
-void Bullet::setAttack(float dt)
-{
-	this->attack(NAttack);
+	removeFromParentAndCleanup(true);
 }

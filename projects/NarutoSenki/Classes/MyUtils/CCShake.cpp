@@ -71,7 +71,7 @@ void CCShake::startWithTarget(CCNode *pTarget)
 void CCShake::stop()
 {
 	// Action is done, reset clip position
-	this->getTarget()->setPosition(ccp(m_initial_x, m_initial_y));
+	getTarget()->setPosition(ccp(m_initial_x, m_initial_y));
 
 	CCActionInterval::stop();
 }

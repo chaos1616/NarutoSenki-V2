@@ -106,27 +106,6 @@ function Node:setNodeEventEnabled(enabled, listener)
     return self
 end
 
-Node.scheduleUpdate_ = Node.scheduleUpdate
-function Node:scheduleUpdate(handler)
-    if handler then
-        PRINT_DEPRECATED("Node.scheduleUpdate(handler) is deprecated, please use Node.registerScriptHandler()")
-        self:registerScriptHandler(c.NODE_ENTER_FRAME_EVENT, handler)
-        self:scheduleUpdate_()
-    else
-        self:scheduleUpdate_()
-    end
-end
-
-function Node:scheduleUpdateWithPriorityLua(handler)
-    PRINT_DEPRECATED("Node.scheduleUpdateWithPriorityLua() is deprecated, please use Node.registerScriptHandler()")
-    self:registerScriptHandler(c.NODE_ENTER_FRAME_EVENT, handler)
-    self:scheduleUpdate_()
-end
-
-function Node:setTouchPriority()
-    PRINT_DEPRECATED("Node.setTouchPriority() is deprecated, remove it")
-end
-
 function Node:setCascadeOpacityEnabledRecursively(enabled)
     self:setCascadeOpacityEnabled(enabled)
 

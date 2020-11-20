@@ -41,8 +41,8 @@ bool MenuButton::init(const char *szImage)
 	do
 	{
 		CC_BREAK_IF(!CCSprite::init());
-		this->initWithSpriteFrameName(szImage);
-		this->setAnchorPoint(ccp(0.5, 0));
+		initWithSpriteFrameName(szImage);
+		setAnchorPoint(ccp(0.5, 0));
 
 		bRet = true;
 
@@ -76,7 +76,7 @@ void MenuButton::onExit()
 
 CCRect MenuButton::getRect()
 {
-	CCSize size = this->getContentSize();
+	CCSize size = getContentSize();
 	return CCRect(0, 0, size.width, size.height);
 }
 bool MenuButton::containsTouchLocation(CCTouch *touch)
@@ -98,7 +98,7 @@ btnType MenuButton::getBtnType()
 bool MenuButton::ccTouchBegan(CCTouch *touch, CCEvent *event)
 {
 	// touch area
-	if (!this->containsTouchLocation(touch))
+	if (!containsTouchLocation(touch))
 		return false;
 
 	//click();
@@ -117,7 +117,7 @@ void MenuButton::ccTouchMoved(CCTouch *touch, CCEvent *event)
 	}
 	else
 	{
-		if (this->getBtnType() != HardCore)
+		if (getBtnType() != HardCore)
 		{
 
 			if (abs(touch->getLocation().y - prePosY) > 16)
@@ -162,21 +162,7 @@ void MenuButton::ccTouchEnded(CCTouch *touch, CCEvent *event)
 			SimpleAudioEngine::sharedEngine()->playEffect(SELECT_SOUND);
 			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("menu05_text.png");
 			_startMenu->menuText->setDisplayFrame(frame);
-
-			if (CCUserDefault::sharedUserDefault()->getBoolForKey("isHardCore") == true)
-			{
-				CCUserDefault::sharedUserDefault()->setBoolForKey("isHardCore", false);
-				if (_startMenu->hardCore_btn)
-				{
-					CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("menu02_2.png");
-					_startMenu->hardCore_btn->setDisplayFrame(frame);
-				}
-			}
-			else
-			{
-				_startMenu->onHardLayerCallBack();
-			}
-
+			_startMenu->onHardLayerCallBack();
 			break;
 		}
 	}
@@ -184,10 +170,10 @@ void MenuButton::ccTouchEnded(CCTouch *touch, CCEvent *event)
 	{
 		SimpleAudioEngine::sharedEngine()->playEffect(SELECT_SOUND);
 		prePosY = 0;
-		_startMenu->scrollMenu(this->getPositionY());
+		_startMenu->scrollMenu(getPositionY());
 		_startMenu->isDrag = false;
 	}
-};
+}
 
 void MenuButton::playSound()
 {
@@ -198,9 +184,6 @@ void MenuButton::playSound()
 	{
 	case Training:
 		SimpleAudioEngine::sharedEngine()->playEffect(TRAINING_SOUND);
-		// if(this->getBtnType()==Training){
-		// _delegate->hardCore_btn->setVisible(true);
-		// }
 		break;
 	case Custom:
 		SimpleAudioEngine::sharedEngine()->playEffect(NETWORK_SOUND);
@@ -225,7 +208,7 @@ MenuButton *MenuButton::create(const char *szImage)
 	else
 	{
 		delete mb;
-		return NULL;
+		return nullptr;
 	}
 }
 
@@ -235,17 +218,16 @@ init StartMenu layer;
 
 StartMenu::StartMenu()
 {
-	_menu_array = NULL;
+	_menu_array = nullptr;
 	isClockwise = false;
 	isDrag = false;
-	hardCore_btn = NULL;
-	hardCoreLayer = NULL;
+	hardCoreLayer = nullptr;
 
-	notice_layer = NULL;
+	notice_layer = nullptr;
 
-	noticeLabel = NULL;
+	noticeLabel = nullptr;
 
-	login_btn = NULL;
+	login_btn = nullptr;
 }
 
 StartMenu::~StartMenu()
@@ -270,18 +252,18 @@ bool StartMenu::init()
 		// FULL_SCREEN_SPRITE(bgSprite);
 		//bgSprite->setAnchorPoint(ccp(0,0));
 		//bgSprite->setPosition(ccp(0,0));
-		//this->addChild(bgSprite, -5);
+		//addChild(bgSprite, -5);
 
 		//produce groud
 		CCSprite *gold_left = CCSprite::createWithSpriteFrameName("gold_left.png");
 		gold_left->setAnchorPoint(ccp(0, 0));
 		gold_left->setPosition(ccp(0, 20));
-		this->addChild(gold_left, 1);
+		addChild(gold_left, 1);
 
 		CCSprite *gold_right = CCSprite::createWithSpriteFrameName("gold_right.png");
 		gold_right->setAnchorPoint(ccp(0, 1));
 		gold_right->setPosition(ccp(winSize.width - gold_right->getContentSize().width - 20, winSize.height - 20));
-		this->addChild(gold_right, 1);
+		addChild(gold_right, 1);
 
 		//produce the cloud
 		CCSprite *cloud_left = CCSprite::createWithSpriteFrameName("cloud.png");
@@ -289,42 +271,42 @@ bool StartMenu::init()
 		cloud_left->setFlipX(true);
 		cloud_left->setFlipY(true);
 		cloud_left->setAnchorPoint(ccp(0, 0));
-		this->addChild(cloud_left, 1);
+		addChild(cloud_left, 1);
 
 		CCActionInterval *cmv1 = CCMoveBy::create(1, ccp(-15, 0));
-		CCAction *cseq1 = CCRepeatForever::create(CCSequence::create(cmv1, cmv1->reverse(), NULL));
+		CCAction *cseq1 = CCRepeatForever::create(CCSequence::create(cmv1, cmv1->reverse(), nullptr));
 		cloud_left->runAction(cseq1);
 
 		CCSprite *cloud_right = CCSprite::createWithSpriteFrameName("cloud.png");
 		cloud_right->setPosition(ccp(winSize.width - cloud_right->getContentSize().width,
 									 winSize.height - (cloud_right->getContentSize().height + 15)));
 		cloud_right->setAnchorPoint(ccp(0, 0));
-		this->addChild(cloud_right, 1);
+		addChild(cloud_right, 1);
 
 		CCActionInterval *cmv2 = CCMoveBy::create(1, ccp(15, 0));
-		CCAction *cseq2 = CCRepeatForever::create(CCSequence::create(cmv2, cmv2->reverse(), NULL));
+		CCAction *cseq2 = CCRepeatForever::create(CCSequence::create(cmv2, cmv2->reverse(), nullptr));
 		cloud_right->runAction(cseq2);
 
 		//produce the menu_bar
 		CCSprite *menu_bar_b = CCSprite::create("menu_bar2.png");
 		menu_bar_b->setAnchorPoint(ccp(0, 0));
 		FULL_SCREEN_SPRITE(menu_bar_b);
-		this->addChild(menu_bar_b, 2);
+		addChild(menu_bar_b, 2);
 
 		CCSprite *menu_bar_t = CCSprite::create("menu_bar3.png");
 		menu_bar_t->setAnchorPoint(ccp(0, 0));
 		menu_bar_t->setPosition(ccp(0, winSize.height - menu_bar_t->getContentSize().height));
 		FULL_SCREEN_SPRITE(menu_bar_t);
-		this->addChild(menu_bar_t, 2);
+		addChild(menu_bar_t, 2);
 
 		CCSprite *startmenu_title = CCSprite::createWithSpriteFrameName("startmenu_title.png");
 		startmenu_title->setAnchorPoint(ccp(0, 0));
 		startmenu_title->setPosition(ccp(2, winSize.height - startmenu_title->getContentSize().height - 2));
-		this->addChild(startmenu_title, 3);
+		addChild(startmenu_title, 3);
 
 		//produce the menu button
 
-		this->setMenus(CCArray::createWithCapacity(3));
+		setMenus(CCArray::createWithCapacity(3));
 
 		MenuButton *network_btn = MenuButton::create("menu01.png");
 		network_btn->setDelegate(this);
@@ -349,24 +331,6 @@ bool StartMenu::init()
 		training_btn->setPositionY(_pos02);
 		_menu_array->addObject(training_btn);
 
-		/*if(!CCUserDefault::sharedUserDefault()->getBoolForKey("isHardCore")){
-			CCUserDefault::sharedUserDefault()->setBoolForKey("isHardCore", false);
-			CCUserDefault::sharedUserDefault()->flush();
-		}
-		
-
-		if(CCUserDefault::sharedUserDefault()->getBoolForKey("isHardCore")==true){
-			hardCore_btn=MenuButton::create("menu02_1.png");
-		}else{
-			hardCore_btn=MenuButton::create("menu02_2.png");
-		}
-
-		hardCore_btn->setDelegate(this);
-		hardCore_btn->setBtnType(HardCore);
-		hardCore_btn->setPosition(ccp(146,_pos02-18));
-		hardCore_btn->_isTop=true;
-		this->addChild(hardCore_btn,10);*/
-
 		MenuButton *exit_btn = MenuButton::create("menu03.png");
 		exit_btn->setDelegate(this);
 		exit_btn->setBtnType(Exit);
@@ -377,25 +341,25 @@ bool StartMenu::init()
 		menuText = CCSprite::createWithSpriteFrameName("menu02_text.png");
 		menuText->setAnchorPoint(ccp(0, 0));
 		menuText->setPosition(ccp(10, 2));
-		this->addChild(menuText, 5);
+		addChild(menuText, 5);
 
-		CCObject *pObject = NULL;
+		CCObject *pObject = nullptr;
 		CCARRAY_FOREACH(_menu_array, pObject)
 		{
 			MenuButton *menu = (MenuButton *)pObject;
 			menu->setPositionX(105);
-			this->addChild(menu, 2);
-		};
+			addChild(menu, 2);
+		}
 		CCLabelBMFont *versionLabel = CCLabelBMFont::create(VERSION_CODE, "Fonts/1.fnt");
 		versionLabel->setScale(0.3f);
 		versionLabel->setPosition(winSize.width - 25, 10);
-		this->addChild(versionLabel, 5);
+		addChild(versionLabel, 5);
 
 		CCSprite *avator = CCSprite::createWithSpriteFrameName("avator1.png");
 		avator->setAnchorPoint(ccp(0, 0));
 		avator->setOpacity(0);
 		avator->setPosition(ccp(winSize.width - avator->getContentSize().width, 19));
-		this->addChild(avator, 1);
+		addChild(avator, 1);
 
 		CCArray *tempArray = CCArray::create();
 
@@ -420,26 +384,26 @@ bool StartMenu::init()
 		}
 
 		avator->runAction(CCRepeatForever::create(CCSequence::create(list)));
-		CCMenuItem *news_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("news_btn.png"), NULL, NULL, this, menu_selector(StartMenu::onNewsBtn));
-		CCMenu *menu = CCMenu::create(news_btn, NULL);
+		CCMenuItem *news_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("news_btn.png"), nullptr, nullptr, this, menu_selector(StartMenu::onNewsBtn));
+		CCMenu *menu = CCMenu::create(news_btn, nullptr);
 		news_btn->setAnchorPoint(ccp(0, 0.5f));
 		menu->setPosition(15, winSize.height - 50);
-		this->addChild(menu, 5);
+		addChild(menu, 5);
 
-		this->setNotice();
+		setNotice();
 
-		login_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("login_btn.png"), NULL, NULL, this, menu_selector(StartMenu::onLoginBtn));
-		CCMenu *menu2 = CCMenu::create(login_btn, NULL);
+		login_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("login_btn.png"), nullptr, nullptr, this, menu_selector(StartMenu::onLoginBtn));
+		CCMenu *menu2 = CCMenu::create(login_btn, nullptr);
 		login_btn->setAnchorPoint(ccp(1, 0.5f));
 		menu2->setPosition(winSize.width - 15, winSize.height - 50);
-		this->addChild(menu2, 5);
+		addChild(menu2, 5);
 
 		if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 		{
-			this->setKeypadEnabled(true);
+			setKeypadEnabled(true);
 		}
 
-		this->scheduleUpdate();
+		scheduleUpdate();
 
 		bRet = true;
 
@@ -485,7 +449,7 @@ void StartMenu::onExit()
 void StartMenu::onLoginBtn(CCObject *sender)
 {
 	CCTips *tip = CCTips::create("ServerMainten");
-	this->addChild(tip, 5000);
+	addChild(tip, 5000);
 	return;
 }
 
@@ -535,7 +499,7 @@ void StartMenu::setNotice()
 
 		notice_layer->addChild(clipper);
 
-		this->addChild(notice_layer);
+		addChild(notice_layer);
 		CCDictionary *strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
 		const char *reply = ((CCString *)strings->objectForKey("Notice"))->m_sString.c_str();
 
@@ -568,19 +532,12 @@ void StartMenu::onNewsBtn(CCObject *sender)
 
 void StartMenu::onHardCoreOn(CCObject *sender)
 {
-	CCUserDefault::sharedUserDefault()->setBoolForKey("isHardCore", true);
-	if (hardCore_btn)
-	{
-		CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("menu02_1.png");
-		hardCore_btn->setDisplayFrame(frame);
-	}
-
 	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
 	if (hardCoreLayer)
 	{
 		hardCoreLayer->removeAllChildren();
 		hardCoreLayer->removeFromParent();
-		hardCoreLayer = NULL;
+		hardCoreLayer = nullptr;
 	}
 }
 
@@ -592,7 +549,7 @@ void StartMenu::onHardCoreOff(CCObject *sender)
 	{
 		hardCoreLayer->removeAllChildren();
 		hardCoreLayer->removeFromParent();
-		hardCoreLayer = NULL;
+		hardCoreLayer = nullptr;
 	}
 }
 
@@ -618,7 +575,7 @@ void StartMenu::onHardLayerCallBack()
 			CCMenuItem *yes_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("yes_btn1.png"), CCSprite::createWithSpriteFrameName("yes_btn2.png"), this, menu_selector(StartMenu::onHardCoreOn));
 			CCMenuItem *no_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("no_btn1.png"), CCSprite::createWithSpriteFrameName("no_btn2.png"), this, menu_selector(StartMenu::onHardCoreOff));
 
-			CCMenu *confirm_menu = CCMenu::create(yes_btn, no_btn, NULL);
+			CCMenu *confirm_menu = CCMenu::create(yes_btn, no_btn, nullptr);
 			confirm_menu->alignItemsHorizontallyWithPadding(24);
 			confirm_menu->setPosition(ccp(winSize.width / 2, winSize.height / 2 - 30));
 
@@ -626,7 +583,7 @@ void StartMenu::onHardLayerCallBack()
 			hardCoreLayer->addChild(confirm_menu, 650);
 			hardCoreLayer->addChild(hardcore_title, 650);
 			hardCoreLayer->addChild(hardcore_text, 650);
-			this->addChild(hardCoreLayer, 700);
+			addChild(hardCoreLayer, 700);
 		}
 	}
 }
@@ -648,7 +605,9 @@ void StartMenu::enterSelectLayer()
 	// call lua StartMenu:enterSelectPanel
 	if (_handler != 0)
 	{
-		lua_call_handler(_handler);
+		auto pStack = get_luastack;
+		pStack->pushBoolean(enableCustomSelect);
+		pStack->executeFunctionByHandler(_handler, 1);
 	}
 	else
 	{
@@ -663,7 +622,7 @@ void StartMenu::enterSelectLayer()
 		auto selectScene = CCScene::create();
 		auto selectLayer = SelectLayer::create();
 
-		this->addChild(selectLayer);
+		addChild(selectLayer);
 		CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(
 			1.5f, selectScene));
 		CCLOG("StartMenu lua handler can not be null");
@@ -684,7 +643,7 @@ void StartMenu::onTrainingCallBack()
 
 	if (i == 0)
 	{
-		this->enterTrainingMode();
+		enterTrainingMode();
 	}
 	else if (i == 1)
 	{
@@ -833,13 +792,13 @@ void StartMenu::onTrainingCallBack()
 
 		CCDictionary *dic = CCDictionary::create();
 
-		char *heroList1[] = {"Konan", "Sakura", "Naruto", "Sai", "Deidara",
-							 "Kakashi", "Itachi", "Tenten", "Jiraiya", "Suigetsu",
-							 "Tsunade", "Tobirama", "Neji", "Ino", "Asuma", "Gaara",
-							 "Karin", "Sasuke", "Hidan", "Choji", "Kankuro",
-							 "Shino", "Minato", "Tobi", "Kakuzu", "Hinata",
-							 "Shikamaru", "Chiyo", "Kisame",
-							 "Hiruzen", "Kiba", "Jugo", "Lee"};
+		const char *heroList1[] = {"Konan", "Sakura", "Naruto", "Sai", "Deidara",
+								   "Kakashi", "Itachi", "Tenten", "Jiraiya", "Suigetsu",
+								   "Tsunade", "Tobirama", "Neji", "Ino", "Asuma", "Gaara",
+								   "Karin", "Sasuke", "Hidan", "Choji", "Kankuro",
+								   "Shino", "Minato", "Tobi", "Kakuzu", "Hinata",
+								   "Shikamaru", "Chiyo", "Kisame",
+								   "Hiruzen", "Kiba", "Jugo", "Lee"};
 
 		srand((int)time(0));
 		int index2 = random(sizeof(heroList1) / sizeof(char *));
@@ -956,7 +915,7 @@ void StartMenu::onCreditsCallBack()
 
 void StartMenu::scrollMenu(int posY)
 {
-	CCObject *pObject = NULL;
+	CCObject *pObject = nullptr;
 	if (posY > _pos02 || (isDrag && isClockwise))
 	{
 		CCARRAY_FOREACH(_menu_array, pObject)
@@ -965,7 +924,7 @@ void StartMenu::scrollMenu(int posY)
 			if (menu->getPositionY() == _pos01)
 			{
 				CCActionInterval *spn = CCMoveTo::create(0.5, ccp(105, _pos02));
-				this->reorderChild(menu, 1);
+				reorderChild(menu, 1);
 				menu->_isBottom = true;
 				CCFadeOut *fo = CCFadeOut::create(0.3f);
 				CCSpawn *seq = CCSpawn::createWithTwoActions(spn, fo);
@@ -976,13 +935,9 @@ void StartMenu::scrollMenu(int posY)
 				CCAction *spn = CCSpawn::create(
 					CCMoveTo::create(0.5, ccp(105, _pos02)),
 					CCScaleTo::create(0.5, 1),
-					NULL);
-				this->reorderChild(menu, 3);
+					nullptr);
+				reorderChild(menu, 3);
 				menu->_isTop = true;
-
-				/*if(menu->getBtnType()!=Training){
-						hardCore_btn->setVisible(false);
-					}*/
 
 				CCFiniteTimeAction *call = CCCallFunc::create(menu, callfunc_selector(MenuButton::playSound));
 				CCArray *seqArray = CCArray::create();
@@ -995,7 +950,7 @@ void StartMenu::scrollMenu(int posY)
 			{
 
 				CCActionInterval *spn = CCMoveTo::create(0.5, ccp(105, _pos03));
-				this->reorderChild(menu, 1);
+				reorderChild(menu, 1);
 				menu->setVisible(true);
 				CCFadeIn *fi = CCFadeIn::create(0.3f);
 				CCSpawn *seq = CCSpawn::createWithTwoActions(spn, fi);
@@ -1008,12 +963,12 @@ void StartMenu::scrollMenu(int posY)
 				CCAction *spn = CCSpawn::create(
 					CCMoveTo::create(0.5, ccp(105, _pos01)),
 					CCScaleTo::create(0.5, 0.5),
-					NULL);
-				this->reorderChild(menu, 1);
+					nullptr);
+				reorderChild(menu, 1);
 				menu->_isTop = false;
 				menu->runAction(spn);
 			}
-		};
+		}
 	}
 	else
 	{
@@ -1025,12 +980,9 @@ void StartMenu::scrollMenu(int posY)
 				CCAction *spn = CCSpawn::create(
 					CCMoveTo::create(0.5, ccp(105, _pos02)),
 					CCScaleTo::create(0.5, 1),
-					NULL);
-				this->reorderChild(menu, 3);
+					nullptr);
+				reorderChild(menu, 3);
 				menu->_isTop = true;
-				/*	if(menu->getBtnType()!=Training){
-						hardCore_btn->setVisible(false);
-					}*/
 
 				CCFiniteTimeAction *call = CCCallFunc::create(menu, callfunc_selector(MenuButton::playSound));
 				CCArray *seqArray = CCArray::create();
@@ -1042,7 +994,7 @@ void StartMenu::scrollMenu(int posY)
 			else if (menu->getPositionY() == _pos03)
 			{
 				CCActionInterval *spn = CCMoveTo::create(0.5, ccp(105, _pos02));
-				this->reorderChild(menu, 1);
+				reorderChild(menu, 1);
 				menu->_isBottom = true;
 				CCFadeOut *fo = CCFadeOut::create(0.3f);
 				CCSpawn *seq = CCSpawn::createWithTwoActions(spn, fo);
@@ -1052,7 +1004,7 @@ void StartMenu::scrollMenu(int posY)
 			{
 
 				CCActionInterval *spn = CCMoveTo::create(0.5, ccp(105, _pos01));
-				this->reorderChild(menu, 2);
+				reorderChild(menu, 2);
 				menu->setVisible(true);
 				CCFadeIn *fi = CCFadeIn::create(0.3f);
 				CCSpawn *seq = CCSpawn::createWithTwoActions(spn, fi);
@@ -1065,13 +1017,13 @@ void StartMenu::scrollMenu(int posY)
 				CCAction *spn = CCSpawn::create(
 					CCMoveTo::create(0.5, ccp(105, _pos03)),
 					CCScaleTo::create(0.5, 0.5),
-					NULL);
-				this->reorderChild(menu, 2);
+					nullptr);
+				reorderChild(menu, 2);
 				menu->_isTop = false;
 				menu->runAction(spn);
 			}
-		};
-	};
+		}
+	}
 	std::string src = "";
 	CCARRAY_FOREACH(_menu_array, pObject)
 	{
@@ -1122,9 +1074,9 @@ void StartMenu::keyBackClicked()
 	CCDirector::sharedDirector()->end();
 	exit(0);
 #endif
-};
+}
 
 void StartMenu::onExitCallBack()
 {
-	this->keyBackClicked();
+	keyBackClicked();
 }

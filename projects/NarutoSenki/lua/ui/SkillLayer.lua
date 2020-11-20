@@ -14,28 +14,31 @@ local useFull2ImageList = {
 
 SkillLayer = class('SkillLayer', function() return display.newLayer() end)
 
-function SkillLayer:ctor()
-    self._selectLayer = nil
+function SkillLayer:ctor(selectLayer)
+    self._selectLayer = selectLayer
     self._skillExplain = nil
+
     self._buyLayer = nil
     self._buyType = SelectButton.Type.Menu
     self._fengSprite = nil
     self._fengSprite2 = nil
     self._autoMove = true
+
     self.selectHero = nil
     self.coinLabel = nil
     self._heroFull = nil
     self.changemenu = nil
     self.skillGroup = nil
-    self.skillSprite = nil
+    self.bgSprite = nil
     self.bonds = nil
+
+    self:init()
+    self:initInterface()
 end
 
+function SkillLayer:create(selectLayer) return SkillLayer.new(selectLayer) end
+
 function SkillLayer:init()
-    if not CCLayer:init() then
-        log('Initial SkillLayer failed')
-        return false
-    end
     log('Initial SkillLayer')
 
     -- produce groud
@@ -58,7 +61,7 @@ function SkillLayer:init()
     cloud_left:setAnchorPoint(0, 0)
     self:addChild(cloud_left, 2)
 
-    local cmv1 = CCMoveBy:create(1, -15, 0)
+    local cmv1 = CCMoveBy:create(1, CCPoint(-15, 0))
     local cseq1 = CCRepeatForever:create(
                       transition.sequence({cmv1, cmv1:reverse()}))
     cloud_left:runAction(cseq1)
@@ -70,7 +73,7 @@ function SkillLayer:init()
     cloud_right:setAnchorPoint(0, 0)
     self:addChild(cloud_right, 2)
 
-    local cmv2 = CCMoveBy:create(1, 15, 0)
+    local cmv2 = CCMoveBy:create(1, CCPoint(15, 0))
     local cseq2 = CCRepeatForever:create(
                       transition.sequence({cmv2, cmv2:reverse()}))
     cloud_right:runAction(cseq2)
@@ -126,36 +129,49 @@ function SkillLayer:initInterface()
     --  	return
     --  }
 
-    self.skillSprite = display.newSprite('#skill_bg1.png', display.cx,
-                                         display.cy)
-    self:addChild(self.skillSprite, 2)
-
-    if transformList[self.selectHero] ~= nil then
-        local change_bt = ui.newImageMenuItem(
-                              {
-                image = display.newSprite('#change_btn.png'),
-                listener = handler(self, SkillLayer.onChangeBtn)
-            })
-        self.changemenu = ui.newMenu({change_bt})
-        self.changemenu:setPosition(display.cx, display.cy -
-                                        self.skillSprite:getContentSize().height /
-                                        2 + 120)
-        local fd = CCFadeOut:create(1.0)
-        local seq = CCRepeatForever:create(
-                        transition.sequence({fd, fd:reverse()}))
-        change_bt:runAction(seq)
-        self:addChild(self.changemenu, 15)
+    local winNum = tonumber(tools.readSQLite('CharRecord', 'name',
+                                             self.selectHero, 'column1'))
+    local rank_src
+    local isBlink = false
+    local skillbg_src
+    if winNum >= 300 then
+        skillbg_src = 'skill_bg6.png'
+        rank_src = 'rank_sss.png'
+        isBlink = true
+    elseif winNum >= 200 then
+        skillbg_src = 'skill_bg5.png'
+        rank_src = 'rank_ss.png'
+        isBlink = true
+    elseif winNum >= 100 then
+        skillbg_src = 'skill_bg4.png'
+        rank_src = 'rank_s.png'
+        isBlink = true
+    elseif winNum >= 50 then
+        skillbg_src = 'skill_bg3.png'
+        rank_src = 'rank_a.png'
+    elseif winNum >= 25 then
+        skillbg_src = 'skill_bg2.png'
+        rank_src = 'rank_b.png'
+    else
+        skillbg_src = 'skill_bg1.png'
+        rank_src = 'rank_c.png'
     end
+
+    local skill_bg = display.newSprite('#' .. skillbg_src, display.cx,
+                                       display.cy)
+    self:addChild(skill_bg, 2)
+    self.bgSprite = skill_bg
+
+    self:trySetCharacterChangeButton(self.selectHero)
 
     local goldBG = display.newSprite('#gold_bg.png')
     goldBG:setAnchorPoint(0.5, 0)
-    goldBG:setPosition(
-        display.cx + self.skillSprite:getContentSize().width / 4 + 25,
-        display.cy + self.skillSprite:getContentSize().width / 2 - 74)
+    goldBG:setPosition(display.cx + skill_bg:getContentSize().width / 4 + 25,
+                       display.cy + skill_bg:getContentSize().width / 2 - 74)
     self:addChild(goldBG, 9)
 
-    local cl = tools.readFromSQLite()
-    self.coinLabel = CCLabelBMFont:create(cl, 'Fonts/1.fnt')
+    local coinsNum = tools.readFromSQLite()
+    self.coinLabel = CCLabelBMFont:create(coinsNum, 'Fonts/1.fnt')
     self.coinLabel:setScale(0.3)
     self.coinLabel:setAnchorPoint(0.5, 0)
     self.coinLabel:setPosition(goldBG:getPositionX() -
@@ -176,16 +192,12 @@ function SkillLayer:initInterface()
     bonds:setAnchorPoint(0.5, 0)
     -- bonds:setMidpoint(CCPoint(0, 0)) -- is default value
     bonds:setBarChangeRate(CCPoint(0, 1))
-    if tonumber(cl) >= 99999 then
+
+    coinsNum = tonumber(coinsNum)
+    if coinsNum >= 99999 then
         bonds:setPercentage(100)
-    elseif tonumber(cl) >= 80000 then
-        bonds:setPercentage(80)
-    elseif tonumber(cl) >= 60000 then
-        bonds:setPercentage(60)
-    elseif tonumber(cl) >= 40000 then
-        bonds:setPercentage(40)
-    elseif tonumber(cl) >= 20000 then
-        bonds:setPercentage(20)
+    elseif coinsNum >= 80000 then
+        bonds:setPercentage(toint(coinsNum / 1000))
     end
 
     bonds:setPosition(
@@ -193,53 +205,16 @@ function SkillLayer:initInterface()
         goldBG:getPositionY() + 4)
     self:addChild(bonds, 20)
 
-    local winNum = tools.readSQLite('CharRecord', 'name', self.selectHero,
-                                    'column1')
-    local bondString = winNum
-
-    local rank_src
-    local isBlink = false
-    local skillbg_src
-    if tonumber(bondString) >= 300 then
-        skillbg_src = 'skill_bg6.png'
-        rank_src = 'rank_sss.png'
-        isBlink = true
-    elseif tonumber(bondString) >= 200 then
-        skillbg_src = 'skill_bg5.png'
-        rank_src = 'rank_ss.png'
-        isBlink = true
-    elseif tonumber(bondString) >= 100 then
-        skillbg_src = 'skill_bg4.png'
-        rank_src = 'rank_s.png'
-        isBlink = true
-    elseif tonumber(bondString) >= 50 then
-        skillbg_src = 'skill_bg3.png'
-        rank_src = 'rank_a.png'
-    elseif tonumber(bondString) >= 25 then
-        skillbg_src = 'skill_bg2.png'
-        rank_src = 'rank_b.png'
-    else
-        skillbg_src = 'skill_bg1.png'
-        rank_src = 'rank_c.png'
-    end
-
-    self.skillSprite = display.newSprite('#' .. skillbg_src, display.cx,
-                                         display.cy)
-    self:addChild(self.skillSprite, 2)
-
     local imgPath
-
-    if table.has(useFull2ImageList, self.selectHero) and tonumber(bondString) >=
-        100 then
-        imgPath = self.selectHero .. '_full2.png'
+    if table.has(useFull2ImageList, self.selectHero) and winNum >= 100 then
+        imgPath = '#' .. self.selectHero .. '_full2.png'
     else
-        imgPath = self.selectHero .. '_full.png'
+        imgPath = '#' .. self.selectHero .. '_full.png'
     end
-    self._heroFull = display.newSprite('#' .. imgPath)
+    self._heroFull = display.newSprite(imgPath)
     self._heroFull:setAnchorPoint(0.5, 0)
     self._heroFull:setPosition(display.cx, display.cy -
-                                   self.skillSprite:getContentSize().height / 2 +
-                                   23)
+                                   skill_bg:getContentSize().height / 2 + 23)
     self:addChild(self._heroFull, 5)
 
     if isBlink then
@@ -269,18 +244,18 @@ function SkillLayer:initInterface()
 
     local rankSprite = display.newSprite('#' .. rank_src)
     rankSprite:setAnchorPoint(0, 0)
-    rankSprite:setPosition(self.skillSprite:getPositionX() -
-                               self.skillSprite:getContentSize().width / 2 + 5,
-                           self.skillSprite:getPositionY() +
-                               self.skillSprite:getContentSize().height / 2 - 20)
+    rankSprite:setPosition(skill_bg:getPositionX() -
+                               skill_bg:getContentSize().width / 2 + 5,
+                           skill_bg:getPositionY() +
+                               skill_bg:getContentSize().height / 2 - 20)
     self:addChild(rankSprite, 11)
 
     local detailBG1 = display.newSprite('#detail_bg.png')
     detailBG1:setAnchorPoint(0, 0)
-    detailBG1:setPosition(self.skillSprite:getPositionX() -
-                              self.skillSprite:getContentSize().width / 2 + 8,
-                          self.skillSprite:getPositionY() -
-                              self.skillSprite:getContentSize().height / 2 + 74)
+    detailBG1:setPosition(skill_bg:getPositionX() -
+                              skill_bg:getContentSize().width / 2 + 8,
+                          skill_bg:getPositionY() -
+                              skill_bg:getContentSize().height / 2 + 74)
     self:addChild(detailBG1, 5)
 
     local recordTime = tools.readSQLite('CharRecord', 'name', self.selectHero,
@@ -300,23 +275,22 @@ function SkillLayer:initInterface()
 
     local detailBG2 = display.newSprite('#detail_bg.png')
     detailBG2:setAnchorPoint(0, 0)
-    detailBG2:setPosition(self.skillSprite:getPositionX() +
-                              self.skillSprite:getContentSize().width / 2 -
+    detailBG2:setPosition(skill_bg:getPositionX() +
+                              skill_bg:getContentSize().width / 2 -
                               detailBG2:getContentSize().width - 8,
-                          self.skillSprite:getPositionY() -
-                              self.skillSprite:getContentSize().height / 2 + 74)
+                          skill_bg:getPositionY() -
+                              skill_bg:getContentSize().height / 2 + 74)
     self:addChild(detailBG2, 5)
 
-    local recordLabel = CCLabelBMFont:create(bondString .. ' self.bonds',
-                                             'Fonts/1.fnt')
+    local recordLabel = CCLabelBMFont:create(winNum .. ' bonds', 'Fonts/1.fnt')
     recordLabel:setScale(0.3)
     recordLabel:setAnchorPoint(0, 0)
-
     recordLabel:setPosition(detailBG2:getPositionX() + 12,
                             detailBG2:getPositionY() + 7)
     self:addChild(recordLabel, 6)
+
     self:updateSkillGroup()
-    self:scheduleUpdate()
+    self:scheduleUpdateWithPriorityLua(handler(self, SkillLayer.update), 0)
 end
 
 function SkillLayer:onChangeBtn()
@@ -325,34 +299,16 @@ function SkillLayer:onChangeBtn()
     self.changemenu:removeFromParent()
 
     local selectedHeroName = transformList[self.selectHero]
+    if selectedHeroName then self.selectHero = selectedHeroName end
+    self:trySetCharacterChangeButton(selectedHeroName, 2)
 
-    if selectedHeroName then
-        self.selectHero = selectedHeroName
-
-        local change_bt = ui.newImageMenuItem(
-                              {
-                image = display.newSprite('#change_btn2.png'),
-                listener = handler(self, SkillLayer.onChangeBtn)
-            })
-
-        self.changemenu = ui.newMenu({change_bt})
-        self.changemenu:setPosition(display.cx, display.cy -
-                                        self.skillSprite:getContentSize().height /
-                                        2 + 120)
-        local fd = CCFadeOut:create(1.0)
-        local seq = CCRepeatForever:create(
-                        transition.sequencen({fd, fd:reverse()}))
-        change_bt:runAction(seq)
-        self:addChild(self.changemenu, 15)
-    end
-
-    local frame = display.newSpriteFrame(self.selectHero .. '_full.png')
-    self._heroFull:setDisplayFrame(frame)
+    self._heroFull:setDisplayFrame(display.newSpriteFrame(
+                                       self.selectHero .. '_full.png'))
     self:updateSkillGroup()
 end
 
 function SkillLayer:updateSkillGroup()
-    self.skillGroup = TouchGroup:create() -- display.newSprite()
+    self.skillGroup = TouchGroup:create()
 
     for i = 1, 5 do
         local skill_btn = SelectButton:create(
@@ -370,23 +326,23 @@ function SkillLayer:updateSkillGroup()
 
         skill_btn._selectLayer = self._selectLayer
         skill_btn._skillLayer = self
-        self.skillGroup:addChild(skill_btn)
+        self.skillGroup:addWidget(skill_btn)
     end
 
-    self.skillGroup:setPosition(self.skillSprite:getPositionX() -
-                                    self.skillSprite:getContentSize().width / 2 +
-                                    2, 60)
-    self:addChild(self.skillGroup)
+    self.skillGroup:setPosition(self.bgSprite:getPositionX() -
+                                    self.bgSprite:getContentSize().width / 2 + 2,
+                                60)
+    self:addChild(self.skillGroup, 500)
 end
 
 function SkillLayer:setSkillExplain(buttonType)
     audio.playSound('Audio/Menu/select.ogg')
-    if self._skillExplain then bg_srcelf._skillExplain:removeFromParent() end
+    if self._skillExplain then self._skillExplain:removeFromParent() end
 
     local imgPath
-    if (buttonType == SelectButton.Type.Unlock1) then
+    if buttonType == SelectButton.Type.Unlock1 then
         imgPath = 'fenglabel.png'
-    elseif (buttonType == SelectButton.Type.Unlock2) then
+    elseif buttonType == SelectButton.Type.Unlock2 then
         imgPath = 'fenglabel2.png'
     else
         imgPath = self.selectHero .. '_label' .. (buttonType - 2) .. '.png'
@@ -401,9 +357,9 @@ function SkillLayer:setSkillExplain(buttonType)
     self._skillExplain:setAnchorPoint(0, 0)
     self._skillExplain:setPositionX(10)
 
-    clipper:setPosition(
-        display.cx - self.skillSprite:getContentSize().width / 2 + 2,
-        display.cy - self.skillSprite:getContentSize().height / 2 + 4)
+    clipper:setPosition(display.cx - self.bgSprite:getContentSize().width / 2 +
+                            2, display.cy -
+                            self.bgSprite:getContentSize().height / 2 + 4)
     clipper:addChild(self._skillExplain)
 
     self:addChild(clipper, 600)
@@ -414,7 +370,7 @@ function SkillLayer:update(dt)
 
     local lableX = self._skillExplain:getContentSize().width
 
-    if (self._skillExplain:getPositionX() >= -lableX) then
+    if self._skillExplain:getPositionX() >= -lableX then
         self._skillExplain:setPositionX(self._skillExplain:getPositionX() - 0.6)
     else
         self._skillExplain:setPositionX(320)
@@ -433,26 +389,26 @@ function SkillLayer:onCancel()
     director.popScene()
 end
 
-function SkillLayer:isCharacterTransformTo(name, awakenLv)
-    if name == nil or awakenLv ~= 'number' or awakenLv < 1 then return end
+function SkillLayer:trySetCharacterChangeButton(name, level)
+    if not level then level = 1 end
+    if not name or level < 1 then return end
 
-    if awakenLv == 1 then
+    if transformList[name] ~= nil then
+        local index = level == 1 and '' or level
 
-    elseif awakenLv == 2 then
-
-    else
-        log('Not support level %d bigger than 2', awakenLv)
-    end
-end
-
-function SkillLayer:setChangeBtn(awakenLv)
-    if name == nil or awakenLv ~= 'number' or awakenLv < 1 then return end
-
-    if awakenLv == 1 then
-
-    elseif awakenLv == 2 then
-
-    else
-        log('Not support level %d bigger than 2', awakenLv)
+        local change_bt = ui.newImageMenuItem(
+                              {
+                image = display.newSprite('#change_btn' .. index .. '.png'),
+                listener = handler(self, SkillLayer.onChangeBtn)
+            })
+        self.changemenu = ui.newMenu({change_bt})
+        self.changemenu:setPosition(display.cx, display.cy -
+                                        self.bgSprite:getContentSize().height /
+                                        2 + 120)
+        local fd = CCFadeOut:create(1.0)
+        local seq = CCRepeatForever:create(
+                        transition.sequence({fd, fd:reverse()}))
+        change_bt:runAction(seq)
+        self:addChild(self.changemenu, 15)
     end
 end
