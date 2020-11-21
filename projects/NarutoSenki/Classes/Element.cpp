@@ -123,24 +123,6 @@ void HeroElement::changeHPbar()
 
 			getDelegate()->setCKRLose(false);
 			getDelegate()->removeOugisMark(1);
-
-			if (strcmp(getCharacter()->getCString(), "Kakuzu") == 0 && hearts < 1)
-			{
-				if (_delegate->getHudLayer()->skill4Button)
-				{
-					_delegate->getHudLayer()->skill4Button->setLock();
-				}
-			}
-			if (strcmp(getCharacter()->getCString(), "Lee") == 0)
-			{
-				if (bamen < 1)
-				{
-					if (_delegate->getHudLayer()->skill4Button)
-					{
-						_delegate->getHudLayer()->skill4Button->setLock();
-					}
-				}
-			}
 		}
 		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 500;
@@ -165,28 +147,8 @@ void HeroElement::changeHPbar()
 		_isCanOugis2 = true;
 		if (strcmp(getRole()->getCString(), "Player") == 0)
 		{
-
 			getDelegate()->setCKRLose(true);
 			getDelegate()->removeOugisMark(2);
-
-			if (strcmp(getCharacter()->getCString(), "Kakuzu") == 0)
-			{
-				if (_delegate->getHudLayer()->skill5Button)
-				{
-					_delegate->getHudLayer()->skill5Button->setLock();
-				}
-			}
-
-			if (strcmp(getCharacter()->getCString(), "Lee") == 0)
-			{
-				if (bamen < 3)
-				{
-					if (_delegate->getHudLayer()->skill5Button)
-					{
-						_delegate->getHudLayer()->skill5Button->setLock();
-					}
-				}
-			}
 		}
 		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 2000;

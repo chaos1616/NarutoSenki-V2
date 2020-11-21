@@ -34,7 +34,7 @@
         <eventName type="setMove">32</eventName>
         <frameName>Chiyo_Hurt_01.png</frameName>
         <frameName>Chiyo_Hurt_02.png</frameName>
-        <eventName type="setSound">Audio/Chiyo/Chiyo_hurt.ogg</eventName>
+        <!-- <eventName type="setSound">Audio/Chiyo/Chiyo_hurt.ogg</eventName> -->
       </frame>
     </action>
    

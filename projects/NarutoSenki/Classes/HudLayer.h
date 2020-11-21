@@ -139,7 +139,7 @@ public:
 	CREATE_FUNC(HudLayer);
 
 	void updateGears();
-	void initGearButton();
+	void initGearButton(const char *charName);
 
 	void updateSkillButtons();
 

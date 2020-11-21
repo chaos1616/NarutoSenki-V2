@@ -173,14 +173,14 @@ void HudLayer::JoyStickUpdate(CCPoint direction)
 	_delegate->JoyStickUpdate(direction);
 }
 
-void HudLayer::initGearButton()
+void HudLayer::initGearButton(const char *charName)
 {
 	if (gearMenu)
 	{
 		gearMenu->removeFromParentAndCleanup(true);
 	}
 
-	CCMenuItem *gear_button = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_avator.png", _delegate->currentPlayer->getCharacter()->getCString())->getCString()), nullptr, nullptr, this, menu_selector(HudLayer::gearButtonClick));
+	CCMenuItem *gear_button = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_avator.png", charName)->getCString()), nullptr, nullptr, this, menu_selector(HudLayer::gearButtonClick));
 	gear_button->setAnchorPoint(ccp(0, 0));
 	gearMenu = CCMenu::create(gear_button, nullptr);
 	gearMenu->setPosition(ccp(0, winSize.height - gear_button->getContentSize().height));
@@ -1515,7 +1515,7 @@ void HudLayer::updateSkillButtons()
 	float diff, delayed;
 
 //TODO: Support Ino Ougis2 to display other hero's skills CD
-#define updateButtonInfo(index)                                                                                         \
+#define updateButtonInfo(index)                                                                                   \
 	skill##index##Button->setDisplayFrame(cache->spriteFrameByName((charName + "_skill" #index ".png").c_str())); \
 	skill##index##Button->setCD(CCString::createWithFormat("%d", player->_sattackcoldDown1 * 1000));              \
 	skill##index##Button->_isColdChanged = true;                                                                  \

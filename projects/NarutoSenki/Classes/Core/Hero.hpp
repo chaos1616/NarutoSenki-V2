@@ -283,9 +283,10 @@ public:
 #define setAIHandler(funcName) aiHandler = std::bind(&funcName, this)
 
 /** Character Macros */
-#define is_player getRole()->compare("Player") == 0
+#define character_is(name) getCharacter()->compare(name) == 0
 
-#define character_is(name) getCharacter()->compare(name)
+#define is_player getRole()->compare("Player") == 0
+#define not_player getRole()->compare("Player") != 0
 
 #define match_char_exp(_name, _fn, _name2, _fn2) \
 	if (character_is(_name))                     \
@@ -303,35 +304,35 @@ public:
 
 /** UI Macros */
 #define lockSkill4Button()                                     \
-	if (strcmp(getRole()->getCString(), "Player") == 0)        \
+	if (is_player)                                             \
 	{                                                          \
 		if (_delegate->getHudLayer()->skill4Button)            \
 			_delegate->getHudLayer()->skill4Button->setLock(); \
 	}
 
 #define unlockSkill4Button()                                  \
-	if (strcmp(getRole()->getCString(), "Player") == 0)       \
+	if (is_player)                                            \
 	{                                                         \
 		if (_delegate->getHudLayer()->skill4Button)           \
 			_delegate->getHudLayer()->skill4Button->unLock(); \
 	}
 
 #define lockSkill5Button()                                     \
-	if (strcmp(getRole()->getCString(), "Player") == 0)        \
+	if (is_player)                                             \
 	{                                                          \
 		if (_delegate->getHudLayer()->skill5Button)            \
 			_delegate->getHudLayer()->skill5Button->setLock(); \
 	}
 
 #define unlockSkill5Button()                                  \
-	if (strcmp(getRole()->getCString(), "Player") == 0)       \
+	if (is_player)                                            \
 	{                                                         \
 		if (_delegate->getHudLayer()->skill5Button)           \
 			_delegate->getHudLayer()->skill5Button->unLock(); \
 	}
 
 #define lockOugisButtons()                                     \
-	if (strcmp(getRole()->getCString(), "Player") == 0)        \
+	if (is_player)                                             \
 	{                                                          \
 		if (_delegate->getHudLayer()->skill4Button)            \
 			_delegate->getHudLayer()->skill4Button->setLock(); \
@@ -340,7 +341,7 @@ public:
 	}
 
 #define unlockOugisButtons()                                  \
-	if (strcmp(getRole()->getCString(), "Player") == 0)       \
+	if (is_player)                                            \
 	{                                                         \
 		if (_delegate->getHudLayer()->skill4Button)           \
 			_delegate->getHudLayer()->skill4Button->unLock(); \

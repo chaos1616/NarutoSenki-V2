@@ -6,12 +6,114 @@ class Lee : public Hero
 #define kLee____ "Lee"
 #define kRockLee "RockLee"
 
+	unsigned int bamen = 0;
+
 	void setID(CCString *character, CCString *role, CCString *group)
 	{
 		Hero::setID(character, role, group);
 
 		match_char_exp(kLee____, setAIHandler(Lee::perform),
 					   kRockLee, setAIHandler(Lee::perform_RockLee));
+	}
+
+	void dead()
+	{
+		CharacterBase::dead();
+
+		if (bamen > 0)
+		{
+			if (bamen == 5)
+			{
+
+				setWalkSpeed(224);
+				_originSpeed = 224;
+				setWalkAction(createAnimation(walkArray, 10.0f, true, false));
+				setsAttackValue3(CCString::createWithFormat("%d", to_int(getsAttackValue3()->getCString()) - 100));
+				setsAttackValue2(CCString::createWithFormat("%d", to_int(getsAttackValue2()->getCString()) - 100));
+				setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) - 60));
+			}
+			else if (bamen == 4)
+			{
+				setsAttackValue3(CCString::createWithFormat("%d", to_int(getsAttackValue3()->getCString()) - 100));
+				setsAttackValue2(CCString::createWithFormat("%d", to_int(getsAttackValue2()->getCString()) - 100));
+			}
+			else if (bamen == 3)
+			{
+				setTransform();
+
+				if (strcmp(getRole()->getCString(), "Player") == 0)
+				{
+					if (_delegate->getHudLayer()->skill3Button)
+					{
+						_delegate->getHudLayer()->skill3Button->setLock();
+					}
+				}
+
+				if (_skillBuffEffect)
+				{
+					_skillBuffEffect->removeFromParent();
+					_skillBuffEffect = nullptr;
+				}
+			}
+			else if (bamen == 2)
+			{
+				setsAttackValue2(CCString::createWithFormat("%d", to_int(getsAttackValue2()->getCString()) - 100));
+			}
+			else if (bamen == 1)
+			{
+				if (strcmp(getRole()->getCString(), "Player") == 0)
+				{
+					if (_delegate->getHudLayer()->skill4Button)
+					{
+						_delegate->getHudLayer()->skill4Button->setLock();
+					}
+				}
+				setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) - 30));
+			}
+			bamen -= 1;
+			if (bamen == 0)
+			{
+				_heartEffect->removeFromParent();
+				_heartEffect = nullptr;
+			}
+			else
+			{
+				CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Bamen_Effect_%02d.png", bamen - 1)->getCString());
+				_heartEffect->setDisplayFrame(frame);
+			}
+		}
+	}
+
+	void changeHPbar()
+	{
+		HeroElement::changeHPbar();
+
+		if (not_player)
+			return;
+
+		if (character_is(kLee____))
+		{
+			if (_exp >= 500 && _level == 1)
+			{
+				if (bamen < 1)
+				{
+					if (_delegate->getHudLayer()->skill4Button)
+					{
+						_delegate->getHudLayer()->skill4Button->setLock();
+					}
+				}
+			}
+			else if (_exp >= 1500 && _level == 3)
+			{
+				if (bamen < 3)
+				{
+					if (_delegate->getHudLayer()->skill5Button)
+					{
+						_delegate->getHudLayer()->skill5Button->setLock();
+					}
+				}
+			}
+		}
 	}
 
 	void changeAction()
@@ -82,6 +184,67 @@ class Lee : public Hero
 			setsAttackValue2(CCString::createWithFormat("%d", to_int(getsAttackValue2()->getCString()) + 100));
 			setsAttackValue3(CCString::createWithFormat("%d", to_int(getsAttackValue3()->getCString()) + 100));
 			setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 60));
+		}
+	}
+
+	void setRestore2(float dt)
+	{
+		CharacterBase::setRestore2(dt);
+
+		if (!_hpBar)
+			return;
+
+		if (bamen >= 8)
+		{
+			if (to_uint(getHP()->getCString()) - 1000 > 0)
+			{
+				setHP(CCString::createWithFormat("%ld", to_uint(getHP()->getCString()) - 1000));
+				_hpBar->loseHP(getHpPercent());
+			}
+			else
+			{
+				setHP(CCString::createWithFormat("%d", 100));
+				_hpBar->loseHP(getHpPercent());
+			}
+		}
+		else if (bamen >= 5)
+		{
+			if (to_uint(getHP()->getCString()) - 200 > 0)
+			{
+				setHP(CCString::createWithFormat("%ld", to_uint(getHP()->getCString()) - 200));
+				_hpBar->loseHP(getHpPercent());
+			}
+			else
+			{
+				setHP(CCString::createWithFormat("%d", 100));
+				_hpBar->loseHP(getHpPercent());
+			}
+		}
+		else if (bamen >= 4)
+		{
+			if (to_uint(getHP()->getCString()) - 150 > 0)
+			{
+				setHP(CCString::createWithFormat("%ld", to_uint(getHP()->getCString()) - 150));
+				_hpBar->loseHP(getHpPercent());
+			}
+			else
+			{
+				setHP(CCString::createWithFormat("%d", 100));
+				_hpBar->loseHP(getHpPercent());
+			}
+		}
+		else if (bamen >= 3)
+		{
+			if (to_uint(getHP()->getCString()) - 100 > 0)
+			{
+				setHP(CCString::createWithFormat("%ld", to_uint(getHP()->getCString()) - 100));
+				_hpBar->loseHP(getHpPercent());
+			}
+			else
+			{
+				setHP(CCString::createWithFormat("%d", 100));
+				_hpBar->loseHP(getHpPercent());
+			}
 		}
 	}
 

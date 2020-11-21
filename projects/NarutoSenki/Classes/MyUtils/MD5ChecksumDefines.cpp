@@ -92,8 +92,7 @@ DWORD CMD5Checksum::RotateLeft(DWORD x, int n)
      ARGUMENTS:  DWORD &A, B, C, D : Current (partial) checksum 
      DWORD X           : Input data 
      DWORD S     : MD5_SXX Transformation constant 
-     DWORD T     : MD5_TXX Transformation constant 
-     NOTES:   None 
+     DWORD T     : MD5_TXX Transformation constant
      *****************************************************************************************/
 void CMD5Checksum::FF(DWORD &A, DWORD B, DWORD C, DWORD D, DWORD X, DWORD S, DWORD T)
 {
@@ -111,8 +110,7 @@ void CMD5Checksum::FF(DWORD &A, DWORD B, DWORD C, DWORD D, DWORD X, DWORD S, DWO
      ARGUMENTS:  DWORD &A, B, C, D : Current (partial) checksum 
      DWORD X           : Input data 
      DWORD S      : MD5_SXX Transformation constant 
-     DWORD T      : MD5_TXX Transformation constant 
-     NOTES:   None 
+     DWORD T      : MD5_TXX Transformation constant
      *****************************************************************************************/
 void CMD5Checksum::GG(DWORD &A, DWORD B, DWORD C, DWORD D, DWORD X, DWORD S, DWORD T)
 {
@@ -130,8 +128,7 @@ void CMD5Checksum::GG(DWORD &A, DWORD B, DWORD C, DWORD D, DWORD X, DWORD S, DWO
      ARGUMENTS:  DWORD &A, B, C, D : Current (partial) checksum 
      DWORD X           : Input data 
      DWORD S      : MD5_SXX Transformation constant 
-     DWORD T      : MD5_TXX Transformation constant 
-     NOTES:   None 
+     DWORD T      : MD5_TXX Transformation constant
      *****************************************************************************************/
 void CMD5Checksum::HH(DWORD &A, DWORD B, DWORD C, DWORD D, DWORD X, DWORD S, DWORD T)
 {
@@ -149,8 +146,7 @@ void CMD5Checksum::HH(DWORD &A, DWORD B, DWORD C, DWORD D, DWORD X, DWORD S, DWO
      ARGUMENTS:  DWORD &A, B, C, D : Current (partial) checksum 
      DWORD X           : Input data 
      DWORD S      : MD5_SXX Transformation constant 
-     DWORD T      : MD5_TXX Transformation constant 
-     NOTES:   None 
+     DWORD T      : MD5_TXX Transformation constant
      *****************************************************************************************/
 void CMD5Checksum::II(DWORD &A, DWORD B, DWORD C, DWORD D, DWORD X, DWORD S, DWORD T)
 {
@@ -299,8 +295,7 @@ void CMD5Checksum::Transform(BYTE Block[64])
 /***************************************************************************************** 
      CONSTRUCTOR: CMD5Checksum 
      DESCRIPTION: Initialises member data 
-     ARGUMENTS:  None 
-     NOTES:   None 
+     ARGUMENTS:  None
      *****************************************************************************************/
 CMD5Checksum::CMD5Checksum()
 {

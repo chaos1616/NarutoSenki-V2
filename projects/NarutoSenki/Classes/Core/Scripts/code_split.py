@@ -1,3 +1,8 @@
+#
+# Batche split code
+#
+# by Re
+#
 import re
 import os
 

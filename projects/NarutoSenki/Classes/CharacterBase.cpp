@@ -32,7 +32,6 @@ CharacterBase::CharacterBase()
 	hearts = 0;
 	isHurtingTower = false;
 	damageEffectCount = 0;
-	bamen = 0;
 
 	_isSuicide = false;
 
@@ -359,7 +358,6 @@ void CharacterBase::update(float dt)
 		}
 	}
 
-	// Update hp bar position after all action
 	if (_hpBar)
 	{
 		_hpBar->setPositionX(getContentSize().width / 2 - _hpBar->getHPBottom()->getContentSize().width / 2);
@@ -2499,59 +2497,6 @@ void CharacterBase::setRestore2(float dt)
 
 	if (_hpBar)
 	{
-		if (bamen >= 8)
-		{
-			if (to_uint(_hp->getCString()) - 1000 > 0)
-			{
-				setHP(CCString::createWithFormat("%ld", to_uint(_hp->getCString()) - 1000));
-				_hpBar->loseHP(getHpPercent());
-			}
-			else
-			{
-				setHP(CCString::createWithFormat("%d", 100));
-				_hpBar->loseHP(getHpPercent());
-			}
-		}
-		else if (bamen >= 5)
-		{
-			if (to_uint(_hp->getCString()) - 200 > 0)
-			{
-				setHP(CCString::createWithFormat("%ld", to_uint(_hp->getCString()) - 200));
-				_hpBar->loseHP(getHpPercent());
-			}
-			else
-			{
-				setHP(CCString::createWithFormat("%d", 100));
-				_hpBar->loseHP(getHpPercent());
-			}
-		}
-		else if (bamen >= 4)
-		{
-			if (to_uint(_hp->getCString()) - 150 > 0)
-			{
-				setHP(CCString::createWithFormat("%ld", to_uint(_hp->getCString()) - 150));
-				_hpBar->loseHP(getHpPercent());
-			}
-			else
-			{
-				setHP(CCString::createWithFormat("%d", 100));
-				_hpBar->loseHP(getHpPercent());
-			}
-		}
-		else if (bamen >= 3)
-		{
-			if (to_uint(_hp->getCString()) - 100 > 0)
-			{
-				setHP(CCString::createWithFormat("%ld", to_uint(_hp->getCString()) - 100));
-				_hpBar->loseHP(getHpPercent());
-			}
-			else
-			{
-				setHP(CCString::createWithFormat("%d", 100));
-				_hpBar->loseHP(getHpPercent());
-			}
-		}
-
 		bool isZone = false;
 		if (strcmp(Akatsuki, _group->getCString()) == 0 && getPositionX() <= _delegate->currentMap->getTileSize().width * 2)
 		{
@@ -3926,6 +3871,7 @@ void CharacterBase::changeAction2()
 	}
 }
 
+// Release catched units
 void CharacterBase::reCatched(float dt)
 {
 	setVisible(true);
@@ -5035,10 +4981,14 @@ void CharacterBase::setTransform()
 
 	setnAttackValue(tempAttackValue);
 
+	if (strcmp(_character->getCString(), "RockLee") == 0)
+		return;
+
 	// Update HudLayer
 	if (strcmp(_role->getCString(), "Player") == 0)
 	{
 		auto charName = _character->getCString();
+
 		_delegate->getHudLayer()->skill1Button->setCD(CCString::createWithFormat("%d", _sattackcoldDown1 * 1000));
 		_delegate->getHudLayer()->skill2Button->setCD(CCString::createWithFormat("%d", _sattackcoldDown2 * 1000));
 		_delegate->getHudLayer()->skill3Button->setCD(CCString::createWithFormat("%d", _sattackcoldDown3 * 1000));
@@ -5073,7 +5023,7 @@ void CharacterBase::setTransform()
 		{
 			_delegate->getHudLayer()->skill5Button->setDisplayFrame(frame);
 		}
-		_delegate->getHudLayer()->initGearButton();
+		_delegate->getHudLayer()->initGearButton(charName);
 	}
 }
 
@@ -5954,6 +5904,7 @@ void CharacterBase::dead()
 			_isVisable = true;
 		}
 	}
+
 	if (_hpBar)
 	{
 		_hpBar->removeFromParent();
@@ -5963,92 +5914,6 @@ void CharacterBase::dead()
 	if (hearts < 1)
 	{
 		hearts += 1;
-	}
-
-	if (strcmp(getCharacter()->getCString(), "Kakuzu") == 0)
-	{
-		if (_heartEffect)
-		{
-			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", hearts)->getCString());
-			_heartEffect->setDisplayFrame(frame);
-		}
-
-		if (strcmp(getRole()->getCString(), "Player") == 0 && getLV() >= 2)
-		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->unLock();
-			}
-		}
-	}
-
-	if (bamen > 0)
-	{
-
-		if (strcmp(getCharacter()->getCString(), "Lee") == 0 ||
-			strcmp(getCharacter()->getCString(), "RockLee") == 0)
-		{
-
-			if (bamen == 5)
-			{
-
-				setWalkSpeed(224);
-				_originSpeed = 224;
-				setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-				setsAttackValue3(CCString::createWithFormat("%d", to_int(_sattackValue3->getCString()) - 100));
-				setsAttackValue2(CCString::createWithFormat("%d", to_int(_sattackValue2->getCString()) - 100));
-				setnAttackValue(CCString::createWithFormat("%d", to_int(_nattackValue->getCString()) - 60));
-			}
-			else if (bamen == 4)
-			{
-				setsAttackValue3(CCString::createWithFormat("%d", to_int(_sattackValue3->getCString()) - 100));
-				setsAttackValue2(CCString::createWithFormat("%d", to_int(_sattackValue2->getCString()) - 100));
-			}
-			else if (bamen == 3)
-			{
-				setTransform();
-
-				if (strcmp(getRole()->getCString(), "Player") == 0)
-				{
-					if (_delegate->getHudLayer()->skill3Button)
-					{
-						_delegate->getHudLayer()->skill3Button->setLock();
-					}
-				}
-
-				if (_skillBuffEffect)
-				{
-					_skillBuffEffect->removeFromParent();
-					_skillBuffEffect = nullptr;
-				}
-			}
-			else if (bamen == 2)
-			{
-				setsAttackValue2(CCString::createWithFormat("%d", to_int(_sattackValue2->getCString()) - 100));
-			}
-			else if (bamen == 1)
-			{
-				if (strcmp(getRole()->getCString(), "Player") == 0)
-				{
-					if (_delegate->getHudLayer()->skill4Button)
-					{
-						_delegate->getHudLayer()->skill4Button->setLock();
-					}
-				}
-				setnAttackValue(CCString::createWithFormat("%d", to_int(_nattackValue->getCString()) - 30));
-			}
-			bamen -= 1;
-			if (bamen == 0)
-			{
-				_heartEffect->removeFromParent();
-				_heartEffect = nullptr;
-			}
-			else
-			{
-				CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Bamen_Effect_%02d.png", bamen - 1)->getCString());
-				_heartEffect->setDisplayFrame(frame);
-			}
-		}
 	}
 
 	if (_actionState == State::FLOAT || _actionState == State::AIRHURT)

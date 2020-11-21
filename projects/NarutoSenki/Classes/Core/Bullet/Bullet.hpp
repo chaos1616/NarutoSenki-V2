@@ -2,6 +2,7 @@
 #include "CharacterBase.h"
 #include "HPBar.h"
 
+//TODO: Rename to 'Projectile'
 class Bullet : public CharacterBase
 {
 public:

@@ -12,7 +12,7 @@ public:
 	void initAction();
 	void setHPbar();
 	void setShadows();
-	void changeHPbar();
+	virtual void changeHPbar();
 	void checkRefCount(float dt);
 
 	CCSprite *rebornSprite;

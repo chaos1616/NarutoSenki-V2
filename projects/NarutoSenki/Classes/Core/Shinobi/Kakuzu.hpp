@@ -4,6 +4,51 @@
 
 class Kakuzu : public Hero
 {
+	void dead()
+	{
+		CharacterBase::dead();
+
+		if (_heartEffect)
+		{
+			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", hearts)->getCString());
+			_heartEffect->setDisplayFrame(frame);
+		}
+
+		if (strcmp(getRole()->getCString(), "Player") == 0 && getLV() >= 2)
+		{
+			if (_delegate->getHudLayer()->skill4Button)
+			{
+				_delegate->getHudLayer()->skill4Button->unLock();
+			}
+		}
+	}
+
+	void changeHPbar()
+	{
+		HeroElement::changeHPbar();
+
+		if (not_player)
+			return;
+
+		if (_exp >= 500 && _level == 1)
+		{
+			if (hearts < 1)
+			{
+				if (_delegate->getHudLayer()->skill4Button)
+				{
+					_delegate->getHudLayer()->skill4Button->setLock();
+				}
+			}
+		}
+		else if (_exp >= 1500 && _level == 3)
+		{
+			if (_delegate->getHudLayer()->skill5Button)
+			{
+				_delegate->getHudLayer()->skill5Button->setLock();
+			}
+		}
+	}
+
 	void perform()
 	{
 
