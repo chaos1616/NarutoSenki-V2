@@ -6332,7 +6332,7 @@ bool CharacterBase::findTargetEnemy(const char *type, bool isTowerDected)
 			target->_isVisable && !target->_isWudi)
 		{
 			// float gardZone;
-			if (getDelegate()->zhenying > 0)
+			if (getDelegate()->team > 0)
 			{
 				if (target->getPositionX() >= 81 * 32)
 				{

@@ -42,16 +42,12 @@ class Chiyo : public Hero
 			if (_mainTarget != nullptr)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 			else
 			{
 				if (stepBack())
-				{
 					return;
-				}
 			}
 		}
 
@@ -61,23 +57,17 @@ class Chiyo : public Hero
 			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
 			{
 				if (getPositionX() < 85 * 32)
-				{
 					needBack = true;
-				}
 			}
 			else
 			{
 				if (getPositionX() > 11 * 32)
-				{
 					needBack = true;
-				}
 			}
 			if (needBack)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 		}
 
@@ -247,7 +237,7 @@ class Chiyo : public Hero
 	void changeAction()
 	{
 
-		if (strcmp(getRole()->getCString(), "Player") == 0)
+		if (is_player)
 		{
 			_delegate->getHudLayer()->skill1Button->setLock();
 			_delegate->getHudLayer()->skill2Button->unLock();
@@ -258,7 +248,7 @@ class Chiyo : public Hero
 	void setActionResume()
 	{
 
-		if (strcmp(getRole()->getCString(), "Player") == 0)
+		if (is_player)
 		{
 			_delegate->getHudLayer()->skill1Button->unLock();
 			_delegate->getHudLayer()->skill2Button->setLock();

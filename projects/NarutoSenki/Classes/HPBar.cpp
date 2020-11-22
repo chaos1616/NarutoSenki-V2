@@ -57,7 +57,7 @@ void HPBar::loseHP(float percent)
 	{
 
 		const char *gardTower;
-		if (_delegate->getDelegate()->zhenying > 0)
+		if (_delegate->getDelegate()->team > 0)
 		{
 			gardTower = "AkatsukiCenter";
 		}
@@ -497,7 +497,7 @@ void HPBar::loseHP(float percent)
 				_delegate->getDelegate()->setReport(currentSlayer->getCharacter()->getCString(), _delegate->getCharacter()->getCString(), currentSlayer->getKillNum());
 
 				const char *currentTeam;
-				if (_delegate->getDelegate()->zhenying > 0)
+				if (_delegate->getDelegate()->team > 0)
 				{
 					currentTeam = Konoha;
 				}

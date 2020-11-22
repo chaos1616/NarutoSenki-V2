@@ -60,11 +60,11 @@ void SelectLayer::onGameStart()
 		}
 
 		srand((int)time(0));
-		int zhenying = 1;
-		zhenying = random(2);
+		int team = 1;
+		team = random(2);
 
 		const char *groupName;
-		if (zhenying > 0)
+		if (team > 0)
 		{
 			groupName = Konoha;
 		}
@@ -143,7 +143,7 @@ void SelectLayer::onGameStart()
 				dic = CCDictionary::create();
 				tmpChar = CCString::create(hero->getCString());
 				tmpRole = CCString::create("Com");
-				if (zhenying > 0)
+				if (team > 0)
 				{
 					tmpGroup = CCString::create(Konoha);
 				}
@@ -173,7 +173,7 @@ void SelectLayer::onGameStart()
 				dic = CCDictionary::create();
 				tmpChar = CCString::create(hero->getCString());
 				tmpRole = CCString::create("Com");
-				if (zhenying > 0)
+				if (team > 0)
 				{
 					tmpGroup = CCString::create(Akatsuki);
 				}
@@ -201,8 +201,10 @@ void SelectLayer::onGameStart()
 	}
 }
 
-void SelectLayer::keyBackClicked(){
-	lua_call_func("backToStartMenu")}
+void SelectLayer::keyBackClicked()
+{
+	lua_call_func("backToStartMenu");
+}
 
 SelectLayer *SelectLayer::create()
 {

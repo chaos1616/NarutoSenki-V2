@@ -78,16 +78,12 @@ class Minato : public Hero
 			if (_mainTarget != nullptr)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 			else
 			{
 				if (stepBack())
-				{
 					return;
-				}
 			}
 		}
 
@@ -97,24 +93,18 @@ class Minato : public Hero
 			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
 			{
 				if (getPositionX() < 85 * 32)
-				{
 					needBack = true;
-				}
 			}
 			else
 			{
 				if (getPositionX() > 11 * 32)
-				{
 					needBack = true;
-				}
 			}
 
 			if (needBack)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 		}
 
@@ -335,7 +325,7 @@ class Minato : public Hero
 
 			setSkill1Action(createAnimation(skillSPC1Array, 10.0f, false, true));
 
-			if (strcmp(getRole()->getCString(), "Player") == 0)
+			if (is_player)
 			{
 
 				CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Minato_skill1_1.png");

@@ -42,9 +42,7 @@ class Deidara : public Hero
 			{
 
 				if (stepBack())
-				{
 					return;
-				}
 			}
 		}
 

@@ -29,9 +29,7 @@ class Hiruzen : public Hero
 			if (_mainTarget != nullptr)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 			else
 			{
@@ -40,9 +38,7 @@ class Hiruzen : public Hero
 					useGear(gear00);
 				}
 				if (stepBack())
-				{
 					return;
-				}
 			}
 		}
 
@@ -52,16 +48,12 @@ class Hiruzen : public Hero
 			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
 			{
 				if (getPositionX() < 85 * 32)
-				{
 					needBack = true;
-				}
 			}
 			else
 			{
 				if (getPositionX() > 11 * 32)
-				{
 					needBack = true;
-				}
 			}
 
 			if (needBack)
@@ -71,9 +63,7 @@ class Hiruzen : public Hero
 					useGear(gear00);
 				}
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 		}
 

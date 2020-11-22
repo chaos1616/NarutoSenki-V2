@@ -14,7 +14,7 @@ class Kakuzu : public Hero
 			_heartEffect->setDisplayFrame(frame);
 		}
 
-		if (strcmp(getRole()->getCString(), "Player") == 0 && getLV() >= 2)
+		if (is_player && getLV() >= 2)
 		{
 			if (_delegate->getHudLayer()->skill4Button)
 			{
@@ -144,16 +144,12 @@ class Kakuzu : public Hero
 			if (_mainTarget != nullptr)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 			else
 			{
 				if (stepBack())
-				{
 					return;
-				}
 			}
 		}
 
@@ -163,23 +159,17 @@ class Kakuzu : public Hero
 			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
 			{
 				if (getPositionX() < 85 * 32)
-				{
 					needBack = true;
-				}
 			}
 			else
 			{
 				if (getPositionX() > 11 * 32)
-				{
 					needBack = true;
-				}
 			}
 			if (needBack)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 		}
 
@@ -411,7 +401,7 @@ class Kakuzu : public Hero
 			if (hearts < 1 || countMon >= 2)
 			{
 
-				if (strcmp(getRole()->getCString(), "Player") == 0)
+				if (is_player)
 				{
 					if (_delegate->getHudLayer()->skill4Button)
 					{

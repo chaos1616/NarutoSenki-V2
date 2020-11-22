@@ -41,16 +41,12 @@ class Kakashi : public Hero
 			if (_mainTarget != nullptr)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 			else
 			{
 				if (stepBack())
-				{
 					return;
-				}
 			}
 		}
 
@@ -60,24 +56,18 @@ class Kakashi : public Hero
 			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
 			{
 				if (getPositionX() < 85 * 32)
-				{
 					needBack = true;
-				}
 			}
 			else
 			{
 				if (getPositionX() > 11 * 32)
-				{
 					needBack = true;
-				}
 			}
 
 			if (needBack)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 		}
 
@@ -266,7 +256,7 @@ class Kakashi : public Hero
 			}
 		}
 
-		if (strcmp(getRole()->getCString(), "Player") == 0)
+		if (is_player)
 		{
 			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Kakashi_skill1_1.png");
 			_delegate->getHudLayer()->skill1Button->setDisplayFrame(frame);
@@ -283,7 +273,7 @@ class Kakashi : public Hero
 
 		setsAttackValue1(CCString::createWithFormat("%d", to_int(gettempAttackValue1()->getCString())));
 
-		if (strcmp(getRole()->getCString(), "Player") == 0)
+		if (is_player)
 		{
 
 			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Kakashi_skill1.png");

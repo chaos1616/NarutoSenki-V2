@@ -284,7 +284,7 @@ void HudLayer::initHeroInterface()
 	AkaLabel = CCLabelBMFont::create("0", "Fonts/red.fnt");
 	AkaLabel->setScale(0.35f);
 
-	if (_delegate->zhenying > 0)
+	if (_delegate->team > 0)
 	{
 		KonoLabel->setAnchorPoint(ccp(1, 1));
 		AkaLabel->setAnchorPoint(ccp(0, 1));
@@ -307,7 +307,7 @@ void HudLayer::initHeroInterface()
 	hengLabel->setPosition(ccp(winSize.width - 37, KonoLabel->getPositionY() + 2));
 	addChild(hengLabel, 5000);
 
-	initGearButton();
+	initGearButton(_delegate->currentPlayer->getCharacter()->getCString());
 
 	hpLabel = CCLabelBMFont::create(_delegate->currentPlayer->getHP()->getCString(), "Fonts/1.fnt");
 	hpLabel->setScale(0.35f);
@@ -316,10 +316,8 @@ void HudLayer::initHeroInterface()
 
 	addChild(hpLabel, 5000);
 
-	expLabel = CCLabelBMFont::create(CCString::createWithFormat("%i%%",
-																int(_delegate->currentPlayer->getEXP() - ((_delegate->currentPlayer->getLV() - 1) * 500) / 500))
-										 ->getCString(),
-									 "Fonts/1.fnt");
+	int exp = _delegate->currentPlayer->getEXP() - ((_delegate->currentPlayer->getLV() - 1) * 500) / 500;
+	expLabel = CCLabelBMFont::create(CCString::createWithFormat("%i%%", exp)->getCString(), "Fonts/1.fnt");
 	expLabel->setScale(0.35f);
 	expLabel->setPosition(ccp(94, winSize.height - 54));
 	expLabel->setAnchorPoint(ccp(0.5f, 0));
@@ -1363,7 +1361,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		CCSprite *CutBg;
 		const char *cutPath1;
 		const char *cutPath2;
-		if (_delegate->zhenying > 0)
+		if (_delegate->team > 0)
 		{
 			cutPath1 = "CutBg.png";
 			cutPath2 = "CutBg2.png";
@@ -1509,31 +1507,13 @@ void HudLayer::updateSkillButtons()
 		return;
 
 	auto cache = CCSpriteFrameCache::sharedSpriteFrameCache();
-	cc_timeval timeVal;
-	CCTime::gettimeofdayCocos2d(&timeVal, 0);
-	float now = timeVal.tv_sec + timeVal.tv_usec / 1000;
-	float diff, delayed;
 
-//TODO: Support Ino Ougis2 to display other hero's skills CD
-#define updateButtonInfo(index)                                                                                   \
-	skill##index##Button->setDisplayFrame(cache->spriteFrameByName((charName + "_skill" #index ".png").c_str())); \
-	skill##index##Button->setCD(CCString::createWithFormat("%d", player->_sattackcoldDown1 * 1000));              \
-	skill##index##Button->_isColdChanged = true;                                                                  \
-	// float skill##index##ClickTime = skill##index##Button->_clickTime;                                             \
-	// diff = skill##index##ClickTime - now;                                                                               \
-	// skill##index##Button->beganAnimation();                                                                       \
-	// delayed = diff - floorf(diff / 10);                                                                           \
-	// if (delayed > 0.01f)                                                                                                \
-	// {                                                                                                                   \
-	// 	skill##index##Button->unschedule(schedule_selector(ActionButton::updateCDLabel));                         \
-	// 	skill##index##Button->schedule(schedule_selector(ActionButton::updateCDLabel), delayed);                  \
-	// }
-
-	// NOTE: If the character has awakened but has no corresponding icon
-	// then the skills icons before the awakening state should be used
-	if (charName == "RockLee")
-	{
-		charName = "Lee";
+#define updateButtonInfo(index)                                                                                       \
+	if (skill##index##Button)                                                                                         \
+	{                                                                                                                 \
+		skill##index##Button->setDisplayFrame(cache->spriteFrameByName((charName + "_skill" #index ".png").c_str())); \
+		skill##index##Button->setCD(CCString::createWithFormat("%d", player->_sattackcoldDown1 * 1000));              \
+		skill##index##Button->_isColdChanged = true;                                                                  \
 	}
 
 	updateButtonInfo(1);

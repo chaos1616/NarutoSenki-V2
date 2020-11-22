@@ -7,19 +7,19 @@ class Ino : public Hero
 	{
 		CharacterBase::dead();
 
-		if (is_player)
-		{
-			// Has controlled other hero
-			if (_delegate->currentPlayer != this)
-			{
-				auto other = _delegate->currentPlayer;
-				other->changeGroup();
-				other->doAI();
+		// if (is_player)
+		// {
+		// 	// Has controlled other hero
+		// 	if (_delegate->currentPlayer != this)
+		// 	{
+		// 		auto other = _delegate->currentPlayer;
+		// 		other->changeGroup();
+		// 		other->doAI();
 
-				_delegate->currentPlayer = this;
-				_delegate->getHudLayer()->updateSkillButtons();
-			}
-		}
+		// 		_delegate->currentPlayer = this;
+		// 		_delegate->getHudLayer()->updateSkillButtons();
+		// 	}
+		// }
 	}
 
 	void perform()
@@ -65,16 +65,12 @@ class Ino : public Hero
 			if (_mainTarget != nullptr)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 			else
 			{
 				if (stepBack())
-				{
 					return;
-				}
 			}
 		}
 
@@ -84,24 +80,18 @@ class Ino : public Hero
 			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
 			{
 				if (getPositionX() < 85 * 32)
-				{
 					needBack = true;
-				}
 			}
 			else
 			{
 				if (getPositionX() > 11 * 32)
-				{
 					needBack = true;
-				}
 			}
 
 			if (needBack)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 		}
 
@@ -283,17 +273,16 @@ class Ino : public Hero
 					tempHero->unschedule(schedule_selector(Ino::setAI));
 					_delegate->getHudLayer()->_isAllButtonLocked = false;
 				}
-				if (strcmp(getRole()->getCString(), "Player") == 0)
+				if (is_player)
 				{
-					auto controlledHero = _delegate->currentPlayer;
-					controlledHero->_isAI = true;
-					controlledHero->doAI();
-					_isControlled = false;
+					// auto controlledHero = _delegate->currentPlayer;
+					// controlledHero->_isAI = true;
+					// controlledHero->doAI();
+					// _isControlled = false;
 
-					_delegate->currentPlayer = this;
+					// _delegate->currentPlayer = this;
 					_delegate->controlChar = nullptr;
-
-					_delegate->getHudLayer()->updateSkillButtons();
+					// _delegate->getHudLayer()->updateSkillButtons();
 				}
 				if (getActionState() != State::DEAD)
 				{
@@ -305,7 +294,6 @@ class Ino : public Hero
 		}
 
 		_isBati = false;
-		CharacterBase::resumeAction(dt);
 	}
 
 	void setActionResume()
@@ -326,7 +314,7 @@ class Ino : public Hero
 					tempHero->_isAI = false;
 					_delegate->getHudLayer()->_isAllButtonLocked = false;
 				}
-				if (strcmp(getRole()->getCString(), "Player") == 0)
+				if (is_player)
 				{
 					_delegate->controlChar = nullptr;
 				}

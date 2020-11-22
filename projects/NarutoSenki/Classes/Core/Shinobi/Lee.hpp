@@ -41,7 +41,7 @@ class Lee : public Hero
 			{
 				setTransform();
 
-				if (strcmp(getRole()->getCString(), "Player") == 0)
+				if (is_player)
 				{
 					if (_delegate->getHudLayer()->skill3Button)
 					{
@@ -61,7 +61,7 @@ class Lee : public Hero
 			}
 			else if (bamen == 1)
 			{
-				if (strcmp(getRole()->getCString(), "Player") == 0)
+				if (is_player)
 				{
 					if (_delegate->getHudLayer()->skill4Button)
 					{
@@ -138,7 +138,7 @@ class Lee : public Hero
 		if (bamen == 1)
 		{
 			setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 30));
-			if (strcmp(getRole()->getCString(), "Player") == 0)
+			if (is_player)
 			{
 				if (_delegate->getHudLayer()->skill4Button)
 				{
@@ -158,12 +158,12 @@ class Lee : public Hero
 			}
 			setTransform();
 
-			if (strcmp(getRole()->getCString(), "Player") == 0)
+			if (is_player)
 			{
 				_delegate->getHudLayer()->skill3Button->unLock();
 			}
 
-			if (strcmp(getRole()->getCString(), "Player") == 0)
+			if (is_player)
 			{
 				if (_delegate->getHudLayer()->skill5Button)
 				{
@@ -288,16 +288,12 @@ class Lee : public Hero
 			if (_mainTarget != nullptr)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 			else
 			{
 				if (stepBack())
-				{
 					return;
-				}
 			}
 		}
 
@@ -307,24 +303,18 @@ class Lee : public Hero
 			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
 			{
 				if (getPositionX() < 85 * 32)
-				{
 					needBack = true;
-				}
 			}
 			else
 			{
 				if (getPositionX() > 11 * 32)
-				{
 					needBack = true;
-				}
 			}
 
 			if (needBack)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 		}
 
@@ -488,16 +478,12 @@ class Lee : public Hero
 			if (_mainTarget != nullptr)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 			else
 			{
 				if (stepBack())
-				{
 					return;
-				}
 			}
 		}
 
@@ -507,24 +493,18 @@ class Lee : public Hero
 			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
 			{
 				if (getPositionX() < 85 * 32)
-				{
 					needBack = true;
-				}
 			}
 			else
 			{
 				if (getPositionX() > 11 * 32)
-				{
 					needBack = true;
-				}
 			}
 
 			if (needBack)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 		}
 

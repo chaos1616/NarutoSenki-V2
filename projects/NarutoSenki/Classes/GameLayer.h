@@ -121,7 +121,7 @@ public:
 	bool _isHardCoreGame;
 	bool _isRandomChar;
 
-	int zhenying;
+	int team;
 	bool _isStarted;
 	bool _isExiting;
 

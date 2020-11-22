@@ -44,16 +44,12 @@ class Kankuro : public Hero
 			if (_mainTarget != nullptr)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 			else
 			{
 				if (stepBack())
-				{
 					return;
-				}
 			}
 		}
 
@@ -63,23 +59,17 @@ class Kankuro : public Hero
 			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
 			{
 				if (getPositionX() < 85 * 32)
-				{
 					needBack = true;
-				}
 			}
 			else
 			{
 				if (getPositionX() > 11 * 32)
-				{
 					needBack = true;
-				}
 			}
 			if (needBack)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 		}
 
@@ -248,7 +238,7 @@ class Kankuro : public Hero
 	void changeAction()
 	{
 
-		if (strcmp(getRole()->getCString(), "Player") == 0)
+		if (is_player)
 		{
 			_delegate->getHudLayer()->skill1Button->setLock();
 			_delegate->getHudLayer()->skill2Button->unLock();
@@ -258,7 +248,7 @@ class Kankuro : public Hero
 	void setActionResume()
 	{
 
-		if (strcmp(getRole()->getCString(), "Player") == 0)
+		if (is_player)
 		{
 			_delegate->getHudLayer()->skill1Button->unLock();
 			_delegate->getHudLayer()->skill2Button->setLock();
@@ -283,7 +273,7 @@ class Kankuro : public Hero
 		else if (cloneTime == 1)
 		{
 			clone = create<Sanshouuo>(CCString::create("Sanshouuo"), CCString::create("Kugutsu"), getGroup());
-			if (strcmp(getRole()->getCString(), "Player") == 0)
+			if (is_player)
 			{
 				if (_delegate->getHudLayer()->skill4Button)
 				{
@@ -294,7 +284,7 @@ class Kankuro : public Hero
 		else if (cloneTime == 2)
 		{
 			clone = create<Saso>(CCString::create("Saso"), CCString::create("Kugutsu"), getGroup());
-			if (strcmp(getRole()->getCString(), "Player") == 0)
+			if (is_player)
 			{
 				if (_delegate->getHudLayer()->skill5Button)
 				{

@@ -12,8 +12,6 @@ bool _isFullScreen = false;
 GLFWwindow *_window = nullptr;
 #endif
 
-using namespace CocosDenshion;
-
 GameLayer::GameLayer()
 {
 	_isAttackButtonRelease = true;
@@ -44,7 +42,7 @@ GameLayer::GameLayer()
 	_isOugis2Game = false;
 	_isHardCoreGame = false;
 	_isRandomChar = false;
-	zhenying = 1;
+	team = 1;
 	currentPlayer = nullptr;
 	isPosting = false;
 	postTime = 0;
@@ -192,7 +190,7 @@ void GameLayer::initGard()
 
 	const char *groupName;
 
-	if (zhenying > 0)
+	if (team > 0)
 	{
 		groupName = Akatsuki;
 	}
@@ -209,7 +207,7 @@ void GameLayer::initGard()
 		Guardian = Provider::create(CCString::create(Guardian_Han), CCString::create("Com"), CCString::create(groupName));
 	}
 
-	if (zhenying > 0)
+	if (team > 0)
 	{
 		Guardian->setPosition(ccp(2800, 80));
 		Guardian->setSpawnPoint(ccp(2800, 80));
@@ -355,7 +353,7 @@ void GameLayer::initHeros()
 
 				if (strcmp(group->getCString(), Akatsuki) == 0)
 				{
-					zhenying = 0;
+					team = 0;
 				}
 
 				currentPlayer = (CharacterBase *)Provider::create(player, role, group);
@@ -366,7 +364,7 @@ void GameLayer::initHeros()
 				currentPlayer->setHPbar();
 				currentPlayer->setShadows();
 				currentPlayer->idle();
-				if (zhenying <= 0)
+				if (team <= 0)
 				{
 					currentPlayer->_isFlipped = true;
 					currentPlayer->setFlipX(true);
@@ -870,7 +868,7 @@ void GameLayer::checkTower()
 
 	if (konohaTowerCount == 0 || akatsukiTowerCount == 0)
 	{
-		if (zhenying > 0)
+		if (team > 0)
 		{
 			if (konohaTowerCount == 0)
 			{

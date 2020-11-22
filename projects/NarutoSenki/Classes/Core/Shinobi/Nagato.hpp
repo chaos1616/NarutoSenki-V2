@@ -12,7 +12,7 @@ class Nagato : public Hero
 	{
 		auto clone = create<DevaPath>(CCString::create("DevaPath"), CCString::create(K_TAG_CLONE), getGroup());
 		clone->_isBati = true;
-		if (strcmp(getRole()->getCString(), "Player") == 0)
+		if (is_player)
 		{
 			if (_delegate->getHudLayer()->skill5Button)
 			{

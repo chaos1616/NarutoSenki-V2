@@ -47,7 +47,7 @@ class Guardian : public Hero
 				{
 					CharacterBase *target = (CharacterBase *)pObject;
 					const char *gardTower;
-					if (getDelegate()->zhenying > 0)
+					if (getDelegate()->team > 0)
 					{
 						gardTower = "AkatsukiCenter";
 					}

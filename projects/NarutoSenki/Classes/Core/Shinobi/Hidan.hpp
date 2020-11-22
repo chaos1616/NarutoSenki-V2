@@ -96,16 +96,12 @@ class Hidan : public Hero
 			if (_mainTarget != nullptr)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 			else
 			{
 				if (stepBack())
-				{
 					return;
-				}
 			}
 		}
 
@@ -115,24 +111,18 @@ class Hidan : public Hero
 			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
 			{
 				if (getPositionX() < 85 * 32)
-				{
 					needBack = true;
-				}
 			}
 			else
 			{
 				if (getPositionX() > 11 * 32)
-				{
 					needBack = true;
-				}
 			}
 
 			if (needBack)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 		}
 
@@ -352,7 +342,7 @@ class Hidan : public Hero
 			_monsterArray = nullptr;
 		}
 
-		if (strcmp(getRole()->getCString(), "Player") == 0)
+		if (is_player)
 		{
 			_delegate->getHudLayer()->skill1Button->unLock();
 		}
@@ -398,7 +388,7 @@ class Hidan : public Hero
 			_monsterArray = nullptr;
 		}
 
-		if (strcmp(getRole()->getCString(), "Player") == 0)
+		if (is_player)
 		{
 			_delegate->getHudLayer()->skill1Button->unLock();
 		}

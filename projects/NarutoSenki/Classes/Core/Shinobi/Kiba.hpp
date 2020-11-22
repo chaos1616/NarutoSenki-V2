@@ -30,9 +30,7 @@ class Kiba : public Hero
 			if (_mainTarget != nullptr)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 			else
 			{
@@ -41,9 +39,7 @@ class Kiba : public Hero
 					useGear(gear00);
 				}
 				if (stepBack())
-				{
 					return;
-				}
 			}
 		}
 
@@ -216,7 +212,7 @@ class Kiba : public Hero
 		{
 			_isBati = false;
 
-			if (strcmp(getRole()->getCString(), "Player") == 0)
+			if (is_player)
 			{
 				_delegate->getHudLayer()->skill1Button->setLock();
 				_delegate->getHudLayer()->skill2Button->unLock();
@@ -284,7 +280,7 @@ class Kiba : public Hero
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
 
-		if (strcmp(getRole()->getCString(), "Player") == 0)
+		if (is_player)
 		{
 			_delegate->getHudLayer()->skill1Button->unLock();
 			_delegate->getHudLayer()->skill2Button->setLock();

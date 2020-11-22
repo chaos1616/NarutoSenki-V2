@@ -29,9 +29,7 @@ class Sakura : public Hero
 			if (_mainTarget != nullptr)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 			else
 			{
@@ -40,9 +38,7 @@ class Sakura : public Hero
 					useGear(gear00);
 				}
 				if (stepBack())
-				{
 					return;
-				}
 			}
 		}
 
