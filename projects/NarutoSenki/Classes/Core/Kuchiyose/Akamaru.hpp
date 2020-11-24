@@ -21,7 +21,7 @@ class Akamaru : public Hero
 
 		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > winSize.width / 2 - 48)
 		{
-			if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
+			if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 			{
 				moveDirection = ccpNormalize(ccpSub(_master->getPosition(), getPosition()));
 				walk(moveDirection);
@@ -52,7 +52,7 @@ class Akamaru : public Hero
 				}
 				else
 				{
-					if (getActionState() == State::IDLE || getActionState() == State::WALK || _actionState == State::ATTACK)
+					if (getActionState() == State::IDLE || getActionState() == State::WALK || _actionState == State::NATTACK)
 					{
 						changeSide(sp);
 						attack(NAttack);
@@ -72,11 +72,11 @@ class Akamaru : public Hero
 				}
 				else
 				{
-					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
+					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 					{
 
 						if (_master->_isCanSkill2 && _mainTarget->getGP() < 5000 && (_master->_isControlled || _master->_isAI == true) &&
-							(_master->getActionState() == State::IDLE || _master->getActionState() == State::WALK || _master->getActionState() == State::ATTACK))
+							(_master->getActionState() == State::IDLE || _master->getActionState() == State::WALK || _master->getActionState() == State::NATTACK))
 						{
 							changeSide(sp);
 							if (strcmp(_master->getRole()->getCString(), "Player") != 0)
@@ -122,7 +122,7 @@ class Akamaru : public Hero
 		setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
 		setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
 
-		if (getActionState() == State::ATTACK)
+		if (getActionState() == State::NATTACK)
 		{
 			_actionState = State::WALK;
 			idle();
@@ -142,7 +142,7 @@ class Akamaru : public Hero
 
 			if (_actionState == State::IDLE ||
 				_actionState == State::WALK ||
-				_actionState == State::ATTACK)
+				_actionState == State::NATTACK)
 			{
 				_actionState = State::WALK;
 				idle();

@@ -19,7 +19,7 @@ class Sanshouuo : public Hero
 			CCPoint moveDirection;
 			if (abs(ccpSub(_master->getPosition(), getPosition()).x) > winSize.width / 2 - 64)
 			{
-				if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
+				if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 				{
 					moveDirection = ccpNormalize(ccpSub(_master->getPosition(), getPosition()));
 					walk(moveDirection);
@@ -37,7 +37,7 @@ class Sanshouuo : public Hero
 				{
 					if (_master->getActionState() == State::IDLE ||
 						_master->getActionState() == State::WALK ||
-						_master->getActionState() == State::ATTACK ||
+						_master->getActionState() == State::NATTACK ||
 						_master->getActionState() == State::SATTACK ||
 						_master->getActionState() == State::OATTACK ||
 						_master->getActionState() == State::O2ATTACK)
@@ -48,7 +48,7 @@ class Sanshouuo : public Hero
 				}
 				else
 				{
-					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
+					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 					{
 						changeSide(sp);
 						attack(NAttack);
@@ -63,7 +63,7 @@ class Sanshouuo : public Hero
 				{
 					if (_master->getActionState() == State::IDLE ||
 						_master->getActionState() == State::WALK ||
-						_master->getActionState() == State::ATTACK ||
+						_master->getActionState() == State::NATTACK ||
 						_master->getActionState() == State::SATTACK ||
 						_master->getActionState() == State::OATTACK ||
 						_master->getActionState() == State::O2ATTACK)
@@ -76,7 +76,7 @@ class Sanshouuo : public Hero
 				else if ((abs(sp.x) > 32 || abs(sp.y) > 32) && !_isCanSkill1)
 				{
 					if (_master->getActionState() == State::WALK ||
-						_master->getActionState() == State::ATTACK ||
+						_master->getActionState() == State::NATTACK ||
 						_master->getActionState() == State::SATTACK ||
 						_master->getActionState() == State::OATTACK ||
 						_master->getActionState() == State::O2ATTACK)
@@ -86,7 +86,7 @@ class Sanshouuo : public Hero
 						return;
 					}
 				}
-				else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
+				else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 				{
 
 					if (_isCanSkill1 && _mainTarget->getGP() < 5000)
@@ -115,7 +115,7 @@ class Sanshouuo : public Hero
 		else
 		{
 			if (_master->getActionState() == State::WALK ||
-				_master->getActionState() == State::ATTACK ||
+				_master->getActionState() == State::NATTACK ||
 				_master->getActionState() == State::SATTACK ||
 				_master->getActionState() == State::OATTACK)
 			{
@@ -123,7 +123,7 @@ class Sanshouuo : public Hero
 			}
 			else
 			{
-				if (_actionState == State::WALK || _actionState == State::ATTACK)
+				if (_actionState == State::WALK || _actionState == State::NATTACK)
 				{
 					idle();
 				}

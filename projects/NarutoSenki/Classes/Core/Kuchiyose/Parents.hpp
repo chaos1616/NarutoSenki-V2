@@ -22,7 +22,7 @@ class Parents : public Hero
 
 		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > 9 && !_skillChangeBuffValue)
 		{
-			if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
+			if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 			{
 				moveDirection = ccpNormalize(ccpSub(_master->getPosition(), getPosition()));
 				walk(moveDirection);
@@ -43,7 +43,7 @@ class Parents : public Hero
 				}
 				else
 				{
-					if ((getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK) && !_skillChangeBuffValue)
+					if ((getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK) && !_skillChangeBuffValue)
 					{
 						changeSide(sp);
 						attack(NAttack);
@@ -53,11 +53,11 @@ class Parents : public Hero
 			}
 			else
 			{
-				if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
+				if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 				{
 					if (_master->getActionState() == State::IDLE ||
 						_master->getActionState() == State::WALK ||
-						_master->getActionState() == State::ATTACK)
+						_master->getActionState() == State::NATTACK)
 					{
 
 						if (_master->_isCanSkill3 && _mainTarget->getGP() < 5000 && (_master->_isControlled || _master->_isAI == true) && !_skillChangeBuffValue)
@@ -69,7 +69,7 @@ class Parents : public Hero
 						}
 						else if (abs(sp.x) > 48 || abs(sp.y) > 32)
 						{
-							if (_skillChangeBuffValue && getActionState() != State::ATTACK)
+							if (_skillChangeBuffValue && getActionState() != State::NATTACK)
 							{
 								moveDirection = ccpNormalize(sp);
 								walk(moveDirection);

@@ -17,7 +17,7 @@ class Saso : public Hero
 		CCPoint moveDirection;
 		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > 64)
 		{
-			if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
+			if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 			{
 				moveDirection = ccpNormalize(ccpSub(_master->getPosition(), getPosition()));
 				walk(moveDirection);
@@ -38,7 +38,7 @@ class Saso : public Hero
 				{
 					if (_master->getActionState() == State::IDLE ||
 						_master->getActionState() == State::WALK ||
-						_master->getActionState() == State::ATTACK ||
+						_master->getActionState() == State::NATTACK ||
 						_master->getActionState() == State::SATTACK ||
 						_master->getActionState() == State::OATTACK ||
 						_master->getActionState() == State::O2ATTACK)
@@ -50,7 +50,7 @@ class Saso : public Hero
 				}
 				else
 				{
-					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
+					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 					{
 						changeSide(sp);
 						attack(NAttack);
@@ -65,7 +65,7 @@ class Saso : public Hero
 				{
 					if (_master->getActionState() == State::IDLE ||
 						_master->getActionState() == State::WALK ||
-						_master->getActionState() == State::ATTACK ||
+						_master->getActionState() == State::NATTACK ||
 						_master->getActionState() == State::SATTACK ||
 						_master->getActionState() == State::OATTACK ||
 						_master->getActionState() == State::O2ATTACK)
@@ -75,7 +75,7 @@ class Saso : public Hero
 						return;
 					}
 				}
-				else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
+				else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 				{
 
 					if (_isCanSkill1 && _mainTarget->getGP() < 5000)
@@ -106,7 +106,7 @@ class Saso : public Hero
 		{
 
 			if (_actionState == State::WALK ||
-				_actionState == State::ATTACK)
+				_actionState == State::NATTACK)
 			{
 				idle();
 			}

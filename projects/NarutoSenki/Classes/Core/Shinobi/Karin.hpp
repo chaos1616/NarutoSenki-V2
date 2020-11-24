@@ -84,7 +84,7 @@ class Karin : public Hero
 			{
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && _mainTarget->getActionState() != State::KOCKDOWN && !_mainTarget->_isSticking)
@@ -197,7 +197,7 @@ class Karin : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				if (_isCanSkill1 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 				{
@@ -220,7 +220,7 @@ class Karin : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				idle();
 			}

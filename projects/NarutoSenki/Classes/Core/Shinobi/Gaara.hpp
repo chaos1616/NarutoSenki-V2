@@ -85,7 +85,7 @@ class Gaara : public Hero
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isBati && _mainTarget->getGP() < 5000)
 				{
@@ -175,7 +175,7 @@ class Gaara : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && _isCanSkill1 && !_isBati)
 				{
@@ -192,7 +192,7 @@ class Gaara : public Hero
 		}
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				idle();
 			}

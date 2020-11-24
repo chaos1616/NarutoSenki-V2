@@ -149,7 +149,7 @@ protected:
 
                 if (_master->getActionState() == State::SATTACK)
                 {
-                    _master->setActionState(State::ATTACK);
+                    _master->setActionState(State::NATTACK);
                     _master->_markPoint = ccp(getPositionX(), _originY);
                     _master->changeAction2();
                     _master->_isCanSkill2 = true;

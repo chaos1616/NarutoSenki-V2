@@ -84,7 +84,7 @@ class Tobirama : public Hero
 			{
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000)
@@ -92,7 +92,7 @@ class Tobirama : public Hero
 					changeSide(sp);
 					attack(OUGIS2);
 				}
-				else if (_isCanSkill1 && !_mainTarget->_isBati && (_mainTarget->getActionState() == State::IDLE || _mainTarget->getActionState() == State::WALK || _mainTarget->getActionState() == State::ATTACK))
+				else if (_isCanSkill1 && !_mainTarget->_isBati && (_mainTarget->getActionState() == State::IDLE || _mainTarget->getActionState() == State::WALK || _mainTarget->getActionState() == State::NATTACK))
 				{
 					changeSide(sp);
 					attack(SKILL1);
@@ -183,7 +183,7 @@ class Tobirama : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				if (_isCanSkill3 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
 				{
@@ -206,7 +206,7 @@ class Tobirama : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				idle();
 			}

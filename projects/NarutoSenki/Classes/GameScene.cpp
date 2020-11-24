@@ -1,7 +1,5 @@
 #include "GameScene.h"
 
-bool enableCustomSelect = false;
-
 // on "init" you need to initialize your instance
 bool GameScene::init()
 {

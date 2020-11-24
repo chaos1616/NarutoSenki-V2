@@ -8,10 +8,10 @@ enum class State {
 	DEAD,
 	IDLE,
 	WALK,
-	ATTACK,
-	SATTACK,
-	OATTACK,
-	O2ATTACK,
+	NATTACK,
+	SATTACK,	// Skills
+	OATTACK,	// Ougi 1
+	O2ATTACK,	// Ougi 2
 	HURT,
 	ABHURT,
 	KOCKDOWN,

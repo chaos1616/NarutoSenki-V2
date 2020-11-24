@@ -38,7 +38,7 @@ class Guardian : public Hero
 				walk(moveDirection);
 				return;
 			}
-			else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
+			else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 			{
 				bool isTurn = false;
 

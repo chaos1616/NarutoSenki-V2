@@ -39,7 +39,7 @@ class Kurama : public Hero
 			}
 			else
 			{
-				if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
+				if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 				{
 					changeSide(sp);
 					attack(NAttack);

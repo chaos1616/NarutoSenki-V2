@@ -177,7 +177,7 @@ protected:
     void setAI(float dt)
     {
         if (getActionState() == State::IDLE || getActionState() == State::WALK ||
-            getActionState() == State::ATTACK)
+            getActionState() == State::NATTACK)
         {
 
             if (!_randomPosY)
@@ -235,7 +235,7 @@ protected:
                 }
                 else
                 {
-                    if (getActionState() != State::ATTACK)
+                    if (getActionState() != State::NATTACK)
                     {
                         changeSide(sp);
                         attack(NAttack);

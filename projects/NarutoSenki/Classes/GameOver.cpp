@@ -75,7 +75,6 @@ bool GameOver::init(CCRenderTexture *snapshoot)
 void GameOver::listResult()
 {
 
-	isPlayed = true;
 	if (_delegate->_isHardCoreGame)
 	{
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/battle_over1.ogg");
@@ -340,7 +339,7 @@ void GameOver::listResult()
 
 		CCString *extraCoin;
 		int tempCoin;
-		if (enableCustomSelect && _isWin)
+		if (_isWin)
 		{
 			std::string tempEtra = "idd4";
 			KTools::decode(tempEtra);
@@ -372,17 +371,26 @@ void GameOver::listResult()
 
 	const char *imgSrc;
 
-	if (_isWin && enableCustomSelect)
+	if (_isWin)
 	{
-		if (resultScore >= 140 && _delegate->_isHardCoreGame && _delegate->_isRandomChar) imgSrc = "result_SSSR.png";
-		else if (resultScore >= 120 && _delegate->_isHardCoreGame && _delegate->_isRandomChar) imgSrc = "result_SSR.png";
-		else if (resultScore >= 100 && _delegate->_isHardCoreGame && _delegate->_isRandomChar) imgSrc = "result_SR.png";
-		else if (resultScore >= 140) imgSrc = "result_SSS.png";
-		else if (resultScore >= 120) imgSrc = "result_SS.png";
-		else if (resultScore >= 100) imgSrc = "result_S.png";
-		else if (resultScore >= 80) imgSrc = "result_A.png";
-		else if (resultScore >= 60) imgSrc = "result_B.png";
-		else imgSrc = "result_C.png";
+		if (resultScore >= 140 && _delegate->_isHardCoreGame && _delegate->_isRandomChar)
+			imgSrc = "result_SSSR.png";
+		else if (resultScore >= 120 && _delegate->_isHardCoreGame && _delegate->_isRandomChar)
+			imgSrc = "result_SSR.png";
+		else if (resultScore >= 100 && _delegate->_isHardCoreGame && _delegate->_isRandomChar)
+			imgSrc = "result_SR.png";
+		else if (resultScore >= 140)
+			imgSrc = "result_SSS.png";
+		else if (resultScore >= 120)
+			imgSrc = "result_SS.png";
+		else if (resultScore >= 100)
+			imgSrc = "result_S.png";
+		else if (resultScore >= 80)
+			imgSrc = "result_A.png";
+		else if (resultScore >= 60)
+			imgSrc = "result_B.png";
+		else
+			imgSrc = "result_C.png";
 	}
 	else if (!_isWin)
 	{
@@ -396,7 +404,7 @@ void GameOver::listResult()
 		recordSprite->setPosition(ccp(winSize.width / 2 + result_bg->getContentSize().width / 2 - recordSprite->getContentSize().width - 12, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 88));
 		addChild(recordSprite, 7);
 
-		if (_isWin && enableCustomSelect && _delegate->_isHardCoreGame)
+		if (_isWin && _delegate->_isHardCoreGame)
 		{
 
 			finnalScore = resultScore + float(_delegate->currentPlayer->_flogNum) / 100;
@@ -519,24 +527,25 @@ void GameOver::listResult()
 				else
 				{
 					std::string bestTime = (std::string)recordTime->getCString();
-					std::string recordHour = bestTime.substr(0, 2);
-					std::string recordMinute = bestTime.substr(3, 2);
-					std::string recordSecond = bestTime.substr(6, 2);
+					auto recordHour = bestTime.substr(0, 2).c_str();
+					auto recordMinute = bestTime.substr(3, 2).c_str();
+					auto recordSecond = bestTime.substr(6, 2).c_str();
 					bool isNewRecord = false;
-					if (to_int(recordHour.c_str()) > _hour)
+
+					if (to_int(recordHour) > _hour)
 					{
 						isNewRecord = true;
 					}
-					else if (to_int(recordHour.c_str()) == _hour)
+					else if (to_int(recordHour) == _hour)
 					{
 
-						if (to_int(recordMinute.c_str()) > _minute)
+						if (to_int(recordMinute) > _minute)
 						{
 							isNewRecord = true;
 						}
-						else if (to_int(recordMinute.c_str()) == _minute)
+						else if (to_int(recordMinute) == _minute)
 						{
-							if (to_int(recordSecond.c_str()) > _delegate->_second)
+							if (to_uint(recordSecond) > _delegate->_second)
 							{
 								isNewRecord = true;
 							}
@@ -588,6 +597,7 @@ void GameOver::listResult()
 
 	_delegate->_isSurrender = false;
 }
+
 void GameOver::onUPloadBtn(CCObject *sender)
 {
 

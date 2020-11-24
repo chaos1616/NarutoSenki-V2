@@ -68,7 +68,6 @@
 
 
 #define __begin__ if(0) {}
-#define is_begin(varStr) if (strcmp(varStr, name) == 0)
 #define is(varStr) else if (strcmp(varStr, name) == 0)
 #define is_or(varName1, varName2) else if ((strcmp(name, varName1) == 0) || (strcmp(name, varName2) == 0))
 #define is_or2(varStr, varName, varName2) else if ((strcmp(varStr, varName) == 0) || (strcmp(name, varName) == 0) || (strcmp(name, varName2) == 0))
@@ -141,7 +140,7 @@ public:
 
         if (!ptr)
         {
-            CCLog("Not found character [ %s ]", name);
+            CCLOG("Not found character [ %s ]", name);
             return nullptr;
         }
 

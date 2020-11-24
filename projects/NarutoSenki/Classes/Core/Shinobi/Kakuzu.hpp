@@ -53,7 +53,7 @@ class Kakuzu : public Hero
 	{
 
 		_mainTarget = nullptr;
-		if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+		if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 		{
 
 			if (getHpPercent() > 0.3f && !_isControlled && _isCanSkill1)
@@ -193,7 +193,7 @@ class Kakuzu : public Hero
 			{
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
 				if (_isCanSkill3)
@@ -286,7 +286,7 @@ class Kakuzu : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				if (_isCanOugis1 && !_isControlled && !isSummonAble)
 				{
@@ -304,7 +304,7 @@ class Kakuzu : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				idle();
 			}

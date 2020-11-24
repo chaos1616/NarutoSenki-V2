@@ -72,7 +72,7 @@ class Konan : public Hero
 			{
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
 				if (_isCanSkill1 && !_isBati)
@@ -217,7 +217,7 @@ class Konan : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				if (_isCanGear03)
 				{
@@ -245,7 +245,7 @@ class Konan : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				idle();
 			}

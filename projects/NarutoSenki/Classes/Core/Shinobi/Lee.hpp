@@ -331,7 +331,7 @@ class Lee : public Hero
 			{
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
-			if ((_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK) && abs(sp.x) < 128)
+			if ((_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK) && abs(sp.x) < 128)
 			{
 				if (_isCanSkill1 && bamen < 5)
 				{
@@ -410,7 +410,7 @@ class Lee : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				if (_isCanSkill2 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 				{
@@ -428,7 +428,7 @@ class Lee : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				idle();
 			}
@@ -521,7 +521,7 @@ class Lee : public Hero
 			{
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				if (_isCanSkill1 && bamen < 5)
 				{
@@ -616,7 +616,7 @@ class Lee : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				if (_isCanSkill2 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 				{
@@ -639,7 +639,7 @@ class Lee : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				idle();
 			}

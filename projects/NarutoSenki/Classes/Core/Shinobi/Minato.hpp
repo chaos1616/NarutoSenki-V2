@@ -61,7 +61,7 @@ class Minato : public Hero
 						}
 					}
 				}
-				if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+				if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 				{
 					if (isMark)
 					{
@@ -121,7 +121,7 @@ class Minato : public Hero
 			{
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
 				CCObject *pObject;
@@ -254,7 +254,7 @@ class Minato : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				if (_isCanSkill3 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 				{
@@ -272,7 +272,7 @@ class Minato : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				idle();
 			}
@@ -303,7 +303,7 @@ class Minato : public Hero
 						}
 					}
 				}
-				if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+				if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 				{
 					if (isMark)
 					{

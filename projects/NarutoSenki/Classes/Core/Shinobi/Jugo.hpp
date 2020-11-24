@@ -85,7 +85,7 @@ class Jugo : public Hero
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
 				if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_skillChangeBuffValue)
@@ -204,7 +204,7 @@ class Jugo : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && _isCanSkill1 && !_skillChangeBuffValue)
 				{
@@ -221,7 +221,7 @@ class Jugo : public Hero
 		}
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				idle();
 			}

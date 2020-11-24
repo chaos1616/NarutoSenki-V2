@@ -2,25 +2,7 @@
 #include "MyUtils/Cocos2dxHelper.hpp"
 
 int Cheats = 0;
-int MemberID = 0;
-int GroupID = 0;
-std::string PWord = "";
-std::string CValue = "999999";
-bool isFirst = false;
-bool isPlayed = true;
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-#include <jni.h>
-#include "../../../cocos2dx/platform/android/jni/JniHelper.h"
-
-extern "C"
-{
-	void Java_re_naruto_game_NarutoSenki_onBannerInit(JNIEnv *env, jobject thiz, jint points)
-	{
-		enableCustomSelect = points;
-	}
-}
-#endif
+bool enableCustomSelect = false;
 
 /*----------------------
 init MenuButton ;
@@ -421,22 +403,6 @@ void StartMenu::onEnter()
 	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isBGM") != false)
 	{
 		SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MENU_MUSIC, true);
-	}
-
-	if (isPlayed)
-	{
-		isPlayed = false;
-
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-		// JniMethodInfo minfo;
-
-		// bool isHave = JniHelper::getStaticMethodInfo(minfo, "net/zakume/game/NarutoSenki", "showSpotAd", "()V");
-		// if (isHave)
-		// {
-		// 	minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID);
-		// }
-
-#endif
 	}
 }
 

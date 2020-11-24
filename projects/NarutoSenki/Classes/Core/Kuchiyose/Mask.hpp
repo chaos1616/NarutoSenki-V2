@@ -59,7 +59,7 @@ class Mask : public Hero
 				}
 				else
 				{
-					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
+					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 					{
 
 						changeSide(sp);
@@ -85,7 +85,7 @@ class Mask : public Hero
 					walk(moveDirection);
 					return;
 				}
-				else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
+				else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 				{
 
 					if (_isCanSkill1 && _mainTarget->getGP() < 5000)

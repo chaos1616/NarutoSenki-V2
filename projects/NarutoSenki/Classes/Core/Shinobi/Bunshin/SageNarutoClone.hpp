@@ -42,7 +42,7 @@ class SageNarutoClone : public Hero
 				}
 				else
 				{
-					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
+					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 					{
 
 						changeSide(sp);
@@ -68,7 +68,7 @@ class SageNarutoClone : public Hero
 					walk(moveDirection);
 					return;
 				}
-				else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::ATTACK)
+				else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 				{
 					if (_isCanSkill1 && abs(sp.x) < 32)
 					{

@@ -27,12 +27,6 @@ using namespace CocosDenshion;
 #define MapPosCount 2
 
 extern int Cheats;
-extern bool enableCustomSelect;
-extern int MemberID;
-extern int GroupID;
-extern std::string CValue;
-extern std::string PWord;
-extern bool isPlayed;
 
 #define SERVER "https://game.naruto.re"
 #define CURRENT_VERSION 2.0

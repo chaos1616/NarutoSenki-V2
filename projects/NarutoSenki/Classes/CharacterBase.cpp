@@ -176,7 +176,9 @@ CharacterBase::~CharacterBase()
 void CharacterBase::setID(CCString *character, CCString *role, CCString *group) {}
 
 void CharacterBase::setHPbar() {}
+
 void CharacterBase::setShadows() {}
+
 void CharacterBase::changeHPbar() {}
 
 void CharacterBase::readDate(CCArray *tmpDate, CCString *&attackType, CCString *&attackValue, int &attackRangeX, int &attackRangeY, unsigned int &coldDown, int &combatPoint)
@@ -386,7 +388,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 		}
 		if (_skillChangeBuffValue && (getActionState() == State::IDLE ||
 									  getActionState() == State::WALK ||
-									  getActionState() == State::ATTACK))
+									  getActionState() == State::NATTACK))
 		{
 			if (getOpacity() == 255)
 			{
@@ -412,7 +414,11 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 			bool isHit = false;
 			if (strcmp(Attacker->_attackType->getCString(), "nAttack") == 0 &&
-				strcmp(Attacker->_effectType->getCString(), "f_hit") != 0 && strcmp(Attacker->_effectType->getCString(), "c_hit") != 0 && strcmp(Attacker->_effectType->getCString(), "o_hit") != 0 && strcmp(Attacker->_effectType->getCString(), "b_hit") != 0 && strcmp(Attacker->_effectType->getCString(), "bc_hit") != 0)
+				strcmp(Attacker->_effectType->getCString(), "f_hit") != 0 &&
+				strcmp(Attacker->_effectType->getCString(), "c_hit") != 0 &&
+				strcmp(Attacker->_effectType->getCString(), "o_hit") != 0 &&
+				strcmp(Attacker->_effectType->getCString(), "b_hit") != 0 &&
+				strcmp(Attacker->_effectType->getCString(), "bc_hit") != 0)
 			{
 
 				if (setHitBox().intersectsRect(Attacker->setHalfBox()))
@@ -1581,7 +1587,7 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 			realValue = attackValue + criticalValue;
 		}
 		else if ((attacker->getMaster() ||
-				  attacker->getActionState() == State::ATTACK) &&
+				  attacker->getActionState() == State::NATTACK) &&
 				 attacker->isPofang)
 		{
 			realValue = attackValue + criticalValue;
@@ -2272,7 +2278,7 @@ void CharacterBase::useGear(gearType type)
 
 	if (type == gear00)
 	{
-		if (getActionState() == State::ATTACK ||
+		if (getActionState() == State::NATTACK ||
 			getActionState() == State::WALK ||
 			getActionState() == State::IDLE)
 		{
@@ -2447,6 +2453,7 @@ void CharacterBase::enableGear03(float dt)
 {
 	_isCanGear03 = true;
 }
+
 void CharacterBase::enableGear06(float dt)
 {
 	_isCanGear06 = true;
@@ -2661,7 +2668,7 @@ void CharacterBase::setAttackBox(CCNode *sender, void *data)
 			CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::disableShack));
 			f->runAction(CCSequence::createWithTwoActions(CCShake::create(0.05f, 12), call));
 		}
-		if (_delegate->_isAttackButtonRelease && _actionState == State::ATTACK && !_isOnlySkillLocked && !_isAI)
+		if (_delegate->_isAttackButtonRelease && _actionState == State::NATTACK && !_isOnlySkillLocked && !_isAI)
 		{
 			idle();
 			return;
@@ -2906,7 +2913,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 		int tsPosX = getPositionX();
 		int tsPosY = getPositionY();
 
-		if (getMonsterArray() && _actionState != State::ATTACK)
+		if (getMonsterArray() && _actionState != State::NATTACK)
 		{
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
@@ -4896,7 +4903,7 @@ void CharacterBase::setMonAttack(CCNode *sender, void *data)
 				else if (strcmp(getCharacter()->getCString(), "Itachi") == 0 ||
 						 strcmp(getCharacter()->getCString(), "ImmortalSasuke") == 0)
 				{
-					if (_actionState == State::ATTACK)
+					if (_actionState == State::NATTACK)
 					{
 						mo->attack(NAttack);
 					}
@@ -5156,7 +5163,7 @@ void CharacterBase::nAttack()
 			{
 				stopAllActions();
 			}
-			_actionState = State::ATTACK;
+			_actionState = State::NATTACK;
 			runAction(_nattackAction);
 		}
 	}
@@ -5164,7 +5171,7 @@ void CharacterBase::nAttack()
 
 void CharacterBase::sAttack(abType type)
 {
-	if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+	if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 	{
 		if (!_isVisable)
 		{
@@ -5245,7 +5252,7 @@ void CharacterBase::sAttack(abType type)
 
 void CharacterBase::oAttack(abType type)
 {
-	if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::ATTACK)
+	if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 	{
 
 		if (strcmp(_role->getCString(), "Player") == 0)
@@ -5350,12 +5357,12 @@ void CharacterBase::idle()
 
 void CharacterBase::walk(CCPoint direction)
 {
-	if (_actionState == State::IDLE || _actionState == State::WALK || (_actionState == State::ATTACK && strcmp(getRole()->getCString(), "Player") != 0))
+	if (_actionState == State::IDLE || _actionState == State::WALK || (_actionState == State::NATTACK && strcmp(getRole()->getCString(), "Player") != 0))
 	{
 
 		isHurtingTower = false;
 
-		if (_actionState == State::ATTACK &&
+		if (_actionState == State::NATTACK &&
 			(strcmp(getCharacter()->getCString(), "Suigetsu") == 0 ||
 			 strcmp(getCharacter()->getCString(), "Jugo") == 0 ||
 			 strcmp(getCharacter()->getCString(), "Hiruzen") == 0 ||
@@ -5367,7 +5374,7 @@ void CharacterBase::walk(CCPoint direction)
 				return;
 			}
 		}
-		else if (_actionState == State::IDLE || _actionState == State::ATTACK)
+		else if (_actionState == State::IDLE || _actionState == State::NATTACK)
 		{
 			stopAllActions();
 			runAction(_walkAction);
@@ -5375,7 +5382,7 @@ void CharacterBase::walk(CCPoint direction)
 
 		_actionState = State::WALK;
 
-		//NOTE: FIXED when direction.x is zero bug still set to flipped
+		//NOTE: FIXED when direction.x is zero but still set to flipped
 		if (direction.x != 0)
 		{
 			_isFlipped = direction.x > 0 ? false : true;
@@ -5419,7 +5426,17 @@ void CharacterBase::walk(CCPoint direction)
 
 bool CharacterBase::hurt()
 {
-	if (_actionState != State::SATTACK && _actionState != State::JUMP && _actionState != State::OATTACK && _actionState != State::O2ATTACK && _actionState != State::FLOAT && _actionState != State::DEAD && _actionState != State::KOCKDOWN && _actionState != State::AIRHURT && !_isSticking && !_isCatchOne && !_isBati)
+	if (_actionState != State::SATTACK &&
+		_actionState != State::JUMP &&
+		_actionState != State::OATTACK &&
+		_actionState != State::O2ATTACK &&
+		_actionState != State::FLOAT &&
+		_actionState != State::DEAD &&
+		_actionState != State::KOCKDOWN &&
+		_actionState != State::AIRHURT &&
+		!_isSticking &&
+		!_isCatchOne &&
+		!_isBati)
 	{
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
@@ -5477,10 +5494,19 @@ bool CharacterBase::hurt()
 	}
 	return false;
 }
+
 bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, bool isStick, bool isStun)
 {
 
-	if ((_actionState != State::JUMP || isStick) && _actionState != State::O2ATTACK && (_actionState != State::FLOAT || isStick) && _actionState != State::DEAD && (_actionState != State::KOCKDOWN || isStick) && _actionState != State::AIRHURT && !_isSticking && !_isCatchOne && !_isBati)
+	if ((_actionState != State::JUMP || isStick) &&
+		_actionState != State::O2ATTACK &&
+		(_actionState != State::FLOAT || isStick) &&
+		_actionState != State::DEAD &&
+		(_actionState != State::KOCKDOWN || isStick) &&
+		_actionState != State::AIRHURT &&
+		!_isSticking &&
+		!_isCatchOne &&
+		!_isBati)
 	{
 		if (getActionState() == State::FLOAT ||
 			getActionState() == State::AIRHURT ||
@@ -5634,7 +5660,7 @@ void CharacterBase::absorb(CCPoint position, bool isImmediate)
 {
 	if (_actionState == State::IDLE ||
 		_actionState == State::WALK ||
-		_actionState == State::ATTACK)
+		_actionState == State::NATTACK)
 	{
 
 		if (_isBati || _isSticking)
@@ -6743,10 +6769,12 @@ void CharacterBase::enableSkill1(float dt)
 {
 	_isCanSkill1 = true;
 }
+
 void CharacterBase::enableSkill2(float dt)
 {
 	_isCanSkill2 = true;
 }
+
 void CharacterBase::enableSkill3(float dt)
 {
 	_isCanSkill3 = true;
