@@ -1,13 +1,10 @@
 #include "AppDelegate.h"
-#include "Defines.h"
-#include "GameScene.h"
-#include "SimpleAudioEngine.h"
 #include "CCLuaEngine.h"
 #include "Lua_extensions_CCB.h"
 #include "script_support/CCScriptSupport.h"
 
-USING_NS_CC;
-using namespace CocosDenshion;
+#include "Defines.h"
+#include "GameScene.h"
 
 AppDelegate::AppDelegate()
 {
@@ -82,6 +79,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	std::string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("main.lua");
 	pEngine->executeScriptFile(path.c_str());
+
 	return true;
 }
 
