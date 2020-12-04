@@ -26,15 +26,9 @@
 #include "HttpClient.h"
 // #include "platform/CCThread.h"
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) ||  (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
-#include "CCPThreadWinRT.h"
-typedef void THREAD_VOID;
-#define THREAD_RETURN
-#else
 #include <pthread.h>
 typedef void* THREAD_VOID;
 #define THREAD_RETURN 0
-#endif
 
 #include <errno.h>
 #include <queue>

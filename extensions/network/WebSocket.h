@@ -31,9 +31,6 @@
 
 #include "platform/CCPlatformMacros.h"
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-#include "WebSocketWinRT.h"
-#else
 #include "ExtensionMacros.h"
 #include "cocos2d.h"
 #include "libwebsockets.h"
@@ -166,4 +163,4 @@ NS_CC_EXT_BEGIN
 
 NS_CC_EXT_END
 #endif /* defined(__CC_JSB_WEBSOCKET_H__) */
-#endif
+
