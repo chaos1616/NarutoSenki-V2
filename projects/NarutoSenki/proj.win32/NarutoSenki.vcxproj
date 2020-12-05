@@ -209,7 +209,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
       <LanguageStandard_C>Default</LanguageStandard_C>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libExtensions.lib;libcocos2d.lib;libCocosDenshion.lib;opengl32.lib;glew32.lib;libBox2d.lib;libchipmunk.lib;libcurl_imp.lib;pthreadVCE2.lib;sqlite3.lib;legacy_stdio_definitions.lib;glfw3.lib;liblua.lib;lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libExtensions.lib;libcocos2d.lib;libCocosDenshion.lib;opengl32.lib;glew32.lib;libBox2d.lib;libchipmunk.lib;pthreadVCE2.lib;sqlite3.lib;legacy_stdio_definitions.lib;glfw3.lib;liblua.lib;lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>

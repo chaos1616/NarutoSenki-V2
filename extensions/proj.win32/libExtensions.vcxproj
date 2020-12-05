@@ -114,7 +114,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\sqlite3\libraries\win32\*.*" "$(OutDir)
       <LanguageStandard_C>Default</LanguageStandard_C>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;libzlib.lib;libpng.lib;libcurl_imp.lib;libjpeg.lib;libtiff.lib;libwebp.lib;libiconv.lib;pthreadVCE2.lib;libcocos2d.lib;libchipmunk.lib;libCocosDenshion.lib;sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;libzlib.lib;libpng.lib;libjpeg.lib;libtiff.lib;libwebp.lib;libiconv.lib;pthreadVCE2.lib;libcocos2d.lib;libchipmunk.lib;libCocosDenshion.lib;sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
@@ -125,7 +125,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\sqlite3\libraries\win32\*.*" "$(OutDir)
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\AssetsManager\AssetsManager.cpp" />
     <ClCompile Include="..\CCBReader\CCBAnimationManager.cpp" />
     <ClCompile Include="..\CCBReader\CCBFileLoader.cpp" />
     <ClCompile Include="..\CCBReader\CCBKeyframe.cpp" />
@@ -278,7 +277,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\sqlite3\libraries\win32\*.*" "$(OutDir)
     <ClCompile Include="Win32InputBox.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\AssetsManager\AssetsManager.h" />
     <ClInclude Include="..\CCBReader\CCBAnimationManager.h" />
     <ClInclude Include="..\CCBReader\CCBFileLoader.h" />
     <ClInclude Include="..\CCBReader\CCBKeyframe.h" />

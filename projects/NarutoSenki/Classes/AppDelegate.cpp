@@ -17,20 +17,7 @@ AppDelegate::~AppDelegate()
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
-	// initialize director
-	CCDirector *pDirector = CCDirector::sharedDirector();
-	CCEGLView *pEGLView = CCEGLView::sharedOpenGLView();
-
-	pDirector->setOpenGLView(pEGLView);
-	// pEGLView->setDesignResolutionSize(480, 320, kResolutionFixedHeight);
-
-	// turn on display FPS
-	pDirector->setDisplayStats(false);
-
-	// set FPS. the default value is 1.0/60 if you don't call this
-	// pDirector->setAnimationInterval(1.0 / 60);
-
-	// init lua
+	// 1. initialize lua
 	CCLuaEngine *pEngine = CCLuaEngine::defaultEngine();
 	CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);
 
@@ -80,13 +67,70 @@ bool AppDelegate::applicationDidFinishLaunching()
 	std::string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("main.lua");
 	pEngine->executeScriptFile(path.c_str());
 
+	// 2. initialize window
+	bool isFullscreen = false;
+	int width = 1280;
+	int height = 720;
+	const char *title = "Naruto Senki";
+
+	lua_getL;
+	lua_getglobal(L, "ENABLE_FULL_SCREEN");
+	if (lua_isboolean(L, 1))
+		isFullscreen = lua_toboolean(L, 1);
+	lua_pop(L, 1);
+	lua_getglobal(L, "WINDOW_WIDTH");
+	if (lua_isnumber(L, 1))
+		width = lua_tointeger(L, 1);
+	lua_pop(L, 1);
+	lua_getglobal(L, "WINDOW_HEIGHT");
+	if (lua_isnumber(L, 1))
+		height = lua_tointeger(L, 1);
+	lua_pop(L, 1);
+	lua_getglobal(L, "WINDOW_TITLE");
+	if (lua_isstring(L, 1))
+		title = lua_tostring(L, 1);
+	lua_pop(L, 1);
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	CCEGLView *eglView = CCEGLView::sharedOpenGLView();
+	eglView->setViewName(title);
+	if (!isFullscreen)
+	{
+		eglView->setFrameSize(width, height); //NOTE: Modify here to enable windowed
+	}
+	else
+	{
+		// Set the frame size to the full screen value
+		eglView->setFrameSize(eglView->getFullscreenWidth(), eglView->getFullscreenHeight());
+		eglView->enterFullscreen(0, 0);
+	}
+#else if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+	auto eglView = CCEGLView::sharedOpenGLView();
+	//TODO: Support Fullscreen
+	eglView->setFrameSize(width, height);
+	eglView->setTitle(title);
+	eglView->setIcon("icon.png");
+#endif
+
+	// initialize director
+	CCDirector *pDirector = CCDirector::sharedDirector();
+	// CCEGLView *pEGLView = CCEGLView::sharedOpenGLView();
+
+	pDirector->setOpenGLView(eglView);
+	// pEGLView->setDesignResolutionSize(480, 320, kResolutionFixedHeight); //NOTE: Set on lua
+
+	// turn on display FPS
+	pDirector->setDisplayStats(false);
+
+	// set FPS. the default value is 1.0/60 if you don't call this
+	// pDirector->setAnimationInterval(1.0 / 60);
+
 	return true;
 }
 
 // This function will be called when the app is inactive. When comes a phone call,it's be invoked too
 void AppDelegate::applicationDidEnterBackground()
 {
-
 	CCDirector::sharedDirector()->stopAnimation();
 
 	// if you use SimpleAudioEngine, it must be pause

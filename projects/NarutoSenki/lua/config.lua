@@ -1,10 +1,16 @@
 --
 -- Config
 --
+
 -- design resoluation configuration
-CONFIG_SCREEN_WIDTH = 480
-CONFIG_SCREEN_HEIGHT = 320
+CONFIG_SCREEN_WIDTH     = 480
+CONFIG_SCREEN_HEIGHT    = 320
 CONFIG_SCREEN_AUTOSCALE = 'FIXED_HEIGHT'
+
+WINDOW_TITLE        = 'Naruto Senki'
+ENABLE_FULL_SCREEN  = false
+WINDOW_WIDTH        = 1280
+WINDOW_HEIGHT       = 720
 
 require 'framework.init'
 

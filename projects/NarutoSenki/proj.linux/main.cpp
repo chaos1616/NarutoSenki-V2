@@ -15,9 +15,5 @@ int main(int argc, char **argv)
 {
     // create the application instance
     AppDelegate app;
-    auto eglView = CCEGLView::sharedOpenGLView();
-    eglView->setFrameSize(1600, 900);
-    eglView->setTitle("Naruto Senki");
-    eglView->setIcon("icon.png");
     return CCApplication::sharedApplication()->run();
 }
