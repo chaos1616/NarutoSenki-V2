@@ -64,8 +64,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 	CCFileUtils::sharedFileUtils()->addSearchPath(root.c_str());
 #endif
 
-	std::string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("main.lua");
-	pEngine->executeScriptFile(path.c_str());
+	// get window settings
+	pEngine->executeScriptFile(CCFileUtils::sharedFileUtils()->fullPathForFilename("window.lua").c_str());
 
 	// 2. initialize window
 	bool isFullscreen = false;
@@ -91,8 +91,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 		title = lua_tostring(L, 1);
 	lua_pop(L, 1);
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	CCEGLView *eglView = CCEGLView::sharedOpenGLView();
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	eglView->setViewName(title);
 	if (!isFullscreen)
 	{
@@ -104,8 +104,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 		eglView->setFrameSize(eglView->getFullscreenWidth(), eglView->getFullscreenHeight());
 		eglView->enterFullscreen(0, 0);
 	}
-#else if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-	auto eglView = CCEGLView::sharedOpenGLView();
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 	//TODO: Support Fullscreen
 	eglView->setFrameSize(width, height);
 	eglView->setTitle(title);
@@ -124,6 +123,10 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	// set FPS. the default value is 1.0/60 if you don't call this
 	// pDirector->setAnimationInterval(1.0 / 60);
+
+	// 3. execute main lua script
+	std::string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("main.lua");
+	pEngine->executeScriptFile(path.c_str());
 
 	return true;
 }

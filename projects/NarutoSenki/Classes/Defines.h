@@ -15,7 +15,7 @@ using namespace CocosDenshion;
 #define random(x) (rand() % x)
 
 #define FONT_TYPE "微软雅黑"
-#define VERSION_CODE "v 2.01"
+#define VERSION_CODE "v 2.00"
 
 // layer's tag
 #define BgTag 1

@@ -14,7 +14,6 @@ LOCAL_SRC_FILES := ../cocos2dx_support/CCLuaBridge.cpp \
           ../cocos2dx_support/LuaCocoStudio.cpp \
           ../cocos2dx_support/CCBProxy.cpp \
           ../cocos2dx_support/Lua_extensions_CCB.cpp \
-          ../cocos2dx_support/Lua_web_socket.cpp \
           ../cocos2dx_support/lua_cocos2dx_manual.cpp \
           ../cocos2dx_support/lua_cocos2dx_extensions_manual.cpp \
           ../cocos2dx_support/lua_cocos2dx_cocostudio_manual.cpp \
@@ -44,6 +43,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/ \
                     $(LOCAL_PATH)/../xxtea \
                     $(LOCAL_PATH)/../../../external/sqlite3/src \
                     $(LOCAL_PATH)/../../../projects/NarutoSenki/Classes \
+                    $(LOCAL_PATH)/../../../projects/NarutoSenki/Classes/Core \
                     $(LOCAL_PATH)/../../../projects/NarutoSenki/Classes/MyTools \
 
 LOCAL_WHOLE_STATIC_LIBRARIES := luajit_static
