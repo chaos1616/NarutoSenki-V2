@@ -88,14 +88,7 @@ bool CreditsLayer::init()
 
 void CreditsLayer::keyBackClicked()
 {
-
-	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
-	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/cancel.ogg");
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	setKeypadEnabled(false);
-#else
-	//TODO:
-#endif
 
 	lua_call_func("CreditsLayer_BackToStartMenu")
 }

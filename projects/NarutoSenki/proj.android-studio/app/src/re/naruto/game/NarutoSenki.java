@@ -6,10 +6,12 @@ import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.WindowManager;
 
 public class NarutoSenki extends Cocos2dxActivity{
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 
 	public Cocos2dxGLSurfaceView onCreateGLSurfaceView() {

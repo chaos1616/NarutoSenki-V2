@@ -418,8 +418,6 @@ function SelectLayer:setSelected(btn)
     end
 end
 
-function SelectLayer:keyBackClicked() log('keyback selectlayer') end
-
 function backToStartMenu()
     audio.playSound('Audio/Menu/cancel.ogg')
     local menuScene = CCScene:create()

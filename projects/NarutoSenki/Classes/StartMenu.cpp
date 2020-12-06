@@ -457,7 +457,10 @@ void StartMenu::setNotice()
 		stencil->setAnchorPoint(ccp(0, 0));
 		clipper->setStencil(stencil);
 
-		noticeLabel = CCLabelTTF::create("", FONT_TYPE, 12);
+		CCDictionary *strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
+		const char *reply = ((CCString *)strings->objectForKey("Notice"))->m_sString.c_str();
+
+		noticeLabel = CCLabelTTF::create(reply, FONT_TYPE, 12);
 		noticeLabel->setAnchorPoint(ccp(0, 0));
 		clipper->addChild(noticeLabel);
 		noticeLabel->retain();
@@ -466,10 +469,6 @@ void StartMenu::setNotice()
 		notice_layer->addChild(clipper);
 
 		addChild(notice_layer);
-		CCDictionary *strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
-		const char *reply = ((CCString *)strings->objectForKey("Notice"))->m_sString.c_str();
-
-		noticeLabel->setString(reply);
 	}
 }
 
@@ -758,17 +757,9 @@ void StartMenu::onTrainingCallBack()
 
 		CCDictionary *dic = CCDictionary::create();
 
-		const char *heroList1[] = {"Konan", "Sakura", "Naruto", "Sai", "Deidara",
-								   "Kakashi", "Itachi", "Tenten", "Jiraiya", "Suigetsu",
-								   "Tsunade", "Tobirama", "Neji", "Ino", "Asuma", "Gaara",
-								   "Karin", "Sasuke", "Hidan", "Choji", "Kankuro",
-								   "Shino", "Minato", "Tobi", "Kakuzu", "Hinata",
-								   "Shikamaru", "Chiyo", "Kisame",
-								   "Hiruzen", "Kiba", "Jugo", "Lee"};
-
 		srand((int)time(0));
-		int index2 = random(sizeof(heroList1) / sizeof(char *));
-		CCString *tmpChar = CCString::create(heroList1[index2]);
+		int index2 = random(heroNum);
+		CCString *tmpChar = CCString::create(heroList[index2]);
 		CCString *tmpRole = CCString::create("Player");
 		CCString *tmpGroup = CCString::create("Konoha");
 
@@ -779,14 +770,14 @@ void StartMenu::onTrainingCallBack()
 		CCArray *tempHeros = CCArray::createWithObject(dic);
 
 		CCArray *realHero = CCArray::create();
-		int num = sizeof(heroList1) / sizeof(char *);
+		int num = sizeof(heroList) / sizeof(char *);
 		for (int i = 0; i < num; i++)
 		{
-			if (strcmp(tmpChar->getCString(), heroList1[i]) == 0)
+			if (strcmp(tmpChar->getCString(), heroList[i]) == 0)
 			{
 				continue;
 			}
-			CCString *hero = CCString::create(heroList1[i]);
+			CCString *hero = CCString::create(heroList[i]);
 			realHero->addObject(hero);
 		}
 		char *heroList2[] = {"Naruto", "Deidara", "Konan"};

@@ -64,6 +64,9 @@ bool AppDelegate::applicationDidFinishLaunching()
 	CCFileUtils::sharedFileUtils()->addSearchPath(root.c_str());
 #endif
 
+	CCEGLView *eglView = CCEGLView::sharedOpenGLView();
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 	// get window settings
 	pEngine->executeScriptFile(CCFileUtils::sharedFileUtils()->fullPathForFilename("window.lua").c_str());
 
@@ -91,12 +94,11 @@ bool AppDelegate::applicationDidFinishLaunching()
 		title = lua_tostring(L, 1);
 	lua_pop(L, 1);
 
-	CCEGLView *eglView = CCEGLView::sharedOpenGLView();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	eglView->setViewName(title);
 	if (!isFullscreen)
 	{
-		eglView->setFrameSize(width, height); //NOTE: Modify here to enable windowed
+		eglView->setFrameSize(width, height);
 	}
 	else
 	{
@@ -110,13 +112,13 @@ bool AppDelegate::applicationDidFinishLaunching()
 	eglView->setTitle(title);
 	eglView->setIcon("icon.png");
 #endif
+#endif
 
 	// initialize director
 	CCDirector *pDirector = CCDirector::sharedDirector();
-	// CCEGLView *pEGLView = CCEGLView::sharedOpenGLView();
 
 	pDirector->setOpenGLView(eglView);
-	// pEGLView->setDesignResolutionSize(480, 320, kResolutionFixedHeight); //NOTE: Set on lua
+	// eglView->setDesignResolutionSize(480, 320, kResolutionFixedHeight);
 
 	// turn on display FPS
 	pDirector->setDisplayStats(false);
@@ -131,20 +133,16 @@ bool AppDelegate::applicationDidFinishLaunching()
 	return true;
 }
 
-// This function will be called when the app is inactive. When comes a phone call,it's be invoked too
 void AppDelegate::applicationDidEnterBackground()
 {
 	CCDirector::sharedDirector()->stopAnimation();
 
-	// if you use SimpleAudioEngine, it must be pause
 	SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 }
 
-// this function will be called when the app is active again
 void AppDelegate::applicationWillEnterForeground()
 {
 	CCDirector::sharedDirector()->startAnimation();
 
-	// if you use SimpleAudioEngine, it must resume here
 	SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }
