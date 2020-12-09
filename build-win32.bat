@@ -28,7 +28,7 @@ echo.
 call %VSVARS%
 
 msbuild cocos2d-win32.sln /t:Clean
-    msbuild cocos2d-win32.sln /p:Configuration="Debug" /m
+#    msbuild cocos2d-win32.sln /p:Configuration="Debug" /m
     msbuild cocos2d-win32.sln /p:Configuration="Release" /m
 
 
