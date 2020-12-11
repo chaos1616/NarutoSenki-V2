@@ -11,19 +11,23 @@
     - [Linux](#linux)
     - [Windows](#windows)
   - [Structure](#structure)
+  - [How to develop?](#how-to-develop)
   - [What is NarutoSenki: Re?](#what-is-narutosenki-re)
 
-> More details visit [game.naruto.re](https://game.naruto.re)
+---
+
+> For More details visit [game.naruto.re](https://game.naruto.re)
 >
 > Based on NarutoSenki source code
 
 Get the latest developments👇
-- Telegram: [https://t.me/narutosenki_re](https://t.me/narutosenki_re)
+- Telegram: [t.me/narutosenki_re](https://t.me/narutosenki_re)
+- Discord: [discord.gg/JGA6P8p](https://discord.gg/JGA6P8p)
 - Youtube: [Re Offical Channel](https://www.youtube.com/channel/UCL9gDeedGZdf3hjRd-Zr7cg)
 
 ## Introduction
 
-> Full desktop preview on [here](https://www.youtube.com/channel/UCL9gDeedGZdf3hjRd-Zr7cg)
+> Full desktop preview on [here](https://youtu.be/AaHkA1RmXxkg)
 
 > `NOTE: This project will no longer develop after a few months`
 
@@ -189,7 +193,14 @@ root: projects/NarutoSenki
   - sprites : Unused assets
   - \_\_BIN__ : Build output (Linux & Windows)
 
----
+## How to develop?
+
+- Tools
+  - [TexturePacker](https://www.codeandweb.com/texturepacker)
+  - [TextureUnpacker](https://github.com/real-re/TextureUnpacker)
+    - Batch split textures that made by TexturePacker
+  - [Tiled](https://www.mapeditor.org/)
+    - Can create maps (Get more rules open `xxx.tmx` in `projects/NarutoSenki/Resources/Tiles/` with tiled)
 
 ## What is NarutoSenki: Re?
 

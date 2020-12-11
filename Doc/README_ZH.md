@@ -11,7 +11,10 @@
     - [Linux](#linux)
     - [Windows](#windows)
   - [目录结构](#目录结构)
+  - [如何二次开发？](#如何二次开发)
   - [NarutoSenki: Re是什么?](#narutosenki-re是什么)
+
+---
 
 > 更多信息请访问 [game.naruto.re](https://game.naruto.re)
 >
@@ -191,7 +194,15 @@ make # DEBUG=1 # -j12
   - sprites : 未使用资源
   - \_\_BIN__ : 构建可执行文件输出目录 (Linux & Windows)
 
----
+## 如何二次开发？
+
+- 工具
+  - [TexturePacker](https://www.codeandweb.com/texturepacker)
+    - 打包图片资源（资源优化选项为3即可）
+  - [TextureUnpacker](https://github.com/real-re/TextureUnpacker)
+    - 基于开源项目二次开发，支持批量分割由TexturePacker合成的图集
+  - [Tiled](https://www.mapeditor.org/)
+    - 用于开发地图（规则参照原版地图文件即可，用tiled打开`xxx.tmx`在`projects/NarutoSenki/Resources/Tiles/`）
 
 ## NarutoSenki: Re是什么?
 
