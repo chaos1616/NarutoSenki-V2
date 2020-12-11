@@ -1305,12 +1305,6 @@ void GameLayer::removeOugis()
 	}                                                                                                                              \
 	break;
 
-#define ON_ITEM_CLICK(__ID__, __KEY_STATE__) \
-	if (__KEY_STATE__)                       \
-	{                                        \
-	}                                        \
-	break;
-
 bool GameLayer::checkHasAnyMovement()
 {
 	if (_gLayer)

@@ -75,10 +75,7 @@ bool CreditsLayer::init()
 			SimpleAudioEngine::sharedEngine()->playBackgroundMusic(CREDITS_MUSIC, true);
 		}
 
-		if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-		{
-			setKeypadEnabled(true);
-		}
+		setKeypadEnabled(true);
 
 		bRet = true;
 	} while (0);
