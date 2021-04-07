@@ -23,9 +23,9 @@ SOURCES = main.cpp \
 	../Classes/MyUtils/CCShake.cpp \
 	../Classes/MyUtils/CCStrokeLabel.cpp \
 	../Classes/MyUtils/KTools.cpp \
-	../Classes/MyUtils/MD5ChecksumDefines.cpp \
+	../Classes/MyUtils/MD5ChecksumDefines.cpp
 
-SHAREDLIBS = -lcocos2d -lcocosdenshion -lcurl -lsqlite3 -llua
+SHAREDLIBS += -lcocos2d -lcocosdenshion -lcurl -lsqlite3 -llua
 COCOS_LIBS = $(LIB_DIR)/libcocos2d.so $(LIB_DIR)/libcocosdenshion.so $(LIB_DIR)/liblua.so
 
 include ../../../cocos2dx/proj.linux/cocos2dx.mk
@@ -38,7 +38,6 @@ INCLUDES +=	 -I../ \
 	-I$(COCOS_ROOT)/extensions/ \
 	-I$(COCOS_ROOT)/external/ \
 	-I$(COCOS_ROOT)/external/chipmunk/include/chipmunk \
-	-I$(COCOS_ROOT)/external/libwebsockets/linux \
 	-I$(COCOS_ROOT)/scripting/lua/lua \
 	-I$(COCOS_ROOT)/scripting/lua/tolua \
 	-I$(COCOS_ROOT)/scripting/lua/cocos2dx_support \
@@ -46,8 +45,7 @@ INCLUDES +=	 -I../ \
 STATICLIBS += \
 	$(LIB_DIR)/libextension.a \
 	$(LIB_DIR)/libbox2d.a \
-	$(LIB_DIR)/libchipmunk.a \
-	$(LIB_DIR)/libwebsockets.a \
+	$(LIB_DIR)/libchipmunk.a
 
 ####### Build rules
 $(TARGET): $(OBJECTS) $(STATICLIBS) $(COCOS_LIBS) $(CORE_MAKEFILE_LIST)

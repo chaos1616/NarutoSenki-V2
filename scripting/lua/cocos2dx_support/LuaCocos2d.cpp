@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Cocos2d
-** Generated automatically by tolua++-1.0.92 on Fri Nov 20 10:52:54 2020.
+** Generated automatically by tolua++-1.0.92 on Tue Apr  6 12:59:21 2021.
 */
 
 /****************************************************************************
@@ -66954,6 +66954,37 @@ static int tolua_Cocos2d_StartMenu_create00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: enterCustomMode of class  StartMenu */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_StartMenu_enterCustomMode00
+static int tolua_Cocos2d_StartMenu_enterCustomMode00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"StartMenu",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  StartMenu* self = (StartMenu*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'enterCustomMode'", NULL);
+#endif
+  {
+   self->enterCustomMode();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'enterCustomMode'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: setHandle of class  StartMenu */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_StartMenu_setHandle00
 static int tolua_Cocos2d_StartMenu_setHandle00(lua_State* tolua_S)
@@ -72548,6 +72579,7 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
   tolua_cclass(tolua_S,"StartMenu","StartMenu","CCLayer",NULL);
   tolua_beginmodule(tolua_S,"StartMenu");
    tolua_function(tolua_S,"create",tolua_Cocos2d_StartMenu_create00);
+   tolua_function(tolua_S,"enterCustomMode",tolua_Cocos2d_StartMenu_enterCustomMode00);
    tolua_function(tolua_S,"setHandle",tolua_Cocos2d_StartMenu_setHandle00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus

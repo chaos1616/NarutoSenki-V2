@@ -5,10 +5,10 @@
 class SelectLayer : public CCLayer
 {
 public:
+	static SelectLayer *create();
+
 	SelectLayer();
 	~SelectLayer();
-
-	static SelectLayer *create();
 
 	const char *_selectHero;
 	const char *_playerSelect;
@@ -24,8 +24,9 @@ public:
 	void setSelectList(CCArray *var) { _selectList = var; };
 
 	void onGameStart();
+	void setPlayerSelected(const char *charName){};
 
-	virtual void keyBackClicked();
+	void keyBackClicked();
 
 private:
 	bool isStart;

@@ -14,7 +14,7 @@ class Itachi : public Hero
 			if ((getActionState() == State::FLOAT ||
 				 getActionState() == State::AIRHURT ||
 				 getActionState() == State::HURT ||
-				 getActionState() == State::KOCKDOWN) &&
+				 getActionState() == State::KNOCKDOWN) &&
 				getHpPercent() < 0.5 && !_isBati && !_isWudi)
 			{
 				useGear(gear06);
@@ -38,7 +38,6 @@ class Itachi : public Hero
 
 		if (checkRetri())
 		{
-
 			if (_mainTarget != nullptr)
 			{
 				if (stepBack2())
@@ -104,7 +103,7 @@ class Itachi : public Hero
 
 					return;
 				}
-				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && _mainTarget->getActionState() != State::KOCKDOWN && !_mainTarget->_isSticking && !_isBati)
+				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_isBati)
 				{
 
 					changeSide(sp);

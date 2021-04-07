@@ -45,7 +45,6 @@ Generated Files
 AppPackages
 BundleArtifacts
 .vs/
-.vscode/
 
 # Ignore files build by ndk and eclipse
 libs/

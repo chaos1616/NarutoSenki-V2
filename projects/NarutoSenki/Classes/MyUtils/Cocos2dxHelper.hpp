@@ -1,6 +1,7 @@
 #pragma once
 #include "cocos2d.h"
 #include "../../../scripting/lua/cocos2dx_support/CCLuaEngine.h"
+
 using namespace cocos2d;
 
 #define nameof(varType) #varType
@@ -30,3 +31,16 @@ using namespace cocos2d;
 #define lua_call_handler(handler) \
 	auto pStack = get_luastack;   \
 	pStack->executeFunctionByHandler(handler, 0);
+
+/**
+ * Sprite extension
+ */
+static inline CCSpriteFrame *getSrpiteFrame(std::string name)
+{
+	return CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name.c_str());
+}
+
+static inline CCSpriteFrame *getSrpiteFrame(const char *name)
+{
+	return CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name);
+}

@@ -5,7 +5,8 @@ local transformList = {
     ['Naruto'] = 'SageNaruto',
     ['SageNaruto'] = 'RikudoNaruto',
     ['Jiraiya'] = 'SageJiraiya',
-    ['Sasuke'] = 'ImmortalSasuke'
+    ['Sasuke'] = 'ImmortalSasuke',
+    ['Pain'] = 'Nagato'
 }
 
 local useFull2ImageList = {
@@ -24,7 +25,6 @@ function SkillLayer:ctor(selectLayer)
     self._fengSprite2 = nil
     self._autoMove = true
 
-    self.selectHero = nil
     self.coinLabel = nil
     self._heroFull = nil
     self.changemenu = nil
@@ -118,16 +118,12 @@ end
 function SkillLayer:initInterface()
     if self._selectLayer then
         self.selectHero = self._selectLayer.selectHero
-
-        local bgSprite = display.newSprite('blue_bg.png', 0, 0)
-        bgSprite:fullScreen()
-        bgSprite:setAnchorPoint(0, 0)
-        self:addChild(bgSprite, -5)
     end
 
-    --  if(!KTools:checkData()){
-    --  	return
-    --  }
+    local bgSprite = display.newSprite('blue_bg.png', 0, 0)
+    bgSprite:fullScreen()
+    bgSprite:setAnchorPoint(0, 0)
+    self:addChild(bgSprite, -5)
 
     local winNum = tonumber(tools.readSQLite('CharRecord', 'name',
                                              self.selectHero, 'column1'))

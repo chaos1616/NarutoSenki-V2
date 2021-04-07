@@ -1,8 +1,8 @@
 #include "Defines.h"
 #include "CharacterBase.h"
 #include "HudLayer.h"
-#include "MyUtils/CCShake.h"
 #include "Core/Provider.hpp"
+#include "MyUtils/CCShake.h"
 
 CharacterBase::CharacterBase()
 {
@@ -350,6 +350,9 @@ void CharacterBase::update(float dt)
 		float posX = MIN(_delegate->currentMap->getMapSize().width * _delegate->currentMap->getTileSize().width,
 						 MAX(0, _desiredPosition.x));
 
+		// map height		: 10
+		// backgroud height	: 4.5
+		// floor height		: 5.5
 		float poxY = MIN(_delegate->currentMap->getTileSize().height * 5.5, MAX(0, _desiredPosition.y));
 
 		setPosition(ccp(posX, poxY));
@@ -377,6 +380,8 @@ void CharacterBase::updateHpBarPosition(float dt)
 
 void CharacterBase::acceptAttack(CCObject *object)
 {
+	CharacterBase *Attacker = (CharacterBase *)object;
+	bool isBizhong = false;
 
 	if (strcmp(getCharacter()->getCString(), "Tobi") == 0)
 	{
@@ -398,8 +403,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 			return;
 		}
 	}
-	CharacterBase *Attacker = (CharacterBase *)object;
-	bool isBizhong = false;
+
 	if (strcmp(Attacker->getCharacter()->getCString(), "Hiruzen") == 0 && Attacker->getActionState() == State::O2ATTACK)
 	{
 		isBizhong = true;
@@ -2341,7 +2345,7 @@ void CharacterBase::useGear(gearType type)
 				getActionState() == State::FLOAT ||
 				getActionState() == State::AIRHURT ||
 				getActionState() == State::HURT ||
-				getActionState() == State::KOCKDOWN)
+				getActionState() == State::KNOCKDOWN)
 			{
 
 				if (_isSticking)
@@ -2769,13 +2773,13 @@ void CharacterBase::setJump(CCNode *sender, void *data)
 		float posY = getPositionY();
 		_originY = posY;
 
-		if (!jumpDirection)
-		{
-			_jumpUPAction = CCJumpTo::create(0.8f, ccp(posX + (_isFlipped ? 64 : -64), posY), 64, 1);
-		}
-		else
+		if (jumpDirection) // Jump Forward
 		{
 			_jumpUPAction = CCJumpTo::create(0.8f, ccp(posX + (_isFlipped ? -64 : 64), posY), 64, 1);
+		}
+		else // Jump Back
+		{
+			_jumpUPAction = CCJumpTo::create(0.8f, ccp(posX + (_isFlipped ? 64 : -64), posY), 64, 1);
 		}
 
 		runAction(_jumpUPAction);
@@ -3444,6 +3448,11 @@ void CharacterBase::setBuffEffect(const char *type)
 	{
 		_dehealBuffEffect = Effect::create(type, this);
 		addChild(_dehealBuffEffect);
+	}
+	else if (strcmp(type, "sBuff") == 0)
+	{
+		_skillBuffEffect = Effect::create(type, this);
+		addChild(_skillBuffEffect);
 	}
 }
 
@@ -4966,6 +4975,10 @@ void CharacterBase::setTransform()
 	{
 		setID(CCString::create("Lee"), _role, _group);
 	}
+	else if (strcmp(_character->getCString(), "Pain") == 0)
+	{
+		setID(CCString::create("Nagato"), _role, _group);
+	}
 	setMaxHP(CCString::createWithFormat("%ld", to_uint(getMaxHP()->getCString())));
 	setHP(CCString::createWithFormat("%ld", to_uint(getHP()->getCString())));
 	if (_hpBar)
@@ -5043,7 +5056,6 @@ float CharacterBase::getHpPercent()
 
 void CharacterBase::attack(abType type)
 {
-
 	if (strcmp(_role->getCString(), "Player") == 0 && type == NAttack)
 	{
 		if (!_delegate->getSkillFinish() && !_isOnlySkillLocked)
@@ -5061,51 +5073,45 @@ void CharacterBase::attack(abType type)
 		_attackRangeY = _nattackRangeY;
 		nAttack();
 		break;
-
 	case SKILL1:
-
 		if (strcmp(_role->getCString(), "Player") == 0)
 		{
 			if (_isControlled)
 				_delegate->getHudLayer()->skill1Button->click();
 		}
+
 		_attackValue = to_int(_sattackValue1->getCString());
 		_attackType = _sattackType1;
 		_attackRangeX = _sattackRangeX1;
 		_attackRangeY = _sattackRangeY1;
 		sAttack(SKILL1);
-
 		break;
-
 	case SKILL2:
-
 		if (strcmp(_role->getCString(), "Player") == 0)
 		{
 			if (_isControlled)
 				_delegate->getHudLayer()->skill2Button->click();
 		}
+
 		_attackValue = to_int(_sattackValue2->getCString());
 		_attackType = _sattackType2;
 		_attackRangeX = _sattackRangeX2;
 		_attackRangeY = _sattackRangeY2;
 		sAttack(SKILL2);
-
 		break;
-
 	case SKILL3:
 		if (strcmp(_role->getCString(), "Player") == 0)
 		{
 			if (_isControlled)
 				_delegate->getHudLayer()->skill3Button->click();
 		}
+
 		_attackValue = to_int(_sattackValue3->getCString());
 		_attackType = _sattackType3;
 		_attackRangeX = _sattackRangeX3;
 		_attackRangeY = _sattackRangeY3;
 		sAttack(SKILL3);
-
 		break;
-
 	case OUGIS1:
 		if (strcmp(_role->getCString(), "Player") != 0 || _isAI)
 		{
@@ -5124,9 +5130,7 @@ void CharacterBase::attack(abType type)
 		_attackRangeY = _sattackRangeY4;
 		oAttack(OUGIS1);
 		break;
-
 	case OUGIS2:
-
 		if (strcmp(_role->getCString(), "Player") != 0 || _isAI)
 		{
 			float newValue = atof(getCKR2()->getCString()) - 25000;
@@ -5144,7 +5148,7 @@ void CharacterBase::attack(abType type)
 		oAttack(OUGIS2);
 		break;
 	default:
-		break;
+		return;
 	}
 }
 
@@ -5254,7 +5258,6 @@ void CharacterBase::oAttack(abType type)
 {
 	if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 	{
-
 		if (strcmp(_role->getCString(), "Player") == 0)
 		{
 			_delegate->setSkillFinish(false);
@@ -5359,7 +5362,6 @@ void CharacterBase::walk(CCPoint direction)
 {
 	if (_actionState == State::IDLE || _actionState == State::WALK || (_actionState == State::NATTACK && strcmp(getRole()->getCString(), "Player") != 0))
 	{
-
 		isHurtingTower = false;
 
 		if (_actionState == State::NATTACK &&
@@ -5432,7 +5434,7 @@ bool CharacterBase::hurt()
 		_actionState != State::O2ATTACK &&
 		_actionState != State::FLOAT &&
 		_actionState != State::DEAD &&
-		_actionState != State::KOCKDOWN &&
+		_actionState != State::KNOCKDOWN &&
 		_actionState != State::AIRHURT &&
 		!_isSticking &&
 		!_isCatchOne &&
@@ -5502,15 +5504,15 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 		_actionState != State::O2ATTACK &&
 		(_actionState != State::FLOAT || isStick) &&
 		_actionState != State::DEAD &&
-		(_actionState != State::KOCKDOWN || isStick) &&
+		(_actionState != State::KNOCKDOWN || isStick) &&
 		_actionState != State::AIRHURT &&
 		!_isSticking &&
 		!_isCatchOne &&
 		!_isBati)
 	{
-		if (getActionState() == State::FLOAT ||
-			getActionState() == State::AIRHURT ||
-			getActionState() == State::JUMP)
+		if (_actionState == State::FLOAT ||
+			_actionState == State::AIRHURT ||
+			_actionState == State::JUMP)
 		{
 			setPositionY(_originY);
 			_originY = 0;
@@ -5632,7 +5634,6 @@ void CharacterBase::airHurt()
 {
 	if (_actionState == State::FLOAT || _actionState == State::AIRHURT)
 	{
-
 		if (strcmp(_role->getCString(), "Player") == 0)
 		{
 			_delegate->setSkillFinish(false);
@@ -5662,11 +5663,8 @@ void CharacterBase::absorb(CCPoint position, bool isImmediate)
 		_actionState == State::WALK ||
 		_actionState == State::NATTACK)
 	{
-
 		if (_isBati || _isSticking)
-		{
 			return;
-		}
 
 		if (strcmp(_role->getCString(), "Player") == 0)
 		{
@@ -5791,9 +5789,9 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 
 void CharacterBase::knockDown()
 {
-	if (_actionState != State::KOCKDOWN && _actionState != State::DEAD)
+	if (_actionState != State::KNOCKDOWN && _actionState != State::DEAD)
 	{
-		_actionState = State::KOCKDOWN;
+		_actionState = State::KNOCKDOWN;
 		stopAllActions();
 
 		runAction(_knockDownAction);
@@ -5802,7 +5800,6 @@ void CharacterBase::knockDown()
 
 void CharacterBase::dead()
 {
-
 	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "acceptAttack");
 
 	_isHitOne = false;
@@ -6423,6 +6420,7 @@ bool CharacterBase::findTargetEnemy(const char *type, bool isTowerDected)
 	}
 }
 
+// [For AI] 血量充足后，使AI前进
 void CharacterBase::stepOn()
 {
 
@@ -6440,80 +6438,7 @@ void CharacterBase::stepOn()
 	walk(moveDirection);
 }
 
-bool CharacterBase::checkRetri()
-{
-	if (_isCanItem1 && to_int(getCoin()->getCString()) >= 50)
-	{
-		if (_delegate->_isHardCoreGame)
-		{
-			if (battleCondiction >= 0)
-			{
-				if (!_isHealling)
-				{
-					if (to_uint(getMaxHP()->getCString()) - to_uint(getHP()->getCString()) >= 3000 + gearRecoverValue && getGearArray()->count() > 1)
-					{
-						setItem(Item1);
-					}
-					else if (to_uint(getHP()->getCString()) < 5000 && getGearArray()->count() > 0)
-					{
-						setItem(Item1);
-					}
-					else if (to_uint(getHP()->getCString()) < 1500)
-					{
-						setItem(Item1);
-					}
-				}
-			}
-			else
-			{
-				if (to_uint(getMaxHP()->getCString()) - to_uint(getHP()->getCString()) >= 3000 + gearRecoverValue && !_isHealling && getGearArray()->count() > 0)
-				{
-					setItem(Item1);
-				}
-				else if (to_uint(getHP()->getCString()) < 3000)
-				{
-					setItem(Item1);
-				}
-			}
-		}
-		else
-		{
-			if (to_uint(getHP()->getCString()) < 1500 && strcmp(getGroup()->getCString(), Konoha) == 0)
-			{
-				setItem(Item1);
-			}
-			if (to_uint(getHP()->getCString()) < 500 && strcmp(getGroup()->getCString(), Akatsuki) == 0)
-			{
-				setItem(Item1);
-			}
-		}
-	}
-
-	if (battleCondiction >= 0)
-	{
-		if (strcmp(Konoha, _group->getCString()) == 0)
-		{
-			if (getPositionX() >= _delegate->currentMap->getTileSize().width * 60)
-			{
-				return false;
-			}
-		}
-		else
-		{
-			if (getPositionX() <= _delegate->currentMap->getTileSize().width * 36)
-			{
-				return false;
-			}
-		}
-	}
-
-	if (to_uint(getHP()->getCString()) < 1500 && !_isControlled)
-	{
-		return true;
-	}
-	return false;
-}
-
+// [For AI] 使AI撤退，只有横向移动方向
 bool CharacterBase::stepBack()
 {
 	if (_isControlled)
@@ -6543,6 +6468,7 @@ bool CharacterBase::stepBack()
 	}
 }
 
+// [For AI] 使AI撤退
 bool CharacterBase::stepBack2()
 {
 	if (_isControlled)
@@ -6551,7 +6477,6 @@ bool CharacterBase::stepBack2()
 	}
 	CCPoint moveDirection;
 
-	srand((int)time(0));
 	int randomDirection = random(10);
 
 	if (!_backY)
@@ -6634,6 +6559,81 @@ bool CharacterBase::stepBack2()
 	{
 		return false;
 	}
+}
+
+// [For AI] 检查角色是否需要使用【拉面】回血，血量低于界限，则返回true
+bool CharacterBase::checkRetri()
+{
+	if (_isCanItem1 && to_int(getCoin()->getCString()) >= 50)
+	{
+		if (_delegate->_isHardCoreGame)
+		{
+			if (battleCondiction >= 0)
+			{
+				if (!_isHealling)
+				{
+					if (to_uint(getMaxHP()->getCString()) - to_uint(getHP()->getCString()) >= 3000 + gearRecoverValue && getGearArray()->count() > 1)
+					{
+						setItem(Item1);
+					}
+					else if (to_uint(getHP()->getCString()) < 5000 && getGearArray()->count() > 0)
+					{
+						setItem(Item1);
+					}
+					else if (to_uint(getHP()->getCString()) < 1500)
+					{
+						setItem(Item1);
+					}
+				}
+			}
+			else
+			{
+				if (to_uint(getMaxHP()->getCString()) - to_uint(getHP()->getCString()) >= 3000 + gearRecoverValue && !_isHealling && getGearArray()->count() > 0)
+				{
+					setItem(Item1);
+				}
+				else if (to_uint(getHP()->getCString()) < 3000)
+				{
+					setItem(Item1);
+				}
+			}
+		}
+		else
+		{
+			if (to_uint(getHP()->getCString()) < 1500 && strcmp(getGroup()->getCString(), Konoha) == 0)
+			{
+				setItem(Item1);
+			}
+			if (to_uint(getHP()->getCString()) < 500 && strcmp(getGroup()->getCString(), Akatsuki) == 0)
+			{
+				setItem(Item1);
+			}
+		}
+	}
+
+	if (battleCondiction >= 0)
+	{
+		if (strcmp(Konoha, _group->getCString()) == 0)
+		{
+			if (getPositionX() >= _delegate->currentMap->getTileSize().width * 60)
+			{
+				return false;
+			}
+		}
+		else
+		{
+			if (getPositionX() <= _delegate->currentMap->getTileSize().width * 36)
+			{
+				return false;
+			}
+		}
+	}
+
+	if (to_uint(getHP()->getCString()) < 1500 && !_isControlled)
+	{
+		return true;
+	}
+	return false;
 }
 
 void CharacterBase::changeSide(CCPoint sp)

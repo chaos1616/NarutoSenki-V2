@@ -6,14 +6,10 @@
 #include "StartMenu.h"
 #include "Core/Provider.hpp"
 
-GameLayer *_gLayer = nullptr;
-bool _isFullScreen = false;
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-GLFWwindow *_window = nullptr;
-#endif
-
 GameLayer::GameLayer()
 {
+	mapId = 0;
+
 	_isAttackButtonRelease = true;
 	_isSkillFinish = true;
 
@@ -44,12 +40,12 @@ GameLayer::GameLayer()
 	_isRandomChar = false;
 	team = 1;
 	currentPlayer = nullptr;
-	isPosting = false;
-	postTime = 0;
 
 	_isGear = false;
 	_isPause = false;
 
+	_gLayer = nullptr;
+	_isFullScreen = false;
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	_lastPressedMovementKey = -100;
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
@@ -60,8 +56,8 @@ GameLayer::GameLayer()
 
 GameLayer::~GameLayer()
 {
-	//CC_SAFE_RELEASE(totalKills);
-	CC_SAFE_RELEASE(totalTM);
+	// CC_SAFE_RELEASE(totalKills);
+	// CC_SAFE_RELEASE(totalTM);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	CCDirector::sharedDirector()->getOpenGLView()->setAccelerometerKeyHook(nullptr);
@@ -132,61 +128,38 @@ void GameLayer::onExit()
 
 void GameLayer::initTileMap()
 {
-
-	if (_isHardCoreGame)
-	{
-		srand((int)time(0));
-		randomMap = random(4) + 1;
-	}
-	else
-	{
-		randomMap = 0;
-	}
-
 	const char *filePath;
-	if (randomMap == 0)
+	mapId = random(5);
+	if (mapId == 0)
 	{
 		filePath = S_MAP01;
 	}
-	else if (randomMap == 1)
+	else if (mapId == 1)
 	{
 		filePath = S_MAP02;
 	}
-	else if (randomMap == 2)
+	else if (mapId == 2)
 	{
 		filePath = S_MAP03;
 	}
-	else if (randomMap == 3)
+	else if (mapId == 3)
 	{
 		filePath = S_MAP04;
 	}
-	else if (randomMap == 4)
+	else if (mapId == 4)
 	{
 		filePath = S_MAP05;
 	}
 
-	// std::string key = KTools::getKeycode(filePath);
-	// int id = KTools::checkMD5(filePath);
-	// if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-	// {
-	// if (strcmp(key.c_str(), KeyList[id]) != 0)
-	// {
-	// 	return;
-	// }
-	// }
-
 	currentMap = CCTMXTiledMap::create(filePath);
-
 	addChild(currentMap, currentMapTag);
 }
 
 void GameLayer::initGard()
 {
-
 	int index = 0;
-	srand((int)time(0));
 	index = random(2);
-	Hero *Guardian;
+	Hero *guardian;
 
 	const char *groupName;
 
@@ -200,46 +173,45 @@ void GameLayer::initGard()
 	}
 	if (index == 0)
 	{
-		Guardian = Provider::create(CCString::create(Guardian_Roshi), CCString::create("Com"), CCString::create(groupName));
+		guardian = Provider::create(CCString::create(Guardian_Roshi), CCString::create("Com"), CCString::create(groupName));
 	}
 	else if (index == 1)
 	{
-		Guardian = Provider::create(CCString::create(Guardian_Han), CCString::create("Com"), CCString::create(groupName));
+		guardian = Provider::create(CCString::create(Guardian_Han), CCString::create("Com"), CCString::create(groupName));
 	}
 
 	if (team > 0)
 	{
-		Guardian->setPosition(ccp(2800, 80));
-		Guardian->setSpawnPoint(ccp(2800, 80));
+		guardian->setPosition(ccp(2800, 80));
+		guardian->setSpawnPoint(ccp(2800, 80));
 	}
 	else
 	{
-		Guardian->setPosition(ccp(272, 80));
-		Guardian->setSpawnPoint(ccp(272, 80));
+		guardian->setPosition(ccp(272, 80));
+		guardian->setSpawnPoint(ccp(272, 80));
 	}
-	Guardian->setDelegate(this);
+	guardian->setDelegate(this);
 
-	addChild(Guardian, -Guardian->getPositionY());
-	Guardian->setLV(6);
-	Guardian->setHPbar();
-	Guardian->setShadows();
-	Guardian->setCharNO(7);
+	addChild(guardian, -guardian->getPositionY());
+	guardian->setLV(6);
+	guardian->setHPbar();
+	guardian->setShadows();
+	guardian->setCharNO(7);
 
-	Guardian->idle();
+	guardian->idle();
 	CCDictionary *callValue = CCDictionary::create();
 	callValue->setObject(CCString::create("smk"), 1);
-	Guardian->setSkillEffect(Guardian, callValue);
+	guardian->setSkillEffect(guardian, callValue);
 
-	Guardian->doAI();
+	guardian->doAI();
 
-	_CharacterArray->addObject(Guardian);
+	_CharacterArray->addObject(guardian);
 	_hudLayer->addMapIcon();
 	_isGuardian = true;
 }
 
 void GameLayer::initHeros()
 {
-
 	initTileMap();
 	initEffects();
 
@@ -329,16 +301,16 @@ void GameLayer::initHeros()
 			int mapPos = i;
 			if (strcmp(group->getCString(), Akatsuki) == 0)
 			{
-				if (mapPos <= MapPosCount)
+				if (mapPos <= MapPosCount - 1)
 				{
-					mapPos += 3;
+					mapPos += MapPosCount;
 				}
 			}
 			else
 			{
-				if (mapPos > MapPosCount)
+				if (mapPos > MapPosCount - 1)
 				{
-					mapPos -= 3;
+					mapPos -= MapPosCount;
 				}
 			}
 
@@ -436,17 +408,14 @@ void GameLayer::onGameStart(float dt)
 
 	getHudLayer()->Kaichang->removeFromParent();
 	getHudLayer()->Kaichang = nullptr;
-	getHudLayer()->initHeroInterface();
+	// getHudLayer()->initHeroInterface();
 	schedule(schedule_selector(GameLayer::updateGameTime), 1.0f);
 	schedule(schedule_selector(GameLayer::checkBackgroundMusic), 2.0f);
 	schedule(schedule_selector(GameLayer::addFlog), 15.0f);
 	initFlogs();
+	addFlog(0);
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	CCDirector::sharedDirector()->getOpenGLView()->setAccelerometerKeyHook((cocos2d::CCEGLView::LPFN_ACCELEROMETER_KEYHOOK)(&GameLayer::LPFN_ACCELEROMETER_KEYHOOK));
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-	glfwSetKeyCallback(_window, keyEventHandle);
-#endif
+	setupKeyEventHandler();
 
 	CCObject *pObject;
 	CCARRAY_FOREACH(_CharacterArray, pObject)
@@ -463,9 +432,7 @@ void GameLayer::onGameStart(float dt)
 
 void GameLayer::initFlogs()
 {
-
-	CCString *KonohaFlogName = CCString::create("KotetsuFlog");
-	CCString *AkatsukiFlogName = CCString::create("FemalePainFlog");
+	addSprites("Element/hpBar/flogBar.plist");
 
 	kName = "KotetsuFlog";
 	aName = "FemalePainFlog";
@@ -473,81 +440,27 @@ void GameLayer::initFlogs()
 	_KonohaFlogArray = CCArray::create();
 	_AkatsukiFlogArray = CCArray::create();
 
-	addSprites("Element/hpBar/flogBar.plist");
-
-	int i;
-	Flog *aiFlog;
-	float mainPosY;
-	for (i = 0; i < 6; i++)
-	{
-		aiFlog = Flog::create();
-		aiFlog->setDelegate(this);
-		aiFlog->setID(KonohaFlogName, CCString::create("Flog"), CCString::create(Konoha));
-		if (i < 3)
-		{
-			mainPosY = (5.5 - i / 1.5) * 32;
-		}
-		else
-		{
-			mainPosY = (3.5 - i / 1.5) * 32;
-		}
-		aiFlog->_mainPosY = mainPosY;
-		aiFlog->setPosition(ccp(13 * 32, aiFlog->_mainPosY));
-		aiFlog->setHPbar();
-		addChild(aiFlog, -int(aiFlog->getPositionY()));
-		aiFlog->idle();
-		aiFlog->doAI();
-		_KonohaFlogArray->addObject(aiFlog);
-	}
-
 	_KonohaFlogArray->retain();
-
-	for (i = 0; i < 6; i++)
-	{
-		aiFlog = Flog::create();
-		aiFlog->setDelegate(this);
-		aiFlog->setID(AkatsukiFlogName, CCString::create("Flog"), CCString::create(Akatsuki));
-		if (i < 3)
-		{
-			mainPosY = (5.5 - i / 1.5) * 32;
-		}
-		else
-		{
-			mainPosY = (3.5 - i / 1.5) * 32;
-		}
-		aiFlog->_mainPosY = mainPosY;
-		aiFlog->setPosition(ccp(83 * 32, aiFlog->_mainPosY));
-		aiFlog->setHPbar();
-		aiFlog->idle();
-		aiFlog->doAI();
-		_AkatsukiFlogArray->addObject(aiFlog);
-		addChild(aiFlog, -aiFlog->getPositionY());
-	}
-
 	_AkatsukiFlogArray->retain();
 }
+
 void GameLayer::addFlog(float dt)
 {
-
 	CCString *KonohaFlogName = CCString::create(kName);
 	CCString *AkatsukiFlogName = CCString::create(aName);
 
 	int i;
 	Flog *aiFlog;
 	float mainPosY;
-	for (i = 0; i < 6; i++)
+	for (i = 0; i < NUM_FLOG; i++)
 	{
 		aiFlog = Flog::create();
 		aiFlog->setDelegate(this);
 		aiFlog->setID(KonohaFlogName, CCString::create("Flog"), CCString::create(Konoha));
-		if (i < 3)
-		{
+		if (i < NUM_FLOG / 2)
 			mainPosY = (5.5 - i / 1.5) * 32;
-		}
 		else
-		{
 			mainPosY = (3.5 - i / 1.5) * 32;
-		}
 		aiFlog->_mainPosY = mainPosY;
 		aiFlog->setPosition(ccp(13 * 32, aiFlog->_mainPosY));
 		aiFlog->setHPbar();
@@ -557,19 +470,15 @@ void GameLayer::addFlog(float dt)
 		addChild(aiFlog, -int(aiFlog->getPositionY()));
 	}
 
-	for (i = 0; i < 6; i++)
+	for (i = 0; i < NUM_FLOG; i++)
 	{
 		aiFlog = Flog::create();
 		aiFlog->setDelegate(this);
 		aiFlog->setID(AkatsukiFlogName, CCString::create("Flog"), CCString::create(Akatsuki));
-		if (i < 3)
-		{
+		if (i < NUM_FLOG / 2)
 			mainPosY = (5.5 - i / 1.5) * 32;
-		}
 		else
-		{
 			mainPosY = (3.5 - i / 1.5) * 32;
-		}
 		aiFlog->_mainPosY = mainPosY;
 		aiFlog->setPosition(ccp(83 * 32, aiFlog->_mainPosY));
 		aiFlog->setHPbar();
@@ -582,24 +491,23 @@ void GameLayer::addFlog(float dt)
 
 void GameLayer::initTower()
 {
-
-	if (randomMap == 0)
+	if (mapId == 0)
 	{
 		addSprites("Element/Tower/Tower.plist");
 	}
-	else if (randomMap == 1)
+	else if (mapId == 1)
 	{
 		addSprites("Element/Tower/Tower2.plist");
 	}
-	else if (randomMap == 2)
+	else if (mapId == 2)
 	{
 		addSprites("Element/Tower/Tower3.plist");
 	}
-	else if (randomMap == 3)
+	else if (mapId == 3)
 	{
 		addSprites("Element/Tower/Tower4.plist");
 	}
-	else if (randomMap == 4)
+	else if (mapId == 4)
 	{
 		addSprites("Element/Tower/Tower5.plist");
 	}
@@ -614,7 +522,6 @@ void GameLayer::initTower()
 
 	CCARRAY_FOREACH(metaArray, pObject)
 	{
-
 		CCDictionary *dict = (CCDictionary *)pObject;
 
 		int metaX = ((CCString *)dict->objectForKey("x"))->intValue();
@@ -672,7 +579,6 @@ void GameLayer::initTower()
 
 void GameLayer::initEffects()
 {
-
 	addSprites("Effects/SkillEffect.plist");
 	skillEffectBatch = CCSpriteBatchNode::create("Effects/SkillEffect.png");
 	addChild(skillEffectBatch, currentSkillTag);
@@ -742,6 +648,7 @@ void GameLayer::setHPLose(float percent)
 {
 	_hudLayer->setHPLose(percent);
 }
+
 void GameLayer::setCKRLose(bool isCRK2)
 {
 	_hudLayer->setCKRLose(isCRK2);
@@ -790,7 +697,6 @@ void GameLayer::removeOugisMark(int type)
 
 void GameLayer::checkTower()
 {
-
 	int konohaTowerCount = 0;
 	int akatsukiTowerCount = 0;
 	CCObject *pObject;
@@ -830,11 +736,6 @@ void GameLayer::checkTower()
 		aEXPBound = 100;
 	}
 
-	if (postTime >= 9)
-	{
-		currentPlayer = nullptr;
-	}
-
 	CCARRAY_FOREACH(_CharacterArray, pObject)
 	{
 		CharacterBase *tmpHero = (CharacterBase *)pObject;
@@ -871,24 +772,16 @@ void GameLayer::checkTower()
 		if (team > 0)
 		{
 			if (konohaTowerCount == 0)
-			{
 				onGameOver(false);
-			}
 			else
-			{
 				onGameOver(true);
-			}
 		}
 		else
 		{
 			if (akatsukiTowerCount == 0)
-			{
 				onGameOver(false);
-			}
 			else
-			{
 				onGameOver(true);
-			}
 		}
 	}
 }
@@ -1048,23 +941,23 @@ void GameLayer::onLeft()
 		CCNotificationCenter::sharedNotificationCenter()->removeObserver(ac, "acceptAttack");
 	}
 
-	if (randomMap == 0)
+	if (mapId == 0)
 	{
 		CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Tower/Tower.plist");
 	}
-	else if (randomMap == 1)
+	else if (mapId == 1)
 	{
 		CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Tower/Tower2.plist");
 	}
-	else if (randomMap == 2)
+	else if (mapId == 2)
 	{
 		CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Tower/Tower3.plist");
 	}
-	else if (randomMap == 3)
+	else if (mapId == 3)
 	{
 		CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Tower/Tower4.plist");
 	}
-	else if (randomMap == 4)
+	else if (mapId == 4)
 	{
 		CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Tower/Tower5.plist");
 	}
@@ -1125,6 +1018,20 @@ void GameLayer::onLeft()
 			KTools::prepareFileOGG("ImmortalSasuke", true);
 			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/ImmortalSasuke/ImmortalSasuke.plist");
 		}
+		else if (strcmp(player->getCharacter()->getCString(), "Pain") == 0)
+		{
+			KTools::prepareFileOGG("Nagato", true);
+			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/AnimalPath/AnimalPath.plist");
+			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/AsuraPath/AsuraPath.plist");
+			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/DevaPath/DevaPath.plist");
+			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Nagato/Nagato.plist");
+		}
+		else if (strcmp(player->getCharacter()->getCString(), "Nagato") == 0)
+		{
+			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/AnimalPath/AnimalPath.plist");
+			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/AsuraPath/AsuraPath.plist");
+			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/DevaPath/DevaPath.plist");
+		}
 		player->removeFromParentAndCleanup(true);
 	}
 
@@ -1144,10 +1051,17 @@ void GameLayer::onLeft()
 
 	_TowerArray->removeAllObjects();
 	_TowerArray = nullptr;
-	_KonohaFlogArray->removeAllObjects();
-	_KonohaFlogArray = nullptr;
-	_AkatsukiFlogArray->removeAllObjects();
-	_AkatsukiFlogArray = nullptr;
+	// fixed: Not add flogs when fast leave game
+	if (_KonohaFlogArray)
+	{
+		_KonohaFlogArray->removeAllObjects();
+		_KonohaFlogArray = nullptr;
+	}
+	if (_AkatsukiFlogArray)
+	{
+		_AkatsukiFlogArray->removeAllObjects();
+		_AkatsukiFlogArray = nullptr;
+	}
 
 	CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("UI.plist");
 	CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Map.plist");
@@ -1172,17 +1086,17 @@ void GameLayer::checkBackgroundMusic(float dt)
 			{
 				if (_playNum == 0)
 				{
-					SimpleAudioEngine::sharedEngine()->playBackgroundMusic(CCString::createWithFormat("Audio/Music/Battle%d.ogg", int(2 + randomMap * 3))->getCString(), false);
+					SimpleAudioEngine::sharedEngine()->playBackgroundMusic(CCString::createWithFormat("Audio/Music/Battle%d.ogg", int(2 + mapId * 3))->getCString(), false);
 					_playNum++;
 				}
 				else if (_playNum == 1)
 				{
-					SimpleAudioEngine::sharedEngine()->playBackgroundMusic(CCString::createWithFormat("Audio/Music/Battle%d.ogg", int(3 + randomMap * 3))->getCString(), false);
+					SimpleAudioEngine::sharedEngine()->playBackgroundMusic(CCString::createWithFormat("Audio/Music/Battle%d.ogg", int(3 + mapId * 3))->getCString(), false);
 					_playNum++;
 				}
 				else if (_playNum == 2)
 				{
-					SimpleAudioEngine::sharedEngine()->playBackgroundMusic(CCString::createWithFormat("Audio/Music/Battle%d.ogg", int(1 + randomMap * 3))->getCString(), false);
+					SimpleAudioEngine::sharedEngine()->playBackgroundMusic(CCString::createWithFormat("Audio/Music/Battle%d.ogg", int(1 + mapId * 3))->getCString(), false);
 					_playNum = 0;
 				}
 			}
@@ -1238,6 +1152,15 @@ void GameLayer::removeOugis()
 
 	blend->removeFromParent();
 	ougisChar = nullptr;
+}
+
+void GameLayer::setupKeyEventHandler()
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	CCDirector::sharedDirector()->getOpenGLView()->setAccelerometerKeyHook((cocos2d::CCEGLView::LPFN_ACCELEROMETER_KEYHOOK)(&GameLayer::LPFN_ACCELEROMETER_KEYHOOK));
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+	glfwSetKeyCallback(_window, keyEventHandle);
+#endif
 }
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
@@ -1324,6 +1247,10 @@ void GameLayer::keyEventHandle(GLFWwindow *window, int key, int scancode, int ke
 	if (_gLayer == nullptr)
 		return;
 
+	//NOTE: only attack button can hold
+	// Other keys is only click
+	if (keyState == 2 && key != KEY_J)
+		return;
 	switch (key)
 	{
 	case KEY_W:
@@ -1352,7 +1279,7 @@ void GameLayer::keyEventHandle(GLFWwindow *window, int key, int scancode, int ke
 		if (keyState)
 			_gLayer->_hudLayer->skill5Button->click();
 		break;
-	case KEY_K:
+	case KEY_K: // Ougis 1 buttons
 		if (keyState)
 			_gLayer->_hudLayer->skill4Button->click();
 		break;

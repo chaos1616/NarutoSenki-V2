@@ -452,6 +452,7 @@ void StartMenu::setNotice()
 		notice_bg->setPosition(ccp(15, 228));
 		notice_layer->addChild(notice_bg);
 
+		// FIXME: CCClippingNode not working on android
 		CCClippingNode *clipper = CCClippingNode::create();
 		CCNode *stencil = CCSprite::createWithSpriteFrameName("notice_mask.png");
 		stencil->setAnchorPoint(ccp(0, 0));
@@ -585,11 +586,10 @@ void StartMenu::enterSelectLayer()
 		addSprites("Gears.plist");
 
 		auto selectScene = CCScene::create();
-		auto selectLayer = SelectLayer::create();
+		CCNode *selectLayer = SelectLayer::create();
+		selectScene->addChild(selectLayer);
 
-		addChild(selectLayer);
-		CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(
-			1.5f, selectScene));
+		CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.5f, selectScene));
 		CCLOG("StartMenu lua handler can not be null");
 	}
 }
@@ -621,7 +621,6 @@ void StartMenu::onTrainingCallBack()
 
 		CCDictionary *dic = CCDictionary::create();
 
-		srand((int)time(0));
 		CCString *tmpChar = CCString::create("Gaara");
 		CCString *tmpRole = CCString::create("Player");
 		CCString *tmpGroup = CCString::create("Konoha");
@@ -642,7 +641,7 @@ void StartMenu::onTrainingCallBack()
 			CCString *hero = CCString::create(heroList[i]);
 			realHero->addObject(hero);
 		}
-		char *heroList2[] = {"Naruto", "Deidara", "Konan"};
+		const char *heroList2[] = {"Naruto", "Deidara", "Konan"};
 
 		CCArray *enemyHero = CCArray::create();
 		int num2 = sizeof(heroList2) / sizeof(char *);
@@ -663,7 +662,6 @@ void StartMenu::onTrainingCallBack()
 			if (i < KonohaCount)
 			{
 				int length = realHero->count();
-				srand((int)time(0));
 				int index = random(length);
 				if (index == (int)realHero->count())
 				{
@@ -690,7 +688,6 @@ void StartMenu::onTrainingCallBack()
 			{
 
 				int length = realHero->count();
-				srand((int)time(0));
 				int index = random(length);
 				if (index == (int)realHero->count())
 				{
@@ -712,7 +709,6 @@ void StartMenu::onTrainingCallBack()
 				tempHeros->addObject(dic);
 				realHero->removeObjectAtIndex(index);
 				// int length=enemyHero->count();
-				// srand((int)time(0));
 				// int index=random(length);
 				// if(index==(int)enemyHero->count()){
 				// 	index=enemyHero->count()-1;
@@ -757,7 +753,6 @@ void StartMenu::onTrainingCallBack()
 
 		CCDictionary *dic = CCDictionary::create();
 
-		srand((int)time(0));
 		int index2 = random(heroNum);
 		CCString *tmpChar = CCString::create(heroList[index2]);
 		CCString *tmpRole = CCString::create("Player");
@@ -780,7 +775,7 @@ void StartMenu::onTrainingCallBack()
 			CCString *hero = CCString::create(heroList[i]);
 			realHero->addObject(hero);
 		}
-		char *heroList2[] = {"Naruto", "Deidara", "Konan"};
+		const char *heroList2[] = {"Naruto", "Deidara", "Konan"};
 
 		CCArray *enemyHero = CCArray::create();
 		int num2 = sizeof(heroList2) / sizeof(char *);
@@ -801,7 +796,6 @@ void StartMenu::onTrainingCallBack()
 			if (i < 3)
 			{
 				int length = realHero->count();
-				srand((int)time(0));
 				int index = random(length);
 				if (index == (int)realHero->count())
 				{
@@ -828,7 +822,6 @@ void StartMenu::onTrainingCallBack()
 			{
 
 				int length = realHero->count();
-				srand((int)time(0));
 				int index = random(length);
 				if (index == (int)realHero->count())
 				{

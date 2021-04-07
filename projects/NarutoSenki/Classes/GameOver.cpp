@@ -576,7 +576,7 @@ void GameOver::listResult()
 
 	if (Cheats <= 10)
 	{
-		CCLabelBMFont *version = CCLabelBMFont::create("v2.0", "Fonts/1.fnt");
+		CCLabelBMFont *version = CCLabelBMFont::create(GAMEOVER_VER, "Fonts/1.fnt");
 		version->setPosition(ccp(winSize.width / 2 + 94, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 6));
 		version->setScale(0.3f);
 		addChild(version, 5);

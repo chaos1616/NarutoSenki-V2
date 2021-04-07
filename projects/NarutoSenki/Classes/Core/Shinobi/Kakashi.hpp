@@ -14,7 +14,7 @@ class Kakashi : public Hero
 			if ((getActionState() == State::FLOAT ||
 				 getActionState() == State::AIRHURT ||
 				 getActionState() == State::HURT ||
-				 getActionState() == State::KOCKDOWN) &&
+				 getActionState() == State::KNOCKDOWN) &&
 				getHpPercent() < 0.5 && !_isBati && !_isWudi)
 			{
 				useGear(gear06);
@@ -122,7 +122,7 @@ class Kakashi : public Hero
 						return;
 					}
 
-					if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && _mainTarget->getActionState() != State::KOCKDOWN && !_mainTarget->_isSticking)
+					if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 					{
 						changeSide(sp);
 						attack(OUGIS2);

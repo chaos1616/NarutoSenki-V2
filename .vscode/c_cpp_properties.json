@@ -1,0 +1,32 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/cocos2dx/**",
+                "${workspaceFolder}/cocos2dx/sprite_nodes/**",
+                "${workspaceFolder}/CocosDenshion/**",
+                "${workspaceFolder}/extensions/**",
+                "${workspaceFolder}/external/**",
+                "${workspaceFolder}/projects/NarutoSenki/Classes/**",
+                "${workspaceFolder}/projects/NarutoSenki/Classes/Core/**",
+                "${workspaceFolder}/projects/NarutoSenki/Classes/Core/Guardian/**",
+                "${workspaceFolder}/projects/NarutoSenki/Classes/Core/Jutsu/**",
+                "${workspaceFolder}/projects/NarutoSenki/Classes/Core/Kuchiyose/**",
+                "${workspaceFolder}/projects/NarutoSenki/Classes/Core/Shinobi/**",
+                "${workspaceFolder}/projects/NarutoSenki/Classes/Core/Tower/**",
+                "${workspaceFolder}/projects/NarutoSenki/Classes/Core/Warrior/**",
+                "${workspaceFolder}/projects/NarutoSenki/Classes/MyUtils/**",
+                "${workspaceFolder}/projects/NarutoSenki/proj.linux/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "c++20",
+            "intelliSenseMode": "gcc-x64",
+            "compileCommands": ""
+        }
+    ],
+    "version": 4
+}

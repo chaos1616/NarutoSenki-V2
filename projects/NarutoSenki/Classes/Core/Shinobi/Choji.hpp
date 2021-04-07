@@ -14,7 +14,7 @@ class Choji : public Hero
 			if ((getActionState() == State::FLOAT ||
 				 getActionState() == State::AIRHURT ||
 				 getActionState() == State::HURT ||
-				 getActionState() == State::KOCKDOWN) &&
+				 getActionState() == State::KNOCKDOWN) &&
 				getHpPercent() < 0.5 && !_isBati && !_isWudi)
 			{
 				useGear(gear06);

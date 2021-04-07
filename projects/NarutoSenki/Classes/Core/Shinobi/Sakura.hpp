@@ -59,7 +59,7 @@ class Sakura : public Hero
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_skillChangeBuffValue && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && _mainTarget->getActionState() != State::KOCKDOWN && !_mainTarget->_isSticking)
+				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_skillChangeBuffValue && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
@@ -223,19 +223,5 @@ class Sakura : public Hero
 			}
 			stepOn();
 		}
-	}
-
-	void changeAction()
-	{
-
-		setNAttackAction(createAnimation(skillSPC1Array, 10.0f, false, true));
-		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 400));
-	}
-
-	void resumeAction(float dt)
-	{
-		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) - 400));
-		CharacterBase::resumeAction(dt);
 	}
 };

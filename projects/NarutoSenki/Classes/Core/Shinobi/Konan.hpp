@@ -81,7 +81,7 @@ class Konan : public Hero
 					attack(SKILL1);
 					return;
 				}
-				else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && _mainTarget->getActionState() != State::KOCKDOWN && !_mainTarget->_isSticking && !_isBati)
+				else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_isBati)
 				{
 					if ((abs(sp.x) > 48 || abs(sp.y) > 16))
 					{
@@ -95,7 +95,7 @@ class Konan : public Hero
 					return;
 				}
 				else if (_mainTarget->getGP() < 5000 && !_isVisable && !_isBati && (_isCanSkill3 || _isCanSkill2) &&
-						 _mainTarget->getActionState() != State::KOCKDOWN)
+						 _mainTarget->getActionState() != State::KNOCKDOWN)
 				{
 
 					if ((abs(sp.x) > 128 || abs(sp.y) > 16))

@@ -208,8 +208,6 @@ root: projects/NarutoSenki
 >
 > For now, looks like it's just NarutoSenki developed with another game engine.
 
-I'll do my best to develop that game.
-
 You can get all the notices at the above `telegram` or `discord`.
 
 ---

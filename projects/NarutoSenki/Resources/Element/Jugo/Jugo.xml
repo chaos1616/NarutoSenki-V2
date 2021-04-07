@@ -229,7 +229,7 @@
             <dateName type="attackRangeX">0</dateName>
             <dateName type="attackRangeY">48</dateName>
             <coldName type="coldDown">1</coldName>
-             <dateName type="combatPoint">7980</dateName>
+            <dateName type="combatPoint">7980</dateName>
         </date>
         <frame>
         <eventName type="setSound">Audio/Effect/ougis.ogg</eventName>

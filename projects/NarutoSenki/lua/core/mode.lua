@@ -13,7 +13,7 @@ local gameMode = {
     -- HardCore     [Optional]
     -- 4v4          [Optional]
     CustomTraining = 2,
-    NewMode = 3
+    Online = 3
 }
 
 return gameMode

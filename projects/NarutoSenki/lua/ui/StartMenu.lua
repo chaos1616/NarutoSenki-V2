@@ -3,8 +3,6 @@
 --
 ns.StartMenu = StartMenu
 
-ns.enableCustomSelect = false
-
 function StartMenu:init()
     log('Initial StartMenu...')
 

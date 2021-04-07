@@ -80,7 +80,7 @@ class Kisame : public Hero
 			if ((_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK) && (abs(sp.x) < 128 || _isCanGear00))
 			{
 
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && _mainTarget->getActionState() != State::KOCKDOWN && !_mainTarget->_isSticking && !_skillChangeBuffValue)
+				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_skillChangeBuffValue)
 				{
 
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)

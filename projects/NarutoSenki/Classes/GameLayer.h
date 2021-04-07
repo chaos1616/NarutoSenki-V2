@@ -17,15 +17,23 @@
 #include "../../../cocos2dx/platform/android/jni/JniHelper.h"
 #endif
 
-class CharacterBase;
 class BGLayer;
+class CharacterBase;
+class GameLayer;
 class HudLayer;
+
+static GameLayer *_gLayer = nullptr;
+static bool _isFullScreen = false;
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+static GLFWwindow *_window = nullptr;
+#endif
 
 class GameLayer : public CCLayer
 {
 public:
 	GameLayer();
 	~GameLayer();
+	CREATE_FUNC(GameLayer);
 
 	CCTMXTiledMap *currentMap;
 	CharacterBase *currentPlayer;
@@ -33,7 +41,7 @@ public:
 
 	unsigned int _second;
 	unsigned int _minute;
-	int randomMap;
+	int mapId;
 
 	const char *kName;
 	const char *aName;
@@ -43,6 +51,7 @@ public:
 	CCArray *Heros;
 	bool _isAttackButtonRelease;
 	bool _isGuardian;
+	// int _guardianNum;
 	CCArray *_KonohaFlogArray;
 	CCArray *_AkatsukiFlogArray;
 	CCArray *_TowerArray;
@@ -63,9 +72,6 @@ public:
 	CCSpriteBatchNode *damageEffectBatch;
 	CCSpriteBatchNode *bulletBatch;
 	CCSpriteBatchNode *shadowBatch;
-
-	bool isPosting;
-	int postTime;
 
 	bool init();
 	void initTileMap();
@@ -125,8 +131,6 @@ public:
 	bool _isStarted;
 	bool _isExiting;
 
-	CREATE_FUNC(GameLayer);
-
 	bool _isGear;
 	bool _isPause;
 	GearLayer *_gearLayer;
@@ -134,19 +138,17 @@ public:
 	static bool checkHasAnyMovement();
 
 protected:
-	virtual void onEnter();
-	virtual void onExit();
+	void onEnter();
+	void onExit();
 
-private:
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+	void setupKeyEventHandler();
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	int _lastPressedMovementKey;
 
 	static void keyEventHandle(GLFWwindow *window, int key, int scancode, int action, int modes);
-
+#endif
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	static void LPFN_ACCELEROMETER_KEYHOOK(UINT message, WPARAM wParam, LPARAM lParam);
-#endif
-
 #endif
 };

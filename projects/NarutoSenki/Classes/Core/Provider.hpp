@@ -74,6 +74,13 @@
 #define is_or3(varStr, varName, varName2, varName3) else if ((strcmp(varStr, varName) == 0) || (strcmp(name, varName) == 0) || (strcmp(name, varName2) == 0) || (strcmp(name, varName3) == 0))
 #define is_tag(tag) if (strcmp(role->getCString(), tag) == 0)
 
+class DefaultAI : public Hero
+{
+    void perform()
+    {
+    }
+};
+
 class Provider
 {
 public:
@@ -137,6 +144,7 @@ public:
         is("Hiruzen") 						ptr = new Hiruzen();
         is("Kakuzu") 						ptr = new Kakuzu();
         is_or("Roshi", "Han") 				ptr = new Guardian();
+        else                                ptr = new DefaultAI();
 
         if (!ptr)
         {

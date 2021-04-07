@@ -3,7 +3,6 @@
 --
 local unsupportedList = {
     -- Here are not supported or in dev characters
-    'Pain', 'Orochimaru'
 }
 
 -- init values to lower case

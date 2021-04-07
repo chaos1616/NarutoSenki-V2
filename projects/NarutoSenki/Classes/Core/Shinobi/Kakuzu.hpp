@@ -372,10 +372,9 @@ class Kakuzu : public Hero
 			}
 		}
 
+		Hero *clone = nullptr;
 		if (hearts > 0 && (!isRaidon || !isKadon || !isFudon))
 		{
-			Hero *clone = nullptr;
-
 			if (!isRaidon)
 			{
 				clone = create<Mask>(CCString::create("MaskRaidon"), CCString::create("Kugutsu"), getGroup());
@@ -411,6 +410,6 @@ class Kakuzu : public Hero
 			}
 		}
 
-		return nullptr;
+		return clone;
 	}
 };

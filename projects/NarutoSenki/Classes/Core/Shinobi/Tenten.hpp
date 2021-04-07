@@ -6,7 +6,7 @@ class Tenten : public Hero
 	void perform()
 	{
 
-		_mainTarget = NULL;
+		_mainTarget = nullptr;
 		findEnemy2("Hero");
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_isHardCoreGame)
 		{
@@ -26,7 +26,7 @@ class Tenten : public Hero
 
 		if (checkRetri())
 		{
-			if (_mainTarget != NULL)
+			if (_mainTarget != nullptr)
 			{
 				if (stepBack2())
 					return;
@@ -179,7 +179,7 @@ class Tenten : public Hero
 				}
 			}
 		}
-		_mainTarget = NULL;
+		_mainTarget = nullptr;
 		if (!findEnemy2("Flog"))
 		{
 			findEnemy2("Tower");

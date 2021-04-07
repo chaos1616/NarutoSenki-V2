@@ -26,23 +26,23 @@ bool BGLayer::init()
 void BGLayer::initBg()
 {
 
-	if (_delegate->randomMap == 0)
+	if (_delegate->mapId == 0)
 	{
 		bgMap = CCSprite::create("Tiles/map_bg1.png");
 	}
-	else if (_delegate->randomMap == 1)
+	else if (_delegate->mapId == 1)
 	{
 		bgMap = CCSprite::create("Tiles/map_bg2.png");
 	}
-	else if (_delegate->randomMap == 2)
+	else if (_delegate->mapId == 2)
 	{
 		bgMap = CCSprite::create("Tiles/map_bg3.png");
 	}
-	else if (_delegate->randomMap == 3)
+	else if (_delegate->mapId == 3)
 	{
 		bgMap = CCSprite::create("Tiles/map_bg4.png");
 	}
-	else if (_delegate->randomMap == 4)
+	else if (_delegate->mapId == 4)
 	{
 		bgMap = CCSprite::create("Tiles/map_bg5.png");
 	}

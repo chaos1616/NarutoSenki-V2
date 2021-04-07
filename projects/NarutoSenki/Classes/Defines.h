@@ -6,8 +6,8 @@
 
 #include "MyUtils/Cocos2dxHelper.hpp"
 
-USING_NS_CC;
-USING_NS_CC_EXT;
+using namespace cocos2d;
+using namespace cocos2d::extension;
 using namespace CocosDenshion;
 
 //global parameter
@@ -15,21 +15,23 @@ using namespace CocosDenshion;
 #define random(x) (rand() % x)
 
 #define FONT_TYPE "微软雅黑"
-#define VERSION_CODE "v 2.00"
+#define VERSION_CODE "v 2.10"
+#define GAMEOVER_VER "v2.1"
 
 // layer's tag
 #define BgTag 1
 #define GlTag 2
 #define HudTag 3
 
+#define NUM_FLOG 6
 #define ComCount 5
 #define KonohaCount 2
-#define MapPosCount 2
+#define MapPosCount 3
 
 extern int Cheats;
 
 #define SERVER "https://game.naruto.re"
-#define CURRENT_VERSION 2.0
+#define CURRENT_VERSION 2.1
 
 //menu sound
 #define _soundPerfix "Audio/Menu/"
@@ -123,9 +125,17 @@ enum gearType
     None
 };
 
-#define Akatsuki "Akatsuki"
+/**
+ * Team info
+ */
 #define Konoha "Konoha"
+#define KonohaID 0
+#define Akatsuki "Akatsuki"
+#define AkatsukiID 1
 
+/** NOTE: No AI support characters
+  * Kimimaro. Orochimaru. Pain
+  */
 static const char *heroList[] = {
     "Konan", "Sakura", "Naruto", "Sai", "Deidara",
     "Kakashi", "Itachi", "Tenten", "Jiraiya", "Suigetsu",
@@ -135,6 +145,19 @@ static const char *heroList[] = {
     "Shikamaru", "Chiyo", "Kisame",
     "Hiruzen", "Kiba", "Jugo", "Lee"};
 static const int heroNum = sizeof(heroList) / sizeof(char *);
+
+static const char *heroLayoutList[] = {
+                    /** LEft */                                 /** Right */
+ "Naruto",      "Sakura",   "Sai",      "Kakashi", /**/ "None",     "None",     "None",
+ "Shikamaru",   "Ino",      "Choji",    "Asuma",   /**/ "Kiba",     "Hinata",   "Shino",
+ "Neji",        "Tenten",   "Lee",      "None",    /**/ "None",     "None",     "None",
+ "None",        "Tobirama", "Hiruzen",  "Minato",  /**/ "Jiraiya",  "Tsunade",  "Orochimaru",
+ "Gaara",       "None",     "Kankuro",  "Chiyo",   /**/ "None",     "None",     "None",
+ "Sasuke",      "Karin",    "Suigetsu", "Jugo",    /**/ "None",     "None",     "None",
+ "None",        "Tobi",     "Konan",    "None",    /**/ "Pain",     "None",     "None",
+ "None",        "Deidara",  "Kakuzu",   "Hidan",   /**/ "Kimimaro", "None",     "None",
+ "Itachi",      "Kisame",   "None",     "None",    /**/ "None",     "None",     "None",};
+static const int heroLayoutNum = sizeof(heroLayoutList) / sizeof(char *);
 
 // Resloutions
 
@@ -154,7 +177,7 @@ static const int heroNum = sizeof(heroList) / sizeof(char *);
 #define HEIGHT 900
 
 /** Macros */
-#define to_uint(str) strtoul(str, NULL, 10)
+#define to_uint(str) strtoul(str, nullptr, 10)
 #define to_int(str) atoi(str)
 
 // Keyboard controls
@@ -167,10 +190,10 @@ static const int heroNum = sizeof(heroList) / sizeof(char *);
 /* Printkeys */
 #define KEY_SPACE GLFW_KEY_SPACE
 #define KEY_APOSTROPHE GLFW_KEY_APOSTROPHE /* ' */
-#define KEY_COMMA GLFW_KEY_COMMA /* , */
-#define KEY_MINUS GLFW_KEY_MINUS /* - */
-#define KEY_PERIOD GLFW_KEY_PERIOD /* . */
-#define KEY_SLASH GLFW_KEY_SLASH /* / */
+#define KEY_COMMA GLFW_KEY_COMMA           /* , */
+#define KEY_MINUS GLFW_KEY_MINUS           /* - */
+#define KEY_PERIOD GLFW_KEY_PERIOD         /* . */
+#define KEY_SLASH GLFW_KEY_SLASH           /* / */
 
 #define KEY_0 GLFW_KEY_0
 #define KEY_1 GLFW_KEY_1
@@ -184,7 +207,7 @@ static const int heroNum = sizeof(heroList) / sizeof(char *);
 #define KEY_9 GLFW_KEY_9
 
 #define KEY_SEMICOLON GLFW_KEY_SEMICOLON /* ; */
-#define KEY_EQUAL GLFW_KEY_EQUAL /* = */
+#define KEY_EQUAL GLFW_KEY_EQUAL         /* = */
 #define KEY_A GLFW_KEY_A
 #define KEY_B GLFW_KEY_B
 #define KEY_C GLFW_KEY_C
@@ -211,12 +234,12 @@ static const int heroNum = sizeof(heroList) / sizeof(char *);
 #define KEY_X GLFW_KEY_X
 #define KEY_Y GLFW_KEY_Y
 #define KEY_Z GLFW_KEY_Z
-#define KEY_LEFT_BRACKET GLFW_KEY_LEFT_BRACKET /* [ */
-#define KEY_BACKSLASH GLFW_KEY_BACKSLASH /* \ */
+#define KEY_LEFT_BRACKET GLFW_KEY_LEFT_BRACKET   /* [ */
+#define KEY_BACKSLASH GLFW_KEY_BACKSLASH         /* \ */
 #define KEY_RIGHT_BRACKET GLFW_KEY_RIGHT_BRACKET /* ] */
-#define KEY_GRAVE_ACCENT GLFW_KEY_GRAVE_ACCENT /* ` */
-#define KEY_WORLD_1 GLFW_KEY_WORLD_1 /* non-US #1 */
-#define KEY_WORLD_2 GLFW_KEY_WORLD_2 /* non-US #2 */
+#define KEY_GRAVE_ACCENT GLFW_KEY_GRAVE_ACCENT   /* ` */
+#define KEY_WORLD_1 GLFW_KEY_WORLD_1             /* non-US #1 */
+#define KEY_WORLD_2 GLFW_KEY_WORLD_2             /* non-US #2 */
 
 /* Functeys */
 #define KEY_ESCAPE GLFW_KEY_ESCAPE

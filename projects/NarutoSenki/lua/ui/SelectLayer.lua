@@ -1,7 +1,6 @@
 --
 -- SelectLayer
 --
-
 function SelectLayer:init()
     log('Initial SelectLayer...')
 
@@ -397,7 +396,6 @@ function SelectLayer:setSelected(btn)
             self._comLabel1:setOpacity(255)
             self._comLabel1:setDisplayFrame(
                 display.newSpriteFrame('com_label2.png'))
-            self._comLabel2:runAction(seq)
         end
     elseif not self._com2Select then
         self._comSelector2:setDisplayFrame(

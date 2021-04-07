@@ -68,7 +68,6 @@ class Naruto : public Hero
 
 		if (checkRetri())
 		{
-
 			if (_mainTarget != nullptr)
 			{
 				if (stepBack2())

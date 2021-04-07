@@ -4,11 +4,12 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "re.naruto.game"
-        minSdkVersion 10
+        minSdkVersion 21
+        //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 30
         versionCode 2
         versionName "2.0"
@@ -40,19 +41,6 @@ android {
                     }
                 }
             }
-            // else if (PROP_BUILD_TYPE == 'cmake') {
-            //     cmake {
-            //         targets 'MyGame'
-            //         arguments "-DCMAKE_FIND_ROOT_PATH=", "-DANDROID_STL=c++_static", "-DANDROID_TOOLCHAIN=clang", "-DANDROID_ARM_NEON=TRUE", \
-            //                   "-DUSE_CHIPMUNK=TRUE", "-DUSE_BULLET=TRUE"
-            //         cppFlags "-frtti -fexceptions"
-            //         // prebuilt root must be defined as a directory which you have right to access or create if you use prebuilt
-            //         // set "-DGEN_COCOS_PREBUILT=ON" and "-DUSE_COCOS_PREBUILT=OFF" to generate prebuilt,  this way build cocos2d-x libs
-            //         // set "-DGEN_COCOS_PREBUILT=OFF" and "-DUSE_COCOS_PREBUILT=ON" to use prebuilt, this way not build cocos2d-x libs
-            //         //arguments "-DCOCOS_PREBUILT_ROOT=/Users/laptop/cocos-prebuilt"
-            //         //arguments "-DGEN_COCOS_PREBUILT=OFF", "-DUSE_COCOS_PREBUILT=OFF"
-            //     }
-            // }
         }
 
         ndk {
@@ -75,11 +63,6 @@ android {
                 path "./jni/Android.mk"
             }
         }
-        // else if (PROP_BUILD_TYPE == 'cmake') {
-        //     cmake {
-        //         path "../../CMakeLists.txt"
-        //     }
-        // }
     }
 
     signingConfigs {
@@ -96,9 +79,9 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
-            debuggable true
-            jniDebuggable true
+            minifyEnabled true
+            debuggable false
+            jniDebuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             if (project.hasProperty("RELEASE_STORE_FILE")) {
                 signingConfig signingConfigs.release
@@ -112,17 +95,12 @@ android {
             if (project.hasProperty("RELEASE_STORE_FILE")) {
                 signingConfig signingConfigs.release
             }
+            externalNativeBuild {
+                ndkBuild {
+                    arguments 'NDK_DEBUG=0'
+                }
+            }
         }
-//        debug {
-//            debuggable true
-//            jniDebuggable true
-//            renderscriptDebuggable true
-//            externalNativeBuild {
-//                ndkBuild {
-//                    arguments 'NDK_DEBUG=1'
-//                }
-//            }
-//        }
     }
 }
 

@@ -415,7 +415,6 @@ void HeroElement::countDown(float dt)
 
 void HeroElement::reborn(float dt)
 {
-
 	setPosition(getSpawnPoint());
 
 	if (getPosition().equals(getSpawnPoint()))

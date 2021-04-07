@@ -25,7 +25,6 @@ public:
 	CCArray *tempHeros;
 	bool init();
 
-	//void dfsFolder(std::string folderPath, int depth);
 	int loadNum;
 
 	CREATE_FUNC(LoadLayer);
@@ -40,4 +39,8 @@ public:
 	void preloadIMG();
 	void playBGM(float dt);
 	void onLoadFinish(float dt);
+
+protected:
+	void perloadCharIMG(const CCString *player);
+	void setLoadingAnimation(const CCString *player, int index);
 };

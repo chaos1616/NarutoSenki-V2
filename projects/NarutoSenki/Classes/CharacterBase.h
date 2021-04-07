@@ -14,7 +14,7 @@ enum class State {
 	O2ATTACK,	// Ougi 2
 	HURT,
 	ABHURT,
-	KOCKDOWN,
+	KNOCKDOWN,
 	FLOAT,
 	JUMP,
 	AIRHURT
@@ -101,6 +101,7 @@ public:
 
 	int 				rebornLabelTime;
 	int 				battleCondiction;
+	// Only has one tower
 	bool 				isBaseDanger;
 
 

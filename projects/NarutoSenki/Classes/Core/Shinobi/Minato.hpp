@@ -14,7 +14,7 @@ class Minato : public Hero
 			if ((getActionState() == State::FLOAT ||
 				 getActionState() == State::AIRHURT ||
 				 getActionState() == State::HURT ||
-				 getActionState() == State::KOCKDOWN) &&
+				 getActionState() == State::KNOCKDOWN) &&
 				getHpPercent() < 0.5 && !_isBati && !_isWudi)
 			{
 				useGear(gear06);
@@ -74,7 +74,6 @@ class Minato : public Hero
 
 		if (checkRetri())
 		{
-
 			if (_mainTarget != nullptr)
 			{
 				if (stepBack2())
