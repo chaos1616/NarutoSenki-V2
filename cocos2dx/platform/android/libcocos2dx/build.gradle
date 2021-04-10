@@ -20,7 +20,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
              proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -29,6 +29,7 @@ android {
 dependencies {
     implementation fileTree(dir: '../java/libs', include: ['*.jar'])
 }
+
 repositories {
     mavenCentral()
 }

@@ -45,6 +45,8 @@ Generated Files
 AppPackages
 BundleArtifacts
 .vs/
+# Ignore all cached files (vscode database & cpp intelli sense cache)
+.vscode/cache/*
 
 # Ignore files build by ndk and eclipse
 libs/

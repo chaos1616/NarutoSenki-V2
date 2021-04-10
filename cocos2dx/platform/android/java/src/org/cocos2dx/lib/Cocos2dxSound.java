@@ -23,6 +23,10 @@ THE SOFTWARE.
  ****************************************************************************/
 package org.cocos2dx.lib;
 
+import android.content.Context;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -30,17 +34,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.Semaphore;
 
-import android.content.Context;
-import android.media.AudioManager;
-import android.media.SoundPool;
-import android.util.Log;
-
 public class Cocos2dxSound {
 	// ===========================================================
 	// Constants
 	// ===========================================================
-	public static final int MAX_SIMULTANEOUS_STREAMS_DEFAULT = 5;
-	public static final int MAX_SIMULTANEOUS_STREAMS_I9100 = 3;
+	public static final int MAX_SIMULTANEOUS_STREAMS_DEFAULT = 6 * 3 * 2;
+	public static final int MAX_SIMULTANEOUS_STREAMS_I9100 = 20;
 
 	private static final String TAG = "Cocos2dxSound";
 

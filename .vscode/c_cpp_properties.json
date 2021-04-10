@@ -5,20 +5,10 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/cocos2dx/**",
-                "${workspaceFolder}/cocos2dx/sprite_nodes/**",
                 "${workspaceFolder}/CocosDenshion/**",
                 "${workspaceFolder}/extensions/**",
                 "${workspaceFolder}/external/**",
-                "${workspaceFolder}/projects/NarutoSenki/Classes/**",
-                "${workspaceFolder}/projects/NarutoSenki/Classes/Core/**",
-                "${workspaceFolder}/projects/NarutoSenki/Classes/Core/Guardian/**",
-                "${workspaceFolder}/projects/NarutoSenki/Classes/Core/Jutsu/**",
-                "${workspaceFolder}/projects/NarutoSenki/Classes/Core/Kuchiyose/**",
-                "${workspaceFolder}/projects/NarutoSenki/Classes/Core/Shinobi/**",
-                "${workspaceFolder}/projects/NarutoSenki/Classes/Core/Tower/**",
-                "${workspaceFolder}/projects/NarutoSenki/Classes/Core/Warrior/**",
-                "${workspaceFolder}/projects/NarutoSenki/Classes/MyUtils/**",
-                "${workspaceFolder}/projects/NarutoSenki/proj.linux/**"
+                "${workspaceFolder}/projects/NarutoSenki/Classes/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

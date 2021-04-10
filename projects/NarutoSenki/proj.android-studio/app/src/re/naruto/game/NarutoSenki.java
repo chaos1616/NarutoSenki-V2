@@ -1,12 +1,12 @@
 package re.naruto.game;
 
-import org.cocos2dx.lib.Cocos2dxActivity;
-import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.WindowManager;
+
+import org.cocos2dx.lib.Cocos2dxActivity;
+import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 
 public class NarutoSenki extends Cocos2dxActivity{
 	protected void onCreate(Bundle savedInstanceState){

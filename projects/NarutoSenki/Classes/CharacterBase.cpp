@@ -2801,7 +2801,7 @@ void CharacterBase::setCharge(CCNode *sender, void *data)
 	}
 }
 
-// with out getCollider
+// without getCollider
 void CharacterBase::setChargeB(CCNode *sender, void *data)
 {
 	int moveLength = *((int *)&data);
@@ -3829,6 +3829,7 @@ void CharacterBase::dehealBuff(float dt)
 	}
 }
 
+// NOTE: Only for Shikamaru's KageHand
 void CharacterBase::lostBlood(float dt)
 {
 

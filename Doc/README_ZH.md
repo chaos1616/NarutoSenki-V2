@@ -39,9 +39,12 @@
   - 升级大多数依赖库到最新版
   - 升级glfw2到glfw3
   - [Adnroid] 支持android 11.0和圆形图标
+  - [Adnroid] 支持 arm64-v8a
   - [Linux] 使用OpenAL取缔FMod
   - [Windows] 使用OpenAL取缔原生音乐播放器
   - [Assets] 使用`ogg`格式音频取缔`mp3`
+  - LuaJit 更新为git master源（更新安卓luajit编译）
+  - 添加了旧角色 大蛇丸/佩恩/君麻吕 (暂无AI支持)
 - **修复**
   - 修复错误的单词 & 使用英语单词替换一些中文变量
   - 合并 `NetworkLayer`、`SelectLayer` 到 `SelectLayer`

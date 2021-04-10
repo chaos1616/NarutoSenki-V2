@@ -38,9 +38,12 @@ Get the latest developments👇
   - Most dependent libraries have been upgraded to the latest version
   - Updated glfw2 to glfw3
   - [Adnroid] Support android 11.0 and rounded icons
+  - [Adnroid] Support android arm64-v8a
   - [Linux] Use OpenAL instead of FMod
   - [Windows] Use OpenAL instead of native music player
   - [Assets] Use `ogg` format instead of `mp3`
+  - Upgrade LuaJit to git master（Updated luajit android build script）
+  - Added old characters Orochimaru/Pain/Kimimaro (No AI Support)
 - **FIXED**
   - Correct wrong words && Use english word instead of some chinese variables
   - Combined `NetworkLayer` and `SelectLayer` to `SelectLayer`
