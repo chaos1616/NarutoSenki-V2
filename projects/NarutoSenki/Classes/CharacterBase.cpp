@@ -381,7 +381,7 @@ void CharacterBase::updateHpBarPosition(float dt)
 void CharacterBase::acceptAttack(CCObject *object)
 {
 	CharacterBase *Attacker = (CharacterBase *)object;
-	bool isBizhong = false;
+	bool isCannotMiss = false;
 
 	if (strcmp(getCharacter()->getCString(), "Tobi") == 0)
 	{
@@ -406,10 +406,10 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 	if (strcmp(Attacker->getCharacter()->getCString(), "Hiruzen") == 0 && Attacker->getActionState() == State::O2ATTACK)
 	{
-		isBizhong = true;
+		isCannotMiss = true;
 	}
 
-	if (strcmp(_group->getCString(), Attacker->_group->getCString()) != 0 && _isVisable && (!_isWudi || isBizhong) && getActionState() != State::DEAD)
+	if (strcmp(_group->getCString(), Attacker->_group->getCString()) != 0 && _isVisable && (!_isWudi || isCannotMiss) && getActionState() != State::DEAD)
 	{
 
 		// Tower
@@ -1573,6 +1573,7 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 	{
 		criticalValue = rand() % 50;
 	}
+
 	if (strcmp(attacker->getCharacter()->getCString(), "Hidan") == 0 && attacker->_skillChangeBuffValue)
 	{
 		realValue = attackValue + criticalValue;
@@ -1580,13 +1581,13 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 	else
 	{
 
-		bool isBizhong = false;
+		bool isCannotMiss = false; // is this attack has 100 percent accuracy
 		if (strcmp(attacker->getCharacter()->getCString(), "Hiruzen") == 0 && attacker->getActionState() == State::O2ATTACK)
 		{
-			isBizhong = true;
+			isCannotMiss = true;
 		}
 
-		if (isBizhong)
+		if (isCannotMiss)
 		{
 			realValue = attackValue + criticalValue;
 		}
@@ -1606,15 +1607,15 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 			{
 
 				realValue = attackValue - _gardValue + criticalValue;
-				float jianshang = 0;
+				float decreaseRating = 0;
 				if (isHujia)
 				{
-					jianshang += 0.25;
+					decreaseRating += 0.25;
 				}
 
 				if (strcmp(getCharacter()->getCString(), "Kakuzu") == 0 && _skillChangeBuffValue)
 				{
-					jianshang += 0.25;
+					decreaseRating += 0.25;
 				}
 
 				if (strcmp(_character->getCString(), "Chiyo") == 0)
@@ -1628,19 +1629,19 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 							CCPoint sp = ccpSub(mo->getPosition(), getPosition());
 							if (sp.x <= 48)
 							{
-								jianshang += 0.25;
+								decreaseRating += 0.25;
 							}
 						}
 					}
 				}
 
-				if (realValue - realValue * jianshang < 0)
+				if (realValue - realValue * decreaseRating < 0)
 				{
 					realValue = 0;
 				}
 				else
 				{
-					realValue -= realValue * jianshang;
+					realValue -= realValue * decreaseRating;
 				}
 			}
 		}
