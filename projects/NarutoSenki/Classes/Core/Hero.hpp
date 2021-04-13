@@ -43,7 +43,7 @@ public:
 		//init Attribute; & indleFrame
 
 		CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
-		CCArray *tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
+		CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 		idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
 		idleArray->retain();
 
@@ -53,7 +53,7 @@ public:
 		int tmpHeight;
 		unsigned int tmpSpeed;
 		int tmpCombatPoint;
-		readDate(tmpDate, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
+		readData(tmpData, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
 		setMaxHP(CCString::createWithFormat("%ld", to_uint(tmpHpMax->getCString())));
 		setHP(CCString::create(getMaxHP()->getCString()));
 
@@ -100,10 +100,10 @@ public:
 
 		//init nAttack data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
-		tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
+		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 		CCString *tmpValue;
 		unsigned int tmpCD;
-		readDate(tmpDate, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
+		readData(tmpData, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
 		setnAttackValue(tmpValue);
 		_nattackType->retain();
 
@@ -112,9 +112,9 @@ public:
 
 		//init skill1 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(8));
-		tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
+		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 
-		readDate(tmpDate, _sattackType1, tmpValue, _sattackRangeX1, _sattackRangeY1, _sattackcoldDown1, _sattackCombatPoint1);
+		readData(tmpData, _sattackType1, tmpValue, _sattackRangeX1, _sattackRangeY1, _sattackcoldDown1, _sattackCombatPoint1);
 		setsAttackValue1(tmpValue);
 		_sattackType1->retain();
 
@@ -122,8 +122,8 @@ public:
 
 		//init skill2 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(9));
-		tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
-		readDate(tmpDate, _sattackType2, tmpValue, _sattackRangeX2, _sattackRangeY2, _sattackcoldDown2, _sattackCombatPoint2);
+		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
+		readData(tmpData, _sattackType2, tmpValue, _sattackRangeX2, _sattackRangeY2, _sattackcoldDown2, _sattackCombatPoint2);
 		_sattackType2->retain();
 		setsAttackValue2(tmpValue);
 		skill2Array = (CCArray *)(tmpAction->objectAtIndex(1));
@@ -142,16 +142,16 @@ public:
 
 		//init skill3 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(10));
-		tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
-		readDate(tmpDate, _sattackType3, tmpValue, _sattackRangeX3, _sattackRangeY3, _sattackcoldDown3, _sattackCombatPoint3);
+		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
+		readData(tmpData, _sattackType3, tmpValue, _sattackRangeX3, _sattackRangeY3, _sattackcoldDown3, _sattackCombatPoint3);
 		_sattackType3->retain();
 		setsAttackValue3(tmpValue);
 		skill3Array = (CCArray *)(tmpAction->objectAtIndex(1));
 
 		//init skill4 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(11));
-		tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
-		readDate(tmpDate, _sattackType4, tmpValue, _sattackRangeX4, _sattackRangeY4, _sattackcoldDown4, _sattackCombatPoint4);
+		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
+		readData(tmpData, _sattackType4, tmpValue, _sattackRangeX4, _sattackRangeY4, _sattackcoldDown4, _sattackCombatPoint4);
 		setsAttackValue4(tmpValue);
 		_sattackType4->retain();
 		skill4Array = (CCArray *)(tmpAction->objectAtIndex(1));
@@ -159,8 +159,8 @@ public:
 		//init skill5 data & Frame Array
 
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(12));
-		tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
-		readDate(tmpDate, _sattackType5, tmpValue, _sattackRangeX5, _sattackRangeY5, _sattackcoldDown5, _sattackCombatPoint5);
+		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
+		readData(tmpData, _sattackType5, tmpValue, _sattackRangeX5, _sattackRangeY5, _sattackcoldDown5, _sattackCombatPoint5);
 		setsAttackValue5(tmpValue);
 		_sattackType5->retain();
 		skill5Array = (CCArray *)(tmpAction->objectAtIndex(1));
@@ -170,8 +170,8 @@ public:
 		{
 			CC_BREAK_IF(animationArray->count() <= 17);
 			tmpAction = (CCArray *)(animationArray->objectAtIndex(17));
-			tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
-			readDate(tmpDate, _spcattackType1, tmpValue, _spcattackRangeX1, _spcattackRangeY1, _spcattackcoldDown1, tmpCombatPoint);
+			tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
+			readData(tmpData, _spcattackType1, tmpValue, _spcattackRangeX1, _spcattackRangeY1, _spcattackcoldDown1, tmpCombatPoint);
 			if (_spcattackType1)
 			{
 				skillSPC1Array = (CCArray *)(tmpAction->objectAtIndex(1));
@@ -181,8 +181,8 @@ public:
 			}
 			CC_BREAK_IF(animationArray->count() <= 18);
 			tmpAction = (CCArray *)(animationArray->objectAtIndex(18));
-			tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
-			readDate(tmpDate, _spcattackType2, tmpValue, _spcattackRangeX2, _spcattackRangeY2, _spcattackcoldDown2, tmpCombatPoint);
+			tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
+			readData(tmpData, _spcattackType2, tmpValue, _spcattackRangeX2, _spcattackRangeY2, _spcattackcoldDown2, tmpCombatPoint);
 			if (_spcattackType2)
 			{
 				skillSPC2Array = (CCArray *)(tmpAction->objectAtIndex(1));
@@ -192,8 +192,8 @@ public:
 			}
 			CC_BREAK_IF(animationArray->count() <= 19);
 			tmpAction = (CCArray *)(animationArray->objectAtIndex(19));
-			tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
-			readDate(tmpDate, _spcattackType3, tmpValue, _spcattackRangeX3, _spcattackRangeY3, _spcattackcoldDown3, tmpCombatPoint);
+			tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
+			readData(tmpData, _spcattackType3, tmpValue, _spcattackRangeX3, _spcattackRangeY3, _spcattackcoldDown3, tmpCombatPoint);
 			if (_spcattackType3)
 			{
 				skillSPC3Array = (CCArray *)(tmpAction->objectAtIndex(1));

@@ -530,7 +530,7 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	//init Attribute; & indleFrame
 
 	CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
-	CCArray *tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
+	CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 	idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
 	CCString *tmpName;
@@ -540,7 +540,7 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	unsigned int tmpSpeed;
 	int tmpCombatPoint;
 
-	readDate(tmpDate, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
+	readData(tmpData, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
 	setMaxHP(CCString::createWithFormat("%ld", to_uint(tmpHpMax->getCString())));
 	setHP(CCString::create(getMaxHP()->getCString()));
 
@@ -563,10 +563,10 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 
 	//init nAttack data & Frame Array
 	tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
-	tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
+	tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 	unsigned int tmpCD;
 	CCString *tmpValue;
-	readDate(tmpDate, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
+	readData(tmpData, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
 	setnAttackValue(tmpValue);
 	_nattackType->retain();
 	nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));

@@ -55,7 +55,7 @@ public:
         //init Attribute; & indleFrame
 
         CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
-        CCArray *tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
+        CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
         idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
         CCString *tmpName;
@@ -65,7 +65,7 @@ public:
         unsigned int tmpSpeed;
         int tmpCombatPoint;
 
-        readDate(tmpDate, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
+        readData(tmpData, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
         setMaxHP(CCString::createWithFormat("%ld", to_uint(tmpHpMax->getCString())));
         setHP(CCString::create(getMaxHP()->getCString()));
 

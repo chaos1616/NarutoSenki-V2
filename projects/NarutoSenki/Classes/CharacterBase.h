@@ -379,7 +379,7 @@ public:
 	void				setSkillEffect(CCNode* sender,void* data);
 	virtual void		setRestore2(float dt);
 
-	void				readDate(CCArray* tmpDate,CCString* &attackType,CCString* &attackValue,int &attackRangeX,int &attackRangeY,unsigned int &coldDown,int &combatPoint);
+	void				readData(CCArray* tmpData,CCString* &attackType,CCString* &attackValue,int &attackRangeX,int &attackRangeY,unsigned int &coldDown,int &combatPoint);
 	CCAction*			createAnimation(CCArray* ationArray,float fps,bool isRepeat,bool isReturn);
 
 protected:

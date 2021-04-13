@@ -149,7 +149,7 @@ CharacterBase::CharacterBase()
 	_exp = 0;
 	_level = 1;
 
-	_isWudi = false;
+	_isInvincible = false;
 	_isTaunt = false;
 	_isBati = false;
 
@@ -181,14 +181,14 @@ void CharacterBase::setShadows() {}
 
 void CharacterBase::changeHPbar() {}
 
-void CharacterBase::readDate(CCArray *tmpDate, CCString *&attackType, CCString *&attackValue, int &attackRangeX, int &attackRangeY, unsigned int &coldDown, int &combatPoint)
+void CharacterBase::readData(CCArray *tmpData, CCString *&attackType, CCString *&attackValue, int &attackRangeX, int &attackRangeY, unsigned int &coldDown, int &combatPoint)
 {
 
 	CCDictionary *tmpDict;
 
-	for (unsigned int i = 0; i < tmpDate->count(); ++i)
+	for (unsigned int i = 0; i < tmpData->count(); ++i)
 	{
-		tmpDict = (CCDictionary *)(tmpDate->objectAtIndex(i));
+		tmpDict = (CCDictionary *)(tmpData->objectAtIndex(i));
 		switch (i)
 		{
 		case 0:
@@ -306,7 +306,7 @@ void CharacterBase::update(float dt)
 
 		_desiredPosition = ccpAdd(getPosition(), ccpMult(_velocity, dt));
 
-		if (strcmp(_role->getCString(), "Player") == 0 && !_isAI && !_isWudi && !_isBati)
+		if (strcmp(_role->getCString(), "Player") == 0 && !_isAI && !_isInvincible && !_isBati)
 		{
 
 			//save the stop Area
@@ -385,12 +385,6 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 	if (strcmp(getCharacter()->getCString(), "Tobi") == 0)
 	{
-
-		CharacterBase *currentSlayer = nullptr;
-		if (_slayer)
-		{
-			currentSlayer = _slayer;
-		}
 		if (_skillChangeBuffValue && (getActionState() == State::IDLE ||
 									  getActionState() == State::WALK ||
 									  getActionState() == State::NATTACK))
@@ -409,7 +403,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 		isCannotMiss = true;
 	}
 
-	if (strcmp(_group->getCString(), Attacker->_group->getCString()) != 0 && _isVisable && (!_isWudi || isCannotMiss) && getActionState() != State::DEAD)
+	if (strcmp(_group->getCString(), Attacker->_group->getCString()) != 0 && _isVisable && (!_isInvincible || isCannotMiss) && getActionState() != State::DEAD)
 	{
 
 		// Tower
@@ -483,8 +477,8 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 			return;
 
-			//bullet
 		}
+		// Bullet
 		else if (strcmp(Attacker->_role->getCString(), "Bullet") == 0)
 		{
 
@@ -572,7 +566,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 									Attacker->_master->runAction(createAnimation(Attacker->_master->skillSPC1Array, 10.0f, false, false));
 									Attacker->_master->scheduleOnce(schedule_selector(CharacterBase::resumeAction), 15);
 									Attacker->_master->_isBati = true;
-									Attacker->_master->_isWudi = false;
+									Attacker->_master->_isInvincible = false;
 								}
 
 								if (strcmp(_controller->getRole()->getCString(), "Player") == 0)
@@ -738,8 +732,8 @@ void CharacterBase::acceptAttack(CCObject *object)
 						{
 							absorb(Attacker->getPosition(), false);
 						}
-
-					} // hero hurt
+					}
+					// hero hurt
 					else if (strcmp(_role->getCString(), "Player") == 0 || strcmp(_role->getCString(), "Com") == 0 || strcmp(_role->getCString(), K_TAG_CLONE) == 0)
 					{
 
@@ -2338,7 +2332,7 @@ void CharacterBase::useGear(gearType type)
 		_isCanGear06 = false;
 		scheduleOnce(schedule_selector(CharacterBase::enableGear06), 15.0f);
 
-		if (!_isWudi && !_isBati)
+		if (!_isInvincible && !_isBati)
 		{
 
 			if (getActionState() == State::IDLE ||
@@ -2846,7 +2840,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 	}
 	else if (strcmp(commandType->getCString(), "setInvincible") == 0)
 	{
-		_isWudi = true;
+		_isInvincible = true;
 	}
 	else if (strcmp(commandType->getCString(), "setGainCKR") == 0)
 	{
@@ -2900,7 +2894,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 	}
 	else if (strcmp(commandType->getCString(), "reInvincible") == 0)
 	{
-		_isWudi = false;
+		_isInvincible = false;
 	}
 	else if (strcmp(commandType->getCString(), "setInvisible") == 0)
 	{
@@ -3939,7 +3933,7 @@ void CharacterBase::stopMove(float dt)
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
 		Hero *tempHero = (Hero *)pObject;
-		if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && tempHero->_isVisable && tempHero->_actionState != State::DEAD && tempHero->_actionState != State::JUMP && !tempHero->_isWudi)
+		if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && tempHero->_isVisable && tempHero->_actionState != State::DEAD && tempHero->_actionState != State::JUMP && !tempHero->_isInvincible)
 		{
 			float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
 			float tempRange1 = _attackRangeX + getContentSize().width / 2;
@@ -5807,7 +5801,7 @@ void CharacterBase::dead()
 	_isHitOne = false;
 	_isCatchOne = false;
 	_isSticking = false;
-	_isWudi = false;
+	_isInvincible = false;
 	_startPoint = ccp(0, 0);
 	_markPoint = ccp(0, 0);
 
@@ -6067,7 +6061,7 @@ bool CharacterBase::findEnemy(const char *type, int searchRange, bool masterRang
 
 		if (target->_actionState == State::DEAD ||
 			target->_isVisable == false ||
-			target->_isWudi ||
+			target->_isInvincible ||
 			strcmp(target->_role->getCString(), "Kugutsu") == 0)
 		{
 			continue;
@@ -6217,7 +6211,7 @@ bool CharacterBase::findEnemy2(const char *type)
 						enemyCombatPoint += baseSkillCombatPoint + to_int(target->getHP()->getCString()) + (atof(target->getCKR()->getCString()) / 15000) * target->_sattackCombatPoint4 + (atof(target->getCKR2()->getCString()) / 25000) * target->_sattackCombatPoint5;
 					}
 
-					if (!target->_isWudi && (target->getPositionX() >= _delegate->currentMap->getTileSize().width * 3 && target->getPositionX() <= (_delegate->currentMap->getMapSize().width - 3) * _delegate->currentMap->getTileSize().width))
+					if (!target->_isInvincible && (target->getPositionX() >= _delegate->currentMap->getTileSize().width * 3 && target->getPositionX() <= (_delegate->currentMap->getMapSize().width - 3) * _delegate->currentMap->getTileSize().width))
 					{
 
 						if (curDistance && curDistance > distance)
@@ -6354,7 +6348,7 @@ bool CharacterBase::findTargetEnemy(const char *type, bool isTowerDected)
 		if (strcmp(_group->getCString(), target->_group->getCString()) != 0 &&
 			strcmp(target->_role->getCString(), "Kugutsu") != 0 &&
 			target->_actionState != State::DEAD &&
-			target->_isVisable && !target->_isWudi)
+			target->_isVisable && !target->_isInvincible)
 		{
 			// float gardZone;
 			if (getDelegate()->team > 0)

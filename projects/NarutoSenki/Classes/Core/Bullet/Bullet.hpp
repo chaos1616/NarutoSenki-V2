@@ -47,17 +47,17 @@ public:
         //init Attribute; & idleFrame
 
         CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
-        CCArray *tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
+        CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
         idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
         //init nAttack data & Frame Array
         tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
-        tmpDate = (CCArray *)(tmpAction->objectAtIndex(0));
+        tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
         unsigned int tmpCD;
         int tmpCombatPoint;
         CCString *tmpValue;
 
-        readDate(tmpDate, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
+        readData(tmpData, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
         setnAttackValue(tmpValue);
         _nattackType->retain();
         nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));

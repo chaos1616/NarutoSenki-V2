@@ -62,27 +62,27 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 
 		XMLElement *actionNodeEle = actionEle->FirstChildElement();
 		CCArray *actionArray = CCArray::create();
-		CCArray *actionDate = CCArray::create();
+		CCArray *actionData = CCArray::create();
 		CCArray *actionFrame = CCArray::create();
 		while (actionNodeEle)
 		{
 			// CCLog("+[%s]",actionNodeEle->Name());
 			if (strcmp(actionNodeEle->Name(), "frame"))
 			{
-				XMLElement *dateEle = actionNodeEle->FirstChildElement();
+				XMLElement *dataEle = actionNodeEle->FirstChildElement();
 
-				while (dateEle)
+				while (dataEle)
 				{
 
-					const char *nodeKey = dateEle->FirstAttribute()->Value();
-					CCString *nodeValue = CCString::create(dateEle->GetText());
+					const char *nodeKey = dataEle->FirstAttribute()->Value();
+					CCString *nodeValue = CCString::create(dataEle->GetText());
 
 					// CCLog("%s:%s",nodeKey,nodeValue->getCString());
-					CCDictionary *dateDic = CCDictionary::create();
-					dateDic->setObject(nodeValue, nodeKey);
+					CCDictionary *dataDic = CCDictionary::create();
+					dataDic->setObject(nodeValue, nodeKey);
 
-					actionDate->addObject(dateDic);
-					dateEle = dateEle->NextSiblingElement();
+					actionData->addObject(dataDic);
+					dataEle = dataEle->NextSiblingElement();
 				}
 			}
 			else
@@ -114,7 +114,7 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 			}
 			actionNodeEle = actionNodeEle->NextSiblingElement();
 		}
-		actionArray->addObject(actionDate);
+		actionArray->addObject(actionData);
 		actionArray->addObject(actionFrame);
 
 		array->addObject(actionArray);
