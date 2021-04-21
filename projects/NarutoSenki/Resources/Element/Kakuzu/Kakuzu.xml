@@ -200,7 +200,7 @@
         <eventName type="setSound">Audio/Kakuzu/Kakuzu_skill4.ogg</eventName>
         <frameName>Kakuzu_Skill04_002.png</frameName>
         <frameName>Kakuzu_Skill04_003.png</frameName>
-        <eventName type="setClone">1</eventName>
+        <eventName type="setClone">0</eventName>
          <eventName type="setCommand">reInvincible</eventName>
      </frame>
    </action>

@@ -380,9 +380,7 @@ void ActionButton::setProgressMark()
 
 	_delegate->addChild(clipper, -50);
 
-	// NOTE: Use bg2 insted of bg3 as a mask, because bg2 width is lower than bg3
-	// proressblinkSprite = CCSprite::createWithSpriteFrameName("icon_bg3.png");
-	proressblinkSprite = CCSprite::createWithSpriteFrameName("icon_bg2.png");
+	proressblinkSprite = CCSprite::createWithSpriteFrameName("icon_bg3.png");
 	proressblinkSprite->setPosition(getPosition());
 	proressblinkSprite->setAnchorPoint(ccp(0.5f, 0.5f));
 	proressblinkSprite->setPosition(ccp(proressmarkSprite->getContentSize().width / 2, proressmarkSprite->getContentSize().height / 2));
