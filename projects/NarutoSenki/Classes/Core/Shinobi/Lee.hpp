@@ -93,7 +93,8 @@ class Lee : public Hero
 
 		if (character_is(kLee____))
 		{
-			if (_exp >= 500 && _level == 1)
+			// NOTE: See `Kakuzu::changeHPbar()`
+			if (_exp >= 500 && _level == 1 + 1)
 			{
 				if (bamen < 1)
 				{
@@ -103,7 +104,7 @@ class Lee : public Hero
 					}
 				}
 			}
-			else if (_exp >= 1500 && _level == 3)
+			else if (_exp >= 1500 && _level == 3 + 1)
 			{
 				if (bamen < 3)
 				{
