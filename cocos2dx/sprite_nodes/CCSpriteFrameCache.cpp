@@ -180,12 +180,9 @@ void CCSpriteFrameCache::addSpriteFramesWithDictionary(CCDictionary *dictionary,
             CCString *frameKey = new CCString(spriteFrameName);
 
             // static const CCSize kCenterAnchor = {0.5f, 0.5f};
-            // NOTE: calculate right sprite offset
-            if (anchorPoint.width != 0.5f || anchorPoint.height != 0.5f)
-            {
-                spriteOffset.x = (anchorPoint.width - 0.5f) * 100;
-                spriteOffset.y = (anchorPoint.height - 0.5f) * 100;
-            }
+            // NOTE: calculate sprite offset
+            spriteOffset.x = (anchorPoint.width - 0.5f) * 100;
+            spriteOffset.y = (anchorPoint.height - 0.5f) * 100;
 
             CCObject *pObj = NULL;
             CCARRAY_FOREACH(aliases, pObj)

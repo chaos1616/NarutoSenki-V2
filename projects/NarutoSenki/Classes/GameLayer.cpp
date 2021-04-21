@@ -1175,50 +1175,52 @@ void GameLayer::setupKeyEventHandler()
 /**
  * Use __W __S __D __A control when to force move
  */
-#define MOVE(__W, __S, __D, __A, name, keyState)                                                    \
-	if (keyState)                                                                                   \
-		_gLayer->_lastPressedMovementKey = name;                                                    \
-	else if (_gLayer->_lastPressedMovementKey == name)                                              \
-		_gLayer->_lastPressedMovementKey = -100;                                                    \
-	int horizontal_##name;                                                                          \
-	int vertical_##name;                                                                            \
-	if (__W)                                                                                        \
-	{                                                                                               \
-		vertical_##name = (isPressed(KEY_W) ? 1 : -1);                                              \
-	}                                                                                               \
-	else if (__S)                                                                                   \
-	{                                                                                               \
-		vertical_##name = (isPressed(KEY_S) ? -1 : 1);                                              \
-	}                                                                                               \
-	else                                                                                            \
-	{                                                                                               \
-		vertical_##name = (isPressed(KEY_W) ? 1 : -1) + (isPressed(KEY_S) ? -1 : 1);                \
-		vertical_##name = abs(vertical_##name) > 1 ? vertical_##name / 2 : vertical_##name;         \
-	}                                                                                               \
-	if (__D)                                                                                        \
-	{                                                                                               \
-		horizontal_##name = (isPressed(KEY_D) ? 1 : -1);                                            \
-	}                                                                                               \
-	else if (__A)                                                                                   \
-	{                                                                                               \
-		horizontal_##name = (isPressed(KEY_A) ? -1 : 1);                                            \
-	}                                                                                               \
-	else                                                                                            \
-	{                                                                                               \
-		horizontal_##name = (isPressed(KEY_D) ? 1 : -1) + (isPressed(KEY_A) ? -1 : 1);              \
-		horizontal_##name = abs(horizontal_##name) > 1 ? horizontal_##name / 2 : horizontal_##name; \
-	}                                                                                               \
-	if (horizontal_##name != 0 || vertical_##name != 0)                                             \
-	{                                                                                               \
-		if (!_gLayer->ougisChar)                                                                    \
-			_gLayer->currentPlayer->walk(ccp(horizontal_##name, vertical_##name));                  \
-	}                                                                                               \
-	else if (_gLayer->currentPlayer->getActionState() == State::WALK)                               \
-	{                                                                                               \
-		_gLayer->_lastPressedMovementKey = -100;                                                    \
-		_gLayer->currentPlayer->idle();                                                             \
-	}                                                                                               \
-	break;
+#define MOVE(__W, __S, __D, __A, name, keyState)                                    \
+	{                                                                               \
+		if (keyState)                                                               \
+			_gLayer->_lastPressedMovementKey = name;                                \
+		else if (_gLayer->_lastPressedMovementKey == name)                          \
+			_gLayer->_lastPressedMovementKey = -100;                                \
+		int horizontal;                                                             \
+		int vertical;                                                               \
+		if (__W)                                                                    \
+		{                                                                           \
+			vertical = (isPressed(KEY_W) ? 1 : -1);                                 \
+		}                                                                           \
+		else if (__S)                                                               \
+		{                                                                           \
+			vertical = (isPressed(KEY_S) ? -1 : 1);                                 \
+		}                                                                           \
+		else                                                                        \
+		{                                                                           \
+			vertical = (isPressed(KEY_W) ? 1 : -1) + (isPressed(KEY_S) ? -1 : 1);   \
+			vertical = abs(vertical) > 1 ? vertical / 2 : vertical;                 \
+		}                                                                           \
+		if (__D)                                                                    \
+		{                                                                           \
+			horizontal = (isPressed(KEY_D) ? 1 : -1);                               \
+		}                                                                           \
+		else if (__A)                                                               \
+		{                                                                           \
+			horizontal = (isPressed(KEY_A) ? -1 : 1);                               \
+		}                                                                           \
+		else                                                                        \
+		{                                                                           \
+			horizontal = (isPressed(KEY_D) ? 1 : -1) + (isPressed(KEY_A) ? -1 : 1); \
+			horizontal = abs(horizontal) > 1 ? horizontal / 2 : horizontal;         \
+		}                                                                           \
+		if (horizontal != 0 || vertical != 0)                                       \
+		{                                                                           \
+			if (!_gLayer->ougisChar)                                                \
+				_gLayer->currentPlayer->walk(ccp(horizontal, vertical));            \
+		}                                                                           \
+		else if (_gLayer->currentPlayer->getActionState() == State::WALK)           \
+		{                                                                           \
+			_gLayer->_lastPressedMovementKey = -100;                                \
+			_gLayer->currentPlayer->idle();                                         \
+		}                                                                           \
+		break;                                                                      \
+	}
 
 #define ON_GEAR_BY(__ID__, __KEY_STATE__)                                                                                          \
 	if (_gLayer->_isGear && __KEY_STATE__)                                                                                         \
@@ -1254,17 +1256,17 @@ void GameLayer::keyEventHandle(GLFWwindow *window, int key, int scancode, int ke
 	switch (key)
 	{
 	case KEY_W:
-	case KEY_UP:
-		MOVE(keyState, 0, 0, 0, KEY_W, keyState);
+	// case KEY_UP:
+		MOVE(keyState, 0, 0, 0, key, keyState);
 	case KEY_S:
-	case KEY_DOWN:
-		MOVE(0, keyState, 0, 0, KEY_S, keyState);
+	// case KEY_DOWN:
+		MOVE(0, keyState, 0, 0, key, keyState);
 	case KEY_A:
-	case KEY_LEFT:
-		MOVE(0, 0, keyState, 0, KEY_A, keyState);
+	// case KEY_LEFT:
+		MOVE(0, 0, keyState, 0, key, keyState);
 	case KEY_D:
-	case KEY_RIGHT:
-		MOVE(0, 0, 0, keyState, KEY_D, keyState);
+	// case KEY_RIGHT:
+		MOVE(0, 0, 0, keyState, key, keyState);
 	case KEY_J:
 		if (keyState)
 			_gLayer->_hudLayer->nAttackButton->click();

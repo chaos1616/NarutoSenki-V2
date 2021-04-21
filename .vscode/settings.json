@@ -88,7 +88,7 @@
         "netfwd": "cpp",
         "timer": "cpp",
         "typeindex": "cpp",
-        "*.pkg": "cpp",
+        "*.pkg": "plaintext",
         "any": "cpp",
         "hash_set": "cpp",
         "cfenv": "cpp",

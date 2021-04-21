@@ -3,7 +3,6 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**",
                 "${workspaceFolder}/cocos2dx/**",
                 "${workspaceFolder}/CocosDenshion/**",
                 "${workspaceFolder}/extensions/**",
