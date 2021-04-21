@@ -15,7 +15,7 @@ class Tobirama : public Hero
 				 getActionState() == State::AIRHURT ||
 				 getActionState() == State::HURT ||
 				 getActionState() == State::KNOCKDOWN) &&
-				getHpPercent() < 0.5 && !_isBati && !_isWudi)
+				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(gear06);
 			}
@@ -92,7 +92,7 @@ class Tobirama : public Hero
 					changeSide(sp);
 					attack(OUGIS2);
 				}
-				else if (_isCanSkill1 && !_mainTarget->_isBati && (_mainTarget->getActionState() == State::IDLE || _mainTarget->getActionState() == State::WALK || _mainTarget->getActionState() == State::NATTACK))
+				else if (_isCanSkill1 && !_mainTarget->_isArmored && (_mainTarget->getActionState() == State::IDLE || _mainTarget->getActionState() == State::WALK || _mainTarget->getActionState() == State::NATTACK))
 				{
 					changeSide(sp);
 					attack(SKILL1);

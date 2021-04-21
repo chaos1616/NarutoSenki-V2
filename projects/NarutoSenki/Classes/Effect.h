@@ -12,8 +12,8 @@ public:
 	Effect();
 	~Effect();
 
-	virtual bool init(const char *szImage, CCObject *Attacker);
-	static Effect *create(const char *szImage, CCObject *Attacker);
+	virtual bool init(const char *szImage, CCObject *attacker);
+	static Effect *create(const char *szImage, CCObject *attacker);
 
 	CharacterBase *at;
 

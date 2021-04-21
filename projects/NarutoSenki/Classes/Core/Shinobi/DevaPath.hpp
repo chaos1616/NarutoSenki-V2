@@ -129,7 +129,7 @@ class DevaPath : public Hero
 			clone = create<AsuraPath>(CCString::create("AsuraPath"), CCString::create("Summon"), getGroup());
 		}
 		_monsterArray->addObject(clone);
-		clone->_isBati = true;
+		clone->_isArmored = true;
 		return clone;
 	}
 };

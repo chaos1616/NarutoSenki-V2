@@ -107,7 +107,7 @@ class Tenten : public Hero
 					attack(OUGIS2);
 					return;
 				}
-				else if (_isCanOugis1 && !_isControlled && !_mainTarget->_isBati && _mainTarget->getGP() < 5000 && !_skillChangeBuffValue)
+				else if (_isCanOugis1 && !_isControlled && !_mainTarget->_isArmored && _mainTarget->getGP() < 5000 && !_skillChangeBuffValue)
 				{
 
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)

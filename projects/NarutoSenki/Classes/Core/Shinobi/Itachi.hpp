@@ -15,7 +15,7 @@ class Itachi : public Hero
 				 getActionState() == State::AIRHURT ||
 				 getActionState() == State::HURT ||
 				 getActionState() == State::KNOCKDOWN) &&
-				getHpPercent() < 0.5 && !_isBati && !_isWudi)
+				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(gear06);
 			}
@@ -87,7 +87,7 @@ class Itachi : public Hero
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isBati)
+				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
 
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
@@ -103,7 +103,7 @@ class Itachi : public Hero
 
 					return;
 				}
-				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_isBati)
+				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_isArmored)
 				{
 
 					changeSide(sp);
@@ -112,7 +112,7 @@ class Itachi : public Hero
 
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isBati && !_isControlled)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isArmored && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 					{
@@ -126,7 +126,7 @@ class Itachi : public Hero
 						return;
 					}
 				}
-				else if (abs(sp.x) < 128 || _isBati)
+				else if (abs(sp.x) < 128 || _isArmored)
 				{
 					if (abs(sp.x) > 196 || abs(sp.y) > 64)
 					{
@@ -134,24 +134,24 @@ class Itachi : public Hero
 						walk(moveDirection);
 						return;
 					}
-					else if ((abs(sp.x) > 56 || abs(sp.y) > 32) && !_isBati)
+					else if ((abs(sp.x) > 56 || abs(sp.y) > 32) && !_isArmored)
 					{
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
 						return;
 					}
 
-					if (_isCanSkill3 && !_isBati && _mainTarget->getGP() < 5000)
+					if (_isCanSkill3 && !_isArmored && _mainTarget->getGP() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL3);
 					}
-					else if (_isCanSkill2 && !_isBati && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill2 && !_isArmored && _mainTarget->getGP() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL2);
 					}
-					else if (_isCanSkill1 && !_isBati && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill1 && !_isArmored && _mainTarget->getGP() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL1);
@@ -196,17 +196,17 @@ class Itachi : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (_isCanSkill3 && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
+				if (_isCanSkill3 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
 				{
 					changeSide(sp);
 					attack(SKILL3);
 				}
-				else if (_isCanSkill2 && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
+				else if (_isCanSkill2 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
 				{
 					changeSide(sp);
 					attack(SKILL2);
 				}
-				else if (_isCanSkill1 && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				else if (_isCanSkill1 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 				{
 					changeSide(sp);
 					attack(SKILL1);
@@ -253,7 +253,7 @@ class Itachi : public Hero
 		_nattackRangeY = 64;
 
 		_gardValue += 5000;
-		_isBati = true;
+		_isArmored = true;
 
 		lockOugisButtons();
 	}
@@ -280,7 +280,7 @@ class Itachi : public Hero
 		_nattackRangeX = 16;
 		_nattackRangeY = 48;
 		_gardValue -= 5000;
-		_isBati = false;
+		_isArmored = false;
 
 		if (_actionState != State::DEAD)
 		{
@@ -332,7 +332,7 @@ class Itachi : public Hero
 			_nattackRangeX = 16;
 			_nattackRangeY = 48;
 			_gardValue -= 5000;
-			_isBati = false;
+			_isArmored = false;
 
 			_skillChangeBuffValue = 0;
 		}

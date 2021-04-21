@@ -11,7 +11,7 @@ class Nagato : public Hero
 	Hero *createClone(unsigned int cloneTime)
 	{
 		auto clone = create<DevaPath>(CCString::create("DevaPath"), CCString::create(K_TAG_CLONE), getGroup());
-		clone->_isBati = true;
+		clone->_isArmored = true;
 		if (is_player)
 		{
 			if (_delegate->getHudLayer()->skill5Button)

@@ -15,7 +15,7 @@ class Gaara : public Hero
 				 getActionState() == State::AIRHURT ||
 				 getActionState() == State::HURT ||
 				 getActionState() == State::KNOCKDOWN) &&
-				getHpPercent() < 0.5 && !_isBati && !_isWudi)
+				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(gear06);
 			}
@@ -87,31 +87,31 @@ class Gaara : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isBati && _mainTarget->getGP() < 5000)
+				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored && _mainTarget->getGP() < 5000)
 				{
 					changeSide(sp);
 					attack(OUGIS2);
 					return;
 				}
-				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isBati)
+				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(OUGIS1);
 					return;
 				}
-				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isBati)
+				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL3);
 					return;
 				}
-				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isBati)
+				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL2);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControlled && !_isBati)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControlled && !_isArmored)
 				{
 					if (abs(sp.x) < 160)
 					{
@@ -133,7 +133,7 @@ class Gaara : public Hero
 						return;
 					}
 
-					if (_isCanSkill1 && !_isBati)
+					if (_isCanSkill1 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(SKILL1);
@@ -177,7 +177,7 @@ class Gaara : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && _isCanSkill1 && !_isBati)
+				if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && _isCanSkill1 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL1);
@@ -212,7 +212,7 @@ class Gaara : public Hero
 		_isOnlySkillLocked = true;
 
 		_gardValue += 5000;
-		_isBati = true;
+		_isArmored = true;
 
 		lockOugisButtons();
 
@@ -232,7 +232,7 @@ class Gaara : public Hero
 
 		unlockOugisButtons();
 		_gardValue -= 5000;
-		_isBati = false;
+		_isArmored = false;
 
 		if (_actionState != State::DEAD)
 		{
@@ -260,7 +260,7 @@ class Gaara : public Hero
 
 		lockOugisButtons();
 		_gardValue -= 5000;
-		_isBati = false;
+		_isArmored = false;
 		_skillChangeBuffValue = 0;
 
 		if (_hpBar)

@@ -363,7 +363,7 @@ void HPBar::loseHP(float percent)
 					}
 				}
 
-				if (reieveAble && _delegate->getActionState() != State::O2ATTACK && !_delegate->_isWudi && _delegate->getActionState() != State::DEAD)
+				if (reieveAble && _delegate->getActionState() != State::O2ATTACK && !_delegate->_isInvincible && _delegate->getActionState() != State::DEAD)
 				{
 
 					if (_delegate->_isSticking)

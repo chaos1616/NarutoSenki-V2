@@ -37,7 +37,7 @@ class Hidan : public Hero
 					}
 					else
 					{
-						if (_isBati)
+						if (_isArmored)
 						{
 
 							CCObject *pObject;
@@ -70,7 +70,7 @@ class Hidan : public Hero
 				 getActionState() == State::AIRHURT ||
 				 getActionState() == State::HURT ||
 				 getActionState() == State::KNOCKDOWN) &&
-				getHpPercent() < 0.5 && !_isBati && !_isWudi)
+				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(gear06);
 			}
@@ -91,7 +91,7 @@ class Hidan : public Hero
 			}
 		}
 
-		if (checkRetri() && !_isBati && !_isFound)
+		if (checkRetri() && !_isArmored && !_isFound)
 		{
 			if (_mainTarget != nullptr)
 			{
@@ -105,7 +105,7 @@ class Hidan : public Hero
 			}
 		}
 
-		if (isBaseDanger && checkBase() && !_isControlled && !_isBati && !_isFound)
+		if (isBaseDanger && checkBase() && !_isControlled && !_isArmored && !_isFound)
 		{
 			bool needBack = false;
 			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
@@ -142,7 +142,7 @@ class Hidan : public Hero
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isBati)
+				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
@@ -150,7 +150,7 @@ class Hidan : public Hero
 						walk(moveDirection);
 						return;
 					}
-					if (_isCanSkill1 && !_isBati && !_isFound)
+					if (_isCanSkill1 && !_isArmored && !_isFound)
 					{
 						changeSide(sp);
 						attack(SKILL1);
@@ -160,7 +160,7 @@ class Hidan : public Hero
 					attack(OUGIS2);
 					return;
 				}
-				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isBati)
+				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 
 					if (abs(sp.x) > 56 || abs(sp.y) > 32)
@@ -174,7 +174,7 @@ class Hidan : public Hero
 					attack(SKILL2);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControlled && !_isBati && !_isFound)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControlled && !_isArmored && !_isFound)
 				{
 					if (abs(sp.x) < 160)
 					{
@@ -190,25 +190,25 @@ class Hidan : public Hero
 				}
 				else if (abs(sp.x) < 128)
 				{
-					if ((abs(sp.x) > 48 || abs(sp.y) > 32) && !_isBati)
+					if ((abs(sp.x) > 48 || abs(sp.y) > 32) && !_isArmored)
 					{
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
 						return;
 					}
-					if (_isCanOugis1 && !_isBati && !_isControlled && _mainTarget->getGP() < 5000)
+					if (_isCanOugis1 && !_isArmored && !_isControlled && _mainTarget->getGP() < 5000)
 					{
 						changeSide(sp);
 						attack(OUGIS1);
 					}
-					else if (_isCanSkill3 && !_isBati)
+					else if (_isCanSkill3 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(SKILL3);
 					}
 					else
 					{
-						if (!_isBati)
+						if (!_isArmored)
 						{
 							changeSide(sp);
 							attack(NAttack);
@@ -223,7 +223,7 @@ class Hidan : public Hero
 				}
 			}
 		}
-		if (!_mainTarget && !_isFound && !_isBati)
+		if (!_mainTarget && !_isFound && !_isArmored)
 		{
 			if (!findEnemy2("Flog"))
 			{
@@ -231,7 +231,7 @@ class Hidan : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), K_TAG_MON) != 0 && !_isBati)
+		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), K_TAG_MON) != 0 && !_isArmored)
 		{
 
 			CCPoint moveDirection;
@@ -255,12 +255,12 @@ class Hidan : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (_isCanSkill3 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger && !_isBati)
+				if (_isCanSkill3 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL3);
 				}
-				else if (_isCanSkill2 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger && !_isBati)
+				else if (_isCanSkill2 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL2);
@@ -273,7 +273,7 @@ class Hidan : public Hero
 			}
 			return;
 		}
-		if (!_isBati)
+		if (!_isArmored)
 		{
 			if (_isHealling && getHpPercent() < 1)
 			{
@@ -299,7 +299,7 @@ class Hidan : public Hero
 	void changeAction()
 	{
 
-		_isBati = true;
+		_isArmored = true;
 		_isTaunt = true;
 		_isOnlySkillLocked = true;
 		setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
@@ -312,7 +312,7 @@ class Hidan : public Hero
 	void resumeAction(float dt)
 	{
 
-		_isBati = false;
+		_isArmored = false;
 		_isTaunt = false;
 		_isOnlySkillLocked = false;
 		unlockOugisButtons();
@@ -360,7 +360,7 @@ class Hidan : public Hero
 			return;
 
 		unschedule(schedule_selector(Hidan::resumeAction));
-		_isBati = false;
+		_isArmored = false;
 		_isTaunt = false;
 		_isOnlySkillLocked = false;
 		lockOugisButtons();

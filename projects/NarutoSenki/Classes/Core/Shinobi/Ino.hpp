@@ -39,7 +39,7 @@ class Ino : public Hero
 				 getActionState() == State::AIRHURT ||
 				 getActionState() == State::HURT ||
 				 getActionState() == State::KNOCKDOWN) &&
-				getHpPercent() < 0.5 && !_isBati && !_isWudi)
+				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(gear06);
 			}
@@ -96,7 +96,7 @@ class Ino : public Hero
 		}
 
 		if (to_uint(getMaxHP()->getCString()) - to_uint(getHP()->getCString()) >= 3000 &&
-			to_int(getCoin()->getCString()) >= 50 && !_isHealling && _isCanItem1 && _isBati)
+			to_int(getCoin()->getCString()) >= 50 && !_isHealling && _isCanItem1 && _isArmored)
 		{
 			setItem(Item1);
 		}
@@ -257,7 +257,7 @@ class Ino : public Hero
 
 	void resumeAction(float dt)
 	{
-		if (!_isBati)
+		if (!_isArmored)
 			return;
 
 		CCObject *pObject;
@@ -293,7 +293,7 @@ class Ino : public Hero
 			}
 		}
 
-		_isBati = false;
+		_isArmored = false;
 	}
 
 	void setActionResume()
@@ -322,6 +322,6 @@ class Ino : public Hero
 			}
 		}
 
-		_isBati = false;
+		_isArmored = false;
 	}
 };

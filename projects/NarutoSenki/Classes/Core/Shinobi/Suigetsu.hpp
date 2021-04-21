@@ -88,7 +88,7 @@ class Suigetsu : public Hero
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isBati && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
+				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
@@ -105,7 +105,7 @@ class Suigetsu : public Hero
 					attack(OUGIS2);
 					return;
 				}
-				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isBati)
+				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
@@ -122,7 +122,7 @@ class Suigetsu : public Hero
 					attack(OUGIS1);
 					return;
 				}
-				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isBati && !_skillChangeBuffValue)
+				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isArmored && !_skillChangeBuffValue)
 				{
 					changeSide(sp);
 					attack(SKILL3);
@@ -150,19 +150,19 @@ class Suigetsu : public Hero
 						walk(moveDirection);
 						return;
 					}
-					else if ((abs(sp.x) > 32 || abs(sp.y) > 32) && !_isBati)
+					else if ((abs(sp.x) > 32 || abs(sp.y) > 32) && !_isArmored)
 					{
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
 						return;
 					}
 
-					if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isBati)
+					if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(SKILL2);
 					}
-					else if (_isCanSkill1 && _mainTarget->getGP() < 5000 && !_isBati)
+					else if (_isCanSkill1 && _mainTarget->getGP() < 5000 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(SKILL1);
@@ -207,12 +207,12 @@ class Suigetsu : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && _isCanSkill1 && !_isBati)
+				if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && _isCanSkill1 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
+				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
 				{
 					changeSide(sp);
 					attack(SKILL2);
@@ -249,7 +249,7 @@ class Suigetsu : public Hero
 		_nattackRangeX = 16;
 		_nattackRangeY = 48;
 
-		_isBati = true;
+		_isArmored = true;
 
 		setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
 		setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
@@ -264,7 +264,7 @@ class Suigetsu : public Hero
 		if (_skillChangeBuffValue)
 		{
 
-			_isBati = false;
+			_isArmored = false;
 			if (gettempAttackValue1())
 			{
 				setnAttackValue(CCString::createWithFormat("%d", to_int(gettempAttackValue1()->getCString())));

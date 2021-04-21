@@ -84,7 +84,7 @@ class Hiruzen : public Hero
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isBati && to_int(_mainTarget->getHP()->getCString()) < 10000 && !_mainTarget->_isCanGear06)
+				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored && to_int(_mainTarget->getHP()->getCString()) < 10000 && !_mainTarget->_isCanGear06)
 				{
 					if (abs(sp.x) < 32)
 					{
@@ -106,7 +106,7 @@ class Hiruzen : public Hero
 					attack(OUGIS2);
 					return;
 				}
-				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isBati)
+				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
@@ -123,7 +123,7 @@ class Hiruzen : public Hero
 					attack(OUGIS1);
 					return;
 				}
-				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isBati && !_skillChangeBuffValue)
+				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isArmored && !_skillChangeBuffValue)
 				{
 					changeSide(sp);
 					attack(SKILL3);
@@ -151,7 +151,7 @@ class Hiruzen : public Hero
 						return;
 					}
 
-					if (_isCanSkill1 && _mainTarget->getGP() < 5000 && !_isBati)
+					if (_isCanSkill1 && _mainTarget->getGP() < 5000 && !_isArmored)
 					{
 						if ((abs(sp.x) > 32 || abs(sp.y) > 32))
 						{
@@ -163,7 +163,7 @@ class Hiruzen : public Hero
 						changeSide(sp);
 						attack(SKILL1);
 					}
-					else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isBati)
+					else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isArmored)
 					{
 						if (abs(sp.x) < 32)
 						{
@@ -224,12 +224,12 @@ class Hiruzen : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && _isCanSkill1 && !_isBati)
+				if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && _isCanSkill1 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
+				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
 				{
 					changeSide(sp);
 					attack(SKILL2);
@@ -261,7 +261,7 @@ class Hiruzen : public Hero
 
 	void changeAction()
 	{
-		_isBati = true;
+		_isArmored = true;
 		_nattackRangeX = 16;
 		_nattackRangeY = 48;
 		settempAttackValue1(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString())));
@@ -281,7 +281,7 @@ class Hiruzen : public Hero
 		if (_skillChangeBuffValue == 0)
 			return;
 
-		_isBati = false;
+		_isArmored = false;
 		_isOnlySkillLocked = false;
 		if (gettempAttackValue1())
 		{

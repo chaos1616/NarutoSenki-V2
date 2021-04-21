@@ -31,7 +31,7 @@ class Deidara : public Hero
 			{
 				if (stepBack2())
 				{
-					if (_isCanGear00 && !_isBati)
+					if (_isCanGear00 && !_isArmored)
 					{
 						useGear(gear00);
 					}
@@ -46,7 +46,7 @@ class Deidara : public Hero
 			}
 		}
 
-		if (_mainTarget && (battleCondiction >= 0 || _isCanSkill3 || _isCanOugis1 || _isBati))
+		if (_mainTarget && (battleCondiction >= 0 || _isCanSkill3 || _isCanOugis1 || _isArmored))
 		{
 
 			CCPoint moveDirection;
@@ -63,7 +63,7 @@ class Deidara : public Hero
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isBati)
+				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
@@ -81,13 +81,13 @@ class Deidara : public Hero
 						attack(OUGIS2);
 					}
 				}
-				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isBati)
+				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(OUGIS1);
 					return;
 				}
-				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isBati)
+				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 					if (abs(sp.x) > 64 || abs(sp.y) > 16)
 					{
@@ -104,7 +104,7 @@ class Deidara : public Hero
 					attack(SKILL3);
 					return;
 				}
-				else if (_isCanSkill2 && !_isBati)
+				else if (_isCanSkill2 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL2);
@@ -121,7 +121,7 @@ class Deidara : public Hero
 					{
 						if (_skillChangeBuffValue)
 						{
-							if (!_isBati)
+							if (!_isArmored)
 							{
 								changeSide(sp);
 								attack(NAttack);
@@ -131,7 +131,7 @@ class Deidara : public Hero
 						return;
 					}
 				}
-				else if (_isCanSkill1 && !_isBati)
+				else if (_isCanSkill1 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL1);
@@ -139,7 +139,7 @@ class Deidara : public Hero
 				}
 				else if (abs(sp.x) < 128)
 				{
-					if ((abs(sp.x) > 8 || abs(sp.y) > 8) && _isBati)
+					if ((abs(sp.x) > 8 || abs(sp.y) > 8) && _isArmored)
 					{
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
@@ -152,7 +152,7 @@ class Deidara : public Hero
 						return;
 					}
 
-					if (!_isBati)
+					if (!_isArmored)
 					{
 						changeSide(sp);
 						attack(NAttack);
@@ -202,24 +202,24 @@ class Deidara : public Hero
 			{
 				if (strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0 &&
 					_isCanOugis2 &&
-					!_isControlled && _delegate->_isOugis2Game && !_isBati && isBaseDanger)
+					!_isControlled && _delegate->_isOugis2Game && !_isArmored && isBaseDanger)
 				{
 
 					changeSide(sp);
 					attack(OUGIS2);
 				}
-				else if (_isCanSkill1 && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0)
+				else if (_isCanSkill1 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0)
 				{
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				else if (_isCanSkill2 && !_isBati)
+				else if (_isCanSkill2 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL2);
 					return;
 				}
-				else if (!_isBati)
+				else if (!_isArmored)
 				{
 					changeSide(sp);
 					attack(NAttack);
@@ -237,7 +237,7 @@ class Deidara : public Hero
 		}
 		else
 		{
-			if (_isCanGear00 && !_isBati)
+			if (_isCanGear00 && !_isArmored)
 			{
 				useGear(gear00);
 			}
@@ -256,7 +256,7 @@ class Deidara : public Hero
 		{
 
 			_isAllAttackLocked = true;
-			_isBati = true;
+			_isArmored = true;
 
 			setWalkSpeed(320);
 			_originSpeed = 320;
@@ -284,7 +284,7 @@ class Deidara : public Hero
 		else if (_skillChangeBuffValue == 18)
 		{
 
-			_isBati = false;
+			_isArmored = false;
 			_isAllAttackLocked = false;
 			_originSpeed = 224;
 
@@ -323,7 +323,7 @@ class Deidara : public Hero
 			else if (_skillChangeBuffValue == 18)
 			{
 
-				_isBati = false;
+				_isArmored = false;
 				_isAllAttackLocked = false;
 				_originSpeed = 224;
 
@@ -348,7 +348,7 @@ class Deidara : public Hero
 	Hero *createClone(unsigned int cloneTime)
 	{
 		auto clone = create<Centipede>(CCString::create("Centipede"), CCString::create("Summon"), getGroup());
-		clone->_isBati = true;
+		clone->_isArmored = true;
 		return clone;
 	}
 };

@@ -15,7 +15,7 @@ class Sai : public Hero
 				 getActionState() == State::AIRHURT ||
 				 getActionState() == State::HURT ||
 				 getActionState() == State::KNOCKDOWN) &&
-				getHpPercent() < 0.5 && !_isBati && !_isWudi)
+				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(gear06);
 			}
@@ -88,7 +88,7 @@ class Sai : public Hero
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isBati && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
+				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
@@ -104,7 +104,7 @@ class Sai : public Hero
 					}
 					return;
 				}
-				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isBati)
+				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 
 					if (abs(sp.x) > 64 || abs(sp.y) > 16)
@@ -121,13 +121,13 @@ class Sai : public Hero
 					}
 					return;
 				}
-				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isBati)
+				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL2);
 					return;
 				}
-				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isBati)
+				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 
 					changeSide(sp);
@@ -145,7 +145,7 @@ class Sai : public Hero
 					{
 						if (_skillChangeBuffValue)
 						{
-							if (!_isBati)
+							if (!_isArmored)
 							{
 								changeSide(sp);
 								attack(NAttack);
@@ -155,7 +155,7 @@ class Sai : public Hero
 						return;
 					}
 				}
-				else if (_isCanSkill1 && !_isBati)
+				else if (_isCanSkill1 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL1);
@@ -163,7 +163,7 @@ class Sai : public Hero
 				}
 				else if (abs(sp.x) < 128)
 				{
-					if ((abs(sp.x) > 8 || abs(sp.y) > 8) && _isBati)
+					if ((abs(sp.x) > 8 || abs(sp.y) > 8) && _isArmored)
 					{
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
@@ -176,7 +176,7 @@ class Sai : public Hero
 						return;
 					}
 
-					if (!_isBati)
+					if (!_isArmored)
 					{
 						changeSide(sp);
 						attack(NAttack);
@@ -216,17 +216,17 @@ class Sai : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && _isCanSkill1 && !_isBati)
+				if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && _isCanSkill1 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
+				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
 				{
 					changeSide(sp);
 					attack(SKILL2);
 				}
-				else if (!_isBati)
+				else if (!_isArmored)
 				{
 					changeSide(sp);
 					attack(NAttack);
@@ -257,7 +257,7 @@ class Sai : public Hero
 		{
 
 			_isAllAttackLocked = true;
-			_isBati = true;
+			_isArmored = true;
 
 			setWalkSpeed(320);
 			_originSpeed = 320;
@@ -285,7 +285,7 @@ class Sai : public Hero
 		else if (_skillChangeBuffValue == 18)
 		{
 
-			_isBati = false;
+			_isArmored = false;
 			_isAllAttackLocked = false;
 			_originSpeed = 224;
 
@@ -325,7 +325,7 @@ class Sai : public Hero
 			else if (_skillChangeBuffValue == 18)
 			{
 
-				_isBati = false;
+				_isArmored = false;
 				_isAllAttackLocked = false;
 				_originSpeed = 224;
 

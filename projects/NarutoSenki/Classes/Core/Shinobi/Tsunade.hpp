@@ -75,7 +75,7 @@ class Tsunade : public Hero
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isBati)
+				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 
 					if (abs(sp.x) > 64 || abs(sp.y) > 16)
@@ -92,14 +92,14 @@ class Tsunade : public Hero
 					}
 					return;
 				}
-				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isBati)
+				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 
 					changeSide(sp);
 					attack(SKILL3);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControlled && !_isBati)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControlled && !_isArmored)
 				{
 					if (abs(sp.x) < 160)
 					{
@@ -122,7 +122,7 @@ class Tsunade : public Hero
 						walk(moveDirection);
 						return;
 					}
-					else if ((abs(sp.x) > 32) || (abs(sp.y) > 32 && !_isCanSkill2 && !_isBati && !_isCanOugis1))
+					else if ((abs(sp.x) > 32) || (abs(sp.y) > 32 && !_isCanSkill2 && !_isArmored && !_isCanOugis1))
 					{
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
@@ -132,18 +132,18 @@ class Tsunade : public Hero
 					{
 						useGear(gear03);
 					}
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isBati)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(OUGIS1);
 					}
-					else if (_isCanSkill2 && !_isBati)
+					else if (_isCanSkill2 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(SKILL2);
 						return;
 					}
-					else if (_isCanSkill1 && !_isBati)
+					else if (_isCanSkill1 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(SKILL1);
@@ -192,7 +192,7 @@ class Tsunade : public Hero
 				{
 					useGear(gear03);
 				}
-				if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && _isCanSkill1 && !_isBati && isBaseDanger)
+				if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && _isCanSkill1 && !_isArmored && isBaseDanger)
 				{
 					changeSide(sp);
 					attack(SKILL1);
@@ -228,7 +228,7 @@ class Tsunade : public Hero
 		_tempAttackType = _nattackType;
 		_nattackType = _spcattackType3;
 
-		_isBati = true;
+		_isArmored = true;
 		_healBuffValue = 3000;
 		schedule(schedule_selector(CharacterBase::healBuff), 1);
 
@@ -250,7 +250,7 @@ class Tsunade : public Hero
 		_isOnlySkillLocked = false;
 
 		unlockOugisButtons();
-		_isBati = false;
+		_isArmored = false;
 
 		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
@@ -267,7 +267,7 @@ class Tsunade : public Hero
 	Hero *createClone(unsigned int cloneTime)
 	{
 		auto clone = create<Slug>(CCString::create("Slug"), CCString::create("Summon"), getGroup());
-		clone->_isBati = true;
+		clone->_isArmored = true;
 		return clone;
 	}
 };

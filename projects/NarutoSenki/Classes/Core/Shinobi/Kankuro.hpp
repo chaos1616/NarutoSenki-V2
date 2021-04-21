@@ -18,7 +18,7 @@ class Kankuro : public Hero
 				 getActionState() == State::AIRHURT ||
 				 getActionState() == State::HURT ||
 				 getActionState() == State::KNOCKDOWN) &&
-				getHpPercent() < 0.5 && !_isBati && !_isWudi)
+				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(gear06);
 			}
@@ -293,7 +293,7 @@ class Kankuro : public Hero
 			}
 		}
 
-		clone->_isBati = true;
+		clone->_isArmored = true;
 		_monsterArray->addObject(clone);
 		return clone;
 	}

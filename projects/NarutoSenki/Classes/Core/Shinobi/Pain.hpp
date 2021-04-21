@@ -16,7 +16,7 @@ class Pain : public Hero
         if (character_is(kNagato))
         {
             clone = create<DevaPath>(CCString::create("DevaPath"), CCString::create(K_TAG_CLONE), getGroup());
-            clone->_isBati = true;
+            clone->_isArmored = true;
             if (is_player)
             {
                 if (_delegate->getHudLayer()->skill5Button)

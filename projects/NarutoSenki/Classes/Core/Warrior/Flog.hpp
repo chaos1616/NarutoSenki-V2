@@ -190,7 +190,7 @@ protected:
 
             if (_mainTarget)
             {
-                if (_mainTarget->getActionState() != State::DEAD && !_mainTarget->_isWudi && _mainTarget->_isVisable &&
+                if (_mainTarget->getActionState() != State::DEAD && !_mainTarget->_isInvincible && _mainTarget->_isVisable &&
                     strcmp(_mainTarget->getGroup()->getCString(), getGroup()->getCString()) != 0)
                 {
 

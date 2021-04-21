@@ -80,7 +80,7 @@ class Shikamaru : public Hero
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && !_mainTarget->_isSticking)
+				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && !_mainTarget->_isSticking)
 				{
 
 					changeSide(sp);
@@ -131,7 +131,7 @@ class Shikamaru : public Hero
 					attack(SKILL1);
 					return;
 				}
-				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && !_mainTarget->_isSticking)
+				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && !_mainTarget->_isSticking)
 				{
 
 					if (abs(sp.x) > 156 || abs(sp.y) > 32)

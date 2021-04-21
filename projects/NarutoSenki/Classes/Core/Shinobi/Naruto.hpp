@@ -118,19 +118,19 @@ class Naruto : public Hero
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isBati)
+				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
 					changeSide(sp);
 					attack(OUGIS2);
 					return;
 				}
-				else if (_isCanSkill2 && !_isBati)
+				else if (_isCanSkill2 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL2);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isBati && !_isControlled)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isArmored && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 					{
@@ -157,7 +157,7 @@ class Naruto : public Hero
 						return;
 					}
 
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isBati)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(OUGIS1);
@@ -166,12 +166,12 @@ class Naruto : public Hero
 					{
 						useGear(gear03);
 					}
-					else if (_isCanSkill3 && !_isBati && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill3 && !_isArmored && _mainTarget->getGP() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL3);
 					}
-					else if (_isCanSkill1 && !_isBati && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill1 && !_isArmored && _mainTarget->getGP() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL1);
@@ -217,7 +217,7 @@ class Naruto : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (_isCanSkill2 && !_isBati)
+				if (_isCanSkill2 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL2);
@@ -269,7 +269,7 @@ class Naruto : public Hero
 		_nattackType = _spcattackType3;
 
 		_gardValue += 5000;
-		_isBati = true;
+		_isArmored = true;
 
 		lockOugisButtons();
 	}
@@ -293,13 +293,13 @@ class Naruto : public Hero
 			setnAttackValue(CCString::createWithFormat("%d", to_int(gettempAttackValue1()->getCString())));
 			settempAttackValue1(nullptr);
 		}
-		isPofang = false;
+		hasArmorBroken = false;
 
 		_nattackRangeX = 16;
 		_nattackRangeY = 48;
 		_nattackType = _tempAttackType;
 		_gardValue -= 5000;
-		_isBati = false;
+		_isArmored = false;
 
 		if (_actionState != State::DEAD)
 		{
@@ -392,25 +392,25 @@ class Naruto : public Hero
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isBati)
+				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
 					changeSide(sp);
 					attack(OUGIS2);
 					return;
 				}
-				else if (_isCanSkill2 && !_isBati)
+				else if (_isCanSkill2 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL2);
 					return;
 				}
-				else if (_isCanSkill3 && !_isBati && _mainTarget->getGP() < 5000)
+				else if (_isCanSkill3 && !_isArmored && _mainTarget->getGP() < 5000)
 				{
 					changeSide(sp);
 					attack(SKILL3);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isBati && !_isControlled)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isArmored && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 					{
@@ -436,7 +436,7 @@ class Naruto : public Hero
 						stepBack();
 						return;
 					}
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isBati)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(OUGIS1);
@@ -445,7 +445,7 @@ class Naruto : public Hero
 					{
 						useGear(gear03);
 					}
-					else if (_isCanSkill1 && !_isBati && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill1 && !_isArmored && _mainTarget->getGP() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL1);
@@ -490,7 +490,7 @@ class Naruto : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (_isCanSkill2 && !_isBati)
+				if (_isCanSkill2 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL2);
@@ -520,8 +520,8 @@ class Naruto : public Hero
 	inline void changeAction_SageNaruto()
 	{
 		_gardValue += 5000;
-		_isBati = true;
-		isPofang = true;
+		_isArmored = true;
+		hasArmorBroken = true;
 		_isOnlySkillLocked = true;
 
 		setIdleAction(createAnimation(skillSPC4Array, 5.0f, true, false));
@@ -549,8 +549,8 @@ class Naruto : public Hero
 		_originSpeed = 224;
 
 		_gardValue -= 5000;
-		_isBati = false;
-		isPofang = false;
+		_isArmored = false;
+		hasArmorBroken = false;
 
 		if (_actionState != State::DEAD)
 		{
@@ -655,25 +655,25 @@ class Naruto : public Hero
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isBati)
+				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
 					changeSide(sp);
 					attack(OUGIS2);
 					return;
 				}
-				else if (_isCanSkill2 && !_isBati)
+				else if (_isCanSkill2 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL2);
 					return;
 				}
-				else if (_isCanSkill3 && !_isBati && _mainTarget->getGP() < 5000)
+				else if (_isCanSkill3 && !_isArmored && _mainTarget->getGP() < 5000)
 				{
 					changeSide(sp);
 					attack(SKILL3);
 					return;
 				}
-				else if (_isCanSkill1 && !_isBati && _mainTarget->getGP() < 5000)
+				else if (_isCanSkill1 && !_isArmored && _mainTarget->getGP() < 5000)
 				{
 					changeSide(sp);
 					attack(SKILL1);
@@ -683,7 +683,7 @@ class Naruto : public Hero
 				{
 					useGear(gear03);
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isBati && !_isControlled)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isArmored && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 					{
@@ -704,7 +704,7 @@ class Naruto : public Hero
 						walk(moveDirection);
 						return;
 					}
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isBati)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(OUGIS1);
@@ -749,12 +749,12 @@ class Naruto : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (_isCanSkill1 && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				if (_isCanSkill1 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 				{
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				else if (_isCanSkill2 && !_isBati)
+				else if (_isCanSkill2 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL2);
@@ -784,8 +784,8 @@ class Naruto : public Hero
 	inline void changeAction_RikudoNaruto()
 	{
 		_gardValue += 5000;
-		_isBati = true;
-		isPofang = true;
+		_isArmored = true;
+		hasArmorBroken = true;
 		_isOnlySkillLocked = true;
 
 		setIdleAction(createAnimation(skillSPC4Array, 5.0f, true, false));
@@ -820,8 +820,8 @@ class Naruto : public Hero
 		_originSpeed = 224;
 
 		_gardValue -= 5000;
-		_isBati = false;
-		isPofang = false;
+		_isArmored = false;
+		hasArmorBroken = false;
 
 		if (_actionState != State::DEAD)
 		{
@@ -841,10 +841,10 @@ class Naruto : public Hero
 	{
 		auto clone = create<Kurama>(CCString::create("Kurama"), CCString::create(K_TAG_CLONE), getGroup());
 		clone->setGP(5000);
-		clone->_isBati = true;
+		clone->_isArmored = true;
 		clone->setWalkSpeed(320);
 		clone->_originSpeed = 320;
-		clone->isPofang = true;
+		clone->hasArmorBroken = true;
 		return clone;
 	}
 };

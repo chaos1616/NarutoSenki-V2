@@ -10,12 +10,12 @@ Effect::~Effect()
 {
 }
 
-bool Effect::init(const char *name, CCObject *Attacker)
+bool Effect::init(const char *name, CCObject *attacker)
 {
 	if (!CCSprite::init())
 		return false;
 
-	at = (CharacterBase *)Attacker;
+	at = (CharacterBase *)attacker;
 
 	if (strcmp(name, "n_hit") == 0 ||
 		strcmp(name, "b_hit") == 0)
@@ -318,10 +318,10 @@ void Effect::removeFontEffect()
 	removeFromParentAndCleanup(true);
 }
 
-Effect *Effect::create(const char *szImage, CCObject *Attacker)
+Effect *Effect::create(const char *szImage, CCObject *attacker)
 {
 	Effect *ef = new Effect();
-	if (ef && ef->init(szImage, Attacker))
+	if (ef && ef->init(szImage, attacker))
 	{
 		ef->autorelease();
 		return ef;

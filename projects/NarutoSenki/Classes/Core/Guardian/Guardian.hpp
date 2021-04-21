@@ -108,8 +108,8 @@ class Guardian : public Hero
 		_tempAttackType = _nattackType;
 		_nattackType = _spcattackType2;
 
-		_isBati = true;
-		isPofang = true;
+		_isArmored = true;
+		hasArmorBroken = true;
 		if (_hpBar)
 		{
 			_hpBar->setPositionY(120);

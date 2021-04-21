@@ -77,9 +77,10 @@ public:
 	CC_SYNTHESIZE(bool,_knockDiretion, KnockDiretion);
 	bool				_isAllAttackLocked;
 	bool				_isOnlySkillLocked;
-	bool				_isWudi;
+	bool				_isInvincible;
 	bool				_isTaunt;
-	bool				_isBati;
+	// Armor : 霸体
+	bool				_isArmored;
 	bool				_isSuicide;
 
 	bool				_isSticking;
@@ -101,7 +102,7 @@ public:
 
 	int 				rebornLabelTime;
 	int 				battleCondiction;
-	// Only has one tower
+	// True is only has one tower, false otherwise
 	bool 				isBaseDanger;
 
 
@@ -110,16 +111,21 @@ public:
 	CCSprite*			_shadow;
 	float				_originY;
 	float				_backY;
-	float				_DiretionY;
+	float				_diretionY;
 
 	int					lostBloodValue;
 	int					gearCKRValue;
 	int					gearRecoverValue;
 
+	// 忍び：Kakuzu ability
 	unsigned int		hearts;
+	// 忍び：Shikamaru ability
 	bool				isAttackGainCKR;
-	bool				isPofang;
-	bool				isHujia;
+	// 口寄せ：Bikyu ability
+	// 忍び：Guardian & Naruto-Rikutou & Naruto-Sage ability
+	bool				hasArmorBroken;
+	// Gear ability
+	bool				hasArmor;
 	bool				isGearCD;
 
 	bool				_isCanGear00;

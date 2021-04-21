@@ -387,7 +387,7 @@ class Kakuzu : public Hero
 			{
 				clone = create<Mask>(CCString::create("MaskKadon"), CCString::create("Kugutsu"), getGroup());
 			}
-			clone->_isBati = true;
+			clone->_isArmored = true;
 			_monsterArray->addObject(clone);
 
 			hearts -= 1;

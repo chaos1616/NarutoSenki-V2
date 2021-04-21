@@ -46,7 +46,7 @@ class Sasuke : public Hero
 				 getActionState() == State::AIRHURT ||
 				 getActionState() == State::HURT ||
 				 getActionState() == State::KNOCKDOWN) &&
-				getHpPercent() < 0.5 && !_isBati && !_isWudi)
+				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(gear06);
 			}
@@ -119,13 +119,13 @@ class Sasuke : public Hero
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isBati)
+				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
 					changeSide(sp);
 					attack(OUGIS2);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isBati && !_isControlled)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isArmored && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 					{
@@ -139,7 +139,7 @@ class Sasuke : public Hero
 						return;
 					}
 				}
-				else if (_isCanSkill3 && !_isTaunt && !_isBati)
+				else if (_isCanSkill3 && !_isTaunt && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL3);
@@ -161,7 +161,7 @@ class Sasuke : public Hero
 						return;
 					}
 
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isBati)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
 					{
 						if (abs(sp.x) > 32 || abs(sp.y) > 32)
 						{
@@ -172,12 +172,12 @@ class Sasuke : public Hero
 						changeSide(sp);
 						attack(OUGIS1);
 					}
-					else if (_isCanSkill2 && !_isBati && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill2 && !_isArmored && _mainTarget->getGP() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL2);
 					}
-					else if (_isCanSkill1 && !_isBati && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill1 && !_isArmored && _mainTarget->getGP() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL1);
@@ -222,17 +222,17 @@ class Sasuke : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (_isCanSkill1 && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				if (_isCanSkill1 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 				{
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				else if (_isCanSkill2 && isBaseDanger && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				else if (_isCanSkill2 && isBaseDanger && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 				{
 					changeSide(sp);
 					attack(SKILL2);
 				}
-				else if (_isCanSkill3 && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				else if (_isCanSkill3 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 				{
 					changeSide(sp);
 					attack(SKILL3);
@@ -324,7 +324,7 @@ class Sasuke : public Hero
 			_nattackType = _spcattackType3;
 
 			_gardValue += 5000;
-			_isBati = true;
+			_isArmored = true;
 
 			lockOugisButtons();
 		}
@@ -359,7 +359,7 @@ class Sasuke : public Hero
 			_nattackRangeY = 48;
 			_nattackType = _tempAttackType;
 			_gardValue -= 5000;
-			_isBati = false;
+			_isArmored = false;
 
 			if (_actionState != State::DEAD)
 			{
@@ -397,7 +397,7 @@ class Sasuke : public Hero
 				 getActionState() == State::AIRHURT ||
 				 getActionState() == State::HURT ||
 				 getActionState() == State::KNOCKDOWN) &&
-				getHpPercent() < 0.5 && !_isBati && !_isWudi)
+				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(gear06);
 			}
@@ -470,13 +470,13 @@ class Sasuke : public Hero
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
-				if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isBati)
+				if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(OUGIS1);
 					return;
 				}
-				else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isBati)
+				else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
 
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
@@ -490,7 +490,7 @@ class Sasuke : public Hero
 					attack(OUGIS2);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isBati && !_isControlled)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isArmored && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 					{
@@ -504,13 +504,13 @@ class Sasuke : public Hero
 						return;
 					}
 				}
-				else if (_isCanSkill3 && !_isBati && !_isTaunt)
+				else if (_isCanSkill3 && !_isArmored && !_isTaunt)
 				{
 					changeSide(sp);
 					attack(SKILL3);
 					return;
 				}
-				else if (abs(sp.x) < 128 || _isBati)
+				else if (abs(sp.x) < 128 || _isArmored)
 				{
 					if (abs(sp.x) > 196 || abs(sp.y) > 64)
 					{
@@ -518,7 +518,7 @@ class Sasuke : public Hero
 						walk(moveDirection);
 						return;
 					}
-					else if ((abs(sp.x) > 96 || abs(sp.y) > 32) && !_isBati)
+					else if ((abs(sp.x) > 96 || abs(sp.y) > 32) && !_isArmored)
 					{
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
@@ -531,12 +531,12 @@ class Sasuke : public Hero
 						return;
 					}
 
-					if (_isCanSkill2 && !_isBati && _mainTarget->getGP() < 5000)
+					if (_isCanSkill2 && !_isArmored && _mainTarget->getGP() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL2);
 					}
-					else if (_isCanSkill1 && !_isBati && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill1 && !_isArmored && _mainTarget->getGP() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL1);
@@ -581,12 +581,12 @@ class Sasuke : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (_isCanSkill1 && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				if (_isCanSkill1 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 				{
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				else if (_isCanSkill2 && isBaseDanger && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				else if (_isCanSkill2 && isBaseDanger && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 				{
 					changeSide(sp);
 					attack(SKILL2);
@@ -675,7 +675,7 @@ class Sasuke : public Hero
 			_nattackRangeY = 64;
 
 			_gardValue += 5000;
-			_isBati = true;
+			_isArmored = true;
 			_isOnlySkillLocked = true;
 
 			lockOugisButtons();
@@ -708,7 +708,7 @@ class Sasuke : public Hero
 				settempAttackValue1(nullptr);
 			}
 			_gardValue -= 5000;
-			_isBati = false;
+			_isArmored = false;
 
 			_nattackRangeX = 16;
 			_nattackRangeY = 48;
@@ -764,7 +764,7 @@ class Sasuke : public Hero
 				settempAttackValue1(nullptr);
 			}
 			_gardValue -= 5000;
-			_isBati = false;
+			_isArmored = false;
 
 			_nattackRangeX = 16;
 			_nattackRangeY = 48;

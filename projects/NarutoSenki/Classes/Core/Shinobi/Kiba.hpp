@@ -60,7 +60,7 @@ class Kiba : public Hero
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_powerUPBuffValue && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
+				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_powerUPBuffValue && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
 					if (abs(sp.x) > 32 || abs(sp.y) > 32)
 					{
@@ -84,7 +84,7 @@ class Kiba : public Hero
 					attack(OUGIS1);
 					return;
 				}
-				else if (_isCanSkill1 && _isBati)
+				else if (_isCanSkill1 && _isArmored)
 				{
 					attack(SKILL1);
 					return;
@@ -117,7 +117,7 @@ class Kiba : public Hero
 						return;
 					}
 
-					if (_isCanSkill3 && !_powerUPBuffValue && !_isBati && getHpPercent() > 0.5)
+					if (_isCanSkill3 && !_powerUPBuffValue && !_isArmored && getHpPercent() > 0.5)
 					{
 						changeSide(sp);
 						attack(SKILL3);
@@ -171,11 +171,11 @@ class Kiba : public Hero
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
-				if (_isCanSkill1 && _isBati)
+				if (_isCanSkill1 && _isArmored)
 				{
 					attack(SKILL1);
 				}
-				else if (strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0 && _isCanSkill3 && !_powerUPBuffValue && !_isBati)
+				else if (strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0 && _isCanSkill3 && !_powerUPBuffValue && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL3);
@@ -210,7 +210,7 @@ class Kiba : public Hero
 	{
 		if (_skillChangeBuffValue == 17)
 		{
-			_isBati = false;
+			_isArmored = false;
 
 			if (is_player)
 			{
@@ -275,7 +275,7 @@ class Kiba : public Hero
 			setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) - _powerUPBuffValue));
 			_powerUPBuffValue = 0;
 		}
-		_isBati = true;
+		_isArmored = true;
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
@@ -312,7 +312,7 @@ class Kiba : public Hero
 		}
 
 		auto clone = create<Akamaru>(CCString::create("Akamaru"), CCString::create(K_TAG_CLONE), getGroup());
-		clone->_isBati = true;
+		clone->_isArmored = true;
 		_monsterArray->addObject(clone);
 		return clone;
 	}

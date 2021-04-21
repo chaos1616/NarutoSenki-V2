@@ -227,7 +227,7 @@ public:
 		}
 		else if (strcmp(getCharacter()->getCString(), "Kiba") == 0)
 		{
-			_isBati = true;
+			_isArmored = true;
 		}
 		else if (strcmp(getCharacter()->getCString(), "Kakuzu") == 0)
 		{

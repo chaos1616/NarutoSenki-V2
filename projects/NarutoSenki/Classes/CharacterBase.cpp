@@ -26,8 +26,8 @@ CharacterBase::CharacterBase()
 	gearRecoverValue = 0;
 	isAttackGainCKR = false;
 	isGearCD = false;
-	isPofang = false;
-	isHujia = false;
+	hasArmorBroken = false;
+	hasArmor = false;
 	battleCondiction = 0;
 	hearts = 0;
 	isHurtingTower = false;
@@ -37,7 +37,7 @@ CharacterBase::CharacterBase()
 
 	_charNO = 0;
 	_backY = 0;
-	_DiretionY = 0;
+	_diretionY = 0;
 
 	_isAllAttackLocked = false;
 	_isOnlySkillLocked = false;
@@ -151,7 +151,7 @@ CharacterBase::CharacterBase()
 
 	_isInvincible = false;
 	_isTaunt = false;
-	_isBati = false;
+	_isArmored = false;
 
 	_rebornTime = 5;
 
@@ -306,7 +306,7 @@ void CharacterBase::update(float dt)
 
 		_desiredPosition = ccpAdd(getPosition(), ccpMult(_velocity, dt));
 
-		if (strcmp(_role->getCString(), "Player") == 0 && !_isAI && !_isInvincible && !_isBati)
+		if (strcmp(_role->getCString(), "Player") == 0 && !_isAI && !_isInvincible && !_isArmored)
 		{
 
 			//save the stop Area
@@ -380,7 +380,7 @@ void CharacterBase::updateHpBarPosition(float dt)
 
 void CharacterBase::acceptAttack(CCObject *object)
 {
-	CharacterBase *Attacker = (CharacterBase *)object;
+	CharacterBase *attacker = (CharacterBase *)object;
 	bool isCannotMiss = false;
 
 	if (strcmp(getCharacter()->getCString(), "Tobi") == 0)
@@ -398,12 +398,12 @@ void CharacterBase::acceptAttack(CCObject *object)
 		}
 	}
 
-	if (strcmp(Attacker->getCharacter()->getCString(), "Hiruzen") == 0 && Attacker->getActionState() == State::O2ATTACK)
+	if (strcmp(attacker->getCharacter()->getCString(), "Hiruzen") == 0 && attacker->getActionState() == State::O2ATTACK)
 	{
 		isCannotMiss = true;
 	}
 
-	if (strcmp(_group->getCString(), Attacker->_group->getCString()) != 0 && _isVisable && (!_isInvincible || isCannotMiss) && getActionState() != State::DEAD)
+	if (strcmp(_group->getCString(), attacker->_group->getCString()) != 0 && _isVisable && (!_isInvincible || isCannotMiss) && getActionState() != State::DEAD)
 	{
 
 		// Tower
@@ -411,33 +411,33 @@ void CharacterBase::acceptAttack(CCObject *object)
 		{
 
 			bool isHit = false;
-			if (strcmp(Attacker->_attackType->getCString(), "nAttack") == 0 &&
-				strcmp(Attacker->_effectType->getCString(), "f_hit") != 0 &&
-				strcmp(Attacker->_effectType->getCString(), "c_hit") != 0 &&
-				strcmp(Attacker->_effectType->getCString(), "o_hit") != 0 &&
-				strcmp(Attacker->_effectType->getCString(), "b_hit") != 0 &&
-				strcmp(Attacker->_effectType->getCString(), "bc_hit") != 0)
+			if (strcmp(attacker->_attackType->getCString(), "nAttack") == 0 &&
+				strcmp(attacker->_effectType->getCString(), "f_hit") != 0 &&
+				strcmp(attacker->_effectType->getCString(), "c_hit") != 0 &&
+				strcmp(attacker->_effectType->getCString(), "o_hit") != 0 &&
+				strcmp(attacker->_effectType->getCString(), "b_hit") != 0 &&
+				strcmp(attacker->_effectType->getCString(), "bc_hit") != 0)
 			{
 
-				if (setHitBox().intersectsRect(Attacker->setHalfBox()))
+				if (setHitBox().intersectsRect(attacker->setHalfBox()))
 				{
 					isHit = true;
 				}
 			}
-			else if (strcmp(Attacker->_effectType->getCString(), "n_hit") == 0)
+			else if (strcmp(attacker->_effectType->getCString(), "n_hit") == 0)
 			{
 
 				bool isHitX = false;
-				float distanceX = ccpSub(Attacker->getPosition(), getPosition()).x;
+				float distanceX = ccpSub(attacker->getPosition(), getPosition()).x;
 
-				float tempRange1 = Attacker->_attackRangeX + Attacker->getContentSize().width / 2 + getContentSize().width / 2;
+				float tempRange1 = attacker->_attackRangeX + attacker->getContentSize().width / 2 + getContentSize().width / 2;
 
-				if (!Attacker->_isFlipped && distanceX < 0 && -distanceX < tempRange1)
+				if (!attacker->_isFlipped && distanceX < 0 && -distanceX < tempRange1)
 				{
 					_hurtFromLeft = true;
 					isHitX = true;
 				}
-				else if (Attacker->_isFlipped && distanceX > 0 && distanceX < tempRange1)
+				else if (attacker->_isFlipped && distanceX > 0 && distanceX < tempRange1)
 				{
 					_hurtFromRight = true;
 					isHitX = true;
@@ -445,7 +445,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 				if (isHitX)
 				{
-					if (abs(getPositionY() - Attacker->getPositionY()) <= Attacker->_attackRangeY)
+					if (abs(getPositionY() - attacker->getPositionY()) <= attacker->_attackRangeY)
 					{
 						isHit = true;
 					}
@@ -455,8 +455,8 @@ void CharacterBase::acceptAttack(CCObject *object)
 			if (isHit)
 			{
 
-				_slayer = Attacker;
-				setDamage(Attacker->_effectType, Attacker->_attackValue, Attacker->_isFlipped);
+				_slayer = attacker;
+				setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
 				if (_hpBar)
 				{
 					_hpBar->loseHP(getHpPercent());
@@ -479,10 +479,10 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 		}
 		// Bullet
-		else if (strcmp(Attacker->_role->getCString(), "Bullet") == 0)
+		else if (strcmp(attacker->_role->getCString(), "Bullet") == 0)
 		{
 
-			if (setHitBox().intersectsRect(Attacker->setHitBox()))
+			if (setHitBox().intersectsRect(attacker->setHitBox()))
 			{
 
 				if (strcmp(getCharacter()->getCString(), "Hidan") == 0 && _skillChangeBuffValue)
@@ -506,15 +506,15 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 					if (_isCounter)
 					{
-						if (Attacker->_master && Attacker->_master->_actionState != State::DEAD)
+						if (attacker->_master && attacker->_master->_actionState != State::DEAD)
 						{
 
-							Attacker->_master->_slayer = this;
+							attacker->_master->_slayer = this;
 
-							Attacker->_master->setDamage(Attacker->_effectType, Attacker->_attackValue, Attacker->_isFlipped);
-							if (Attacker->_master->_hpBar)
+							attacker->_master->setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
+							if (attacker->_master->_hpBar)
 							{
-								Attacker->_master->_hpBar->loseHP(Attacker->_master->getHpPercent());
+								attacker->_master->_hpBar->loseHP(attacker->_master->getHpPercent());
 							}
 						}
 
@@ -525,7 +525,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 							if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::DEAD)
 							{
 								tempHero->_slayer = this;
-								tempHero->setDamage(Attacker->_effectType, Attacker->_attackValue / 2, Attacker->_isFlipped);
+								tempHero->setDamage(attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
 								if (tempHero->_hpBar)
 								{
 									tempHero->_hpBar->loseHP(tempHero->getHpPercent());
@@ -537,36 +537,36 @@ void CharacterBase::acceptAttack(CCObject *object)
 					}
 				}
 
-				_slayer = Attacker;
-				setDamage(Attacker->_effectType, Attacker->_attackValue, Attacker->_isFlipped);
+				_slayer = attacker;
+				setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
 				if (_hpBar)
 				{
 					_hpBar->loseHP(getHpPercent());
 				}
-				if (strcmp(Attacker->_character->getCString(), "HiraishinKunai") == 0 ||
-					strcmp(Attacker->_character->getCString(), "Shintenshin") == 0)
+				if (strcmp(attacker->_character->getCString(), "HiraishinKunai") == 0 ||
+					strcmp(attacker->_character->getCString(), "Shintenshin") == 0)
 				{
 					if ((strcmp(_role->getCString(), "Player") == 0 || strcmp(_role->getCString(), "Com") == 0) && strcmp(_character->getCString(), Guardian_Roshi) != 0 && strcmp(_character->getCString(), Guardian_Han) != 0 && _actionState != State::DEAD)
 					{
 
-						Attacker->stopAllActions();
-						Attacker->dealloc();
+						attacker->stopAllActions();
+						attacker->dealloc();
 
-						if (strcmp(Attacker->_character->getCString(), "Shintenshin") == 0 && !Attacker->_isCatchOne)
+						if (strcmp(attacker->_character->getCString(), "Shintenshin") == 0 && !attacker->_isCatchOne)
 						{
-							Attacker->_isCatchOne = true;
-							if (Attacker->_master)
+							attacker->_isCatchOne = true;
+							if (attacker->_master)
 							{
 								_isControlled = true;
-								_controller = Attacker->_master;
+								_controller = attacker->_master;
 
-								if (Attacker->_master->getActionState() == State::O2ATTACK)
+								if (attacker->_master->getActionState() == State::O2ATTACK)
 								{
-									Attacker->_master->stopAllActions();
-									Attacker->_master->runAction(createAnimation(Attacker->_master->skillSPC1Array, 10.0f, false, false));
-									Attacker->_master->scheduleOnce(schedule_selector(CharacterBase::resumeAction), 15);
-									Attacker->_master->_isBati = true;
-									Attacker->_master->_isInvincible = false;
+									attacker->_master->stopAllActions();
+									attacker->_master->runAction(createAnimation(attacker->_master->skillSPC1Array, 10.0f, false, false));
+									attacker->_master->scheduleOnce(schedule_selector(CharacterBase::resumeAction), 15);
+									attacker->_master->_isArmored = true;
+									attacker->_master->_isInvincible = false;
 								}
 
 								if (strcmp(_controller->getRole()->getCString(), "Player") == 0)
@@ -600,11 +600,11 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 			bool isHitX = false;
 
-			float distanceX = ccpSub(Attacker->getPosition(), getPosition()).x;
+			float distanceX = ccpSub(attacker->getPosition(), getPosition()).x;
 
-			float tempRange1 = Attacker->_attackRangeX + Attacker->getContentSize().width / 2 + getContentSize().width / 2;
+			float tempRange1 = attacker->_attackRangeX + attacker->getContentSize().width / 2 + getContentSize().width / 2;
 
-			if (strcmp(Attacker->_attackType->getCString(), "aAttack") == 0)
+			if (strcmp(attacker->_attackType->getCString(), "aAttack") == 0)
 			{
 				if (abs(distanceX) <= tempRange1)
 				{
@@ -614,12 +614,12 @@ void CharacterBase::acceptAttack(CCObject *object)
 			else
 			{
 
-				if (!Attacker->_isFlipped && distanceX < 0 && -distanceX < tempRange1)
+				if (!attacker->_isFlipped && distanceX < 0 && -distanceX < tempRange1)
 				{
 					_hurtFromLeft = true;
 					isHitX = true;
 				}
-				else if (Attacker->_isFlipped && distanceX > 0 && distanceX < tempRange1)
+				else if (attacker->_isFlipped && distanceX > 0 && distanceX < tempRange1)
 				{
 					_hurtFromRight = true;
 					isHitX = true;
@@ -631,13 +631,13 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 				float attackerPosY;
 				float currentPosY;
-				if (Attacker->_actionState == State::JUMP)
+				if (attacker->_actionState == State::JUMP)
 				{
-					attackerPosY = Attacker->_originY;
+					attackerPosY = attacker->_originY;
 				}
 				else
 				{
-					attackerPosY = Attacker->getPositionY();
+					attackerPosY = attacker->getPositionY();
 				}
 
 				if (_actionState == State::FLOAT || _actionState == State::JUMP || _actionState == State::AIRHURT)
@@ -649,16 +649,16 @@ void CharacterBase::acceptAttack(CCObject *object)
 					currentPosY = getPositionY();
 				}
 
-				if (abs(currentPosY - attackerPosY) <= Attacker->_attackRangeY)
+				if (abs(currentPosY - attackerPosY) <= attacker->_attackRangeY)
 				{
 
-					const char *hitType = Attacker->_effectType->getCString();
+					const char *hitType = attacker->_effectType->getCString();
 
 					//hit or not !
-					Attacker->_isHitOne = true;
+					attacker->_isHitOne = true;
 
 					//record the slayer
-					_slayer = Attacker;
+					_slayer = attacker;
 
 					//flog hurt
 					if (strcmp(_role->getCString(), "Flog") == 0)
@@ -666,7 +666,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						if (strcmp(hitType, "o_hit") == 0)
 						{
 							setKnockLength(48);
-							setKnockDiretion(Attacker->_isFlipped);
+							setKnockDiretion(attacker->_isFlipped);
 							hurt();
 						}
 						else if (strcmp(hitType, "ac_hit") == 0)
@@ -675,7 +675,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "f_hit") == 0 || strcmp(hitType, "bf_hit") == 0)
 						{
-							if (_isFlipped == Attacker->_isFlipped)
+							if (_isFlipped == attacker->_isFlipped)
 							{
 								if (_isFlipped)
 								{
@@ -692,7 +692,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "f2_hit") == 0)
 						{
-							if (_isFlipped == Attacker->_isFlipped)
+							if (_isFlipped == attacker->_isFlipped)
 							{
 								if (_isFlipped)
 								{
@@ -709,7 +709,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "b_hit") == 0)
 						{
-							if (_isFlipped == Attacker->_isFlipped)
+							if (_isFlipped == attacker->_isFlipped)
 							{
 								if (_isFlipped)
 								{
@@ -726,11 +726,11 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "ab_hit") == 0)
 						{
-							absorb(Attacker->getPosition(), true);
+							absorb(attacker->getPosition(), true);
 						}
 						else if (strcmp(hitType, "s_hit") == 0)
 						{
-							absorb(Attacker->getPosition(), false);
+							absorb(attacker->getPosition(), false);
 						}
 					}
 					// hero hurt
@@ -739,7 +739,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 						if (strcmp(hitType, "l_hit") == 0)
 						{
-							if (!_isBati)
+							if (!_isArmored)
 							{
 								setKnockLength(32);
 							}
@@ -748,31 +748,31 @@ void CharacterBase::acceptAttack(CCObject *object)
 						else if (strcmp(hitType, "c_hit") == 0 ||
 								 strcmp(hitType, "bc_hit") == 0)
 						{
-							if (!_isBati)
+							if (!_isArmored)
 							{
 								setKnockLength(1);
 							}
 
-							if (strcmp(Attacker->getCharacter()->getCString(), "Kakuzu") == 0 && _sticker)
+							if (strcmp(attacker->getCharacter()->getCString(), "Kakuzu") == 0 && _sticker)
 							{
 								CharacterBase *stHero = _sticker;
 								if (strcmp(stHero->getCharacter()->getCString(), "Kakuzu") == 0 && stHero->hearts <= 4)
 								{
 
-									Attacker->hearts += 1;
+									attacker->hearts += 1;
 
-									if (Attacker->_heartEffect)
+									if (attacker->_heartEffect)
 									{
-										CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", Attacker->hearts)->getCString());
-										Attacker->_heartEffect->setDisplayFrame(frame);
+										CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", attacker->hearts)->getCString());
+										attacker->_heartEffect->setDisplayFrame(frame);
 									}
 								}
 
-								if (strcmp(Attacker->getRole()->getCString(), "Player") == 0 && Attacker->hearts > 0)
+								if (strcmp(attacker->getRole()->getCString(), "Player") == 0 && attacker->hearts > 0)
 								{
 									CCObject *pObject;
 									int countMON = 0;
-									CCARRAY_FOREACH(Attacker->getMonsterArray(), pObject)
+									CCARRAY_FOREACH(attacker->getMonsterArray(), pObject)
 									{
 										Monster *mo = (Monster *)pObject;
 										if (strcmp(mo->getCharacter()->getCString(), "Traps") != 0)
@@ -780,7 +780,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 											countMON++;
 										}
 									}
-									if (countMON < 3 && Attacker->getLV() >= 2)
+									if (countMON < 3 && attacker->getLV() >= 2)
 									{
 										if (_delegate->getHudLayer()->skill4Button)
 										{
@@ -793,25 +793,25 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "ts_hit") == 0)
 						{
-							if (!_isBati)
+							if (!_isArmored)
 							{
 								setKnockLength(1);
 							}
 							if (hurt() &&
-								(!Attacker->_isCatchOne || strcmp(Attacker->getCharacter()->getCString(), "FakeMinato") == 0))
+								(!attacker->_isCatchOne || strcmp(attacker->getCharacter()->getCString(), "FakeMinato") == 0))
 							{
-								Attacker->_isCatchOne = true;
-								if (Attacker->getMaster())
+								attacker->_isCatchOne = true;
+								if (attacker->getMaster())
 								{
-									if (strcmp(Attacker->getCharacter()->getCString(), "FakeMinato") == 0)
+									if (strcmp(attacker->getCharacter()->getCString(), "FakeMinato") == 0)
 									{
-										setPosition(ccp(Attacker->getMaster()->_isFlipped ? Attacker->getMaster()->getPositionX() - 64 : Attacker->getMaster()->getPositionX() + 64,
-														Attacker->getMaster()->getPositionY() + 2));
+										setPosition(ccp(attacker->getMaster()->_isFlipped ? attacker->getMaster()->getPositionX() - 64 : attacker->getMaster()->getPositionX() + 64,
+														attacker->getMaster()->getPositionY() + 2));
 									}
 									else
 									{
-										setPosition(ccp(Attacker->getMaster()->_isFlipped ? Attacker->getMaster()->getPositionX() - 48 : Attacker->getMaster()->getPositionX() + 48,
-														Attacker->getMaster()->getPositionY()));
+										setPosition(ccp(attacker->getMaster()->_isFlipped ? attacker->getMaster()->getPositionX() - 48 : attacker->getMaster()->getPositionX() + 48,
+														attacker->getMaster()->getPositionY()));
 									}
 
 									CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", this);
@@ -821,7 +821,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "sl_hit") == 0)
 						{
-							if (!_isBati)
+							if (!_isArmored)
 							{
 								setKnockLength(1);
 							}
@@ -840,7 +840,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 							}
 							else
 							{
-								if (!_isBati)
+								if (!_isArmored)
 								{
 									setKnockLength(1);
 								}
@@ -851,33 +851,33 @@ void CharacterBase::acceptAttack(CCObject *object)
 						{
 							if (_actionState != State::OATTACK ||
 								(_actionState == State::OATTACK &&
-								 (Attacker->_actionState == State::O2ATTACK ||
-								  Attacker->_actionState == State::OATTACK)))
+								 (attacker->_actionState == State::O2ATTACK ||
+								  attacker->_actionState == State::OATTACK)))
 							{
-								if (!_isBati)
+								if (!_isArmored)
 								{
 									setKnockLength(48);
 								}
-								setKnockDiretion(Attacker->_isFlipped);
+								setKnockDiretion(attacker->_isFlipped);
 								hardHurt(500, true, false, false, false);
 							}
 						}
 						else if (strcmp(hitType, "o2_hit") == 0)
 						{
-							if (!_isBati)
+							if (!_isArmored)
 							{
 								setKnockLength(1);
 							}
-							setKnockDiretion(Attacker->_isFlipped);
+							setKnockDiretion(attacker->_isFlipped);
 							hardHurt(1000, true, false, false, true);
 						}
 						else if (strcmp(hitType, "ob_hit") == 0)
 						{
-							if (!_isBati)
+							if (!_isArmored)
 							{
 								setKnockLength(1);
 							}
-							setKnockDiretion(Attacker->_isFlipped);
+							setKnockDiretion(attacker->_isFlipped);
 							hardHurt(2000, true, false, false, true);
 
 							if (_dehealBuffEffect)
@@ -897,71 +897,71 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 							if (_actionState != State::OATTACK ||
 								(_actionState == State::OATTACK &&
-								 (Attacker->_actionState == State::O2ATTACK ||
-								  Attacker->_actionState == State::OATTACK)))
+								 (attacker->_actionState == State::O2ATTACK ||
+								  attacker->_actionState == State::OATTACK)))
 							{
-								if (Attacker->_isCatchOne == false ||
-									strcmp(Attacker->getCharacter()->getCString(), "Shenwei") == 0)
+								if (attacker->_isCatchOne == false ||
+									strcmp(attacker->getCharacter()->getCString(), "Shenwei") == 0)
 								{
 
-									if (Attacker->getMaster())
+									if (attacker->getMaster())
 									{
 
-										if (strcmp(Attacker->getCharacter()->getCString(), "Kuroari") == 0 ||
-											strcmp(Attacker->getCharacter()->getCString(), "Shenwei") == 0 ||
-											strcmp(Attacker->getCharacter()->getCString(), "Sabaku") == 0 ||
-											strcmp(Attacker->getCharacter()->getCString(), "Shenwei2") == 0)
+										if (strcmp(attacker->getCharacter()->getCString(), "Kuroari") == 0 ||
+											strcmp(attacker->getCharacter()->getCString(), "Shenwei") == 0 ||
+											strcmp(attacker->getCharacter()->getCString(), "Sabaku") == 0 ||
+											strcmp(attacker->getCharacter()->getCString(), "Shenwei2") == 0)
 										{
 											if (hardHurt(3000, false, true, false, false))
 											{
-												Attacker->_isCatchOne = true;
+												attacker->_isCatchOne = true;
 												scheduleOnce(schedule_selector(CharacterBase::reCatched), 2.9f);
 											}
 										}
-										else if (strcmp(Attacker->getCharacter()->getCString(), "SandBall") == 0)
+										else if (strcmp(attacker->getCharacter()->getCString(), "SandBall") == 0)
 										{
 											if (hardHurt(1000, false, true, false, false))
 											{
-												Attacker->_isCatchOne = true;
+												attacker->_isCatchOne = true;
 												scheduleOnce(schedule_selector(CharacterBase::reCatched), 0.9f);
 											}
 										}
-										else if (strcmp(Attacker->getMaster()->getCharacter()->getCString(), "Shikamaru") == 0)
+										else if (strcmp(attacker->getMaster()->getCharacter()->getCString(), "Shikamaru") == 0)
 										{
 											bool pianyi = false;
-											if (strcmp(Attacker->getCharacter()->getCString(), "KageHand") == 0)
+											if (strcmp(attacker->getCharacter()->getCString(), "KageHand") == 0)
 											{
 												pianyi = hardHurt(6000, false, false, true, false);
 												if (pianyi)
 												{
 
-													Attacker->stopAllActions();
-													Attacker->schedule(schedule_selector(CharacterBase::getSticker), 0.1f);
+													attacker->stopAllActions();
+													attacker->schedule(schedule_selector(CharacterBase::getSticker), 0.1f);
 													schedule(schedule_selector(CharacterBase::lostBlood), 1.0f);
 													lostBloodValue = 400;
 													scheduleOnce(schedule_selector(CharacterBase::removeLostBlood), 6.0f);
 												}
 											}
-											else if (strcmp(Attacker->getCharacter()->getCString(), "QuanRen") == 0 ||
-													 strcmp(Attacker->getCharacter()->getCString(), "KageBom") == 0)
+											else if (strcmp(attacker->getCharacter()->getCString(), "QuanRen") == 0 ||
+													 strcmp(attacker->getCharacter()->getCString(), "KageBom") == 0)
 											{
 												pianyi = hardHurt(3000, false, false, true, false);
 											}
 
 											if (pianyi)
 											{
-												Attacker->_isCatchOne = true;
-												setPosition(CCPointMake(Attacker->getPositionX(), Attacker->getPositionY() + 1));
+												attacker->_isCatchOne = true;
+												setPosition(CCPointMake(attacker->getPositionX(), attacker->getPositionY() + 1));
 												_delegate->reorderChild(this, -getPositionY());
 											}
 										}
-										else if (strcmp(Attacker->getMaster()->getCharacter()->getCString(), "Itachi") == 0 ||
-												 strcmp(Attacker->getMaster()->getCharacter()->getCString(), "Chiyo") == 0)
+										else if (strcmp(attacker->getMaster()->getCharacter()->getCString(), "Itachi") == 0 ||
+												 strcmp(attacker->getMaster()->getCharacter()->getCString(), "Chiyo") == 0)
 										{
 
 											bool pianyi = false;
 
-											if (strcmp(Attacker->getMaster()->getCharacter()->getCString(), "Chiyo") == 0)
+											if (strcmp(attacker->getMaster()->getCharacter()->getCString(), "Chiyo") == 0)
 											{
 												pianyi = hardHurt(2000, false, false, true, false);
 											}
@@ -971,8 +971,8 @@ void CharacterBase::acceptAttack(CCObject *object)
 											}
 											if (pianyi)
 											{
-												Attacker->_isCatchOne = true;
-												setPosition(CCPointMake(Attacker->getPositionX() + 2, Attacker->getPositionY() - 2));
+												attacker->_isCatchOne = true;
+												setPosition(CCPointMake(attacker->getPositionX() + 2, attacker->getPositionY() - 2));
 												_delegate->reorderChild(this, -getPositionY());
 											}
 										}
@@ -980,21 +980,21 @@ void CharacterBase::acceptAttack(CCObject *object)
 									else
 									{
 
-										if (strcmp(Attacker->getCharacter()->getCString(), "Lee") == 0 ||
-											strcmp(Attacker->getCharacter()->getCString(), "RockLee") == 0)
+										if (strcmp(attacker->getCharacter()->getCString(), "Lee") == 0 ||
+											strcmp(attacker->getCharacter()->getCString(), "RockLee") == 0)
 										{
 
 											if (hardHurt(1000, false, true, false, false))
 											{
-												Attacker->_isCatchOne = true;
+												attacker->_isCatchOne = true;
 												scheduleOnce(schedule_selector(CharacterBase::reCatched), 1.1f);
 											}
 										}
-										else if (strcmp(Attacker->getCharacter()->getCString(), "Kakuzu") == 0)
+										else if (strcmp(attacker->getCharacter()->getCString(), "Kakuzu") == 0)
 										{
 											bool pianyi = false;
 
-											if (!_isBati)
+											if (!_isArmored)
 											{
 												setKnockLength(1);
 											}
@@ -1002,15 +1002,15 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 											if (pianyi)
 											{
-												Attacker->_isCatchOne = true;
-												setPosition(CCPointMake(Attacker->getPositionX() + (Attacker->_isFlipped ? -28 : 28), Attacker->getPositionY() - 1));
-												setFlipX(Attacker->_isFlipped ? false : true);
+												attacker->_isCatchOne = true;
+												setPosition(CCPointMake(attacker->getPositionX() + (attacker->_isFlipped ? -28 : 28), attacker->getPositionY() - 1));
+												setFlipX(attacker->_isFlipped ? false : true);
 												_delegate->reorderChild(this, -getPositionY());
 											}
 										}
-										else if (strcmp(Attacker->getCharacter()->getCString(), "Tobi") == 0)
+										else if (strcmp(attacker->getCharacter()->getCString(), "Tobi") == 0)
 										{
-											if (!_isBati)
+											if (!_isArmored)
 											{
 												setKnockLength(1);
 											}
@@ -1022,7 +1022,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "f_hit") == 0 || strcmp(hitType, "bf_hit") == 0)
 						{
-							if (_isFlipped == Attacker->_isFlipped)
+							if (_isFlipped == attacker->_isFlipped)
 							{
 								if (_isFlipped)
 								{
@@ -1037,8 +1037,8 @@ void CharacterBase::acceptAttack(CCObject *object)
 							}
 							if (_actionState != State::OATTACK ||
 								(_actionState == State::OATTACK &&
-								 (Attacker->_actionState == State::O2ATTACK ||
-								  Attacker->_actionState == State::OATTACK)))
+								 (attacker->_actionState == State::O2ATTACK ||
+								  attacker->_actionState == State::OATTACK)))
 							{
 								floatUP(64, true);
 							}
@@ -1046,7 +1046,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						else if (strcmp(hitType, "f2_hit") == 0)
 						{
 
-							if (_isFlipped == Attacker->_isFlipped)
+							if (_isFlipped == attacker->_isFlipped)
 							{
 								if (_isFlipped)
 								{
@@ -1061,8 +1061,8 @@ void CharacterBase::acceptAttack(CCObject *object)
 							}
 							if (_actionState != State::OATTACK ||
 								(_actionState == State::OATTACK &&
-								 (Attacker->_actionState == State::O2ATTACK ||
-								  Attacker->_actionState == State::OATTACK)))
+								 (attacker->_actionState == State::O2ATTACK ||
+								  attacker->_actionState == State::OATTACK)))
 							{
 								floatUP(128, true);
 							}
@@ -1070,7 +1070,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						else if (strcmp(hitType, "b_hit") == 0)
 						{
 
-							if (_isFlipped == Attacker->_isFlipped)
+							if (_isFlipped == attacker->_isFlipped)
 							{
 								if (_isFlipped)
 								{
@@ -1086,8 +1086,8 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 							if (_actionState != State::OATTACK ||
 								(_actionState == State::OATTACK &&
-								 (Attacker->_actionState == State::O2ATTACK ||
-								  Attacker->_actionState == State::OATTACK)))
+								 (attacker->_actionState == State::O2ATTACK ||
+								  attacker->_actionState == State::OATTACK)))
 							{
 								floatUP(16, false);
 							}
@@ -1095,11 +1095,11 @@ void CharacterBase::acceptAttack(CCObject *object)
 						else if (strcmp(hitType, "ab_hit") == 0)
 						{
 
-							absorb(Attacker->getPosition(), true);
+							absorb(attacker->getPosition(), true);
 						}
 						else if (strcmp(hitType, "s_hit") == 0)
 						{
-							absorb(Attacker->getPosition(), false);
+							absorb(attacker->getPosition(), false);
 						}
 					}
 
@@ -1123,32 +1123,32 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 
 						if (_isCounter &&
-							strcmp(Attacker->_character->getCString(), Guardian_Roshi) != 0 &&
-							strcmp(Attacker->_character->getCString(), Guardian_Han) != 0)
+							strcmp(attacker->_character->getCString(), Guardian_Roshi) != 0 &&
+							strcmp(attacker->_character->getCString(), Guardian_Han) != 0)
 						{
-							if (Attacker->_master && Attacker->_master->_actionState != State::DEAD)
+							if (attacker->_master && attacker->_master->_actionState != State::DEAD)
 							{
 
-								Attacker->_master->_slayer = this;
+								attacker->_master->_slayer = this;
 
-								Attacker->_master->setDamage(Attacker->_effectType, Attacker->_attackValue, Attacker->_isFlipped);
-								if (Attacker->_master->_hpBar)
+								attacker->_master->setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
+								if (attacker->_master->_hpBar)
 								{
-									Attacker->_master->_hpBar->loseHP(Attacker->_master->getHpPercent());
+									attacker->_master->_hpBar->loseHP(attacker->_master->getHpPercent());
 								}
 							}
-							else if (!Attacker->_master)
+							else if (!attacker->_master)
 							{
 
-								if (Attacker->_actionState != State::DEAD)
+								if (attacker->_actionState != State::DEAD)
 								{
 
-									Attacker->_slayer = this;
+									attacker->_slayer = this;
 
-									Attacker->setDamage(Attacker->_effectType, Attacker->_attackValue, Attacker->_isFlipped);
-									if (Attacker->_hpBar)
+									attacker->setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
+									if (attacker->_hpBar)
 									{
-										Attacker->_hpBar->loseHP(Attacker->getHpPercent());
+										attacker->_hpBar->loseHP(attacker->getHpPercent());
 									}
 								}
 							}
@@ -1160,7 +1160,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 								if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (strcmp(tempHero->_role->getCString(), "Player") == 0 || strcmp(tempHero->_role->getCString(), "Com") == 0) && tempHero->_actionState != State::DEAD)
 								{
 									tempHero->_slayer = this;
-									tempHero->setDamage(Attacker->_effectType, Attacker->_attackValue / 2, Attacker->_isFlipped);
+									tempHero->setDamage(attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
 									if (tempHero->_hpBar)
 									{
 										tempHero->_hpBar->loseHP(tempHero->getHpPercent());
@@ -1175,24 +1175,24 @@ void CharacterBase::acceptAttack(CCObject *object)
 					if (strcmp(getCharacter()->getCString(), "Kakuzu") == 0 && _skillChangeBuffValue)
 					{
 
-						if (!Attacker->_master)
+						if (!attacker->_master)
 						{
 
-							if (Attacker->_actionState != State::DEAD)
+							if (attacker->_actionState != State::DEAD)
 							{
 
-								Attacker->_slayer = this;
+								attacker->_slayer = this;
 
-								Attacker->setDamage(Attacker->_effectType, Attacker->_attackValue / 2, Attacker->_isFlipped);
-								if (Attacker->_hpBar)
+								attacker->setDamage(attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
+								if (attacker->_hpBar)
 								{
-									Attacker->_hpBar->loseHP(Attacker->getHpPercent());
+									attacker->_hpBar->loseHP(attacker->getHpPercent());
 								}
 							}
 						}
 					}
 
-					setDamage(Attacker->_effectType, Attacker->_attackValue, Attacker->_isFlipped);
+					setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
 					//lose the hp
 					if (_hpBar)
 					{
@@ -1587,7 +1587,7 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 		}
 		else if ((attacker->getMaster() ||
 				  attacker->getActionState() == State::NATTACK) &&
-				 attacker->isPofang)
+				 attacker->hasArmorBroken)
 		{
 			realValue = attackValue + criticalValue;
 		}
@@ -1602,7 +1602,7 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 
 				realValue = attackValue - _gardValue + criticalValue;
 				float decreaseRating = 0;
-				if (isHujia)
+				if (hasArmor)
 				{
 					decreaseRating += 0.25;
 				}
@@ -2215,7 +2215,7 @@ bool CharacterBase::setGear(gearType type)
 				settempAttackValue1(CCString::createWithFormat("%d", to_int(gettempAttackValue1()->getCString()) + 160));
 			}
 			setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 160));
-			isPofang = true;
+			hasArmorBroken = true;
 
 			break;
 		case gear05:
@@ -2254,7 +2254,7 @@ bool CharacterBase::setGear(gearType type)
 			{
 				_hpBar->loseHP(getHpPercent());
 			}
-			isHujia = true;
+			hasArmor = true;
 
 			break;
 		}
@@ -2332,7 +2332,7 @@ void CharacterBase::useGear(gearType type)
 		_isCanGear06 = false;
 		scheduleOnce(schedule_selector(CharacterBase::enableGear06), 15.0f);
 
-		if (!_isInvincible && !_isBati)
+		if (!_isInvincible && !_isArmored)
 		{
 
 			if (getActionState() == State::IDLE ||
@@ -3281,7 +3281,7 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 			}
 			if (strcmp(getCharacter()->getCString(), "Neji") == 0)
 			{
-				_isBati = true;
+				_isArmored = true;
 			}
 		}
 	}
@@ -3509,7 +3509,7 @@ void CharacterBase::disableBuff(float dt)
 
 		if (strcmp(getCharacter()->getCString(), "Neji") == 0)
 		{
-			_isBati = false;
+			_isArmored = false;
 		}
 		removeBuffEffect("sBuff");
 	}
@@ -3545,7 +3545,7 @@ void CharacterBase::disableDebuff(float dt)
 
 	if ((strcmp(getCharacter()->getCString(), "ImmortalSasuke") == 0 ||
 		 strcmp(getCharacter()->getCString(), "Itachi") == 0) &&
-		_isBati)
+		_isArmored)
 	{
 		return;
 	}
@@ -4167,14 +4167,14 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 		clone->setnAttackValue(CCString::createWithFormat("1060"));
 	}
 
-	if (isPofang)
+	if (hasArmorBroken)
 	{
-		clone->isPofang = true;
+		clone->hasArmorBroken = true;
 	}
 
-	if (isHujia)
+	if (hasArmor)
 	{
-		clone->isHujia = true;
+		clone->hasArmor = true;
 	}
 
 	clone->setFlipX(_isFlipped);
@@ -4370,7 +4370,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	else if (strcmp(monsterType->getCString(), "Bikyu") == 0)
 	{
 		monster->setFlipX(_isFlipped);
-		monster->isPofang = true;
+		monster->hasArmorBroken = true;
 		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -(16 + getContentSize().width) : (16 + getContentSize().width)), getPositionY() - 32));
 		_monsterArray->addObject(monster);
 		monster->attack(NAttack);
@@ -5434,7 +5434,7 @@ bool CharacterBase::hurt()
 		_actionState != State::AIRHURT &&
 		!_isSticking &&
 		!_isCatchOne &&
-		!_isBati)
+		!_isArmored)
 	{
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
@@ -5504,7 +5504,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 		_actionState != State::AIRHURT &&
 		!_isSticking &&
 		!_isCatchOne &&
-		!_isBati)
+		!_isArmored)
 	{
 		if (_actionState == State::FLOAT ||
 			_actionState == State::AIRHURT ||
@@ -5659,7 +5659,7 @@ void CharacterBase::absorb(CCPoint position, bool isImmediate)
 		_actionState == State::WALK ||
 		_actionState == State::NATTACK)
 	{
-		if (_isBati || _isSticking)
+		if (_isArmored || _isSticking)
 			return;
 
 		if (strcmp(_role->getCString(), "Player") == 0)
@@ -5710,7 +5710,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 		_actionState != State::DEAD &&
 		!_isSticking &&
 		!_isCatchOne &&
-		!_isBati)
+		!_isArmored)
 	{
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
@@ -5842,7 +5842,7 @@ void CharacterBase::dead()
 		{
 			_controller->unschedule(schedule_selector(CharacterBase::resumeAction));
 			_controller->idle();
-			_controller->_isBati = false;
+			_controller->_isArmored = false;
 		}
 
 		_controller = nullptr;
@@ -6483,12 +6483,12 @@ bool CharacterBase::stepBack2()
 
 			if (getPositionY() + 96 < _delegate->currentMap->getTileSize().height * 5.5)
 			{
-				_DiretionY = 1;
+				_diretionY = 1;
 				_backY = getPositionY() + 96;
 			}
 			else
 			{
-				_DiretionY = -1;
+				_diretionY = -1;
 				_backY = getPositionY() - 96;
 			}
 		}
@@ -6497,12 +6497,12 @@ bool CharacterBase::stepBack2()
 
 			if (getPositionY() - 96 > 16)
 			{
-				_DiretionY = -1;
+				_diretionY = -1;
 				_backY = getPositionY() - 96;
 			}
 			else
 			{
-				_DiretionY = 1;
+				_diretionY = 1;
 				_backY = getPositionY() + 96;
 			}
 		}
@@ -6512,28 +6512,28 @@ bool CharacterBase::stepBack2()
 
 		if (randomDirection > 5)
 		{
-			if (_DiretionY == 1 && (getPositionY() >= _backY || getPositionY() > _delegate->currentMap->getTileSize().height * 5))
+			if (_diretionY == 1 && (getPositionY() >= _backY || getPositionY() > _delegate->currentMap->getTileSize().height * 5))
 			{
-				_DiretionY = -1;
+				_diretionY = -1;
 				_backY = getPositionY() - 96;
 			}
-			else if (_DiretionY == -1 && (getPositionY() <= _backY || getPositionY() < 16))
+			else if (_diretionY == -1 && (getPositionY() <= _backY || getPositionY() < 16))
 			{
-				_DiretionY = 1;
+				_diretionY = 1;
 				_backY = getPositionY() + 96;
 			}
 		}
 		else
 		{
 
-			if (_DiretionY == 1 && getPositionY() <= _delegate->currentMap->getTileSize().height * 5)
+			if (_diretionY == 1 && getPositionY() <= _delegate->currentMap->getTileSize().height * 5)
 			{
-				_DiretionY = 1;
+				_diretionY = 1;
 				_backY = _delegate->currentMap->getTileSize().height * 5;
 			}
 			else if (getPositionY() > 16)
 			{
-				_DiretionY = -1;
+				_diretionY = -1;
 				_backY = 16;
 			}
 		}
@@ -6541,13 +6541,13 @@ bool CharacterBase::stepBack2()
 
 	if (strcmp(Konoha, _group->getCString()) == 0 && getPositionX() >= _delegate->currentMap->getTileSize().width * 2)
 	{
-		moveDirection = CCPoint(ccp(-1, _DiretionY));
+		moveDirection = CCPoint(ccp(-1, _diretionY));
 		walk(moveDirection);
 		return true;
 	}
 	else if (strcmp(Akatsuki, _group->getCString()) == 0 && getPositionX() <= (_delegate->currentMap->getMapSize().width - 2) * _delegate->currentMap->getTileSize().width)
 	{
-		moveDirection = CCPoint(ccp(1, _DiretionY));
+		moveDirection = CCPoint(ccp(1, _diretionY));
 		walk(moveDirection);
 		return true;
 	}

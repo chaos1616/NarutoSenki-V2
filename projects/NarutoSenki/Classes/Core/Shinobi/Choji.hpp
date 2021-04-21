@@ -15,7 +15,7 @@ class Choji : public Hero
 				 getActionState() == State::AIRHURT ||
 				 getActionState() == State::HURT ||
 				 getActionState() == State::KNOCKDOWN) &&
-				getHpPercent() < 0.5 && !_isBati && !_isWudi)
+				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(gear06);
 			}
@@ -88,13 +88,13 @@ class Choji : public Hero
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
-				if (_isCanSkill1 && !_isBati)
+				if (_isCanSkill1 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL1);
 					return;
 				}
-				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isBati)
+				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 
 					if (abs(sp.x) > 96 || abs(sp.y) > 16)
@@ -107,7 +107,7 @@ class Choji : public Hero
 					attack(SKILL3);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControlled && !_isBati)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControlled && !_isArmored)
 				{
 					if (abs(sp.x) < 160)
 					{
@@ -130,17 +130,17 @@ class Choji : public Hero
 						return;
 					}
 
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isBati)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(OUGIS1);
 					}
-					else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isBati && _skillUPBuffValue)
+					else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isArmored && _skillUPBuffValue)
 					{
 						changeSide(sp);
 						attack(SKILL2);
 					}
-					else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isBati)
+					else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(OUGIS2);
@@ -193,17 +193,17 @@ class Choji : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (_isCanSkill2 && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				if (_isCanSkill2 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 				{
 					changeSide(sp);
 					attack(SKILL2);
 				}
-				else if (_isCanOugis1 && !_isControlled && isBaseDanger && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				else if (_isCanOugis1 && !_isControlled && isBaseDanger && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 				{
 					changeSide(sp);
 					attack(OUGIS1);
 				}
-				else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0 && !_isBati)
+				else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(OUGIS2);
@@ -233,7 +233,7 @@ class Choji : public Hero
 	void changeAction()
 	{
 
-		_isBati = true;
+		_isArmored = true;
 		setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
 		setIdleAction(createAnimation(skillSPC4Array, 5.0f, true, false));
 		setWalkAction(createAnimation(skillSPC2Array, 5.0f, true, false));
@@ -265,7 +265,7 @@ class Choji : public Hero
 		_tempAttackType = nullptr;
 
 		_isOnlySkillLocked = false;
-		_isBati = false;
+		_isArmored = false;
 		_gardValue -= 5000;
 
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
@@ -301,7 +301,7 @@ class Choji : public Hero
 		_tempAttackType = nullptr;
 
 		_isOnlySkillLocked = false;
-		_isBati = false;
+		_isArmored = false;
 		_gardValue -= 5000;
 
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));

@@ -678,8 +678,8 @@ void Monster::setAI(float dt)
 			if (strcmp(getGroup()->getCString(), tempHero->getGroup()->getCString()) != 0 &&
 				tempHero->getActionState() != State::DEAD &&
 				tempHero->getActionState() != State::O2ATTACK &&
-				!tempHero->_isWudi &&
-				!tempHero->_isBati &&
+				!tempHero->_isInvincible &&
+				!tempHero->_isArmored &&
 				tempHero->_isVisable)
 			{
 

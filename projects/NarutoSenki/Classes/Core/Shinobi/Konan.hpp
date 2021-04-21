@@ -75,13 +75,13 @@ class Konan : public Hero
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 
-				if (_isCanSkill1 && !_isBati)
+				if (_isCanSkill1 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL1);
 					return;
 				}
-				else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isBati && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_isBati)
+				else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_isArmored)
 				{
 					if ((abs(sp.x) > 48 || abs(sp.y) > 16))
 					{
@@ -94,7 +94,7 @@ class Konan : public Hero
 					attack(OUGIS2);
 					return;
 				}
-				else if (_mainTarget->getGP() < 5000 && !_isVisable && !_isBati && (_isCanSkill3 || _isCanSkill2) &&
+				else if (_mainTarget->getGP() < 5000 && !_isVisable && !_isArmored && (_isCanSkill3 || _isCanSkill2) &&
 						 _mainTarget->getActionState() != State::KNOCKDOWN)
 				{
 
@@ -138,7 +138,7 @@ class Konan : public Hero
 				}
 				else if (abs(sp.x) < 128)
 				{
-					if ((abs(sp.x) > 8 || abs(sp.y) > 8) && _isBati)
+					if ((abs(sp.x) > 8 || abs(sp.y) > 8) && _isArmored)
 					{
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
@@ -150,18 +150,18 @@ class Konan : public Hero
 						walk(moveDirection);
 						return;
 					}
-					else if (abs(sp.x) < 32 && !_isBati)
+					else if (abs(sp.x) < 32 && !_isArmored)
 					{
 						stepBack();
 						return;
 					}
 
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isBati)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(OUGIS1);
 					}
-					else if (_isCanSkill2 && !_isBati && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill2 && !_isArmored && _mainTarget->getGP() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL2);
@@ -172,7 +172,7 @@ class Konan : public Hero
 						{
 							useGear(gear03);
 						}
-						if (!_isBati)
+						if (!_isArmored)
 						{
 							changeSide(sp);
 							attack(NAttack);
@@ -204,7 +204,7 @@ class Konan : public Hero
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
 
-			if ((abs(sp.x) > 8 || abs(sp.y) > 8) && _isBati)
+			if ((abs(sp.x) > 8 || abs(sp.y) > 8) && _isArmored)
 			{
 				moveDirection = ccpNormalize(sp);
 				walk(moveDirection);
@@ -223,18 +223,18 @@ class Konan : public Hero
 				{
 					useGear(gear03);
 				}
-				if (_isCanOugis1 && !_isControlled && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
+				if (_isCanOugis1 && !_isControlled && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
 				{
 					changeSide(sp);
 
 					attack(OUGIS1);
 				}
-				else if (_isCanSkill2 && !_isBati && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
+				else if (_isCanSkill2 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
 				{
 					changeSide(sp);
 					attack(SKILL2);
 				}
-				else if (!_isBati)
+				else if (!_isArmored)
 				{
 					changeSide(sp);
 					attack(NAttack);
@@ -260,7 +260,7 @@ class Konan : public Hero
 	{
 
 		_isAllAttackLocked = true;
-		_isBati = true;
+		_isArmored = true;
 
 		_attackType = _spcattackType2;
 		_attackValue = to_int(getspcAttackValue2()->getCString());
@@ -283,7 +283,7 @@ class Konan : public Hero
 	{
 
 		_isAllAttackLocked = false;
-		_isBati = false;
+		_isArmored = false;
 
 		_originSpeed = 224;
 
