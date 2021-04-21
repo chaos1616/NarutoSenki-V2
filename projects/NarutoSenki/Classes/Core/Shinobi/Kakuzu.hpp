@@ -30,7 +30,9 @@ class Kakuzu : public Hero
 		if (not_player)
 			return;
 
-		if (_exp >= 500 && _level == 1)
+		// NOTE: The level was increased on base
+		// We should do the same here
+		if (_exp >= 500 && _level == 1 + 1)
 		{
 			if (hearts < 1)
 			{
@@ -40,7 +42,7 @@ class Kakuzu : public Hero
 				}
 			}
 		}
-		else if (_exp >= 1500 && _level == 3)
+		else if (_exp >= 1500 && _level == 3 + 1)
 		{
 			if (_delegate->getHudLayer()->skill5Button)
 			{
