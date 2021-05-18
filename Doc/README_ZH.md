@@ -137,7 +137,7 @@ make # DEBUG=1 # -j12
 
 或
 
-- 执行`build.bat`，然后执行`build-win32.bat`
+- 执行`build.bat`
 
 ## 目录结构
 

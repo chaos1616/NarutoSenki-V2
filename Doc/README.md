@@ -136,7 +136,7 @@ make # DEBUG=1 # -j12
 
 or
 
-- Run `build.bat` and `build-win32.bat`
+- Run `build.bat`
 
 ## Structure
 
