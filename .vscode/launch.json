@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "NarutoSenki (gdb)",
+            "name": "NarutoSenki (linux)",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/projects/NarutoSenki/proj.linux/bin/debug/NarutoSenki",
@@ -15,11 +15,22 @@
             "preLaunchTask": "compile",
             "setupCommands": [
                 {
-                    "description": "gdb の再フォーマットを有効にする",
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
                 }
             ]
+        },
+        {
+            "name": "NarutoSenki (windwos)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "NarutoSenki.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/projects/NarutoSenki/__BIN__/",
+            "environment": [],
+            "console": "externalTerminal",
+            "preLaunchTask": "compile-win32"
         },
         {
             "name": "Python: Current File",

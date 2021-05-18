@@ -27,7 +27,6 @@ bool MenuButton::init(const char *szImage)
 		setAnchorPoint(ccp(0.5, 0));
 
 		bRet = true;
-
 	} while (0);
 
 	return bRet;

@@ -476,7 +476,6 @@ void CharacterBase::acceptAttack(CCObject *object)
 			}
 
 			return;
-
 		}
 		// Bullet
 		else if (strcmp(attacker->_role->getCString(), "Bullet") == 0)
@@ -3883,7 +3882,7 @@ void CharacterBase::changeAction2()
 	}
 }
 
-// Release catched units
+// Release catched characters
 void CharacterBase::reCatched(float dt)
 {
 	setVisible(true);

@@ -25,12 +25,13 @@ echo.
 
 call %VSVARS%
 
-msbuild cocos2d-win32.sln /t:Clean
-#    msbuild cocos2d-win32.sln /p:Configuration="Debug" /m
-    msbuild cocos2d-win32.sln /p:Configuration="Release" /m
+# build without clean
+# msbuild cocos2d-win32.sln /t:Clean
+msbuild cocos2d-win32.sln /p:Configuration="Debug" /m
+# msbuild cocos2d-win32.sln /p:Configuration="Release" /m
 
 echo./*
-echo. * Check the cocos2d-win32 application "TestCpp.exe" ...
+echo. * Check the cocos2d-win32 application "NarutoSenki.exe" ...
 echo. */
 echo.
 
@@ -40,7 +41,7 @@ set CC_BIN=NarutoSenki.exe
 set CC_RES=..\projects\NarutoSenki\Resources
 
 echo./*
-echo. * Run cocos2d-win32 NarutoSenki.exe and view Cocos2d-x Application Wizard for Visual Studio User Guide.
+echo. * Copy resources
 echo. */
 echo.
 xcopy  /E /Y /Q "%CC_RES%" .

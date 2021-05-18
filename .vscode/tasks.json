@@ -12,6 +12,12 @@
             "problemMatcher": [
                 "$gcc"
             ]
+        },
+        {
+            "type": "shell",
+            "label": "compile-win32",
+            "command": "./build-win32",
+            "args": []
         }
     ]
 }

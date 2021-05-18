@@ -11,6 +11,18 @@
             ],
             "defines": [],
             "compileCommands": ""
+        },
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/cocos2dx/**",
+                "${workspaceFolder}/CocosDenshion/**",
+                "${workspaceFolder}/extensions/**",
+                "${workspaceFolder}/external/**",
+                "${workspaceFolder}/projects/NarutoSenki/Classes/**"
+            ],
+            "defines": [],
+            "compileCommands": ""
         }
     ],
     "version": 4

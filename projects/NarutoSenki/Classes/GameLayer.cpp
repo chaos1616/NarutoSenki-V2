@@ -58,13 +58,12 @@ GameLayer::~GameLayer()
 {
 	// CC_SAFE_RELEASE(totalKills);
 	// CC_SAFE_RELEASE(totalTM);
+	_gLayer = nullptr;
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	CCDirector::sharedDirector()->getOpenGLView()->setAccelerometerKeyHook(nullptr);
-	CC_SAFE_DELETE(_gLayer);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 	glfwSetKeyCallback(_window, nullptr);
-	CC_SAFE_DELETE(_gLayer);
 #endif
 }
 
