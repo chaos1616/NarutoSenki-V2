@@ -27,8 +27,8 @@ call %VSVARS%
 
 # build without clean
 # msbuild cocos2d-win32.sln /t:Clean
-msbuild cocos2d-win32.sln /p:Configuration="Debug" /m
-# msbuild cocos2d-win32.sln /p:Configuration="Release" /m
+# msbuild cocos2d-win32.sln /p:Configuration="Debug" /m
+msbuild cocos2d-win32.sln /p:Configuration="Release" /m
 
 echo./*
 echo. * Check the cocos2d-win32 application "NarutoSenki.exe" ...

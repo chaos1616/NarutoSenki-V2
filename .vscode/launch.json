@@ -29,7 +29,7 @@
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/projects/NarutoSenki/__BIN__/",
             "environment": [],
-            "console": "externalTerminal",
+            "console": "internalConsole",
             "preLaunchTask": "compile-win32"
         },
         {
