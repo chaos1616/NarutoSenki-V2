@@ -101,7 +101,7 @@ CharacterBase::CharacterBase()
 	_flogNum = 0;
 
 	_knockLength = 0;
-	_knockDiretion = false;
+	_knockDirection = false;
 
 	_effectType = nullptr;
 
@@ -665,7 +665,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						if (strcmp(hitType, "o_hit") == 0)
 						{
 							setKnockLength(48);
-							setKnockDiretion(attacker->_isFlipped);
+							setKnockDirection(attacker->_isFlipped);
 							hurt();
 						}
 						else if (strcmp(hitType, "ac_hit") == 0)
@@ -857,7 +857,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 								{
 									setKnockLength(48);
 								}
-								setKnockDiretion(attacker->_isFlipped);
+								setKnockDirection(attacker->_isFlipped);
 								hardHurt(500, true, false, false, false);
 							}
 						}
@@ -867,7 +867,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 							{
 								setKnockLength(1);
 							}
-							setKnockDiretion(attacker->_isFlipped);
+							setKnockDirection(attacker->_isFlipped);
 							hardHurt(1000, true, false, false, true);
 						}
 						else if (strcmp(hitType, "ob_hit") == 0)
@@ -876,7 +876,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 							{
 								setKnockLength(1);
 							}
-							setKnockDiretion(attacker->_isFlipped);
+							setKnockDirection(attacker->_isFlipped);
 							hardHurt(2000, true, false, false, true);
 
 							if (_dehealBuffEffect)
@@ -2731,14 +2731,14 @@ void CharacterBase::setMove(CCNode *sender, void *data)
 		CCActionInterval *mv;
 		if (_actionState == State::HURT)
 		{
-			if (!_knockDiretion)
+			if (!_knockDirection)
 			{
 				mv = CCMoveBy::create(0.1f, ccp(_hurtFromRight ? -moveLength : moveLength, 0));
 			}
 			else
 			{
 
-				mv = CCMoveBy::create(0.1f, ccp(_knockDiretion ? -moveLength : moveLength, 0));
+				mv = CCMoveBy::create(0.1f, ccp(_knockDirection ? -moveLength : moveLength, 0));
 			}
 			runAction(mv);
 		}
@@ -5322,7 +5322,7 @@ void CharacterBase::idle()
 		_knockLength = 0;
 		_originY = 0;
 		_sticker = nullptr;
-		_knockDiretion = false;
+		_knockDirection = false;
 
 		unschedule(schedule_selector(CharacterBase::stopMove));
 

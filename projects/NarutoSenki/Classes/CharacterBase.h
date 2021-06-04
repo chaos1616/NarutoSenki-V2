@@ -74,7 +74,7 @@ public:
 	float				_buffStartTime;
 	float				_debuffStartTime;
 	CC_SYNTHESIZE(int,_knockLength, KnockLength);
-	CC_SYNTHESIZE(bool,_knockDiretion, KnockDiretion);
+	CC_SYNTHESIZE(bool,_knockDirection, KnockDirection);
 	bool				_isAllAttackLocked;
 	bool				_isOnlySkillLocked;
 	bool				_isInvincible;
