@@ -9,6 +9,7 @@ Thumbs.db
 # Ignore files build by Visual Studio
 *.obj
 *.exe
+!tools/tolua++.exe
 *.pdb
 *.aps
 *.vcproj.*.user
