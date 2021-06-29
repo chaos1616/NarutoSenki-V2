@@ -101,7 +101,19 @@
         "slist": "cpp",
         "numbers": "cpp",
         "scoped_allocator": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "cassert": "cpp",
+        "cerrno": "cpp",
+        "cfloat": "cpp",
+        "ciso646": "cpp",
+        "climits": "cpp",
+        "cstdbool": "cpp",
+        "ios": "cpp",
+        "locale": "cpp",
+        "queue": "cpp",
+        "semaphore": "cpp",
+        "stack": "cpp",
+        "*.rh": "cpp"
     },
     "python.pythonPath": "/bin/python",
     "Lua.diagnostics.globals": [

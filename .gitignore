@@ -96,7 +96,7 @@ Device-Release/
 
 __BIN__
 # Ignore files created by create_project.py
-projects/NarutoSenki/__Bin__
+projects/NarutoSenki/__BIN__
 
 # Ignore config files in javascript bindings generator
 tools/tojs/user.cfg

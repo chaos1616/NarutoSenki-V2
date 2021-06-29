@@ -3,7 +3,7 @@
 # Invoked build.xml, overriding the lolua++ property
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-TOLUA=`which tolua++`
+TOLUA=`which toluapp`
 if [ -z "${TOLUA}" ]; then
     TOLUA=`which tolua++5.1`
 fi

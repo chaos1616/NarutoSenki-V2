@@ -19,6 +19,7 @@ SOURCES = main.cpp \
 	../Classes/PauseLayer.cpp \
 	../Classes/SelectLayer.cpp \
 	../Classes/StartMenu.cpp \
+	../Classes/UI/GameModeLayer.cpp \
 	../Classes/MyUtils/CCScrewLayer.cpp \
 	../Classes/MyUtils/CCShake.cpp \
 	../Classes/MyUtils/CCStrokeLabel.cpp \
@@ -51,7 +52,8 @@ STATICLIBS += \
 $(TARGET): $(OBJECTS) $(STATICLIBS) $(COCOS_LIBS) $(CORE_MAKEFILE_LIST)
 	@mkdir -p $(@D)
 	$(LOG_LINK)$(CXX) $(CXXFLAGS) $(OBJECTS) -o $@ $(STATICLIBS) $(SHAREDLIBS) $(LIBS)
-	cp $(@D)/NarutoSenki ../../../projects/NarutoSenki/__Bin__/Linux
+	rm -rf ../__BIN__/NarutoSenki
+	cp $(@D)/NarutoSenki ../__BIN__
 
 ####### Compile
 $(OBJ_DIR)/%.o: ../%.cpp $(CORE_MAKEFILE_LIST)

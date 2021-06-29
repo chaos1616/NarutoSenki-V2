@@ -49,6 +49,7 @@ void MenuButton::onEnter()
 
 #endif
 }
+
 void MenuButton::onExit()
 {
 	CCSprite::onExit();
@@ -60,6 +61,7 @@ CCRect MenuButton::getRect()
 	CCSize size = getContentSize();
 	return CCRect(0, 0, size.width, size.height);
 }
+
 bool MenuButton::containsTouchLocation(CCTouch *touch)
 {
 

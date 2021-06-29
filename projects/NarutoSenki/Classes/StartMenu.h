@@ -2,6 +2,7 @@
 #include "Defines.h"
 #include "SelectLayer.h"
 #include "CreditsLayer.h"
+#include "UI/GameModeLayer.h"
 
 #include "MyUtils/KTools.h"
 #include "MyUtils/CCStrokeLabel.h"

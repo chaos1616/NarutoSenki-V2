@@ -5,18 +5,18 @@
             "name": "NarutoSenki (linux)",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/projects/NarutoSenki/proj.linux/bin/debug/NarutoSenki",
+            "program": "${workspaceFolder}/projects/NarutoSenki/__BIN__/NarutoSenki",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "preLaunchTask": "compile",
+            "preLaunchTask": "no-compile",
             "setupCommands": [
                 {
                     "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
+                    "ignoreFailures": false
                 }
             ]
         },

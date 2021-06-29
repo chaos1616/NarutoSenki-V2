@@ -3,6 +3,8 @@
         {
             "name": "Linux",
             "includePath": [
+                "${workspaceFolder}/cocos2dx/platform/linux/**",
+                "${workspaceFolder}/cocos2dx/include",
                 "${workspaceFolder}/cocos2dx/**",
                 "${workspaceFolder}/CocosDenshion/**",
                 "${workspaceFolder}/extensions/**",
@@ -15,6 +17,8 @@
         {
             "name": "Win32",
             "includePath": [
+                "${workspaceFolder}/cocos2dx/platform/win32/**",
+                "${workspaceFolder}/cocos2dx/include",
                 "${workspaceFolder}/cocos2dx/**",
                 "${workspaceFolder}/CocosDenshion/**",
                 "${workspaceFolder}/extensions/**",

@@ -1,7 +1,8 @@
+echo "Building tolua++"
 cd tools/tolua++
-make
+./build.sh
 
-clear
+echo ""
 
 cd ../../
-make DEBUG=0 -j12
+make DEBUG=0 -j

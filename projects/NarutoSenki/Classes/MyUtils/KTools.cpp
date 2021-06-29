@@ -47,10 +47,18 @@ void KTools::updateData()
 bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 {
 
-	tinyxml2::XMLDocument *doc = new tinyxml2::XMLDocument();
+	XMLDocument *doc = new XMLDocument();
 	unsigned long nSize;
 	const char *data = (const char *)CCFileUtils::sharedFileUtils()->getFileData(filePath, "r", &nSize);
-	doc->Parse(data);
+	if (data == nullptr)
+	{
+		CCLOGERROR("data %s is null", filePath);
+	}
+	XMLError err = doc->Parse(data, nSize);
+	if (err)
+	{
+		CCLOGERROR("XML Error: %s", XMLDocument::ErrorIDToName(err));
+	}
 
 	XMLElement *rootEle = doc->RootElement();
 	XMLElement *actionEle = rootEle->FirstChildElement();
@@ -408,7 +416,7 @@ void KTools::prepareFileOGG(const char *listName, bool unload /* =false */)
 		return;
 	}
 
-	tinyxml2::XMLDocument *doc = new tinyxml2::XMLDocument();
+	XMLDocument *doc = new XMLDocument();
 	unsigned long nSize;
 	const char *pXmlBuffer = (const char *)CCFileUtils::sharedFileUtils()->getFileData(md5Path.c_str(), "r", &nSize);
 	doc->Parse(pXmlBuffer);

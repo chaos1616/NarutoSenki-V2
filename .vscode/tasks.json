@@ -3,12 +3,16 @@
     "tasks": [
         {
             "type": "shell",
+            "label": "no-compile",
+            "command": "",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "type": "shell",
             "label": "compile",
             "command": "./build.sh",
-            "args": [],
-            "options": {
-                "cwd": ""
-            },
             "problemMatcher": [
                 "$gcc"
             ]
