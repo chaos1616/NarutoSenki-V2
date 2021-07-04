@@ -1,8 +1,3 @@
-/*
-** Lua binding: Cocos2d
-** Generated automatically by tolua++-1.0.92 on Tue Jun 29 16:23:13 2021.
-*/
-
 /****************************************************************************
  Copyright (c) 2011 cocos2d-x.org
 

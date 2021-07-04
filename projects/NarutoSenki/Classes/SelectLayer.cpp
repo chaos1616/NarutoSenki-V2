@@ -187,9 +187,8 @@ void SelectLayer::keyBackClicked()
 
 SelectLayer *SelectLayer::create()
 {
-	SelectLayer *sl = nullptr;
-	sl = new SelectLayer();
-	if (sl && sl->init())
+	SelectLayer *sl = new SelectLayer();
+	if (sl->init())
 	{
 		sl->autorelease();
 		return sl;

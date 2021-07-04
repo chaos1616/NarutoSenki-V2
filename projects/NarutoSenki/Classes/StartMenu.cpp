@@ -557,8 +557,15 @@ void StartMenu::onHardLayerCallBack()
 
 void StartMenu::enterCustomMode()
 {
-	enableCustomSelect = true;
-	enterSelectLayer();
+	// enableCustomSelect = true;
+	// enterSelectLayer();
+
+	// TEST: Develop game mode scene
+	auto modeScene = CCScene::create();
+	auto gameModeLayer = GameModeLayer::create();
+	modeScene->addChild(gameModeLayer);
+
+	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.5f, modeScene));
 }
 
 void StartMenu::enterTrainingMode()

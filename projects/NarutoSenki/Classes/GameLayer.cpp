@@ -1255,16 +1255,16 @@ void GameLayer::keyEventHandle(GLFWwindow *window, int key, int scancode, int ke
 	switch (key)
 	{
 	case KEY_W:
-	case KEY_UP:
+	// case KEY_UP:
 		MOVE(keyState, 0, 0, 0, KEY_W, keyState);
 	case KEY_S:
-	case KEY_DOWN:
+	// case KEY_DOWN:
 		MOVE(0, keyState, 0, 0, KEY_S, keyState);
 	case KEY_A:
-	case KEY_LEFT:
+	// case KEY_LEFT:
 		MOVE(0, 0, keyState, 0, KEY_A, keyState);
 	case KEY_D:
-	case KEY_RIGHT:
+	// case KEY_RIGHT:
 		MOVE(0, 0, 0, keyState, KEY_D, keyState);
 	case KEY_J:
 		if (keyState)

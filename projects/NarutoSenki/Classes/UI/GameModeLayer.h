@@ -26,20 +26,37 @@ public:
     CCString *title;
     CCString *description;
 
-    static const GameModeData &from(const char *path);
+    // static const GameModeData &from(const char *path);
 };
 
 class GameModeLayer : public CCLayer
 {
 public:
+    CREATE_FUNC(GameModeLayer);
+
     GameModeLayer();
     ~GameModeLayer();
 
     bool init();
+    void backToMenu();
 
     bool pushMode(const GameModeData &data);
-    bool removeMode();
+    void removeMode(const GameModeData &data);
+
+    void onEnterClassicMode();
+    void onEnterHardCoreMode();
+    void onEnterNotHardCoreMode();
+    void onEnterInDevMode();
+    void onEnterUnknownMode();
+
+    CC_SYNTHESIZE_RETAIN(CCArray *, _menu_array, Menus);
+
+    const int kMenuCount = 5;
 
 private:
+    inline bool setSelect() { return ++tapCount < 2; };
+
+    int tapCount;
+
     vector<GameModeData> modes;
 };

@@ -323,5 +323,6 @@ TOLUA_API int  tolua_Cocos2d_open (lua_State* tolua_S);]], [[]])
 
       replace('\t', '    ')
 
-    WRITE(result)
+    -- removed automatically generated header
+    WRITE(string.sub(result, 106))
 end
