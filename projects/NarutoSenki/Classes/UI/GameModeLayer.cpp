@@ -57,13 +57,14 @@ bool GameModeLayer::init()
         mode_btn->setPositionY((posY + 55 + 7.5f) - i * (55 + 7.5f));
         addChild(mode_btn);
     }
-    for (int i = 3; i < 3 + 2 + 1; i++)
+    for (int i = 3; i < 6; i++)
     {
         auto mode_btn = ModeMenuButton::create(CCString::createWithFormat("GameMode/%d.png", i + 1)->getCString());
         mode_btn->mode = (GameMode)i;
         mode_btn->setDelegate(this);
         mode_btn->setPositionX(offset + 10 + (i - 2) * (80 + 5));
         mode_btn->setPositionY(posY);
+        // mode_btn->lock();
         addChild(mode_btn);
         // init animation
         // auto delay = CCDelayTime::create(i * 0.3f);
@@ -145,6 +146,7 @@ void GameModeLayer::initModeData()
         modes[GameMode::Deathmatch] = {"Deathmatch (3 VS 3)", ""};
         modes[GameMode::RandomDeathmatch] = {"Random Deathmatch (3 VS 3)", ""};
     }
+
     // init mode handlers
     static IGameModeHandler *handlers[(size_t)GameMode::_Internal_Max_Length] = {
         new Mode1v1(),

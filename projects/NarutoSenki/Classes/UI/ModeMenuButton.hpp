@@ -3,6 +3,9 @@
 
 class ModeMenuButton : public CCSprite, public CCTouchDelegate
 {
+private:
+    CCSprite *lockMask;
+
 public:
     CC_SYNTHESIZE(GameModeLayer *, _gameModeLayer, Delegate);
 
@@ -10,6 +13,7 @@ public:
 
     ModeMenuButton()
     {
+        lockMask = nullptr;
     }
 
     ~ModeMenuButton()
@@ -58,6 +62,25 @@ public:
     {
         SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
         _gameModeLayer->selectMode(mode);
+    }
+
+    void lock()
+    {
+        if (lockMask == nullptr)
+        {
+            lockMask = CCSprite::create("GameMode/chain_mask.png");
+            lockMask->setPosition(getPosition());
+            _gameModeLayer->addChild(lockMask, 1000);
+        }
+    }
+
+    void unlock()
+    {
+        if (lockMask)
+        {
+            _gameModeLayer->removeChild(lockMask, true);
+            lockMask = nullptr;
+        }
     }
 
     static ModeMenuButton *create(const char *szImage)
