@@ -3,7 +3,6 @@
         ".gitignore": "ignore",
         "*.tpsheet": "csv (semicolon)",
         "*.plist": "xml",
-        "*.asset": "yaml",
         "*.csv": "csv (pipe)",
         "__locale": "cpp",
         "functional": "cpp",
@@ -115,7 +114,6 @@
         "stack": "cpp",
         "*.rh": "cpp"
     },
-    "python.pythonPath": "/bin/python",
     "Lua.diagnostics.globals": [
         "cocos2d",
         "log",

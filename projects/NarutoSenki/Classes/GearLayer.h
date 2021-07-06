@@ -12,7 +12,6 @@ enum gearbtnType
 
 class GearLayer : public CCLayer
 {
-
 public:
 	GearLayer();
 	~GearLayer();
@@ -47,7 +46,6 @@ private:
 
 class GearButton : public CCSprite, public CCTouchDelegate
 {
-
 public:
 	GearButton();
 	~GearButton();
@@ -83,7 +81,6 @@ protected:
 
 class ScrewLayer : public CCLayer
 {
-
 public:
 	ScrewLayer();
 	~ScrewLayer();

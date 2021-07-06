@@ -6,7 +6,7 @@ class ModeMenuButton : public CCSprite, public CCTouchDelegate
 public:
     CC_SYNTHESIZE(GameModeLayer *, _gameModeLayer, Delegate);
 
-    u8 mode;
+    GameMode mode;
 
     ModeMenuButton()
     {
@@ -57,25 +57,7 @@ public:
     void ccTouchEnded(CCTouch *touch, CCEvent *event)
     {
         SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
-
-        switch (mode)
-        {
-        case GameMode::Classic:
-            _gameModeLayer->onEnterClassicMode();
-            break;
-        case GameMode::HardCore:
-            _gameModeLayer->onEnterHardCoreMode();
-            break;
-        case GameMode::NotHardCore:
-            _gameModeLayer->onEnterNotHardCoreMode();
-            break;
-        case GameMode::InDev:
-            _gameModeLayer->onEnterInDevMode();
-            break;
-        case GameMode::Unknown:
-            _gameModeLayer->onEnterUnknownMode();
-            break;
-        }
+        _gameModeLayer->selectMode(mode);
     }
 
     static ModeMenuButton *create(const char *szImage)

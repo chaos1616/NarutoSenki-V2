@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "NarutoSenki (linux)",
+            "name": "Debug (linux)",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/projects/NarutoSenki/__BIN__/NarutoSenki",
@@ -12,7 +12,7 @@
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "preLaunchTask": "no-compile",
+            "preLaunchTask": "compile",
             "setupCommands": [
                 {
                     "text": "-enable-pretty-printing",
@@ -21,7 +21,7 @@
             ]
         },
         {
-            "name": "NarutoSenki (windwos)",
+            "name": "Debug (windwos)",
             "type": "cppvsdbg",
             "request": "launch",
             "program": "NarutoSenki.exe",
