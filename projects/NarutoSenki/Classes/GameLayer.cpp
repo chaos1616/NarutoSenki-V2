@@ -127,30 +127,8 @@ void GameLayer::onExit()
 
 void GameLayer::initTileMap()
 {
-	const char *filePath;
-	mapId = random(5);
-	if (mapId == 0)
-	{
-		filePath = S_MAP01;
-	}
-	else if (mapId == 1)
-	{
-		filePath = S_MAP02;
-	}
-	else if (mapId == 2)
-	{
-		filePath = S_MAP03;
-	}
-	else if (mapId == 3)
-	{
-		filePath = S_MAP04;
-	}
-	else if (mapId == 4)
-	{
-		filePath = S_MAP05;
-	}
-
-	currentMap = CCTMXTiledMap::create(filePath);
+	mapId = random(5) + 1;
+	currentMap = CCTMXTiledMap::create(GetMapPath(mapId));
 	addChild(currentMap, currentMapTag);
 }
 

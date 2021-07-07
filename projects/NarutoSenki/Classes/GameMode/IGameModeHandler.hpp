@@ -66,7 +66,7 @@ private:
     bool enableHeroReborn;
 
 public:
-    const int kDefaultMap = 0;
+    const int kDefaultMap = 1;
 
     virtual void init() = 0;
     virtual void loadGame() {}

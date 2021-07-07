@@ -53,11 +53,8 @@ extern int Cheats;
 #define BATTLE_MUSIC _musicPerfix "Battle1.ogg"
 
 // Tile maps (Made with Tiled)
-#define S_MAP01 "Tiles/1.tmx"
-#define S_MAP02 "Tiles/2.tmx"
-#define S_MAP03 "Tiles/3.tmx"
-#define S_MAP04 "Tiles/4.tmx"
-#define S_MAP05 "Tiles/5.tmx"
+#define GetMapPath(mapId) CCString::createWithFormat("Tiles/%d.tmx", mapId)->getCString()
+#define GetMapBgPath(mapId) CCString::createWithFormat("Tiles/map_bg%d.png", mapId)->getCString()
 
 // Character File Name Generator
 #define mkpath(varName) "Element/" #varName "/" #varName ".plist"

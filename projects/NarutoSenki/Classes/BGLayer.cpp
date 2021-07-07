@@ -25,31 +25,9 @@ bool BGLayer::init()
 
 void BGLayer::initBg()
 {
-
-	if (_delegate->mapId == 0)
-	{
-		bgMap = CCSprite::create("Tiles/map_bg1.png");
-	}
-	else if (_delegate->mapId == 1)
-	{
-		bgMap = CCSprite::create("Tiles/map_bg2.png");
-	}
-	else if (_delegate->mapId == 2)
-	{
-		bgMap = CCSprite::create("Tiles/map_bg3.png");
-	}
-	else if (_delegate->mapId == 3)
-	{
-		bgMap = CCSprite::create("Tiles/map_bg4.png");
-	}
-	else if (_delegate->mapId == 4)
-	{
-		bgMap = CCSprite::create("Tiles/map_bg5.png");
-	}
-
+	bgMap = CCSprite::create(GetMapBgPath(_delegate->mapId));
 	bgMap->setAnchorPoint(ccp(0, 0));
 	bgMap->setPosition(ccp(0, 192));
-
 	addChild(bgMap);
 }
 
