@@ -188,6 +188,7 @@ void GameModeLayer::selectMode(GameMode mode)
     if (setSelect(mode))
     {
         CCLOG("Selected %s mode", data.title);
+        IGameModeHandler::instance = data.handler;
         data.handler->init();
     }
 }

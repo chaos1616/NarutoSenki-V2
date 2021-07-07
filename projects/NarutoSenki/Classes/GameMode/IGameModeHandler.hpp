@@ -46,8 +46,11 @@ class IGameModeHandler
 {
     friend class GameLayer;
     friend class LoadLayer;
+    friend class GameModeLayer;
 
 private:
+    static IGameModeHandler *instance;
+
     LoadLayer *_loadLayer;
     // player
     const char *playerGroup;
@@ -57,6 +60,7 @@ private:
     bool enableKonohaTowers;
     bool enableAkatsukiTowers;
     // flog
+    bool skipInitFlogs;
     bool enableKonohaFlogs;
     bool enableAkatsukiFlogs;
     float flogDuration;
@@ -71,7 +75,7 @@ public:
     virtual void init() = 0;
     virtual void loadGame() {}
 
-    virtual void onGameInit() = 0;
+    virtual void onGameStart() = 0;
     virtual void onGameOver() = 0;
 
     // callbacks

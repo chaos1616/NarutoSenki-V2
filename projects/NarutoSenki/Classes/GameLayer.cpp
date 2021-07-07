@@ -388,9 +388,12 @@ void GameLayer::onGameStart(float dt)
 	// getHudLayer()->initHeroInterface();
 	schedule(schedule_selector(GameLayer::updateGameTime), 1.0f);
 	schedule(schedule_selector(GameLayer::checkBackgroundMusic), 2.0f);
-	schedule(schedule_selector(GameLayer::addFlog), 15.0f);
-	initFlogs();
-	addFlog(0);
+	if (!IGameModeHandler::instance->skipInitFlogs)
+	{
+		schedule(schedule_selector(GameLayer::addFlog), 15.0f);
+		initFlogs();
+		addFlog(0);
+	}
 
 	setupKeyEventHandler();
 
@@ -399,12 +402,14 @@ void GameLayer::onGameStart(float dt)
 	{
 		CharacterBase *tempChar = (CharacterBase *)pObject;
 
-		//NOTE: Resume movement speed
+		// NOTE: Resume movement speed
 		tempChar->setWalkSpeed(tempChar->_originSpeed);
 
 		if (strcmp(tempChar->getRole()->getCString(), "Com") == 0)
 			tempChar->doAI();
 	}
+
+	IGameModeHandler::instance->onGameStart();
 }
 
 void GameLayer::initFlogs()
@@ -899,6 +904,8 @@ void GameLayer::onGameOver(bool isWin)
 	bg->visit();
 	visit();
 	snapshoot->end();
+
+	IGameModeHandler::instance->onGameOver();
 
 	CCScene *pscene = CCScene::create();
 	GameOver *layer = GameOver::create(snapshoot);

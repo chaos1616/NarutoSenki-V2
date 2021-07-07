@@ -22,7 +22,7 @@ public:
     {
     }
 
-    void onGameInit()
+    void onGameStart()
     {
     }
 

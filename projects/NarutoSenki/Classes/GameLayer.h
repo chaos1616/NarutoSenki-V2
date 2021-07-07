@@ -137,7 +137,7 @@ public:
 
 	static bool checkHasAnyMovement();
 
-protected:
+private:
 	void onEnter();
 	void onExit();
 
