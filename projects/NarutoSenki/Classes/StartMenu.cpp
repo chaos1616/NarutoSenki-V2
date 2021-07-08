@@ -570,6 +570,8 @@ void StartMenu::enterCustomMode()
 
 void StartMenu::enterTrainingMode()
 {
+	s_IGameModeHandler = s_ModeHandlers[(size_t)GameMode::Classic];
+
 	enableCustomSelect = false;
 	enterSelectLayer();
 }
@@ -640,13 +642,13 @@ void StartMenu::onTrainingCallBack()
 		CCArray *tempHeros = CCArray::createWithObject(dic);
 
 		CCArray *realHero = CCArray::create();
-		for (int i = 0; i < heroNum; i++)
+		for (int i = 0; i < kHeroNum; i++)
 		{
-			if (strcmp(tmpChar->getCString(), heroList[i]) == 0)
+			if (strcmp(tmpChar->getCString(), kHeroList[i]) == 0)
 			{
 				continue;
 			}
-			CCString *hero = CCString::create(heroList[i]);
+			CCString *hero = CCString::create(kHeroList[i]);
 			realHero->addObject(hero);
 		}
 		const char *heroList2[] = {"Naruto", "Deidara", "Konan"};
@@ -761,8 +763,8 @@ void StartMenu::onTrainingCallBack()
 
 		CCDictionary *dic = CCDictionary::create();
 
-		int index2 = random(heroNum);
-		CCString *tmpChar = CCString::create(heroList[index2]);
+		int index2 = random(kHeroNum);
+		CCString *tmpChar = CCString::create(kHeroList[index2]);
 		CCString *tmpRole = CCString::create("Player");
 		CCString *tmpGroup = CCString::create("Konoha");
 
@@ -773,14 +775,14 @@ void StartMenu::onTrainingCallBack()
 		CCArray *tempHeros = CCArray::createWithObject(dic);
 
 		CCArray *realHero = CCArray::create();
-		int num = sizeof(heroList) / sizeof(char *);
+		int num = sizeof(kHeroList) / sizeof(char *);
 		for (int i = 0; i < num; i++)
 		{
-			if (strcmp(tmpChar->getCString(), heroList[i]) == 0)
+			if (strcmp(tmpChar->getCString(), kHeroList[i]) == 0)
 			{
 				continue;
 			}
-			CCString *hero = CCString::create(heroList[i]);
+			CCString *hero = CCString::create(kHeroList[i]);
 			realHero->addObject(hero);
 		}
 		const char *heroList2[] = {"Naruto", "Deidara", "Konan"};

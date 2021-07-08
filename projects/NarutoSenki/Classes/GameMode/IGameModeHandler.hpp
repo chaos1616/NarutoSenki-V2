@@ -7,6 +7,7 @@
 using namespace cocos2d;
 
 class IGameModeHandler;
+class SelectLayer;
 
 enum GameMode
 {
@@ -42,16 +43,14 @@ public:
     // static const GameModeData &from(const char *path);
 };
 
+static IGameModeHandler *s_IGameModeHandler = nullptr;
+
 class IGameModeHandler
 {
     friend class GameLayer;
-    friend class LoadLayer;
     friend class GameModeLayer;
 
 private:
-    static IGameModeHandler *instance;
-
-    LoadLayer *_loadLayer;
     // player
     const char *playerGroup;
     // map
@@ -72,9 +71,11 @@ private:
 public:
     const int kDefaultMap = 1;
 
-    virtual void init() = 0;
-    virtual void loadGame() {}
+    static IGameModeHandler *getInstance() { return s_IGameModeHandler; }
 
+    virtual void init() = 0;
+
+    virtual CCArray *onInitHeros(SelectLayer *selectLayer) = 0;
     virtual void onGameStart() = 0;
     virtual void onGameOver() = 0;
 
@@ -121,19 +122,142 @@ protected:
     }
 
     // init hero
+    // void addHero(const char *name, const char *role, const char *group)
+    // {
+    // }
+
     void generateKonohaHero(const char *name, const char *roleKind, unsigned int lv = 1)
     {
-        if (!_loadLayer)
-            return;
-
-        // _loadLayer->addHero(name, role, Konoha, lv);
+        // addHero(name, role, Konoha, lv);
     }
 
     void generateAkatsukiHero(const char *name, const char *roleKind, unsigned int lv = 1)
     {
-        if (!_loadLayer)
-            return;
+        // addHero(name, role, Akatsuki, lv);
+    }
 
-        // _loadLayer->addHero(name, role, Akatsuki, lv);
+    CCArray *initHeros(SelectLayer *selectLayer)
+    {
+        CCDictionary *dic = CCDictionary::create();
+
+        CCString *tmpChar;
+
+        if (selectLayer->_playerSelect)
+        {
+            tmpChar = CCString::create(selectLayer->_playerSelect);
+        }
+        else
+        {
+            int num2 = selectLayer->_selectList->count();
+            int index = random(num2);
+            tmpChar = (CCString *)selectLayer->_selectList->objectAtIndex(index);
+            do
+            {
+                int num = selectLayer->_selectList->count();
+                int index = random(num);
+                tmpChar = (CCString *)selectLayer->_selectList->objectAtIndex(index);
+            } while (strcmp(tmpChar->getCString(), "None") == 0);
+
+            selectLayer->_playerSelect = tmpChar->getCString();
+            selectLayer->setIsRandomChar(true);
+        }
+
+        int team = random(2);
+        const char *groupName = team > 0 ? Konoha : Akatsuki;
+
+        CCString *tmpRole = CCString::create("Player");
+        CCString *tmpGroup = CCString::create(groupName);
+
+        dic->setObject(tmpChar, "character");
+        dic->setObject(tmpRole, "role");
+        dic->setObject(tmpGroup, "group");
+
+        CCArray *tempHeros = CCArray::createWithObject(dic);
+        CCArray *realHero = CCArray::create();
+
+        for (int i = 0; i < kHeroNum; i++)
+        {
+            if (strcmp(selectLayer->_playerSelect, kHeroList[i]) == 0)
+                continue;
+
+            if (selectLayer->_com1Select)
+            {
+                if (strcmp(selectLayer->_com1Select, kHeroList[i]) == 0)
+                    continue;
+            }
+            if (selectLayer->_com2Select)
+            {
+                if (strcmp(selectLayer->_com2Select, kHeroList[i]) == 0)
+                    continue;
+            }
+
+            CCString *hero = CCString::create(kHeroList[i]);
+            realHero->addObject(hero);
+        }
+
+        for (int i = 0; i < ComCount; i++)
+        {
+            CCString *hero;
+            if (i < KonohaCount)
+            {
+
+                if (i == 0 && selectLayer->_com1Select)
+                {
+                    hero = CCString::create(selectLayer->_com1Select);
+                }
+                else if (i == 1 && selectLayer->_com2Select)
+                {
+                    hero = CCString::create(selectLayer->_com2Select);
+                }
+                else
+                {
+                    int length = realHero->count();
+                    int index = random(length);
+                    if (index == (int)realHero->count())
+                    {
+                        index = realHero->count() - 1;
+                    }
+
+                    CCObject *tempObject = realHero->objectAtIndex(index);
+                    hero = (CCString *)tempObject;
+                    realHero->removeObjectAtIndex(index);
+                }
+
+                dic = CCDictionary::create();
+                tmpChar = CCString::create(hero->getCString());
+                tmpRole = CCString::create("Com");
+                tmpGroup = CCString::create(team > 0 ? Konoha : Akatsuki);
+                dic->setObject(tmpChar, "character");
+                dic->setObject(tmpRole, "role");
+                dic->setObject(tmpGroup, "group");
+
+                tempHeros->addObject(dic);
+            }
+            else
+            {
+                int length = realHero->count();
+                int index = random(length);
+                if (index == (int)realHero->count())
+                {
+                    index = realHero->count() - 1;
+                }
+
+                CCObject *tempObject = realHero->objectAtIndex(index);
+                CCString *hero = (CCString *)tempObject;
+
+                dic = CCDictionary::create();
+                tmpChar = CCString::create(hero->getCString());
+                tmpRole = CCString::create("Com");
+                tmpGroup = CCString::create(team > 0 ? Akatsuki : Konoha);
+                dic->setObject(tmpChar, "character");
+                dic->setObject(tmpRole, "role");
+                dic->setObject(tmpGroup, "group");
+
+                tempHeros->addObject(dic);
+                realHero->removeObjectAtIndex(index);
+            }
+        }
+
+        return tempHeros;
     }
 };

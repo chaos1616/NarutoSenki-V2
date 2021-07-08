@@ -221,10 +221,10 @@ void KTools::initTableInDB()
 
 	if (!isExisted_)
 	{
-		for (int i = 0; i < heroNum; i++)
+		for (int i = 0; i < kHeroNum; i++)
 		{
 
-			std::string name = heroList[i];
+			std::string name = kHeroList[i];
 
 			int key = rand() % 50 + 40;
 			encode(name, key);

@@ -133,7 +133,7 @@ enum gearType
 /** NOTE: No AI support characters
   * Kimimaro. Orochimaru. Pain
   */
-static const char *heroList[] = {
+static const char *kHeroList[] = {
     "Konan", "Sakura", "Naruto", "Sai", "Deidara",
     "Kakashi", "Itachi", "Tenten", "Jiraiya", "Suigetsu",
     "Tsunade", "Tobirama", "Neji", "Ino", "Asuma", "Gaara",
@@ -141,20 +141,7 @@ static const char *heroList[] = {
     "Shino", "Minato", "Tobi", "Kakuzu", "Hinata",
     "Shikamaru", "Chiyo", "Kisame",
     "Hiruzen", "Kiba", "Jugo", "Lee"};
-static const int heroNum = sizeof(heroList) / sizeof(char *);
-
-static const char *heroLayoutList[] = {
-                    /** LEft */                                 /** Right */
- "Naruto",      "Sakura",   "Sai",      "Kakashi", /**/ "None",     "None",     "None",
- "Shikamaru",   "Ino",      "Choji",    "Asuma",   /**/ "Kiba",     "Hinata",   "Shino",
- "Neji",        "Tenten",   "Lee",      "None",    /**/ "None",     "None",     "None",
- "None",        "Tobirama", "Hiruzen",  "Minato",  /**/ "Jiraiya",  "Tsunade",  "Orochimaru",
- "Gaara",       "None",     "Kankuro",  "Chiyo",   /**/ "None",     "None",     "None",
- "Sasuke",      "Karin",    "Suigetsu", "Jugo",    /**/ "None",     "None",     "None",
- "None",        "Tobi",     "Konan",    "None",    /**/ "Pain",     "None",     "None",
- "None",        "Deidara",  "Kakuzu",   "Hidan",   /**/ "Kimimaro", "None",     "None",
- "Itachi",      "Kisame",   "None",     "None",    /**/ "None",     "None",     "None",};
-static const int heroLayoutNum = sizeof(heroLayoutList) / sizeof(char *);
+static const int kHeroNum = sizeof(kHeroList) / sizeof(char *);
 
 // Resloutions
 

@@ -16,6 +16,11 @@ public:
     {
     }
 
+    CCArray *onInitHeros(SelectLayer *selectLayer)
+    {
+        return initHeros(selectLayer);
+    }
+
     void onGameStart()
     {
     }

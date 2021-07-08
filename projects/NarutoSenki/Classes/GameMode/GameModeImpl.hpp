@@ -12,3 +12,14 @@
 
 #include "GameMode/Impl/Deathmatch.hpp"
 #include "GameMode/Impl/RandomDeathmatch.hpp"
+
+static IGameModeHandler *s_ModeHandlers[(size_t)GameMode::_Internal_Max_Length] = {
+    new Mode1v1(),
+    new Mode3v3(),
+    new Mode4v4(),
+    new ModeHardCore(),
+    new ModeBoss(),
+    new ModeClone(false),
+    new ModeDeathmatch(),
+    new ModeRandomDeathmatch(),
+};

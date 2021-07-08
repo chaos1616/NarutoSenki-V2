@@ -148,20 +148,10 @@ void GameModeLayer::initModeData()
     }
 
     // init mode handlers
-    static IGameModeHandler *handlers[(size_t)GameMode::_Internal_Max_Length] = {
-        new Mode1v1(),
-        new Mode3v3(),
-        new Mode4v4(),
-        new ModeHardCore(),
-        new ModeBoss(),
-        new ModeClone(false),
-        new ModeDeathmatch(),
-        new ModeRandomDeathmatch(),
-    };
     for (size_t i = 0; i < GameMode::_Internal_Max_Length; i++)
     {
         auto &data = modes.at(i);
-        data.handler = handlers[i];
+        data.handler = s_ModeHandlers[i];
     }
 }
 
@@ -188,7 +178,7 @@ void GameModeLayer::selectMode(GameMode mode)
     if (setSelect(mode))
     {
         CCLOG("Selected %s mode", data.title);
-        IGameModeHandler::instance = data.handler;
+        s_IGameModeHandler = data.handler;
         data.handler->init();
     }
 }
