@@ -262,6 +262,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\cocos2dx\support\tinyxml2\tinyxml2.cpp" />
     <ClCompile Include="..\Classes\ActionButton.cpp" />
     <ClCompile Include="..\Classes\CharacterBase.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
@@ -285,9 +286,11 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClCompile Include="..\Classes\PauseLayer.cpp" />
     <ClCompile Include="..\Classes\SelectLayer.cpp" />
     <ClCompile Include="..\Classes\StartMenu.cpp" />
+    <ClCompile Include="..\Classes\UI\GameModeLayer.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\cocos2dx\support\tinyxml2\tinyxml2.h" />
     <ClInclude Include="..\Classes\ActionButton.h" />
     <ClInclude Include="..\Classes\CharacterBase.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
@@ -297,6 +300,17 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClInclude Include="..\Classes\Effect.h" />
     <ClInclude Include="..\Classes\Element.h" />
     <ClInclude Include="..\Classes\GameLayer.h" />
+    <ClInclude Include="..\Classes\GameMode\GameModeImpl.hpp" />
+    <ClInclude Include="..\Classes\GameMode\IGameModeHandler.hpp" />
+    <ClInclude Include="..\Classes\GameMode\Impl\1v1.hpp" />
+    <ClInclude Include="..\Classes\GameMode\Impl\3v3.hpp" />
+    <ClInclude Include="..\Classes\GameMode\Impl\4v4.hpp" />
+    <ClInclude Include="..\Classes\GameMode\Impl\Boss.hpp" />
+    <ClInclude Include="..\Classes\GameMode\Impl\Clone.hpp" />
+    <ClInclude Include="..\Classes\GameMode\Impl\Deathmatch.hpp" />
+    <ClInclude Include="..\Classes\GameMode\Impl\HardCore.hpp" />
+    <ClInclude Include="..\Classes\GameMode\Impl\RandomDeathmatch.hpp" />
+    <ClInclude Include="..\Classes\GameMode\Impl\Regular.hpp" />
     <ClInclude Include="..\Classes\GameOver.h" />
     <ClInclude Include="..\Classes\GameScene.h" />
     <ClInclude Include="..\Classes\GearLayer.h" />
@@ -313,6 +327,8 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClInclude Include="..\Classes\PauseLayer.h" />
     <ClInclude Include="..\Classes\SelectLayer.h" />
     <ClInclude Include="..\Classes\StartMenu.h" />
+    <ClInclude Include="..\Classes\UI\GameModeLayer.h" />
+    <ClInclude Include="..\Classes\UI\ModeMenuButton.hpp" />
     <ClInclude Include="main.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>

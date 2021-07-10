@@ -389,7 +389,7 @@ void GameLayer::onGameStart(float dt)
 	// getHudLayer()->initHeroInterface();
 	schedule(schedule_selector(GameLayer::updateGameTime), 1.0f);
 	schedule(schedule_selector(GameLayer::checkBackgroundMusic), 2.0f);
-	if (!IGameModeHandler::getInstance()->skipInitFlogs)
+	if (!getGameHandler()->skipInitFlogs)
 	{
 		schedule(schedule_selector(GameLayer::addFlog), 15.0f);
 		initFlogs();
@@ -410,7 +410,7 @@ void GameLayer::onGameStart(float dt)
 			tempChar->doAI();
 	}
 
-	IGameModeHandler::getInstance()->onGameStart();
+	getGameHandler()->onGameStart();
 }
 
 void GameLayer::initFlogs()
@@ -906,7 +906,7 @@ void GameLayer::onGameOver(bool isWin)
 	visit();
 	snapshoot->end();
 
-	IGameModeHandler::getInstance()->onGameOver();
+	getGameHandler()->onGameOver();
 
 	CCScene *pscene = CCScene::create();
 	GameOver *layer = GameOver::create(snapshoot);

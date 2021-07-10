@@ -97,6 +97,9 @@
     <Filter Include="CocoStudio\ActionTimeline">
       <UniqueIdentifier>{106a267f-faac-4b7f-92a9-fa7eb1ea0abd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="support">
+      <UniqueIdentifier>{25142d72-4458-41a3-b559-4a30d33d816c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\GUI\CCScrollView\CCScrollView.cpp">
@@ -531,6 +534,9 @@
     </ClCompile>
     <ClCompile Include="..\CocoStudio\ActionTimeline\CCNodeReader.cpp">
       <Filter>CocoStudio\ActionTimeline</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\cocos2dx\support\tinyxml2\tinyxml2.cpp">
+      <Filter>support</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -972,6 +978,9 @@
     </ClInclude>
     <ClInclude Include="..\CocoStudio\ActionTimeline\CCNodeReader.h">
       <Filter>CocoStudio\ActionTimeline</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\cocos2dx\support\tinyxml2\tinyxml2.h">
+      <Filter>support</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -13,7 +13,7 @@ public:
     ~GameModeLayer();
 
     bool init();
-    void backToMenu();
+    void backToMenu(CCObject* sender);
 
     void initModeData();
     bool pushMode(const GameModeData &data);

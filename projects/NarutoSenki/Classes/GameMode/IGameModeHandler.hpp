@@ -43,6 +43,7 @@ public:
     // static const GameModeData &from(const char *path);
 };
 
+static GameMode s_GameMode = GameMode::Classic;
 static IGameModeHandler *s_IGameModeHandler = nullptr;
 
 class IGameModeHandler
@@ -70,8 +71,6 @@ private:
 
 public:
     const int kDefaultMap = 1;
-
-    static IGameModeHandler *getInstance() { return s_IGameModeHandler; }
 
     virtual void init() = 0;
 

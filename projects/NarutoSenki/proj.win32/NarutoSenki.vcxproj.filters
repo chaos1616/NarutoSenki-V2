@@ -13,13 +13,25 @@
     <Filter Include="Include">
       <UniqueIdentifier>{150e898f-1dbf-4a6a-a52f-c59b363a217a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utils\win32">
+    <Filter Include="Classes\UI">
+      <UniqueIdentifier>{e6d26c68-f219-4e2c-b594-ab482738c37a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\GameMode">
+      <UniqueIdentifier>{7f7e768f-700b-4946-bb2a-fe17620a38af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\GameMode\Impl">
+      <UniqueIdentifier>{fe64ba08-ff3c-438e-9031-af397eb43115}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="win32">
       <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\support">
+      <UniqueIdentifier>{6645945a-445f-4ea2-8498-150cf0ed7f79}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Utils\win32</Filter>
+      <Filter>win32</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>Classes</Filter>
@@ -90,10 +102,16 @@
     <ClCompile Include="..\Classes\MyUtils\CCScrewLayer.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\UI\GameModeLayer.cpp">
+      <Filter>Classes\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\cocos2dx\support\tinyxml2\tinyxml2.cpp">
+      <Filter>Utils\support</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
-      <Filter>Utils\win32</Filter>
+      <Filter>win32</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CharacterBase.h">
       <Filter>Include</Filter>
@@ -172,6 +190,48 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Res</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\GameModeLayer.h">
+      <Filter>Classes\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\ModeMenuButton.hpp">
+      <Filter>Classes\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMode\GameModeImpl.hpp">
+      <Filter>Classes\GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMode\IGameModeHandler.hpp">
+      <Filter>Classes\GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMode\Impl\1v1.hpp">
+      <Filter>Classes\GameMode\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMode\Impl\3v3.hpp">
+      <Filter>Classes\GameMode\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMode\Impl\4v4.hpp">
+      <Filter>Classes\GameMode\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMode\Impl\Boss.hpp">
+      <Filter>Classes\GameMode\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMode\Impl\Clone.hpp">
+      <Filter>Classes\GameMode\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMode\Impl\Deathmatch.hpp">
+      <Filter>Classes\GameMode\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMode\Impl\HardCore.hpp">
+      <Filter>Classes\GameMode\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMode\Impl\RandomDeathmatch.hpp">
+      <Filter>Classes\GameMode\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMode\Impl\Regular.hpp">
+      <Filter>Classes\GameMode\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\cocos2dx\support\tinyxml2\tinyxml2.h">
+      <Filter>Utils\support</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

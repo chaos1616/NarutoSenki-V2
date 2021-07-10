@@ -34,12 +34,9 @@ void SelectLayer::onGameStart()
 	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
 	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
 
-	// init heros
-	CCArray *heros = IGameModeHandler::getInstance()->onInitHeros(this);
-
 	CCScene *loadScene = CCScene::create();
 	LoadLayer *loadLayer = LoadLayer::create();
-	loadLayer->tempHeros = heros;
+	loadLayer->tempHeros = getGameHandler()->onInitHeros(this);
 	loadScene->addChild(loadLayer);
 
 	loadLayer->_isRandomChar = _isRandomChar;

@@ -99,7 +99,7 @@ bool GameModeLayer::init()
     return CCLayer::init();
 }
 
-void GameModeLayer::backToMenu()
+void GameModeLayer::backToMenu(CCObject *sender)
 {
     SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/cancel.ogg");
 
