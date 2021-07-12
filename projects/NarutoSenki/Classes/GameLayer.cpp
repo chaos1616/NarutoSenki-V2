@@ -70,21 +70,13 @@ GameLayer::~GameLayer()
 
 bool GameLayer::init()
 {
-	bool bRet = false;
-	do
-	{
-		CC_BREAK_IF(!CCLayer::init());
-		CCTexture2D::setDefaultAlphaPixelFormat(kCCTexture2DPixelFormat_RGBA8888);
-
-		setTouchEnabled(true);
-
-		bRet = true;
-
-	} while (0);
+	CCTexture2D::setDefaultAlphaPixelFormat(kCCTexture2DPixelFormat_RGBA8888);
+	setTouchEnabled(true);
 
 	_gLayer = this;
+	_isHardCoreGame = getGameModeHandler()->isHardCoreGame;
 
-	return bRet;
+	return CCLayer::init();
 }
 
 void GameLayer::onEnter()
@@ -389,7 +381,7 @@ void GameLayer::onGameStart(float dt)
 	// getHudLayer()->initHeroInterface();
 	schedule(schedule_selector(GameLayer::updateGameTime), 1.0f);
 	schedule(schedule_selector(GameLayer::checkBackgroundMusic), 2.0f);
-	if (!getGameHandler()->skipInitFlogs)
+	if (!getGameModeHandler()->skipInitFlogs)
 	{
 		schedule(schedule_selector(GameLayer::addFlog), 15.0f);
 		initFlogs();
@@ -410,7 +402,7 @@ void GameLayer::onGameStart(float dt)
 			tempChar->doAI();
 	}
 
-	getGameHandler()->onGameStart();
+	getGameModeHandler()->onGameStart();
 }
 
 void GameLayer::initFlogs()
@@ -906,7 +898,7 @@ void GameLayer::onGameOver(bool isWin)
 	visit();
 	snapshoot->end();
 
-	getGameHandler()->onGameOver();
+	getGameModeHandler()->onGameOver();
 
 	CCScene *pscene = CCScene::create();
 	GameOver *layer = GameOver::create(snapshoot);
@@ -1109,7 +1101,7 @@ void GameLayer::setOugis(CCNode *sender)
 		}
 		pauseSchedulerAndActions();
 
-		updateViewPoint(0.01);
+		updateViewPoint(0.01f);
 
 		blend = CCLayerColor::create(ccc4(0, 0, 0, 200), winSize.width, winSize.height);
 		blend->setPosition(ccp(-getPositionX(), 0));

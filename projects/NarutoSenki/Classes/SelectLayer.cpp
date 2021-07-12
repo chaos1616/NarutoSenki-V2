@@ -36,7 +36,10 @@ void SelectLayer::onGameStart()
 
 	CCScene *loadScene = CCScene::create();
 	LoadLayer *loadLayer = LoadLayer::create();
-	loadLayer->tempHeros = getGameHandler()->onInitHeros(this);
+
+	auto gameModeHandler = getGameModeHandler();
+	gameModeHandler->selectLayer = this;
+	loadLayer->tempHeros = gameModeHandler->onInitHeros();
 	loadScene->addChild(loadLayer);
 
 	loadLayer->_isRandomChar = _isRandomChar;

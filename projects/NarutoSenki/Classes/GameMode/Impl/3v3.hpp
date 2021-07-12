@@ -6,11 +6,12 @@ class Mode3v3 : public IGameModeHandler
 public:
     void init()
     {
+        CCLOG("Enter 3 VS 3 mode.");
     }
 
-    CCArray *onInitHeros(SelectLayer *selectLayer)
+    CCArray *onInitHeros()
     {
-        return initHeros(selectLayer);
+        return initHeros(3, 3);
     }
 
     void onGameStart()

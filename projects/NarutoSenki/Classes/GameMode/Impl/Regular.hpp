@@ -4,26 +4,26 @@
 class ModeRegular : public IGameModeHandler
 {
 private:
-    uint8_t konohaHeroNum;
-    uint8_t akatsukiHeroNum;
+    uint8_t konohaHeroCount;
+    uint8_t akatsukiHeroCount;
 
 public:
     const uint8_t kMaxHeroNum = 4;
     const uint8_t kDefaultHeroNum = 3;
 
-    ModeRegular(uint8_t konohaHeroNum, uint8_t akatsukiHeroNum)
+    ModeRegular(uint8_t konohaHeroCount, uint8_t akatsukiHeroCount)
     {
-        this->konohaHeroNum = konohaHeroNum <= kMaxHeroNum ? konohaHeroNum : kMaxHeroNum;
-        this->akatsukiHeroNum = akatsukiHeroNum <= kMaxHeroNum ? akatsukiHeroNum : kMaxHeroNum;
+        this->konohaHeroCount = konohaHeroCount <= kMaxHeroNum ? konohaHeroCount : kMaxHeroNum;
+        this->akatsukiHeroCount = akatsukiHeroCount <= kMaxHeroNum ? akatsukiHeroCount : kMaxHeroNum;
     }
 
     void init()
     {
     }
 
-    CCArray *onInitHeros(SelectLayer *selectLayer)
+    CCArray *onInitHeros()
     {
-        return initHeros(selectLayer);
+        return initHeros(konohaHeroCount, akatsukiHeroCount);
     }
 
     void onGameStart()

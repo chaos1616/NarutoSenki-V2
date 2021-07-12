@@ -8,9 +8,9 @@ public:
     {
     }
 
-    CCArray *onInitHeros(SelectLayer *selectLayer)
+    CCArray *onInitHeros()
     {
-        return initHeros(selectLayer);
+        return initHeros(3, 3);
     }
 
     void onGameStart()

@@ -50,10 +50,10 @@ class IGameModeHandler
 {
     friend class GameLayer;
     friend class GameModeLayer;
+    friend class SelectLayer;
 
 private:
-    // player
-    const char *playerGroup;
+    SelectLayer *selectLayer;
     // map
     int mapId;
     // tower
@@ -69,12 +69,18 @@ private:
     // hero
     bool enableHeroReborn;
 
+protected:
+    // game
+    bool isHardCoreGame;
+
 public:
+    const uint8_t kMaxCharCount = 4;
     const int kDefaultMap = 1;
+    const char *kDefaultGroup = Konoha;
 
     virtual void init() = 0;
 
-    virtual CCArray *onInitHeros(SelectLayer *selectLayer) = 0;
+    virtual CCArray *onInitHeros() = 0;
     virtual void onGameStart() = 0;
     virtual void onGameOver() = 0;
 
@@ -110,16 +116,6 @@ protected:
         this->enableHeroReborn = enableReborn;
     }
 
-    void setPlayerGroup(const char *group = nullptr)
-    {
-        if (strcmp(group, Konoha) == 0)
-            this->playerGroup = Konoha;
-        else if (strcmp(group, Akatsuki) == 0)
-            this->playerGroup = Akatsuki;
-        else
-            this->playerGroup = random(100) > 50 ? Akatsuki : Konoha;
-    }
-
     // init hero
     // void addHero(const char *name, const char *role, const char *group)
     // {
@@ -135,13 +131,33 @@ protected:
         // addHero(name, role, Akatsuki, lv);
     }
 
-    CCArray *initHeros(SelectLayer *selectLayer)
+    CCArray *initHeros(uint32_t konohaCount, uint32_t akatsukiCount)
     {
-        CCDictionary *dic = CCDictionary::create();
+        return initHeros(konohaCount, akatsukiCount, nullptr, nullptr);
+    }
 
+    CCArray *initHeros(uint8_t konohaCount, uint8_t akatsukiCount,
+                       const char *playerSelect, const char *playerGroup, bool randomPlayer = false,
+                       const char *com1Select = nullptr, const char *com2Select = nullptr, const char *com3Select = nullptr)
+    {
+        konohaCount = konohaCount > kMaxCharCount ? kMaxCharCount : konohaCount;
+        akatsukiCount = akatsukiCount > kMaxCharCount ? kMaxCharCount : akatsukiCount;
+        int team = random(2);
+        uint8_t comCount = konohaCount + akatsukiCount - 1;
+        uint8_t comOfPlayerGroupCount = (team == 0 ? konohaCount : akatsukiCount) - 1;
+
+        if (playerSelect)
+            selectLayer->_playerSelect = playerSelect;
+        if (com1Select)
+            selectLayer->_com1Select = com1Select;
+        if (com2Select)
+            selectLayer->_com2Select = com2Select;
+        if (com3Select)
+            selectLayer->_com3Select = com3Select;
+
+        // init player hero
         CCString *tmpChar;
-
-        if (selectLayer->_playerSelect)
+        if (selectLayer->_playerSelect || randomPlayer)
         {
             tmpChar = CCString::create(selectLayer->_playerSelect);
         }
@@ -161,19 +177,18 @@ protected:
             selectLayer->setIsRandomChar(true);
         }
 
-        int team = random(2);
-        const char *groupName = team > 0 ? Konoha : Akatsuki;
-
         CCString *tmpRole = CCString::create("Player");
-        CCString *tmpGroup = CCString::create(groupName);
+        CCString *tmpGroup = CCString::create(team > 0 ? Konoha : Akatsuki);
 
+        CCDictionary *dic = CCDictionary::create();
         dic->setObject(tmpChar, "character");
         dic->setObject(tmpRole, "role");
         dic->setObject(tmpGroup, "group");
 
-        CCArray *tempHeros = CCArray::createWithObject(dic);
+        CCArray *herosArr = CCArray::createWithObject(dic);
         CCArray *realHero = CCArray::create();
 
+        // init com heros
         for (int i = 0; i < kHeroNum; i++)
         {
             if (strcmp(selectLayer->_playerSelect, kHeroList[i]) == 0)
@@ -189,17 +204,21 @@ protected:
                 if (strcmp(selectLayer->_com2Select, kHeroList[i]) == 0)
                     continue;
             }
+            if (selectLayer->_com3Select)
+            {
+                if (strcmp(selectLayer->_com3Select, kHeroList[i]) == 0)
+                    continue;
+            }
 
             CCString *hero = CCString::create(kHeroList[i]);
             realHero->addObject(hero);
         }
 
-        for (int i = 0; i < ComCount; i++)
+        for (int i = 0; i < comCount; i++)
         {
             CCString *hero;
-            if (i < KonohaCount)
+            if (i < comOfPlayerGroupCount)
             {
-
                 if (i == 0 && selectLayer->_com1Select)
                 {
                     hero = CCString::create(selectLayer->_com1Select);
@@ -230,16 +249,14 @@ protected:
                 dic->setObject(tmpRole, "role");
                 dic->setObject(tmpGroup, "group");
 
-                tempHeros->addObject(dic);
+                herosArr->addObject(dic);
             }
             else
             {
                 int length = realHero->count();
                 int index = random(length);
                 if (index == (int)realHero->count())
-                {
                     index = realHero->count() - 1;
-                }
 
                 CCObject *tempObject = realHero->objectAtIndex(index);
                 CCString *hero = (CCString *)tempObject;
@@ -252,11 +269,11 @@ protected:
                 dic->setObject(tmpRole, "role");
                 dic->setObject(tmpGroup, "group");
 
-                tempHeros->addObject(dic);
+                herosArr->addObject(dic);
                 realHero->removeObjectAtIndex(index);
             }
         }
 
-        return tempHeros;
+        return herosArr;
     }
 };

@@ -6,11 +6,12 @@ class Mode1v1 : public IGameModeHandler
 public:
     void init()
     {
+        CCLOG("Enter 1 VS 1 mode.");
     }
 
-    CCArray *onInitHeros(SelectLayer *selectLayer)
+    CCArray *onInitHeros()
     {
-        return initHeros(selectLayer);
+        return initHeros(1, 1);
     }
 
     void onGameStart()

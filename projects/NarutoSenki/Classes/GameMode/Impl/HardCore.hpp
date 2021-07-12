@@ -6,11 +6,14 @@ class ModeHardCore : public IGameModeHandler
 public:
     void init()
     {
+        CCLOG("Enter HardCore mode.");
+
+        isHardCoreGame = true;
     }
 
-    CCArray *onInitHeros(SelectLayer *selectLayer)
+    CCArray *onInitHeros()
     {
-        return initHeros(selectLayer);
+        return initHeros(4, 4);
     }
 
     void onGameStart()

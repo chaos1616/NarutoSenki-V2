@@ -23,7 +23,7 @@ static IGameModeHandler *s_ModeHandlers[GameMode::_Internal_Max_Length] = {
     new ModeDeathmatch(),
     new ModeRandomDeathmatch(),
 };
-static inline IGameModeHandler *getGameHandler()
+static inline IGameModeHandler *getGameModeHandler()
 {
-    return s_ModeHandlers[s_GameMode];
+    return s_IGameModeHandler ? s_IGameModeHandler : s_ModeHandlers[s_GameMode];
 }

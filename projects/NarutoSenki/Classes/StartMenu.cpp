@@ -563,6 +563,7 @@ void StartMenu::enterCustomMode()
 	// TEST: Develop game mode scene
 	auto modeScene = CCScene::create();
 	auto gameModeLayer = GameModeLayer::create();
+	gameModeLayer->setHandler(_handler);
 	modeScene->addChild(gameModeLayer);
 
 	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.5f, modeScene));
