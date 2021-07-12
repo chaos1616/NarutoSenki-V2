@@ -27,9 +27,9 @@ function SelectLayer:init()
     self._playerSelect = nil
     self.selectHero = nil
 
-    tools.addSprites('Record.plist', 'Record2.plist', 'UI.plist',
-                     'Report.plist', 'Ougis.plist', 'Ougis2.plist', 'Map.plist',
-                     'Gears.plist')
+    tools.addSprites('Record.plist', 'Record2.plist', 'Select.plist',
+                     'UI.plist', 'Report.plist', 'Ougis.plist', 'Ougis2.plist',
+                     'Map.plist', 'Gears.plist')
 
     -- if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID then
     -- if not KTools:checkMD5() then
@@ -112,14 +112,13 @@ function SelectLayer:init()
         -- initial page list
         local index = i
         local pageLayer = TouchGroup:create() -- display.newLayer()
-        local page_btn = ui.newImageMenuItem(
-                             {
-                image = '#page' .. tostring(i) .. '_off.png',
-                imageSelected = '#page' .. tostring(i) .. '_on.png',
-                listener = function()
-                    return self:onPageButtonClick(index)
-                end
-            })
+        local page_btn = ui.newImageMenuItem({
+            image = '#page' .. tostring(i) .. '_off.png',
+            imageSelected = '#page' .. tostring(i) .. '_on.png',
+            listener = function()
+                return self:onPageButtonClick(index)
+            end
+        })
 
         self:addChild(pageLayer, 5)
         if i == 1 then
@@ -210,32 +209,29 @@ function SelectLayer:init()
         self:initCustomTrainingMode()
     end
 
-    local ranking_btn = ui.newImageMenuItem(
-                            {
-            image = '#ranking_btn.png',
-            listener = handler(self, SelectLayer.onRankingButtonClick)
-        })
+    local ranking_btn = ui.newImageMenuItem({
+        image = '#ranking_btn.png',
+        listener = handler(self, SelectLayer.onRankingButtonClick)
+    })
     ranking_btn:setAnchorPoint(1, 0.5)
     local menu3 = ui.newMenu({ranking_btn})
     menu3:setPosition(width - 15, height - 34)
     self:addChild(menu3, 5)
 
-    local start_btn = ui.newImageMenuItem(
-                          {
-            image = '#start_btn.png',
-            -- call c++ layer function
-            listener = function() self:onGameStart() end
-        })
+    local start_btn = ui.newImageMenuItem({
+        image = '#start_btn.png',
+        -- call c++ layer function
+        listener = function() self:onGameStart() end
+    })
     local menu = ui.newMenu({start_btn})
     menu:setAnchorPoint(0, 0)
     menu:setPosition(width - 40, 36)
     self:addChild(menu, 5)
 
-    local skill_btn = ui.newImageMenuItem(
-                          {
-            image = '#skill_btn.png',
-            listener = handler(self, SelectLayer.onSkillMenuButtonClick)
-        })
+    local skill_btn = ui.newImageMenuItem({
+        image = '#skill_btn.png',
+        listener = handler(self, SelectLayer.onSkillMenuButtonClick)
+    })
     local menu2 = ui.newMenu({skill_btn})
     menu2:setAnchorPoint(0, 0)
     menu2:setPosition(width - 35, 96)

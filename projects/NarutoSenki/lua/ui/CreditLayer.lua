@@ -1,7 +1,6 @@
 --
 -- CreditLayer
 --
-
 function CreditsLayer_BackToStartMenu()
     audio.stopMusic(true)
     audio.playSound('Audio/Menu/cancel.ogg')

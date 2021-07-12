@@ -89,9 +89,8 @@ function SelectButton:click()
             return
         end
 
-        if self._selectLayer._playerSelect and not self._selectLayer.enableCustomSelect then
-            return
-        end
+        if self._selectLayer._playerSelect and
+            not self._selectLayer.enableCustomSelect then return end
 
         if self._selectLayer._com2Select then return end
 

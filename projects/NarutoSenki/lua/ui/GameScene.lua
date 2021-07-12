@@ -34,11 +34,10 @@ function GameScene:init()
 end
 
 function GameScene:onLogo()
-    local logo_btn = ui.newImageMenuItem(
-                         {
-            image = 'logo.png',
-            listener = handler(self, GameScene.onLogoClick)
-        })
+    local logo_btn = ui.newImageMenuItem({
+        image = 'logo.png',
+        listener = handler(self, GameScene.onLogoClick)
+    })
     logo_btn:setAnchorPoint(0.5, 0.5)
 
     self.logoMenu = ui.newMenu({logo_btn})
@@ -50,9 +49,9 @@ function GameScene:onLogo()
 
     local seq = transition.sequence({
         CCFadeIn:create(1.5),
-        CCCallFunc:create(function()
-            return audio.playSound(ns.menu.MENU_INTRO2)
-        end), CCDelayTime:create(2.0),
+        CCCallFunc:create(
+            function() return audio.playSound(ns.menu.MENU_INTRO2) end),
+        CCDelayTime:create(2.0),
         CCCallFunc:create(handler(self, GameScene.onFinish))
     })
     logo_btn:runAction(seq)
@@ -65,11 +64,10 @@ function GameScene:onLogoClick()
         audio.stopAllSounds()
         self.logoMenu:removeFromParent()
 
-        local logo_btn = ui.newImageMenuItem(
-                             {
-                image = 'logo2.png',
-                listener = handler(self, GameScene.onLogoClick)
-            })
+        local logo_btn = ui.newImageMenuItem({
+            image = 'logo2.png',
+            listener = handler(self, GameScene.onLogoClick)
+        })
         logo_btn:setAnchorPoint(0.5, 0.5)
 
         self.logoMenu = ui.newMenu({logo_btn})
@@ -89,11 +87,10 @@ function GameScene:onFinish()
     if not self.pushMenu then
         audio.playMusic(ns.music.INTRO_MUSIC, true)
 
-        local btm_btn = ui.newImageMenuItem(
-                            {
-                image = 'push_start.png',
-                listener = handler(self, GameScene.onPush)
-            })
+        local btm_btn = ui.newImageMenuItem({
+            image = 'push_start.png',
+            listener = handler(self, GameScene.onPush)
+        })
         self.pushMenu = ui.newMenu({btm_btn})
         self.pushMenu:setPosition(display.width / 2, display.height / 2 - 100)
         self.introLayer:addChild(self.pushMenu)

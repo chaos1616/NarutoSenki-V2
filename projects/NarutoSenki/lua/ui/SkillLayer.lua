@@ -103,11 +103,10 @@ function SkillLayer:init()
                                  record_title:getContentSize().height - 2)
     self:addChild(record_title, 3)
 
-    local start_bt = ui.newImageMenuItem(
-                         {
-            image = display.newSprite('#return_btn.png'),
-            listener = handler(self, SkillLayer.onCancel)
-        })
+    local start_bt = ui.newImageMenuItem({
+        image = display.newSprite('#return_btn.png'),
+        listener = handler(self, SkillLayer.onCancel)
+    })
     local menu = ui.newMenu({start_bt})
     menu:setPosition(display.width - 38, 86)
     self:addChild(menu, 5)
@@ -116,9 +115,7 @@ function SkillLayer:init()
 end
 
 function SkillLayer:initInterface()
-    if self._selectLayer then
-        self.selectHero = self._selectLayer.selectHero
-    end
+    if self._selectLayer then self.selectHero = self._selectLayer.selectHero end
 
     local bgSprite = display.newSprite('blue_bg.png', 0, 0)
     bgSprite:fullScreen()
@@ -228,10 +225,9 @@ function SkillLayer:initInterface()
         local tempAnimation = CCAnimation:createWithSpriteFrames(tempArray, 0.1)
 
         blink:runAction(CCRepeatForever:create(
-                            transition.sequence(
-                                {
-                    CCAnimate:create(tempAnimation), CCDelayTime:create(2.0)
-                })))
+                            transition.sequence({
+                CCAnimate:create(tempAnimation), CCDelayTime:create(2.0)
+            })))
     end
 
     local frameSprite = display.newSprite('#skill_frame.png', display.cx,
@@ -298,8 +294,8 @@ function SkillLayer:onChangeBtn()
     if selectedHeroName then self.selectHero = selectedHeroName end
     self:trySetCharacterChangeButton(selectedHeroName, 2)
 
-    self._heroFull:setDisplayFrame(display.newSpriteFrame(
-                                       self.selectHero .. '_full.png'))
+    self._heroFull:setDisplayFrame(display.newSpriteFrame(self.selectHero ..
+                                                              '_full.png'))
     self:updateSkillGroup()
 end
 
@@ -392,11 +388,10 @@ function SkillLayer:trySetCharacterChangeButton(name, level)
     if transformList[name] ~= nil then
         local index = level == 1 and '' or level
 
-        local change_bt = ui.newImageMenuItem(
-                              {
-                image = display.newSprite('#change_btn' .. index .. '.png'),
-                listener = handler(self, SkillLayer.onChangeBtn)
-            })
+        local change_bt = ui.newImageMenuItem({
+            image = display.newSprite('#change_btn' .. index .. '.png'),
+            listener = handler(self, SkillLayer.onChangeBtn)
+        })
         self.changemenu = ui.newMenu({change_bt})
         self.changemenu:setPosition(display.cx, display.cy -
                                         self.bgSprite:getContentSize().height /
