@@ -122,5 +122,6 @@
     "Lua.diagnostics.disable": [
         "lowercase-global",
         "undefined-global"
-    ]
+    ],
+    "C_Cpp.errorSquiggles": "Disabled"
 }
