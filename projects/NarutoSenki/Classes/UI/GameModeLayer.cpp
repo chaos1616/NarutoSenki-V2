@@ -178,8 +178,8 @@ void GameModeLayer::selectMode(GameMode mode)
     if (setSelect(mode))
     {
         CCLOG("Selected %s mode", data.title);
-        s_GameMode = mode; // FIXME: null static variable issue
-        s_IGameModeHandler = data.handler;
+        s_GameMode = mode;
+        s_GameModeHandler = data.handler;
         data.handler->init();
 
         bool enableCustomSelect = false; // TODO: Enable custom select mode

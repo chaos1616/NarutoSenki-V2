@@ -43,9 +43,6 @@ public:
     // static const GameModeData &from(const char *path);
 };
 
-static GameMode s_GameMode = GameMode::Classic;
-static IGameModeHandler *s_IGameModeHandler = nullptr;
-
 class IGameModeHandler
 {
     friend class GameLayer;
@@ -231,7 +228,7 @@ protected:
                 {
                     int length = realHero->count();
                     int index = random(length);
-                    if (index == (int)realHero->count())
+                    if (index == length)
                     {
                         index = realHero->count() - 1;
                     }
@@ -255,7 +252,7 @@ protected:
             {
                 int length = realHero->count();
                 int index = random(length);
-                if (index == (int)realHero->count())
+                if (index == length)
                     index = realHero->count() - 1;
 
                 CCObject *tempObject = realHero->objectAtIndex(index);

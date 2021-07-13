@@ -10,11 +10,11 @@ public:
 	SelectLayer();
 	~SelectLayer();
 
-	const char *_selectHero;
-	const char *_playerSelect;
-	const char *_com1Select;
-	const char *_com2Select;
-	const char *_com3Select;
+	const char *_selectHero = nullptr;
+	const char *_playerSelect = nullptr;
+	const char *_com1Select = nullptr;
+	const char *_com2Select = nullptr;
+	const char *_com3Select = nullptr;
 	CCArray *_selectList;
 
 	PROP(bool, _isRandomChar, IsRandomChar);

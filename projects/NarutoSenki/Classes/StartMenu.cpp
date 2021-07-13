@@ -571,7 +571,7 @@ void StartMenu::enterCustomMode()
 
 void StartMenu::enterTrainingMode()
 {
-	s_IGameModeHandler = s_ModeHandlers[GameMode::Classic];
+	s_GameModeHandler = s_ModeHandlers[GameMode::Classic];
 
 	enableCustomSelect = false;
 	enterSelectLayer();
