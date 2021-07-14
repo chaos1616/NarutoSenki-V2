@@ -14,6 +14,7 @@
         "lowercase-global",
         "undefined-global"
     ],
+    "C_Cpp.autoAddFileAssociations": false,
     "C_Cpp.errorSquiggles": "Disabled",
     "[cpp]": {
         "editor.detectIndentation": false,
