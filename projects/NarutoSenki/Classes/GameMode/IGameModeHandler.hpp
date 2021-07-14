@@ -154,7 +154,7 @@ protected:
 
         // init player hero
         CCString *tmpChar;
-        if (selectLayer->_playerSelect || randomPlayer)
+        if (!randomPlayer && selectLayer->_playerSelect)
         {
             tmpChar = CCString::create(selectLayer->_playerSelect);
         }
@@ -223,6 +223,10 @@ protected:
                 else if (i == 1 && selectLayer->_com2Select)
                 {
                     hero = CCString::create(selectLayer->_com2Select);
+                }
+                else if (i == 2 && selectLayer->_com3Select)
+                {
+                    hero = CCString::create(selectLayer->_com3Select);
                 }
                 else
                 {
