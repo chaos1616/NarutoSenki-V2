@@ -66,10 +66,7 @@
 #include "Kuchiyose/Saso.hpp"
 #include "Kuchiyose/Slug.hpp"
 
-#define __begin__ \
-	if (0)        \
-	{             \
-	}
+#define __begin__ if(0) {}
 #define is(varStr) else if (strcmp(varStr, name) == 0)
 #define is_or(varName1, varName2) else if ((strcmp(name, varName1) == 0) || (strcmp(name, varName2) == 0))
 #define is_or2(varStr, varName, varName2) else if ((strcmp(varStr, varName) == 0) || (strcmp(name, varName) == 0) || (strcmp(name, varName2) == 0))
@@ -92,7 +89,7 @@ public:
 		const char *name = character->getCString();
 
 		__begin__
-			is("Sakura") ptr = new Sakura();
+		is("Sakura") ptr = new Sakura();
 		is("Pain") ptr = new Pain();
 		is("MaskRaidon") ptr = new Mask();
 		is("MaskFudon") ptr = new Mask();
