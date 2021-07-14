@@ -321,8 +321,7 @@ TOLUA_API int  tolua_Cocos2d_open (lua_State* tolua_S);]], [[]])
     int* pLuaID = (tolua_ret) ? &tolua_ret->m_nLuaID : NULL;
     toluafix_pushusertype_ccobject(tolua_S, nID, pLuaID, (void*)tolua_ret]])
 
-      replace('\t', '    ')
-
     -- removed automatically generated header
-    WRITE(string.sub(result, 106))
+	start = result.sub(result, 99, 99) == '/' and 99 or 106
+    WRITE(string.sub(result, start))
 end

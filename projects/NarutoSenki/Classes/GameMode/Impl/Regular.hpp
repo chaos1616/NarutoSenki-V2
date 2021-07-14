@@ -4,45 +4,45 @@
 class ModeRegular : public IGameModeHandler
 {
 private:
-    uint8_t konohaHeroCount;
-    uint8_t akatsukiHeroCount;
+	uint8_t konohaHeroCount;
+	uint8_t akatsukiHeroCount;
 
 public:
-    const uint8_t kMaxHeroNum = 4;
-    const uint8_t kDefaultHeroNum = 3;
+	const uint8_t kMaxHeroNum = 4;
+	const uint8_t kDefaultHeroNum = 3;
 
-    ModeRegular(uint8_t konohaHeroCount, uint8_t akatsukiHeroCount)
-    {
-        this->konohaHeroCount = konohaHeroCount <= kMaxHeroNum ? konohaHeroCount : kMaxHeroNum;
-        this->akatsukiHeroCount = akatsukiHeroCount <= kMaxHeroNum ? akatsukiHeroCount : kMaxHeroNum;
-    }
+	ModeRegular(uint8_t konohaHeroCount, uint8_t akatsukiHeroCount)
+	{
+		this->konohaHeroCount = konohaHeroCount <= kMaxHeroNum ? konohaHeroCount : kMaxHeroNum;
+		this->akatsukiHeroCount = akatsukiHeroCount <= kMaxHeroNum ? akatsukiHeroCount : kMaxHeroNum;
+	}
 
-    void init()
-    {
-    }
+	void init()
+	{
+	}
 
-    CCArray *onInitHeros()
-    {
-        return initHeros(konohaHeroCount, akatsukiHeroCount);
-    }
+	CCArray *onInitHeros()
+	{
+		return initHeros(konohaHeroCount, akatsukiHeroCount);
+	}
 
-    void onGameStart()
-    {
-    }
+	void onGameStart()
+	{
+	}
 
-    void onGameOver()
-    {
-    }
+	void onGameOver()
+	{
+	}
 
-    void onCharacterInit(CharacterBase *c)
-    {
-    }
+	void onCharacterInit(CharacterBase *c)
+	{
+	}
 
-    void onCharacterDead(CharacterBase *c)
-    {
-    }
+	void onCharacterDead(CharacterBase *c)
+	{
+	}
 
-    void onCharacterReborn(CharacterBase *c)
-    {
-    }
+	void onCharacterReborn(CharacterBase *c)
+	{
+	}
 };

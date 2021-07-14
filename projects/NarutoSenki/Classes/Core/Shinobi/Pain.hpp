@@ -6,28 +6,28 @@ class Pain : public Hero
 #define kPain__ "Pain"
 #define kNagato "Nagato"
 
-    void perform()
-    {
-    }
+	void perform()
+	{
+	}
 
-    Hero *createClone(unsigned int cloneTime) override
-    {
-        Hero *clone = nullptr;
-        if (character_is(kNagato))
-        {
-            clone = create<DevaPath>(CCString::create("DevaPath"), CCString::create(K_TAG_CLONE), getGroup());
-            clone->_isArmored = true;
-            if (is_player)
-            {
-                if (_delegate->getHudLayer()->skill5Button)
-                {
-                    _delegate->getHudLayer()->skill5Button->setLock();
-                }
-            }
+	Hero *createClone(unsigned int cloneTime) override
+	{
+		Hero *clone = nullptr;
+		if (character_is(kNagato))
+		{
+			clone = create<DevaPath>(CCString::create("DevaPath"), CCString::create(K_TAG_CLONE), getGroup());
+			clone->_isArmored = true;
+			if (is_player)
+			{
+				if (_delegate->getHudLayer()->skill5Button)
+				{
+					_delegate->getHudLayer()->skill5Button->setLock();
+				}
+			}
 
-            _skillChangeBuffValue = 100;
-        }
+			_skillChangeBuffValue = 100;
+		}
 
-        return clone;
-    }
+		return clone;
+	}
 };

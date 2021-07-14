@@ -3,13 +3,13 @@
 
 class DogWall : public Hero
 {
-    void perform()
-    {
-        attack(NAttack);
-    }
+	void perform()
+	{
+		attack(NAttack);
+	}
 
-    void setAI(float dt)
-    {
-        attack(NAttack);
-    }
+	void setAI(float dt)
+	{
+		attack(NAttack);
+	}
 };

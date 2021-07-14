@@ -7,28 +7,28 @@ using namespace std;
 class GameModeLayer : public CCLayer
 {
 public:
-    const int kMenuCount = 5;
+	const int kMenuCount = 5;
 
-    CREATE_FUNC(GameModeLayer);
+	CREATE_FUNC(GameModeLayer);
 
-    GameModeLayer();
-    ~GameModeLayer();
+	GameModeLayer();
+	~GameModeLayer();
 
-    bool init();
-    void backToMenu(CCObject *sender);
+	bool init();
+	void backToMenu(CCObject *sender);
 
-    void initModeData();
-    bool pushMode(const GameModeData &data);
-    void removeMode(const GameModeData &data);
-    void selectMode(GameMode mode);
+	void initModeData();
+	bool pushMode(const GameModeData &data);
+	void removeMode(const GameModeData &data);
+	void selectMode(GameMode mode);
 
-    void setHandler(int handler) { _handler = handler; }
+	void setHandler(int handler) { _handler = handler; }
 
 private:
-    inline bool setSelect(GameMode mode);
+	inline bool setSelect(GameMode mode);
 
-    CCLabelTTF *menuLabel;
+	CCLabelTTF *menuLabel;
 
-    int _handler;
-    vector<GameModeData> modes = vector<GameModeData>(GameMode::_Internal_Max_Length);
+	int _handler;
+	vector<GameModeData> modes = vector<GameModeData>(GameMode::_Internal_Max_Length);
 };

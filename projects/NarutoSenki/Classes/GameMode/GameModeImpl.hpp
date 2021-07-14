@@ -14,18 +14,18 @@
 #include "GameMode/Impl/RandomDeathmatch.hpp"
 
 static GameMode s_GameMode;
-static IGameModeHandler * s_GameModeHandler;
+static IGameModeHandler *s_GameModeHandler;
 static IGameModeHandler *s_ModeHandlers[GameMode::_Internal_Max_Length] = {
-    new Mode1v1(),
-    new Mode3v3(),
-    new Mode4v4(),
-    new ModeHardCore(),
-    new ModeBoss(),
-    new ModeClone(false),
-    new ModeDeathmatch(),
-    new ModeRandomDeathmatch(),
+	new Mode1v1(),
+	new Mode3v3(),
+	new Mode4v4(),
+	new ModeHardCore(),
+	new ModeBoss(),
+	new ModeClone(false),
+	new ModeDeathmatch(),
+	new ModeRandomDeathmatch(),
 };
 static inline IGameModeHandler *getGameModeHandler()
 {
-    return s_GameModeHandler ? s_GameModeHandler : s_ModeHandlers[s_GameMode];
+	return s_GameModeHandler ? s_GameModeHandler : s_ModeHandlers[s_GameMode];
 }

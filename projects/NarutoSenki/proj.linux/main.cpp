@@ -13,7 +13,7 @@ USING_NS_CC;
 
 int main(int argc, char **argv)
 {
-    // create the application instance
-    AppDelegate app;
-    return CCApplication::sharedApplication()->run();
+	// create the application instance
+	AppDelegate app;
+	return CCApplication::sharedApplication()->run();
 }

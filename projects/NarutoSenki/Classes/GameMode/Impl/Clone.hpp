@@ -4,40 +4,40 @@
 class ModeClone : public IGameModeHandler
 {
 private:
-    bool isOneForAllGroups;
+	bool isOneForAllGroups;
 
 public:
-    ModeClone(bool isOneForAllGroups)
-    {
-        this->isOneForAllGroups = isOneForAllGroups;
-    }
+	ModeClone(bool isOneForAllGroups)
+	{
+		this->isOneForAllGroups = isOneForAllGroups;
+	}
 
-    void init()
-    {
-    }
+	void init()
+	{
+	}
 
-    CCArray *onInitHeros()
-    {
-        return initHeros(3, 3);
-    }
+	CCArray *onInitHeros()
+	{
+		return initHeros(3, 3);
+	}
 
-    void onGameStart()
-    {
-    }
+	void onGameStart()
+	{
+	}
 
-    void onGameOver()
-    {
-    }
+	void onGameOver()
+	{
+	}
 
-    void onCharacterInit(CharacterBase *c)
-    {
-    }
+	void onCharacterInit(CharacterBase *c)
+	{
+	}
 
-    void onCharacterDead(CharacterBase *c)
-    {
-    }
+	void onCharacterDead(CharacterBase *c)
+	{
+	}
 
-    void onCharacterReborn(CharacterBase *c)
-    {
-    }
+	void onCharacterReborn(CharacterBase *c)
+	{
+	}
 };

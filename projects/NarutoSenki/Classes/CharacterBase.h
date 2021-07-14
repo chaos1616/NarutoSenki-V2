@@ -20,18 +20,18 @@ enum class State {
 	AIRHURT
 };
 
-
 class HPBar;
 class Hero;
 
-class CharacterBase : public CCSprite{
+class CharacterBase : public CCSprite
+{
 public:
 	CharacterBase();
 	~CharacterBase();
 
 	virtual void		setID(CCString* character,CCString* role,CCString *group);
 	virtual	void		setHPbar();
-	virtual	void       	changeHPbar();
+	virtual	void	   	changeHPbar();
 	virtual	void		setShadows();
 	unsigned int		_deadNum;
 	unsigned int		_flogNum;
@@ -230,7 +230,7 @@ public:
 
 
 	CC_SYNTHESIZE_RETAIN(CCString*, _tempAttackValue1,tempAttackValue1);
-	int            _tempcoldDown1;
+	int			_tempcoldDown1;
 
 
 	CC_SYNTHESIZE(CCString*, _tempAttackType,TempAttackType);
@@ -261,7 +261,7 @@ public:
 	CC_SYNTHESIZE_RETAIN(CCAction*, _knockDownAction, KnockDownAction);
 	CC_SYNTHESIZE_RETAIN(CCAction*, _airHurtAction, AirHurtAction);
 	CC_SYNTHESIZE_RETAIN(CCAction*, _floatAction, FloatAction);
-    CC_SYNTHESIZE_RETAIN(CCAction*, _deadAction, DeadAction); 
+	CC_SYNTHESIZE_RETAIN(CCAction*, _deadAction, DeadAction); 
 
 
 	CC_SYNTHESIZE_RETAIN(CCAction*, _skill1Action, Skill1Action);
@@ -372,7 +372,7 @@ public:
 	CCArray*			skillSPC5Array;
 
 
-	virtual void	    dealloc();
+	virtual void		dealloc();
 	virtual void		reborn(float dt);
 
 

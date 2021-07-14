@@ -67,351 +67,351 @@ using namespace CocosDenshion;
 static int tolua_collect_CCPoint (lua_State* tolua_S)
 {
  CCPoint* self = (CCPoint*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccV3F_C4B_T2F_Quad (lua_State* tolua_S)
 {
  ccV3F_C4B_T2F_Quad* self = (ccV3F_C4B_T2F_Quad*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccV2F_C4F_T2F (lua_State* tolua_S)
 {
  ccV2F_C4F_T2F* self = (ccV2F_C4F_T2F*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCParticleSystemQuad (lua_State* tolua_S)
 {
  CCParticleSystemQuad* self = (CCParticleSystemQuad*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccQuad3 (lua_State* tolua_S)
 {
  ccQuad3* self = (ccQuad3*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCLayerRGBA (lua_State* tolua_S)
 {
  CCLayerRGBA* self = (CCLayerRGBA*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccVertex2F (lua_State* tolua_S)
 {
  ccVertex2F* self = (ccVertex2F*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCNotificationCenter (lua_State* tolua_S)
 {
  CCNotificationCenter* self = (CCNotificationCenter*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccBezierConfig (lua_State* tolua_S)
 {
  ccBezierConfig* self = (ccBezierConfig*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCNodeRGBA (lua_State* tolua_S)
 {
  CCNodeRGBA* self = (CCNodeRGBA*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCApplication (lua_State* tolua_S)
 {
  CCApplication* self = (CCApplication*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCEditBox (lua_State* tolua_S)
 {
  CCEditBox* self = (CCEditBox*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCClippingNode (lua_State* tolua_S)
 {
  CCClippingNode* self = (CCClippingNode*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccColor3B (lua_State* tolua_S)
 {
  ccColor3B* self = (ccColor3B*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccV2F_C4B_T2F (lua_State* tolua_S)
 {
  ccV2F_C4B_T2F* self = (ccV2F_C4B_T2F*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCRect (lua_State* tolua_S)
 {
  CCRect* self = (CCRect*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccV2F_C4B_T2F_Quad (lua_State* tolua_S)
 {
  ccV2F_C4B_T2F_Quad* self = (ccV2F_C4B_T2F_Quad*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCCamera (lua_State* tolua_S)
 {
  CCCamera* self = (CCCamera*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_Effect (lua_State* tolua_S)
 {
  Effect* self = (Effect*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccV2F_C4F_T2F_Quad (lua_State* tolua_S)
 {
  ccV2F_C4F_T2F_Quad* self = (ccV2F_C4F_T2F_Quad*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccV3F_C4B_T2F (lua_State* tolua_S)
 {
  ccV3F_C4B_T2F* self = (ccV3F_C4B_T2F*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCTableView (lua_State* tolua_S)
 {
  CCTableView* self = (CCTableView*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCScrollView (lua_State* tolua_S)
 {
  CCScrollView* self = (CCScrollView*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccPointSprite (lua_State* tolua_S)
 {
  ccPointSprite* self = (ccPointSprite*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCInteger (lua_State* tolua_S)
 {
  CCInteger* self = (CCInteger*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCControlSlider (lua_State* tolua_S)
 {
  CCControlSlider* self = (CCControlSlider*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCControlPotentiometer (lua_State* tolua_S)
 {
  CCControlPotentiometer* self = (CCControlPotentiometer*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccColor4F (lua_State* tolua_S)
 {
  ccColor4F* self = (ccColor4F*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCSize (lua_State* tolua_S)
 {
  CCSize* self = (CCSize*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccTexParams (lua_State* tolua_S)
 {
  ccTexParams* self = (ccTexParams*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccColor4B (lua_State* tolua_S)
 {
  ccColor4B* self = (ccColor4B*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCControlStepper (lua_State* tolua_S)
 {
  CCControlStepper* self = (CCControlStepper*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccT2F_Quad (lua_State* tolua_S)
 {
  ccT2F_Quad* self = (ccT2F_Quad*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccBlendFunc (lua_State* tolua_S)
 {
  ccBlendFunc* self = (ccBlendFunc*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCControlColourPicker (lua_State* tolua_S)
 {
  CCControlColourPicker* self = (CCControlColourPicker*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCLabelTTF (lua_State* tolua_S)
 {
  CCLabelTTF* self = (CCLabelTTF*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCControl (lua_State* tolua_S)
 {
  CCControl* self = (CCControl*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCAffineTransform (lua_State* tolua_S)
 {
  CCAffineTransform* self = (CCAffineTransform*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCLabelBMFont (lua_State* tolua_S)
 {
  CCLabelBMFont* self = (CCLabelBMFont*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccAnimationFrameData (lua_State* tolua_S)
 {
  ccAnimationFrameData* self = (ccAnimationFrameData*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCImage (lua_State* tolua_S)
 {
  CCImage* self = (CCImage*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCControlButton (lua_State* tolua_S)
 {
  CCControlButton* self = (CCControlButton*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCScale9Sprite (lua_State* tolua_S)
 {
  CCScale9Sprite* self = (CCScale9Sprite*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccTex2F (lua_State* tolua_S)
 {
  ccTex2F* self = (ccTex2F*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCComponent (lua_State* tolua_S)
 {
  CCComponent* self = (CCComponent*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccQuad2 (lua_State* tolua_S)
 {
  ccQuad2* self = (ccQuad2*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_ccVertex3F (lua_State* tolua_S)
 {
  ccVertex3F* self = (ccVertex3F*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_LoadLayer (lua_State* tolua_S)
 {
  LoadLayer* self = (LoadLayer*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCAnimationFrame (lua_State* tolua_S)
 {
  CCAnimationFrame* self = (CCAnimationFrame*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 
 static int tolua_collect_CCControlSwitch (lua_State* tolua_S)
 {
  CCControlSwitch* self = (CCControlSwitch*) tolua_tousertype(tolua_S,1,0);
-    Mtolua_delete(self);
-    return 0;
+	Mtolua_delete(self);
+	return 0;
 }
 #endif
 

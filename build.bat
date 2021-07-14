@@ -1,8 +1,6 @@
-rm -R __BIN__/lua
-cp projects/NarutoSenki/lua __BIN__/lua
 
-cd tools\tolua++
-./build
+cd tools/tolua++
+./build.bat
 
 cd ../../
-./build-win32
+./build-win32.bat

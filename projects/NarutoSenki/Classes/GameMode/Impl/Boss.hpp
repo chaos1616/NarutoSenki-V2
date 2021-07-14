@@ -4,32 +4,32 @@
 class ModeBoss : public IGameModeHandler
 {
 public:
-    void init()
-    {
-    }
+	void init()
+	{
+	}
 
-    CCArray *onInitHeros()
-    {
-        return initHeros(3, 1);
-    }
+	CCArray *onInitHeros()
+	{
+		return initHeros(3, 1);
+	}
 
-    void onGameStart()
-    {
-    }
+	void onGameStart()
+	{
+	}
 
-    void onGameOver()
-    {
-    }
+	void onGameOver()
+	{
+	}
 
-    void onCharacterInit(CharacterBase *c)
-    {
-    }
+	void onCharacterInit(CharacterBase *c)
+	{
+	}
 
-    void onCharacterDead(CharacterBase *c)
-    {
-    }
+	void onCharacterDead(CharacterBase *c)
+	{
+	}
 
-    void onCharacterReborn(CharacterBase *c)
-    {
-    }
+	void onCharacterReborn(CharacterBase *c)
+	{
+	}
 };

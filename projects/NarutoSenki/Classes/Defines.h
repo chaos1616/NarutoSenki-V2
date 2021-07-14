@@ -96,30 +96,30 @@ extern int Cheats;
 
 enum abType
 {
-    NAttack,
-    Item1,
-    GearItem,
-    GearBtn,
-    SKILL1,
-    SKILL2,
-    SKILL3,
-    OUGIS1,
-    OUGIS2
+	NAttack,
+	Item1,
+	GearItem,
+	GearBtn,
+	SKILL1,
+	SKILL2,
+	SKILL3,
+	OUGIS1,
+	OUGIS2
 };
 
 // declare GearButton
 enum gearType
 {
-    gear00,
-    gear01,
-    gear02,
-    gear03,
-    gear04,
-    gear05,
-    gear06,
-    gear07,
-    gear08,
-    None
+	gear00,
+	gear01,
+	gear02,
+	gear03,
+	gear04,
+	gear05,
+	gear06,
+	gear07,
+	gear08,
+	None
 };
 
 /**
@@ -134,13 +134,13 @@ enum gearType
   * Kimimaro. Orochimaru. Pain
   */
 static const char *kHeroList[] = {
-    "Konan", "Sakura", "Naruto", "Sai", "Deidara",
-    "Kakashi", "Itachi", "Tenten", "Jiraiya", "Suigetsu",
-    "Tsunade", "Tobirama", "Neji", "Ino", "Asuma", "Gaara",
-    "Karin", "Sasuke", "Hidan", "Choji", "Kankuro",
-    "Shino", "Minato", "Tobi", "Kakuzu", "Hinata",
-    "Shikamaru", "Chiyo", "Kisame",
-    "Hiruzen", "Kiba", "Jugo", "Lee"};
+	"Konan", "Sakura", "Naruto", "Sai", "Deidara",
+	"Kakashi", "Itachi", "Tenten", "Jiraiya", "Suigetsu",
+	"Tsunade", "Tobirama", "Neji", "Ino", "Asuma", "Gaara",
+	"Karin", "Sasuke", "Hidan", "Choji", "Kankuro",
+	"Shino", "Minato", "Tobi", "Kakuzu", "Hinata",
+	"Shikamaru", "Chiyo", "Kisame",
+	"Hiruzen", "Kiba", "Jugo", "Lee"};
 static const int kHeroNum = sizeof(kHeroList) / sizeof(char *);
 
 // Resloutions
@@ -153,7 +153,7 @@ static const int kHeroNum = sizeof(kHeroList) / sizeof(char *);
 // Utilities
 
 #define FULL_SCREEN_SPRITE(__SPRITE__) \
-    __SPRITE__->setScaleX(winSize.width / __SPRITE__->getContentSize().width);
+	__SPRITE__->setScaleX(winSize.width / __SPRITE__->getContentSize().width);
 
 // End
 
@@ -174,10 +174,10 @@ static const int kHeroNum = sizeof(kHeroList) / sizeof(char *);
 /* Printkeys */
 #define KEY_SPACE GLFW_KEY_SPACE
 #define KEY_APOSTROPHE GLFW_KEY_APOSTROPHE /* ' */
-#define KEY_COMMA GLFW_KEY_COMMA           /* , */
-#define KEY_MINUS GLFW_KEY_MINUS           /* - */
-#define KEY_PERIOD GLFW_KEY_PERIOD         /* . */
-#define KEY_SLASH GLFW_KEY_SLASH           /* / */
+#define KEY_COMMA GLFW_KEY_COMMA		   /* , */
+#define KEY_MINUS GLFW_KEY_MINUS		   /* - */
+#define KEY_PERIOD GLFW_KEY_PERIOD		   /* . */
+#define KEY_SLASH GLFW_KEY_SLASH		   /* / */
 
 #define KEY_0 GLFW_KEY_0
 #define KEY_1 GLFW_KEY_1
@@ -191,7 +191,7 @@ static const int kHeroNum = sizeof(kHeroList) / sizeof(char *);
 #define KEY_9 GLFW_KEY_9
 
 #define KEY_SEMICOLON GLFW_KEY_SEMICOLON /* ; */
-#define KEY_EQUAL GLFW_KEY_EQUAL         /* = */
+#define KEY_EQUAL GLFW_KEY_EQUAL		 /* = */
 #define KEY_A GLFW_KEY_A
 #define KEY_B GLFW_KEY_B
 #define KEY_C GLFW_KEY_C
@@ -218,12 +218,12 @@ static const int kHeroNum = sizeof(kHeroList) / sizeof(char *);
 #define KEY_X GLFW_KEY_X
 #define KEY_Y GLFW_KEY_Y
 #define KEY_Z GLFW_KEY_Z
-#define KEY_LEFT_BRACKET GLFW_KEY_LEFT_BRACKET   /* [ */
-#define KEY_BACKSLASH GLFW_KEY_BACKSLASH         /* \ */
+#define KEY_LEFT_BRACKET GLFW_KEY_LEFT_BRACKET	 /* [ */
+#define KEY_BACKSLASH GLFW_KEY_BACKSLASH		 /* \ */
 #define KEY_RIGHT_BRACKET GLFW_KEY_RIGHT_BRACKET /* ] */
-#define KEY_GRAVE_ACCENT GLFW_KEY_GRAVE_ACCENT   /* ` */
-#define KEY_WORLD_1 GLFW_KEY_WORLD_1             /* non-US #1 */
-#define KEY_WORLD_2 GLFW_KEY_WORLD_2             /* non-US #2 */
+#define KEY_GRAVE_ACCENT GLFW_KEY_GRAVE_ACCENT	 /* ` */
+#define KEY_WORLD_1 GLFW_KEY_WORLD_1			 /* non-US #1 */
+#define KEY_WORLD_2 GLFW_KEY_WORLD_2			 /* non-US #2 */
 
 /* Functeys */
 #define KEY_ESCAPE GLFW_KEY_ESCAPE
@@ -369,16 +369,16 @@ static const int kHeroNum = sizeof(kHeroList) / sizeof(char *);
 
 #define PROP(varType, varName, funName)         \
 protected:                                      \
-    varType varName;                            \
+	varType varName;                            \
                                                 \
 public:                                         \
-    varType get##funName() { return varName; }; \
-    void set##funName(varType var) { varName = var; };
+	varType get##funName() { return varName; }; \
+	void set##funName(varType var) { varName = var; };
 
 #define PPROP(varType, varName, funName)        \
 private:                                        \
-    varType varName;                            \
+	varType varName;                            \
                                                 \
 public:                                         \
-    varType get##funName() { return varName; }; \
-    void set##funName(varType var) { varName = var; };
+	varType get##funName() { return varName; }; \
+	void set##funName(varType var) { varName = var; };

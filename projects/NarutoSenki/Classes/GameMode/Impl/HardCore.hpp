@@ -4,35 +4,35 @@
 class ModeHardCore : public IGameModeHandler
 {
 public:
-    void init()
-    {
-        CCLOG("Enter HardCore mode.");
+	void init()
+	{
+		CCLOG("Enter HardCore mode.");
 
-        isHardCoreGame = true;
-    }
+		isHardCoreGame = true;
+	}
 
-    CCArray *onInitHeros()
-    {
-        return initHeros(4, 4);
-    }
+	CCArray *onInitHeros()
+	{
+		return initHeros(4, 4);
+	}
 
-    void onGameStart()
-    {
-    }
+	void onGameStart()
+	{
+	}
 
-    void onGameOver()
-    {
-    }
+	void onGameOver()
+	{
+	}
 
-    void onCharacterInit(CharacterBase *c)
-    {
-    }
+	void onCharacterInit(CharacterBase *c)
+	{
+	}
 
-    void onCharacterDead(CharacterBase *c)
-    {
-    }
+	void onCharacterDead(CharacterBase *c)
+	{
+	}
 
-    void onCharacterReborn(CharacterBase *c)
-    {
-    }
+	void onCharacterReborn(CharacterBase *c)
+	{
+	}
 };
