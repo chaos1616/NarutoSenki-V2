@@ -25,14 +25,14 @@ echo.
 
 call %VSVARS%
 
-msbuild cocos2d-win32.sln /p:Configuration="Release" /m
+msbuild cocos2d-win32.sln /p:Configuration="Debug" /m
 
 echo./*
 echo. * Check the cocos2d-win32 application "NarutoSenki.exe" ...
 echo. */
 echo.
 
-pushd ".\Release.win32\"
+pushd ".\Debug.win32\"
 
 set CC_BIN=NarutoSenki.exe
 set CC_RES=..\projects\NarutoSenki\Resources

@@ -13,6 +13,7 @@ using namespace CocosDenshion;
 //global parameter
 #define winSize CCDirector::sharedDirector()->getWinSize()
 #define random(x) (rand() % x)
+#define setRand() srand((uint32_t)time(0))
 
 #define FONT_TYPE "微软雅黑"
 #define VERSION_CODE "v 2.10"

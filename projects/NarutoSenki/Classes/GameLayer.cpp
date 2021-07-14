@@ -120,35 +120,20 @@ void GameLayer::onExit()
 
 void GameLayer::initTileMap()
 {
-	mapId = random(5) + 1;
+	setRand();
+	int mapCount = getMapCount();
+	mapId = random(mapCount) + 1;
 	currentMap = CCTMXTiledMap::create(GetMapPath(mapId));
 	addChild(currentMap, currentMapTag);
 }
 
 void GameLayer::initGard()
 {
-	int index = 0;
-	index = random(2);
-	Hero *guardian = nullptr;
-
-	const char *groupName;
-
-	if (team > 0)
-	{
-		groupName = Akatsuki;
-	}
-	else
-	{
-		groupName = Konoha;
-	}
-	if (index == 0)
-	{
-		guardian = Provider::create(CCString::create(Guardian_Roshi), CCString::create("Com"), CCString::create(groupName));
-	}
-	else if (index == 1)
-	{
-		guardian = Provider::create(CCString::create(Guardian_Han), CCString::create("Com"), CCString::create(groupName));
-	}
+	setRand();
+	int index = random(2);
+	auto guardName = index == 0 ? Guardian_Roshi : Guardian_Han;
+	auto groupName = team > 0 ? Akatsuki : Konoha;
+	auto guardian = Provider::create(CCString::create(guardName), CCString::create("Com"), CCString::create(groupName));
 
 	if (team > 0)
 	{
@@ -194,14 +179,12 @@ void GameLayer::initHeros()
 	CCArray *objectArray = group->getObjects();
 
 	_isOugis2Game = true;
-	//4v4
 
+	//4v4
 	if (Cheats > 10)
 	{
-
 		CCARRAY_FOREACH(Heros, pObject)
 		{
-
 			CCDictionary *tempdict = (CCDictionary *)pObject;
 
 			CCString *player = CCString::create(tempdict->valueForKey("character")->getCString());
@@ -241,7 +224,6 @@ void GameLayer::initHeros()
 			}
 			else
 			{
-
 				Hero *Com = Provider::create(player, role, group);
 				Com->setDelegate(this);
 				Com->setPosition(spawnPoint);
@@ -261,7 +243,6 @@ void GameLayer::initHeros()
 	{
 		CCARRAY_FOREACH(Heros, pObject)
 		{
-
 			CCDictionary *tempdict = (CCDictionary *)pObject;
 
 			CCString *player = CCString::create(tempdict->valueForKey("character")->getCString());
@@ -272,16 +253,12 @@ void GameLayer::initHeros()
 			if (strcmp(group->getCString(), Akatsuki) == 0)
 			{
 				if (mapPos <= MapPosCount - 1)
-				{
 					mapPos += MapPosCount;
-				}
 			}
 			else
 			{
 				if (mapPos > MapPosCount - 1)
-				{
 					mapPos -= MapPosCount;
-				}
 			}
 
 			CCObject *mapObject = objectArray->objectAtIndex(mapPos);
@@ -292,7 +269,6 @@ void GameLayer::initHeros()
 
 			if (i == 0)
 			{
-
 				if (strcmp(group->getCString(), Akatsuki) == 0)
 				{
 					team = 0;
@@ -317,7 +293,6 @@ void GameLayer::initHeros()
 			}
 			else
 			{
-
 				Hero *Com = Provider::create(player, role, group);
 				Com->setDelegate(this);
 				Com->setPosition(spawnPoint);
@@ -466,26 +441,7 @@ void GameLayer::addFlog(float dt)
 
 void GameLayer::initTower()
 {
-	if (mapId == 0)
-	{
-		addSprites("Element/Tower/Tower.plist");
-	}
-	else if (mapId == 1)
-	{
-		addSprites("Element/Tower/Tower2.plist");
-	}
-	else if (mapId == 2)
-	{
-		addSprites("Element/Tower/Tower3.plist");
-	}
-	else if (mapId == 3)
-	{
-		addSprites("Element/Tower/Tower4.plist");
-	}
-	else if (mapId == 4)
-	{
-		addSprites("Element/Tower/Tower5.plist");
-	}
+	addSprites(CCString::createWithFormat("Element/Tower/Tower%d.plist", mapId)->getCString());
 
 	CCTMXObjectGroup *metaGroup = currentMap->objectGroupNamed("meta");
 	CCArray *metaArray = metaGroup->getObjects();
@@ -774,7 +730,6 @@ void GameLayer::clearDoubleClick()
 
 void GameLayer::JoyStickRelease()
 {
-
 	if (currentPlayer->getActionState() == State::WALK)
 	{
 		currentPlayer->idle();
@@ -809,7 +764,6 @@ void GameLayer::attackButtonClick(abType type)
 
 void GameLayer::gearButtonClick(gearType type)
 {
-
 	currentPlayer->useGear(type);
 }
 
@@ -1140,6 +1094,17 @@ void GameLayer::setupKeyEventHandler()
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 	glfwSetKeyCallback(_window, keyEventHandle);
 #endif
+}
+
+int GameLayer::getMapCount()
+{
+	int index = 1;
+	int mapCount = 0;
+	auto fileUtils = CCFileUtils::sharedFileUtils();
+	while (fileUtils->isFileExist(CCString::createWithFormat("Tiles/%d.tmx", index++)->getCString()))
+		mapCount++;
+	CCLOG("Found %d maps", mapCount);
+	return mapCount;
 }
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)

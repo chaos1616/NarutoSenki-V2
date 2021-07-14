@@ -27,5 +27,5 @@ static IGameModeHandler *s_ModeHandlers[GameMode::_Internal_Max_Length] = {
 };
 static inline IGameModeHandler *getGameModeHandler()
 {
-	return s_GameModeHandler ? s_GameModeHandler : s_ModeHandlers[s_GameMode];
+	return s_ModeHandlers[s_GameMode];
 }

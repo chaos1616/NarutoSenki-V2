@@ -6472,6 +6472,7 @@ bool CharacterBase::stepBack2()
 	}
 	CCPoint moveDirection;
 
+	setRand();
 	int randomDirection = random(10);
 
 	if (!_backY)

@@ -7,6 +7,8 @@ public:
 	void init()
 	{
 		CCLOG("Enter 4 VS 4 mode.");
+
+		Cheats = 11;
 	}
 
 	CCArray *onInitHeros()

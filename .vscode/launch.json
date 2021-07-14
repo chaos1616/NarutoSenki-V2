@@ -30,7 +30,7 @@
             "cwd": "${workspaceFolder}/projects/NarutoSenki/__BIN__/",
             "environment": [],
             "console": "internalConsole",
-            "preLaunchTask": "compile-win32"
+            "preLaunchTask": "compile-win32-debug"
         },
         {
             "name": "Python: Current File",

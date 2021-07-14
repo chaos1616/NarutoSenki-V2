@@ -8,6 +8,7 @@ public:
 	{
 		CCLOG("Enter HardCore mode.");
 
+		Cheats = 11;
 		isHardCoreGame = true;
 	}
 

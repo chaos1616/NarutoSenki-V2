@@ -1,10 +1,7 @@
 #pragma once
-#include "cocos2d.h"
 #include "CharacterBase.h"
 #include "GameLayer.h"
 #include "LoadLayer.h"
-
-using namespace cocos2d;
 
 class IGameModeHandler;
 class SelectLayer;
@@ -134,11 +131,12 @@ protected:
 	}
 
 	CCArray *initHeros(uint8_t konohaCount, uint8_t akatsukiCount,
-					   const char *playerSelect, const char *playerGroup, bool randomPlayer = false,
+					   const char *playerSelect, const char *playerGroup,
 					   const char *com1Select = nullptr, const char *com2Select = nullptr, const char *com3Select = nullptr)
 	{
 		konohaCount = konohaCount > kMaxCharCount ? kMaxCharCount : konohaCount;
 		akatsukiCount = akatsukiCount > kMaxCharCount ? kMaxCharCount : akatsukiCount;
+		setRand();
 		int team = random(2);
 		uint8_t comCount = konohaCount + akatsukiCount - 1;
 		uint8_t comOfPlayerGroupCount = (team == 0 ? konohaCount : akatsukiCount) - 1;
@@ -154,18 +152,20 @@ protected:
 
 		// init player hero
 		CCString *tmpChar;
-		if (!randomPlayer && selectLayer->_playerSelect)
+		if (selectLayer->_playerSelect)
 		{
 			tmpChar = CCString::create(selectLayer->_playerSelect);
 		}
 		else
 		{
 			int num2 = selectLayer->_selectList->count();
+			setRand();
 			int index = random(num2);
 			tmpChar = (CCString *)selectLayer->_selectList->objectAtIndex(index);
 			do
 			{
 				int num = selectLayer->_selectList->count();
+				setRand();
 				int index = random(num);
 				tmpChar = (CCString *)selectLayer->_selectList->objectAtIndex(index);
 			} while (strcmp(tmpChar->getCString(), "None") == 0);
@@ -190,22 +190,12 @@ protected:
 		{
 			if (strcmp(selectLayer->_playerSelect, kHeroList[i]) == 0)
 				continue;
-
-			if (selectLayer->_com1Select)
-			{
-				if (strcmp(selectLayer->_com1Select, kHeroList[i]) == 0)
-					continue;
-			}
-			if (selectLayer->_com2Select)
-			{
-				if (strcmp(selectLayer->_com2Select, kHeroList[i]) == 0)
-					continue;
-			}
-			if (selectLayer->_com3Select)
-			{
-				if (strcmp(selectLayer->_com3Select, kHeroList[i]) == 0)
-					continue;
-			}
+			if (selectLayer->_com1Select && strcmp(selectLayer->_com1Select, kHeroList[i]) == 0)
+				continue;
+			if (selectLayer->_com2Select && strcmp(selectLayer->_com2Select, kHeroList[i]) == 0)
+				continue;
+			if (selectLayer->_com3Select && strcmp(selectLayer->_com3Select, kHeroList[i]) == 0)
+				continue;
 
 			CCString *hero = CCString::create(kHeroList[i]);
 			realHero->addObject(hero);
@@ -231,6 +221,7 @@ protected:
 				else
 				{
 					int length = realHero->count();
+					setRand();
 					int index = random(length);
 					if (index == length)
 					{
@@ -255,6 +246,7 @@ protected:
 			else
 			{
 				int length = realHero->count();
+				setRand();
 				int index = random(length);
 				if (index == length)
 					index = realHero->count() - 1;

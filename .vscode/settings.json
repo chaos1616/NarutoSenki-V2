@@ -2,7 +2,8 @@
     "files.associations": {
         ".gitignore": "ignore",
         "*.tpsheet": "csv (semicolon)",
-        "*.plist": "xml"
+        "*.plist": "xml",
+        "*.csv": "csv"
     },
     "Lua.diagnostics.globals": [
         "cocos2d",

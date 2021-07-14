@@ -22,6 +22,12 @@
             "label": "compile-win32",
             "command": "./build-win32.bat",
             "args": []
+        },
+        {
+            "type": "shell",
+            "label": "compile-win32-debug",
+            "command": "./build-win32-debug.bat",
+            "args": []
         }
     ]
 }

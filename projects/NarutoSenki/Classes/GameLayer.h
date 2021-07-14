@@ -137,6 +137,8 @@ public:
 
 	static bool checkHasAnyMovement();
 
+	static int getMapCount();
+
 private:
 	void onEnter();
 	void onExit();
