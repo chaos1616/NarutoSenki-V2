@@ -1,6 +1,7 @@
 #include "StartMenu.h"
 #include "MyUtils/Cocos2dxHelper.hpp"
 
+GameMode s_GameMode = GameMode::Classic;
 int Cheats = 0;
 bool enableCustomSelect = false;
 
@@ -571,7 +572,7 @@ void StartMenu::enterCustomMode()
 
 void StartMenu::enterTrainingMode()
 {
-	s_GameModeHandler = s_ModeHandlers[GameMode::Classic];
+	s_GameMode = GameMode::Classic;
 
 	enableCustomSelect = false;
 	enterSelectLayer();
