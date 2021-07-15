@@ -94,7 +94,7 @@ gearType GearButton::getBtnType()
 
 void GearButton::click()
 {
-	if (_delegate->currentGear != _gearType && CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice") != false)
+	if (_delegate->currentGear != _gearType && CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 	{
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/select.ogg");
 	}
@@ -369,7 +369,7 @@ void GearLayer::onResume(CCObject *sender)
 
 void GearLayer::onGearBuy(CCObject *sender)
 {
-	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice") != false)
+	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 	{
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
 	}

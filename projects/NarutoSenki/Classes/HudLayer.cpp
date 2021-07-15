@@ -1109,7 +1109,7 @@ CCSprite *HudLayer::createSPCReport(const char *killNum, int num)
 {
 
 	bool isBrocast = false;
-	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice") != false)
+	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 	{
 		isBrocast = true;
 	}

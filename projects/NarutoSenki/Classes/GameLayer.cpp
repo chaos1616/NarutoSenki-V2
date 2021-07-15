@@ -1006,9 +1006,8 @@ void GameLayer::onLeft()
 
 void GameLayer::checkBackgroundMusic(float dt)
 {
-	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isBGM") != false)
+	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isBGM"))
 	{
-
 		if (!SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
 		{
 			if (!_isHardCoreGame)
@@ -1063,7 +1062,7 @@ void GameLayer::setOugis(CCNode *sender)
 		addChild(blend, 1000);
 		sender->setZOrder(2000);
 
-		if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice") != false)
+		if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 		{
 			SimpleAudioEngine::sharedEngine()->playEffect(CCString::createWithFormat("Audio/Ougis/%s_ougis.ogg", Sender->getCharacter()->getCString())->getCString());
 		}

@@ -137,7 +137,7 @@ void PauseLayer::onPreload(CCObject *sender)
 void PauseLayer::onResume(CCObject *sender)
 {
 
-	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isBGM") != false)
+	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isBGM"))
 	{
 		SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 	}

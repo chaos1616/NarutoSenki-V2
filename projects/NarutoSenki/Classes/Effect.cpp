@@ -104,7 +104,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 		setPosition(at->getPosition());
 		CCAction *effectAction = createEffectAnimation("smk_", 5, 10, false);
 		runAction(effectAction);
-		if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice") != false)
+		if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 		{
 			SimpleAudioEngine::sharedEngine()->playEffect("Audio/Effect/poof.ogg");
 		}

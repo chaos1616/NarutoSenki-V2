@@ -2560,7 +2560,7 @@ void CharacterBase::disableEffect()
 void CharacterBase::setSound(CCNode *sender, void *data)
 {
 
-	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice") != false)
+	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 	{
 		bool _isPlayable = false;
 		if (strcmp(_role->getCString(), "Player") == 0 ||
@@ -2590,7 +2590,7 @@ void CharacterBase::setSound(CCNode *sender, void *data)
 void CharacterBase::setDSound(CCNode *sender, void *data)
 {
 
-	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice") != false)
+	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 	{
 		bool _isPlayable = false;
 		if (strcmp(_role->getCString(), "Player") == 0 ||

@@ -402,7 +402,7 @@ void StartMenu::onEnter()
 	// SimpleAudioEngine::sharedEngine()->end();
 	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
 
-	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isBGM") != false)
+	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isBGM"))
 	{
 		SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MENU_MUSIC, true);
 	}

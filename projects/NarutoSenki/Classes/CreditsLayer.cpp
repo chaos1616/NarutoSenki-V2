@@ -70,7 +70,7 @@ bool CreditsLayer::init()
 		CCSprite *credit02 = CCSprite::createWithSpriteFrameName("credits02.png");
 		credit02->setPosition(ccp(winSize.width / 2 + 15, winSize.height / 2 - 60));
 		addChild(credit02);
-		if (CCUserDefault::sharedUserDefault()->getBoolForKey("isBGM") != false)
+		if (CCUserDefault::sharedUserDefault()->getBoolForKey("isBGM"))
 		{
 			SimpleAudioEngine::sharedEngine()->playBackgroundMusic(CREDITS_MUSIC, true);
 		}
