@@ -347,7 +347,7 @@ class Deidara : public Hero
 
 	Hero *createClone(unsigned int cloneTime)
 	{
-		auto clone = create<Centipede>(CCString::create("Centipede"), CCString::create("Summon"), getGroup());
+		auto clone = create<Centipede>(CCString::create("Centipede"), CCString::create(ROLE_SUMMON), getGroup());
 		clone->_isArmored = true;
 		return clone;
 	}

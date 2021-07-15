@@ -231,7 +231,7 @@ class Hidan : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), K_TAG_MON) != 0 && !_isArmored)
+		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_MON) != 0 && !_isArmored)
 		{
 
 			CCPoint moveDirection;

@@ -266,7 +266,7 @@ class Chiyo : public Hero
 			_monsterArray->retain();
 		}
 
-		auto clone = create<Parents>(CCString::create("Parents"), CCString::create("Kugutsu"), getGroup());
+		auto clone = create<Parents>(CCString::create("Parents"), CCString::create(ROLE_KUGUTSU), getGroup());
 		clone->setPosition(ccp(getPositionX(), getPositionY() - 3));
 		clone->_isArmored = true;
 		_monsterArray->addObject(clone);

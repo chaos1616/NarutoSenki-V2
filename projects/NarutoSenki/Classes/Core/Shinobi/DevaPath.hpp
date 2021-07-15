@@ -122,11 +122,11 @@ class DevaPath : public Hero
 		}
 		if (cloneTime == 0)
 		{
-			clone = create<AnimalPath>(CCString::create("AnimalPath"), CCString::create("Summon"), getGroup());
+			clone = create<AnimalPath>(CCString::create("AnimalPath"), CCString::create(ROLE_SUMMON), getGroup());
 		}
 		else
 		{
-			clone = create<AsuraPath>(CCString::create("AsuraPath"), CCString::create("Summon"), getGroup());
+			clone = create<AsuraPath>(CCString::create("AsuraPath"), CCString::create(ROLE_SUMMON), getGroup());
 		}
 		_monsterArray->addObject(clone);
 		clone->_isArmored = true;

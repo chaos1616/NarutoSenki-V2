@@ -573,7 +573,7 @@ void GameLayer::updateViewPoint(float dt)
 void GameLayer::setTowerState(unsigned int charNO)
 {
 	_hudLayer->setTowerState(charNO);
-};
+}
 
 void GameLayer::setHPLose(float percent)
 {
@@ -687,7 +687,6 @@ void GameLayer::checkTower()
 		}
 		else
 		{
-
 			tmpHero->battleCondiction = akatsukiTowerCount - konohaTowerCount;
 			if (_isHardCoreGame)
 			{
@@ -874,104 +873,87 @@ void GameLayer::onLeft()
 		CCNotificationCenter::sharedNotificationCenter()->removeObserver(ac, "acceptAttack");
 	}
 
-	if (mapId == 0)
-	{
-		CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Tower/Tower.plist");
-	}
-	else if (mapId == 1)
-	{
-		CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Tower/Tower2.plist");
-	}
-	else if (mapId == 2)
-	{
-		CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Tower/Tower3.plist");
-	}
-	else if (mapId == 3)
-	{
-		CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Tower/Tower4.plist");
-	}
-	else if (mapId == 4)
-	{
-		CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Tower/Tower5.plist");
-	}
+	removeSprites(CCString::createWithFormat("Element/Tower/Tower%d.plist", mapId)->getCString());
 
 	const char *path;
 	CCARRAY_FOREACH(_CharacterArray, pObject)
 	{
-		CharacterBase *player = (CharacterBase *)pObject;
+		auto player = (CharacterBase *)pObject;
+		auto roleName = player->getRole()->getCString();
+		auto charName = player->getCharacter()->getCString();
 
-		if (strcmp(player->getRole()->getCString(), K_TAG_CLONE) == 0 ||
-			strcmp(player->getRole()->getCString(), "Summon") == 0)
+		if (strcmp(roleName, ROLE_CLONE) == 0 ||
+			strcmp(roleName, ROLE_SUMMON) == 0)
 		{
 			continue;
 		}
 
-		path = CCString::createWithFormat("Element/%s/%s.plist", player->getCharacter()->getCString(), player->getCharacter()->getCString())->getCString();
-		CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile(path);
+		path = CCString::createWithFormat("Element/%s/%s.plist", charName, charName)->getCString();
+		removeSprites(path);
 
-		if (strcmp(player->getRole()->getCString(), "Com") == 0 ||
-			strcmp(player->getRole()->getCString(), "Player") == 0)
+		if (strcmp(roleName, "Com") == 0 ||
+			strcmp(roleName, "Player") == 0)
 		{
-			KTools::prepareFileOGG(player->getCharacter()->getCString(), true);
+			KTools::prepareFileOGG(charName, true);
 		}
 
-		if (strcmp(player->getCharacter()->getCString(), "Jiraiya") == 0)
+		if (strcmp(charName, "Jiraiya") == 0)
 		{
-			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/SageJiraiya/SageJiraiya.plist");
+			removeSprites("Element/SageJiraiya/SageJiraiya.plist");
 			KTools::prepareFileOGG("SageJiraiya", true);
 		}
-		else if (strcmp(player->getCharacter()->getCString(), "Kankuro") == 0)
+		else if (strcmp(charName, "Kankuro") == 0)
 		{
-			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Karasu/Karasu.plist");
-			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Sanshouuo/Sanshouuo.plist");
+			removeSprites("Element/Karasu/Karasu.plist");
+			removeSprites("Element/Sanshouuo/Sanshouuo.plist");
 		}
-		else if (strcmp(player->getCharacter()->getCString(), "Kakuzu") == 0)
+		else if (strcmp(charName, "Kakuzu") == 0)
 		{
-			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/MaskFudon/MaskFudon.plist");
-			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/MaskRaidon/MaskRaidon.plist");
-			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/MaskKadon/MaskKadon.plist");
+			removeSprites("Element/MaskFudon/MaskFudon.plist");
+			removeSprites("Element/MaskRaidon/MaskRaidon.plist");
+			removeSprites("Element/MaskKadon/MaskKadon.plist");
 		}
-		else if (strcmp(player->getCharacter()->getCString(), "Naruto") == 0)
+		else if (strcmp(charName, "Naruto") == 0)
 		{
-			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/SageNaruto/SageNaruto.plist");
-			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/RikudoNaruto/RikudoNaruto.plist");
+			removeSprites("Element/SageNaruto/SageNaruto.plist");
+			removeSprites("Element/RikudoNaruto/RikudoNaruto.plist");
 			KTools::prepareFileOGG("SageNaruto", true);
 			KTools::prepareFileOGG("RikudoNaruto", true);
 		}
-		else if (strcmp(player->getCharacter()->getCString(), "RockLee") == 0)
+		else if (strcmp(charName, "RockLee") == 0)
 		{
-			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Lee/Lee.plist");
+			removeSprites("Element/Lee/Lee.plist");
 		}
-		else if (strcmp(player->getCharacter()->getCString(), "Lee") == 0)
+		else if (strcmp(charName, "Lee") == 0)
 		{
-			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/RockLee/RockLee.plist");
+			removeSprites("Element/RockLee/RockLee.plist");
 		}
-		else if (strcmp(player->getCharacter()->getCString(), "Sasuke") == 0)
+		else if (strcmp(charName, "Sasuke") == 0)
 		{
 			KTools::prepareFileOGG("ImmortalSasuke", true);
-			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/ImmortalSasuke/ImmortalSasuke.plist");
+			removeSprites("Element/ImmortalSasuke/ImmortalSasuke.plist");
 		}
-		else if (strcmp(player->getCharacter()->getCString(), "Pain") == 0)
+		else if (strcmp(charName, "Pain") == 0)
 		{
 			KTools::prepareFileOGG("Nagato", true);
-			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/AnimalPath/AnimalPath.plist");
-			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/AsuraPath/AsuraPath.plist");
-			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/DevaPath/DevaPath.plist");
-			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Nagato/Nagato.plist");
+			removeSprites("Element/AnimalPath/AnimalPath.plist");
+			removeSprites("Element/AsuraPath/AsuraPath.plist");
+			removeSprites("Element/DevaPath/DevaPath.plist");
+			removeSprites("Element/Nagato/Nagato.plist");
 		}
-		else if (strcmp(player->getCharacter()->getCString(), "Nagato") == 0)
+		else if (strcmp(charName, "Nagato") == 0)
 		{
-			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/AnimalPath/AnimalPath.plist");
-			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/AsuraPath/AsuraPath.plist");
-			CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/DevaPath/DevaPath.plist");
+			removeSprites("Element/AnimalPath/AnimalPath.plist");
+			removeSprites("Element/AsuraPath/AsuraPath.plist");
+			removeSprites("Element/DevaPath/DevaPath.plist");
 		}
 		player->removeFromParentAndCleanup(true);
 	}
 
 	if (_isHardCoreGame)
 	{
-		CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Roshi/Roshi.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Element/Han/Han.plist");
+		removeSprites("Element/Roshi/Roshi.plist");
+		removeSprites("Element/Han/Han.plist");
 		KTools::prepareFileOGG(Guardian_Roshi, true);
 		KTools::prepareFileOGG(Guardian_Han, true);
 	}
@@ -979,25 +961,13 @@ void GameLayer::onLeft()
 	KTools::prepareFileOGG("Effect", true);
 	KTools::prepareFileOGG("Ougis", true);
 
-	_CharacterArray->removeAllObjects();
-	_CharacterArray = nullptr;
+	SAFE_CLEAR_CCARRAY(_CharacterArray);
+	SAFE_CLEAR_CCARRAY(_TowerArray);
+	SAFE_CLEAR_CCARRAY(_KonohaFlogArray);
+	SAFE_CLEAR_CCARRAY(_AkatsukiFlogArray);
 
-	_TowerArray->removeAllObjects();
-	_TowerArray = nullptr;
-	// fixed: Not add flogs when fast leave game
-	if (_KonohaFlogArray)
-	{
-		_KonohaFlogArray->removeAllObjects();
-		_KonohaFlogArray = nullptr;
-	}
-	if (_AkatsukiFlogArray)
-	{
-		_AkatsukiFlogArray->removeAllObjects();
-		_AkatsukiFlogArray = nullptr;
-	}
-
-	CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("UI.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("Map.plist");
+	removeSprites("UI.plist");
+	removeSprites("Map.plist");
 
 	SimpleAudioEngine::sharedEngine()->end();
 
@@ -1048,9 +1018,7 @@ void GameLayer::setOugis(CCNode *sender)
 		CCObject *pObject;
 		CCARRAY_FOREACH(childArray, pObject)
 		{
-
 			CCNode *object = (CCNode *)pObject;
-
 			object->pauseSchedulerAndActions();
 		}
 		pauseSchedulerAndActions();

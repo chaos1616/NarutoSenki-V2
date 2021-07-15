@@ -15,7 +15,7 @@ class Pain : public Hero
 		Hero *clone = nullptr;
 		if (character_is(kNagato))
 		{
-			clone = create<DevaPath>(CCString::create("DevaPath"), CCString::create(K_TAG_CLONE), getGroup());
+			clone = create<DevaPath>(CCString::create("DevaPath"), CCString::create(ROLE_CLONE), getGroup());
 			clone->_isArmored = true;
 			if (is_player)
 			{

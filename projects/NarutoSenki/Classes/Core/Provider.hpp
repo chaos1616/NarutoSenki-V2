@@ -119,11 +119,11 @@ public:
 		is("Itachi") ptr = new Itachi();
 		is("Orochimaru") ptr = new Orochimaru();
 		is("Kurama") ptr = new Kurama();
-		is("Naruto") is_tag(K_TAG_CLONE) ptr = new NarutoClone();
+		is("Naruto") is_tag(ROLE_CLONE) ptr = new NarutoClone();
 		else ptr = new Naruto();
-		is("SageNaruto") is_tag(K_TAG_CLONE) ptr = new SageNarutoClone();
+		is("SageNaruto") is_tag(ROLE_CLONE) ptr = new SageNarutoClone();
 		else ptr = new Naruto();
-		is("RikudoNaruto") is_tag(K_TAG_CLONE) ptr = new RikudoNarutoClone();
+		is("RikudoNaruto") is_tag(ROLE_CLONE) ptr = new RikudoNarutoClone();
 		else ptr = new Naruto();
 		is("Gaara") ptr = new Gaara();
 		is("Tobirama") ptr = new Tobirama();

@@ -7,7 +7,15 @@ using namespace cocos2d;
 #define nameof(varType) #varType
 #define typeof(varType) typeid(varType).name()
 
+#define SAFE_CLEAR_CCARRAY(arr)       \
+	if (arr)                     \
+	{                            \
+		arr->removeAllObjects(); \
+		arr = nullptr;           \
+	}
+
 #define addSprites(filePath) CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(filePath)
+#define removeSprites(filePath) CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile(filePath)
 
 #define get_luastack CCLuaEngine::defaultEngine()->getLuaStack()
 #define lua_getL auto L = CCLuaEngine::defaultEngine()->getLuaStack()->getLuaState();

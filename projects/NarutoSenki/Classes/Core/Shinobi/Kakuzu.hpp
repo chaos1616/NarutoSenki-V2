@@ -379,15 +379,15 @@ class Kakuzu : public Hero
 		{
 			if (!isRaidon)
 			{
-				clone = create<Mask>(CCString::create("MaskRaidon"), CCString::create("Kugutsu"), getGroup());
+				clone = create<Mask>(CCString::create("MaskRaidon"), CCString::create(ROLE_KUGUTSU), getGroup());
 			}
 			else if (!isFudon)
 			{
-				clone = create<Mask>(CCString::create("MaskFudon"), CCString::create("Kugutsu"), getGroup());
+				clone = create<Mask>(CCString::create("MaskFudon"), CCString::create(ROLE_KUGUTSU), getGroup());
 			}
 			else if (!isKadon)
 			{
-				clone = create<Mask>(CCString::create("MaskKadon"), CCString::create("Kugutsu"), getGroup());
+				clone = create<Mask>(CCString::create("MaskKadon"), CCString::create(ROLE_KUGUTSU), getGroup());
 			}
 			clone->_isArmored = true;
 			_monsterArray->addObject(clone);

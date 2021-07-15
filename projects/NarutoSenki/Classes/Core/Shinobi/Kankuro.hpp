@@ -268,11 +268,11 @@ class Kankuro : public Hero
 
 		if (cloneTime == 0)
 		{
-			clone = create<Karasu>(CCString::create("Karasu"), CCString::create("Kugutsu"), getGroup());
+			clone = create<Karasu>(CCString::create("Karasu"), CCString::create(ROLE_KUGUTSU), getGroup());
 		}
 		else if (cloneTime == 1)
 		{
-			clone = create<Sanshouuo>(CCString::create("Sanshouuo"), CCString::create("Kugutsu"), getGroup());
+			clone = create<Sanshouuo>(CCString::create("Sanshouuo"), CCString::create(ROLE_KUGUTSU), getGroup());
 			if (is_player)
 			{
 				if (_delegate->getHudLayer()->skill4Button)
@@ -283,7 +283,7 @@ class Kankuro : public Hero
 		}
 		else if (cloneTime == 2)
 		{
-			clone = create<Saso>(CCString::create("Saso"), CCString::create("Kugutsu"), getGroup());
+			clone = create<Saso>(CCString::create("Saso"), CCString::create(ROLE_KUGUTSU), getGroup());
 			if (is_player)
 			{
 				if (_delegate->getHudLayer()->skill5Button)

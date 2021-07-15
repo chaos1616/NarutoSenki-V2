@@ -93,9 +93,9 @@ void HeroElement::setHPbar()
 		_hpBar = HPBar::create("hp_bar_r.png");
 	}
 	else if ((strcmp(getRole()->getCString(), "Com") == 0 ||
-			  strcmp(getRole()->getCString(), K_TAG_CLONE) == 0 ||
-			  strcmp(getRole()->getCString(), "Kugutsu") == 0 ||
-			  strcmp(getRole()->getCString(), "Summon") == 0))
+			  strcmp(getRole()->getCString(), ROLE_CLONE) == 0 ||
+			  strcmp(getRole()->getCString(), ROLE_KUGUTSU) == 0 ||
+			  strcmp(getRole()->getCString(), ROLE_SUMMON) == 0))
 	{
 		_hpBar = HPBar::create("hp_bar_b.png");
 	}
@@ -219,9 +219,9 @@ void HeroElement::dealloc()
 		}
 	}
 
-	if (strcmp(getRole()->getCString(), K_TAG_CLONE) == 0 ||
-		strcmp(getRole()->getCString(), "Kugutsu") == 0 ||
-		strcmp(getRole()->getCString(), "Summon") == 0)
+	if (strcmp(getRole()->getCString(), ROLE_CLONE) == 0 ||
+		strcmp(getRole()->getCString(), ROLE_KUGUTSU) == 0 ||
+		strcmp(getRole()->getCString(), ROLE_SUMMON) == 0)
 	{
 		unschedule(schedule_selector(CharacterBase::setAI));
 		CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "acceptAttack");

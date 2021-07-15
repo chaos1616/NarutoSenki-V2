@@ -10,7 +10,7 @@ class Nagato : public Hero
 
 	Hero *createClone(unsigned int cloneTime)
 	{
-		auto clone = create<DevaPath>(CCString::create("DevaPath"), CCString::create(K_TAG_CLONE), getGroup());
+		auto clone = create<DevaPath>(CCString::create("DevaPath"), CCString::create(ROLE_CLONE), getGroup());
 		clone->_isArmored = true;
 		if (is_player)
 		{

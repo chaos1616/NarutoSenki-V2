@@ -67,11 +67,13 @@ extern int Cheats;
 #define k_Guardian "Guardian"
 
 // Tags
-// 分身
-#define K_TAG_CLONE "Clone"
-// 口寄せ  Summon
-// 傀儡    Kugutsu
-#define K_TAG_MON "Mon"
+// 分身		Clone
+#define ROLE_CLONE "Clone"
+// 口寄せ	Summon
+#define ROLE_SUMMON "Summon"
+// 傀儡		Kugutsu
+#define ROLE_KUGUTSU "Kugutsu"
+#define ROLE_MON "Mon"
 
 // Flogs
 #define kFlog_Kotetsu cName(KotetsuFlog, k_Flog)

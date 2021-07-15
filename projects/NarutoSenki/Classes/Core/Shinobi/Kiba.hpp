@@ -311,7 +311,7 @@ class Kiba : public Hero
 			_monsterArray->retain();
 		}
 
-		auto clone = create<Akamaru>(CCString::create("Akamaru"), CCString::create(K_TAG_CLONE), getGroup());
+		auto clone = create<Akamaru>(CCString::create("Akamaru"), CCString::create(ROLE_CLONE), getGroup());
 		clone->_isArmored = true;
 		_monsterArray->addObject(clone);
 		return clone;
