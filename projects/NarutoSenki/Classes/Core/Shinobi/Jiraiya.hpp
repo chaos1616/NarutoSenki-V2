@@ -98,7 +98,6 @@ class Jiraiya : public Hero
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game)
 				{
 					changeSide(sp);
@@ -168,7 +167,6 @@ class Jiraiya : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -306,7 +304,6 @@ class Jiraiya : public Hero
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanSkill2 && _mainTarget->getGP() < 5000)
 				{
 					changeSide(sp);
@@ -394,7 +391,6 @@ class Jiraiya : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 

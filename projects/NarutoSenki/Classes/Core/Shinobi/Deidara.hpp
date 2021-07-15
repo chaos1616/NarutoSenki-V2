@@ -6,7 +6,6 @@ class Deidara : public Hero
 {
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_isHardCoreGame)
@@ -40,7 +39,6 @@ class Deidara : public Hero
 			}
 			else
 			{
-
 				if (stepBack())
 					return;
 			}
@@ -48,7 +46,6 @@ class Deidara : public Hero
 
 		if (_mainTarget && (battleCondiction >= 0 || _isCanSkill3 || _isCanOugis1 || _isArmored))
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -62,7 +59,6 @@ class Deidara : public Hero
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
@@ -178,7 +174,6 @@ class Deidara : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -247,14 +242,12 @@ class Deidara : public Hero
 
 	void changeAction()
 	{
-
 		if (_skillChangeBuffValue == 17)
 		{
 			setNAttackAction(createAnimation(skillSPC1Array, 10.0f, false, true));
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
-
 			_isAllAttackLocked = true;
 			_isArmored = true;
 
@@ -276,14 +269,12 @@ class Deidara : public Hero
 
 	void resumeAction(float dt)
 	{
-
 		if (_skillChangeBuffValue == 17)
 		{
 			setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
-
 			_isArmored = false;
 			_isAllAttackLocked = false;
 			_originSpeed = 224;
@@ -322,7 +313,6 @@ class Deidara : public Hero
 			}
 			else if (_skillChangeBuffValue == 18)
 			{
-
 				_isArmored = false;
 				_isAllAttackLocked = false;
 				_originSpeed = 224;

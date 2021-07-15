@@ -26,14 +26,12 @@ class Guardian : public Hero
 
 			if (abs(sp.x) > 128 || abs(sp.y) > 16)
 			{
-
 				moveDirection = ccpNormalize(sp);
 				walk(moveDirection);
 				return;
 			}
 			else if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
-
 				moveDirection = ccpNormalize(sp);
 				walk(moveDirection);
 				return;
@@ -87,14 +85,12 @@ class Guardian : public Hero
 			CCPoint sp = ccpSub(getSpawnPoint(), getPosition());
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
-
 				moveDirection = ccpNormalize(sp);
 				walk(moveDirection);
 				return;
 			}
 			else
 			{
-
 				idle();
 			}
 		}

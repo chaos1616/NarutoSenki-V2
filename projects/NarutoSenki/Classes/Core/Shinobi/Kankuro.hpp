@@ -8,7 +8,6 @@ class Kankuro : public Hero
 {
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 
@@ -113,7 +112,6 @@ class Kankuro : public Hero
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanSkill3)
 				{
 					changeSide(sp);
@@ -177,7 +175,6 @@ class Kankuro : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -237,7 +234,6 @@ class Kankuro : public Hero
 
 	void changeAction()
 	{
-
 		if (is_player)
 		{
 			_delegate->getHudLayer()->skill1Button->setLock();
@@ -247,7 +243,6 @@ class Kankuro : public Hero
 
 	void setActionResume()
 	{
-
 		if (is_player)
 		{
 			_delegate->getHudLayer()->skill1Button->unLock();

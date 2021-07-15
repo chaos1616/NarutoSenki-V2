@@ -13,7 +13,6 @@ PauseLayer::~PauseLayer()
 
 bool PauseLayer::init(CCRenderTexture *snapshoot)
 {
-
 	bool bRet = false;
 	do
 	{
@@ -136,7 +135,6 @@ void PauseLayer::onPreload(CCObject *sender)
 
 void PauseLayer::onResume(CCObject *sender)
 {
-
 	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isBGM"))
 	{
 		SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
@@ -148,7 +146,6 @@ void PauseLayer::onResume(CCObject *sender)
 
 void PauseLayer::onBackToMenu(CCObject *sender)
 {
-
 	pauseMenu->setVisible(false);
 	soundMenu->setVisible(false);
 	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/select.ogg");

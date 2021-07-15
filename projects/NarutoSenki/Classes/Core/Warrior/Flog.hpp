@@ -29,7 +29,6 @@ public:
 		bool bRet = false;
 		do
 		{
-
 			CC_BREAK_IF(!CharacterBase::init());
 			setAnchorPoint(ccp(0.5, 0));
 			scheduleUpdate();
@@ -41,7 +40,6 @@ public:
 
 	void setID(CCString *character, CCString *role, CCString *group)
 	{
-
 		setCharacter(character);
 		setRole(role);
 		setGroup(group);
@@ -125,7 +123,6 @@ public:
 
 	void initAction()
 	{
-
 		setIdleAction(createAnimation(idleArray, 5.0, true, false));
 		setWalkAction(createAnimation(walkArray, 10.0, true, false));
 		setHurtAction(createAnimation(hurtArray, 10.0, false, true));
@@ -179,7 +176,6 @@ protected:
 		if (getActionState() == State::IDLE || getActionState() == State::WALK ||
 			getActionState() == State::NATTACK)
 		{
-
 			if (!_randomPosY)
 			{
 				_randomPosY = rand() % 8 + 4;
@@ -200,7 +196,6 @@ protected:
 
 			if (!hasTarget)
 			{
-
 				if (!findEnemy("Flog", 0))
 				{
 

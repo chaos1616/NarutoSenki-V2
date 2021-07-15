@@ -3,7 +3,6 @@
 
 HPBar::HPBar()
 {
-
 	hpBar = nullptr;
 	hpBottom = nullptr;
 };
@@ -52,10 +51,8 @@ void HPBar::changeBar(const char *szImage)
 
 void HPBar::loseHP(float percent)
 {
-
 	if (_delegate->getDelegate()->_isHardCoreGame)
 	{
-
 		const char *gardTower;
 		if (_delegate->getDelegate()->team > 0)
 		{
@@ -93,13 +90,11 @@ void HPBar::loseHP(float percent)
 
 	if (percent <= 0)
 	{
-
 		CharacterBase *_slayer = _delegate->_slayer;
 		CharacterBase *currentSlayer;
 
 		if (strcmp(_delegate->getRole()->getCString(), "Flog") == 0)
 		{
-
 			if (_slayer->getSecMaster() && strcmp(_slayer->getCharacter()->getCString(), "KageHand") != 0 && strcmp(_slayer->getCharacter()->getCString(), "KageHands") != 0)
 			{
 				if (_slayer->getSecMaster()->getController())
@@ -136,7 +131,6 @@ void HPBar::loseHP(float percent)
 
 			if (currentSlayer->getLV() != 6)
 			{
-
 				if (strcmp(currentSlayer->getCharacter()->getCString(), "Naruto") == 0 ||
 					strcmp(currentSlayer->getCharacter()->getCString(), "SageNaruto") == 0)
 				{
@@ -188,7 +182,6 @@ void HPBar::loseHP(float percent)
 		}
 		else if (strcmp(_delegate->getRole()->getCString(), "Tower") == 0)
 		{
-
 			if (_slayer->getSecMaster() && strcmp(_slayer->getCharacter()->getCString(), "KageHand") != 0 && strcmp(_slayer->getCharacter()->getCString(), "KageHands") != 0 && strcmp(_slayer->getCharacter()->getCString(), "SmallSlug") != 0)
 			{
 				if (_slayer->getSecMaster()->getController())
@@ -343,10 +336,8 @@ void HPBar::loseHP(float percent)
 
 		else if ((strcmp(_delegate->getRole()->getCString(), "Player") == 0 || strcmp(_delegate->getRole()->getCString(), "Com") == 0))
 		{
-
 			if (strcmp(_delegate->getCharacter()->getCString(), "Kakuzu") == 0 && _delegate->getDelegate()->_isOugis2Game)
 			{
-
 				bool reieveAble = false;
 				if (atof(_delegate->getCKR2()->getCString()) >= 25000 && _delegate->hearts > 0)
 				{
@@ -491,7 +482,6 @@ void HPBar::loseHP(float percent)
 
 			if (strcmp(currentSlayer->getRole()->getCString(), "Flog") != 0)
 			{
-
 				int realKillNum = to_int(currentSlayer->getKillNum()->getCString()) + 1;
 				currentSlayer->setKillNum(CCString::createWithFormat("%d", realKillNum));
 				_delegate->getDelegate()->setReport(currentSlayer->getCharacter()->getCString(), _delegate->getCharacter()->getCString(), currentSlayer->getKillNum());

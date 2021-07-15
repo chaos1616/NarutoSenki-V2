@@ -23,7 +23,6 @@ LoadLayer::~LoadLayer()
 
 bool LoadLayer::init()
 {
-
 	bool bRet = false;
 	do
 	{
@@ -270,7 +269,6 @@ void LoadLayer::playBGM(float dt)
 
 void LoadLayer::preloadAudio()
 {
-
 	const char *bg_src;
 	if (_isHardCoreMode)
 	{

@@ -24,7 +24,6 @@ class Ino : public Hero
 
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 
@@ -117,7 +116,6 @@ class Ino : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game)
 				{
 					if (abs(sp.x) > 96 || abs(sp.y) > 16)
@@ -207,7 +205,6 @@ class Ino : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -298,7 +295,6 @@ class Ino : public Hero
 
 	void setActionResume()
 	{
-
 		unschedule(schedule_selector(Ino::resumeAction));
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)

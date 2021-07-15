@@ -94,7 +94,6 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 			}
 			else
 			{
-
 				XMLElement *frameEle = actionNodeEle->FirstChildElement();
 
 				while (frameEle)
@@ -142,7 +141,6 @@ int isExisted(void *para, int n_column, char **column_value, char **column_name)
 
 void KTools::encode(std::string &str, int radomKey)
 {
-
 	for (int i = 0; i < str.length(); i++)
 	{
 		int ch = str[i];
@@ -168,7 +166,6 @@ void KTools::decode(std::string &str)
 
 void KTools::initTableInDB()
 {
-
 	sqlite3 *pDB = nullptr;
 	char *errorMsg = nullptr;
 	std::string path = CCFileUtils::sharedFileUtils()->getWritablePath() + "sql.db";
@@ -204,7 +201,6 @@ void KTools::initTableInDB()
 
 		if (errorMsg != nullptr)
 		{
-
 			CCLOG("exec sql %s failed with mgs: %s", sql->getCString(), errorMsg);
 			sqlite3_close(pDB);
 			return;
@@ -222,7 +218,6 @@ void KTools::initTableInDB()
 	{
 		for (int i = 0; i < kHeroNum; i++)
 		{
-
 			std::string name = kHeroList[i];
 
 			int key = rand() % 50 + 40;
@@ -263,7 +258,6 @@ void KTools::initTableInDB()
 
 void KTools::initColumeInDB()
 {
-
 	sqlite3 *pDB = nullptr;
 	char *errorMsg = nullptr;
 	std::string path = CCFileUtils::sharedFileUtils()->getWritablePath() + "sql.db";
@@ -307,7 +301,6 @@ void KTools::dfsFolder(std::string folderPath, int depth /* = 0 */, int type /* 
 
 	if (Handle == -1L)
 	{
-
 		exit(-1);
 	}
 	do
@@ -359,11 +352,9 @@ void KTools::dfsFolder(std::string folderPath, int depth /* = 0 */, int type /* 
 	chdir(folderPath.c_str());
 	while ((entry = readdir(dp)) != nullptr)
 	{
-
 		lstat(entry->d_name, &statbuf);
 		if (S_ISDIR(statbuf.st_mode))
 		{
-
 			if (strcmp(".", entry->d_name) == 0 ||
 				strcmp("..", entry->d_name) == 0)
 				continue;
@@ -385,7 +376,6 @@ void KTools::dfsFolder(std::string folderPath, int depth /* = 0 */, int type /* 
 			}
 			else if (type == 1)
 			{
-
 				//CCLOG("damn3:%s",filename.c_str());
 				SimpleAudioEngine::sharedEngine()->preloadEffect(filename.c_str());
 			}
@@ -398,7 +388,6 @@ void KTools::dfsFolder(std::string folderPath, int depth /* = 0 */, int type /* 
 
 void KTools::prepareFileOGG(const char *listName, bool unload /* =false */)
 {
-
 	if (!CCUserDefault::sharedUserDefault()->getBoolForKey("isPreload"))
 	{
 		return;
@@ -462,7 +451,6 @@ bool KTools::checkPackage()
 
 sqlite3 *KTools::prepareTableInDB()
 {
-
 	sqlite3 *pDB = nullptr;
 	char *errorMsg = nullptr;
 
@@ -480,12 +468,10 @@ sqlite3 *KTools::prepareTableInDB()
 
 bool KTools::saveToSQLite(const char *table /* ="GameRecord"*/, const char *column /* =nullptr */, const char *value /* =nullptr */, bool isBuy /*= false */)
 {
-
 	sqlite3 *pDB = prepareTableInDB();
 	char *errorMsg = nullptr;
 	if (pDB != nullptr)
 	{
-
 		int key = rand() % 60 + 40;
 		std::string str = value;
 
@@ -511,12 +497,10 @@ bool KTools::saveToSQLite(const char *table /* ="GameRecord"*/, const char *colu
 
 CCString *KTools::readFromSQLite(const char *table /* ="GameRecord" */, const char *column /* =nullptr */, const char *value /* =nullptr */)
 {
-
 	sqlite3 *pDB = prepareTableInDB();
 
 	if (pDB != nullptr)
 	{
-
 		char **result;
 		CCString *sql = CCString::createWithFormat("select %s from  GameRecord", "coin");
 		int row = 0;
@@ -537,12 +521,10 @@ CCString *KTools::readFromSQLite(const char *table /* ="GameRecord" */, const ch
 
 CCString *KTools::readSQLite(const char *table, const char *column, const char *value, const char *targetColumn)
 {
-
 	sqlite3 *pDB = prepareTableInDB();
 
 	if (pDB != nullptr)
 	{
-
 		char **result;
 
 		CCString *sql = CCString::createWithFormat(("select %s,%s from  %s "), column, targetColumn, table);
@@ -554,7 +536,6 @@ CCString *KTools::readSQLite(const char *table, const char *column, const char *
 		std::string target;
 		for (int i = 0; i <= row * 2; i++)
 		{
-
 			std::string str = result[i];
 
 			decode(str);
@@ -586,13 +567,11 @@ CCString *KTools::readSQLite(const char *table, const char *column, const char *
 
 void KTools::saveSQLite(const char *table, const char *relatedColumn, const char *value, const char *targetColumn, char *targetValue, bool isPlus)
 {
-
 	char *errorMsg = nullptr;
 	sqlite3 *pDB = prepareTableInDB();
 
 	if (pDB != nullptr)
 	{
-
 		char **result;
 
 		CCString *sql = CCString::createWithFormat(("select %s,%s from  %s "), relatedColumn, targetColumn, table);

@@ -12,7 +12,6 @@ CreditsLayer::~CreditsLayer()
 
 bool CreditsLayer::init()
 {
-
 	bool bRet = false;
 	do
 	{

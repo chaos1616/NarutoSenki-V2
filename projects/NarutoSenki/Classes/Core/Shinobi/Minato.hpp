@@ -5,7 +5,6 @@ class Minato : public Hero
 {
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 
@@ -37,10 +36,8 @@ class Minato : public Hero
 		}
 		if (getHpPercent() < 0.3f)
 		{
-
 			if (_isCanSkill1)
 			{
-
 				CCObject *pObject;
 				bool isMark = false;
 				if (getMonsterArray() && getMonsterArray()->count() > 0)
@@ -122,7 +119,6 @@ class Minato : public Hero
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				CCObject *pObject;
 				bool isMark = false;
 				if (getMonsterArray() && getMonsterArray()->count() > 0)
@@ -233,7 +229,6 @@ class Minato : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -280,7 +275,6 @@ class Minato : public Hero
 		{
 			if (_isCanSkill1)
 			{
-
 				CCObject *pObject;
 				bool isMark = false;
 				if (getMonsterArray() && getMonsterArray()->count() > 0)
@@ -318,15 +312,12 @@ class Minato : public Hero
 
 	void changeAction()
 	{
-
 		if (_skillChangeBuffValue == 17)
 		{
-
 			setSkill1Action(createAnimation(skillSPC1Array, 10.0f, false, true));
 
 			if (is_player)
 			{
-
 				CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Minato_skill1_1.png");
 				_delegate->getHudLayer()->skill1Button->setDisplayFrame(frame);
 				if (_delegate->getHudLayer()->skill1Button->_clickNum < 2)
@@ -337,7 +328,6 @@ class Minato : public Hero
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
-
 			setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 200));
 
 			_nattackRangeX = 16;
@@ -349,7 +339,6 @@ class Minato : public Hero
 
 	void resumeAction(float dt)
 	{
-
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) - 200));
 		_nattackRangeX = 16;
 		_nattackRangeY = 48;

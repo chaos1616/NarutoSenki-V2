@@ -5,7 +5,6 @@ class Hiruzen : public Hero
 {
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_isHardCoreGame)
@@ -83,7 +82,6 @@ class Hiruzen : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored && to_int(_mainTarget->getHP()->getCString()) < 10000 && !_mainTarget->_isCanGear06)
 				{
 					if (abs(sp.x) < 32)
@@ -202,7 +200,6 @@ class Hiruzen : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 

@@ -5,7 +5,6 @@ class Karin : public Hero
 {
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 
@@ -86,7 +85,6 @@ class Karin : public Hero
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
 					if (abs(sp.x) > 96 || abs(sp.y) > 16)
@@ -177,7 +175,6 @@ class Karin : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 

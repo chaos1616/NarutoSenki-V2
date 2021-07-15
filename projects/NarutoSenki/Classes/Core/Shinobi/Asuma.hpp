@@ -85,7 +85,6 @@ class Asuma : public Hero
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000)
 				{
 					changeSide(sp);
@@ -172,7 +171,6 @@ class Asuma : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 

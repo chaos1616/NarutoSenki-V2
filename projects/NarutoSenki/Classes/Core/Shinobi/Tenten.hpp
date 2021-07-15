@@ -5,7 +5,6 @@ class Tenten : public Hero
 {
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_isHardCoreGame)
@@ -52,7 +51,6 @@ class Tenten : public Hero
 			}
 			else
 			{
-
 				if (getPositionX() > 11 * 32)
 					needBack = true;
 			}
@@ -83,7 +81,6 @@ class Tenten : public Hero
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanSkill1)
 				{
 					changeSide(sp);
@@ -187,7 +184,6 @@ class Tenten : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 

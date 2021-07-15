@@ -36,7 +36,6 @@ class Sasuke : public Hero
 
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 
@@ -76,7 +75,6 @@ class Sasuke : public Hero
 			}
 			else
 			{
-
 				if (stepBack())
 					return;
 			}
@@ -118,7 +116,6 @@ class Sasuke : public Hero
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
 					changeSide(sp);
@@ -200,7 +197,6 @@ class Sasuke : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -262,7 +258,6 @@ class Sasuke : public Hero
 
 	inline void changeAction_Sasuke()
 	{
-
 		if (_skillChangeBuffValue == 17)
 		{
 			_isTaunt = true;
@@ -305,7 +300,6 @@ class Sasuke : public Hero
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
-
 			setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
 			setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
 			setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
@@ -387,7 +381,6 @@ class Sasuke : public Hero
 
 	void perform_SasukeImmortal()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 
@@ -427,7 +420,6 @@ class Sasuke : public Hero
 			}
 			else
 			{
-
 				if (stepBack())
 					return;
 			}
@@ -469,7 +461,6 @@ class Sasuke : public Hero
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 					changeSide(sp);
@@ -559,7 +550,6 @@ class Sasuke : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -616,7 +606,6 @@ class Sasuke : public Hero
 
 	inline void changeAction_SasukeImmortal()
 	{
-
 		if (_skillChangeBuffValue == 17)
 		{
 			_isTaunt = true;
@@ -745,7 +734,6 @@ class Sasuke : public Hero
 		}
 		else if (_skillChangeBuffValue && _skillChangeBuffValue == 18)
 		{
-
 			unschedule(schedule_selector(Sasuke::resumeAction_SasukeImmortal));
 
 			setIdleAction(createAnimation(idleArray, 5.0f, true, false));

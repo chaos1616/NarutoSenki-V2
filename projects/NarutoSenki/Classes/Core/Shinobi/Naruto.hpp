@@ -47,7 +47,6 @@ class Naruto : public Hero
 
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_isHardCoreGame)
@@ -75,7 +74,6 @@ class Naruto : public Hero
 			}
 			else
 			{
-
 				if (stepBack())
 					return;
 			}
@@ -117,7 +115,6 @@ class Naruto : public Hero
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
 					changeSide(sp);
@@ -195,7 +192,6 @@ class Naruto : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -248,7 +244,6 @@ class Naruto : public Hero
 
 	inline void changeAction_Naruto()
 	{
-
 		setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
 		setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
 		setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
@@ -276,7 +271,6 @@ class Naruto : public Hero
 
 	inline void resumeAction_Naruto(float dt)
 	{
-
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
@@ -321,7 +315,6 @@ class Naruto : public Hero
 
 	void perform_SageNaruto()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_isHardCoreGame)
@@ -349,7 +342,6 @@ class Naruto : public Hero
 			}
 			else
 			{
-
 				if (stepBack())
 					return;
 			}
@@ -391,7 +383,6 @@ class Naruto : public Hero
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
 					changeSide(sp);
@@ -468,7 +459,6 @@ class Naruto : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -581,7 +571,6 @@ class Naruto : public Hero
 
 	void perform_RikudoNaruto()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_isHardCoreGame)
@@ -654,7 +643,6 @@ class Naruto : public Hero
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
 					changeSide(sp);
@@ -727,7 +715,6 @@ class Naruto : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -806,7 +793,6 @@ class Naruto : public Hero
 
 	inline void resumeAction_RikudoNaruto(float dt)
 	{
-
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));

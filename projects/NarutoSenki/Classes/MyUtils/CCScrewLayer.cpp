@@ -40,7 +40,6 @@ void CCScrewLayer::onExit()
 
 bool CCScrewLayer::ccTouchBegan(CCTouch *touch, CCEvent *event)
 {
-
 	prePosY = 0;
 	return true;
 };
@@ -126,7 +125,6 @@ CCRect CCScrewItem::getRect2()
 
 bool CCScrewItem::containsTouchLocation(CCTouch *touch)
 {
-
 	return getRect2().containsPoint(convertTouchToNodeSpace(touch));
 }
 

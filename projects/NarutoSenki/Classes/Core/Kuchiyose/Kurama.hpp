@@ -5,7 +5,6 @@ class Kurama : public Hero
 {
 	void perform()
 	{
-
 		if (!findEnemy("Hero", 0))
 		{
 			if (!findEnemy("Flog", 0))
@@ -19,7 +18,6 @@ class Kurama : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 			if (_mainTarget->_originY)
@@ -33,7 +31,6 @@ class Kurama : public Hero
 
 			if (abs(sp.x) > 156 || abs(sp.y) > 48)
 			{
-
 				moveDirection = ccpNormalize(sp);
 				walk(moveDirection);
 			}

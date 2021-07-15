@@ -24,7 +24,6 @@ class Lee : public Hero
 		{
 			if (bamen == 5)
 			{
-
 				setWalkSpeed(224);
 				_originSpeed = 224;
 				setWalkAction(createAnimation(walkArray, 10.0f, true, false));
@@ -253,7 +252,6 @@ class Lee : public Hero
 
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 
@@ -391,7 +389,6 @@ class Lee : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -597,7 +594,6 @@ class Lee : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 

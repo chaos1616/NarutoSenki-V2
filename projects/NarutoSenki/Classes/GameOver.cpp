@@ -21,7 +21,6 @@ GameOver::~GameOver()
 
 bool GameOver::init(CCRenderTexture *snapshoot)
 {
-
 	bool bRet = false;
 	do
 	{
@@ -74,7 +73,6 @@ bool GameOver::init(CCRenderTexture *snapshoot)
 
 void GameOver::listResult()
 {
-
 	if (_delegate->_isHardCoreGame)
 	{
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/battle_over1.ogg");
@@ -180,7 +178,6 @@ void GameOver::listResult()
 
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
-
 		Hero *hero = (Hero *)pObject;
 		if (strcmp(hero->getRole()->getCString(), ROLE_CLONE) == 0 ||
 			strcmp(hero->getRole()->getCString(), ROLE_SUMMON) == 0 ||
@@ -252,7 +249,6 @@ void GameOver::listResult()
 
 		if (hero->getGearArray() && hero->getGearArray()->count() > 0)
 		{
-
 			CCObject *pObject;
 			int i = 0;
 			CCARRAY_FOREACH(hero->getGearArray(), pObject)
@@ -294,7 +290,6 @@ void GameOver::listResult()
 
 	if (Cheats <= 10)
 	{
-
 		if (akatsukiKill + konohaKill != to_int(_delegate->getTotalKills()->getCString()))
 		{
 			SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
@@ -406,7 +401,6 @@ void GameOver::listResult()
 
 		if (_isWin && _delegate->_isHardCoreGame)
 		{
-
 			finnalScore = resultScore + float(_delegate->currentPlayer->_flogNum) / 100;
 			CCString *recordString = CCString::createWithFormat("%0.2fPts", finnalScore);
 
@@ -426,7 +420,6 @@ void GameOver::listResult()
 		}
 		if (Cheats <= 10)
 		{
-
 			resultChar = _delegate->currentPlayer->getCharacter();
 			if (strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "SageNaruto") == 0)
 			{
@@ -583,7 +576,6 @@ void GameOver::listResult()
 	}
 	else
 	{
-
 		CCLabelBMFont *version = CCLabelBMFont::create("The Carnival", "Fonts/1.fnt");
 		version->setPosition(ccp(winSize.width / 2 + 94, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 6));
 		version->setScale(0.3f);
@@ -600,7 +592,6 @@ void GameOver::listResult()
 
 void GameOver::onUPloadBtn(CCObject *sender)
 {
-
 	CCTips *tip = CCTips::create("ServerMainten");
 	addChild(tip, 5000);
 
@@ -609,7 +600,6 @@ void GameOver::onUPloadBtn(CCObject *sender)
 
 void GameOver::onBackToMenu(CCObject *sender)
 {
-
 	if (!exitLayer)
 	{
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/select.ogg");
@@ -641,7 +631,6 @@ void GameOver::onBackToMenu(CCObject *sender)
 
 void GameOver::onLeft(CCObject *sender)
 {
-
 	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
 
 	_delegate->_isExiting = true;
@@ -650,7 +639,6 @@ void GameOver::onLeft(CCObject *sender)
 
 void GameOver::onCancel(CCObject *sender)
 {
-
 	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/cancel.ogg");
 	exitLayer->removeFromParent();
 	exitLayer = nullptr;

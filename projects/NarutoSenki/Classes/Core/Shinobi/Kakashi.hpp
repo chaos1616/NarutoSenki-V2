@@ -87,7 +87,6 @@ class Kakashi : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanSkill3)
 				{
 					changeSide(sp);
@@ -155,7 +154,6 @@ class Kakashi : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -211,7 +209,6 @@ class Kakashi : public Hero
 
 	void changeAction()
 	{
-
 		setSkill1Action(createAnimation(skillSPC1Array, 10.0f, false, true));
 		setSkill2Action(createAnimation(skillSPC2Array, 10.0f, false, true));
 		setIdleAction(createAnimation(skillSPC3Array, 5.0f, true, false));
@@ -275,7 +272,6 @@ class Kakashi : public Hero
 
 		if (is_player)
 		{
-
 			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Kakashi_skill1.png");
 			_delegate->getHudLayer()->skill1Button->setDisplayFrame(frame);
 			frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Kakashi_skill2.png");

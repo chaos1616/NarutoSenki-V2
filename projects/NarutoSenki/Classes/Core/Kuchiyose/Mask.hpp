@@ -5,10 +5,8 @@ class Mask : public Hero
 {
 	void perform()
 	{
-
 		if (strcmp(getCharacter()->getCString(), "MaskRaidon") == 0)
 		{
-
 			if (!findEnemy("Flog", 0))
 			{
 				if (!findEnemy("Hero", 0))
@@ -22,7 +20,6 @@ class Mask : public Hero
 		}
 		else
 		{
-
 			if (!findEnemy("Hero", 0))
 			{
 				if (!findEnemy("Flog", 0))
@@ -50,7 +47,6 @@ class Mask : public Hero
 
 			if (strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0)
 			{
-
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
 
@@ -70,7 +66,6 @@ class Mask : public Hero
 			}
 			else
 			{
-
 				if (abs(sp.x) > 96 || abs(sp.y) > 16)
 				{
 

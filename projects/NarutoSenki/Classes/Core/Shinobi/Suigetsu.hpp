@@ -5,7 +5,6 @@ class Suigetsu : public Hero
 {
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_isHardCoreGame)
@@ -60,7 +59,6 @@ class Suigetsu : public Hero
 
 			if (needBack)
 			{
-
 				if (_isCanGear00)
 				{
 					useGear(gear00);
@@ -87,7 +85,6 @@ class Suigetsu : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
@@ -185,7 +182,6 @@ class Suigetsu : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -240,7 +236,6 @@ class Suigetsu : public Hero
 
 	void changeAction()
 	{
-
 		settempAttackValue1(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString())));
 		setnAttackValue(CCString::createWithFormat("%d", 1960));
 
@@ -260,10 +255,8 @@ class Suigetsu : public Hero
 
 	void setActionResume()
 	{
-
 		if (_skillChangeBuffValue)
 		{
-
 			_isArmored = false;
 			if (gettempAttackValue1())
 			{

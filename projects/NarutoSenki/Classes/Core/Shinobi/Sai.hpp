@@ -5,7 +5,6 @@ class Sai : public Hero
 {
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 
@@ -87,7 +86,6 @@ class Sai : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
@@ -194,7 +192,6 @@ class Sai : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -255,7 +252,6 @@ class Sai : public Hero
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
-
 			_isAllAttackLocked = true;
 			_isArmored = true;
 
@@ -277,14 +273,12 @@ class Sai : public Hero
 
 	void resumeAction(float dt)
 	{
-
 		if (_skillChangeBuffValue == 17)
 		{
 			setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
-
 			_isArmored = false;
 			_isAllAttackLocked = false;
 			_originSpeed = 224;
@@ -313,7 +307,6 @@ class Sai : public Hero
 
 	void setActionResume()
 	{
-
 		if (_skillChangeBuffValue)
 		{
 			unschedule(schedule_selector(Sai::resumeAction));
@@ -324,7 +317,6 @@ class Sai : public Hero
 			}
 			else if (_skillChangeBuffValue == 18)
 			{
-
 				_isArmored = false;
 				_isAllAttackLocked = false;
 				_originSpeed = 224;

@@ -65,7 +65,6 @@ CCRect MenuButton::getRect()
 
 bool MenuButton::containsTouchLocation(CCTouch *touch)
 {
-
 	return getRect().containsPoint(convertTouchToNodeSpace(touch));
 }
 
@@ -103,7 +102,6 @@ void MenuButton::ccTouchMoved(CCTouch *touch, CCEvent *event)
 	{
 		if (getBtnType() != HardCore)
 		{
-
 			if (abs(touch->getLocation().y - prePosY) > 16)
 			{
 				if (touch->getLocation().y < prePosY)
@@ -161,7 +159,6 @@ void MenuButton::ccTouchEnded(CCTouch *touch, CCEvent *event)
 
 void MenuButton::playSound()
 {
-
 	SimpleAudioEngine::sharedEngine()->stopAllEffects();
 
 	switch (_btnType)
@@ -423,7 +420,6 @@ void StartMenu::onLoginBtn(CCObject *sender)
 
 void StartMenu::update(float dt)
 {
-
 	if (!noticeLabel)
 	{
 		return;
@@ -445,7 +441,6 @@ void StartMenu::update(float dt)
 
 void StartMenu::setNotice()
 {
-
 	if (!notice_layer)
 	{
 		notice_layer = CCLayer::create();
@@ -511,7 +506,6 @@ void StartMenu::onHardCoreOn(CCObject *sender)
 
 void StartMenu::onHardCoreOff(CCObject *sender)
 {
-
 	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/cancel.ogg");
 	if (hardCoreLayer)
 	{
@@ -523,12 +517,10 @@ void StartMenu::onHardCoreOff(CCObject *sender)
 
 void StartMenu::onHardLayerCallBack()
 {
-
 	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isHardCore") == false)
 	{
 		if (!hardCoreLayer)
 		{
-
 			hardCoreLayer = CCLayer::create();
 
 			CCSprite *confirm_bg = CCSprite::createWithSpriteFrameName("confirm_bg.png");
@@ -657,7 +649,6 @@ void StartMenu::scrollMenu(int posY)
 			}
 			else if (menu->getPositionY() == _pos02 && menu->_isBottom)
 			{
-
 				CCActionInterval *spn = CCMoveTo::create(0.5, ccp(105, _pos03));
 				reorderChild(menu, 1);
 				menu->setVisible(true);
@@ -668,7 +659,6 @@ void StartMenu::scrollMenu(int posY)
 			}
 			else if (menu->getPositionY() == _pos02 && !menu->_isBottom)
 			{
-
 				CCAction *spn = CCSpawn::create(
 					CCMoveTo::create(0.5, ccp(105, _pos01)),
 					CCScaleTo::create(0.5, 0.5),
@@ -711,7 +701,6 @@ void StartMenu::scrollMenu(int posY)
 			}
 			else if (menu->getPositionY() == _pos02 && menu->_isBottom)
 			{
-
 				CCActionInterval *spn = CCMoveTo::create(0.5, ccp(105, _pos01));
 				reorderChild(menu, 2);
 				menu->setVisible(true);

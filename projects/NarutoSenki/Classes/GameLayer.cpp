@@ -540,7 +540,6 @@ void GameLayer::updateGameTime(float dt)
 
 void GameLayer::updateViewPoint(float dt)
 {
-
 	if (!currentPlayer)
 		return;
 	CCPoint playerPoint;
@@ -615,7 +614,6 @@ void GameLayer::removeOugisMark(int type)
 	}
 	else
 	{
-
 		if (_hudLayer->skill5Button)
 		{
 			if (_hudLayer->skill5Button->lockLabel1)
@@ -804,7 +802,6 @@ void GameLayer::onGear()
 
 	if (_isHardCoreGame)
 	{
-
 		CCRenderTexture *snapshoot = CCRenderTexture::create(winSize.width, winSize.height);
 		CCScene *f = CCDirector::sharedDirector()->getRunningScene();
 		CCObject *pObject = f->getChildren()->objectAtIndex(0);
@@ -863,7 +860,6 @@ void GameLayer::onGameOver(bool isWin)
 
 void GameLayer::onLeft()
 {
-
 	CCArray *childArray = getChildren();
 	CCObject *pObject;
 
@@ -1009,7 +1005,6 @@ void GameLayer::checkBackgroundMusic(float dt)
 
 void GameLayer::setOugis(CCNode *sender)
 {
-
 	if (!_hudLayer->ougisLayer)
 	{
 		CCArray *childArray = getChildren();

@@ -5,7 +5,6 @@ class Hidan : public Hero
 {
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		bool _isFound = false;
 		if (getMonsterArray() && getMonsterArray()->count() > 0)
@@ -141,7 +140,6 @@ class Hidan : public Hero
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
@@ -233,7 +231,6 @@ class Hidan : public Hero
 
 		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_MON) != 0 && !_isArmored)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -298,7 +295,6 @@ class Hidan : public Hero
 
 	void changeAction()
 	{
-
 		_isArmored = true;
 		_isTaunt = true;
 		_isOnlySkillLocked = true;
@@ -311,7 +307,6 @@ class Hidan : public Hero
 
 	void resumeAction(float dt)
 	{
-
 		_isArmored = false;
 		_isTaunt = false;
 		_isOnlySkillLocked = false;

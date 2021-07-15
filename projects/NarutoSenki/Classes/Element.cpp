@@ -55,7 +55,6 @@ bool HeroElement::init()
 
 void HeroElement::initAction()
 {
-
 	setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 	setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 	setHurtAction(createAnimation(hurtArray, 10.0f, false, false));
@@ -75,7 +74,6 @@ void HeroElement::initAction()
 
 void HeroElement::setShadows()
 {
-
 	if (!_shadow)
 	{
 		_shadow = CCSprite::createWithSpriteFrameName("shadows.png");
@@ -87,7 +85,6 @@ void HeroElement::setShadows()
 
 void HeroElement::setHPbar()
 {
-
 	if (strcmp(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) != 0)
 	{
 		_hpBar = HPBar::create("hp_bar_r.png");
@@ -111,7 +108,6 @@ void HeroElement::setHPbar()
 
 void HeroElement::changeHPbar()
 {
-
 	if (_exp >= 500 && _level == 1)
 	{
 		_level = 2;
@@ -120,7 +116,6 @@ void HeroElement::changeHPbar()
 		_isCanOugis1 = true;
 		if (strcmp(getRole()->getCString(), "Player") == 0)
 		{
-
 			getDelegate()->setCKRLose(false);
 			getDelegate()->removeOugisMark(1);
 		}
@@ -190,12 +185,10 @@ void HeroElement::checkRefCount(float dt)
 
 void HeroElement::dealloc()
 {
-
 	stopAllActions();
 	_actionState = State::DEAD;
 	if (strcmp(getCharacter()->getCString(), "Minato") != 0)
 	{
-
 		if (getMonsterArray() && getMonsterArray()->count() > 0)
 		{
 			CCObject *pObject;
@@ -242,7 +235,6 @@ void HeroElement::dealloc()
 
 		if (strcmp(getCharacter()->getCString(), "DevaPath") == 0)
 		{
-
 			getMaster()->_skillChangeBuffValue = 0;
 
 			if (strcmp(getMaster()->getRole()->getCString(), "Player") == 0)
@@ -261,10 +253,8 @@ void HeroElement::dealloc()
 		}
 		else if (strcmp(getCharacter()->getCString(), "Sanshouuo") == 0)
 		{
-
 			if (strcmp(getMaster()->getRole()->getCString(), "Player") == 0)
 			{
-
 				if (_delegate->getHudLayer()->skill4Button)
 				{
 					_delegate->getHudLayer()->skill4Button->unLock();
@@ -275,7 +265,6 @@ void HeroElement::dealloc()
 				 strcmp(getCharacter()->getCString(), "MaskRaidon") == 0 ||
 				 strcmp(getCharacter()->getCString(), "MaskKadon") == 0)
 		{
-
 			if (_master->hearts > 0)
 			{
 				if (strcmp(_master->getRole()->getCString(), "Player") == 0)
@@ -289,10 +278,8 @@ void HeroElement::dealloc()
 		}
 		else if (strcmp(getCharacter()->getCString(), "Saso") == 0)
 		{
-
 			if (strcmp(getMaster()->getRole()->getCString(), "Player") == 0)
 			{
-
 				if (_delegate->getHudLayer()->skill5Button)
 				{
 					_delegate->getHudLayer()->skill5Button->unLock();
@@ -304,13 +291,10 @@ void HeroElement::dealloc()
 	}
 	else
 	{
-
 		if (strcmp(getCharacter()->getCString(), "Kankuro") == 0)
 		{
-
 			if (strcmp(getRole()->getCString(), "Player") == 0)
 			{
-
 				if (_delegate->getHudLayer()->skill4Button)
 				{
 					_delegate->getHudLayer()->skill4Button->unLock();
@@ -324,7 +308,6 @@ void HeroElement::dealloc()
 		else if (strcmp(getCharacter()->getCString(), "Shikamaru") == 0 ||
 				 strcmp(getCharacter()->getCString(), "Choji") == 0)
 		{
-
 			CCObject *pObject;
 			CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 			{
@@ -341,7 +324,6 @@ void HeroElement::dealloc()
 		}
 		else if (strcmp(getCharacter()->getCString(), "Hidan") == 0)
 		{
-
 			if (strcmp(getRole()->getCString(), "Player") == 0)
 			{
 				_delegate->getHudLayer()->skill1Button->unLock();
@@ -349,7 +331,6 @@ void HeroElement::dealloc()
 		}
 		if (strcmp(getCharacter()->getCString(), "Minato") != 0)
 		{
-
 			if (getMonsterArray() && getMonsterArray()->count() > 0)
 			{
 				CCObject *pObject;
@@ -387,7 +368,6 @@ void HeroElement::dealloc()
 			}
 			if (!rebornSprite)
 			{
-
 				rebornSprite = CCSprite::create();
 				CCSprite *skullSpirte = CCSprite::createWithSpriteFrameName("skull.png");
 				skullSpirte->setPosition(ccp(0, 0));
@@ -408,7 +388,6 @@ void HeroElement::dealloc()
 
 void HeroElement::countDown(float dt)
 {
-
 	rebornLabelTime -= 1;
 	rebornLabel->setString(CCString::createWithFormat("%d", rebornLabelTime)->getCString());
 }
@@ -501,7 +480,6 @@ bool Monster::init()
 	bool bRet = false;
 	do
 	{
-
 		CC_BREAK_IF(!CharacterBase::init());
 		setAnchorPoint(ccp(0.5, 0));
 		scheduleUpdate();
@@ -513,7 +491,6 @@ bool Monster::init()
 
 void Monster::setID(CCString *character, CCString *role, CCString *group)
 {
-
 	setCharacter(character);
 	setRole(role);
 	setGroup(group);
@@ -578,7 +555,6 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 
 void Monster::initAction()
 {
-
 	setIdleAction(createAnimation(idleArray, 5.0, true, false));
 	setWalkAction(createAnimation(walkArray, 10.0, true, false));
 	setDeadAction(createAnimation(deadArray, 10.0f, false, false));
@@ -598,7 +574,6 @@ void Monster::initAction()
 
 void Monster::setHPbar()
 {
-
 	if (strcmp(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) != 0)
 	{
 		_hpBar = HPBar::create("hp_bar_r.png");
@@ -616,7 +591,6 @@ void Monster::setHPbar()
 
 void Monster::changeHPbar()
 {
-
 	if (_exp >= 500 && _level == 1)
 	{
 		_level = 2;
@@ -667,10 +641,8 @@ void Monster::changeHPbar()
 
 void Monster::setAI(float dt)
 {
-
 	if (strcmp(getCharacter()->getCString(), "Kage") == 0)
 	{
-
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
@@ -682,7 +654,6 @@ void Monster::setAI(float dt)
 				!tempHero->_isArmored &&
 				tempHero->_isVisable)
 			{
-
 				CCPoint sp = ccpSub(tempHero->getPosition(), getPosition());
 				float distanceY = tempHero->_originY ? abs(getPositionY() - tempHero->_originY) : abs(sp.y);
 				float distanceX = _isFlipped ? tempHero->getPositionX() - getPositionX() + getContentSize().width : tempHero->getPositionX() - getPositionX() - getContentSize().width;
@@ -703,7 +674,6 @@ void Monster::setAI(float dt)
 	}
 	else if (strcmp(getCharacter()->getCString(), "Mouse") == 0)
 	{
-
 		if (!findEnemy("Hero", 0))
 		{
 			_mainTarget = nullptr;
@@ -712,7 +682,6 @@ void Monster::setAI(float dt)
 	else if (strcmp(getCharacter()->getCString(), "Spider") == 0 ||
 			 strcmp(getCharacter()->getCString(), "ClayBird") == 0)
 	{
-
 		if (!findEnemy("Hero", 0))
 		{
 			if (!findEnemy("Tower", 0))
@@ -727,7 +696,6 @@ void Monster::setAI(float dt)
 	}
 	else
 	{
-
 		if (!findEnemy("Hero", 0))
 		{
 			if (!findEnemy("Flog", 0))
@@ -741,7 +709,6 @@ void Monster::setAI(float dt)
 
 	if (_mainTarget)
 	{
-
 		CCPoint sp;
 
 		sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
@@ -777,7 +744,6 @@ void Monster::setAI(float dt)
 		}
 		else if (abs(sp.x) > 32 || abs(sp.y) > 16)
 		{
-
 			if (strcmp(getCharacter()->getCString(), "Dogs") != 0 &&
 				strcmp(getCharacter()->getCString(), "Mine") != 0 &&
 				strcmp(getCharacter()->getCString(), "Traps") != 0 &&
@@ -791,10 +757,8 @@ void Monster::setAI(float dt)
 		}
 		else
 		{
-
 			if (strcmp(getCharacter()->getCString(), "Mine") == 0)
 			{
-
 				if (strcmp(_mainTarget->getRole()->getCString(), "Player") == 0 ||
 					strcmp(_mainTarget->getRole()->getCString(), "Com") == 0)
 				{
@@ -831,7 +795,6 @@ void Monster::setAI(float dt)
 
 void Monster::dealloc()
 {
-
 	unschedule(schedule_selector(CharacterBase::setAI));
 	setActionState(State::DEAD);
 	stopAllActions();
@@ -839,7 +802,6 @@ void Monster::dealloc()
 	if (strcmp(getCharacter()->getCString(), "FudonSRK") == 0 ||
 		strcmp(getCharacter()->getCString(), "FudonSRK2") == 0)
 	{
-
 		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc2));
 		CCArray *seqArray = CCArray::create();
 		seqArray->addObject(getDeadAction());
@@ -850,7 +812,6 @@ void Monster::dealloc()
 	}
 	if (strcmp(getCharacter()->getCString(), "HiraishinMark") == 0)
 	{
-
 		_master->_isCanSkill1 = false;
 		_master->setActionResume();
 		_master->scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcoldDown1);
@@ -892,7 +853,6 @@ void Monster::dealloc()
 	}
 	else
 	{
-
 		if (_master && _master->getMonsterArray())
 		{
 			int index = _master->getMonsterArray()->indexOfObject(this);
@@ -906,7 +866,6 @@ void Monster::dealloc()
 	if (strcmp(getCharacter()->getCString(), "KageHand") == 0 ||
 		strcmp(getCharacter()->getCString(), "Kage") == 0)
 	{
-
 		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc2));
 
 		CCArray *seqArray = CCArray::create();
@@ -921,14 +880,12 @@ void Monster::dealloc()
 	}
 	else
 	{
-
 		removeFromParentAndCleanup(true);
 	}
 }
 
 void Monster::setDirectMove(unsigned int length, float delay, bool isReverse)
 {
-
 	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
 							getPositionY());
 	CCPoint direction2 = getPosition();
@@ -949,7 +906,6 @@ void Monster::setDirectMove(unsigned int length, float delay, bool isReverse)
 }
 void Monster::setEaseIn(unsigned int length, float delay)
 {
-
 	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
 							getPositionY());
 	CCActionInterval *mv = CCMoveTo::create(1.0f, direction);
@@ -962,13 +918,11 @@ void Monster::setEaseIn(unsigned int length, float delay)
 
 void Monster::setDirectMoveBy(unsigned int length, float delay)
 {
-
 	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
 							getPositionY());
 
 	if (_mainTarget)
 	{
-
 		CCActionInterval *mv = CCMoveBy::create(0.1f, ccp(_mainTarget->getPositionX() > getPositionX() ? 16 : -16, _mainTarget->getPositionY() > getPositionY() ? 16 : -16));
 
 		runAction(CCRepeatForever::create(mv));
@@ -990,14 +944,12 @@ void Monster::setDirectMoveBy(unsigned int length, float delay)
 
 void Monster::setResume()
 {
-
 	if (getSecMaster())
 	{
 		getSecMaster()->dealloc();
 	}
 	else
 	{
-
 		if (getMaster() && strcmp(getMaster()->getCharacter()->getCString(), "Shikamaru") == 0)
 		{
 			getMaster()->idle();

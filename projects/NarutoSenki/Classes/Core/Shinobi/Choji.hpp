@@ -5,7 +5,6 @@ class Choji : public Hero
 {
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 
@@ -40,7 +39,6 @@ class Choji : public Hero
 		{
 			if (_mainTarget != nullptr)
 			{
-
 				if (stepBack2())
 					return;
 			}
@@ -87,7 +85,6 @@ class Choji : public Hero
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanSkill1 && !_isArmored)
 				{
 					changeSide(sp);
@@ -171,7 +168,6 @@ class Choji : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -232,7 +228,6 @@ class Choji : public Hero
 
 	void changeAction()
 	{
-
 		_isArmored = true;
 		setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
 		setIdleAction(createAnimation(skillSPC4Array, 5.0f, true, false));
@@ -257,7 +252,6 @@ class Choji : public Hero
 
 	void resumeAction(float dt)
 	{
-
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) - 460));
 		_nattackRangeX = 16;
 		_nattackRangeY = 48;

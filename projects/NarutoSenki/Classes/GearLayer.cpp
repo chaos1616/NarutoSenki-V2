@@ -52,13 +52,11 @@ CCRect GearButton::getRect()
 }
 bool GearButton::containsTouchLocation(CCTouch *touch)
 {
-
 	return getRect().containsPoint(convertTouchToNodeSpace(touch));
 }
 
 void GearButton::setBtnType(gearType type, gearbtnType type2, bool isBuyed)
 {
-
 	_gearType = type;
 	_btnType = type2;
 
@@ -118,7 +116,6 @@ bool GearButton::ccTouchBegan(CCTouch *touch, CCEvent *event)
 	// touch area
 	if (!containsTouchLocation(touch) || soIcon)
 	{
-
 		return false;
 	}
 	else
@@ -194,7 +191,6 @@ void ScrewLayer::onExit()
 
 bool ScrewLayer::ccTouchBegan(CCTouch *touch, CCEvent *event)
 {
-
 	prePosY = 0;
 	return true;
 };
@@ -272,7 +268,6 @@ GearLayer::~GearLayer()
 
 bool GearLayer::init(CCRenderTexture *snapshoot)
 {
-
 	bool bRet = false;
 	do
 	{
@@ -382,10 +377,8 @@ void GearLayer::onGearBuy(CCObject *sender)
 
 void GearLayer::updatePlayerGear()
 {
-
 	if (_delegate->currentPlayer->getGearArray() && _delegate->currentPlayer->getGearArray()->count() > 0)
 	{
-
 		if (currentGear_layer != nullptr)
 		{
 			currentGear_layer->removeFromParentAndCleanup(true);
@@ -414,14 +407,12 @@ void GearLayer::updatePlayerGear()
 
 void GearLayer::updateGearList()
 {
-
 	if (!_screwLayer->getGearArray())
 	{
 		_screwLayer->setGearArray(CCArray::create());
 	}
 	else
 	{
-
 		CCObject *pObject;
 		CCARRAY_FOREACH(_screwLayer->getGearArray(), pObject)
 		{

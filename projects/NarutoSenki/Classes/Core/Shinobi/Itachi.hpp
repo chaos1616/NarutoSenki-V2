@@ -5,7 +5,6 @@ class Itachi : public Hero
 {
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 
@@ -86,7 +85,6 @@ class Itachi : public Hero
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
 
@@ -174,7 +172,6 @@ class Itachi : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -236,7 +233,6 @@ class Itachi : public Hero
 
 	void changeAction()
 	{
-
 		setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
 		setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
 		setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
@@ -260,7 +256,6 @@ class Itachi : public Hero
 
 	void resumeAction(float dt)
 	{
-
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));

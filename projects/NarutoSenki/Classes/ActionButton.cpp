@@ -92,7 +92,6 @@ void ActionButton::click()
 {
 	if ((_delegate && isCanClick()))
 	{
-
 		if (!_isDoubleSkill)
 		{
 			beganAnimation();
@@ -122,7 +121,6 @@ bool ActionButton::isCanClick()
 
 	if (_abType != NAttack)
 	{
-
 		if (_isDoubleSkill)
 		{
 			//double click solution
@@ -137,11 +135,9 @@ bool ActionButton::isCanClick()
 		}
 		else
 		{
-
 			// isSkillFinish consider the AttackAction is done or not to prevent the skill invalid release
 			if (_abType == Item1)
 			{
-
 				if (!_delegate->ougisLayer && !_timeCout && !_isLock && _delegate->_delegate->currentPlayer->getActionState() != State::DEAD)
 				{
 					if (_delegate->offCoin(_cost))
@@ -160,7 +156,6 @@ bool ActionButton::isCanClick()
 			}
 			else if (_abType == GearItem)
 			{
-
 				if (!_delegate->ougisLayer && !_timeCout && !_isLock)
 				{
 					if (_gearType == gear06 && _delegate->_delegate->currentPlayer->getActionState() != State::DEAD)
@@ -188,7 +183,6 @@ bool ActionButton::isCanClick()
 			}
 			else if (_abType == OUGIS2)
 			{
-
 				if (_delegate->getSkillFinish() && _delegate->getOugisEnable(true) && !_isLock && !_delegate->ougisLayer)
 				{
 					_delegate->costCKR(25000, true);
@@ -238,7 +232,6 @@ void ActionButton::beganAnimation(bool isLock)
 		}
 		if (getABType() != Item1)
 		{
-
 			cdLabel = CCLabelBMFont::create(CCString::createWithFormat("%d", int(getCD()->intValue()) / 1000)->getCString(), "Fonts/1.fnt");
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
@@ -263,7 +256,6 @@ void ActionButton::beganAnimation(bool isLock)
 
 void ActionButton::setGearType(int tmpGearType)
 {
-
 	CCSprite *gearIcon = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("gear_%02d.png", gearType(tmpGearType))->getCString());
 	gearIcon->setAnchorPoint(ccp(0.5f, 0.5f));
 	gearIcon->setScale(0.85f);
@@ -280,10 +272,8 @@ void ActionButton::setGearType(int tmpGearType)
 
 void ActionButton::updateCDLabel(float dt)
 {
-
 	if (!_delegate->ougisLayer)
 	{
-
 		if (to_int(getTimeCout()->getCString()) > 1000)
 		{
 			int tempCout = to_int(getTimeCout()->getCString()) - 1000;
@@ -363,7 +353,6 @@ void ActionButton::setOugisMark()
 
 void ActionButton::setProgressMark()
 {
-
 	clipper = CCClippingNode::create();
 	CCNode *stencil = CCSprite::createWithSpriteFrameName("icon_bg1.png");
 	stencil->setAnchorPoint(ccp(0, 0));
@@ -427,7 +416,6 @@ void ActionButton::setProgressMark()
 
 	if (getABType() == OUGIS2)
 	{
-
 		if (_delegate->skill4Button)
 		{
 			if (_delegate->skill4Button->proressblinkMask && !_delegate->skill4Button->_isLock)
@@ -473,7 +461,6 @@ void ActionButton::updateProgressMark()
 			}
 			if (proressblinkMask && !_isLock)
 			{
-
 				proressblinkMask->setVisible(true);
 				proressblinkMask->stopAllActions();
 				CCFadeOut *fd2 = CCFadeOut::create(0.5f);
@@ -543,7 +530,6 @@ void ActionButton::updateProgressMark()
 
 			if (proressblinkMask && !_isLock)
 			{
-
 				proressblinkMask->setVisible(true);
 				proressblinkMask->stopAllActions();
 				CCFadeOut *fd2 = CCFadeOut::create(0.5f);
@@ -577,7 +563,6 @@ void ActionButton::updateProgressMark()
 
 void ActionButton::setLock()
 {
-
 	if (markSprite)
 	{
 		markSprite->stopAllActions();
@@ -632,7 +617,6 @@ void ActionButton::unLock()
 
 void ActionButton::createFreezeAnimation()
 {
-
 	CCFiniteTimeAction *to = CCProgressTo::create(0, 99.999f);
 
 	int delay = _coldDown->intValue() / 1000;

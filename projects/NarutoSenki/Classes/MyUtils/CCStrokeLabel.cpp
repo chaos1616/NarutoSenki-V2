@@ -19,7 +19,6 @@ bool CCStrokeLabel::init()
 	bool bRet = false;
 	do
 	{
-
 		float strokeSize = getStrokeSize();
 		// float fontSize = m_fontSize - 2 * strokeSize;
 		// 	m_label = CCLabelTTF::labelWithString(

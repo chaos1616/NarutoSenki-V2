@@ -5,7 +5,6 @@ class NarutoClone : public Hero
 {
 	void perform()
 	{
-
 		if (!findEnemy("Flog", 0))
 		{
 			if (!findEnemy("Hero", 0))
@@ -19,7 +18,6 @@ class NarutoClone : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 			if (_mainTarget->_originY)
@@ -33,7 +31,6 @@ class NarutoClone : public Hero
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
-
 				moveDirection = ccpNormalize(sp);
 				walk(moveDirection);
 			}

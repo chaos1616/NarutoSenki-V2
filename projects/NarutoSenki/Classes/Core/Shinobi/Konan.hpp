@@ -5,7 +5,6 @@ class Konan : public Hero
 {
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_isHardCoreGame)
@@ -74,7 +73,6 @@ class Konan : public Hero
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanSkill1 && !_isArmored)
 				{
 					changeSide(sp);
@@ -191,7 +189,6 @@ class Konan : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -258,7 +255,6 @@ class Konan : public Hero
 
 	void changeAction()
 	{
-
 		_isAllAttackLocked = true;
 		_isArmored = true;
 
@@ -281,7 +277,6 @@ class Konan : public Hero
 
 	void resumeAction(float dt)
 	{
-
 		_isAllAttackLocked = false;
 		_isArmored = false;
 

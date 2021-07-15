@@ -7,7 +7,6 @@ class DevaPath : public Hero
 {
 	void perform()
 	{
-
 		if (!findEnemy("Hero", 0))
 		{
 			if (!findEnemy("Flog", 0))
@@ -27,7 +26,6 @@ class DevaPath : public Hero
 			if (strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0 ||
 				strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 			{
-
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
 
@@ -46,7 +44,6 @@ class DevaPath : public Hero
 			}
 			else
 			{
-
 				if (abs(sp.x) > 256 || abs(sp.y) > 16)
 				{
 

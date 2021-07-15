@@ -7,7 +7,6 @@ MiniIcon::MiniIcon()
 
 MiniIcon::~MiniIcon()
 {
-
 	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "updateMap");
 }
 
@@ -132,7 +131,6 @@ void HudLayer::onExit()
 	CCLayer::onExit();
 	if (_delegate->_isExiting)
 	{
-
 		CC_SAFE_RELEASE(_reportListArray);
 		CC_SAFE_RELEASE(_towerIconArray);
 	}
@@ -143,7 +141,6 @@ bool HudLayer::init()
 	bool bRet = false;
 	do
 	{
-
 		CC_BREAK_IF(!CCLayer::init());
 
 		texUI = CCTextureCache::sharedTextureCache()->addImage("UI.png");
@@ -190,7 +187,6 @@ void HudLayer::initGearButton(const char *charName)
 
 void HudLayer::onKaichang()
 {
-
 	CCArray *tempArray = CCArray::create();
 
 	int i = 1;
@@ -580,7 +576,6 @@ void HudLayer::initHeroInterface()
 
 void HudLayer::addMapIcon()
 {
-
 	CCObject *pObject;
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
@@ -601,10 +596,8 @@ void HudLayer::addMapIcon()
 
 void HudLayer::updateGears()
 {
-
 	if (!gear1Button && !gear2Button && !gear3Button)
 	{
-
 		gear1Button = ActionButton::create("gearbg.png");
 		gear1Button->setPosition(ccp(0, winSize.height - 92));
 		gear1Button->setDelegate(this);
@@ -666,14 +659,12 @@ void HudLayer::updateGears()
 			}
 			else if (tmpGear->intValue() == 0 && getItem3Button()->_gearType == None)
 			{
-
 				getItem3Button()->_gearType = gearType(tmpGear->intValue());
 				getItem3Button()->_isLock = false;
 				getItem3Button()->setVisible(true);
 			}
 			else if (tmpGear->intValue() == 3 && getItem4Button()->_gearType == None)
 			{
-
 				getItem4Button()->setVisible(true);
 				getItem4Button()->_gearType = gearType(tmpGear->intValue());
 				getItem4Button()->_isLock = false;
@@ -695,13 +686,10 @@ void HudLayer::setHPLose(float percent)
 
 void HudLayer::setCKRLose(bool isCRK2)
 {
-
 	if (!isCRK2)
 	{
-
 		if (skill4Button)
 		{
-
 			if (skill4Button->lockLabel1)
 			{
 				skill4Button->ougismarkSprite->setVisible(false);
@@ -723,10 +711,8 @@ void HudLayer::setCKRLose(bool isCRK2)
 	}
 	else
 	{
-
 		if (skill5Button)
 		{
-
 			if (skill5Button->lockLabel1)
 			{
 				skill5Button->ougismarkSprite->setVisible(false);
@@ -750,7 +736,6 @@ void HudLayer::setCKRLose(bool isCRK2)
 
 void HudLayer::setEXPLose(float percent)
 {
-
 	int exp = _delegate->currentPlayer->getEXP();
 	int lvExp = (_delegate->currentPlayer->getLV() - 1) * 500;
 	float Percent = (exp - lvExp) / 500.0 * 100;
@@ -788,7 +773,6 @@ void HudLayer::setTowerState(unsigned int charNO)
 
 void HudLayer::setCoin(const char *value)
 {
-
 	const char *cl = coinLabel->getString();
 	int tempCoin = to_int(cl);
 	tempCoin += to_int(value);
@@ -798,7 +782,6 @@ void HudLayer::setCoin(const char *value)
 
 bool HudLayer::offCoin(const char *value)
 {
-
 	const char *cl = coinLabel->getString();
 	int tempCoin = to_int(cl);
 	if (tempCoin - to_int(value) >= 0)
@@ -871,7 +854,6 @@ void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 	{
 		if (_buffCount == 0)
 		{
-
 			bcdLabel1 = CCLabelBMFont::create(CCString::createWithFormat("%d", (int)buffStayTime)->getCString(), "Fonts/1.fnt");
 			bcdLabel1->setScale(scale);
 			bcdLabel1->setPosition(ccp(5, 5));
@@ -908,7 +890,6 @@ void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 
 void HudLayer::updateBuffDisplay(float dt)
 {
-
 	if (bcdLabel1)
 	{
 		if (to_int(bcdLabel1->getString()) > 0)
@@ -926,7 +907,6 @@ void HudLayer::updateBuffDisplay(float dt)
 
 void HudLayer::updateBuffDisplay2(float dt)
 {
-
 	if (bcdLabel2)
 	{
 		if (to_int(bcdLabel2->getString()) > 0)
@@ -1006,7 +986,6 @@ void HudLayer::setReportCache()
 
 		if (strcmp(isDisplay->getCString(), "True") != 0)
 		{
-
 			CCString *name1 = CCString::create(tempdict->valueForKey("name1")->getCString());
 			CCString *name2 = CCString::create(tempdict->valueForKey("name2")->getCString());
 			CCString *num = CCString::create(tempdict->valueForKey("num")->getCString());
@@ -1099,7 +1078,6 @@ void HudLayer::setReportCache()
 
 	if (_reportListArray)
 	{
-
 		_reportListArray->removeAllObjects();
 		_reportListArray = nullptr;
 	}
@@ -1107,7 +1085,6 @@ void HudLayer::setReportCache()
 
 CCSprite *HudLayer::createSPCReport(const char *killNum, int num)
 {
-
 	bool isBrocast = false;
 	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 	{
@@ -1116,7 +1093,6 @@ CCSprite *HudLayer::createSPCReport(const char *killNum, int num)
 
 	if (num == 1)
 	{
-
 		if (to_int(killNum) < 10)
 		{
 			reportSPCSprite = CCSprite::createWithSpriteFrameName("DoubleKill_rpf.png");
@@ -1144,7 +1120,6 @@ CCSprite *HudLayer::createSPCReport(const char *killNum, int num)
 	}
 	else if (num == 2)
 	{
-
 		if (to_int(killNum) < 10)
 		{
 			reportSPCSprite = CCSprite::createWithSpriteFrameName("TripeKill_rpf.png");
@@ -1182,7 +1157,6 @@ CCSprite *HudLayer::createSPCReport(const char *killNum, int num)
 
 CCSprite *HudLayer::createReport(const char *name1, const char *name2, float &length)
 {
-
 	CCSprite *reportSprite = CCSprite::create();
 
 	CCSprite *slain_p = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_rp.png", name1)->getCString());
@@ -1217,7 +1191,6 @@ CCSprite *HudLayer::createReport(const char *name1, const char *name2, float &le
 	CCSprite *death_p;
 	if (strcmp(name2, "Tower") != 0)
 	{
-
 		death_p = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_rp.png", name2)->getCString());
 		death_p->setAnchorPoint(ccp(0, 0.5f));
 		death_p->setPosition(ccp(death_pf->getPositionX() + death_pf->getContentSize().width, 0));
@@ -1266,7 +1239,6 @@ void HudLayer::gearButtonClick(CCObject *sender)
 
 bool HudLayer::getSkillFinish()
 {
-
 	if (!_delegate->getSkillFinish())
 	{
 		return false;
@@ -1291,7 +1263,6 @@ bool HudLayer::getOugisEnable(bool isCKR2)
 	}
 	else
 	{
-
 		float ckr = atof(_delegate->currentPlayer->getCKR2()->getCString());
 		if (ckr >= 25000)
 		{
@@ -1324,7 +1295,6 @@ void HudLayer::costCKR(int value, bool isCKR2)
 	}
 	else
 	{
-
 		float ckr = atof(_delegate->currentPlayer->getCKR2()->getCString());
 
 		if (ckr - value > 0)
@@ -1343,7 +1313,6 @@ void HudLayer::costCKR(int value, bool isCKR2)
 
 void HudLayer::setOugis(CCString *character, CCString *group)
 {
-
 	if (!ougisLayer)
 	{
 		CCObject *pObject;

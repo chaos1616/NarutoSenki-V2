@@ -21,7 +21,6 @@ public:
 		bool bRet = false;
 		do
 		{
-
 			CC_BREAK_IF(!CharacterBase::init());
 			setAnchorPoint(ccp(0.5, 0.5));
 			scheduleUpdate();
@@ -33,7 +32,6 @@ public:
 
 	void setID(CCString *character, CCString *role, CCString *group)
 	{
-
 		setCharacter(character);
 		setRole(role);
 		setGroup(group);
@@ -97,7 +95,6 @@ public:
 
 	void setHPbar()
 	{
-
 		if (strcmp(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) != 0)
 		{
 			_hpBar = HPBar::create("hp_bar_r.png");

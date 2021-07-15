@@ -32,7 +32,6 @@ public:
 
 	void setID(CCString *character, CCString *role, CCString *group)
 	{
-
 		setCharacter(character);
 		setRole(role);
 		setGroup(group);
@@ -76,7 +75,6 @@ public:
 
 	void initAction()
 	{
-
 		setIdleAction(createAnimation(idleArray, 5.0, true, false));
 		setNAttackAction(createAnimation(nattackArray, 10.0, true, false));
 		if (strcmp(getCharacter()->getCString(), "Amaterasu") == 0 ||
@@ -109,7 +107,6 @@ public:
 
 	void setEaseIn(unsigned int length, float delay)
 	{
-
 		CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
 								getPositionY());
 		CCActionInterval *mv = CCMoveTo::create(1.0f, direction);
@@ -128,12 +125,10 @@ public:
 protected:
 	void dealloc()
 	{
-
 		stopAllActions();
 
 		if (strcmp(getCharacter()->getCString(), "Amaterasu") == 0)
 		{
-
 			CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Bullet::dealloc2));
 			CCArray *seqArray = CCArray::create();
 			seqArray->addObject(getDeadAction());
@@ -143,10 +138,8 @@ protected:
 		}
 		else
 		{
-
 			if (strcmp(getCharacter()->getCString(), "HiraishinKunai") == 0)
 			{
-
 				if (_master->getActionState() == State::SATTACK)
 				{
 					_master->setActionState(State::NATTACK);
@@ -171,7 +164,6 @@ protected:
 
 	void dealloc2()
 	{
-
 		removeFromParentAndCleanup(true);
 	}
 };

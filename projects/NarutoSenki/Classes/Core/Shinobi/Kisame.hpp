@@ -5,7 +5,6 @@ class Kisame : public Hero
 {
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_isHardCoreGame)
@@ -28,7 +27,6 @@ class Kisame : public Hero
 		{
 			if (_mainTarget != nullptr)
 			{
-
 				if (stepBack2())
 					return;
 			}
@@ -79,7 +77,6 @@ class Kisame : public Hero
 			}
 			if ((_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK) && (abs(sp.x) < 128 || _isCanGear00))
 			{
-
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_skillChangeBuffValue)
 				{
 
@@ -190,7 +187,6 @@ class Kisame : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -250,7 +246,6 @@ class Kisame : public Hero
 
 	void changeAction()
 	{
-
 		settempAttackValue1(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString())));
 		setnAttackValue(CCString::createWithFormat("%d", 660));
 
@@ -271,10 +266,8 @@ class Kisame : public Hero
 
 	void setActionResume()
 	{
-
 		if (_skillChangeBuffValue)
 		{
-
 			if (gettempAttackValue1())
 			{
 				setnAttackValue(CCString::createWithFormat("%d", to_int(gettempAttackValue1()->getCString())));

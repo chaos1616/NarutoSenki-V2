@@ -5,7 +5,6 @@ class SageNarutoClone : public Hero
 {
 	void perform()
 	{
-
 		if (!findEnemy("Hero", 0))
 		{
 			if (!findEnemy("Flog", 0))
@@ -33,7 +32,6 @@ class SageNarutoClone : public Hero
 			if (strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0 ||
 				strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 			{
-
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
 
@@ -53,7 +51,6 @@ class SageNarutoClone : public Hero
 			}
 			else
 			{
-
 				if (abs(sp.x) > 128 || abs(sp.y) > 16)
 				{
 

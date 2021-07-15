@@ -5,7 +5,6 @@ class Akamaru : public Hero
 {
 	void perform()
 	{
-
 		if (!findEnemy("Hero", winSize.width / 2 - 32, true))
 		{
 			if (!findEnemy("Flog", winSize.width / 2 - 32, true))
@@ -31,7 +30,6 @@ class Akamaru : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint sp;
 			if (_mainTarget->_originY)
 			{
@@ -44,7 +42,6 @@ class Akamaru : public Hero
 
 			if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 			{
-
 				if (abs(sp.x) > 48 || abs(sp.y) > 32)
 				{
 					moveDirection = ccpNormalize(sp);
@@ -62,7 +59,6 @@ class Akamaru : public Hero
 			}
 			else
 			{
-
 				if (abs(sp.x) > 48 || abs(sp.y) > 32)
 				{
 
@@ -102,14 +98,12 @@ class Akamaru : public Hero
 
 		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > winSize.width / 2 - 64)
 		{
-
 			CCPoint moveDirection = ccpNormalize(ccpSub(_master->getPosition(), getPosition()));
 			walk(moveDirection);
 			return;
 		}
 		else
 		{
-
 			stepOn();
 		}
 	}
@@ -131,7 +125,6 @@ class Akamaru : public Hero
 
 	void resumeAction(float dt)
 	{
-
 		if (_powerUPBuffValue)
 		{
 			setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) - _powerUPBuffValue));

@@ -186,7 +186,6 @@ class Chiyo : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -236,7 +235,6 @@ class Chiyo : public Hero
 
 	void changeAction()
 	{
-
 		if (is_player)
 		{
 			_delegate->getHudLayer()->skill1Button->setLock();
@@ -247,7 +245,6 @@ class Chiyo : public Hero
 
 	void setActionResume()
 	{
-
 		if (is_player)
 		{
 			_delegate->getHudLayer()->skill1Button->unLock();
@@ -259,7 +256,6 @@ class Chiyo : public Hero
 
 	Hero *createClone(unsigned int cloneTime)
 	{
-
 		if (!_monsterArray)
 		{
 			_monsterArray = CCArray::create();

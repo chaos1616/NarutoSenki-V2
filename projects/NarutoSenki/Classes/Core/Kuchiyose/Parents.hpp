@@ -5,10 +5,8 @@ class Parents : public Hero
 {
 	void perform()
 	{
-
 		if (!findEnemy("Hero", winSize.width / 2 - 32, true))
 		{
-
 			if (!findEnemy("Flog", 48, true))
 			{
 				if (!findEnemy("Tower", 48, true))
@@ -31,13 +29,11 @@ class Parents : public Hero
 		}
 		if (_mainTarget)
 		{
-
 			CCPoint sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
 								ccp(getPositionX(), _originY ? _originY : getPositionY()));
 
 			if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 || strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0)
 			{
-
 				if (abs(sp.x) > 48 || abs(sp.y) > 32)
 				{
 				}
@@ -117,7 +113,6 @@ class Parents : public Hero
 
 	void changeAction()
 	{
-
 		settempAttackValue1(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString())));
 		setnAttackValue(CCString::createWithFormat("%d", 2460));
 
@@ -141,10 +136,8 @@ class Parents : public Hero
 
 	void setActionResume()
 	{
-
 		if (_skillChangeBuffValue)
 		{
-
 			if (gettempAttackValue1())
 			{
 				setnAttackValue(CCString::createWithFormat("%d", to_int(gettempAttackValue1()->getCString())));

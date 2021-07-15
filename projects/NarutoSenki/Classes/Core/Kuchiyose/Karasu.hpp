@@ -5,7 +5,6 @@ class Karasu : public Hero
 {
 	void perform()
 	{
-
 		if (!findEnemy("Hero", winSize.width / 2 - 32, true))
 		{
 			if (!findEnemy("Flog", winSize.width / 2 - 32, true))
@@ -38,7 +37,6 @@ class Karasu : public Hero
 
 			if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
 			{
-
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
 					if (_master->getActionState() == State::IDLE ||
@@ -68,7 +66,6 @@ class Karasu : public Hero
 			}
 			else
 			{
-
 				if (abs(sp.x) > 32 || abs(sp.y) > 16)
 				{
 					if (_master->getActionState() == State::IDLE ||

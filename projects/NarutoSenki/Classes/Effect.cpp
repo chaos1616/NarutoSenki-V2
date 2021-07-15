@@ -119,7 +119,6 @@ bool Effect::init(const char *name, CCObject *attacker)
 	}
 	else if (strcmp(name, "stun") == 0)
 	{
-
 		initWithSpriteFrameName("smk_01.png");
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(ccp(at->getPositionX(), at->getPositionY() + at->getContentSize().height - 2));
@@ -128,7 +127,6 @@ bool Effect::init(const char *name, CCObject *attacker)
 	}
 	else if (strcmp(name, "DarkFlame") == 0)
 	{
-
 		initWithSpriteFrameName("DarkFlame_Effect_01.png");
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(ccp(at->getPositionX(), at->getPositionY()));
@@ -283,7 +281,6 @@ CCAction *Effect::createEffectAnimation(const char *file, int frameCount, float 
 	}
 	else
 	{
-
 		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Effect::removeEffect));
 		seqArray->addObject(call);
 		seq = CCSequence::create(seqArray);
@@ -294,7 +291,6 @@ CCAction *Effect::createEffectAnimation(const char *file, int frameCount, float 
 
 CCAction *Effect::createFontAnimation()
 {
-
 	CCDelayTime *delay = CCDelayTime::create(0.3f);
 	CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Effect::removeFontEffect));
 	CCAction *seq = CCSequence::create(delay, call, nullptr);

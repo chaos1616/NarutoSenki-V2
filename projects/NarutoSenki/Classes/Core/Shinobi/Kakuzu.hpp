@@ -53,11 +53,9 @@ class Kakuzu : public Hero
 
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 		{
-
 			if (getHpPercent() > 0.3f && !_isControlled && _isCanSkill1)
 			{
 				CCObject *pObject;
@@ -197,7 +195,6 @@ class Kakuzu : public Hero
 			}
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanSkill3)
 				{
 					changeSide(sp);
@@ -268,7 +265,6 @@ class Kakuzu : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -319,7 +315,6 @@ class Kakuzu : public Hero
 
 	void changeAction()
 	{
-
 		setBuffEffect("jdBuff");
 	}
 
@@ -401,7 +396,6 @@ class Kakuzu : public Hero
 
 			if (hearts < 1 || countMon >= 2)
 			{
-
 				if (is_player)
 				{
 					if (_delegate->getHudLayer()->skill4Button)

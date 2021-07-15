@@ -77,7 +77,6 @@ void JoyStick::ccTouchEnded(CCTouch *touch, CCEvent *event)
 
 void JoyStick::updateDirectionForTouchLocation(CCTouch *touch)
 {
-
 	CCPoint startPoint = ccp(32 + getContentSize().width / 2,
 							 32 + getContentSize().height / 2);
 	CCPoint curPoint = touch->getLocation();

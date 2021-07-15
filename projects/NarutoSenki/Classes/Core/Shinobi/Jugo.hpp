@@ -5,7 +5,6 @@ class Jugo : public Hero
 {
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 
@@ -87,7 +86,6 @@ class Jugo : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_skillChangeBuffValue)
 				{
 					changeSide(sp);
@@ -184,7 +182,6 @@ class Jugo : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -234,7 +231,6 @@ class Jugo : public Hero
 
 	void changeAction()
 	{
-
 		settempAttackValue1(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString())));
 		setnAttackValue(CCString::createWithFormat("%d", 1960));
 
@@ -255,10 +251,8 @@ class Jugo : public Hero
 
 	void setActionResume()
 	{
-
 		if (_skillChangeBuffValue)
 		{
-
 			if (gettempAttackValue1())
 			{
 				setnAttackValue(CCString::createWithFormat("%d", to_int(gettempAttackValue1()->getCString())));

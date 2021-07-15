@@ -6,7 +6,6 @@ class Kiba : public Hero
 {
 	void perform()
 	{
-
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_isHardCoreGame)
@@ -59,7 +58,6 @@ class Kiba : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_powerUPBuffValue && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
 					if (abs(sp.x) > 32 || abs(sp.y) > 32)
@@ -148,7 +146,6 @@ class Kiba : public Hero
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp;
 
@@ -170,7 +167,6 @@ class Kiba : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-
 				if (_isCanSkill1 && _isArmored)
 				{
 					attack(SKILL1);
@@ -248,7 +244,6 @@ class Kiba : public Hero
 
 	void resumeAction(float dt)
 	{
-
 		if (_powerUPBuffValue)
 		{
 			setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) - _powerUPBuffValue));
@@ -268,7 +263,6 @@ class Kiba : public Hero
 
 	void setActionResume()
 	{
-
 		if (_powerUPBuffValue)
 		{
 			unschedule(schedule_selector(Kiba::resumeAction));
@@ -304,7 +298,6 @@ class Kiba : public Hero
 
 	Hero *createClone(unsigned int cloneTime)
 	{
-
 		if (!_monsterArray)
 		{
 			_monsterArray = CCArray::create();
