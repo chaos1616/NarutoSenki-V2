@@ -1066,7 +1066,7 @@ int GameLayer::getMapCount()
 	auto fileUtils = CCFileUtils::sharedFileUtils();
 	while (fileUtils->isFileExist(CCString::createWithFormat("Tiles/%d.tmx", index++)->getCString()))
 		mapCount++;
-	CCLOG("Found %d maps", mapCount);
+	CCLOG("===== Found %d maps =====", mapCount);
 	return mapCount;
 }
 
