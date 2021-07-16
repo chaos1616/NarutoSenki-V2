@@ -150,9 +150,8 @@
       <GenerateMapFile>true</GenerateMapFile>
     </Link>
     <PostBuildEvent>
-      <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
-if not exist "$(SolutionDir)projects\NarutoSenki\__BIN__" mkdir "$(SolutionDir)projects\NarutoSenki\__BIN__"
-xcopy /Y /Q "$(SolutionDir)$(Configuration).win32\*.dll" "$(SolutionDir)projects\NarutoSenki__BIN__"
+      <Command>if not exist "$(SolutionDir)projects\NarutoSenki\__BIN__" mkdir "$(SolutionDir)projects\NarutoSenki\__BIN__"
+xcopy /Y /Q "$(SolutionDir)$(Configuration).win32\*.dll" "$(SolutionDir)projects\NarutoSenki\__BIN__"
 xcopy /Y /Q "$(SolutionDir)$(Configuration).win32\*.exe" "$(SolutionDir)projects\NarutoSenki\__BIN__"
 </Command>
     </PostBuildEvent>
