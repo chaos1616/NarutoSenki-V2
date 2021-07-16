@@ -36,12 +36,16 @@ pushd ".\Release.win32\"
 
 set CC_BIN=NarutoSenki.exe
 set CC_RES=..\projects\NarutoSenki\Resources
+set CC_LUA=..\projects\NarutoSenki\lua
 
 echo./*
 echo. * Copy resources
 echo. */
 echo.
-xcopy  /E /Y /Q "%CC_RES%" .
+xcopy /H /E /Y /Q "%CC_RES%" .\Data
+xcopy /D /E /Y /Q "%CC_RES%" ..\projects\NarutoSenki\__BIN__\Data
+xcopy /E /Y /Q .\*.dll ..\projects\NarutoSenki\__BIN__
+xcopy /E /Y /Q .\*.exe ..\projects\NarutoSenki\__BIN__
 
 if not exist "%CC_BIN%" (
     echo Can't find the binary "NarutoSenki.exe", is there build error?
