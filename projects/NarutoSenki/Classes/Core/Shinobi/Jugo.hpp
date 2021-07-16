@@ -107,7 +107,6 @@ class Jugo : public Hero
 				}
 				else if (abs(sp.x) < 128)
 				{
-
 					if (abs(sp.x) > 96 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);
@@ -117,7 +116,6 @@ class Jugo : public Hero
 
 					if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_skillChangeBuffValue && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 					{
-
 						if (abs(sp.x) > 32 || abs(sp.y) > 32)
 						{
 							moveDirection = ccpNormalize(sp);
@@ -129,7 +127,6 @@ class Jugo : public Hero
 					}
 					else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_skillChangeBuffValue)
 					{
-
 						if (abs(sp.x) > 32 || abs(sp.y) > 32)
 						{
 							moveDirection = ccpNormalize(sp);
@@ -143,7 +140,6 @@ class Jugo : public Hero
 					}
 					else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_skillChangeBuffValue)
 					{
-
 						changeSide(sp);
 						attack(SKILL2);
 						return;
@@ -155,7 +151,6 @@ class Jugo : public Hero
 					}
 					else
 					{
-
 						if (abs(sp.x) > 48 || abs(sp.y) > 32)
 						{
 							moveDirection = ccpNormalize(sp);
@@ -164,7 +159,6 @@ class Jugo : public Hero
 						}
 						else
 						{
-
 							changeSide(sp);
 							attack(NAttack);
 						}

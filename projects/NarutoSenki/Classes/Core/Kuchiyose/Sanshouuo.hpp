@@ -85,7 +85,6 @@ class Sanshouuo : public Hero
 				}
 				else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 				{
-
 					if (_isCanSkill1 && _mainTarget->getGP() < 5000)
 					{
 						changeSide(sp);

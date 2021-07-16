@@ -199,7 +199,6 @@ class Deidara : public Hero
 					_isCanOugis2 &&
 					!_isControlled && _delegate->_isOugis2Game && !_isArmored && isBaseDanger)
 				{
-
 					changeSide(sp);
 					attack(OUGIS2);
 				}

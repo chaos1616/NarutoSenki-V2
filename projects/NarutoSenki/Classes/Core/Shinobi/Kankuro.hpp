@@ -150,7 +150,6 @@ class Kankuro : public Hero
 				}
 				else if (abs(sp.x) < 128)
 				{
-
 					if (abs(sp.x) > 32 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);

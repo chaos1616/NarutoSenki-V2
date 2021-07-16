@@ -475,7 +475,6 @@ void GameOver::listResult()
 
 					CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 					{
-
 						Hero *hero = (Hero *)pObject;
 						if (strcmp(hero->getRole()->getCString(), ROLE_CLONE) == 0 ||
 							strcmp(hero->getRole()->getCString(), "Player") == 0 ||
@@ -495,7 +494,6 @@ void GameOver::listResult()
 
 						if (strcmp(hero->getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) == 0)
 						{
-
 							CCString *winNum = KTools::readSQLite("CharRecord", "name", hero->getCharacter()->getCString(), "column1");
 							int tempWin = 0;
 							if (resultScore >= 140)
@@ -531,7 +529,6 @@ void GameOver::listResult()
 					}
 					else if (to_int(recordHour) == _hour)
 					{
-
 						if (to_int(recordMinute) > _minute)
 						{
 							isNewRecord = true;
@@ -549,7 +546,6 @@ void GameOver::listResult()
 						}
 						else
 						{
-
 							isNewRecord = false;
 						}
 					}

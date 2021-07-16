@@ -5,7 +5,6 @@
 
 class CCStrokeLabel : public cocos2d::CCNode
 {
-
 public:
 	virtual bool init();
 	static CCStrokeLabel *create(cocos2d::CCLabelTTF *labelTTF, cocos2d::ccColor3B fullColor, cocos2d::ccColor3B StrokeColor, float strokeSize);

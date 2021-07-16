@@ -75,10 +75,8 @@ class Tobi : public Hero
 			{
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
-
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
-
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
 						return;
@@ -110,17 +108,14 @@ class Tobi : public Hero
 					}
 					else
 					{
-
 						idle();
 						return;
 					}
 				}
 				else if (abs(sp.x) < 128)
 				{
-
 					if (abs(sp.x) > 64 || abs(sp.y) > 32)
 					{
-
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
 						return;
@@ -133,7 +128,6 @@ class Tobi : public Hero
 
 					if (_isCanSkill2 && _mainTarget->getGP() < 5000 && (_mainTarget->getHpPercent() < 0.5f || !_skillChangeBuffValue))
 					{
-
 						changeSide(sp);
 						attack(SKILL2);
 					}
@@ -144,7 +138,6 @@ class Tobi : public Hero
 					}
 					else
 					{
-
 						if (abs(sp.x) > 32 || abs(sp.y) > 32)
 						{
 							moveDirection = ccpNormalize(sp);
@@ -206,7 +199,6 @@ class Tobi : public Hero
 				}
 				else
 				{
-
 					if (_isCanGear03)
 					{
 						useGear(gear03);

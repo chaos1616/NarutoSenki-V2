@@ -26,7 +26,6 @@ class AnimalPath : public Hero
 			{
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
-
 					moveDirection = ccpNormalize(sp);
 					walk(moveDirection);
 				}
@@ -34,10 +33,8 @@ class AnimalPath : public Hero
 				{
 					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 					{
-
 						if (_isCanSkill1 && strcmp(_mainTarget->getRole()->getCString(), "Tower") != 0)
 						{
-
 							attack(SKILL1);
 							scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcoldDown1);
 						}
@@ -54,24 +51,20 @@ class AnimalPath : public Hero
 			{
 				if (abs(sp.x) > 256 || abs(sp.y) > 32)
 				{
-
 					moveDirection = ccpNormalize(sp);
 					walk(moveDirection);
 					return;
 				}
 				else if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
-
 					moveDirection = ccpNormalize(sp);
 					walk(moveDirection);
 					return;
 				}
 				else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 				{
-
 					if (_isCanSkill1)
 					{
-
 						attack(SKILL1);
 						scheduleOnce(schedule_selector(CharacterBase::enableSkill1), 10.0f);
 					}

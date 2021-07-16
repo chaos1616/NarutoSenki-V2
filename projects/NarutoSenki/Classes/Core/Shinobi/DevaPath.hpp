@@ -28,7 +28,6 @@ class DevaPath : public Hero
 			{
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
-
 					moveDirection = ccpNormalize(sp);
 					walk(moveDirection);
 				}
@@ -46,21 +45,18 @@ class DevaPath : public Hero
 			{
 				if (abs(sp.x) > 256 || abs(sp.y) > 16)
 				{
-
 					moveDirection = ccpNormalize(sp);
 					walk(moveDirection);
 					return;
 				}
 				else if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
-
 					moveDirection = ccpNormalize(sp);
 					walk(moveDirection);
 					return;
 				}
 				else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 				{
-
 					bool isHaveKuilei1 = false;
 					bool isHaveKuilei2 = false;
 
@@ -84,20 +80,17 @@ class DevaPath : public Hero
 
 					if (_isCanSkill1 && !isHaveKuilei1)
 					{
-
 						attack(SKILL1);
 						scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcoldDown1);
 					}
 					else if (_isCanSkill2 && !isHaveKuilei2)
 					{
-
 						changeSide(sp);
 						attack(SKILL2);
 						scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sattackcoldDown2);
 					}
 					else
 					{
-
 						changeSide(sp);
 						attack(NAttack);
 					}

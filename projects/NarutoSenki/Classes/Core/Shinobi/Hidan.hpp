@@ -38,7 +38,6 @@ class Hidan : public Hero
 					{
 						if (_isArmored)
 						{
-
 							CCObject *pObject;
 							CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 							{
@@ -160,7 +159,6 @@ class Hidan : public Hero
 				}
 				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
-
 					if (abs(sp.x) > 56 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);
@@ -181,7 +179,6 @@ class Hidan : public Hero
 					}
 					else
 					{
-
 						idle();
 						return;
 					}

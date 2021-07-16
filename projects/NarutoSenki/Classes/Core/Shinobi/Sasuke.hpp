@@ -131,7 +131,6 @@ class Sasuke : public Hero
 					}
 					else
 					{
-
 						idle();
 						return;
 					}
@@ -144,7 +143,6 @@ class Sasuke : public Hero
 				}
 				else if (abs(sp.x) < 128)
 				{
-
 					if (abs(sp.x) > 96 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);
@@ -469,7 +467,6 @@ class Sasuke : public Hero
 				}
 				else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
-
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);
@@ -490,7 +487,6 @@ class Sasuke : public Hero
 					}
 					else
 					{
-
 						idle();
 						return;
 					}

@@ -46,7 +46,6 @@ class Karasu : public Hero
 						_master->getActionState() == State::OATTACK ||
 						_master->getActionState() == State::O2ATTACK)
 					{
-
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
 						return;
@@ -84,15 +83,12 @@ class Karasu : public Hero
 						 getActionState() == State::WALK ||
 						 getActionState() == State::NATTACK)
 				{
-
 					if (_master->getActionState() == State::IDLE ||
 						_master->getActionState() == State::WALK ||
 						_master->getActionState() == State::NATTACK)
 					{
-
 						if (_master->_isCanSkill2 && _mainTarget->getGP() < 5000 && (_master->_isControlled || _master->_isAI == true))
 						{
-
 							changeSide(sp);
 
 							if (strcmp(_master->getRole()->getCString(), "Player") != 0)
@@ -106,7 +102,6 @@ class Karasu : public Hero
 						}
 						else
 						{
-
 							changeSide(sp);
 							attack(NAttack);
 						}

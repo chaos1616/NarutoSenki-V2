@@ -79,7 +79,6 @@ class Kisame : public Hero
 			{
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_skillChangeBuffValue)
 				{
-
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
 						if (_isCanGear00)
@@ -98,7 +97,6 @@ class Kisame : public Hero
 				}
 				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_skillChangeBuffValue)
 				{
-
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
 						if (_isCanGear00)
@@ -123,7 +121,6 @@ class Kisame : public Hero
 					}
 					else
 					{
-
 						idle();
 						return;
 					}
@@ -142,7 +139,6 @@ class Kisame : public Hero
 				}
 				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_skillChangeBuffValue)
 				{
-
 					if (abs(sp.x) > 96 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);
@@ -158,7 +154,6 @@ class Kisame : public Hero
 				{
 					if (abs(sp.x) > 64 || abs(sp.y) > 32)
 					{
-
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
 						return;

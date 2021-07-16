@@ -283,7 +283,6 @@ void HPBar::loseHP(float percent)
 				if (strcmp(currentSlayer->getGroup()->getCString(), otherSlayer->getGroup()->getCString()) == 0 &&
 					strcmp(currentSlayer->getCharacter()->getCString(), otherSlayer->getCharacter()->getCString()) != 0)
 				{
-
 					if (otherSlayer->getLV() != 6)
 					{
 						otherSlayer->setEXP(otherSlayer->getEXP() + 250);
@@ -292,7 +291,6 @@ void HPBar::loseHP(float percent)
 
 					if (strcmp(otherSlayer->getRole()->getCString(), "Player") == 0)
 					{
-
 						if (_delegate->getDelegate()->_isHardCoreGame)
 						{
 							if (to_int(_delegate->getMaxHP()->getCString()) > 40000)
@@ -333,7 +331,6 @@ void HPBar::loseHP(float percent)
 				}
 			}
 		}
-
 		else if ((strcmp(_delegate->getRole()->getCString(), "Player") == 0 || strcmp(_delegate->getRole()->getCString(), "Com") == 0))
 		{
 			if (strcmp(_delegate->getCharacter()->getCString(), "Kakuzu") == 0 && _delegate->getDelegate()->_isOugis2Game)
@@ -356,7 +353,6 @@ void HPBar::loseHP(float percent)
 
 				if (reieveAble && _delegate->getActionState() != State::O2ATTACK && !_delegate->_isInvincible && _delegate->getActionState() != State::DEAD)
 				{
-
 					if (_delegate->_isSticking)
 					{
 						_delegate->_isSticking = false;
@@ -371,7 +367,6 @@ void HPBar::loseHP(float percent)
 
 					if (strcmp(_delegate->getRole()->getCString(), "Player") == 0)
 					{
-
 						_delegate->getDelegate()->getHudLayer()->skill5Button->unLock();
 						_delegate->setActionState(State::IDLE);
 						_delegate->getDelegate()->setSkillFinish(true);
@@ -380,10 +375,8 @@ void HPBar::loseHP(float percent)
 					}
 					else
 					{
-
 						if (_delegate->_isCanOugis2)
 						{
-
 							_delegate->setActionState(State::IDLE);
 							_delegate->attack(OUGIS2);
 						}
@@ -515,7 +508,6 @@ void HPBar::loseHP(float percent)
 
 				if (currentSlayer->getLV() != 6)
 				{
-
 					if (strcmp(currentSlayer->getCharacter()->getCString(), "Naruto") == 0 ||
 						strcmp(currentSlayer->getCharacter()->getCString(), "SageNaruto") == 0)
 					{
@@ -524,7 +516,6 @@ void HPBar::loseHP(float percent)
 					}
 					else
 					{
-
 						currentSlayer->setEXP(currentSlayer->getEXP() + 100);
 						currentSlayer->changeHPbar();
 					}
@@ -532,7 +523,6 @@ void HPBar::loseHP(float percent)
 
 				if (strcmp(currentSlayer->getRole()->getCString(), "Player") == 0)
 				{
-
 					if (strcmp(_delegate->getCharacter()->getCString(), Guardian_Han) == 0 ||
 						strcmp(_delegate->getCharacter()->getCString(), Guardian_Roshi) == 0)
 					{
@@ -584,7 +574,6 @@ void HPBar::loseHP(float percent)
 				if (strcmp(currentSlayer->getGroup()->getCString(), otherSlayer->getGroup()->getCString()) == 0 &&
 					strcmp(currentSlayer->getCharacter()->getCString(), otherSlayer->getCharacter()->getCString()) != 0)
 				{
-
 					if (otherSlayer->getLV() != 6)
 					{
 						otherSlayer->setEXP(otherSlayer->getEXP() + 25);

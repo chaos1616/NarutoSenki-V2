@@ -208,7 +208,6 @@ class Kakuzu : public Hero
 				}
 				else if (_isCanSkill2)
 				{
-
 					if (abs(sp.x) > 96 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);
@@ -248,7 +247,6 @@ class Kakuzu : public Hero
 					}
 					else
 					{
-
 						changeSide(sp);
 						attack(NAttack);
 					}

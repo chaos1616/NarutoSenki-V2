@@ -23,7 +23,6 @@ class Slug : public Hero
 			{
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
-
 					moveDirection = ccpNormalize(sp);
 					walk(moveDirection);
 				}
@@ -31,16 +30,13 @@ class Slug : public Hero
 				{
 					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 					{
-
 						if (_isCanSkill1)
 						{
-
 							attack(SKILL1);
 							scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcoldDown1);
 						}
 						else if (_isCanSkill2)
 						{
-
 							attack(SKILL2);
 							scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sattackcoldDown2);
 						}

@@ -347,7 +347,6 @@ class Lee : public Hero
 					}
 					else
 					{
-
 						idle();
 						return;
 					}
@@ -362,7 +361,6 @@ class Lee : public Hero
 					}
 					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && bamen >= 1)
 					{
-
 						changeSide(sp);
 						attack(OUGIS1);
 					}
@@ -529,7 +527,6 @@ class Lee : public Hero
 				}
 				else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && bamen >= 3)
 				{
-
 					changeSide(sp);
 
 					attack(OUGIS2);
@@ -543,17 +540,14 @@ class Lee : public Hero
 					}
 					else
 					{
-
 						idle();
 						return;
 					}
 				}
 				else if (abs(sp.x) < 128 || bamen >= 5)
 				{
-
 					if (abs(sp.x) > 46 || abs(sp.y) > 32)
 					{
-
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
 						return;
@@ -561,7 +555,6 @@ class Lee : public Hero
 
 					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && bamen >= 1)
 					{
-
 						changeSide(sp);
 
 						attack(OUGIS1);

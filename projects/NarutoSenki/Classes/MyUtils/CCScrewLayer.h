@@ -27,7 +27,6 @@ protected:
 
 class CCScrewItem : public CCSprite, public CCTouchDelegate
 {
-
 public:
 	CCScrewItem();
 	~CCScrewItem();

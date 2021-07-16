@@ -39,6 +39,7 @@ void GearButton::onEnter()
 	CCSprite::onEnter();
 	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, -1, true);
 }
+
 void GearButton::onExit()
 {
 	CCSprite::onExit();
@@ -50,6 +51,7 @@ CCRect GearButton::getRect()
 	CCSize size = getContentSize();
 	return CCRect(0, 0, size.width, size.height);
 }
+
 bool GearButton::containsTouchLocation(CCTouch *touch)
 {
 	return getRect().containsPoint(convertTouchToNodeSpace(touch));
@@ -132,7 +134,7 @@ void GearButton::ccTouchMoved(CCTouch *touch, CCEvent *event)
 void GearButton::ccTouchEnded(CCTouch *touch, CCEvent *event)
 {
 	click();
-};
+}
 
 void GearButton::playSound()
 {
@@ -181,19 +183,19 @@ void ScrewLayer::onEnter()
 {
 	CCLayer::onEnter();
 	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
-};
+}
 
 void ScrewLayer::onExit()
 {
 	CCLayer::onExit();
 	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-};
+}
 
 bool ScrewLayer::ccTouchBegan(CCTouch *touch, CCEvent *event)
 {
 	prePosY = 0;
 	return true;
-};
+}
 
 void ScrewLayer::ccTouchMoved(CCTouch *touch, CCEvent *event)
 {
@@ -253,7 +255,7 @@ void ScrewLayer::ccTouchEnded(CCTouch *touch, CCEvent *event)
 	{
 		screwBar->setPositionY(90);
 	}
-};
+}
 
 GearLayer::GearLayer()
 {
@@ -360,7 +362,7 @@ void GearLayer::onResume(CCObject *sender)
 	CCDirector::sharedDirector()->popScene();
 
 	_delegate->_isGear = false;
-};
+}
 
 void GearLayer::onGearBuy(CCObject *sender)
 {
@@ -373,7 +375,7 @@ void GearLayer::onGearBuy(CCObject *sender)
 	{
 		updatePlayerGear();
 	}
-};
+}
 
 void GearLayer::updatePlayerGear()
 {
@@ -403,7 +405,7 @@ void GearLayer::updatePlayerGear()
 
 	coinLabel->setString(CCString::createWithFormat("%d", to_int(_delegate->currentPlayer->getCoin()->getCString()))->getCString());
 	updateGearList();
-};
+}
 
 void GearLayer::updateGearList()
 {

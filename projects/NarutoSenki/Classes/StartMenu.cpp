@@ -472,7 +472,6 @@ void StartMenu::setNotice()
 
 void StartMenu::onNewsBtn(CCObject *sender)
 {
-
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
 	// JniMethodInfo minfo;
@@ -753,7 +752,6 @@ void StartMenu::scrollMenu(int posY)
 
 void StartMenu::keyBackClicked()
 {
-
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
 	// JniMethodInfo minfo;
@@ -761,7 +759,6 @@ void StartMenu::keyBackClicked()
 
 	// if (isHave)
 	// {
-
 	// 	jstring jTitle = minfo.env->NewStringUTF("Exit Game");
 	// 	jstring jMsg = minfo.env->NewStringUTF("Do you really want to exit?");
 	// 	minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, jTitle, jMsg);

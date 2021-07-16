@@ -76,7 +76,6 @@ class Tsunade : public Hero
 			{
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
-
 					if (abs(sp.x) > 64 || abs(sp.y) > 16)
 					{
 						moveDirection = ccpNormalize(sp);
@@ -93,7 +92,6 @@ class Tsunade : public Hero
 				}
 				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
-
 					changeSide(sp);
 					attack(SKILL3);
 					return;
@@ -107,14 +105,12 @@ class Tsunade : public Hero
 					}
 					else
 					{
-
 						idle();
 						return;
 					}
 				}
 				else if (abs(sp.x) < 128)
 				{
-
 					if (abs(sp.x) > 64 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);

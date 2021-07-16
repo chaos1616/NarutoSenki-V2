@@ -89,7 +89,6 @@ class Karin : public Hero
 				{
 					if (abs(sp.x) > 96 || abs(sp.y) > 16)
 					{
-
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
 						return;
@@ -126,14 +125,12 @@ class Karin : public Hero
 					}
 					else
 					{
-
 						idle();
 						return;
 					}
 				}
 				else if (abs(sp.x) < 128)
 				{
-
 					if (abs(sp.x) > 96 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);
@@ -152,7 +149,6 @@ class Karin : public Hero
 					}
 					else
 					{
-
 						if (abs(sp.x) > 32 || abs(sp.y) > 32)
 						{
 							moveDirection = ccpNormalize(sp);

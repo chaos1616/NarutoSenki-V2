@@ -22,7 +22,6 @@ class StartMenu;
 
 class MenuButton : public CCSprite, public CCTouchDelegate
 {
-
 public:
 	MenuButton();
 	~MenuButton();

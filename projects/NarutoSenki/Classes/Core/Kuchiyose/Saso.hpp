@@ -40,7 +40,6 @@ class Saso : public Hero
 						_master->getActionState() == State::OATTACK ||
 						_master->getActionState() == State::O2ATTACK)
 					{
-
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
 					}
@@ -73,7 +72,6 @@ class Saso : public Hero
 				}
 				else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 				{
-
 					if (_isCanSkill1 && _mainTarget->getGP() < 5000)
 					{
 						changeSide(sp);
@@ -83,7 +81,6 @@ class Saso : public Hero
 					}
 					else
 					{
-
 						changeSide(sp);
 						attack(NAttack);
 					}

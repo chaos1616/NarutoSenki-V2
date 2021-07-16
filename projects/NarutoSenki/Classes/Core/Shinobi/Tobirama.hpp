@@ -98,7 +98,6 @@ class Tobirama : public Hero
 				}
 				else if (_isCanSkill2 && _mainTarget->getGP() < 5000)
 				{
-
 					if ((abs(sp.x) > 64 || abs(sp.y) > 16))
 					{
 						moveDirection = ccpNormalize(sp);
@@ -118,14 +117,12 @@ class Tobirama : public Hero
 					}
 					else
 					{
-
 						idle();
 						return;
 					}
 				}
 				else if (abs(sp.x) < 128)
 				{
-
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);

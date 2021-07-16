@@ -714,7 +714,6 @@ void CharacterBase::acceptAttack(CCObject *object)
 					// hero hurt
 					else if (strcmp(_role->getCString(), "Player") == 0 || strcmp(_role->getCString(), "Com") == 0 || strcmp(_role->getCString(), ROLE_CLONE) == 0)
 					{
-
 						if (strcmp(hitType, "l_hit") == 0)
 						{
 							if (!_isArmored)
@@ -736,7 +735,6 @@ void CharacterBase::acceptAttack(CCObject *object)
 								CharacterBase *stHero = _sticker;
 								if (strcmp(stHero->getCharacter()->getCString(), "Kakuzu") == 0 && stHero->hearts <= 4)
 								{
-
 									attacker->hearts += 1;
 
 									if (attacker->_heartEffect)
@@ -872,7 +870,6 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "ct_hit") == 0)
 						{
-
 							if (_actionState != State::OATTACK ||
 								(_actionState == State::OATTACK &&
 								 (attacker->_actionState == State::O2ATTACK ||
@@ -881,10 +878,8 @@ void CharacterBase::acceptAttack(CCObject *object)
 								if (attacker->_isCatchOne == false ||
 									strcmp(attacker->getCharacter()->getCString(), "Shenwei") == 0)
 								{
-
 									if (attacker->getMaster())
 									{
-
 										if (strcmp(attacker->getCharacter()->getCString(), "Kuroari") == 0 ||
 											strcmp(attacker->getCharacter()->getCString(), "Shenwei") == 0 ||
 											strcmp(attacker->getCharacter()->getCString(), "Sabaku") == 0 ||
@@ -912,7 +907,6 @@ void CharacterBase::acceptAttack(CCObject *object)
 												pianyi = hardHurt(6000, false, false, true, false);
 												if (pianyi)
 												{
-
 													attacker->stopAllActions();
 													attacker->schedule(schedule_selector(CharacterBase::getSticker), 0.1f);
 													schedule(schedule_selector(CharacterBase::lostBlood), 1.0f);
@@ -936,7 +930,6 @@ void CharacterBase::acceptAttack(CCObject *object)
 										else if (strcmp(attacker->getMaster()->getCharacter()->getCString(), "Itachi") == 0 ||
 												 strcmp(attacker->getMaster()->getCharacter()->getCString(), "Chiyo") == 0)
 										{
-
 											bool pianyi = false;
 
 											if (strcmp(attacker->getMaster()->getCharacter()->getCString(), "Chiyo") == 0)
@@ -957,11 +950,9 @@ void CharacterBase::acceptAttack(CCObject *object)
 									}
 									else
 									{
-
 										if (strcmp(attacker->getCharacter()->getCString(), "Lee") == 0 ||
 											strcmp(attacker->getCharacter()->getCString(), "RockLee") == 0)
 										{
-
 											if (hardHurt(1000, false, true, false, false))
 											{
 												attacker->_isCatchOne = true;
@@ -1023,7 +1014,6 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "f2_hit") == 0)
 						{
-
 							if (_isFlipped == attacker->_isFlipped)
 							{
 								if (_isFlipped)
@@ -1047,7 +1037,6 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "b_hit") == 0)
 						{
-
 							if (_isFlipped == attacker->_isFlipped)
 							{
 								if (_isFlipped)
@@ -1072,7 +1061,6 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "ab_hit") == 0)
 						{
-
 							absorb(attacker->getPosition(), true);
 						}
 						else if (strcmp(hitType, "s_hit") == 0)
@@ -1105,7 +1093,6 @@ void CharacterBase::acceptAttack(CCObject *object)
 						{
 							if (attacker->_master && attacker->_master->_actionState != State::DEAD)
 							{
-
 								attacker->_master->_slayer = this;
 
 								attacker->_master->setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
@@ -1116,10 +1103,8 @@ void CharacterBase::acceptAttack(CCObject *object)
 							}
 							else if (!attacker->_master)
 							{
-
 								if (attacker->_actionState != State::DEAD)
 								{
-
 									attacker->_slayer = this;
 
 									attacker->setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
@@ -1151,13 +1136,10 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 					if (strcmp(getCharacter()->getCString(), "Kakuzu") == 0 && _skillChangeBuffValue)
 					{
-
 						if (!attacker->_master)
 						{
-
 							if (attacker->_actionState != State::DEAD)
 							{
-
 								attacker->_slayer = this;
 
 								attacker->setDamage(attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
@@ -1765,7 +1747,6 @@ void CharacterBase::setDamage(CCString *effectType, unsigned int attackValue, bo
 
 				if (currentAttacker->_level >= 4 && !currentAttacker->_isControlled)
 				{
-
 					if (50000 - atof(currentAttacker->getCKR2()->getCString()) >= gainValue)
 					{
 						float newValue = atof(currentAttacker->getCKR2()->getCString()) + gainValue;
@@ -5080,7 +5061,6 @@ bool CharacterBase::hurt()
 					CCPoint sp = ccpSub(mo->getPosition(), getPosition());
 					if (sp.x <= 48)
 					{
-
 						return false;
 					}
 				}
@@ -5792,10 +5772,8 @@ bool CharacterBase::findEnemy2(const char *type)
 				{
 					if (abs(sp.x) < _delegate->currentMap->getTileSize().width * 3)
 					{
-
 						if (strcmp(target->_character->getCString(), Guardian_Roshi) != 0 && strcmp(target->_character->getCString(), Guardian_Han) != 0)
 						{
-
 							friendCombatPoint += baseSkillCombatPoint + to_int(target->getHP()->getCString()) +
 												 (atof(target->getCKR()->getCString()) / 15000) * target->_sattackCombatPoint4 + (atof(target->getCKR2()->getCString()) / 25000) * target->_sattackCombatPoint5;
 						}
@@ -5810,7 +5788,6 @@ bool CharacterBase::findEnemy2(const char *type)
 
 					if (!target->_isInvincible && (target->getPositionX() >= _delegate->currentMap->getTileSize().width * 3 && target->getPositionX() <= (_delegate->currentMap->getMapSize().width - 3) * _delegate->currentMap->getTileSize().width))
 					{
-
 						if (curDistance && curDistance > distance)
 						{
 							_mainTarget = target;

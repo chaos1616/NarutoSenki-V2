@@ -95,7 +95,6 @@ class Konan : public Hero
 				else if (_mainTarget->getGP() < 5000 && !_isVisable && !_isArmored && (_isCanSkill3 || _isCanSkill2) &&
 						 _mainTarget->getActionState() != State::KNOCKDOWN)
 				{
-
 					if ((abs(sp.x) > 128 || abs(sp.y) > 16))
 					{
 						moveDirection = ccpNormalize(sp);

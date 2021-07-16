@@ -104,7 +104,6 @@ class Sai : public Hero
 				}
 				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
-
 					if (abs(sp.x) > 64 || abs(sp.y) > 16)
 					{
 						moveDirection = ccpNormalize(sp);
@@ -113,7 +112,6 @@ class Sai : public Hero
 					}
 					else
 					{
-
 						changeSide(sp);
 						attack(SKILL3);
 					}
@@ -127,7 +125,6 @@ class Sai : public Hero
 				}
 				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
-
 					changeSide(sp);
 					attack(OUGIS1);
 					return;

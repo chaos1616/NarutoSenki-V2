@@ -215,7 +215,6 @@ void HudLayer::onKaichang()
 
 void HudLayer::initHeroInterface()
 {
-
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 	//init the joyStick
 	_joyStick = JoyStick::create();
@@ -1025,7 +1024,6 @@ void HudLayer::setReportCache()
 				// ɱ
 				if (num2 == 1)
 				{
-
 					if (reportSPCSprite)
 					{
 						reportSPCSprite->stopAllActions();
@@ -1048,7 +1046,6 @@ void HudLayer::setReportCache()
 				}
 				else if (num2 >= 2)
 				{
-
 					if (reportSPCSprite)
 					{
 						reportSPCSprite->stopAllActions();

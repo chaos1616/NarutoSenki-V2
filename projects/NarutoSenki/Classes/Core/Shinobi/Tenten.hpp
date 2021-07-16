@@ -106,7 +106,6 @@ class Tenten : public Hero
 				}
 				else if (_isCanOugis1 && !_isControlled && !_mainTarget->_isArmored && _mainTarget->getGP() < 5000 && !_skillChangeBuffValue)
 				{
-
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
 						if (_isCanGear00)
@@ -131,14 +130,12 @@ class Tenten : public Hero
 					}
 					else
 					{
-
 						idle();
 						return;
 					}
 				}
 				else if (abs(sp.x) < 128)
 				{
-
 					if ((abs(sp.x) > 96 || abs(sp.y) > 16) && !_skillChangeBuffValue)
 					{
 						moveDirection = ccpNormalize(sp);
@@ -158,7 +155,6 @@ class Tenten : public Hero
 					}
 					else
 					{
-
 						if ((abs(sp.x) > 32 || abs(sp.y) > 32) && !_skillChangeBuffValue)
 						{
 							moveDirection = ccpNormalize(sp);

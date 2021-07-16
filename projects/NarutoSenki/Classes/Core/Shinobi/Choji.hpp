@@ -93,7 +93,6 @@ class Choji : public Hero
 				}
 				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
-
 					if (abs(sp.x) > 96 || abs(sp.y) > 16)
 					{
 						moveDirection = ccpNormalize(sp);
@@ -113,7 +112,6 @@ class Choji : public Hero
 					}
 					else
 					{
-
 						idle();
 						return;
 					}

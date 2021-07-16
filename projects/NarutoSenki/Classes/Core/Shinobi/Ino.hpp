@@ -134,7 +134,6 @@ class Ino : public Hero
 				}
 				else if (_mainTarget->getGP() < 5000 && (_isCanSkill3 || _isCanSkill2))
 				{
-
 					if (abs(sp.x) > 96 || abs(sp.y) > 16)
 					{
 						moveDirection = ccpNormalize(sp);

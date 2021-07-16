@@ -83,7 +83,6 @@ class Shino : public Hero
 			{
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
-
 					if (abs(sp.x) > 64 || abs(sp.y) > 16)
 					{
 						if (_isCanGear00)
@@ -101,7 +100,6 @@ class Shino : public Hero
 				}
 				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000)
 				{
-
 					if (abs(sp.x) > 64 || abs(sp.y) > 16)
 					{
 						if (_isCanGear00)
@@ -126,10 +124,8 @@ class Shino : public Hero
 				}
 				else if (_isCanSkill3 && _mainTarget->getGP() < 5000)
 				{
-
 					if (abs(sp.x) > 64 || abs(sp.y) > 16)
 					{
-
 						if (_isCanGear00)
 						{
 							useGear(gear00);
@@ -140,7 +136,6 @@ class Shino : public Hero
 					}
 					else
 					{
-
 						changeSide(sp);
 						attack(SKILL3);
 					}

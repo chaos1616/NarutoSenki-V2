@@ -96,14 +96,12 @@ class Kiba : public Hero
 					}
 					else
 					{
-
 						idle();
 						return;
 					}
 				}
 				else if (abs(sp.x) < 128)
 				{
-
 					if (abs(sp.x) > 32 || abs(sp.y) > 32)
 					{
 						if (_isCanGear00)
@@ -122,7 +120,6 @@ class Kiba : public Hero
 					}
 					else
 					{
-
 						changeSide(sp);
 						attack(NAttack);
 					}

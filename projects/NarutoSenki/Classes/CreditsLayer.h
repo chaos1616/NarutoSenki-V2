@@ -4,7 +4,6 @@
 class GameLayer;
 class CreditsLayer : public CCLayer
 {
-
 public:
 	CreditsLayer();
 	~CreditsLayer();

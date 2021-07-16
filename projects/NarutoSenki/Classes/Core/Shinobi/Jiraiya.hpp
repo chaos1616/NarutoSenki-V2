@@ -120,7 +120,6 @@ class Jiraiya : public Hero
 					}
 					else
 					{
-
 						idle();
 						return;
 					}
@@ -333,7 +332,6 @@ class Jiraiya : public Hero
 					}
 					else if ((abs(sp.x) > 32 || abs(sp.y) > 32) && !_isCanOugis2)
 					{
-
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
 						return;
@@ -347,7 +345,6 @@ class Jiraiya : public Hero
 					}
 					else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000)
 					{
-
 						changeSide(sp);
 
 						attack(OUGIS1);
@@ -364,7 +361,6 @@ class Jiraiya : public Hero
 					}
 					else
 					{
-
 						if (abs(sp.x) > 32 || abs(sp.y) > 32)
 						{
 							moveDirection = ccpNormalize(sp);
@@ -373,7 +369,6 @@ class Jiraiya : public Hero
 						}
 						else
 						{
-
 							changeSide(sp);
 							attack(NAttack);
 						}

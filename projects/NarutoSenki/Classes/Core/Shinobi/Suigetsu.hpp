@@ -134,7 +134,6 @@ class Suigetsu : public Hero
 					}
 					else
 					{
-
 						idle();
 						return;
 					}

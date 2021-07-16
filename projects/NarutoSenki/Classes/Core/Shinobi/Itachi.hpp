@@ -87,7 +87,6 @@ class Itachi : public Hero
 			{
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
-
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);
@@ -103,7 +102,6 @@ class Itachi : public Hero
 				}
 				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_isArmored)
 				{
-
 					changeSide(sp);
 
 					attack(OUGIS1);
@@ -119,7 +117,6 @@ class Itachi : public Hero
 					}
 					else
 					{
-
 						idle();
 						return;
 					}

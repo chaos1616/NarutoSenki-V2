@@ -49,7 +49,6 @@ class Mask : public Hero
 			{
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
-
 					moveDirection = ccpNormalize(sp);
 					walk(moveDirection);
 				}
@@ -57,7 +56,6 @@ class Mask : public Hero
 				{
 					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 					{
-
 						changeSide(sp);
 						attack(NAttack);
 					}
@@ -68,21 +66,18 @@ class Mask : public Hero
 			{
 				if (abs(sp.x) > 96 || abs(sp.y) > 16)
 				{
-
 					moveDirection = ccpNormalize(sp);
 					walk(moveDirection);
 					return;
 				}
 				else if ((abs(sp.x) > 48 || abs(sp.y) > 16) && !_isCanSkill1)
 				{
-
 					moveDirection = ccpNormalize(sp);
 					walk(moveDirection);
 					return;
 				}
 				else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 				{
-
 					if (_isCanSkill1 && _mainTarget->getGP() < 5000)
 					{
 						changeSide(sp);

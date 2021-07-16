@@ -61,7 +61,6 @@ class Akamaru : public Hero
 			{
 				if (abs(sp.x) > 48 || abs(sp.y) > 32)
 				{
-
 					moveDirection = ccpNormalize(sp);
 					walk(moveDirection);
 					return;
@@ -70,7 +69,6 @@ class Akamaru : public Hero
 				{
 					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
 					{
-
 						if (_master->_isCanSkill2 && _mainTarget->getGP() < 5000 && (_master->_isControlled || _master->_isAI == true) &&
 							(_master->getActionState() == State::IDLE || _master->getActionState() == State::WALK || _master->getActionState() == State::NATTACK))
 						{

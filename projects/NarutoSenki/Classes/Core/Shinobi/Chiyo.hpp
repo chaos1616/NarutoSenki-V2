@@ -103,7 +103,6 @@ class Chiyo : public Hero
 			{
 				if (_isCanOugis1 && !_isControlled && !_buffStartTime)
 				{
-
 					CCObject *pObject;
 					int countNum = 0;
 					CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
@@ -126,7 +125,6 @@ class Chiyo : public Hero
 				}
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
-
 					if (abs(sp.x) > 96 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);
@@ -161,7 +159,6 @@ class Chiyo : public Hero
 				}
 				else if (abs(sp.x) < 128)
 				{
-
 					if (abs(sp.x) > 32 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);

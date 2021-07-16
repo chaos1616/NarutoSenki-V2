@@ -71,7 +71,6 @@ bool ActionButton::containsTouchLocation(CCTouch *touch)
 
 bool ActionButton::ccTouchBegan(CCTouch *touch, CCEvent *event)
 {
-
 	// touch area
 	if (!containsTouchLocation(touch) || _delegate->_isAllButtonLocked)
 	{

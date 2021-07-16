@@ -23,13 +23,11 @@ class Centipede : public Hero
 			{
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
-
 					moveDirection = ccpNormalize(sp);
 					walk(moveDirection);
 				}
 				else
 				{
-
 					changeSide(sp);
 					attack(NAttack);
 				}

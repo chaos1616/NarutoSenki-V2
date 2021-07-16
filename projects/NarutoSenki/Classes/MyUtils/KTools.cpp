@@ -80,7 +80,6 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 
 				while (dataEle)
 				{
-
 					const char *nodeKey = dataEle->FirstAttribute()->Value();
 					CCString *nodeValue = CCString::create(dataEle->GetText());
 
@@ -293,7 +292,6 @@ void KTools::initColumeInDB()
 
 void KTools::dfsFolder(std::string folderPath, int depth /* = 0 */, int type /* =0 */)
 {
-
 #ifdef WIN32
 	_finddata_t FileInfo;
 	std::string strfind = folderPath + "\\*";
@@ -434,7 +432,6 @@ void KTools::prepareFileOGG(const char *listName, bool unload /* =false */)
 
 bool KTools::checkPackage()
 {
-
 	// std::string *packageList[10];
 
 	// #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -442,7 +439,6 @@ bool KTools::checkPackage()
 	// bool isHave = JniHelper::getMethodInfo(minfo,"net/zakume/game/NarutoSenki","getPackages", "([Ljava/lang/String;I)[Ljava/lang/String");
 
 	// if (isHave) {
-
 	// }
 
 	// #endif
@@ -641,7 +637,6 @@ void KTools::saveSQLite(const char *table, const char *relatedColumn, const char
 
 std::string KTools::encodeData(std::string data)
 {
-
 	//SHA1 *sha1;
 	//unsigned char *digest;
 	std::string dataMD5 = CMD5Checksum::GetMD5OfString(data);

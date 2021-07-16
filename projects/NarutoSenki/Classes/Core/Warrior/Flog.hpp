@@ -189,7 +189,6 @@ protected:
 				if (_mainTarget->getActionState() != State::DEAD && !_mainTarget->_isInvincible && _mainTarget->_isVisable &&
 					strcmp(_mainTarget->getGroup()->getCString(), getGroup()->getCString()) != 0)
 				{
-
 					hasTarget = true;
 				}
 			}
@@ -198,13 +197,10 @@ protected:
 			{
 				if (!findEnemy("Flog", 0))
 				{
-
 					if (!findEnemy("Hero", 64))
 					{
-
 						if (!findEnemy("Tower", 0))
 						{
-
 							_mainTarget = nullptr;
 						}
 					}
@@ -218,7 +214,6 @@ protected:
 				CCPoint sp = ccpSub(_mainTarget->getPosition(), getPosition());
 				if (abs(sp.x) > _randomPosX || abs(sp.y) > _randomPosY)
 				{
-
 					if (abs(sp.x) > 64 && strcmp(_mainTarget->getRole()->getCString(), "Flog") != 0 && strcmp(_mainTarget->getRole()->getCString(), "Tower") != 0)
 					{
 						_mainTarget = nullptr;

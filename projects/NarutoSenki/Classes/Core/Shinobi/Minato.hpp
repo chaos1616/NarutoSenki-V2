@@ -185,7 +185,6 @@ class Minato : public Hero
 					}
 					else
 					{
-
 						idle();
 						return;
 					}
@@ -206,7 +205,6 @@ class Minato : public Hero
 					}
 					else if ((abs(sp.x) > 32 || abs(sp.y) > 32) && to_int(getnAttackValue()->getCString()) < 260)
 					{
-
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
 						return;
@@ -284,7 +282,6 @@ class Minato : public Hero
 						Monster *mo = (Monster *)pObject;
 						if (strcmp(mo->getCharacter()->getCString(), "HiraishinMark") == 0)
 						{
-
 							if (strcmp(getGroup()->getCString(), Konoha) == 0 && mo->getPositionX() > getPositionX())
 							{
 								isMark = true;

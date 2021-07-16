@@ -153,7 +153,6 @@ class Hiruzen : public Hero
 					{
 						if ((abs(sp.x) > 32 || abs(sp.y) > 32))
 						{
-
 							moveDirection = ccpNormalize(sp);
 							walk(moveDirection);
 							return;
@@ -173,7 +172,6 @@ class Hiruzen : public Hero
 					}
 					else
 					{
-
 						if (abs(sp.x) > 32 || abs(sp.y) > 32)
 						{
 							moveDirection = ccpNormalize(sp);
@@ -182,7 +180,6 @@ class Hiruzen : public Hero
 						}
 						else
 						{
-
 							changeSide(sp);
 							attack(NAttack);
 						}

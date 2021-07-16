@@ -26,7 +26,6 @@ class AsuraPath : public Hero
 			{
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
-
 					moveDirection = ccpNormalize(sp);
 					walk(moveDirection);
 				}
@@ -44,14 +43,12 @@ class AsuraPath : public Hero
 			{
 				if (abs(sp.x) > 256 || abs(sp.y) > 32)
 				{
-
 					moveDirection = ccpNormalize(sp);
 					walk(moveDirection);
 					return;
 				}
 				else if ((abs(sp.x) > 32 || abs(sp.y) > 32) && !_isCanSkill1)
 				{
-
 					moveDirection = ccpNormalize(sp);
 					walk(moveDirection);
 					return;
@@ -60,7 +57,6 @@ class AsuraPath : public Hero
 				{
 					if (_isCanSkill1)
 					{
-
 						if (abs(sp.x) < 64 && getPositionX() > 64 &&
 							getPositionX() < (95 * 32 - 64))
 						{
@@ -78,7 +74,6 @@ class AsuraPath : public Hero
 					}
 					else
 					{
-
 						changeSide(sp);
 						attack(NAttack);
 					}
