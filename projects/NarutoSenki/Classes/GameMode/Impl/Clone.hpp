@@ -4,6 +4,8 @@
 class ModeClone : public IGameModeHandler
 {
 private:
+	const int kGenerateCount = 3;
+
 	bool isOneForAllGroups;
 
 public:
@@ -16,9 +18,18 @@ public:
 	{
 	}
 
-	CCArray *onInitHeros()
+	void onInitHeros()
 	{
-		return initHeros(3, 3);
+		const char *playerGroup;
+		const char *enemyGroup;
+		getRandomGroups(playerGroup, enemyGroup);
+
+		auto playerHero = selectLayer->_playerSelect ? selectLayer->_playerSelect : getRandomHero();
+		auto enemyHero = getRandomHeroExcept(playerHero);
+
+		addHero(playerHero, ROLE_PLAYER, playerGroup);
+		addHeros(kGenerateCount - 1, playerHero, ROLE_COM, playerGroup);
+		addHeros(kGenerateCount, enemyHero, ROLE_COM, enemyGroup);
 	}
 
 	void onGameStart()

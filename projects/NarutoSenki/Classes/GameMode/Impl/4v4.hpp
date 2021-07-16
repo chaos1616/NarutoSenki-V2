@@ -11,9 +11,9 @@ public:
 		Cheats = 11;
 	}
 
-	CCArray *onInitHeros()
+	void onInitHeros()
 	{
-		return initHeros(4, 4);
+		initHeros(4, 4);
 	}
 
 	void onGameStart()

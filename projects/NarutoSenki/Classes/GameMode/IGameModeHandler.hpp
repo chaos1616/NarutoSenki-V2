@@ -47,7 +47,7 @@ class IGameModeHandler
 	friend class SelectLayer;
 
 private:
-	SelectLayer *selectLayer;
+	CCArray *_herosArr = nullptr;
 	// map
 	int mapId;
 	// tower
@@ -63,7 +63,24 @@ private:
 	// hero
 	bool enableHeroReborn;
 
+	void Internal_Init()
+	{
+		CC_SAFE_RELEASE(_herosArr);
+		_herosArr = CCArray::create(); // FIXME
+
+		init();
+	}
+
+	void Internal_GameOver()
+	{
+		CC_SAFE_RELEASE(_herosArr);
+		_herosArr = nullptr;
+
+		onGameOver();
+	}
+
 protected:
+	SelectLayer *selectLayer;
 	// game
 	bool isHardCoreGame;
 
@@ -74,7 +91,7 @@ public:
 
 	virtual void init() = 0;
 
-	virtual CCArray *onInitHeros() = 0;
+	virtual void onInitHeros() = 0;
 	virtual void onGameStart() = 0;
 	virtual void onGameOver() = 0;
 
@@ -84,6 +101,11 @@ public:
 	virtual void onCharacterReborn(CharacterBase *c) = 0;
 
 protected:
+	CCArray *getHerosArray()
+	{
+		return _herosArr;
+	}
+
 	// Warpper of game layer
 	void setMap(int id)
 	{
@@ -111,18 +133,29 @@ protected:
 	}
 
 	// init hero
-	// void addHero(const char *name, const char *role, const char *group)
-	// {
-	// }
-
-	void generateKonohaHero(const char *name, const char *roleKind, unsigned int lv = 1)
+	void addHero(const char *name, const char *role, const char *group, uint32_t lv = 1)
 	{
-		// addHero(name, role, Konoha, lv);
+		auto dic = CCDictionary::create();
+		dic->setObject(CCString::create(name), "character");
+		dic->setObject(CCString::create(role), "role");
+		dic->setObject(CCString::create(group), "group");
+		_herosArr->addObject(dic);
 	}
 
-	void generateAkatsukiHero(const char *name, const char *roleKind, unsigned int lv = 1)
+	void addHeros(int count, const char *name, const char *role, const char *group, uint32_t lv = 1)
 	{
-		// addHero(name, role, Akatsuki, lv);
+		for (int i = 0; i < count; i++)
+			addHero(name, role, group, lv);
+	}
+
+	void addKonohaHero(CCArray *heros, const char *name, const char *role, uint32_t lv = 1)
+	{
+		addHero(name, role, Konoha, lv);
+	}
+
+	void addAkatsukiHero(CCArray *heros, const char *name, const char *role, uint32_t lv = 1)
+	{
+		addHero(name, role, Akatsuki, lv);
 	}
 
 	CCArray *initHeros(uint32_t konohaCount, uint32_t akatsukiCount)
@@ -267,6 +300,45 @@ protected:
 			}
 		}
 
-		return herosArr;
+		return _herosArr = herosArr;
+	}
+
+	/**
+	 * Static Utils
+	 */
+
+	static inline const char *getRandomHero()
+	{
+		return kHeroList[random(kHeroNum)];
+	}
+
+	static inline const char *getRandomHeroExcept(const char *except)
+	{
+		setRand();
+		if (except)
+		{
+			int i = random(kHeroNum);
+			while (strcmp(kHeroList[i], except) == 1)
+				i = random(kHeroNum);
+			return kHeroList[i];
+		}
+		else
+		{
+			return kHeroList[random(kHeroNum)];
+		}
+	}
+
+	static inline const char *getRandomGroup()
+	{
+		setRand();
+		return random(2) == 0 ? Konoha : Akatsuki;
+	}
+
+	static inline void getRandomGroups(const char *&groupA, const char *&groupB)
+	{
+		setRand();
+		int team = random(2) == 0;
+		groupA = team == 0 ? Konoha : Akatsuki;
+		groupB = team == 0 ? Akatsuki : Konoha;
 	}
 };

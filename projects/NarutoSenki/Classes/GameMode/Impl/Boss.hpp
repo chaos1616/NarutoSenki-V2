@@ -8,9 +8,9 @@ public:
 	{
 	}
 
-	CCArray *onInitHeros()
+	void onInitHeros()
 	{
-		return initHeros(3, 1);
+		initHeros(3, 1);
 	}
 
 	void onGameStart()

@@ -848,7 +848,7 @@ void GameLayer::onGameOver(bool isWin)
 	visit();
 	snapshoot->end();
 
-	getGameModeHandler()->onGameOver();
+	getGameModeHandler()->Internal_GameOver();
 
 	CCScene *pscene = CCScene::create();
 	GameOver *layer = GameOver::create(snapshoot);

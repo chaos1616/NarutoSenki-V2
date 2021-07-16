@@ -12,9 +12,9 @@ public:
 		isHardCoreGame = true;
 	}
 
-	CCArray *onInitHeros()
+	void onInitHeros()
 	{
-		return initHeros(4, 4);
+		initHeros(4, 4);
 	}
 
 	void onGameStart()

@@ -74,6 +74,8 @@ extern int Cheats;
 // 傀儡		Kugutsu
 #define ROLE_KUGUTSU "Kugutsu"
 #define ROLE_MON "Mon"
+#define ROLE_COM "Com"
+#define ROLE_PLAYER "Player"
 
 // Flogs
 #define kFlog_Kotetsu cName(KotetsuFlog, k_Flog)

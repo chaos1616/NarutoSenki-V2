@@ -21,9 +21,9 @@ public:
 	{
 	}
 
-	CCArray *onInitHeros()
+	void onInitHeros()
 	{
-		return initHeros(konohaHeroCount, akatsukiHeroCount);
+		initHeros(konohaHeroCount, akatsukiHeroCount);
 	}
 
 	void onGameStart()

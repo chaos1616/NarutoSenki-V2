@@ -9,9 +9,9 @@ public:
 		CCLOG("Enter 3 VS 3 mode.");
 	}
 
-	CCArray *onInitHeros()
+	void onInitHeros()
 	{
-		return initHeros(3, 3);
+		initHeros(3, 3);
 	}
 
 	void onGameStart()
