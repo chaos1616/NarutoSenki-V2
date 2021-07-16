@@ -2,6 +2,7 @@
 #include "CharacterBase.h"
 #include "HudLayer.h"
 #include "Core/Provider.hpp"
+#include "GameMode/GameModeImpl.hpp"
 #include "MyUtils/CCShake.h"
 
 CharacterBase::CharacterBase()
@@ -2596,8 +2597,7 @@ void CharacterBase::setChargeB(CCNode *sender, void *data)
 void CharacterBase::setCommand(CCNode *sender, void *data)
 {
 	CCDictionary *file = (CCDictionary *)data;
-	CCString *str = (CCString *)(file->objectForKey(1));
-	CCString *commandType = str;
+	CCString *commandType = (CCString *)(file->objectForKey(1));
 
 	if (strcmp(commandType->getCString(), "addHP") == 0)
 	{
@@ -5382,6 +5382,7 @@ void CharacterBase::knockDown()
 
 void CharacterBase::dead()
 {
+	getGameModeHandler()->onCharacterDead(this);
 	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "acceptAttack");
 
 	_isHitOne = false;
@@ -5595,6 +5596,7 @@ void CharacterBase::dealloc()
 
 void CharacterBase::reborn(float dt)
 {
+	getGameModeHandler()->onCharacterReborn(this);
 }
 
 void CharacterBase::setAI(float dt)

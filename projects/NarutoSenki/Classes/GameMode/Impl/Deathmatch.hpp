@@ -23,13 +23,17 @@ public:
 
 	void onCharacterInit(CharacterBase *c)
 	{
+		// NOTE: Not implement
+		// CCLOG("[Character Init] %s, %s, %s", c->getCharacter(), c->getRole(), c->getGroup());
 	}
 
 	void onCharacterDead(CharacterBase *c)
 	{
+		CCLOG("[Character Dead] %s %s %s", c->getCharacter(), c->getRole(), c->getGroup());
 	}
 
 	void onCharacterReborn(CharacterBase *c)
 	{
+		CCLOG("[Character Reborn] %s, %s, %s", c->getCharacter(), c->getRole(), c->getGroup());
 	}
 };

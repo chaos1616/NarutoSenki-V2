@@ -1,7 +1,7 @@
 #pragma once
 #include "Defines.h"
-#include "GearLayer.h"
 #include "GameOver.h"
+#include "GearLayer.h"
 #include "PauseLayer.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)

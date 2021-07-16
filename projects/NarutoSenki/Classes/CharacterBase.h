@@ -1,8 +1,8 @@
 #pragma once
-#include "MyUtils/KTools.h"
-#include "GameLayer.h"
 #include "Defines.h"
 #include "Effect.h"
+#include "GameLayer.h"
+#include "MyUtils/KTools.h"
 
 enum class State {
 	DEAD,

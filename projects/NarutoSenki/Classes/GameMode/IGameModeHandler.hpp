@@ -2,9 +2,9 @@
 #include "CharacterBase.h"
 #include "GameLayer.h"
 #include "LoadLayer.h"
+#include "SelectLayer.h"
 
 class IGameModeHandler;
-class SelectLayer;
 
 enum GameMode
 {
