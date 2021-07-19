@@ -100,7 +100,7 @@ class Ino : public Hero
 			setItem(Item1);
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), "Flog") != 0)
+		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
 		{
 			CCPoint moveDirection;
 			CCPoint sp;
@@ -197,7 +197,7 @@ class Ino : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2("Flog"))
+		if (!findEnemy2(ROLE_FLOG))
 		{
 			findEnemy2("Tower");
 		}
@@ -225,7 +225,7 @@ class Ino : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && _isCanSkill1)
+				if (strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 && _isCanSkill1)
 				{
 					changeSide(sp);
 					attack(SKILL1);

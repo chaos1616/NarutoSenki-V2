@@ -33,11 +33,11 @@ public:
 	virtual	void		setHPbar();
 	virtual	void	   	changeHPbar();
 	virtual	void		setShadows();
-	unsigned int		_deadNum;
-	unsigned int		_flogNum;
-	CC_SYNTHESIZE_RETAIN(CCString*, _killNum,KillNum);
+	uint32_t			_deadNum;
+	uint32_t			_flogNum;
+	CC_SYNTHESIZE_RETAIN(CCString*,_killNum,KillNum);
 
-	CC_SYNTHESIZE_RETAIN(CCString*, _coin,Coin);
+	CC_SYNTHESIZE_RETAIN(CCString*,_coin,Coin);
 
 
 	CharacterBase*		_slayer;
@@ -54,13 +54,13 @@ public:
 	//buff
 
 
-	CC_SYNTHESIZE(unsigned int,_charNO,CharNO);
+	CC_SYNTHESIZE(int32_t,_charNO,CharNO);
 
-	unsigned int		_healBuffValue;
-	unsigned int		_dehealBuffValue;
-	unsigned int		_powerUPBuffValue;
-	unsigned int		_skillUPBuffValue;
-	unsigned int		_skillChangeBuffValue;
+	uint32_t			_healBuffValue;
+	uint32_t			_dehealBuffValue;
+	uint32_t			_powerUPBuffValue;
+	uint32_t			_skillUPBuffValue;
+	uint32_t			_skillChangeBuffValue;
 
 
 
@@ -95,10 +95,27 @@ public:
 
 	CC_SYNTHESIZE_RETAIN(CCLabelTTF*,cpLabel,CPLabel);
 	//attributes
-	CC_SYNTHESIZE_RETAIN(CCString*, _role,Role);
-	CC_SYNTHESIZE_RETAIN(CCString*, _group,Group);
-	CC_SYNTHESIZE_RETAIN(CCString*, _character,Character);
+	CC_SYNTHESIZE_RETAIN(CCString*,_role,Role);
+	CC_SYNTHESIZE_RETAIN(CCString*,_group,Group);
+	CC_SYNTHESIZE_RETAIN(CCString*,_character,Character);
 	CC_SYNTHESIZE_RETAIN(CCArray*,_gearArray,GearArray);
+
+	// character extension
+	inline bool			isCharacter(const char *c) { return strcmp(_character->getCString(), c) == 0; }
+	// role extension
+	inline bool			isPlayer() { return strcmp(_role->getCString(), ROLE_PLAYER) == 0; }
+	inline bool			isCom() { return strcmp(_role->getCString(), ROLE_COM) == 0; }
+	inline bool			isClone() { return strcmp(_role->getCString(), ROLE_CLONE) == 0; }
+	inline bool			isMon() { return strcmp(_role->getCString(), ROLE_MON) == 0; }
+	inline bool			isSummon() { return strcmp(_role->getCString(), ROLE_SUMMON) == 0; }
+	inline bool			isPlayerOrCom() { return isPlayer() || isCom(); }
+	// group extension
+	inline bool			isGroup(const char *group) { return strcmp(_group->getCString(), group) == 0; }
+	inline bool			isKonohaGroup() { return strcmp(_group->getCString(), Konoha) == 0; }
+	inline bool			isAkatsukiGroup() { return strcmp(_group->getCString(), Akatsuki) == 0; }
+
+	bool				enableDead		= true;
+	bool				enableReborn	= true;
 
 	int 				rebornLabelTime;
 	int 				battleCondiction;
@@ -113,12 +130,12 @@ public:
 	float				_backY;
 	float				_diretionY;
 
-	int					lostBloodValue;
+	uint32_t			lostBloodValue;
 	int					gearCKRValue;
-	int					gearRecoverValue;
+	uint32_t			gearRecoverValue;
 
 	// 忍び：Kakuzu ability
-	unsigned int		hearts;
+	uint32_t			hearts;
 	// 忍び：Shikamaru ability
 	bool				isAttackGainCKR;
 	// 口寄せ：Bikyu ability
@@ -132,7 +149,7 @@ public:
 	bool				_isCanGear03;
 	bool				_isCanGear06;
 
-	CC_SYNTHESIZE(int, _walkSpeed, WalkSpeed);
+	CC_SYNTHESIZE(int,_walkSpeed, WalkSpeed);
 	int _originSpeed;
 
 	CC_SYNTHESIZE_RETAIN(CCString*,_maxHP,MaxHP);
@@ -142,9 +159,9 @@ public:
 	CC_SYNTHESIZE_RETAIN(CCString*,_ckr2,CKR2);
 	CC_SYNTHESIZE(float,_gardValue,GP);
 	CC_SYNTHESIZE(float,_exp,EXP);
-	CC_SYNTHESIZE(unsigned int,_level,LV);
+	CC_SYNTHESIZE(int32_t,_level,LV);
 	CC_SYNTHESIZE(int,_height,Height);
-	CC_SYNTHESIZE(unsigned int,_rebornTime,RebornTime);
+	CC_SYNTHESIZE(int32_t,_rebornTime,RebornTime);
 
 
 	CC_SYNTHESIZE(CCPoint,_spawnPoint,SpawnPoint);
@@ -155,85 +172,85 @@ public:
 	CC_SYNTHESIZE(CharacterBase*,_secmaster,SecMaster);
 
 	CC_SYNTHESIZE_RETAIN(CCString*,_nattackValue,nAttackValue);
-	CC_SYNTHESIZE(CCString*, _nattackType,nAttackType);
+	CC_SYNTHESIZE(CCString*,_nattackType,nAttackType);
 	int				_nattackRangeX;
 	int				_nattackRangeY;
 
 
-	CC_SYNTHESIZE_RETAIN(CCString*, _sattackValue1,sAttackValue1);
-	CC_SYNTHESIZE(CCString*, _sattackType1,sAttack1Type);
+	CC_SYNTHESIZE_RETAIN(CCString*,_sattackValue1,sAttackValue1);
+	CC_SYNTHESIZE(CCString*,_sattackType1,sAttack1Type);
 	int				_sattackRangeX1;
 	int				_sattackRangeY1;
-	unsigned int	_sattackcoldDown1;
+	uint32_t		_sattackcoldDown1;
 	bool			_sattack1isDouble;
 	int				_sattackCombatPoint1;
 
 
-	unsigned int	 _attackValue;
-	CC_SYNTHESIZE(CCString*, _attackType,AttackType);
+	uint32_t		 _attackValue;
+	CC_SYNTHESIZE(CCString*,_attackType,AttackType);
 	int				_attackRangeX;
 	int				_attackRangeY;
 
-	CC_SYNTHESIZE_RETAIN(CCString*, _sattackValue2,sAttackValue2);
-	CC_SYNTHESIZE(CCString*, _sattackType2,sAttack2Type);
+	CC_SYNTHESIZE_RETAIN(CCString*,_sattackValue2,sAttackValue2);
+	CC_SYNTHESIZE(CCString*,_sattackType2,sAttack2Type);
 	int				_sattackRangeX2;
 	int				_sattackRangeY2;
-	unsigned int	_sattackcoldDown2;
+	uint32_t		_sattackcoldDown2;
 	bool			_sattack2isDouble;
 	int				_sattackCombatPoint2;
 
-	CC_SYNTHESIZE_RETAIN(CCString*, _sattackValue3,sAttackValue3);
-	CC_SYNTHESIZE(CCString*, _sattackType3,sAttack3Type);
+	CC_SYNTHESIZE_RETAIN(CCString*,_sattackValue3,sAttackValue3);
+	CC_SYNTHESIZE(CCString*,_sattackType3,sAttack3Type);
 	int				_sattackRangeX3;
 	int				_sattackRangeY3;
-	unsigned int	_sattackcoldDown3;
+	uint32_t		_sattackcoldDown3;
 	bool			_sattack3isDouble;
 	int				_sattackCombatPoint3;
 
-	CC_SYNTHESIZE_RETAIN(CCString*, _sattackValue4,sAttackValue4);
-	CC_SYNTHESIZE(CCString*, _sattackType4,sAttack4Type);
+	CC_SYNTHESIZE_RETAIN(CCString*,_sattackValue4,sAttackValue4);
+	CC_SYNTHESIZE(CCString*,_sattackType4,sAttack4Type);
 	int				_sattackRangeX4;
 	int				_sattackRangeY4;
-	unsigned int	_sattackcoldDown4;
+	uint32_t		_sattackcoldDown4;
 	bool			_sattack4isDouble;
 	int				_sattackCombatPoint4;
 
-	CC_SYNTHESIZE_RETAIN(CCString*, _sattackValue5,sAttackValue5);
-	CC_SYNTHESIZE(CCString*, _sattackType5,sAttack5Type);
+	CC_SYNTHESIZE_RETAIN(CCString*,_sattackValue5,sAttackValue5);
+	CC_SYNTHESIZE(CCString*,_sattackType5,sAttack5Type);
 	int				_sattackRangeX5;
 	int				_sattackRangeY5;
-	unsigned int	_sattackcoldDown5;
+	uint32_t		_sattackcoldDown5;
 	int				_sattackCombatPoint5;
 
 	//int totalCombatPoint;
 	int enemyCombatPoint;
 	int friendCombatPoint;
 
-	CC_SYNTHESIZE_RETAIN(CCString*, _spcattackValue1,spcAttackValue1);
-	CC_SYNTHESIZE(CCString*, _spcattackType1,spcAttack1Type);
+	CC_SYNTHESIZE_RETAIN(CCString*,_spcattackValue1,spcAttackValue1);
+	CC_SYNTHESIZE(CCString*,_spcattackType1,spcAttack1Type);
 	int				_spcattackRangeX1;
 	int				_spcattackRangeY1;
-	unsigned int	_spcattackcoldDown1;
+	uint32_t		_spcattackcoldDown1;
 
 
-	CC_SYNTHESIZE_RETAIN(CCString*, _spcattackValue2,spcAttackValue2);
-	CC_SYNTHESIZE(CCString*, _spcattackType2,spcAttack2Type);
+	CC_SYNTHESIZE_RETAIN(CCString*,_spcattackValue2,spcAttackValue2);
+	CC_SYNTHESIZE(CCString*,_spcattackType2,spcAttack2Type);
 	int				_spcattackRangeX2;
 	int				_spcattackRangeY2;
-	unsigned int	_spcattackcoldDown2;
+	uint32_t		_spcattackcoldDown2;
 
-	CC_SYNTHESIZE_RETAIN(CCString*, _spcattackValue3,spcAttackValue3);
-	CC_SYNTHESIZE(CCString*, _spcattackType3,spcAttack3Type);
+	CC_SYNTHESIZE_RETAIN(CCString*,_spcattackValue3,spcAttackValue3);
+	CC_SYNTHESIZE(CCString*,_spcattackType3,spcAttack3Type);
 	int				_spcattackRangeX3;
 	int				_spcattackRangeY3;
-	unsigned int	_spcattackcoldDown3;
+	uint32_t		_spcattackcoldDown3;
 
 
-	CC_SYNTHESIZE_RETAIN(CCString*, _tempAttackValue1,tempAttackValue1);
+	CC_SYNTHESIZE_RETAIN(CCString*,_tempAttackValue1,tempAttackValue1);
 	int			_tempcoldDown1;
 
 
-	CC_SYNTHESIZE(CCString*, _tempAttackType,TempAttackType);
+	CC_SYNTHESIZE(CCString*,_tempAttackType,TempAttackType);
 
 	CC_SYNTHESIZE(CCString*,_effectType,EffectType);
 	bool			_hurtFromLeft;
@@ -242,33 +259,33 @@ public:
 
 	CC_SYNTHESIZE(CCArray*,_damageArray,DamageArray);
 
-	unsigned int damageEffectCount;
+	int32_t damageEffectCount;
 	CC_SYNTHESIZE(CCArray*,_monsterArray,MonsterArray);
 
 	//movement
-	CC_SYNTHESIZE(CCPoint, _velocity, Velocity);
-	CC_SYNTHESIZE(CCPoint, _desiredPosition, DesiredPosition);
+	CC_SYNTHESIZE(CCPoint,_velocity, Velocity);
+	CC_SYNTHESIZE(CCPoint,_desiredPosition, DesiredPosition);
 
-	CC_SYNTHESIZE(State, _actionState, ActionState);
-	CC_SYNTHESIZE(GameLayer*, _delegate, Delegate);
-
-
-
-	CC_SYNTHESIZE_RETAIN(CCAction*, _idleAction, IdleAction);
-	CC_SYNTHESIZE_RETAIN(CCAction*, _nattackAction, NAttackAction);
-	CC_SYNTHESIZE_RETAIN(CCAction*, _walkAction, WalkAction);
-	CC_SYNTHESIZE_RETAIN(CCAction*, _hurtAction, HurtAction);
-	CC_SYNTHESIZE_RETAIN(CCAction*, _knockDownAction, KnockDownAction);
-	CC_SYNTHESIZE_RETAIN(CCAction*, _airHurtAction, AirHurtAction);
-	CC_SYNTHESIZE_RETAIN(CCAction*, _floatAction, FloatAction);
-	CC_SYNTHESIZE_RETAIN(CCAction*, _deadAction, DeadAction); 
+	CC_SYNTHESIZE(State,_actionState, ActionState);
+	CC_SYNTHESIZE(GameLayer*,_delegate, Delegate);
 
 
-	CC_SYNTHESIZE_RETAIN(CCAction*, _skill1Action, Skill1Action);
-	CC_SYNTHESIZE_RETAIN(CCAction*, _skill2Action, Skill2Action);
-	CC_SYNTHESIZE_RETAIN(CCAction*, _skill3Action, Skill3Action);
-	CC_SYNTHESIZE_RETAIN(CCAction*, _skill4Action, Skill4Action);
-	CC_SYNTHESIZE_RETAIN(CCAction*, _skill5Action, Skill5Action);
+
+	CC_SYNTHESIZE_RETAIN(CCAction*,_idleAction, IdleAction);
+	CC_SYNTHESIZE_RETAIN(CCAction*,_nattackAction, NAttackAction);
+	CC_SYNTHESIZE_RETAIN(CCAction*,_walkAction, WalkAction);
+	CC_SYNTHESIZE_RETAIN(CCAction*,_hurtAction, HurtAction);
+	CC_SYNTHESIZE_RETAIN(CCAction*,_knockDownAction, KnockDownAction);
+	CC_SYNTHESIZE_RETAIN(CCAction*,_airHurtAction, AirHurtAction);
+	CC_SYNTHESIZE_RETAIN(CCAction*,_floatAction, FloatAction);
+	CC_SYNTHESIZE_RETAIN(CCAction*,_deadAction, DeadAction); 
+
+
+	CC_SYNTHESIZE_RETAIN(CCAction*,_skill1Action, Skill1Action);
+	CC_SYNTHESIZE_RETAIN(CCAction*,_skill2Action, Skill2Action);
+	CC_SYNTHESIZE_RETAIN(CCAction*,_skill3Action, Skill3Action);
+	CC_SYNTHESIZE_RETAIN(CCAction*,_skill4Action, Skill4Action);
+	CC_SYNTHESIZE_RETAIN(CCAction*,_skill5Action, Skill5Action);
 
 
 	CC_SYNTHESIZE_RETAIN(CCActionInterval* ,_moveAction,MoveAction);
@@ -385,7 +402,7 @@ public:
 	void				setSkillEffect(CCNode* sender,void* data);
 	virtual void		setRestore2(float dt);
 
-	void				readData(CCArray* tmpData,CCString* &attackType,CCString* &attackValue,int &attackRangeX,int &attackRangeY,unsigned int &coldDown,int &combatPoint);
+	void				readData(CCArray* tmpData,CCString* &attackType,CCString* &attackValue,int &attackRangeX,int &attackRangeY,uint32_t &coldDown,int &combatPoint);
 	CCAction*			createAnimation(CCArray* ationArray,float fps,bool isRepeat,bool isReturn);
 
 protected:
@@ -401,8 +418,8 @@ protected:
 	void				stopMove(float dt);
 	void				stopJump(CCNode* sender,void* data);
 	void				setAttackBox(CCNode* sender,void* data);
-	void				setDamage(CCString* effectType,unsigned int attackValue,bool isFlipped);
-	void				setDamgeDisplay(unsigned int value,const char* type);
+	void				setDamage(CCString* effectType,int32_t attackValue,bool isFlipped);
+	void				setDamgeDisplay(int32_t value,const char* type);
 
 	void				setItemEffect(CCNode* sender,void* data);
 	void				setDamgeEffect(CCString* type);
@@ -413,7 +430,7 @@ protected:
 	void				setCharFlip();
 
 
-	virtual Hero*		createClone(unsigned int cloneTime);
+	virtual Hero*		createClone(int32_t cloneTime);
 	void				setClone(CCNode* sender,void* data);
 	void				setMon(CCNode* sender,void* data);
 	void				setMonPer(float dt);

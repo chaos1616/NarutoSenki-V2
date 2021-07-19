@@ -180,7 +180,7 @@ class Kakuzu : public Hero
 			isSummonAble = true;
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), "Flog") != 0)
+		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
 		{
 			CCPoint moveDirection;
 			CCPoint sp;
@@ -256,7 +256,7 @@ class Kakuzu : public Hero
 			}
 		}
 
-		if (!findEnemy2("Flog"))
+		if (!findEnemy2(ROLE_FLOG))
 		{
 			findEnemy2("Tower");
 		}
@@ -332,7 +332,7 @@ class Kakuzu : public Hero
 		_skillChangeBuffValue = 0;
 	}
 
-	Hero *createClone(unsigned int cloneTime)
+	Hero *createClone(int32_t cloneTime)
 	{
 		if (!_monsterArray)
 		{

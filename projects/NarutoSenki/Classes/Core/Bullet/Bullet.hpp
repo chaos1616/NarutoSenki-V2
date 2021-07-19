@@ -52,7 +52,7 @@ public:
 		//init nAttack data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-		unsigned int tmpCD;
+		uint32_t tmpCD;
 		int tmpCombatPoint;
 		CCString *tmpValue;
 
@@ -84,7 +84,7 @@ public:
 		}
 	}
 
-	void setMove(unsigned int length, float delay, bool isReverse)
+	void setMove(int32_t length, float delay, bool isReverse)
 	{
 		CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
 								getPositionY());
@@ -105,7 +105,7 @@ public:
 		runAction(seq);
 	}
 
-	void setEaseIn(unsigned int length, float delay)
+	void setEaseIn(int32_t length, float delay)
 	{
 		CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
 								getPositionY());

@@ -10,7 +10,7 @@ class Pain : public Hero
 	{
 	}
 
-	Hero *createClone(unsigned int cloneTime) override
+	Hero *createClone(int32_t cloneTime) override
 	{
 		Hero *clone = nullptr;
 		if (character_is(kNagato))

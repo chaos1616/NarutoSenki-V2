@@ -406,7 +406,7 @@ void GameLayer::addFlog(float dt)
 	{
 		aiFlog = Flog::create();
 		aiFlog->setDelegate(this);
-		aiFlog->setID(KonohaFlogName, CCString::create("Flog"), CCString::create(Konoha));
+		aiFlog->setID(KonohaFlogName, CCString::create(ROLE_FLOG), CCString::create(Konoha));
 		if (i < NUM_FLOG / 2)
 			mainPosY = (5.5 - i / 1.5) * 32;
 		else
@@ -424,7 +424,7 @@ void GameLayer::addFlog(float dt)
 	{
 		aiFlog = Flog::create();
 		aiFlog->setDelegate(this);
-		aiFlog->setID(AkatsukiFlogName, CCString::create("Flog"), CCString::create(Akatsuki));
+		aiFlog->setID(AkatsukiFlogName, CCString::create(ROLE_FLOG), CCString::create(Akatsuki));
 		if (i < NUM_FLOG / 2)
 			mainPosY = (5.5 - i / 1.5) * 32;
 		else
@@ -569,9 +569,14 @@ void GameLayer::updateViewPoint(float dt)
 	// CCDirector::sharedDirector()->getScheduler()->setTimeScale(1.0f);
 }
 
-void GameLayer::setTowerState(unsigned int charNO)
+void GameLayer::setTowerState(int32_t charNO)
 {
 	_hudLayer->setTowerState(charNO);
+}
+
+void GameLayer::updateHudSkillButtons()
+{
+	_hudLayer->updateSkillButtons();
 }
 
 void GameLayer::setHPLose(float percent)

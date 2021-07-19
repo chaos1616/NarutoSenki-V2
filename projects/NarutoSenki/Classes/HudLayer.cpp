@@ -757,7 +757,7 @@ void HudLayer::setEXPLose(float percent)
 	}
 }
 
-void HudLayer::setTowerState(unsigned int charNO)
+void HudLayer::setTowerState(int32_t charNO)
 {
 	CCObject *pObject;
 	CCARRAY_FOREACH(_towerIconArray, pObject)

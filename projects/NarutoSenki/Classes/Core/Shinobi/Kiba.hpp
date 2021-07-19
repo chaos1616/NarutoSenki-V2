@@ -130,7 +130,7 @@ class Kiba : public Hero
 		if (battleCondiction >= 0)
 		{
 			_mainTarget = nullptr;
-			if (!findEnemy2("Flog"))
+			if (!findEnemy2(ROLE_FLOG))
 			{
 				findEnemy2("Tower");
 			}
@@ -293,7 +293,7 @@ class Kiba : public Hero
 		_skillChangeBuffValue = 0;
 	}
 
-	Hero *createClone(unsigned int cloneTime)
+	Hero *createClone(int32_t cloneTime)
 	{
 		if (!_monsterArray)
 		{

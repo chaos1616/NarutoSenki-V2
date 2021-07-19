@@ -70,7 +70,7 @@ class Karin : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), "Flog") != 0)
+		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
 		{
 			CCPoint moveDirection;
 			CCPoint sp;
@@ -164,7 +164,7 @@ class Karin : public Hero
 			}
 		}
 
-		if (!findEnemy2("Flog"))
+		if (!findEnemy2(ROLE_FLOG))
 		{
 			findEnemy2("Tower");
 		}
@@ -192,12 +192,12 @@ class Karin : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (_isCanSkill1 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				if (_isCanSkill1 && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
 				{
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				else if (_isCanSkill2 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
+				else if (_isCanSkill2 && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 && isBaseDanger)
 				{
 					changeSide(sp);
 					attack(SKILL2);

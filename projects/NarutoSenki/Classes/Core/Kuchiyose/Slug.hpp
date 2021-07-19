@@ -5,7 +5,7 @@ class Slug : public Hero
 {
 	void perform()
 	{
-		if (!findEnemy("Flog", 0))
+		if (!findEnemy(ROLE_FLOG, 0))
 		{
 			if (!findEnemy("Tower", 0))
 			{
@@ -19,7 +19,7 @@ class Slug : public Hero
 			CCPoint sp = ccpSub(_mainTarget->getPosition(), getPosition());
 
 			if (strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0 ||
-				strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
 			{
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{

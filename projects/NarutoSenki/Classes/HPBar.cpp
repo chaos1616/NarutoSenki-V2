@@ -93,7 +93,7 @@ void HPBar::loseHP(float percent)
 		CharacterBase *_slayer = _delegate->_slayer;
 		CharacterBase *currentSlayer;
 
-		if (strcmp(_delegate->getRole()->getCString(), "Flog") == 0)
+		if (strcmp(_delegate->getRole()->getCString(), ROLE_FLOG) == 0)
 		{
 			if (_slayer->getSecMaster() && strcmp(_slayer->getCharacter()->getCString(), "KageHand") != 0 && strcmp(_slayer->getCharacter()->getCString(), "KageHands") != 0)
 			{
@@ -216,7 +216,7 @@ void HPBar::loseHP(float percent)
 				}
 			}
 
-			if ((strcmp(currentSlayer->getRole()->getCString(), "Flog") != 0))
+			if ((strcmp(currentSlayer->getRole()->getCString(), ROLE_FLOG) != 0))
 			{
 				_delegate->getDelegate()->setReport(currentSlayer->getCharacter()->getCString(), "Tower", currentSlayer->getKillNum());
 
@@ -473,7 +473,7 @@ void HPBar::loseHP(float percent)
 				}
 			}
 
-			if (strcmp(currentSlayer->getRole()->getCString(), "Flog") != 0)
+			if (strcmp(currentSlayer->getRole()->getCString(), ROLE_FLOG) != 0)
 			{
 				int realKillNum = to_int(currentSlayer->getKillNum()->getCString()) + 1;
 				currentSlayer->setKillNum(CCString::createWithFormat("%d", realKillNum));

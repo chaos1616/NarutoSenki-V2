@@ -58,7 +58,7 @@ class Konan : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), "Flog") != 0)
+		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
 		{
 			CCPoint moveDirection;
 			CCPoint sp;
@@ -181,7 +181,7 @@ class Konan : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2("Flog"))
+		if (!findEnemy2(ROLE_FLOG))
 		{
 			findEnemy2("Tower");
 		}
@@ -219,13 +219,13 @@ class Konan : public Hero
 				{
 					useGear(gear03);
 				}
-				if (_isCanOugis1 && !_isControlled && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
+				if (_isCanOugis1 && !_isControlled && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 && isBaseDanger)
 				{
 					changeSide(sp);
 
 					attack(OUGIS1);
 				}
-				else if (_isCanSkill2 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && isBaseDanger)
+				else if (_isCanSkill2 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 && isBaseDanger)
 				{
 					changeSide(sp);
 					attack(SKILL2);

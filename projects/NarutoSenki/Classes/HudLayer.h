@@ -16,7 +16,7 @@ public:
 	MiniIcon();
 	~MiniIcon();
 
-	CC_SYNTHESIZE(unsigned int, _charNO, CharNO);
+	CC_SYNTHESIZE(int32_t, _charNO, CharNO);
 	static MiniIcon *create(const char *szImage, bool isNotification);
 	void updateMap(CCObject *sender);
 	void updateState();
@@ -106,7 +106,7 @@ public:
 	void updateBuffDisplay2(float dt);
 	void stopSPCReport();
 	void updateSPCReprot(float dt);
-	void setTowerState(unsigned int charNO);
+	void setTowerState(int32_t charNO);
 	void onKaichang();
 
 	CCLabelBMFont *bcdLabel1;

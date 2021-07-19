@@ -1,5 +1,6 @@
 #pragma once
 #include "Element.h"
+#include "HudLayer.h"
 
 using namespace std;
 
@@ -29,9 +30,16 @@ public:
 
 	virtual void setID(CCString *character, CCString *role, CCString *group)
 	{
+		auto oldChar = getCharacter() ? getCharacter()->getCString() : nullptr;
 		setCharacter(character);
 		setRole(role);
 		setGroup(group);
+
+		// Updated hud layer
+		if (isPlayer() && oldChar && strcmp(oldChar, character->getCString()) != 0)
+		{
+			_delegate->updateHudSkillButtons();
+		}
 
 		CCArray *animationArray = CCArray::create();
 		const char *filePath;
@@ -51,7 +59,7 @@ public:
 		CCString *tmpHpMax;
 		int tmpWidth;
 		int tmpHeight;
-		unsigned int tmpSpeed;
+		uint32_t tmpSpeed;
 		int tmpCombatPoint;
 		readData(tmpData, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
 		setMaxHP(CCString::createWithFormat("%ld", to_uint(tmpHpMax->getCString())));
@@ -102,7 +110,7 @@ public:
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 		CCString *tmpValue;
-		unsigned int tmpCD;
+		uint32_t tmpCD;
 		readData(tmpData, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
 		setnAttackValue(tmpValue);
 		_nattackType->retain();

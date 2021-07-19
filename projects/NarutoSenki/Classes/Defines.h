@@ -63,27 +63,28 @@ extern int Cheats;
 #define cName(varName, varType) "Element/" varType "/" #varName ".plist"
 
 // Types
-#define k_Flog "Flog"
-#define k_Guardian "Guardian"
+#define kFlog "Flog"
+#define kGuardian "Guardian"
 
-// Tags
+// Roles
+#define ROLE_COM "Com"
+#define ROLE_PLAYER "Player"
 // 分身		Clone
 #define ROLE_CLONE "Clone"
-// 口寄せ	Summon
-#define ROLE_SUMMON "Summon"
+#define ROLE_FLOG "Flog"
 // 傀儡		Kugutsu
 #define ROLE_KUGUTSU "Kugutsu"
 #define ROLE_MON "Mon"
-#define ROLE_COM "Com"
-#define ROLE_PLAYER "Player"
+// 口寄せ	Summon
+#define ROLE_SUMMON "Summon"
 
 // Flogs
-#define kFlog_Kotetsu cName(KotetsuFlog, k_Flog)
-#define kFlog_FemalePain cName(FemalePainFlog, k_Flog)
-#define kFlog_Izumo cName(IzumoFlog, k_Flog)
-#define kFlog_Kakashi cName(KakashiFlog, k_Flog)
-#define kFlog_Pain cName(PainFlog, k_Flog)
-#define kFlog_Obito cName(ObitoFlog, k_Flog)
+#define kFlog_Kotetsu cName(KotetsuFlog, kFlog)
+#define kFlog_FemalePain cName(FemalePainFlog, kFlog)
+#define kFlog_Izumo cName(IzumoFlog, kFlog)
+#define kFlog_Kakashi cName(KakashiFlog, kFlog)
+#define kFlog_Pain cName(PainFlog, kFlog)
+#define kFlog_Obito cName(ObitoFlog, kFlog)
 // Guardians
 #define Guardian_Roshi "Roshi"
 #define Guardian_Han "Han"

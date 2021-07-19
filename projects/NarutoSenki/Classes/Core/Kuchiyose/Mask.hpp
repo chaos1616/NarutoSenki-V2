@@ -7,7 +7,7 @@ class Mask : public Hero
 	{
 		if (strcmp(getCharacter()->getCString(), "MaskRaidon") == 0)
 		{
-			if (!findEnemy("Flog", 0))
+			if (!findEnemy(ROLE_FLOG, 0))
 			{
 				if (!findEnemy("Hero", 0))
 				{
@@ -22,7 +22,7 @@ class Mask : public Hero
 		{
 			if (!findEnemy("Hero", 0))
 			{
-				if (!findEnemy("Flog", 0))
+				if (!findEnemy(ROLE_FLOG, 0))
 				{
 					if (!findEnemy("Tower", 0))
 					{

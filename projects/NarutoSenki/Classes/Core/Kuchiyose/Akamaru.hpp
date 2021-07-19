@@ -7,7 +7,7 @@ class Akamaru : public Hero
 	{
 		if (!findEnemy("Hero", winSize.width / 2 - 32, true))
 		{
-			if (!findEnemy("Flog", winSize.width / 2 - 32, true))
+			if (!findEnemy(ROLE_FLOG, winSize.width / 2 - 32, true))
 			{
 				if (!findEnemy("Tower", winSize.width / 2 - 32, true))
 				{
@@ -40,7 +40,7 @@ class Akamaru : public Hero
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
 			}
 
-			if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+			if (strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
 			{
 				if (abs(sp.x) > 48 || abs(sp.y) > 32)
 				{

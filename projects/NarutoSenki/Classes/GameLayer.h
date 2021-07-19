@@ -39,8 +39,8 @@ public:
 	CharacterBase *currentPlayer;
 	CCPoint spawnPoint;
 
-	unsigned int _second;
-	unsigned int _minute;
+	int32_t _second;
+	int32_t _minute;
 	int mapId;
 
 	const char *kName;
@@ -63,7 +63,7 @@ public:
 	void checkBackgroundMusic(float dt);
 
 	CC_SYNTHESIZE(HudLayer *, _hudLayer, HudLayer);
-	void setTowerState(unsigned int charNO);
+	void setTowerState(int32_t charNO);
 
 	CC_SYNTHESIZE_RETAIN(CCString *, totalKills, TotalKills);
 	CC_SYNTHESIZE_RETAIN(CCString *, totalTM, TotalTM);
@@ -104,6 +104,7 @@ public:
 	void onGameStart(float dt);
 	void onGameOver(bool isWin);
 
+	void updateHudSkillButtons();
 	void setHPLose(float percent);
 	void setCKRLose(bool isCRK2);
 

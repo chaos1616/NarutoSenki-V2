@@ -9,7 +9,7 @@ class DevaPath : public Hero
 	{
 		if (!findEnemy("Hero", 0))
 		{
-			if (!findEnemy("Flog", 0))
+			if (!findEnemy(ROLE_FLOG, 0))
 			{
 				if (!findEnemy("Tower", 0))
 				{
@@ -24,7 +24,7 @@ class DevaPath : public Hero
 			CCPoint sp = ccpSub(_mainTarget->getPosition(), getPosition());
 
 			if (strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0 ||
-				strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
 			{
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
@@ -102,7 +102,7 @@ class DevaPath : public Hero
 		stepOn();
 	}
 
-	Hero *createClone(unsigned int cloneTime)
+	Hero *createClone(int32_t cloneTime)
 	{
 		Hero *clone = nullptr;
 		if (!_monsterArray)

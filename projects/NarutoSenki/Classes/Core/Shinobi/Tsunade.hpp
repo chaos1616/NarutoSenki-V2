@@ -59,7 +59,7 @@ class Tsunade : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), "Flog") != 0)
+		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
 		{
 			CCPoint moveDirection;
 			CCPoint sp;
@@ -154,7 +154,7 @@ class Tsunade : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2("Flog"))
+		if (!findEnemy2(ROLE_FLOG))
 		{
 			findEnemy2("Tower");
 		}
@@ -186,7 +186,7 @@ class Tsunade : public Hero
 				{
 					useGear(gear03);
 				}
-				if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && _isCanSkill1 && !_isArmored && isBaseDanger)
+				if (strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 && _isCanSkill1 && !_isArmored && isBaseDanger)
 				{
 					changeSide(sp);
 					attack(SKILL1);
@@ -258,7 +258,7 @@ class Tsunade : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	Hero *createClone(unsigned int cloneTime)
+	Hero *createClone(int32_t cloneTime)
 	{
 		auto clone = create<Slug>(CCString::create("Slug"), CCString::create(ROLE_SUMMON), getGroup());
 		clone->_isArmored = true;

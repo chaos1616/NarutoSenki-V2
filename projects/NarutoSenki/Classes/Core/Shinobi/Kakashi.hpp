@@ -71,7 +71,7 @@ class Kakashi : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), "Flog") != 0)
+		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
 		{
 			CCPoint moveDirection;
 			CCPoint sp;
@@ -147,7 +147,7 @@ class Kakashi : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2("Flog"))
+		if (!findEnemy2(ROLE_FLOG))
 		{
 			findEnemy2("Tower");
 		}
@@ -175,12 +175,12 @@ class Kakashi : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (_isCanSkill3 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				if (_isCanSkill3 && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
 				{
 					changeSide(sp);
 					attack(SKILL3);
 				}
-				else if (_isCanSkill1 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				else if (_isCanSkill1 && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
 				{
 					changeSide(sp);
 					attack(SKILL1);
@@ -280,7 +280,7 @@ class Kakashi : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	Hero *createClone(unsigned int cloneTime)
+	Hero *createClone(int32_t cloneTime)
 	{
 		auto clone = create<DogWall>(CCString::create("DogWall"), CCString::create(ROLE_SUMMON), getGroup());
 		clone->setPosition(ccp(getPositionX() + (_isFlipped ? -56 : 56), getPositionY()));

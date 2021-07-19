@@ -6,7 +6,7 @@ class Lee : public Hero
 #define kLee____ "Lee"
 #define kRockLee "RockLee"
 
-	unsigned int bamen = 0;
+	int32_t bamen = 0;
 
 	void setID(CCString *character, CCString *role, CCString *group)
 	{
@@ -317,7 +317,7 @@ class Lee : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), "Flog") != 0)
+		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
 		{
 			CCPoint moveDirection;
 			CCPoint sp;
@@ -380,7 +380,7 @@ class Lee : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2("Flog"))
+		if (!findEnemy2(ROLE_FLOG))
 		{
 			findEnemy2("Tower");
 		}
@@ -408,7 +408,7 @@ class Lee : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (_isCanSkill2 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				if (_isCanSkill2 && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
 				{
 					changeSide(sp);
 					attack(SKILL2);
@@ -504,7 +504,7 @@ class Lee : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), "Flog") != 0)
+		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
 		{
 			CCPoint moveDirection;
 			CCPoint sp;
@@ -580,7 +580,7 @@ class Lee : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2("Flog"))
+		if (!findEnemy2(ROLE_FLOG))
 		{
 			findEnemy2("Tower");
 		}
@@ -608,12 +608,12 @@ class Lee : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (_isCanSkill2 && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				if (_isCanSkill2 && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
 				{
 					changeSide(sp);
 					attack(SKILL2);
 				}
-				else if (_isCanSkill3 && bamen >= 3 && isBaseDanger && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				else if (_isCanSkill3 && bamen >= 3 && isBaseDanger && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
 				{
 					changeSide(sp);
 					attack(SKILL3);

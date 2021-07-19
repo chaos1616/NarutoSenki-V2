@@ -161,7 +161,7 @@ class Deidara : public Hero
 		if (battleCondiction >= 0)
 		{
 			_mainTarget = nullptr;
-			if (!findEnemy2("Flog"))
+			if (!findEnemy2(ROLE_FLOG))
 			{
 				findEnemy2("Tower");
 			}
@@ -334,7 +334,7 @@ class Deidara : public Hero
 		}
 	}
 
-	Hero *createClone(unsigned int cloneTime)
+	Hero *createClone(int32_t cloneTime)
 	{
 		auto clone = create<Centipede>(CCString::create("Centipede"), CCString::create(ROLE_SUMMON), getGroup());
 		clone->_isArmored = true;

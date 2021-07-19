@@ -60,7 +60,7 @@ public:
 		CCString *tmpHpMax;
 		int tmpWidth;
 		int tmpHeight;
-		unsigned int tmpSpeed;
+		uint32_t tmpSpeed;
 		int tmpCombatPoint;
 
 		readData(tmpData, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);

@@ -66,11 +66,6 @@ private:
 	// hero
 	bool enableHeroReborn;
 
-	void Internal_Init()
-	{
-		init();
-	}
-
 	void Internal_GameOver()
 	{
 		CC_SAFE_RELEASE_NULL(_herosArr);
@@ -79,9 +74,12 @@ private:
 	}
 
 protected:
-	SelectLayer *selectLayer;
+	SelectLayer *selectLayer = nullptr;
 	// game
 	bool isHardCoreGame;
+	std::vector<const char *> herosVector;
+	// player
+	const char *playerGroup;
 
 public:
 	const uint8_t kMaxCharCount = 4;
@@ -141,6 +139,7 @@ protected:
 		if (!_herosArr)
 			_herosArr = CCArray::create();
 		_herosArr->addObject(dic);
+		herosVector.push_back(name);
 	}
 
 	void addHeros(int count, const char *name, const char *role, const char *group, uint32_t lv = 1)
@@ -208,8 +207,12 @@ protected:
 			selectLayer->setIsRandomChar(true);
 		}
 
+		herosVector.push_back(tmpChar->getCString());
+
+		playerGroup = team > 0 ? Konoha : Akatsuki;
 		CCString *tmpRole = CCString::create("Player");
-		CCString *tmpGroup = CCString::create(team > 0 ? Konoha : Akatsuki);
+		CCString *tmpGroup = CCString::create(playerGroup);
+		this->playerGroup = playerGroup;
 
 		CCDictionary *dic = CCDictionary::create();
 		dic->setObject(tmpChar, "character");
@@ -276,6 +279,7 @@ protected:
 				dic->setObject(tmpGroup, "group");
 
 				herosArr->addObject(dic);
+				herosVector.push_back(hero->getCString());
 			}
 			else
 			{
@@ -297,6 +301,7 @@ protected:
 				dic->setObject(tmpGroup, "group");
 
 				herosArr->addObject(dic);
+				herosVector.push_back(hero->getCString());
 				realHero->removeObjectAtIndex(index);
 			}
 		}
@@ -310,6 +315,7 @@ protected:
 
 	static inline const char *getRandomHero()
 	{
+		setRand();
 		return kHeroList[random(kHeroNum)];
 	}
 
@@ -329,6 +335,26 @@ protected:
 		}
 	}
 
+	static inline const char *getRandomHeroExceptAll(const vector<const char *> &excepts, const char *defaultChar = "Naruto")
+	{
+		setRand();
+		int loop = 0;
+		int i;
+		do
+		{
+			i = random(kHeroNum);
+			for (size_t j = 0; i < excepts.size(); i++)
+			{
+				if (strcmp(kHeroList[i], excepts[j]) == 0)
+				{
+					i = -1;
+					break;
+				}
+			}
+		} while (i == -1 && loop++ < kHeroNum);
+		return i == -1 ? kHeroList[i] : defaultChar;
+	}
+
 	inline const char *getSelectOrRandomHero()
 	{
 		return selectLayer->_playerSelect ? selectLayer->_playerSelect : getRandomHero();
@@ -337,6 +363,11 @@ protected:
 	inline const char *getSelectOrRandomHeroExcept(const char *except)
 	{
 		return selectLayer->_playerSelect ? selectLayer->_playerSelect : getRandomHeroExcept(except);
+	}
+
+	inline const char *getSelectOrRandomHeroExceptAll(const vector<const char *> &excepts, const char *defaultChar = "Naruto")
+	{
+		return selectLayer->_playerSelect ? selectLayer->_playerSelect : getRandomHeroExceptAll(excepts, defaultChar);
 	}
 
 	static inline const char *getRandomGroup()

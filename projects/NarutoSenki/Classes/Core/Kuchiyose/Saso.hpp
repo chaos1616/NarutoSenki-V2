@@ -7,7 +7,7 @@ class Saso : public Hero
 	{
 		if (!findEnemy("Hero", winSize.width / 2 - 32, true))
 		{
-			if (!findEnemy("Flog", winSize.width / 2 - 32, true))
+			if (!findEnemy(ROLE_FLOG, winSize.width / 2 - 32, true))
 			{
 				_mainTarget = nullptr;
 			}
@@ -29,7 +29,7 @@ class Saso : public Hero
 			CCPoint sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
 								ccp(getPositionX(), _originY ? _originY : getPositionY()));
 
-			if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+			if (strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
 			{
 				if (abs(sp.x) > 48 || abs(sp.y) > 16)
 				{

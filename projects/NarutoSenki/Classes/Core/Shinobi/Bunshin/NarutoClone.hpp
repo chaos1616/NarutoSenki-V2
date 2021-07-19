@@ -5,7 +5,7 @@ class NarutoClone : public Hero
 {
 	void perform()
 	{
-		if (!findEnemy("Flog", 0))
+		if (!findEnemy(ROLE_FLOG, 0))
 		{
 			if (!findEnemy("Hero", 0))
 			{

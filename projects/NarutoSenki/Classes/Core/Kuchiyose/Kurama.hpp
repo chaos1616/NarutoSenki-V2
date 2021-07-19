@@ -7,7 +7,7 @@ class Kurama : public Hero
 	{
 		if (!findEnemy("Hero", 0))
 		{
-			if (!findEnemy("Flog", 0))
+			if (!findEnemy(ROLE_FLOG, 0))
 			{
 				if (!findEnemy("Tower", 0))
 				{

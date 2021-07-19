@@ -146,7 +146,7 @@ class Sakura : public Hero
 		if (battleCondiction >= 0)
 		{
 			_mainTarget = nullptr;
-			if (!findEnemy2("Flog"))
+			if (!findEnemy2(ROLE_FLOG))
 			{
 				findEnemy2("Tower");
 			}
@@ -185,7 +185,7 @@ class Sakura : public Hero
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				else if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 && _isCanSkill2)
+				else if (strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 && _isCanSkill2)
 				{
 					changeSide(sp);
 					attack(SKILL2);

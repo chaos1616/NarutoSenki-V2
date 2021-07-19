@@ -61,7 +61,7 @@ public:
 		CCString *tmpHpMax;
 		int tmpWidth;
 		int tmpHeight;
-		unsigned int tmpSpeed;
+		uint32_t tmpSpeed;
 		int tmpCombatPoint;
 
 		readData(tmpData, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
@@ -105,7 +105,7 @@ public:
 		//init nAttack data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-		unsigned int tmpCD;
+		uint32_t tmpCD;
 		CCString *tmpValue;
 		readData(tmpData, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
 		setnAttackValue(tmpValue);
@@ -195,7 +195,7 @@ protected:
 
 			if (!hasTarget)
 			{
-				if (!findEnemy("Flog", 0))
+				if (!findEnemy(ROLE_FLOG, 0))
 				{
 					if (!findEnemy("Hero", 64))
 					{
@@ -214,7 +214,7 @@ protected:
 				CCPoint sp = ccpSub(_mainTarget->getPosition(), getPosition());
 				if (abs(sp.x) > _randomPosX || abs(sp.y) > _randomPosY)
 				{
-					if (abs(sp.x) > 64 && strcmp(_mainTarget->getRole()->getCString(), "Flog") != 0 && strcmp(_mainTarget->getRole()->getCString(), "Tower") != 0)
+					if (abs(sp.x) > 64 && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0 && strcmp(_mainTarget->getRole()->getCString(), "Tower") != 0)
 					{
 						_mainTarget = nullptr;
 						return;

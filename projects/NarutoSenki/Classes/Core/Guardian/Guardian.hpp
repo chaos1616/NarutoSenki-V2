@@ -7,9 +7,9 @@ class Guardian : public Hero
 	{
 		if (!findTargetEnemy("Hero", true))
 		{
-			if (!findTargetEnemy("Flog", true))
+			if (!findTargetEnemy(ROLE_FLOG, true))
 			{
-				if (!findTargetEnemy("Flog", false))
+				if (!findTargetEnemy(ROLE_FLOG, false))
 				{
 					if (!findTargetEnemy("Hero", false))
 					{

@@ -119,7 +119,7 @@ void HeroElement::changeHPbar()
 			getDelegate()->setCKRLose(false);
 			getDelegate()->removeOugisMark(1);
 		}
-		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
+		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 500;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 9));
@@ -128,7 +128,7 @@ void HeroElement::changeHPbar()
 	else if (_exp >= 1000 && _level == 2)
 	{
 		_level = 3;
-		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
+		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 1000;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 18));
@@ -145,7 +145,7 @@ void HeroElement::changeHPbar()
 			getDelegate()->setCKRLose(true);
 			getDelegate()->removeOugisMark(2);
 		}
-		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
+		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 2000;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 27));
@@ -154,7 +154,7 @@ void HeroElement::changeHPbar()
 	else if (_exp >= 2000 && _level == 4)
 	{
 		_level = 5;
-		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
+		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 2500;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 36));
@@ -164,7 +164,7 @@ void HeroElement::changeHPbar()
 	else if (_exp >= 2500 && _level == 5)
 	{
 		_level = 6;
-		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
+		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 3000;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 45));
@@ -394,6 +394,14 @@ void HeroElement::countDown(float dt)
 
 void HeroElement::reborn(float dt)
 {
+	if (!enableReborn)
+	{
+		// TODO: Spectating Mode
+		// if (isPlayer())
+		// _delegate->getHudLayer()->enableSpectatingMode();
+		return;
+	}
+
 	CharacterBase::reborn(dt);
 	setPosition(getSpawnPoint());
 
@@ -515,7 +523,7 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	CCString *tmpHpMax;
 	int tmpWidth;
 	int tmpHeight;
-	unsigned int tmpSpeed;
+	uint32_t tmpSpeed;
 	int tmpCombatPoint;
 
 	readData(tmpData, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
@@ -542,7 +550,7 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	//init nAttack data & Frame Array
 	tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
 	tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-	unsigned int tmpCD;
+	uint32_t tmpCD;
 	CCString *tmpValue;
 	readData(tmpData, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
 	setnAttackValue(tmpValue);
@@ -595,7 +603,7 @@ void Monster::changeHPbar()
 	if (_exp >= 500 && _level == 1)
 	{
 		_level = 2;
-		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
+		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 1000;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 9));
@@ -603,7 +611,7 @@ void Monster::changeHPbar()
 	else if (_exp >= 1000 && _level == 2)
 	{
 		_level = 3;
-		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
+		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 1500;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 18));
@@ -611,7 +619,7 @@ void Monster::changeHPbar()
 	else if (_exp >= 1500 && _level == 3)
 	{
 		_level = 4;
-		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
+		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 2000;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 27));
@@ -619,7 +627,7 @@ void Monster::changeHPbar()
 	else if (_exp >= 2000 && _level == 4)
 	{
 		_level = 5;
-		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
+		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 2500;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 36));
@@ -627,7 +635,7 @@ void Monster::changeHPbar()
 	else if (_exp >= 2500 && _level == 5)
 	{
 		_level = 6;
-		unsigned int tempMaxHP = to_uint(getMaxHP()->getCString());
+		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 3000;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 48));
@@ -699,7 +707,7 @@ void Monster::setAI(float dt)
 	{
 		if (!findEnemy("Hero", 0))
 		{
-			if (!findEnemy("Flog", 0))
+			if (!findEnemy(ROLE_FLOG, 0))
 			{
 				_mainTarget = nullptr;
 			}
@@ -885,7 +893,7 @@ void Monster::dealloc()
 	}
 }
 
-void Monster::setDirectMove(unsigned int length, float delay, bool isReverse)
+void Monster::setDirectMove(int32_t length, float delay, bool isReverse)
 {
 	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
 							getPositionY());
@@ -905,7 +913,7 @@ void Monster::setDirectMove(unsigned int length, float delay, bool isReverse)
 
 	runAction(seq);
 }
-void Monster::setEaseIn(unsigned int length, float delay)
+void Monster::setEaseIn(int32_t length, float delay)
 {
 	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
 							getPositionY());
@@ -917,7 +925,7 @@ void Monster::setEaseIn(unsigned int length, float delay)
 	runAction(seq);
 }
 
-void Monster::setDirectMoveBy(unsigned int length, float delay)
+void Monster::setDirectMoveBy(int32_t length, float delay)
 {
 	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
 							getPositionY());

@@ -197,7 +197,7 @@ void GameModeLayer::selectMode(GameMode mode)
 	{
 		CCLOG("Selected %s mode", data.title.c_str());
 		s_GameMode = mode;
-		getGameModeHandler()->Internal_Init();
+		getGameModeHandler()->init();
 
 		bool enableCustomSelect = false; // TODO: Enable custom select mode
 		// call lua StartMenu:enterSelectPanel

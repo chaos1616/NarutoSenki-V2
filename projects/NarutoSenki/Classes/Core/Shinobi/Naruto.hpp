@@ -36,7 +36,7 @@ class Naruto : public Hero
 						kRikudoNaruto, resumeAction_RikudoNaruto(dt));
 	}
 
-	Hero *createClone(unsigned int cloneTime)
+	Hero *createClone(int32_t cloneTime)
 	{
 		match_char_exp3(kNaruto______, return createClone_Naruto(cloneTime),
 						kSageNaruto__, return createClone_SageNaruto(cloneTime),
@@ -100,7 +100,7 @@ class Naruto : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), "Flog") != 0)
+		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
 		{
 			CCPoint moveDirection;
 			CCPoint sp;
@@ -185,7 +185,7 @@ class Naruto : public Hero
 		}
 
 		_mainTarget = nullptr;
-		if (!findEnemy2("Flog"))
+		if (!findEnemy2(ROLE_FLOG))
 		{
 			findEnemy2("Tower");
 		}
@@ -305,7 +305,7 @@ class Naruto : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	inline Hero *createClone_Naruto(unsigned int cloneTime)
+	inline Hero *createClone_Naruto(int32_t cloneTime)
 	{
 		auto clone = create<NarutoClone>(getCharacter(), CCString::create(ROLE_CLONE), getGroup());
 		return clone;
@@ -368,7 +368,7 @@ class Naruto : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), "Flog") != 0)
+		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
 		{
 			CCPoint moveDirection;
 			CCPoint sp;
@@ -452,7 +452,7 @@ class Naruto : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2("Flog"))
+		if (!findEnemy2(ROLE_FLOG))
 		{
 			findEnemy2("Tower");
 		}
@@ -557,7 +557,7 @@ class Naruto : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	inline Hero *createClone_SageNaruto(unsigned int cloneTime)
+	inline Hero *createClone_SageNaruto(int32_t cloneTime)
 	{
 		auto clone = create<SageNarutoClone>(getCharacter(), CCString::create(ROLE_CLONE), getGroup());
 		clone->setSkill1Action(clone->createAnimation(clone->skillSPC1Array, 10.0f, false, true));
@@ -628,7 +628,7 @@ class Naruto : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), "Flog") != 0)
+		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
 		{
 			CCPoint moveDirection;
 			CCPoint sp;
@@ -708,7 +708,7 @@ class Naruto : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2("Flog"))
+		if (!findEnemy2(ROLE_FLOG))
 		{
 			findEnemy2("Tower");
 		}
@@ -736,7 +736,7 @@ class Naruto : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (_isCanSkill1 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				if (_isCanSkill1 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
 				{
 					changeSide(sp);
 					attack(SKILL1);
@@ -823,7 +823,7 @@ class Naruto : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	inline Hero *createClone_RikudoNaruto(unsigned int cloneTime)
+	inline Hero *createClone_RikudoNaruto(int32_t cloneTime)
 	{
 		auto clone = create<Kurama>(CCString::create("Kurama"), CCString::create(ROLE_CLONE), getGroup());
 		clone->setGP(5000);

@@ -101,7 +101,7 @@ class Sasuke : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), "Flog") != 0)
+		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
 		{
 			CCPoint moveDirection;
 			CCPoint sp;
@@ -188,7 +188,7 @@ class Sasuke : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2("Flog"))
+		if (!findEnemy2(ROLE_FLOG))
 		{
 			findEnemy2("Tower");
 		}
@@ -216,17 +216,17 @@ class Sasuke : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (_isCanSkill1 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				if (_isCanSkill1 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
 				{
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				else if (_isCanSkill2 && isBaseDanger && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				else if (_isCanSkill2 && isBaseDanger && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
 				{
 					changeSide(sp);
 					attack(SKILL2);
 				}
-				else if (_isCanSkill3 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				else if (_isCanSkill3 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
 				{
 					changeSide(sp);
 					attack(SKILL3);
@@ -444,7 +444,7 @@ class Sasuke : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), "Flog") != 0)
+		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
 		{
 			CCPoint moveDirection;
 			CCPoint sp;
@@ -539,7 +539,7 @@ class Sasuke : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2("Flog"))
+		if (!findEnemy2(ROLE_FLOG))
 		{
 			findEnemy2("Tower");
 		}
@@ -567,12 +567,12 @@ class Sasuke : public Hero
 
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
-				if (_isCanSkill1 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				if (_isCanSkill1 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
 				{
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				else if (_isCanSkill2 && isBaseDanger && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0)
+				else if (_isCanSkill2 && isBaseDanger && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
 				{
 					changeSide(sp);
 					attack(SKILL2);

@@ -7,7 +7,7 @@ class Parents : public Hero
 	{
 		if (!findEnemy("Hero", winSize.width / 2 - 32, true))
 		{
-			if (!findEnemy("Flog", 48, true))
+			if (!findEnemy(ROLE_FLOG, 48, true))
 			{
 				if (!findEnemy("Tower", 48, true))
 				{
@@ -32,7 +32,7 @@ class Parents : public Hero
 			CCPoint sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
 								ccp(getPositionX(), _originY ? _originY : getPositionY()));
 
-			if (strcmp(_mainTarget->getRole()->getCString(), "Flog") == 0 || strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0)
+			if (strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 || strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0)
 			{
 				if (abs(sp.x) > 48 || abs(sp.y) > 32)
 				{
