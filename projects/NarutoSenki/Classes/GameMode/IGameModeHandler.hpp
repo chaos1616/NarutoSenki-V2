@@ -67,6 +67,7 @@ private:
 	{
 		CC_SAFE_RELEASE(_herosArr);
 		_herosArr = CCArray::create(); // FIXME
+		_herosArr->retain();
 
 		init();
 	}
@@ -318,7 +319,7 @@ protected:
 		if (except)
 		{
 			int i = random(kHeroNum);
-			while (strcmp(kHeroList[i], except) == 1)
+			while (strcmp(kHeroList[i], except) == 0)
 				i = random(kHeroNum);
 			return kHeroList[i];
 		}
