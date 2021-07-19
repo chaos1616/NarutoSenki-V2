@@ -10,6 +10,7 @@ public:
 	CC_SYNTHESIZE(GameModeLayer *, _gameModeLayer, Delegate);
 
 	GameMode mode;
+	bool useMask2;
 
 	ModeMenuButton()
 	{
@@ -64,11 +65,17 @@ public:
 		_gameModeLayer->selectMode(mode);
 	}
 
+	bool isLocked()
+	{
+		return lockMask != nullptr;
+	}
+
 	void lock()
 	{
 		if (lockMask == nullptr)
 		{
-			lockMask = CCSprite::create("GameMode/chain_mask.png");
+			auto maskPath = useMask2 ? "GameMode/chain_mask2.png" : "GameMode/chain_mask.png";
+			lockMask = CCSprite::create(maskPath);
 			lockMask->setPosition(getPosition());
 			_gameModeLayer->addChild(lockMask, 1000);
 		}

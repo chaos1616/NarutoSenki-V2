@@ -31,8 +31,11 @@ enum GameMode
 struct GameModeData
 {
 public:
-	const char *title;
-	const char *description;
+	std::string title;
+	std::string description;
+
+	bool isLocked;
+	bool useMask2;
 
 	bool hasSelected;
 	IGameModeHandler *handler;

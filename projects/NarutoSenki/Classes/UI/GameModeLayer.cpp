@@ -43,6 +43,8 @@ bool GameModeLayer::init()
 	modemenu_title->setPosition(ccp(2, winSize.height - modemenu_title->getContentSize().height - 2));
 	addChild(modemenu_title, 3);
 
+	initModeData();
+
 	// init menus
 	const int padding = -10;
 	const int width = 100;
@@ -55,6 +57,7 @@ bool GameModeLayer::init()
 		mode_btn->setDelegate(this);
 		mode_btn->setPositionX(offset);
 		mode_btn->setPositionY((posY + 55 + 7.5f) - i * (55 + 7.5f));
+		menuButtons[i] = mode_btn;
 		addChild(mode_btn);
 	}
 	for (int i = 3; i < 6; i++)
@@ -64,7 +67,7 @@ bool GameModeLayer::init()
 		mode_btn->setDelegate(this);
 		mode_btn->setPositionX(offset + 10 + (i - 2) * (80 + 5));
 		mode_btn->setPositionY(posY);
-		// mode_btn->lock();
+		menuButtons[i] = mode_btn;
 		addChild(mode_btn);
 		// init animation
 		// auto delay = CCDelayTime::create(i * 0.3f);
@@ -79,7 +82,17 @@ bool GameModeLayer::init()
 		mode_btn->setDelegate(this);
 		mode_btn->setPositionX(offset + 20 + (80 + 5) * 4);
 		mode_btn->setPositionY((posY + 47) - (i - 6) * (86 + 8.0f));
+		menuButtons[i] = mode_btn;
 		addChild(mode_btn);
+	}
+
+	for (size_t i = 0; i < menuButtons.size(); i++)
+	{
+		if (modes[i].isLocked)
+		{
+			menuButtons.at(i)->useMask2 = modes.at(i).useMask2;
+			menuButtons.at(i)->lock();
+		}
 	}
 
 	menuLabel = CCLabelTTF::create();
@@ -93,8 +106,6 @@ bool GameModeLayer::init()
 	return_btn->setAnchorPoint(ccp(1, 0.5f));
 	return_btn->setPosition(winSize.width - 38, 65);
 	addChild(return_btn, 5);
-
-	initModeData();
 
 	return CCLayer::init();
 }
@@ -147,10 +158,17 @@ void GameModeLayer::initModeData()
 		modes[GameMode::RandomDeathmatch] = {"Random Deathmatch (3 VS 3)", ""};
 	}
 
+	// init in developtment game modes
+	modes[GameMode::Boss].isLocked = true;
+	modes[GameMode::Deathmatch].isLocked = true;
+	modes[GameMode::Deathmatch].useMask2 = true;
+
 	// init mode handlers
 	for (size_t i = 0; i < GameMode::_Internal_Max_Length; i++)
 	{
 		auto &data = modes.at(i);
+		if (data.isLocked)
+			data.description += " (In developtment)";
 		data.handler = s_ModeHandlers[i];
 	}
 }
@@ -168,7 +186,7 @@ void GameModeLayer::selectMode(GameMode mode)
 {
 	auto data = modes[(size_t)mode];
 	std::string label = data.title;
-	if (data.description && strlen(data.description) > 0)
+	if (data.description.size() > 0)
 	{
 		label += " | ";
 		label += data.description;
@@ -177,7 +195,7 @@ void GameModeLayer::selectMode(GameMode mode)
 
 	if (setSelect(mode))
 	{
-		CCLOG("Selected %s mode", data.title);
+		CCLOG("Selected %s mode", data.title.c_str());
 		s_GameMode = mode;
 		getGameModeHandler()->Internal_Init();
 
@@ -212,7 +230,7 @@ void GameModeLayer::selectMode(GameMode mode)
 bool GameModeLayer::setSelect(GameMode mode)
 {
 	auto &data = modes.at(mode);
-	if (data.hasSelected)
+	if (!data.isLocked && data.hasSelected)
 		return true;
 
 	for (size_t i = 0; i < modes.size(); i++)

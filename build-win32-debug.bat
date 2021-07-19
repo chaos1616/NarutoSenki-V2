@@ -35,6 +35,7 @@ echo.
 pushd ".\Debug.win32\"
 
 set CC_BIN=NarutoSenki.exe
+set CC_RES=..\projects\NarutoSenki\Resources
 set CC_LUA=..\projects\NarutoSenki\lua
 
 echo./*
@@ -46,6 +47,9 @@ echo. *************************************************************
 echo. *
 echo. */
 
+rm -rf ..\projects\NarutoSenki\__BIN__\Data
+mkdir .\Data
+xcopy /Y /D /E /Y /Q "%CC_RES%" ..\projects\NarutoSenki\__BIN__\Data
 xcopy /E /Y /Q .\*.dll ..\projects\NarutoSenki\__BIN__
 xcopy /E /Y /Q .\*.exe ..\projects\NarutoSenki\__BIN__
 

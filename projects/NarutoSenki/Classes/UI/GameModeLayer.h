@@ -4,6 +4,8 @@
 
 using namespace std;
 
+class ModeMenuButton;
+
 class GameModeLayer : public CCLayer
 {
 public:
@@ -30,5 +32,6 @@ private:
 	CCLabelTTF *menuLabel;
 
 	int _handler;
+	vector<ModeMenuButton *> menuButtons = vector<ModeMenuButton *>(GameMode::_Internal_Max_Length);
 	vector<GameModeData> modes = vector<GameModeData>(GameMode::_Internal_Max_Length);
 };
