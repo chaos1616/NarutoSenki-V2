@@ -2,7 +2,7 @@
 #include "CharacterBase.h"
 #include "HudLayer.h"
 #include "Core/Provider.hpp"
-#include "GameMode/GameModeImpl.hpp"
+#include "GameMode/GameModeImpl.h"
 #include "MyUtils/CCShake.h"
 
 CharacterBase::CharacterBase()

@@ -1,6 +1,6 @@
 #pragma once
 #include "Defines.h"
-#include "GameMode/GameModeImpl.hpp"
+#include "GameMode/GameModeImpl.h"
 
 using namespace std;
 

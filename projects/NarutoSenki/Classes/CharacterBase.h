@@ -159,7 +159,7 @@ public:
 	CC_SYNTHESIZE_RETAIN(CCString*,_ckr2,CKR2);
 	CC_SYNTHESIZE(float,_gardValue,GP);
 	CC_SYNTHESIZE(float,_exp,EXP);
-	CC_SYNTHESIZE(int32_t,_level,LV);
+	CC_SYNTHESIZE(uint32_t,_level,LV);
 	CC_SYNTHESIZE(int,_height,Height);
 	CC_SYNTHESIZE(int32_t,_rebornTime,RebornTime);
 
@@ -259,7 +259,7 @@ public:
 
 	CC_SYNTHESIZE(CCArray*,_damageArray,DamageArray);
 
-	int32_t damageEffectCount;
+	uint32_t		damageEffectCount;
 	CC_SYNTHESIZE(CCArray*,_monsterArray,MonsterArray);
 
 	//movement

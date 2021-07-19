@@ -5,7 +5,7 @@
 #include "HudLayer.h"
 #include "StartMenu.h"
 #include "Core/Provider.hpp"
-#include "GameMode/GameModeImpl.hpp"
+#include "GameMode/GameModeImpl.h"
 
 GameLayer::GameLayer()
 {

@@ -38,7 +38,7 @@ public:
 	bool useMask2;
 
 	bool hasSelected;
-	IGameModeHandler *handler;
+	// IGameModeHandler *handler;
 
 	// static const GameModeData &from(const char *path);
 };

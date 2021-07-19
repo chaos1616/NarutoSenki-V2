@@ -2,6 +2,16 @@
 #include "MyUtils/Cocos2dxHelper.hpp"
 
 GameMode s_GameMode = GameMode::Classic;
+IGameModeHandler *s_ModeHandlers[GameMode::_Internal_Max_Length] = {
+	new Mode1v1(),
+	new Mode3v3(),
+	new Mode4v4(),
+	new ModeHardCore(),
+	new ModeBoss(),
+	new ModeClone(false),
+	new ModeDeathmatch(),
+	new ModeRandomDeathmatch(),
+};
 int Cheats = 0;
 bool enableCustomSelect = false;
 

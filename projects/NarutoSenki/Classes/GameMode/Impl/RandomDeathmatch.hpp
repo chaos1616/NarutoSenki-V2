@@ -13,19 +13,13 @@ private:
 	uint8_t akatsukiLiveCount;
 
 public:
-	ModeRandomDeathmatch()
-	{
-		konohaRebornCount = kRebornCount;
-		akatsukiRebornCount = kRebornCount;
-
-		konohaLiveCount = 3;
-		akatsukiLiveCount = 3;
-	}
-
 	void init()
 	{
 		konohaRebornCount = 30;
 		akatsukiRebornCount = 30;
+
+		konohaLiveCount = 3;
+		akatsukiLiveCount = 3;
 	}
 
 	void onInitHeros()

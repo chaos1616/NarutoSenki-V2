@@ -169,7 +169,7 @@ void GameModeLayer::initModeData()
 		auto &data = modes.at(i);
 		if (data.isLocked)
 			data.description += " (In developtment)";
-		data.handler = s_ModeHandlers[i];
+		// data.handler = s_ModeHandlers[i];
 	}
 }
 
