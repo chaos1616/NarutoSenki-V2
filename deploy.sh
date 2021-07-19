@@ -18,4 +18,7 @@ cp lib/linux/release/liblua.so           Build/NarutoSenki/liblua.so
 
 cp Build/Templates/run.sh Build/NarutoSenki/run.sh
 
+cd Build
+tar -zcvf NarutoSenki.tar.gz ./NarutoSenki
+
 echo "done"
