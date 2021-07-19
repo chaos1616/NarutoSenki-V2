@@ -326,6 +326,16 @@ protected:
 		}
 	}
 
+	inline const char *getSelectOrRandomHero()
+	{
+		return selectLayer->_playerSelect ? selectLayer->_playerSelect : getRandomHero();
+	}
+
+	inline const char *getSelectOrRandomHeroExcept(const char *except)
+	{
+		return selectLayer->_playerSelect ? selectLayer->_playerSelect : getRandomHeroExcept(except);
+	}
+
 	static inline const char *getRandomGroup()
 	{
 		setRand();

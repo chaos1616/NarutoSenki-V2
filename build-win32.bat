@@ -46,8 +46,8 @@ rm -rf ..\projects\NarutoSenki\__BIN__\Data
 mkdir .\Data
 rm -rf ..\projects\NarutoSenki\__BIN__\lua
 mkdir .\lua
-xcopy /D /E /Y /Q "%CC_RES%" ..\projects\NarutoSenki\__BIN__\Data
-xcopy /D /E /Y /Q "%CC_LUA%" ..\projects\NarutoSenki\__BIN__\lua
+xcopy /Y /D /E /Y /Q "%CC_RES%" ..\projects\NarutoSenki\__BIN__\Data
+xcopy /Y /D /E /Y /Q "%CC_LUA%" ..\projects\NarutoSenki\__BIN__\lua
 xcopy /E /Y /Q .\*.dll ..\projects\NarutoSenki\__BIN__
 xcopy /E /Y /Q .\*.exe ..\projects\NarutoSenki\__BIN__
 

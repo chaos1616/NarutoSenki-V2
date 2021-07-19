@@ -24,7 +24,7 @@ public:
 		const char *enemyGroup;
 		getRandomGroups(playerGroup, enemyGroup);
 
-		auto playerHero = selectLayer->_playerSelect ? selectLayer->_playerSelect : getRandomHero();
+		auto playerHero = getSelectOrRandomHero();
 		auto enemyHero = getRandomHeroExcept(playerHero);
 
 		addHero(playerHero, ROLE_PLAYER, playerGroup);
