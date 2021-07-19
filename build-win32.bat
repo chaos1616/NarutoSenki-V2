@@ -41,12 +41,17 @@ set CC_LUA=..\projects\NarutoSenki\lua
 echo./*
 echo. * Copy resources
 echo. */
-echo.
-if not exist .\Data mkdir .\Data
-xcopy /H /E /Y /Q "%CC_RES%" .\Data
+
+rm -rf ..\projects\NarutoSenki\__BIN__\Data
+mkdir .\Data
+rm -rf ..\projects\NarutoSenki\__BIN__\lua
+mkdir .\lua
 xcopy /D /E /Y /Q "%CC_RES%" ..\projects\NarutoSenki\__BIN__\Data
+xcopy /D /E /Y /Q "%CC_LUA%" ..\projects\NarutoSenki\__BIN__\lua
 xcopy /E /Y /Q .\*.dll ..\projects\NarutoSenki\__BIN__
 xcopy /E /Y /Q .\*.exe ..\projects\NarutoSenki\__BIN__
+
+rm -rf projects/NarutoSenki/__BIN__/UserDefault.xml
 
 if not exist "%CC_BIN%" (
     echo Can't find the binary "NarutoSenki.exe", is there build error?

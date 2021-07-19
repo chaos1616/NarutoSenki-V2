@@ -1,6 +1,6 @@
 
 cd tools/tolua++
-./build.bat
+call ./build.bat
 
 cd ../../
-./build-win32.bat
+call ./build-win32.bat

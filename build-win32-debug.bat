@@ -40,10 +40,15 @@ set CC_LUA=..\projects\NarutoSenki\lua
 
 echo./*
 echo. * Copy resources
+echo. *
+echo. *************************************************************
+echo. * NOTE: Doesn't automatically copy lua files in debug mode. *
+echo. *************************************************************
+echo. *
 echo. */
-echo.
-if not exist .\Data mkdir .\Data
-xcopy /H /E /Y /Q "%CC_RES%" .\Data
+
+rm -rf ..\projects\NarutoSenki\__BIN__\Data
+mkdir .\Data
 xcopy /D /E /Y /Q "%CC_RES%" ..\projects\NarutoSenki\__BIN__\Data
 xcopy /E /Y /Q .\*.dll ..\projects\NarutoSenki\__BIN__
 xcopy /E /Y /Q .\*.exe ..\projects\NarutoSenki\__BIN__

@@ -98,7 +98,9 @@ __BIN__
 # Ignore files created by create_project.py
 projects/NarutoSenki/__BIN__
 
-Build/NarutoSenki
+Build/*.zip
+Build/*.7z
+Build/*.tar.gz
 
 # Ignore config files in javascript bindings generator
 tools/tojs/user.cfg

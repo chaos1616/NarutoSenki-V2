@@ -65,17 +65,12 @@ private:
 
 	void Internal_Init()
 	{
-		CC_SAFE_RELEASE(_herosArr);
-		_herosArr = CCArray::create(); // FIXME
-		_herosArr->retain();
-
 		init();
 	}
 
 	void Internal_GameOver()
 	{
-		CC_SAFE_RELEASE(_herosArr);
-		_herosArr = nullptr;
+		CC_SAFE_RELEASE_NULL(_herosArr);
 
 		onGameOver();
 	}
@@ -140,6 +135,8 @@ protected:
 		dic->setObject(CCString::create(name), "character");
 		dic->setObject(CCString::create(role), "role");
 		dic->setObject(CCString::create(group), "group");
+		if (!_herosArr)
+			_herosArr = CCArray::create();
 		_herosArr->addObject(dic);
 	}
 
