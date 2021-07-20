@@ -90,9 +90,7 @@ class Guardian : public Hero
 				return;
 			}
 			else
-			{
 				idle();
-			}
 		}
 	}
 

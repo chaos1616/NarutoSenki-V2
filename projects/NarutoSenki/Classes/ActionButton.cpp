@@ -312,7 +312,7 @@ void ActionButton::setMarkSprite(const char *mark)
 
 	if (getABType() == GearBtn)
 	{
-		if (_delegate->_delegate->_isHardCoreGame)
+		if (_delegate->_delegate->_enableGear)
 		{
 			gearSign = CCSprite::createWithSpriteFrameName("gearsign.png");
 			gearSign->setPosition(ccp(getPositionX() + 17, getPositionY() + 17));

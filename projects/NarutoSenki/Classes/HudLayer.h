@@ -53,6 +53,7 @@ public:
 	CC_SYNTHESIZE_RETAIN(ActionButton *, item3Button, Item3Button);
 	CC_SYNTHESIZE_RETAIN(ActionButton *, item4Button, Item4Button);
 
+	CCMenuItemSprite *gearMenuSprite;
 	ActionButton *gear1Button;
 	ActionButton *gear2Button;
 	ActionButton *gear3Button;

@@ -559,9 +559,6 @@ void StartMenu::onHardLayerCallBack()
 
 void StartMenu::enterCustomMode()
 {
-	// enableCustomSelect = true;
-	// enterSelectLayer();
-
 	// TEST: Develop game mode scene
 	auto modeScene = CCScene::create();
 	auto gameModeLayer = GameModeLayer::create();
@@ -575,7 +572,7 @@ void StartMenu::enterTrainingMode()
 {
 	s_GameMode = GameMode::Classic;
 
-	enableCustomSelect = false;
+	enableCustomSelect = true;
 	enterSelectLayer();
 }
 

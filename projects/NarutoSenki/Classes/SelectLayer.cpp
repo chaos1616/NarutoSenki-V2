@@ -9,15 +9,12 @@
 
 SelectLayer::SelectLayer()
 {
+	_playerSelect = nullptr;
 	_selectList = nullptr;
 	_com1Select = nullptr;
 	_com2Select = nullptr;
 
 	isStart = false;
-
-	_isRandomChar = false;
-
-	_playerSelect = nullptr;
 }
 
 SelectLayer::~SelectLayer()
@@ -43,7 +40,6 @@ void SelectLayer::onGameStart()
 	loadLayer->tempHeros = gameModeHandler->getHerosArray();
 	loadScene->addChild(loadLayer);
 
-	loadLayer->_isRandomChar = _isRandomChar;
 	loadLayer->preloadAudio();
 	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.5f, loadScene));
 }

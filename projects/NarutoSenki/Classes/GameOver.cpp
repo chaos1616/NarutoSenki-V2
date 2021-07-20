@@ -368,11 +368,11 @@ void GameOver::listResult()
 
 	if (_isWin)
 	{
-		if (resultScore >= 140 && _delegate->_isHardCoreGame && _delegate->_isRandomChar)
+		if (resultScore >= 140 && _delegate->_isHardCoreGame && _delegate->_isRandomChar && !_delegate->_enableGear)
 			imgSrc = "result_SSSR.png";
-		else if (resultScore >= 120 && _delegate->_isHardCoreGame && _delegate->_isRandomChar)
+		else if (resultScore >= 120 && _delegate->_isHardCoreGame && _delegate->_isRandomChar && !_delegate->_enableGear)
 			imgSrc = "result_SSR.png";
-		else if (resultScore >= 100 && _delegate->_isHardCoreGame && _delegate->_isRandomChar)
+		else if (resultScore >= 100 && _delegate->_isHardCoreGame && _delegate->_isRandomChar && !_delegate->_enableGear)
 			imgSrc = "result_SR.png";
 		else if (resultScore >= 140)
 			imgSrc = "result_SSS.png";
@@ -402,13 +402,13 @@ void GameOver::listResult()
 		if (_isWin && _delegate->_isHardCoreGame)
 		{
 			finnalScore = resultScore + float(_delegate->currentPlayer->_flogNum) / 100;
-			CCString *recordString = CCString::createWithFormat("%0.2fPts", finnalScore);
+			// CCString *recordString = CCString::createWithFormat("%0.2fPts", finnalScore);
 
-			CCLabelBMFont *recordScore = CCLabelBMFont::create(recordString->getCString(), "Fonts/1.fnt");
-			recordScore->setAnchorPoint(ccp(1, 0.5f));
-			recordScore->setPosition(ccp(recordSprite->getPositionX() + recordSprite->getContentSize().width, recordSprite->getPositionY() - 7));
-			recordScore->setScale(0.35f);
-			addChild(recordScore, 10);
+			// CCLabelBMFont *recordScore = CCLabelBMFont::create(recordString->getCString(), "Fonts/1.fnt");
+			// recordScore->setAnchorPoint(ccp(1, 0.5f));
+			// recordScore->setPosition(ccp(recordSprite->getPositionX() + recordSprite->getContentSize().width, recordSprite->getPositionY() - 7));
+			// recordScore->setScale(0.35f);
+			// addChild(recordScore, 10);
 
 			// upload_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("upload_btn.png"), CCSprite::createWithSpriteFrameName("upload_btn.png"), nullptr, this, menu_selector(GameOver::onUPloadBtn));
 			// CCMenu *upMenu = CCMenu::create(upload_btn, nullptr);

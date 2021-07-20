@@ -1,7 +1,5 @@
 #include "LoadLayer.h"
-
-#include <time.h>
-#include <fstream>
+#include "GameMode/GameModeImpl.h"
 
 using namespace std;
 
@@ -13,7 +11,7 @@ LoadLayer::LoadLayer()
 	_bgLayer = nullptr;
 	_hudLayer = nullptr;
 	_isHardCoreMode = true;
-	_isRandomChar = false;
+	_enableGear = true;
 }
 
 LoadLayer::~LoadLayer()
@@ -70,8 +68,12 @@ bool LoadLayer::init()
 		bRet = true;
 	} while (0);
 
+	auto &gd = getGameModeHandler()->getGameData();
+	_enableGear = gd.enableGear;
+	_isHardCoreMode = gd.isHardCore;
+
 	return bRet;
-};
+}
 
 void LoadLayer::preloadIMG()
 {
@@ -82,10 +84,10 @@ void LoadLayer::preloadIMG()
 		CCARRAY_FOREACH(tempHeros, pObject)
 		{
 			CCDictionary *tempdict = (CCDictionary *)pObject;
-			CCString *player = CCString::create(tempdict->valueForKey("character")->getCString());
+			auto player = tempdict->valueForKey("character")->getCString();
 			perloadCharIMG(player);
 
-			if (i == 0 || ((i == 1 || i == 2) && _isHardCoreMode))
+			if (i == 0 || ((i == 1 || i == 2) && _enableGear))
 				setLoadingAnimation(player, i);
 			i++;
 		}
@@ -136,9 +138,9 @@ void LoadLayer::preloadIMG()
 	scheduleOnce(schedule_selector(LoadLayer::onLoadFinish), 3.0f);
 }
 
-void LoadLayer::perloadCharIMG(const CCString *player)
+void LoadLayer::perloadCharIMG(const char *player)
 {
-#define player_is(name) strcmp(player->getCString(), #name) == 0
+#define player_is(name) strcmp(player, #name) == 0
 
 	if (!player)
 	{
@@ -148,15 +150,15 @@ void LoadLayer::perloadCharIMG(const CCString *player)
 
 	CCTexture2D::PVRImagesHavePremultipliedAlpha(true);
 
-	const char *path = CCString::createWithFormat("Element/Skills/%s_Skill.plist", player->getCString())->getCString();
+	const char *path = CCString::createWithFormat("Element/Skills/%s_Skill.plist", player)->getCString();
 	if (CCFileUtils::sharedFileUtils()->isFileExist(path))
 		addSprites(path);
 	else
 		CCLOG("Not found file %s", path);
 
-	KTools::prepareFileOGG(player->getCString());
+	KTools::prepareFileOGG(player);
 
-	path = CCString::createWithFormat("Element/%s/%s.plist", player->getCString(), player->getCString())->getCString();
+	path = CCString::createWithFormat("Element/%s/%s.plist", player, player)->getCString();
 	addSprites(path);
 	// Add extra sprites
 	if (player_is(Jiraiya))
@@ -223,9 +225,84 @@ void LoadLayer::perloadCharIMG(const CCString *player)
 	}
 }
 
-void LoadLayer::setLoadingAnimation(const CCString *player, int index)
+void LoadLayer::unloadCharIMG(const CharacterBase *c)
 {
-	CCSprite *loadingAvator = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_Walk_01.png", player->getCString())->getCString());
+	if (c == nullptr)
+		return;
+
+	auto roleName = c->getRole()->getCString();
+	auto charName = c->getCharacter()->getCString();
+
+	if (strcmp(roleName, ROLE_CLONE) == 0 ||
+		strcmp(roleName, ROLE_SUMMON) == 0)
+	{
+		return;
+	}
+
+	auto path = CCString::createWithFormat("Element/%s/%s.plist", charName, charName)->getCString();
+	removeSprites(path);
+
+	if (strcmp(roleName, "Com") == 0 ||
+		strcmp(roleName, "Player") == 0)
+	{
+		KTools::prepareFileOGG(charName, true);
+	}
+
+	if (strcmp(charName, "Jiraiya") == 0)
+	{
+		removeSprites("Element/SageJiraiya/SageJiraiya.plist");
+		KTools::prepareFileOGG("SageJiraiya", true);
+	}
+	else if (strcmp(charName, "Kankuro") == 0)
+	{
+		removeSprites("Element/Karasu/Karasu.plist");
+		removeSprites("Element/Sanshouuo/Sanshouuo.plist");
+	}
+	else if (strcmp(charName, "Kakuzu") == 0)
+	{
+		removeSprites("Element/MaskFudon/MaskFudon.plist");
+		removeSprites("Element/MaskRaidon/MaskRaidon.plist");
+		removeSprites("Element/MaskKadon/MaskKadon.plist");
+	}
+	else if (strcmp(charName, "Naruto") == 0)
+	{
+		removeSprites("Element/SageNaruto/SageNaruto.plist");
+		removeSprites("Element/RikudoNaruto/RikudoNaruto.plist");
+		KTools::prepareFileOGG("SageNaruto", true);
+		KTools::prepareFileOGG("RikudoNaruto", true);
+	}
+	else if (strcmp(charName, "RockLee") == 0)
+	{
+		removeSprites("Element/Lee/Lee.plist");
+	}
+	else if (strcmp(charName, "Lee") == 0)
+	{
+		removeSprites("Element/RockLee/RockLee.plist");
+	}
+	else if (strcmp(charName, "Sasuke") == 0)
+	{
+		KTools::prepareFileOGG("ImmortalSasuke", true);
+		removeSprites("Element/ImmortalSasuke/ImmortalSasuke.plist");
+	}
+	else if (strcmp(charName, "Pain") == 0)
+	{
+		KTools::prepareFileOGG("Nagato", true);
+		removeSprites("Element/AnimalPath/AnimalPath.plist");
+		removeSprites("Element/AsuraPath/AsuraPath.plist");
+		removeSprites("Element/DevaPath/DevaPath.plist");
+		removeSprites("Element/Nagato/Nagato.plist");
+	}
+	else if (strcmp(charName, "Nagato") == 0)
+	{
+		removeSprites("Element/AnimalPath/AnimalPath.plist");
+		removeSprites("Element/AsuraPath/AsuraPath.plist");
+		removeSprites("Element/DevaPath/DevaPath.plist");
+	}
+}
+
+void LoadLayer::setLoadingAnimation(const char *player, int index)
+{
+	CCSprite *loadingAvator = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_Walk_01.png", player)->getCString());
 	loadingAvator->setFlipX(true);
 	loadingAvator->setPosition(ccp(winSize.width - 100 + index * 16, 30));
 	loadingAvator->setAnchorPoint(ccp(0, 0));
@@ -233,10 +310,10 @@ void LoadLayer::setLoadingAnimation(const CCString *player, int index)
 	CCArray *animeFrames = CCArray::create();
 	CCString *str;
 
-	const char *file = CCString::createWithFormat("%s_Walk_", player->getCString())->getCString();
+	const char *file = CCString::createWithFormat("%s_Walk_", player)->getCString();
 	int frameCount;
 	//FIXME: use the other way get animation frame count
-	if (strcmp(player->getCString(), "Konan") == 0)
+	if (strcmp(player, "Konan") == 0)
 	{
 		frameCount = 1;
 	}
@@ -269,15 +346,7 @@ void LoadLayer::playBGM(float dt)
 
 void LoadLayer::preloadAudio()
 {
-	const char *bg_src;
-	if (_isHardCoreMode)
-	{
-		bg_src = "blue_bg.png";
-	}
-	else
-	{
-		bg_src = "red_bg.png";
-	}
+	auto bg_src = _enableGear ? "blue_bg.png" : "red_bg.png";
 	CCSprite *bgSprite = CCSprite::create(bg_src);
 
 	FULL_SCREEN_SPRITE(bgSprite);
@@ -294,8 +363,6 @@ void LoadLayer::onLoadFinish(float dt)
 
 	_gameLayer = GameLayer::create();
 	_gameLayer->Heros = tempHeros;
-	_gameLayer->_isHardCoreGame = _isHardCoreMode;
-	_gameLayer->_isRandomChar = _isRandomChar;
 	_gameLayer->initHeros();
 
 	_bgLayer = BGLayer::create();

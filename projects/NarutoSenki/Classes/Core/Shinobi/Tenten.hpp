@@ -7,20 +7,14 @@ class Tenten : public Hero
 	{
 		_mainTarget = nullptr;
 		findEnemy2("Hero");
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_isHardCoreGame)
+		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
-			{
 				setGear(gear00);
-			}
 			else if (getGearArray()->count() == 1)
-			{
 				setGear(gear05);
-			}
 			else if (getGearArray()->count() == 2)
-			{
 				setGear(gear02);
-			}
 		}
 
 		if (checkRetri())
@@ -72,13 +66,10 @@ class Tenten : public Hero
 			CCPoint sp;
 
 			if (_mainTarget->_originY)
-			{
 				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			}
 			else
-			{
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-			}
+
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				if (_isCanSkill1)
@@ -124,15 +115,10 @@ class Tenten : public Hero
 				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_skillChangeBuffValue && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
-					{
 						stepBack2();
-						return;
-					}
 					else
-					{
 						idle();
-						return;
-					}
+					return;
 				}
 				else if (abs(sp.x) < 128)
 				{
@@ -174,9 +160,7 @@ class Tenten : public Hero
 		}
 		_mainTarget = nullptr;
 		if (!findEnemy2(ROLE_FLOG))
-		{
 			findEnemy2("Tower");
-		}
 
 		if (_mainTarget)
 		{
@@ -184,13 +168,9 @@ class Tenten : public Hero
 			CCPoint sp;
 
 			if (_mainTarget->_originY)
-			{
 				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			}
 			else
-			{
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-			}
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -228,16 +208,12 @@ class Tenten : public Hero
 		if (_isHealling && getHpPercent() < 1)
 		{
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
-			{
 				idle();
-			}
 		}
 		else
 		{
 			if (_isCanGear00)
-			{
 				useGear(gear00);
-			}
 			stepOn();
 		}
 	}

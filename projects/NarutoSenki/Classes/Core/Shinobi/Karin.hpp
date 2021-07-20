@@ -19,20 +19,14 @@ class Karin : public Hero
 				useGear(gear06);
 			}
 		}
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_isHardCoreGame)
+		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
-			{
 				setGear(gear06);
-			}
 			else if (getGearArray()->count() == 1)
-			{
 				setGear(gear01);
-			}
 			else if (getGearArray()->count() == 2)
-			{
 				setGear(gear07);
-			}
 		}
 
 		if (checkRetri())
@@ -76,13 +70,10 @@ class Karin : public Hero
 			CCPoint sp;
 
 			if (_mainTarget->_originY)
-			{
 				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			}
 			else
-			{
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-			}
+
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
@@ -119,15 +110,10 @@ class Karin : public Hero
 				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
-					{
 						stepBack2();
-						return;
-					}
 					else
-					{
 						idle();
-						return;
-					}
+					return;
 				}
 				else if (abs(sp.x) < 128)
 				{
@@ -165,9 +151,7 @@ class Karin : public Hero
 		}
 
 		if (!findEnemy2(ROLE_FLOG))
-		{
 			findEnemy2("Tower");
-		}
 
 		if (_mainTarget)
 		{
@@ -175,13 +159,9 @@ class Karin : public Hero
 			CCPoint sp;
 
 			if (_mainTarget->_originY)
-			{
 				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			}
 			else
-			{
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-			}
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -214,9 +194,7 @@ class Karin : public Hero
 		if (_isHealling && getHpPercent() < 1)
 		{
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
-			{
 				idle();
-			}
 		}
 		else
 		{

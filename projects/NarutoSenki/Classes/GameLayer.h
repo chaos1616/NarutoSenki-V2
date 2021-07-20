@@ -124,6 +124,7 @@ public:
 
 	bool _isSurrender;
 
+	bool _enableGear;
 	bool _isOugis2Game;
 	bool _isHardCoreGame;
 	bool _isRandomChar;

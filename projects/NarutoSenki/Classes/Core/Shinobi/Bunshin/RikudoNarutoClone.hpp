@@ -21,13 +21,9 @@ class RikudoNarutoClone : public Hero
 			CCPoint moveDirection;
 			CCPoint sp;
 			if (_mainTarget->_originY)
-			{
 				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			}
 			else
-			{
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-			}
 
 			if (strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0 ||
 				strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)

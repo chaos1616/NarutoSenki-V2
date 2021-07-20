@@ -5,6 +5,7 @@ class ModeRandomDeathmatch : public IGameModeHandler
 {
 public:
 	const uint8_t kRebornCount = 40;
+	const uint8_t kHeroAmount = 3;
 
 private:
 	uint8_t konohaRebornCount;
@@ -15,16 +16,20 @@ private:
 public:
 	void init()
 	{
-		konohaRebornCount = 30;
-		akatsukiRebornCount = 30;
+		CCLOG("Enter Random Deathmatch mode.");
 
-		konohaLiveCount = 3;
-		akatsukiLiveCount = 3;
+		konohaRebornCount = kRebornCount;
+		akatsukiRebornCount = kRebornCount;
+
+		konohaLiveCount = kHeroAmount;
+		akatsukiLiveCount = kHeroAmount;
+
+		gd.isHardCore = true;
 	}
 
 	void onInitHeros()
 	{
-		initHeros(3, 3);
+		initHeros(kHeroAmount, kHeroAmount);
 	}
 
 	void onGameStart()
@@ -84,16 +89,35 @@ private:
 			return;
 		}
 
-		auto newChar = getRandomHeroExceptAll(herosVector);
-		herosVector[index] = newChar;
+		auto newChar = getRandomHeroExceptAll(heroVector);
+		heroVector[index] = newChar;
+		// unload old char assets
+		LoadLayer::unloadCharIMG(c);
+		// load new char assets
+		LoadLayer::perloadCharIMG(newChar);
+
+		// FIXME: Change character
 		c->setID(CCString::create(newChar), c->getRole(), c->getGroup());
 	}
 
 	int getIndexByHero(CharacterBase *c)
 	{
-		for (size_t i = 0; i < herosVector.size(); i++)
+		const char *realName = nullptr;
+		if (c->isCharacter("SageNaruto"))
+			realName = "Naruto";
+		else if (c->isCharacter("RikudoNaruto"))
+			realName = "Naruto";
+		else if (c->isCharacter("SageJiraiya"))
+			realName = "Jiraiya";
+		else if (c->isCharacter("ImmortalSasuke"))
+			realName = "Sasuke";
+		else if (c->isCharacter("RockLee"))
+			realName = "Lee";
+		realName = realName ? realName : c->getCharacter()->getCString();
+
+		for (size_t i = 0; i < heroVector.size(); i++)
 		{
-			if (c->isCharacter(herosVector[i]))
+			if (strcmp(heroVector[i], realName) == 0)
 				return i;
 		}
 		return -1;

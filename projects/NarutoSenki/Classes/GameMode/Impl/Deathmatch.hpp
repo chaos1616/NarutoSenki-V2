@@ -6,6 +6,9 @@ class ModeDeathmatch : public IGameModeHandler
 public:
 	void init()
 	{
+		CCLOG("Enter Deathmatch mode.");
+
+		gd.isHardCore = true;
 	}
 
 	void onInitHeros()

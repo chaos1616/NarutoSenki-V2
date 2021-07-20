@@ -6,6 +6,9 @@ class ModeBoss : public IGameModeHandler
 public:
 	void init()
 	{
+		CCLOG("Enter Boss mode.");
+
+		gd.isHardCore = false;
 	}
 
 	void onInitHeros()

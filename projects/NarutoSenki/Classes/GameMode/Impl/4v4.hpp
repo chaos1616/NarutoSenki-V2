@@ -9,6 +9,7 @@ public:
 		CCLOG("Enter 4 VS 4 mode.");
 
 		Cheats = 11;
+		gd.isHardCore = true;
 	}
 
 	void onInitHeros()

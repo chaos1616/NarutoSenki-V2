@@ -16,6 +16,8 @@
 #include <sys/stat.h>
 #endif
 
+class CharacterBase;
+
 class LoadLayer : public CCLayer
 {
 public:
@@ -32,15 +34,18 @@ public:
 	CC_SYNTHESIZE_RETAIN(GameLayer *, _gameLayer, GameLayer);
 	CC_SYNTHESIZE_RETAIN(BGLayer *, _bgLayer, BGLayer);
 	CC_SYNTHESIZE_RETAIN(HudLayer *, _hudLayer, HudLayer);
+
 	bool _isHardCoreMode;
-	bool _isRandomChar;
+	bool _enableGear;
 
 	void preloadAudio();
 	void preloadIMG();
 	void playBGM(float dt);
 	void onLoadFinish(float dt);
 
+	static void perloadCharIMG(const char *player);
+	static void unloadCharIMG(const CharacterBase *player);
+
 protected:
-	void perloadCharIMG(const CCString *player);
-	void setLoadingAnimation(const CCString *player, int index);
+	void setLoadingAnimation(const char *player, int index);
 };

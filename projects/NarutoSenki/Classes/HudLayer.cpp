@@ -173,14 +173,12 @@ void HudLayer::JoyStickUpdate(CCPoint direction)
 void HudLayer::initGearButton(const char *charName)
 {
 	if (gearMenu)
-	{
 		gearMenu->removeFromParentAndCleanup(true);
-	}
 
-	CCMenuItem *gear_button = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_avator.png", charName)->getCString()), nullptr, nullptr, this, menu_selector(HudLayer::gearButtonClick));
-	gear_button->setAnchorPoint(ccp(0, 0));
-	gearMenu = CCMenu::create(gear_button, nullptr);
-	gearMenu->setPosition(ccp(0, winSize.height - gear_button->getContentSize().height));
+	gearMenuSprite = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_avator.png", charName)->getCString()), nullptr, nullptr, this, menu_selector(HudLayer::gearButtonClick));
+	gearMenuSprite->setAnchorPoint(ccp(0, 0));
+	gearMenu = CCMenu::create(gearMenuSprite, nullptr);
+	gearMenu->setPosition(ccp(0, winSize.height - gearMenuSprite->getContentSize().height));
 	gearMenu->setTouchPriority(10);
 	addChild(gearMenu, 100);
 }
@@ -1471,6 +1469,11 @@ void HudLayer::updateSkillButtons()
 	std::string charName = player->getCharacter()->getCString();
 	if (charName.length() == 0)
 		return;
+
+	// update avator
+	auto avator = CCSprite::createWithSpriteFrameName((charName + "_avator.png").c_str());
+	if (avator)
+		gearMenuSprite->setNormalImage(avator);
 
 	auto cache = CCSpriteFrameCache::sharedSpriteFrameCache();
 

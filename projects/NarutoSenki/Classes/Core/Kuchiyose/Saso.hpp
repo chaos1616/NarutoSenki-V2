@@ -99,9 +99,7 @@ class Saso : public Hero
 		{
 			if (_actionState == State::WALK ||
 				_actionState == State::NATTACK)
-			{
 				idle();
-			}
 		}
 	}
 };

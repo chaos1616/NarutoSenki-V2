@@ -16,6 +16,9 @@ public:
 
 	void init()
 	{
+		CCLOG("Enter Clone mode.");
+
+		gd.isHardCore = true;
 	}
 
 	void onInitHeros()

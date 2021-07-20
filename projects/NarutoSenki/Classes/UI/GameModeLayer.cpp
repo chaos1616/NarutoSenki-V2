@@ -200,7 +200,7 @@ void GameModeLayer::selectMode(GameMode mode)
 		getGameModeHandler()->init();
 
 		bool enableCustomSelect = false; // TODO: Enable custom select mode
-		// call lua StartMenu:enterSelectPanel
+		// FIXME: call lua global function enterSelectPanel
 		if (_handler != 0)
 		{
 			auto pStack = get_luastack;
@@ -209,19 +209,6 @@ void GameModeLayer::selectMode(GameMode mode)
 		}
 		else
 		{
-			addSprites("Select.plist");
-			addSprites("UI.plist");
-			addSprites("Report.plist");
-			addSprites("Ougis.plist");
-			addSprites("Ougis2.plist");
-			addSprites("Map.plist");
-			addSprites("Gears.plist");
-
-			auto selectScene = CCScene::create();
-			auto selectLayer = SelectLayer::create();
-			selectScene->addChild(selectLayer);
-
-			CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.5f, selectScene));
 			CCLOG("GameModeLayer lua handler can not be null");
 		}
 	}

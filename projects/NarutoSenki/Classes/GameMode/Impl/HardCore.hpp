@@ -8,8 +8,9 @@ public:
 	{
 		CCLOG("Enter HardCore mode.");
 
-		Cheats = 11;
-		isHardCoreGame = true;
+		Cheats = 11; // Use 4 vs 4 map position
+		gd.enableGear = false;
+		gd.isHardCore = true;
 	}
 
 	void onInitHeros()

@@ -7,6 +7,8 @@ public:
 	void init()
 	{
 		CCLOG("Enter 3 VS 3 mode.");
+
+		gd.isHardCore = true;
 	}
 
 	void onInitHeros()

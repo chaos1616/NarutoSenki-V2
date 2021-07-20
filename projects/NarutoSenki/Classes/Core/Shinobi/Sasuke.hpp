@@ -50,20 +50,14 @@ class Sasuke : public Hero
 				useGear(gear06);
 			}
 		}
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_isHardCoreGame)
+		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
-			{
 				setGear(gear06);
-			}
 			else if (getGearArray()->count() == 1)
-			{
 				setGear(gear01);
-			}
 			else if (getGearArray()->count() == 2)
-			{
 				setGear(gear02);
-			}
 		}
 
 		if (checkRetri())
@@ -107,13 +101,10 @@ class Sasuke : public Hero
 			CCPoint sp;
 
 			if (_mainTarget->_originY)
-			{
 				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			}
 			else
-			{
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-			}
+
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
@@ -125,15 +116,10 @@ class Sasuke : public Hero
 				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isArmored && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
-					{
 						stepBack2();
-						return;
-					}
 					else
-					{
 						idle();
-						return;
-					}
+					return;
 				}
 				else if (_isCanSkill3 && !_isTaunt && !_isArmored)
 				{
@@ -189,9 +175,7 @@ class Sasuke : public Hero
 		}
 		_mainTarget = nullptr;
 		if (!findEnemy2(ROLE_FLOG))
-		{
 			findEnemy2("Tower");
-		}
 
 		if (_mainTarget)
 		{
@@ -199,13 +183,9 @@ class Sasuke : public Hero
 			CCPoint sp;
 
 			if (_mainTarget->_originY)
-			{
 				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			}
 			else
-			{
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-			}
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -244,9 +224,7 @@ class Sasuke : public Hero
 		if (_isHealling && getHpPercent() < 1)
 		{
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
-			{
 				idle();
-			}
 		}
 		else
 		{
@@ -393,20 +371,14 @@ class Sasuke : public Hero
 				useGear(gear06);
 			}
 		}
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_isHardCoreGame)
+		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
-			{
 				setGear(gear06);
-			}
 			else if (getGearArray()->count() == 1)
-			{
 				setGear(gear01);
-			}
 			else if (getGearArray()->count() == 2)
-			{
 				setGear(gear02);
-			}
 		}
 
 		if (checkRetri())
@@ -450,13 +422,10 @@ class Sasuke : public Hero
 			CCPoint sp;
 
 			if (_mainTarget->_originY)
-			{
 				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			}
 			else
-			{
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-			}
+
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 			{
 				if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
@@ -481,15 +450,10 @@ class Sasuke : public Hero
 				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isArmored && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
-					{
 						stepBack2();
-						return;
-					}
 					else
-					{
 						idle();
-						return;
-					}
+					return;
 				}
 				else if (_isCanSkill3 && !_isArmored && !_isTaunt)
 				{
@@ -540,9 +504,7 @@ class Sasuke : public Hero
 		}
 		_mainTarget = nullptr;
 		if (!findEnemy2(ROLE_FLOG))
-		{
 			findEnemy2("Tower");
-		}
 
 		if (_mainTarget)
 		{
@@ -550,13 +512,9 @@ class Sasuke : public Hero
 			CCPoint sp;
 
 			if (_mainTarget->_originY)
-			{
 				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			}
 			else
-			{
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-			}
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -590,9 +548,7 @@ class Sasuke : public Hero
 		if (_isHealling && getHpPercent() < 1)
 		{
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
-			{
 				idle();
-			}
 		}
 		else
 		{

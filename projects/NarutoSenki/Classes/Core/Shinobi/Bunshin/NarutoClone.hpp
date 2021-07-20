@@ -21,13 +21,9 @@ class NarutoClone : public Hero
 			CCPoint moveDirection;
 			CCPoint sp;
 			if (_mainTarget->_originY)
-			{
 				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			}
 			else
-			{
 				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-			}
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{

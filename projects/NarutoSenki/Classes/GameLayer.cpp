@@ -36,6 +36,8 @@ GameLayer::GameLayer()
 
 	ougisChar = nullptr;
 	controlChar = nullptr;
+
+	_enableGear = true;
 	_isOugis2Game = false;
 	_isHardCoreGame = false;
 	_isRandomChar = false;
@@ -57,8 +59,6 @@ GameLayer::GameLayer()
 
 GameLayer::~GameLayer()
 {
-	// CC_SAFE_RELEASE(totalKills);
-	// CC_SAFE_RELEASE(totalTM);
 	_gLayer = nullptr;
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
@@ -74,7 +74,10 @@ bool GameLayer::init()
 	setTouchEnabled(true);
 
 	_gLayer = this;
-	_isHardCoreGame = getGameModeHandler()->isHardCoreGame;
+	auto &gd = getGameModeHandler()->gd;
+	_enableGear = gd.enableGear;
+	_isHardCoreGame = gd.isHardCore;
+	_isRandomChar = gd.isRandomChar;
 
 	return CCLayer::init();
 }
@@ -191,21 +194,32 @@ void GameLayer::initHeros()
 			CCString *role = CCString::create(tempdict->valueForKey("role")->getCString());
 			CCString *group = CCString::create(tempdict->valueForKey("group")->getCString());
 
-			if (i == 0)
+			int mapPos = i;
+			if (strcmp(group->getCString(), Akatsuki) == 0)
 			{
-				spawnPoint = ccp(432, 80);
-			}
-			else if (i == 7)
-			{
-				spawnPoint = ccp(2608, 80);
+				if (mapPos <= MapPosCount)
+					mapPos += MapPosCount;
 			}
 			else
 			{
-				CCObject *mapObject = objectArray->objectAtIndex(i - 1);
+				if (mapPos > MapPosCount)
+					mapPos -= MapPosCount;
+			}
+
+			if (mapPos > 0 && mapPos < 7)
+			{
+				CCObject *mapObject = objectArray->objectAtIndex(mapPos - 1);
 				CCDictionary *mapdict = (CCDictionary *)mapObject;
 				int x = ((CCString *)mapdict->objectForKey("x"))->intValue();
 				int y = ((CCString *)mapdict->objectForKey("y"))->intValue();
 				spawnPoint = ccp(x, y);
+			}
+			else
+			{
+				if (i == 0 && strcmp(group->getCString(), Konoha) == 0)
+					spawnPoint = ccp(432, 80);
+				else if (strcmp(group->getCString(), Akatsuki) == 0)
+					spawnPoint = ccp(2608, 80);
 			}
 
 			if (i == 0)
@@ -800,32 +814,30 @@ void GameLayer::onPause()
 
 void GameLayer::onGear()
 {
+	if (!_enableGear)
+		return;
 	if (_isGear)
 		return;
-
 	_isGear = true;
 
-	if (_isHardCoreGame)
-	{
-		CCRenderTexture *snapshoot = CCRenderTexture::create(winSize.width, winSize.height);
-		CCScene *f = CCDirector::sharedDirector()->getRunningScene();
-		CCObject *pObject = f->getChildren()->objectAtIndex(0);
-		BGLayer *bg = (BGLayer *)pObject;
-		snapshoot->begin();
-		bg->visit();
+	CCRenderTexture *snapshoot = CCRenderTexture::create(winSize.width, winSize.height);
+	CCScene *f = CCDirector::sharedDirector()->getRunningScene();
+	CCObject *pObject = f->getChildren()->objectAtIndex(0);
+	BGLayer *bg = (BGLayer *)pObject;
+	snapshoot->begin();
+	bg->visit();
 
-		visit();
-		snapshoot->end();
+	visit();
+	snapshoot->end();
 
-		CCScene *pscene = CCScene::create();
-		GearLayer *layer = GearLayer::create(snapshoot);
-		_gLayer->_gearLayer = layer;
+	CCScene *pscene = CCScene::create();
+	GearLayer *layer = GearLayer::create(snapshoot);
+	_gLayer->_gearLayer = layer;
 
-		layer->setDelegate(this);
-		layer->updatePlayerGear();
-		pscene->addChild(layer);
-		CCDirector::sharedDirector()->pushScene(pscene);
-	}
+	layer->setDelegate(this);
+	layer->updatePlayerGear();
+	pscene->addChild(layer);
+	CCDirector::sharedDirector()->pushScene(pscene);
 }
 
 void GameLayer::onGameOver(bool isWin)
@@ -876,78 +888,10 @@ void GameLayer::onLeft()
 
 	removeSprites(CCString::createWithFormat("Element/Tower/Tower%d.plist", mapId)->getCString());
 
-	const char *path;
 	CCARRAY_FOREACH(_CharacterArray, pObject)
 	{
 		auto player = (CharacterBase *)pObject;
-		auto roleName = player->getRole()->getCString();
-		auto charName = player->getCharacter()->getCString();
-
-		if (strcmp(roleName, ROLE_CLONE) == 0 ||
-			strcmp(roleName, ROLE_SUMMON) == 0)
-		{
-			continue;
-		}
-
-		path = CCString::createWithFormat("Element/%s/%s.plist", charName, charName)->getCString();
-		removeSprites(path);
-
-		if (strcmp(roleName, "Com") == 0 ||
-			strcmp(roleName, "Player") == 0)
-		{
-			KTools::prepareFileOGG(charName, true);
-		}
-
-		if (strcmp(charName, "Jiraiya") == 0)
-		{
-			removeSprites("Element/SageJiraiya/SageJiraiya.plist");
-			KTools::prepareFileOGG("SageJiraiya", true);
-		}
-		else if (strcmp(charName, "Kankuro") == 0)
-		{
-			removeSprites("Element/Karasu/Karasu.plist");
-			removeSprites("Element/Sanshouuo/Sanshouuo.plist");
-		}
-		else if (strcmp(charName, "Kakuzu") == 0)
-		{
-			removeSprites("Element/MaskFudon/MaskFudon.plist");
-			removeSprites("Element/MaskRaidon/MaskRaidon.plist");
-			removeSprites("Element/MaskKadon/MaskKadon.plist");
-		}
-		else if (strcmp(charName, "Naruto") == 0)
-		{
-			removeSprites("Element/SageNaruto/SageNaruto.plist");
-			removeSprites("Element/RikudoNaruto/RikudoNaruto.plist");
-			KTools::prepareFileOGG("SageNaruto", true);
-			KTools::prepareFileOGG("RikudoNaruto", true);
-		}
-		else if (strcmp(charName, "RockLee") == 0)
-		{
-			removeSprites("Element/Lee/Lee.plist");
-		}
-		else if (strcmp(charName, "Lee") == 0)
-		{
-			removeSprites("Element/RockLee/RockLee.plist");
-		}
-		else if (strcmp(charName, "Sasuke") == 0)
-		{
-			KTools::prepareFileOGG("ImmortalSasuke", true);
-			removeSprites("Element/ImmortalSasuke/ImmortalSasuke.plist");
-		}
-		else if (strcmp(charName, "Pain") == 0)
-		{
-			KTools::prepareFileOGG("Nagato", true);
-			removeSprites("Element/AnimalPath/AnimalPath.plist");
-			removeSprites("Element/AsuraPath/AsuraPath.plist");
-			removeSprites("Element/DevaPath/DevaPath.plist");
-			removeSprites("Element/Nagato/Nagato.plist");
-		}
-		else if (strcmp(charName, "Nagato") == 0)
-		{
-			removeSprites("Element/AnimalPath/AnimalPath.plist");
-			removeSprites("Element/AsuraPath/AsuraPath.plist");
-			removeSprites("Element/DevaPath/DevaPath.plist");
-		}
+		LoadLayer::unloadCharIMG(player);
 		player->removeFromParentAndCleanup(true);
 	}
 
@@ -1282,7 +1226,7 @@ void GameLayer::keyEventHandle(GLFWwindow *window, int key, int scancode, int ke
 		}
 		break;
 	case KEY_SPACE:
-		if (_gLayer->_isStarted && keyState && !_gLayer->_isPause && !_gLayer->_isGear)
+		if (_gLayer->_enableGear && _gLayer->_isStarted && keyState && !_gLayer->_isPause && !_gLayer->_isGear)
 			_gLayer->onGear(); // enter gear shop
 		break;
 	case KEY_F11:

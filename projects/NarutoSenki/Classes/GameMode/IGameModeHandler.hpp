@@ -43,6 +43,13 @@ public:
 	// static const GameModeData &from(const char *path);
 };
 
+struct GameData
+{
+	bool enableGear = true;
+	bool isHardCore;
+	bool isRandomChar;
+};
+
 class IGameModeHandler
 {
 	friend class GameLayer;
@@ -50,7 +57,7 @@ class IGameModeHandler
 	friend class SelectLayer;
 
 private:
-	CCArray *_herosArr = nullptr;
+	CCArray *_heroArr = nullptr;
 	// map
 	int mapId;
 	// tower
@@ -68,7 +75,7 @@ private:
 
 	void Internal_GameOver()
 	{
-		CC_SAFE_RELEASE_NULL(_herosArr);
+		CC_SAFE_RELEASE_NULL(_heroArr);
 
 		onGameOver();
 	}
@@ -76,8 +83,8 @@ private:
 protected:
 	SelectLayer *selectLayer = nullptr;
 	// game
-	bool isHardCoreGame;
-	std::vector<const char *> herosVector;
+	GameData gd;
+	std::vector<const char *> heroVector;
 	// player
 	const char *playerGroup;
 
@@ -97,10 +104,18 @@ public:
 	virtual void onCharacterDead(CharacterBase *c) = 0;
 	virtual void onCharacterReborn(CharacterBase *c) = 0;
 
+	const GameData &getGameData() { return gd; }
+
 protected:
 	CCArray *getHerosArray()
 	{
-		return _herosArr;
+		return _heroArr;
+	}
+
+	void clearHeroArray()
+	{
+		CC_SAFE_RELEASE(_heroArr);
+		heroVector.clear();
 	}
 
 	// Warpper of game layer
@@ -136,10 +151,10 @@ protected:
 		dic->setObject(CCString::create(name), "character");
 		dic->setObject(CCString::create(role), "role");
 		dic->setObject(CCString::create(group), "group");
-		if (!_herosArr)
-			_herosArr = CCArray::create();
-		_herosArr->addObject(dic);
-		herosVector.push_back(name);
+		if (!_heroArr)
+			_heroArr = CCArray::create();
+		_heroArr->addObject(dic);
+		heroVector.push_back(name);
 	}
 
 	void addHeros(int count, const char *name, const char *role, const char *group, uint32_t lv = 1)
@@ -167,6 +182,8 @@ protected:
 					   const char *playerSelect, const char *playerGroup,
 					   const char *com1Select = nullptr, const char *com2Select = nullptr, const char *com3Select = nullptr)
 	{
+		clearHeroArray();
+
 		konohaCount = konohaCount > kMaxCharCount ? kMaxCharCount : konohaCount;
 		akatsukiCount = akatsukiCount > kMaxCharCount ? kMaxCharCount : akatsukiCount;
 		setRand();
@@ -204,10 +221,10 @@ protected:
 			} while (strcmp(tmpChar->getCString(), "None") == 0);
 
 			selectLayer->_playerSelect = tmpChar->getCString();
-			selectLayer->setIsRandomChar(true);
+			gd.isRandomChar = true;
 		}
 
-		herosVector.push_back(tmpChar->getCString());
+		heroVector.push_back(tmpChar->getCString());
 
 		playerGroup = team > 0 ? Konoha : Akatsuki;
 		CCString *tmpRole = CCString::create("Player");
@@ -279,7 +296,7 @@ protected:
 				dic->setObject(tmpGroup, "group");
 
 				herosArr->addObject(dic);
-				herosVector.push_back(hero->getCString());
+				heroVector.push_back(tmpChar->getCString());
 			}
 			else
 			{
@@ -301,12 +318,13 @@ protected:
 				dic->setObject(tmpGroup, "group");
 
 				herosArr->addObject(dic);
-				herosVector.push_back(hero->getCString());
+				heroVector.push_back(tmpChar->getCString());
 				realHero->removeObjectAtIndex(index);
 			}
 		}
-
-		return _herosArr = herosArr;
+		_heroArr = herosArr;
+		_heroArr->retain();
+		return _heroArr;
 	}
 
 	/**
@@ -338,21 +356,22 @@ protected:
 	static inline const char *getRandomHeroExceptAll(const vector<const char *> &excepts, const char *defaultChar = "Naruto")
 	{
 		setRand();
-		int loop = 0;
+		bool ret = true;
 		int i;
-		do
+		while (ret)
 		{
 			i = random(kHeroNum);
-			for (size_t j = 0; i < excepts.size(); i++)
+			for (size_t j = 0; j < excepts.size(); j++)
 			{
 				if (strcmp(kHeroList[i], excepts[j]) == 0)
 				{
-					i = -1;
-					break;
+					ret = true;
+					continue;
 				}
+				ret &= false;
 			}
-		} while (i == -1 && loop++ < kHeroNum);
-		return i == -1 ? kHeroList[i] : defaultChar;
+		}
+		return !ret ? kHeroList[i] : defaultChar;
 	}
 
 	inline const char *getSelectOrRandomHero()

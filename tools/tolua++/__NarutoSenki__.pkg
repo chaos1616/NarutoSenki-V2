@@ -130,8 +130,6 @@ public:
 //	private: HudLayer* _hudLayer;
 	public: virtual HudLayer* getHudLayer();
 	public: virtual void setHudLayer(HudLayer* var);
-//	bool _isHardCoreMode;
-//	bool _isRandomChar;
 
 	void preloadAudio();
 	void preloadIMG();

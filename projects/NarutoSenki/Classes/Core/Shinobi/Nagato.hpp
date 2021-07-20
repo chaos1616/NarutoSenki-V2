@@ -15,9 +15,7 @@ class Nagato : public Hero
 		if (is_player)
 		{
 			if (_delegate->getHudLayer()->skill5Button)
-			{
 				_delegate->getHudLayer()->skill5Button->setLock();
-			}
 		}
 
 		_skillChangeBuffValue = 100;
