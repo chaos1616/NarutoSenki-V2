@@ -41,7 +41,7 @@ LOCAL_SRC_FILES := narutosenki/main.cpp \
 		../../../Classes/MyUtils/KTools.cpp \
 		../../../Classes/MyUtils/MD5ChecksumDefines.cpp \
 		../../../Classes/UI/GameModeLayer.cpp \
-        $(COCOS_ROOT)/external/sqlite3/src/sqlite3.c \
+        ../../../../../external/sqlite3/src/sqlite3.c \
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../Classes \
 					$(LOCAL_PATH)/../../../Classes/Core \
