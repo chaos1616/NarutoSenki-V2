@@ -3,8 +3,8 @@ import org.apache.tools.ant.taskdefs.condition.Os
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 'android-S'
-    buildToolsVersion '31.0.0 rc2'
+    compileSdkVersion 30
+    buildToolsVersion '30.0.3'
 
     defaultConfig {
         applicationId "re.naruto.game"
@@ -12,7 +12,7 @@ android {
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 30
         versionCode 2
-        versionName "2.1"
+        versionName "2.2"
 
         externalNativeBuild {
             if (PROP_BUILD_TYPE == 'ndk-build') {

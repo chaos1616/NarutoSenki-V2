@@ -92,7 +92,7 @@ private:
 		auto newChar = getRandomHeroExceptAll(heroVector);
 		heroVector[index] = newChar;
 		// unload old char assets
-		LoadLayer::unloadCharIMG(c);
+		// LoadLayer::unloadCharIMG(c); // FIXME: Unload dead hero's assets
 		// load new char assets
 		LoadLayer::perloadCharIMG(newChar);
 
