@@ -507,7 +507,7 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	CCArray *animationArray = CCArray::create();
 	const char *filePath;
 
-	filePath = CCString::createWithFormat("Element/Monster/%s.xml", getCharacter()->getCString(), getCharacter()->getCString())->getCString();
+	filePath = CCString::createWithFormat("Element/Monster/%s.xml", getCharacter()->getCString())->getCString();
 
 	// std::string key =KTools::getKeycode(filePath);
 
