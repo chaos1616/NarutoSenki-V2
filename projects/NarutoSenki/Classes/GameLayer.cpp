@@ -173,8 +173,10 @@ void GameLayer::initHeros()
 	initTileMap();
 	initEffects();
 
-	_CharacterArray = CCArray::create();
 	addSprites("Element/hpBar/hpBar.plist");
+
+	auto handler = getGameModeHandler();
+	_CharacterArray = CCArray::create();
 	CCObject *pObject = nullptr;
 	int i = 0;
 
@@ -183,7 +185,7 @@ void GameLayer::initHeros()
 
 	_isOugis2Game = true;
 
-	//4v4
+	// 4v4
 	if (Cheats > 10)
 	{
 		CCARRAY_FOREACH(Heros, pObject)
@@ -228,6 +230,8 @@ void GameLayer::initHeros()
 				currentPlayer->setDelegate(this);
 				currentPlayer->setPosition(spawnPoint);
 				currentPlayer->setSpawnPoint(spawnPoint);
+
+				handler->onCharacterInit(currentPlayer);
 				addChild(currentPlayer, -currentPlayer->getPositionY());
 				currentPlayer->setHPbar();
 				currentPlayer->setShadows();
@@ -242,6 +246,8 @@ void GameLayer::initHeros()
 				Com->setDelegate(this);
 				Com->setPosition(spawnPoint);
 				Com->setSpawnPoint(spawnPoint);
+
+				handler->onCharacterInit(Com);
 				addChild(Com, -Com->getPositionY());
 				Com->setHPbar();
 				Com->setShadows();
@@ -292,6 +298,8 @@ void GameLayer::initHeros()
 				currentPlayer->setDelegate(this);
 				currentPlayer->setPosition(spawnPoint);
 				currentPlayer->setSpawnPoint(spawnPoint);
+
+				handler->onCharacterInit(currentPlayer);
 				addChild(currentPlayer, -currentPlayer->getPositionY());
 				currentPlayer->setHPbar();
 				currentPlayer->setShadows();
@@ -311,6 +319,8 @@ void GameLayer::initHeros()
 				Com->setDelegate(this);
 				Com->setPosition(spawnPoint);
 				Com->setSpawnPoint(spawnPoint);
+
+				handler->onCharacterInit(Com);
 				addChild(Com, -Com->getPositionY());
 				Com->setHPbar();
 				Com->setShadows();
