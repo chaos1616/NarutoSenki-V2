@@ -31,8 +31,16 @@ public:
 		auto enemyHero = getRandomHeroExcept(playerHero);
 
 		addHero(playerHero, ROLE_PLAYER, playerGroup);
-		addHeros(kGenerateCount - 1, playerHero, ROLE_COM, playerGroup);
-		addHeros(kGenerateCount, enemyHero, ROLE_COM, enemyGroup);
+		if (Cheats > 10)
+		{
+			addHeros(3, playerHero, ROLE_COM, playerGroup);
+			addHeros(4, enemyHero, ROLE_COM, enemyGroup);
+		}
+		else
+		{
+			addHeros(kGenerateCount - 1, playerHero, ROLE_COM, playerGroup);
+			addHeros(kGenerateCount, enemyHero, ROLE_COM, enemyGroup);
+		}
 	}
 
 	void onGameStart()

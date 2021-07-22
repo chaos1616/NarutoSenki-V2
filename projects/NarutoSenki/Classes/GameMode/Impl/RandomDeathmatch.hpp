@@ -42,8 +42,6 @@ public:
 
 	void onCharacterInit(CharacterBase *c)
 	{
-		// NOTE: Not implement
-		// CCLOG("[Character Init] %s, %s, %s", c->getCharacter(), c->getRole(), c->getGroup());
 	}
 
 	void onCharacterDead(CharacterBase *c)
@@ -85,7 +83,7 @@ private:
 		auto index = getIndexByHero(c);
 		if (index == -1)
 		{
-			CCLOGERROR("Not found hero %s from heros vector", c->getCharacter()->getCString());
+			CCLOGERROR("Not found hero %s from hero vector", c->getCharacter()->getCString());
 			return;
 		}
 
