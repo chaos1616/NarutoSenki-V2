@@ -173,23 +173,28 @@ protected:
 		addHero(name, role, Akatsuki, lv);
 	}
 
-	CCArray *initHeros(uint32_t konohaCount, uint32_t akatsukiCount)
+	CCArray *initHeros(uint32_t playerCount, uint32_t enemyCount)
 	{
-		return initHeros(konohaCount, akatsukiCount, nullptr, nullptr);
+		return initHeros(playerCount, enemyCount, nullptr, nullptr);
 	}
 
-	CCArray *initHeros(uint8_t konohaCount, uint8_t akatsukiCount,
+	CCArray *initHeros(uint8_t playerCount, uint8_t enemyCount,
 					   const char *playerSelect, const char *playerGroup,
 					   const char *com1Select = nullptr, const char *com2Select = nullptr, const char *com3Select = nullptr)
 	{
 		clearHeroArray();
 
-		konohaCount = konohaCount > kMaxCharCount ? kMaxCharCount : konohaCount;
-		akatsukiCount = akatsukiCount > kMaxCharCount ? kMaxCharCount : akatsukiCount;
+		playerCount = playerCount > kMaxCharCount ? kMaxCharCount : playerCount;
+		enemyCount = enemyCount > kMaxCharCount ? kMaxCharCount : enemyCount;
 		setRand();
 		int team = random(2);
-		uint8_t comCount = konohaCount + akatsukiCount - 1;
-		uint8_t comOfPlayerGroupCount = (team == 0 ? konohaCount : akatsukiCount) - 1;
+		// TODO: Support custom player group
+		// playerGroup = playerGroup == nullptr ? (team > 0 ? Konoha : Akatsuki) : playerGroup;
+		playerGroup = team > 0 ? Konoha : Akatsuki;
+		this->playerGroup = playerGroup;
+		uint8_t totalCount = playerCount + enemyCount;
+		uint8_t comCount = totalCount > 0 ? totalCount - 1 : 0;
+		uint8_t comOfPlayerGroupCount = playerCount > 0 ? playerCount - 1 : 0;
 
 		if (playerSelect)
 			selectLayer->_playerSelect = playerSelect;
@@ -226,10 +231,8 @@ protected:
 
 		heroVector.push_back(tmpChar->getCString());
 
-		playerGroup = team > 0 ? Konoha : Akatsuki;
 		CCString *tmpRole = CCString::create("Player");
 		CCString *tmpGroup = CCString::create(playerGroup);
-		this->playerGroup = playerGroup;
 
 		CCDictionary *dic = CCDictionary::create();
 		dic->setObject(tmpChar, "character");
