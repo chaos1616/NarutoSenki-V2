@@ -6,7 +6,7 @@ class Konan : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findEnemy2("Hero");
+		findHero();
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
@@ -167,8 +167,8 @@ class Konan : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2(ROLE_FLOG))
-			findEnemy2("Tower");
+		if (!findFlog())
+			findTower();
 
 		if (_mainTarget)
 		{
@@ -202,7 +202,6 @@ class Konan : public Hero
 				if (_isCanOugis1 && !_isControlled && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 && isBaseDanger)
 				{
 					changeSide(sp);
-
 					attack(OUGIS1);
 				}
 				else if (_isCanSkill2 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 && isBaseDanger)
@@ -271,6 +270,7 @@ class Konan : public Hero
 			_actionState = State::WALK;
 			idle();
 		}
+
 		if (_hpBar)
 		{
 			_hpBar->setPositionY(getHeight());

@@ -6,7 +6,7 @@ class Suigetsu : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findEnemy2("Hero");
+		findHero();
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
@@ -159,8 +159,8 @@ class Suigetsu : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2(ROLE_FLOG))
-			findEnemy2("Tower");
+		if (!findFlog())
+			findTower();
 
 		if (_mainTarget)
 		{
@@ -199,6 +199,7 @@ class Suigetsu : public Hero
 			}
 			return;
 		}
+
 		if (_isHealling && getHpPercent() < 1)
 		{
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)

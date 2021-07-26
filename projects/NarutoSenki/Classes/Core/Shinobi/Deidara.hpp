@@ -7,7 +7,7 @@ class Deidara : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findEnemy2("Hero");
+		findHero();
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
@@ -149,18 +149,19 @@ class Deidara : public Hero
 				}
 			}
 		}
+
 		if (battleCondiction >= 0)
 		{
 			_mainTarget = nullptr;
-			if (!findEnemy2(ROLE_FLOG))
+			if (!findFlog())
 			{
-				findEnemy2("Tower");
+				findTower();
 			}
 		}
 		else
 		{
 			_mainTarget = nullptr;
-			findEnemy2("Tower");
+			findTower();
 		}
 
 		if (_mainTarget)

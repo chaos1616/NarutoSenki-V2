@@ -48,7 +48,7 @@ class Naruto : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findEnemy2("Hero");
+		findHero();
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
@@ -171,8 +171,8 @@ class Naruto : public Hero
 		}
 
 		_mainTarget = nullptr;
-		if (!findEnemy2(ROLE_FLOG))
-			findEnemy2("Tower");
+		if (!findFlog())
+			findTower();
 
 		if (_mainTarget)
 		{
@@ -294,7 +294,7 @@ class Naruto : public Hero
 	void perform_SageNaruto()
 	{
 		_mainTarget = nullptr;
-		findEnemy2("Hero");
+		findHero();
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
@@ -416,8 +416,8 @@ class Naruto : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2(ROLE_FLOG))
-			findEnemy2("Tower");
+		if (!findFlog())
+			findTower();
 
 		if (_mainTarget)
 		{
@@ -528,7 +528,7 @@ class Naruto : public Hero
 	void perform_RikudoNaruto()
 	{
 		_mainTarget = nullptr;
-		findEnemy2("Hero");
+		findHero();
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
@@ -650,8 +650,8 @@ class Naruto : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2(ROLE_FLOG))
-			findEnemy2("Tower");
+		if (!findFlog())
+			findTower();
 
 		if (_mainTarget)
 		{
@@ -713,7 +713,7 @@ class Naruto : public Hero
 		setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
 		setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
 
-		if (strcmp(getCharacter()->getCString(), "RikudoNaruto") == 0)
+		if (strcmp(getCharacter()->getCString(), kRikudoNaruto) == 0)
 		{
 			settempAttackValue1(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString())));
 			setnAttackValue(CCString::createWithFormat("%d", 560));

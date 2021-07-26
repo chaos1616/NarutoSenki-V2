@@ -122,7 +122,7 @@ class Kakuzu : public Hero
 			}
 		}
 
-		findEnemy2("Hero");
+		findHero();
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
@@ -242,8 +242,8 @@ class Kakuzu : public Hero
 			}
 		}
 
-		if (!findEnemy2(ROLE_FLOG))
-			findEnemy2("Tower");
+		if (!findFlog())
+			findTower();
 
 		if (_mainTarget)
 		{

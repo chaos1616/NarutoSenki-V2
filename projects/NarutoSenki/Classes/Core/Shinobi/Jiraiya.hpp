@@ -19,7 +19,7 @@ class Jiraiya : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findEnemy2("Hero");
+		findHero();
 
 		if (_isCanGear06)
 		{
@@ -32,6 +32,7 @@ class Jiraiya : public Hero
 				useGear(gear06);
 			}
 		}
+
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
@@ -92,7 +93,6 @@ class Jiraiya : public Hero
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game)
 				{
 					changeSide(sp);
-
 					attack(OUGIS2);
 					return;
 				}
@@ -145,8 +145,8 @@ class Jiraiya : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2(ROLE_FLOG))
-			findEnemy2("Tower");
+		if (!findFlog())
+			findTower();
 
 		if (_mainTarget)
 		{
@@ -202,7 +202,7 @@ class Jiraiya : public Hero
 	void perform_SageJiraiya()
 	{
 		_mainTarget = nullptr;
-		findEnemy2("Hero");
+		findHero();
 
 		if (_isCanGear06)
 		{
@@ -215,6 +215,7 @@ class Jiraiya : public Hero
 				useGear(gear06);
 			}
 		}
+
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
@@ -310,7 +311,6 @@ class Jiraiya : public Hero
 					else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000)
 					{
 						changeSide(sp);
-
 						attack(OUGIS1);
 					}
 					else if (_isCanSkill3 && _mainTarget->getGP() < 5000)
@@ -343,8 +343,8 @@ class Jiraiya : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2(ROLE_FLOG))
-			findEnemy2("Tower");
+		if (!findFlog())
+			findTower();
 
 		if (_mainTarget)
 		{

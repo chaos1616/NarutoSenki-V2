@@ -281,6 +281,11 @@ public:
 		return hero;
 	};
 
+protected:
+	inline bool findHero() { return findEnemy2("Hero"); }
+	inline bool findFlog() { return findEnemy2("Flog"); }
+	inline bool findTower() { return findEnemy2("Tower"); }
+
 /** Macros */
 // eg.
 //

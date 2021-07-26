@@ -7,7 +7,7 @@ class Kakashi : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findEnemy2("Hero");
+		findHero();
 
 		if (_isCanGear06)
 		{
@@ -20,6 +20,7 @@ class Kakashi : public Hero
 				useGear(gear06);
 			}
 		}
+
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
@@ -132,8 +133,8 @@ class Kakashi : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2(ROLE_FLOG))
-			findEnemy2("Tower");
+		if (!findFlog())
+			findTower();
 
 		if (_mainTarget)
 		{
@@ -216,13 +217,9 @@ class Kakashi : public Hero
 						tempHero->setVisible(true);
 
 						if (tempHero->_hpBar)
-						{
 							tempHero->_hpBar->setVisible(true);
-						}
 						if (tempHero->_shadow)
-						{
 							tempHero->_shadow->setVisible(true);
-						}
 
 						tempHero->_isVisable = true;
 					}

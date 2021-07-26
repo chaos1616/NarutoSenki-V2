@@ -75,7 +75,6 @@ class Saso : public Hero
 					if (_isCanSkill1 && _mainTarget->getGP() < 5000)
 					{
 						changeSide(sp);
-
 						attack(SKILL1);
 						scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcoldDown1);
 					}

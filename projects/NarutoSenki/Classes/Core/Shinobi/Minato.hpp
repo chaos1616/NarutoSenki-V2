@@ -6,7 +6,7 @@ class Minato : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findEnemy2("Hero");
+		findHero();
 
 		if (_isCanGear06)
 		{
@@ -19,6 +19,7 @@ class Minato : public Hero
 				useGear(gear06);
 			}
 		}
+
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
@@ -28,6 +29,7 @@ class Minato : public Hero
 			else if (getGearArray()->count() == 2)
 				setGear(gear02);
 		}
+
 		if (getHpPercent() < 0.3f)
 		{
 			if (_isCanSkill1)
@@ -138,7 +140,6 @@ class Minato : public Hero
 						return;
 					}
 					changeSide(sp);
-
 					attack(OUGIS2);
 
 					return;
@@ -206,8 +207,8 @@ class Minato : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2(ROLE_FLOG))
-			findEnemy2("Tower");
+		if (!findFlog())
+			findTower();
 
 		if (_mainTarget)
 		{

@@ -6,7 +6,7 @@ class Tobirama : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findEnemy2("Hero");
+		findHero();
 
 		if (_isCanGear06)
 		{
@@ -19,6 +19,7 @@ class Tobirama : public Hero
 				useGear(gear06);
 			}
 		}
+
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
@@ -137,8 +138,8 @@ class Tobirama : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2(ROLE_FLOG))
-			findEnemy2("Tower");
+		if (!findFlog())
+			findTower();
 
 		if (_mainTarget)
 		{

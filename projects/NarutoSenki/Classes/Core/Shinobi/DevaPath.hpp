@@ -110,6 +110,7 @@ class DevaPath : public Hero
 			_monsterArray = CCArray::create();
 			_monsterArray->retain();
 		}
+
 		if (cloneTime == 0)
 		{
 			clone = create<AnimalPath>(CCString::create("AnimalPath"), CCString::create(ROLE_SUMMON), getGroup());

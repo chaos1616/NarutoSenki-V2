@@ -27,6 +27,7 @@ class Parents : public Hero
 				return;
 			}
 		}
+
 		if (_mainTarget)
 		{
 			CCPoint sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),

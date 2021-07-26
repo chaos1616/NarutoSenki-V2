@@ -6,7 +6,7 @@ class Shino : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findEnemy2("Hero");
+		findHero();
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
@@ -104,7 +104,6 @@ class Shino : public Hero
 					}
 
 					changeSide(sp);
-
 					attack(OUGIS1);
 				}
 				else if (_isCanSkill2 && _mainTarget->getGP() < 5000)
@@ -182,8 +181,8 @@ class Shino : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2(ROLE_FLOG))
-			findEnemy2("Tower");
+		if (!findFlog())
+			findTower();
 
 		if (_mainTarget)
 		{

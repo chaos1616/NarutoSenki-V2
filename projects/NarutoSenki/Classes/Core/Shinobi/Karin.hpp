@@ -6,7 +6,7 @@ class Karin : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findEnemy2("Hero");
+		findHero();
 
 		if (_isCanGear06)
 		{
@@ -19,6 +19,7 @@ class Karin : public Hero
 				useGear(gear06);
 			}
 		}
+
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
@@ -150,8 +151,8 @@ class Karin : public Hero
 			}
 		}
 
-		if (!findEnemy2(ROLE_FLOG))
-			findEnemy2("Tower");
+		if (!findFlog())
+			findTower();
 
 		if (_mainTarget)
 		{

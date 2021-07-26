@@ -5704,6 +5704,7 @@ bool CharacterBase::findEnemy(const char *type, int searchRange, bool masterRang
 	}
 }
 
+// NOTE: Use half the window width as the search range
 bool CharacterBase::findEnemy2(const char *type)
 {
 	CCArray *list;

@@ -6,7 +6,7 @@ class Itachi : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findEnemy2("Hero");
+		findHero();
 
 		if (_isCanGear06)
 		{
@@ -19,6 +19,7 @@ class Itachi : public Hero
 				useGear(gear06);
 			}
 		}
+
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
@@ -86,7 +87,6 @@ class Itachi : public Hero
 					}
 
 					changeSide(sp);
-
 					attack(OUGIS2);
 
 					return;
@@ -94,7 +94,6 @@ class Itachi : public Hero
 				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_isArmored)
 				{
 					changeSide(sp);
-
 					attack(OUGIS1);
 
 					return;
@@ -148,8 +147,8 @@ class Itachi : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2(ROLE_FLOG))
-			findEnemy2("Tower");
+		if (!findFlog())
+			findTower();
 
 		if (_mainTarget)
 		{

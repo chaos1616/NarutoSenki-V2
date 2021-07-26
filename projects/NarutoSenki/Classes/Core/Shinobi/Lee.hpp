@@ -124,6 +124,7 @@ class Lee : public Hero
 			_heartEffect->setPosition(ccp(getContentSize().width + 40, 60));
 			addChild(_heartEffect);
 		}
+
 		if (bamen < 5)
 		{
 			bamen += 1;
@@ -253,7 +254,7 @@ class Lee : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findEnemy2("Hero");
+		findHero();
 
 		if (_isCanGear06)
 		{
@@ -266,7 +267,8 @@ class Lee : public Hero
 				useGear(gear06);
 			}
 		}
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
+
+		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -366,8 +368,8 @@ class Lee : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2(ROLE_FLOG))
-			findEnemy2("Tower");
+		if (!findFlog())
+			findTower();
 
 		if (_mainTarget)
 		{
@@ -418,7 +420,7 @@ class Lee : public Hero
 	void perform_RockLee()
 	{
 		_mainTarget = nullptr;
-		findEnemy2("Hero");
+		findHero();
 
 		if (_isCanGear06)
 		{
@@ -431,7 +433,8 @@ class Lee : public Hero
 				useGear(gear06);
 			}
 		}
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
+
+		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -497,7 +500,6 @@ class Lee : public Hero
 				else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && bamen >= 3)
 				{
 					changeSide(sp);
-
 					attack(OUGIS2);
 				}
 				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControlled)
@@ -520,7 +522,6 @@ class Lee : public Hero
 					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && bamen >= 1)
 					{
 						changeSide(sp);
-
 						attack(OUGIS1);
 					}
 					else if (_isCanSkill2)
@@ -544,8 +545,8 @@ class Lee : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2(ROLE_FLOG))
-			findEnemy2("Tower");
+		if (!findFlog())
+			findTower();
 
 		if (_mainTarget)
 		{

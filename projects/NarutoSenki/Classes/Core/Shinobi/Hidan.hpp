@@ -59,7 +59,7 @@ class Hidan : public Hero
 
 		if (!_isFound)
 		{
-			findEnemy2("Hero");
+			findHero();
 		}
 
 		if (_isCanGear06)
@@ -73,6 +73,7 @@ class Hidan : public Hero
 				useGear(gear06);
 			}
 		}
+
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
@@ -204,11 +205,12 @@ class Hidan : public Hero
 				}
 			}
 		}
+
 		if (!_mainTarget && !_isFound && !_isArmored)
 		{
-			if (!findEnemy2(ROLE_FLOG))
+			if (!findFlog())
 			{
-				findEnemy2("Tower");
+				findTower();
 			}
 		}
 
@@ -249,6 +251,7 @@ class Hidan : public Hero
 			}
 			return;
 		}
+
 		if (!_isArmored)
 		{
 			if (_isHealling && getHpPercent() < 1)
@@ -318,6 +321,7 @@ class Hidan : public Hero
 		{
 			_delegate->getHudLayer()->skill1Button->unLock();
 		}
+
 		if (_actionState != State::DEAD)
 		{
 			_actionState = State::WALK;

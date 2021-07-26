@@ -6,7 +6,7 @@ class Tobi : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findEnemy2("Hero");
+		findHero();
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
@@ -80,7 +80,6 @@ class Tobi : public Hero
 				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000)
 				{
 					changeSide(sp);
-
 					attack(OUGIS1);
 					return;
 				}
@@ -145,8 +144,8 @@ class Tobi : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2(ROLE_FLOG))
-			findEnemy2("Tower");
+		if (!findFlog())
+			findTower();
 
 		if (_mainTarget)
 		{
@@ -230,13 +229,9 @@ class Tobi : public Hero
 						tempHero->setVisible(true);
 
 						if (tempHero->_hpBar)
-						{
 							tempHero->_hpBar->setVisible(true);
-						}
 						if (tempHero->_shadow)
-						{
 							tempHero->_shadow->setVisible(true);
-						}
 
 						tempHero->_isVisable = true;
 					}
@@ -250,9 +245,7 @@ class Tobi : public Hero
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 
 		if (getOpacity() != 255)
-		{
 			setOpacity(255);
-		}
 
 		setWalkSpeed(224);
 
@@ -274,9 +267,7 @@ class Tobi : public Hero
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 
 		if (getOpacity() != 255)
-		{
 			setOpacity(255);
-		}
 
 		setWalkSpeed(224);
 

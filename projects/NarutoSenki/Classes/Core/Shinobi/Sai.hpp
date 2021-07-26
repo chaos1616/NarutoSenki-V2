@@ -6,7 +6,7 @@ class Sai : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findEnemy2("Hero");
+		findHero();
 
 		if (_isCanGear06)
 		{
@@ -19,6 +19,7 @@ class Sai : public Hero
 				useGear(gear06);
 			}
 		}
+
 		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
@@ -87,7 +88,6 @@ class Sai : public Hero
 					else
 					{
 						changeSide(sp);
-
 						attack(OUGIS2);
 					}
 					return;
@@ -172,8 +172,8 @@ class Sai : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findEnemy2(ROLE_FLOG))
-			findEnemy2("Tower");
+		if (!findFlog())
+			findTower();
 
 		if (_mainTarget)
 		{
@@ -212,6 +212,7 @@ class Sai : public Hero
 			}
 			return;
 		}
+
 		if (_isHealling && getHpPercent() < 1)
 		{
 			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
