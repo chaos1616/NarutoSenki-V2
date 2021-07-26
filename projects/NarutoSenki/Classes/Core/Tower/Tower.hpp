@@ -40,17 +40,11 @@ public:
 		const char *filePath;
 
 		if (strcmp(getCharacter()->getCString(), "KonohaCenter") == 0 || strcmp(getCharacter()->getCString(), "AkatsukiCenter") == 0)
-		{
 			filePath = "Element/Tower/CenterDate.xml";
-		}
 		else
-		{
 			filePath = "Element/Tower/TowerDate.xml";
-		}
 
 		KTools::readXMLToArray(filePath, animationArray);
-
-		//init Attribute; & indleFrame
 
 		CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
 		CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
@@ -96,13 +90,9 @@ public:
 	void setHPbar()
 	{
 		if (strcmp(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) != 0)
-		{
 			_hpBar = HPBar::create("hp_bar_r.png");
-		}
 		else
-		{
 			_hpBar = HPBar::create("hp_bar.png");
-		}
 		_hpBar->getHPBAR()->setPosition(ccp(1, 1));
 		_hpBar->setPositionY(getHeight());
 		_hpBar->setDelegate(this);
@@ -120,13 +110,9 @@ public:
 		for (int i = 0; i < 2; i++)
 		{
 			if (i == 0)
-			{
 				list = _delegate->_KonohaFlogArray;
-			}
 			else if (i == 1)
-			{
 				list = _delegate->_AkatsukiFlogArray;
-			}
 
 			CCARRAY_FOREACH(list, pObject)
 			{

@@ -51,8 +51,6 @@ public:
 
 		KTools::readXMLToArray(filePath, animationArray);
 
-		//init Attribute; & indleFrame
-
 		CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
 		CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 		idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
@@ -139,13 +137,9 @@ public:
 	void setHPbar()
 	{
 		if (strcmp(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) != 0)
-		{
 			_hpBar = HPBar::create("flog_bar_r.png");
-		}
 		else
-		{
 			_hpBar = HPBar::create("flog_bar.png");
-		}
 		_hpBar->setPositionY(getHeight());
 		_hpBar->setDelegate(this);
 		addChild(_hpBar);
@@ -235,28 +229,19 @@ protected:
 			}
 
 			// no target then step on
-
 			if (abs(getPositionY() - _mainPosY) > 8)
 			{
 				if (strcmp(getGroup()->getCString(), Konoha) == 0)
-				{
 					moveDirection = ccpNormalize(ccp(1, getPositionY() > _mainPosY ? -1 : 1));
-				}
 				else
-				{
 					moveDirection = ccpNormalize(ccp(-1, getPositionY() > _mainPosY ? -1 : 1));
-				}
 			}
 			else
 			{
 				if (strcmp(getGroup()->getCString(), Konoha) == 0)
-				{
 					moveDirection = ccpNormalize(ccp(1, 0));
-				}
 				else
-				{
 					moveDirection = ccpNormalize(ccp(-1, 0));
-				}
 			}
 			walk(moveDirection);
 		}

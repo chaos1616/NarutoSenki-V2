@@ -43,8 +43,6 @@ public:
 
 		KTools::readXMLToArray(filePath, animationArray);
 
-		//init Attribute; & idleFrame
-
 		CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
 		CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 		idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
