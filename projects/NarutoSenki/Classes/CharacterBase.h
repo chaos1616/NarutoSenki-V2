@@ -54,7 +54,7 @@ public:
 	//buff
 
 
-	CC_SYNTHESIZE(int32_t,_charNO,CharNO);
+	CC_SYNTHESIZE(int,_charNO,CharNO);
 
 	uint32_t			_healBuffValue;
 	uint32_t			_dehealBuffValue;
@@ -161,7 +161,7 @@ public:
 	CC_SYNTHESIZE(float,_exp,EXP);
 	CC_SYNTHESIZE(uint32_t,_level,LV);
 	CC_SYNTHESIZE(int,_height,Height);
-	CC_SYNTHESIZE(int32_t,_rebornTime,RebornTime);
+	CC_SYNTHESIZE(int,_rebornTime,RebornTime);
 
 
 	CC_SYNTHESIZE(CCPoint,_spawnPoint,SpawnPoint);
@@ -418,8 +418,8 @@ protected:
 	void				stopMove(float dt);
 	void				stopJump(CCNode* sender,void* data);
 	void				setAttackBox(CCNode* sender,void* data);
-	void				setDamage(CCString* effectType,int32_t attackValue,bool isFlipped);
-	void				setDamgeDisplay(int32_t value,const char* type);
+	void				setDamage(CCString* effectType,int attackValue,bool isFlipped);
+	void				setDamgeDisplay(int value,const char* type);
 
 	void				setItemEffect(CCNode* sender,void* data);
 	void				setDamgeEffect(CCString* type);
@@ -430,7 +430,7 @@ protected:
 	void				setCharFlip();
 
 
-	virtual Hero*		createClone(int32_t cloneTime);
+	virtual Hero*		createClone(int cloneTime);
 	void				setClone(CCNode* sender,void* data);
 	void				setMon(CCNode* sender,void* data);
 	void				setMonPer(float dt);

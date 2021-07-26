@@ -36,9 +36,9 @@ public:
 	void setID(CCString *character, CCString *role, CCString *group);
 	void setHPbar();
 	void changeHPbar();
-	void setDirectMove(int32_t length, float delay, bool isReverse);
-	void setEaseIn(int32_t length, float delay);
-	void setDirectMoveBy(int32_t length, float delay);
+	void setDirectMove(int length, float delay, bool isReverse);
+	void setEaseIn(int length, float delay);
+	void setDirectMoveBy(int length, float delay);
 
 protected:
 	void dealloc();

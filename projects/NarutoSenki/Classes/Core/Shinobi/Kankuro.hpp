@@ -228,7 +228,7 @@ class Kankuro : public Hero
 		_skillChangeBuffValue = 0;
 	}
 
-	Hero *createClone(int32_t cloneTime)
+	Hero *createClone(int cloneTime)
 	{
 		Hero *clone = nullptr;
 

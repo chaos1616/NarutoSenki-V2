@@ -36,7 +36,7 @@ class Naruto : public Hero
 						kRikudoNaruto, resumeAction_RikudoNaruto(dt));
 	}
 
-	Hero *createClone(int32_t cloneTime)
+	Hero *createClone(int cloneTime)
 	{
 		match_char_exp3(kNaruto______, return createClone_Naruto(cloneTime),
 						kSageNaruto__, return createClone_SageNaruto(cloneTime),
@@ -283,7 +283,7 @@ class Naruto : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	inline Hero *createClone_Naruto(int32_t cloneTime)
+	inline Hero *createClone_Naruto(int cloneTime)
 	{
 		auto clone = create<NarutoClone>(getCharacter(), CCString::create(ROLE_CLONE), getGroup());
 		return clone;
@@ -513,7 +513,7 @@ class Naruto : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	inline Hero *createClone_SageNaruto(int32_t cloneTime)
+	inline Hero *createClone_SageNaruto(int cloneTime)
 	{
 		auto clone = create<SageNarutoClone>(getCharacter(), CCString::create(ROLE_CLONE), getGroup());
 		clone->setSkill1Action(clone->createAnimation(clone->skillSPC1Array, 10.0f, false, true));
@@ -757,7 +757,7 @@ class Naruto : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	inline Hero *createClone_RikudoNaruto(int32_t cloneTime)
+	inline Hero *createClone_RikudoNaruto(int cloneTime)
 	{
 		auto clone = create<Kurama>(CCString::create("Kurama"), CCString::create(ROLE_CLONE), getGroup());
 		clone->setGP(5000);

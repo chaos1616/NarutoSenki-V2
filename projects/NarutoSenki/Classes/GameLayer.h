@@ -39,8 +39,8 @@ public:
 	CharacterBase *currentPlayer;
 	CCPoint spawnPoint;
 
-	int32_t _second;
-	int32_t _minute;
+	int _second;
+	int _minute;
 	int mapId;
 
 	const char *kName;
@@ -63,7 +63,7 @@ public:
 	void checkBackgroundMusic(float dt);
 
 	CC_SYNTHESIZE(HudLayer *, _hudLayer, HudLayer);
-	void setTowerState(int32_t charNO);
+	void setTowerState(int charNO);
 
 	CC_SYNTHESIZE_RETAIN(CCString *, totalKills, TotalKills);
 	CC_SYNTHESIZE_RETAIN(CCString *, totalTM, TotalTM);

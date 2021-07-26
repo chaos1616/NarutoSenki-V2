@@ -1483,7 +1483,7 @@ void CharacterBase::disableHpBar(float dt)
 		_hpBar->setVisible(false);
 }
 
-void CharacterBase::setDamage(CCString *effectType, int32_t attackValue, bool isFlipped)
+void CharacterBase::setDamage(CCString *effectType, int attackValue, bool isFlipped)
 {
 	if (strcmp(_role->getCString(), "Tower") == 0)
 	{
@@ -1495,7 +1495,7 @@ void CharacterBase::setDamage(CCString *effectType, int32_t attackValue, bool is
 	}
 
 	int criticalValue;
-	int32_t realValue;
+	int realValue;
 
 	CharacterBase *attacker = _slayer;
 	CharacterBase *currentAttacker;
@@ -1843,7 +1843,7 @@ void CharacterBase::removeCoinDisplay(CCNode *sender, void *data)
 	sender = nullptr;
 }
 
-void CharacterBase::setDamgeDisplay(int32_t value, const char *type)
+void CharacterBase::setDamgeDisplay(int value, const char *type)
 {
 	if (_damageArray->count() < 6)
 	{
@@ -2076,7 +2076,7 @@ bool CharacterBase::setGear(gearType type)
 			_delegate->getHudLayer()->item1Button->_isColdChanged = true;
 			break;
 		case gear08:
-			int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+			uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 			tempMaxHP += 6000;
 			setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 			if (_hpBar)
@@ -2825,7 +2825,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 					tempHero->hearts -= 1;
 					if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0)
 					{
-						int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+						uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 						tempMaxHP += 100;
 						setnAttackValue(CCString::createWithFormat("%d", to_int(_nattackValue->getCString()) + 5));
 						setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
@@ -3771,14 +3771,14 @@ void CharacterBase::setBulletGroup(float dt)
 	}
 }
 
-Hero *CharacterBase::createClone(int32_t cloneTime)
+Hero *CharacterBase::createClone(int cloneTime)
 {
 	return nullptr;
 }
 
 void CharacterBase::setClone(CCNode *sender, void *data)
 {
-	int32_t cloneTime = *((int *)&data);
+	int cloneTime = *((int *)&data);
 	Hero *clone = createClone(cloneTime);
 	if (!clone)
 	{

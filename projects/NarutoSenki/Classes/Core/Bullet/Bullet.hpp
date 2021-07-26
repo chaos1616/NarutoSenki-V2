@@ -84,7 +84,7 @@ public:
 		}
 	}
 
-	void setMove(int32_t length, float delay, bool isReverse)
+	void setMove(int length, float delay, bool isReverse)
 	{
 		CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
 								getPositionY());
@@ -105,7 +105,7 @@ public:
 		runAction(seq);
 	}
 
-	void setEaseIn(int32_t length, float delay)
+	void setEaseIn(int length, float delay)
 	{
 		CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
 								getPositionY());

@@ -227,7 +227,7 @@ class Chiyo : public Hero
 		_skillChangeBuffValue = 0;
 	}
 
-	Hero *createClone(int32_t cloneTime)
+	Hero *createClone(int cloneTime)
 	{
 		if (!_monsterArray)
 		{

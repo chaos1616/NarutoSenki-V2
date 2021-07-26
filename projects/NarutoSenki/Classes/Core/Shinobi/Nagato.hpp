@@ -8,7 +8,7 @@ class Nagato : public Hero
 	{
 	}
 
-	Hero *createClone(int32_t cloneTime)
+	Hero *createClone(int cloneTime)
 	{
 		auto clone = create<DevaPath>(CCString::create("DevaPath"), CCString::create(ROLE_CLONE), getGroup());
 		clone->_isArmored = true;

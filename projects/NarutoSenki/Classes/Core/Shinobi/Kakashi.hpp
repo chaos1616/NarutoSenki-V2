@@ -257,7 +257,7 @@ class Kakashi : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	Hero *createClone(int32_t cloneTime)
+	Hero *createClone(int cloneTime)
 	{
 		auto clone = create<DogWall>(CCString::create("DogWall"), CCString::create(ROLE_SUMMON), getGroup());
 		clone->setPosition(ccp(getPositionX() + (_isFlipped ? -56 : 56), getPositionY()));

@@ -6,7 +6,7 @@ class Lee : public Hero
 #define kLee____ "Lee"
 #define kRockLee "RockLee"
 
-	int32_t bamen = 0;
+	int bamen = 0;
 
 	void setID(CCString *character, CCString *role, CCString *group)
 	{

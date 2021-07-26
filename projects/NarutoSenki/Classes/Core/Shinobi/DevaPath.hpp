@@ -102,7 +102,7 @@ class DevaPath : public Hero
 		stepOn();
 	}
 
-	Hero *createClone(int32_t cloneTime)
+	Hero *createClone(int cloneTime)
 	{
 		Hero *clone = nullptr;
 		if (!_monsterArray)

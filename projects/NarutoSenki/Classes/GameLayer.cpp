@@ -593,7 +593,7 @@ void GameLayer::updateViewPoint(float dt)
 	// CCDirector::sharedDirector()->getScheduler()->setTimeScale(1.0f);
 }
 
-void GameLayer::setTowerState(int32_t charNO)
+void GameLayer::setTowerState(int charNO)
 {
 	_hudLayer->setTowerState(charNO);
 }

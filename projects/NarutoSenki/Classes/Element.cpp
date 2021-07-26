@@ -119,7 +119,7 @@ void HeroElement::changeHPbar()
 			getDelegate()->setCKRLose(false);
 			getDelegate()->removeOugisMark(1);
 		}
-		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 500;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 9));
@@ -128,7 +128,7 @@ void HeroElement::changeHPbar()
 	else if (_exp >= 1000 && _level == 2)
 	{
 		_level = 3;
-		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 1000;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 18));
@@ -145,7 +145,7 @@ void HeroElement::changeHPbar()
 			getDelegate()->setCKRLose(true);
 			getDelegate()->removeOugisMark(2);
 		}
-		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 2000;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 27));
@@ -154,7 +154,7 @@ void HeroElement::changeHPbar()
 	else if (_exp >= 2000 && _level == 4)
 	{
 		_level = 5;
-		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 2500;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 36));
@@ -164,7 +164,7 @@ void HeroElement::changeHPbar()
 	else if (_exp >= 2500 && _level == 5)
 	{
 		_level = 6;
-		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 3000;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 45));
@@ -603,7 +603,7 @@ void Monster::changeHPbar()
 	if (_exp >= 500 && _level == 1)
 	{
 		_level = 2;
-		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 1000;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 9));
@@ -611,7 +611,7 @@ void Monster::changeHPbar()
 	else if (_exp >= 1000 && _level == 2)
 	{
 		_level = 3;
-		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 1500;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 18));
@@ -619,7 +619,7 @@ void Monster::changeHPbar()
 	else if (_exp >= 1500 && _level == 3)
 	{
 		_level = 4;
-		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 2000;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 27));
@@ -627,7 +627,7 @@ void Monster::changeHPbar()
 	else if (_exp >= 2000 && _level == 4)
 	{
 		_level = 5;
-		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 2500;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 36));
@@ -635,7 +635,7 @@ void Monster::changeHPbar()
 	else if (_exp >= 2500 && _level == 5)
 	{
 		_level = 6;
-		int32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
 		tempMaxHP += 3000;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 48));
@@ -893,7 +893,7 @@ void Monster::dealloc()
 	}
 }
 
-void Monster::setDirectMove(int32_t length, float delay, bool isReverse)
+void Monster::setDirectMove(int length, float delay, bool isReverse)
 {
 	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
 							getPositionY());
@@ -913,7 +913,8 @@ void Monster::setDirectMove(int32_t length, float delay, bool isReverse)
 
 	runAction(seq);
 }
-void Monster::setEaseIn(int32_t length, float delay)
+
+void Monster::setEaseIn(int length, float delay)
 {
 	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
 							getPositionY());
@@ -925,7 +926,7 @@ void Monster::setEaseIn(int32_t length, float delay)
 	runAction(seq);
 }
 
-void Monster::setDirectMoveBy(int32_t length, float delay)
+void Monster::setDirectMoveBy(int length, float delay)
 {
 	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
 							getPositionY());
@@ -965,6 +966,7 @@ void Monster::setResume()
 		}
 	}
 }
+
 void Monster::dealloc2()
 {
 	removeFromParentAndCleanup(true);

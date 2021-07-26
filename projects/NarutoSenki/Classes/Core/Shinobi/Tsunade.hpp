@@ -236,7 +236,7 @@ class Tsunade : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	Hero *createClone(int32_t cloneTime)
+	Hero *createClone(int cloneTime)
 	{
 		auto clone = create<Slug>(CCString::create("Slug"), CCString::create(ROLE_SUMMON), getGroup());
 		clone->_isArmored = true;
