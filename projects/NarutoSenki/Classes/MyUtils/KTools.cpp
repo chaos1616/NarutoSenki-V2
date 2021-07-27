@@ -129,7 +129,7 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 	delete data;
 
 	return true;
-};
+}
 
 int isExisted(void *para, int n_column, char **column_value, char **column_name)
 {
@@ -265,7 +265,7 @@ void KTools::initColumeInDB()
 	{
 		CCLOG("open sql file Failed!");
 		return;
-	};
+	}
 
 	char **result2;
 	int row = 0;
@@ -323,8 +323,7 @@ void KTools::dfsFolder(std::string folderPath, int depth /* = 0 */, int type /* 
 			if (type == 0)
 			{
 				std::string filename = (folderPath + "\\" + FileInfo.name);
-			std:
-				remove(filename.c_str());
+				std::remove(filename.c_str());
 			}
 			else if (type == 1)
 			{
@@ -457,7 +456,7 @@ sqlite3 *KTools::prepareTableInDB()
 	{
 		CCLOG("open sql file Failed!");
 		return nullptr;
-	};
+	}
 
 	return pDB;
 }
