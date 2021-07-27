@@ -218,7 +218,7 @@ void GameLayer::initHeros()
 			}
 			else
 			{
-				if (i == 0 && strcmp(group->getCString(), Konoha) == 0)
+				if (mapPos == 0 && strcmp(group->getCString(), Konoha) == 0)
 					spawnPoint = ccp(432, 80);
 				else if (strcmp(group->getCString(), Akatsuki) == 0)
 					spawnPoint = ccp(2608, 80);
@@ -230,7 +230,11 @@ void GameLayer::initHeros()
 				currentPlayer->setDelegate(this);
 				currentPlayer->setPosition(spawnPoint);
 				currentPlayer->setSpawnPoint(spawnPoint);
-
+				if (strcmp(group->getCString(), Akatsuki) == 0)
+				{
+					currentPlayer->_isFlipped = true;
+					currentPlayer->setFlipX(true);
+				}
 				handler->onCharacterInit(currentPlayer);
 				addChild(currentPlayer, -currentPlayer->getPositionY());
 				currentPlayer->setHPbar();
@@ -246,7 +250,11 @@ void GameLayer::initHeros()
 				Com->setDelegate(this);
 				Com->setPosition(spawnPoint);
 				Com->setSpawnPoint(spawnPoint);
-
+				if (strcmp(group->getCString(), Akatsuki) == 0)
+				{
+					Com->_isFlipped = true;
+					Com->setFlipX(true);
+				}
 				handler->onCharacterInit(Com);
 				addChild(Com, -Com->getPositionY());
 				Com->setHPbar();
