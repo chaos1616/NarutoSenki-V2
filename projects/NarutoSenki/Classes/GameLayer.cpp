@@ -200,12 +200,12 @@ void GameLayer::initHeros()
 			if (strcmp(group->getCString(), Akatsuki) == 0)
 			{
 				if (mapPos <= MapPosCount)
-					mapPos += MapPosCount;
+					mapPos += 4;
 			}
 			else
 			{
 				if (mapPos > MapPosCount)
-					mapPos -= MapPosCount;
+					mapPos -= 4;
 			}
 
 			if (mapPos > 0 && mapPos < 7)

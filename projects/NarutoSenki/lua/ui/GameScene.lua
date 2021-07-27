@@ -4,7 +4,7 @@
 local gameScene = GameScene
 
 function GameScene:init()
-    log('Initial GameScene ...')
+    log('Initial GameScene...')
 
     self.cheats = 0
     self.pushMenu = nil

@@ -77,6 +77,18 @@ bool LoadLayer::init()
 
 void LoadLayer::preloadIMG()
 {
+	int count = tempHeros->count();
+	if (count == 2) // 1v1
+		count = 0;
+	else if (count == 4) // Boss mode (3v1)
+		count = 3;
+	else if (count == 5) // Boss mode (4v1)
+		count = 4;
+	else if (count == 6) // 3v3
+		count = 3;
+	else if (count == 8) // 4v4
+		count = 4;
+
 	if (tempHeros)
 	{
 		int i = 0;
@@ -87,7 +99,7 @@ void LoadLayer::preloadIMG()
 			auto player = tempdict->valueForKey("character")->getCString();
 			perloadCharIMG(player);
 
-			if (i == 0 || (i < 5 && _enableGear))
+			if (i == 0 || (i < count && _enableGear))
 				setLoadingAnimation(player, i);
 			i++;
 		}
@@ -96,8 +108,8 @@ void LoadLayer::preloadIMG()
 
 	if (_isHardCoreMode)
 	{
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Roshi/Roshi.plist");
-		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Element/Han/Han.plist");
+		addSprites("Element/Roshi/Roshi.plist");
+		addSprites("Element/Han/Han.plist");
 		KTools::prepareFileOGG("Roshi");
 		KTools::prepareFileOGG("Han");
 	}
