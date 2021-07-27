@@ -87,7 +87,7 @@ void LoadLayer::preloadIMG()
 			auto player = tempdict->valueForKey("character")->getCString();
 			perloadCharIMG(player);
 
-			if (i == 0 || ((i == 1 || i == 2) && _enableGear))
+			if (i == 0 || (i < 5 && _enableGear))
 				setLoadingAnimation(player, i);
 			i++;
 		}
@@ -314,13 +314,9 @@ void LoadLayer::setLoadingAnimation(const char *player, int index)
 	int frameCount;
 	//FIXME: use the other way get animation frame count
 	if (strcmp(player, "Konan") == 0)
-	{
 		frameCount = 1;
-	}
 	else
-	{
 		frameCount = 7;
-	}
 
 	for (int i = 1; i < frameCount; i++)
 	{
