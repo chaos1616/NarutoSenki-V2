@@ -166,23 +166,24 @@ void CCSpriteFrameCache::addSpriteFramesWithDictionary(CCDictionary *dictionary,
             /** The plist file must have anchor property (Enable sprite pivot points on TextuerPacker)
              * Use texture packer will get some anchor errors
              * For v3 format we should modify the source code
-             * If anchor not equals {0.5,0.5} then spriteOffset must equals {-1,0}
              */
-            CCSize anchorPoint = CCSizeFromString(frameDict->valueForKey("anchor")->getCString());
             CCSize spriteSize = CCSizeFromString(frameDict->valueForKey("spriteSize")->getCString());
             CCPoint spriteOffset = CCPointFromString(frameDict->valueForKey("spriteOffset")->getCString());
             CCSize spriteSourceSize = CCSizeFromString(frameDict->valueForKey("spriteSourceSize")->getCString());
             CCRect textureRect = CCRectFromString(frameDict->valueForKey("textureRect")->getCString());
             bool textureRotated = frameDict->valueForKey("textureRotated")->boolValue();
 
+			auto anchor = frameDict->valueForKey("anchor")->getCString();
+			if (anchor)
+			{
+				CCPoint anchorPoint = CCPointFromString(anchor);
+				spriteOffset.x = (anchorPoint.x - 0.5f) * 100;
+				spriteOffset.y = (anchorPoint.y - 0.5f) * 100;
+			}
+
             // get aliases
             CCArray *aliases = (CCArray *)(frameDict->objectForKey("aliases"));
             CCString *frameKey = new CCString(spriteFrameName);
-
-            // static const CCSize kCenterAnchor = {0.5f, 0.5f};
-            // NOTE: calculate sprite offset
-            spriteOffset.x = (anchorPoint.width - 0.5f) * 100;
-            spriteOffset.y = (anchorPoint.height - 0.5f) * 100;
 
             CCObject *pObj = NULL;
             CCARRAY_FOREACH(aliases, pObj)

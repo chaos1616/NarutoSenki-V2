@@ -654,53 +654,17 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "f_hit") == 0 || strcmp(hitType, "bf_hit") == 0)
 						{
-							if (_isFlipped == attacker->_isFlipped)
-							{
-								if (_isFlipped)
-								{
-									setFlipX(false);
-									_isFlipped = false;
-								}
-								else
-								{
-									setFlipX(true);
-									_isFlipped = true;
-								}
-							}
+							autoFlip();
 							floatUP(64, true);
 						}
 						else if (strcmp(hitType, "f2_hit") == 0)
 						{
-							if (_isFlipped == attacker->_isFlipped)
-							{
-								if (_isFlipped)
-								{
-									setFlipX(false);
-									_isFlipped = false;
-								}
-								else
-								{
-									setFlipX(true);
-									_isFlipped = true;
-								}
-							}
+							autoFlip();
 							floatUP(128, true);
 						}
 						else if (strcmp(hitType, "b_hit") == 0)
 						{
-							if (_isFlipped == attacker->_isFlipped)
-							{
-								if (_isFlipped)
-								{
-									setFlipX(false);
-									_isFlipped = false;
-								}
-								else
-								{
-									setFlipX(true);
-									_isFlipped = true;
-								}
-							}
+							autoFlip();
 							floatUP(16, false);
 						}
 						else if (strcmp(hitType, "ab_hit") == 0)
@@ -992,19 +956,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "f_hit") == 0 || strcmp(hitType, "bf_hit") == 0)
 						{
-							if (_isFlipped == attacker->_isFlipped)
-							{
-								if (_isFlipped)
-								{
-									setFlipX(false);
-									_isFlipped = false;
-								}
-								else
-								{
-									setFlipX(true);
-									_isFlipped = true;
-								}
-							}
+							autoFlip();
 							if (_actionState != State::OATTACK ||
 								(_actionState == State::OATTACK &&
 								 (attacker->_actionState == State::O2ATTACK ||
@@ -1015,19 +967,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "f2_hit") == 0)
 						{
-							if (_isFlipped == attacker->_isFlipped)
-							{
-								if (_isFlipped)
-								{
-									setFlipX(false);
-									_isFlipped = false;
-								}
-								else
-								{
-									setFlipX(true);
-									_isFlipped = true;
-								}
-							}
+							autoFlip();
 							if (_actionState != State::OATTACK ||
 								(_actionState == State::OATTACK &&
 								 (attacker->_actionState == State::O2ATTACK ||
@@ -1038,19 +978,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "b_hit") == 0)
 						{
-							if (_isFlipped == attacker->_isFlipped)
-							{
-								if (_isFlipped)
-								{
-									setFlipX(false);
-									_isFlipped = false;
-								}
-								else
-								{
-									setFlipX(true);
-									_isFlipped = true;
-								}
-							}
+							autoFlip();
 
 							if (_actionState != State::OATTACK ||
 								(_actionState == State::OATTACK &&
@@ -6276,6 +6204,23 @@ void CharacterBase::changeGroup()
 					}
 				}
 			}
+		}
+	}
+}
+
+void CharacterBase::autoFlip()
+{
+	if (_isFlipped == attacker->_isFlipped)
+	{
+		if (_isFlipped)
+		{
+			setFlipX(false);
+			_isFlipped = false;
+		}
+		else
+		{
+			setFlipX(true);
+			_isFlipped = true;
 		}
 	}
 }
