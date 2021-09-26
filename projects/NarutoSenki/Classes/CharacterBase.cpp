@@ -654,17 +654,17 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "f_hit") == 0 || strcmp(hitType, "bf_hit") == 0)
 						{
-							autoFlip();
+							autoFlip(attacker);
 							floatUP(64, true);
 						}
 						else if (strcmp(hitType, "f2_hit") == 0)
 						{
-							autoFlip();
+							autoFlip(attacker);
 							floatUP(128, true);
 						}
 						else if (strcmp(hitType, "b_hit") == 0)
 						{
-							autoFlip();
+							autoFlip(attacker);
 							floatUP(16, false);
 						}
 						else if (strcmp(hitType, "ab_hit") == 0)
@@ -956,7 +956,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "f_hit") == 0 || strcmp(hitType, "bf_hit") == 0)
 						{
-							autoFlip();
+							autoFlip(attacker);
 							if (_actionState != State::OATTACK ||
 								(_actionState == State::OATTACK &&
 								 (attacker->_actionState == State::O2ATTACK ||
@@ -967,7 +967,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "f2_hit") == 0)
 						{
-							autoFlip();
+							autoFlip(attacker);
 							if (_actionState != State::OATTACK ||
 								(_actionState == State::OATTACK &&
 								 (attacker->_actionState == State::O2ATTACK ||
@@ -978,7 +978,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 						else if (strcmp(hitType, "b_hit") == 0)
 						{
-							autoFlip();
+							autoFlip(attacker);
 
 							if (_actionState != State::OATTACK ||
 								(_actionState == State::OATTACK &&
@@ -6208,7 +6208,7 @@ void CharacterBase::changeGroup()
 	}
 }
 
-void CharacterBase::autoFlip()
+void CharacterBase::autoFlip(CharacterBase* attacker)
 {
 	if (_isFlipped == attacker->_isFlipped)
 	{

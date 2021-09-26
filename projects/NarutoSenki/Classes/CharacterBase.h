@@ -474,7 +474,7 @@ protected:
 	void				stepOn();
 	void				changeSide(CCPoint sp);
 
-	inline void			autoFlip();
+	inline void			autoFlip(CharacterBase* attacker);
 
 	void				removeDamageDisplay();
 
