@@ -154,7 +154,7 @@ void GameLayer::initGard()
 	guardian->setLV(6);
 	guardian->setHPbar();
 	guardian->setShadows();
-	guardian->setCharNO(7);
+	guardian->setCharNO(_CharacterArray->data->num + 1);
 
 	guardian->idle();
 	CCDictionary *callValue = CCDictionary::create();

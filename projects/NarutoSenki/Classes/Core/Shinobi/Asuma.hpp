@@ -20,7 +20,7 @@ class Asuma : public Hero
 			}
 		}
 
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
+		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);

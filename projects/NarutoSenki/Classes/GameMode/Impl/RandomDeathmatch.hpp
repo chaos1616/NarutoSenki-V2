@@ -1,4 +1,5 @@
 #pragma once
+#include "Core/Provider.hpp"
 #include "GameMode/IGameModeHandler.hpp"
 
 class ModeRandomDeathmatch : public IGameModeHandler
@@ -75,6 +76,23 @@ public:
 		{
 			uint8_t liveCount = c->isKonohaGroup() ? konohaLiveCount++ : akatsukiLiveCount++;
 		}
+
+		if (c->changeCharId > -1)
+		{
+			// TODO: initial a new random character
+			auto newCharName = CCString::create(heroVector[c->changeCharId]);
+			CharacterBase *newChar = Provider::create(newCharName, c->getRole(), c->getGroup());
+			if (c->isPlayer())
+			{
+				c->getDelegate()->currentPlayer = newChar;
+			}
+			c->getDelegate()->_CharacterArray->replaceObjectAtIndex(c->getCharNO() - 1, newChar);
+			CCLOG("[Change Character] From %s to %s", c->getCharacter()->getCString(), newCharName->getCString());
+
+			c->dealloc();
+			// unload old char assets
+			LoadLayer::unloadCharIMG(c); // Unload dead hero's assets
+		}
 	}
 
 private:
@@ -86,16 +104,12 @@ private:
 			CCLOGERROR("Not found hero %s from hero vector", c->getCharacter()->getCString());
 			return;
 		}
+		c->changeCharId = index;
 
 		auto newChar = getRandomHeroExceptAll(heroVector);
 		heroVector[index] = newChar;
-		// unload old char assets
-		// LoadLayer::unloadCharIMG(c); // FIXME: Unload dead hero's assets
 		// load new char assets
 		LoadLayer::perloadCharIMG(newChar);
-
-		// FIXME: Change character
-		c->setID(CCString::create(newChar), c->getRole(), c->getGroup());
 	}
 
 	int getIndexByHero(CharacterBase *c)

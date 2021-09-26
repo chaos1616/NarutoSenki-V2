@@ -7,6 +7,7 @@ class Ino : public Hero
 	{
 		CharacterBase::dead();
 
+		// TODO: Support Ino controlled by the player can control other characters
 		// if (is_player)
 		// {
 		// 	// Has controlled other hero
@@ -44,7 +45,7 @@ class Ino : public Hero
 			}
 		}
 
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
+		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);

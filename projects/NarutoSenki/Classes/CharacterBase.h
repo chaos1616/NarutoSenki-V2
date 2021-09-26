@@ -116,6 +116,7 @@ public:
 
 	bool				enableDead		= true;
 	bool				enableReborn	= true;
+	int8_t				changeCharId; // NOTE: Support for deathmatch
 
 	int 				rebornLabelTime;
 	int 				battleCondiction;

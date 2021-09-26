@@ -49,7 +49,7 @@ class Naruto : public Hero
 	{
 		_mainTarget = nullptr;
 		findHero();
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
+		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear03);
@@ -295,7 +295,7 @@ class Naruto : public Hero
 	{
 		_mainTarget = nullptr;
 		findHero();
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
+		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear03);
@@ -529,7 +529,7 @@ class Naruto : public Hero
 	{
 		_mainTarget = nullptr;
 		findHero();
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled&& _delegate->_enableGear)
+		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear03);

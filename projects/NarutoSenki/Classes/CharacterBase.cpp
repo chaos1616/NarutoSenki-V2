@@ -5344,7 +5344,7 @@ void CharacterBase::dead()
 			_delegate->controlChar = nullptr;
 		}
 
-		changeGroup(); // Need apply after check if controller is Ino
+		changeGroup();
 
 		if (strcmp(getRole()->getCString(), "Player") == 0)
 		{

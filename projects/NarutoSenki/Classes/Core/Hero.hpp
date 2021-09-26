@@ -173,7 +173,7 @@ public:
 		_sattackType5->retain();
 		skill5Array = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		//init specal Frame
+		//initial specal animations
 		while (1)
 		{
 			CC_BREAK_IF(animationArray->count() <= 17);
