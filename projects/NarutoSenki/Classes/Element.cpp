@@ -1,6 +1,7 @@
 #include "Core/Hero.hpp"
 #include "Defines.h"
 #include "HudLayer.h"
+#include "LoadLayer.h"
 
 HeroElement::HeroElement()
 {
@@ -407,7 +408,32 @@ void HeroElement::reborn(float dt)
 	if (changeCharId > -1)
 	{
 		CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "acceptAttack");
+		if (_shadow)
+			_shadow->removeFromParentAndCleanup(true);
+		stopAllActions();
+		unscheduleAllSelectors();
 		removeFromParentAndCleanup(true);
+		if (rebornSprite)
+		{
+			rebornSprite->removeFromParent();
+			rebornSprite = nullptr;
+		}
+		if (_monsterArray && _monsterArray->count() > 0)
+		{
+			CCObject *pObject;
+			CCARRAY_FOREACH(_monsterArray, pObject)
+			{
+				auto mo = (Monster *)pObject;
+				CCNotificationCenter::sharedNotificationCenter()->removeObserver(mo, "acceptAttack");
+				if (mo->_shadow)
+					mo->_shadow->removeFromParentAndCleanup(true);
+				mo->stopAllActions();
+				mo->unscheduleAllSelectors();
+				mo->removeFromParentAndCleanup(true);
+			}
+		}
+		// unload old character assets
+		LoadLayer::unloadCharIMG(this);
 		checkRefCount(0);
 		return;
 	}

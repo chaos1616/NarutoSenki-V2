@@ -137,7 +137,7 @@ public:
 
 	// 忍び：Kakuzu ability
 	uint32_t			hearts;
-	// 忍び：Shikamaru ability
+	// gear02 ability
 	bool				isAttackGainCKR;
 	// 口寄せ：Bikyu ability
 	// 忍び：Guardian & Naruto-Rikutou & Naruto-Sage ability

@@ -100,7 +100,7 @@ public:
 
 	void onPause();
 	void onGear();
-	void onGameOpeningAnimation(float dt);
+	void playGameOpeningAnimation(float dt);
 	void onGameStart(float dt);
 	void onGameOver(bool isWin);
 

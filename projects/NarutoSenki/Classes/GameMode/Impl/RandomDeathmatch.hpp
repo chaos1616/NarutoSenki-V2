@@ -64,6 +64,7 @@ public:
 				count--;
 				liveCount--;
 				setRandomHero(c);
+				c->unschedule(schedule_selector(CharacterBase::resumeAction));
 			}
 		}
 	}
@@ -81,8 +82,18 @@ public:
 		{
 			auto gameLayer = c->getDelegate();
 			// initial a new random character
-			auto newCharName = CCString::create(heroVector[c->changeCharId]);
-			auto newChar = gameLayer->addHero(newCharName, c->getRole(), c->getGroup(), c->getSpawnPoint(), c->getCharNO());
+			auto newCharName = heroVector[c->changeCharId];
+			CCLOG("[Change Character] From %s to %s", c->getCharacter()->getCString(), newCharName);
+
+			if (c->isCharacter(newCharName))
+			{
+				c->changeCharId = -1;
+				return;
+			}
+
+			auto hudLayer = gameLayer->getHudLayer();
+			auto newChar = gameLayer->addHero(CCString::create(newCharName), c->getRole(), c->getGroup(), c->getSpawnPoint(), c->getCharNO());
+			bool isPlayer = newChar->isPlayer();
 			newChar->setCoin(c->getCoin());
 			newChar->setCKR(c->getCKR());
 			newChar->setCKR2(c->getCKR2());
@@ -91,30 +102,72 @@ public:
 			newChar->setKillNum(c->getKillNum());
 			newChar->setWalkSpeed(224);
 			newChar->setGearArray(c->getGearArray());
+			newChar->changeHPbar();
 			CCObject *pObject = nullptr;
 			CCARRAY_FOREACH(c->getGearArray(), pObject)
 			{
 				auto gear = (gearType)(((CCString *)pObject)->intValue());
 				if (gear == gear00)
+				{
 					newChar->_isCanGear00 = true;
-				if (gear == gear03)
+				}
+				else if (gear == gear01)
+				{
+					newChar->gearCKRValue = 25;
+				}
+				else if (gear == gear02)
+				{
+					newChar->isAttackGainCKR = true;
+				}
+				else if (gear == gear03)
+				{
 					newChar->_isCanGear03 = true;
-				if (gear == gear06)
+				}
+				else if (gear == gear04)
+				{
+					if (newChar->gettempAttackValue1())
+						newChar->settempAttackValue1(CCString::createWithFormat("%d", to_int(newChar->gettempAttackValue1()->getCString()) + 160));
+					newChar->setnAttackValue(CCString::createWithFormat("%d", to_int(newChar->getnAttackValue()->getCString()) + 160));
+					newChar->hasArmorBroken = true;
+				}
+				else if (gear == gear05)
+				{
+					newChar->isGearCD = true;
+					newChar->_sattackcoldDown1 -= 5;
+					newChar->_sattackcoldDown2 -= 5;
+					newChar->_sattackcoldDown3 -= 5;
+				}
+				else if (gear == gear06)
+				{
 					newChar->_isCanGear06 = true;
+				}
+				else if (gear == gear07)
+				{
+					newChar->gearRecoverValue = 3000;
+					if (isPlayer)
+					{
+						hudLayer->item1Button->setCD(CCString::createWithFormat("%d", 3000));
+						hudLayer->item1Button->_isColdChanged = true;
+					}
+				}
+				else if (gear == gear08)
+				{
+					uint32_t tempMaxHP = to_uint(newChar->getMaxHP()->getCString());
+					tempMaxHP += 6000;
+					newChar->setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+					if (newChar->_hpBar)
+					{
+						newChar->_hpBar->loseHP(newChar->getHpPercent());
+					}
+					newChar->hasArmor = true;
+				}
 			}
 			newChar->_deadNum = c->_deadNum;
 			newChar->_flogNum = c->_flogNum;
 			newChar->isBaseDanger = c->isBaseDanger;
-			newChar->hasArmor = c->hasArmor;
-			newChar->isGearCD = c->isGearCD;
-			newChar->changeHPbar();
-			if (newChar->isCom())
+
+			if (isPlayer)
 			{
-				newChar->doAI();
-			}
-			else if (newChar->isPlayer())
-			{
-				auto hudLayer = gameLayer->getHudLayer();
 				gameLayer->currentPlayer = newChar;
 				// reset hud layer
 				hudLayer->updateSkillButtons();
@@ -124,11 +177,11 @@ public:
 				hudLayer->status_expbar->setOpacity(255);
 				hudLayer->setHPLose(newChar->getHpPercent());
 			}
+			else if (newChar->isCom())
+			{
+				newChar->doAI();
+			}
 			gameLayer->_CharacterArray->replaceObjectAtIndex(c->getCharNO() - 1, newChar);
-			CCLOG("[Change Character] From %s to %s", c->getCharacter()->getCString(), newCharName->getCString());
-
-			// unload old character assets
-			LoadLayer::unloadCharIMG(c); // Unload dead hero's assets
 		}
 	}
 

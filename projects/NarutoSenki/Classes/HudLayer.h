@@ -108,7 +108,7 @@ public:
 	void stopSPCReport();
 	void updateSPCReprot(float dt);
 	void setTowerState(int charNO);
-	void onGameOpeningAnimation();
+	void playGameOpeningAnimation();
 
 	CCLabelBMFont *bcdLabel1;
 	CCLabelBMFont *bcdLabel2;

@@ -89,7 +89,7 @@ void ActionButton::ccTouchEnded(CCTouch *touch, CCEvent *event)
 
 void ActionButton::click()
 {
-	if ((_delegate && isCanClick()))
+	if (_delegate && isCanClick())
 	{
 		if (!_isDoubleSkill)
 		{

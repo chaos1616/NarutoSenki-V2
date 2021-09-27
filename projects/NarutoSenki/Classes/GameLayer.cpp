@@ -269,7 +269,7 @@ void GameLayer::initHeros()
 	initTower();
 
 	schedule(schedule_selector(GameLayer::updateViewPoint), 0.00f);
-	scheduleOnce(schedule_selector(GameLayer::onGameOpeningAnimation), 0.5f);
+	scheduleOnce(schedule_selector(GameLayer::playGameOpeningAnimation), 0.5f);
 }
 
 CharacterBase *GameLayer::addHero(CCString *character, CCString *role, CCString *group, CCPoint spawnPoint, int charNo)
@@ -300,9 +300,9 @@ CharacterBase *GameLayer::addHero(CCString *character, CCString *role, CCString 
 	return hero;
 }
 
-void GameLayer::onGameOpeningAnimation(float dt)
+void GameLayer::playGameOpeningAnimation(float dt)
 {
-	getHudLayer()->onGameOpeningAnimation();
+	getHudLayer()->playGameOpeningAnimation();
 
 	if (_isHardCoreGame)
 	{
@@ -846,8 +846,8 @@ void GameLayer::onLeft()
 	CCARRAY_FOREACH(_CharacterArray, pObject)
 	{
 		auto player = (CharacterBase *)pObject;
-		LoadLayer::unloadCharIMG(player);
 		player->removeFromParentAndCleanup(true);
+		LoadLayer::unloadCharIMG(player);
 	}
 
 	if (_isHardCoreGame)

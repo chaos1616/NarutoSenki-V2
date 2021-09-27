@@ -183,7 +183,7 @@ void HudLayer::initGearButton(const char *charName)
 	addChild(gearMenu, 100);
 }
 
-void HudLayer::onGameOpeningAnimation()
+void HudLayer::playGameOpeningAnimation()
 {
 	CCArray *tempArray = CCArray::create();
 
@@ -338,19 +338,16 @@ void HudLayer::initHeroInterface()
 	//init SKIll Button
 
 	skill1Button = ActionButton::create(CCString::createWithFormat("%s_skill1.png", _delegate->currentPlayer->getCharacter()->getCString())->getCString());
-	skill1Button->setCD(CCString::createWithFormat("%d", _delegate->currentPlayer->_sattackcoldDown1 * 1000));
 	skill1Button->setDelegate(this);
 	skill1Button->setABType(SKILL1);
 	uiBatch->addChild(skill1Button);
 
 	skill2Button = ActionButton::create(CCString::createWithFormat("%s_skill2.png", _delegate->currentPlayer->getCharacter()->getCString())->getCString());
-	skill2Button->setCD(CCString::createWithFormat("%d", _delegate->currentPlayer->_sattackcoldDown2 * 1000));
 	skill2Button->setDelegate(this);
 	skill2Button->setABType(SKILL2);
 	uiBatch->addChild(skill2Button);
 
 	skill3Button = ActionButton::create(CCString::createWithFormat("%s_skill3.png", _delegate->currentPlayer->getCharacter()->getCString())->getCString());
-	skill3Button->setCD(CCString::createWithFormat("%d", _delegate->currentPlayer->_sattackcoldDown3 * 1000));
 	skill3Button->setDelegate(this);
 	skill3Button->setABType(SKILL3);
 	uiBatch->addChild(skill3Button);
@@ -1211,12 +1208,7 @@ void HudLayer::gearButtonClick(CCObject *sender)
 
 bool HudLayer::getSkillFinish()
 {
-	if (!_delegate->getSkillFinish())
-	{
-		return false;
-	}
-
-	return true;
+	return _delegate->getSkillFinish();
 }
 
 bool HudLayer::getOugisEnable(bool isCKR2)
@@ -1446,16 +1438,11 @@ void HudLayer::initSkillButtons()
 void HudLayer::setSkillButtons(bool isVisable)
 {
 	// skills
-	if (skill1Button)
-		skill1Button->setVisible(isVisable);
-	if (skill2Button)
-		skill2Button->setVisible(isVisable);
-	if (skill3Button)
-		skill3Button->setVisible(isVisable);
-	if (skill4Button)
-		skill4Button->setVisible(isVisable);
-	if (skill5Button)
-		skill5Button->setVisible(isVisable);
+	skill1Button->setVisible(isVisable);
+	skill2Button->setVisible(isVisable);
+	skill3Button->setVisible(isVisable);
+	skill4Button->setVisible(isVisable);
+	skill5Button->setVisible(isVisable);
 	// items
 	if (item1Button)
 		item1Button->setVisible(isVisable);
@@ -1511,6 +1498,12 @@ void HudLayer::updateSpecialSkillButtons()
 	skill1Button->setDoubleSkill(currentPlayer->_sattack1isDouble);
 	skill2Button->setDoubleSkill(currentPlayer->_sattack2isDouble);
 	skill3Button->setDoubleSkill(currentPlayer->_sattack3isDouble);
+	skill1Button->setCD(CCString::createWithFormat("%d", currentPlayer->_sattackcoldDown1 * 1000));
+	skill2Button->setCD(CCString::createWithFormat("%d", currentPlayer->_sattackcoldDown2 * 1000));
+	skill3Button->setCD(CCString::createWithFormat("%d", currentPlayer->_sattackcoldDown3 * 1000));
+	skill1Button->_isColdChanged = true;
+	skill2Button->_isColdChanged = true;
+	skill3Button->_isColdChanged = true;
 
 	if (currentPlayer->isCharacter("Kankuro") ||
 		currentPlayer->isCharacter("Chiyo") ||
@@ -1537,14 +1530,9 @@ void HudLayer::updateSpecialSkillButtons()
 
 void HudLayer::resetSkillButtons()
 {
-	if (skill1Button)
-		skill1Button->reset();
-	if (skill2Button)
-		skill2Button->reset();
-	if (skill3Button)
-		skill3Button->reset();
-	if (skill4Button)
-		skill4Button->reset();
-	if (skill5Button)
-		skill5Button->reset();
+	skill1Button->reset();
+	skill2Button->reset();
+	skill3Button->reset();
+	skill4Button->reset();
+	skill5Button->reset();
 }
