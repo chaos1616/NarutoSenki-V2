@@ -142,6 +142,8 @@ public:
 	void updateGears();
 	void initGearButton(const char *charName);
 
+	void initSkillButtons();
+	void setSkillButtons(bool isVisable);
 	void updateSkillButtons();
 	void updateSpecialSkillButtons();
 	void resetSkillButtons();

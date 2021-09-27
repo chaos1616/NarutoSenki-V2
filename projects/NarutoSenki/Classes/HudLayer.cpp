@@ -1438,6 +1438,35 @@ void HudLayer::removeOugis(CCNode *sender)
 	_delegate->removeOugis();
 }
 
+void HudLayer::initSkillButtons()
+{
+	//TODO: For Ino ougi2 (Player can control other character's skills)
+}
+
+void HudLayer::setSkillButtons(bool isVisable)
+{
+	// skills
+	if (skill1Button)
+		skill1Button->setVisible(isVisable);
+	if (skill2Button)
+		skill2Button->setVisible(isVisable);
+	if (skill3Button)
+		skill3Button->setVisible(isVisable);
+	if (skill4Button)
+		skill4Button->setVisible(isVisable);
+	if (skill5Button)
+		skill5Button->setVisible(isVisable);
+	// items
+	if (item1Button)
+		item1Button->setVisible(isVisable);
+	if (item2Button)
+		item2Button->setVisible(isVisable);
+	if (item3Button)
+		item3Button->setVisible(isVisable);
+	if (item4Button)
+		item4Button->setVisible(isVisable);
+}
+
 void HudLayer::updateSkillButtons()
 {
 	auto player = _delegate->currentPlayer;
