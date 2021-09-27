@@ -107,7 +107,7 @@ HudLayer::HudLayer()
 	item2Button = nullptr;
 	item3Button = nullptr;
 	item4Button = nullptr;
-	Kaichang = nullptr;
+	openingSprite = nullptr;
 
 	bcdLabel1 = nullptr;
 	bcdLabel2 = nullptr;
@@ -183,7 +183,7 @@ void HudLayer::initGearButton(const char *charName)
 	addChild(gearMenu, 100);
 }
 
-void HudLayer::onKaichang()
+void HudLayer::onGameOpeningAnimation()
 {
 	CCArray *tempArray = CCArray::create();
 
@@ -203,12 +203,12 @@ void HudLayer::onKaichang()
 	list->addObject(tempAction);
 	CCAction *seq = CCSequence::create(list);
 
-	Kaichang = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("gameStart_001.png")->getCString());
+	openingSprite = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("gameStart_001.png")->getCString());
 
-	Kaichang->setAnchorPoint(ccp(0.5f, 0.5f));
-	Kaichang->setPosition(ccp(winSize.width / 2 + 32, winSize.height / 2));
-	addChild(Kaichang, 5000);
-	Kaichang->runAction(seq);
+	openingSprite->setAnchorPoint(ccp(0.5f, 0.5f));
+	openingSprite->setPosition(ccp(winSize.width / 2 + 32, winSize.height / 2));
+	addChild(openingSprite, 5000);
+	openingSprite->runAction(seq);
 }
 
 void HudLayer::initHeroInterface()
@@ -341,44 +341,21 @@ void HudLayer::initHeroInterface()
 	skill1Button->setCD(CCString::createWithFormat("%d", _delegate->currentPlayer->_sattackcoldDown1 * 1000));
 	skill1Button->setDelegate(this);
 	skill1Button->setABType(SKILL1);
-	if (_delegate->currentPlayer->_sattack1isDouble)
-	{
-		skill1Button->setDoubleSkill(true);
-	}
 	uiBatch->addChild(skill1Button);
 
 	skill2Button = ActionButton::create(CCString::createWithFormat("%s_skill2.png", _delegate->currentPlayer->getCharacter()->getCString())->getCString());
 	skill2Button->setCD(CCString::createWithFormat("%d", _delegate->currentPlayer->_sattackcoldDown2 * 1000));
 	skill2Button->setDelegate(this);
 	skill2Button->setABType(SKILL2);
-	if (_delegate->currentPlayer->_sattack2isDouble)
-	{
-		skill2Button->setDoubleSkill(true);
-	}
-	if (strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Kankuro") == 0 ||
-		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Chiyo") == 0 ||
-		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Kiba") == 0)
-	{
-		skill2Button->setLock();
-	}
 	uiBatch->addChild(skill2Button);
 
 	skill3Button = ActionButton::create(CCString::createWithFormat("%s_skill3.png", _delegate->currentPlayer->getCharacter()->getCString())->getCString());
 	skill3Button->setCD(CCString::createWithFormat("%d", _delegate->currentPlayer->_sattackcoldDown3 * 1000));
 	skill3Button->setDelegate(this);
 	skill3Button->setABType(SKILL3);
-	if (_delegate->currentPlayer->_sattack3isDouble)
-	{
-		skill3Button->setDoubleSkill(true);
-	}
-	if (strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Kiba") == 0 ||
-		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Chiyo") == 0 ||
-		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Lee") == 0)
-	{
-		skill3Button->setLock();
-	}
-
 	uiBatch->addChild(skill3Button);
+
+	updateSpecialSkillButtons();
 
 	skill4Button = ActionButton::create(CCString::createWithFormat("%s_skill4.png", _delegate->currentPlayer->getCharacter()->getCString())->getCString());
 	skill4Button->setDelegate(this);
@@ -1490,4 +1467,55 @@ void HudLayer::updateSkillButtons()
 	updateButtonInfo(3);
 	updateButtonInfo(4);
 	updateButtonInfo(5);
+	updateSpecialSkillButtons();
+}
+
+void HudLayer::updateSpecialSkillButtons()
+{
+	auto currentPlayer = _delegate->currentPlayer;
+	if (currentPlayer == nullptr)
+	{
+		CCLOG("Current player is null.");
+		return;
+	}
+
+	skill1Button->setDoubleSkill(currentPlayer->_sattack1isDouble);
+	skill2Button->setDoubleSkill(currentPlayer->_sattack2isDouble);
+	skill3Button->setDoubleSkill(currentPlayer->_sattack3isDouble);
+
+	if (currentPlayer->isCharacter("Kankuro") ||
+		currentPlayer->isCharacter("Chiyo") ||
+		currentPlayer->isCharacter("Kiba"))
+	{
+		skill2Button->setLock();
+	}
+	else
+	{
+		skill2Button->unLock();
+	}
+
+	if (currentPlayer->isCharacter("Kiba") ||
+		currentPlayer->isCharacter("Chiyo") ||
+		currentPlayer->isCharacter("Lee"))
+	{
+		skill3Button->setLock();
+	}
+	else
+	{
+		skill3Button->unLock();
+	}
+}
+
+void HudLayer::resetSkillButtons()
+{
+	if (skill1Button)
+		skill1Button->reset();
+	if (skill2Button)
+		skill2Button->reset();
+	if (skill3Button)
+		skill3Button->reset();
+	if (skill4Button)
+		skill4Button->reset();
+	if (skill5Button)
+		skill5Button->reset();
 }

@@ -108,14 +108,14 @@ public:
 	void stopSPCReport();
 	void updateSPCReprot(float dt);
 	void setTowerState(int charNO);
-	void onKaichang();
+	void onGameOpeningAnimation();
 
 	CCLabelBMFont *bcdLabel1;
 	CCLabelBMFont *bcdLabel2;
 
 	void JoyStickRelease();
 	void JoyStickUpdate(CCPoint direction);
-	CCSprite *Kaichang;
+	CCSprite *openingSprite;
 
 	CCSprite *createReport(const char *name1, const char *name2, float &length);
 	CCSprite *createSPCReport(const char *killNum, int num);
@@ -143,6 +143,8 @@ public:
 	void initGearButton(const char *charName);
 
 	void updateSkillButtons();
+	void updateSpecialSkillButtons();
+	void resetSkillButtons();
 
 protected:
 	virtual void onEnter();

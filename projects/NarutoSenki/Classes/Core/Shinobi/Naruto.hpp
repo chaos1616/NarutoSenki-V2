@@ -41,6 +41,7 @@ class Naruto : public Hero
 		match_char_exp3(kNaruto______, return createClone_Naruto(cloneTime),
 						kSageNaruto__, return createClone_SageNaruto(cloneTime),
 						kRikudoNaruto, return createClone_RikudoNaruto(cloneTime));
+		return nullptr;
 	}
 
 	// Naruto

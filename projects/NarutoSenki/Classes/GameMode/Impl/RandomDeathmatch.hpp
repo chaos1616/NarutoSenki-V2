@@ -79,18 +79,51 @@ public:
 
 		if (c->changeCharId > -1)
 		{
-			// TODO: initial a new random character
+			auto gameLayer = c->getDelegate();
+			// initial a new random character
 			auto newCharName = CCString::create(heroVector[c->changeCharId]);
-			CharacterBase *newChar = Provider::create(newCharName, c->getRole(), c->getGroup());
+			auto newChar = gameLayer->addHero(newCharName, c->getRole(), c->getGroup(), c->getSpawnPoint(), c->getCharNO());
+			newChar->setCoin(c->getCoin());
+			newChar->setCKR(c->getCKR());
+			newChar->setCKR2(c->getCKR2());
+			newChar->setEXP(c->getEXP());
+			newChar->setLV(c->getLV());
+			newChar->setKillNum(c->getKillNum());
+			newChar->setWalkSpeed(224);
+			newChar->setGearArray(c->getGearArray());
+			CCObject *pObject = nullptr;
+			CCARRAY_FOREACH(c->getGearArray(), pObject)
+			{
+				auto gear = (gearType)(((CCString *)pObject)->intValue());
+				if (gear == gear00)
+					newChar->_isCanGear00 = true;
+				if (gear == gear03)
+					newChar->_isCanGear03 = true;
+				if (gear == gear06)
+					newChar->_isCanGear06 = true;
+			}
+			newChar->_deadNum = c->_deadNum;
+			newChar->_flogNum = c->_flogNum;
+			newChar->isBaseDanger = c->isBaseDanger;
+			newChar->hasArmor = c->hasArmor;
+			newChar->isGearCD = c->isGearCD;
+			newChar->changeHPbar();
+			if (newChar->isCom())
+			{
+				newChar->doAI();
+			}
 			if (c->isPlayer())
 			{
-				c->getDelegate()->currentPlayer = newChar;
+				auto hudLayer = gameLayer->getHudLayer();
+				gameLayer->currentPlayer = newChar;
+				// reset hud layer
+				hudLayer->updateSkillButtons();
+				hudLayer->resetSkillButtons();
 			}
-			c->getDelegate()->_CharacterArray->replaceObjectAtIndex(c->getCharNO() - 1, newChar);
+			gameLayer->_CharacterArray->replaceObjectAtIndex(c->getCharNO() - 1, newChar);
 			CCLOG("[Change Character] From %s to %s", c->getCharacter()->getCString(), newCharName->getCString());
 
-			c->dealloc();
-			// unload old char assets
+			// unload old character assets
 			LoadLayer::unloadCharIMG(c); // Unload dead hero's assets
 		}
 	}

@@ -34,6 +34,7 @@ public:
 	void setOugisMark();
 	void setProgressMark();
 	void updateProgressMark();
+	void reset();
 
 	CCSprite *gearSign;
 	CCLabelBMFont *cdLabel;

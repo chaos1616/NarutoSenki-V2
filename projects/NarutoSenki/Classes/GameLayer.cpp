@@ -182,6 +182,7 @@ void GameLayer::initHeros()
 
 	CCTMXObjectGroup *group = currentMap->objectGroupNamed("object");
 	CCArray *objectArray = group->getObjects();
+	CharacterBase *hero;
 
 	_isOugis2Game = true;
 
@@ -224,46 +225,8 @@ void GameLayer::initHeros()
 					spawnPoint = ccp(2608, 80);
 			}
 
-			if (i == 0)
-			{
-				currentPlayer = (CharacterBase *)Provider::create(player, role, group);
-				currentPlayer->setDelegate(this);
-				currentPlayer->setPosition(spawnPoint);
-				currentPlayer->setSpawnPoint(spawnPoint);
-				if (strcmp(group->getCString(), Akatsuki) == 0)
-				{
-					currentPlayer->_isFlipped = true;
-					currentPlayer->setFlipX(true);
-				}
-				handler->onCharacterInit(currentPlayer);
-				addChild(currentPlayer, -currentPlayer->getPositionY());
-				currentPlayer->setHPbar();
-				currentPlayer->setShadows();
-				currentPlayer->idle();
-				currentPlayer->setCharNO(i + 1);
-				currentPlayer->schedule(schedule_selector(CharacterBase::setRestore2), 1.0f);
-				_CharacterArray->addObject(currentPlayer);
-			}
-			else
-			{
-				Hero *Com = Provider::create(player, role, group);
-				Com->setDelegate(this);
-				Com->setPosition(spawnPoint);
-				Com->setSpawnPoint(spawnPoint);
-				if (strcmp(group->getCString(), Akatsuki) == 0)
-				{
-					Com->_isFlipped = true;
-					Com->setFlipX(true);
-				}
-				handler->onCharacterInit(Com);
-				addChild(Com, -Com->getPositionY());
-				Com->setHPbar();
-				Com->setShadows();
-				Com->idle();
-				Com->setCharNO(i + 1);
-				Com->schedule(schedule_selector(CharacterBase::setRestore2), 1.0f);
-				_CharacterArray->addObject(Com);
-			}
+			hero = addHero(player, role, group, spawnPoint, i + 1);
+			_CharacterArray->addObject(hero);
 			i++;
 		}
 	}
@@ -295,54 +258,8 @@ void GameLayer::initHeros()
 			int y = ((CCString *)mapdict->objectForKey("y"))->intValue();
 			spawnPoint = ccp(x, y);
 
-			if (i == 0)
-			{
-				if (strcmp(group->getCString(), Akatsuki) == 0)
-				{
-					team = 0;
-				}
-
-				currentPlayer = (CharacterBase *)Provider::create(player, role, group);
-				currentPlayer->setDelegate(this);
-				currentPlayer->setPosition(spawnPoint);
-				currentPlayer->setSpawnPoint(spawnPoint);
-
-				handler->onCharacterInit(currentPlayer);
-				addChild(currentPlayer, -currentPlayer->getPositionY());
-				currentPlayer->setHPbar();
-				currentPlayer->setShadows();
-				currentPlayer->idle();
-				if (team <= 0)
-				{
-					currentPlayer->_isFlipped = true;
-					currentPlayer->setFlipX(true);
-				}
-				currentPlayer->setCharNO(i + 1);
-				currentPlayer->schedule(schedule_selector(CharacterBase::setRestore2), 1.0f);
-				_CharacterArray->addObject(currentPlayer);
-			}
-			else
-			{
-				Hero *Com = Provider::create(player, role, group);
-				Com->setDelegate(this);
-				Com->setPosition(spawnPoint);
-				Com->setSpawnPoint(spawnPoint);
-
-				handler->onCharacterInit(Com);
-				addChild(Com, -Com->getPositionY());
-				Com->setHPbar();
-				Com->setShadows();
-				Com->idle();
-				if (strcmp(Com->getGroup()->getCString(), Akatsuki) == 0)
-				{
-					Com->_isFlipped = true;
-					Com->setFlipX(true);
-				}
-
-				Com->setCharNO(i + 1);
-				Com->schedule(schedule_selector(CharacterBase::setRestore2), 1.0f);
-				_CharacterArray->addObject(Com);
-			}
+			hero = addHero(player, role, group, spawnPoint, i + 1);
+			_CharacterArray->addObject(hero);
 			i++;
 		}
 	}
@@ -352,20 +269,40 @@ void GameLayer::initHeros()
 	initTower();
 
 	schedule(schedule_selector(GameLayer::updateViewPoint), 0.00f);
-
-	//NOTE: Set all characters speed to zero. (Control movement before game real start)
-	CCARRAY_FOREACH(_CharacterArray, pObject)
-	{
-		CharacterBase *tempHero = (CharacterBase *)pObject;
-		tempHero->setWalkSpeed(0);
-	}
-
-	scheduleOnce(schedule_selector(GameLayer::onKaichang), 0.5f);
+	scheduleOnce(schedule_selector(GameLayer::onGameOpeningAnimation), 0.5f);
 }
 
-void GameLayer::onKaichang(float dt)
+CharacterBase *GameLayer::addHero(CCString *character, CCString *role, CCString *group, CCPoint spawnPoint, int charNo)
 {
-	getHudLayer()->onKaichang();
+	auto hero = (CharacterBase *)Provider::create(character, role, group);
+	if (hero->isPlayer())
+	{
+		currentPlayer = hero;
+	}
+	hero->setDelegate(this);
+	hero->setPosition(spawnPoint);
+	hero->setSpawnPoint(spawnPoint);
+	//NOTE: Set all characters speed to zero. (Control movement before game real start)
+	hero->setWalkSpeed(0);
+	if (strcmp(group->getCString(), Akatsuki) == 0)
+	{
+		hero->_isFlipped = true;
+		hero->setFlipX(true);
+	}
+	hero->setHPbar();
+	hero->setShadows();
+	hero->idle();
+	hero->setCharNO(charNo);
+	hero->schedule(schedule_selector(CharacterBase::setRestore2), 1.0f);
+
+	addChild(hero, -hero->getPositionY());
+	getGameModeHandler()->onCharacterInit(hero);
+	return hero;
+}
+
+void GameLayer::onGameOpeningAnimation(float dt)
+{
+	getHudLayer()->onGameOpeningAnimation();
 
 	if (_isHardCoreGame)
 	{
@@ -383,8 +320,8 @@ void GameLayer::onGameStart(float dt)
 {
 	_isStarted = true;
 
-	getHudLayer()->Kaichang->removeFromParent();
-	getHudLayer()->Kaichang = nullptr;
+	getHudLayer()->openingSprite->removeFromParent();
+	getHudLayer()->openingSprite = nullptr;
 	// getHudLayer()->initHeroInterface();
 	schedule(schedule_selector(GameLayer::updateGameTime), 1.0f);
 	schedule(schedule_selector(GameLayer::checkBackgroundMusic), 2.0f);

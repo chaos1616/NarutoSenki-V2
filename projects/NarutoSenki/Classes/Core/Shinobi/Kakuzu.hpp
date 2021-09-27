@@ -4,7 +4,7 @@
 
 class Kakuzu : public Hero
 {
-	void dead()
+	void dead() override
 	{
 		CharacterBase::dead();
 

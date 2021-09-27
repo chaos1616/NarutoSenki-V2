@@ -180,7 +180,7 @@ void HeroElement::changeHPbar()
 
 void HeroElement::checkRefCount(float dt)
 {
-	//CCLOG("%d",callValue->retainCount());
+	CCLOG("[Ref Check] %s has %d references", getCharacter()->getCString(), callValue->retainCount());
 }
 
 void HeroElement::dealloc()
@@ -403,6 +403,15 @@ void HeroElement::reborn(float dt)
 	}
 
 	CharacterBase::reborn(dt);
+	// If the character has changed, then cleanup and return
+	if (changeCharId > -1)
+	{
+		CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "acceptAttack");
+		removeFromParentAndCleanup(true);
+		checkRefCount(0);
+		return;
+	}
+
 	setPosition(getSpawnPoint());
 
 	if (getPosition().equals(getSpawnPoint()))

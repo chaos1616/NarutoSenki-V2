@@ -560,6 +560,28 @@ void ActionButton::updateProgressMark()
 	}
 }
 
+void ActionButton::reset()
+{
+	clearClick();
+
+	if (!_isLock && markSprite)
+	{
+		markSprite->stopAllActions();
+		markSprite->setPercentage(0);
+	}
+
+	if (!_delegate->ougisLayer)
+	{
+		unschedule(schedule_selector(ActionButton::updateCDLabel));
+		setTimeCout(nullptr);
+		if (cdLabel)
+		{
+			cdLabel->removeFromParent();
+			cdLabel = nullptr;
+		}
+	}
+}
+
 void ActionButton::setLock()
 {
 	if (markSprite)

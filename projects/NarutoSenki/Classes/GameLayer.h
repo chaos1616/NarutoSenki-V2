@@ -39,8 +39,8 @@ public:
 	CharacterBase *currentPlayer;
 	CCPoint spawnPoint;
 
-	int _second;
-	int _minute;
+	uint32_t _second;
+	uint32_t _minute;
 	int mapId;
 
 	const char *kName;
@@ -84,8 +84,8 @@ public:
 	void updateViewPoint(float dt);
 	void updateGameTime(float dt);
 
+	CharacterBase *addHero(CCString *character, CCString *role, CCString *group, CCPoint spawnPoint, int charNo);
 	void addFlog(float dt);
-	void onStart();
 
 	void attackButtonClick(abType type);
 	void gearButtonClick(gearType type);
@@ -100,7 +100,7 @@ public:
 
 	void onPause();
 	void onGear();
-	void onKaichang(float dt);
+	void onGameOpeningAnimation(float dt);
 	void onGameStart(float dt);
 	void onGameOver(bool isWin);
 

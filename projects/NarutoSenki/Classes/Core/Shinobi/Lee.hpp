@@ -16,7 +16,7 @@ class Lee : public Hero
 					   kRockLee, setAIHandler(Lee::perform_RockLee));
 	}
 
-	void dead()
+	void dead() override
 	{
 		CharacterBase::dead();
 
