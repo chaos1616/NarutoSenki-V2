@@ -83,7 +83,7 @@ class Lee : public Hero
 		}
 	}
 
-	void changeHPbar()
+	void changeHPbar() override
 	{
 		HeroElement::changeHPbar();
 

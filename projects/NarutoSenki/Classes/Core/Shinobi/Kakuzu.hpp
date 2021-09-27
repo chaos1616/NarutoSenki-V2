@@ -23,7 +23,7 @@ class Kakuzu : public Hero
 		}
 	}
 
-	void changeHPbar()
+	void changeHPbar() override
 	{
 		HeroElement::changeHPbar();
 

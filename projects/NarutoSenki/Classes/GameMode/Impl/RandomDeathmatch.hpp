@@ -112,13 +112,17 @@ public:
 			{
 				newChar->doAI();
 			}
-			if (c->isPlayer())
+			else if (newChar->isPlayer())
 			{
 				auto hudLayer = gameLayer->getHudLayer();
 				gameLayer->currentPlayer = newChar;
 				// reset hud layer
 				hudLayer->updateSkillButtons();
 				hudLayer->resetSkillButtons();
+
+				hudLayer->status_hpbar->setOpacity(255);
+				hudLayer->status_expbar->setOpacity(255);
+				hudLayer->setHPLose(newChar->getHpPercent());
 			}
 			gameLayer->_CharacterArray->replaceObjectAtIndex(c->getCharNO() - 1, newChar);
 			CCLOG("[Change Character] From %s to %s", c->getCharacter()->getCString(), newCharName->getCString());
