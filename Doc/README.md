@@ -3,6 +3,8 @@
 - [Naruto Senki - V2](#naruto-senki---v2)
   - [Introduction](#introduction)
     - [Changelog](#changelog)
+    - [New features](#new-features)
+      - [Game Mode](#game-mode)
     - [What have I done?](#what-have-i-done)
     - [What is the next?](#what-is-the-next)
   - [Know Issues](#know-issues)
@@ -37,10 +39,23 @@ Get the latest developments👇
 - 2021-9-28
   - [UI] Added game mode selection panel
   - [UI] Added a return button to the select character panel on the desktop
-  - [Added] Clone Mode (Click me)
-  - [Added] Random Deathmatch Mode (Click me)
+  - [Added] Clone Mode ([Click me](#game-mode))
+  - [Added] Random Deathmatch Mode ([Click me](#game-mode))
+  - [Added] Click logo will enable custom select for all game modes (Except 1v1 and clone)
+  - [Added] If no character is selected in any mode, it will be selected randomly
   - [Fixed] V2 version bugs (Lee, Kakuzu, Kisame)
 
+### New features 
+
+#### Game Mode
+
+- Clone
+
+> 
+
+- Random Deathmatch
+
+> 
 
 ### What have I done?
 
@@ -70,11 +85,10 @@ Get the latest developments👇
   - [UI] Fullscreen menu background
   - [UI] Make a new battle UI for Desktop platform
 - **REMOVED**
-  - Click logo will not affect the game
   - All network codes & dependence (websocket)
   - [Config] Removed `Hidan` & `Kakuzu` & `Chiyo` hurt sound (It doesn't existed)
 - **FEATURES**
-  - Click `NETWORK` button to enable custom select character
+  - Click `NETWORK` button to display the game mode selection panel
   - [Linux & Windows] Half keyboard supported (Only working on battle scene)
 
 ### What is the next?
