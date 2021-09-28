@@ -117,6 +117,8 @@ public:
 				// If the new character has a sprite with the same name as the old character,
 				// it may cause some null sprite errors
 				LoadLayer::unloadCharIMG(c);
+				// load new char assets
+				LoadLayer::perloadCharIMG(newCharName);
 			}
 			auto hudLayer = gameLayer->getHudLayer();
 			auto newChar = gameLayer->addHero(CCString::create(newCharName), c->getRole(), c->getGroup(), c->getSpawnPoint(), c->getCharNO());
@@ -226,8 +228,6 @@ private:
 
 		auto newChar = getRandomHeroExceptAll(heroVector);
 		heroVector[index] = newChar;
-		// load new char assets
-		LoadLayer::perloadCharIMG(newChar);
 	}
 
 	int getIndexByHero(CharacterBase *c)
