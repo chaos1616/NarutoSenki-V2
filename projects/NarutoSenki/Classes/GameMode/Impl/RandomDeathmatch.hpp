@@ -230,26 +230,8 @@ private:
 		heroVector[index] = newChar;
 	}
 
-	int getIndexByHero(CharacterBase *c)
+	inline int getIndexByHero(CharacterBase *c)
 	{
-		const char *realName = nullptr;
-		if (c->isCharacter("SageNaruto"))
-			realName = "Naruto";
-		else if (c->isCharacter("RikudoNaruto"))
-			realName = "Naruto";
-		else if (c->isCharacter("SageJiraiya"))
-			realName = "Jiraiya";
-		else if (c->isCharacter("ImmortalSasuke"))
-			realName = "Sasuke";
-		else if (c->isCharacter("RockLee"))
-			realName = "Lee";
-		realName = realName ? realName : c->getCharacter()->getCString();
-
-		for (size_t i = 0; i < heroVector.size(); i++)
-		{
-			if (strcmp(heroVector[i], realName) == 0)
-				return i;
-		}
-		return -1;
+		return heroVector.size() < c->getCharNO() ? -1 : c->getCharNO() - 1;
 	}
 };

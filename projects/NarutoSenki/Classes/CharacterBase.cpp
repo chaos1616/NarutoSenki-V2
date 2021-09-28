@@ -4955,7 +4955,7 @@ void CharacterBase::walk(CCPoint direction)
 
 		_actionState = State::WALK;
 
-		//NOTE: FIXED when direction.x is zero but still set to flipped
+		// NOTE: FIXED when direction.x is zero but still set to flipped
 		if (direction.x != 0)
 		{
 			_isFlipped = direction.x > 0 ? false : true;
