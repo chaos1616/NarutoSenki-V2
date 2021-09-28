@@ -101,7 +101,7 @@ bool GameModeLayer::init()
 	addChild(menuLabel, 5);
 
 	// init return button
-	auto return_img = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("return_btn.png"), nullptr, nullptr, this, menu_selector(GameModeLayer::backToMenu));
+	auto return_img = CCMenuItemSprite::create(CCSprite::create("UI/return_btn.png"), nullptr, nullptr, this, menu_selector(GameModeLayer::backToMenu));
 	CCMenu *return_btn = CCMenu::create(return_img, nullptr);
 	return_btn->setAnchorPoint(ccp(1, 0.5f));
 	return_btn->setPosition(winSize.width - 38, 65);
