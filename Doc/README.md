@@ -2,6 +2,7 @@
 
 - [Naruto Senki - V2](#naruto-senki---v2)
   - [Introduction](#introduction)
+    - [Changelog](#changelog)
     - [What have I done?](#what-have-i-done)
     - [What is the next?](#what-is-the-next)
   - [Know Issues](#know-issues)
@@ -31,10 +32,20 @@ Get the latest developments👇
 
 > `NOTE: This project will no longer develop after a few months`
 
+### Changelog
+
+- 2021-9-28
+  - [UI] Added game mode selection panel
+  - [UI] Added a return button to the select character panel on the desktop
+  - [Added] Clone Mode (Click me)
+  - [Added] Random Deathmatch Mode (Click me)
+  - [Fixed] V2 version bugs (Lee, Kakuzu, Kisame)
+
+
 ### What have I done?
 
 - **UPDATED**
-  - Updated the project to cocos2d-x 2.2.6 & Visual Studio 2019
+  - Updated the project to cocos2d-x 2.2.6 & Visual Studio 2022
   - Most dependent libraries have been upgraded to the latest version
   - Updated glfw2 to glfw3
   - [Adnroid] Support android 11.0 and rounded icons
@@ -86,15 +97,12 @@ Get the latest developments👇
 - Android
   - Some sounds will not playing when the battle starts in the first few seconds.
   - May not be fluent on your android device when you select a character. (Caused by the `Select` module implemented by lua)
-  - I didn't compile a x64 lua-jit for android, so we can't be build x64 version or you can remove the dependence on `scripting/lua/proj.android/Android.mk`
   - Menu's notice clipper not working on android. (But it works great on the other platforms)
 
 ## TODO
 
 - Support shortcut switch from `windowed` to `fullscreen` and more
-- Use `grpc + protobuf` develop local multiplayer
 - Use `OpenAL` play music on `android` platform (May be fixed sounds not wordking)
-- Full keyboard support
 
 ---
 
@@ -132,7 +140,7 @@ make # DEBUG=1 # -j12
 
 ### Windows
 
-- Open `cocos2d-win32.sln` with Visual Studio 2019
+- Open `cocos2d-win32.sln` with Visual Studio 2022
 
 or
 
