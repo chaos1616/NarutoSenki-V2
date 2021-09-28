@@ -1,17 +1,17 @@
 # Auto detect text files and perform LF normalization
-*        text=auto
+*          text=auto
 
 # Documents
 *.pdf      diff=astextplain
 *.PDF      diff=astextplain
 *.md       text diff=markdown eol=lf
 *.csv      text eol=lf
-*.txt      text eol=lf
+*.fnt      text eol=lf
 *.txt      text eol=lf
 
 # Fonts
-*.otf               binary
-*.ttf               binary
+*.otf      binary
+*.ttf      binary
 
 # Graphics
 *.png      binary
@@ -39,20 +39,20 @@
 .gitkeep       export-ignore eol=lf
 
 # Sources
-*.c      text diff=c   eol=lf
-*.cc     text diff=cpp eol=lf
-*.cxx    text diff=cpp eol=lf
-*.cpp    text diff=cpp eol=lf
-*.c++    text diff=cpp eol=lf
-*.hpp    text diff=cpp eol=lf
-*.h      text diff=c   eol=lf
-*.h++    text diff=cpp eol=lf
-*.hh     text diff=cpp eol=lf
-*.lua    text eol=lf
-*.py     text diff=python eol=lf
-*.java   text diff=java eol=lf
-*.gradle text diff=java eol=lf
-*.mm     text eol=lf
+*.c        text diff=c   eol=lf
+*.cc       text diff=cpp eol=lf
+*.cxx      text diff=cpp eol=lf
+*.cpp      text diff=cpp eol=lf
+*.c++      text diff=cpp eol=lf
+*.hpp      text diff=cpp eol=lf
+*.h        text diff=c   eol=lf
+*.h++      text diff=cpp eol=lf
+*.hh       text diff=cpp eol=lf
+*.lua      text eol=lf
+*.py       text diff=python eol=lf
+*.java     text diff=java eol=lf
+*.gradle   text diff=java eol=lf
+*.mm       text eol=lf
 
 # Compiled Object files
 *.slo   binary
@@ -82,8 +82,8 @@
 *.app   binary
 
 # Scripts
-*.sh        text eol=lf
-*.bat       text eol=crlf
+*.sh    text eol=lf
+*.bat   text eol=crlf
 
 # Visual Studio files
 *.sln        text eol=crlf
@@ -94,7 +94,7 @@
 *.vcxitems   text eol=crlf
 
 # tolua++ pkg file
-*.pkg       text eol=lf
+*.pkg        text eol=lf
 
-Makefile    text eol=lf
-*.mk        text eol=lf
+Makefile     text eol=lf
+*.mk         text eol=lf
