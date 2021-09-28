@@ -84,6 +84,7 @@ protected:
 	SelectLayer *selectLayer = nullptr;
 	// game
 	GameData gd;
+	int oldCheats;
 	std::vector<const char *> heroVector;
 	// player
 	const char *playerGroup;
@@ -104,7 +105,8 @@ public:
 	virtual void onCharacterDead(CharacterBase *c) = 0;
 	virtual void onCharacterReborn(CharacterBase *c) = 0;
 
-	const GameData &getGameData() { return gd; }
+	inline const GameData &getGameData() { return gd; }
+	inline int getOldCheats() { return oldCheats; }
 
 protected:
 	CCArray *getHerosArray()

@@ -587,13 +587,10 @@ void GameOver::listResult()
 	_delegate->_isSurrender = false;
 
 	// Reset cheats value
-	if (getGameMode() == GameMode::HardCore_4Vs4)
+	auto mode = getGameMode();
+	if (mode == GameMode::FourVsFour || mode == GameMode::HardCore_4Vs4)
 	{
-		auto mode = ((Mode4v4 *)getGameModeHandler());
-		if (mode)
-			Cheats = mode->getOldCheats();
-		else
-			CCLOG("Current mode is not 4v4");
+		Cheats = getGameModeHandler()->getOldCheats();
 	}
 }
 

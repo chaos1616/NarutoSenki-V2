@@ -3,9 +3,6 @@
 
 class Mode4v4 : public IGameModeHandler
 {
-private:
-	int oldCheats;
-
 public:
 	void init()
 	{
@@ -40,6 +37,4 @@ public:
 	void onCharacterReborn(CharacterBase *c)
 	{
 	}
-
-	inline int getOldCheats() { return oldCheats; }
 };
