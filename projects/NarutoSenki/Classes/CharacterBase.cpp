@@ -190,6 +190,56 @@ void CharacterBase::changeHPbar()
 {
 }
 
+void CharacterBase::updateDataByLVOnly()
+{
+	uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+	int attackValue = to_int(getnAttackValue()->getCString());
+	if (_level >= 2)
+	{
+		_isCanOugis1 = true;
+		if (strcmp(getRole()->getCString(), "Player") == 0)
+		{
+			getDelegate()->setCKRLose(false);
+			getDelegate()->removeOugisMark(1);
+		}
+		tempMaxHP += 500;
+		attackValue += 9;
+		_rebornTime += 1;
+	}
+	if (_level >= 3)
+	{
+		tempMaxHP += 1000;
+		attackValue += 18;
+		_rebornTime += 2;
+	}
+	if (_level >= 4)
+	{
+		_isCanOugis2 = true;
+		if (strcmp(getRole()->getCString(), "Player") == 0)
+		{
+			getDelegate()->setCKRLose(true);
+			getDelegate()->removeOugisMark(2);
+		}
+		tempMaxHP += 2000;
+		attackValue += 27;
+		_rebornTime += 3;
+	}
+	if (_level >= 5)
+	{
+		tempMaxHP += 2500;
+		attackValue += 36;
+		_rebornTime += 4;
+	}
+	if (_level >= 6)
+	{
+		tempMaxHP += 3000;
+		attackValue += 45;
+		_rebornTime += 5;
+	}
+	setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+	setnAttackValue(CCString::createWithFormat("%d", attackValue));
+}
+
 void CharacterBase::readData(CCArray *tmpData, CCString *&attackType, CCString *&attackValue, int &attackRangeX, int &attackRangeY, uint32_t &coldDown, int &combatPoint)
 {
 	CCDictionary *tmpDict;

@@ -316,50 +316,42 @@ protected:
 		_fn4;
 
 /** UI Macros */
-#define lockSkill4Button()                                     \
-	if (is_player)                                             \
-	{                                                          \
-		if (_delegate->getHudLayer()->skill4Button)            \
-			_delegate->getHudLayer()->skill4Button->setLock(); \
+#define lockSkill4Button()                                 \
+	if (is_player)                                         \
+	{                                                      \
+		_delegate->getHudLayer()->skill4Button->setLock(); \
 	}
 
-#define unlockSkill4Button()                                  \
-	if (is_player)                                            \
-	{                                                         \
-		if (_delegate->getHudLayer()->skill4Button)           \
-			_delegate->getHudLayer()->skill4Button->unLock(); \
+#define unlockSkill4Button()                              \
+	if (is_player)                                        \
+	{                                                     \
+		_delegate->getHudLayer()->skill4Button->unLock(); \
 	}
 
-#define lockSkill5Button()                                     \
-	if (is_player)                                             \
-	{                                                          \
-		if (_delegate->getHudLayer()->skill5Button)            \
-			_delegate->getHudLayer()->skill5Button->setLock(); \
+#define lockSkill5Button()                                 \
+	if (is_player)                                         \
+	{                                                      \
+		_delegate->getHudLayer()->skill5Button->setLock(); \
 	}
 
-#define unlockSkill5Button()                                  \
-	if (is_player)                                            \
-	{                                                         \
-		if (_delegate->getHudLayer()->skill5Button)           \
-			_delegate->getHudLayer()->skill5Button->unLock(); \
+#define unlockSkill5Button()                              \
+	if (is_player)                                        \
+	{                                                     \
+		_delegate->getHudLayer()->skill5Button->unLock(); \
 	}
 
-#define lockOugisButtons()                                     \
-	if (is_player)                                             \
-	{                                                          \
-		if (_delegate->getHudLayer()->skill4Button)            \
-			_delegate->getHudLayer()->skill4Button->setLock(); \
-		if (_delegate->getHudLayer()->skill5Button)            \
-			_delegate->getHudLayer()->skill5Button->setLock(); \
+#define lockOugisButtons()                                 \
+	if (is_player)                                         \
+	{                                                      \
+		_delegate->getHudLayer()->skill4Button->setLock(); \
+		_delegate->getHudLayer()->skill5Button->setLock(); \
 	}
 
-#define unlockOugisButtons()                                  \
-	if (is_player)                                            \
-	{                                                         \
-		if (_delegate->getHudLayer()->skill4Button)           \
-			_delegate->getHudLayer()->skill4Button->unLock(); \
-		if (_delegate->getHudLayer()->skill5Button)           \
-			_delegate->getHudLayer()->skill5Button->unLock(); \
+#define unlockOugisButtons()                              \
+	if (is_player)                                        \
+	{                                                     \
+		_delegate->getHudLayer()->skill4Button->unLock(); \
+		_delegate->getHudLayer()->skill5Button->unLock(); \
 	}
 
 protected:

@@ -90,7 +90,15 @@ public:
 				c->changeCharId = -1;
 				return;
 			}
-
+			else
+			{
+				CCNotificationCenter::sharedNotificationCenter()->removeObserver(c, "acceptAttack");
+				c->unscheduleAllSelectors();
+				// Unload old character assets
+				// If the new character has a sprite with the same name as the old character,
+				// it may cause some null sprite errors
+				LoadLayer::unloadCharIMG(c);
+			}
 			auto hudLayer = gameLayer->getHudLayer();
 			auto newChar = gameLayer->addHero(CCString::create(newCharName), c->getRole(), c->getGroup(), c->getSpawnPoint(), c->getCharNO());
 			bool isPlayer = newChar->isPlayer();
@@ -103,6 +111,7 @@ public:
 			newChar->setWalkSpeed(224);
 			newChar->setGearArray(c->getGearArray());
 			newChar->changeHPbar();
+			newChar->updateDataByLVOnly();
 			CCObject *pObject = nullptr;
 			CCARRAY_FOREACH(c->getGearArray(), pObject)
 			{

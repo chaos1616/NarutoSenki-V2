@@ -159,7 +159,6 @@ void HeroElement::changeHPbar()
 		tempMaxHP += 2500;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 36));
-		;
 		_rebornTime += 4;
 	}
 	else if (_exp >= 2500 && _level == 5)
@@ -240,10 +239,7 @@ void HeroElement::dealloc()
 
 			if (strcmp(getMaster()->getRole()->getCString(), "Player") == 0)
 			{
-				if (_delegate->getHudLayer()->skill5Button)
-				{
-					_delegate->getHudLayer()->skill5Button->unLock();
-				}
+				_delegate->getHudLayer()->skill5Button->unLock();
 			}
 		}
 		else if (strcmp(getCharacter()->getCString(), "Akamaru") == 0 ||
@@ -281,10 +277,7 @@ void HeroElement::dealloc()
 		{
 			if (strcmp(getMaster()->getRole()->getCString(), "Player") == 0)
 			{
-				if (_delegate->getHudLayer()->skill5Button)
-				{
-					_delegate->getHudLayer()->skill5Button->unLock();
-				}
+				_delegate->getHudLayer()->skill5Button->unLock();
 			}
 		}
 
@@ -296,14 +289,8 @@ void HeroElement::dealloc()
 		{
 			if (strcmp(getRole()->getCString(), "Player") == 0)
 			{
-				if (_delegate->getHudLayer()->skill4Button)
-				{
-					_delegate->getHudLayer()->skill4Button->unLock();
-				}
-				if (_delegate->getHudLayer()->skill5Button)
-				{
-					_delegate->getHudLayer()->skill5Button->unLock();
-				}
+				_delegate->getHudLayer()->skill4Button->unLock();
+				_delegate->getHudLayer()->skill5Button->unLock();
 			}
 		}
 		else if (strcmp(getCharacter()->getCString(), "Shikamaru") == 0 ||
@@ -432,8 +419,6 @@ void HeroElement::reborn(float dt)
 				mo->removeFromParentAndCleanup(true);
 			}
 		}
-		// unload old character assets
-		LoadLayer::unloadCharIMG(this);
 		checkRefCount(0);
 		return;
 	}

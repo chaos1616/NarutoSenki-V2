@@ -32,6 +32,7 @@ public:
 	virtual void		setID(CCString* character,CCString* role,CCString *group);
 	virtual	void		setHPbar();
 	virtual	void	   	changeHPbar();
+	void				updateDataByLVOnly();
 	virtual	void		setShadows();
 	uint32_t			_deadNum;
 	uint32_t			_flogNum;

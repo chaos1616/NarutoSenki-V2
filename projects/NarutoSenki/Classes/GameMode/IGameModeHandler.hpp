@@ -342,9 +342,9 @@ protected:
 
 	static inline const char *getRandomHeroExcept(const char *except)
 	{
-		setRand();
 		if (except)
 		{
+			setRand();
 			int i = random(kHeroNum);
 			while (strcmp(kHeroList[i], except) == 0)
 				i = random(kHeroNum);
@@ -358,11 +358,11 @@ protected:
 
 	static inline const char *getRandomHeroExceptAll(const vector<const char *> &excepts, const char *defaultChar = "Naruto")
 	{
-		setRand();
 		bool ret = true;
 		int i;
 		while (ret)
 		{
+			setRand();
 			i = random(kHeroNum);
 			for (size_t j = 0; j < excepts.size() - 1; j++)
 			{

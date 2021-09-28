@@ -559,7 +559,7 @@ void StartMenu::onHardLayerCallBack()
 
 void StartMenu::enterCustomMode()
 {
-	// TEST: Develop game mode scene
+	// Enter game mode scene
 	auto modeScene = CCScene::create();
 	auto gameModeLayer = GameModeLayer::create();
 	gameModeLayer->setHandler(_handler);

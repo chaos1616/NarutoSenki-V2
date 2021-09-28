@@ -1444,14 +1444,10 @@ void HudLayer::setSkillButtons(bool isVisable)
 	skill4Button->setVisible(isVisable);
 	skill5Button->setVisible(isVisable);
 	// items
-	if (item1Button)
-		item1Button->setVisible(isVisable);
-	if (item2Button)
-		item2Button->setVisible(isVisable);
-	if (item3Button)
-		item3Button->setVisible(isVisable);
-	if (item4Button)
-		item4Button->setVisible(isVisable);
+	item1Button->setVisible(isVisable);
+	item2Button->setVisible(isVisable);
+	item3Button->setVisible(isVisable);
+	item4Button->setVisible(isVisable);
 }
 
 void HudLayer::updateSkillButtons()

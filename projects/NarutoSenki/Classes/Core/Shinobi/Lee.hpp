@@ -164,13 +164,7 @@ class Lee : public Hero
 				_delegate->getHudLayer()->skill3Button->unLock();
 			}
 
-			if (is_player)
-			{
-				if (_delegate->getHudLayer()->skill5Button)
-				{
-					_delegate->getHudLayer()->skill5Button->unLock();
-				}
-			}
+			unlockSkill5Button();
 		}
 		else if (bamen == 4)
 		{
