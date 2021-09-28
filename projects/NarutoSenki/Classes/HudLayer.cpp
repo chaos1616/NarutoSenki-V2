@@ -810,6 +810,9 @@ void HudLayer::setReport(const char *name1, const char *name2, CCString *killNum
 
 void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 {
+	// TODO: Display buff sprite
+	return;
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	float scale = 0.35f;
 #else
