@@ -92,8 +92,27 @@ public:
 			}
 			else
 			{
-				CCNotificationCenter::sharedNotificationCenter()->removeObserver(c, "acceptAttack");
+				// If the character has changed, then cleanup
+				CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(c);
+				if (c->_shadow)
+					c->_shadow->removeFromParentAndCleanup(true);
+				c->stopAllActions();
 				c->unscheduleAllSelectors();
+				c->removeFromParentAndCleanup(true);
+				if (c->getMonsterArray() && c->getMonsterArray()->count() > 0)
+				{
+					CCObject *pObject;
+					CCARRAY_FOREACH(c->getMonsterArray(), pObject)
+					{
+						auto mo = (Monster *)pObject;
+						CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(mo);
+						if (mo->_shadow)
+							mo->_shadow->removeFromParentAndCleanup(true);
+						mo->stopAllActions();
+						mo->unscheduleAllSelectors();
+						mo->removeFromParentAndCleanup(true);
+					}
+				}
 				// Unload old character assets
 				// If the new character has a sprite with the same name as the old character,
 				// it may cause some null sprite errors
