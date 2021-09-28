@@ -81,10 +81,6 @@
 *.apk   binary
 *.app   binary
 
-# Scripts
-*.sh    text eol=lf
-*.bat   text eol=crlf
-
 # Visual Studio files
 *.sln        text eol=crlf
 *.vcxproj    text eol=crlf
