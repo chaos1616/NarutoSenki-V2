@@ -778,6 +778,11 @@ void StartMenu::keyBackClicked()
 #endif
 }
 
+void StartMenu::setCheats(int cheats)
+{
+	Cheats = cheats;
+}
+
 void StartMenu::onExitCallBack()
 {
 	keyBackClicked();

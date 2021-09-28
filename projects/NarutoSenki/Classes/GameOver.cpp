@@ -1,6 +1,7 @@
 #include "GameOver.h"
 #include "GameLayer.h"
 #include "Core/Hero.hpp"
+#include "GameMode/GameModeImpl.h"
 
 #include <fstream>
 
@@ -189,7 +190,7 @@ void GameOver::listResult()
 		}
 
 		//4v4
-		if (Cheats > 10)
+		if (Cheats > 6)
 		{
 			if (strcmp(hero->getRole()->getCString(), "Player") != 0)
 			{
@@ -288,7 +289,7 @@ void GameOver::listResult()
 		}
 	}
 
-	if (Cheats <= 10)
+	if (Cheats <= 6)
 	{
 		if (akatsukiKill + konohaKill != to_int(_delegate->getTotalKills()->getCString()))
 		{
@@ -418,7 +419,7 @@ void GameOver::listResult()
 
 			// detailRecord = CCString::createWithFormat("%02d:%02d,%s,%d,%d", _minute, _delegate->_second, _delegate->currentPlayer->getKillNum()->getCString(), _delegate->currentPlayer->_deadNum, _delegate->currentPlayer->_flogNum)->getCString();
 		}
-		if (Cheats <= 10)
+		if (Cheats <= 6)
 		{
 			resultChar = _delegate->currentPlayer->getCharacter();
 			if (strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "SageNaruto") == 0)
@@ -563,7 +564,7 @@ void GameOver::listResult()
 		}
 	}
 
-	if (Cheats <= 10)
+	if (Cheats <= 6)
 	{
 		CCLabelBMFont *version = CCLabelBMFont::create(GAMEOVER_VER, "Fonts/1.fnt");
 		version->setPosition(ccp(winSize.width / 2 + 94, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 6));
@@ -584,6 +585,16 @@ void GameOver::listResult()
 	addChild(overMenu, 7);
 
 	_delegate->_isSurrender = false;
+
+	// Reset cheats value
+	if (getGameMode() == GameMode::HardCore_4Vs4)
+	{
+		auto mode = ((Mode4v4 *)getGameModeHandler());
+		if (mode)
+			Cheats = mode->getOldCheats();
+		else
+			CCLOG("Current mode is not 4v4");
+	}
 }
 
 void GameOver::onUPloadBtn(CCObject *sender)

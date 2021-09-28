@@ -38,18 +38,12 @@ set CC_BIN=NarutoSenki.exe
 set CC_RES=..\projects\NarutoSenki\Resources
 set CC_LUA=..\projects\NarutoSenki\lua
 
-echo./*
-echo. * Copy resources
-echo. *
-echo. *************************************************************
-echo. * NOTE: Doesn't automatically copy lua files in debug mode. *
-echo. *************************************************************
-echo. *
-echo. */
-
 rm -rf ..\projects\NarutoSenki\__BIN__\Data
 mkdir ..\projects\NarutoSenki\__BIN__\Data
+rm -rf ..\projects\NarutoSenki\__BIN__\lua
+mkdir ..\projects\NarutoSenki\__BIN__\lua
 xcopy /D /E /Y /Q "%CC_RES%" ..\projects\NarutoSenki\__BIN__\Data
+xcopy /D /E /Y /Q "%CC_LUA%" ..\projects\NarutoSenki\__BIN__\lua
 xcopy /E /Y /Q .\*.dll ..\projects\NarutoSenki\__BIN__
 xcopy /E /Y /Q .\*.exe ..\projects\NarutoSenki\__BIN__
 

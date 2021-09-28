@@ -195,22 +195,23 @@ void GameModeLayer::selectMode(GameMode mode)
 
 	if (setSelect(mode))
 	{
+		for (size_t i = 0; i < modes.size(); i++)
+			modes.at(i).isLocked = true;
 		CCLOG("Selected %s mode", data.title.c_str());
 		s_GameMode = mode;
-		getGameModeHandler()->init();
-
-		bool enableCustomSelect = false; // TODO: Enable custom select mode
-		// FIXME: call lua global function enterSelectPanel
+		// FIXME: call lua global function enterSelectLayer
 		if (_handler != 0)
 		{
 			auto pStack = get_luastack;
-			pStack->pushBoolean(enableCustomSelect);
-			pStack->executeFunctionByHandler(_handler, 1);
+			pStack->pushInt(mode);
+			pStack->pushBoolean(Cheats > 6);
+			pStack->executeFunctionByHandler(_handler, 2);
 		}
 		else
 		{
 			CCLOG("GameModeLayer lua handler can not be null");
 		}
+		getGameModeHandler()->init();
 	}
 }
 

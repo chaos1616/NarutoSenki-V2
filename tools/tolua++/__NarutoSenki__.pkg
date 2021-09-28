@@ -60,6 +60,7 @@ class GameScene : public CCScene
 {
 public:
     static GameScene* create();
+	static const char *getPlatform();
 };
 
 /* StartMenu.h */
@@ -70,6 +71,7 @@ public:
 	void enterCustomMode();
 
 	void setHandle(LUA_FUNCTION handler);
+	void setCheats(int cheats);
 };
 
 /* Effect.h */
@@ -153,6 +155,7 @@ public:
 	void setSelectHero(const char *var);
 	void setCom1Select(const char *var);
 	void setCom2Select(const char *var);
+	void setCom3Select(const char *var);
 
 	void setSelectList(CCArray *var);
 

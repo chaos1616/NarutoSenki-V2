@@ -31,6 +31,9 @@ function GameScene:init()
 
     self.introLayer:addChild(logoImage)
     self:addChild(self.introLayer)
+
+    _G.platform = GameScene:getPlatform()
+    log('platform: ' .. _G.platform)
 end
 
 function GameScene:onLogo()
@@ -60,7 +63,7 @@ end
 function GameScene:onLogoClick()
     self.cheats = self.cheats + 1
 
-    if self.cheats == 10 then
+    if self.cheats == 6 then
         audio.stopAllSounds()
         self.logoMenu:removeFromParent()
 
@@ -76,7 +79,7 @@ function GameScene:onLogoClick()
         self.introLayer:addChild(self.logoMenu, 3)
 
         self:onFinish()
-    elseif self.cheats > 10 then
+    elseif self.cheats > 6 then
         audio.stopAllSounds()
         audio.stopMusic(true)
         audio.playSound(ns.menu.LOGO_CLICK)
@@ -111,6 +114,7 @@ function GameScene:onPush()
 
     local menuScene = CCScene:create()
     local menuLayer = StartMenu:create()
+    menuLayer:setCheats(self.cheats)
     menuScene:addChild(menuLayer)
 
     -- for auto call c++ layer StartMenu::init after lua called

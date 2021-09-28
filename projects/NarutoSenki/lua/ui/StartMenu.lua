@@ -69,7 +69,7 @@ function StartMenu:init()
     self:setHandle(StartMenu.enterSelectPanel)
 end
 
-function StartMenu.enterSelectPanel(enableCustomSelect)
+function StartMenu.enterSelectPanel(gameMode, enableCustomSelect)
     tools.addSprites('Select.plist')
     tools.addSprites('UI.plist')
     tools.addSprites('Report.plist')
@@ -78,10 +78,10 @@ function StartMenu.enterSelectPanel(enableCustomSelect)
     tools.addSprites('Map.plist')
     tools.addSprites('Gears.plist')
 
+    _G.mode = gameMode
+    _G.enableCustomSelect = enableCustomSelect
     local selectScene = CCScene:create()
     local selectLayer = SelectLayer:create()
-    selectLayer.mode = enableCustomSelect and GameMode.CustomTraining or
-                           GameMode.Training
 
     hook.registerInitHandlerOnly(selectLayer)
 

@@ -97,7 +97,8 @@ public:
 
 	virtual void keyBackClicked();
 
-	void setHandle(LUA_FUNCTION handler) { _handler = handler; };
+	void setHandle(LUA_FUNCTION handler) { _handler = handler; }
+	void setCheats(int cheats);
 
 	CC_SYNTHESIZE_RETAIN(CCArray *, _menu_array, Menus);
 	CREATE_FUNC(StartMenu);

@@ -16,6 +16,11 @@
 extern GameMode s_GameMode;
 extern IGameModeHandler *s_ModeHandlers[GameMode::_Internal_Max_Length];
 
+static inline GameMode getGameMode()
+{
+	return s_GameMode;
+}
+
 static inline IGameModeHandler *getGameModeHandler()
 {
 	return s_ModeHandlers[s_GameMode];

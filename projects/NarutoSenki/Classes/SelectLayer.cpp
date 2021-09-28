@@ -13,6 +13,7 @@ SelectLayer::SelectLayer()
 	_selectList = nullptr;
 	_com1Select = nullptr;
 	_com2Select = nullptr;
+	_com3Select = nullptr;
 
 	isStart = false;
 }

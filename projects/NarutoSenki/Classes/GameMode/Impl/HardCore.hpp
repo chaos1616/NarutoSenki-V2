@@ -8,7 +8,7 @@ public:
 	{
 		CCLOG("Enter HardCore mode.");
 
-		Cheats = 11; // Use 4 vs 4 map position
+		Cheats = 7; // Use 4 vs 4 map position
 		gd.enableGear = false;
 		gd.isHardCore = true;
 	}

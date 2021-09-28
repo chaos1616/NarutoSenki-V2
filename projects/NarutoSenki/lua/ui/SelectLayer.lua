@@ -4,10 +4,17 @@
 function SelectLayer:init()
     log('Initial SelectLayer...')
 
-    if self.mode == GameMode.Training then
+    self.mode = _G.mode
+    self.enableCustomSelect = _G.enableCustomSelect
+    if self.mode == GameMode.Clone or self.mode == GameMode.OneVsOne then
         self.enableCustomSelect = false
-    elseif self.mode == GameMode.CustomTraining then
-        self.enableCustomSelect = true
+        self.is3v3Mode = false
+        self.is4v4Mode = false
+    else
+        self.is3v3Mode = self.mode == GameMode.Classic or self.mode ==
+                             GameMode.RandomDeathmatch
+        self.is4v4Mode = self.mode == GameMode.FourVsFour or self.mode ==
+                             GameMode.HardCore_4Vs4
     end
     self.enableHardCore = false
 
@@ -15,8 +22,10 @@ function SelectLayer:init()
 
     self._comLabel1 = nil
     self._comLabel2 = nil
+    self._comLabel3 = nil
     self._com1Select = nil
     self._com2Select = nil
+    self._com3Select = nil
 
     self._heroName = nil
     self._heroHalfImage = nil
@@ -205,8 +214,10 @@ function SelectLayer:init()
     self._selectImg = selectImg
     self.selectHero = selectBtn._charName
 
-    if self.mode == GameMode.CustomTraining then
-        self:initCustomTrainingMode()
+    if self.enableCustomSelect then
+        if self.is3v3Mode or self.is4v4Mode then
+            self:initCustomSelectMode()
+        end
     end
 
     local ranking_btn = ui.newImageMenuItem({
@@ -237,6 +248,18 @@ function SelectLayer:init()
     menu2:setPosition(width - 35, 96)
     self:addChild(menu2, 5)
 
+    -- Desktop return button
+    if _G.platform == 'desktop' then
+        local skill_btn = ui.newImageMenuItem({
+            image = '#return_btn.png',
+            listener = backToStartMenu
+        })
+        local menu3 = ui.newMenu({skill_btn})
+        menu3:setAnchorPoint(0, 0)
+        menu3:setPosition(width - 35, 135)
+        self:addChild(menu3, 5)
+    end
+
     if save.isBGM() then audio.playMusic(ns.music.SELECT_MUSIC, true) end
 
     -- if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID then
@@ -244,8 +267,8 @@ function SelectLayer:init()
     -- end
 end
 
-function SelectLayer:initCustomTrainingMode()
-    log('Initial Custom Training Mode...')
+function SelectLayer:initCustomSelectMode()
+    log('Initial Custom Select Mode...')
     local teamSelector = display.newLayer()
     -- local uiLayer = TouchGroup:create()
     -- teamSelector:addChild(uiLayer, 5)
@@ -273,9 +296,11 @@ function SelectLayer:initCustomTrainingMode()
     teamBg:setAnchorPoint(0, 0)
     teamSelector:addChild(teamBg)
 
+    -- init com selector 1
     local comSelector1 = display.newSprite('#unknow_select.png', 2, 194)
     comSelector1:setAnchorPoint(0, 0)
     teamSelector:addChild(comSelector1)
+    self._comSelector1 = comSelector1
 
     self._comLabel1 = display.newSprite('#com_label.png')
     self._comLabel1:setPosition(comSelector1:getPositionX() +
@@ -284,6 +309,7 @@ function SelectLayer:initCustomTrainingMode()
                                     comSelector1:getContentSize().height / 2)
     teamSelector:addChild(self._comLabel1)
 
+    -- init com selector 2
     local comSelector2 = display.newSprite('#unknow_select.png')
     comSelector2:setAnchorPoint(0, 0)
     comSelector2:setPosition(comSelector1:getPositionX() +
@@ -297,11 +323,27 @@ function SelectLayer:initCustomTrainingMode()
                                 comSelector2:getPositionY() +
                                     comSelector2:getContentSize().height / 2)
     teamSelector:addChild(self._comLabel2)
+    self._comSelector2 = comSelector2
+
+    -- init com selector 3
+    if self.is4v4Mode then
+        local comSelector3 = display.newSprite('#unknow_select.png')
+        comSelector3:setAnchorPoint(0, 0)
+        comSelector3:setPosition(comSelector2:getPositionX() +
+                                     comSelector2:getContentSize().width + 40,
+                                 comSelector2:getPositionY())
+        teamSelector:addChild(comSelector3)
+
+        self._comLabel3 = display.newSprite('#com_label.png')
+        self._comLabel3:setPosition(comSelector3:getPositionX() +
+                                        comSelector3:getContentSize().width + 3 +
+                                        18, comSelector3:getPositionY() +
+                                        comSelector3:getContentSize().height / 3)
+        teamSelector:addChild(self._comLabel3)
+        self._comSelector3 = comSelector3
+    end
 
     self:addChild(teamSelector, 50)
-
-    self._comSelector1 = comSelector1
-    self._comSelector2 = comSelector2
 end
 
 function SelectLayer:onQuestBtn()
@@ -365,7 +407,9 @@ function SelectLayer:setSelected(btn)
                 self._selectImg:removeFromParent()
                 self._selectImg = nil
             else
-                self._comLabel1:runAction(seq)
+                if self._comLabel1 then
+                    self._comLabel1:runAction(seq)
+                end
             end
         end
 
@@ -405,6 +449,19 @@ function SelectLayer:setSelected(btn)
             self._comLabel2:setOpacity(255)
             self._comLabel2:setDisplayFrame(
                 display.newSpriteFrame('com_label2.png'))
+        end
+    elseif not self._com3Select then
+        self._comSelector3:setDisplayFrame(
+            display.newSpriteFrame(self.selectHero .. '_small.png'))
+
+        if btn._clickTime >= 2 then
+            self._com3Select = self.selectHero
+            self:setCom3Select(self._com3Select)
+
+            self._comLabel3:stopAllActions()
+            self._comLabel3:setOpacity(255)
+            self._comLabel3:setDisplayFrame(
+                display.newSpriteFrame('com_label2.png'))
 
             self._selectImg:removeFromParent()
             self._selectImg = nil
@@ -412,7 +469,18 @@ function SelectLayer:setSelected(btn)
     end
 end
 
+function SelectLayer:noComSelect()
+    if self.is4v4Mode then
+        return self._com3Select
+    elseif self.is3v3Mode then
+        return self._com2Select
+    else
+        return self._playerSelect
+    end
+end
+
 function backToStartMenu()
+    _G.mode = nil
     audio.playSound('Audio/Menu/cancel.ogg')
     local menuScene = CCScene:create()
     local menuLayer = StartMenu:create()

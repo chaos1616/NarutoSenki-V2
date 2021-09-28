@@ -3,12 +3,16 @@
 
 class Mode4v4 : public IGameModeHandler
 {
+private:
+	int oldCheats;
+
 public:
 	void init()
 	{
 		CCLOG("Enter 4 VS 4 mode.");
 
-		Cheats = 11;
+		oldCheats = Cheats;
+		Cheats = 7;
 		gd.isHardCore = true;
 	}
 
@@ -36,4 +40,6 @@ public:
 	void onCharacterReborn(CharacterBase *c)
 	{
 	}
+
+	inline int getOldCheats() { return oldCheats; }
 };

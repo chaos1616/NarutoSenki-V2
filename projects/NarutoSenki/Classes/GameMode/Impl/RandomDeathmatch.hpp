@@ -232,6 +232,6 @@ private:
 
 	inline int getIndexByHero(CharacterBase *c)
 	{
-		return heroVector.size() < c->getCharNO() ? -1 : c->getCharNO() - 1;
+		return (int)heroVector.size() < c->getCharNO() ? -1 : c->getCharNO() - 1;
 	}
 };

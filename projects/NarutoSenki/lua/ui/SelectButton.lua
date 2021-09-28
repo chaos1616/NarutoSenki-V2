@@ -92,7 +92,7 @@ function SelectButton:click()
         if self._selectLayer._playerSelect and
             not self._selectLayer.enableCustomSelect then return end
 
-        if self._selectLayer._com2Select then return end
+        if self._selectLayer:noComSelect() then return end
 
         for _, selectBtn in pairs(self._selectLayer.selectButtons) do
             if selectBtn ~= self then selectBtn._clickTime = 0 end

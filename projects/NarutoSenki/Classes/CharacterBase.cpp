@@ -1565,7 +1565,7 @@ void CharacterBase::setDamage(CCString *effectType, int attackValue, bool isFlip
 			boundValue = realValue * 35 / 100;
 
 			//4v4
-			if (Cheats > 10)
+			if (Cheats > 6)
 				boundValue = boundValue / 2;
 
 			if (currentAttacker->isAttackGainCKR)
@@ -1631,7 +1631,7 @@ void CharacterBase::setDamage(CCString *effectType, int attackValue, bool isFlip
 			boundValue += realValue * gearCKRValue / 100;
 
 			// 4v4
-			if (Cheats > 10)
+			if (Cheats > 6)
 				boundValue = boundValue / 2;
 
 			if (currentAttacker->isAttackGainCKR)

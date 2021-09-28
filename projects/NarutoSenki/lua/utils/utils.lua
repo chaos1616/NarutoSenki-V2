@@ -2,7 +2,6 @@
 -- Ktools
 --
 tools = {}
-device = CCDevice
 director = {}
 tips = {}
 fmt = string.format

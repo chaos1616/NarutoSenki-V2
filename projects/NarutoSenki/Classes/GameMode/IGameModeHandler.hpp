@@ -364,7 +364,7 @@ protected:
 		{
 			setRand();
 			i = random(kHeroNum);
-			for (size_t j = 0; j < excepts.size() - 1; j++)
+			for (size_t j = 0; j < excepts.size(); j++)
 			{
 				if (strcmp(kHeroList[i], excepts[j]) == 0)
 				{

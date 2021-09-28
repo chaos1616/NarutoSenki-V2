@@ -187,7 +187,7 @@ void GameLayer::initHeros()
 	_isOugis2Game = true;
 
 	// 4v4
-	if (Cheats > 10)
+	if (Cheats > 6)
 	{
 		CCARRAY_FOREACH(Heros, pObject)
 		{
@@ -455,7 +455,7 @@ void GameLayer::initTower()
 		if (i == 1 || i == 4)
 		{
 			//4v4
-			if (Cheats > 10)
+			if (Cheats > 6)
 			{
 				tower->setMaxHP(CCString::createWithFormat("%d", 80000));
 			}
@@ -847,6 +847,8 @@ void GameLayer::onLeft()
 	{
 		auto player = (CharacterBase *)pObject;
 		player->removeFromParentAndCleanup(true);
+		if (player->_shadow)
+			player->_shadow->removeFromParentAndCleanup(true);
 		LoadLayer::unloadCharIMG(player);
 	}
 

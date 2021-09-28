@@ -66921,6 +66921,34 @@ static int tolua_Cocos2d_GameScene_create00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: getPlatform of class  GameScene */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_GameScene_getPlatform00
+static int tolua_Cocos2d_GameScene_getPlatform00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"GameScene",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   const char* tolua_ret = (const char*)  GameScene::getPlatform();
+   tolua_pushstring(tolua_S,(const char*)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getPlatform'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: create of class  StartMenu */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_StartMenu_create00
 static int tolua_Cocos2d_StartMenu_create00(lua_State* tolua_S)
@@ -67008,6 +67036,39 @@ static int tolua_Cocos2d_StartMenu_setHandle00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'setHandle'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setCheats of class  StartMenu */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_StartMenu_setCheats00
+static int tolua_Cocos2d_StartMenu_setCheats00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"StartMenu",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  StartMenu* self = (StartMenu*)  tolua_tousertype(tolua_S,1,0);
+  int cheats = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setCheats'", NULL);
+#endif
+  {
+   self->setCheats(cheats);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setCheats'.",&tolua_err);
  return 0;
 #endif
 }
@@ -67856,6 +67917,39 @@ static int tolua_Cocos2d_SelectLayer_setCom2Select00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'setCom2Select'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setCom3Select of class  SelectLayer */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_SelectLayer_setCom3Select00
+static int tolua_Cocos2d_SelectLayer_setCom3Select00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"SelectLayer",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  SelectLayer* self = (SelectLayer*)  tolua_tousertype(tolua_S,1,0);
+  const char* var = ((const char*)  tolua_tostring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setCom3Select'", NULL);
+#endif
+  {
+   self->setCom3Select(var);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setCom3Select'.",&tolua_err);
  return 0;
 #endif
 }
@@ -72570,12 +72664,14 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
   tolua_cclass(tolua_S,"GameScene","GameScene","CCScene",NULL);
   tolua_beginmodule(tolua_S,"GameScene");
    tolua_function(tolua_S,"create",tolua_Cocos2d_GameScene_create00);
+   tolua_function(tolua_S,"getPlatform",tolua_Cocos2d_GameScene_getPlatform00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"StartMenu","StartMenu","CCLayer",NULL);
   tolua_beginmodule(tolua_S,"StartMenu");
    tolua_function(tolua_S,"create",tolua_Cocos2d_StartMenu_create00);
    tolua_function(tolua_S,"enterCustomMode",tolua_Cocos2d_StartMenu_enterCustomMode00);
    tolua_function(tolua_S,"setHandle",tolua_Cocos2d_StartMenu_setHandle00);
+   tolua_function(tolua_S,"setCheats",tolua_Cocos2d_StartMenu_setCheats00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"Effect","Effect","CCSprite",tolua_collect_Effect);
@@ -72625,6 +72721,7 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"setSelectHero",tolua_Cocos2d_SelectLayer_setSelectHero00);
    tolua_function(tolua_S,"setCom1Select",tolua_Cocos2d_SelectLayer_setCom1Select00);
    tolua_function(tolua_S,"setCom2Select",tolua_Cocos2d_SelectLayer_setCom2Select00);
+   tolua_function(tolua_S,"setCom3Select",tolua_Cocos2d_SelectLayer_setCom3Select00);
    tolua_function(tolua_S,"setSelectList",tolua_Cocos2d_SelectLayer_setSelectList00);
    tolua_function(tolua_S,"onGameStart",tolua_Cocos2d_SelectLayer_onGameStart00);
   tolua_endmodule(tolua_S);
