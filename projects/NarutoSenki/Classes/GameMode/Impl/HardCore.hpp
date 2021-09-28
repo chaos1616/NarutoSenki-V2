@@ -3,11 +3,15 @@
 
 class ModeHardCore : public IGameModeHandler
 {
+private:
+	int oldCheats;
+
 public:
 	void init()
 	{
 		CCLOG("Enter HardCore mode.");
 
+		oldCheats = Cheats;
 		Cheats = 7; // Use 4 vs 4 map position
 		gd.enableGear = false;
 		gd.isHardCore = true;
@@ -37,4 +41,6 @@ public:
 	void onCharacterReborn(CharacterBase *c)
 	{
 	}
+
+	inline int getOldCheats() { return oldCheats; }
 };
