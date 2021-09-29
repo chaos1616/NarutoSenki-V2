@@ -172,9 +172,6 @@ namespace CocosDenshion
 	//
 	static bool isOGGFile(const char* pszFilePath)
 	{
-#if _DEBUG && WIN32
-		return true;
-#endif
 		FILE* file;
 		OggVorbis_File   ogg_file;
 		int				 result;
@@ -268,9 +265,6 @@ namespace CocosDenshion
 	//
 	void SimpleAudioEngine::preloadBackgroundMusic(const char* pszFilePath)
 	{
-#if _DEBUG && WIN32
-		return;
-#endif
 		// Changing file path to full path
 		std::string fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(pszFilePath);
 
@@ -313,9 +307,6 @@ namespace CocosDenshion
 
 	void SimpleAudioEngine::playBackgroundMusic(const char* pszFilePath, bool bLoop)
 	{
-#if _DEBUG && WIN32
-		return;
-#endif
 		if (s_backgroundSource != AL_NONE)
 			stopBackgroundMusic(false);
 
@@ -419,9 +410,6 @@ namespace CocosDenshion
 
 	unsigned int SimpleAudioEngine::playEffect(const char* pszFilePath, bool bLoop)
 	{
-#if _DEBUG && WIN32
-		return 1;
-#endif
 		// Changing file path to full path
 		std::string fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(pszFilePath);
 
@@ -457,9 +445,6 @@ namespace CocosDenshion
 
 	void SimpleAudioEngine::preloadEffect(const char* pszFilePath)
 	{
-#if _DEBUG && WIN32
-		return;
-#endif
 		// Changing file path to full path
 		std::string fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(pszFilePath);
 

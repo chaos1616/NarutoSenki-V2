@@ -46,22 +46,25 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	auto cwd = CCFileUtils::sharedFileUtils()->getWritablePath();
 	std::string end = "Debug.win32\\";
-	cwd = cwd.substr(0, cwd.length() - end.length());
-	CCLOG("Current work path -> %s", cwd.c_str());
+	// If found use visual studio debug
+	// otherwise use visual studio code
+	if (cwd.find(end) != string::npos)
+	{
+		cwd = cwd.substr(0, cwd.length() - end.length());
+		auto luaPath = cwd + "projects\\NarutoSenki\\lua";
+		auto resPath = cwd + "projects\\NarutoSenki\\Resources";
+		auto root = cwd + "projects\\NarutoSenki";
+		CCLOG("Lua path: %s", luaPath.c_str());
+		CCLOG("Res path: %s", resPath.c_str());
+		CCLOG("Root path: %s", root.c_str());
+		pEngine->addSearchPath(luaPath.c_str());
+		CCFileUtils::sharedFileUtils()->addSearchPath(luaPath.c_str());
+		CCFileUtils::sharedFileUtils()->addSearchPath(resPath.c_str());
+		CCFileUtils::sharedFileUtils()->addSearchPath(root.c_str());
+	}
+	CCLOG("Current work path: %s", cwd.c_str());
+	CCLOG("---------------------------\n");
 
-	auto luaPath = cwd + "projects\\NarutoSenki\\lua";
-	auto resPath = cwd + "projects\\NarutoSenki\\Resources";
-	auto root = cwd + "projects\\NarutoSenki";
-	CCLOG("Lua path -> %s", luaPath.c_str());
-	CCLOG("Res path -> %s", resPath.c_str());
-	CCLOG("Root path -> %s", root.c_str());
-	CCLOG("---------------------------");
-	CCLOG("\n\n");
-
-	pEngine->addSearchPath(luaPath.c_str());
-	CCFileUtils::sharedFileUtils()->addSearchPath(luaPath.c_str());
-	CCFileUtils::sharedFileUtils()->addSearchPath(resPath.c_str());
-	CCFileUtils::sharedFileUtils()->addSearchPath(root.c_str());
 #endif
 
 	CCEGLView *eglView = CCEGLView::sharedOpenGLView();
