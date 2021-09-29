@@ -6,8 +6,8 @@ class Tenten : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findHero();
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
+		findHeroHalf();
+		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear00);
@@ -38,7 +38,7 @@ class Tenten : public Hero
 		if (isBaseDanger && checkBase() && !_isControlled)
 		{
 			bool needBack = false;
-			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
+			if (isAkatsukiGroup())
 			{
 				if (getPositionX() < 85 * 32)
 					needBack = true;
@@ -60,17 +60,12 @@ class Tenten : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
+		if (_mainTarget && _mainTarget->isNotFlog())
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
+			CCPoint sp = getDistanceToTarget();
 
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanSkill1)
 				{
@@ -158,18 +153,13 @@ class Tenten : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findFlog())
-			findTower();
+		if (notFindFlogHalf())
+			findTowerHalf();
 
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
-
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -178,19 +168,19 @@ class Tenten : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
-				if (strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 && _isCanSkill1)
+				if (_mainTarget->isFlog() && _isCanSkill1)
 				{
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				else if (strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 && _isCanSkill3)
+				else if (_mainTarget->isFlog() && _isCanSkill3)
 				{
 					changeSide(sp);
 					attack(SKILL3);
 				}
-				else if (strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 && _isCanSkill2 && isBaseDanger)
+				else if (_mainTarget->isFlog() && _isCanSkill2 && isBaseDanger)
 				{
 					changeSide(sp);
 					attack(SKILL2);
@@ -206,7 +196,7 @@ class Tenten : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 				idle();
 		}
 		else

@@ -5,9 +5,9 @@ class Karasu : public Hero
 {
 	void perform()
 	{
-		if (!findEnemy("Hero", winSize.width / 2 - 32, true))
+		if (notFindHero(winSize.width / 2 - 32, true))
 		{
-			if (!findEnemy(ROLE_FLOG, winSize.width / 2 - 32, true))
+			if (notFindFlog(winSize.width / 2 - 32, true))
 			{
 				_mainTarget = nullptr;
 			}
@@ -18,20 +18,16 @@ class Karasu : public Hero
 			CCPoint moveDirection;
 			if (abs(ccpSub(_master->getPosition(), getPosition()).x) > winSize.width / 2 - 48)
 			{
-				if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
+				if (isFreeActionState())
 				{
-					moveDirection = ccpNormalize(ccpSub(_master->getPosition(), getPosition()));
+					moveDirection = getDirByMoveTo(_master);
 					walk(moveDirection);
 					return;
 				}
 			}
-			CCPoint sp;
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
-			if (strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
+			if (_mainTarget->isFlog())
 			{
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
@@ -49,9 +45,7 @@ class Karasu : public Hero
 				}
 				else
 				{
-					if (getActionState() == State::IDLE ||
-						getActionState() == State::WALK ||
-						getActionState() == State::NATTACK)
+					if (isFreeActionState())
 					{
 						changeSide(sp);
 						attack(NAttack);
@@ -75,13 +69,9 @@ class Karasu : public Hero
 						return;
 					}
 				}
-				else if (getActionState() == State::IDLE ||
-						 getActionState() == State::WALK ||
-						 getActionState() == State::NATTACK)
+				else if (isFreeActionState())
 				{
-					if (_master->getActionState() == State::IDLE ||
-						_master->getActionState() == State::WALK ||
-						_master->getActionState() == State::NATTACK)
+					if (_master->isFreeActionState())
 					{
 						if (_master->_isCanSkill2 && _mainTarget->getGP() < 5000 && (_master->_isControlled || _master->_isAI == true))
 						{
@@ -109,7 +99,7 @@ class Karasu : public Hero
 
 		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > winSize.width / 2 - 64)
 		{
-			CCPoint moveDirection = ccpNormalize(ccpSub(_master->getPosition(), getPosition()));
+			CCPoint moveDirection = getDirByMoveTo(_master);
 			walk(moveDirection);
 			return;
 		}

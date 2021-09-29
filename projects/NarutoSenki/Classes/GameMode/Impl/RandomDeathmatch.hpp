@@ -155,9 +155,9 @@ public:
 				}
 				else if (gear == gear04)
 				{
-					if (newChar->gettempAttackValue1())
-						newChar->settempAttackValue1(CCString::createWithFormat("%d", to_int(newChar->gettempAttackValue1()->getCString()) + 160));
-					newChar->setnAttackValue(CCString::createWithFormat("%d", to_int(newChar->getnAttackValue()->getCString()) + 160));
+					if (newChar->getTempAttackValue1())
+						newChar->settempAttackValue1(CCString::createWithFormat("%d", newChar->getTempAttackValue1() + 160));
+					newChar->setnAttackValue(CCString::createWithFormat("%d", newChar->getNAttackValue() + 160));
 					newChar->hasArmorBroken = true;
 				}
 				else if (gear == gear05)
@@ -182,9 +182,9 @@ public:
 				}
 				else if (gear == gear08)
 				{
-					uint32_t tempMaxHP = to_uint(newChar->getMaxHP()->getCString());
+					uint32_t tempMaxHP = newChar->getMaxHPValue();
 					tempMaxHP += 6000;
-					newChar->setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+					newChar->setMaxHP(CCString::createWithFormat("%ld", tempMaxHP));
 					if (newChar->_hpBar)
 					{
 						newChar->_hpBar->loseHP(newChar->getHpPercent());

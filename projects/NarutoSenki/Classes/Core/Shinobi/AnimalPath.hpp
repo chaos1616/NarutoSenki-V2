@@ -5,11 +5,11 @@ class AnimalPath : public Hero
 {
 	void perform()
 	{
-		if (!findEnemy(ROLE_FLOG, 0))
+		if (notFindFlog(0))
 		{
-			if (!findEnemy("Tower", 0))
+			if (notFindTower(0))
 			{
-				if (!findEnemy("Hero", 0))
+				if (notFindHero(0))
 				{
 					_mainTarget = nullptr;
 				}
@@ -19,10 +19,10 @@ class AnimalPath : public Hero
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTargetAndIgnoreOriginY();
 
-			if (strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0 ||
-				strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
+			if (_mainTarget->isTower() ||
+				_mainTarget->isFlog())
 			{
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
@@ -31,9 +31,9 @@ class AnimalPath : public Hero
 				}
 				else
 				{
-					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
+					if (isFreeActionState())
 					{
-						if (_isCanSkill1 && strcmp(_mainTarget->getRole()->getCString(), "Tower") != 0)
+						if (_isCanSkill1 && strcmp(_mainTarget->getRole()->getCString(), kRoleTower) != 0)
 						{
 							attack(SKILL1);
 							scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcoldDown1);
@@ -61,7 +61,7 @@ class AnimalPath : public Hero
 					walk(moveDirection);
 					return;
 				}
-				else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
+				else if (isFreeActionState())
 				{
 					if (_isCanSkill1)
 					{

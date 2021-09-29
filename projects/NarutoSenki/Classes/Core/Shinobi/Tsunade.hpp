@@ -7,8 +7,8 @@ class Tsunade : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findHero();
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
+		findHeroHalf();
+		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear03);
@@ -35,7 +35,7 @@ class Tsunade : public Hero
 		if (isBaseDanger && checkBase() && !_isControlled)
 		{
 			bool needBack = false;
-			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
+			if (isAkatsukiGroup())
 			{
 				if (getPositionX() < 85 * 32)
 					needBack = true;
@@ -53,17 +53,12 @@ class Tsunade : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
+		if (_mainTarget && _mainTarget->isNotFlog())
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
+			CCPoint sp = getDistanceToTarget();
 
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
@@ -139,18 +134,13 @@ class Tsunade : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findFlog())
-			findTower();
+		if (notFindFlogHalf())
+			findTowerHalf();
 
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
-
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -159,13 +149,13 @@ class Tsunade : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanGear03)
 				{
 					useGear(gear03);
 				}
-				if (strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 && _isCanSkill1 && !_isArmored && isBaseDanger)
+				if (_mainTarget->isFlog() && _isCanSkill1 && !_isArmored && isBaseDanger)
 				{
 					changeSide(sp);
 					attack(SKILL1);
@@ -181,7 +171,7 @@ class Tsunade : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 				idle();
 		}
 		else
@@ -192,7 +182,7 @@ class Tsunade : public Hero
 
 	void changeAction()
 	{
-		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 250));
+		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 250));
 		_isOnlySkillLocked = true;
 		_nattackRangeX = 32;
 		_nattackRangeY = 48;
@@ -212,7 +202,7 @@ class Tsunade : public Hero
 
 	void resumeAction(float dt)
 	{
-		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) - 250));
+		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() - 250));
 		_nattackRangeX = 16;
 		_nattackRangeY = 48;
 		_nattackType = _tempAttackType;
@@ -237,7 +227,7 @@ class Tsunade : public Hero
 
 	Hero *createClone(int cloneTime)
 	{
-		auto clone = create<Slug>(CCString::create("Slug"), CCString::create(ROLE_SUMMON), getGroup());
+		auto clone = create<Slug>(CCString::create("Slug"), CCString::create(kRoleSummon), getGroup());
 		clone->_isArmored = true;
 		return clone;
 	}

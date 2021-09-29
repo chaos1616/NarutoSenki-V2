@@ -5,11 +5,11 @@ class Akamaru : public Hero
 {
 	void perform()
 	{
-		if (!findEnemy("Hero", winSize.width / 2 - 32, true))
+		if (notFindHero(winSize.width / 2 - 32, true))
 		{
-			if (!findEnemy(ROLE_FLOG, winSize.width / 2 - 32, true))
+			if (notFindFlog(winSize.width / 2 - 32, true))
 			{
-				if (!findEnemy("Tower", winSize.width / 2 - 32, true))
+				if (notFindTower(winSize.width / 2 - 32, true))
 				{
 					_mainTarget = nullptr;
 				}
@@ -20,9 +20,9 @@ class Akamaru : public Hero
 
 		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > winSize.width / 2 - 48)
 		{
-			if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
+			if (isFreeActionState())
 			{
-				moveDirection = ccpNormalize(ccpSub(_master->getPosition(), getPosition()));
+				moveDirection = getDirByMoveTo(_master);
 				walk(moveDirection);
 				return;
 			}
@@ -30,13 +30,9 @@ class Akamaru : public Hero
 
 		if (_mainTarget)
 		{
-			CCPoint sp;
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
-			if (strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
+			if (_mainTarget->isFlog())
 			{
 				if (abs(sp.x) > 48 || abs(sp.y) > 32)
 				{
@@ -45,7 +41,7 @@ class Akamaru : public Hero
 				}
 				else
 				{
-					if (getActionState() == State::IDLE || getActionState() == State::WALK || _actionState == State::NATTACK)
+					if (isFreeActionState())
 					{
 						changeSide(sp);
 						attack(NAttack);
@@ -63,10 +59,11 @@ class Akamaru : public Hero
 				}
 				else
 				{
-					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
+					if (isFreeActionState())
 					{
-						if (_master->_isCanSkill2 && _mainTarget->getGP() < 5000 && (_master->_isControlled || _master->_isAI == true) &&
-							(_master->getActionState() == State::IDLE || _master->getActionState() == State::WALK || _master->getActionState() == State::NATTACK))
+						if (_master->_isCanSkill2 && _mainTarget->getGP() < 5000 &&
+							(_master->_isControlled || _master->_isAI == true) &&
+							_master->isFreeActionState())
 						{
 							changeSide(sp);
 							if (strcmp(_master->getRole()->getCString(), "Player") != 0)
@@ -92,7 +89,7 @@ class Akamaru : public Hero
 
 		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > winSize.width / 2 - 64)
 		{
-			CCPoint moveDirection = ccpNormalize(ccpSub(_master->getPosition(), getPosition()));
+			CCPoint moveDirection = getDirByMoveTo(_master);
 			walk(moveDirection);
 			return;
 		}
@@ -105,12 +102,12 @@ class Akamaru : public Hero
 	void changeAction()
 	{
 		_powerUPBuffValue = 360;
-		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + _powerUPBuffValue));
+		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + _powerUPBuffValue));
 		setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
 		setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
 		setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
 
-		if (getActionState() == State::NATTACK)
+		if (_actionState == State::NATTACK)
 		{
 			_actionState = State::WALK;
 			idle();
@@ -121,15 +118,13 @@ class Akamaru : public Hero
 	{
 		if (_powerUPBuffValue)
 		{
-			setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) - _powerUPBuffValue));
+			setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() - _powerUPBuffValue));
 			setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 			setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 			setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
 			_powerUPBuffValue = 0;
 
-			if (_actionState == State::IDLE ||
-				_actionState == State::WALK ||
-				_actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				_actionState = State::WALK;
 				idle();

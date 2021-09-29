@@ -14,7 +14,7 @@ class Kakuzu : public Hero
 			_heartEffect->setDisplayFrame(frame);
 		}
 
-		if (is_player && getLV() >= 2)
+		if (isPlayer() && getLV() >= 2)
 		{
 			if (_delegate->getHudLayer()->skill4Button)
 			{
@@ -27,7 +27,7 @@ class Kakuzu : public Hero
 	{
 		HeroElement::changeHPbar();
 
-		if (not_player)
+		if (!isPlayer())
 			return;
 
 		// NOTE: The level was increased on base
@@ -54,7 +54,7 @@ class Kakuzu : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+		if (isFreeActionState())
 		{
 			if (getHpPercent() > 0.3f && !_isControlled && _isCanSkill1)
 			{
@@ -122,8 +122,8 @@ class Kakuzu : public Hero
 			}
 		}
 
-		findHero();
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
+		findHeroHalf();
+		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear03);
@@ -150,7 +150,7 @@ class Kakuzu : public Hero
 		if (isBaseDanger && checkBase() && !_isControlled)
 		{
 			bool needBack = false;
-			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
+			if (isAkatsukiGroup())
 			{
 				if (getPositionX() < 85 * 32)
 					needBack = true;
@@ -174,17 +174,12 @@ class Kakuzu : public Hero
 			isSummonAble = true;
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
+		if (_mainTarget && _mainTarget->isNotFlog())
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
+			CCPoint sp = getDistanceToTarget();
 
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanSkill3)
 				{
@@ -242,18 +237,13 @@ class Kakuzu : public Hero
 			}
 		}
 
-		if (!findFlog())
-			findTower();
+		if (notFindFlogHalf())
+			findTowerHalf();
 
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
-
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -262,7 +252,7 @@ class Kakuzu : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanOugis1 && !_isControlled && !isSummonAble)
 				{
@@ -280,7 +270,7 @@ class Kakuzu : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 				idle();
 		}
 		else
@@ -321,7 +311,7 @@ class Kakuzu : public Hero
 		bool isFudon = false;
 		bool isKadon = false;
 		int countMon = 0;
-		if (getMonsterArray() && getMonsterArray()->count() > 0)
+		if (hasMonsterArray())
 		{
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
@@ -350,15 +340,15 @@ class Kakuzu : public Hero
 		{
 			if (!isRaidon)
 			{
-				clone = create<Mask>(CCString::create("MaskRaidon"), CCString::create(ROLE_KUGUTSU), getGroup());
+				clone = create<Mask>(CCString::create("MaskRaidon"), CCString::create(kRoleKugutsu), getGroup());
 			}
 			else if (!isFudon)
 			{
-				clone = create<Mask>(CCString::create("MaskFudon"), CCString::create(ROLE_KUGUTSU), getGroup());
+				clone = create<Mask>(CCString::create("MaskFudon"), CCString::create(kRoleKugutsu), getGroup());
 			}
 			else if (!isKadon)
 			{
-				clone = create<Mask>(CCString::create("MaskKadon"), CCString::create(ROLE_KUGUTSU), getGroup());
+				clone = create<Mask>(CCString::create("MaskKadon"), CCString::create(kRoleKugutsu), getGroup());
 			}
 			clone->_isArmored = true;
 			_monsterArray->addObject(clone);
@@ -372,7 +362,7 @@ class Kakuzu : public Hero
 
 			if (hearts < 1 || countMon >= 2)
 			{
-				if (is_player)
+				if (isPlayer())
 				{
 					if (_delegate->getHudLayer()->skill4Button)
 					{

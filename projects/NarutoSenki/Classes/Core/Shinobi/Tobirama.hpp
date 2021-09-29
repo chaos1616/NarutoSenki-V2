@@ -6,21 +6,21 @@ class Tobirama : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findHero();
+		findHeroHalf();
 
 		if (_isCanGear06)
 		{
-			if ((getActionState() == State::FLOAT ||
-				 getActionState() == State::AIRHURT ||
-				 getActionState() == State::HURT ||
-				 getActionState() == State::KNOCKDOWN) &&
+			if ((_actionState == State::FLOAT ||
+				 _actionState == State::AIRHURT ||
+				 _actionState == State::HURT ||
+				 _actionState == State::KNOCKDOWN) &&
 				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(gear06);
 			}
 		}
 
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -47,7 +47,7 @@ class Tobirama : public Hero
 		if (isBaseDanger && checkBase() && !_isControlled)
 		{
 			bool needBack = false;
-			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
+			if (isAkatsukiGroup())
 			{
 				if (getPositionX() < 85 * 32)
 					needBack = true;
@@ -65,24 +65,19 @@ class Tobirama : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
+		if (_mainTarget && _mainTarget->isNotFlog())
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
+			CCPoint sp = getDistanceToTarget();
 
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000)
 				{
 					changeSide(sp);
 					attack(OUGIS2);
 				}
-				else if (_isCanSkill1 && !_mainTarget->_isArmored && (_mainTarget->getActionState() == State::IDLE || _mainTarget->getActionState() == State::WALK || _mainTarget->getActionState() == State::NATTACK))
+				else if (_isCanSkill1 && !_mainTarget->_isArmored && _mainTarget->isFreeActionState())
 				{
 					changeSide(sp);
 					attack(SKILL1);
@@ -138,18 +133,13 @@ class Tobirama : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findFlog())
-			findTower();
+		if (notFindFlogHalf())
+			findTowerHalf();
 
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
-
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -158,14 +148,14 @@ class Tobirama : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
-				if (_isCanSkill3 && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 && isBaseDanger)
+				if (_isCanSkill3 && _mainTarget->isFlog() && isBaseDanger)
 				{
 					changeSide(sp);
 					attack(SKILL3);
 				}
-				else if (_isCanSkill2 && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 && isBaseDanger)
+				else if (_isCanSkill2 && _mainTarget->isFlog() && isBaseDanger)
 				{
 					changeSide(sp);
 					attack(SKILL2);
@@ -181,7 +171,7 @@ class Tobirama : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 				idle();
 		}
 		else

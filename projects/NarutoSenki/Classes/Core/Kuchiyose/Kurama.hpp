@@ -5,11 +5,11 @@ class Kurama : public Hero
 {
 	void perform()
 	{
-		if (!findEnemy("Hero", 0))
+		if (notFindHero(0))
 		{
-			if (!findEnemy(ROLE_FLOG, 0))
+			if (notFindFlog(0))
 			{
-				if (!findEnemy("Tower", 0))
+				if (notFindTower(0))
 				{
 					_mainTarget = nullptr;
 				}
@@ -19,11 +19,7 @@ class Kurama : public Hero
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 156 || abs(sp.y) > 48)
 			{
@@ -32,7 +28,7 @@ class Kurama : public Hero
 			}
 			else
 			{
-				if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
+				if (isFreeActionState())
 				{
 					changeSide(sp);
 					attack(NAttack);

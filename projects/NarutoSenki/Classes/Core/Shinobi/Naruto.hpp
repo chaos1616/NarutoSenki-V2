@@ -49,8 +49,8 @@ class Naruto : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findHero();
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
+		findHeroHalf();
+		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear03);
@@ -77,7 +77,7 @@ class Naruto : public Hero
 		if (isBaseDanger && checkBase() && !_isControlled)
 		{
 			bool needBack = false;
-			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
+			if (isAkatsukiGroup())
 			{
 				if (getPositionX() < 85 * 32)
 					needBack = true;
@@ -95,17 +95,12 @@ class Naruto : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
+		if (_mainTarget && _mainTarget->isNotFlog())
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
+			CCPoint sp = getDistanceToTarget();
 
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
@@ -172,18 +167,13 @@ class Naruto : public Hero
 		}
 
 		_mainTarget = nullptr;
-		if (!findFlog())
-			findTower();
+		if (notFindFlogHalf())
+			findTowerHalf();
 
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
-
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -192,7 +182,7 @@ class Naruto : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanSkill2 && !_isArmored)
 				{
@@ -212,7 +202,7 @@ class Naruto : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 				idle();
 		}
 		else
@@ -229,12 +219,11 @@ class Naruto : public Hero
 		setKnockDownAction(createAnimation(skillSPC4Array, 10.0f, false, true));
 
 		setWalkSpeed(320);
-
 		_originSpeed = 320;
 
 		_isOnlySkillLocked = true;
 
-		settempAttackValue1(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString())));
+		settempAttackValue1(CCString::createWithFormat("%d", getNAttackValue()));
 		setnAttackValue(CCString::createWithFormat("%d", 960));
 
 		_nattackRangeX = _spcattackRangeX3;
@@ -259,11 +248,10 @@ class Naruto : public Hero
 		unlockOugisButtons();
 
 		setWalkSpeed(224);
-
 		_originSpeed = 224;
-		if (gettempAttackValue1())
+		if (getTempAttackValue1())
 		{
-			setnAttackValue(CCString::createWithFormat("%d", to_int(gettempAttackValue1()->getCString())));
+			setnAttackValue(CCString::createWithFormat("%d", getTempAttackValue1()));
 			settempAttackValue1(nullptr);
 		}
 		hasArmorBroken = false;
@@ -286,7 +274,7 @@ class Naruto : public Hero
 
 	inline Hero *createClone_Naruto(int cloneTime)
 	{
-		auto clone = create<NarutoClone>(getCharacter(), CCString::create(ROLE_CLONE), getGroup());
+		auto clone = create<NarutoClone>(getCharacter(), CCString::create(kRoleClone), getGroup());
 		return clone;
 	}
 
@@ -295,8 +283,8 @@ class Naruto : public Hero
 	void perform_SageNaruto()
 	{
 		_mainTarget = nullptr;
-		findHero();
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
+		findHeroHalf();
+		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear03);
@@ -323,7 +311,7 @@ class Naruto : public Hero
 		if (isBaseDanger && checkBase() && !_isControlled)
 		{
 			bool needBack = false;
-			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
+			if (isAkatsukiGroup())
 			{
 				if (getPositionX() < 85 * 32)
 					needBack = true;
@@ -341,17 +329,12 @@ class Naruto : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
+		if (_mainTarget && _mainTarget->isNotFlog())
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
+			CCPoint sp = getDistanceToTarget();
 
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
@@ -417,18 +400,13 @@ class Naruto : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findFlog())
-			findTower();
+		if (notFindFlogHalf())
+			findTowerHalf();
 
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
-
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -437,7 +415,7 @@ class Naruto : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanSkill2 && !_isArmored)
 				{
@@ -455,7 +433,7 @@ class Naruto : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 				idle();
 		}
 		else
@@ -492,7 +470,6 @@ class Naruto : public Hero
 		unlockOugisButtons();
 
 		setWalkSpeed(224);
-
 		_originSpeed = 224;
 
 		_gardValue -= 5000;
@@ -506,9 +483,9 @@ class Naruto : public Hero
 			knockDown();
 			setKnockDownAction(createAnimation(knockDownArray, 10.0f, false, true));
 		}
-		else if (gettempAttackValue1())
+		else if (getTempAttackValue1())
 		{
-			setnAttackValue(CCString::createWithFormat("%d", to_int(gettempAttackValue1()->getCString())));
+			setnAttackValue(CCString::createWithFormat("%d", getTempAttackValue1()));
 			settempAttackValue1(nullptr);
 		}
 		CharacterBase::resumeAction(dt);
@@ -516,9 +493,9 @@ class Naruto : public Hero
 
 	inline Hero *createClone_SageNaruto(int cloneTime)
 	{
-		auto clone = create<SageNarutoClone>(getCharacter(), CCString::create(ROLE_CLONE), getGroup());
+		auto clone = create<SageNarutoClone>(getCharacter(), CCString::create(kRoleClone), getGroup());
 		clone->setSkill1Action(clone->createAnimation(clone->skillSPC1Array, 10.0f, false, true));
-		clone->setsAttackValue1(getsAttackValue1());
+		clone->setsAttackValue1(getSAttackValue1Str());
 		clone->setsAttack1Type(_spcattackType1);
 		clone->_sattackcoldDown1 = _spcattackcoldDown1;
 		return clone;
@@ -529,8 +506,8 @@ class Naruto : public Hero
 	void perform_RikudoNaruto()
 	{
 		_mainTarget = nullptr;
-		findHero();
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
+		findHeroHalf();
+		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear03);
@@ -561,7 +538,7 @@ class Naruto : public Hero
 		if (isBaseDanger && checkBase() && !_isControlled)
 		{
 			bool needBack = false;
-			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
+			if (isAkatsukiGroup())
 			{
 				if (getPositionX() < 85 * 32)
 					needBack = true;
@@ -579,17 +556,12 @@ class Naruto : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
+		if (_mainTarget && _mainTarget->isNotFlog())
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
+			CCPoint sp = getDistanceToTarget();
 
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
@@ -651,18 +623,13 @@ class Naruto : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findFlog())
-			findTower();
+		if (notFindFlogHalf())
+			findTowerHalf();
 
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
-
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -671,9 +638,9 @@ class Naruto : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
-				if (_isCanSkill1 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
+				if (_isCanSkill1 && !_isArmored && _mainTarget->isFlog())
 				{
 					changeSide(sp);
 					attack(SKILL1);
@@ -694,7 +661,7 @@ class Naruto : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 				idle();
 		}
 		else
@@ -716,7 +683,7 @@ class Naruto : public Hero
 
 		if (strcmp(getCharacter()->getCString(), kRikudoNaruto) == 0)
 		{
-			settempAttackValue1(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString())));
+			settempAttackValue1(CCString::createWithFormat("%d", getNAttackValue()));
 			setnAttackValue(CCString::createWithFormat("%d", 560));
 		}
 
@@ -737,7 +704,6 @@ class Naruto : public Hero
 		unlockOugisButtons();
 
 		setWalkSpeed(224);
-
 		_originSpeed = 224;
 
 		_gardValue -= 5000;
@@ -750,9 +716,9 @@ class Naruto : public Hero
 			idle();
 		}
 
-		if (gettempAttackValue1())
+		if (getTempAttackValue1())
 		{
-			setnAttackValue(CCString::createWithFormat("%d", to_int(gettempAttackValue1()->getCString())));
+			setnAttackValue(CCString::createWithFormat("%d", getTempAttackValue1()));
 			settempAttackValue1(nullptr);
 		}
 		CharacterBase::resumeAction(dt);
@@ -760,7 +726,7 @@ class Naruto : public Hero
 
 	inline Hero *createClone_RikudoNaruto(int cloneTime)
 	{
-		auto clone = create<Kurama>(CCString::create("Kurama"), CCString::create(ROLE_CLONE), getGroup());
+		auto clone = create<Kurama>(CCString::create("Kurama"), CCString::create(kRoleClone), getGroup());
 		clone->setGP(5000);
 		clone->_isArmored = true;
 		clone->setWalkSpeed(320);

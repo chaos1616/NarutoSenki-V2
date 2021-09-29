@@ -67,16 +67,19 @@ extern int Cheats;
 #define kGuardian "Guardian"
 
 // Roles
-#define ROLE_COM "Com"
-#define ROLE_PLAYER "Player"
+#define kRoleCom "Com"
+#define kRolePlayer "Player"
+#define kRoleTower "Tower"
+// Special
+#define kRoleHero "Hero"
 // 分身		Clone
-#define ROLE_CLONE "Clone"
-#define ROLE_FLOG "Flog"
+#define kRoleClone "Clone"
+#define kRoleFlog "Flog"
 // 傀儡		Kugutsu
-#define ROLE_KUGUTSU "Kugutsu"
-#define ROLE_MON "Mon"
+#define kRoleKugutsu "Kugutsu"
+#define kRoleMon "Mon"
 // 口寄せ	Summon
-#define ROLE_SUMMON "Summon"
+#define kRoleSummon "Summon"
 
 // Flogs
 #define kFlog_Kotetsu cName(KotetsuFlog, kFlog)
@@ -388,3 +391,18 @@ private:                                        \
 public:                                         \
 	varType get##funName() { return varName; }; \
 	void set##funName(varType var) { varName = var; };
+
+#define CC_SYNTHESIZE_RETAIN_SET_ONLY(varType, varName, funName) \
+private:                                                         \
+	varType varName;                                             \
+                                                                 \
+public:                                                          \
+	virtual void set##funName(varType var)                       \
+	{                                                            \
+		if (varName != var)                                      \
+		{                                                        \
+			CC_SAFE_RETAIN(var);                                 \
+			CC_SAFE_RELEASE(varName);                            \
+			varName = var;                                       \
+		}                                                        \
+	}

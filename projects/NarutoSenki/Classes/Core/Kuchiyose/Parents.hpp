@@ -5,11 +5,11 @@ class Parents : public Hero
 {
 	void perform()
 	{
-		if (!findEnemy("Hero", winSize.width / 2 - 32, true))
+		if (notFindHero(winSize.width / 2 - 32, true))
 		{
-			if (!findEnemy(ROLE_FLOG, 48, true))
+			if (notFindFlog(48, true))
 			{
-				if (!findEnemy("Tower", 48, true))
+				if (notFindTower(48, true))
 				{
 					_mainTarget = nullptr;
 				}
@@ -20,9 +20,9 @@ class Parents : public Hero
 
 		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > 9 && !_skillChangeBuffValue)
 		{
-			if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
+			if (isFreeActionState())
 			{
-				moveDirection = ccpNormalize(ccpSub(_master->getPosition(), getPosition()));
+				moveDirection = getDirByMoveTo(_master);
 				walk(moveDirection);
 				return;
 			}
@@ -33,14 +33,14 @@ class Parents : public Hero
 			CCPoint sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
 								ccp(getPositionX(), _originY ? _originY : getPositionY()));
 
-			if (strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 || strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0)
+			if (_mainTarget->isFlog() || _mainTarget->isTower())
 			{
 				if (abs(sp.x) > 48 || abs(sp.y) > 32)
 				{
 				}
 				else
 				{
-					if ((getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK) && !_skillChangeBuffValue)
+					if ((isFreeActionState()) && !_skillChangeBuffValue)
 					{
 						changeSide(sp);
 						attack(NAttack);
@@ -50,11 +50,9 @@ class Parents : public Hero
 			}
 			else
 			{
-				if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
+				if (isFreeActionState())
 				{
-					if (_master->getActionState() == State::IDLE ||
-						_master->getActionState() == State::WALK ||
-						_master->getActionState() == State::NATTACK)
+					if (_master->isFreeActionState())
 					{
 						if (_master->_isCanSkill3 && _mainTarget->getGP() < 5000 && (_master->_isControlled || _master->_isAI == true) && !_skillChangeBuffValue)
 						{
@@ -64,7 +62,7 @@ class Parents : public Hero
 						}
 						else if (abs(sp.x) > 48 || abs(sp.y) > 32)
 						{
-							if (_skillChangeBuffValue && getActionState() != State::NATTACK)
+							if (_skillChangeBuffValue && _actionState != State::NATTACK)
 							{
 								moveDirection = ccpNormalize(sp);
 								walk(moveDirection);
@@ -93,23 +91,21 @@ class Parents : public Hero
 
 		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > 9)
 		{
-			if (getActionState() == State::IDLE || getActionState() == State::WALK)
+			if (_actionState == State::IDLE || _actionState == State::WALK)
 			{
-				moveDirection = ccpNormalize(ccpSub(_master->getPosition(), getPosition()));
+				moveDirection = getDirByMoveTo(_master);
 				walk(moveDirection);
 				return;
 			}
 		}
 
 		if (_actionState == State::WALK)
-		{
 			idle();
-		}
 	}
 
 	void changeAction()
 	{
-		settempAttackValue1(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString())));
+		settempAttackValue1(CCString::createWithFormat("%d", getNAttackValue()));
 		setnAttackValue(CCString::createWithFormat("%d", 2460));
 
 		_isOnlySkillLocked = true;
@@ -134,9 +130,9 @@ class Parents : public Hero
 	{
 		if (_skillChangeBuffValue)
 		{
-			if (gettempAttackValue1())
+			if (getTempAttackValue1())
 			{
-				setnAttackValue(CCString::createWithFormat("%d", to_int(gettempAttackValue1()->getCString())));
+				setnAttackValue(CCString::createWithFormat("%d", getTempAttackValue1()));
 				settempAttackValue1(nullptr);
 			}
 			_isOnlySkillLocked = false;

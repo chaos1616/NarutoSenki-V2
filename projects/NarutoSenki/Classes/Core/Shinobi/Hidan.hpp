@@ -7,7 +7,7 @@ class Hidan : public Hero
 	{
 		_mainTarget = nullptr;
 		bool _isFound = false;
-		if (getMonsterArray() && getMonsterArray()->count() > 0)
+		if (hasMonsterArray())
 		{
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
@@ -42,7 +42,7 @@ class Hidan : public Hero
 							CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 							{
 								CharacterBase *tempHero = (CharacterBase *)pObject;
-								if (tempHero->getGroup() != getGroup() && to_uint(tempHero->getHP()->getCString()) < 2000 && tempHero->getActionState() != State::DEAD && (strcmp(tempHero->getRole()->getCString(), "Player") == 0 || strcmp(tempHero->getRole()->getCString(), "Com") == 0))
+								if (tempHero->getGroup() != getGroup() && tempHero->getHPValue() < 2000 && tempHero->getActionState() != State::DEAD && tempHero->isPlayerOrCom())
 								{
 									attack(NAttack);
 									return;
@@ -59,22 +59,22 @@ class Hidan : public Hero
 
 		if (!_isFound)
 		{
-			findHero();
+			findHeroHalf();
 		}
 
 		if (_isCanGear06)
 		{
-			if ((getActionState() == State::FLOAT ||
-				 getActionState() == State::AIRHURT ||
-				 getActionState() == State::HURT ||
-				 getActionState() == State::KNOCKDOWN) &&
+			if ((_actionState == State::FLOAT ||
+				 _actionState == State::AIRHURT ||
+				 _actionState == State::HURT ||
+				 _actionState == State::KNOCKDOWN) &&
 				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(gear06);
 			}
 		}
 
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -101,7 +101,7 @@ class Hidan : public Hero
 		if (isBaseDanger && checkBase() && !_isControlled && !_isArmored && !_isFound)
 		{
 			bool needBack = false;
-			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
+			if (isAkatsukiGroup())
 			{
 				if (getPositionX() < 85 * 32)
 					needBack = true;
@@ -119,17 +119,12 @@ class Hidan : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
+		if (_mainTarget && _mainTarget->isNotFlog())
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
+			CCPoint sp = getDistanceToTarget();
 
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
@@ -208,21 +203,16 @@ class Hidan : public Hero
 
 		if (!_mainTarget && !_isFound && !_isArmored)
 		{
-			if (!findFlog())
+			if (notFindFlogHalf())
 			{
-				findTower();
+				findTowerHalf();
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_MON) != 0 && !_isArmored)
+		if (_mainTarget && _mainTarget->isNotMon() && !_isArmored)
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
-
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -231,14 +221,14 @@ class Hidan : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
-				if (_isCanSkill3 && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 && isBaseDanger && !_isArmored)
+				if (_isCanSkill3 && _mainTarget->isFlog() && isBaseDanger && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL3);
 				}
-				else if (_isCanSkill2 && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 && isBaseDanger && !_isArmored)
+				else if (_isCanSkill2 && _mainTarget->isFlog() && isBaseDanger && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL2);
@@ -256,7 +246,7 @@ class Hidan : public Hero
 		{
 			if (_isHealling && getHpPercent() < 1)
 			{
-				if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+				if (isFreeActionState())
 				{
 					idle();
 				}
@@ -268,7 +258,7 @@ class Hidan : public Hero
 		}
 		else
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 				idle();
 		}
 	}
@@ -296,7 +286,7 @@ class Hidan : public Hero
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 
-		if (getMonsterArray() && getMonsterArray()->count() > 0)
+		if (hasMonsterArray())
 		{
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
@@ -317,7 +307,7 @@ class Hidan : public Hero
 			_monsterArray = nullptr;
 		}
 
-		if (is_player)
+		if (isPlayer())
 		{
 			_delegate->getHudLayer()->skill1Button->unLock();
 		}
@@ -344,7 +334,7 @@ class Hidan : public Hero
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 
-		if (getMonsterArray() && getMonsterArray()->count() > 0)
+		if (hasMonsterArray())
 		{
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
@@ -364,7 +354,7 @@ class Hidan : public Hero
 			_monsterArray = nullptr;
 		}
 
-		if (is_player)
+		if (isPlayer())
 		{
 			_delegate->getHudLayer()->skill1Button->unLock();
 		}

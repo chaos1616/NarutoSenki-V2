@@ -37,21 +37,21 @@ class Sasuke : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findHero();
+		findHeroHalf();
 
 		if (_isCanGear06)
 		{
-			if ((getActionState() == State::FLOAT ||
-				 getActionState() == State::AIRHURT ||
-				 getActionState() == State::HURT ||
-				 getActionState() == State::KNOCKDOWN) &&
+			if ((_actionState == State::FLOAT ||
+				 _actionState == State::AIRHURT ||
+				 _actionState == State::HURT ||
+				 _actionState == State::KNOCKDOWN) &&
 				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(gear06);
 			}
 		}
 
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -78,7 +78,7 @@ class Sasuke : public Hero
 		if (isBaseDanger && checkBase() && !_isControlled)
 		{
 			bool needBack = false;
-			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
+			if (isAkatsukiGroup())
 			{
 				if (getPositionX() < 85 * 32)
 					needBack = true;
@@ -96,17 +96,12 @@ class Sasuke : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
+		if (_mainTarget && _mainTarget->isNotFlog())
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
+			CCPoint sp = getDistanceToTarget();
 
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
 				{
@@ -175,18 +170,13 @@ class Sasuke : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findFlog())
-			findTower();
+		if (notFindFlogHalf())
+			findTowerHalf();
 
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
-
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -195,19 +185,19 @@ class Sasuke : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
-				if (_isCanSkill1 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
+				if (_isCanSkill1 && !_isArmored && _mainTarget->isFlog())
 				{
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				else if (_isCanSkill2 && isBaseDanger && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
+				else if (_isCanSkill2 && isBaseDanger && !_isArmored && _mainTarget->isFlog())
 				{
 					changeSide(sp);
 					attack(SKILL2);
 				}
-				else if (_isCanSkill3 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
+				else if (_isCanSkill3 && !_isArmored && _mainTarget->isFlog())
 				{
 					changeSide(sp);
 					attack(SKILL3);
@@ -224,7 +214,7 @@ class Sasuke : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 				idle();
 		}
 		else
@@ -244,7 +234,7 @@ class Sasuke : public Hero
 			CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 			{
 				CharacterBase *tempHero = (CharacterBase *)pObject;
-				if (strcmp(getGroup()->getCString(), tempHero->getGroup()->getCString()) != 0 && (strcmp(tempHero->getRole()->getCString(), "Player") == 0 || strcmp(tempHero->getRole()->getCString(), "Com") == 0) && tempHero->getActionState() != State::HURT && tempHero->getActionState() != State::DEAD)
+				if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->getActionState() != State::HURT && tempHero->getActionState() != State::DEAD)
 				{
 					float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
 					if (distanceX < winSize.width / 2)
@@ -282,7 +272,7 @@ class Sasuke : public Hero
 			_originSpeed = 320;
 
 			_isOnlySkillLocked = true;
-			settempAttackValue1(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString())));
+			settempAttackValue1(CCString::createWithFormat("%d", getNAttackValue()));
 			setnAttackValue(CCString::createWithFormat("%d", 560));
 
 			_nattackRangeX = _spcattackRangeX3;
@@ -317,9 +307,9 @@ class Sasuke : public Hero
 			setWalkSpeed(224);
 
 			_originSpeed = 224;
-			if (gettempAttackValue1())
+			if (getTempAttackValue1())
 			{
-				setnAttackValue(CCString::createWithFormat("%d", to_int(gettempAttackValue1()->getCString())));
+				setnAttackValue(CCString::createWithFormat("%d", getTempAttackValue1()));
 				settempAttackValue1(nullptr);
 			}
 			_nattackRangeX = 16;
@@ -355,21 +345,21 @@ class Sasuke : public Hero
 	void perform_SasukeImmortal()
 	{
 		_mainTarget = nullptr;
-		findHero();
+		findHeroHalf();
 
 		if (_isCanGear06)
 		{
-			if ((getActionState() == State::FLOAT ||
-				 getActionState() == State::AIRHURT ||
-				 getActionState() == State::HURT ||
-				 getActionState() == State::KNOCKDOWN) &&
+			if ((_actionState == State::FLOAT ||
+				 _actionState == State::AIRHURT ||
+				 _actionState == State::HURT ||
+				 _actionState == State::KNOCKDOWN) &&
 				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(gear06);
 			}
 		}
 
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -396,7 +386,7 @@ class Sasuke : public Hero
 		if (isBaseDanger && checkBase() && !_isControlled)
 		{
 			bool needBack = false;
-			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
+			if (isAkatsukiGroup())
 			{
 				if (getPositionX() < 85 * 32)
 					needBack = true;
@@ -414,17 +404,12 @@ class Sasuke : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
+		if (_mainTarget && _mainTarget->isNotFlog())
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
+			CCPoint sp = getDistanceToTarget();
 
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
@@ -501,18 +486,13 @@ class Sasuke : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findFlog())
-			findTower();
+		if (notFindFlogHalf())
+			findTowerHalf();
 
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
-
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -521,14 +501,14 @@ class Sasuke : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
-				if (_isCanSkill1 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
+				if (_isCanSkill1 && !_isArmored && _mainTarget->isFlog())
 				{
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				else if (_isCanSkill2 && isBaseDanger && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
+				else if (_isCanSkill2 && isBaseDanger && !_isArmored && _mainTarget->isFlog())
 				{
 					changeSide(sp);
 					attack(SKILL2);
@@ -545,7 +525,7 @@ class Sasuke : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 				idle();
 		}
 		else
@@ -565,8 +545,8 @@ class Sasuke : public Hero
 			CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 			{
 				CharacterBase *tempHero = (CharacterBase *)pObject;
-				if (strcmp(getGroup()->getCString(), tempHero->getGroup()->getCString()) != 0 &&
-					(strcmp(tempHero->getRole()->getCString(), "Player") == 0 || strcmp(tempHero->getRole()->getCString(), "Com") == 0) &&
+				if (isNotSameGroupAs(tempHero) &&
+					tempHero->isPlayerOrCom() &&
 					tempHero->getActionState() != State::HURT &&
 					tempHero->getActionState() != State::DEAD)
 				{
@@ -603,7 +583,7 @@ class Sasuke : public Hero
 			setWalkSpeed(112);
 			_originSpeed = 112;
 
-			settempAttackValue1(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString())));
+			settempAttackValue1(CCString::createWithFormat("%d", getNAttackValue()));
 			setnAttackValue(CCString::createWithFormat("%d", 1160));
 
 			_nattackRangeX = 156;
@@ -637,9 +617,9 @@ class Sasuke : public Hero
 			setWalkSpeed(224);
 
 			_originSpeed = 224;
-			if (gettempAttackValue1())
+			if (getTempAttackValue1())
 			{
-				setnAttackValue(CCString::createWithFormat("%d", to_int(gettempAttackValue1()->getCString())));
+				setnAttackValue(CCString::createWithFormat("%d", getTempAttackValue1()));
 				settempAttackValue1(nullptr);
 			}
 			_gardValue -= 5000;
@@ -648,7 +628,7 @@ class Sasuke : public Hero
 			_nattackRangeX = 16;
 			_nattackRangeY = 48;
 
-			if (getMonsterArray() && getMonsterArray()->count() > 0)
+			if (hasMonsterArray())
 			{
 				CCObject *pObject;
 				CCARRAY_FOREACH(getMonsterArray(), pObject)
@@ -660,7 +640,7 @@ class Sasuke : public Hero
 				setMonsterArray(nullptr);
 			}
 
-			if (getActionState() != State::DEAD)
+			if (_actionState != State::DEAD)
 			{
 				setActionState(State::WALK);
 				idle();
@@ -692,9 +672,9 @@ class Sasuke : public Hero
 			setWalkSpeed(224);
 
 			_originSpeed = 224;
-			if (gettempAttackValue1())
+			if (getTempAttackValue1())
 			{
-				setnAttackValue(CCString::createWithFormat("%d", to_int(gettempAttackValue1()->getCString())));
+				setnAttackValue(CCString::createWithFormat("%d", getTempAttackValue1()));
 				settempAttackValue1(nullptr);
 			}
 			_gardValue -= 5000;

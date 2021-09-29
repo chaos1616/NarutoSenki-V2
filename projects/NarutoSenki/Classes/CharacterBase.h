@@ -101,20 +101,6 @@ public:
 	CC_SYNTHESIZE_RETAIN(CCString*,_character,Character);
 	CC_SYNTHESIZE_RETAIN(CCArray*,_gearArray,GearArray);
 
-	// character extension
-	inline bool			isCharacter(const char *c) { return strcmp(_character->getCString(), c) == 0; }
-	// role extension
-	inline bool			isPlayer() { return strcmp(_role->getCString(), ROLE_PLAYER) == 0; }
-	inline bool			isCom() { return strcmp(_role->getCString(), ROLE_COM) == 0; }
-	inline bool			isClone() { return strcmp(_role->getCString(), ROLE_CLONE) == 0; }
-	inline bool			isMon() { return strcmp(_role->getCString(), ROLE_MON) == 0; }
-	inline bool			isSummon() { return strcmp(_role->getCString(), ROLE_SUMMON) == 0; }
-	inline bool			isPlayerOrCom() { return isPlayer() || isCom(); }
-	// group extension
-	inline bool			isGroup(const char *group) { return strcmp(_group->getCString(), group) == 0; }
-	inline bool			isKonohaGroup() { return strcmp(_group->getCString(), Konoha) == 0; }
-	inline bool			isAkatsukiGroup() { return strcmp(_group->getCString(), Akatsuki) == 0; }
-
 	bool				enableDead	 = true;
 	bool				enableReborn = true;
 	int8_t				changeCharId = -1; // NOTE: Support for random deathmatch mode
@@ -173,13 +159,13 @@ public:
 	CC_SYNTHESIZE(CharacterBase*,_controller,Controller);
 	CC_SYNTHESIZE(CharacterBase*,_secmaster,SecMaster);
 
-	CC_SYNTHESIZE_RETAIN(CCString*,_nattackValue,nAttackValue);
+	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_nattackValue,nAttackValue);
 	CC_SYNTHESIZE(CCString*,_nattackType,nAttackType);
 	int				_nattackRangeX;
 	int				_nattackRangeY;
 
 
-	CC_SYNTHESIZE_RETAIN(CCString*,_sattackValue1,sAttackValue1);
+	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_sattackValue1,sAttackValue1);
 	CC_SYNTHESIZE(CCString*,_sattackType1,sAttack1Type);
 	int				_sattackRangeX1;
 	int				_sattackRangeY1;
@@ -193,7 +179,7 @@ public:
 	int				_attackRangeX;
 	int				_attackRangeY;
 
-	CC_SYNTHESIZE_RETAIN(CCString*,_sattackValue2,sAttackValue2);
+	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_sattackValue2,sAttackValue2);
 	CC_SYNTHESIZE(CCString*,_sattackType2,sAttack2Type);
 	int				_sattackRangeX2;
 	int				_sattackRangeY2;
@@ -201,7 +187,7 @@ public:
 	bool			_sattack2isDouble;
 	int				_sattackCombatPoint2;
 
-	CC_SYNTHESIZE_RETAIN(CCString*,_sattackValue3,sAttackValue3);
+	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_sattackValue3,sAttackValue3);
 	CC_SYNTHESIZE(CCString*,_sattackType3,sAttack3Type);
 	int				_sattackRangeX3;
 	int				_sattackRangeY3;
@@ -209,7 +195,7 @@ public:
 	bool			_sattack3isDouble;
 	int				_sattackCombatPoint3;
 
-	CC_SYNTHESIZE_RETAIN(CCString*,_sattackValue4,sAttackValue4);
+	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_sattackValue4,sAttackValue4);
 	CC_SYNTHESIZE(CCString*,_sattackType4,sAttack4Type);
 	int				_sattackRangeX4;
 	int				_sattackRangeY4;
@@ -217,7 +203,7 @@ public:
 	bool			_sattack4isDouble;
 	int				_sattackCombatPoint4;
 
-	CC_SYNTHESIZE_RETAIN(CCString*,_sattackValue5,sAttackValue5);
+	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_sattackValue5,sAttackValue5);
 	CC_SYNTHESIZE(CCString*,_sattackType5,sAttack5Type);
 	int				_sattackRangeX5;
 	int				_sattackRangeY5;
@@ -248,7 +234,7 @@ public:
 	uint32_t		_spcattackcoldDown3;
 
 
-	CC_SYNTHESIZE_RETAIN(CCString*,_tempAttackValue1,tempAttackValue1);
+	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_tempAttackValue1,tempAttackValue1);
 	int			_tempcoldDown1;
 
 
@@ -483,6 +469,81 @@ protected:
 	void				onEnter();
 	void				onExit();
 
+public:
+	// character extension
+	inline int			getCoinValue() { return to_int(_coin->getCString()); }
+	inline uint32_t		getHPValue() { return to_uint(_hp->getCString()); }
+	inline uint32_t		getMaxHPValue() { return to_uint(_maxHP->getCString()); }
+	inline int			getNAttackValue() { return to_int(_nattackValue->getCString()); }
+	inline int			getSAttackValue1() { return to_int(_sattackValue1->getCString()); }
+	inline int			getSAttackValue2() { return to_int(_sattackValue2->getCString()); }
+	inline int			getSAttackValue3() { return to_int(_sattackValue3->getCString()); }
+	inline int			getSAttackValue4() { return to_int(_sattackValue4->getCString()); }
+	inline int			getSAttackValue5() { return to_int(_sattackValue5->getCString()); }
+	inline int			getTempAttackValue1() { return to_int(_tempAttackValue1->getCString()); }
+	inline CCString*	getNAttackValueStr() { return _nattackValue; }
+	inline CCString*	getSAttackValue1Str() { return _sattackValue1; }
+	inline CCString*	getSAttackValue2Str() { return _sattackValue2; }
+	inline CCString*	getSAttackValue3Str() { return _sattackValue3; }
+	inline CCString*	getSAttackValue4Str() { return _sattackValue4; }
+	inline CCString*	getSAttackValue5Str() { return _sattackValue5; }
+	inline CCString*	getTempAttackValue1Str() { return _tempAttackValue1; }
+	inline bool			isCharacter(const char *c) { return strcmp(_character->getCString(), c) == 0; }
+	inline bool			isNotCharacter(const char *c) { return strcmp(_character->getCString(), c) != 0; }
+	// role extensions
+	inline bool			isPlayer() { return strcmp(_role->getCString(), kRolePlayer) == 0; }
+	inline bool			isCom() { return strcmp(_role->getCString(), kRoleCom) == 0; }
+	inline bool			isClone() { return strcmp(_role->getCString(), kRoleClone) == 0; }
+	inline bool			isFlog() { return strcmp(_role->getCString(), kRoleFlog) == 0; }
+	inline bool			isMon() { return strcmp(_role->getCString(), kRoleMon) == 0; }
+	inline bool			isSummon() { return strcmp(_role->getCString(), kRoleSummon) == 0; }
+	inline bool			isTower() { return strcmp(_role->getCString(), kRoleTower) == 0; }
+	inline bool			isPlayerOrCom() { return isPlayer() || isCom(); }
+	inline bool			isNotPlayer() { return strcmp(_role->getCString(), kRolePlayer) != 0; }
+	inline bool			isNotCom() { return strcmp(_role->getCString(), kRoleCom) != 0; }
+	inline bool			isNotClone() { return strcmp(_role->getCString(), kRoleClone) != 0; }
+	inline bool			isNotFlog() { return strcmp(_role->getCString(), kRoleFlog) != 0; }
+	inline bool			isNotMon() { return strcmp(_role->getCString(), kRoleMon) != 0; }
+	inline bool			isNotSummon() { return strcmp(_role->getCString(), kRoleSummon) != 0; }
+	inline bool			isNotTower() { return strcmp(_role->getCString(), kRoleTower) != 0; }
+	// group extensions
+	inline bool			isGroup(const char *group) { return strcmp(_group->getCString(), group) == 0; }
+	inline bool			isSameGroupAs(CharacterBase *c) { return isGroup(c->getGroup()->getCString()); }
+	inline bool			isNotSameGroupAs(CharacterBase *c) { return !isSameGroupAs(c); }
+	inline bool			isKonohaGroup() { return strcmp(_group->getCString(), Konoha) == 0; }
+	inline bool			isAkatsukiGroup() { return strcmp(_group->getCString(), Akatsuki) == 0; }
+	// monster extensions
+	inline bool			hasMonsterArray() { return _monsterArray && _monsterArray->count() > 0; }
+protected:
+	// find enemy extensions
+	inline bool findHero(int searchRange,bool masterRange = false) { return findEnemy(kRoleHero, searchRange, masterRange); }
+	inline bool findFlog(int searchRange,bool masterRange = false) { return findEnemy(kRoleFlog, searchRange, masterRange); }
+	inline bool findTower(int searchRange,bool masterRange = false) { return findEnemy(kRoleTower, searchRange, masterRange); }
+	inline bool notFindHero(int searchRange,bool masterRange = false) { return !findEnemy(kRoleHero, searchRange, masterRange); }
+	inline bool notFindFlog(int searchRange,bool masterRange = false) { return !findEnemy(kRoleFlog, searchRange, masterRange); }
+	inline bool notFindTower(int searchRange,bool masterRange = false) { return !findEnemy(kRoleTower, searchRange, masterRange); }
+	inline bool findHeroHalf() { return findEnemy2(kRoleHero); }
+	inline bool findFlogHalf() { return findEnemy2(kRoleFlog); }
+	inline bool findTowerHalf() { return findEnemy2(kRoleTower); }
+	inline bool notFindHeroHalf() { return !findEnemy2(kRoleHero); }
+	inline bool notFindFlogHalf() { return !findEnemy2(kRoleFlog); }
+	inline bool notFindTowerHalf() { return !findEnemy2(kRoleTower); }
+	// AI extensions
+	inline CCPoint getDirByMoveTo(CharacterBase *target) { return ccpNormalize(ccpSub(target->getPosition(), getPosition())); }
+	inline CCPoint getDistanceToTarget() {
+		return _mainTarget->_originY
+			? ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition())
+			: ccpSub(_mainTarget->getPosition(), getPosition());
+	}
+	inline CCPoint getDistanceToTargetAndIgnoreOriginY() {
+		return ccpSub(_mainTarget->getPosition(), getPosition());
+	}
+public:
+	// actoin state extensions
+	inline bool isFreeActionState() {
+		return _actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK;
+	}
+
 private:
-	bool				_affectedByTower;
+	bool	_affectedByTower;
 };

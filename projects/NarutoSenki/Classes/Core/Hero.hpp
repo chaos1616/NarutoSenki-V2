@@ -281,11 +281,6 @@ public:
 		return hero;
 	};
 
-protected:
-	inline bool findHero() { return findEnemy2("Hero"); }
-	inline bool findFlog() { return findEnemy2("Flog"); }
-	inline bool findTower() { return findEnemy2("Tower"); }
-
 /** Macros */
 // eg.
 //
@@ -295,60 +290,48 @@ protected:
 // setAIHandler(yourHero::yourAIHandlerFunctionName);	// Custom	handler
 #define setAIHandler(funcName) aiHandler = std::bind(&funcName, this)
 
-/** Character Macros */
-#define character_is(name) getCharacter()->compare(name) == 0
-
-#define is_player getRole()->compare("Player") == 0
-#define not_player getRole()->compare("Player") != 0
+		/** Character Macros */
 
 #define match_char_exp(_name, _fn, _name2, _fn2) \
-	if (character_is(_name))                     \
+	if (isCharacter(_name))                      \
 		_fn;                                     \
-	else if (character_is(_name2))               \
+	else if (isCharacter(_name2))                \
 		_fn2;
 
-#define match_char_exp3(_name, _fn, _name2, _fn2, _name3, _fn3)             \
-	match_char_exp(_name, _fn, _name2, _fn2) else if (character_is(_name3)) \
+#define match_char_exp3(_name, _fn, _name2, _fn2, _name3, _fn3)            \
+	match_char_exp(_name, _fn, _name2, _fn2) else if (isCharacter(_name3)) \
 		_fn3;
 
-#define match_char_exp4(_name, _fn, _name2, _fn2, _name3, _fn3, _name4, _fn4)              \
-	match_char_exp3(_name, _fn, _name2, _fn2, _name3, _fn3) else if (character_is(_name4)) \
+#define match_char_exp4(_name, _fn, _name2, _fn2, _name3, _fn3, _name4, _fn4)             \
+	match_char_exp3(_name, _fn, _name2, _fn2, _name3, _fn3) else if (isCharacter(_name4)) \
 		_fn4;
 
 /** UI Macros */
-#define lockSkill4Button()                                 \
-	if (is_player)                                         \
-	{                                                      \
-		_delegate->getHudLayer()->skill4Button->setLock(); \
-	}
+#define lockSkill4Button() \
+	if (isPlayer())        \
+		_delegate->getHudLayer()->skill4Button->setLock();
 
-#define unlockSkill4Button()                              \
-	if (is_player)                                        \
-	{                                                     \
-		_delegate->getHudLayer()->skill4Button->unLock(); \
-	}
+#define unlockSkill4Button() \
+	if (isPlayer())          \
+		_delegate->getHudLayer()->skill4Button->unLock();
 
-#define lockSkill5Button()                                 \
-	if (is_player)                                         \
-	{                                                      \
-		_delegate->getHudLayer()->skill5Button->setLock(); \
-	}
+#define lockSkill5Button() \
+	if (isPlayer())        \
+		_delegate->getHudLayer()->skill5Button->setLock();
 
-#define unlockSkill5Button()                              \
-	if (is_player)                                        \
-	{                                                     \
-		_delegate->getHudLayer()->skill5Button->unLock(); \
-	}
+#define unlockSkill5Button() \
+	if (isPlayer())          \
+		_delegate->getHudLayer()->skill5Button->unLock();
 
 #define lockOugisButtons()                                 \
-	if (is_player)                                         \
+	if (isPlayer())                                        \
 	{                                                      \
 		_delegate->getHudLayer()->skill4Button->setLock(); \
 		_delegate->getHudLayer()->skill5Button->setLock(); \
 	}
 
 #define unlockOugisButtons()                              \
-	if (is_player)                                        \
+	if (isPlayer())                                       \
 	{                                                     \
 		_delegate->getHudLayer()->skill4Button->unLock(); \
 		_delegate->getHudLayer()->skill5Button->unLock(); \

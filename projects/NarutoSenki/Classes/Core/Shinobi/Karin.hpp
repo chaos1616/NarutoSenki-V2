@@ -6,21 +6,21 @@ class Karin : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findHero();
+		findHeroHalf();
 
 		if (_isCanGear06)
 		{
-			if ((getActionState() == State::FLOAT ||
-				 getActionState() == State::AIRHURT ||
-				 getActionState() == State::HURT ||
-				 getActionState() == State::KNOCKDOWN) &&
+			if ((_actionState == State::FLOAT ||
+				 _actionState == State::AIRHURT ||
+				 _actionState == State::HURT ||
+				 _actionState == State::KNOCKDOWN) &&
 				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(gear06);
 			}
 		}
 
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -47,7 +47,7 @@ class Karin : public Hero
 		if (isBaseDanger && checkBase() && !_isControlled)
 		{
 			bool needBack = false;
-			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
+			if (isAkatsukiGroup())
 			{
 				if (getPositionX() < 85 * 32)
 					needBack = true;
@@ -65,17 +65,12 @@ class Karin : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
+		if (_mainTarget && _mainTarget->isNotFlog())
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
+			CCPoint sp = getDistanceToTarget();
 
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
@@ -151,18 +146,13 @@ class Karin : public Hero
 			}
 		}
 
-		if (!findFlog())
-			findTower();
+		if (notFindFlogHalf())
+			findTowerHalf();
 
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
-
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -171,14 +161,14 @@ class Karin : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
-				if (_isCanSkill1 && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
+				if (_isCanSkill1 && _mainTarget->isFlog())
 				{
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				else if (_isCanSkill2 && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 && isBaseDanger)
+				else if (_isCanSkill2 && _mainTarget->isFlog() && isBaseDanger)
 				{
 					changeSide(sp);
 					attack(SKILL2);
@@ -194,7 +184,7 @@ class Karin : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 				idle();
 		}
 		else

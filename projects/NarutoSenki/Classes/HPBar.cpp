@@ -93,7 +93,7 @@ void HPBar::loseHP(float percent)
 		CharacterBase *_slayer = _delegate->_slayer;
 		CharacterBase *currentSlayer;
 
-		if (strcmp(_delegate->getRole()->getCString(), ROLE_FLOG) == 0)
+		if (strcmp(_delegate->getRole()->getCString(), kRoleFlog) == 0)
 		{
 			if (_slayer->getSecMaster() && strcmp(_slayer->getCharacter()->getCString(), "KageHand") != 0 && strcmp(_slayer->getCharacter()->getCString(), "KageHands") != 0)
 			{
@@ -180,7 +180,7 @@ void HPBar::loseHP(float percent)
 				currentSlayer->addCoin(10);
 			}
 		}
-		else if (strcmp(_delegate->getRole()->getCString(), "Tower") == 0)
+		else if (strcmp(_delegate->getRole()->getCString(), kRoleTower) == 0)
 		{
 			if (_slayer->getSecMaster() && strcmp(_slayer->getCharacter()->getCString(), "KageHand") != 0 && strcmp(_slayer->getCharacter()->getCString(), "KageHands") != 0 && strcmp(_slayer->getCharacter()->getCString(), "SmallSlug") != 0)
 			{
@@ -216,9 +216,9 @@ void HPBar::loseHP(float percent)
 				}
 			}
 
-			if ((strcmp(currentSlayer->getRole()->getCString(), ROLE_FLOG) != 0))
+			if ((strcmp(currentSlayer->getRole()->getCString(), kRoleFlog) != 0))
 			{
-				_delegate->getDelegate()->setReport(currentSlayer->getCharacter()->getCString(), "Tower", currentSlayer->getKillNum());
+				_delegate->getDelegate()->setReport(currentSlayer->getCharacter()->getCString(), kRoleTower, currentSlayer->getKillNum());
 
 				if (currentSlayer->getLV() != 6)
 				{
@@ -239,7 +239,7 @@ void HPBar::loseHP(float percent)
 				{
 					if (_delegate->getDelegate()->_isHardCoreGame)
 					{
-						if (to_int(_delegate->getMaxHP()->getCString()) > 40000)
+						if (_delegate->getMaxHP()->intValue() > 40000)
 						{
 							_delegate->getDelegate()->setCoin("1000");
 							_delegate->setCoinDisplay(1000);
@@ -261,7 +261,7 @@ void HPBar::loseHP(float percent)
 
 				if (_delegate->getDelegate()->_isHardCoreGame)
 				{
-					if (to_int(_delegate->getMaxHP()->getCString()) > 40000)
+					if (_delegate->getMaxHP()->intValue() > 40000)
 					{
 						currentSlayer->addCoin(1000);
 					}
@@ -293,7 +293,7 @@ void HPBar::loseHP(float percent)
 					{
 						if (_delegate->getDelegate()->_isHardCoreGame)
 						{
-							if (to_int(_delegate->getMaxHP()->getCString()) > 40000)
+							if (_delegate->getMaxHP()->intValue() > 40000)
 							{
 								_delegate->getDelegate()->setCoin("850");
 								_delegate->setCoinDisplay(850);
@@ -315,7 +315,7 @@ void HPBar::loseHP(float percent)
 
 					if (_delegate->getDelegate()->_isHardCoreGame)
 					{
-						if (to_int(_delegate->getMaxHP()->getCString()) > 40000)
+						if (_delegate->getMaxHP()->intValue() > 40000)
 						{
 							otherSlayer->addCoin(850);
 						}
@@ -473,7 +473,7 @@ void HPBar::loseHP(float percent)
 				}
 			}
 
-			if (strcmp(currentSlayer->getRole()->getCString(), ROLE_FLOG) != 0)
+			if (strcmp(currentSlayer->getRole()->getCString(), kRoleFlog) != 0)
 			{
 				int realKillNum = to_int(currentSlayer->getKillNum()->getCString()) + 1;
 				currentSlayer->setKillNum(CCString::createWithFormat("%d", realKillNum));

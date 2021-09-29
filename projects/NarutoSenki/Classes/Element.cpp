@@ -91,9 +91,9 @@ void HeroElement::setHPbar()
 		_hpBar = HPBar::create("hp_bar_r.png");
 	}
 	else if ((strcmp(getRole()->getCString(), "Com") == 0 ||
-			  strcmp(getRole()->getCString(), ROLE_CLONE) == 0 ||
-			  strcmp(getRole()->getCString(), ROLE_KUGUTSU) == 0 ||
-			  strcmp(getRole()->getCString(), ROLE_SUMMON) == 0))
+			  strcmp(getRole()->getCString(), kRoleClone) == 0 ||
+			  strcmp(getRole()->getCString(), kRoleKugutsu) == 0 ||
+			  strcmp(getRole()->getCString(), kRoleSummon) == 0))
 	{
 		_hpBar = HPBar::create("hp_bar_b.png");
 	}
@@ -120,19 +120,19 @@ void HeroElement::changeHPbar()
 			getDelegate()->setCKRLose(false);
 			getDelegate()->removeOugisMark(1);
 		}
-		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 500;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 9));
+		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 9));
 		_rebornTime += 1;
 	}
 	else if (_exp >= 1000 && _level == 2)
 	{
 		_level = 3;
-		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 1000;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 18));
+		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 18));
 		_rebornTime += 2;
 	}
 	else if (_exp >= 1500 && _level == 3)
@@ -146,28 +146,28 @@ void HeroElement::changeHPbar()
 			getDelegate()->setCKRLose(true);
 			getDelegate()->removeOugisMark(2);
 		}
-		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 2000;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 27));
+		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 27));
 		_rebornTime += 3;
 	}
 	else if (_exp >= 2000 && _level == 4)
 	{
 		_level = 5;
-		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 2500;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 36));
+		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 36));
 		_rebornTime += 4;
 	}
 	else if (_exp >= 2500 && _level == 5)
 	{
 		_level = 6;
-		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 3000;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 45));
+		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 45));
 		_rebornTime += 5;
 	}
 
@@ -212,9 +212,9 @@ void HeroElement::dealloc()
 		}
 	}
 
-	if (strcmp(getRole()->getCString(), ROLE_CLONE) == 0 ||
-		strcmp(getRole()->getCString(), ROLE_KUGUTSU) == 0 ||
-		strcmp(getRole()->getCString(), ROLE_SUMMON) == 0)
+	if (strcmp(getRole()->getCString(), kRoleClone) == 0 ||
+		strcmp(getRole()->getCString(), kRoleKugutsu) == 0 ||
+		strcmp(getRole()->getCString(), kRoleSummon) == 0)
 	{
 		unschedule(schedule_selector(CharacterBase::setAI));
 		CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "acceptAttack");
@@ -603,42 +603,42 @@ void Monster::changeHPbar()
 	if (_exp >= 500 && _level == 1)
 	{
 		_level = 2;
-		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 1000;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 9));
+		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 9));
 	}
 	else if (_exp >= 1000 && _level == 2)
 	{
 		_level = 3;
-		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 1500;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 18));
+		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 18));
 	}
 	else if (_exp >= 1500 && _level == 3)
 	{
 		_level = 4;
-		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 2000;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 27));
+		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 27));
 	}
 	else if (_exp >= 2000 && _level == 4)
 	{
 		_level = 5;
-		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 2500;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 36));
+		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 36));
 	}
 	else if (_exp >= 2500 && _level == 5)
 	{
 		_level = 6;
-		uint32_t tempMaxHP = to_uint(getMaxHP()->getCString());
+		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 3000;
 		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 48));
+		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 48));
 	}
 
 	if (_hpBar)
@@ -683,7 +683,7 @@ void Monster::setAI(float dt)
 	}
 	else if (strcmp(getCharacter()->getCString(), "Mouse") == 0)
 	{
-		if (!findEnemy("Hero", 0))
+		if (!findEnemy(kRoleHero, 0))
 		{
 			_mainTarget = nullptr;
 		}
@@ -691,9 +691,9 @@ void Monster::setAI(float dt)
 	else if (strcmp(getCharacter()->getCString(), "Spider") == 0 ||
 			 strcmp(getCharacter()->getCString(), "ClayBird") == 0)
 	{
-		if (!findEnemy("Hero", 0))
+		if (!findEnemy(kRoleHero, 0))
 		{
-			if (!findEnemy("Tower", 0))
+			if (!findEnemy(kRoleTower, 0))
 			{
 				_mainTarget = nullptr;
 			}
@@ -705,9 +705,9 @@ void Monster::setAI(float dt)
 	}
 	else
 	{
-		if (!findEnemy("Hero", 0))
+		if (!findEnemy(kRoleHero, 0))
 		{
-			if (!findEnemy(ROLE_FLOG, 0))
+			if (!findEnemy(kRoleFlog, 0))
 			{
 				_mainTarget = nullptr;
 			}

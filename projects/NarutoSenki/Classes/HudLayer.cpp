@@ -651,8 +651,8 @@ void HudLayer::setHPLose(float percent)
 	CCRotateTo *ra = CCRotateTo::create(0.2f, -((1 - percent) * 180), -((1 - percent) * 180));
 	status_hpbar->runAction(ra);
 
-	int hp = to_int(_delegate->currentPlayer->getHP()->getCString());
-	hpLabel->setString(CCString::createWithFormat("%d", int(hp))->getCString());
+	uint32_t hp = _delegate->currentPlayer->getHPValue();
+	hpLabel->setString(CCString::createWithFormat("%ld", hp)->getCString());
 }
 
 void HudLayer::setCKRLose(bool isCRK2)
@@ -977,7 +977,7 @@ void HudLayer::setReportCache()
 
 			reportSprite->runAction(seq);
 
-			if (strcmp(name2->getCString(), "Tower") != 0)
+			if (strcmp(name2->getCString(), kRoleTower) != 0)
 			{
 				CCObject *pObject2;
 				int num2 = 0;
@@ -989,7 +989,7 @@ void HudLayer::setReportCache()
 					CCString *isDisplay2 = CCString::create(tempdict2->valueForKey("isDisplay")->getCString());
 
 					if (strcmp(tempName->getCString(), name1->getCString()) == 0 &&
-						strcmp(tempName2->getCString(), "Tower") != 0 &&
+						strcmp(tempName2->getCString(), kRoleTower) != 0 &&
 						strcmp(isDisplay2->getCString(), "True") == 0)
 					{
 						num2 += 1;
@@ -1142,7 +1142,7 @@ CCSprite *HudLayer::createReport(const char *name1, const char *name2, float &le
 	reportSprite->addChild(slain_pf);
 
 	CCSprite *slain;
-	if (strcmp(name2, "Tower") != 0)
+	if (strcmp(name2, kRoleTower) != 0)
 	{
 		slain = CCSprite::createWithSpriteFrameName("slain.png");
 
@@ -1161,7 +1161,7 @@ CCSprite *HudLayer::createReport(const char *name1, const char *name2, float &le
 	death_pf->setPosition(ccp(slain->getPositionX() + slain->getContentSize().width, 0));
 	reportSprite->addChild(death_pf);
 	CCSprite *death_p;
-	if (strcmp(name2, "Tower") != 0)
+	if (strcmp(name2, kRoleTower) != 0)
 	{
 		death_p = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_rp.png", name2)->getCString());
 		death_p->setAnchorPoint(ccp(0, 0.5f));
@@ -1169,7 +1169,7 @@ CCSprite *HudLayer::createReport(const char *name1, const char *name2, float &le
 		reportSprite->addChild(death_p);
 	}
 
-	if (strcmp(name2, "Tower") != 0)
+	if (strcmp(name2, kRoleTower) != 0)
 	{
 		length = slain_p->getContentSize().width + slain_pf->getContentSize().width + slain->getContentSize().width + death_pf->getContentSize().width + death_p->getContentSize().width;
 	}

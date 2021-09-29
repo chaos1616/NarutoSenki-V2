@@ -13,11 +13,11 @@ class Pain : public Hero
 	Hero *createClone(int cloneTime) override
 	{
 		Hero *clone = nullptr;
-		if (character_is(kNagato))
+		if (isCharacter(kNagato))
 		{
-			clone = create<DevaPath>(CCString::create("DevaPath"), CCString::create(ROLE_CLONE), getGroup());
+			clone = create<DevaPath>(CCString::create("DevaPath"), CCString::create(kRoleClone), getGroup());
 			clone->_isArmored = true;
-			if (is_player)
+			if (isPlayer())
 			{
 				if (_delegate->getHudLayer()->skill5Button)
 					_delegate->getHudLayer()->skill5Button->setLock();

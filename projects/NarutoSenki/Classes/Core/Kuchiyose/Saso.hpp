@@ -5,9 +5,9 @@ class Saso : public Hero
 {
 	void perform()
 	{
-		if (!findEnemy("Hero", winSize.width / 2 - 32, true))
+		if (notFindHero(winSize.width / 2 - 32, true))
 		{
-			if (!findEnemy(ROLE_FLOG, winSize.width / 2 - 32, true))
+			if (notFindFlog(winSize.width / 2 - 32, true))
 			{
 				_mainTarget = nullptr;
 			}
@@ -16,9 +16,9 @@ class Saso : public Hero
 		CCPoint moveDirection;
 		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > 64)
 		{
-			if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
+			if (isFreeActionState())
 			{
-				moveDirection = ccpNormalize(ccpSub(_master->getPosition(), getPosition()));
+				moveDirection = getDirByMoveTo(_master);
 				walk(moveDirection);
 				return;
 			}
@@ -29,7 +29,7 @@ class Saso : public Hero
 			CCPoint sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
 								ccp(getPositionX(), _originY ? _originY : getPositionY()));
 
-			if (strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
+			if (_mainTarget->isFlog())
 			{
 				if (abs(sp.x) > 48 || abs(sp.y) > 16)
 				{
@@ -46,7 +46,7 @@ class Saso : public Hero
 				}
 				else
 				{
-					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
+					if (isFreeActionState())
 					{
 						changeSide(sp);
 						attack(NAttack);
@@ -70,7 +70,7 @@ class Saso : public Hero
 						return;
 					}
 				}
-				else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
+				else if (isFreeActionState())
 				{
 					if (_isCanSkill1 && _mainTarget->getGP() < 5000)
 					{
@@ -90,7 +90,7 @@ class Saso : public Hero
 
 		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > winSize.width / 2 - 64)
 		{
-			CCPoint moveDirection = ccpNormalize(ccpSub(_master->getPosition(), getPosition()));
+			CCPoint moveDirection = getDirByMoveTo(_master);
 			walk(moveDirection);
 			return;
 		}

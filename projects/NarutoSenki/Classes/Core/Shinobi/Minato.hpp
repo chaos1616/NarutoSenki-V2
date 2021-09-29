@@ -6,21 +6,21 @@ class Minato : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findHero();
+		findHeroHalf();
 
 		if (_isCanGear06)
 		{
-			if ((getActionState() == State::FLOAT ||
-				 getActionState() == State::AIRHURT ||
-				 getActionState() == State::HURT ||
-				 getActionState() == State::KNOCKDOWN) &&
+			if ((_actionState == State::FLOAT ||
+				 _actionState == State::AIRHURT ||
+				 _actionState == State::HURT ||
+				 _actionState == State::KNOCKDOWN) &&
 				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(gear06);
 			}
 		}
 
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -36,7 +36,7 @@ class Minato : public Hero
 			{
 				CCObject *pObject;
 				bool isMark = false;
-				if (getMonsterArray() && getMonsterArray()->count() > 0)
+				if (hasMonsterArray())
 				{
 					CCARRAY_FOREACH(getMonsterArray(), pObject)
 					{
@@ -54,7 +54,7 @@ class Minato : public Hero
 						}
 					}
 				}
-				if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+				if (isFreeActionState())
 				{
 					if (isMark)
 					{
@@ -82,7 +82,7 @@ class Minato : public Hero
 		if (isBaseDanger && checkBase() && !_isControlled)
 		{
 			bool needBack = false;
-			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
+			if (isAkatsukiGroup())
 			{
 				if (getPositionX() < 85 * 32)
 					needBack = true;
@@ -100,21 +100,16 @@ class Minato : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
+		if (_mainTarget && _mainTarget->isNotFlog())
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
+			CCPoint sp = getDistanceToTarget();
 
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				CCObject *pObject;
 				bool isMark = false;
-				if (getMonsterArray() && getMonsterArray()->count() > 0)
+				if (hasMonsterArray())
 				{
 					CCARRAY_FOREACH(getMonsterArray(), pObject)
 					{
@@ -190,7 +185,7 @@ class Minato : public Hero
 						walk(moveDirection);
 						return;
 					}
-					else if ((abs(sp.x) > 32 || abs(sp.y) > 32) && to_int(getnAttackValue()->getCString()) < 260)
+					else if ((abs(sp.x) > 32 || abs(sp.y) > 32) && getNAttackValue() < 260)
 					{
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
@@ -207,18 +202,13 @@ class Minato : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findFlog())
-			findTower();
+		if (notFindFlogHalf())
+			findTowerHalf();
 
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
-
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -227,9 +217,9 @@ class Minato : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
-				if (_isCanSkill3 && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
+				if (_isCanSkill3 && _mainTarget->isFlog())
 				{
 					changeSide(sp);
 					attack(SKILL3);
@@ -245,7 +235,7 @@ class Minato : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 				idle();
 		}
 		else
@@ -254,7 +244,7 @@ class Minato : public Hero
 			{
 				CCObject *pObject;
 				bool isMark = false;
-				if (getMonsterArray() && getMonsterArray()->count() > 0)
+				if (hasMonsterArray())
 				{
 					CCARRAY_FOREACH(getMonsterArray(), pObject)
 					{
@@ -272,7 +262,7 @@ class Minato : public Hero
 						}
 					}
 				}
-				if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+				if (isFreeActionState())
 				{
 					if (isMark)
 					{
@@ -292,7 +282,7 @@ class Minato : public Hero
 		{
 			setSkill1Action(createAnimation(skillSPC1Array, 10.0f, false, true));
 
-			if (is_player)
+			if (isPlayer())
 			{
 				CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Minato_skill1_1.png");
 				_delegate->getHudLayer()->skill1Button->setDisplayFrame(frame);
@@ -304,7 +294,7 @@ class Minato : public Hero
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
-			setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 200));
+			setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 200));
 
 			_nattackRangeX = 16;
 			_nattackRangeY = 48;
@@ -315,7 +305,7 @@ class Minato : public Hero
 
 	void resumeAction(float dt)
 	{
-		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) - 200));
+		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() - 200));
 		_nattackRangeX = 16;
 		_nattackRangeY = 48;
 		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));

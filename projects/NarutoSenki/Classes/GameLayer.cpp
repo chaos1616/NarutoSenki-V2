@@ -375,7 +375,7 @@ void GameLayer::addFlog(float dt)
 	{
 		aiFlog = Flog::create();
 		aiFlog->setDelegate(this);
-		aiFlog->setID(KonohaFlogName, CCString::create(ROLE_FLOG), CCString::create(Konoha));
+		aiFlog->setID(KonohaFlogName, CCString::create(kRoleFlog), CCString::create(Konoha));
 		if (i < NUM_FLOG / 2)
 			mainPosY = (5.5 - i / 1.5) * 32;
 		else
@@ -393,7 +393,7 @@ void GameLayer::addFlog(float dt)
 	{
 		aiFlog = Flog::create();
 		aiFlog->setDelegate(this);
-		aiFlog->setID(AkatsukiFlogName, CCString::create(ROLE_FLOG), CCString::create(Akatsuki));
+		aiFlog->setID(AkatsukiFlogName, CCString::create(kRoleFlog), CCString::create(Akatsuki));
 		if (i < NUM_FLOG / 2)
 			mainPosY = (5.5 - i / 1.5) * 32;
 		else
@@ -438,11 +438,11 @@ void GameLayer::initTower()
 		strncpy(towerName, name->getCString(), 6);
 		if (strcmp(towerName, Konoha) == 0)
 		{
-			tower->setID(name, CCString::create("Tower"), CCString::create(Konoha));
+			tower->setID(name, CCString::create(kRoleTower), CCString::create(Konoha));
 		}
 		else
 		{
-			tower->setID(name, CCString::create("Tower"), CCString::create(Akatsuki));
+			tower->setID(name, CCString::create(kRoleTower), CCString::create(Akatsuki));
 			tower->setFlipX(true);
 			tower->_isFlipped = true;
 		}

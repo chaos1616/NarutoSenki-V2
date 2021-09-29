@@ -7,8 +7,8 @@ class Deidara : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findHero();
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
+		findHeroHalf();
+		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear00);
@@ -41,14 +41,9 @@ class Deidara : public Hero
 		if (_mainTarget && (battleCondiction >= 0 || _isCanSkill3 || _isCanOugis1 || _isArmored))
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
+			CCPoint sp = getDistanceToTarget();
 
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
@@ -153,26 +148,21 @@ class Deidara : public Hero
 		if (battleCondiction >= 0)
 		{
 			_mainTarget = nullptr;
-			if (!findFlog())
+			if (notFindFlogHalf())
 			{
-				findTower();
+				findTowerHalf();
 			}
 		}
 		else
 		{
 			_mainTarget = nullptr;
-			findTower();
+			findTowerHalf();
 		}
 
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
-
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -181,16 +171,16 @@ class Deidara : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
-				if (strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0 &&
+				if (_mainTarget->isTower() &&
 					_isCanOugis2 &&
 					!_isControlled && _delegate->_isOugis2Game && !_isArmored && isBaseDanger)
 				{
 					changeSide(sp);
 					attack(OUGIS2);
 				}
-				else if (_isCanSkill1 && !_isArmored && strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0)
+				else if (_isCanSkill1 && !_isArmored && _mainTarget->isTower())
 				{
 					changeSide(sp);
 					attack(SKILL1);
@@ -212,7 +202,7 @@ class Deidara : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 				idle();
 		}
 		else
@@ -322,7 +312,7 @@ class Deidara : public Hero
 
 	Hero *createClone(int cloneTime)
 	{
-		auto clone = create<Centipede>(CCString::create("Centipede"), CCString::create(ROLE_SUMMON), getGroup());
+		auto clone = create<Centipede>(CCString::create("Centipede"), CCString::create(kRoleSummon), getGroup());
 		clone->_isArmored = true;
 		return clone;
 	}

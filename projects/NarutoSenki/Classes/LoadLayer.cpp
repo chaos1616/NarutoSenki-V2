@@ -245,8 +245,8 @@ void LoadLayer::unloadCharIMG(const CharacterBase *c)
 	auto roleName = c->getRole()->getCString();
 	auto charName = c->getCharacter()->getCString();
 
-	if (strcmp(roleName, ROLE_CLONE) == 0 ||
-		strcmp(roleName, ROLE_SUMMON) == 0)
+	if (strcmp(roleName, kRoleClone) == 0 ||
+		strcmp(roleName, kRoleSummon) == 0)
 	{
 		return;
 	}

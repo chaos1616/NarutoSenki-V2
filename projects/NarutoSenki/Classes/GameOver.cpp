@@ -180,9 +180,9 @@ void GameOver::listResult()
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
 		Hero *hero = (Hero *)pObject;
-		if (strcmp(hero->getRole()->getCString(), ROLE_CLONE) == 0 ||
-			strcmp(hero->getRole()->getCString(), ROLE_SUMMON) == 0 ||
-			strcmp(hero->getRole()->getCString(), ROLE_KUGUTSU) == 0 ||
+		if (strcmp(hero->getRole()->getCString(), kRoleClone) == 0 ||
+			strcmp(hero->getRole()->getCString(), kRoleSummon) == 0 ||
+			strcmp(hero->getRole()->getCString(), kRoleKugutsu) == 0 ||
 			strcmp(hero->getCharacter()->getCString(), Guardian_Han) == 0 ||
 			strcmp(hero->getCharacter()->getCString(), Guardian_Roshi) == 0)
 		{
@@ -477,10 +477,10 @@ void GameOver::listResult()
 					CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 					{
 						Hero *hero = (Hero *)pObject;
-						if (strcmp(hero->getRole()->getCString(), ROLE_CLONE) == 0 ||
+						if (strcmp(hero->getRole()->getCString(), kRoleClone) == 0 ||
 							strcmp(hero->getRole()->getCString(), "Player") == 0 ||
-							strcmp(hero->getRole()->getCString(), ROLE_SUMMON) == 0 ||
-							strcmp(hero->getRole()->getCString(), ROLE_KUGUTSU) == 0 ||
+							strcmp(hero->getRole()->getCString(), kRoleSummon) == 0 ||
+							strcmp(hero->getRole()->getCString(), kRoleKugutsu) == 0 ||
 							strcmp(hero->getCharacter()->getCString(), Guardian_Han) == 0 ||
 							strcmp(hero->getCharacter()->getCString(), Guardian_Roshi) == 0)
 						{

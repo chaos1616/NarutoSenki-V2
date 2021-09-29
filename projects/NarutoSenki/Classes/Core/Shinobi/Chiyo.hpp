@@ -8,21 +8,21 @@ class Chiyo : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findHero();
+		findHeroHalf();
 
 		if (_isCanGear06)
 		{
-			if ((getActionState() == State::FLOAT ||
-				 getActionState() == State::AIRHURT ||
-				 getActionState() == State::HURT ||
-				 getActionState() == State::KNOCKDOWN) &&
+			if ((_actionState == State::FLOAT ||
+				 _actionState == State::AIRHURT ||
+				 _actionState == State::HURT ||
+				 _actionState == State::KNOCKDOWN) &&
 				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(gear06);
 			}
 		}
 
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -49,7 +49,7 @@ class Chiyo : public Hero
 		if (isBaseDanger && checkBase() && !_isControlled)
 		{
 			bool needBack = false;
-			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
+			if (isAkatsukiGroup())
 			{
 				if (getPositionX() < 85 * 32)
 					needBack = true;
@@ -68,7 +68,7 @@ class Chiyo : public Hero
 
 		bool isFound1 = false;
 
-		if (getMonsterArray() && getMonsterArray()->count() > 0)
+		if (hasMonsterArray())
 		{
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
@@ -81,17 +81,12 @@ class Chiyo : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
+		if (_mainTarget && _mainTarget->isNotFlog())
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
+			CCPoint sp = getDistanceToTarget();
 
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanOugis1 && !_isControlled && !_buffStartTime)
 				{
@@ -100,7 +95,7 @@ class Chiyo : public Hero
 					CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 					{
 						Hero *tempHero = (Hero *)pObject;
-						if (strcmp(getGroup()->getCString(), tempHero->getGroup()->getCString()) == 0 && (strcmp(tempHero->getRole()->getCString(), "Player") == 0 || strcmp(tempHero->getRole()->getCString(), "Com") == 0) && tempHero->getActionState() != State::DEAD && strcmp(tempHero->getCharacter()->getCString(), "Chiyo") != 0)
+						if (isSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->getActionState() != State::DEAD && strcmp(tempHero->getCharacter()->getCString(), "Chiyo") != 0)
 						{
 							CCPoint sp = ccpSub(tempHero->getPosition(), getPosition());
 							if (sp.x <= winSize.width / 2)
@@ -161,18 +156,13 @@ class Chiyo : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findFlog())
-			findTower();
+		if (notFindFlogHalf())
+			findTowerHalf();
 
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
-
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -181,7 +171,7 @@ class Chiyo : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanSkill1 && !isFound1)
 				{
@@ -198,7 +188,7 @@ class Chiyo : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 				idle();
 		}
 		else
@@ -209,7 +199,7 @@ class Chiyo : public Hero
 
 	void changeAction()
 	{
-		if (is_player)
+		if (isPlayer())
 		{
 			_delegate->getHudLayer()->skill1Button->setLock();
 			_delegate->getHudLayer()->skill2Button->unLock();
@@ -219,7 +209,7 @@ class Chiyo : public Hero
 
 	void setActionResume()
 	{
-		if (is_player)
+		if (isPlayer())
 		{
 			_delegate->getHudLayer()->skill1Button->unLock();
 			_delegate->getHudLayer()->skill2Button->setLock();
@@ -236,7 +226,7 @@ class Chiyo : public Hero
 			_monsterArray->retain();
 		}
 
-		auto clone = create<Parents>(CCString::create("Parents"), CCString::create(ROLE_KUGUTSU), getGroup());
+		auto clone = create<Parents>(CCString::create("Parents"), CCString::create(kRoleKugutsu), getGroup());
 		clone->setPosition(ccp(getPositionX(), getPositionY() - 3));
 		clone->_isArmored = true;
 		_monsterArray->addObject(clone);

@@ -6,8 +6,8 @@ class Sakura : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findHero();
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
+		findHeroHalf();
+		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear00);
@@ -38,14 +38,9 @@ class Sakura : public Hero
 		if (_mainTarget && (battleCondiction >= 0 || _isCanOugis1 || _isCanOugis2))
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
+			CCPoint sp = getDistanceToTarget();
 
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_skillChangeBuffValue && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
@@ -132,26 +127,21 @@ class Sakura : public Hero
 		if (battleCondiction >= 0)
 		{
 			_mainTarget = nullptr;
-			if (!findFlog())
+			if (notFindFlogHalf())
 			{
-				findTower();
+				findTowerHalf();
 			}
 		}
 		else
 		{
 			_mainTarget = nullptr;
-			findTower();
+			findTowerHalf();
 		}
 
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
-
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -160,19 +150,19 @@ class Sakura : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanSkill1 && getHpPercent() < 0.9)
 				{
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				else if (strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0 && _isCanSkill2)
+				else if (_mainTarget->isFlog() && _isCanSkill2)
 				{
 					changeSide(sp);
 					attack(SKILL2);
 				}
-				else if (strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0 && _isCanSkill3 && !_skillChangeBuffValue)
+				else if (_mainTarget->isTower() && _isCanSkill3 && !_skillChangeBuffValue)
 				{
 					changeSide(sp);
 					attack(SKILL3);
@@ -188,7 +178,7 @@ class Sakura : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 				idle();
 		}
 		else

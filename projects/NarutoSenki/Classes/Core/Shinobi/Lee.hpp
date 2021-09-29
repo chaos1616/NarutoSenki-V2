@@ -27,20 +27,20 @@ class Lee : public Hero
 				setWalkSpeed(224);
 				_originSpeed = 224;
 				setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-				setsAttackValue3(CCString::createWithFormat("%d", to_int(getsAttackValue3()->getCString()) - 100));
-				setsAttackValue2(CCString::createWithFormat("%d", to_int(getsAttackValue2()->getCString()) - 100));
-				setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) - 60));
+				setsAttackValue3(CCString::createWithFormat("%d", getSAttackValue3() - 100));
+				setsAttackValue2(CCString::createWithFormat("%d", getSAttackValue2() - 100));
+				setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() - 60));
 			}
 			else if (bamen == 4)
 			{
-				setsAttackValue3(CCString::createWithFormat("%d", to_int(getsAttackValue3()->getCString()) - 100));
-				setsAttackValue2(CCString::createWithFormat("%d", to_int(getsAttackValue2()->getCString()) - 100));
+				setsAttackValue3(CCString::createWithFormat("%d", getSAttackValue3() - 100));
+				setsAttackValue2(CCString::createWithFormat("%d", getSAttackValue2() - 100));
 			}
 			else if (bamen == 3)
 			{
 				setTransform();
 
-				if (is_player)
+				if (isPlayer())
 				{
 					if (_delegate->getHudLayer()->skill3Button)
 					{
@@ -56,18 +56,18 @@ class Lee : public Hero
 			}
 			else if (bamen == 2)
 			{
-				setsAttackValue2(CCString::createWithFormat("%d", to_int(getsAttackValue2()->getCString()) - 100));
+				setsAttackValue2(CCString::createWithFormat("%d", getSAttackValue2() - 100));
 			}
 			else if (bamen == 1)
 			{
-				if (is_player)
+				if (isPlayer())
 				{
 					if (_delegate->getHudLayer()->skill4Button)
 					{
 						_delegate->getHudLayer()->skill4Button->setLock();
 					}
 				}
-				setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) - 30));
+				setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() - 30));
 			}
 			bamen -= 1;
 			if (bamen == 0)
@@ -87,10 +87,10 @@ class Lee : public Hero
 	{
 		HeroElement::changeHPbar();
 
-		if (not_player)
+		if (!isPlayer())
 			return;
 
-		if (character_is(kLee____))
+		if (isCharacter(kLee____))
 		{
 			// NOTE: See `Kakuzu::changeHPbar()`
 			if (_exp >= 500 && _level == 1 + 1)
@@ -138,8 +138,8 @@ class Lee : public Hero
 
 		if (bamen == 1)
 		{
-			setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 30));
-			if (is_player)
+			setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 30));
+			if (isPlayer())
 			{
 				if (_delegate->getHudLayer()->skill4Button)
 				{
@@ -149,7 +149,7 @@ class Lee : public Hero
 		}
 		else if (bamen == 2)
 		{
-			setsAttackValue2(CCString::createWithFormat("%d", to_int(getsAttackValue2()->getCString()) + 100));
+			setsAttackValue2(CCString::createWithFormat("%d", getSAttackValue2() + 100));
 		}
 		else if (bamen == 3)
 		{
@@ -159,7 +159,7 @@ class Lee : public Hero
 			}
 			setTransform();
 
-			if (is_player)
+			if (isPlayer())
 			{
 				_delegate->getHudLayer()->skill3Button->unLock();
 			}
@@ -168,17 +168,17 @@ class Lee : public Hero
 		}
 		else if (bamen == 4)
 		{
-			setsAttackValue2(CCString::createWithFormat("%d", to_int(getsAttackValue2()->getCString()) + 100));
-			setsAttackValue3(CCString::createWithFormat("%d", to_int(getsAttackValue3()->getCString()) + 100));
+			setsAttackValue2(CCString::createWithFormat("%d", getSAttackValue2() + 100));
+			setsAttackValue3(CCString::createWithFormat("%d", getSAttackValue3() + 100));
 		}
 		else if (bamen == 5)
 		{
 			setWalkAction(createAnimation(skillSPC1Array, 10.0f, true, false));
 			setWalkSpeed(320);
 			_originSpeed = 320;
-			setsAttackValue2(CCString::createWithFormat("%d", to_int(getsAttackValue2()->getCString()) + 100));
-			setsAttackValue3(CCString::createWithFormat("%d", to_int(getsAttackValue3()->getCString()) + 100));
-			setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 60));
+			setsAttackValue2(CCString::createWithFormat("%d", getSAttackValue2() + 100));
+			setsAttackValue3(CCString::createWithFormat("%d", getSAttackValue3() + 100));
+			setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 60));
 		}
 	}
 
@@ -191,9 +191,9 @@ class Lee : public Hero
 
 		if (bamen >= 8)
 		{
-			if (to_uint(getHP()->getCString()) - 1000 > 0)
+			if (getHPValue() - 1000 > 0)
 			{
-				setHP(CCString::createWithFormat("%ld", to_uint(getHP()->getCString()) - 1000));
+				setHP(CCString::createWithFormat("%ld", getHPValue() - 1000));
 				_hpBar->loseHP(getHpPercent());
 			}
 			else
@@ -204,9 +204,9 @@ class Lee : public Hero
 		}
 		else if (bamen >= 5)
 		{
-			if (to_uint(getHP()->getCString()) - 200 > 0)
+			if (getHPValue() - 200 > 0)
 			{
-				setHP(CCString::createWithFormat("%ld", to_uint(getHP()->getCString()) - 200));
+				setHP(CCString::createWithFormat("%ld", getHPValue() - 200));
 				_hpBar->loseHP(getHpPercent());
 			}
 			else
@@ -217,9 +217,9 @@ class Lee : public Hero
 		}
 		else if (bamen >= 4)
 		{
-			if (to_uint(getHP()->getCString()) - 150 > 0)
+			if (getHPValue() - 150 > 0)
 			{
-				setHP(CCString::createWithFormat("%ld", to_uint(getHP()->getCString()) - 150));
+				setHP(CCString::createWithFormat("%ld", getHPValue() - 150));
 				_hpBar->loseHP(getHpPercent());
 			}
 			else
@@ -230,9 +230,9 @@ class Lee : public Hero
 		}
 		else if (bamen >= 3)
 		{
-			if (to_uint(getHP()->getCString()) - 100 > 0)
+			if (getHPValue() - 100 > 0)
 			{
-				setHP(CCString::createWithFormat("%ld", to_uint(getHP()->getCString()) - 100));
+				setHP(CCString::createWithFormat("%ld", getHPValue() - 100));
 				_hpBar->loseHP(getHpPercent());
 			}
 			else
@@ -248,21 +248,21 @@ class Lee : public Hero
 	void perform()
 	{
 		_mainTarget = nullptr;
-		findHero();
+		findHeroHalf();
 
 		if (_isCanGear06)
 		{
-			if ((getActionState() == State::FLOAT ||
-				 getActionState() == State::AIRHURT ||
-				 getActionState() == State::HURT ||
-				 getActionState() == State::KNOCKDOWN) &&
+			if ((_actionState == State::FLOAT ||
+				 _actionState == State::AIRHURT ||
+				 _actionState == State::HURT ||
+				 _actionState == State::KNOCKDOWN) &&
 				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(gear06);
 			}
 		}
 
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -289,7 +289,7 @@ class Lee : public Hero
 		if (isBaseDanger && checkBase() && !_isControlled)
 		{
 			bool needBack = false;
-			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
+			if (isAkatsukiGroup())
 			{
 				if (getPositionX() < 85 * 32)
 					needBack = true;
@@ -307,17 +307,12 @@ class Lee : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
+		if (_mainTarget && _mainTarget->isNotFlog())
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
+			CCPoint sp = getDistanceToTarget();
 
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-
-			if ((_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK) && abs(sp.x) < 128)
+			if ((isFreeActionState()) && abs(sp.x) < 128)
 			{
 				if (_isCanSkill1 && bamen < 5)
 				{
@@ -362,18 +357,13 @@ class Lee : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findFlog())
-			findTower();
+		if (notFindFlogHalf())
+			findTowerHalf();
 
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
-
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -382,9 +372,9 @@ class Lee : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
-				if (_isCanSkill2 && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
+				if (_isCanSkill2 && _mainTarget->isFlog())
 				{
 					changeSide(sp);
 					attack(SKILL2);
@@ -400,7 +390,7 @@ class Lee : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 				idle();
 		}
 		else
@@ -414,21 +404,21 @@ class Lee : public Hero
 	void perform_RockLee()
 	{
 		_mainTarget = nullptr;
-		findHero();
+		findHeroHalf();
 
 		if (_isCanGear06)
 		{
-			if ((getActionState() == State::FLOAT ||
-				 getActionState() == State::AIRHURT ||
-				 getActionState() == State::HURT ||
-				 getActionState() == State::KNOCKDOWN) &&
+			if ((_actionState == State::FLOAT ||
+				 _actionState == State::AIRHURT ||
+				 _actionState == State::HURT ||
+				 _actionState == State::KNOCKDOWN) &&
 				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(gear06);
 			}
 		}
 
-		if (to_int(getCoin()->getCString()) >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -455,7 +445,7 @@ class Lee : public Hero
 		if (isBaseDanger && checkBase() && !_isControlled)
 		{
 			bool needBack = false;
-			if (strcmp(Akatsuki, getGroup()->getCString()) == 0)
+			if (isAkatsukiGroup())
 			{
 				if (getPositionX() < 85 * 32)
 					needBack = true;
@@ -473,17 +463,12 @@ class Lee : public Hero
 			}
 		}
 
-		if (_mainTarget && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0)
+		if (_mainTarget && _mainTarget->isNotFlog())
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
+			CCPoint sp = getDistanceToTarget();
 
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
-
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
 				if (_isCanSkill1 && bamen < 5)
 				{
@@ -539,18 +524,13 @@ class Lee : public Hero
 			}
 		}
 		_mainTarget = nullptr;
-		if (!findFlog())
-			findTower();
+		if (notFindFlogHalf())
+			findTowerHalf();
 
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp;
-
-			if (_mainTarget->_originY)
-				sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
-			else
-				sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -559,14 +539,14 @@ class Lee : public Hero
 				return;
 			}
 
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 			{
-				if (_isCanSkill2 && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
+				if (_isCanSkill2 && _mainTarget->isFlog())
 				{
 					changeSide(sp);
 					attack(SKILL2);
 				}
-				else if (_isCanSkill3 && bamen >= 3 && isBaseDanger && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
+				else if (_isCanSkill3 && bamen >= 3 && isBaseDanger && _mainTarget->isFlog())
 				{
 					changeSide(sp);
 					attack(SKILL3);
@@ -582,7 +562,7 @@ class Lee : public Hero
 
 		if (_isHealling && getHpPercent() < 1)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+			if (isFreeActionState())
 				idle();
 		}
 		else

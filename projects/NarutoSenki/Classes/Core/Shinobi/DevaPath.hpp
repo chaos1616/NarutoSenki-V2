@@ -7,11 +7,11 @@ class DevaPath : public Hero
 {
 	void perform()
 	{
-		if (!findEnemy("Hero", 0))
+		if (notFindHero(0))
 		{
-			if (!findEnemy(ROLE_FLOG, 0))
+			if (notFindFlog(0))
 			{
-				if (!findEnemy("Tower", 0))
+				if (notFindTower(0))
 				{
 					_mainTarget = nullptr;
 				}
@@ -21,10 +21,10 @@ class DevaPath : public Hero
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTargetAndIgnoreOriginY();
 
-			if (strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0 ||
-				strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
+			if (_mainTarget->isTower() ||
+				_mainTarget->isFlog())
 			{
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
@@ -33,7 +33,7 @@ class DevaPath : public Hero
 				}
 				else
 				{
-					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
+					if (isFreeActionState())
 					{
 						changeSide(sp);
 						attack(NAttack);
@@ -55,12 +55,12 @@ class DevaPath : public Hero
 					walk(moveDirection);
 					return;
 				}
-				else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
+				else if (isFreeActionState())
 				{
 					bool isHaveKuilei1 = false;
 					bool isHaveKuilei2 = false;
 
-					if (getMonsterArray() && getMonsterArray()->count() > 0)
+					if (hasMonsterArray())
 					{
 						CCObject *pObject;
 						CCARRAY_FOREACH(getMonsterArray(), pObject)
@@ -113,11 +113,11 @@ class DevaPath : public Hero
 
 		if (cloneTime == 0)
 		{
-			clone = create<AnimalPath>(CCString::create("AnimalPath"), CCString::create(ROLE_SUMMON), getGroup());
+			clone = create<AnimalPath>(CCString::create("AnimalPath"), CCString::create(kRoleSummon), getGroup());
 		}
 		else
 		{
-			clone = create<AsuraPath>(CCString::create("AsuraPath"), CCString::create(ROLE_SUMMON), getGroup());
+			clone = create<AsuraPath>(CCString::create("AsuraPath"), CCString::create(kRoleSummon), getGroup());
 		}
 		_monsterArray->addObject(clone);
 		clone->_isArmored = true;

@@ -30,16 +30,16 @@ public:
 		auto playerHero = getSelectOrRandomHero();
 		auto enemyHero = getRandomHeroExcept(playerHero);
 
-		addHero(playerHero, ROLE_PLAYER, playerGroup);
+		addHero(playerHero, kRolePlayer, playerGroup);
 		if (Cheats > 6)
 		{
-			addHeros(3, playerHero, ROLE_COM, playerGroup);
-			addHeros(4, enemyHero, ROLE_COM, enemyGroup);
+			addHeros(3, playerHero, kRoleCom, playerGroup);
+			addHeros(4, enemyHero, kRoleCom, enemyGroup);
 		}
 		else
 		{
-			addHeros(kGenerateCount - 1, playerHero, ROLE_COM, playerGroup);
-			addHeros(kGenerateCount, enemyHero, ROLE_COM, enemyGroup);
+			addHeros(kGenerateCount - 1, playerHero, kRoleCom, playerGroup);
+			addHeros(kGenerateCount, enemyHero, kRoleCom, enemyGroup);
 		}
 	}
 

@@ -5,11 +5,11 @@ class AsuraPath : public Hero
 {
 	void perform()
 	{
-		if (!findEnemy("Hero", 0))
+		if (notFindHero(0))
 		{
-			if (!findEnemy(ROLE_FLOG, 0))
+			if (notFindFlog(0))
 			{
-				if (!findEnemy("Tower", 0))
+				if (notFindTower(0))
 				{
 					_mainTarget = nullptr;
 				}
@@ -19,10 +19,10 @@ class AsuraPath : public Hero
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTargetAndIgnoreOriginY();
 
-			if (strcmp(_mainTarget->getRole()->getCString(), "Tower") == 0 ||
-				strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) == 0)
+			if (_mainTarget->isTower() ||
+				_mainTarget->isFlog())
 			{
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
@@ -31,7 +31,7 @@ class AsuraPath : public Hero
 				}
 				else
 				{
-					if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
+					if (isFreeActionState())
 					{
 						changeSide(sp);
 						attack(NAttack);
@@ -53,7 +53,7 @@ class AsuraPath : public Hero
 					walk(moveDirection);
 					return;
 				}
-				else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
+				else if (isFreeActionState())
 				{
 					if (_isCanSkill1)
 					{

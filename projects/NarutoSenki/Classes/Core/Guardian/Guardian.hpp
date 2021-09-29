@@ -5,13 +5,13 @@ class Guardian : public Hero
 {
 	void perform()
 	{
-		if (!findTargetEnemy("Hero", true))
+		if (!findTargetEnemy(kRoleHero, true))
 		{
-			if (!findTargetEnemy(ROLE_FLOG, true))
+			if (!findTargetEnemy(kRoleFlog, true))
 			{
-				if (!findTargetEnemy(ROLE_FLOG, false))
+				if (!findTargetEnemy(kRoleFlog, false))
 				{
-					if (!findTargetEnemy("Hero", false))
+					if (!findTargetEnemy(kRoleHero, false))
 					{
 						_mainTarget = nullptr;
 					}
@@ -22,7 +22,7 @@ class Guardian : public Hero
 		if (_mainTarget)
 		{
 			CCPoint moveDirection;
-			CCPoint sp = ccpSub(_mainTarget->getPosition(), getPosition());
+			CCPoint sp = getDistanceToTargetAndIgnoreOriginY();
 
 			if (abs(sp.x) > 128 || abs(sp.y) > 16)
 			{
@@ -36,7 +36,7 @@ class Guardian : public Hero
 				walk(moveDirection);
 				return;
 			}
-			else if (getActionState() == State::IDLE || getActionState() == State::WALK || getActionState() == State::NATTACK)
+			else if (isFreeActionState())
 			{
 				bool isTurn = false;
 
@@ -96,7 +96,7 @@ class Guardian : public Hero
 
 	void changeAction()
 	{
-		setnAttackValue(CCString::createWithFormat("%d", to_int(getnAttackValue()->getCString()) + 700));
+		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 700));
 		_nattackRangeX = 0;
 		_nattackRangeY = 48;
 		_tempAttackType = _nattackType;

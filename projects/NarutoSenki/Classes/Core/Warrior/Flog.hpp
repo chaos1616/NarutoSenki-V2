@@ -167,8 +167,7 @@ protected:
 
 	void setAI(float dt)
 	{
-		if (getActionState() == State::IDLE || getActionState() == State::WALK ||
-			getActionState() == State::NATTACK)
+		if (isFreeActionState())
 		{
 			if (!_randomPosY)
 			{
@@ -189,11 +188,11 @@ protected:
 
 			if (!hasTarget)
 			{
-				if (!findEnemy(ROLE_FLOG, 0))
+				if (notFindFlog(0))
 				{
-					if (!findEnemy("Hero", 64))
+					if (notFindHero(64))
 					{
-						if (!findEnemy("Tower", 0))
+						if (notFindTower(0))
 						{
 							_mainTarget = nullptr;
 						}
@@ -205,10 +204,10 @@ protected:
 
 			if (_mainTarget)
 			{
-				CCPoint sp = ccpSub(_mainTarget->getPosition(), getPosition());
+				CCPoint sp = getDistanceToTargetAndIgnoreOriginY();
 				if (abs(sp.x) > _randomPosX || abs(sp.y) > _randomPosY)
 				{
-					if (abs(sp.x) > 64 && strcmp(_mainTarget->getRole()->getCString(), ROLE_FLOG) != 0 && strcmp(_mainTarget->getRole()->getCString(), "Tower") != 0)
+					if (abs(sp.x) > 64 && _mainTarget->isNotFlog() && strcmp(_mainTarget->getRole()->getCString(), kRoleTower) != 0)
 					{
 						_mainTarget = nullptr;
 						return;
@@ -219,7 +218,7 @@ protected:
 				}
 				else
 				{
-					if (getActionState() != State::NATTACK)
+					if (_actionState != State::NATTACK)
 					{
 						changeSide(sp);
 						attack(NAttack);
