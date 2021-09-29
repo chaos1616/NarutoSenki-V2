@@ -2727,13 +2727,11 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 	}
 	else if (strcmp(commandType->getCString(), "findTarget") == 0)
 	{
-		if (!findEnemy(kRoleHero, 0))
+		if (notFindHero(0))
 		{
-			if (!findEnemy(kRoleFlog, 0) || strcmp(getCharacter()->getCString(), "RikudoNaruto") == 0 ||
+			if (notFindFlog(0) || strcmp(getCharacter()->getCString(), "RikudoNaruto") == 0 ||
 				strcmp(getCharacter()->getCString(), "SageNaruto") == 0)
-			{
 				_mainTarget = nullptr;
-			}
 		}
 
 		if (_mainTarget)

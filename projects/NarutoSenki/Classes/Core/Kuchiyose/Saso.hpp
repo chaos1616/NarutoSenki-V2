@@ -8,9 +8,7 @@ class Saso : public Hero
 		if (notFindHero(winSize.width / 2 - 32, true))
 		{
 			if (notFindFlog(winSize.width / 2 - 32, true))
-			{
 				_mainTarget = nullptr;
-			}
 		}
 
 		CCPoint moveDirection;

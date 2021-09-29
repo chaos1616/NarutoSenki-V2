@@ -8,9 +8,7 @@ class Centipede : public Hero
 		if (notFindFlog(0))
 		{
 			if (notFindTower(0))
-			{
 				_mainTarget = nullptr;
-			}
 		}
 
 		if (_mainTarget)

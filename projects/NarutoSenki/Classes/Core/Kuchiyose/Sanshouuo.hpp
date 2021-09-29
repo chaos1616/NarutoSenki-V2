@@ -8,9 +8,7 @@ class Sanshouuo : public Hero
 		if (notFindHero(winSize.width / 2 - 32, true))
 		{
 			if (notFindFlog(winSize.width / 2 - 32, true))
-			{
 				_mainTarget = nullptr;
-			}
 		}
 
 		if (_mainTarget)

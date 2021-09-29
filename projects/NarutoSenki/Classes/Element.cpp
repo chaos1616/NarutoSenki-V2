@@ -673,20 +673,16 @@ void Monster::setAI(float dt)
 	}
 	else if (strcmp(charName, "Mouse") == 0)
 	{
-		if (!findEnemy(kRoleHero, 0))
-		{
+		if (notFindHero(0))
 			_mainTarget = nullptr;
-		}
 	}
 	else if (strcmp(charName, "Spider") == 0 ||
 			 strcmp(charName, "ClayBird") == 0)
 	{
-		if (!findEnemy(kRoleHero, 0))
+		if (notFindHero(0))
 		{
-			if (!findEnemy(kRoleTower, 0))
-			{
+			if (notFindTower(0))
 				_mainTarget = nullptr;
-			}
 		}
 	}
 	else if (strcmp(charName, "FudonSRK2") == 0 ||
@@ -695,12 +691,10 @@ void Monster::setAI(float dt)
 	}
 	else
 	{
-		if (!findEnemy(kRoleHero, 0))
+		if (notFindHero(0))
 		{
-			if (!findEnemy(kRoleFlog, 0))
-			{
+			if (notFindFlog(0))
 				_mainTarget = nullptr;
-			}
 		}
 	}
 
