@@ -46,7 +46,7 @@ void KTools::updateData()
 
 bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 {
-	auto doc = new tinyxml2::XMLDocument();
+	auto doc = std::make_unique<tinyxml2::XMLDocument>();
 	unsigned long nSize;
 	const char *data = (const char *)CCFileUtils::sharedFileUtils()->getFileData(filePath, "r", &nSize);
 	if (data == nullptr)
@@ -140,7 +140,7 @@ int isExisted(void *para, int n_column, char **column_value, char **column_name)
 
 void KTools::encode(std::string &str, int radomKey)
 {
-	for (int i = 0; i < str.length(); i++)
+	for (size_t i = 0; i < str.length(); i++)
 	{
 		int ch = str[i];
 		ch += radomKey;
@@ -151,11 +151,11 @@ void KTools::encode(std::string &str, int radomKey)
 
 void KTools::decode(std::string &str)
 {
-	int num = str.length() - 1;
+	size_t num = str.length() - 1;
 	int key = str[num];
 	str = str.substr(0, num);
 
-	for (int i = 0; i < str.length(); i++)
+	for (size_t i = 0; i < str.length(); i++)
 	{
 		int ch = str[i];
 		ch -= key;
@@ -401,7 +401,7 @@ void KTools::prepareFileOGG(const char *listName, bool unload /* =false */)
 		return;
 	}
 
-	auto doc = new tinyxml2::XMLDocument();
+	auto doc = std::make_unique<tinyxml2::XMLDocument>();
 	unsigned long nSize;
 	const char *pXmlBuffer = (const char *)CCFileUtils::sharedFileUtils()->getFileData(md5Path.c_str(), "r", &nSize);
 	doc->Parse(pXmlBuffer);
