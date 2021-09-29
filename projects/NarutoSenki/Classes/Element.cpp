@@ -90,14 +90,11 @@ void HeroElement::setHPbar()
 	{
 		_hpBar = HPBar::create("hp_bar_r.png");
 	}
-	else if ((strcmp(getRole()->getCString(), "Com") == 0 ||
-			  strcmp(getRole()->getCString(), kRoleClone) == 0 ||
-			  strcmp(getRole()->getCString(), kRoleKugutsu) == 0 ||
-			  strcmp(getRole()->getCString(), kRoleSummon) == 0))
+	else if (isCom() || isClone() || isKugutsu() || isSummon())
 	{
 		_hpBar = HPBar::create("hp_bar_b.png");
 	}
-	else if (strcmp(getRole()->getCString(), "Player") == 0)
+	else if (isPlayer())
 	{
 		_hpBar = HPBar::create("hp_bar.png");
 	}
@@ -115,7 +112,7 @@ void HeroElement::changeHPbar()
 		float newValue = atof(getCKR()->getCString()) + 15001;
 		setCKR(CCString::createWithFormat("%f", newValue));
 		_isCanOugis1 = true;
-		if (strcmp(getRole()->getCString(), "Player") == 0)
+		if (isPlayer())
 		{
 			getDelegate()->setCKRLose(false);
 			getDelegate()->removeOugisMark(1);
@@ -141,7 +138,7 @@ void HeroElement::changeHPbar()
 		float newValue = atof(getCKR2()->getCString()) + 25001;
 		setCKR2(CCString::createWithFormat("%f", newValue));
 		_isCanOugis2 = true;
-		if (strcmp(getRole()->getCString(), "Player") == 0)
+		if (isPlayer())
 		{
 			getDelegate()->setCKRLose(true);
 			getDelegate()->removeOugisMark(2);
@@ -189,7 +186,7 @@ void HeroElement::dealloc()
 	_actionState = State::DEAD;
 	if (strcmp(getCharacter()->getCString(), "Minato") != 0)
 	{
-		if (getMonsterArray() && getMonsterArray()->count() > 0)
+		if (hasMonsterArrayAny())
 		{
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
@@ -212,9 +209,7 @@ void HeroElement::dealloc()
 		}
 	}
 
-	if (strcmp(getRole()->getCString(), kRoleClone) == 0 ||
-		strcmp(getRole()->getCString(), kRoleKugutsu) == 0 ||
-		strcmp(getRole()->getCString(), kRoleSummon) == 0)
+	if (isClone() || isKugutsu() || isSummon())
 	{
 		unschedule(schedule_selector(CharacterBase::setAI));
 		CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "acceptAttack");
@@ -237,7 +232,7 @@ void HeroElement::dealloc()
 		{
 			getMaster()->_skillChangeBuffValue = 0;
 
-			if (strcmp(getMaster()->getRole()->getCString(), "Player") == 0)
+			if (getMaster()->isPlayer())
 			{
 				_delegate->getHudLayer()->skill5Button->unLock();
 			}
@@ -250,12 +245,9 @@ void HeroElement::dealloc()
 		}
 		else if (strcmp(getCharacter()->getCString(), "Sanshouuo") == 0)
 		{
-			if (strcmp(getMaster()->getRole()->getCString(), "Player") == 0)
+			if (getMaster()->isPlayer())
 			{
-				if (_delegate->getHudLayer()->skill4Button)
-				{
-					_delegate->getHudLayer()->skill4Button->unLock();
-				}
+				_delegate->getHudLayer()->skill4Button->unLock();
 			}
 		}
 		else if (strcmp(getCharacter()->getCString(), "MaskFudon") == 0 ||
@@ -264,18 +256,15 @@ void HeroElement::dealloc()
 		{
 			if (_master->hearts > 0)
 			{
-				if (strcmp(_master->getRole()->getCString(), "Player") == 0)
+				if (_master->isPlayer())
 				{
-					if (_delegate->getHudLayer()->skill4Button)
-					{
-						_delegate->getHudLayer()->skill4Button->unLock();
-					}
+					_delegate->getHudLayer()->skill4Button->unLock();
 				}
 			}
 		}
 		else if (strcmp(getCharacter()->getCString(), "Saso") == 0)
 		{
-			if (strcmp(getMaster()->getRole()->getCString(), "Player") == 0)
+			if (getMaster()->isPlayer())
 			{
 				_delegate->getHudLayer()->skill5Button->unLock();
 			}
@@ -287,7 +276,7 @@ void HeroElement::dealloc()
 	{
 		if (strcmp(getCharacter()->getCString(), "Kankuro") == 0)
 		{
-			if (strcmp(getRole()->getCString(), "Player") == 0)
+			if (isPlayer())
 			{
 				_delegate->getHudLayer()->skill4Button->unLock();
 				_delegate->getHudLayer()->skill5Button->unLock();
@@ -312,14 +301,14 @@ void HeroElement::dealloc()
 		}
 		else if (strcmp(getCharacter()->getCString(), "Hidan") == 0)
 		{
-			if (strcmp(getRole()->getCString(), "Player") == 0)
+			if (isPlayer())
 			{
 				_delegate->getHudLayer()->skill1Button->unLock();
 			}
 		}
 		if (strcmp(getCharacter()->getCString(), "Minato") != 0)
 		{
-			if (getMonsterArray() && getMonsterArray()->count() > 0)
+			if (hasMonsterArrayAny())
 			{
 				CCObject *pObject;
 				CCARRAY_FOREACH(getMonsterArray(), pObject)
@@ -415,20 +404,20 @@ void HeroElement::reborn(float dt)
 
 		if (getLV() < 4)
 		{
-			if (strcmp(getGroup()->getCString(), Konoha) == 0)
+			if (isKonohaGroup())
 				setEXP(getEXP() + getDelegate()->kEXPBound);
 			else
 				setEXP(getEXP() + getDelegate()->aEXPBound);
 
 			changeHPbar();
 
-			if (strcmp(getRole()->getCString(), "Player") == 0)
+			if (isPlayer())
 			{
 				_delegate->getHudLayer()->setEXPLose(0);
 			}
 		}
 
-		if (strcmp(getGroup()->getCString(), Konoha) == 0)
+		if (isKonohaGroup())
 		{
 			if (_isFlipped)
 			{
@@ -451,7 +440,7 @@ void HeroElement::reborn(float dt)
 			rebornSprite->removeFromParent();
 			rebornSprite = nullptr;
 		}
-		if (strcmp(getRole()->getCString(), "Player") != 0)
+		if (isNotPlayer())
 		{
 			doAI();
 		}
@@ -650,7 +639,8 @@ void Monster::changeHPbar()
 
 void Monster::setAI(float dt)
 {
-	if (strcmp(getCharacter()->getCString(), "Kage") == 0)
+	auto charName = getCharacter()->getCString();
+	if (strcmp(charName, "Kage") == 0)
 	{
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
@@ -681,15 +671,15 @@ void Monster::setAI(float dt)
 		}
 		return;
 	}
-	else if (strcmp(getCharacter()->getCString(), "Mouse") == 0)
+	else if (strcmp(charName, "Mouse") == 0)
 	{
 		if (!findEnemy(kRoleHero, 0))
 		{
 			_mainTarget = nullptr;
 		}
 	}
-	else if (strcmp(getCharacter()->getCString(), "Spider") == 0 ||
-			 strcmp(getCharacter()->getCString(), "ClayBird") == 0)
+	else if (strcmp(charName, "Spider") == 0 ||
+			 strcmp(charName, "ClayBird") == 0)
 	{
 		if (!findEnemy(kRoleHero, 0))
 		{
@@ -699,8 +689,8 @@ void Monster::setAI(float dt)
 			}
 		}
 	}
-	else if (strcmp(getCharacter()->getCString(), "FudonSRK2") == 0 ||
-			 strcmp(getCharacter()->getCString(), "FudonSRK") == 0)
+	else if (strcmp(charName, "FudonSRK2") == 0 ||
+			 strcmp(charName, "FudonSRK") == 0)
 	{
 	}
 	else
@@ -723,8 +713,8 @@ void Monster::setAI(float dt)
 		sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
 					ccp(getPositionX(), _originY ? _originY : getPositionY()));
 
-		if (strcmp(getCharacter()->getCString(), "FudonSRK2") == 0 ||
-			strcmp(getCharacter()->getCString(), "FudonSRK") == 0)
+		if (strcmp(charName, "FudonSRK2") == 0 ||
+			strcmp(charName, "FudonSRK") == 0)
 		{
 			if (abs(sp.x) > 48 || abs(sp.y) > 32)
 			{
@@ -734,14 +724,13 @@ void Monster::setAI(float dt)
 				return;
 			}
 
-			if (strcmp(_mainTarget->getRole()->getCString(), "Player") == 0 ||
-				strcmp(_mainTarget->getRole()->getCString(), "Com") == 0)
+			if (_mainTarget->isPlayerOrCom())
 			{
 				stopAllActions();
 				dealloc();
 			}
 		}
-		else if (strcmp(getCharacter()->getCString(), "Traps") == 0)
+		else if (strcmp(charName, "Traps") == 0)
 		{
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -753,11 +742,11 @@ void Monster::setAI(float dt)
 		}
 		else if (abs(sp.x) > 32 || abs(sp.y) > 16)
 		{
-			if (strcmp(getCharacter()->getCString(), "Dogs") != 0 &&
-				strcmp(getCharacter()->getCString(), "Mine") != 0 &&
-				strcmp(getCharacter()->getCString(), "Traps") != 0 &&
-				strcmp(getCharacter()->getCString(), "Yominuma") != 0 &&
-				strcmp(getCharacter()->getCString(), "Tsukuyomi") != 0)
+			if (strcmp(charName, "Dogs") != 0 &&
+				strcmp(charName, "Mine") != 0 &&
+				strcmp(charName, "Traps") != 0 &&
+				strcmp(charName, "Yominuma") != 0 &&
+				strcmp(charName, "Tsukuyomi") != 0)
 			{
 				moveDirection = ccpNormalize(sp);
 
@@ -766,10 +755,9 @@ void Monster::setAI(float dt)
 		}
 		else
 		{
-			if (strcmp(getCharacter()->getCString(), "Mine") == 0)
+			if (strcmp(charName, "Mine") == 0)
 			{
-				if (strcmp(_mainTarget->getRole()->getCString(), "Player") == 0 ||
-					strcmp(_mainTarget->getRole()->getCString(), "Com") == 0)
+				if (_mainTarget->isPlayerOrCom())
 				{
 					attack(NAttack);
 					unschedule(schedule_selector(CharacterBase::setAI));
@@ -780,7 +768,7 @@ void Monster::setAI(float dt)
 				changeSide(sp);
 				attack(NAttack);
 
-				if (strcmp(getCharacter()->getCString(), "SmallSlug") != 0)
+				if (strcmp(charName, "SmallSlug") != 0)
 				{
 					unschedule(schedule_selector(CharacterBase::setAI));
 				}
@@ -789,9 +777,9 @@ void Monster::setAI(float dt)
 	}
 	else
 	{
-		if (strcmp(getCharacter()->getCString(), "Rocket") == 0 ||
-			strcmp(getCharacter()->getCString(), "Spider") == 0 ||
-			strcmp(getCharacter()->getCString(), "ClayBird") == 0)
+		if (strcmp(charName, "Rocket") == 0 ||
+			strcmp(charName, "Spider") == 0 ||
+			strcmp(charName, "ClayBird") == 0)
 		{
 			stepOn();
 		}
@@ -825,7 +813,7 @@ void Monster::dealloc()
 		_master->setActionResume();
 		_master->scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcoldDown1);
 
-		if (strcmp(_master->getRole()->getCString(), "Player") == 0)
+		if (_master->isPlayer())
 		{
 			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Minato_skill1.png");
 			_delegate->getHudLayer()->skill1Button->setDisplayFrame(frame);
@@ -895,8 +883,7 @@ void Monster::dealloc()
 
 void Monster::setDirectMove(int length, float delay, bool isReverse)
 {
-	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
-							getPositionY());
+	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length, getPositionY());
 	CCPoint direction2 = getPosition();
 	CCActionInterval *mv = CCMoveTo::create(delay, direction);
 	CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc));

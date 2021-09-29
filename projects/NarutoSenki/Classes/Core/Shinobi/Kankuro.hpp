@@ -71,7 +71,7 @@ class Kankuro : public Hero
 		bool isFound2 = false;
 		bool isFound3 = false;
 
-		if (hasMonsterArray())
+		if (hasMonsterArrayAny())
 		{
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
@@ -238,10 +238,7 @@ class Kankuro : public Hero
 			clone = create<Sanshouuo>(CCString::create("Sanshouuo"), CCString::create(kRoleKugutsu), getGroup());
 			if (isPlayer())
 			{
-				if (_delegate->getHudLayer()->skill4Button)
-				{
-					_delegate->getHudLayer()->skill4Button->setLock();
-				}
+				_delegate->getHudLayer()->skill4Button->setLock();
 			}
 		}
 		else if (cloneTime == 2)
@@ -249,10 +246,7 @@ class Kankuro : public Hero
 			clone = create<Saso>(CCString::create("Saso"), CCString::create(kRoleKugutsu), getGroup());
 			if (isPlayer())
 			{
-				if (_delegate->getHudLayer()->skill5Button)
-				{
-					_delegate->getHudLayer()->skill5Button->setLock();
-				}
+				_delegate->getHudLayer()->skill5Button->setLock();
 			}
 		}
 

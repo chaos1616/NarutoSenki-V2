@@ -93,7 +93,7 @@ void HPBar::loseHP(float percent)
 		CharacterBase *_slayer = _delegate->_slayer;
 		CharacterBase *currentSlayer;
 
-		if (strcmp(_delegate->getRole()->getCString(), kRoleFlog) == 0)
+		if (_delegate->isFlog())
 		{
 			if (_slayer->getSecMaster() && strcmp(_slayer->getCharacter()->getCString(), "KageHand") != 0 && strcmp(_slayer->getCharacter()->getCString(), "KageHands") != 0)
 			{
@@ -144,7 +144,7 @@ void HPBar::loseHP(float percent)
 				}
 			}
 
-			if (strcmp(currentSlayer->getRole()->getCString(), "Player") == 0)
+			if (currentSlayer->isPlayer())
 			{
 				if (_delegate->getMaxHP()->intValue() == 10000)
 				{
@@ -180,7 +180,7 @@ void HPBar::loseHP(float percent)
 				currentSlayer->addCoin(10);
 			}
 		}
-		else if (strcmp(_delegate->getRole()->getCString(), kRoleTower) == 0)
+		else if (_delegate->isTower())
 		{
 			if (_slayer->getSecMaster() && strcmp(_slayer->getCharacter()->getCString(), "KageHand") != 0 && strcmp(_slayer->getCharacter()->getCString(), "KageHands") != 0 && strcmp(_slayer->getCharacter()->getCString(), "SmallSlug") != 0)
 			{
@@ -216,7 +216,7 @@ void HPBar::loseHP(float percent)
 				}
 			}
 
-			if ((strcmp(currentSlayer->getRole()->getCString(), kRoleFlog) != 0))
+			if ((currentSlayer->isNotFlog()))
 			{
 				_delegate->getDelegate()->setReport(currentSlayer->getCharacter()->getCString(), kRoleTower, currentSlayer->getKillNum());
 
@@ -235,7 +235,7 @@ void HPBar::loseHP(float percent)
 					}
 				}
 
-				if (strcmp(currentSlayer->getRole()->getCString(), "Player") == 0)
+				if (currentSlayer->isPlayer())
 				{
 					if (_delegate->getDelegate()->_isHardCoreGame)
 					{
@@ -289,7 +289,7 @@ void HPBar::loseHP(float percent)
 						otherSlayer->changeHPbar();
 					}
 
-					if (strcmp(otherSlayer->getRole()->getCString(), "Player") == 0)
+					if (otherSlayer->isPlayer())
 					{
 						if (_delegate->getDelegate()->_isHardCoreGame)
 						{
@@ -331,21 +331,21 @@ void HPBar::loseHP(float percent)
 				}
 			}
 		}
-		else if ((strcmp(_delegate->getRole()->getCString(), "Player") == 0 || strcmp(_delegate->getRole()->getCString(), "Com") == 0))
+		else if ((_delegate->isPlayer() || _delegate->isCom()))
 		{
 			if (strcmp(_delegate->getCharacter()->getCString(), "Kakuzu") == 0 && _delegate->getDelegate()->_isOugis2Game)
 			{
 				bool reieveAble = false;
 				if (atof(_delegate->getCKR2()->getCString()) >= 25000 && _delegate->hearts > 0)
 				{
-					if (strcmp(_delegate->getRole()->getCString(), "Player") == 0)
+					if (_delegate->isPlayer())
 					{
 						if (_delegate->getDelegate()->getHudLayer()->skill5Button)
 						{
 							reieveAble = true;
 						}
 					}
-					else if (strcmp(_delegate->getRole()->getCString(), "Com") == 0)
+					else if (_delegate->isCom())
 					{
 						reieveAble = true;
 					}
@@ -365,7 +365,7 @@ void HPBar::loseHP(float percent)
 						_delegate->getDelegate()->reorderChild(_delegate, -_delegate->getPositionY());
 					}
 
-					if (strcmp(_delegate->getRole()->getCString(), "Player") == 0)
+					if (_delegate->isPlayer())
 					{
 						_delegate->getDelegate()->getHudLayer()->skill5Button->unLock();
 						_delegate->setActionState(State::IDLE);
@@ -391,12 +391,9 @@ void HPBar::loseHP(float percent)
 
 					if (_delegate->hearts < 1)
 					{
-						if (strcmp(_delegate->getRole()->getCString(), "Player") == 0)
+						if (_delegate->isPlayer())
 						{
-							if (_delegate->getDelegate()->getHudLayer()->skill4Button)
-							{
-								_delegate->getDelegate()->getHudLayer()->skill4Button->setLock();
-							}
+							_delegate->getDelegate()->getHudLayer()->skill4Button->setLock();
 						}
 					}
 
@@ -460,20 +457,17 @@ void HPBar::loseHP(float percent)
 						currentSlayer->_heartEffect->setDisplayFrame(frame);
 					}
 
-					if (strcmp(currentSlayer->getRole()->getCString(), "Player") == 0)
+					if (currentSlayer->isPlayer())
 					{
 						if (currentSlayer->getMonsterArray() && currentSlayer->getMonsterArray()->count() < 3 && currentSlayer->getLV() >= 2)
 						{
-							if (_delegate->getDelegate()->getHudLayer()->skill4Button)
-							{
-								_delegate->getDelegate()->getHudLayer()->skill4Button->unLock();
-							}
+							_delegate->getDelegate()->getHudLayer()->skill4Button->unLock();
 						}
 					}
 				}
 			}
 
-			if (strcmp(currentSlayer->getRole()->getCString(), kRoleFlog) != 0)
+			if (currentSlayer->isNotFlog())
 			{
 				int realKillNum = to_int(currentSlayer->getKillNum()->getCString()) + 1;
 				currentSlayer->setKillNum(CCString::createWithFormat("%d", realKillNum));
@@ -521,7 +515,7 @@ void HPBar::loseHP(float percent)
 					}
 				}
 
-				if (strcmp(currentSlayer->getRole()->getCString(), "Player") == 0)
+				if (currentSlayer->isPlayer())
 				{
 					if (strcmp(_delegate->getCharacter()->getCString(), Guardian_Han) == 0 ||
 						strcmp(_delegate->getCharacter()->getCString(), Guardian_Roshi) == 0)
@@ -580,7 +574,7 @@ void HPBar::loseHP(float percent)
 						otherSlayer->changeHPbar();
 					}
 
-					if (strcmp(otherSlayer->getRole()->getCString(), "Player") == 0)
+					if (otherSlayer->isPlayer())
 					{
 						if (_delegate->getDelegate()->_isHardCoreGame)
 						{
@@ -629,7 +623,7 @@ void HPBar::loseHP(float percent)
 	{
 		CCActionInterval *s = CCScaleTo::create(0.2f, percent, 1);
 		hpBar->runAction(s);
-		if (strcmp(_delegate->getRole()->getCString(), "Player") == 0)
+		if (_delegate->isPlayer())
 		{
 			_delegate->getDelegate()->setHPLose(percent);
 		}

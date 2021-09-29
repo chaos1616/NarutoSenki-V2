@@ -7,7 +7,7 @@ class Hidan : public Hero
 	{
 		_mainTarget = nullptr;
 		bool _isFound = false;
-		if (hasMonsterArray())
+		if (hasMonsterArrayAny())
 		{
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
@@ -286,7 +286,7 @@ class Hidan : public Hero
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 
-		if (hasMonsterArray())
+		if (hasMonsterArrayAny())
 		{
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
@@ -334,7 +334,7 @@ class Hidan : public Hero
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 
-		if (hasMonsterArray())
+		if (hasMonsterArrayAny())
 		{
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)

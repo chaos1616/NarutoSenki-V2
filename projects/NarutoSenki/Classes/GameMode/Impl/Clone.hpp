@@ -31,7 +31,7 @@ public:
 		auto enemyHero = getRandomHeroExcept(playerHero);
 
 		addHero(playerHero, kRolePlayer, playerGroup);
-		if (Cheats > 6)
+		if (Cheats >= MaxCheats)
 		{
 			addHeros(3, playerHero, kRoleCom, playerGroup);
 			addHeros(4, enemyHero, kRoleCom, enemyGroup);

@@ -628,7 +628,7 @@ class Sasuke : public Hero
 			_nattackRangeX = 16;
 			_nattackRangeY = 48;
 
-			if (hasMonsterArray())
+			if (hasMonsterArrayAny())
 			{
 				CCObject *pObject;
 				CCARRAY_FOREACH(getMonsterArray(), pObject)

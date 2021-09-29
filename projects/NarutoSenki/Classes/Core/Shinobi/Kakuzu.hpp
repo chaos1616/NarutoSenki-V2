@@ -16,10 +16,7 @@ class Kakuzu : public Hero
 
 		if (isPlayer() && getLV() >= 2)
 		{
-			if (_delegate->getHudLayer()->skill4Button)
-			{
-				_delegate->getHudLayer()->skill4Button->unLock();
-			}
+			_delegate->getHudLayer()->skill4Button->unLock();
 		}
 	}
 
@@ -27,7 +24,7 @@ class Kakuzu : public Hero
 	{
 		HeroElement::changeHPbar();
 
-		if (!isPlayer())
+		if (isNotPlayer())
 			return;
 
 		// NOTE: The level was increased on base
@@ -36,18 +33,12 @@ class Kakuzu : public Hero
 		{
 			if (hearts < 1)
 			{
-				if (_delegate->getHudLayer()->skill4Button)
-				{
-					_delegate->getHudLayer()->skill4Button->setLock();
-				}
+				_delegate->getHudLayer()->skill4Button->setLock();
 			}
 		}
 		else if (_exp >= 1500 && _level == 3 + 1)
 		{
-			if (_delegate->getHudLayer()->skill5Button)
-			{
-				_delegate->getHudLayer()->skill5Button->setLock();
-			}
+			_delegate->getHudLayer()->skill5Button->setLock();
 		}
 	}
 
@@ -66,8 +57,7 @@ class Kakuzu : public Hero
 				CCARRAY_FOREACH(getDelegate()->_CharacterArray, pObject)
 				{
 					CharacterBase *target = (CharacterBase *)pObject;
-					if ((strcmp(target->getRole()->getCString(), "Player") == 0 ||
-						 strcmp(target->getRole()->getCString(), "Com") == 0) &&
+					if (target->isPlayerOrCom() &&
 						target->getActionState() == State::DEAD)
 					{
 						distance = ccpDistance(target->getPosition(), getPosition());
@@ -311,7 +301,7 @@ class Kakuzu : public Hero
 		bool isFudon = false;
 		bool isKadon = false;
 		int countMon = 0;
-		if (hasMonsterArray())
+		if (hasMonsterArrayAny())
 		{
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
@@ -364,10 +354,7 @@ class Kakuzu : public Hero
 			{
 				if (isPlayer())
 				{
-					if (_delegate->getHudLayer()->skill4Button)
-					{
-						_delegate->getHudLayer()->skill4Button->setLock();
-					}
+					_delegate->getHudLayer()->skill4Button->setLock();
 				}
 			}
 		}

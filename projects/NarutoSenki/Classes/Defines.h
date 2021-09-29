@@ -30,6 +30,7 @@ using namespace CocosDenshion;
 #define MapPosCount 3
 
 extern int Cheats;
+#define MaxCheats 7
 
 #define SERVER "https://game.naruto.re"
 #define CURRENT_VERSION 2.1
@@ -70,6 +71,7 @@ extern int Cheats;
 #define kRoleCom "Com"
 #define kRolePlayer "Player"
 #define kRoleTower "Tower"
+#define kRoleBullet "Bullet"
 // Special
 #define kRoleHero "Hero"
 // 分身		Clone

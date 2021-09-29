@@ -140,20 +140,4 @@ tests/*/proj.android-studio/app/proguard-project.txt
 project.properties
 *.iml
 
-# Ignore prebuilt libraries folder
-# /external/*
-!/external/config.json
-/templates/lua-template-runtime/runtime
-/v*-deps-*.zip
-/v*-lua-runtime-*.zip
-/v*-console-*.zip
-/tools/fbx-conv/
-tests/cpp-tests/Resources/audio
-/tests/lua-empty-test/src/cocos/
-/tests/lua-game-controller-test/src/cocos/
-/tests/lua-tests/src/cocos/
-/tests/js-tests/res/
-/tools/framework-compile/bin/proj_modifier/plutil-win32/
-!/tools/framework-compile/bin/
-
 # End of https://www.toptal.com/developers/gitignore/api/cocos2dx

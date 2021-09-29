@@ -505,19 +505,18 @@ void HudLayer::initHeroInterface()
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
 		CharacterBase *player = (CharacterBase *)pObject;
-		if (strcmp(player->getRole()->getCString(), "Player") == 0 ||
-			strcmp(player->getRole()->getCString(), "Com") == 0)
+		if (player->isPlayerOrCom())
 		{
 			MiniIcon *mi;
 			const char *path = "";
-			if (strcmp(player->getRole()->getCString(), "Player") == 0)
+			if (player->isPlayer())
 			{
 				path = "player_icon.png";
 			}
-			else if (strcmp(player->getRole()->getCString(), "Com") == 0)
+			else if (player->isCom())
 			{
-				if (strcmp(player->getCharacter()->getCString(), Guardian_Han) == 0 ||
-					strcmp(player->getCharacter()->getCString(), Guardian_Roshi) == 0)
+				if (player->isCharacter(Guardian_Han) ||
+					player->isCharacter(Guardian_Roshi))
 				{
 					path = "guardian_icon.png";
 				}

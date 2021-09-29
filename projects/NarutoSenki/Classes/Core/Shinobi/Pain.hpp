@@ -19,8 +19,7 @@ class Pain : public Hero
 			clone->_isArmored = true;
 			if (isPlayer())
 			{
-				if (_delegate->getHudLayer()->skill5Button)
-					_delegate->getHudLayer()->skill5Button->setLock();
+				_delegate->getHudLayer()->skill5Button->setLock();
 			}
 
 			_skillChangeBuffValue = 100;

@@ -66,11 +66,11 @@ class Akamaru : public Hero
 							_master->isFreeActionState())
 						{
 							changeSide(sp);
-							if (strcmp(_master->getRole()->getCString(), "Player") != 0)
+							if (_master->isNotPlayer())
 							{
 								_master->attack(SKILL2);
 							}
-							else if (strcmp(_master->getRole()->getCString(), "Player") == 0)
+							else if (_master->isPlayer())
 							{
 								_master->attack(SKILL2);
 							}

@@ -180,19 +180,19 @@ void GameOver::listResult()
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
 		Hero *hero = (Hero *)pObject;
-		if (strcmp(hero->getRole()->getCString(), kRoleClone) == 0 ||
-			strcmp(hero->getRole()->getCString(), kRoleSummon) == 0 ||
-			strcmp(hero->getRole()->getCString(), kRoleKugutsu) == 0 ||
-			strcmp(hero->getCharacter()->getCString(), Guardian_Han) == 0 ||
-			strcmp(hero->getCharacter()->getCString(), Guardian_Roshi) == 0)
+		if (hero->isClone() ||
+			hero->isSummon() ||
+			hero->isKugutsu() ||
+			hero->isCharacter(Guardian_Han) ||
+			hero->isCharacter(Guardian_Roshi))
 		{
 			continue;
 		}
 
 		//4v4
-		if (Cheats > 6)
+		if (Cheats >= MaxCheats)
 		{
-			if (strcmp(hero->getRole()->getCString(), "Player") != 0)
+			if (hero->isNotPlayer())
 			{
 				continue;
 			}
@@ -210,7 +210,7 @@ void GameOver::listResult()
 
 		int realKillNum = to_int(hero->getKillNum()->getCString());
 
-		if (strcmp(hero->getGroup()->getCString(), Konoha) == 0)
+		if (hero->isKonohaGroup())
 		{
 			konohaKill += realKillNum;
 		}
@@ -233,7 +233,7 @@ void GameOver::listResult()
 
 		float posX = winSize.width / 2 - result_bg->getContentSize().width / 2 + 2;
 
-		if (strcmp(hero->getGroup()->getCString(), Konoha) == 0)
+		if (hero->isKonohaGroup())
 		{
 			avator_small->setPosition(ccp(posX, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 152 - (i * 25)));
 			killNum->setPosition(ccp(posX + 44, avator_small->getPositionY() + avator_small->getContentSize().height / 2));
@@ -289,7 +289,7 @@ void GameOver::listResult()
 		}
 	}
 
-	if (Cheats <= 6)
+	if (Cheats < MaxCheats)
 	{
 		if (akatsukiKill + konohaKill != to_int(_delegate->getTotalKills()->getCString()))
 		{
@@ -419,7 +419,7 @@ void GameOver::listResult()
 
 			// detailRecord = CCString::createWithFormat("%02d:%02d,%s,%d,%d", _minute, _delegate->_second, _delegate->currentPlayer->getKillNum()->getCString(), _delegate->currentPlayer->_deadNum, _delegate->currentPlayer->_flogNum)->getCString();
 		}
-		if (Cheats <= 6)
+		if (Cheats < MaxCheats)
 		{
 			resultChar = _delegate->currentPlayer->getCharacter();
 			if (strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "SageNaruto") == 0)
@@ -477,12 +477,12 @@ void GameOver::listResult()
 					CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 					{
 						Hero *hero = (Hero *)pObject;
-						if (strcmp(hero->getRole()->getCString(), kRoleClone) == 0 ||
-							strcmp(hero->getRole()->getCString(), "Player") == 0 ||
-							strcmp(hero->getRole()->getCString(), kRoleSummon) == 0 ||
-							strcmp(hero->getRole()->getCString(), kRoleKugutsu) == 0 ||
-							strcmp(hero->getCharacter()->getCString(), Guardian_Han) == 0 ||
-							strcmp(hero->getCharacter()->getCString(), Guardian_Roshi) == 0)
+						if (hero->isClone() ||
+							hero->isPlayer() ||
+							hero->isSummon() ||
+							hero->isKugutsu() ||
+							hero->isCharacter(Guardian_Han) ||
+							hero->isCharacter(Guardian_Roshi))
 						{
 							continue;
 						}
@@ -564,7 +564,7 @@ void GameOver::listResult()
 		}
 	}
 
-	if (Cheats <= 6)
+	if (Cheats < MaxCheats)
 	{
 		CCLabelBMFont *version = CCLabelBMFont::create(GAMEOVER_VER, "Fonts/1.fnt");
 		version->setPosition(ccp(winSize.width / 2 + 94, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 6));

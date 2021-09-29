@@ -225,7 +225,7 @@ class Konan : public Hero
 		_isArmored = true;
 
 		_attackType = _spcattackType2;
-		_attackValue = to_int(getspcAttackValue2()->getCString());
+		_attackValue = getSpcAttackValue2();
 		_attackRangeX = _spcattackRangeX2;
 		_attackRangeY = _spcattackRangeY2;
 

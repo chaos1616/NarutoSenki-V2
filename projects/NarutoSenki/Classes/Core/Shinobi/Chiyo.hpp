@@ -68,7 +68,7 @@ class Chiyo : public Hero
 
 		bool isFound1 = false;
 
-		if (hasMonsterArray())
+		if (hasMonsterArrayAny())
 		{
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)

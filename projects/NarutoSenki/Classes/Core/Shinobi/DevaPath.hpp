@@ -60,7 +60,7 @@ class DevaPath : public Hero
 					bool isHaveKuilei1 = false;
 					bool isHaveKuilei2 = false;
 
-					if (hasMonsterArray())
+					if (hasMonsterArrayAny())
 					{
 						CCObject *pObject;
 						CCARRAY_FOREACH(getMonsterArray(), pObject)

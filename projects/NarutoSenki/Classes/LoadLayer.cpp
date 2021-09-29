@@ -254,8 +254,8 @@ void LoadLayer::unloadCharIMG(const CharacterBase *c)
 	auto path = CCString::createWithFormat("Element/%s/%s.plist", charName, charName)->getCString();
 	removeSprites(path);
 
-	if (strcmp(roleName, "Com") == 0 ||
-		strcmp(roleName, "Player") == 0)
+	if (strcmp(roleName, kRoleCom) == 0 ||
+		strcmp(roleName, kRolePlayer) == 0)
 	{
 		KTools::prepareFileOGG(charName, true);
 	}

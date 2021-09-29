@@ -187,7 +187,7 @@ void GameLayer::initHeros()
 	_isOugis2Game = true;
 
 	// 4v4
-	if (Cheats > 6)
+	if (Cheats >= MaxCheats)
 	{
 		CCARRAY_FOREACH(Heros, pObject)
 		{
@@ -342,7 +342,7 @@ void GameLayer::onGameStart(float dt)
 		// NOTE: Resume movement speed
 		tempChar->setWalkSpeed(tempChar->_originSpeed);
 
-		if (strcmp(tempChar->getRole()->getCString(), "Com") == 0)
+		if (tempChar->isCom())
 			tempChar->doAI();
 	}
 
@@ -455,7 +455,7 @@ void GameLayer::initTower()
 		if (i == 1 || i == 4)
 		{
 			//4v4
-			if (Cheats > 6)
+			if (Cheats >= MaxCheats)
 			{
 				tower->setMaxHP(CCString::createWithFormat("%d", 80000));
 			}
@@ -608,7 +608,7 @@ void GameLayer::checkTower()
 	CCARRAY_FOREACH(_TowerArray, pObject)
 	{
 		Tower *tower = (Tower *)pObject;
-		if (strcmp(tower->getGroup()->getCString(), Konoha) == 0)
+		if (tower->isKonohaGroup())
 		{
 			konohaTowerCount++;
 		}
@@ -644,12 +644,12 @@ void GameLayer::checkTower()
 	{
 		CharacterBase *tmpHero = (CharacterBase *)pObject;
 
-		if (strcmp(tmpHero->getRole()->getCString(), "Com") != 0)
+		if (tmpHero->isNotCom())
 		{
 			continue;
 		}
 
-		if (strcmp(tmpHero->getGroup()->getCString(), Konoha) == 0)
+		if (tmpHero->isKonohaGroup())
 		{
 			tmpHero->battleCondiction = konohaTowerCount - akatsukiTowerCount;
 			if (konohaTowerCount == 1)

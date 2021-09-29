@@ -181,7 +181,7 @@ class Kakashi : public Hero
 		setSkill2Action(createAnimation(skillSPC2Array, 10.0f, false, true));
 		setIdleAction(createAnimation(skillSPC3Array, 5.0f, true, false));
 		settempAttackValue1(CCString::createWithFormat("%d", getSAttackValue1()));
-		setsAttackValue1(getspcAttackValue1());
+		setsAttackValue1(getSpcAttackValue1Str());
 
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)

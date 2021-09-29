@@ -62,10 +62,7 @@ class Lee : public Hero
 			{
 				if (isPlayer())
 				{
-					if (_delegate->getHudLayer()->skill4Button)
-					{
-						_delegate->getHudLayer()->skill4Button->setLock();
-					}
+					_delegate->getHudLayer()->skill4Button->setLock();
 				}
 				setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() - 30));
 			}
@@ -87,7 +84,7 @@ class Lee : public Hero
 	{
 		HeroElement::changeHPbar();
 
-		if (!isPlayer())
+		if (isNotPlayer())
 			return;
 
 		if (isCharacter(kLee____))
@@ -97,20 +94,14 @@ class Lee : public Hero
 			{
 				if (bamen < 1)
 				{
-					if (_delegate->getHudLayer()->skill4Button)
-					{
-						_delegate->getHudLayer()->skill4Button->setLock();
-					}
+					_delegate->getHudLayer()->skill4Button->setLock();
 				}
 			}
 			else if (_exp >= 1500 && _level == 3 + 1)
 			{
 				if (bamen < 3)
 				{
-					if (_delegate->getHudLayer()->skill5Button)
-					{
-						_delegate->getHudLayer()->skill5Button->setLock();
-					}
+					_delegate->getHudLayer()->skill5Button->setLock();
 				}
 			}
 		}
@@ -141,10 +132,7 @@ class Lee : public Hero
 			setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 30));
 			if (isPlayer())
 			{
-				if (_delegate->getHudLayer()->skill4Button)
-				{
-					_delegate->getHudLayer()->skill4Button->unLock();
-				}
+				_delegate->getHudLayer()->skill4Button->unLock();
 			}
 		}
 		else if (bamen == 2)

@@ -152,7 +152,7 @@ protected:
 		setActionState(State::DEAD);
 		stopAllActions();
 
-		if (strcmp(getGroup()->getCString(), Konoha) == 0)
+		if (isKonohaGroup())
 		{
 			int index = _delegate->_KonohaFlogArray->indexOfObject(this);
 			_delegate->_KonohaFlogArray->removeObjectAtIndex(index);
@@ -207,7 +207,7 @@ protected:
 				CCPoint sp = getDistanceToTargetAndIgnoreOriginY();
 				if (abs(sp.x) > _randomPosX || abs(sp.y) > _randomPosY)
 				{
-					if (abs(sp.x) > 64 && _mainTarget->isNotFlog() && strcmp(_mainTarget->getRole()->getCString(), kRoleTower) != 0)
+					if (abs(sp.x) > 64 && _mainTarget->isNotFlog() && _mainTarget->isNotTower())
 					{
 						_mainTarget = nullptr;
 						return;
@@ -230,14 +230,14 @@ protected:
 			// no target then step on
 			if (abs(getPositionY() - _mainPosY) > 8)
 			{
-				if (strcmp(getGroup()->getCString(), Konoha) == 0)
+				if (isKonohaGroup())
 					moveDirection = ccpNormalize(ccp(1, getPositionY() > _mainPosY ? -1 : 1));
 				else
 					moveDirection = ccpNormalize(ccp(-1, getPositionY() > _mainPosY ? -1 : 1));
 			}
 			else
 			{
-				if (strcmp(getGroup()->getCString(), Konoha) == 0)
+				if (isKonohaGroup())
 					moveDirection = ccpNormalize(ccp(1, 0));
 				else
 					moveDirection = ccpNormalize(ccp(-1, 0));

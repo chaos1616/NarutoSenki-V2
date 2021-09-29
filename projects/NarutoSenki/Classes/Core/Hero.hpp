@@ -30,13 +30,14 @@ public:
 
 	virtual void setID(CCString *character, CCString *role, CCString *group)
 	{
-		auto oldChar = getCharacter() ? getCharacter()->getCString() : nullptr;
+		auto oldCharName = getCharacter() ? getCharacter()->getCString() : nullptr;
 		setCharacter(character);
 		setRole(role);
 		setGroup(group);
 
 		// Updated hud layer
-		if (isPlayer() && oldChar && strcmp(oldChar, character->getCString()) != 0)
+		auto charName = getCharacter()->getCString();
+		if (isPlayer() && oldCharName && strcmp(oldCharName, charName) != 0)
 		{
 			_delegate->updateHudSkillButtons();
 		}
@@ -44,7 +45,7 @@ public:
 		CCArray *animationArray = CCArray::create();
 		const char *filePath;
 
-		filePath = CCString::createWithFormat("Element/%s/%s.xml", getCharacter()->getCString(), getCharacter()->getCString())->getCString();
+		filePath = CCString::createWithFormat("Element/%s/%s.xml", charName, charName)->getCString();
 
 		KTools::readXMLToArray(filePath, animationArray);
 
@@ -136,12 +137,12 @@ public:
 		setsAttackValue2(tmpValue);
 		skill2Array = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		if (strcmp(getCharacter()->getCString(), "Kakashi") == 0)
+		if (strcmp(charName, "Kakashi") == 0)
 		{
 			skill1Array->retain();
 			skill2Array->retain();
 		}
-		else if (strcmp(getCharacter()->getCString(), "Minato") == 0)
+		else if (strcmp(charName, "Minato") == 0)
 		{
 			skill1Array->retain();
 			skill2Array->retain();
@@ -212,32 +213,32 @@ public:
 			break;
 		}
 
-		if (strcmp(getCharacter()->getCString(), "Itachi") == 0 ||
-			strcmp(getCharacter()->getCString(), "Choji") == 0 ||
-			strcmp(getCharacter()->getCString(), "Kiba") == 0 ||
-			strcmp(getCharacter()->getCString(), "Naruto") == 0 ||
-			strcmp(getCharacter()->getCString(), "SageNaruto") == 0 ||
-			strcmp(getCharacter()->getCString(), "RikudoNaruto") == 0 ||
-			strcmp(getCharacter()->getCString(), "Sasuke") == 0 ||
-			strcmp(getCharacter()->getCString(), "ImmortalSasuke") == 0)
+		if (strcmp(charName, "Itachi") == 0 ||
+			strcmp(charName, "Choji") == 0 ||
+			strcmp(charName, "Kiba") == 0 ||
+			strcmp(charName, "Naruto") == 0 ||
+			strcmp(charName, "SageNaruto") == 0 ||
+			strcmp(charName, "RikudoNaruto") == 0 ||
+			strcmp(charName, "Sasuke") == 0 ||
+			strcmp(charName, "ImmortalSasuke") == 0)
 		{
 			tmpAction = (CCArray *)(animationArray->objectAtIndex(16));
 			skillSPC4Array = (CCArray *)(tmpAction->objectAtIndex(1));
 			skillSPC4Array->retain();
 		}
 
-		if (strcmp(getCharacter()->getCString(), "Sasuke") == 0 ||
-			strcmp(getCharacter()->getCString(), "SageNaruto") == 0)
+		if (strcmp(charName, "Sasuke") == 0 ||
+			strcmp(charName, "SageNaruto") == 0)
 		{
 			tmpAction = (CCArray *)(animationArray->objectAtIndex(15));
 			skillSPC5Array = (CCArray *)(tmpAction->objectAtIndex(1));
 			skillSPC5Array->retain();
 		}
-		else if (strcmp(getCharacter()->getCString(), "Kiba") == 0)
+		else if (strcmp(charName, "Kiba") == 0)
 		{
 			_isArmored = true;
 		}
-		else if (strcmp(getCharacter()->getCString(), "Kakuzu") == 0)
+		else if (strcmp(charName, "Kakuzu") == 0)
 		{
 			_heartEffect = CCSprite::createWithSpriteFrameName("Heart_Effect_00.png");
 			_heartEffect->setPosition(ccp(getContentSize().width + 40, 70));

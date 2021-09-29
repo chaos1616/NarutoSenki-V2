@@ -248,7 +248,7 @@ class Itachi : public Hero
 
 		setKnockDownAction(createAnimation(knockDownArray, 10.0f, false, true));
 
-		if (hasMonsterArray())
+		if (hasMonsterArrayAny())
 		{
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)

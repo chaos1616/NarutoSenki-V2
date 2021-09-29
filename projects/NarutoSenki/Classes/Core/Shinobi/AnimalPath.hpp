@@ -33,7 +33,7 @@ class AnimalPath : public Hero
 				{
 					if (isFreeActionState())
 					{
-						if (_isCanSkill1 && strcmp(_mainTarget->getRole()->getCString(), kRoleTower) != 0)
+						if (_isCanSkill1 && _mainTarget->isNotTower())
 						{
 							attack(SKILL1);
 							scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcoldDown1);

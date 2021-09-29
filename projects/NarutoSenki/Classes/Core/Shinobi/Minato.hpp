@@ -36,18 +36,18 @@ class Minato : public Hero
 			{
 				CCObject *pObject;
 				bool isMark = false;
-				if (hasMonsterArray())
+				if (hasMonsterArrayAny())
 				{
 					CCARRAY_FOREACH(getMonsterArray(), pObject)
 					{
 						Monster *mo = (Monster *)pObject;
 						if (strcmp(mo->getCharacter()->getCString(), "HiraishinMark") == 0)
 						{
-							if (strcmp(getGroup()->getCString(), Konoha) == 0 && mo->getPositionX() < getPositionX())
+							if (isKonohaGroup() && mo->getPositionX() < getPositionX())
 							{
 								isMark = true;
 							}
-							else if (strcmp(getGroup()->getCString(), Akatsuki) == 0 && mo->getPositionX() > getPositionX())
+							else if (isAkatsukiGroup() && mo->getPositionX() > getPositionX())
 							{
 								isMark = true;
 							}
@@ -109,7 +109,7 @@ class Minato : public Hero
 			{
 				CCObject *pObject;
 				bool isMark = false;
-				if (hasMonsterArray())
+				if (hasMonsterArrayAny())
 				{
 					CCARRAY_FOREACH(getMonsterArray(), pObject)
 					{
@@ -244,18 +244,18 @@ class Minato : public Hero
 			{
 				CCObject *pObject;
 				bool isMark = false;
-				if (hasMonsterArray())
+				if (hasMonsterArrayAny())
 				{
 					CCARRAY_FOREACH(getMonsterArray(), pObject)
 					{
 						Monster *mo = (Monster *)pObject;
 						if (strcmp(mo->getCharacter()->getCString(), "HiraishinMark") == 0)
 						{
-							if (strcmp(getGroup()->getCString(), Konoha) == 0 && mo->getPositionX() > getPositionX())
+							if (isKonohaGroup() && mo->getPositionX() > getPositionX())
 							{
 								isMark = true;
 							}
-							else if (strcmp(getGroup()->getCString(), Akatsuki) == 0 && mo->getPositionX() < getPositionX())
+							else if (isAkatsukiGroup() && mo->getPositionX() < getPositionX())
 							{
 								isMark = true;
 							}
