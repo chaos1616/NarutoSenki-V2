@@ -115,9 +115,9 @@ public:
 	inline bool			isKonohaGroup() { return strcmp(_group->getCString(), Konoha) == 0; }
 	inline bool			isAkatsukiGroup() { return strcmp(_group->getCString(), Akatsuki) == 0; }
 
-	bool				enableDead		= true;
-	bool				enableReborn	= true;
-	int8_t				changeCharId; // NOTE: Support for deathmatch
+	bool				enableDead	 = true;
+	bool				enableReborn = true;
+	int8_t				changeCharId = -1; // NOTE: Support for random deathmatch mode
 
 	int 				rebornLabelTime;
 	int 				battleCondiction;
