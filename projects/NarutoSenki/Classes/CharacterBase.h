@@ -466,7 +466,7 @@ protected:
 	void				onExit();
 
 public:
-	// character extension
+	// character extensions
 	inline int			getCoinValue() { return to_int(_coin->getCString()); }
 	inline uint32_t		getHPValue() { return to_uint(_hp->getCString()); }
 	inline uint32_t		getMaxHPValue() { return to_uint(_maxHP->getCString()); }

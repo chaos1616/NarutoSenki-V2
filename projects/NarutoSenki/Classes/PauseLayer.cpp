@@ -1,8 +1,6 @@
 #include "PauseLayer.h"
 #include "GameLayer.h"
 
-using namespace CocosDenshion;
-
 PauseLayer::PauseLayer()
 {
 }

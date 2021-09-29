@@ -1,8 +1,7 @@
 #pragma once
 #include "cocos2d.h"
-#include "SimpleAudioEngine.h"
 
-USING_NS_CC;
+using namespace cocos2d;
 
 class GameLayer;
 class PauseLayer : public CCLayer

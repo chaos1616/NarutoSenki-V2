@@ -1,5 +1,4 @@
 #include "CreditsLayer.h"
-using namespace CocosDenshion;
 #include "StartMenu.h"
 
 CreditsLayer::CreditsLayer()
