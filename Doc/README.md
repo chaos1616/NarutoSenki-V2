@@ -45,6 +45,9 @@ Get the latest developments👇
   - [Added] If no character is selected in any mode, it will be selected randomly
   - [Fixed] V2 version bugs (Lee, Kakuzu, Kisame)
 
+- 2021-9-29
+  - [Fixed] Audio playback error in debug mode on windows
+
 ### New features 
 
 #### Game Mode
