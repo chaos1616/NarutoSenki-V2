@@ -137,12 +137,12 @@ public:
 		setsAttackValue2(tmpValue);
 		skill2Array = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		if (strcmp(charName, "Kakashi") == 0)
+		if (is_same(charName, "Kakashi"))
 		{
 			skill1Array->retain();
 			skill2Array->retain();
 		}
-		else if (strcmp(charName, "Minato") == 0)
+		else if (is_same(charName, "Minato"))
 		{
 			skill1Array->retain();
 			skill2Array->retain();
@@ -213,32 +213,32 @@ public:
 			break;
 		}
 
-		if (strcmp(charName, "Itachi") == 0 ||
-			strcmp(charName, "Choji") == 0 ||
-			strcmp(charName, "Kiba") == 0 ||
-			strcmp(charName, "Naruto") == 0 ||
-			strcmp(charName, "SageNaruto") == 0 ||
-			strcmp(charName, "RikudoNaruto") == 0 ||
-			strcmp(charName, "Sasuke") == 0 ||
-			strcmp(charName, "ImmortalSasuke") == 0)
+		if (is_same(charName, "Itachi") ||
+			is_same(charName, "Choji") ||
+			is_same(charName, "Kiba") ||
+			is_same(charName, "Naruto") ||
+			is_same(charName, "SageNaruto") ||
+			is_same(charName, "RikudoNaruto") ||
+			is_same(charName, "Sasuke") ||
+			is_same(charName, "ImmortalSasuke"))
 		{
 			tmpAction = (CCArray *)(animationArray->objectAtIndex(16));
 			skillSPC4Array = (CCArray *)(tmpAction->objectAtIndex(1));
 			skillSPC4Array->retain();
 		}
 
-		if (strcmp(charName, "Sasuke") == 0 ||
-			strcmp(charName, "SageNaruto") == 0)
+		if (is_same(charName, "Sasuke") ||
+			is_same(charName, "SageNaruto"))
 		{
 			tmpAction = (CCArray *)(animationArray->objectAtIndex(15));
 			skillSPC5Array = (CCArray *)(tmpAction->objectAtIndex(1));
 			skillSPC5Array->retain();
 		}
-		else if (strcmp(charName, "Kiba") == 0)
+		else if (is_same(charName, "Kiba"))
 		{
 			_isArmored = true;
 		}
-		else if (strcmp(charName, "Kakuzu") == 0)
+		else if (is_same(charName, "Kakuzu"))
 		{
 			_heartEffect = CCSprite::createWithSpriteFrameName("Heart_Effect_00.png");
 			_heartEffect->setPosition(ccp(getContentSize().width + 40, 70));

@@ -152,7 +152,7 @@ void LoadLayer::preloadIMG()
 
 void LoadLayer::perloadCharIMG(const char *player)
 {
-#define player_is(name) strcmp(player, #name) == 0
+#define player_is(name) is_same(player, #name)
 
 	if (!player)
 	{
@@ -245,8 +245,8 @@ void LoadLayer::unloadCharIMG(const CharacterBase *c)
 	auto roleName = c->getRole()->getCString();
 	auto charName = c->getCharacter()->getCString();
 
-	if (strcmp(roleName, kRoleClone) == 0 ||
-		strcmp(roleName, kRoleSummon) == 0)
+	if (is_same(roleName, kRoleClone) ||
+		is_same(roleName, kRoleSummon))
 	{
 		return;
 	}
@@ -254,49 +254,49 @@ void LoadLayer::unloadCharIMG(const CharacterBase *c)
 	auto path = CCString::createWithFormat("Element/%s/%s.plist", charName, charName)->getCString();
 	removeSprites(path);
 
-	if (strcmp(roleName, kRoleCom) == 0 ||
-		strcmp(roleName, kRolePlayer) == 0)
+	if (is_same(roleName, kRoleCom) ||
+		is_same(roleName, kRolePlayer))
 	{
 		KTools::prepareFileOGG(charName, true);
 	}
 
-	if (strcmp(charName, "Jiraiya") == 0)
+	if (is_same(charName, "Jiraiya"))
 	{
 		removeSprites("Element/SageJiraiya/SageJiraiya.plist");
 		KTools::prepareFileOGG("SageJiraiya", true);
 	}
-	else if (strcmp(charName, "Kankuro") == 0)
+	else if (is_same(charName, "Kankuro"))
 	{
 		removeSprites("Element/Karasu/Karasu.plist");
 		removeSprites("Element/Sanshouuo/Sanshouuo.plist");
 	}
-	else if (strcmp(charName, "Kakuzu") == 0)
+	else if (is_same(charName, "Kakuzu"))
 	{
 		removeSprites("Element/MaskFudon/MaskFudon.plist");
 		removeSprites("Element/MaskRaidon/MaskRaidon.plist");
 		removeSprites("Element/MaskKadon/MaskKadon.plist");
 	}
-	else if (strcmp(charName, "Naruto") == 0)
+	else if (is_same(charName, "Naruto"))
 	{
 		removeSprites("Element/SageNaruto/SageNaruto.plist");
 		removeSprites("Element/RikudoNaruto/RikudoNaruto.plist");
 		KTools::prepareFileOGG("SageNaruto", true);
 		KTools::prepareFileOGG("RikudoNaruto", true);
 	}
-	else if (strcmp(charName, "RockLee") == 0)
+	else if (is_same(charName, "RockLee"))
 	{
 		removeSprites("Element/Lee/Lee.plist");
 	}
-	else if (strcmp(charName, "Lee") == 0)
+	else if (is_same(charName, "Lee"))
 	{
 		removeSprites("Element/RockLee/RockLee.plist");
 	}
-	else if (strcmp(charName, "Sasuke") == 0)
+	else if (is_same(charName, "Sasuke"))
 	{
 		KTools::prepareFileOGG("ImmortalSasuke", true);
 		removeSprites("Element/ImmortalSasuke/ImmortalSasuke.plist");
 	}
-	else if (strcmp(charName, "Pain") == 0)
+	else if (is_same(charName, "Pain"))
 	{
 		KTools::prepareFileOGG("Nagato", true);
 		removeSprites("Element/AnimalPath/AnimalPath.plist");
@@ -304,7 +304,7 @@ void LoadLayer::unloadCharIMG(const CharacterBase *c)
 		removeSprites("Element/DevaPath/DevaPath.plist");
 		removeSprites("Element/Nagato/Nagato.plist");
 	}
-	else if (strcmp(charName, "Nagato") == 0)
+	else if (is_same(charName, "Nagato"))
 	{
 		removeSprites("Element/AnimalPath/AnimalPath.plist");
 		removeSprites("Element/AsuraPath/AsuraPath.plist");
@@ -325,7 +325,7 @@ void LoadLayer::setLoadingAnimation(const char *player, int index)
 	const char *file = CCString::createWithFormat("%s_Walk_", player)->getCString();
 	int frameCount;
 	//FIXME: use the other way get animation frame count
-	if (strcmp(player, "Konan") == 0)
+	if (is_same(player, "Konan"))
 		frameCount = 1;
 	else
 		frameCount = 7;

@@ -35,17 +35,17 @@ namespace BuffType
 
 } // namespace BuffType
 
-namespace Character
+namespace CharacterEnum
 {
 
 } // namespace Character
 
-namespace Flog
+namespace FlogEnum
 {
 
 } // namespace Flog
 
-namespace Monster
+namespace MonsterEnum
 {
 
 } // namespace Monster

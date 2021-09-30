@@ -480,7 +480,7 @@ void HudLayer::initHeroInterface()
 		const char *path = "";
 		MiniIcon *mi;
 
-		if (strcmp(player->getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) == 0)
+		if (is_same(player->getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()))
 		{
 			path = "tower_icon1.png";
 		}
@@ -521,7 +521,7 @@ void HudLayer::initHeroInterface()
 				}
 				else
 				{
-					if (strcmp(player->getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) == 0)
+					if (is_same(player->getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()))
 					{
 						path = "com_icon.png";
 					}
@@ -955,7 +955,7 @@ void HudLayer::setReportCache()
 		CCDictionary *tempdict = (CCDictionary *)pObject;
 		CCString *isDisplay = CCString::create(tempdict->valueForKey("isDisplay")->getCString());
 
-		if (strcmp(isDisplay->getCString(), "True") != 0)
+		if (!is_same(isDisplay->getCString(), "True"))
 		{
 			CCString *name1 = CCString::create(tempdict->valueForKey("name1")->getCString());
 			CCString *name2 = CCString::create(tempdict->valueForKey("name2")->getCString());
@@ -985,9 +985,9 @@ void HudLayer::setReportCache()
 					CCString *tempName2 = CCString::create(tempdict2->valueForKey("name2")->getCString());
 					CCString *isDisplay2 = CCString::create(tempdict2->valueForKey("isDisplay")->getCString());
 
-					if (strcmp(tempName->getCString(), name1->getCString()) == 0 &&
+					if (is_same(tempName->getCString(), name1->getCString()) &&
 						strcmp(tempName2->getCString(), kRoleTower) != 0 &&
-						strcmp(isDisplay2->getCString(), "True") == 0)
+						is_same(isDisplay2->getCString(), "True"))
 					{
 						num2 += 1;
 					}
@@ -1283,7 +1283,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 			cutPath2 = "CutBg.png";
 		}
 
-		if (strcmp(group->getCString(), Konoha) == 0)
+		if (is_same(group->getCString(), Konoha))
 		{
 			startPosY = 0;
 			startPosX = -48;
@@ -1316,7 +1316,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		CCAction *tempAction = CCAnimate::create(tempAnimation);
 
 		CCSprite *CutLine = CCSprite::createWithSpriteFrameName("CutLine_01.png");
-		if (strcmp(group->getCString(), Konoha) == 0)
+		if (is_same(group->getCString(), Konoha))
 		{
 			CutLine->setAnchorPoint(ccp(0, 0));
 			CutLine->setPosition(ccp(-48, 0));
@@ -1335,7 +1335,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		ougisLayer->addChild(CutLine);
 
 		CCSprite *CutLineUP = CCSprite::createWithSpriteFrameName("CutLineUP.png");
-		if (strcmp(group->getCString(), Konoha) == 0)
+		if (is_same(group->getCString(), Konoha))
 		{
 			CutLineUP->setAnchorPoint(ccp(0, 0));
 			CutLineUP->setPosition(ccp(-48, 2));
@@ -1352,7 +1352,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		ougisLayer->addChild(CutLineUP);
 
 		CCSprite *CutIn = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_CutIn.png", character->getCString())->getCString());
-		if (strcmp(group->getCString(), Konoha) == 0)
+		if (is_same(group->getCString(), Konoha))
 		{
 			CutIn->setAnchorPoint(ccp(0, 0));
 			CutIn->setPosition(ccp(-200, 10));
@@ -1367,7 +1367,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		ougisLayer->addChild(CutIn);
 
 		CCSprite *CutLineDown = CCSprite::createWithSpriteFrameName("CutLineDown.png");
-		if (strcmp(group->getCString(), Konoha) == 0)
+		if (is_same(group->getCString(), Konoha))
 		{
 			CutLineDown->setAnchorPoint(ccp(0, 0));
 			CutLineDown->setPosition(ccp(-48, 0));

@@ -22,7 +22,7 @@ bool GearButton::init(const char *szImage)
 	do
 	{
 		CC_BREAK_IF(!CCSprite::init());
-		if (strcmp(szImage, "") != 0)
+		if (!is_same(szImage, ""))
 			initWithSpriteFrameName(szImage);
 
 		setAnchorPoint(ccp(0, 0));

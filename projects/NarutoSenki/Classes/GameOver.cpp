@@ -272,7 +272,7 @@ void GameOver::listResult()
 
 	if (_totalSecond > 900 && _delegate->_isSurrender)
 	{
-		if (strcmp(_delegate->currentPlayer->getGroup()->getCString(), Konoha) == 0)
+		if (is_same(_delegate->currentPlayer->getGroup()->getCString(), Konoha))
 		{
 			if (konohaKill > akatsukiKill)
 			{
@@ -491,7 +491,7 @@ void GameOver::listResult()
 							hero->changeGroup();
 						}
 
-						if (strcmp(hero->getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) == 0)
+						if (is_same(hero->getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()))
 						{
 							CCString *winNum = KTools::readSQLite("CharRecord", "name", hero->getCharacter()->getCString(), "column1");
 							int tempWin = 0;

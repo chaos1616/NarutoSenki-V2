@@ -305,7 +305,8 @@ void KTools::dfsFolder(std::string folderPath, int depth /* = 0 */, int type /* 
 	{
 		if (FileInfo.attrib & _A_SUBDIR)
 		{
-			if ((strcmp(FileInfo.name, ".") != 0) && (strcmp(FileInfo.name, "..") != 0))
+			if (!is_same(FileInfo.name, ".") &&
+				!is_same(FileInfo.name, ".."))
 			{
 				std::string newPath = folderPath + "\\" + FileInfo.name;
 				if (type == 0)
@@ -352,8 +353,8 @@ void KTools::dfsFolder(std::string folderPath, int depth /* = 0 */, int type /* 
 		lstat(entry->d_name, &statbuf);
 		if (S_ISDIR(statbuf.st_mode))
 		{
-			if (strcmp(".", entry->d_name) == 0 ||
-				strcmp("..", entry->d_name) == 0)
+			if (is_same(".", entry->d_name) ||
+				is_same("..", entry->d_name))
 				continue;
 			if (type == 0)
 			{
@@ -413,7 +414,7 @@ void KTools::prepareFileOGG(const char *listName, bool unload /* =false */)
 	{
 		auto pathSrc = fileEle->FirstAttribute()->Value();
 		auto soundPath = fileEle->GetText();
-		if (strcmp(pathSrc, listName) == 0)
+		if (is_same(pathSrc, listName))
 		{
 			if (!unload)
 			{
@@ -534,7 +535,7 @@ CCString *KTools::readSQLite(const char *table, const char *column, const char *
 			std::string str = result[i];
 
 			decode(str);
-			if (strcmp(str.c_str(), value) == 0)
+			if (is_same(str.c_str(), value))
 			{
 				target = result[i + 1];
 				decode(target);
@@ -544,7 +545,8 @@ CCString *KTools::readSQLite(const char *table, const char *column, const char *
 
 		CCString *targetValue = CCString::create("");
 
-		if (strcmp(targetColumn, "column3") == 0 || strcmp(targetColumn, "column4") == 0)
+		if (is_same(targetColumn, "column3") ||
+			is_same(targetColumn, "column4"))
 		{
 			targetValue = CCString::createWithFormat("%s", target.c_str());
 		}
@@ -581,7 +583,7 @@ void KTools::saveSQLite(const char *table, const char *relatedColumn, const char
 		{
 			std::string str = result[i];
 			decode(str);
-			if (strcmp(str.c_str(), value) == 0)
+			if (is_same(str.c_str(), value))
 			{
 				columnValue = result[i];
 				target = result[i + 1];

@@ -17,8 +17,8 @@ bool Effect::init(const char *name, CCObject *attacker)
 
 	at = (CharacterBase *)attacker;
 
-	if (strcmp(name, "n_hit") == 0 ||
-		strcmp(name, "b_hit") == 0)
+	if (is_same(name, "n_hit") ||
+		is_same(name, "b_hit"))
 	{
 		initWithSpriteFrameName("red_damge_01.png");
 		setAnchorPoint(ccp(0.5f, 0));
@@ -29,18 +29,18 @@ bool Effect::init(const char *name, CCObject *attacker)
 		CCAction *effectAction = createEffectAnimation("red_damge_", 4, 14, false);
 		runAction(effectAction);
 	}
-	else if (strcmp(name, "l_hit") == 0 ||
-			 strcmp(name, "f_hit") == 0 ||
-			 strcmp(name, "f2_hit") == 0 ||
-			 strcmp(name, "c_hit") == 0 ||
-			 strcmp(name, "o_hit") == 0 ||
-			 strcmp(name, "o2_hit") == 0 ||
-			 strcmp(name, "ob_hit") == 0 ||
-			 strcmp(name, "ab_hit") == 0 ||
-			 strcmp(name, "ac_hit") == 0 ||
-			 strcmp(name, "ct_hit") == 0 ||
-			 strcmp(name, "ts_hit") == 0 ||
-			 strcmp(name, "s_hit") == 0)
+	else if (is_same(name, "l_hit") ||
+			 is_same(name, "f_hit") ||
+			 is_same(name, "f2_hit") ||
+			 is_same(name, "c_hit") ||
+			 is_same(name, "o_hit") ||
+			 is_same(name, "o2_hit") ||
+			 is_same(name, "ob_hit") ||
+			 is_same(name, "ab_hit") ||
+			 is_same(name, "ac_hit") ||
+			 is_same(name, "ct_hit") ||
+			 is_same(name, "ts_hit") ||
+			 is_same(name, "s_hit"))
 	{
 		setScale(0.8f);
 		initWithSpriteFrameName("red_damge_01.png");
@@ -49,10 +49,10 @@ bool Effect::init(const char *name, CCObject *attacker)
 		CCAction *effectAction = createEffectAnimation("red_damge_", 4, 14, false);
 		runAction(effectAction);
 	}
-	else if (strcmp(name, "bl_hit") == 0 ||
-			 strcmp(name, "bc_hit") == 0 ||
-			 strcmp(name, "bf_hit") == 0 ||
-			 strcmp(name, "sl_hit") == 0)
+	else if (is_same(name, "bl_hit") ||
+			 is_same(name, "bc_hit") ||
+			 is_same(name, "bf_hit") ||
+			 is_same(name, "sl_hit"))
 	{
 		initWithSpriteFrameName("blue_damge_01.png");
 		//setAnchorPoint(ccp(0.5f,0));
@@ -63,7 +63,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 		CCAction *effectAction = createEffectAnimation("blue_damge_", 4, 14, false);
 		runAction(effectAction);
 	}
-	else if (strcmp(name, "a_hit") == 0)
+	else if (is_same(name, "a_hit"))
 	{
 		initWithSpriteFrameName("bottom_damage_01.png");
 		setAnchorPoint(ccp(0.5f, 0));
@@ -71,22 +71,22 @@ bool Effect::init(const char *name, CCObject *attacker)
 		CCAction *effectAction = createEffectAnimation("bottom_damage_", 6, 20, false);
 		runAction(effectAction);
 	}
-	else if (strcmp(name, "Kagura") == 0)
+	else if (is_same(name, "Kagura"))
 	{
 		initWithSpriteFrameName("Kagura_01.png");
 		CCAction *effectAction = createEffectAnimation("Kagura_", 9, 10, false);
 		setAnchorPoint(ccp(0.5f, 0.5f));
 		runAction(effectAction);
 	}
-	else if (strcmp(name, "Hupo") == 0)
+	else if (is_same(name, "Hupo"))
 	{
 		initWithSpriteFrameName("Hupo_01.png");
 		CCAction *effectAction = createEffectAnimation("Hupo_", 7, 10, false);
 		setAnchorPoint(ccp(0.5f, 0.5f));
 		runAction(effectAction);
 	}
-	else if (strcmp(name, "hp_restore") == 0 ||
-			 strcmp(name, "speedUp") == 0)
+	else if (is_same(name, "hp_restore") ||
+			 is_same(name, "speedUp"))
 	{
 		initWithSpriteFrameName(CCString::createWithFormat("%s_01.png", name)->getCString());
 		CCAction *effectAction = createEffectAnimation(CCString::createWithFormat("%s_", name)->getCString(), 5, 5, false);
@@ -97,7 +97,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 		CCAction *seq = CCSequence::create(seqArray);
 		runAction(seq);
 	}
-	else if (strcmp(name, "smk") == 0)
+	else if (is_same(name, "smk"))
 	{
 		initWithSpriteFrameName("smk_01.png");
 		setAnchorPoint(ccp(0.5f, 0));
@@ -109,7 +109,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 			SimpleAudioEngine::sharedEngine()->playEffect("Audio/Effect/poof.ogg");
 		}
 	}
-	else if (strcmp(name, "tishen") == 0)
+	else if (is_same(name, "tishen"))
 	{
 		initWithSpriteFrameName("tishen_01.png");
 		setAnchorPoint(ccp(0.5f, 0));
@@ -117,7 +117,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 		CCAction *effectAction = createEffectAnimation("tishen_", 6, 10, false);
 		runAction(effectAction);
 	}
-	else if (strcmp(name, "stun") == 0)
+	else if (is_same(name, "stun"))
 	{
 		initWithSpriteFrameName("smk_01.png");
 		setAnchorPoint(ccp(0.5f, 0));
@@ -125,7 +125,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 		CCAction *effectAction = createEffectAnimation("stun_", 5, 5, false);
 		runAction(effectAction);
 	}
-	else if (strcmp(name, "DarkFlame") == 0)
+	else if (is_same(name, "DarkFlame"))
 	{
 		initWithSpriteFrameName("DarkFlame_Effect_01.png");
 		setAnchorPoint(ccp(0.5f, 0));
@@ -138,7 +138,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 		CCAction *seq = CCSequence::create(delay, call, nullptr);
 		runAction(seq);
 	}
-	else if (strcmp(name, "Bagua") == 0)
+	else if (is_same(name, "Bagua"))
 	{
 		initWithSpriteFrameName("Bagua_01.png");
 		CCAction *effectAction = createEffectAnimation("Bagua_", 24, 10, false);
@@ -146,7 +146,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 		setPosition(ccp(at->getPositionX() + 2, at->getPositionY() - 52));
 		runAction(effectAction);
 	}
-	else if (strcmp(name, "Kujiyose") == 0)
+	else if (is_same(name, "Kujiyose"))
 	{
 		initWithSpriteFrameName("Kujiyose.png");
 		setAnchorPoint(ccp(0.5f, 0));
@@ -156,7 +156,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 		CCAction *seq = CCSequence::create(delay, call, nullptr);
 		runAction(seq);
 	}
-	else if (strcmp(name, "kazi") == 0)
+	else if (is_same(name, "kazi"))
 	{
 		initWithSpriteFrameName("kazi.png");
 		setAnchorPoint(ccp(0.5f, 0));
@@ -167,10 +167,10 @@ bool Effect::init(const char *name, CCObject *attacker)
 		CCAction *seq = CCSequence::create(su, su->reverse(), call, nullptr);
 		runAction(seq);
 	}
-	else if (strcmp(name, "sharingan") == 0 ||
-			 strcmp(name, "sharingan2") == 0 ||
-			 strcmp(name, "sharingan3") == 0 ||
-			 strcmp(name, "sharingan4") == 0)
+	else if (is_same(name, "sharingan") ||
+			 is_same(name, "sharingan2") ||
+			 is_same(name, "sharingan3") ||
+			 is_same(name, "sharingan4"))
 	{
 		initWithSpriteFrameName(CCString::createWithFormat(("%s.png"), name)->getCString());
 		setPosition(ccp(at->getPositionX() + (at->_isFlipped ? -32 : 32),
@@ -181,8 +181,8 @@ bool Effect::init(const char *name, CCObject *attacker)
 		CCAction *seq = CCSequence::create(rt, su, call, nullptr);
 		runAction(seq);
 	}
-	else if (strcmp(name, "Hiraishin") == 0 ||
-			 strcmp(name, "Hiraishin2") == 0)
+	else if (is_same(name, "Hiraishin") ||
+			 is_same(name, "Hiraishin2"))
 	{
 		initWithSpriteFrameName(CCString::createWithFormat("%sEffect_01.png", name)->getCString());
 		setAnchorPoint(ccp(0.5f, 0));
@@ -190,44 +190,44 @@ bool Effect::init(const char *name, CCObject *attacker)
 		CCAction *effectAction = createEffectAnimation(CCString::createWithFormat("%sEffect_", name)->getCString(), 4, 10, false);
 		runAction(effectAction);
 	}
-	else if (strcmp(name, "hBuff") == 0)
+	else if (is_same(name, "hBuff"))
 	{
 		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01.png", name)->getCString());
 		setAnchorPoint(ccp(0.5f, 0));
 		CCAction *effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 4, 5, true);
 		runAction(effectAction);
 	}
-	else if (strcmp(name, "sBuff") == 0)
+	else if (is_same(name, "sBuff"))
 	{
 		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01.png", name)->getCString());
 		setAnchorPoint(ccp(0.5f, 0));
 		CCAction *effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 10, 10, true);
 		runAction(effectAction);
 	}
-	else if (strcmp(name, "hsBuff") == 0 ||
-			 strcmp(name, "tBuff") == 0)
+	else if (is_same(name, "hsBuff") ||
+			 is_same(name, "tBuff"))
 	{
 		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01.png", name)->getCString());
 		setAnchorPoint(ccp(0.5f, 0));
 		CCAction *effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 13, 10, true);
 		runAction(effectAction);
 	}
-	else if (strcmp(name, "dcBuff") == 0)
+	else if (is_same(name, "dcBuff"))
 	{
 		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01.png", name)->getCString());
 		setAnchorPoint(ccp(0.5f, 0));
 		CCAction *effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 11, 10, true);
 		runAction(effectAction);
 	}
-	else if (strcmp(name, "jdBuff") == 0 ||
-			 strcmp(name, "bmBuff") == 0)
+	else if (is_same(name, "jdBuff") ||
+			 is_same(name, "bmBuff"))
 	{
 		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01.png", name)->getCString());
 		setAnchorPoint(ccp(0.5f, 0));
 		CCAction *effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 9, 10, true);
 		runAction(effectAction);
 	}
-	else if (strcmp(name, "dhBuff") == 0)
+	else if (is_same(name, "dhBuff"))
 	{
 		for (int i = 0; i < 3; i++)
 		{

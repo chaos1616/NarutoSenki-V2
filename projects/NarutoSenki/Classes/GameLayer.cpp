@@ -198,7 +198,7 @@ void GameLayer::initHeros()
 			CCString *group = CCString::create(tempdict->valueForKey("group")->getCString());
 
 			int mapPos = i;
-			if (strcmp(group->getCString(), Akatsuki) == 0)
+			if (is_same(group->getCString(), Akatsuki))
 			{
 				if (mapPos <= MapPosCount)
 					mapPos += 4;
@@ -219,9 +219,9 @@ void GameLayer::initHeros()
 			}
 			else
 			{
-				if (mapPos == 0 && strcmp(group->getCString(), Konoha) == 0)
+				if (mapPos == 0 && is_same(group->getCString(), Konoha))
 					spawnPoint = ccp(432, 80);
-				else if (strcmp(group->getCString(), Akatsuki) == 0)
+				else if (is_same(group->getCString(), Akatsuki))
 					spawnPoint = ccp(2608, 80);
 			}
 
@@ -241,7 +241,7 @@ void GameLayer::initHeros()
 			CCString *group = CCString::create(tempdict->valueForKey("group")->getCString());
 
 			int mapPos = i;
-			if (strcmp(group->getCString(), Akatsuki) == 0)
+			if (is_same(group->getCString(), Akatsuki))
 			{
 				if (mapPos <= MapPosCount - 1)
 					mapPos += MapPosCount;
@@ -284,7 +284,7 @@ CharacterBase *GameLayer::addHero(CCString *character, CCString *role, CCString 
 	hero->setSpawnPoint(spawnPoint);
 	//NOTE: Set all characters speed to zero. (Control movement before game real start)
 	hero->setWalkSpeed(0);
-	if (strcmp(group->getCString(), Akatsuki) == 0)
+	if (is_same(group->getCString(), Akatsuki))
 	{
 		hero->_isFlipped = true;
 		hero->setFlipX(true);
@@ -436,7 +436,7 @@ void GameLayer::initTower()
 		tower->setDelegate(this);
 		char towerName[7] = "abcdef";
 		strncpy(towerName, name->getCString(), 6);
-		if (strcmp(towerName, Konoha) == 0)
+		if (is_same(towerName, Konoha))
 		{
 			tower->setID(name, CCString::create(kRoleTower), CCString::create(Konoha));
 		}

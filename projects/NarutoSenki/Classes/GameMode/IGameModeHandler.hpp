@@ -225,7 +225,7 @@ protected:
 				setRand();
 				int index = random(num);
 				tmpChar = (CCString *)selectLayer->_selectList->objectAtIndex(index);
-			} while (strcmp(tmpChar->getCString(), "None") == 0);
+			} while (is_same(tmpChar->getCString(), "None"));
 
 			selectLayer->_playerSelect = tmpChar->getCString();
 			gd.isRandomChar = true;
@@ -247,13 +247,13 @@ protected:
 		// init com heros
 		for (int i = 0; i < kHeroNum; i++)
 		{
-			if (strcmp(selectLayer->_playerSelect, kHeroList[i]) == 0)
+			if (is_same(selectLayer->_playerSelect, kHeroList[i]))
 				continue;
-			if (selectLayer->_com1Select && strcmp(selectLayer->_com1Select, kHeroList[i]) == 0)
+			if (selectLayer->_com1Select && is_same(selectLayer->_com1Select, kHeroList[i]))
 				continue;
-			if (selectLayer->_com2Select && strcmp(selectLayer->_com2Select, kHeroList[i]) == 0)
+			if (selectLayer->_com2Select && is_same(selectLayer->_com2Select, kHeroList[i]))
 				continue;
-			if (selectLayer->_com3Select && strcmp(selectLayer->_com3Select, kHeroList[i]) == 0)
+			if (selectLayer->_com3Select && is_same(selectLayer->_com3Select, kHeroList[i]))
 				continue;
 
 			CCString *hero = CCString::create(kHeroList[i]);
@@ -348,7 +348,7 @@ protected:
 		{
 			setRand();
 			int i = random(kHeroNum);
-			while (strcmp(kHeroList[i], except) == 0)
+			while (is_same(kHeroList[i], except))
 				i = random(kHeroNum);
 			return kHeroList[i];
 		}
@@ -368,7 +368,7 @@ protected:
 			i = random(kHeroNum);
 			for (size_t j = 0; j < excepts.size(); j++)
 			{
-				if (strcmp(kHeroList[i], excepts[j]) == 0)
+				if (is_same(kHeroList[i], excepts[j]))
 				{
 					ret = true;
 					continue;

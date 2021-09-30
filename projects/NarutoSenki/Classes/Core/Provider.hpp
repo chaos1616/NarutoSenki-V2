@@ -67,11 +67,9 @@
 #include "Kuchiyose/Slug.hpp"
 
 #define __begin__ if(0) {}
-#define is(varStr) else if (strcmp(varStr, name) == 0)
-#define is_or(varName1, varName2) else if ((strcmp(name, varName1) == 0) || (strcmp(name, varName2) == 0))
-#define is_or2(varStr, varName, varName2) else if ((strcmp(varStr, varName) == 0) || (strcmp(name, varName) == 0) || (strcmp(name, varName2) == 0))
-#define is_or3(varStr, varName, varName2, varName3) else if ((strcmp(varStr, varName) == 0) || (strcmp(name, varName) == 0) || (strcmp(name, varName2) == 0) || (strcmp(name, varName3) == 0))
-#define is_tag(tag) if (strcmp(role->getCString(), tag) == 0)
+#define is(var) else if (is_same(var, name))
+#define is_or(var1, var2) else if (is_same(var1, name) || is_same(var2, name))
+#define is_tag(tag) if (is_same(role->getCString(), tag))
 
 // TODO: Impl a default AI logic
 class DefaultAI : public Hero

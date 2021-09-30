@@ -53,7 +53,7 @@ class Guardian : public Hero
 					{
 						gardTower = "KonohaCenter";
 					}
-					if (strcmp(target->getCharacter()->getCString(), gardTower) == 0 && target->getHpPercent() < 0.5f)
+					if (is_same(target->getCharacter()->getCString(), gardTower) && target->getHpPercent() < 0.5f)
 					{
 						isTurn = true;
 					}

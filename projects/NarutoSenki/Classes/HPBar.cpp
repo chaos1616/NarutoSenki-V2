@@ -23,7 +23,7 @@ bool HPBar::init(const char *szImage)
 		hpBar->setAnchorPoint(ccp(0, 0));
 		addChild(hpBar, 1);
 
-		if (strcmp(fileName, "hp") == 0)
+		if (is_same(fileName, "hp"))
 		{
 			hpBottom = CCSprite::createWithSpriteFrameName("hp_bottom.png");
 			hpBar->setPosition(ccp(15, 1));
@@ -63,7 +63,7 @@ void HPBar::loseHP(float percent)
 			gardTower = "KonohaCenter";
 		}
 
-		if (strcmp(_delegate->getCharacter()->getCString(), gardTower) == 0)
+		if (is_same(_delegate->getCharacter()->getCString(), gardTower))
 		{
 			if (!_delegate->getDelegate()->_isGuardian && percent <= 0.8)
 			{
@@ -76,7 +76,7 @@ void HPBar::loseHP(float percent)
 			CharacterBase *_slayer = (CharacterBase *)_delegate->_slayer;
 			if (_slayer)
 			{
-				if (strcmp(_delegate->getCharacter()->getCString(), gardTower) == 0)
+				if (is_same(_delegate->getCharacter()->getCString(), gardTower))
 				{
 					_slayer->isHurtingTower = true;
 				}
@@ -95,7 +95,9 @@ void HPBar::loseHP(float percent)
 
 		if (_delegate->isFlog())
 		{
-			if (_slayer->getSecMaster() && strcmp(_slayer->getCharacter()->getCString(), "KageHand") != 0 && strcmp(_slayer->getCharacter()->getCString(), "KageHands") != 0)
+			if (_slayer->getSecMaster() &&
+				_slayer->isNotCharacter("KageHand") &&
+				_slayer->isNotCharacter("KageHands"))
 			{
 				if (_slayer->getSecMaster()->getController())
 				{
@@ -182,7 +184,10 @@ void HPBar::loseHP(float percent)
 		}
 		else if (_delegate->isTower())
 		{
-			if (_slayer->getSecMaster() && strcmp(_slayer->getCharacter()->getCString(), "KageHand") != 0 && strcmp(_slayer->getCharacter()->getCString(), "KageHands") != 0 && strcmp(_slayer->getCharacter()->getCString(), "SmallSlug") != 0)
+			if (_slayer->getSecMaster() &&
+				_slayer->isNotCharacter("KageHand",
+										"KageHands",
+										"SmallSlug"))
 			{
 				if (_slayer->getSecMaster()->getController())
 				{
@@ -280,7 +285,7 @@ void HPBar::loseHP(float percent)
 			CCARRAY_FOREACH(_delegate->getDelegate()->_CharacterArray, pObject)
 			{
 				Hero *otherSlayer = (Hero *)pObject;
-				if (strcmp(currentSlayer->getGroup()->getCString(), otherSlayer->getGroup()->getCString()) == 0 &&
+				if (is_same(currentSlayer->getGroup()->getCString(), otherSlayer->getGroup()->getCString()) &&
 					strcmp(currentSlayer->getCharacter()->getCString(), otherSlayer->getCharacter()->getCString()) != 0)
 				{
 					if (otherSlayer->getLV() != 6)
@@ -408,7 +413,11 @@ void HPBar::loseHP(float percent)
 				_delegate->_isSuicide = true;
 				currentSlayer = _delegate->getController();
 			}
-			else if (_slayer->getSecMaster() && strcmp(_slayer->getCharacter()->getCString(), "KageHand") != 0 && strcmp(_slayer->getCharacter()->getCString(), "KageHands") != 0 && strcmp(_slayer->getCharacter()->getCString(), "SmallSlug") != 0 && strcmp(_slayer->getCharacter()->getCString(), "FakeItachi") != 0)
+			else if (_slayer->getSecMaster() &&
+					 _slayer->isNotCharacter("KageHand",
+											 "KageHands",
+											 "SmallSlug",
+											 "FakeItachi"))
 			{
 				if (_slayer->getSecMaster()->getController())
 				{
@@ -480,7 +489,7 @@ void HPBar::loseHP(float percent)
 					currentTeam = Akatsuki;
 				}
 
-				if (strcmp(currentSlayer->getGroup()->getCString(), currentTeam) == 0)
+				if (is_same(currentSlayer->getGroup()->getCString(), currentTeam))
 				{
 					int teamKills = to_int(_delegate->getDelegate()->getHudLayer()->KonoLabel->getString()) + 1;
 					_delegate->getDelegate()->getHudLayer()->KonoLabel->setString(to_ccstring(teamKills)->getCString());
@@ -559,7 +568,7 @@ void HPBar::loseHP(float percent)
 			CCARRAY_FOREACH(_delegate->getDelegate()->_CharacterArray, pObject)
 			{
 				Hero *otherSlayer = (Hero *)pObject;
-				if (strcmp(currentSlayer->getGroup()->getCString(), otherSlayer->getGroup()->getCString()) == 0 &&
+				if (is_same(currentSlayer->getGroup()->getCString(), otherSlayer->getGroup()->getCString()) &&
 					strcmp(currentSlayer->getCharacter()->getCString(), otherSlayer->getCharacter()->getCString()) != 0)
 				{
 					if (otherSlayer->getLV() != 6)

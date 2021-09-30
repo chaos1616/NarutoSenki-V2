@@ -95,7 +95,10 @@ class Chiyo : public Hero
 					CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 					{
 						Hero *tempHero = (Hero *)pObject;
-						if (isSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->getActionState() != State::DEAD && strcmp(tempHero->getCharacter()->getCString(), "Chiyo") != 0)
+						if (isSameGroupAs(tempHero) &&
+							tempHero->isPlayerOrCom() &&
+							tempHero->getActionState() != State::DEAD &&
+							tempHero->isNotCharacter("Chiyo"))
 						{
 							CCPoint sp = ccpSub(tempHero->getPosition(), getPosition());
 							if (sp.x <= winSize.width / 2)

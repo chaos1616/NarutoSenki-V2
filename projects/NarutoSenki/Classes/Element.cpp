@@ -615,7 +615,7 @@ void Monster::changeHPbar()
 void Monster::setAI(float dt)
 {
 	auto charName = getCharacter()->getCString();
-	if (strcmp(charName, "Kage") == 0)
+	if (is_same(charName, "Kage"))
 	{
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
@@ -646,13 +646,13 @@ void Monster::setAI(float dt)
 		}
 		return;
 	}
-	else if (strcmp(charName, "Mouse") == 0)
+	else if (is_same(charName, "Mouse"))
 	{
 		if (notFindHero(0))
 			_mainTarget = nullptr;
 	}
-	else if (strcmp(charName, "Spider") == 0 ||
-			 strcmp(charName, "ClayBird") == 0)
+	else if (is_same(charName, "Spider") ||
+			 is_same(charName, "ClayBird"))
 	{
 		if (notFindHero(0))
 		{
@@ -660,8 +660,8 @@ void Monster::setAI(float dt)
 				_mainTarget = nullptr;
 		}
 	}
-	else if (strcmp(charName, "FudonSRK2") == 0 ||
-			 strcmp(charName, "FudonSRK") == 0)
+	else if (is_same(charName, "FudonSRK2") ||
+			 is_same(charName, "FudonSRK"))
 	{
 	}
 	else
@@ -682,8 +682,8 @@ void Monster::setAI(float dt)
 		sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
 					ccp(getPositionX(), _originY ? _originY : getPositionY()));
 
-		if (strcmp(charName, "FudonSRK2") == 0 ||
-			strcmp(charName, "FudonSRK") == 0)
+		if (is_same(charName, "FudonSRK2") ||
+			is_same(charName, "FudonSRK"))
 		{
 			if (abs(sp.x) > 48 || abs(sp.y) > 32)
 			{
@@ -699,7 +699,7 @@ void Monster::setAI(float dt)
 				dealloc();
 			}
 		}
-		else if (strcmp(charName, "Traps") == 0)
+		else if (is_same(charName, "Traps"))
 		{
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -711,11 +711,11 @@ void Monster::setAI(float dt)
 		}
 		else if (abs(sp.x) > 32 || abs(sp.y) > 16)
 		{
-			if (strcmp(charName, "Dogs") != 0 &&
-				strcmp(charName, "Mine") != 0 &&
-				strcmp(charName, "Traps") != 0 &&
-				strcmp(charName, "Yominuma") != 0 &&
-				strcmp(charName, "Tsukuyomi") != 0)
+			if (!is_same(charName, "Dogs") &&
+				!is_same(charName, "Mine") &&
+				!is_same(charName, "Traps") &&
+				!is_same(charName, "Yominuma") &&
+				!is_same(charName, "Tsukuyomi"))
 			{
 				moveDirection = ccpNormalize(sp);
 
@@ -724,7 +724,7 @@ void Monster::setAI(float dt)
 		}
 		else
 		{
-			if (strcmp(charName, "Mine") == 0)
+			if (is_same(charName, "Mine"))
 			{
 				if (_mainTarget->isPlayerOrCom())
 				{
@@ -737,7 +737,7 @@ void Monster::setAI(float dt)
 				changeSide(sp);
 				attack(NAttack);
 
-				if (strcmp(charName, "SmallSlug") != 0)
+				if (!is_same(charName, "SmallSlug"))
 				{
 					unschedule(schedule_selector(CharacterBase::setAI));
 				}
@@ -746,9 +746,9 @@ void Monster::setAI(float dt)
 	}
 	else
 	{
-		if (strcmp(charName, "Rocket") == 0 ||
-			strcmp(charName, "Spider") == 0 ||
-			strcmp(charName, "ClayBird") == 0)
+		if (is_same(charName, "Rocket") ||
+			is_same(charName, "Spider") ||
+			is_same(charName, "ClayBird"))
 		{
 			stepOn();
 		}
