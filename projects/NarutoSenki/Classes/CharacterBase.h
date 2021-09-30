@@ -537,8 +537,8 @@ public:
 	inline bool			isNotCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6) { return !isCharacter(c1, c2, c3, c4, c5, c6); }
 	inline bool			isNotCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6, const char *c7) { return !isCharacter(c1, c2, c3, c4, c5, c6, c7); }
 	inline bool			isNotCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6, const char *c7, const char *c8) { return !isCharacter(c1, c2, c3, c4, c5, c6, c7, c8); }
-	inline bool			isNotCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6, const char *c7, const char *c8, const char *c9) { return !isCharacter(c1, c2, c3, c4, c5, c6, c7, c9); }
-	inline bool			isNotCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6, const char *c7, const char *c8, const char *c9, const char *c10) { return !isCharacter(c1, c2, c3, c4, c5, c6, c7, c10); }
+	inline bool			isNotCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6, const char *c7, const char *c8, const char *c9) { return !isCharacter(c1, c2, c3, c4, c5, c6, c7, c8, c9); }
+	inline bool			isNotCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6, const char *c7, const char *c8, const char *c9, const char *c10) { return !isCharacter(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10); }
 	inline bool			isGuardian() { return isCharacter(kGuardian_Han, kGuardian_Roshi); }
 	inline bool			isNotGuardian() { return !isGuardian(); }
 	// role extensions
