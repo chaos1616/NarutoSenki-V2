@@ -116,7 +116,7 @@ public:
 
 			CCARRAY_FOREACH(list, pObject)
 			{
-				CharacterBase *tempFlog = (CharacterBase *)pObject;
+				auto tempFlog = (CharacterBase *)pObject;
 				if (tempFlog->_mainTarget)
 				{
 					if (tempFlog->_mainTarget == (CharacterBase *)this)

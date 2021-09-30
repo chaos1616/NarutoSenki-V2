@@ -170,7 +170,7 @@ void HeroElement::changeHPbar()
 
 	if (_hpBar)
 	{
-		CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("hp_bottom%d.png", int(_level))->getCString());
+		auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("hp_bottom%d.png", int(_level))->getCString());
 		_hpBar->getHPBottom()->setDisplayFrame(frame);
 	}
 }
@@ -192,7 +192,7 @@ void HeroElement::dealloc()
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
-				CharacterBase *mo = (CharacterBase *)pObject;
+				auto mo = (CharacterBase *)pObject;
 				int index = _delegate->_CharacterArray->indexOfObject(mo);
 				if (index >= 0)
 				{
@@ -288,7 +288,7 @@ void HeroElement::dealloc()
 			CCObject *pObject;
 			CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 			{
-				Hero *tempHero = (Hero *)pObject;
+				auto tempHero = (Hero *)pObject;
 				if (tempHero->_isSticking)
 				{
 					if (tempHero->getActionState() != State::DEAD)
@@ -607,7 +607,7 @@ void Monster::changeHPbar()
 
 	if (_hpBar)
 	{
-		CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("hp_bottom%d.png", int(_level))->getCString());
+		auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("hp_bottom%d.png", int(_level))->getCString());
 		_hpBar->getHPBottom()->setDisplayFrame(frame);
 	}
 }
@@ -620,7 +620,7 @@ void Monster::setAI(float dt)
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
-			Hero *tempHero = (Hero *)pObject;
+			auto tempHero = (Hero *)pObject;
 			if (strcmp(getGroup()->getCString(), tempHero->getGroup()->getCString()) != 0 &&
 				tempHero->getActionState() != State::DEAD &&
 				tempHero->getActionState() != State::O2ATTACK &&
@@ -635,7 +635,7 @@ void Monster::setAI(float dt)
 				{
 					if (!_monsterArray)
 					{
-						CCDictionary *dic = CCDictionary::create();
+						auto dic = CCDictionary::create();
 						CCString *monterName = CCString::create("KageHand");
 						dic->setObject(monterName, 1);
 						setMon(this, (void *)dic);
@@ -767,11 +767,11 @@ void Monster::dealloc()
 
 	if (isCharacter("FudonSRK", "FudonSRK2"))
 	{
-		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc2));
-		CCArray *seqArray = CCArray::create();
+		auto call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc2));
+		auto seqArray = CCArray::create();
 		seqArray->addObject(getDeadAction());
 		seqArray->addObject(call);
-		CCAction *seq = CCSequence::create(seqArray);
+		auto seq = CCSequence::create(seqArray);
 		runAction(seq);
 		return;
 	}
@@ -783,7 +783,7 @@ void Monster::dealloc()
 
 		if (_master->isPlayer())
 		{
-			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Minato_skill1.png");
+			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Minato_skill1.png");
 			_delegate->getHudLayer()->skill1Button->setDisplayFrame(frame);
 			_delegate->getHudLayer()->skill1Button->_clickNum++;
 			_delegate->clearDoubleClick();
@@ -792,7 +792,7 @@ void Monster::dealloc()
 		CCObject *pObject;
 		CCARRAY_FOREACH(_master->getMonsterArray(), pObject)
 		{
-			Monster *mo = (Monster *)pObject;
+			auto mo = (Monster *)pObject;
 
 			if (mo->isCharacter("HiraishinMark"))
 			{
@@ -830,16 +830,16 @@ void Monster::dealloc()
 
 	if (isCharacter("KageHand", "Kage"))
 	{
-		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc2));
+		auto call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc2));
 
-		CCArray *seqArray = CCArray::create();
+		auto seqArray = CCArray::create();
 		seqArray->addObject(getDeadAction());
 		seqArray->addObject(call);
 
-		CCFiniteTimeAction *call2 = CCCallFunc::create(this, callfunc_selector(Monster::setResume));
+		auto call2 = CCCallFunc::create(this, callfunc_selector(Monster::setResume));
 		seqArray->addObject(call2);
 
-		CCAction *seq = CCSequence::create(seqArray);
+		auto seq = CCSequence::create(seqArray);
 		runAction(seq);
 	}
 	else
@@ -852,8 +852,8 @@ void Monster::setDirectMove(int length, float delay, bool isReverse)
 {
 	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length, getPositionY());
 	CCPoint direction2 = getPosition();
-	CCActionInterval *mv = CCMoveTo::create(delay, direction);
-	CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc));
+	auto mv = CCMoveTo::create(delay, direction);
+	auto call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc));
 	CCAction *seq;
 	if (!isReverse)
 	{
@@ -861,7 +861,7 @@ void Monster::setDirectMove(int length, float delay, bool isReverse)
 	}
 	else
 	{
-		CCActionInterval *mv2 = CCMoveTo::create(delay, direction2);
+		auto mv2 = CCMoveTo::create(delay, direction2);
 		seq = CCSequence::create(mv, mv2, call, nullptr);
 	}
 
@@ -872,11 +872,11 @@ void Monster::setEaseIn(int length, float delay)
 {
 	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
 							getPositionY());
-	CCActionInterval *mv = CCMoveTo::create(1.0f, direction);
-	CCActionInterval *eo = CCEaseIn::create(mv, delay);
+	auto mv = CCMoveTo::create(1.0f, direction);
+	auto eo = CCEaseIn::create(mv, delay);
 
-	CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc));
-	CCAction *seq = CCSequence::create(eo, call, nullptr);
+	auto call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc));
+	auto seq = CCSequence::create(eo, call, nullptr);
 	runAction(seq);
 }
 
@@ -887,7 +887,7 @@ void Monster::setDirectMoveBy(int length, float delay)
 
 	if (_mainTarget)
 	{
-		CCActionInterval *mv = CCMoveBy::create(0.1f, ccp(_mainTarget->getPositionX() > getPositionX() ? 16 : -16, _mainTarget->getPositionY() > getPositionY() ? 16 : -16));
+		auto mv = CCMoveBy::create(0.1f, ccp(_mainTarget->getPositionX() > getPositionX() ? 16 : -16, _mainTarget->getPositionY() > getPositionY() ? 16 : -16));
 
 		runAction(CCRepeatForever::create(mv));
 		_mainTarget = nullptr;
@@ -895,14 +895,14 @@ void Monster::setDirectMoveBy(int length, float delay)
 	}
 	else
 	{
-		CCActionInterval *mv = CCMoveBy::create(0.1f, ccp(_isFlipped ? -16 : 16, 0));
+		auto mv = CCMoveBy::create(0.1f, ccp(_isFlipped ? -16 : 16, 0));
 
 		runAction(CCRepeatForever::create(mv));
 	}
 
-	CCDelayTime *dl = CCDelayTime::create(delay);
-	CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc));
-	CCAction *seq = CCSequence::create(dl, call, nullptr);
+	auto delayTime = CCDelayTime::create(delay);
+	auto call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc));
+	auto seq = CCSequence::create(delayTime, call, nullptr);
 	runAction(seq);
 }
 

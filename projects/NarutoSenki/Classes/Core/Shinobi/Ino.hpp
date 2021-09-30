@@ -229,7 +229,7 @@ class Ino : public Hero
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
-			Hero *tempHero = (Hero *)pObject;
+			auto tempHero = (Hero *)pObject;
 			if (tempHero->_isControlled)
 			{
 				tempHero->_isControlled = false;
@@ -268,7 +268,7 @@ class Ino : public Hero
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
-			Hero *tempHero = (Hero *)pObject;
+			auto tempHero = (Hero *)pObject;
 			if (tempHero->_isControlled)
 			{
 				tempHero->_isControlled = false;

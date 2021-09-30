@@ -186,7 +186,7 @@ class Kakashi : public Hero
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
-			CharacterBase *tempHero = (CharacterBase *)pObject;
+			auto tempHero = (CharacterBase *)pObject;
 			if (isNotSameGroupAs(tempHero) &&
 				tempHero->isPlayerOrCom() &&
 				tempHero->getActionState() != State::HURT &&
@@ -219,7 +219,7 @@ class Kakashi : public Hero
 
 		if (isPlayer())
 		{
-			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Kakashi_skill1_1.png");
+			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Kakashi_skill1_1.png");
 			_delegate->getHudLayer()->skill1Button->setDisplayFrame(frame);
 			frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Kakashi_skill2_1.png");
 			_delegate->getHudLayer()->skill2Button->setDisplayFrame(frame);
@@ -236,7 +236,7 @@ class Kakashi : public Hero
 
 		if (isPlayer())
 		{
-			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Kakashi_skill1.png");
+			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Kakashi_skill1.png");
 			_delegate->getHudLayer()->skill1Button->setDisplayFrame(frame);
 			frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Kakashi_skill2.png");
 			_delegate->getHudLayer()->skill2Button->setDisplayFrame(frame);

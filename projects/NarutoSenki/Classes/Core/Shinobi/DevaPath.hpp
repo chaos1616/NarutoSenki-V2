@@ -65,7 +65,7 @@ class DevaPath : public Hero
 						CCObject *pObject;
 						CCARRAY_FOREACH(getMonsterArray(), pObject)
 						{
-							Monster *mo = (Monster *)pObject;
+							auto mo = (Monster *)pObject;
 							if (mo->isCharacter("AnimalPath"))
 							{
 								isHaveKuilei1 = true;

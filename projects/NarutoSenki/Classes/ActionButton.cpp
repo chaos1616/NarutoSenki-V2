@@ -616,16 +616,15 @@ void ActionButton::unLock()
 
 void ActionButton::createFreezeAnimation()
 {
-	CCFiniteTimeAction *to = CCProgressTo::create(0, 99.999f);
+	auto to = CCProgressTo::create(0, 99.999f);
 
 	int delay = _coldDown->intValue() / 1000;
-
-	CCFiniteTimeAction *to1 = CCProgressTo::create(delay, 0);
+	auto to1 = CCProgressTo::create(delay, 0);
 
 	CCAction *freezeAction;
 	if (_isDoubleSkill)
 	{
-		CCFiniteTimeAction *callback = CCCallFunc::create(this, callfunc_selector(ActionButton::clearClick));
+		auto callback = CCCallFunc::create(this, callfunc_selector(ActionButton::clearClick));
 		freezeAction = CCSequence::create(to, to1, callback, nullptr);
 	}
 	else

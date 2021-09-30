@@ -12,7 +12,7 @@ class Hidan : public Hero
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
-				Monster *mo = (Monster *)pObject;
+				auto mo = (Monster *)pObject;
 				if (mo->isCharacter("CircleMark"))
 				{
 					_mainTarget = mo;
@@ -41,7 +41,7 @@ class Hidan : public Hero
 							CCObject *pObject;
 							CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 							{
-								CharacterBase *tempHero = (CharacterBase *)pObject;
+								auto tempHero = (CharacterBase *)pObject;
 								if (tempHero->getGroup() != getGroup() && tempHero->getHPValue() < 2000 && tempHero->getActionState() != State::DEAD && tempHero->isPlayerOrCom())
 								{
 									attack(NAttack);
@@ -291,7 +291,7 @@ class Hidan : public Hero
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
-				CharacterBase *mo = (CharacterBase *)pObject;
+				auto mo = (CharacterBase *)pObject;
 				int index = _delegate->_CharacterArray->indexOfObject(mo);
 				if (index >= 0)
 				{
@@ -339,7 +339,7 @@ class Hidan : public Hero
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
-				CharacterBase *mo = (CharacterBase *)pObject;
+				auto mo = (CharacterBase *)pObject;
 				int index = _delegate->_CharacterArray->indexOfObject(mo);
 				if (index >= 0)
 				{

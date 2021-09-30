@@ -73,7 +73,7 @@ class Chiyo : public Hero
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
-				Monster *mo = (Monster *)pObject;
+				auto mo = (Monster *)pObject;
 				if (mo->isCharacter("Parents"))
 				{
 					isFound1 = true;
@@ -94,7 +94,7 @@ class Chiyo : public Hero
 					int countNum = 0;
 					CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 					{
-						Hero *tempHero = (Hero *)pObject;
+						auto tempHero = (Hero *)pObject;
 						if (isSameGroupAs(tempHero) &&
 							tempHero->isPlayerOrCom() &&
 							tempHero->getActionState() != State::DEAD &&

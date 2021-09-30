@@ -164,3 +164,8 @@ public:
 		return ptr;
 	};
 };
+
+#undef __begin__
+#undef is
+#undef is_or
+#undef is_tag

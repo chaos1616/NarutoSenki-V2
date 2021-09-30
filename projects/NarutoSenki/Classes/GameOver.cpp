@@ -63,7 +63,7 @@ bool GameOver::init(CCRenderTexture *snapshoot)
 		addChild(result_bg, 4);
 
 		CCScaleTo *su = CCScaleTo::create(0.2f, 1.0);
-		CCAction *seq = CCSequence::create(su, CCCallFunc::create(this, callfunc_selector(GameOver::listResult)), nullptr);
+		auto seq = CCSequence::create(su, CCCallFunc::create(this, callfunc_selector(GameOver::listResult)), nullptr);
 		result_bg->runAction(seq);
 
 		bRet = true;
@@ -83,7 +83,7 @@ void GameOver::listResult()
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/battle_over.ogg");
 	}
 
-	CCString *path = CCString::createWithFormat("%s_half.png", _delegate->currentPlayer->getCharacter()->getCString());
+	auto path = CCString::createWithFormat("%s_half.png", _delegate->currentPlayer->getCharacter()->getCString());
 	CCSprite *half = CCSprite::createWithSpriteFrameName(path->getCString());
 
 	if (_delegate->currentPlayer->isCharacter("Konan",
@@ -125,7 +125,7 @@ void GameOver::listResult()
 
 	CCString *tempTime = CCString::createWithFormat("%02d:%02d:%02d", _hour, _minute, _delegate->_second);
 
-	CCLabelBMFont *gameClock = CCLabelBMFont::create(tempTime->getCString(), "Fonts/1.fnt");
+	auto gameClock = CCLabelBMFont::create(tempTime->getCString(), "Fonts/1.fnt");
 	gameClock->setAnchorPoint(ccp(0.5f, 0));
 	gameClock->setPosition(ccp(timeBG->getPositionX() + timeBG->getContentSize().width / 2, timeBG->getPositionY() + 3));
 	gameClock->setScale(0.48f);
@@ -179,7 +179,7 @@ void GameOver::listResult()
 
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
-		Hero *hero = (Hero *)pObject;
+		auto hero = (Hero *)pObject;
 		if (hero->isClone() ||
 			hero->isSummon() ||
 			hero->isKugutsu() ||
@@ -203,7 +203,7 @@ void GameOver::listResult()
 			hero->changeGroup();
 		}
 
-		CCString *path = CCString::createWithFormat(("%s_small.png"), hero->getCharacter()->getCString());
+		auto path = CCString::createWithFormat(("%s_small.png"), hero->getCharacter()->getCString());
 		CCSprite *avator_small = CCSprite::createWithSpriteFrameName(path->getCString());
 		avator_small->setAnchorPoint(ccp(0, 0));
 
@@ -219,15 +219,15 @@ void GameOver::listResult()
 		}
 
 		CCString *knum = to_ccstring(realKillNum);
-		CCLabelBMFont *killNum = CCLabelBMFont::create(knum->getCString(), "Fonts/1.fnt");
+		auto killNum = CCLabelBMFont::create(knum->getCString(), "Fonts/1.fnt");
 		killNum->setScale(0.3f);
 
 		CCString *dnum = to_ccstring(hero->_deadNum);
-		CCLabelBMFont *deadNum = CCLabelBMFont::create(dnum->getCString(), "Fonts/1.fnt");
+		auto deadNum = CCLabelBMFont::create(dnum->getCString(), "Fonts/1.fnt");
 		deadNum->setScale(0.3f);
 
 		CCString *fnum = to_ccstring(hero->_flogNum);
-		CCLabelBMFont *flogNum = CCLabelBMFont::create(fnum->getCString(), "Fonts/1.fnt");
+		auto flogNum = CCLabelBMFont::create(fnum->getCString(), "Fonts/1.fnt");
 		flogNum->setScale(0.3f);
 
 		float posX = winSize.width / 2 - result_bg->getContentSize().width / 2 + 2;
@@ -350,14 +350,14 @@ void GameOver::listResult()
 		CCString *realCoin = to_ccstring(tempCoin);
 		KTools::saveToSQLite("GameRecord", "coin", realCoin->getCString(), false);
 
-		CCLabelBMFont *extraLabel = CCLabelBMFont::create(extraCoin->getCString(), "Fonts/yellow.fnt");
+		auto extraLabel = CCLabelBMFont::create(extraCoin->getCString(), "Fonts/yellow.fnt");
 		extraLabel->setScale(0.5f);
 		extraLabel->setAnchorPoint(ccp(0.5f, 0));
 		extraLabel->setPosition(ccp(coinBG->getPositionX() + 68, coinBG->getPositionY() + 3));
 		addChild(extraLabel, 7);
 
-		CCString *rewardCoin = to_ccstring(rewardNum);
-		CCLabelBMFont *rewardLabel = CCLabelBMFont::create(rewardCoin->getCString(), "Fonts/yellow.fnt");
+		auto rewardCoin = to_cstr(rewardNum);
+		auto rewardLabel = CCLabelBMFont::create(rewardCoin, "Fonts/yellow.fnt");
 		rewardLabel->setAnchorPoint(ccp(0.5f, 0));
 		rewardLabel->setPosition(ccp(coinBG->getPositionX() + 28, coinBG->getPositionY() + 3));
 		rewardLabel->setScale(0.55f);
@@ -404,7 +404,7 @@ void GameOver::listResult()
 			finnalScore = resultScore + float(_delegate->currentPlayer->_flogNum) / 100;
 			// CCString *recordString = CCString::createWithFormat("%0.2fPts", finnalScore);
 
-			// CCLabelBMFont *recordScore = CCLabelBMFont::create(recordString->getCString(), "Fonts/1.fnt");
+			// auto recordScore = CCLabelBMFont::create(recordString->getCString(), "Fonts/1.fnt");
 			// recordScore->setAnchorPoint(ccp(1, 0.5f));
 			// recordScore->setPosition(ccp(recordSprite->getPositionX() + recordSprite->getContentSize().width, recordSprite->getPositionY() - 7));
 			// recordScore->setScale(0.35f);
@@ -475,7 +475,7 @@ void GameOver::listResult()
 
 					CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 					{
-						Hero *hero = (Hero *)pObject;
+						auto hero = (Hero *)pObject;
 						if (hero->isClone() ||
 							hero->isPlayer() ||
 							hero->isSummon() ||
@@ -564,14 +564,14 @@ void GameOver::listResult()
 
 	if (Cheats < MaxCheats)
 	{
-		CCLabelBMFont *version = CCLabelBMFont::create(GAMEOVER_VER, "Fonts/1.fnt");
+		auto version = CCLabelBMFont::create(GAMEOVER_VER, "Fonts/1.fnt");
 		version->setPosition(ccp(winSize.width / 2 + 94, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 6));
 		version->setScale(0.3f);
 		addChild(version, 5);
 	}
 	else
 	{
-		CCLabelBMFont *version = CCLabelBMFont::create("The Carnival", "Fonts/1.fnt");
+		auto version = CCLabelBMFont::create("The Carnival", "Fonts/1.fnt");
 		version->setPosition(ccp(winSize.width / 2 + 94, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 6));
 		version->setScale(0.3f);
 		addChild(version, 5);

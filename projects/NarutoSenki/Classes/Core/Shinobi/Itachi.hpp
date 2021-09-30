@@ -253,7 +253,7 @@ class Itachi : public Hero
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
-				Monster *mo = (Monster *)pObject;
+				auto mo = (Monster *)pObject;
 				mo->removeFromParent();
 			}
 			getMonsterArray()->removeAllObjects();

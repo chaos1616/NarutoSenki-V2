@@ -172,7 +172,7 @@ protected:
 			if (!_randomPosY)
 			{
 				_randomPosY = rand() % 8 + 4;
-				_randomPosX = (rand() % 32 + 20);
+				_randomPosX = rand() % 32 + 20;
 			}
 
 			bool hasTarget = false;

@@ -76,7 +76,7 @@ class Kankuro : public Hero
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
-				Monster *mo = (Monster *)pObject;
+				auto mo = (Monster *)pObject;
 				if (mo->isCharacter("Saso"))
 				{
 					isFound3 = true;

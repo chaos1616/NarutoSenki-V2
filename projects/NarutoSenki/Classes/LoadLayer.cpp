@@ -51,8 +51,8 @@ bool LoadLayer::init()
 		cloud_left->setAnchorPoint(ccp(0, 0));
 		addChild(cloud_left, 1);
 
-		CCActionInterval *cmv1 = CCMoveBy::create(1, ccp(-15, 0));
-		CCAction *cseq1 = CCRepeatForever::create(CCSequence::create(cmv1, cmv1->reverse(), nullptr));
+		auto cmv1 = CCMoveBy::create(1, ccp(-15, 0));
+		auto cseq1 = CCRepeatForever::create(CCSequence::create(cmv1, cmv1->reverse(), nullptr));
 		cloud_left->runAction(cseq1);
 
 		CCSprite *cloud_right = CCSprite::createWithSpriteFrameName("cloud.png");
@@ -61,8 +61,8 @@ bool LoadLayer::init()
 		cloud_right->setAnchorPoint(ccp(0, 0));
 		addChild(cloud_right, 1);
 
-		CCActionInterval *cmv2 = CCMoveBy::create(1, ccp(15, 0));
-		CCAction *cseq2 = CCRepeatForever::create(CCSequence::create(cmv2, cmv2->reverse(), nullptr));
+		auto cmv2 = CCMoveBy::create(1, ccp(15, 0));
+		auto cseq2 = CCRepeatForever::create(CCSequence::create(cmv2, cmv2->reverse(), nullptr));
 		cloud_right->runAction(cseq2);
 
 		bRet = true;
@@ -95,7 +95,7 @@ void LoadLayer::preloadIMG()
 		CCObject *pObject = nullptr;
 		CCARRAY_FOREACH(tempHeros, pObject)
 		{
-			CCDictionary *tempdict = (CCDictionary *)pObject;
+			auto tempdict = (CCDictionary *)pObject;
 			auto player = tempdict->valueForKey("character")->getCString();
 			perloadCharIMG(player);
 
@@ -141,8 +141,8 @@ void LoadLayer::preloadIMG()
 	CCSprite *loading = CCSprite::createWithSpriteFrameName("loading_font.png");
 
 	loading->setPosition(ccp(winSize.width - 120, 45));
-	CCActionInterval *fade = CCFadeOut::create(1.0f);
-	CCAction *fadeseq = CCRepeatForever::create(CCSequence::create(fade, fade->reverse(), nullptr));
+	auto fade = CCFadeOut::create(1.0f);
+	auto fadeseq = CCRepeatForever::create(CCSequence::create(fade, fade->reverse(), nullptr));
 	addChild(loading);
 	loading->runAction(fadeseq);
 
@@ -152,8 +152,6 @@ void LoadLayer::preloadIMG()
 
 void LoadLayer::perloadCharIMG(const char *player)
 {
-#define player_is(name) is_same(player, #name)
-
 	if (!player)
 	{
 		CCLOG("Perload a null character images !");
@@ -173,28 +171,28 @@ void LoadLayer::perloadCharIMG(const char *player)
 	path = CCString::createWithFormat("Element/%s/%s.plist", player, player)->getCString();
 	addSprites(path);
 	// Add extra sprites
-	if (player_is(Jiraiya))
+	if (is_same(player, "Jiraiya"))
 	{
 		addSprites(mkpath(SageJiraiya));
 		KTools::prepareFileOGG("SageJiraiya");
 	}
-	else if (player_is(Kankuro))
+	else if (is_same(player, "Kankuro"))
 	{
 		addSprites(mkpath(Karasu));
 		addSprites(mkpath(Sanshouuo));
 		addSprites(mkpath(Saso));
 	}
-	else if (player_is(Chiyo))
+	else if (is_same(player, "Chiyo"))
 	{
 		addSprites(mkpath(Parents));
 	}
-	else if (player_is(Kakuzu))
+	else if (is_same(player, "Kakuzu"))
 	{
 		addSprites(mkpath(MaskRaidon));
 		addSprites(mkpath(MaskFudon));
 		addSprites(mkpath(MaskKadon));
 	}
-	else if (player_is(Naruto))
+	else if (is_same(player, "Naruto"))
 	{
 		addSprites(mkpath(RikudoNaruto));
 		addSprites(mkpath(SageNaruto));
@@ -202,23 +200,23 @@ void LoadLayer::perloadCharIMG(const char *player)
 		KTools::prepareFileOGG("SageNaruto");
 		KTools::prepareFileOGG("RikudoNaruto");
 	}
-	else if (player_is(Lee))
+	else if (is_same(player, "Lee"))
 	{
 		addSprites(mkpath(RockLee));
 	}
-	else if (player_is(Tsunade))
+	else if (is_same(player, "Tsunade"))
 	{
 		addSprites(mkpath(Slug));
 	}
-	else if (player_is(Kakashi))
+	else if (is_same(player, "Kakashi"))
 	{
 		addSprites(mkpath(DogWall));
 	}
-	else if (player_is(Deidara))
+	else if (is_same(player, "Deidara"))
 	{
 		addSprites(mkpath(Centipede));
 	}
-	else if (player_is(Pain))
+	else if (is_same(player, "Pain"))
 	{
 		addSprites(mkpath(DevaPath));
 		addSprites(mkpath(AsuraPath));
@@ -226,12 +224,12 @@ void LoadLayer::perloadCharIMG(const char *player)
 		addSprites(mkpath(Nagato));
 		KTools::prepareFileOGG("Nagato");
 	}
-	else if (player_is(Sasuke))
+	else if (is_same(player, "Sasuke"))
 	{
 		addSprites(mkpath(ImmortalSasuke));
 		KTools::prepareFileOGG("ImmortalSasuke");
 	}
-	else if (player_is(Kiba))
+	else if (is_same(player, "Kiba"))
 	{
 		addSprites(mkpath(Akamaru));
 	}
@@ -333,15 +331,14 @@ void LoadLayer::setLoadingAnimation(const char *player, int index)
 	for (int i = 1; i < frameCount; i++)
 	{
 		str = CCString::createWithFormat("%s%02d.png", file, i);
-		CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(str->getCString());
+		auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(str->getCString());
 		animeFrames->addObject(frame);
 	}
 
-	CCAnimation *tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, float(1.0 / 10.0));
-	CCAction *tempAction = CCAnimate::create(tempAnimation);
-	CCArray *seqArray = CCArray::createWithObject(tempAction);
-	CCAction *seq;
-	seq = CCRepeatForever::create(CCSequence::create(seqArray));
+	auto tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, float(1.0 / 10.0));
+	auto tempAction = CCAnimate::create(tempAnimation);
+	auto seqArray = CCArray::createWithObject(tempAction);
+	auto seq = CCRepeatForever::create(CCSequence::create(seqArray));
 
 	addChild(loadingAvator);
 	loadingAvator->runAction(seq);

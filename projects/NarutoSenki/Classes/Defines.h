@@ -15,7 +15,8 @@ using namespace CocosDenshion;
 #define random(x) (rand() % x)
 #define setRand() srand((uint32_t)time(0))
 
-#define	is_same(__Str1, __Str2) (strcmp(__Str1, __Str2) == 0)
+#define is_same(__Str1, __Str2) (strcmp(__Str1, __Str2) == 0)
+#define to_cstr(var) (std::to_string(var).c_str())
 #define to_ccstring(var) CCString::create(std::to_string(var))
 
 #define FONT_TYPE "Microsoft YaHei"
@@ -88,9 +89,9 @@ extern int Cheats;
 
 // Flogs
 #define kFlog_Kotetsu cName(KotetsuFlog, kFlog)
-#define kFlog_FemalePain cName(FemalePainFlog, kFlog)
 #define kFlog_Izumo cName(IzumoFlog, kFlog)
 #define kFlog_Kakashi cName(KakashiFlog, kFlog)
+#define kFlog_FemalePain cName(FemalePainFlog, kFlog)
 #define kFlog_Pain cName(PainFlog, kFlog)
 #define kFlog_Obito cName(ObitoFlog, kFlog)
 // Guardians

@@ -48,7 +48,7 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 {
 	auto doc = std::make_unique<tinyxml2::XMLDocument>();
 	unsigned long nSize;
-	const char *data = (const char *)CCFileUtils::sharedFileUtils()->getFileData(filePath, "r", &nSize);
+	auto data = (const char *)CCFileUtils::sharedFileUtils()->getFileData(filePath, "r", &nSize);
 	if (data == nullptr)
 	{
 		CCLOGERROR("data %s is null", filePath);
@@ -59,24 +59,24 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 		CCLOGERROR("XML Error: %s", tinyxml2::XMLDocument::ErrorIDToName(err));
 	}
 
-	XMLElement *rootEle = doc->RootElement();
-	XMLElement *actionEle = rootEle->FirstChildElement();
+	auto rootEle = doc->RootElement();
+	auto actionEle = rootEle->FirstChildElement();
 
 	while (actionEle)
 	{
 		const char *actionName = actionEle->FirstAttribute()->Value();
 		//CCLog("[%s]",actionName);
 
-		XMLElement *actionNodeEle = actionEle->FirstChildElement();
-		CCArray *actionArray = CCArray::create();
-		CCArray *actionData = CCArray::create();
-		CCArray *actionFrame = CCArray::create();
+		auto actionNodeEle = actionEle->FirstChildElement();
+		auto actionArray = CCArray::create();
+		auto actionData = CCArray::create();
+		auto actionFrame = CCArray::create();
 		while (actionNodeEle)
 		{
 			// CCLog("+[%s]",actionNodeEle->Name());
 			if (strcmp(actionNodeEle->Name(), "frame"))
 			{
-				XMLElement *dataEle = actionNodeEle->FirstChildElement();
+				auto dataEle = actionNodeEle->FirstChildElement();
 
 				while (dataEle)
 				{
@@ -84,7 +84,7 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 					CCString *nodeValue = CCString::create(dataEle->GetText());
 
 					// CCLog("%s:%s",nodeKey,nodeValue->getCString());
-					CCDictionary *dataDic = CCDictionary::create();
+					auto dataDic = CCDictionary::create();
 					dataDic->setObject(nodeValue, nodeKey);
 
 					actionData->addObject(dataDic);
@@ -93,7 +93,7 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 			}
 			else
 			{
-				XMLElement *frameEle = actionNodeEle->FirstChildElement();
+				auto frameEle = actionNodeEle->FirstChildElement();
 
 				while (frameEle)
 				{
@@ -110,7 +110,7 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 					CCString *nodeValue = CCString::create(frameEle->GetText());
 
 					// CCLog("%s:%s",nodeKey,nodeValue->getCString());
-					CCDictionary *frameDic = CCDictionary::create();
+					auto frameDic = CCDictionary::create();
 					frameDic->setObject(nodeValue, nodeKey);
 					actionFrame->addObject(frameDic);
 
@@ -407,8 +407,8 @@ void KTools::prepareFileOGG(const char *listName, bool unload /* =false */)
 	const char *pXmlBuffer = (const char *)CCFileUtils::sharedFileUtils()->getFileData(md5Path.c_str(), "r", &nSize);
 	doc->Parse(pXmlBuffer);
 
-	XMLElement *rootEle = doc->RootElement();
-	XMLElement *fileEle = rootEle->FirstChildElement();
+	auto rootEle = doc->RootElement();
+	auto fileEle = rootEle->FirstChildElement();
 
 	while (fileEle)
 	{
@@ -657,25 +657,25 @@ bool CCTips::init(const char *tips)
 	{
 		CC_BREAK_IF(!CCSprite::init());
 		setAnchorPoint(ccp(0.5, 0.5));
-		CCDictionary *strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
+		auto strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
 		const char *reply = ((CCString *)strings->objectForKey(tips))->m_sString.c_str();
 
 		CCLabelTTF *tipLabel = CCLabelTTF::create(reply, FONT_TYPE, 12);
 		addChild(tipLabel, 5000);
 		setPosition(ccp(winSize.width / 2, 50));
-		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CCTips::onDestroy));
+		auto call = CCCallFunc::create(this, callfunc_selector(CCTips::onDestroy));
 
-		CCActionInterval *mv = CCMoveBy::create(0.2f, ccp(0, 12));
-		CCActionInterval *fadeOut = CCFadeOut::create(0.2f);
-		CCDelayTime *delay = CCDelayTime::create(2.0f);
-		CCActionInterval *sp = CCSpawn::create(fadeOut, mv, nullptr);
+		auto mv = CCMoveBy::create(0.2f, ccp(0, 12));
+		auto fadeOut = CCFadeOut::create(0.2f);
+		auto delay = CCDelayTime::create(2.0f);
+		auto sp = CCSpawn::create(fadeOut, mv, nullptr);
 
-		CCArray *seqArray = CCArray::create();
+		auto seqArray = CCArray::create();
 		seqArray->addObject(sp);
 		seqArray->addObject(delay);
 		seqArray->addObject(call);
 
-		CCAction *seq = CCSequence::create(seqArray);
+		auto seq = CCSequence::create(seqArray);
 
 		runAction(seq);
 

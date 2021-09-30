@@ -200,7 +200,7 @@ class Tobi : public Hero
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
-			CharacterBase *tempHero = (CharacterBase *)pObject;
+			auto tempHero = (CharacterBase *)pObject;
 			if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->getActionState() != State::HURT && tempHero->getActionState() != State::DEAD)
 			{
 				float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;

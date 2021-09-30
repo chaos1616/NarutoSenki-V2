@@ -10,7 +10,7 @@ class Kakuzu : public Hero
 
 		if (_heartEffect)
 		{
-			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", hearts)->getCString());
+			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", hearts)->getCString());
 			_heartEffect->setDisplayFrame(frame);
 		}
 
@@ -56,7 +56,7 @@ class Kakuzu : public Hero
 
 				CCARRAY_FOREACH(getDelegate()->_CharacterArray, pObject)
 				{
-					CharacterBase *target = (CharacterBase *)pObject;
+					auto target = (CharacterBase *)pObject;
 					if (target->isPlayerOrCom() &&
 						target->getActionState() == State::DEAD)
 					{
@@ -306,7 +306,7 @@ class Kakuzu : public Hero
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
-				Monster *mo = (Monster *)pObject;
+				auto mo = (Monster *)pObject;
 				if (mo->isCharacter("MaskRaidon"))
 				{
 					countMon++;
@@ -346,7 +346,7 @@ class Kakuzu : public Hero
 			hearts -= 1;
 			if (_heartEffect)
 			{
-				CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", hearts)->getCString());
+				auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", hearts)->getCString());
 				_heartEffect->setDisplayFrame(frame);
 			}
 

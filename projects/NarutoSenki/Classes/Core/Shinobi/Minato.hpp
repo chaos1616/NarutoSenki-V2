@@ -40,7 +40,7 @@ class Minato : public Hero
 				{
 					CCARRAY_FOREACH(getMonsterArray(), pObject)
 					{
-						Monster *mo = (Monster *)pObject;
+						auto mo = (Monster *)pObject;
 						if (mo->isCharacter("HiraishinMark"))
 						{
 							if (isKonohaGroup() && mo->getPositionX() < getPositionX())
@@ -113,7 +113,7 @@ class Minato : public Hero
 				{
 					CCARRAY_FOREACH(getMonsterArray(), pObject)
 					{
-						Monster *mo = (Monster *)pObject;
+						auto mo = (Monster *)pObject;
 						if (mo->isCharacter("HiraishinMark"))
 						{
 							isMark = true;
@@ -248,7 +248,7 @@ class Minato : public Hero
 				{
 					CCARRAY_FOREACH(getMonsterArray(), pObject)
 					{
-						Monster *mo = (Monster *)pObject;
+						auto mo = (Monster *)pObject;
 						if (mo->isCharacter("HiraishinMark"))
 						{
 							if (isKonohaGroup() && mo->getPositionX() > getPositionX())
@@ -284,7 +284,7 @@ class Minato : public Hero
 
 			if (isPlayer())
 			{
-				CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Minato_skill1_1.png");
+				auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Minato_skill1_1.png");
 				_delegate->getHudLayer()->skill1Button->setDisplayFrame(frame);
 				if (_delegate->getHudLayer()->skill1Button->_clickNum < 2)
 				{

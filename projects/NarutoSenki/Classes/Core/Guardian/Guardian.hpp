@@ -43,7 +43,7 @@ class Guardian : public Hero
 				CCObject *pObject;
 				CCARRAY_FOREACH(_delegate->_TowerArray, pObject)
 				{
-					CharacterBase *target = (CharacterBase *)pObject;
+					auto target = (CharacterBase *)pObject;
 					const char *gardTower;
 					if (getDelegate()->team > 0)
 					{

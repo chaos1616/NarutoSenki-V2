@@ -26,7 +26,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 		float randomY = rand() % 16;
 		float randomX = rand() % 4;
 		setPosition(ccp(at->getPositionX() + randomX, at->getPositionY() + randomY));
-		CCAction *effectAction = createEffectAnimation("red_damge_", 4, 14, false);
+		auto effectAction = createEffectAnimation("red_damge_", 4, 14, false);
 		runAction(effectAction);
 	}
 	else if (is_same(name, "l_hit") ||
@@ -46,7 +46,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 		initWithSpriteFrameName("red_damge_01.png");
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(ccp(at->getPositionX(), at->getPositionY()));
-		CCAction *effectAction = createEffectAnimation("red_damge_", 4, 14, false);
+		auto effectAction = createEffectAnimation("red_damge_", 4, 14, false);
 		runAction(effectAction);
 	}
 	else if (is_same(name, "bl_hit") ||
@@ -60,7 +60,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 		int randomInt = rand() % 30 + 10;
 		setRotation(randomInt);
 		setPosition(ccp(at->getPositionX(), at->getPositionY() + at->getContentSize().height / 2));
-		CCAction *effectAction = createEffectAnimation("blue_damge_", 4, 14, false);
+		auto effectAction = createEffectAnimation("blue_damge_", 4, 14, false);
 		runAction(effectAction);
 	}
 	else if (is_same(name, "a_hit"))
@@ -68,20 +68,20 @@ bool Effect::init(const char *name, CCObject *attacker)
 		initWithSpriteFrameName("bottom_damage_01.png");
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(ccp(at->getPositionX() + 16, at->getPositionY()));
-		CCAction *effectAction = createEffectAnimation("bottom_damage_", 6, 20, false);
+		auto effectAction = createEffectAnimation("bottom_damage_", 6, 20, false);
 		runAction(effectAction);
 	}
 	else if (is_same(name, "Kagura"))
 	{
 		initWithSpriteFrameName("Kagura_01.png");
-		CCAction *effectAction = createEffectAnimation("Kagura_", 9, 10, false);
+		auto effectAction = createEffectAnimation("Kagura_", 9, 10, false);
 		setAnchorPoint(ccp(0.5f, 0.5f));
 		runAction(effectAction);
 	}
 	else if (is_same(name, "Hupo"))
 	{
 		initWithSpriteFrameName("Hupo_01.png");
-		CCAction *effectAction = createEffectAnimation("Hupo_", 7, 10, false);
+		auto effectAction = createEffectAnimation("Hupo_", 7, 10, false);
 		setAnchorPoint(ccp(0.5f, 0.5f));
 		runAction(effectAction);
 	}
@@ -89,12 +89,12 @@ bool Effect::init(const char *name, CCObject *attacker)
 			 is_same(name, "speedUp"))
 	{
 		initWithSpriteFrameName(CCString::createWithFormat("%s_01.png", name)->getCString());
-		CCAction *effectAction = createEffectAnimation(CCString::createWithFormat("%s_", name)->getCString(), 5, 5, false);
-		CCFiniteTimeAction *call = CCCallFunc::create(at, callfunc_selector(CharacterBase::disableEffect));
-		CCArray *seqArray = CCArray::create();
+		auto effectAction = createEffectAnimation(CCString::createWithFormat("%s_", name)->getCString(), 5, 5, false);
+		auto call = CCCallFunc::create(at, callfunc_selector(CharacterBase::disableEffect));
+		auto seqArray = CCArray::create();
 		seqArray->addObject(effectAction);
 		seqArray->addObject(call);
-		CCAction *seq = CCSequence::create(seqArray);
+		auto seq = CCSequence::create(seqArray);
 		runAction(seq);
 	}
 	else if (is_same(name, "smk"))
@@ -102,7 +102,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 		initWithSpriteFrameName("smk_01.png");
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(at->getPosition());
-		CCAction *effectAction = createEffectAnimation("smk_", 5, 10, false);
+		auto effectAction = createEffectAnimation("smk_", 5, 10, false);
 		runAction(effectAction);
 		if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 		{
@@ -114,7 +114,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 		initWithSpriteFrameName("tishen_01.png");
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(at->getPosition());
-		CCAction *effectAction = createEffectAnimation("tishen_", 6, 10, false);
+		auto effectAction = createEffectAnimation("tishen_", 6, 10, false);
 		runAction(effectAction);
 	}
 	else if (is_same(name, "stun"))
@@ -122,7 +122,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 		initWithSpriteFrameName("smk_01.png");
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(ccp(at->getPositionX(), at->getPositionY() + at->getContentSize().height - 2));
-		CCAction *effectAction = createEffectAnimation("stun_", 5, 5, false);
+		auto effectAction = createEffectAnimation("stun_", 5, 5, false);
 		runAction(effectAction);
 	}
 	else if (is_same(name, "DarkFlame"))
@@ -130,18 +130,18 @@ bool Effect::init(const char *name, CCObject *attacker)
 		initWithSpriteFrameName("DarkFlame_Effect_01.png");
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(ccp(at->getPositionX(), at->getPositionY()));
-		CCAction *effectAction = createEffectAnimation("DarkFlame_Effect_", 5, 10, true);
+		auto effectAction = createEffectAnimation("DarkFlame_Effect_", 5, 10, true);
 		runAction(effectAction);
 
-		CCDelayTime *delay = CCDelayTime::create(2.8f);
-		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Effect::removeEffect));
-		CCAction *seq = CCSequence::create(delay, call, nullptr);
+		auto delay = CCDelayTime::create(2.8f);
+		auto call = CCCallFunc::create(this, callfunc_selector(Effect::removeEffect));
+		auto seq = CCSequence::create(delay, call, nullptr);
 		runAction(seq);
 	}
 	else if (is_same(name, "Bagua"))
 	{
 		initWithSpriteFrameName("Bagua_01.png");
-		CCAction *effectAction = createEffectAnimation("Bagua_", 24, 10, false);
+		auto effectAction = createEffectAnimation("Bagua_", 24, 10, false);
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(ccp(at->getPositionX() + 2, at->getPositionY() - 52));
 		runAction(effectAction);
@@ -151,9 +151,9 @@ bool Effect::init(const char *name, CCObject *attacker)
 		initWithSpriteFrameName("Kujiyose.png");
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(ccp(at->getPositionX(), at->getPositionY() - getContentSize().height / 2));
-		CCDelayTime *delay = CCDelayTime::create(0.3f);
-		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Effect::removeEffect));
-		CCAction *seq = CCSequence::create(delay, call, nullptr);
+		auto delay = CCDelayTime::create(0.3f);
+		auto call = CCCallFunc::create(this, callfunc_selector(Effect::removeEffect));
+		auto seq = CCSequence::create(delay, call, nullptr);
 		runAction(seq);
 	}
 	else if (is_same(name, "kazi"))
@@ -162,9 +162,9 @@ bool Effect::init(const char *name, CCObject *attacker)
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(ccp(at->getPositionX() + (at->_isFlipped ? -32 : 32),
 						at->getPositionY() + at->getContentSize().height / 2));
-		CCActionInterval *su = CCScaleBy::create(0.1f, 1.2f);
-		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Effect::removeEffect));
-		CCAction *seq = CCSequence::create(su, su->reverse(), call, nullptr);
+		auto su = CCScaleBy::create(0.1f, 1.2f);
+		auto call = CCCallFunc::create(this, callfunc_selector(Effect::removeEffect));
+		auto seq = CCSequence::create(su, su->reverse(), call, nullptr);
 		runAction(seq);
 	}
 	else if (is_same(name, "sharingan") ||
@@ -175,10 +175,10 @@ bool Effect::init(const char *name, CCObject *attacker)
 		initWithSpriteFrameName(CCString::createWithFormat(("%s.png"), name)->getCString());
 		setPosition(ccp(at->getPositionX() + (at->_isFlipped ? -32 : 32),
 						at->getPositionY() + at->getContentSize().height));
-		CCActionInterval *rt = CCRotateBy::create(0.3f, 180, 180);
-		CCActionInterval *su = CCScaleBy::create(0.2f, 1.6f);
-		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Effect::removeEffect));
-		CCAction *seq = CCSequence::create(rt, su, call, nullptr);
+		auto rt = CCRotateBy::create(0.3f, 180, 180);
+		auto su = CCScaleBy::create(0.2f, 1.6f);
+		auto call = CCCallFunc::create(this, callfunc_selector(Effect::removeEffect));
+		auto seq = CCSequence::create(rt, su, call, nullptr);
 		runAction(seq);
 	}
 	else if (is_same(name, "Hiraishin") ||
@@ -187,21 +187,21 @@ bool Effect::init(const char *name, CCObject *attacker)
 		initWithSpriteFrameName(CCString::createWithFormat("%sEffect_01.png", name)->getCString());
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(at->getPosition());
-		CCAction *effectAction = createEffectAnimation(CCString::createWithFormat("%sEffect_", name)->getCString(), 4, 10, false);
+		auto effectAction = createEffectAnimation(CCString::createWithFormat("%sEffect_", name)->getCString(), 4, 10, false);
 		runAction(effectAction);
 	}
 	else if (is_same(name, "hBuff"))
 	{
 		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01.png", name)->getCString());
 		setAnchorPoint(ccp(0.5f, 0));
-		CCAction *effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 4, 5, true);
+		auto effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 4, 5, true);
 		runAction(effectAction);
 	}
 	else if (is_same(name, "sBuff"))
 	{
 		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01.png", name)->getCString());
 		setAnchorPoint(ccp(0.5f, 0));
-		CCAction *effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 10, 10, true);
+		auto effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 10, 10, true);
 		runAction(effectAction);
 	}
 	else if (is_same(name, "hsBuff") ||
@@ -209,14 +209,14 @@ bool Effect::init(const char *name, CCObject *attacker)
 	{
 		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01.png", name)->getCString());
 		setAnchorPoint(ccp(0.5f, 0));
-		CCAction *effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 13, 10, true);
+		auto effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 13, 10, true);
 		runAction(effectAction);
 	}
 	else if (is_same(name, "dcBuff"))
 	{
 		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01.png", name)->getCString());
 		setAnchorPoint(ccp(0.5f, 0));
-		CCAction *effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 11, 10, true);
+		auto effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 11, 10, true);
 		runAction(effectAction);
 	}
 	else if (is_same(name, "jdBuff") ||
@@ -224,7 +224,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 	{
 		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01.png", name)->getCString());
 		setAnchorPoint(ccp(0.5f, 0));
-		CCAction *effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 9, 10, true);
+		auto effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 9, 10, true);
 		runAction(effectAction);
 	}
 	else if (is_same(name, "dhBuff"))
@@ -245,7 +245,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 			{
 				ef->setPosition(ccp(10, 34));
 			}
-			CCAction *effectAction = createEffectAnimation("FireEffect_", 5, 10, true);
+			auto effectAction = createEffectAnimation("FireEffect_", 5, 10, true);
 			ef->runAction(effectAction);
 			addChild(ef);
 		}
@@ -267,13 +267,13 @@ CCAction *Effect::createEffectAnimation(const char *file, int frameCount, float 
 	for (int i = 1; i < frameCount; i++)
 	{
 		str = CCString::createWithFormat("%s%02d.png", file, i);
-		CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(str->getCString());
+		auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(str->getCString());
 		animeFrames->addObject(frame);
 	}
 
-	CCAnimation *tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, float(1.0 / fps));
-	CCAction *tempAction = CCAnimate::create(tempAnimation);
-	CCArray *seqArray = CCArray::createWithObject(tempAction);
+	auto tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, float(1.0 / fps));
+	auto tempAction = CCAnimate::create(tempAnimation);
+	auto seqArray = CCArray::createWithObject(tempAction);
 	CCAction *seq;
 	if (isRepeat)
 	{
@@ -281,7 +281,7 @@ CCAction *Effect::createEffectAnimation(const char *file, int frameCount, float 
 	}
 	else
 	{
-		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Effect::removeEffect));
+		auto call = CCCallFunc::create(this, callfunc_selector(Effect::removeEffect));
 		seqArray->addObject(call);
 		seq = CCSequence::create(seqArray);
 	}
@@ -291,10 +291,9 @@ CCAction *Effect::createEffectAnimation(const char *file, int frameCount, float 
 
 CCAction *Effect::createFontAnimation()
 {
-	CCDelayTime *delay = CCDelayTime::create(0.3f);
-	CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Effect::removeFontEffect));
-	CCAction *seq = CCSequence::create(delay, call, nullptr);
-
+	auto delay = CCDelayTime::create(0.3f);
+	auto call = CCCallFunc::create(this, callfunc_selector(Effect::removeFontEffect));
+	auto seq = CCSequence::create(delay, call, nullptr);
 	return seq;
 }
 

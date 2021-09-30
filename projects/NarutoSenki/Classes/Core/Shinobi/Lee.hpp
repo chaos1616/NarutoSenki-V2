@@ -74,7 +74,7 @@ class Lee : public Hero
 			}
 			else
 			{
-				CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Bamen_Effect_%02d.png", bamen - 1)->getCString());
+				auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Bamen_Effect_%02d.png", bamen - 1)->getCString());
 				_heartEffect->setDisplayFrame(frame);
 			}
 		}
@@ -119,7 +119,7 @@ class Lee : public Hero
 		if (bamen < 5)
 		{
 			bamen += 1;
-			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Bamen_Effect_%02d.png", bamen - 1)->getCString());
+			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Bamen_Effect_%02d.png", bamen - 1)->getCString());
 			_heartEffect->setDisplayFrame(frame);
 		}
 		else

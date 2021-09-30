@@ -430,7 +430,7 @@ void CharacterBase::updateHpBarPosition(float dt)
 
 void CharacterBase::acceptAttack(CCObject *object)
 {
-	CharacterBase *attacker = (CharacterBase *)object;
+	auto attacker = (CharacterBase *)object;
 	bool isCannotMiss = false;
 
 	if (isCharacter("Tobi"))
@@ -510,9 +510,9 @@ void CharacterBase::acceptAttack(CCObject *object)
 				if (!_isHitOne)
 				{
 					_isHitOne = true;
-					CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::disableShack));
-					CCDelayTime *delay = CCDelayTime::create(0.5f);
-					CCArray *list = CCArray::create();
+					auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::disableShack));
+					auto delay = CCDelayTime::create(0.5f);
+					auto list = CCArray::create();
 					list->addObject(CCShake::createWithStrength(0.1f, 2, 0));
 					list->addObject(delay);
 					list->addObject(call);
@@ -535,7 +535,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						CCObject *pObject;
 						CCARRAY_FOREACH(_monsterArray, pObject)
 						{
-							CharacterBase *tempMonster = (CharacterBase *)pObject;
+							auto tempMonster = (CharacterBase *)pObject;
 							float distanceX = ccpSub(tempMonster->getPosition(), getPosition()).x;
 							float distanceY = ccpSub(tempMonster->getPosition(), getPosition()).y;
 							if (abs(distanceX) < 40 && abs(distanceY) < 15)
@@ -561,7 +561,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						CCObject *pObject;
 						CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 						{
-							Hero *tempHero = (Hero *)pObject;
+							auto tempHero = (Hero *)pObject;
 							if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (tempHero->isPlayer() || tempHero->isCom()) && tempHero->_actionState != State::DEAD)
 							{
 								tempHero->_slayer = this;
@@ -752,7 +752,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 									if (attacker->_heartEffect)
 									{
-										CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", attacker->hearts)->getCString());
+										auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", attacker->hearts)->getCString());
 										attacker->_heartEffect->setDisplayFrame(frame);
 									}
 								}
@@ -763,7 +763,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 									int countMON = 0;
 									CCARRAY_FOREACH(attacker->getMonsterArray(), pObject)
 									{
-										Monster *mo = (Monster *)pObject;
+										auto mo = (Monster *)pObject;
 										if (mo->isNotCharacter("Traps"))
 										{
 											countMON++;
@@ -1051,7 +1051,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 							CCObject *pObject;
 							CCARRAY_FOREACH(_monsterArray, pObject)
 							{
-								CharacterBase *tempMonster = (CharacterBase *)pObject;
+								auto tempMonster = (CharacterBase *)pObject;
 								float distanceX = ccpSub(tempMonster->getPosition(), getPosition()).x;
 								float distanceY = ccpSub(tempMonster->getPosition(), getPosition()).y;
 								if (abs(distanceX) < 40 && abs(distanceY) < 15)
@@ -1090,7 +1090,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 							CCObject *pObject;
 							CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 							{
-								Hero *tempHero = (Hero *)pObject;
+								auto tempHero = (Hero *)pObject;
 								if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (tempHero->isPlayer() || tempHero->isCom()) && tempHero->_actionState != State::DEAD)
 								{
 									tempHero->_slayer = this;
@@ -1138,14 +1138,14 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 {
 	CCObject *tObject;
 	CCArray *animeFrames = CCArray::create();
-	CCArray *seqArray = CCArray::create();
+	auto seqArray = CCArray::create();
 	CCAnimation *tempAnimation;
 	CCAction *tempAction;
 	CCAction *seq;
 
 	CCARRAY_FOREACH(ationArray, tObject)
 	{
-		CCDictionary *dic = (CCDictionary *)tObject;
+		auto dic = (CCDictionary *)tObject;
 		CCDictElement *ele = nullptr;
 
 		CCDICT_FOREACH(dic, ele)
@@ -1154,7 +1154,7 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 			const char *keyValue = dic->valueForKey(key)->getCString();
 			if (is_same(key, "frameName"))
 			{
-				CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(keyValue);
+				auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(keyValue);
 				animeFrames->addObject(frame);
 			}
 			else
@@ -1168,7 +1168,7 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 					callValue = CCDictionary::create();
 					callValue->retain();
 					callValue->setObject(CCString::create(keyValue), 1);
-					CCFiniteTimeAction *call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setAttackBox), (void *)callValue);
+					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setAttackBox), (void *)callValue);
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setSound"))
@@ -1176,7 +1176,7 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 					callValue = CCDictionary::create();
 					callValue->retain();
 					callValue->setObject(CCString::create(keyValue), 1);
-					CCFiniteTimeAction *call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setSound), (void *)callValue);
+					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setSound), (void *)callValue);
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setDSound"))
@@ -1184,19 +1184,19 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 					callValue = CCDictionary::create();
 					callValue->retain();
 					callValue->setObject(CCString::create(keyValue), 1);
-					CCFiniteTimeAction *call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setDSound), (void *)callValue);
+					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setDSound), (void *)callValue);
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setDelay"))
 				{
 					float delayTime = dic->valueForKey(key)->intValue();
-					CCAction *delay = CCDelayTime::create(delayTime / 100);
+					auto delay = CCDelayTime::create(delayTime / 100);
 					seqArray->addObject(delay);
 				}
 				else if (is_same(key, "setMove"))
 				{
 					int moveLength = dic->valueForKey(key)->intValue();
-					CCFiniteTimeAction *call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setMove), (void *)moveLength);
+					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setMove), (void *)moveLength);
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setSkillEffect"))
@@ -1204,18 +1204,18 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 					callValue = CCDictionary::create();
 					callValue->retain();
 					callValue->setObject(CCString::create(keyValue), 1);
-					CCFiniteTimeAction *call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setSkillEffect), (void *)callValue);
+					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setSkillEffect), (void *)callValue);
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setJump"))
 				{
 					bool jumpDirection = dic->valueForKey(key)->boolValue();
-					CCFiniteTimeAction *call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setJump), (void *)jumpDirection);
+					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setJump), (void *)jumpDirection);
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setCharge"))
 				{
-					CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::getCollider));
+					auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::getCollider));
 					seqArray->addObject(call);
 					int moveLength = dic->valueForKey(key)->intValue();
 					call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setCharge), (void *)moveLength);
@@ -1224,13 +1224,13 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 				else if (is_same(key, "setChargeB"))
 				{
 					int moveLength = dic->valueForKey(key)->intValue();
-					CCFiniteTimeAction *call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setChargeB), (void *)moveLength);
+					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setChargeB), (void *)moveLength);
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setClone"))
 				{
 					int cloneTime = dic->valueForKey(key)->intValue();
-					CCFiniteTimeAction *call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setClone), (void *)cloneTime);
+					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setClone), (void *)cloneTime);
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setMon"))
@@ -1238,7 +1238,7 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 					callValue = CCDictionary::create();
 					callValue->retain();
 					callValue->setObject(CCString::create(keyValue), 1);
-					CCFiniteTimeAction *call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setMon), (void *)callValue);
+					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setMon), (void *)callValue);
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setFont"))
@@ -1258,13 +1258,13 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 						p = strtok(nullptr, split);
 					}
 
-					//CCFiniteTimeAction *call = CCCallFuncND::create(this,callfuncND_selector(CharacterBase::setFontEffect),(void*)callValue);
+					//auto call = CCCallFuncND::create(this,callfuncND_selector(CharacterBase::setFontEffect),(void*)callValue);
 					//seqArray->addObject(call);
 				}
 				else if (is_same(key, "setBuff"))
 				{
 					int buffValue = dic->valueForKey(key)->intValue();
-					CCFiniteTimeAction *call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setBuff), (void *)buffValue);
+					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setBuff), (void *)buffValue);
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setCommand"))
@@ -1272,12 +1272,12 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 					callValue = CCDictionary::create();
 					callValue->retain();
 					callValue->setObject(CCString::create(keyValue), 1);
-					CCFiniteTimeAction *call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setCommand), (void *)callValue);
+					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setCommand), (void *)callValue);
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setDetonation"))
 				{
-					CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::dealloc));
+					auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::dealloc));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setBullet"))
@@ -1285,13 +1285,13 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 					callValue = CCDictionary::create();
 					callValue->retain();
 					callValue->setObject(CCString::create(keyValue), 1);
-					CCFiniteTimeAction *call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setBullet), (void *)callValue);
+					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setBullet), (void *)callValue);
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setMonAttack"))
 				{
 					int skillNum = dic->valueForKey(key)->intValue();
-					CCFiniteTimeAction *call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setMonAttack), (void *)skillNum);
+					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setMonAttack), (void *)skillNum);
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setTrap"))
@@ -1299,17 +1299,17 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 					callValue = CCDictionary::create();
 					callValue->retain();
 					callValue->setObject(CCString::create(keyValue), 1);
-					CCFiniteTimeAction *call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setTrap), (void *)callValue);
+					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setTrap), (void *)callValue);
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setActionResume"))
 				{
-					CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::setActionResume));
+					auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::setActionResume));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setActionResume2"))
 				{
-					CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::setActionResume2));
+					auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::setActionResume2));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setShadow"))
@@ -1317,28 +1317,28 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 					callValue = CCDictionary::create();
 					callValue->retain();
 					callValue->setObject(animeFrames->objectAtIndex(int(animeFrames->count() - 1)), 1);
-					CCFiniteTimeAction *call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setShadow), (void *)callValue);
+					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setShadow), (void *)callValue);
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setTransform"))
 				{
-					CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::setTransform));
+					auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::setTransform));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setOugis"))
 				{
-					CCFiniteTimeAction *call = CCCallFuncN::create(this, callfuncN_selector(CharacterBase::setOugis));
+					auto call = CCCallFuncN::create(this, callfuncN_selector(CharacterBase::setOugis));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "stopJump"))
 				{
 					int stopTime = dic->valueForKey(key)->intValue();
-					CCFiniteTimeAction *call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::stopJump), (void *)stopTime);
+					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::stopJump), (void *)stopTime);
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setFlipped"))
 				{
-					CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::setCharFlip));
+					auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::setCharFlip));
 					seqArray->addObject(call);
 				}
 
@@ -1361,7 +1361,7 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 	{
 		if (isReturn)
 		{
-			CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::idle));
+			auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::idle));
 			seqArray->addObject(call);
 		}
 
@@ -1388,8 +1388,8 @@ void CharacterBase::setCharFlip()
 void CharacterBase::setShadow(CCNode *sender, void *data)
 {
 	CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-	CCDictionary *file = (CCDictionary *)data;
-	CCSpriteFrame *frame = (CCSpriteFrame *)(file->objectForKey(1));
+	auto file = (CCDictionary *)data;
+	auto frame = (CCSpriteFrame *)(file->objectForKey(1));
 	CCSprite *charN = CCSprite::createWithSpriteFrame(frame);
 	charN->setVisible(false);
 	if (isKonohaGroup())
@@ -1405,8 +1405,8 @@ void CharacterBase::setShadow(CCNode *sender, void *data)
 	charN->setAnchorPoint(ccp(0.5, 0));
 	charN->setFlipX(_isFlipped);
 	charN->setPosition(getPosition());
-	CCDelayTime *delay = CCDelayTime::create(0.1f);
-	CCFiniteTimeAction *call = CCCallFuncN::create(charN, callfuncN_selector(CharacterBase::enableShadow));
+	auto delay = CCDelayTime::create(0.1f);
+	auto call = CCCallFuncN::create(charN, callfuncN_selector(CharacterBase::enableShadow));
 	charN->runAction(CCSequence::createWithTwoActions(delay, call));
 	_delegate->addChild(charN, -getPositionY() - 1);
 }
@@ -1415,8 +1415,8 @@ void CharacterBase::enableShadow(CCNode *sender)
 {
 	CCSprite *charN = (CCSprite *)sender;
 	charN->setVisible(true);
-	CCDelayTime *delay = CCDelayTime::create(0.1f);
-	CCFiniteTimeAction *call = CCCallFuncN::create(charN, callfuncN_selector(CharacterBase::disableShadow));
+	auto delay = CCDelayTime::create(0.1f);
+	auto call = CCCallFuncN::create(charN, callfuncN_selector(CharacterBase::disableShadow));
 	charN->runAction(CCSequence::createWithTwoActions(delay, call));
 }
 
@@ -1467,7 +1467,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 	int criticalValue;
 	int realValue;
 
-	CharacterBase *attacker = _slayer;
+	auto attacker = _slayer;
 	CharacterBase *currentAttacker;
 	if (attacker->getMaster())
 		currentAttacker = attacker->getMaster();
@@ -1522,7 +1522,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 					CCObject *pObject;
 					CCARRAY_FOREACH(getMonsterArray(), pObject)
 					{
-						Monster *mo = (Monster *)pObject;
+						auto mo = (Monster *)pObject;
 						if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK)
 						{
 							CCPoint sp = ccpSub(mo->getPosition(), getPosition());
@@ -1788,7 +1788,7 @@ void CharacterBase::setCoinDisplay(int num)
 	coinDisplay->addChild(coinSprite);
 
 	CCString *label = CCString::createWithFormat("+%d", num);
-	CCLabelBMFont *rewardLabel = CCLabelBMFont::create(label->getCString(), "Fonts/yellow.fnt");
+	auto rewardLabel = CCLabelBMFont::create(label->getCString(), "Fonts/yellow.fnt");
 	rewardLabel->setPosition(ccp(0, 0));
 	rewardLabel->setScale(0.3f);
 	coinDisplay->addChild(rewardLabel);
@@ -1796,14 +1796,14 @@ void CharacterBase::setCoinDisplay(int num)
 	coinDisplay->setPosition(ccp(getPositionX(), getPositionY() + getContentSize().height / 2));
 	_delegate->addChild(coinDisplay, 5000);
 
-	CCActionInterval *mv = CCMoveBy::create(0.5f, ccp(0, 12));
-	CCActionInterval *fadeOut = CCFadeOut::create(0.8f);
-	CCFiniteTimeAction *call = CCCallFuncND::create(coinDisplay, callfuncND_selector(CharacterBase::removeCoinDisplay), nullptr);
-	CCActionInterval *sp = CCSpawn::create(fadeOut, mv, nullptr);
-	CCArray *seqArray = CCArray::create();
+	auto mv = CCMoveBy::create(0.5f, ccp(0, 12));
+	auto fadeOut = CCFadeOut::create(0.8f);
+	auto call = CCCallFuncND::create(coinDisplay, callfuncND_selector(CharacterBase::removeCoinDisplay), nullptr);
+	auto sp = CCSpawn::create(fadeOut, mv, nullptr);
+	auto seqArray = CCArray::create();
 	seqArray->addObject(sp);
 	seqArray->addObject(call);
-	CCAction *seq = CCSequence::create(seqArray);
+	auto seq = CCSequence::create(seqArray);
 	coinDisplay->runAction(seq);
 }
 
@@ -1817,7 +1817,7 @@ void CharacterBase::setDamgeDisplay(int value, const char *type)
 {
 	if (_damageArray->count() < 6)
 	{
-		CCLabelBMFont *damageFont = CCLabelBMFont::create(to_ccstring(value)->getCString(),
+		auto damageFont = CCLabelBMFont::create(to_ccstring(value)->getCString(),
 														  CCString::createWithFormat("Fonts/%s.fnt", type)->getCString());
 		damageFont->setAnchorPoint(ccp(0.5, 0.5));
 
@@ -1835,19 +1835,19 @@ void CharacterBase::setDamgeDisplay(int value, const char *type)
 		_delegate->addChild(damageFont, currentNumberTag);
 		_damageArray->addObject(damageFont);
 
-		CCActionInterval *sd = CCScaleBy::create(0.2f, 0.5f);
-		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::removeDamageDisplay));
+		auto sd = CCScaleBy::create(0.2f, 0.5f);
+		auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::removeDamageDisplay));
 
-		CCActionInterval *mv = CCMoveBy::create(0.4f, ccp(0, 12));
-		CCActionInterval *fadeOut = CCFadeOut::create(0.4f);
-		CCActionInterval *sp = CCSpawn::create(fadeOut, mv, nullptr);
+		auto mv = CCMoveBy::create(0.4f, ccp(0, 12));
+		auto fadeOut = CCFadeOut::create(0.4f);
+		auto sp = CCSpawn::create(fadeOut, mv, nullptr);
 
-		CCArray *seqArray = CCArray::create();
+		auto seqArray = CCArray::create();
 		seqArray->addObject(sd);
 		seqArray->addObject(sp);
 		seqArray->addObject(call);
 
-		CCAction *seq = CCSequence::create(seqArray);
+		auto seq = CCSequence::create(seqArray);
 
 		damageFont->runAction(seq);
 	}
@@ -1858,7 +1858,7 @@ void CharacterBase::removeDamageDisplay()
 	if (_damageArray && _damageArray->count() > 0)
 	{
 		CCObject *pObject = _damageArray->objectAtIndex(0);
-		CCLabelBMFont *damageFont = (CCLabelBMFont *)pObject;
+		auto damageFont = (CCLabelBMFont *)pObject;
 		damageFont->removeFromParent();
 		_damageArray->removeObjectAtIndex(0);
 		damageFont = nullptr;
@@ -1889,7 +1889,7 @@ void CharacterBase::setDamgeEffect(const char *type)
 
 void CharacterBase::setSkillEffect(CCNode *sender, void *data)
 {
-	CCDictionary *file = (CCDictionary *)data;
+	auto file = (CCDictionary *)data;
 	auto type = ((CCString *)(file->objectForKey(1)))->getCString();
 
 	if (isPlayer() ||
@@ -1926,7 +1926,7 @@ void CharacterBase::setItem(abType type)
 		CCObject *pObject;
 		CCARRAY_FOREACH(getMonsterArray(), pObject)
 		{
-			Monster *mo = (Monster *)pObject;
+			auto mo = (Monster *)pObject;
 			if (mo->isNotCharacter("Traps"))
 			{
 				mo->setItem(Item1);
@@ -2097,7 +2097,7 @@ void CharacterBase::useGear(gearType type)
 
 				_isVisable = false;
 
-				CCDictionary *callValue2 = CCDictionary::create();
+				auto callValue2 = CCDictionary::create();
 				callValue2->setObject(CCString::create("Audio/Effect/suzou_effect.ogg"), 1);
 				setSound(this, callValue2);
 
@@ -2109,7 +2109,7 @@ void CharacterBase::useGear(gearType type)
 	{
 		_isCanGear03 = false;
 
-		CCDictionary *tmpValue = CCDictionary::create();
+		auto tmpValue = CCDictionary::create();
 		tmpValue->setObject(CCString::create("Traps"), 1);
 		setMon(this, (void *)tmpValue);
 
@@ -2143,12 +2143,12 @@ void CharacterBase::useGear(gearType type)
 
 				idle();
 
-				CCDictionary *callValue = CCDictionary::create();
+				auto callValue = CCDictionary::create();
 				callValue->setObject(CCString::create("tishen"), 1);
 				setSkillEffect(this, callValue);
 				scheduleOnce(schedule_selector(CharacterBase::disableGear2), 1.0f);
 
-				CCDictionary *callValue2 = CCDictionary::create();
+				auto callValue2 = CCDictionary::create();
 				callValue2->setObject(CCString::create("Audio/Effect/poof2.ogg"), 1);
 				setSound(this, callValue2);
 
@@ -2335,7 +2335,7 @@ void CharacterBase::setSound(CCNode *sender, void *data)
 
 		if (_isPlayable)
 		{
-			CCDictionary *file = (CCDictionary *)data;
+			auto file = (CCDictionary *)data;
 			CCString *str = (CCString *)(file->objectForKey(1));
 			SimpleAudioEngine::sharedEngine()->preloadEffect(str->getCString());
 			SimpleAudioEngine::sharedEngine()->playEffect(str->getCString());
@@ -2363,7 +2363,7 @@ void CharacterBase::setDSound(CCNode *sender, void *data)
 
 		if (_isPlayable && _isHitOne)
 		{
-			CCDictionary *file = (CCDictionary *)data;
+			auto file = (CCDictionary *)data;
 			CCString *str = (CCString *)(file->objectForKey(1));
 			SimpleAudioEngine::sharedEngine()->preloadEffect(str->getCString());
 			SimpleAudioEngine::sharedEngine()->playEffect(str->getCString());
@@ -2373,7 +2373,7 @@ void CharacterBase::setDSound(CCNode *sender, void *data)
 
 void CharacterBase::setAttackBox(CCNode *sender, void *data)
 {
-	CCDictionary *file = (CCDictionary *)data;
+	auto file = (CCDictionary *)data;
 	CCString *str = (CCString *)(file->objectForKey(1));
 
 	_effectType = str->getCString();
@@ -2415,7 +2415,7 @@ void CharacterBase::setAttackBox(CCNode *sender, void *data)
 		{
 			_delegate->_isShacking = true;
 			CCScene *f = CCDirector::sharedDirector()->getRunningScene();
-			CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::disableShack));
+			auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::disableShack));
 			f->runAction(CCSequence::createWithTwoActions(CCShake::create(0.05f, 12), call));
 		}
 		if (_delegate->_isAttackButtonRelease && _actionState == State::NATTACK && !_isOnlySkillLocked && !_isAI)
@@ -2431,7 +2431,7 @@ void CharacterBase::getSticker(float dt)
 	CCObject *pObject;
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
-		Hero *tempHero = (Hero *)pObject;
+		auto tempHero = (Hero *)pObject;
 		CharacterBase *tempSticker = nullptr;
 		if (tempHero->_sticker)
 		{
@@ -2559,7 +2559,7 @@ void CharacterBase::setChargeB(CCNode *sender, void *data)
 
 void CharacterBase::setCommand(CCNode *sender, void *data)
 {
-	CCDictionary *file = (CCDictionary *)data;
+	auto file = (CCDictionary *)data;
 	CCString *commandType = (CCString *)(file->objectForKey(1));
 
 	if (is_same(commandType->getCString(), "addHP"))
@@ -2640,7 +2640,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 		{
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
-				Monster *mo = (Monster *)pObject;
+				auto mo = (Monster *)pObject;
 				if (mo->isCharacter("HiraishinMark"))
 				{
 					tsPosX = mo->getPositionX();
@@ -2762,7 +2762,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
-			Hero *tempHero = (Hero *)pObject;
+			auto tempHero = (Hero *)pObject;
 			if (is_same(_group->getCString(), tempHero->_group->getCString()) && (tempHero->isPlayer() || tempHero->isCom()) && tempHero->_actionState == State::DEAD && tempHero->rebornSprite)
 			{
 				tempHero->unschedule(schedule_selector(Hero::reborn));
@@ -2775,7 +2775,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
-			Hero *tempHero = (Hero *)pObject;
+			auto tempHero = (Hero *)pObject;
 			if (tempHero->isPlayerOrCom() &&
 				tempHero->_actionState == State::DEAD &&
 				tempHero->rebornSprite &&
@@ -2820,27 +2820,27 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 	}
 	else if (is_same(commandType->getCString(), "addExtern"))
 	{
-		CCArray *tempArray = CCArray::create();
+		auto tempArray = CCArray::create();
 
 		int i = 1;
 		if (isCharacter("Tenten"))
 		{
 			while (i < 11)
 			{
-				CCString *path = CCString::createWithFormat("Tenten_Extern_0%d.png", i);
-				CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path->getCString());
+				auto path = CCString::createWithFormat("Tenten_Extern_0%d.png", i);
+				auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path->getCString());
 				tempArray->addObject(frame);
 				i += 1;
 			}
 		}
 
-		CCAnimation *tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
-		CCFiniteTimeAction *call = CCCallFuncN::create(this, callfuncN_selector(CharacterBase::disableShadow));
-		CCAction *tempAction = CCAnimate::create(tempAnimation);
-		CCArray *list = CCArray::create();
+		auto tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
+		auto call = CCCallFuncN::create(this, callfuncN_selector(CharacterBase::disableShadow));
+		auto tempAction = CCAnimate::create(tempAnimation);
+		auto list = CCArray::create();
 		list->addObject(tempAction);
 		list->addObject(call);
-		CCAction *seq = CCSequence::create(list);
+		auto seq = CCSequence::create(list);
 
 		CCSprite *tempChar = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_Extern_01.png", getCharacter()->getCString())->getCString());
 
@@ -2862,7 +2862,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 			CCObject *pObject;
 			CCARRAY_FOREACH(_monsterArray, pObject)
 			{
-				CharacterBase *tempMonster = (CharacterBase *)pObject;
+				auto tempMonster = (CharacterBase *)pObject;
 				float distanceX = ccpSub(tempMonster->getPosition(), getPosition()).x;
 				float distanceY = ccpSub(tempMonster->getPosition(), getPosition()).y;
 				if (abs(distanceX) < 40 && abs(distanceY) < 15)
@@ -2877,7 +2877,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 			CCObject *pObject;
 			CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 			{
-				Hero *tempHero = (Hero *)pObject;
+				auto tempHero = (Hero *)pObject;
 				if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (tempHero->isPlayer() || tempHero->isCom()) && tempHero->_actionState != State::DEAD)
 				{
 					if (tempHero->_hpBar)
@@ -2957,7 +2957,7 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 			CCObject *pObject;
 			CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 			{
-				CharacterBase *tempHero = (CharacterBase *)pObject;
+				auto tempHero = (CharacterBase *)pObject;
 				if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (tempHero->isPlayer() || tempHero->isCom()) && tempHero->_actionState != State::HURT && tempHero->_actionState != State::DEAD)
 				{
 					float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
@@ -3263,7 +3263,7 @@ void CharacterBase::healBuff(float dt)
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
-			Hero *tempHero = (Hero *)pObject;
+			auto tempHero = (Hero *)pObject;
 			if (is_same(_group->getCString(), tempHero->_group->getCString()) && (tempHero->isPlayer() || tempHero->isCom()) && tempHero->_actionState != State::DEAD)
 			{
 				float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
@@ -3306,7 +3306,7 @@ void CharacterBase::healBuff(float dt)
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
-			Hero *tempHero = (Hero *)pObject;
+			auto tempHero = (Hero *)pObject;
 			if (is_same(_group->getCString(), tempHero->_group->getCString()) &&
 				tempHero->isPlayerOrCom() &&
 				tempHero->isNotCharacter("Chiyo"))
@@ -3378,7 +3378,7 @@ void CharacterBase::healBuff(float dt)
 
 		CCARRAY_FOREACH(list, pObject)
 		{
-			CharacterBase *tempHero = (CharacterBase *)pObject;
+			auto tempHero = (CharacterBase *)pObject;
 			if (is_same(_group->getCString(), tempHero->_group->getCString()) && tempHero->_actionState != State::DEAD)
 			{
 				float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
@@ -3445,7 +3445,7 @@ void CharacterBase::dehealBuff(float dt)
 	CCObject *pObject;
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
-		Hero *tempHero = (Hero *)pObject;
+		auto tempHero = (Hero *)pObject;
 		if (tempHero->isCharacter("Asuma"))
 			_slayer = tempHero;
 	}
@@ -3468,7 +3468,7 @@ void CharacterBase::lostBlood(float dt)
 	CCObject *pObject;
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
-		Hero *tempHero = (Hero *)pObject;
+		auto tempHero = (Hero *)pObject;
 		if (tempHero->isCharacter("Shikamaru"))
 			_slayer = tempHero;
 	}
@@ -3553,7 +3553,7 @@ void CharacterBase::stopMove(float dt)
 	CCObject *pObject;
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
-		Hero *tempHero = (Hero *)pObject;
+		auto tempHero = (Hero *)pObject;
 		if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && tempHero->_isVisable && tempHero->_actionState != State::DEAD && tempHero->_actionState != State::JUMP && !tempHero->_isInvincible)
 		{
 			float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
@@ -3582,7 +3582,7 @@ void CharacterBase::stopJump(CCNode *sender, void *data)
 
 void CharacterBase::setBullet(CCNode *sender, void *data)
 {
-	CCDictionary *file = (CCDictionary *)data;
+	auto file = (CCDictionary *)data;
 	CCString *str = (CCString *)(file->objectForKey(1));
 	CCString *bulletType = str;
 
@@ -3734,7 +3734,7 @@ Hero *CharacterBase::createClone(int cloneTime)
 void CharacterBase::setClone(CCNode *sender, void *data)
 {
 	int cloneTime = *((int *)&data);
-	Hero *clone = createClone(cloneTime);
+	auto clone = createClone(cloneTime);
 	if (!clone)
 	{
 		CCLOG("Current character %s can not create clone", _character->getCString());
@@ -3797,7 +3797,7 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 
 	clone->setFlipX(_isFlipped);
 	clone->_isFlipped = _isFlipped;
-	CCDictionary *callValue = CCDictionary::create();
+	auto callValue = CCDictionary::create();
 	callValue->setObject(CCString::create("smk"), 1);
 	clone->setSkillEffect(clone, callValue);
 	clone->idle();
@@ -3818,7 +3818,7 @@ void CharacterBase::removeClone(float dt)
 
 void CharacterBase::setMon(CCNode *sender, void *data)
 {
-	CCDictionary *file = (CCDictionary *)data;
+	auto file = (CCDictionary *)data;
 	CCString *monsterType = (CCString *)(file->objectForKey(1));
 	const char *monsterName = monsterType->getCString();
 	float monsterStayTime = _attackRangeY;
@@ -3829,7 +3829,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		_monsterArray->retain();
 	}
 
-	Monster *monster = Monster::create();
+	auto monster = Monster::create();
 	monster->setDelegate(_delegate);
 
 	monster->setID(monsterType, CCString::create(kRoleMon), _group);
@@ -3844,7 +3844,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		else
 		{
 			monster->setMaster(getMaster());
-			monster->setSecMaster((CharacterBase *)this);
+			monster->setSecMaster(this);
 		}
 	}
 	else
@@ -3921,7 +3921,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	{
 		if (_monsterArray && _monsterArray->count() < 3)
 		{
-			CCDictionary *callValue = CCDictionary::create();
+			auto callValue = CCDictionary::create();
 			callValue->setObject(CCString::create("smk"), 1);
 			monster->setSkillEffect(monster, callValue);
 			_monsterArray->addObject(monster);
@@ -3935,7 +3935,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	}
 	else if (is_same(monsterName, "Kuroari"))
 	{
-		CCDictionary *callValue = CCDictionary::create();
+		auto callValue = CCDictionary::create();
 		callValue->setObject(CCString::create("smk"), 1);
 		monster->setSkillEffect(monster, callValue);
 		_monsterArray->addObject(monster);
@@ -4016,7 +4016,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	}
 	else if (is_same(monsterName, "Mine"))
 	{
-		CCDictionary *callValue = CCDictionary::create();
+		auto callValue = CCDictionary::create();
 		callValue->setObject(CCString::create("smk"), 1);
 		monster->setSkillEffect(monster, callValue);
 		_monsterArray->addObject(monster);
@@ -4223,7 +4223,7 @@ void CharacterBase::setMonPer(float dt)
 		_monsterArray->retain();
 	}
 
-	Monster *monster = Monster::create();
+	auto monster = Monster::create();
 	monster->setDelegate(_delegate);
 
 	if (isCharacter("Deidara"))
@@ -4233,7 +4233,7 @@ void CharacterBase::setMonPer(float dt)
 	else if (isCharacter("Sai"))
 	{
 		monster->setID(CCString::create("Mouse"), CCString::create(kRoleMon), _group);
-		CCDictionary *callValue2 = CCDictionary::create();
+		auto callValue2 = CCDictionary::create();
 		callValue2->setObject(CCString::create("Audio/Sai/ink_mouse.ogg"), 1);
 		setSound(this, callValue2);
 	}
@@ -4253,7 +4253,7 @@ void CharacterBase::setMonPer(float dt)
 
 void CharacterBase::setTrap(CCNode *sender, void *data)
 {
-	CCDictionary *file = (CCDictionary *)data;
+	auto file = (CCDictionary *)data;
 	CCString *trapType = (CCString *)(file->objectForKey(1));
 
 	if (is_same(trapType->getCString(), "Amaterasu"))
@@ -4261,7 +4261,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
-			CharacterBase *tempHero = (CharacterBase *)pObject;
+			auto tempHero = (CharacterBase *)pObject;
 			if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (tempHero->isPlayer() || tempHero->isCom()) && tempHero->_actionState != State::HURT && tempHero->_actionState != State::DEAD)
 			{
 				float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
@@ -4413,7 +4413,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
-			Hero *tempHero = (Hero *)pObject;
+			auto tempHero = (Hero *)pObject;
 			if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (tempHero->isPlayer() || tempHero->isCom()) && tempHero->_actionState != State::DEAD && tempHero->_isVisable && !tempHero->_isSticking)
 			{
 				float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
@@ -4447,7 +4447,7 @@ void CharacterBase::setMonAttack(CCNode *sender, void *data)
 		CCObject *pObject;
 		CCARRAY_FOREACH(getMonsterArray(), pObject)
 		{
-			Monster *mo = (Monster *)pObject;
+			auto mo = (Monster *)pObject;
 			if (mo->isNotCharacter("Traps"))
 			{
 				if (isCharacter("Kiba"))
@@ -4572,7 +4572,7 @@ void CharacterBase::setTransform()
 		_delegate->getHudLayer()->skill2Button->_isColdChanged = true;
 		_delegate->getHudLayer()->skill3Button->_isColdChanged = true;
 
-		CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("%s_skill1.png", charName)->getCString());
+		auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("%s_skill1.png", charName)->getCString());
 		if (frame)
 			_delegate->getHudLayer()->skill1Button->setDisplayFrame(frame);
 		frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("%s_skill2.png", charName)->getCString());
@@ -4934,7 +4934,7 @@ void CharacterBase::walk(CCPoint direction)
 				CCObject *pObject;
 				CCARRAY_FOREACH(getMonsterArray(), pObject)
 				{
-					Monster *mo = (Monster *)pObject;
+					auto mo = (Monster *)pObject;
 					if (mo->isCharacter("ItachiSusano") ||
 						mo->isCharacter("SasukeSusano"))
 					{
@@ -4973,7 +4973,7 @@ bool CharacterBase::hurt()
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
-			Hero *tempHero = (Hero *)pObject;
+			auto tempHero = (Hero *)pObject;
 			if (is_same(_group->getCString(), tempHero->_group->getCString()) &&
 				tempHero->isCharacter("Chiyo") &&
 				tempHero->_actionState != State::DEAD &&
@@ -4991,7 +4991,7 @@ bool CharacterBase::hurt()
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
-				Monster *mo = (Monster *)pObject;
+				auto mo = (Monster *)pObject;
 				if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK && mo->getActionState() != State::DEAD)
 				{
 					CCPoint sp = ccpSub(mo->getPosition(), getPosition());
@@ -5012,11 +5012,11 @@ bool CharacterBase::hurt()
 		stopAllActions();
 		if (_hurtAction)
 		{
-			CCArray *list = CCArray::create();
+			auto list = CCArray::create();
 			list->addObject(_hurtAction);
-			CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::idle));
+			auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::idle));
 			list->addObject(call);
-			CCAction *seq = CCSequence::create(list);
+			auto seq = CCSequence::create(list);
 			runAction(seq);
 		}
 		return true;
@@ -5047,7 +5047,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
-			Hero *tempHero = (Hero *)pObject;
+			auto tempHero = (Hero *)pObject;
 			if (is_same(_group->getCString(), tempHero->_group->getCString()) &&
 				tempHero->isCharacter("Chiyo") &&
 				tempHero->_actionState != State::DEAD &&
@@ -5066,7 +5066,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
-				Monster *mo = (Monster *)pObject;
+				auto mo = (Monster *)pObject;
 				if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK && mo->getActionState() != State::DEAD)
 				{
 					CCPoint sp = ccpSub(mo->getPosition(), getPosition());
@@ -5104,7 +5104,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 
 		_actionState = State::HURT;
 		stopAllActions();
-		CCArray *list = CCArray::create();
+		auto list = CCArray::create();
 
 		if (isHurtAction)
 		{
@@ -5113,7 +5113,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 		else
 		{
 			_isSticking = true;
-			CharacterBase *attacker = _slayer;
+			auto attacker = _slayer;
 			CCString *path;
 			if (attacker->isCharacter("Kakuzu"))
 			{
@@ -5124,30 +5124,30 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 				path = CCString::createWithFormat("%s_Hurt_02.png", getCharacter()->getCString());
 			}
 
-			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path->getCString());
-			CCArray *tempArray = CCArray::create();
+			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path->getCString());
+			auto tempArray = CCArray::create();
 			tempArray->addObject(frame);
-			CCAnimation *tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
-			CCAction *tempAction = CCAnimate::create(tempAnimation);
+			auto tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
+			auto tempAction = CCAnimate::create(tempAnimation);
 			list->addObject(tempAction);
 		}
 
 		if (isStun)
 		{
-			CCDictionary *callValue = CCDictionary::create();
+			auto callValue = CCDictionary::create();
 			callValue->setObject(CCString::create("stun"), 1);
 			callValue->retain();
-			CCFiniteTimeAction *call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setSkillEffect), (void *)callValue);
+			auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setSkillEffect), (void *)callValue);
 			list->addObject(call);
 		}
 
-		CCAction *delay = CCDelayTime::create(delayTime / 1000);
+		auto delay = CCDelayTime::create(delayTime / 1000);
 		list->addObject(delay);
 
-		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::idle));
+		auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::idle));
 		list->addObject(call);
 
-		CCAction *seq = CCSequence::create(list);
+		auto seq = CCSequence::create(list);
 		runAction(seq);
 
 		return true;
@@ -5197,13 +5197,11 @@ void CharacterBase::absorb(CCPoint position, bool isImmediate)
 		}
 		_actionState = State::HURT;
 
-		CCActionInterval *mv;
-
-		CCArray *list = CCArray::create();
+		auto list = CCArray::create();
 		if (isImmediate)
 		{
 			stopAllActions();
-			mv = CCMoveTo::create(0.2f, position);
+			auto mv = CCMoveTo::create(0.2f, position);
 			list->addObject(_hurtAction);
 			runAction(mv);
 		}
@@ -5212,13 +5210,13 @@ void CharacterBase::absorb(CCPoint position, bool isImmediate)
 			CCPoint direction = ccpSub(getPosition(), position);
 			position.x = direction.x > 0 ? getPositionX() - 16 : getPositionX() + 16;
 			position.y = direction.y > 0 ? getPositionY() - 8 : getPositionY() + 8;
-			mv = CCMoveTo::create(0.2f, position);
+			auto mv = CCMoveTo::create(0.2f, position);
 			list->addObject(mv);
 		}
 
-		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::idle));
+		auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::idle));
 		list->addObject(call);
-		CCAction *seq = CCSequence::create(list);
+		auto seq = CCSequence::create(list);
 		runAction(seq);
 	}
 }
@@ -5243,7 +5241,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
-			Hero *tempHero = (Hero *)pObject;
+			auto tempHero = (Hero *)pObject;
 			if (is_same(_group->getCString(), tempHero->_group->getCString()) &&
 				tempHero->isCharacter("Chiyo") &&
 				tempHero->_actionState != State::DEAD &&
@@ -5262,7 +5260,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
-				Monster *mo = (Monster *)pObject;
+				auto mo = (Monster *)pObject;
 				if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK && mo->getActionState() != State::DEAD)
 				{
 					CCPoint sp = ccpSub(mo->getPosition(), getPosition());
@@ -5297,7 +5295,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 		else
 			_floatAwayAction = CCJumpTo::create(0.3f, ccp(posX + (_isFlipped ? 8 : -8), posY), 16, 1);
 
-		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::knockDown));
+		auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::knockDown));
 		_floatUPAction = CCSequence::create(_floatAwayAction, call, nullptr);
 
 		runAction(_floatUPAction);
@@ -5420,8 +5418,8 @@ void CharacterBase::dead()
 
 			if (isPlayer())
 			{
-				const char *dl = _delegate->getHudLayer()->deadLabel->getString();
-				int deads = to_int(dl) + 1;
+				auto deadStr = _delegate->getHudLayer()->deadLabel->getString();
+				int deads = to_int(deadStr) + 1;
 				_delegate->getHudLayer()->deadLabel->setString(to_ccstring(deads)->getCString());
 			}
 		}
@@ -5474,9 +5472,9 @@ void CharacterBase::dead()
 
 	if (isNotClone() && isNotSummon())
 	{
-		CCActionInterval *fadeOut = CCFadeOut::create(0.5);
-		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::dealloc));
-		CCArray *seqArray = CCArray::create();
+		auto fadeOut = CCFadeOut::create(0.5);
+		auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::dealloc));
+		auto seqArray = CCArray::create();
 		seqArray->addObject(_deadAction);
 
 		if (isFlog())
@@ -5484,13 +5482,13 @@ void CharacterBase::dead()
 			seqArray->addObject(fadeOut);
 		}
 		seqArray->addObject(call);
-		CCAction *seq = CCSequence::create(seqArray);
+		auto seq = CCSequence::create(seqArray);
 		runAction(seq);
 	}
 	else
 	{
 		unschedule(schedule_selector(CharacterBase::removeClone));
-		CCDictionary *callValue = CCDictionary::create();
+		auto callValue = CCDictionary::create();
 		callValue->setObject(CCString::create("smk"), 1);
 		setSkillEffect(this, callValue);
 		dealloc();
@@ -5503,9 +5501,9 @@ void CharacterBase::checkActionFinish(float dt)
 	{
 		unschedule(schedule_selector(CharacterBase::checkActionFinish));
 		stopAllActions();
-		CCActionInterval *fadeOut = CCFadeOut::create(0.5);
-		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(CharacterBase::dealloc));
-		CCArray *seqArray = CCArray::create();
+		auto fadeOut = CCFadeOut::create(0.5);
+		auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::dealloc));
+		auto seqArray = CCArray::create();
 		if (_deadAction)
 		{
 			seqArray->addObject(_deadAction);
@@ -5515,7 +5513,7 @@ void CharacterBase::checkActionFinish(float dt)
 			seqArray->addObject(fadeOut);
 		}
 		seqArray->addObject(call);
-		CCAction *seq = CCSequence::create(seqArray);
+		auto seq = CCSequence::create(seqArray);
 		runAction(seq);
 	}
 }
@@ -5569,7 +5567,7 @@ bool CharacterBase::findEnemy(const char *type, int searchRange, bool masterRang
 	bool findSome = false;
 	CCARRAY_FOREACH(list, pObject)
 	{
-		CharacterBase *target = (CharacterBase *)pObject;
+		auto target = (CharacterBase *)pObject;
 
 		if (target->_actionState == State::DEAD ||
 			target->_isVisable == false ||
@@ -5663,7 +5661,7 @@ bool CharacterBase::findEnemy2(const char *type)
 
 	CCARRAY_FOREACH(list, pObject)
 	{
-		CharacterBase *target = (CharacterBase *)pObject;
+		auto target = (CharacterBase *)pObject;
 
 		if (target->_actionState == State::DEAD ||
 			target->_isVisable == false ||
@@ -5738,12 +5736,12 @@ bool CharacterBase::findEnemy2(const char *type)
 
 bool CharacterBase::checkBase()
 {
-	CCArray *list = _delegate->_CharacterArray;
+	auto list = _delegate->_CharacterArray;
 	CCObject *pObject;
 
 	CCARRAY_FOREACH(list, pObject)
 	{
-		CharacterBase *target = (CharacterBase *)pObject;
+		auto target = (CharacterBase *)pObject;
 		if (target->_actionState == State::DEAD)
 		{
 			continue;
@@ -5780,7 +5778,7 @@ bool CharacterBase::checkBase()
 
 	CCARRAY_FOREACH(list, pObject)
 	{
-		CharacterBase *target = (CharacterBase *)pObject;
+		auto target = (CharacterBase *)pObject;
 		if (target->_actionState == State::DEAD)
 		{
 			continue;
@@ -5836,7 +5834,7 @@ bool CharacterBase::findTargetEnemy(const char *type, bool isTowerDected)
 
 	CCARRAY_FOREACH(list, pObject)
 	{
-		CharacterBase *target = (CharacterBase *)pObject;
+		auto target = (CharacterBase *)pObject;
 
 		if (strcmp(_group->getCString(), target->_group->getCString()) != 0 &&
 			target->isNotKugutsu() &&
@@ -6101,7 +6099,7 @@ void CharacterBase::changeSide(CCPoint sp)
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
-				Monster *mo = (Monster *)pObject;
+				auto mo = (Monster *)pObject;
 				if (mo->isCharacter("ItachiSusano", "SasukeSusano"))
 					mo->_isFlipped = _isFlipped;
 				mo->setFlipX(_isFlipped);
@@ -6147,7 +6145,7 @@ void CharacterBase::changeGroup()
 			CCObject *pObject;
 			CCARRAY_FOREACH(list, pObject)
 			{
-				CharacterBase *target = (CharacterBase *)pObject;
+				auto target = (CharacterBase *)pObject;
 				if (target->_hpBar)
 				{
 					if (strcmp(_group->getCString(), target->_group->getCString()) != 0)

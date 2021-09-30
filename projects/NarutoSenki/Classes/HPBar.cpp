@@ -45,7 +45,7 @@ bool HPBar::init(const char *szImage)
 
 void HPBar::changeBar(const char *szImage)
 {
-	CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(szImage);
+	auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(szImage);
 	hpBar->setDisplayFrame(frame);
 }
 
@@ -73,7 +73,7 @@ void HPBar::loseHP(float percent)
 
 		if (_delegate->getDelegate()->_isGuardian)
 		{
-			CharacterBase *_slayer = (CharacterBase *)_delegate->_slayer;
+			auto _slayer = (CharacterBase *)_delegate->_slayer;
 			if (_slayer)
 			{
 				if (is_same(_delegate->getCharacter()->getCString(), gardTower))
@@ -284,7 +284,7 @@ void HPBar::loseHP(float percent)
 			CCObject *pObject;
 			CCARRAY_FOREACH(_delegate->getDelegate()->_CharacterArray, pObject)
 			{
-				Hero *otherSlayer = (Hero *)pObject;
+				auto otherSlayer = (Hero *)pObject;
 				if (is_same(currentSlayer->getGroup()->getCString(), otherSlayer->getGroup()->getCString()) &&
 					strcmp(currentSlayer->getCharacter()->getCString(), otherSlayer->getCharacter()->getCString()) != 0)
 				{
@@ -387,7 +387,7 @@ void HPBar::loseHP(float percent)
 
 					if (_delegate->_heartEffect)
 					{
-						CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", _delegate->hearts)->getCString());
+						auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", _delegate->hearts)->getCString());
 						_delegate->_heartEffect->setDisplayFrame(frame);
 					}
 
@@ -459,7 +459,7 @@ void HPBar::loseHP(float percent)
 
 					if (currentSlayer->_heartEffect)
 					{
-						CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", currentSlayer->hearts)->getCString());
+						auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", currentSlayer->hearts)->getCString());
 						currentSlayer->_heartEffect->setDisplayFrame(frame);
 					}
 
@@ -567,7 +567,7 @@ void HPBar::loseHP(float percent)
 			CCObject *pObject;
 			CCARRAY_FOREACH(_delegate->getDelegate()->_CharacterArray, pObject)
 			{
-				Hero *otherSlayer = (Hero *)pObject;
+				auto otherSlayer = (Hero *)pObject;
 				if (is_same(currentSlayer->getGroup()->getCString(), otherSlayer->getGroup()->getCString()) &&
 					strcmp(currentSlayer->getCharacter()->getCString(), otherSlayer->getCharacter()->getCString()) != 0)
 				{
@@ -622,7 +622,7 @@ void HPBar::loseHP(float percent)
 	}
 	else
 	{
-		CCActionInterval *s = CCScaleTo::create(0.2f, percent, 1);
+		auto s = CCScaleTo::create(0.2f, percent, 1);
 		hpBar->runAction(s);
 		if (_delegate->isPlayer())
 		{

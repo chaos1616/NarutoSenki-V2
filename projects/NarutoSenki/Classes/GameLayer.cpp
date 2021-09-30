@@ -157,7 +157,7 @@ void GameLayer::initGard()
 	guardian->setCharNO(_CharacterArray->data->num + 1);
 
 	guardian->idle();
-	CCDictionary *callValue = CCDictionary::create();
+	auto callValue = CCDictionary::create();
 	callValue->setObject(CCString::create("smk"), 1);
 	guardian->setSkillEffect(guardian, callValue);
 
@@ -191,7 +191,7 @@ void GameLayer::initHeros()
 	{
 		CCARRAY_FOREACH(Heros, pObject)
 		{
-			CCDictionary *tempdict = (CCDictionary *)pObject;
+			auto tempdict = (CCDictionary *)pObject;
 
 			CCString *player = CCString::create(tempdict->valueForKey("character")->getCString());
 			CCString *role = CCString::create(tempdict->valueForKey("role")->getCString());
@@ -212,7 +212,7 @@ void GameLayer::initHeros()
 			if (mapPos > 0 && mapPos < 7)
 			{
 				CCObject *mapObject = objectArray->objectAtIndex(mapPos - 1);
-				CCDictionary *mapdict = (CCDictionary *)mapObject;
+				auto mapdict = (CCDictionary *)mapObject;
 				int x = ((CCString *)mapdict->objectForKey("x"))->intValue();
 				int y = ((CCString *)mapdict->objectForKey("y"))->intValue();
 				spawnPoint = ccp(x, y);
@@ -234,7 +234,7 @@ void GameLayer::initHeros()
 	{
 		CCARRAY_FOREACH(Heros, pObject)
 		{
-			CCDictionary *tempdict = (CCDictionary *)pObject;
+			auto tempdict = (CCDictionary *)pObject;
 
 			CCString *player = CCString::create(tempdict->valueForKey("character")->getCString());
 			CCString *role = CCString::create(tempdict->valueForKey("role")->getCString());
@@ -253,7 +253,7 @@ void GameLayer::initHeros()
 			}
 
 			CCObject *mapObject = objectArray->objectAtIndex(mapPos);
-			CCDictionary *mapdict = (CCDictionary *)mapObject;
+			auto mapdict = (CCDictionary *)mapObject;
 			int x = ((CCString *)mapdict->objectForKey("x"))->intValue();
 			int y = ((CCString *)mapdict->objectForKey("y"))->intValue();
 			spawnPoint = ccp(x, y);
@@ -337,7 +337,7 @@ void GameLayer::onGameStart(float dt)
 	CCObject *pObject;
 	CCARRAY_FOREACH(_CharacterArray, pObject)
 	{
-		CharacterBase *tempChar = (CharacterBase *)pObject;
+		auto tempChar = (CharacterBase *)pObject;
 
 		// NOTE: Resume movement speed
 		tempChar->setWalkSpeed(tempChar->_originSpeed);
@@ -422,7 +422,7 @@ void GameLayer::initTower()
 
 	CCARRAY_FOREACH(metaArray, pObject)
 	{
-		CCDictionary *dict = (CCDictionary *)pObject;
+		auto dict = (CCDictionary *)pObject;
 
 		int metaX = ((CCString *)dict->objectForKey("x"))->intValue();
 		int metaY = ((CCString *)dict->objectForKey("y"))->intValue();
@@ -642,7 +642,7 @@ void GameLayer::checkTower()
 
 	CCARRAY_FOREACH(_CharacterArray, pObject)
 	{
-		CharacterBase *tmpHero = (CharacterBase *)pObject;
+		auto tmpHero = (CharacterBase *)pObject;
 
 		if (tmpHero->isNotCom())
 		{
@@ -837,7 +837,7 @@ void GameLayer::onLeft()
 
 	CCARRAY_FOREACH(childArray, pObject)
 	{
-		CharacterBase *ac = (CharacterBase *)pObject;
+		auto ac = (CharacterBase *)pObject;
 		CCNotificationCenter::sharedNotificationCenter()->removeObserver(ac, "acceptAttack");
 	}
 
@@ -915,7 +915,7 @@ void GameLayer::setOugis(CCNode *sender)
 	{
 		CCArray *childArray = getChildren();
 		ougisChar = sender;
-		CharacterBase *Sender = (CharacterBase *)sender;
+		auto Sender = (CharacterBase *)sender;
 		CCObject *pObject;
 		CCARRAY_FOREACH(childArray, pObject)
 		{

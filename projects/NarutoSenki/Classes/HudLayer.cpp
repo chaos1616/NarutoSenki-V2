@@ -36,7 +36,7 @@ bool MiniIcon::init(const char *szImage, bool isNotification)
 
 void MiniIcon::updateMap(CCObject *sender)
 {
-	CharacterBase *poster = (CharacterBase *)sender;
+	auto poster = (CharacterBase *)sender;
 
 	if (getCharNO() == poster->getCharNO())
 	{
@@ -54,7 +54,7 @@ void MiniIcon::updateMap(CCObject *sender)
 
 void MiniIcon::updateState()
 {
-	CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("tower_icon3.png");
+	auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("tower_icon3.png");
 	setDisplayFrame(frame);
 }
 
@@ -185,23 +185,23 @@ void HudLayer::initGearButton(const char *charName)
 
 void HudLayer::playGameOpeningAnimation()
 {
-	CCArray *tempArray = CCArray::create();
+	auto tempArray = CCArray::create();
 
 	int i = 1;
 
 	while (i < ComCount)
 	{
-		CCString *path = CCString::createWithFormat("gameStart_00%d.png", i);
-		CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path->getCString());
+		auto path = CCString::createWithFormat("gameStart_00%d.png", i);
+		auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path->getCString());
 		tempArray->addObject(frame);
 		i += 1;
 	}
 
-	CCAnimation *tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
-	CCAction *tempAction = CCAnimate::create(tempAnimation);
-	CCArray *list = CCArray::create();
+	auto tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
+	auto tempAction = CCAnimate::create(tempAnimation);
+	auto list = CCArray::create();
 	list->addObject(tempAction);
-	CCAction *seq = CCSequence::create(list);
+	auto seq = CCSequence::create(list);
 
 	openingSprite = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("gameStart_001.png")->getCString());
 
@@ -294,7 +294,7 @@ void HudLayer::initHeroInterface()
 
 	addChild(KonoLabel, 5000);
 	addChild(AkaLabel, 5000);
-	CCLabelBMFont *hengLabel = CCLabelBMFont::create(":", "Fonts/1.fnt");
+	auto hengLabel = CCLabelBMFont::create(":", "Fonts/1.fnt");
 	hengLabel->setScale(0.5f);
 	hengLabel->setAnchorPoint(ccp(0.5f, 1));
 	hengLabel->setPosition(ccp(winSize.width - 37, KonoLabel->getPositionY() + 2));
@@ -476,7 +476,7 @@ void HudLayer::initHeroInterface()
 	CCObject *pObject;
 	CCARRAY_FOREACH(_delegate->_TowerArray, pObject)
 	{
-		CharacterBase *player = (CharacterBase *)pObject;
+		auto player = (CharacterBase *)pObject;
 		const char *path = "";
 		MiniIcon *mi;
 
@@ -504,7 +504,7 @@ void HudLayer::initHeroInterface()
 
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
-		CharacterBase *player = (CharacterBase *)pObject;
+		auto player = (CharacterBase *)pObject;
 		if (player->isPlayerOrCom())
 		{
 			MiniIcon *mi;
@@ -548,7 +548,7 @@ void HudLayer::addMapIcon()
 	CCObject *pObject;
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
-		CharacterBase *player = (CharacterBase *)pObject;
+		auto player = (CharacterBase *)pObject;
 		if (player->isGuardian())
 		{
 			MiniIcon *mi;
@@ -662,13 +662,13 @@ void HudLayer::setCKRLose(bool isCRK2)
 			{
 				skill4Button->ougismarkSprite->setVisible(false);
 				skill4Button->_isMarkVisable = false;
-				CCActionInterval *su = CCScaleBy::create(0.2f, 1.1f);
-				CCFiniteTimeAction *call = CCCallFunc::create(skill4Button, callfunc_selector(ActionButton::setProgressMark));
-				CCArray *list = CCArray::create();
+				auto su = CCScaleBy::create(0.2f, 1.1f);
+				auto call = CCCallFunc::create(skill4Button, callfunc_selector(ActionButton::setProgressMark));
+				auto list = CCArray::create();
 				list->addObject(su);
 				list->addObject(su->reverse());
 				list->addObject(call);
-				CCAction *seq = CCSequence::create(list);
+				auto seq = CCSequence::create(list);
 				skill4Button->runAction(seq);
 			}
 			else
@@ -685,13 +685,13 @@ void HudLayer::setCKRLose(bool isCRK2)
 			{
 				skill5Button->ougismarkSprite->setVisible(false);
 				skill5Button->_isMarkVisable = false;
-				CCActionInterval *su = CCScaleBy::create(0.2f, 1.1f);
-				CCFiniteTimeAction *call = CCCallFunc::create(skill5Button, callfunc_selector(ActionButton::setProgressMark));
-				CCArray *list = CCArray::create();
+				auto su = CCScaleBy::create(0.2f, 1.1f);
+				auto call = CCCallFunc::create(skill5Button, callfunc_selector(ActionButton::setProgressMark));
+				auto list = CCArray::create();
 				list->addObject(su);
 				list->addObject(su->reverse());
 				list->addObject(call);
-				CCAction *seq = CCSequence::create(list);
+				auto seq = CCSequence::create(list);
 				skill5Button->runAction(seq);
 			}
 			else
@@ -777,7 +777,7 @@ void HudLayer::setReport(const char *name1, const char *name2, CCString *killNum
 	}
 	else if (_reportListArray->count() > 0)
 	{
-		CCDictionary *dic = CCDictionary::create();
+		auto dic = CCDictionary::create();
 		dic->setObject(CCString::create(name1), "name1");
 		dic->setObject(CCString::create(name2), "name2");
 		dic->setObject(to_ccstring(1), "num");
@@ -790,13 +790,13 @@ void HudLayer::setReport(const char *name1, const char *name2, CCString *killNum
 	reportSprite->setPosition(ccp(winSize.width / 2 - length / 2, winSize.height - 80));
 	addChild(reportSprite, 500);
 
-	CCActionInterval *su = CCScaleBy::create(0.2f, 1.0f);
-	CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(HudLayer::setReportCache));
-	CCDelayTime *delay = CCDelayTime::create(2.0f);
-	CCAction *seq = CCSequence::create(su, su->reverse(), delay, call, nullptr);
+	auto su = CCScaleBy::create(0.2f, 1.0f);
+	auto call = CCCallFunc::create(this, callfunc_selector(HudLayer::setReportCache));
+	auto delay = CCDelayTime::create(2.0f);
+	auto seq = CCSequence::create(su, su->reverse(), delay, call, nullptr);
 	reportSprite->runAction(seq);
 
-	CCDictionary *dic = CCDictionary::create();
+	auto dic = CCDictionary::create();
 	dic->setObject(CCString::create(name1), "name1");
 	dic->setObject(CCString::create(name2), "name2");
 	dic->setObject(to_ccstring(1), "num");
@@ -843,14 +843,14 @@ void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 		}
 	}
 
-	CCFiniteTimeAction *call = CCCallFuncN::create(buffSprite, callfuncN_selector(HudLayer::clearBuffDisplay));
-	CCDelayTime *delay = CCDelayTime::create(buffStayTime - 3);
+	auto call = CCCallFuncN::create(buffSprite, callfuncN_selector(HudLayer::clearBuffDisplay));
+	auto delay = CCDelayTime::create(buffStayTime - 3);
 
-	CCArray *seqArray = CCArray::create();
+	auto seqArray = CCArray::create();
 	seqArray->addObject(delay);
 	seqArray->addObject(call);
 
-	CCAction *seq = CCSequence::create(seqArray);
+	auto seq = CCSequence::create(seqArray);
 	buffSprite->runAction(seq);
 	buffSprite->setTag(0);
 
@@ -898,12 +898,12 @@ void HudLayer::clearBuffDisplay(CCNode *sender)
 	CCSprite *bs = (CCSprite *)sender;
 	if (bs->getTag() == 0)
 	{
-		CCFiniteTimeAction *call = CCCallFuncN::create(bs, callfuncN_selector(HudLayer::clearBuffDisplay));
-		CCDelayTime *delay = CCDelayTime::create(4.0f);
+		auto call = CCCallFuncN::create(bs, callfuncN_selector(HudLayer::clearBuffDisplay));
+		auto delay = CCDelayTime::create(4.0f);
 		bs->setTag(1);
 		CCFadeOut *fade = CCFadeOut::create(0.5f);
-		CCAction *fadeseq = CCRepeatForever::create(CCSequence::createWithTwoActions(fade, fade->reverse()));
-		CCAction *seq = CCSequence::createWithTwoActions(delay, call);
+		auto fadeseq = CCRepeatForever::create(CCSequence::createWithTwoActions(fade, fade->reverse()));
+		auto seq = CCSequence::createWithTwoActions(delay, call);
 		bs->runAction(seq);
 		bs->runAction(fadeseq);
 	}
@@ -931,8 +931,8 @@ void HudLayer::stopSPCReport()
 		unschedule(schedule_selector(HudLayer::updateSPCReprot));
 		reportSPCSprite->setPosition(ccp(winSize.width / 2, winSize.height - 105));
 		reportSPCSprite->setScale(1.0f);
-		CCDelayTime *delay = CCDelayTime::create(1.6f);
-		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(HudLayer::clearSPCReport));
+		auto delay = CCDelayTime::create(1.6f);
+		auto call = CCCallFunc::create(this, callfunc_selector(HudLayer::clearSPCReport));
 		reportSPCSprite->runAction(CCSequence::createWithTwoActions(delay, call));
 	}
 }
@@ -952,7 +952,7 @@ void HudLayer::setReportCache()
 
 	CCARRAY_FOREACH(_reportListArray, pObject)
 	{
-		CCDictionary *tempdict = (CCDictionary *)pObject;
+		auto tempdict = (CCDictionary *)pObject;
 		CCString *isDisplay = CCString::create(tempdict->valueForKey("isDisplay")->getCString());
 
 		if (!is_same(isDisplay->getCString(), "True"))
@@ -967,10 +967,10 @@ void HudLayer::setReportCache()
 			reportSprite->setPosition(ccp(winSize.width / 2 - length / 2, winSize.height - 80));
 			addChild(reportSprite, 500);
 
-			CCActionInterval *su = CCScaleBy::create(0.2f, 1.1f);
-			CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(HudLayer::setReportCache));
-			CCDelayTime *delay = CCDelayTime::create(2.0f);
-			CCAction *seq = CCSequence::create(su, su->reverse(), delay, call, nullptr);
+			auto su = CCScaleBy::create(0.2f, 1.1f);
+			auto call = CCCallFunc::create(this, callfunc_selector(HudLayer::setReportCache));
+			auto delay = CCDelayTime::create(2.0f);
+			auto seq = CCSequence::create(su, su->reverse(), delay, call, nullptr);
 
 			reportSprite->runAction(seq);
 
@@ -980,7 +980,7 @@ void HudLayer::setReportCache()
 				int num2 = 0;
 				CCARRAY_FOREACH(_reportListArray, pObject2)
 				{
-					CCDictionary *tempdict2 = (CCDictionary *)pObject2;
+					auto tempdict2 = (CCDictionary *)pObject2;
 					CCString *tempName = CCString::create(tempdict2->valueForKey("name1")->getCString());
 					CCString *tempName2 = CCString::create(tempdict2->valueForKey("name2")->getCString());
 					CCString *isDisplay2 = CCString::create(tempdict2->valueForKey("isDisplay")->getCString());
@@ -1007,13 +1007,13 @@ void HudLayer::setReportCache()
 					CCFadeIn *fn = CCFadeIn::create(0.8f);
 					CCMoveBy *mv = CCMoveBy::create(0.8f, ccp(0, 10));
 					CCSpawn *sp = CCSpawn::createWithTwoActions(fn, mv);
-					CCDelayTime *delay2 = CCDelayTime::create(1.6f);
-					CCFiniteTimeAction *call2 = CCCallFunc::create(this, callfunc_selector(HudLayer::clearSPCReport));
-					CCArray *list = CCArray::create();
+					auto delay2 = CCDelayTime::create(1.6f);
+					auto call2 = CCCallFunc::create(this, callfunc_selector(HudLayer::clearSPCReport));
+					auto list = CCArray::create();
 					list->addObject(sp);
 					list->addObject(delay2);
 					list->addObject(call2);
-					CCAction *seq2 = CCSequence::create(list);
+					auto seq2 = CCSequence::create(list);
 					reportSPCSprite->runAction(seq2);
 				}
 				else if (num2 >= 2)
@@ -1029,11 +1029,11 @@ void HudLayer::setReportCache()
 					reportSPCSprite->setPosition(ccp(winSize.width / 2, winSize.height - 105));
 					addChild(reportSPCSprite, 500);
 					CCScaleTo *st = CCScaleTo::create(0.8f, 1.0f, 1.0f);
-					CCFiniteTimeAction *call2 = CCCallFunc::create(this, callfunc_selector(HudLayer::stopSPCReport));
-					CCAction *seq2 = CCSequence::createWithTwoActions(st, call2);
+					auto call2 = CCCallFunc::create(this, callfunc_selector(HudLayer::stopSPCReport));
+					auto seq2 = CCSequence::createWithTwoActions(st, call2);
 					reportSPCSprite->runAction(seq2);
 
-					CCFiniteTimeAction *sk = CCRepeatForever::create(CCShake::create(0.2f, 4));
+					auto sk = CCRepeatForever::create(CCShake::create(0.2f, 4));
 					reportSPCSprite->runAction(sk);
 
 					schedule(schedule_selector(HudLayer::updateSPCReprot), 0.2f);
@@ -1308,12 +1308,12 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		CCArray *animeFrames = CCArray::create();
 		for (int i = 1; i <= 8; i++)
 		{
-			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("CutLine_%02d.png", i)->getCString());
+			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("CutLine_%02d.png", i)->getCString());
 			animeFrames->addObject(frame);
 		}
 
-		CCAnimation *tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, 0.1f);
-		CCAction *tempAction = CCAnimate::create(tempAnimation);
+		auto tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, 0.1f);
+		auto tempAction = CCAnimate::create(tempAnimation);
 
 		CCSprite *CutLine = CCSprite::createWithSpriteFrameName("CutLine_01.png");
 		if (is_same(group->getCString(), Konoha))
@@ -1386,8 +1386,8 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		ougisLayer->setPosition(ccp(0, 0));
 		addChild(ougisLayer, -100);
 
-		CCDelayTime *delay = CCDelayTime::create(1.0f);
-		CCFiniteTimeAction *call = CCCallFuncN::create(this, callfuncN_selector(HudLayer::removeOugis));
+		auto delay = CCDelayTime::create(1.0f);
+		auto call = CCCallFuncN::create(this, callfuncN_selector(HudLayer::removeOugis));
 		ougisLayer->runAction(CCSequence::createWithTwoActions(delay, call));
 	}
 }

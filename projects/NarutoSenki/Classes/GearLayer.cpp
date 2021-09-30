@@ -104,11 +104,11 @@ void GearButton::click()
 		_delegate->currentGear = _gearType;
 	}
 
-	CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("gearDetail_%02d.png", gearType(_gearType))->getCString());
+	auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("gearDetail_%02d.png", gearType(_gearType))->getCString());
 	_delegate->gearDetail->setDisplayFrame(frame);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	CCSpriteFrame *icon = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("gear_%02d.png", gearType(_gearType))->getCString());
+	auto icon = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("gear_%02d.png", gearType(_gearType))->getCString());
 	_delegate->gearDetailIcon->setDisplayFrame(icon);
 #endif
 }
@@ -455,7 +455,7 @@ void GearLayer::updateGearList()
 		if (currentGear == None && !isBuyed)
 		{
 			currentGear = gearType(i);
-			CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("gearDetail_%02d.png", i)->getCString());
+			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("gearDetail_%02d.png", i)->getCString());
 			gearDetail->setDisplayFrame(frame);
 		}
 

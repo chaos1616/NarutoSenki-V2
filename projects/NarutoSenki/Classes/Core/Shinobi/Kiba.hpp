@@ -193,7 +193,7 @@ class Kiba : public Hero
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
-				Monster *mo = (Monster *)pObject;
+				auto mo = (Monster *)pObject;
 				if (mo->isCharacter("Akamaru"))
 				{
 					mo->attack(SKILL2);

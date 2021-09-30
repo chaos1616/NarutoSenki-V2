@@ -236,7 +236,7 @@ protected:
 		CCString *tmpRole = CCString::create("Player");
 		CCString *tmpGroup = CCString::create(playerGroup);
 
-		CCDictionary *dic = CCDictionary::create();
+		auto dic = CCDictionary::create();
 		dic->setObject(tmpChar, "character");
 		dic->setObject(tmpRole, "role");
 		dic->setObject(tmpGroup, "group");

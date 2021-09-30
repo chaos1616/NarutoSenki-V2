@@ -86,8 +86,8 @@ public:
 		CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
 								getPositionY());
 		CCPoint direction2 = getPosition();
-		CCActionInterval *mv = CCMoveTo::create(delay, direction);
-		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Bullet::dealloc));
+		auto mv = CCMoveTo::create(delay, direction);
+		auto call = CCCallFunc::create(this, callfunc_selector(Bullet::dealloc));
 		CCAction *seq;
 		if (!isReverse)
 		{
@@ -95,7 +95,7 @@ public:
 		}
 		else
 		{
-			CCActionInterval *mv2 = CCMoveTo::create(delay, direction2);
+			auto mv2 = CCMoveTo::create(delay, direction2);
 			seq = CCSequence::create(mv, mv2, call, nullptr);
 		}
 
@@ -106,11 +106,11 @@ public:
 	{
 		CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
 								getPositionY());
-		CCActionInterval *mv = CCMoveTo::create(1.0f, direction);
-		CCActionInterval *eo = CCEaseIn::create(mv, delay);
+		auto mv = CCMoveTo::create(1.0f, direction);
+		auto eo = CCEaseIn::create(mv, delay);
 
-		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Bullet::dealloc));
-		CCAction *seq = CCSequence::create(eo, call, nullptr);
+		auto call = CCCallFunc::create(this, callfunc_selector(Bullet::dealloc));
+		auto seq = CCSequence::create(eo, call, nullptr);
 		runAction(seq);
 	}
 
@@ -126,11 +126,11 @@ protected:
 
 		if (isCharacter("Amaterasu"))
 		{
-			CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Bullet::dealloc2));
-			CCArray *seqArray = CCArray::create();
+			auto call = CCCallFunc::create(this, callfunc_selector(Bullet::dealloc2));
+			auto seqArray = CCArray::create();
 			seqArray->addObject(getDeadAction());
 			seqArray->addObject(call);
-			CCAction *seq = CCSequence::create(seqArray);
+			auto seq = CCSequence::create(seqArray);
 			runAction(seq);
 		}
 		else
