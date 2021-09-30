@@ -1227,13 +1227,13 @@ bool HudLayer::getOugisEnable(bool isCKR2)
 	}
 }
 
-void HudLayer::costCKR(int value, bool isCKR2)
+void HudLayer::costCKR(uint32_t value, bool isCKR2)
 {
 	if (!isCKR2)
 	{
 		uint32_t ckr = _delegate->currentPlayer->getCkrValue();
 
-		if (ckr - value > 0)
+		if (ckr > value)
 			ckr -= value;
 		else
 			ckr = 0;
@@ -1245,7 +1245,7 @@ void HudLayer::costCKR(int value, bool isCKR2)
 	{
 		uint32_t ckr2 = _delegate->currentPlayer->getCkr2Value();
 
-		if (ckr2 - value > 0)
+		if (ckr2 > value)
 			ckr2 -= value;
 		else
 			ckr2 = 0;

@@ -131,7 +131,7 @@ public:
 
 	void addMapIcon();
 
-	void costCKR(int value, bool isCKR2);
+	void costCKR(uint32_t value, bool isCKR2);
 	void setCoin(const char *value);
 	bool offCoin(const char *value);
 
