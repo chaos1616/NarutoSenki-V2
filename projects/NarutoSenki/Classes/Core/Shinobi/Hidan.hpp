@@ -13,7 +13,7 @@ class Hidan : public Hero
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				Monster *mo = (Monster *)pObject;
-				if (strcmp(mo->getCharacter()->getCString(), "CircleMark") == 0)
+				if (mo->isCharacter("CircleMark"))
 				{
 					_mainTarget = mo;
 					_isFound = true;

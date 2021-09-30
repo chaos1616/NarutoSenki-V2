@@ -194,7 +194,7 @@ class Kiba : public Hero
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				Monster *mo = (Monster *)pObject;
-				if (strcmp(mo->getCharacter()->getCString(), "Akamaru") == 0)
+				if (mo->isCharacter("Akamaru"))
 				{
 					mo->attack(SKILL2);
 				}

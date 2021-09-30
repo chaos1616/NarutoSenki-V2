@@ -59,7 +59,7 @@ public:
 		_nattackType->retain();
 		nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		if (strcmp(getCharacter()->getCString(), "Amaterasu") == 0)
+		if (isCharacter("Amaterasu"))
 		{
 			//init DeadFrame
 			tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
@@ -75,8 +75,7 @@ public:
 	{
 		setIdleAction(createAnimation(idleArray, 5.0, true, false));
 		setNAttackAction(createAnimation(nattackArray, 10.0, true, false));
-		if (strcmp(getCharacter()->getCString(), "Amaterasu") == 0 ||
-			strcmp(getCharacter()->getCString(), "SusanoTama") == 0)
+		if (isCharacter("Amaterasu", "SusanoTama"))
 		{
 			setDeadAction(createAnimation(deadArray, 10.0f, false, false));
 		}
@@ -125,7 +124,7 @@ protected:
 	{
 		stopAllActions();
 
-		if (strcmp(getCharacter()->getCString(), "Amaterasu") == 0)
+		if (isCharacter("Amaterasu"))
 		{
 			CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Bullet::dealloc2));
 			CCArray *seqArray = CCArray::create();
@@ -136,7 +135,7 @@ protected:
 		}
 		else
 		{
-			if (strcmp(getCharacter()->getCString(), "HiraishinKunai") == 0)
+			if (isCharacter("HiraishinKunai"))
 			{
 				if (_master->getActionState() == State::SATTACK)
 				{

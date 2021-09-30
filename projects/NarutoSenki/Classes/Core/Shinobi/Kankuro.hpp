@@ -77,15 +77,15 @@ class Kankuro : public Hero
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				Monster *mo = (Monster *)pObject;
-				if (strcmp(mo->getCharacter()->getCString(), "Saso") == 0)
+				if (mo->isCharacter("Saso"))
 				{
 					isFound3 = true;
 				}
-				if (strcmp(mo->getCharacter()->getCString(), "Sanshouuo") == 0)
+				else if (mo->isCharacter("Sanshouuo"))
 				{
 					isFound2 = true;
 				}
-				if (strcmp(mo->getCharacter()->getCString(), "Karasu") == 0)
+				else if (mo->isCharacter("Karasu"))
 				{
 					isFound1 = true;
 				}

@@ -15,6 +15,8 @@ using namespace CocosDenshion;
 #define random(x) (rand() % x)
 #define setRand() srand((uint32_t)time(0))
 
+#define	is_same(__Str1, __Str2) (strcmp(__Str1, __Str2) == 0)
+
 #define FONT_TYPE "Microsoft YaHei"
 #define VERSION_CODE "v 2.10"
 #define GAMEOVER_VER "v2.1"

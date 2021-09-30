@@ -66,12 +66,12 @@ class DevaPath : public Hero
 						CCARRAY_FOREACH(getMonsterArray(), pObject)
 						{
 							Monster *mo = (Monster *)pObject;
-							if (strcmp(mo->getCharacter()->getCString(), "AnimalPath") == 0)
+							if (mo->isCharacter("AnimalPath"))
 							{
 								isHaveKuilei1 = true;
 							}
 
-							if (strcmp(mo->getCharacter()->getCString(), "AsuraPath") == 0)
+							if (mo->isCharacter("AsuraPath"))
 							{
 								isHaveKuilei2 = true;
 							}

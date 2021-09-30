@@ -307,17 +307,17 @@ class Kakuzu : public Hero
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				Monster *mo = (Monster *)pObject;
-				if (strcmp(mo->getCharacter()->getCString(), "MaskRaidon") == 0)
+				if (mo->isCharacter("MaskRaidon"))
 				{
 					countMon++;
 					isRaidon = true;
 				}
-				if (strcmp(mo->getCharacter()->getCString(), "MaskFudon") == 0)
+				if (mo->isCharacter("MaskFudon"))
 				{
 					countMon++;
 					isFudon = true;
 				}
-				if (strcmp(mo->getCharacter()->getCString(), "MaskKadon") == 0)
+				if (mo->isCharacter("MaskKadon"))
 				{
 					countMon++;
 					isKadon = true;

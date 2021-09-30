@@ -681,7 +681,7 @@ class Naruto : public Hero
 		setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
 		setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
 
-		if (strcmp(getCharacter()->getCString(), kRikudoNaruto) == 0)
+		if (isCharacter(kRikudoNaruto))
 		{
 			settempAttackValue1(CCString::createWithFormat("%d", getNAttackValue()));
 			setnAttackValue(CCString::createWithFormat("%d", 560));

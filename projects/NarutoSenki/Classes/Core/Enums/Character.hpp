@@ -34,3 +34,18 @@ namespace BuffType
 {
 
 } // namespace BuffType
+
+namespace Character
+{
+
+} // namespace Character
+
+namespace Flog
+{
+
+} // namespace Flog
+
+namespace Monster
+{
+
+} // namespace Monster

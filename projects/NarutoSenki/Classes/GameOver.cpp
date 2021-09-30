@@ -86,22 +86,22 @@ void GameOver::listResult()
 	CCString *path = CCString::createWithFormat("%s_half.png", _delegate->currentPlayer->getCharacter()->getCString());
 	CCSprite *half = CCSprite::createWithSpriteFrameName(path->getCString());
 
-	if (strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Konan") == 0 ||
-		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Karin") == 0 ||
-		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Suigetsu") == 0 ||
-		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Hidan") == 0 ||
-		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Tobirama") == 0 ||
-		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Tsunade") == 0 ||
-		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Kankuro") == 0 ||
-		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "SageJiraiya") == 0 ||
-		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Minato") == 0 ||
-		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Tobi") == 0 ||
-		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Lee") == 0 ||
-		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "RockLee") == 0 ||
-		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Hinata") == 0 ||
-		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Asuma") == 0 ||
-		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Chiyo") == 0 ||
-		strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "Kisame") == 0)
+	if (_delegate->currentPlayer->isCharacter("Konan",
+											  "Karin",
+											  "Suigetsu",
+											  "Hidan",
+											  "Tobirama",
+											  "Tsunade",
+											  "Kankuro",
+											  "SageJiraiya",
+											  "Minato",
+											  "Tobi") ||
+		_delegate->currentPlayer->isCharacter("Lee",
+											  "RockLee",
+											  "Hinata",
+											  "Asuma",
+											  "Chiyo",
+											  "Kisame"))
 	{
 		half->setFlipX(true);
 	}
@@ -421,23 +421,23 @@ void GameOver::listResult()
 		if (Cheats < MaxCheats)
 		{
 			resultChar = _delegate->currentPlayer->getCharacter();
-			if (strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "SageNaruto") == 0)
+			if (_delegate->currentPlayer->isCharacter("SageNaruto"))
 			{
 				resultChar = CCString::create("Naruto");
 			}
-			else if (strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "RikudoNaruto") == 0)
+			else if (_delegate->currentPlayer->isCharacter("RikudoNaruto"))
 			{
 				resultChar = CCString::create("Naruto");
 			}
-			else if (strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "SageJiraiya") == 0)
+			else if (_delegate->currentPlayer->isCharacter("SageJiraiya"))
 			{
 				resultChar = CCString::create("Jiraiya");
 			}
-			else if (strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "ImmortalSasuke") == 0)
+			else if (_delegate->currentPlayer->isCharacter("ImmortalSasuke"))
 			{
 				resultChar = CCString::create("Sasuke");
 			}
-			else if (strcmp(_delegate->currentPlayer->getCharacter()->getCString(), "RockLee") == 0)
+			else if (_delegate->currentPlayer->isCharacter("RockLee"))
 			{
 				resultChar = CCString::create("Lee");
 			}

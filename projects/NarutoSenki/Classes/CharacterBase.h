@@ -492,36 +492,81 @@ public:
 	inline CCString*	getSpcAttackValue2Str() { return _spcattackValue2; }
 	inline CCString*	getSpcAttackValue3Str() { return _spcattackValue3; }
 	inline CCString*	getTempAttackValue1Str() { return _tempAttackValue1; }
-	inline bool			isCharacter(const char *c) { return strcmp(_character->getCString(), c) == 0; }
-	inline bool			isNotCharacter(const char *c) { return strcmp(_character->getCString(), c) != 0; }
-	inline bool			isGuardian() { return isCharacter(kGuardian_Han) || isCharacter(kGuardian_Roshi); }
-	inline bool			isNotGuardian() { return !isCharacter(kGuardian_Han) && !isCharacter(kGuardian_Roshi); }
+	inline bool			isCharacter(const char *c) { return is_same(_character->getCString(), c); }
+	inline bool			isCharacter(const char *c1, const char *c2) {
+		auto n = _character->getCString();
+		return is_same(n, c1) || is_same(n, c2);
+	}
+	inline bool			isCharacter(const char *c1, const char *c2, const char *c3) {
+		auto n = _character->getCString();
+		return is_same(n, c1) || is_same(n, c2) || is_same(n, c3);
+	}
+	inline bool			isCharacter(const char *c1, const char *c2, const char *c3, const char *c4) {
+		auto n = _character->getCString();
+		return is_same(n, c1) || is_same(n, c2) || is_same(n, c3) || is_same(n, c4);
+	}
+	inline bool			isCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5) {
+		auto n = _character->getCString();
+		return is_same(n, c1) || is_same(n, c2) || is_same(n, c3) || is_same(n, c4) || is_same(n, c5);
+	}
+	inline bool			isCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6) {
+		auto n = _character->getCString();
+		return is_same(n, c1) || is_same(n, c2) || is_same(n, c3) || is_same(n, c4) || is_same(n, c5) || is_same(n, c6);
+	}
+	inline bool			isCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6, const char *c7) {
+		auto n = _character->getCString();
+		return is_same(n, c1) || is_same(n, c2) || is_same(n, c3) || is_same(n, c4) || is_same(n, c5) || is_same(n, c6) || is_same(n, c7);
+	}
+	inline bool			isCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6, const char *c7, const char *c8) {
+		auto n = _character->getCString();
+		return is_same(n, c1) || is_same(n, c2) || is_same(n, c3) || is_same(n, c4) || is_same(n, c5) || is_same(n, c6) || is_same(n, c7) || is_same(n, c8);
+	}
+	inline bool			isCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6, const char *c7, const char *c8, const char *c9) {
+		auto n = _character->getCString();
+		return is_same(n, c1) || is_same(n, c2) || is_same(n, c3) || is_same(n, c4) || is_same(n, c5) || is_same(n, c6) || is_same(n, c7) || is_same(n, c8) || is_same(n, c9);
+	}
+	inline bool			isCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6, const char *c7, const char *c8, const char *c9, const char *c10) {
+		auto n = _character->getCString();
+		return is_same(n, c1) || is_same(n, c2) || is_same(n, c3) || is_same(n, c4) || is_same(n, c5) || is_same(n, c6) || is_same(n, c7) || is_same(n, c8) || is_same(n, c9) || is_same(n, c10);
+	}
+	inline bool			isNotCharacter(const char *c) { return !is_same(_character->getCString(), c); }
+	inline bool			isNotCharacter(const char *c1, const char *c2) { return !isCharacter(c1, c2); }
+	inline bool			isNotCharacter(const char *c1, const char *c2, const char *c3) { return !isCharacter(c1, c2, c3); }
+	inline bool			isNotCharacter(const char *c1, const char *c2, const char *c3, const char *c4) { return !isCharacter(c1, c2, c3, c4); }
+	inline bool			isNotCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5) { return !isCharacter(c1, c2, c3, c4, c5); }
+	inline bool			isNotCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6) { return !isCharacter(c1, c2, c3, c4, c5, c6); }
+	inline bool			isNotCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6, const char *c7) { return !isCharacter(c1, c2, c3, c4, c5, c6, c7); }
+	inline bool			isNotCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6, const char *c7, const char *c8) { return !isCharacter(c1, c2, c3, c4, c5, c6, c7, c8); }
+	inline bool			isNotCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6, const char *c7, const char *c8, const char *c9) { return !isCharacter(c1, c2, c3, c4, c5, c6, c7, c9); }
+	inline bool			isNotCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6, const char *c7, const char *c8, const char *c9, const char *c10) { return !isCharacter(c1, c2, c3, c4, c5, c6, c7, c10); }
+	inline bool			isGuardian() { return isCharacter(kGuardian_Han, kGuardian_Roshi); }
+	inline bool			isNotGuardian() { return !isGuardian(); }
 	// role extensions
-	inline bool			isPlayer() { return strcmp(_role->getCString(), kRolePlayer) == 0; }
-	inline bool			isCom() { return strcmp(_role->getCString(), kRoleCom) == 0; }
-	inline bool			isClone() { return strcmp(_role->getCString(), kRoleClone) == 0; }
-	inline bool			isFlog() { return strcmp(_role->getCString(), kRoleFlog) == 0; }
-	inline bool			isKugutsu() { return strcmp(_role->getCString(), kRoleKugutsu) == 0; }
-	inline bool			isMon() { return strcmp(_role->getCString(), kRoleMon) == 0; }
-	inline bool			isSummon() { return strcmp(_role->getCString(), kRoleSummon) == 0; }
-	inline bool			isTower() { return strcmp(_role->getCString(), kRoleTower) == 0; }
-	inline bool			isBullet() { return strcmp(_role->getCString(), kRoleBullet) == 0; }
+	inline bool			isPlayer() { return is_same(_role->getCString(), kRolePlayer); }
+	inline bool			isCom() { return is_same(_role->getCString(), kRoleCom); }
+	inline bool			isClone() { return is_same(_role->getCString(), kRoleClone); }
+	inline bool			isFlog() { return is_same(_role->getCString(), kRoleFlog); }
+	inline bool			isKugutsu() { return is_same(_role->getCString(), kRoleKugutsu); }
+	inline bool			isMon() { return is_same(_role->getCString(), kRoleMon); }
+	inline bool			isSummon() { return is_same(_role->getCString(), kRoleSummon); }
+	inline bool			isTower() { return is_same(_role->getCString(), kRoleTower); }
+	inline bool			isBullet() { return is_same(_role->getCString(), kRoleBullet); }
 	inline bool			isPlayerOrCom() { return isPlayer() || isCom(); }
-	inline bool			isNotPlayer() { return strcmp(_role->getCString(), kRolePlayer) != 0; }
-	inline bool			isNotCom() { return strcmp(_role->getCString(), kRoleCom) != 0; }
-	inline bool			isNotClone() { return strcmp(_role->getCString(), kRoleClone) != 0; }
-	inline bool			isNotFlog() { return strcmp(_role->getCString(), kRoleFlog) != 0; }
-	inline bool			isNotKugutsu() { return strcmp(_role->getCString(), kRoleKugutsu) != 0; }
-	inline bool			isNotMon() { return strcmp(_role->getCString(), kRoleMon) != 0; }
-	inline bool			isNotSummon() { return strcmp(_role->getCString(), kRoleSummon) != 0; }
-	inline bool			isNotTower() { return strcmp(_role->getCString(), kRoleTower) != 0; }
-	inline bool			isNotBullet() { return strcmp(_role->getCString(), kRoleBullet) != 0; }
+	inline bool			isNotPlayer() { return !is_same(_role->getCString(), kRolePlayer); }
+	inline bool			isNotCom() { return !is_same(_role->getCString(), kRoleCom); }
+	inline bool			isNotClone() { return !is_same(_role->getCString(), kRoleClone); }
+	inline bool			isNotFlog() { return !is_same(_role->getCString(), kRoleFlog); }
+	inline bool			isNotKugutsu() { return !is_same(_role->getCString(), kRoleKugutsu); }
+	inline bool			isNotMon() { return !is_same(_role->getCString(), kRoleMon); }
+	inline bool			isNotSummon() { return !is_same(_role->getCString(), kRoleSummon); }
+	inline bool			isNotTower() { return !is_same(_role->getCString(), kRoleTower); }
+	inline bool			isNotBullet() { return !is_same(_role->getCString(), kRoleBullet); }
 	// group extensions
-	inline bool			isGroup(const char *group) { return strcmp(_group->getCString(), group) == 0; }
+	inline bool			isGroup(const char *group) { return is_same(_group->getCString(), group); }
 	inline bool			isSameGroupAs(CharacterBase *c) { return isGroup(c->getGroup()->getCString()); }
 	inline bool			isNotSameGroupAs(CharacterBase *c) { return !isSameGroupAs(c); }
-	inline bool			isKonohaGroup() { return strcmp(_group->getCString(), Konoha) == 0; }
-	inline bool			isAkatsukiGroup() { return strcmp(_group->getCString(), Akatsuki) == 0; }
+	inline bool			isKonohaGroup() { return is_same(_group->getCString(), Konoha); }
+	inline bool			isAkatsukiGroup() { return is_same(_group->getCString(), Akatsuki); }
 	// monster extensions
 	inline bool			hasMonsterArrayAny() { return _monsterArray && _monsterArray->count() > 0; }
 protected:

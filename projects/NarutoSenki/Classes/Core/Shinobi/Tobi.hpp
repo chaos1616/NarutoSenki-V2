@@ -208,8 +208,8 @@ class Tobi : public Hero
 				{
 					if (!tempHero->_isVisable)
 					{
-						if (strcmp(tempHero->getCharacter()->getCString(), "Konan") == 0 ||
-							strcmp(tempHero->getCharacter()->getCString(), "Deidara") == 0)
+						if (tempHero->isCharacter("Konan") ||
+							tempHero->isCharacter("Deidara"))
 						{
 							tempHero->unschedule(schedule_selector(CharacterBase::disableBuff));
 						}

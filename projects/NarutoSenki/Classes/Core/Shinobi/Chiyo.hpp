@@ -74,7 +74,7 @@ class Chiyo : public Hero
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				Monster *mo = (Monster *)pObject;
-				if (strcmp(mo->getCharacter()->getCString(), "Parents") == 0)
+				if (mo->isCharacter("Parents"))
 				{
 					isFound1 = true;
 				}

@@ -5,7 +5,7 @@ class Mask : public Hero
 {
 	void perform()
 	{
-		if (strcmp(getCharacter()->getCString(), "MaskRaidon") == 0)
+		if (isCharacter("MaskRaidon"))
 		{
 			if (notFindFlog(0))
 			{

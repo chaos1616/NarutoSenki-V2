@@ -184,7 +184,8 @@ void HeroElement::dealloc()
 {
 	stopAllActions();
 	_actionState = State::DEAD;
-	if (strcmp(getCharacter()->getCString(), "Minato") != 0)
+
+	if (isNotCharacter("Minato"))
 	{
 		if (hasMonsterArrayAny())
 		{
@@ -228,7 +229,7 @@ void HeroElement::dealloc()
 			}
 		}
 
-		if (strcmp(getCharacter()->getCString(), "DevaPath") == 0)
+		if (isCharacter("DevaPath"))
 		{
 			getMaster()->_skillChangeBuffValue = 0;
 
@@ -237,22 +238,22 @@ void HeroElement::dealloc()
 				_delegate->getHudLayer()->skill5Button->unLock();
 			}
 		}
-		else if (strcmp(getCharacter()->getCString(), "Akamaru") == 0 ||
-				 strcmp(getCharacter()->getCString(), "Karasu") == 0 ||
-				 strcmp(getCharacter()->getCString(), "Parents") == 0)
+		else if (isCharacter("Akamaru",
+							 "Karasu",
+							 "Parents"))
 		{
 			_master->setActionResume();
 		}
-		else if (strcmp(getCharacter()->getCString(), "Sanshouuo") == 0)
+		else if (isCharacter("Sanshouuo"))
 		{
 			if (getMaster()->isPlayer())
 			{
 				_delegate->getHudLayer()->skill4Button->unLock();
 			}
 		}
-		else if (strcmp(getCharacter()->getCString(), "MaskFudon") == 0 ||
-				 strcmp(getCharacter()->getCString(), "MaskRaidon") == 0 ||
-				 strcmp(getCharacter()->getCString(), "MaskKadon") == 0)
+		else if (isCharacter("MaskFudon",
+							 "MaskRaidon",
+							 "MaskKadon"))
 		{
 			if (_master->hearts > 0)
 			{
@@ -262,7 +263,7 @@ void HeroElement::dealloc()
 				}
 			}
 		}
-		else if (strcmp(getCharacter()->getCString(), "Saso") == 0)
+		else if (isCharacter("Saso"))
 		{
 			if (getMaster()->isPlayer())
 			{
@@ -274,7 +275,7 @@ void HeroElement::dealloc()
 	}
 	else
 	{
-		if (strcmp(getCharacter()->getCString(), "Kankuro") == 0)
+		if (isCharacter("Kankuro"))
 		{
 			if (isPlayer())
 			{
@@ -282,8 +283,7 @@ void HeroElement::dealloc()
 				_delegate->getHudLayer()->skill5Button->unLock();
 			}
 		}
-		else if (strcmp(getCharacter()->getCString(), "Shikamaru") == 0 ||
-				 strcmp(getCharacter()->getCString(), "Choji") == 0)
+		else if (isCharacter("Shikamaru", "Choji"))
 		{
 			CCObject *pObject;
 			CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
@@ -299,35 +299,11 @@ void HeroElement::dealloc()
 				}
 			}
 		}
-		else if (strcmp(getCharacter()->getCString(), "Hidan") == 0)
+		else if (isCharacter("Hidan"))
 		{
 			if (isPlayer())
 			{
 				_delegate->getHudLayer()->skill1Button->unLock();
-			}
-		}
-		if (strcmp(getCharacter()->getCString(), "Minato") != 0)
-		{
-			if (hasMonsterArrayAny())
-			{
-				CCObject *pObject;
-				CCARRAY_FOREACH(getMonsterArray(), pObject)
-				{
-					CharacterBase *mo = (CharacterBase *)pObject;
-					int index = _delegate->_CharacterArray->indexOfObject(mo);
-					if (index >= 0)
-					{
-						_delegate->_CharacterArray->removeObjectAtIndex(index);
-					}
-					CCNotificationCenter::sharedNotificationCenter()->removeObserver(mo, "acceptAttack");
-					mo->stopAllActions();
-					mo->unscheduleAllSelectors();
-					mo->setActionState(State::DEAD);
-					mo->removeFromParent();
-				}
-				getMonsterArray()->removeAllObjects();
-				_monsterArray = nullptr;
-				_monsterArray->release();
 			}
 		}
 
@@ -555,11 +531,11 @@ void Monster::initAction()
 	setIdleAction(createAnimation(idleArray, 5.0, true, false));
 	setWalkAction(createAnimation(walkArray, 10.0, true, false));
 	setDeadAction(createAnimation(deadArray, 10.0f, false, false));
-	if (strcmp(getCharacter()->getCString(), "Kage") == 0 ||
-		strcmp(getCharacter()->getCString(), "KageHand") == 0 ||
-		strcmp(getCharacter()->getCString(), "FudonSRK") == 0 ||
-		strcmp(getCharacter()->getCString(), "FudonSRK2") == 0 ||
-		strcmp(getCharacter()->getCString(), "Kubi") == 0)
+	if (isCharacter("Kage",
+					"KageHand",
+					"FudonSRK",
+					"FudonSRK2",
+					"Kubi"))
 	{
 		setNAttackAction(createAnimation(nattackArray, 10.0, false, false));
 	}
@@ -789,8 +765,7 @@ void Monster::dealloc()
 	setActionState(State::DEAD);
 	stopAllActions();
 
-	if (strcmp(getCharacter()->getCString(), "FudonSRK") == 0 ||
-		strcmp(getCharacter()->getCString(), "FudonSRK2") == 0)
+	if (isCharacter("FudonSRK", "FudonSRK2"))
 	{
 		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc2));
 		CCArray *seqArray = CCArray::create();
@@ -800,7 +775,7 @@ void Monster::dealloc()
 		runAction(seq);
 		return;
 	}
-	if (strcmp(getCharacter()->getCString(), "HiraishinMark") == 0)
+	if (isCharacter("HiraishinMark"))
 	{
 		_master->_isCanSkill1 = false;
 		_master->setActionResume();
@@ -819,7 +794,7 @@ void Monster::dealloc()
 		{
 			Monster *mo = (Monster *)pObject;
 
-			if (strcmp(mo->getCharacter()->getCString(), "HiraishinMark") == 0)
+			if (mo->isCharacter("HiraishinMark"))
 			{
 				int index = _master->getMonsterArray()->indexOfObject(mo);
 				_master->getMonsterArray()->removeObjectAtIndex(index);
@@ -830,7 +805,7 @@ void Monster::dealloc()
 		return;
 	}
 
-	if (strcmp(getCharacter()->getCString(), "SmallSlug") == 0)
+	if (isCharacter("SmallSlug"))
 	{
 		if (_secmaster && _secmaster->getMonsterArray())
 		{
@@ -853,8 +828,7 @@ void Monster::dealloc()
 		}
 	}
 
-	if (strcmp(getCharacter()->getCString(), "KageHand") == 0 ||
-		strcmp(getCharacter()->getCString(), "Kage") == 0)
+	if (isCharacter("KageHand", "Kage"))
 	{
 		CCFiniteTimeAction *call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc2));
 
@@ -940,7 +914,7 @@ void Monster::setResume()
 	}
 	else
 	{
-		if (getMaster() && strcmp(getMaster()->getCharacter()->getCString(), "Shikamaru") == 0)
+		if (getMaster() && getMaster()->isCharacter("Shikamaru"))
 		{
 			getMaster()->idle();
 		}

@@ -434,7 +434,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 	CharacterBase *attacker = (CharacterBase *)object;
 	bool isCannotMiss = false;
 
-	if (strcmp(getCharacter()->getCString(), "Tobi") == 0)
+	if (isCharacter("Tobi"))
 	{
 		if (_skillChangeBuffValue && (getActionState() == State::IDLE ||
 									  getActionState() == State::WALK ||
@@ -449,7 +449,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 		}
 	}
 
-	if (strcmp(attacker->getCharacter()->getCString(), "Hiruzen") == 0 && attacker->getActionState() == State::O2ATTACK)
+	if (attacker->isCharacter("Hiruzen") && attacker->getActionState() == State::O2ATTACK)
 	{
 		isCannotMiss = true;
 	}
@@ -528,7 +528,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 		{
 			if (setHitBox().intersectsRect(attacker->setHitBox()))
 			{
-				if (strcmp(getCharacter()->getCString(), "Hidan") == 0 && _skillChangeBuffValue)
+				if (isCharacter("Hidan") && _skillChangeBuffValue)
 				{
 					bool _isCounter = false;
 					if (hasMonsterArrayAny())
@@ -584,15 +584,15 @@ void CharacterBase::acceptAttack(CCObject *object)
 				{
 					_hpBar->loseHP(getHpPercent());
 				}
-				if (strcmp(attacker->_character->getCString(), "HiraishinKunai") == 0 ||
-					strcmp(attacker->_character->getCString(), "Shintenshin") == 0)
+				if (attacker->isCharacter("HiraishinKunai") ||
+					attacker->isCharacter("Shintenshin"))
 				{
 					if (isPlayerOrCom() && isNotGuardian() && _actionState != State::DEAD)
 					{
 						attacker->stopAllActions();
 						attacker->dealloc();
 
-						if (strcmp(attacker->_character->getCString(), "Shintenshin") == 0 && !attacker->_isCatchOne)
+						if (attacker->isCharacter("Shintenshin") && !attacker->_isCatchOne)
 						{
 							attacker->_isCatchOne = true;
 							if (attacker->_master)
@@ -744,10 +744,10 @@ void CharacterBase::acceptAttack(CCObject *object)
 								setKnockLength(1);
 							}
 
-							if (strcmp(attacker->getCharacter()->getCString(), "Kakuzu") == 0 && _sticker)
+							if (attacker->isCharacter("Kakuzu") && _sticker)
 							{
 								CharacterBase *stHero = _sticker;
-								if (strcmp(stHero->getCharacter()->getCString(), "Kakuzu") == 0 && stHero->hearts <= 4)
+								if (stHero->isCharacter("Kakuzu") && stHero->hearts <= 4)
 								{
 									attacker->hearts += 1;
 
@@ -785,12 +785,12 @@ void CharacterBase::acceptAttack(CCObject *object)
 								setKnockLength(1);
 							}
 							if (hurt() &&
-								(!attacker->_isCatchOne || strcmp(attacker->getCharacter()->getCString(), "FakeMinato") == 0))
+								(!attacker->_isCatchOne || attacker->isCharacter("FakeMinato")))
 							{
 								attacker->_isCatchOne = true;
 								if (attacker->getMaster())
 								{
-									if (strcmp(attacker->getCharacter()->getCString(), "FakeMinato") == 0)
+									if (attacker->isCharacter("FakeMinato"))
 									{
 										setPosition(ccp(attacker->getMaster()->_isFlipped ? attacker->getMaster()->getPositionX() - 64 : attacker->getMaster()->getPositionX() + 64,
 														attacker->getMaster()->getPositionY() + 2));
@@ -887,14 +887,14 @@ void CharacterBase::acceptAttack(CCObject *object)
 								  attacker->_actionState == State::OATTACK)))
 							{
 								if (attacker->_isCatchOne == false ||
-									strcmp(attacker->getCharacter()->getCString(), "Shenwei") == 0)
+									attacker->isCharacter("Shenwei"))
 								{
 									if (attacker->getMaster())
 									{
-										if (strcmp(attacker->getCharacter()->getCString(), "Kuroari") == 0 ||
-											strcmp(attacker->getCharacter()->getCString(), "Shenwei") == 0 ||
-											strcmp(attacker->getCharacter()->getCString(), "Sabaku") == 0 ||
-											strcmp(attacker->getCharacter()->getCString(), "Shenwei2") == 0)
+										if (attacker->isCharacter("Kuroari") ||
+											attacker->isCharacter("Shenwei") ||
+											attacker->isCharacter("Sabaku") ||
+											attacker->isCharacter("Shenwei2"))
 										{
 											if (hardHurt(3000, false, true, false, false))
 											{
@@ -902,7 +902,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 												scheduleOnce(schedule_selector(CharacterBase::reCatched), 2.9f);
 											}
 										}
-										else if (strcmp(attacker->getCharacter()->getCString(), "SandBall") == 0)
+										else if (attacker->isCharacter("SandBall"))
 										{
 											if (hardHurt(1000, false, true, false, false))
 											{
@@ -910,10 +910,10 @@ void CharacterBase::acceptAttack(CCObject *object)
 												scheduleOnce(schedule_selector(CharacterBase::reCatched), 0.9f);
 											}
 										}
-										else if (strcmp(attacker->getMaster()->getCharacter()->getCString(), "Shikamaru") == 0)
+										else if (attacker->getMaster()->isCharacter("Shikamaru"))
 										{
 											bool pianyi = false;
-											if (strcmp(attacker->getCharacter()->getCString(), "KageHand") == 0)
+											if (attacker->isCharacter("KageHand"))
 											{
 												pianyi = hardHurt(6000, false, false, true, false);
 												if (pianyi)
@@ -925,8 +925,8 @@ void CharacterBase::acceptAttack(CCObject *object)
 													scheduleOnce(schedule_selector(CharacterBase::removeLostBlood), 6.0f);
 												}
 											}
-											else if (strcmp(attacker->getCharacter()->getCString(), "QuanRen") == 0 ||
-													 strcmp(attacker->getCharacter()->getCString(), "KageBom") == 0)
+											else if (attacker->isCharacter("QuanRen") ||
+													 attacker->isCharacter("KageBom"))
 											{
 												pianyi = hardHurt(3000, false, false, true, false);
 											}
@@ -938,12 +938,12 @@ void CharacterBase::acceptAttack(CCObject *object)
 												_delegate->reorderChild(this, -getPositionY());
 											}
 										}
-										else if (strcmp(attacker->getMaster()->getCharacter()->getCString(), "Itachi") == 0 ||
-												 strcmp(attacker->getMaster()->getCharacter()->getCString(), "Chiyo") == 0)
+										else if (attacker->getMaster()->isCharacter("Itachi") ||
+												 attacker->getMaster()->isCharacter("Chiyo"))
 										{
 											bool pianyi = false;
 
-											if (strcmp(attacker->getMaster()->getCharacter()->getCString(), "Chiyo") == 0)
+											if (attacker->getMaster()->isCharacter("Chiyo"))
 											{
 												pianyi = hardHurt(2000, false, false, true, false);
 											}
@@ -961,8 +961,8 @@ void CharacterBase::acceptAttack(CCObject *object)
 									}
 									else
 									{
-										if (strcmp(attacker->getCharacter()->getCString(), "Lee") == 0 ||
-											strcmp(attacker->getCharacter()->getCString(), "RockLee") == 0)
+										if (attacker->isCharacter("Lee") ||
+											attacker->isCharacter("RockLee"))
 										{
 											if (hardHurt(1000, false, true, false, false))
 											{
@@ -970,7 +970,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 												scheduleOnce(schedule_selector(CharacterBase::reCatched), 1.1f);
 											}
 										}
-										else if (strcmp(attacker->getCharacter()->getCString(), "Kakuzu") == 0)
+										else if (attacker->isCharacter("Kakuzu"))
 										{
 											bool pianyi = false;
 
@@ -988,7 +988,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 												_delegate->reorderChild(this, -getPositionY());
 											}
 										}
-										else if (strcmp(attacker->getCharacter()->getCString(), "Tobi") == 0)
+										else if (attacker->isCharacter("Tobi"))
 										{
 											if (!_isArmored)
 											{
@@ -1044,7 +1044,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 					}
 
-					if (strcmp(getCharacter()->getCString(), "Hidan") == 0 && _skillChangeBuffValue)
+					if (isCharacter("Hidan") && _skillChangeBuffValue)
 					{
 						bool _isCounter = false;
 						if (hasMonsterArrayAny())
@@ -1106,7 +1106,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 							return;
 						}
 					}
-					else if (strcmp(getCharacter()->getCString(), "Kakuzu") == 0 && _skillChangeBuffValue)
+					else if (isCharacter("Kakuzu") && _skillChangeBuffValue)
 					{
 						if (!attacker->_master)
 						{
@@ -1480,14 +1480,14 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 	else
 		criticalValue = rand() % 50;
 
-	if (strcmp(attacker->getCharacter()->getCString(), "Hidan") == 0 && attacker->_skillChangeBuffValue)
+	if (attacker->isCharacter("Hidan") && attacker->_skillChangeBuffValue)
 	{
 		realValue = attackValue + criticalValue;
 	}
 	else
 	{
 		bool isCannotMiss = false; // is this attack has 100 percent accuracy
-		if (strcmp(attacker->getCharacter()->getCString(), "Hiruzen") == 0 && attacker->getActionState() == State::O2ATTACK)
+		if (attacker->isCharacter("Hiruzen") && attacker->getActionState() == State::O2ATTACK)
 		{
 			isCannotMiss = true;
 		}
@@ -1515,16 +1515,16 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 				if (hasArmor)
 					decreaseRating += 0.25;
 
-				if (strcmp(getCharacter()->getCString(), "Kakuzu") == 0 && _skillChangeBuffValue)
+				if (isCharacter("Kakuzu") && _skillChangeBuffValue)
 					decreaseRating += 0.25;
 
-				if (strcmp(getCharacter()->getCString(), "Chiyo") == 0)
+				if (isCharacter("Chiyo"))
 				{
 					CCObject *pObject;
 					CCARRAY_FOREACH(getMonsterArray(), pObject)
 					{
 						Monster *mo = (Monster *)pObject;
-						if (strcmp(mo->getCharacter()->getCString(), "Parents") == 0 && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK)
+						if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK)
 						{
 							CCPoint sp = ccpSub(mo->getPosition(), getPosition());
 							if (sp.x <= 48)
@@ -1549,11 +1549,11 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 	if (isClone())
 	{
 		uint32_t boundValue = 0;
-		if (strcmp(getCharacter()->getCString(), "Naruto") == 0)
+		if (isCharacter("Naruto"))
 			boundValue = realValue * 15 / 100;
-		else if (strcmp(getCharacter()->getCString(), "SageNaruto") == 0)
+		else if (isCharacter("SageNaruto"))
 			boundValue = realValue * 25 / 100;
-		else if (strcmp(getCharacter()->getCString(), "RikudoNaruto") == 0)
+		else if (isCharacter("RikudoNaruto"))
 		{
 			boundValue = realValue * 35 / 100;
 
@@ -1636,9 +1636,9 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 			}
 
 			bool isGainable = true;
-			if (strcmp(getCharacter()->getCString(), "Tsunade") == 0 && _skillChangeBuffValue)
+			if (isCharacter("Tsunade") && _skillChangeBuffValue)
 				isGainable = false;
-			if (strcmp(attacker->getCharacter()->getCString(), "Hinata") == 0 && attacker->_skillUPBuffValue)
+			if (attacker->isCharacter("Hinata") && attacker->_skillUPBuffValue)
 				isGainable = false;
 
 			if (_level >= 2 && !_isControlled && isGainable)
@@ -1684,7 +1684,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 		{
 			uint32_t gainValue = 0;
 
-			if (strcmp(attacker->getCharacter()->getCString(), "Kisame") == 0 && attacker->_skillChangeBuffValue)
+			if (attacker->isCharacter("Kisame") && attacker->_skillChangeBuffValue)
 			{
 				if (currentAttacker->isAttackGainCKR)
 					gainValue = realValue * 80 / 100;
@@ -1918,10 +1918,10 @@ void CharacterBase::setItem(abType type)
 	if (_isControlled)
 		return;
 
-	if ((strcmp(getCharacter()->getCString(), "Kankuro") == 0 ||
-		 strcmp(getCharacter()->getCString(), "Chiyo") == 0 ||
-		 strcmp(getCharacter()->getCString(), "Kiba") == 0 ||
-		 strcmp(getCharacter()->getCString(), "Kakuzu") == 0) &&
+	if (isCharacter("Kankuro",
+					"Chiyo",
+					"Kiba",
+					"Kakuzu") &&
 		hasMonsterArrayAny())
 	{
 		CCObject *pObject;
@@ -2381,9 +2381,9 @@ void CharacterBase::setAttackBox(CCNode *sender, void *data)
 
 	if (_actionState == State::HURT)
 	{
-		if (strcmp(getCharacter()->getCString(), "Sasuke") == 0 ||
-			strcmp(getCharacter()->getCString(), "ImmortalSasuke") == 0 ||
-			strcmp(getCharacter()->getCString(), "DevaPath") == 0)
+		if (isCharacter("Sasuke",
+						"ImmortalSasuke",
+						"DevaPath"))
 		{
 			if (getMaxHPValue() - getHPValue() <= 260)
 			{
@@ -2642,7 +2642,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				Monster *mo = (Monster *)pObject;
-				if (strcmp(mo->getCharacter()->getCString(), "HiraishinMark") == 0)
+				if (mo->isCharacter("HiraishinMark"))
 				{
 					tsPosX = mo->getPositionX();
 					tsPosY = mo->getPositionY();
@@ -2675,7 +2675,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 			}
 		}
 
-		if (strcmp(getCharacter()->getCString(), "Sakura") == 0)
+		if (isCharacter("Sakura"))
 		{
 			float posY = getPositionY();
 			if (!_originY)
@@ -2707,7 +2707,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 		setPosition(ccp(tsPosX, tsPosY));
 		CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", this);
 
-		if (strcmp(getCharacter()->getCString(), "Yominuma") != 0)
+		if (isNotCharacter("Yominuma"))
 		{
 			_delegate->reorderChild(this, -tsPosY);
 		}
@@ -2726,28 +2726,28 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 	{
 		if (notFindHero(0))
 		{
-			if (notFindFlog(0) || strcmp(getCharacter()->getCString(), "RikudoNaruto") == 0 ||
-				strcmp(getCharacter()->getCString(), "SageNaruto") == 0)
+			if (notFindFlog(0) ||
+				isCharacter("RikudoNaruto", "SageNaruto"))
 				_mainTarget = nullptr;
 		}
 
 		if (_mainTarget)
 		{
-			if (strcmp(getCharacter()->getCString(), "Dogs") == 0 ||
-				strcmp(getCharacter()->getCString(), "Yominuma") == 0 ||
-				strcmp(getCharacter()->getCString(), "SandBall") == 0 ||
-				strcmp(getCharacter()->getCString(), "Sabaku") == 0 ||
-				strcmp(getCharacter()->getCString(), "Yataikuzu") == 0 ||
-				strcmp(getCharacter()->getCString(), "Lee") == 0 ||
-				strcmp(getCharacter()->getCString(), "RockLee") == 0)
+			if (isCharacter("Dogs",
+							"Yominuma",
+							"SandBall",
+							"Sabaku",
+							"Yataikuzu",
+							"Lee",
+							"RockLee"))
 			{
 				_markPoint = ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY());
 			}
-			else if (strcmp(getCharacter()->getCString(), "Tsukuyomi") == 0)
+			else if (isCharacter("Tsukuyomi"))
 			{
 				_markPoint = ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY() + 2);
 			}
-			else if (strcmp(getCharacter()->getCString(), "KageFeng") == 0)
+			else if (isCharacter("KageFeng"))
 			{
 				_markPoint = ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY - 6 : _mainTarget->getPositionY() - 6);
 			}
@@ -2781,7 +2781,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 				tempHero->_actionState == State::DEAD &&
 				tempHero->rebornSprite &&
 				tempHero->hearts > 0 &&
-				strcmp(tempHero->_character->getCString(), "Kakuzu") != 0)
+				strcmp(tempHero->getCharacter()->getCString(), "Kakuzu") != 0)
 			{
 				CCPoint sp = ccpSub(tempHero->getPosition(), getPosition());
 				if (abs(sp.x) <= 48 && abs(sp.y) <= 48)
@@ -2824,7 +2824,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 		CCArray *tempArray = CCArray::create();
 
 		int i = 1;
-		if (strcmp(getCharacter()->getCString(), "Tenten") == 0)
+		if (isCharacter("Tenten"))
 		{
 			while (i < 11)
 			{
@@ -2966,8 +2966,8 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 					{
 						if (!tempHero->_isVisable)
 						{
-							if (strcmp(tempHero->getCharacter()->getCString(), "Konan") == 0 ||
-								strcmp(tempHero->getCharacter()->getCString(), "Deidara") == 0)
+							if (tempHero->isCharacter("Konan") ||
+								tempHero->isCharacter("Deidara"))
 							{
 								tempHero->unschedule(schedule_selector(CharacterBase::disableBuff));
 							}
@@ -2984,7 +2984,7 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 					}
 				}
 			}
-			if (strcmp(getCharacter()->getCString(), "Neji") == 0)
+			if (isCharacter("Neji"))
 			{
 				_isArmored = true;
 			}
@@ -2994,9 +2994,9 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 	{
 		_skillChangeBuffValue = buffValue;
 
-		if (strcmp(getCharacter()->getCString(), "Shino") == 0 ||
-			strcmp(getCharacter()->getCString(), "Sai") == 0 ||
-			strcmp(getCharacter()->getCString(), "Deidara") == 0)
+		if (isCharacter("Shino",
+						"Sai",
+						"Deidara"))
 		{
 			if (_skillChangeBuffValue == 17)
 			{
@@ -3009,15 +3009,15 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 				scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
 			}
 		}
-		else if (strcmp(getCharacter()->getCString(), "Kiba") == 0)
+		else if (isCharacter("Kiba"))
 		{
 			if (_skillChangeBuffValue == 18)
 			{
 				scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
 			}
 		}
-		else if ((strcmp(getCharacter()->getCString(), "ImmortalSasuke") == 0 ||
-				  strcmp(getCharacter()->getCString(), "Sasuke") == 0) &&
+		else if ((isCharacter("ImmortalSasuke") ||
+				  isCharacter("Sasuke")) &&
 				 _skillChangeBuffValue == 18)
 		{
 			unschedule(schedule_selector(CharacterBase::resumeAction));
@@ -3029,7 +3029,7 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 
 			scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
 		}
-		else if (strcmp(getCharacter()->getCString(), "Minato") == 0)
+		else if (isCharacter("Minato"))
 		{
 			if (_skillChangeBuffValue == 18)
 			{
@@ -3039,15 +3039,15 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 		else
 		{
 			if (isNotGuardian() &&
-				strcmp(getCharacter()->getCString(), "Kankuro") != 0 &&
-				strcmp(getCharacter()->getCString(), "Chiyo") != 0 &&
-				strcmp(getCharacter()->getCString(), "Hiruzen") != 0 &&
-				strcmp(getCharacter()->getCString(), "Suigetsu") != 0 &&
-				strcmp(getCharacter()->getCString(), "Jugo") != 0 &&
-				strcmp(getCharacter()->getCString(), "Kisame") != 0 &&
-				strcmp(getCharacter()->getCString(), "Parents") != 0 &&
-				strcmp(getCharacter()->getCString(), "Lee") != 0 &&
-				strcmp(getCharacter()->getCString(), "RockLee") != 0)
+				isNotCharacter("Kankuro",
+							   "Chiyo",
+							   "Hiruzen",
+							   "Suigetsu,"
+							   "Jugo",
+							   "Kisame",
+							   "Parents",
+							   "Lee",
+							   "RockLee"))
 			{
 				scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
 			}
@@ -3196,7 +3196,7 @@ void CharacterBase::disableBuff(float dt)
 		setsAttackValue3(CCString::createWithFormat("%d", getSAttackValue3() - _skillUPBuffValue));
 		_skillUPBuffValue = 0;
 
-		if (strcmp(getCharacter()->getCString(), "Neji") == 0)
+		if (isCharacter("Neji"))
 		{
 			_isArmored = false;
 		}
@@ -3217,7 +3217,7 @@ void CharacterBase::disableBuff(float dt)
 		if (_shadow)
 			_shadow->setVisible(true);
 	}
-	else if (_skillChangeBuffValue && strcmp(getCharacter()->getCString(), "Tobi") == 0)
+	else if (_skillChangeBuffValue && isCharacter("Tobi"))
 	{
 		setOpacity(255);
 	}
@@ -3225,8 +3225,7 @@ void CharacterBase::disableBuff(float dt)
 
 void CharacterBase::disableDebuff(float dt)
 {
-	if ((strcmp(getCharacter()->getCString(), "ImmortalSasuke") == 0 ||
-		 strcmp(getCharacter()->getCString(), "Itachi") == 0) &&
+	if (isCharacter("ImmortalSasuke", "Itachi") &&
 		_isArmored)
 	{
 		return;
@@ -3247,7 +3246,7 @@ void CharacterBase::healBuff(float dt)
 		_buffStartTime = curTime;
 	}
 	int limitTime = 10000;
-	if (strcmp(getCharacter()->getCString(), "Tsunade") == 0)
+	if (isCharacter("Tsunade"))
 	{
 		limitTime = 15000;
 	}
@@ -3260,7 +3259,7 @@ void CharacterBase::healBuff(float dt)
 		_buffStartTime = 0;
 		return;
 	}
-	if (strcmp(getCharacter()->getCString(), "Karin") == 0)
+	if (isCharacter("Karin"))
 	{
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
@@ -3303,13 +3302,13 @@ void CharacterBase::healBuff(float dt)
 			}
 		}
 	}
-	else if (strcmp(getCharacter()->getCString(), "Chiyo") == 0)
+	else if (isCharacter("Chiyo"))
 	{
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
 			Hero *tempHero = (Hero *)pObject;
-			if (strcmp(_group->getCString(), tempHero->_group->getCString()) == 0 && (tempHero->isPlayer() || tempHero->isCom()) && strcmp(tempHero->_character->getCString(), "Chiyo") != 0)
+			if (strcmp(_group->getCString(), tempHero->_group->getCString()) == 0 && (tempHero->isPlayer() || tempHero->isCom()) && strcmp(tempHero->getCharacter()->getCString(), "Chiyo") != 0)
 			{
 				CCPoint sp = ccpSub(tempHero->getPosition(), getPosition());
 				if (abs(sp.x) <= winSize.width / 2)
@@ -3366,7 +3365,7 @@ void CharacterBase::healBuff(float dt)
 			}
 		}
 	}
-	else if (strcmp(getCharacter()->getCString(), "Slug") == 0)
+	else if (isCharacter("Slug"))
 	{
 		CCObject *pObject;
 		CCArray *list;
@@ -3402,8 +3401,7 @@ void CharacterBase::healBuff(float dt)
 			}
 		}
 	}
-	else if (strcmp(getCharacter()->getCString(), "Sakura") == 0 ||
-			 strcmp(getCharacter()->getCString(), "Tsunade") == 0)
+	else if (isCharacter("Sakura", "Tsunade"))
 	{
 		if (getMaxHPValue() - getHPValue() <= _healBuffValue)
 		{
@@ -3447,7 +3445,7 @@ void CharacterBase::dehealBuff(float dt)
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
 		Hero *tempHero = (Hero *)pObject;
-		if (strcmp(tempHero->getCharacter()->getCString(), "Asuma") == 0)
+		if (tempHero->isCharacter("Asuma"))
 			_slayer = tempHero;
 	}
 
@@ -3470,7 +3468,7 @@ void CharacterBase::lostBlood(float dt)
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
 		Hero *tempHero = (Hero *)pObject;
-		if (strcmp(tempHero->getCharacter()->getCString(), "Shikamaru") == 0)
+		if (tempHero->isCharacter("Shikamaru"))
 			_slayer = tempHero;
 	}
 
@@ -3498,7 +3496,7 @@ void CharacterBase::changeAction()
 
 void CharacterBase::changeAction2()
 {
-	if (strcmp(getCharacter()->getCString(), "Minato") == 0)
+	if (isCharacter("Minato"))
 	{
 		_attackValue = getSpcAttackValue2();
 		setAttackType(getspcAttack2Type());
@@ -3530,7 +3528,7 @@ void CharacterBase::setActionResume()
 
 void CharacterBase::setActionResume2()
 {
-	if (strcmp(getCharacter()->getCString(), "Minato") == 0)
+	if (isCharacter("Minato"))
 	{
 		setSkill2Action(createAnimation(skill2Array, 10.0f, false, true));
 	}
@@ -3755,9 +3753,8 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 	clone->setDelegate(_delegate);
 	clone->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32), getPositionY() - 1));
 
-	if (strcmp(getCharacter()->getCString(), "SageNaruto") == 0 ||
-		strcmp(getCharacter()->getCString(), "Naruto") == 0 ||
-		(strcmp(getCharacter()->getCString(), "RikudoNaruto") == 0 && cloneTime == 10))
+	if (isCharacter("SageNaruto", "Naruto") ||
+		(isCharacter("RikudoNaruto") && cloneTime == 10))
 	{
 		clone->setHP(CCString::create(getHP()->getCString()));
 	}
@@ -3774,7 +3771,7 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 	clone->setHPbar();
 	clone->_hpBar->getHPBAR()->setScaleX(clone->getHpPercent());
 
-	if (strcmp(getCharacter()->getCString(), "RikudoNaruto") == 0 && cloneTime == 9)
+	if (isCharacter("RikudoNaruto") && cloneTime == 9)
 	{
 		if (clone->_hpBar)
 		{
@@ -3782,7 +3779,7 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 		}
 		clone->setnAttackValue(CCString::createWithFormat("1060"));
 	}
-	else if (strcmp(getCharacter()->getCString(), "Kakashi") == 0)
+	else if (isCharacter("Kakashi"))
 	{
 		clone->setnAttackValue(CCString::createWithFormat("1060"));
 	}
@@ -4228,11 +4225,11 @@ void CharacterBase::setMonPer(float dt)
 	Monster *monster = Monster::create();
 	monster->setDelegate(_delegate);
 
-	if (strcmp(getCharacter()->getCString(), "Deidara") == 0)
+	if (isCharacter("Deidara"))
 	{
 		monster->setID(CCString::create("Spider"), CCString::create(kRoleMon), _group);
 	}
-	else if (strcmp(getCharacter()->getCString(), "Sai") == 0)
+	else if (isCharacter("Sai"))
 	{
 		monster->setID(CCString::create("Mouse"), CCString::create(kRoleMon), _group);
 		CCDictionary *callValue2 = CCDictionary::create();
@@ -4271,8 +4268,8 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 				{
 					if (!tempHero->_isVisable)
 					{
-						if (strcmp(tempHero->getCharacter()->getCString(), "Konan") == 0 ||
-							strcmp(tempHero->getCharacter()->getCString(), "Deidara") == 0)
+						if (tempHero->isCharacter("Konan") ||
+							tempHero->isCharacter("Deidara"))
 						{
 							tempHero->unschedule(schedule_selector(CharacterBase::disableBuff));
 						}
@@ -4290,7 +4287,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 			}
 		}
 
-		if (strcmp(getCharacter()->getCString(), "ImmortalSasuke") == 0)
+		if (isCharacter("ImmortalSasuke"))
 		{
 			CCPoint targetPoint = _mainTarget ? _mainTarget->getPosition() : getPosition();
 
@@ -4452,13 +4449,13 @@ void CharacterBase::setMonAttack(CCNode *sender, void *data)
 			Monster *mo = (Monster *)pObject;
 			if (strcmp(mo->getCharacter()->getCString(), "Traps") != 0)
 			{
-				if (strcmp(getCharacter()->getCString(), "Kiba") == 0)
+				if (isCharacter("Kiba"))
 				{
 					mo->attack(SKILL1);
 				}
-				else if (strcmp(getCharacter()->getCString(), "Kankuro") == 0)
+				else if (isCharacter("Kankuro"))
 				{
-					if (strcmp(mo->getCharacter()->getCString(), "Karasu") == 0)
+					if (mo->isCharacter("Karasu"))
 					{
 						if (skillNum == 1)
 						{
@@ -4470,9 +4467,9 @@ void CharacterBase::setMonAttack(CCNode *sender, void *data)
 						}
 					}
 				}
-				else if (strcmp(getCharacter()->getCString(), "Chiyo") == 0)
+				else if (isCharacter("Chiyo"))
 				{
-					if (strcmp(mo->getCharacter()->getCString(), "Parents") == 0)
+					if (mo->isCharacter("Parents"))
 					{
 						if (skillNum == 1 && !mo->_skillChangeBuffValue)
 						{
@@ -4484,8 +4481,7 @@ void CharacterBase::setMonAttack(CCNode *sender, void *data)
 						}
 					}
 				}
-				else if (strcmp(getCharacter()->getCString(), "Itachi") == 0 ||
-						 strcmp(getCharacter()->getCString(), "ImmortalSasuke") == 0)
+				else if (isCharacter("Itachi", "ImmortalSasuke"))
 				{
 					if (_actionState == State::NATTACK)
 					{
@@ -4506,8 +4502,8 @@ void CharacterBase::setTransform()
 	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "acceptAttack");
 	unschedule(schedule_selector(CharacterBase::dehealBuff));
 
-	if (strcmp(getCharacter()->getCString(), "Lee") == 0 ||
-		strcmp(getCharacter()->getCString(), "RockLee") == 0)
+	if (isCharacter("Lee",
+					"RockLee"))
 	{
 		removeBuffEffect("dhBuff");
 	}
@@ -4523,19 +4519,19 @@ void CharacterBase::setTransform()
 	}
 
 	CCString *tempAttackValue = CCString::createWithFormat("%s", getNAttackValueStr()->getCString());
-	if (strcmp(getCharacter()->getCString(), "Naruto") == 0)
+	if (isCharacter("Naruto"))
 		setID(CCString::create("SageNaruto"), _role, _group);
-	else if (strcmp(getCharacter()->getCString(), "SageNaruto") == 0)
+	else if (isCharacter("SageNaruto"))
 		setID(CCString::create("RikudoNaruto"), _role, _group);
-	else if (strcmp(getCharacter()->getCString(), "Jiraiya") == 0)
+	else if (isCharacter("Jiraiya"))
 		setID(CCString::create("SageJiraiya"), _role, _group);
-	else if (strcmp(getCharacter()->getCString(), "Sasuke") == 0)
+	else if (isCharacter("Sasuke"))
 		setID(CCString::create("ImmortalSasuke"), _role, _group);
-	else if (strcmp(getCharacter()->getCString(), "Lee") == 0)
+	else if (isCharacter("Lee"))
 		setID(CCString::create("RockLee"), _role, _group);
-	else if (strcmp(getCharacter()->getCString(), "RockLee") == 0)
+	else if (isCharacter("RockLee"))
 		setID(CCString::create("Lee"), _role, _group);
-	else if (strcmp(getCharacter()->getCString(), "Pain") == 0)
+	else if (isCharacter("Pain"))
 		setID(CCString::create("Nagato"), _role, _group);
 
 	setMaxHP(CCString::createWithFormat("%ld", getMaxHPValue()));
@@ -4559,7 +4555,7 @@ void CharacterBase::setTransform()
 
 	setnAttackValue(tempAttackValue);
 
-	if (strcmp(getCharacter()->getCString(), "RockLee") == 0)
+	if (isCharacter("RockLee"))
 		return;
 
 	// Update HudLayer
@@ -4722,8 +4718,8 @@ void CharacterBase::sAttack(abType type)
 	{
 		if (!_isVisable)
 		{
-			if (strcmp(getCharacter()->getCString(), "Konan") == 0 ||
-				strcmp(getCharacter()->getCString(), "Deidara") == 0)
+			if (isCharacter("Konan",
+							"Deidara"))
 			{
 				unschedule(schedule_selector(CharacterBase::disableBuff));
 			}
@@ -4802,8 +4798,8 @@ void CharacterBase::oAttack(abType type)
 		}
 		if (!_isVisable)
 		{
-			if (strcmp(getCharacter()->getCString(), "Konan") == 0 ||
-				strcmp(getCharacter()->getCString(), "Deidara") == 0)
+			if (isCharacter("Konan",
+							"Deidara"))
 			{
 				unschedule(schedule_selector(CharacterBase::disableBuff));
 			}
@@ -4898,10 +4894,10 @@ void CharacterBase::walk(CCPoint direction)
 		isHurtingTower = false;
 
 		if (_actionState == State::NATTACK &&
-			(strcmp(getCharacter()->getCString(), "Suigetsu") == 0 ||
-			 strcmp(getCharacter()->getCString(), "Jugo") == 0 ||
-			 strcmp(getCharacter()->getCString(), "Hiruzen") == 0 ||
-			 strcmp(getCharacter()->getCString(), "Kisame") == 0) &&
+			isCharacter("Suigetsu",
+						"Jugo",
+						"Hiruzen",
+						"Kisame") &&
 			_isOnlySkillLocked)
 		{
 			if (isNotPlayer())
@@ -4928,9 +4924,9 @@ void CharacterBase::walk(CCPoint direction)
 			}
 		}
 
-		if (strcmp(getCharacter()->getCString(), "Itachi") == 0 ||
-			strcmp(getCharacter()->getCString(), "ImmortalSasuke") == 0 ||
-			strcmp(getCharacter()->getCString(), "Chiyo") == 0)
+		if (isCharacter("Itachi",
+						"ImmortalSasuke",
+						"Chiyo"))
 		{
 			if (hasMonsterArrayAny())
 			{
@@ -4938,12 +4934,12 @@ void CharacterBase::walk(CCPoint direction)
 				CCARRAY_FOREACH(getMonsterArray(), pObject)
 				{
 					Monster *mo = (Monster *)pObject;
-					if (strcmp(mo->getCharacter()->getCString(), "ItachiSusano") == 0 ||
-						strcmp(mo->getCharacter()->getCString(), "SasukeSusano") == 0)
+					if (mo->isCharacter("ItachiSusano") ||
+						mo->isCharacter("SasukeSusano"))
 					{
 						mo->setFlipX(_isFlipped);
 					}
-					else if (strcmp(mo->getCharacter()->getCString(), "Parents") == 0)
+					else if (mo->isCharacter("Parents"))
 					{
 						if (mo->_actionState == State::IDLE)
 						{
@@ -4978,7 +4974,7 @@ bool CharacterBase::hurt()
 		{
 			Hero *tempHero = (Hero *)pObject;
 			if (strcmp(_group->getCString(), tempHero->_group->getCString()) == 0 &&
-				strcmp(tempHero->_character->getCString(), "Chiyo") == 0 &&
+				tempHero->isCharacter("Chiyo") &&
 				tempHero->_actionState != State::DEAD &&
 				tempHero->_buffStartTime)
 			{
@@ -4989,13 +4985,13 @@ bool CharacterBase::hurt()
 				}
 			}
 		}
-		if (strcmp(getCharacter()->getCString(), "Chiyo") == 0)
+		if (isCharacter("Chiyo"))
 		{
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				Monster *mo = (Monster *)pObject;
-				if (strcmp(mo->getCharacter()->getCString(), "Parents") == 0 && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK && mo->getActionState() != State::DEAD)
+				if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK && mo->getActionState() != State::DEAD)
 				{
 					CCPoint sp = ccpSub(mo->getPosition(), getPosition());
 					if (sp.x <= 48)
@@ -5052,7 +5048,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 		{
 			Hero *tempHero = (Hero *)pObject;
 			if (strcmp(_group->getCString(), tempHero->_group->getCString()) == 0 &&
-				strcmp(tempHero->_character->getCString(), "Chiyo") == 0 &&
+				tempHero->isCharacter("Chiyo") &&
 				tempHero->_actionState != State::DEAD &&
 				tempHero->_buffStartTime)
 			{
@@ -5064,13 +5060,13 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 			}
 		}
 
-		if (strcmp(getCharacter()->getCString(), "Chiyo") == 0)
+		if (isCharacter("Chiyo"))
 		{
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				Monster *mo = (Monster *)pObject;
-				if (strcmp(mo->getCharacter()->getCString(), "Parents") == 0 && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK && mo->getActionState() != State::DEAD)
+				if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK && mo->getActionState() != State::DEAD)
 				{
 					CCPoint sp = ccpSub(mo->getPosition(), getPosition());
 					if (sp.x <= 48)
@@ -5118,7 +5114,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 			_isSticking = true;
 			CharacterBase *attacker = _slayer;
 			CCString *path;
-			if (strcmp(attacker->getCharacter()->getCString(), "Kakuzu") == 0)
+			if (attacker->isCharacter("Kakuzu"))
 			{
 				path = CCString::createWithFormat("%s_AirHurt_02.png", getCharacter()->getCString());
 			}
@@ -5248,7 +5244,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 		{
 			Hero *tempHero = (Hero *)pObject;
 			if (strcmp(_group->getCString(), tempHero->_group->getCString()) == 0 &&
-				strcmp(tempHero->_character->getCString(), "Chiyo") == 0 &&
+				tempHero->isCharacter("Chiyo") &&
 				tempHero->_actionState != State::DEAD &&
 				tempHero->_buffStartTime)
 			{
@@ -5260,13 +5256,13 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 			}
 		}
 
-		if (strcmp(getCharacter()->getCString(), "Chiyo") == 0)
+		if (isCharacter("Chiyo"))
 		{
 			CCObject *pObject;
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				Monster *mo = (Monster *)pObject;
-				if (strcmp(mo->getCharacter()->getCString(), "Parents") == 0 && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK && mo->getActionState() != State::DEAD)
+				if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK && mo->getActionState() != State::DEAD)
 				{
 					CCPoint sp = ccpSub(mo->getPosition(), getPosition());
 					if (sp.x <= 48)
@@ -5343,7 +5339,7 @@ void CharacterBase::dead()
 		_isControlled = false;
 		if (_controller->isPlayer())
 		{
-			if (strcmp(_controller->getCharacter()->getCString(), "Ino") == 0)
+			if (_controller->isCharacter("Ino"))
 			{
 				_isAI = true;
 				_isControlled = false;
@@ -5374,7 +5370,7 @@ void CharacterBase::dead()
 		_controller = nullptr;
 	}
 
-	if (strcmp(getCharacter()->getCString(), "Minato") == 0)
+	if (isCharacter("Minato"))
 	{
 		setActionResume2();
 	}
@@ -5401,8 +5397,8 @@ void CharacterBase::dead()
 		unschedule(schedule_selector(CharacterBase::healBuff));
 		_buffStartTime = 0;
 		unschedule(schedule_selector(CharacterBase::dehealBuff));
-		if (strcmp(getCharacter()->getCString(), "RockLee") != 0 &&
-			strcmp(getCharacter()->getCString(), "Lee") != 0)
+		if (isNotCharacter("RockLee",
+						   "Lee"))
 		{
 			removeBuffEffect("all");
 		}
@@ -5855,8 +5851,8 @@ bool CharacterBase::findTargetEnemy(const char *type, bool isTowerDected)
 
 					if (target->isHurtingTower)
 					{
-						if (strcmp(target->getCharacter()->getCString(), "Choji") == 0 ||
-							strcmp(target->getCharacter()->getCString(), "Sakura") == 0)
+						if (target->isCharacter("Choji") ||
+							target->isCharacter("Sakura"))
 						{
 							_mainTarget = target;
 							return true;
@@ -5878,8 +5874,8 @@ bool CharacterBase::findTargetEnemy(const char *type, bool isTowerDected)
 
 					if (target->isHurtingTower)
 					{
-						if (strcmp(target->getCharacter()->getCString(), "Choji") == 0 ||
-							strcmp(target->getCharacter()->getCString(), "Sakura") == 0)
+						if (target->isCharacter("Choji") ||
+							target->isCharacter("Sakura"))
 						{
 							_mainTarget = target;
 							return true;
@@ -6097,8 +6093,7 @@ void CharacterBase::changeSide(CCPoint sp)
 		_isFlipped = true;
 	}
 
-	if (strcmp(getCharacter()->getCString(), "Itachi") == 0 ||
-		strcmp(getCharacter()->getCString(), "ImmortalSasuke") == 0)
+	if (isCharacter("Itachi", "ImmortalSasuke"))
 	{
 		if (hasMonsterArrayAny())
 		{
@@ -6106,8 +6101,8 @@ void CharacterBase::changeSide(CCPoint sp)
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				Monster *mo = (Monster *)pObject;
-				if (strcmp(mo->getCharacter()->getCString(), "ItachiSusano") == 0 ||
-					strcmp(mo->getCharacter()->getCString(), "SasukeSusano") == 0)
+				if (mo->isCharacter("ItachiSusano") ||
+					mo->isCharacter("SasukeSusano"))
 
 					mo->_isFlipped = _isFlipped;
 				mo->setFlipX(_isFlipped);

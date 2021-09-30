@@ -41,7 +41,7 @@ class Minato : public Hero
 					CCARRAY_FOREACH(getMonsterArray(), pObject)
 					{
 						Monster *mo = (Monster *)pObject;
-						if (strcmp(mo->getCharacter()->getCString(), "HiraishinMark") == 0)
+						if (mo->isCharacter("HiraishinMark"))
 						{
 							if (isKonohaGroup() && mo->getPositionX() < getPositionX())
 							{
@@ -114,7 +114,7 @@ class Minato : public Hero
 					CCARRAY_FOREACH(getMonsterArray(), pObject)
 					{
 						Monster *mo = (Monster *)pObject;
-						if (strcmp(mo->getCharacter()->getCString(), "HiraishinMark") == 0)
+						if (mo->isCharacter("HiraishinMark"))
 						{
 							isMark = true;
 						}
@@ -249,7 +249,7 @@ class Minato : public Hero
 					CCARRAY_FOREACH(getMonsterArray(), pObject)
 					{
 						Monster *mo = (Monster *)pObject;
-						if (strcmp(mo->getCharacter()->getCString(), "HiraishinMark") == 0)
+						if (mo->isCharacter("HiraishinMark"))
 						{
 							if (isKonohaGroup() && mo->getPositionX() > getPositionX())
 							{

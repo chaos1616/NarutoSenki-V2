@@ -39,7 +39,7 @@ public:
 		CCArray *animationArray = CCArray::create();
 		const char *filePath;
 
-		if (strcmp(getCharacter()->getCString(), "KonohaCenter") == 0 || strcmp(getCharacter()->getCString(), "AkatsukiCenter") == 0)
+		if (isCharacter("KonohaCenter", "AkatsukiCenter"))
 			filePath = "Element/Tower/CenterDate.xml";
 		else
 			filePath = "Element/Tower/TowerDate.xml";

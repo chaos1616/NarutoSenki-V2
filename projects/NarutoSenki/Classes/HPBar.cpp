@@ -131,8 +131,8 @@ void HPBar::loseHP(float percent)
 
 			if (currentSlayer->getLV() != 6)
 			{
-				if (strcmp(currentSlayer->getCharacter()->getCString(), "Naruto") == 0 ||
-					strcmp(currentSlayer->getCharacter()->getCString(), "SageNaruto") == 0)
+				if (currentSlayer->isCharacter("Naruto") ||
+					currentSlayer->isCharacter("SageNaruto"))
 				{
 					currentSlayer->setEXP(currentSlayer->getEXP() + 12);
 					currentSlayer->changeHPbar();
@@ -222,8 +222,8 @@ void HPBar::loseHP(float percent)
 
 				if (currentSlayer->getLV() != 6)
 				{
-					if (strcmp(currentSlayer->getCharacter()->getCString(), "Naruto") == 0 ||
-						strcmp(currentSlayer->getCharacter()->getCString(), "SageNaruto") == 0)
+					if (currentSlayer->isCharacter("Naruto") ||
+						currentSlayer->isCharacter("SageNaruto"))
 					{
 						currentSlayer->setEXP(currentSlayer->getEXP() + 625);
 						currentSlayer->changeHPbar();
@@ -333,7 +333,7 @@ void HPBar::loseHP(float percent)
 		}
 		else if ((_delegate->isPlayer() || _delegate->isCom()))
 		{
-			if (strcmp(_delegate->getCharacter()->getCString(), "Kakuzu") == 0 && _delegate->getDelegate()->_isOugis2Game)
+			if (_delegate->isCharacter("Kakuzu") && _delegate->getDelegate()->_isOugis2Game)
 			{
 				bool reieveAble = false;
 				if (_delegate->getCkr2Value() >= 25000 && _delegate->hearts > 0)
@@ -442,7 +442,7 @@ void HPBar::loseHP(float percent)
 				}
 			}
 
-			if (strcmp(currentSlayer->getCharacter()->getCString(), "Kakuzu") == 0)
+			if (currentSlayer->isCharacter("Kakuzu"))
 			{
 				if (currentSlayer->hearts <= 4)
 				{
@@ -498,8 +498,8 @@ void HPBar::loseHP(float percent)
 
 				if (currentSlayer->getLV() != 6)
 				{
-					if (strcmp(currentSlayer->getCharacter()->getCString(), "Naruto") == 0 ||
-						strcmp(currentSlayer->getCharacter()->getCString(), "SageNaruto") == 0)
+					if (currentSlayer->isCharacter("Naruto") ||
+						currentSlayer->isCharacter("SageNaruto"))
 					{
 						currentSlayer->setEXP(currentSlayer->getEXP() + 125);
 						currentSlayer->changeHPbar();
