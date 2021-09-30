@@ -1465,7 +1465,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 	}
 
 	int criticalValue;
-	int realValue;
+	uint32_t realValue;
 
 	auto attacker = _slayer;
 	CharacterBase *currentAttacker;
@@ -1540,7 +1540,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 		}
 	}
 
-	if (getHPValue() - realValue < 0)
+	if (getHPValue() < realValue)
 		setHP(to_ccstring(0));
 	else
 		setHP(to_ccstring(getHPValue() - realValue));
@@ -2271,7 +2271,7 @@ void CharacterBase::setRestore2(float dt)
 		}
 		if (isZone)
 		{
-			if (getHPValue() - 1000 > 0)
+			if (getHPValue() > 1000)
 			{
 				setHP(to_ccstring(getHPValue() - 1000));
 				_hpBar->loseHP(getHpPercent());

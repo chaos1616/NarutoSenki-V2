@@ -179,7 +179,7 @@ class Lee : public Hero
 
 		if (bamen >= 8)
 		{
-			if (getHPValue() - 1000 > 0)
+			if (getHPValue() > 1000)
 			{
 				setHP(to_ccstring(getHPValue() - 1000));
 				_hpBar->loseHP(getHpPercent());
@@ -192,7 +192,7 @@ class Lee : public Hero
 		}
 		else if (bamen >= 5)
 		{
-			if (getHPValue() - 200 > 0)
+			if (getHPValue() > 200)
 			{
 				setHP(to_ccstring(getHPValue() - 200));
 				_hpBar->loseHP(getHpPercent());
@@ -205,7 +205,7 @@ class Lee : public Hero
 		}
 		else if (bamen >= 4)
 		{
-			if (getHPValue() - 150 > 0)
+			if (getHPValue() > 150)
 			{
 				setHP(to_ccstring(getHPValue() - 150));
 				_hpBar->loseHP(getHpPercent());
@@ -218,7 +218,7 @@ class Lee : public Hero
 		}
 		else if (bamen >= 3)
 		{
-			if (getHPValue() - 100 > 0)
+			if (getHPValue() > 100)
 			{
 				setHP(to_ccstring(getHPValue() - 100));
 				_hpBar->loseHP(getHpPercent());
