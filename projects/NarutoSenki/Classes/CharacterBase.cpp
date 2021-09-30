@@ -329,8 +329,7 @@ void CharacterBase::update(float dt)
 	{
 		if (isPlayer() || isCom())
 		{
-			if (strcmp(getCharacter()->getCString(), Guardian_Roshi) != 0 &&
-				strcmp(getCharacter()->getCString(), Guardian_Han) != 0)
+			if (isNotGuardian())
 			{
 				if (strcmp(_group->getCString(), Konoha) == 0 && getPositionX() <= 11 * 32)
 				{
@@ -588,7 +587,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 				if (strcmp(attacker->_character->getCString(), "HiraishinKunai") == 0 ||
 					strcmp(attacker->_character->getCString(), "Shintenshin") == 0)
 				{
-					if (isPlayerOrCom() && strcmp(getCharacter()->getCString(), Guardian_Roshi) != 0 && strcmp(getCharacter()->getCString(), Guardian_Han) != 0 && _actionState != State::DEAD)
+					if (isPlayerOrCom() && isNotGuardian() && _actionState != State::DEAD)
 					{
 						attacker->stopAllActions();
 						attacker->dealloc();
@@ -1063,9 +1062,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 							}
 						}
 
-						if (_isCounter &&
-							strcmp(attacker->_character->getCString(), Guardian_Roshi) != 0 &&
-							strcmp(attacker->_character->getCString(), Guardian_Han) != 0)
+						if (_isCounter && attacker->isNotGuardian())
 						{
 							if (attacker->_master && attacker->_master->_actionState != State::DEAD)
 							{
@@ -1551,7 +1548,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 
 	if (isClone())
 	{
-		int boundValue = 0;
+		uint32_t boundValue = 0;
 		if (strcmp(getCharacter()->getCString(), "Naruto") == 0)
 			boundValue = realValue * 15 / 100;
 		else if (strcmp(getCharacter()->getCString(), "SageNaruto") == 0)
@@ -1576,17 +1573,17 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 			{
 				if (_master->getLV() >= 2 && !_master->_isControlled)
 				{
-					if (45000 - atof(_master->getCKR()->getCString()) >= boundValue)
+					if (45000 - _master->getCkrValue() >= boundValue)
 					{
-						float newValue = atof(_master->getCKR()->getCString()) + boundValue;
-						_master->setCKR(CCString::createWithFormat("%f", newValue));
+						uint32_t newValue = _master->getCkrValue() + boundValue;
+						_master->setCKR(CCString::createWithFormat("%ld", newValue));
 					}
 					else
 					{
 						_master->setCKR(CCString::create("45000"));
 					}
 
-					if (atof(_master->getCKR()->getCString()) >= 15000)
+					if (_master->getCkrValue() >= 15000)
 						_master->_isCanOugis1 = true;
 
 					if (_master->isPlayer())
@@ -1595,17 +1592,17 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 
 				if (_master->getLV() >= 4 && !_master->_isControlled)
 				{
-					if (50000 - atof(_master->getCKR2()->getCString()) >= boundValue)
+					if (50000 - _master->getCkr2Value() >= boundValue)
 					{
-						float newValue = atof(_master->getCKR2()->getCString()) + boundValue;
-						_master->setCKR2(CCString::createWithFormat("%f", newValue));
+						uint32_t newValue = _master->getCkr2Value() + boundValue;
+						_master->setCKR2(CCString::createWithFormat("%ld", newValue));
 					}
 					else
 					{
 						_master->setCKR2(CCString::create("50000"));
 					}
 
-					if (atof(_master->getCKR2()->getCString()) >= 25000)
+					if (_master->getCkr2Value() >= 25000)
 						_master->_isCanOugis2 = true;
 
 					if (_master->isPlayer())
@@ -1615,7 +1612,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 		}
 		else
 		{
-			int boundValue;
+			uint32_t boundValue;
 
 			if (_level == 5)
 				boundValue = realValue + realValue * 5 / 100;
@@ -1646,17 +1643,17 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 
 			if (_level >= 2 && !_isControlled && isGainable)
 			{
-				if (45000 - atof(getCKR()->getCString()) >= boundValue)
+				if (45000 - getCkrValue() >= boundValue)
 				{
-					float newValue = atof(getCKR()->getCString()) + boundValue;
-					setCKR(CCString::createWithFormat("%f", newValue));
+					uint32_t newValue = getCkrValue() + boundValue;
+					setCKR(CCString::createWithFormat("%ld", newValue));
 				}
 				else
 				{
 					setCKR(CCString::create("45000"));
 				}
 
-				if (atof(getCKR()->getCString()) >= 15000)
+				if (getCkrValue() >= 15000)
 					_isCanOugis1 = true;
 
 				if (isPlayer())
@@ -1665,17 +1662,17 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 
 			if (_level >= 4 && !_isControlled && isGainable)
 			{
-				if (50000 - atof(getCKR2()->getCString()) >= boundValue)
+				if (50000 - getCkr2Value() >= boundValue)
 				{
-					float newValue = atof(getCKR2()->getCString()) + boundValue;
-					setCKR2(CCString::createWithFormat("%f", newValue));
+					uint32_t newValue = getCkr2Value() + boundValue;
+					setCKR2(CCString::createWithFormat("%ld", newValue));
 				}
 				else
 				{
 					setCKR2(CCString::create("50000"));
 				}
 
-				if (atof(getCKR2()->getCString()) >= 25000)
+				if (getCkr2Value() >= 25000)
 					_isCanOugis2 = true;
 
 				if (isPlayer())
@@ -1685,7 +1682,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 
 		if (isPlayer() || isCom())
 		{
-			float gainValue = 0;
+			uint32_t gainValue = 0;
 
 			if (strcmp(attacker->getCharacter()->getCString(), "Kisame") == 0 && attacker->_skillChangeBuffValue)
 			{
@@ -1703,17 +1700,17 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 			{
 				if (currentAttacker->_level >= 2 && !currentAttacker->_isControlled)
 				{
-					if (45000 - atof(currentAttacker->getCKR()->getCString()) >= gainValue)
+					if (45000 - currentAttacker->getCkrValue() >= gainValue)
 					{
-						float newValue = atof(currentAttacker->getCKR()->getCString()) + gainValue;
-						currentAttacker->setCKR(CCString::createWithFormat("%f", newValue));
+						uint32_t newValue = currentAttacker->getCkrValue() + gainValue;
+						currentAttacker->setCKR(CCString::createWithFormat("%ld", newValue));
 					}
 					else
 					{
 						currentAttacker->setCKR(CCString::create("45000"));
 					}
 
-					if (atof(currentAttacker->getCKR()->getCString()) >= 15000)
+					if (currentAttacker->getCkrValue() >= 15000)
 						currentAttacker->_isCanOugis1 = true;
 
 					if (currentAttacker->isPlayer())
@@ -1722,17 +1719,17 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 
 				if (currentAttacker->_level >= 4 && !currentAttacker->_isControlled)
 				{
-					if (50000 - atof(currentAttacker->getCKR2()->getCString()) >= gainValue)
+					if (50000 - currentAttacker->getCkr2Value() >= gainValue)
 					{
-						float newValue = atof(currentAttacker->getCKR2()->getCString()) + gainValue;
-						currentAttacker->setCKR2(CCString::createWithFormat("%f", newValue));
+						uint32_t newValue = currentAttacker->getCkr2Value() + gainValue;
+						currentAttacker->setCKR2(CCString::createWithFormat("%ld", newValue));
 					}
 					else
 					{
 						currentAttacker->setCKR2(CCString::create("50000"));
 					}
 
-					if (atof(currentAttacker->getCKR2()->getCString()) >= 25000)
+					if (currentAttacker->getCkr2Value() >= 25000)
 						currentAttacker->_isCanOugis2 = true;
 
 					if (currentAttacker->isPlayer())
@@ -2581,20 +2578,20 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 	}
 	else if (strcmp(commandType->getCString(), "setGainCKR") == 0)
 	{
-		int boundValue = 1500;
+		uint32_t boundValue = 1500;
 		if (_level >= 2)
 		{
-			if (45000 - atof(getCKR()->getCString()) >= boundValue)
+			if (45000 - getCkrValue() >= boundValue)
 			{
-				float newValue = atof(getCKR()->getCString()) + boundValue;
-				setCKR(CCString::createWithFormat("%f", newValue));
+				uint32_t newValue = getCkrValue() + boundValue;
+				setCKR(CCString::createWithFormat("%ld", newValue));
 			}
 			else
 			{
 				setCKR(CCString::create("45000"));
 			}
 
-			if (atof(getCKR()->getCString()) >= 15000)
+			if (getCkrValue() >= 15000)
 				_isCanOugis1 = true;
 
 			if (isPlayer())
@@ -2603,17 +2600,17 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 
 		if (_level >= 4 && !_isControlled)
 		{
-			if (50000 - atof(getCKR2()->getCString()) >= boundValue)
+			if (50000 - getCkr2Value() >= boundValue)
 			{
-				float newValue = atof(getCKR2()->getCString()) + boundValue;
-				setCKR2(CCString::createWithFormat("%f", newValue));
+				uint32_t newValue = getCkr2Value() + boundValue;
+				setCKR2(CCString::createWithFormat("%ld", newValue));
 			}
 			else
 			{
 				setCKR2(CCString::create("50000"));
 			}
 
-			if (atof(getCKR2()->getCString()) >= 25000)
+			if (getCkr2Value() >= 25000)
 				_isCanOugis2 = true;
 
 			if (isPlayer())
@@ -3041,10 +3038,9 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 		}
 		else
 		{
-			if (strcmp(getCharacter()->getCString(), "Kankuro") != 0 &&
+			if (isNotGuardian() &&
+				strcmp(getCharacter()->getCString(), "Kankuro") != 0 &&
 				strcmp(getCharacter()->getCString(), "Chiyo") != 0 &&
-				strcmp(getCharacter()->getCString(), Guardian_Roshi) != 0 &&
-				strcmp(getCharacter()->getCString(), Guardian_Han) != 0 &&
 				strcmp(getCharacter()->getCString(), "Hiruzen") != 0 &&
 				strcmp(getCharacter()->getCString(), "Suigetsu") != 0 &&
 				strcmp(getCharacter()->getCString(), "Jugo") != 0 &&
@@ -3320,17 +3316,17 @@ void CharacterBase::healBuff(float dt)
 				{
 					if (tempHero->_level >= 2)
 					{
-						if (45000 - atof(tempHero->getCKR()->getCString()) >= _healBuffValue)
+						if (45000 - tempHero->getCkrValue() >= _healBuffValue)
 						{
-							float newValue = atof(tempHero->getCKR()->getCString()) + _healBuffValue;
-							tempHero->setCKR(CCString::createWithFormat("%f", newValue));
+							float newValue = tempHero->getCkrValue() + _healBuffValue;
+							tempHero->setCKR(CCString::createWithFormat("%ld", newValue));
 						}
 						else
 						{
 							tempHero->setCKR(CCString::create("45000"));
 						}
 
-						if (atof(tempHero->getCKR()->getCString()) >= 15000)
+						if (tempHero->getCkrValue() >= 15000)
 							tempHero->_isCanOugis1 = true;
 
 						if (tempHero->isPlayer())
@@ -3339,17 +3335,17 @@ void CharacterBase::healBuff(float dt)
 
 					if (tempHero->_level >= 4)
 					{
-						if (50000 - atof(tempHero->getCKR2()->getCString()) >= _healBuffValue)
+						if (50000 - tempHero->getCkr2Value() >= _healBuffValue)
 						{
-							float newValue = atof(tempHero->getCKR2()->getCString()) + _healBuffValue;
-							tempHero->setCKR2(CCString::createWithFormat("%f", newValue));
+							float newValue = tempHero->getCkr2Value() + _healBuffValue;
+							tempHero->setCKR2(CCString::createWithFormat("%ld", newValue));
 						}
 						else
 						{
 							tempHero->setCKR2(CCString::create("50000"));
 						}
 
-						if (atof(tempHero->getCKR2()->getCString()) >= 25000)
+						if (tempHero->getCkr2Value() >= 25000)
 							tempHero->_isCanOugis2 = true;
 
 						if (tempHero->isPlayer())
@@ -4664,10 +4660,9 @@ void CharacterBase::attack(abType type)
 	case OUGIS1:
 		if (isNotPlayer() || _isAI)
 		{
-			float newValue = atof(getCKR()->getCString()) - 15000;
-			;
-			setCKR(CCString::createWithFormat("%f", newValue));
-			if (atof(getCKR()->getCString()) < 15000)
+			uint32_t newValue = getCkrValue() - 15000;
+			setCKR(CCString::createWithFormat("%ld", newValue));
+			if (getCkrValue() < 15000)
 			{
 				_isCanOugis1 = false;
 			}
@@ -4682,9 +4677,9 @@ void CharacterBase::attack(abType type)
 	case OUGIS2:
 		if (isNotPlayer() || _isAI)
 		{
-			float newValue = atof(getCKR2()->getCString()) - 25000;
-			setCKR2(CCString::createWithFormat("%f", newValue));
-			if (atof(getCKR2()->getCString()) < 25000)
+			uint32_t newValue = getCkr2Value() - 25000;
+			setCKR2(CCString::createWithFormat("%ld", newValue));
+			if (getCkr2Value() < 25000)
 			{
 				_isCanOugis2 = false;
 			}
@@ -5705,18 +5700,21 @@ bool CharacterBase::findEnemy2(const char *type)
 				{
 					if (abs(sp.x) < _delegate->currentMap->getTileSize().width * 3)
 					{
-						if (strcmp(target->_character->getCString(), Guardian_Roshi) != 0 && strcmp(target->_character->getCString(), Guardian_Han) != 0)
+						if (target->isNotGuardian())
 						{
 							friendCombatPoint += baseSkillCombatPoint + target->getHPValue() +
-												 (atof(target->getCKR()->getCString()) / 15000) * target->_sattackCombatPoint4 + (atof(target->getCKR2()->getCString()) / 25000) * target->_sattackCombatPoint5;
+												 (target->getCkrValue() / 15000) * target->_sattackCombatPoint4 +
+												 (target->getCkr2Value() / 25000) * target->_sattackCombatPoint5;
 						}
 					}
 				}
 				else
 				{
-					if (strcmp(target->_character->getCString(), Guardian_Roshi) != 0 && strcmp(target->_character->getCString(), Guardian_Han) != 0)
+					if (target->isNotGuardian())
 					{
-						enemyCombatPoint += baseSkillCombatPoint + target->getHPValue() + (atof(target->getCKR()->getCString()) / 15000) * target->_sattackCombatPoint4 + (atof(target->getCKR2()->getCString()) / 25000) * target->_sattackCombatPoint5;
+						enemyCombatPoint += baseSkillCombatPoint + target->getHPValue() +
+											(target->getCkrValue() / 15000) * target->_sattackCombatPoint4 +
+											(target->getCkr2Value() / 25000) * target->_sattackCombatPoint5;
 					}
 
 					if (!target->_isInvincible && (target->getPositionX() >= _delegate->currentMap->getTileSize().width * 3 && target->getPositionX() <= (_delegate->currentMap->getMapSize().width - 3) * _delegate->currentMap->getTileSize().width))

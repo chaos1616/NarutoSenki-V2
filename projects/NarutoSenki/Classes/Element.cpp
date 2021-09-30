@@ -109,8 +109,8 @@ void HeroElement::changeHPbar()
 	if (_exp >= 500 && _level == 1)
 	{
 		_level = 2;
-		float newValue = atof(getCKR()->getCString()) + 15001;
-		setCKR(CCString::createWithFormat("%f", newValue));
+		uint32_t newValue = getCkrValue() + 15001;
+		setCKR(CCString::createWithFormat("%ld", newValue));
 		_isCanOugis1 = true;
 		if (isPlayer())
 		{
@@ -119,7 +119,7 @@ void HeroElement::changeHPbar()
 		}
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 500;
-		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+		setMaxHP(CCString::createWithFormat("%ld", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 9));
 		_rebornTime += 1;
 	}
@@ -128,15 +128,15 @@ void HeroElement::changeHPbar()
 		_level = 3;
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 1000;
-		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+		setMaxHP(CCString::createWithFormat("%ld", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 18));
 		_rebornTime += 2;
 	}
 	else if (_exp >= 1500 && _level == 3)
 	{
 		_level = 4;
-		float newValue = atof(getCKR2()->getCString()) + 25001;
-		setCKR2(CCString::createWithFormat("%f", newValue));
+		uint32_t newValue = getCkr2Value() + 25001;
+		setCKR2(CCString::createWithFormat("%ld", newValue));
 		_isCanOugis2 = true;
 		if (isPlayer())
 		{
@@ -145,7 +145,7 @@ void HeroElement::changeHPbar()
 		}
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 2000;
-		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+		setMaxHP(CCString::createWithFormat("%ld", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 27));
 		_rebornTime += 3;
 	}
@@ -154,7 +154,7 @@ void HeroElement::changeHPbar()
 		_level = 5;
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 2500;
-		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+		setMaxHP(CCString::createWithFormat("%ld", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 36));
 		_rebornTime += 4;
 	}
@@ -163,7 +163,7 @@ void HeroElement::changeHPbar()
 		_level = 6;
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 3000;
-		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+		setMaxHP(CCString::createWithFormat("%ld", tempMaxHP));
 		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 45));
 		_rebornTime += 5;
 	}
@@ -331,8 +331,7 @@ void HeroElement::dealloc()
 			}
 		}
 
-		if (strcmp(getCharacter()->getCString(), Guardian_Roshi) != 0 &&
-			strcmp(getCharacter()->getCString(), Guardian_Han) != 0)
+		if (isNotGuardian())
 		{
 			if (rebornLabelTime == 3)
 			{

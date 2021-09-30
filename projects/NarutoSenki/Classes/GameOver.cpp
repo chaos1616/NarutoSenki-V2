@@ -183,8 +183,7 @@ void GameOver::listResult()
 		if (hero->isClone() ||
 			hero->isSummon() ||
 			hero->isKugutsu() ||
-			hero->isCharacter(Guardian_Han) ||
-			hero->isCharacter(Guardian_Roshi))
+			hero->isGuardian())
 		{
 			continue;
 		}
@@ -481,8 +480,7 @@ void GameOver::listResult()
 							hero->isPlayer() ||
 							hero->isSummon() ||
 							hero->isKugutsu() ||
-							hero->isCharacter(Guardian_Han) ||
-							hero->isCharacter(Guardian_Roshi))
+							hero->isGuardian())
 						{
 							continue;
 						}

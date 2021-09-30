@@ -515,8 +515,7 @@ void HudLayer::initHeroInterface()
 			}
 			else if (player->isCom())
 			{
-				if (player->isCharacter(Guardian_Han) ||
-					player->isCharacter(Guardian_Roshi))
+				if (player->isGuardian())
 				{
 					path = "guardian_icon.png";
 				}
@@ -550,8 +549,7 @@ void HudLayer::addMapIcon()
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
 		CharacterBase *player = (CharacterBase *)pObject;
-		if (strcmp(player->getCharacter()->getCString(), Guardian_Han) == 0 ||
-			strcmp(player->getCharacter()->getCString(), Guardian_Roshi) == 0)
+		if (player->isGuardian())
 		{
 			MiniIcon *mi;
 			const char *path = "guardian_icon.png";
@@ -1217,27 +1215,13 @@ bool HudLayer::getOugisEnable(bool isCKR2)
 {
 	if (!isCKR2)
 	{
-		float ckr = atof(_delegate->currentPlayer->getCKR()->getCString());
-		if (ckr >= 15000)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		uint32_t ckr = _delegate->currentPlayer->getCkrValue();
+		return ckr >= 15000;
 	}
 	else
 	{
-		float ckr = atof(_delegate->currentPlayer->getCKR2()->getCString());
-		if (ckr >= 25000)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		uint32_t ckr2 = _delegate->currentPlayer->getCkr2Value();
+		return ckr2 >= 25000;
 	}
 }
 
@@ -1245,34 +1229,26 @@ void HudLayer::costCKR(int value, bool isCKR2)
 {
 	if (!isCKR2)
 	{
-		float ckr = atof(_delegate->currentPlayer->getCKR()->getCString());
+		uint32_t ckr = _delegate->currentPlayer->getCkrValue();
 
 		if (ckr - value > 0)
-		{
 			ckr -= value;
-		}
 		else
-		{
 			ckr = 0;
-		}
 
-		_delegate->currentPlayer->setCKR(CCString::createWithFormat("%f", ckr));
+		_delegate->currentPlayer->setCKR(CCString::createWithFormat("%ld", ckr));
 		setCKRLose(false);
 	}
 	else
 	{
-		float ckr = atof(_delegate->currentPlayer->getCKR2()->getCString());
+		uint32_t ckr2 = _delegate->currentPlayer->getCkr2Value();
 
-		if (ckr - value > 0)
-		{
-			ckr -= value;
-		}
+		if (ckr2 - value > 0)
+			ckr2 -= value;
 		else
-		{
-			ckr = 0;
-		}
+			ckr2 = 0;
 
-		_delegate->currentPlayer->setCKR2(CCString::createWithFormat("%f", ckr));
+		_delegate->currentPlayer->setCKR2(CCString::createWithFormat("%ld", ckr2));
 		setCKRLose(true);
 	}
 }

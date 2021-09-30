@@ -94,6 +94,9 @@ Device-Release/
 *.swp
 *.swo
 
+# Doesn't ignore debug mode dll & lib files
+!cocos2dx/platform/third_party/win32/libraries/debug
+
 __BIN__
 # Ignore files created by create_project.py
 projects/NarutoSenki/__BIN__
@@ -129,12 +132,6 @@ CMakeLists.txt.user
 cocos2dx/platform/android/libcocos2dx/build
 build/build/
 cocos/scripting/lua-bindings/proj.ios_mac/build/
-tests/*/runtime/
-tests/*/publish/
-tests/*/project/proj.android-studio/app/build.xml
-tests/*/project/proj.android-studio/app/proguard-project.txt
-tests/*/proj.android-studio/app/build.xml
-tests/*/proj.android-studio/app/proguard-project.txt
 
 # Android
 project.properties

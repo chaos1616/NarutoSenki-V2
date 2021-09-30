@@ -110,8 +110,8 @@ void LoadLayer::preloadIMG()
 	{
 		addSprites("Element/Roshi/Roshi.plist");
 		addSprites("Element/Han/Han.plist");
-		KTools::prepareFileOGG("Roshi");
-		KTools::prepareFileOGG("Han");
+		KTools::prepareFileOGG(kGuardian_Han);
+		KTools::prepareFileOGG(kGuardian_Roshi);
 	}
 	addSprites(kFlog_Kotetsu);
 	addSprites(kFlog_FemalePain);

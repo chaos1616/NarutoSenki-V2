@@ -429,35 +429,30 @@ void ActionButton::setProgressMark()
 
 void ActionButton::updateProgressMark()
 {
-	float ckr = atof(_delegate->_delegate->currentPlayer->getCKR()->getCString());
-	float ckr2 = atof(_delegate->_delegate->currentPlayer->getCKR2()->getCString());
+	uint32_t ckr = _delegate->_delegate->currentPlayer->getCkrValue();
+	uint32_t ckr2 = _delegate->_delegate->currentPlayer->getCkr2Value();
+
 	if (getABType() == OUGIS1)
 	{
 		if (ckr < 15000)
 		{
 			if (proressblinkSprite)
-			{
 				proressblinkSprite->setRotation(0);
-			}
+
 			if (proressmarkSprite)
-			{
 				proressmarkSprite->setRotation(-1 * ((ckr / 15000) * 50));
-			}
+
 			if (proressblinkMask)
-			{
 				proressblinkMask->setVisible(false);
-			}
 		}
 		else if (ckr < 30000)
 		{
 			if (proressblinkSprite)
-			{
 				proressblinkSprite->setRotation(-50);
-			}
+
 			if (proressmarkSprite)
-			{
 				proressmarkSprite->setRotation(-1 * (((ckr - 15000) / 15000) * 70 + 50));
-			}
+
 			if (proressblinkMask && !_isLock)
 			{
 				proressblinkMask->setVisible(true);
@@ -479,24 +474,18 @@ void ActionButton::updateProgressMark()
 		else if (ckr < 45000)
 		{
 			if (proressblinkSprite)
-			{
 				proressblinkSprite->setRotation(-120);
-			}
+
 			if (proressmarkSprite)
-			{
 				proressmarkSprite->setRotation(-1 * (((ckr - 30000) / 15000) * 60 + 120));
-			}
 		}
 		else
 		{
 			if (proressblinkSprite)
-			{
 				proressmarkSprite->setRotation(-180);
-			}
+
 			if (proressblinkSprite)
-			{
 				proressblinkSprite->setRotation(-180);
-			}
 		}
 	}
 	else
@@ -504,28 +493,21 @@ void ActionButton::updateProgressMark()
 		if (ckr2 < 25000)
 		{
 			if (proressblinkSprite)
-			{
 				proressblinkSprite->setRotation(0);
-			}
+
 			if (proressmarkSprite)
-			{
 				proressmarkSprite->setRotation(-1 * ((ckr2 / 25000) * 85));
-			}
+
 			if (proressblinkMask)
-			{
 				proressblinkMask->setVisible(false);
-			}
 		}
 		else if (ckr2 < 50000)
 		{
 			if (proressblinkSprite)
-			{
 				proressblinkSprite->setRotation(-85);
-			}
+
 			if (proressmarkSprite)
-			{
 				proressmarkSprite->setRotation(-1 * (((ckr2 - 25000) / 25000) * 90 + 90));
-			}
 
 			if (proressblinkMask && !_isLock)
 			{
@@ -548,14 +530,10 @@ void ActionButton::updateProgressMark()
 		else
 		{
 			if (proressmarkSprite)
-			{
 				proressmarkSprite->setRotation(-180);
-			}
 
 			if (proressblinkSprite)
-			{
 				proressblinkSprite->setRotation(-180);
-			}
 		}
 	}
 }
@@ -609,8 +587,8 @@ void ActionButton::unLock()
 		markSprite->setPercentage(0);
 	}
 
-	float ckr = atof(_delegate->_delegate->currentPlayer->getCKR()->getCString());
-	float ckr2 = atof(_delegate->_delegate->currentPlayer->getCKR2()->getCString());
+	uint32_t ckr = _delegate->_delegate->currentPlayer->getCkrValue();
+	uint32_t ckr2 = _delegate->_delegate->currentPlayer->getCkr2Value();
 
 	if (getABType() == OUGIS1)
 	{

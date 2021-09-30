@@ -336,14 +336,11 @@ void HPBar::loseHP(float percent)
 			if (strcmp(_delegate->getCharacter()->getCString(), "Kakuzu") == 0 && _delegate->getDelegate()->_isOugis2Game)
 			{
 				bool reieveAble = false;
-				if (atof(_delegate->getCKR2()->getCString()) >= 25000 && _delegate->hearts > 0)
+				if (_delegate->getCkr2Value() >= 25000 && _delegate->hearts > 0)
 				{
 					if (_delegate->isPlayer())
 					{
-						if (_delegate->getDelegate()->getHudLayer()->skill5Button)
-						{
 							reieveAble = true;
-						}
 					}
 					else if (_delegate->isCom())
 					{
@@ -493,8 +490,7 @@ void HPBar::loseHP(float percent)
 					int teamKills = to_int(_delegate->getDelegate()->getHudLayer()->AkaLabel->getString()) + 1;
 					_delegate->getDelegate()->getHudLayer()->AkaLabel->setString(CCString::createWithFormat("%d", teamKills)->getCString());
 				}
-				if (strcmp(currentSlayer->getCharacter()->getCString(), Guardian_Han) != 0 &&
-					strcmp(currentSlayer->getCharacter()->getCString(), Guardian_Roshi) != 0)
+				if (currentSlayer->isNotGuardian())
 				{
 					int newValue = to_int(_delegate->getDelegate()->getTotalKills()->getCString()) + 1;
 					_delegate->getDelegate()->setTotalKills(CCString::createWithFormat("%d", newValue));
@@ -517,8 +513,7 @@ void HPBar::loseHP(float percent)
 
 				if (currentSlayer->isPlayer())
 				{
-					if (strcmp(_delegate->getCharacter()->getCString(), Guardian_Han) == 0 ||
-						strcmp(_delegate->getCharacter()->getCString(), Guardian_Roshi) == 0)
+					if (_delegate->isGuardian())
 					{
 						_delegate->getDelegate()->setCoin("1000");
 						_delegate->setCoinDisplay(1000);
@@ -543,8 +538,7 @@ void HPBar::loseHP(float percent)
 					_delegate->getDelegate()->getHudLayer()->killLabel->setString(CCString::createWithFormat("%d", kills)->getCString());
 				}
 
-				if (strcmp(_delegate->getCharacter()->getCString(), Guardian_Han) == 0 ||
-					strcmp(_delegate->getCharacter()->getCString(), Guardian_Roshi) == 0)
+				if (_delegate->isGuardian())
 				{
 					currentSlayer->addCoin(1000);
 				}
@@ -578,8 +572,7 @@ void HPBar::loseHP(float percent)
 					{
 						if (_delegate->getDelegate()->_isHardCoreGame)
 						{
-							if (strcmp(_delegate->getCharacter()->getCString(), Guardian_Han) == 0 ||
-								strcmp(_delegate->getCharacter()->getCString(), Guardian_Roshi) == 0)
+							if (_delegate->isGuardian())
 							{
 								_delegate->getDelegate()->setCoin(CCString::createWithFormat("%d", 850)->getCString());
 								_delegate->setCoinDisplay(850);
@@ -599,8 +592,7 @@ void HPBar::loseHP(float percent)
 					}
 					if (_delegate->getDelegate()->_isHardCoreGame)
 					{
-						if (strcmp(_delegate->getCharacter()->getCString(), Guardian_Han) == 0 ||
-							strcmp(_delegate->getCharacter()->getCString(), Guardian_Roshi) == 0)
+						if (_delegate->isGuardian())
 						{
 							otherSlayer->addCoin(850);
 						}

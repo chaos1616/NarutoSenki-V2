@@ -91,8 +91,8 @@ extern int Cheats;
 #define kFlog_Pain cName(PainFlog, kFlog)
 #define kFlog_Obito cName(ObitoFlog, kFlog)
 // Guardians
-#define Guardian_Roshi "Roshi"
-#define Guardian_Han "Han"
+#define kGuardian_Roshi "Roshi"
+#define kGuardian_Han "Han"
 
 // game layer tag
 #define currentMapTag -5000

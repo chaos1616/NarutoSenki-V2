@@ -403,7 +403,7 @@ void GearLayer::updatePlayerGear()
 		addChild(currentGear_layer, 800);
 	}
 
-	coinLabel->setString(CCString::createWithFormat("%d", to_int(_delegate->currentPlayer->getCoin()->getCString()))->getCString());
+	coinLabel->setString(CCString::createWithFormat("%ld", _delegate->currentPlayer->getCoinValue())->getCString());
 	updateGearList();
 }
 

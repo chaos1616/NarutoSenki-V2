@@ -204,7 +204,7 @@ void GameModeLayer::selectMode(GameMode mode)
 		if (Cheats < MaxCheats && (mode == GameMode::FourVsFour || mode == GameMode::HardCore_4Vs4))
 			enableCustomSelect = false;
 		else
-			enableCustomSelect = Cheats >= MaxCheats;
+			enableCustomSelect = true;
 		// FIXME: call lua global function enterSelectLayer
 		if (_handler != 0)
 		{

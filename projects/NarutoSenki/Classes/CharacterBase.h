@@ -468,6 +468,8 @@ protected:
 public:
 	// character extensions
 	inline int			getCoinValue() { return to_int(_coin->getCString()); }
+	inline uint32_t		getCkrValue() { return to_uint(_ckr->getCString()); }
+	inline uint32_t		getCkr2Value() { return to_uint(_ckr2->getCString()); }
 	inline uint32_t		getHPValue() { return to_uint(_hp->getCString()); }
 	inline uint32_t		getMaxHPValue() { return to_uint(_maxHP->getCString()); }
 	inline int			getNAttackValue() { return to_int(_nattackValue->getCString()); }
@@ -492,6 +494,8 @@ public:
 	inline CCString*	getTempAttackValue1Str() { return _tempAttackValue1; }
 	inline bool			isCharacter(const char *c) { return strcmp(_character->getCString(), c) == 0; }
 	inline bool			isNotCharacter(const char *c) { return strcmp(_character->getCString(), c) != 0; }
+	inline bool			isGuardian() { return isCharacter(kGuardian_Han) || isCharacter(kGuardian_Roshi); }
+	inline bool			isNotGuardian() { return !isCharacter(kGuardian_Han) && !isCharacter(kGuardian_Roshi); }
 	// role extensions
 	inline bool			isPlayer() { return strcmp(_role->getCString(), kRolePlayer) == 0; }
 	inline bool			isCom() { return strcmp(_role->getCString(), kRoleCom) == 0; }

@@ -134,7 +134,7 @@ void GameLayer::initGard()
 {
 	setRand();
 	int index = random(2);
-	auto guardName = index == 0 ? Guardian_Roshi : Guardian_Han;
+	auto guardName = index == 0 ? kGuardian_Roshi : kGuardian_Han;
 	auto groupName = team > 0 ? Akatsuki : Konoha;
 	auto guardian = Provider::create(CCString::create(guardName), CCString::create("Com"), CCString::create(groupName));
 
@@ -856,8 +856,8 @@ void GameLayer::onLeft()
 	{
 		removeSprites("Element/Roshi/Roshi.plist");
 		removeSprites("Element/Han/Han.plist");
-		KTools::prepareFileOGG(Guardian_Roshi, true);
-		KTools::prepareFileOGG(Guardian_Han, true);
+		KTools::prepareFileOGG(kGuardian_Roshi, true);
+		KTools::prepareFileOGG(kGuardian_Han, true);
 	}
 
 	KTools::prepareFileOGG("Effect", true);
