@@ -325,7 +325,7 @@ void HeroElement::dealloc()
 				skullSpirte->setPosition(ccp(0, 0));
 				rebornSprite->addChild(skullSpirte);
 
-				rebornLabel = CCLabelBMFont::create(to_ccstring(rebornLabelTime)->getCString(), "Fonts/1.fnt");
+				rebornLabel = CCLabelBMFont::create(to_cstr(rebornLabelTime), "Fonts/1.fnt");
 				rebornLabel->setScale(0.3f);
 				rebornLabel->setPosition(ccp(skullSpirte->getContentSize().width, 0));
 				rebornSprite->addChild(rebornLabel);
@@ -341,7 +341,7 @@ void HeroElement::dealloc()
 void HeroElement::countDown(float dt)
 {
 	rebornLabelTime -= 1;
-	rebornLabel->setString(to_ccstring(rebornLabelTime)->getCString());
+	rebornLabel->setString(to_cstr(rebornLabelTime));
 }
 
 void HeroElement::reborn(float dt)

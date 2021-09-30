@@ -18,7 +18,7 @@ public:
 		CharacterBase::doAI();
 		// Initial default AI handler
 		aiHandler = bind(&Hero::perform, this);
-	};
+	}
 
 	/** Perform default AI logic (Hero::perform) */
 	virtual void setAI(float dt)
@@ -26,7 +26,7 @@ public:
 		// Not check nullable reference
 		aiHandler();
 		// proxy->perform(this);
-	};
+	}
 
 	virtual void setID(CCString *character, CCString *role, CCString *group)
 	{
@@ -256,7 +256,7 @@ public:
 
 		initAction();
 		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", nullptr);
-	};
+	}
 
 	/** Provide default AI logic */
 	virtual void perform() = 0;
@@ -280,7 +280,7 @@ public:
 			hero = nullptr;
 		}
 		return hero;
-	};
+	}
 
 /** Macros */
 // eg.

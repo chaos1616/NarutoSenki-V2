@@ -1817,8 +1817,7 @@ void CharacterBase::setDamgeDisplay(int value, const char *type)
 {
 	if (_damageArray->count() < 6)
 	{
-		auto damageFont = CCLabelBMFont::create(to_ccstring(value)->getCString(),
-														  CCString::createWithFormat("Fonts/%s.fnt", type)->getCString());
+		auto damageFont = CCLabelBMFont::create(to_cstr(value), CCString::createWithFormat("Fonts/%s.fnt", type)->getCString());
 		damageFont->setAnchorPoint(ccp(0.5, 0.5));
 
 		if (isFlog())
@@ -1938,7 +1937,7 @@ void CharacterBase::setItem(abType type)
 	{
 		if (_isAI)
 		{
-			_delegate->getHudLayer()->offCoin(to_ccstring(50)->getCString());
+			_delegate->getHudLayer()->offCoin(to_cstr(50));
 		}
 	}
 	else
@@ -1993,7 +1992,7 @@ bool CharacterBase::setGear(gearType type)
 		getGearArray()->addObject(gearItem);
 
 		if (isPlayer())
-			_delegate->getHudLayer()->offCoin(to_ccstring(gearCost)->getCString());
+			_delegate->getHudLayer()->offCoin(to_cstr(gearCost));
 		else
 			minusCoin(gearCost);
 
@@ -2803,7 +2802,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 					{
 						if (_delegate->_isHardCoreGame)
 						{
-							getDelegate()->setCoin(to_ccstring(50 + (tempHero->getLV() - 1) * 10)->getCString());
+							getDelegate()->setCoin(to_cstr(50 + (tempHero->getLV() - 1) * 10));
 							setCoinDisplay(50 + (tempHero->getLV() - 1) * 10);
 							addCoin(50 + (tempHero->getLV() - 1) * 10);
 						}
@@ -5420,7 +5419,7 @@ void CharacterBase::dead()
 			{
 				auto deadStr = _delegate->getHudLayer()->deadLabel->getString();
 				int deads = to_int(deadStr) + 1;
-				_delegate->getHudLayer()->deadLabel->setString(to_ccstring(deads)->getCString());
+				_delegate->getHudLayer()->deadLabel->setString(to_cstr(deads));
 			}
 		}
 

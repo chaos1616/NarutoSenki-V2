@@ -162,7 +162,7 @@ public:
 			ptr = nullptr;
 		}
 		return ptr;
-	};
+	}
 };
 
 #undef __begin__

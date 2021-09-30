@@ -5,9 +5,11 @@ HPBar::HPBar()
 {
 	hpBar = nullptr;
 	hpBottom = nullptr;
-};
+}
 
-HPBar::~HPBar(){};
+HPBar::~HPBar()
+{
+}
 
 bool HPBar::init(const char *szImage)
 {
@@ -148,13 +150,13 @@ void HPBar::loseHP(float percent)
 
 			if (currentSlayer->isPlayer())
 			{
-				if (_delegate->getMaxHP()->intValue() == 10000)
+				if (_delegate->getMaxHPValue() == 10000)
 				{
 					_delegate->setCoinDisplay(30);
 					_delegate->getDelegate()->setCoin("30");
 					_delegate->getDelegate()->getHudLayer()->setEXPLose(0);
 				}
-				else if (_delegate->getMaxHP()->intValue() == 5000)
+				else if (_delegate->getMaxHPValue() == 5000)
 				{
 					_delegate->setCoinDisplay(20);
 					_delegate->getDelegate()->setCoin("20");
@@ -169,11 +171,11 @@ void HPBar::loseHP(float percent)
 			}
 
 			currentSlayer->_flogNum += 1;
-			if (_delegate->getMaxHP()->intValue() == 10000)
+			if (_delegate->getMaxHPValue() == 10000)
 			{
 				currentSlayer->addCoin(30);
 			}
-			else if (_delegate->getMaxHP()->intValue() == 5000)
+			else if (_delegate->getMaxHPValue() == 5000)
 			{
 				currentSlayer->addCoin(20);
 			}
@@ -244,7 +246,7 @@ void HPBar::loseHP(float percent)
 				{
 					if (_delegate->getDelegate()->_isHardCoreGame)
 					{
-						if (_delegate->getMaxHP()->intValue() > 40000)
+						if (_delegate->getMaxHPValue() > 40000)
 						{
 							_delegate->getDelegate()->setCoin("1000");
 							_delegate->setCoinDisplay(1000);
@@ -266,7 +268,7 @@ void HPBar::loseHP(float percent)
 
 				if (_delegate->getDelegate()->_isHardCoreGame)
 				{
-					if (_delegate->getMaxHP()->intValue() > 40000)
+					if (_delegate->getMaxHPValue() > 40000)
 					{
 						currentSlayer->addCoin(1000);
 					}
@@ -298,7 +300,7 @@ void HPBar::loseHP(float percent)
 					{
 						if (_delegate->getDelegate()->_isHardCoreGame)
 						{
-							if (_delegate->getMaxHP()->intValue() > 40000)
+							if (_delegate->getMaxHPValue() > 40000)
 							{
 								_delegate->getDelegate()->setCoin("850");
 								_delegate->setCoinDisplay(850);
@@ -320,7 +322,7 @@ void HPBar::loseHP(float percent)
 
 					if (_delegate->getDelegate()->_isHardCoreGame)
 					{
-						if (_delegate->getMaxHP()->intValue() > 40000)
+						if (_delegate->getMaxHPValue() > 40000)
 						{
 							otherSlayer->addCoin(850);
 						}
@@ -345,7 +347,7 @@ void HPBar::loseHP(float percent)
 				{
 					if (_delegate->isPlayer())
 					{
-							reieveAble = true;
+						reieveAble = true;
 					}
 					else if (_delegate->isCom())
 					{
@@ -492,12 +494,12 @@ void HPBar::loseHP(float percent)
 				if (is_same(currentSlayer->getGroup()->getCString(), currentTeam))
 				{
 					int teamKills = to_int(_delegate->getDelegate()->getHudLayer()->KonoLabel->getString()) + 1;
-					_delegate->getDelegate()->getHudLayer()->KonoLabel->setString(to_ccstring(teamKills)->getCString());
+					_delegate->getDelegate()->getHudLayer()->KonoLabel->setString(to_cstr(teamKills));
 				}
 				else
 				{
 					int teamKills = to_int(_delegate->getDelegate()->getHudLayer()->AkaLabel->getString()) + 1;
-					_delegate->getDelegate()->getHudLayer()->AkaLabel->setString(to_ccstring(teamKills)->getCString());
+					_delegate->getDelegate()->getHudLayer()->AkaLabel->setString(to_cstr(teamKills));
 				}
 				if (currentSlayer->isNotGuardian())
 				{
@@ -531,12 +533,12 @@ void HPBar::loseHP(float percent)
 					{
 						if (_delegate->getDelegate()->_isHardCoreGame)
 						{
-							_delegate->getDelegate()->setCoin(to_ccstring(50 + (_delegate->getLV() - 1) * 10)->getCString());
+							_delegate->getDelegate()->setCoin(to_cstr(50 + (_delegate->getLV() - 1) * 10));
 							_delegate->setCoinDisplay(50 + (_delegate->getLV() - 1) * 10);
 						}
 						else
 						{
-							_delegate->getDelegate()->setCoin(to_ccstring(50)->getCString());
+							_delegate->getDelegate()->setCoin(to_cstr(50));
 							_delegate->setCoinDisplay(50);
 						}
 					}
@@ -544,7 +546,7 @@ void HPBar::loseHP(float percent)
 					_delegate->getDelegate()->getHudLayer()->setEXPLose(0);
 					const char *kl = _delegate->getDelegate()->getHudLayer()->killLabel->getString();
 					int kills = to_int(kl) + 1;
-					_delegate->getDelegate()->getHudLayer()->killLabel->setString(to_ccstring(kills)->getCString());
+					_delegate->getDelegate()->getHudLayer()->killLabel->setString(to_cstr(kills));
 				}
 
 				if (_delegate->isGuardian())
@@ -583,18 +585,18 @@ void HPBar::loseHP(float percent)
 						{
 							if (_delegate->isGuardian())
 							{
-								_delegate->getDelegate()->setCoin(to_ccstring(850)->getCString());
+								_delegate->getDelegate()->setCoin(to_cstr(850));
 								_delegate->setCoinDisplay(850);
 							}
 							else
 							{
-								_delegate->getDelegate()->setCoin(to_ccstring(25 + (_delegate->getLV() - 1) * 10)->getCString());
+								_delegate->getDelegate()->setCoin(to_cstr(25 + (_delegate->getLV() - 1) * 10));
 								_delegate->setCoinDisplay(25 + (_delegate->getLV() - 1) * 10);
 							}
 						}
 						else
 						{
-							_delegate->getDelegate()->setCoin(to_ccstring(25)->getCString());
+							_delegate->getDelegate()->setCoin(to_cstr(25));
 							_delegate->setCoinDisplay(25);
 						}
 						_delegate->getDelegate()->getHudLayer()->setEXPLose(0);

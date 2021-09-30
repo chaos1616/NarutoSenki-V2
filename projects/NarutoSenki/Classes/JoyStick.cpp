@@ -39,13 +39,13 @@ void JoyStick::onEnter()
 {
 	CCSprite::onEnter();
 	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
-};
+}
 
 void JoyStick::onExit()
 {
 	CCSprite::onExit();
 	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-};
+}
 
 bool JoyStick::ccTouchBegan(CCTouch *touch, CCEvent *event)
 {
@@ -56,7 +56,7 @@ bool JoyStick::ccTouchBegan(CCTouch *touch, CCEvent *event)
 	}
 
 	return true;
-};
+}
 
 void JoyStick::ccTouchMoved(CCTouch *touch, CCEvent *event)
 {
@@ -64,7 +64,7 @@ void JoyStick::ccTouchMoved(CCTouch *touch, CCEvent *event)
 	{
 		updateDirectionForTouchLocation(touch);
 	}
-};
+}
 
 void JoyStick::ccTouchEnded(CCTouch *touch, CCEvent *event)
 {
@@ -73,7 +73,7 @@ void JoyStick::ccTouchEnded(CCTouch *touch, CCEvent *event)
 		_joyStickControl->setPosition(_defaultPotion);
 		_delegate->JoyStickRelease();
 	}
-};
+}
 
 void JoyStick::updateDirectionForTouchLocation(CCTouch *touch)
 {
@@ -145,4 +145,4 @@ void JoyStick::updateJoyStick(float distance, CCPoint direction)
 	{
 		_joyStickControl->setPosition(ccpAdd(_defaultPotion, (ccpMult(direction, 26.5))));
 	}
-};
+}

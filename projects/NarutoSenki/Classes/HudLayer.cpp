@@ -649,7 +649,7 @@ void HudLayer::setHPLose(float percent)
 	status_hpbar->runAction(ra);
 
 	uint32_t hp = _delegate->currentPlayer->getHPValue();
-	hpLabel->setString(to_ccstring(hp)->getCString());
+	hpLabel->setString(to_cstr(hp));
 }
 
 void HudLayer::setCKRLose(bool isCRK2)
@@ -825,7 +825,7 @@ void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 	{
 		if (_buffCount == 0)
 		{
-			bcdLabel1 = CCLabelBMFont::create(to_ccstring((int)buffStayTime)->getCString(), "Fonts/1.fnt");
+			bcdLabel1 = CCLabelBMFont::create(to_cstr(buffStayTime), "Fonts/1.fnt");
 			bcdLabel1->setScale(scale);
 			bcdLabel1->setPosition(ccp(5, 5));
 			bcdLabel1->setAnchorPoint(ccp(0.5, 0.5));
@@ -834,7 +834,7 @@ void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 		}
 		else
 		{
-			bcdLabel2 = CCLabelBMFont::create(to_ccstring((int)buffStayTime)->getCString(), "Fonts/1.fnt");
+			bcdLabel2 = CCLabelBMFont::create(to_cstr(buffStayTime), "Fonts/1.fnt");
 			bcdLabel2->setScale(scale);
 			bcdLabel2->setPosition(ccp(5, 5));
 			bcdLabel2->setAnchorPoint(ccp(0.5, 0.5));
@@ -863,9 +863,10 @@ void HudLayer::updateBuffDisplay(float dt)
 {
 	if (bcdLabel1)
 	{
-		if (to_int(bcdLabel1->getString()) > 0)
+		int bcdValue1 = to_int(bcdLabel1->getString());
+		if (bcdValue1 > 0)
 		{
-			bcdLabel1->setString(to_ccstring(to_int(bcdLabel1->getString()) - 1)->getCString());
+			bcdLabel1->setString(to_cstr(bcdValue1 - 1));
 		}
 		else
 		{
@@ -880,9 +881,10 @@ void HudLayer::updateBuffDisplay2(float dt)
 {
 	if (bcdLabel2)
 	{
-		if (to_int(bcdLabel2->getString()) > 0)
+		int bcdValue2 = to_int(bcdLabel2->getString());
+		if (bcdValue2 > 0)
 		{
-			bcdLabel2->setString(to_ccstring(to_int(bcdLabel2->getString()) - 1)->getCString());
+			bcdLabel2->setString(to_cstr(bcdValue2 - 1));
 		}
 		else
 		{

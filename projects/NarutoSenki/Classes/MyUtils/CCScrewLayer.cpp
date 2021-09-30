@@ -30,19 +30,19 @@ void CCScrewLayer::onEnter()
 {
 	CCLayer::onEnter();
 	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 1, true);
-};
+}
 
 void CCScrewLayer::onExit()
 {
 	CCLayer::onExit();
 	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-};
+}
 
 bool CCScrewLayer::ccTouchBegan(CCTouch *touch, CCEvent *event)
 {
 	prePosY = 0;
 	return true;
-};
+}
 
 void CCScrewLayer::ccTouchMoved(CCTouch *touch, CCEvent *event)
 {
@@ -62,7 +62,7 @@ void CCScrewLayer::ccTouchMoved(CCTouch *touch, CCEvent *event)
 
 		prePosY = curPoint.y;
 	}
-};
+}
 
 void CCScrewLayer::ccTouchEnded(CCTouch *touch, CCEvent *event)
 {
@@ -77,7 +77,7 @@ void CCScrewLayer::ccTouchEnded(CCTouch *touch, CCEvent *event)
 	{
 		setPositionY(minY);
 	}
-};
+}
 
 /*----------------------
 init CCScrewItem ;
@@ -111,6 +111,7 @@ void CCScrewItem::onEnter()
 	CCSprite::onEnter();
 	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 }
+
 void CCScrewItem::onExit()
 {
 	CCSprite::onExit();
@@ -136,7 +137,8 @@ bool CCScrewItem::ccTouchBegan(CCTouch *touch, CCEvent *event)
 
 	return true;
 }
+
 void CCScrewItem::ccTouchEnded(CCTouch *touch, CCEvent *event)
 {
 	linemenu->setVisible(true);
-};
+}

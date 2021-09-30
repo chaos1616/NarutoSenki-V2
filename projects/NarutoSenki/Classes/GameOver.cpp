@@ -218,16 +218,13 @@ void GameOver::listResult()
 			akatsukiKill += realKillNum;
 		}
 
-		CCString *knum = to_ccstring(realKillNum);
-		auto killNum = CCLabelBMFont::create(knum->getCString(), "Fonts/1.fnt");
+		auto killNum = CCLabelBMFont::create(to_cstr(realKillNum), "Fonts/1.fnt");
 		killNum->setScale(0.3f);
 
-		CCString *dnum = to_ccstring(hero->_deadNum);
-		auto deadNum = CCLabelBMFont::create(dnum->getCString(), "Fonts/1.fnt");
+		auto deadNum = CCLabelBMFont::create(to_cstr(hero->_deadNum), "Fonts/1.fnt");
 		deadNum->setScale(0.3f);
 
-		CCString *fnum = to_ccstring(hero->_flogNum);
-		auto flogNum = CCLabelBMFont::create(fnum->getCString(), "Fonts/1.fnt");
+		auto flogNum = CCLabelBMFont::create(to_cstr(hero->_flogNum), "Fonts/1.fnt");
 		flogNum->setScale(0.3f);
 
 		float posX = winSize.width / 2 - result_bg->getContentSize().width / 2 + 2;

@@ -140,7 +140,7 @@ void PauseLayer::onResume(CCObject *sender)
 
 	CCDirector::sharedDirector()->popScene();
 	_delegate->_isPause = false;
-};
+}
 
 void PauseLayer::onBackToMenu(CCObject *sender)
 {
@@ -170,7 +170,7 @@ void PauseLayer::onBackToMenu(CCObject *sender)
 	exitLayer->addChild(comfirm_title, 2);
 	exitLayer->addChild(surrender_text, 2);
 	addChild(exitLayer, 500);
-};
+}
 
 void PauseLayer::onLeft(CCObject *sender)
 {

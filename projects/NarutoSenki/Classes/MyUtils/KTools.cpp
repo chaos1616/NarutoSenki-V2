@@ -173,7 +173,7 @@ void KTools::initTableInDB()
 	{
 		CCLOG("open sql file Failed!");
 		return;
-	};
+	}
 
 	CCString *sql = CCString::create("drop table IF EXISTS Achievement");
 
