@@ -180,7 +180,7 @@ class Kakashi : public Hero
 		setSkill1Action(createAnimation(skillSPC1Array, 10.0f, false, true));
 		setSkill2Action(createAnimation(skillSPC2Array, 10.0f, false, true));
 		setIdleAction(createAnimation(skillSPC3Array, 5.0f, true, false));
-		settempAttackValue1(CCString::createWithFormat("%d", getSAttackValue1()));
+		settempAttackValue1(to_ccstring(getSAttackValue1()));
 		setsAttackValue1(getSpcAttackValue1Str());
 
 		CCObject *pObject;
@@ -232,7 +232,7 @@ class Kakashi : public Hero
 		setSkill1Action(createAnimation(skill1Array, 10.0f, false, true));
 		setSkill2Action(createAnimation(skill2Array, 10.0f, false, true));
 
-		setsAttackValue1(CCString::createWithFormat("%d", getTempAttackValue1()));
+		setsAttackValue1(to_ccstring(getTempAttackValue1()));
 
 		if (isPlayer())
 		{

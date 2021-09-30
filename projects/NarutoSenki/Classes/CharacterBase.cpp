@@ -236,8 +236,8 @@ void CharacterBase::updateDataByLVOnly()
 		attackValue += 45;
 		_rebornTime += 5;
 	}
-	setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-	setnAttackValue(CCString::createWithFormat("%d", attackValue));
+	setMaxHP(to_ccstring(tempMaxHP));
+	setnAttackValue(to_ccstring(attackValue));
 }
 
 void CharacterBase::readData(CCArray *tmpData, CCString *&attackType, CCString *&attackValue, int &attackRangeX, int &attackRangeY, uint32_t &coldDown, int &combatPoint)
@@ -331,7 +331,7 @@ void CharacterBase::update(float dt)
 		{
 			if (isNotGuardian())
 			{
-				if (strcmp(_group->getCString(), Konoha) == 0 && getPositionX() <= 11 * 32)
+				if (isKonohaGroup() && getPositionX() <= 11 * 32)
 				{
 					_isHealling = true;
 					if (getHpPercent() < 1.0f)
@@ -339,7 +339,7 @@ void CharacterBase::update(float dt)
 						scheduleOnce(schedule_selector(CharacterBase::setRestore), 1.0f);
 					}
 				}
-				else if (strcmp(_group->getCString(), Akatsuki) == 0 && getPositionX() >= 85 * 32)
+				else if (isAkatsukiGroup() && getPositionX() >= 85 * 32)
 				{
 					_isHealling = true;
 					if (getHpPercent() < 1.0f)
@@ -1393,7 +1393,7 @@ void CharacterBase::setShadow(CCNode *sender, void *data)
 	CCSpriteFrame *frame = (CCSpriteFrame *)(file->objectForKey(1));
 	CCSprite *charN = CCSprite::createWithSpriteFrame(frame);
 	charN->setVisible(false);
-	if (strcmp(_group->getCString(), Konoha) == 0)
+	if (isKonohaGroup())
 	{
 		charN->setColor(ccGREEN);
 	}
@@ -1542,9 +1542,9 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 	}
 
 	if (getHPValue() - realValue < 0)
-		setHP(CCString::createWithFormat("%d", 0));
+		setHP(to_ccstring(0));
 	else
-		setHP(CCString::createWithFormat("%ld", getHPValue() - realValue));
+		setHP(to_ccstring(getHPValue() - realValue));
 
 	if (isClone())
 	{
@@ -1576,7 +1576,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 					if (45000 - _master->getCkrValue() >= boundValue)
 					{
 						uint32_t newValue = _master->getCkrValue() + boundValue;
-						_master->setCKR(CCString::createWithFormat("%ld", newValue));
+						_master->setCKR(to_ccstring(newValue));
 					}
 					else
 					{
@@ -1595,7 +1595,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 					if (50000 - _master->getCkr2Value() >= boundValue)
 					{
 						uint32_t newValue = _master->getCkr2Value() + boundValue;
-						_master->setCKR2(CCString::createWithFormat("%ld", newValue));
+						_master->setCKR2(to_ccstring(newValue));
 					}
 					else
 					{
@@ -1646,7 +1646,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 				if (45000 - getCkrValue() >= boundValue)
 				{
 					uint32_t newValue = getCkrValue() + boundValue;
-					setCKR(CCString::createWithFormat("%ld", newValue));
+					setCKR(to_ccstring(newValue));
 				}
 				else
 				{
@@ -1665,7 +1665,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 				if (50000 - getCkr2Value() >= boundValue)
 				{
 					uint32_t newValue = getCkr2Value() + boundValue;
-					setCKR2(CCString::createWithFormat("%ld", newValue));
+					setCKR2(to_ccstring(newValue));
 				}
 				else
 				{
@@ -1703,7 +1703,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 					if (45000 - currentAttacker->getCkrValue() >= gainValue)
 					{
 						uint32_t newValue = currentAttacker->getCkrValue() + gainValue;
-						currentAttacker->setCKR(CCString::createWithFormat("%ld", newValue));
+						currentAttacker->setCKR(to_ccstring(newValue));
 					}
 					else
 					{
@@ -1722,7 +1722,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 					if (50000 - currentAttacker->getCkr2Value() >= gainValue)
 					{
 						uint32_t newValue = currentAttacker->getCkr2Value() + gainValue;
-						currentAttacker->setCKR2(CCString::createWithFormat("%ld", newValue));
+						currentAttacker->setCKR2(to_ccstring(newValue));
 					}
 					else
 					{
@@ -1818,7 +1818,7 @@ void CharacterBase::setDamgeDisplay(int value, const char *type)
 {
 	if (_damageArray->count() < 6)
 	{
-		CCLabelBMFont *damageFont = CCLabelBMFont::create(CCString::createWithFormat("%d", value)->getCString(),
+		CCLabelBMFont *damageFont = CCLabelBMFont::create(to_ccstring(value)->getCString(),
 														  CCString::createWithFormat("Fonts/%s.fnt", type)->getCString());
 		damageFont->setAnchorPoint(ccp(0.5, 0.5));
 
@@ -1939,7 +1939,7 @@ void CharacterBase::setItem(abType type)
 	{
 		if (_isAI)
 		{
-			_delegate->getHudLayer()->offCoin(CCString::createWithFormat("%d", 50)->getCString());
+			_delegate->getHudLayer()->offCoin(to_ccstring(50)->getCString());
 		}
 	}
 	else
@@ -1961,7 +1961,7 @@ void CharacterBase::setItem(abType type)
 		}
 		else
 		{
-			setHP(CCString::createWithFormat("%ld", getHPValue() + hpRestore));
+			setHP(to_ccstring(getHPValue() + hpRestore));
 			if (_hpBar)
 			{
 				_hpBar->loseHP(getHpPercent());
@@ -1990,11 +1990,11 @@ bool CharacterBase::setGear(gearType type)
 
 	if (getGearArray()->count() <= 2 && getCoinValue() >= gearCost)
 	{
-		CCString *gearItem = CCString::createWithFormat("%d", gearType(type));
+		CCString *gearItem = to_ccstring(gearType(type));
 		getGearArray()->addObject(gearItem);
 
 		if (isPlayer())
-			_delegate->getHudLayer()->offCoin(CCString::createWithFormat("%d", gearCost)->getCString());
+			_delegate->getHudLayer()->offCoin(to_ccstring(gearCost)->getCString());
 		else
 			minusCoin(gearCost);
 
@@ -2015,9 +2015,9 @@ bool CharacterBase::setGear(gearType type)
 		case gear04:
 			if (getTempAttackValue1())
 			{
-				settempAttackValue1(CCString::createWithFormat("%d", getTempAttackValue1() + 160));
+				settempAttackValue1(to_ccstring(getTempAttackValue1() + 160));
 			}
-			setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 160));
+			setnAttackValue(to_ccstring(getNAttackValue() + 160));
 			hasArmorBroken = true;
 			break;
 		case gear05:
@@ -2028,9 +2028,9 @@ bool CharacterBase::setGear(gearType type)
 
 			if (isPlayer())
 			{
-				_delegate->getHudLayer()->skill1Button->setCD(CCString::createWithFormat("%d", _sattackcoldDown1 * 1000));
-				_delegate->getHudLayer()->skill2Button->setCD(CCString::createWithFormat("%d", _sattackcoldDown2 * 1000));
-				_delegate->getHudLayer()->skill3Button->setCD(CCString::createWithFormat("%d", _sattackcoldDown3 * 1000));
+				_delegate->getHudLayer()->skill1Button->setCD(to_ccstring(_sattackcoldDown1 * 1000));
+				_delegate->getHudLayer()->skill2Button->setCD(to_ccstring(_sattackcoldDown2 * 1000));
+				_delegate->getHudLayer()->skill3Button->setCD(to_ccstring(_sattackcoldDown3 * 1000));
 
 				_delegate->getHudLayer()->skill1Button->_isColdChanged = true;
 				_delegate->getHudLayer()->skill2Button->_isColdChanged = true;
@@ -2042,13 +2042,13 @@ bool CharacterBase::setGear(gearType type)
 			break;
 		case gear07:
 			gearRecoverValue = 3000;
-			_delegate->getHudLayer()->item1Button->setCD(CCString::createWithFormat("%d", 3000));
+			_delegate->getHudLayer()->item1Button->setCD(to_ccstring(3000));
 			_delegate->getHudLayer()->item1Button->_isColdChanged = true;
 			break;
 		case gear08:
 			uint32_t tempMaxHP = getMaxHPValue();
 			tempMaxHP += 6000;
-			setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+			setMaxHP(to_ccstring(tempMaxHP));
 			if (_hpBar)
 			{
 				_hpBar->loseHP(getHpPercent());
@@ -2225,15 +2225,15 @@ void CharacterBase::enableGear06(float dt)
 
 void CharacterBase::addCoin(int num)
 {
-	setCoin(CCString::createWithFormat("%d", getCoinValue() + num));
+	setCoin(to_ccstring(getCoinValue() + num));
 }
 
 void CharacterBase::minusCoin(int num)
 {
 	if (getCoinValue() > num)
-		setCoin(CCString::createWithFormat("%d", getCoinValue() - num));
+		setCoin(to_ccstring(getCoinValue() - num));
 	else
-		setCoin(CCString::createWithFormat("%d", 0));
+		setCoin(to_ccstring(0));
 }
 
 void CharacterBase::setRestore(float dt)
@@ -2247,7 +2247,7 @@ void CharacterBase::setRestore(float dt)
 		}
 		else
 		{
-			setHP(CCString::createWithFormat("%ld", getHPValue() + 800));
+			setHP(to_ccstring(getHPValue() + 800));
 			_hpBar->loseHP(getHpPercent());
 		}
 
@@ -2275,12 +2275,12 @@ void CharacterBase::setRestore2(float dt)
 		{
 			if (getHPValue() - 1000 > 0)
 			{
-				setHP(CCString::createWithFormat("%ld", getHPValue() - 1000));
+				setHP(to_ccstring(getHPValue() - 1000));
 				_hpBar->loseHP(getHpPercent());
 			}
 			else
 			{
-				setHP(CCString::createWithFormat("%d", 100));
+				setHP(to_ccstring(100));
 				_hpBar->loseHP(getHpPercent());
 			}
 		}
@@ -2294,7 +2294,7 @@ void CharacterBase::setRestore2(float dt)
 			}
 			else
 			{
-				setHP(CCString::createWithFormat("%ld", getHPValue() + 300));
+				setHP(to_ccstring(getHPValue() + 300));
 				_hpBar->loseHP(getHpPercent());
 			}
 		}
@@ -2392,7 +2392,7 @@ void CharacterBase::setAttackBox(CCNode *sender, void *data)
 			}
 			else
 			{
-				setHP(CCString::createWithFormat("%ld", getHPValue() + 260));
+				setHP(to_ccstring(getHPValue() + 260));
 				_hpBar->loseHP(getHpPercent());
 			}
 
@@ -2584,7 +2584,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 			if (45000 - getCkrValue() >= boundValue)
 			{
 				uint32_t newValue = getCkrValue() + boundValue;
-				setCKR(CCString::createWithFormat("%ld", newValue));
+				setCKR(to_ccstring(newValue));
 			}
 			else
 			{
@@ -2603,7 +2603,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 			if (50000 - getCkr2Value() >= boundValue)
 			{
 				uint32_t newValue = getCkr2Value() + boundValue;
-				setCKR2(CCString::createWithFormat("%ld", newValue));
+				setCKR2(to_ccstring(newValue));
 			}
 			else
 			{
@@ -2791,8 +2791,8 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 					{
 						uint32_t tempMaxHP = getMaxHPValue();
 						tempMaxHP += 100;
-						setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 5));
-						setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
+						setnAttackValue(to_ccstring(getNAttackValue() + 5));
+						setMaxHP(to_ccstring(tempMaxHP));
 
 						if (_hpBar)
 						{
@@ -2804,7 +2804,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 					{
 						if (_delegate->_isHardCoreGame)
 						{
-							getDelegate()->setCoin(CCString::createWithFormat("%d", 50 + (tempHero->getLV() - 1) * 10)->getCString());
+							getDelegate()->setCoin(to_ccstring(50 + (tempHero->getLV() - 1) * 10)->getCString());
 							setCoinDisplay(50 + (tempHero->getLV() - 1) * 10);
 							addCoin(50 + (tempHero->getLV() - 1) * 10);
 						}
@@ -2949,9 +2949,9 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 		scheduleOnce(schedule_selector(CharacterBase::disableBuff), buffStayTime);
 		setBuffEffect(_attackType->getCString());
 
-		setsAttackValue1(CCString::createWithFormat("%d", getSAttackValue1() + _skillUPBuffValue));
-		setsAttackValue2(CCString::createWithFormat("%d", getSAttackValue2() + _skillUPBuffValue));
-		setsAttackValue3(CCString::createWithFormat("%d", getSAttackValue3() + _skillUPBuffValue));
+		setsAttackValue1(to_ccstring(getSAttackValue1() + _skillUPBuffValue));
+		setsAttackValue2(to_ccstring(getSAttackValue2() + _skillUPBuffValue));
+		setsAttackValue3(to_ccstring(getSAttackValue3() + _skillUPBuffValue));
 
 		if (strcmp(_attackType->getCString(), "hsBuff") == 0)
 		{
@@ -3191,9 +3191,9 @@ void CharacterBase::disableBuff(float dt)
 {
 	if (_skillUPBuffValue)
 	{
-		setsAttackValue1(CCString::createWithFormat("%d", getSAttackValue1() - _skillUPBuffValue));
-		setsAttackValue2(CCString::createWithFormat("%d", getSAttackValue2() - _skillUPBuffValue));
-		setsAttackValue3(CCString::createWithFormat("%d", getSAttackValue3() - _skillUPBuffValue));
+		setsAttackValue1(to_ccstring(getSAttackValue1() - _skillUPBuffValue));
+		setsAttackValue2(to_ccstring(getSAttackValue2() - _skillUPBuffValue));
+		setsAttackValue3(to_ccstring(getSAttackValue3() - _skillUPBuffValue));
 		_skillUPBuffValue = 0;
 
 		if (isCharacter("Neji"))
@@ -3280,7 +3280,7 @@ void CharacterBase::healBuff(float dt)
 					}
 					else
 					{
-						tempHero->setHP(CCString::createWithFormat("%ld", tempHero->getHPValue() + _healBuffValue));
+						tempHero->setHP(to_ccstring(tempHero->getHPValue() + _healBuffValue));
 						if (tempHero->_hpBar)
 							tempHero->_hpBar->loseHP(tempHero->getHpPercent());
 					}
@@ -3318,7 +3318,7 @@ void CharacterBase::healBuff(float dt)
 						if (45000 - tempHero->getCkrValue() >= _healBuffValue)
 						{
 							float newValue = tempHero->getCkrValue() + _healBuffValue;
-							tempHero->setCKR(CCString::createWithFormat("%ld", newValue));
+							tempHero->setCKR(to_ccstring(newValue));
 						}
 						else
 						{
@@ -3337,7 +3337,7 @@ void CharacterBase::healBuff(float dt)
 						if (50000 - tempHero->getCkr2Value() >= _healBuffValue)
 						{
 							float newValue = tempHero->getCkr2Value() + _healBuffValue;
-							tempHero->setCKR2(CCString::createWithFormat("%ld", newValue));
+							tempHero->setCKR2(to_ccstring(newValue));
 						}
 						else
 						{
@@ -3393,7 +3393,7 @@ void CharacterBase::healBuff(float dt)
 					}
 					else
 					{
-						tempHero->setHP(CCString::createWithFormat("%ld", tempHero->getHPValue() + int(_healBuffValue)));
+						tempHero->setHP(to_ccstring(tempHero->getHPValue() + int(_healBuffValue)));
 						if (tempHero->_hpBar)
 							tempHero->_hpBar->loseHP(tempHero->getHpPercent());
 					}
@@ -3411,7 +3411,7 @@ void CharacterBase::healBuff(float dt)
 		}
 		else
 		{
-			setHP(CCString::createWithFormat("%ld", getHPValue() + _healBuffValue));
+			setHP(to_ccstring(getHPValue() + _healBuffValue));
 			if (_hpBar)
 				_hpBar->loseHP(getHpPercent());
 		}
@@ -3631,7 +3631,7 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 								getPositionY() + getHeight() / 2));
 		if (_skillUPBuffValue)
 		{
-			bullet->setnAttackValue(CCString::createWithFormat("%d", bullet->getNAttackValue() + _skillUPBuffValue));
+			bullet->setnAttackValue(to_ccstring(bullet->getNAttackValue() + _skillUPBuffValue));
 		}
 
 		bullet->scheduleOnce(schedule_selector(Bullet::setAttack), 0.5f);
@@ -3717,7 +3717,7 @@ void CharacterBase::setBulletGroup(float dt)
 		bullet->idle();
 		if (_skillUPBuffValue)
 		{
-			bullet->setnAttackValue(CCString::createWithFormat("%d", bullet->getNAttackValue() + _skillUPBuffValue));
+			bullet->setnAttackValue(to_ccstring(bullet->getNAttackValue() + _skillUPBuffValue));
 		}
 
 		bullet->scheduleOnce(schedule_selector(Bullet::setAttack), 0.5f);
@@ -3765,7 +3765,7 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 
 	clone->setMaxHP(CCString::create(getMaxHP()->getCString()));
 	clone->_exp = _exp;
-	clone->setnAttackValue(CCString::createWithFormat("%d", getNAttackValue()));
+	clone->setnAttackValue(to_ccstring(getNAttackValue()));
 	clone->_gardValue = _gardValue;
 	clone->_level = _level;
 	clone->setHPbar();
@@ -4534,8 +4534,8 @@ void CharacterBase::setTransform()
 	else if (isCharacter("Pain"))
 		setID(CCString::create("Nagato"), _role, _group);
 
-	setMaxHP(CCString::createWithFormat("%ld", getMaxHPValue()));
-	setHP(CCString::createWithFormat("%ld", getHPValue()));
+	setMaxHP(to_ccstring(getMaxHPValue()));
+	setHP(to_ccstring(getHPValue()));
 
 	if (_hpBar)
 	{
@@ -4563,9 +4563,9 @@ void CharacterBase::setTransform()
 	{
 		auto charName = _character->getCString();
 
-		_delegate->getHudLayer()->skill1Button->setCD(CCString::createWithFormat("%d", _sattackcoldDown1 * 1000));
-		_delegate->getHudLayer()->skill2Button->setCD(CCString::createWithFormat("%d", _sattackcoldDown2 * 1000));
-		_delegate->getHudLayer()->skill3Button->setCD(CCString::createWithFormat("%d", _sattackcoldDown3 * 1000));
+		_delegate->getHudLayer()->skill1Button->setCD(to_ccstring(_sattackcoldDown1 * 1000));
+		_delegate->getHudLayer()->skill2Button->setCD(to_ccstring(_sattackcoldDown2 * 1000));
+		_delegate->getHudLayer()->skill3Button->setCD(to_ccstring(_sattackcoldDown3 * 1000));
 
 		_delegate->getHudLayer()->skill1Button->_isColdChanged = true;
 		_delegate->getHudLayer()->skill2Button->_isColdChanged = true;
@@ -4657,7 +4657,7 @@ void CharacterBase::attack(abType type)
 		if (isNotPlayer() || _isAI)
 		{
 			uint32_t newValue = getCkrValue() - 15000;
-			setCKR(CCString::createWithFormat("%ld", newValue));
+			setCKR(to_ccstring(newValue));
 			if (getCkrValue() < 15000)
 			{
 				_isCanOugis1 = false;
@@ -4674,7 +4674,7 @@ void CharacterBase::attack(abType type)
 		if (isNotPlayer() || _isAI)
 		{
 			uint32_t newValue = getCkr2Value() - 25000;
-			setCKR2(CCString::createWithFormat("%ld", newValue));
+			setCKR2(to_ccstring(newValue));
 			if (getCkr2Value() < 25000)
 			{
 				_isCanOugis2 = false;
@@ -5421,7 +5421,7 @@ void CharacterBase::dead()
 			{
 				const char *dl = _delegate->getHudLayer()->deadLabel->getString();
 				int deads = to_int(dl) + 1;
-				_delegate->getHudLayer()->deadLabel->setString(CCString::createWithFormat("%d", deads)->getCString());
+				_delegate->getHudLayer()->deadLabel->setString(to_ccstring(deads)->getCString());
 			}
 		}
 
@@ -5749,7 +5749,7 @@ bool CharacterBase::checkBase()
 		}
 		if (strcmp(_group->getCString(), target->_group->getCString()) != 0)
 		{
-			if (strcmp(_group->getCString(), Konoha) == 0)
+			if (isKonohaGroup())
 			{
 				if (target->getPositionX() <= 11 * 32)
 				{
@@ -5786,7 +5786,7 @@ bool CharacterBase::checkBase()
 		}
 		if (strcmp(_group->getCString(), target->_group->getCString()) != 0)
 		{
-			if (strcmp(_group->getCString(), Konoha) == 0)
+			if (isKonohaGroup())
 			{
 				if (target->getPositionX() <= 11 * 32)
 				{
@@ -6101,9 +6101,7 @@ void CharacterBase::changeSide(CCPoint sp)
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				Monster *mo = (Monster *)pObject;
-				if (mo->isCharacter("ItachiSusano") ||
-					mo->isCharacter("SasukeSusano"))
-
+				if (mo->isCharacter("ItachiSusano", "SasukeSusano"))
 					mo->_isFlipped = _isFlipped;
 				mo->setFlipX(_isFlipped);
 			}

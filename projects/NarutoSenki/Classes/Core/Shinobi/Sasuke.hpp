@@ -272,8 +272,8 @@ class Sasuke : public Hero
 			_originSpeed = 320;
 
 			_isOnlySkillLocked = true;
-			settempAttackValue1(CCString::createWithFormat("%d", getNAttackValue()));
-			setnAttackValue(CCString::createWithFormat("%d", 560));
+			settempAttackValue1(to_ccstring(getNAttackValue()));
+			setnAttackValue(to_ccstring(560));
 
 			_nattackRangeX = _spcattackRangeX3;
 			_nattackRangeY = _spcattackRangeY3;
@@ -309,7 +309,7 @@ class Sasuke : public Hero
 			_originSpeed = 224;
 			if (getTempAttackValue1())
 			{
-				setnAttackValue(CCString::createWithFormat("%d", getTempAttackValue1()));
+				setnAttackValue(to_ccstring(getTempAttackValue1()));
 				settempAttackValue1(nullptr);
 			}
 			_nattackRangeX = 16;
@@ -583,8 +583,8 @@ class Sasuke : public Hero
 			setWalkSpeed(112);
 			_originSpeed = 112;
 
-			settempAttackValue1(CCString::createWithFormat("%d", getNAttackValue()));
-			setnAttackValue(CCString::createWithFormat("%d", 1160));
+			settempAttackValue1(to_ccstring(getNAttackValue()));
+			setnAttackValue(to_ccstring(1160));
 
 			_nattackRangeX = 156;
 			_nattackRangeY = 64;
@@ -619,7 +619,7 @@ class Sasuke : public Hero
 			_originSpeed = 224;
 			if (getTempAttackValue1())
 			{
-				setnAttackValue(CCString::createWithFormat("%d", getTempAttackValue1()));
+				setnAttackValue(to_ccstring(getTempAttackValue1()));
 				settempAttackValue1(nullptr);
 			}
 			_gardValue -= 5000;
@@ -674,7 +674,7 @@ class Sasuke : public Hero
 			_originSpeed = 224;
 			if (getTempAttackValue1())
 			{
-				setnAttackValue(CCString::createWithFormat("%d", getTempAttackValue1()));
+				setnAttackValue(to_ccstring(getTempAttackValue1()));
 				settempAttackValue1(nullptr);
 			}
 			_gardValue -= 5000;

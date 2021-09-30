@@ -457,11 +457,11 @@ void GameLayer::initTower()
 			//4v4
 			if (Cheats >= MaxCheats)
 			{
-				tower->setMaxHP(CCString::createWithFormat("%d", 80000));
+				tower->setMaxHP(to_ccstring(80000));
 			}
 			else
 			{
-				tower->setMaxHP(CCString::createWithFormat("%d", 50000));
+				tower->setMaxHP(to_ccstring(50000));
 			}
 			tower->setHP(CCString::create(tower->getMaxHP()->getCString()));
 		}
@@ -504,7 +504,7 @@ void GameLayer::updateGameTime(float dt)
 	_hudLayer->gameClock->setString(tempTime->getCString());
 
 	int newValue = to_int(getTotalTM()->getCString()) + 1;
-	setTotalTM(CCString::createWithFormat("%d", newValue));
+	setTotalTM(to_ccstring(newValue));
 }
 
 void GameLayer::updateViewPoint(float dt)

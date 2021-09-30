@@ -206,8 +206,8 @@ class Itachi : public Hero
 
 		_isOnlySkillLocked = true;
 
-		settempAttackValue1(CCString::createWithFormat("%d", getNAttackValue()));
-		setnAttackValue(CCString::createWithFormat("%d", 560));
+		settempAttackValue1(to_ccstring(getNAttackValue()));
+		setnAttackValue(to_ccstring(560));
 
 		_nattackRangeX = 128;
 		_nattackRangeY = 64;
@@ -232,7 +232,7 @@ class Itachi : public Hero
 		_originSpeed = 224;
 		if (getTempAttackValue1())
 		{
-			setnAttackValue(CCString::createWithFormat("%d", getTempAttackValue1()));
+			setnAttackValue(to_ccstring(getTempAttackValue1()));
 			settempAttackValue1(nullptr);
 		}
 		_nattackRangeX = 16;
@@ -284,7 +284,7 @@ class Itachi : public Hero
 			_originSpeed = 224;
 			if (getTempAttackValue1())
 			{
-				setnAttackValue(CCString::createWithFormat("%d", getTempAttackValue1()));
+				setnAttackValue(to_ccstring(getTempAttackValue1()));
 				settempAttackValue1(nullptr);
 			}
 			_nattackRangeX = 16;

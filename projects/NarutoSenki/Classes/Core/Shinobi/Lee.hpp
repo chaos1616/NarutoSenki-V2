@@ -27,14 +27,14 @@ class Lee : public Hero
 				setWalkSpeed(224);
 				_originSpeed = 224;
 				setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-				setsAttackValue3(CCString::createWithFormat("%d", getSAttackValue3() - 100));
-				setsAttackValue2(CCString::createWithFormat("%d", getSAttackValue2() - 100));
-				setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() - 60));
+				setsAttackValue3(to_ccstring(getSAttackValue3() - 100));
+				setsAttackValue2(to_ccstring(getSAttackValue2() - 100));
+				setnAttackValue(to_ccstring(getNAttackValue() - 60));
 			}
 			else if (bamen == 4)
 			{
-				setsAttackValue3(CCString::createWithFormat("%d", getSAttackValue3() - 100));
-				setsAttackValue2(CCString::createWithFormat("%d", getSAttackValue2() - 100));
+				setsAttackValue3(to_ccstring(getSAttackValue3() - 100));
+				setsAttackValue2(to_ccstring(getSAttackValue2() - 100));
 			}
 			else if (bamen == 3)
 			{
@@ -56,7 +56,7 @@ class Lee : public Hero
 			}
 			else if (bamen == 2)
 			{
-				setsAttackValue2(CCString::createWithFormat("%d", getSAttackValue2() - 100));
+				setsAttackValue2(to_ccstring(getSAttackValue2() - 100));
 			}
 			else if (bamen == 1)
 			{
@@ -64,7 +64,7 @@ class Lee : public Hero
 				{
 					_delegate->getHudLayer()->skill4Button->setLock();
 				}
-				setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() - 30));
+				setnAttackValue(to_ccstring(getNAttackValue() - 30));
 			}
 			bamen -= 1;
 			if (bamen == 0)
@@ -129,7 +129,7 @@ class Lee : public Hero
 
 		if (bamen == 1)
 		{
-			setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 30));
+			setnAttackValue(to_ccstring(getNAttackValue() + 30));
 			if (isPlayer())
 			{
 				_delegate->getHudLayer()->skill4Button->unLock();
@@ -137,7 +137,7 @@ class Lee : public Hero
 		}
 		else if (bamen == 2)
 		{
-			setsAttackValue2(CCString::createWithFormat("%d", getSAttackValue2() + 100));
+			setsAttackValue2(to_ccstring(getSAttackValue2() + 100));
 		}
 		else if (bamen == 3)
 		{
@@ -156,17 +156,17 @@ class Lee : public Hero
 		}
 		else if (bamen == 4)
 		{
-			setsAttackValue2(CCString::createWithFormat("%d", getSAttackValue2() + 100));
-			setsAttackValue3(CCString::createWithFormat("%d", getSAttackValue3() + 100));
+			setsAttackValue2(to_ccstring(getSAttackValue2() + 100));
+			setsAttackValue3(to_ccstring(getSAttackValue3() + 100));
 		}
 		else if (bamen == 5)
 		{
 			setWalkAction(createAnimation(skillSPC1Array, 10.0f, true, false));
 			setWalkSpeed(320);
 			_originSpeed = 320;
-			setsAttackValue2(CCString::createWithFormat("%d", getSAttackValue2() + 100));
-			setsAttackValue3(CCString::createWithFormat("%d", getSAttackValue3() + 100));
-			setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 60));
+			setsAttackValue2(to_ccstring(getSAttackValue2() + 100));
+			setsAttackValue3(to_ccstring(getSAttackValue3() + 100));
+			setnAttackValue(to_ccstring(getNAttackValue() + 60));
 		}
 	}
 
@@ -181,12 +181,12 @@ class Lee : public Hero
 		{
 			if (getHPValue() - 1000 > 0)
 			{
-				setHP(CCString::createWithFormat("%ld", getHPValue() - 1000));
+				setHP(to_ccstring(getHPValue() - 1000));
 				_hpBar->loseHP(getHpPercent());
 			}
 			else
 			{
-				setHP(CCString::createWithFormat("%d", 100));
+				setHP(to_ccstring(100));
 				_hpBar->loseHP(getHpPercent());
 			}
 		}
@@ -194,12 +194,12 @@ class Lee : public Hero
 		{
 			if (getHPValue() - 200 > 0)
 			{
-				setHP(CCString::createWithFormat("%ld", getHPValue() - 200));
+				setHP(to_ccstring(getHPValue() - 200));
 				_hpBar->loseHP(getHpPercent());
 			}
 			else
 			{
-				setHP(CCString::createWithFormat("%d", 100));
+				setHP(to_ccstring(100));
 				_hpBar->loseHP(getHpPercent());
 			}
 		}
@@ -207,12 +207,12 @@ class Lee : public Hero
 		{
 			if (getHPValue() - 150 > 0)
 			{
-				setHP(CCString::createWithFormat("%ld", getHPValue() - 150));
+				setHP(to_ccstring(getHPValue() - 150));
 				_hpBar->loseHP(getHpPercent());
 			}
 			else
 			{
-				setHP(CCString::createWithFormat("%d", 100));
+				setHP(to_ccstring(100));
 				_hpBar->loseHP(getHpPercent());
 			}
 		}
@@ -220,12 +220,12 @@ class Lee : public Hero
 		{
 			if (getHPValue() - 100 > 0)
 			{
-				setHP(CCString::createWithFormat("%ld", getHPValue() - 100));
+				setHP(to_ccstring(getHPValue() - 100));
 				_hpBar->loseHP(getHpPercent());
 			}
 			else
 			{
-				setHP(CCString::createWithFormat("%d", 100));
+				setHP(to_ccstring(100));
 				_hpBar->loseHP(getHpPercent());
 			}
 		}

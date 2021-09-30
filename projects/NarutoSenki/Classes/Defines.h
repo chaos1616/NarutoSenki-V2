@@ -16,6 +16,7 @@ using namespace CocosDenshion;
 #define setRand() srand((uint32_t)time(0))
 
 #define	is_same(__Str1, __Str2) (strcmp(__Str1, __Str2) == 0)
+#define to_ccstring(var) CCString::create(std::to_string(var))
 
 #define FONT_TYPE "Microsoft YaHei"
 #define VERSION_CODE "v 2.10"

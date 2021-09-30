@@ -294,7 +294,7 @@ class Minato : public Hero
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
-			setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 200));
+			setnAttackValue(to_ccstring(getNAttackValue() + 200));
 
 			_nattackRangeX = 16;
 			_nattackRangeY = 48;
@@ -305,7 +305,7 @@ class Minato : public Hero
 
 	void resumeAction(float dt)
 	{
-		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() - 200));
+		setnAttackValue(to_ccstring(getNAttackValue() - 200));
 		_nattackRangeX = 16;
 		_nattackRangeY = 48;
 		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));

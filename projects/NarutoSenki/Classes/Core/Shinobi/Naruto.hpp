@@ -223,8 +223,8 @@ class Naruto : public Hero
 
 		_isOnlySkillLocked = true;
 
-		settempAttackValue1(CCString::createWithFormat("%d", getNAttackValue()));
-		setnAttackValue(CCString::createWithFormat("%d", 960));
+		settempAttackValue1(to_ccstring(getNAttackValue()));
+		setnAttackValue(to_ccstring(960));
 
 		_nattackRangeX = _spcattackRangeX3;
 		_nattackRangeY = _spcattackRangeY3;
@@ -251,7 +251,7 @@ class Naruto : public Hero
 		_originSpeed = 224;
 		if (getTempAttackValue1())
 		{
-			setnAttackValue(CCString::createWithFormat("%d", getTempAttackValue1()));
+			setnAttackValue(to_ccstring(getTempAttackValue1()));
 			settempAttackValue1(nullptr);
 		}
 		hasArmorBroken = false;
@@ -485,7 +485,7 @@ class Naruto : public Hero
 		}
 		else if (getTempAttackValue1())
 		{
-			setnAttackValue(CCString::createWithFormat("%d", getTempAttackValue1()));
+			setnAttackValue(to_ccstring(getTempAttackValue1()));
 			settempAttackValue1(nullptr);
 		}
 		CharacterBase::resumeAction(dt);
@@ -683,8 +683,8 @@ class Naruto : public Hero
 
 		if (isCharacter(kRikudoNaruto))
 		{
-			settempAttackValue1(CCString::createWithFormat("%d", getNAttackValue()));
-			setnAttackValue(CCString::createWithFormat("%d", 560));
+			settempAttackValue1(to_ccstring(getNAttackValue()));
+			setnAttackValue(to_ccstring(560));
 		}
 
 		setWalkSpeed(320);
@@ -718,7 +718,7 @@ class Naruto : public Hero
 
 		if (getTempAttackValue1())
 		{
-			setnAttackValue(CCString::createWithFormat("%d", getTempAttackValue1()));
+			setnAttackValue(to_ccstring(getTempAttackValue1()));
 			settempAttackValue1(nullptr);
 		}
 		CharacterBase::resumeAction(dt);

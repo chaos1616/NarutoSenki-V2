@@ -231,7 +231,7 @@ void ActionButton::beganAnimation(bool isLock)
 		}
 		if (getABType() != Item1)
 		{
-			cdLabel = CCLabelBMFont::create(CCString::createWithFormat("%d", int(getCD()->intValue()) / 1000)->getCString(), "Fonts/1.fnt");
+			cdLabel = CCLabelBMFont::create(to_ccstring(int(getCD()->intValue()) / 1000)->getCString(), "Fonts/1.fnt");
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 			cdLabel->setScale(0.3f);
@@ -276,10 +276,10 @@ void ActionButton::updateCDLabel(float dt)
 		if (to_int(getTimeCout()->getCString()) > 1000)
 		{
 			int tempCout = to_int(getTimeCout()->getCString()) - 1000;
-			setTimeCout(CCString::createWithFormat("%d", tempCout));
+			setTimeCout(to_ccstring(tempCout));
 			if (cdLabel)
 			{
-				cdLabel->setString(CCString::createWithFormat("%d", tempCout / 1000)->getCString());
+				cdLabel->setString(to_ccstring(tempCout / 1000)->getCString());
 			}
 		}
 		else

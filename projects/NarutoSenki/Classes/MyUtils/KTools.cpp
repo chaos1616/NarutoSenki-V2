@@ -550,7 +550,7 @@ CCString *KTools::readSQLite(const char *table, const char *column, const char *
 		}
 		else
 		{
-			targetValue = CCString::createWithFormat("%d", to_int(target.c_str()));
+			targetValue = to_ccstring(to_int(target.c_str()));
 		}
 		sqlite3_free_table(result);
 		sqlite3_close(pDB);

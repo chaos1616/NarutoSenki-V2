@@ -110,7 +110,7 @@ void HeroElement::changeHPbar()
 	{
 		_level = 2;
 		uint32_t newValue = getCkrValue() + 15001;
-		setCKR(CCString::createWithFormat("%ld", newValue));
+		setCKR(to_ccstring(newValue));
 		_isCanOugis1 = true;
 		if (isPlayer())
 		{
@@ -119,8 +119,8 @@ void HeroElement::changeHPbar()
 		}
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 500;
-		setMaxHP(CCString::createWithFormat("%ld", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 9));
+		setMaxHP(to_ccstring(tempMaxHP));
+		setnAttackValue(to_ccstring(getNAttackValue() + 9));
 		_rebornTime += 1;
 	}
 	else if (_exp >= 1000 && _level == 2)
@@ -128,15 +128,15 @@ void HeroElement::changeHPbar()
 		_level = 3;
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 1000;
-		setMaxHP(CCString::createWithFormat("%ld", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 18));
+		setMaxHP(to_ccstring(tempMaxHP));
+		setnAttackValue(to_ccstring(getNAttackValue() + 18));
 		_rebornTime += 2;
 	}
 	else if (_exp >= 1500 && _level == 3)
 	{
 		_level = 4;
 		uint32_t newValue = getCkr2Value() + 25001;
-		setCKR2(CCString::createWithFormat("%ld", newValue));
+		setCKR2(to_ccstring(newValue));
 		_isCanOugis2 = true;
 		if (isPlayer())
 		{
@@ -145,8 +145,8 @@ void HeroElement::changeHPbar()
 		}
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 2000;
-		setMaxHP(CCString::createWithFormat("%ld", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 27));
+		setMaxHP(to_ccstring(tempMaxHP));
+		setnAttackValue(to_ccstring(getNAttackValue() + 27));
 		_rebornTime += 3;
 	}
 	else if (_exp >= 2000 && _level == 4)
@@ -154,8 +154,8 @@ void HeroElement::changeHPbar()
 		_level = 5;
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 2500;
-		setMaxHP(CCString::createWithFormat("%ld", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 36));
+		setMaxHP(to_ccstring(tempMaxHP));
+		setnAttackValue(to_ccstring(getNAttackValue() + 36));
 		_rebornTime += 4;
 	}
 	else if (_exp >= 2500 && _level == 5)
@@ -163,8 +163,8 @@ void HeroElement::changeHPbar()
 		_level = 6;
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 3000;
-		setMaxHP(CCString::createWithFormat("%ld", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 45));
+		setMaxHP(to_ccstring(tempMaxHP));
+		setnAttackValue(to_ccstring(getNAttackValue() + 45));
 		_rebornTime += 5;
 	}
 
@@ -325,7 +325,7 @@ void HeroElement::dealloc()
 				skullSpirte->setPosition(ccp(0, 0));
 				rebornSprite->addChild(skullSpirte);
 
-				rebornLabel = CCLabelBMFont::create(CCString::createWithFormat("%d", rebornLabelTime)->getCString(), "Fonts/1.fnt");
+				rebornLabel = CCLabelBMFont::create(to_ccstring(rebornLabelTime)->getCString(), "Fonts/1.fnt");
 				rebornLabel->setScale(0.3f);
 				rebornLabel->setPosition(ccp(skullSpirte->getContentSize().width, 0));
 				rebornSprite->addChild(rebornLabel);
@@ -341,7 +341,7 @@ void HeroElement::dealloc()
 void HeroElement::countDown(float dt)
 {
 	rebornLabelTime -= 1;
-	rebornLabel->setString(CCString::createWithFormat("%d", rebornLabelTime)->getCString());
+	rebornLabel->setString(to_ccstring(rebornLabelTime)->getCString());
 }
 
 void HeroElement::reborn(float dt)
@@ -491,7 +491,7 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	int tmpCombatPoint;
 
 	readData(tmpData, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
-	setMaxHP(CCString::createWithFormat("%ld", to_uint(tmpHpMax->getCString())));
+	setMaxHP(to_ccstring(to_uint(tmpHpMax->getCString())));
 	setHP(CCString::create(getMaxHP()->getCString()));
 
 	setHeight(tmpHeight);
@@ -569,40 +569,40 @@ void Monster::changeHPbar()
 		_level = 2;
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 1000;
-		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 9));
+		setMaxHP(to_ccstring(tempMaxHP));
+		setnAttackValue(to_ccstring(getNAttackValue() + 9));
 	}
 	else if (_exp >= 1000 && _level == 2)
 	{
 		_level = 3;
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 1500;
-		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 18));
+		setMaxHP(to_ccstring(tempMaxHP));
+		setnAttackValue(to_ccstring(getNAttackValue() + 18));
 	}
 	else if (_exp >= 1500 && _level == 3)
 	{
 		_level = 4;
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 2000;
-		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 27));
+		setMaxHP(to_ccstring(tempMaxHP));
+		setnAttackValue(to_ccstring(getNAttackValue() + 27));
 	}
 	else if (_exp >= 2000 && _level == 4)
 	{
 		_level = 5;
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 2500;
-		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 36));
+		setMaxHP(to_ccstring(tempMaxHP));
+		setnAttackValue(to_ccstring(getNAttackValue() + 36));
 	}
 	else if (_exp >= 2500 && _level == 5)
 	{
 		_level = 6;
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 3000;
-		setMaxHP(CCString::createWithFormat("%d", tempMaxHP));
-		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 48));
+		setMaxHP(to_ccstring(tempMaxHP));
+		setnAttackValue(to_ccstring(getNAttackValue() + 48));
 	}
 
 	if (_hpBar)

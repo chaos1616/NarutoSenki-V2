@@ -182,7 +182,7 @@ class Tsunade : public Hero
 
 	void changeAction()
 	{
-		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 250));
+		setnAttackValue(to_ccstring(getNAttackValue() + 250));
 		_isOnlySkillLocked = true;
 		_nattackRangeX = 32;
 		_nattackRangeY = 48;
@@ -202,7 +202,7 @@ class Tsunade : public Hero
 
 	void resumeAction(float dt)
 	{
-		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() - 250));
+		setnAttackValue(to_ccstring(getNAttackValue() - 250));
 		_nattackRangeX = 16;
 		_nattackRangeY = 48;
 		_nattackType = _tempAttackType;

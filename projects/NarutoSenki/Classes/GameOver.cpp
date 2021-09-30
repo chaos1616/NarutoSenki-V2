@@ -218,15 +218,15 @@ void GameOver::listResult()
 			akatsukiKill += realKillNum;
 		}
 
-		CCString *knum = CCString::createWithFormat("%d", realKillNum);
+		CCString *knum = to_ccstring(realKillNum);
 		CCLabelBMFont *killNum = CCLabelBMFont::create(knum->getCString(), "Fonts/1.fnt");
 		killNum->setScale(0.3f);
 
-		CCString *dnum = CCString::createWithFormat("%d", hero->_deadNum);
+		CCString *dnum = to_ccstring(hero->_deadNum);
 		CCLabelBMFont *deadNum = CCLabelBMFont::create(dnum->getCString(), "Fonts/1.fnt");
 		deadNum->setScale(0.3f);
 
-		CCString *fnum = CCString::createWithFormat("%d", hero->_flogNum);
+		CCString *fnum = to_ccstring(hero->_flogNum);
 		CCLabelBMFont *flogNum = CCLabelBMFont::create(fnum->getCString(), "Fonts/1.fnt");
 		flogNum->setScale(0.3f);
 
@@ -347,7 +347,7 @@ void GameOver::listResult()
 			extraCoin = CCString::createWithFormat("+%d", 0);
 		}
 
-		CCString *realCoin = CCString::createWithFormat("%d", tempCoin);
+		CCString *realCoin = to_ccstring(tempCoin);
 		KTools::saveToSQLite("GameRecord", "coin", realCoin->getCString(), false);
 
 		CCLabelBMFont *extraLabel = CCLabelBMFont::create(extraCoin->getCString(), "Fonts/yellow.fnt");
@@ -356,7 +356,7 @@ void GameOver::listResult()
 		extraLabel->setPosition(ccp(coinBG->getPositionX() + 68, coinBG->getPositionY() + 3));
 		addChild(extraLabel, 7);
 
-		CCString *rewardCoin = CCString::createWithFormat("%d", rewardNum);
+		CCString *rewardCoin = to_ccstring(rewardNum);
 		CCLabelBMFont *rewardLabel = CCLabelBMFont::create(rewardCoin->getCString(), "Fonts/yellow.fnt");
 		rewardLabel->setAnchorPoint(ccp(0.5f, 0));
 		rewardLabel->setPosition(ccp(coinBG->getPositionX() + 28, coinBG->getPositionY() + 3));
@@ -460,7 +460,7 @@ void GameOver::listResult()
 					tempWin = to_int(winNum->getCString()) + 1;
 				}
 
-				CCString *realWin = CCString::createWithFormat("%d", tempWin);
+				CCString *realWin = to_ccstring(tempWin);
 				KTools::saveSQLite("CharRecord", "name", resultChar->getCString(), "column1", (char *)realWin->getCString(), false);
 
 				if (_delegate->_isRandomChar && resultScore >= 120)
@@ -504,7 +504,7 @@ void GameOver::listResult()
 								tempWin = to_int(winNum->getCString()) + 1;
 							}
 
-							CCString *realWin = CCString::createWithFormat("%d", tempWin);
+							CCString *realWin = to_ccstring(tempWin);
 							KTools::saveSQLite("CharRecord", "name", hero->getCharacter()->getCString(), "column1", (char *)realWin->getCString(), false);
 						}
 					}

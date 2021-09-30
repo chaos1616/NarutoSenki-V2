@@ -467,7 +467,7 @@ void HPBar::loseHP(float percent)
 			if (currentSlayer->isNotFlog())
 			{
 				int realKillNum = to_int(currentSlayer->getKillNum()->getCString()) + 1;
-				currentSlayer->setKillNum(CCString::createWithFormat("%d", realKillNum));
+				currentSlayer->setKillNum(to_ccstring(realKillNum));
 				_delegate->getDelegate()->setReport(currentSlayer->getCharacter()->getCString(), _delegate->getCharacter()->getCString(), currentSlayer->getKillNum());
 
 				const char *currentTeam;
@@ -483,17 +483,17 @@ void HPBar::loseHP(float percent)
 				if (strcmp(currentSlayer->getGroup()->getCString(), currentTeam) == 0)
 				{
 					int teamKills = to_int(_delegate->getDelegate()->getHudLayer()->KonoLabel->getString()) + 1;
-					_delegate->getDelegate()->getHudLayer()->KonoLabel->setString(CCString::createWithFormat("%d", teamKills)->getCString());
+					_delegate->getDelegate()->getHudLayer()->KonoLabel->setString(to_ccstring(teamKills)->getCString());
 				}
 				else
 				{
 					int teamKills = to_int(_delegate->getDelegate()->getHudLayer()->AkaLabel->getString()) + 1;
-					_delegate->getDelegate()->getHudLayer()->AkaLabel->setString(CCString::createWithFormat("%d", teamKills)->getCString());
+					_delegate->getDelegate()->getHudLayer()->AkaLabel->setString(to_ccstring(teamKills)->getCString());
 				}
 				if (currentSlayer->isNotGuardian())
 				{
 					int newValue = to_int(_delegate->getDelegate()->getTotalKills()->getCString()) + 1;
-					_delegate->getDelegate()->setTotalKills(CCString::createWithFormat("%d", newValue));
+					_delegate->getDelegate()->setTotalKills(to_ccstring(newValue));
 				}
 
 				if (currentSlayer->getLV() != 6)
@@ -522,12 +522,12 @@ void HPBar::loseHP(float percent)
 					{
 						if (_delegate->getDelegate()->_isHardCoreGame)
 						{
-							_delegate->getDelegate()->setCoin(CCString::createWithFormat("%d", 50 + (_delegate->getLV() - 1) * 10)->getCString());
+							_delegate->getDelegate()->setCoin(to_ccstring(50 + (_delegate->getLV() - 1) * 10)->getCString());
 							_delegate->setCoinDisplay(50 + (_delegate->getLV() - 1) * 10);
 						}
 						else
 						{
-							_delegate->getDelegate()->setCoin(CCString::createWithFormat("%d", 50)->getCString());
+							_delegate->getDelegate()->setCoin(to_ccstring(50)->getCString());
 							_delegate->setCoinDisplay(50);
 						}
 					}
@@ -535,7 +535,7 @@ void HPBar::loseHP(float percent)
 					_delegate->getDelegate()->getHudLayer()->setEXPLose(0);
 					const char *kl = _delegate->getDelegate()->getHudLayer()->killLabel->getString();
 					int kills = to_int(kl) + 1;
-					_delegate->getDelegate()->getHudLayer()->killLabel->setString(CCString::createWithFormat("%d", kills)->getCString());
+					_delegate->getDelegate()->getHudLayer()->killLabel->setString(to_ccstring(kills)->getCString());
 				}
 
 				if (_delegate->isGuardian())
@@ -574,18 +574,18 @@ void HPBar::loseHP(float percent)
 						{
 							if (_delegate->isGuardian())
 							{
-								_delegate->getDelegate()->setCoin(CCString::createWithFormat("%d", 850)->getCString());
+								_delegate->getDelegate()->setCoin(to_ccstring(850)->getCString());
 								_delegate->setCoinDisplay(850);
 							}
 							else
 							{
-								_delegate->getDelegate()->setCoin(CCString::createWithFormat("%d", 25 + (_delegate->getLV() - 1) * 10)->getCString());
+								_delegate->getDelegate()->setCoin(to_ccstring(25 + (_delegate->getLV() - 1) * 10)->getCString());
 								_delegate->setCoinDisplay(25 + (_delegate->getLV() - 1) * 10);
 							}
 						}
 						else
 						{
-							_delegate->getDelegate()->setCoin(CCString::createWithFormat("%d", 25)->getCString());
+							_delegate->getDelegate()->setCoin(to_ccstring(25)->getCString());
 							_delegate->setCoinDisplay(25);
 						}
 						_delegate->getDelegate()->getHudLayer()->setEXPLose(0);

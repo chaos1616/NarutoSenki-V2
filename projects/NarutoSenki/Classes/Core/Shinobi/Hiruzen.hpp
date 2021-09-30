@@ -223,8 +223,8 @@ class Hiruzen : public Hero
 		_isArmored = true;
 		_nattackRangeX = 16;
 		_nattackRangeY = 48;
-		settempAttackValue1(CCString::createWithFormat("%d", getNAttackValue()));
-		setnAttackValue(CCString::createWithFormat("%d", 560));
+		settempAttackValue1(to_ccstring(getNAttackValue()));
+		setnAttackValue(to_ccstring(560));
 
 		_isOnlySkillLocked = true;
 
@@ -244,7 +244,7 @@ class Hiruzen : public Hero
 		_isOnlySkillLocked = false;
 		if (getTempAttackValue1())
 		{
-			setnAttackValue(CCString::createWithFormat("%d", getTempAttackValue1()));
+			setnAttackValue(to_ccstring(getTempAttackValue1()));
 			settempAttackValue1(nullptr);
 		}
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));

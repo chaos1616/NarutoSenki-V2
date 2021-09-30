@@ -203,8 +203,8 @@ class Suigetsu : public Hero
 
 	void changeAction()
 	{
-		settempAttackValue1(CCString::createWithFormat("%d", getNAttackValue()));
-		setnAttackValue(CCString::createWithFormat("%d", 1960));
+		settempAttackValue1(to_ccstring(getNAttackValue()));
+		setnAttackValue(to_ccstring(1960));
 
 		_isOnlySkillLocked = true;
 
@@ -227,7 +227,7 @@ class Suigetsu : public Hero
 			_isArmored = false;
 			if (getTempAttackValue1())
 			{
-				setnAttackValue(CCString::createWithFormat("%d", getTempAttackValue1()));
+				setnAttackValue(to_ccstring(getTempAttackValue1()));
 				settempAttackValue1(nullptr);
 			}
 			_isOnlySkillLocked = false;

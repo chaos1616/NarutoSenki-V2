@@ -206,7 +206,7 @@ class Choji : public Hero
 		_tempAttackType = _nattackType;
 		_nattackType = _spcattackType3;
 
-		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 460));
+		setnAttackValue(to_ccstring(getNAttackValue() + 460));
 		_nattackRangeX = 32;
 		_nattackRangeY = 48;
 		_isOnlySkillLocked = true;
@@ -222,7 +222,7 @@ class Choji : public Hero
 
 	void resumeAction(float dt)
 	{
-		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() - 460));
+		setnAttackValue(to_ccstring(getNAttackValue() - 460));
 		_nattackRangeX = 16;
 		_nattackRangeY = 48;
 		_nattackType = _tempAttackType;
@@ -258,7 +258,7 @@ class Choji : public Hero
 
 		unschedule(schedule_selector(Choji::resumeAction));
 
-		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() - 460));
+		setnAttackValue(to_ccstring(getNAttackValue() - 460));
 		_nattackRangeX = 16;
 		_nattackRangeY = 48;
 		_nattackType = _tempAttackType;

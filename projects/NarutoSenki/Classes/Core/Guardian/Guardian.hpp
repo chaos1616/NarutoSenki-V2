@@ -96,7 +96,7 @@ class Guardian : public Hero
 
 	void changeAction()
 	{
-		setnAttackValue(CCString::createWithFormat("%d", getNAttackValue() + 700));
+		setnAttackValue(to_ccstring(getNAttackValue() + 700));
 		_nattackRangeX = 0;
 		_nattackRangeY = 48;
 		_tempAttackType = _nattackType;

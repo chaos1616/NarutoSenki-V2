@@ -63,12 +63,12 @@ public:
 		int tmpCombatPoint;
 
 		readData(tmpData, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
-		setMaxHP(CCString::createWithFormat("%ld", to_uint(tmpHpMax->getCString())));
+		setMaxHP(to_ccstring(to_uint(tmpHpMax->getCString())));
 		setHP(CCString::create(getMaxHP()->getCString()));
 		setHeight(tmpHeight);
 		setWalkSpeed(tmpSpeed);
 
-		setKillNum(CCString::createWithFormat("%d", 0));
+		setKillNum(to_ccstring(0));
 
 		if (!getCKR() && !getCKR2())
 		{

@@ -156,8 +156,8 @@ public:
 				else if (gear == gear04)
 				{
 					if (newChar->getTempAttackValue1())
-						newChar->settempAttackValue1(CCString::createWithFormat("%d", newChar->getTempAttackValue1() + 160));
-					newChar->setnAttackValue(CCString::createWithFormat("%d", newChar->getNAttackValue() + 160));
+						newChar->settempAttackValue1(to_ccstring(newChar->getTempAttackValue1() + 160));
+					newChar->setnAttackValue(to_ccstring(newChar->getNAttackValue() + 160));
 					newChar->hasArmorBroken = true;
 				}
 				else if (gear == gear05)
@@ -176,7 +176,7 @@ public:
 					newChar->gearRecoverValue = 3000;
 					if (isPlayer)
 					{
-						hudLayer->item1Button->setCD(CCString::createWithFormat("%d", 3000));
+						hudLayer->item1Button->setCD(to_ccstring(3000));
 						hudLayer->item1Button->_isColdChanged = true;
 					}
 				}
@@ -184,7 +184,7 @@ public:
 				{
 					uint32_t tempMaxHP = newChar->getMaxHPValue();
 					tempMaxHP += 6000;
-					newChar->setMaxHP(CCString::createWithFormat("%ld", tempMaxHP));
+					newChar->setMaxHP(to_ccstring(tempMaxHP));
 					if (newChar->_hpBar)
 					{
 						newChar->_hpBar->loseHP(newChar->getHpPercent());

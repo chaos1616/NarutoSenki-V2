@@ -105,8 +105,8 @@ class Parents : public Hero
 
 	void changeAction()
 	{
-		settempAttackValue1(CCString::createWithFormat("%d", getNAttackValue()));
-		setnAttackValue(CCString::createWithFormat("%d", 2460));
+		settempAttackValue1(to_ccstring(getNAttackValue()));
+		setnAttackValue(to_ccstring(2460));
 
 		_isOnlySkillLocked = true;
 
@@ -132,7 +132,7 @@ class Parents : public Hero
 		{
 			if (getTempAttackValue1())
 			{
-				setnAttackValue(CCString::createWithFormat("%d", getTempAttackValue1()));
+				setnAttackValue(to_ccstring(getTempAttackValue1()));
 				settempAttackValue1(nullptr);
 			}
 			_isOnlySkillLocked = false;

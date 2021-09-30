@@ -368,11 +368,11 @@ void HudLayer::initHeroInterface()
 	item1Button = ActionButton::create("item1.png");
 	if (_delegate->_isHardCoreGame)
 	{
-		item1Button->setCD(CCString::createWithFormat("%d", 5000));
+		item1Button->setCD(to_ccstring(5000));
 	}
 	else
 	{
-		item1Button->setCD(CCString::createWithFormat("%d", 3000));
+		item1Button->setCD(to_ccstring(3000));
 	}
 
 	item1Button->setDelegate(this);
@@ -382,7 +382,7 @@ void HudLayer::initHeroInterface()
 
 	//init Item
 	item2Button = ActionButton::create("item2.png");
-	item2Button->setCD(CCString::createWithFormat("%d", 15000));
+	item2Button->setCD(to_ccstring(15000));
 	item2Button->setDelegate(this);
 	item2Button->setABType(GearItem);
 	item2Button->_gearType = None;
@@ -391,7 +391,7 @@ void HudLayer::initHeroInterface()
 	item2Button->setVisible(false);
 
 	item3Button = ActionButton::create("item3.png");
-	item3Button->setCD(CCString::createWithFormat("%d", 15000));
+	item3Button->setCD(to_ccstring(15000));
 	item3Button->setDelegate(this);
 	item3Button->setABType(GearItem);
 	item3Button->_gearType = None;
@@ -400,7 +400,7 @@ void HudLayer::initHeroInterface()
 	item3Button->setVisible(false);
 
 	item4Button = ActionButton::create("item4.png");
-	item4Button->setCD(CCString::createWithFormat("%d", 15000));
+	item4Button->setCD(to_ccstring(15000));
 	item4Button->setDelegate(this);
 	item4Button->setABType(GearItem);
 	item4Button->_gearType = None;
@@ -569,7 +569,7 @@ void HudLayer::updateGears()
 		gear1Button = ActionButton::create("gearbg.png");
 		gear1Button->setPosition(ccp(0, winSize.height - 92));
 		gear1Button->setDelegate(this);
-		gear1Button->setCD(CCString::createWithFormat("%d", 15000));
+		gear1Button->setCD(to_ccstring(15000));
 		gear1Button->setABType(GearBtn);
 
 		gear1Button->setMarkSprite("gear_freeze.png");
@@ -579,7 +579,7 @@ void HudLayer::updateGears()
 		gear2Button = ActionButton::create("gearbg.png");
 		gear2Button->setPosition(ccp(35, winSize.height - 112));
 		gear2Button->setDelegate(this);
-		gear2Button->setCD(CCString::createWithFormat("%d", 15000));
+		gear2Button->setCD(to_ccstring(15000));
 		gear2Button->_gearType = None;
 		gear2Button->setABType(GearBtn);
 		gear2Button->setMarkSprite("gear_freeze.png");
@@ -588,7 +588,7 @@ void HudLayer::updateGears()
 
 		gear3Button = ActionButton::create("gearbg.png");
 		gear3Button->setPosition(ccp(70, winSize.height - 92));
-		gear3Button->setCD(CCString::createWithFormat("%d", 15000));
+		gear3Button->setCD(to_ccstring(15000));
 		gear3Button->setDelegate(this);
 		gear3Button->_gearType = None;
 
@@ -649,7 +649,7 @@ void HudLayer::setHPLose(float percent)
 	status_hpbar->runAction(ra);
 
 	uint32_t hp = _delegate->currentPlayer->getHPValue();
-	hpLabel->setString(CCString::createWithFormat("%ld", hp)->getCString());
+	hpLabel->setString(to_ccstring(hp)->getCString());
 }
 
 void HudLayer::setCKRLose(bool isCRK2)
@@ -744,7 +744,7 @@ void HudLayer::setCoin(const char *value)
 	const char *cl = coinLabel->getString();
 	int tempCoin = to_int(cl);
 	tempCoin += to_int(value);
-	CCString *realCoin = CCString::createWithFormat("%d", tempCoin);
+	CCString *realCoin = to_ccstring(tempCoin);
 	coinLabel->setString(realCoin->getCString());
 }
 
@@ -755,7 +755,7 @@ bool HudLayer::offCoin(const char *value)
 	if (tempCoin - to_int(value) >= 0)
 	{
 		tempCoin -= to_int(value);
-		CCString *realCoin = CCString::createWithFormat("%d", tempCoin);
+		CCString *realCoin = to_ccstring(tempCoin);
 		coinLabel->setString(realCoin->getCString());
 		_delegate->currentPlayer->minusCoin(to_int(value));
 		return true;
@@ -780,7 +780,7 @@ void HudLayer::setReport(const char *name1, const char *name2, CCString *killNum
 		CCDictionary *dic = CCDictionary::create();
 		dic->setObject(CCString::create(name1), "name1");
 		dic->setObject(CCString::create(name2), "name2");
-		dic->setObject(CCString::createWithFormat("%d", 1), "num");
+		dic->setObject(to_ccstring(1), "num");
 		dic->setObject(killNum, "kills");
 		_reportListArray->addObject(dic);
 		return;
@@ -799,7 +799,7 @@ void HudLayer::setReport(const char *name1, const char *name2, CCString *killNum
 	CCDictionary *dic = CCDictionary::create();
 	dic->setObject(CCString::create(name1), "name1");
 	dic->setObject(CCString::create(name2), "name2");
-	dic->setObject(CCString::createWithFormat("%d", 1), "num");
+	dic->setObject(to_ccstring(1), "num");
 	dic->setObject(killNum, "kills");
 	dic->setObject(CCString::create("True"), "isDisplay");
 	_reportListArray->addObject(dic);
@@ -825,7 +825,7 @@ void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 	{
 		if (_buffCount == 0)
 		{
-			bcdLabel1 = CCLabelBMFont::create(CCString::createWithFormat("%d", (int)buffStayTime)->getCString(), "Fonts/1.fnt");
+			bcdLabel1 = CCLabelBMFont::create(to_ccstring((int)buffStayTime)->getCString(), "Fonts/1.fnt");
 			bcdLabel1->setScale(scale);
 			bcdLabel1->setPosition(ccp(5, 5));
 			bcdLabel1->setAnchorPoint(ccp(0.5, 0.5));
@@ -834,7 +834,7 @@ void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 		}
 		else
 		{
-			bcdLabel2 = CCLabelBMFont::create(CCString::createWithFormat("%d", (int)buffStayTime)->getCString(), "Fonts/1.fnt");
+			bcdLabel2 = CCLabelBMFont::create(to_ccstring((int)buffStayTime)->getCString(), "Fonts/1.fnt");
 			bcdLabel2->setScale(scale);
 			bcdLabel2->setPosition(ccp(5, 5));
 			bcdLabel2->setAnchorPoint(ccp(0.5, 0.5));
@@ -865,7 +865,7 @@ void HudLayer::updateBuffDisplay(float dt)
 	{
 		if (to_int(bcdLabel1->getString()) > 0)
 		{
-			bcdLabel1->setString(CCString::createWithFormat("%d", to_int(bcdLabel1->getString()) - 1)->getCString());
+			bcdLabel1->setString(to_ccstring(to_int(bcdLabel1->getString()) - 1)->getCString());
 		}
 		else
 		{
@@ -882,7 +882,7 @@ void HudLayer::updateBuffDisplay2(float dt)
 	{
 		if (to_int(bcdLabel2->getString()) > 0)
 		{
-			bcdLabel2->setString(CCString::createWithFormat("%d", to_int(bcdLabel2->getString()) - 1)->getCString());
+			bcdLabel2->setString(to_ccstring(to_int(bcdLabel2->getString()) - 1)->getCString());
 		}
 		else
 		{
@@ -1236,7 +1236,7 @@ void HudLayer::costCKR(int value, bool isCKR2)
 		else
 			ckr = 0;
 
-		_delegate->currentPlayer->setCKR(CCString::createWithFormat("%ld", ckr));
+		_delegate->currentPlayer->setCKR(to_ccstring(ckr));
 		setCKRLose(false);
 	}
 	else
@@ -1248,7 +1248,7 @@ void HudLayer::costCKR(int value, bool isCKR2)
 		else
 			ckr2 = 0;
 
-		_delegate->currentPlayer->setCKR2(CCString::createWithFormat("%ld", ckr2));
+		_delegate->currentPlayer->setCKR2(to_ccstring(ckr2));
 		setCKRLose(true);
 	}
 }
@@ -1448,7 +1448,7 @@ void HudLayer::updateSkillButtons()
 	if (skill##index##Button)                                                                                         \
 	{                                                                                                                 \
 		skill##index##Button->setDisplayFrame(cache->spriteFrameByName((charName + "_skill" #index ".png").c_str())); \
-		skill##index##Button->setCD(CCString::createWithFormat("%d", player->_sattackcoldDown1 * 1000));              \
+		skill##index##Button->setCD(to_ccstring(player->_sattackcoldDown1 * 1000));              \
 		skill##index##Button->_isColdChanged = true;                                                                  \
 	}
 
@@ -1472,9 +1472,9 @@ void HudLayer::updateSpecialSkillButtons()
 	skill1Button->setDoubleSkill(currentPlayer->_sattack1isDouble);
 	skill2Button->setDoubleSkill(currentPlayer->_sattack2isDouble);
 	skill3Button->setDoubleSkill(currentPlayer->_sattack3isDouble);
-	skill1Button->setCD(CCString::createWithFormat("%d", currentPlayer->_sattackcoldDown1 * 1000));
-	skill2Button->setCD(CCString::createWithFormat("%d", currentPlayer->_sattackcoldDown2 * 1000));
-	skill3Button->setCD(CCString::createWithFormat("%d", currentPlayer->_sattackcoldDown3 * 1000));
+	skill1Button->setCD(to_ccstring(currentPlayer->_sattackcoldDown1 * 1000));
+	skill2Button->setCD(to_ccstring(currentPlayer->_sattackcoldDown2 * 1000));
+	skill3Button->setCD(to_ccstring(currentPlayer->_sattackcoldDown3 * 1000));
 	skill1Button->_isColdChanged = true;
 	skill2Button->_isColdChanged = true;
 	skill3Button->_isColdChanged = true;
