@@ -7,7 +7,6 @@
 
 CharacterBase::CharacterBase()
 {
-	CommandSystem::init();
 	_actionState = State::WALK;
 
 	_idleAction = nullptr;
