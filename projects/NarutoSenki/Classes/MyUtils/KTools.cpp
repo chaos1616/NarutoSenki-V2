@@ -46,20 +46,20 @@ void KTools::updateData()
 
 bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 {
-	auto doc = std::make_unique<tinyxml2::XMLDocument>();
+	XMLDocument doc;
 	unsigned long nSize;
 	auto data = (const char *)CCFileUtils::sharedFileUtils()->getFileData(filePath, "r", &nSize);
 	if (data == nullptr)
 	{
 		CCLOGERROR("data %s is null", filePath);
 	}
-	XMLError err = doc->Parse(data, nSize);
+	XMLError err = doc.Parse(data, nSize);
 	if (err)
 	{
 		CCLOGERROR("XML Error: %s", tinyxml2::XMLDocument::ErrorIDToName(err));
 	}
 
-	auto rootEle = doc->RootElement();
+	auto rootEle = doc.RootElement();
 	auto actionEle = rootEle->FirstChildElement();
 
 	while (actionEle)
@@ -402,12 +402,12 @@ void KTools::prepareFileOGG(const char *listName, bool unload /* =false */)
 		return;
 	}
 
-	auto doc = std::make_unique<tinyxml2::XMLDocument>();
+	XMLDocument doc;
 	unsigned long nSize;
 	const char *pXmlBuffer = (const char *)CCFileUtils::sharedFileUtils()->getFileData(md5Path.c_str(), "r", &nSize);
-	doc->Parse(pXmlBuffer);
+	doc.Parse(pXmlBuffer);
 
-	auto rootEle = doc->RootElement();
+	auto rootEle = doc.RootElement();
 	auto fileEle = rootEle->FirstChildElement();
 
 	while (fileEle)
