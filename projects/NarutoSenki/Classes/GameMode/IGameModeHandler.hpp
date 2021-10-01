@@ -358,7 +358,7 @@ protected:
 		}
 	}
 
-	static inline const char *getRandomHeroExceptAll(const vector<const char *> &excepts, const char *defaultChar = "Naruto")
+	static inline const char *getRandomHeroExceptAll(const std::vector<const char *> &excepts, const char *defaultChar = "Naruto")
 	{
 		bool ret = true;
 		int i;
@@ -389,7 +389,7 @@ protected:
 		return selectLayer->_playerSelect ? selectLayer->_playerSelect : getRandomHeroExcept(except);
 	}
 
-	inline const char *getSelectOrRandomHeroExceptAll(const vector<const char *> &excepts, const char *defaultChar = "Naruto")
+	inline const char *getSelectOrRandomHeroExceptAll(const std::vector<const char *> &excepts, const char *defaultChar = "Naruto")
 	{
 		return selectLayer->_playerSelect ? selectLayer->_playerSelect : getRandomHeroExceptAll(excepts, defaultChar);
 	}

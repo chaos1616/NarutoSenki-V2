@@ -562,7 +562,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 						{
 							auto tempHero = (Hero *)pObject;
-							if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (tempHero->isPlayer() || tempHero->isCom()) && tempHero->_actionState != State::DEAD)
+							if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::DEAD)
 							{
 								tempHero->_slayer = this;
 								tempHero->setDamage(attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
@@ -1091,7 +1091,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 							CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 							{
 								auto tempHero = (Hero *)pObject;
-								if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (tempHero->isPlayer() || tempHero->isCom()) && tempHero->_actionState != State::DEAD)
+								if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::DEAD)
 								{
 									tempHero->_slayer = this;
 									tempHero->setDamage(attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
@@ -1150,8 +1150,8 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 
 		CCDICT_FOREACH(dic, ele)
 		{
-			const char *key = CCString::create(ele->getStrKey())->getCString();
-			const char *keyValue = dic->valueForKey(key)->getCString();
+			auto key = CCString::create(ele->getStrKey())->getCString();
+			auto keyValue = dic->valueForKey(key)->getCString();
 			if (is_same(key, "frameName"))
 			{
 				auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(keyValue);
@@ -2559,9 +2559,9 @@ void CharacterBase::setChargeB(CCNode *sender, void *data)
 void CharacterBase::setCommand(CCNode *sender, void *data)
 {
 	auto file = (CCDictionary *)data;
-	CCString *commandType = (CCString *)(file->objectForKey(1));
+	auto commandType = ((CCString *)(file->objectForKey(1)))->getCString();
 
-	if (is_same(commandType->getCString(), "addHP"))
+	if (is_same(commandType, "addHP"))
 	{
 		if (_hpBar)
 		{
@@ -2570,11 +2570,11 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 			_hpBar->setPositionY(getHeight());
 		}
 	}
-	else if (is_same(commandType->getCString(), "setInvincible"))
+	else if (is_same(commandType, "setInvincible"))
 	{
 		_isInvincible = true;
 	}
-	else if (is_same(commandType->getCString(), "setGainCKR"))
+	else if (is_same(commandType, "setGainCKR"))
 	{
 		uint32_t boundValue = 1500;
 		if (_level >= 2)
@@ -2615,21 +2615,21 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 				_delegate->setCKRLose(true);
 		}
 	}
-	else if (is_same(commandType->getCString(), "reInvincible"))
+	else if (is_same(commandType, "reInvincible"))
 	{
 		_isInvincible = false;
 	}
-	else if (is_same(commandType->getCString(), "setInvisible"))
+	else if (is_same(commandType, "setInvisible"))
 	{
 		setVisible(false);
 		_isVisable = false;
 	}
-	else if (is_same(commandType->getCString(), "reInvisible"))
+	else if (is_same(commandType, "reInvisible"))
 	{
 		setVisible(true);
 		_isVisable = true;
 	}
-	else if (is_same(commandType->getCString(), "setTransport2"))
+	else if (is_same(commandType, "setTransport2"))
 	{
 		CCObject *pObject;
 		int tsPosX = getPositionX();
@@ -2654,7 +2654,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 
 		_delegate->reorderChild(this, -tsPosY);
 	}
-	else if (is_same(commandType->getCString(), "setTransport"))
+	else if (is_same(commandType, "setTransport"))
 	{
 		int tsPosX = getPositionX();
 		int tsPosY = getPositionY();
@@ -2710,17 +2710,17 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 			_delegate->reorderChild(this, -tsPosY);
 		}
 	}
-	else if (is_same(commandType->getCString(), "reTransport"))
+	else if (is_same(commandType, "reTransport"))
 	{
 		setPosition(ccp(getPositionX(), _originY));
 		_originY = 0;
 	}
-	else if (is_same(commandType->getCString(), "setDead"))
+	else if (is_same(commandType, "setDead"))
 	{
 		_isSuicide = true;
 		dead();
 	}
-	else if (is_same(commandType->getCString(), "findTarget"))
+	else if (is_same(commandType, "findTarget"))
 	{
 		if (notFindHero(0))
 		{
@@ -2756,20 +2756,20 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 			}
 		}
 	}
-	else if (is_same(commandType->getCString(), "setRevive"))
+	else if (is_same(commandType, "setRevive"))
 	{
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
 			auto tempHero = (Hero *)pObject;
-			if (is_same(_group->getCString(), tempHero->_group->getCString()) && (tempHero->isPlayer() || tempHero->isCom()) && tempHero->_actionState == State::DEAD && tempHero->rebornSprite)
+			if (isSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState == State::DEAD && tempHero->rebornSprite)
 			{
 				tempHero->unschedule(schedule_selector(Hero::reborn));
 				tempHero->reborn(0.1f);
 			}
 		}
 	}
-	else if (is_same(commandType->getCString(), "setTrade"))
+	else if (is_same(commandType, "setTrade"))
 	{
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
@@ -2785,7 +2785,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 				if (abs(sp.x) <= 48 && abs(sp.y) <= 48)
 				{
 					tempHero->hearts -= 1;
-					if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0)
+					if (isNotSameGroupAs(tempHero))
 					{
 						uint32_t tempMaxHP = getMaxHPValue();
 						tempMaxHP += 100;
@@ -2817,7 +2817,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 			}
 		}
 	}
-	else if (is_same(commandType->getCString(), "addExtern"))
+	else if (is_same(commandType, "addExtern"))
 	{
 		auto tempArray = CCArray::create();
 
@@ -2849,11 +2849,11 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 
 		tempChar->runAction(seq);
 	}
-	else if (is_same(commandType->getCString(), "pauseJump"))
+	else if (is_same(commandType, "pauseJump"))
 	{
 		getActionManager()->addAction(_jumpUPAction, this, false);
 	}
-	else if (is_same(commandType->getCString(), "setCounter"))
+	else if (is_same(commandType, "setCounter"))
 	{
 		bool _isCounter = false;
 		if (hasMonsterArrayAny())
@@ -2877,7 +2877,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 			CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 			{
 				auto tempHero = (Hero *)pObject;
-				if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (tempHero->isPlayer() || tempHero->isCom()) && tempHero->_actionState != State::DEAD)
+				if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::DEAD)
 				{
 					if (tempHero->_hpBar)
 					{
@@ -2931,33 +2931,34 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 {
 	int buffValue = *((int *)&data);
 	float buffStayTime = _attackRangeY;
+	auto attackType = _attackType->getCString();
 
-	if (is_same(_attackType->getCString(), "hBuff"))
+	if (is_same(attackType, "hBuff"))
 	{
 		_healBuffValue = buffValue;
 		schedule(schedule_selector(CharacterBase::healBuff), 1);
 		setBuffEffect("hBuff");
 	}
-	else if (is_same(_attackType->getCString(), "sBuff") ||
-			 is_same(_attackType->getCString(), "rsBuff") ||
-			 is_same(_attackType->getCString(), "hsBuff") ||
-			 is_same(_attackType->getCString(), "dcBuff"))
+	else if (is_same(attackType, "sBuff") ||
+			 is_same(attackType, "rsBuff") ||
+			 is_same(attackType, "hsBuff") ||
+			 is_same(attackType, "dcBuff"))
 	{
 		_skillUPBuffValue = buffValue;
 		scheduleOnce(schedule_selector(CharacterBase::disableBuff), buffStayTime);
-		setBuffEffect(_attackType->getCString());
+		setBuffEffect(attackType);
 
 		setsAttackValue1(to_ccstring(getSAttackValue1() + _skillUPBuffValue));
 		setsAttackValue2(to_ccstring(getSAttackValue2() + _skillUPBuffValue));
 		setsAttackValue3(to_ccstring(getSAttackValue3() + _skillUPBuffValue));
 
-		if (is_same(_attackType->getCString(), "hsBuff"))
+		if (is_same(attackType, "hsBuff"))
 		{
 			CCObject *pObject;
 			CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 			{
 				auto tempHero = (CharacterBase *)pObject;
-				if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (tempHero->isPlayer() || tempHero->isCom()) && tempHero->_actionState != State::HURT && tempHero->_actionState != State::DEAD)
+				if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::HURT && tempHero->_actionState != State::DEAD)
 				{
 					float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
 					if (distanceX < winSize.width / 2)
@@ -2988,7 +2989,7 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 			}
 		}
 	}
-	else if (is_same(_attackType->getCString(), "cBuff"))
+	else if (is_same(attackType, "cBuff"))
 	{
 		_skillChangeBuffValue = buffValue;
 
@@ -3053,16 +3054,16 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 
 		changeAction();
 	}
-	else if (is_same(_attackType->getCString(), "tBuff"))
+	else if (is_same(attackType, "tBuff"))
 	{
 		_skillChangeBuffValue = buffValue;
 		scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
 		scheduleOnce(schedule_selector(CharacterBase::disableBuff), buffStayTime);
-		setBuffEffect(_attackType->getCString());
+		setBuffEffect(attackType);
 
 		changeAction();
 	}
-	else if (is_same(_attackType->getCString(), "stBuff"))
+	else if (is_same(attackType, "stBuff"))
 	{
 		if (isPlayer() || is_same(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()))
 			setOpacity(150);
@@ -3078,8 +3079,8 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 		_isVisable = false;
 		scheduleOnce(schedule_selector(CharacterBase::disableBuff), buffStayTime);
 	}
-	else if (is_same(_attackType->getCString(), "GroupHeal") ||
-			 is_same(_attackType->getCString(), "GroupBuff"))
+	else if (is_same(attackType, "GroupHeal") ||
+			 is_same(attackType, "GroupBuff"))
 	{
 		if (_healBuffValue)
 			_healBuffValue += buffValue;
@@ -3090,7 +3091,7 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 	}
 
 	if (isPlayer())
-		_delegate->getHudLayer()->setBuffDisplay(_attackType->getCString(), buffStayTime);
+		_delegate->getHudLayer()->setBuffDisplay(attackType, buffStayTime);
 }
 
 void CharacterBase::setBuffEffect(const char *type)
@@ -3263,7 +3264,7 @@ void CharacterBase::healBuff(float dt)
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
 			auto tempHero = (Hero *)pObject;
-			if (is_same(_group->getCString(), tempHero->_group->getCString()) && (tempHero->isPlayer() || tempHero->isCom()) && tempHero->_actionState != State::DEAD)
+			if (isSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::DEAD)
 			{
 				float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
 				float tempRange1 = 128 + getContentSize().width / 2;
@@ -3306,7 +3307,7 @@ void CharacterBase::healBuff(float dt)
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
 			auto tempHero = (Hero *)pObject;
-			if (is_same(_group->getCString(), tempHero->_group->getCString()) &&
+			if (isSameGroupAs(tempHero) &&
 				tempHero->isPlayerOrCom() &&
 				tempHero->isNotCharacter("Chiyo"))
 			{
@@ -3378,7 +3379,7 @@ void CharacterBase::healBuff(float dt)
 		CCARRAY_FOREACH(list, pObject)
 		{
 			auto tempHero = (CharacterBase *)pObject;
-			if (is_same(_group->getCString(), tempHero->_group->getCString()) && tempHero->_actionState != State::DEAD)
+			if (isSameGroupAs(tempHero) && tempHero->_actionState != State::DEAD)
 			{
 				float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
 				float tempRange1 = 128 + getContentSize().width / 2;
@@ -3553,7 +3554,7 @@ void CharacterBase::stopMove(float dt)
 	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 	{
 		auto tempHero = (Hero *)pObject;
-		if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && tempHero->_isVisable && tempHero->_actionState != State::DEAD && tempHero->_actionState != State::JUMP && !tempHero->_isInvincible)
+		if (isNotSameGroupAs(tempHero) && tempHero->_isVisable && tempHero->_actionState != State::DEAD && tempHero->_actionState != State::JUMP && !tempHero->_isInvincible)
 		{
 			float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
 			float tempRange1 = _attackRangeX + getContentSize().width / 2;
@@ -4261,7 +4262,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
 			auto tempHero = (CharacterBase *)pObject;
-			if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (tempHero->isPlayer() || tempHero->isCom()) && tempHero->_actionState != State::HURT && tempHero->_actionState != State::DEAD)
+			if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::HURT && tempHero->_actionState != State::DEAD)
 			{
 				float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
 				if (distanceX < winSize.width / 2)
@@ -4413,7 +4414,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
 			auto tempHero = (Hero *)pObject;
-			if (strcmp(_group->getCString(), tempHero->_group->getCString()) != 0 && (tempHero->isPlayer() || tempHero->isCom()) && tempHero->_actionState != State::DEAD && tempHero->_isVisable && !tempHero->_isSticking)
+			if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::DEAD && tempHero->_isVisable && !tempHero->_isSticking)
 			{
 				float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
 				float tempRange1 = winSize.width / 2;
@@ -4973,7 +4974,7 @@ bool CharacterBase::hurt()
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
 			auto tempHero = (Hero *)pObject;
-			if (is_same(_group->getCString(), tempHero->_group->getCString()) &&
+			if (isSameGroupAs(tempHero) &&
 				tempHero->isCharacter("Chiyo") &&
 				tempHero->_actionState != State::DEAD &&
 				tempHero->_buffStartTime)
@@ -5047,7 +5048,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
 			auto tempHero = (Hero *)pObject;
-			if (is_same(_group->getCString(), tempHero->_group->getCString()) &&
+			if (isSameGroupAs(tempHero) &&
 				tempHero->isCharacter("Chiyo") &&
 				tempHero->_actionState != State::DEAD &&
 				tempHero->_buffStartTime)
@@ -5241,7 +5242,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
 		{
 			auto tempHero = (Hero *)pObject;
-			if (is_same(_group->getCString(), tempHero->_group->getCString()) &&
+			if (isSameGroupAs(tempHero) &&
 				tempHero->isCharacter("Chiyo") &&
 				tempHero->_actionState != State::DEAD &&
 				tempHero->_buffStartTime)

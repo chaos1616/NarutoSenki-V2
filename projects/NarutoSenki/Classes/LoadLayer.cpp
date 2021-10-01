@@ -1,8 +1,6 @@
 #include "LoadLayer.h"
 #include "GameMode/GameModeImpl.h"
 
-using namespace std;
-
 LoadLayer::LoadLayer()
 {
 	tempHeros = nullptr;

@@ -48,7 +48,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	std::string end = "Debug.win32\\";
 	// If found use visual studio debug
 	// otherwise use visual studio code
-	if (cwd.find(end) != string::npos)
+	if (cwd.find(end) != std::string::npos)
 	{
 		cwd = cwd.substr(0, cwd.length() - end.length());
 		auto luaPath = cwd + "projects\\NarutoSenki\\lua";

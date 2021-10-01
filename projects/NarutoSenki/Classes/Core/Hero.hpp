@@ -2,8 +2,6 @@
 #include "Element.h"
 #include "HudLayer.h"
 
-using namespace std;
-
 typedef std::function<void()> AIHandler;
 
 //TODO: 合并 HeroElement Hero
@@ -17,7 +15,7 @@ public:
 	{
 		CharacterBase::doAI();
 		// Initial default AI handler
-		aiHandler = bind(&Hero::perform, this);
+		aiHandler = std::bind(&Hero::perform, this);
 	}
 
 	/** Perform default AI logic (Hero::perform) */
@@ -263,7 +261,7 @@ public:
 
 	/** Utilities functions */
 	template <typename THero>
-	typename enable_if<is_base_of<Hero, THero>::value, THero *>::type
+	typename std::enable_if<std::is_base_of<Hero, THero>::value, THero *>::type
 	// typename enable_if<!is_same<Hero, THero>::value && is_base_of<Hero, THero>::value, THero *>::type
 	create(CCString *character, CCString *role, CCString *group)
 	{
