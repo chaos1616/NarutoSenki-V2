@@ -1,6 +1,5 @@
 #pragma once
-
-#define mk_const(var) static const char *var = #var
+#include "Enums/Enums.hpp"
 
 namespace AttackType
 {
@@ -127,5 +126,3 @@ namespace Group
 	// mk_const(Konoha);
 	// mk_const(Akatsuki);
 } // namespace Monster
-
-#undef mk_const

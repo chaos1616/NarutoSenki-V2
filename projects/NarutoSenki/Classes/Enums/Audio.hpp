@@ -1,4 +1,5 @@
 #pragma once
+#include "Enums/Enums.hpp"
 
 namespace Audio
 {

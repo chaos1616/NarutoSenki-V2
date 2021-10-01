@@ -3,9 +3,11 @@
 #include "Core/Provider.hpp"
 #include "GameMode/GameModeImpl.h"
 #include "MyUtils/CCShake.h"
+#include "Systems/CommandSystem.hpp"
 
 CharacterBase::CharacterBase()
 {
+	CommandSystem::init();
 	_actionState = State::WALK;
 
 	_idleAction = nullptr;
@@ -2556,12 +2558,13 @@ void CharacterBase::setChargeB(CCNode *sender, void *data)
 	}
 }
 
+// TODO: Use std::map<std::string, std::function<void()>> instead of if else
 void CharacterBase::setCommand(CCNode *sender, void *data)
 {
 	auto file = (CCDictionary *)data;
-	auto commandType = ((CCString *)(file->objectForKey(1)))->getCString();
+	auto cmd = ((CCString *)(file->objectForKey(1)))->getCString();
 
-	if (is_same(commandType, "addHP"))
+	if (is_same(cmd, "addHP"))
 	{
 		if (_hpBar)
 		{
@@ -2570,11 +2573,11 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 			_hpBar->setPositionY(getHeight());
 		}
 	}
-	else if (is_same(commandType, "setInvincible"))
+	else if (is_same(cmd, "setInvincible"))
 	{
 		_isInvincible = true;
 	}
-	else if (is_same(commandType, "setGainCKR"))
+	else if (is_same(cmd, "setGainCKR"))
 	{
 		uint32_t boundValue = 1500;
 		if (_level >= 2)
@@ -2615,21 +2618,21 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 				_delegate->setCKRLose(true);
 		}
 	}
-	else if (is_same(commandType, "reInvincible"))
+	else if (is_same(cmd, "reInvincible"))
 	{
 		_isInvincible = false;
 	}
-	else if (is_same(commandType, "setInvisible"))
+	else if (is_same(cmd, "setInvisible"))
 	{
 		setVisible(false);
 		_isVisable = false;
 	}
-	else if (is_same(commandType, "reInvisible"))
+	else if (is_same(cmd, "reInvisible"))
 	{
 		setVisible(true);
 		_isVisable = true;
 	}
-	else if (is_same(commandType, "setTransport2"))
+	else if (is_same(cmd, "setTransport2"))
 	{
 		CCObject *pObject;
 		int tsPosX = getPositionX();
@@ -2654,7 +2657,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 
 		_delegate->reorderChild(this, -tsPosY);
 	}
-	else if (is_same(commandType, "setTransport"))
+	else if (is_same(cmd, "setTransport"))
 	{
 		int tsPosX = getPositionX();
 		int tsPosY = getPositionY();
@@ -2710,17 +2713,17 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 			_delegate->reorderChild(this, -tsPosY);
 		}
 	}
-	else if (is_same(commandType, "reTransport"))
+	else if (is_same(cmd, "reTransport"))
 	{
 		setPosition(ccp(getPositionX(), _originY));
 		_originY = 0;
 	}
-	else if (is_same(commandType, "setDead"))
+	else if (is_same(cmd, "setDead"))
 	{
 		_isSuicide = true;
 		dead();
 	}
-	else if (is_same(commandType, "findTarget"))
+	else if (is_same(cmd, "findTarget"))
 	{
 		if (notFindHero(0))
 		{
@@ -2756,7 +2759,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 			}
 		}
 	}
-	else if (is_same(commandType, "setRevive"))
+	else if (is_same(cmd, "setRevive"))
 	{
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
@@ -2769,7 +2772,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 			}
 		}
 	}
-	else if (is_same(commandType, "setTrade"))
+	else if (is_same(cmd, "setTrade"))
 	{
 		CCObject *pObject;
 		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
@@ -2817,7 +2820,7 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 			}
 		}
 	}
-	else if (is_same(commandType, "addExtern"))
+	else if (is_same(cmd, "addExtern"))
 	{
 		auto tempArray = CCArray::create();
 
@@ -2849,11 +2852,11 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 
 		tempChar->runAction(seq);
 	}
-	else if (is_same(commandType, "pauseJump"))
+	else if (is_same(cmd, "pauseJump"))
 	{
 		getActionManager()->addAction(_jumpUPAction, this, false);
 	}
-	else if (is_same(commandType, "setCounter"))
+	else if (is_same(cmd, "setCounter"))
 	{
 		bool _isCounter = false;
 		if (hasMonsterArrayAny())
@@ -2924,6 +2927,10 @@ void CharacterBase::setCommand(CCNode *sender, void *data)
 		}
 
 		setActionResume();
+	}
+	else
+	{
+		CCLOG("Not found command %s", cmd);
 	}
 }
 
