@@ -1,5 +1,4 @@
 #pragma once
-#include "Defines.h"
 #include "Effect.h"
 #include "GameLayer.h"
 #include "Enums/Character.hpp"
@@ -26,6 +25,8 @@ class Hero;
 
 class CharacterBase : public CCSprite
 {
+friend class CommandSystem;
+
 public:
 	CharacterBase();
 	~CharacterBase();

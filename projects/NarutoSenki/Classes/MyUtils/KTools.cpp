@@ -56,7 +56,7 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 	XMLError err = doc.Parse(data, nSize);
 	if (err)
 	{
-		CCLOGERROR("XML Error: %s", tinyxml2::XMLDocument::ErrorIDToName(err));
+		CCLOGERROR("XML Error: %s", XMLDocument::ErrorIDToName(err));
 	}
 
 	auto rootEle = doc.RootElement();

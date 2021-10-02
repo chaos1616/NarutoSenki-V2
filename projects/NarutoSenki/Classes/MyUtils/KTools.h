@@ -1,18 +1,19 @@
 #pragma once
-#include "support/tinyxml2/tinyxml2.h"
 #include "cocos2d.h"
+#include "SimpleAudioEngine.h"
 #include "platform/CCFileUtils.h"
+#include "support/tinyxml2/tinyxml2.h"
 #include "MyUtils/CMD5Checksum.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "../../external/sqlite3/src/sqlite3.h"
 #else
 #include "sqlite3.h"
 #endif
-#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 
 class CMD5Checksum;
+
 class KTools : public CCObject
 {
 public:

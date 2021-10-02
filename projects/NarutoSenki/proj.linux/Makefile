@@ -24,9 +24,9 @@ SOURCES = main.cpp \
 	../Classes/MyUtils/CCShake.cpp \
 	../Classes/MyUtils/CCStrokeLabel.cpp \
 	../Classes/MyUtils/KTools.cpp \
-	../Classes/MyUtils/MD5ChecksumDefines.cpp
+	../Classes/MyUtils/MD5ChecksumDefines.cpp \
 
-SHAREDLIBS += -lcocos2d -lcocosdenshion -lcurl -lsqlite3 -llua
+SHAREDLIBS += -lcocos2d -lcocosdenshion -lsqlite3 -llua
 COCOS_LIBS = $(LIB_DIR)/libcocos2d.so $(LIB_DIR)/libcocosdenshion.so $(LIB_DIR)/liblua.so
 
 include ../../../cocos2dx/proj.linux/cocos2dx.mk

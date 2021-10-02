@@ -64,8 +64,13 @@ SOURCES = ../lua/lapi.o \
 include ../../../cocos2dx/proj.linux/cocos2dx.mk
 
 TARGET := $(LIB_DIR)/$(TARGET)
-SHAREDLIBS += -lextension
-STATICLIBS += $(LIB_DIR)/libchipmunk.a
+SHAREDLIBS += -lcocos2d -lcocosdenshion -lextension
+COCOS_LIBS = $(LIB_DIR)/libcocos2d.so $(LIB_DIR)/libcocosdenshion.so
+
+STATICLIBS += \
+	$(LIB_DIR)/libextension.a \
+	$(LIB_DIR)/libbox2d.a \
+	$(LIB_DIR)/libchipmunk.a
 
 all: $(TARGET)
 

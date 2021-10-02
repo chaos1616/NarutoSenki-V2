@@ -1,12 +1,8 @@
-//
-//  MD5ChecksumDefines.h
-
-//
-
-#ifndef __MD5ChecksumDefines__
-#define __MD5ChecksumDefines__
+#pragma once
 #include "cocos2d.h"
+
 USING_NS_CC;
+
 //Magic initialization constants
 #define MD5_INIT_STATE_0 0x67452301
 #define MD5_INIT_STATE_1 0xefcdab89
@@ -108,4 +104,3 @@ static unsigned char PADDING[64] = {
 	0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-#endif /* defined(__MD5ChecksumDefines__) */

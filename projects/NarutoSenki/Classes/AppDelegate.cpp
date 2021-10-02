@@ -4,7 +4,7 @@
 #include "script_support/CCScriptSupport.h"
 
 #include "Defines.h"
-#include "GameScene.h"
+#include "Systems/Initializer.hpp"
 
 AppDelegate::AppDelegate()
 {
@@ -128,6 +128,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	// set FPS. the default value is 1.0/60 if you don't call this
 	// pDirector->setAnimationInterval(1.0 / 60);
+
+	Internal::initAllSystems();
 
 	// 3. execute main lua script
 	std::string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("main.lua");

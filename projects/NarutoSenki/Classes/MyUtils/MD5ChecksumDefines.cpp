@@ -1,11 +1,7 @@
-//
-//  MD5ChecksumDefines.cpp
-//
-
-#include "MD5ChecksumDefines.h"
-#include "CMD5Checksum.h"
-#include "platform/CCFileUtils.h"
 #include "cocos2d.h"
+#include "platform/CCFileUtils.h"
+#include "CMD5Checksum.h"
+#include "MD5ChecksumDefines.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

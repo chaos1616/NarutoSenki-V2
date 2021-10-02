@@ -1,17 +1,8 @@
-//
-//  CMD5Checksum.h
-
-//
-
-#ifndef __CMD5Checksum__
-#define __CMD5Checksum__
-
+#pragma once
 #include "cocos2d.h"
+
 USING_NS_CC;
-/***************************************************************************************** 
-      
-      
-     *****************************************************************************************/
+
 typedef unsigned long DWORD;
 typedef unsigned char BYTE;
 typedef unsigned long ULONG;
@@ -26,6 +17,7 @@ typedef unsigned char UCHAR;
 #ifndef FALSE
 #define FALSE false
 #endif
+
 class CMD5Checksum
 {
 public:
@@ -57,5 +49,3 @@ private:
 	ULONG m_nCount[2];	   //number of bits, modulo 2^64 (lsb first)
 	ULONG m_lMD5[4];	   //MD5 checksum
 };
-
-#endif /* defined(__CMD5Checksum__) */
