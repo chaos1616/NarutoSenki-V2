@@ -26,8 +26,11 @@ SOURCES = main.cpp \
 	../Classes/MyUtils/KTools.cpp \
 	../Classes/MyUtils/MD5ChecksumDefines.cpp \
 
-SHAREDLIBS += -lcocos2d -lcocosdenshion -lsqlite3 -llua
-COCOS_LIBS = $(LIB_DIR)/libcocos2d.so $(LIB_DIR)/libcocosdenshion.so $(LIB_DIR)/liblua.so
+SHAREDLIBS += -lcocos2d -lcocosdenshion -lsqlite3 -llua -lluajit
+COCOS_LIBS = $(LIB_DIR)/libcocos2d.so \
+	$(LIB_DIR)/libcocosdenshion.so \
+	$(LIB_DIR)/liblua.so \
+	$(LIB_DIR)/libluajit.so \
 
 include ../../../cocos2dx/proj.linux/cocos2dx.mk
 
@@ -38,15 +41,11 @@ INCLUDES +=	 -I../ \
 	-I$(COCOS_ROOT)/CocosDenshion/include \
 	-I$(COCOS_ROOT)/extensions/ \
 	-I$(COCOS_ROOT)/external/ \
-	-I$(COCOS_ROOT)/external/chipmunk/include/chipmunk \
-	-I$(COCOS_ROOT)/scripting/lua/lua \
+    -I$(COCOS_ROOT)/scripting/lua/luajit/include \
 	-I$(COCOS_ROOT)/scripting/lua/tolua \
 	-I$(COCOS_ROOT)/scripting/lua/cocos2dx_support \
 
-STATICLIBS += \
-	$(LIB_DIR)/libextension.a \
-	$(LIB_DIR)/libbox2d.a \
-	$(LIB_DIR)/libchipmunk.a
+STATICLIBS += $(LIB_DIR)/libextension.a
 
 ####### Build rules
 $(TARGET): $(OBJECTS) $(STATICLIBS) $(COCOS_LIBS) $(CORE_MAKEFILE_LIST)
@@ -58,12 +57,10 @@ $(TARGET): $(OBJECTS) $(STATICLIBS) $(COCOS_LIBS) $(CORE_MAKEFILE_LIST)
 ####### Compile
 $(OBJ_DIR)/%.o: ../%.cpp $(CORE_MAKEFILE_LIST)
 	@mkdir -p $(@D)
-# 	$(LOG_CXX)$(CXX) $(CXXFLAGS) $(INCLUDES) $(DEFINES) -E -c $< -o $@
 	$(LOG_CXX)$(CXX) $(CXXFLAGS) $(INCLUDES) $(DEFINES) -c $< -o $@
 
 $(OBJ_DIR)/%.o: %.cpp $(CORE_MAKEFILE_LIST)
 	@mkdir -p $(@D)
-# 	$(LOG_CXX)$(CXX) $(CXXFLAGS) $(INCLUDES) $(DEFINES) -E -c $< -o $@
 	$(LOG_CXX)$(CXX) $(CXXFLAGS) $(INCLUDES) $(DEFINES) -c $< -o $@
 
 $(OBJ_DIR)/%.o: %.c $(CORE_MAKEFILE_LIST)

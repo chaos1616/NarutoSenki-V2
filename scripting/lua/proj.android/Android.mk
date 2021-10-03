@@ -12,8 +12,6 @@ LOCAL_SRC_FILES := ../cocos2dx_support/CCLuaBridge.cpp \
           ../cocos2dx_support/Cocos2dxLuaLoader.cpp \
           ../cocos2dx_support/LuaCocos2d.cpp \
           ../cocos2dx_support/LuaCocoStudio.cpp \
-          ../cocos2dx_support/CCBProxy.cpp \
-          ../cocos2dx_support/Lua_extensions_CCB.cpp \
           ../cocos2dx_support/lua_cocos2dx_manual.cpp \
           ../cocos2dx_support/lua_cocos2dx_extensions_manual.cpp \
           ../cocos2dx_support/lua_cocos2dx_cocostudio_manual.cpp \
@@ -28,7 +26,7 @@ LOCAL_SRC_FILES := ../cocos2dx_support/CCLuaBridge.cpp \
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../tolua \
                            $(LOCAL_PATH)/../cocos2dx_support \
                            $(LOCAL_PATH)/../xxtea \
-			   $(LOCAL_PATH)/../luajit/include
+			               $(LOCAL_PATH)/../luajit/include
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/ \
                     $(LOCAL_PATH)/../tolua \

@@ -2,7 +2,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 host_os=`uname -s | tr "[:upper:]" "[:lower:]"`
 
-SRCDIR=$DIR/LuaJIT-2.1
+SRCDIR=$DIR/LuaJIT
 cd "$SRCDIR"
 
 # NOTE: You should setup NDK_ROOT path first

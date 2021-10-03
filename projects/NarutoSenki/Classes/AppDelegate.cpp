@@ -1,6 +1,5 @@
 #include "AppDelegate.h"
 #include "CCLuaEngine.h"
-#include "Lua_extensions_CCB.h"
 #include "script_support/CCScriptSupport.h"
 
 #include "Defines.h"
@@ -23,7 +22,6 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	CCLuaStack *pStack = pEngine->getLuaStack();
 	lua_State *tolua_s = pStack->getLuaState();
-	tolua_extensions_ccb_open(tolua_s);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 	pEngine->addSearchPath("../lua");

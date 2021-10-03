@@ -30,9 +30,6 @@ namespace ui {
     
 static const int LABELBMFONT_RENDERER_Z = (-1);
     
-    
-IMPLEMENT_CLASS_GUI_INFO(LabelBMFont)
-    
 LabelBMFont::LabelBMFont():
 _labelBMFontRenderer(NULL),
 _fntFileHasInit(false),

@@ -55,6 +55,11 @@ public:
 		cmdMap.erase(cmd);
 	}
 
+	static inline void replaceOrInsert(const char *cmd, CommandHandler handler)
+	{
+		cmdMap[cmd] = handler;
+	}
+
 	static inline void reset()
 	{
 		cmdMap.clear();

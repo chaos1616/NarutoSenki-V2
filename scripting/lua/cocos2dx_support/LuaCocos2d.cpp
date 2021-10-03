@@ -66632,40 +66632,6 @@ static int tolua_Cocos2d_CCComponent_update00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: serialize of class  CCComponent */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCComponent_serialize00
-static int tolua_Cocos2d_CCComponent_serialize00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"CCComponent",0,&tolua_err) ||
-     !tolua_isuserdata(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  CCComponent* self = (CCComponent*)  tolua_tousertype(tolua_S,1,0);
-  void* r = ((void*)  tolua_touserdata(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'serialize'", NULL);
-#endif
-  {
-   bool tolua_ret = (bool)  self->serialize(r);
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'serialize'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: isEnabled of class  CCComponent */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_CCComponent_isEnabled00
 static int tolua_Cocos2d_CCComponent_isEnabled00(lua_State* tolua_S)
@@ -72633,7 +72599,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"delete",tolua_Cocos2d_CCComponent_delete00);
    tolua_function(tolua_S,"init",tolua_Cocos2d_CCComponent_init00);
    tolua_function(tolua_S,"update",tolua_Cocos2d_CCComponent_update00);
-   tolua_function(tolua_S,"serialize",tolua_Cocos2d_CCComponent_serialize00);
    tolua_function(tolua_S,"isEnabled",tolua_Cocos2d_CCComponent_isEnabled00);
    tolua_function(tolua_S,"setEnabled",tolua_Cocos2d_CCComponent_setEnabled00);
    tolua_function(tolua_S,"create",tolua_Cocos2d_CCComponent_create00);

@@ -116,11 +116,6 @@ namespace FlogEnum
 	mk_const(ObitoFlog);	  // LV 3
 } // namespace Flog
 
-namespace MonsterEnum
-{
-
-} // namespace Monster
-
 namespace Group
 {
 	// mk_const(Konoha);

@@ -135,11 +135,11 @@ Press `Ctrl + F9` to make project
 
 dependence:
   - Arch
-    > `pacman -Syu freetype gcc glfw gtk3 freealut pthread sqlite3 tolua++ gdb`
+    > `pacman -Syu freetype gcc glfw freealut pthread sqlite3 tolua++ gdb`
 
     or you can also use yay
 
-    > `yay -Syu freetype gcc glfw gtk3 freealut pthread sqlite3 tolua++ gdb`
+    > `yay -Syu freetype gcc glfw freealut pthread sqlite3 tolua++ gdb`
 
 ``` bash
 git clone https://github.com/real-re/NarutoSenki-V2

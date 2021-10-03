@@ -35,8 +35,6 @@ namespace ui {
     
 static const int IMAGE_RENDERER_Z = (-1);
     
-    IMPLEMENT_CLASS_GUI_INFO(ImageView)
-
 ImageView::ImageView():
 _scale9Enabled(false),
 _prevIgnoreSize(true),

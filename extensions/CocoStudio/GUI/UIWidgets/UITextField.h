@@ -104,8 +104,6 @@ typedef void (CCObject::*SEL_TextFieldEvent)(CCObject*, TextFiledEventType);
 class CC_EX_DLL TextField : public Widget
 {
     
-    DECLARE_CLASS_GUI_INFO
-    
 public:
     TextField();
     virtual ~TextField();

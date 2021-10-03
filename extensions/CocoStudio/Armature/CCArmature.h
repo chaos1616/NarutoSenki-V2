@@ -150,24 +150,6 @@ public:
 
     virtual CCTextureAtlas *getTexureAtlasWithTexture(CCTexture2D *texture);
 
-#if ENABLE_PHYSICS_BOX2D_DETECT || ENABLE_PHYSICS_CHIPMUNK_DETECT
-    virtual void setColliderFilter(CCColliderFilter *filter);
-#elif ENABLE_PHYSICS_SAVE_CALCULATED_VERTEX
-    virtual void drawContour();
-#endif
-
-#if ENABLE_PHYSICS_BOX2D_DETECT
-    /**
-     *  @js NA
-     */
-    virtual b2Fixture *getShapeList();
-#elif ENABLE_PHYSICS_CHIPMUNK_DETECT
-    /**
-     *  @js NA
-     */
-    virtual cpShape *getShapeList();
-#endif
-
 protected:
 
     /*
@@ -203,12 +185,6 @@ protected:
     CCArmatureAnimation *m_pAnimation;
 
     CCDictionary *m_pTextureAtlasDic;
-
-#if ENABLE_PHYSICS_BOX2D_DETECT
-    CC_PROPERTY(b2Body *, m_pBody, Body);
-#elif ENABLE_PHYSICS_CHIPMUNK_DETECT
-    CC_PROPERTY(cpBody *, m_pBody, Body);
-#endif
 };
 
 NS_CC_EXT_END

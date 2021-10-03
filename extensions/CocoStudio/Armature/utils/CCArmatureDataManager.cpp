@@ -25,7 +25,6 @@ THE SOFTWARE.
 
 #include "CCArmatureDataManager.h"
 #include "CCTransformHelp.h"
-#include "CCDataReaderHelper.h"
 #include "CCSpriteFrameCacheHelper.h"
 
 
@@ -49,7 +48,6 @@ CCArmatureDataManager *CCArmatureDataManager::sharedArmatureDataManager()
 void CCArmatureDataManager::purge()
 {
     CCSpriteFrameCacheHelper::purge();
-    CCDataReaderHelper::purge();
     CC_SAFE_RELEASE_NULL(s_sharedArmatureDataManager);
 }
 
@@ -136,7 +134,6 @@ void CCArmatureDataManager::removeArmatureFileInfo(const char *configFilePath)
         }
 
         m_sRelativeDatas.erase(configFilePath);
-        CCDataReaderHelper::sharedDataReaderHelper()->removeConfigFile(configFilePath);
     }
 }
 
@@ -240,7 +237,6 @@ void CCArmatureDataManager::addArmatureFileInfo(const char *configFilePath)
     addRelativeData(configFilePath);
 
     m_bAutoLoadSpriteFile = true;
-    CCDataReaderHelper::sharedDataReaderHelper()->addDataFromFile(configFilePath);
 }
 
 void CCArmatureDataManager::addArmatureFileInfoAsync(const char *configFilePath, CCObject *target, SEL_SCHEDULE selector)
@@ -248,7 +244,6 @@ void CCArmatureDataManager::addArmatureFileInfoAsync(const char *configFilePath,
     addRelativeData(configFilePath);
 
     m_bAutoLoadSpriteFile = true;
-    CCDataReaderHelper::sharedDataReaderHelper()->addDataFromFileAsync("", "", configFilePath, target, selector);
 }
 
 void CCArmatureDataManager::addArmatureFileInfo(const char *imagePath, const char *plistPath, const char *configFilePath)
@@ -256,7 +251,6 @@ void CCArmatureDataManager::addArmatureFileInfo(const char *imagePath, const cha
     addRelativeData(configFilePath);
 
     m_bAutoLoadSpriteFile = false;
-    CCDataReaderHelper::sharedDataReaderHelper()->addDataFromFile(configFilePath);
 
     addSpriteFrameFromFile(plistPath, imagePath, configFilePath);
 }
@@ -266,7 +260,6 @@ void CCArmatureDataManager::addArmatureFileInfoAsync(const char *imagePath, cons
     addRelativeData(configFilePath);
 
     m_bAutoLoadSpriteFile = false;
-    CCDataReaderHelper::sharedDataReaderHelper()->addDataFromFileAsync(imagePath, plistPath, configFilePath, target, selector);
 }
 
 void CCArmatureDataManager::addSpriteFrameFromFile(const char *plistPath, const char *imagePath, const char *configFilePath)

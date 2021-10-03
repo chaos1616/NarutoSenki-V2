@@ -3,12 +3,8 @@ TARGET = libcocos2d.so
 INCLUDES += \
 -I../platform/third_party/linux/libfreetype2 \
 -I../../extensions \
--I../../extensions/CCBReader \
 -I../../extensions/GUI/CCControlExtension \
 -I../../extensions/GUI/CCControlExtension \
--I../../external/chipmunk/include/chipmunk \
--I../../external/nakama/include \
--I../../extensions/network \
 -I../../extensions/Components \
 
 SOURCES = ../actions/CCAction.cpp \

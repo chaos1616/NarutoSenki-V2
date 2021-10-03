@@ -136,11 +136,11 @@ Android Studio打开`project/NarutoSenki/proj.android-studio`
 
 依赖:
   - Arch
-    > `pacman -Syu freetype2 gcc glfw gtk3 freealut sqlite3 tolua++ gdb`
+    > `pacman -Syu freetype2 gcc glfw freealut sqlite3 tolua++ gdb`
 
     你也可以使用yay
 
-    > `yay -Syu freetype2 gcc glfw gtk3 freealut sqlite3 tolua++ gdb`
+    > `yay -Syu freetype2 gcc glfw freealut sqlite3 tolua++ gdb`
 
 ``` bash
 git clone https://github.com/real-re/NarutoSenki-V2

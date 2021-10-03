@@ -55,11 +55,6 @@ void CCComponent::update(float delta)
 {
 }
 
-bool CCComponent::serialize(void *ar)
-{
-    return true;
-}
-
 CCComponent* CCComponent::create(void)
 {
     CCComponent * pRet = new CCComponent();

@@ -52,7 +52,6 @@ public:
      */
     virtual void onExit();
     virtual void update(float delta);
-    virtual bool serialize(void* r);
     virtual bool isEnabled() const;
     virtual void setEnabled(bool b);
     static CCComponent* create(void);

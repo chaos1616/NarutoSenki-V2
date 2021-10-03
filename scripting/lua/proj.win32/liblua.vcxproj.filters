@@ -54,12 +54,6 @@
     <ClCompile Include="..\cocos2dx_support\CCLuaValue.cpp">
       <Filter>cocos2dx_support</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2dx_support\Lua_extensions_CCB.cpp">
-      <Filter>cocos2dx_support</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2dx_support\CCBProxy.cpp">
-      <Filter>cocos2dx_support</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2dx_support\lua_cocos2dx_extensions_manual.cpp">
       <Filter>cocos2dx_support</Filter>
     </ClCompile>
@@ -115,12 +109,6 @@
     </ClInclude>
     <ClInclude Include="..\luajit\include\lualib.h">
       <Filter>luajit\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2dx_support\Lua_extensions_CCB.h">
-      <Filter>cocos2dx_support</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2dx_support\CCBProxy.h">
-      <Filter>cocos2dx_support</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2dx_support\lua_cocos2dx_extensions_manual.h">
       <Filter>cocos2dx_support</Filter>

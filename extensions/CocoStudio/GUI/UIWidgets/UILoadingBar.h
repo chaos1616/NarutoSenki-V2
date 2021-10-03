@@ -43,8 +43,6 @@ typedef enum
 class CC_EX_DLL LoadingBar : public Widget
 {
     
-    DECLARE_CLASS_GUI_INFO
-    
 public:
     /**
      * Default constructor

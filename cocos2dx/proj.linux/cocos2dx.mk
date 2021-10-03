@@ -8,12 +8,6 @@ ARFLAGS = cr
 
 DEFINES += -DLINUX
 
-ifdef USE_BOX2D
-DEFINES += -DCC_ENABLE_BOX2D_INTEGRATION=1
-else
-DEFINES += -DCC_ENABLE_CHIPMUNK_INTEGRATION=1
-endif
-
 THIS_MAKEFILE := $(CURDIR)/$(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
 ifndef COCOS_ROOT
 COCOS_ROOT := $(realpath $(dir $(THIS_MAKEFILE))/../..)
@@ -34,15 +28,7 @@ INCLUDES +=  \
     -I$(COCOS_SRC)/platform/third_party/linux/libjpeg \
     -I$(COCOS_SRC)/platform/third_party/linux/libtiff/include \
     -I$(COCOS_SRC)/platform/third_party/linux/libwebp \
-    -I$(COCOS_ROOT)/external/libwebsockets/linux \
     -I$(COCOS_ROOT)/external/glfw3/include/linux \
-
-LBITS := $(shell getconf LONG_BIT)
-ifeq ($(LBITS),64)
-INCLUDES += -I$(COCOS_SRC)/platform/third_party/linux/include64
-else
-INCLUDES += -I$(COCOS_SRC)/platform/third_party/linux
-endif
 
 ifeq ($(DEBUG), 1)
 CCFLAGS += -g3 -O0
@@ -76,20 +62,15 @@ DEPS = $(OBJECTS:.o=.d)
 CORE_MAKEFILE_LIST := $(MAKEFILE_LIST)
 -include $(DEPS)
 
-ifeq ($(LBITS),64)
 STATICLIBS_DIR = $(COCOS_SRC)/platform/third_party/linux/libraries/lib64
-else
-STATICLIBS_DIR = $(COCOS_SRC)/platform/third_party/linux/libraries
-endif
 STATICLIBS = $(STATICLIBS_DIR)/libfreetype.a \
     $(STATICLIBS_DIR)/libpng.a \
     $(STATICLIBS_DIR)/libjpeg.a \
     $(STATICLIBS_DIR)/libtiff.a \
     $(STATICLIBS_DIR)/libwebp.a \
     $(STATICLIBS_DIR)/libglfw3.a \
-    $(STATICLIBS_DIR)/libwebsockets.a \
 
-SHAREDLIBS += -lglfw -lGLEW -lfontconfig -lpthread -lGL -lgtk-3 -lglib-2.0 -lgobject-2.0 -lgthread-2.0
+SHAREDLIBS += -lglfw -lGLEW -lfontconfig -lpthread -lGL -lgthread-2.0
 SHAREDLIBS += -L$(LIB_DIR) -Wl,-rpath,$(abspath $(LIB_DIR))
 
 LIBS = -lrt -lz -lm -lX11 -lfreetype -ldl

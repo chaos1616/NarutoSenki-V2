@@ -63,8 +63,6 @@ public:
  */
 class CC_EX_DLL LabelAtlas : public Widget
 {
-    DECLARE_CLASS_GUI_INFO
-    
 public:
     /**
      * Default constructor

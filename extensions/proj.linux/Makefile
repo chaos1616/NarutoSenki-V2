@@ -3,52 +3,14 @@ TARGET = libextension.a
 COCOS_ROOT=../..
 
 INCLUDES = -I$(COCOS_ROOT)/external \
-	-I$(COCOS_ROOT)/external/chipmunk/include/chipmunk \
 	-I$(COCOS_ROOT)/CocosDenshion/include \
 	-I.. \
-	-I../CCBReader \
 	-I../GUI/CCControlExtension \
 	-I../GUI/CCEditBox \
-	-I../network \
 	-I../CocoStudio/Armature \
-	-I../CocoStudio/Components \
 	-I../CocoStudio/GUI \
-	-I../CocoStudio/Json \
-	-I../CocoStudio/Reader \
-	-I/usr/include/gtk-3.0 \
-	-I/usr/include/glib-2.0 \
-	-I/usr/lib/glib-2.0/include \
-	-I/usr/include/pango-1.0 \
-	-I/usr/include/harfbuzz \
-	-I/usr/include/cairo \
-	-I/usr/include/gdk-pixbuf-2.0 \
-	-I/usr/include/atk-1.0 \
 
-SOURCES = ../CCBReader/CCBFileLoader.cpp \
-../CCBReader/CCMenuItemImageLoader.cpp \
-../CCBReader/CCBReader.cpp \
-../CCBReader/CCMenuItemLoader.cpp \
-../CCBReader/CCControlButtonLoader.cpp \
-../CCBReader/CCNodeLoader.cpp \
-../CCBReader/CCControlLoader.cpp \
-../CCBReader/CCNodeLoaderLibrary.cpp \
-../CCBReader/CCLabelBMFontLoader.cpp \
-../CCBReader/CCParticleSystemQuadLoader.cpp \
-../CCBReader/CCLabelTTFLoader.cpp \
-../CCBReader/CCScale9SpriteLoader.cpp \
-../CCBReader/CCLayerColorLoader.cpp \
-../CCBReader/CCScrollViewLoader.cpp \
-../CCBReader/CCLayerGradientLoader.cpp \
-../CCBReader/CCSpriteLoader.cpp \
-../CCBReader/CCLayerLoader.cpp \
-../CCBReader/CCBAnimationManager.cpp \
-../CCBReader/CCBKeyframe.cpp \
-../CCBReader/CCBSequence.cpp \
-../CCBReader/CCBSequenceProperty.cpp \
-../CCBReader/CCBValue.cpp \
-../CCBReader/CCData.cpp \
-../CCBReader/CCNode+CCBRelativePositioning.cpp \
-../GUI/CCScrollView/CCScrollView.cpp \
+SOURCES = ../GUI/CCScrollView/CCScrollView.cpp \
 ../GUI/CCScrollView/CCSorting.cpp \
 ../GUI/CCScrollView/CCTableView.cpp \
 ../GUI/CCScrollView/CCTableViewCell.cpp \
@@ -66,30 +28,6 @@ SOURCES = ../CCBReader/CCBFileLoader.cpp \
 ../GUI/CCControlExtension/CCControlStepper.cpp \
 ../GUI/CCEditBox/CCEditBox.cpp \
 ../GUI/CCEditBox/CCEditBoxImplLinux.cpp \
-../network/HttpClient.cpp \
-../physics_nodes/CCPhysicsDebugNode.cpp \
-../physics_nodes/CCPhysicsSprite.cpp \
-../spine/Animation.cpp \
-../spine/AnimationState.cpp \
-../spine/AnimationStateData.cpp \
-../spine/Atlas.cpp \
-../spine/AtlasAttachmentLoader.cpp \
-../spine/Attachment.cpp \
-../spine/AttachmentLoader.cpp \
-../spine/Bone.cpp \
-../spine/BoneData.cpp \
-../spine/Json.cpp \
-../spine/RegionAttachment.cpp \
-../spine/Skeleton.cpp \
-../spine/SkeletonData.cpp \
-../spine/SkeletonJson.cpp \
-../spine/Skin.cpp \
-../spine/Slot.cpp \
-../spine/SlotData.cpp \
-../spine/extension.cpp \
-../spine/spine-cocos2dx.cpp \
-../spine/CCSkeleton.cpp \
-../spine/CCSkeletonAnimation.cpp \
 ../CocoStudio/Armature/CCArmature.cpp \
 ../CocoStudio/Armature/CCBone.cpp \
 ../CocoStudio/Armature/animation/CCArmatureAnimation.cpp \
@@ -104,16 +42,10 @@ SOURCES = ../CCBReader/CCBFileLoader.cpp \
 ../CocoStudio/Armature/physics/CCColliderDetector.cpp \
 ../CocoStudio/Armature/utils/CCArmatureDefine.cpp \
 ../CocoStudio/Armature/utils/CCArmatureDataManager.cpp \
-../CocoStudio/Armature/utils/CCDataReaderHelper.cpp \
 ../CocoStudio/Armature/utils/CCSpriteFrameCacheHelper.cpp \
 ../CocoStudio/Armature/utils/CCTransformHelp.cpp \
 ../CocoStudio/Armature/utils/CCTweenFunction.cpp \
 ../CocoStudio/Armature/utils/CCUtilMath.cpp \
-../CocoStudio/ActionTimeline/CCActionTimeline.cpp \
-../CocoStudio/ActionTimeline/CCActionTimelineCache.cpp \
-../CocoStudio/ActionTimeline/CCFrame.cpp \
-../CocoStudio/ActionTimeline/CCNodeReader.cpp \
-../CocoStudio/ActionTimeline/CCTimeLine.cpp \
 ../CocoStudio/GUI/BaseClasses/UIWidget.cpp \
 ../CocoStudio/GUI/Layouts/UILayout.cpp \
 ../CocoStudio/GUI/Layouts/UILayoutParameter.cpp \
@@ -134,48 +66,10 @@ SOURCES = ../CCBReader/CCBFileLoader.cpp \
 ../CocoStudio/GUI/UIWidgets/UISlider.cpp \
 ../CocoStudio/GUI/UIWidgets/UITextField.cpp \
 ../CocoStudio/GUI/UIWidgets/UIRichText.cpp \
-../CocoStudio/Components/CCComAttribute.cpp \
-../CocoStudio/Components/CCComAudio.cpp \
-../CocoStudio/Components/CCComController.cpp \
-../CocoStudio/Components/CCComRender.cpp \
-../CocoStudio/Components/CCInputDelegate.cpp \
-../CocoStudio/Json/DictionaryHelper.cpp \
-../CocoStudio/Json/CocoLoader.cpp \
-../CocoStudio/Reader/SceneReader.cpp \
-../CocoStudio/Reader/GUIReader.cpp \
-../CocoStudio/Reader/WidgetReader/WidgetReader.cpp \
-../CocoStudio/Reader/WidgetReader/ButtonReader/ButtonReader.cpp \
-../CocoStudio/Reader/WidgetReader/CheckBoxReader/CheckBoxReader.cpp \
-../CocoStudio/Reader/WidgetReader/ImageViewReader/ImageViewReader.cpp \
-../CocoStudio/Reader/WidgetReader/LabelAtlasReader/LabelAtlasReader.cpp \
-../CocoStudio/Reader/WidgetReader/LabelBMFontReader/LabelBMFontReader.cpp \
-../CocoStudio/Reader/WidgetReader/LabelReader/LabelReader.cpp \
-../CocoStudio/Reader/WidgetReader/LayoutReader/LayoutReader.cpp \
-../CocoStudio/Reader/WidgetReader/ListViewReader/ListViewReader.cpp \
-../CocoStudio/Reader/WidgetReader/LoadingBarReader/LoadingBarReader.cpp \
-../CocoStudio/Reader/WidgetReader/PageViewReader/PageViewReader.cpp \
-../CocoStudio/Reader/WidgetReader/ScrollViewReader/ScrollViewReader.cpp \
-../CocoStudio/Reader/WidgetReader/SliderReader/SliderReader.cpp \
-../CocoStudio/Reader/WidgetReader/TextFieldReader/TextFieldReader.cpp \
-../CocoStudio/Action/CCActionManager.cpp \
-../CocoStudio/Action/CCActionObject.cpp \
-../CocoStudio/Action/CCActionNode.cpp \
-../CocoStudio/Action/CCActionFrame.cpp \
-../CocoStudio/Action/CCActionEaseEx.cpp \
-../CocoStudio/Action/CCActionFrameEasing.cpp \
-../CocoStudio/Trigger/ObjectFactory.cpp \
-../CocoStudio/Trigger/TriggerBase.cpp \
-../CocoStudio/Trigger/TriggerMng.cpp \
-../CocoStudio/Trigger/TriggerObj.cpp \
 
 include $(COCOS_ROOT)/cocos2dx/proj.linux/cocos2dx.mk
 
 CXXFLAGS += -Wno-multichar -Wno-delete-non-virtual-dtor
-
-CFLAGS  += `pkg-config --cflags glib-2.0`
-CFLAGS  += `pkg-config --cflags gtk-3.0`
-LDFLAGS += `pkg-config --libs glib-2.0`
-LDFLAGS += `pkg-config --libs gtk-3.0`
 
 TARGET := $(LIB_DIR)/$(TARGET)
 

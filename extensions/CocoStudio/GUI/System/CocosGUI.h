@@ -41,7 +41,6 @@
 #include "../UIWidgets/UILabelBMFont.h"
 #include "../UIWidgets/ScrollWidget/UIPageView.h"
 #include "UIHelper.h"
-#include "../../Reader/GUIReader.h"
 #include "UITouchGroup.h"
 #include "../UIWidgets/Compatible/CompatibleClasses.h"
 #include "../UIWidgets/UIRichText.h"
