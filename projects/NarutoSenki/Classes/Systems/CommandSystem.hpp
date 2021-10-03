@@ -1,6 +1,7 @@
 #pragma once
 #include "Core/Hero.hpp"
 #include "Enums/Enums.hpp"
+#include <cstring>
 
 namespace Command
 {
@@ -27,37 +28,42 @@ using CommandHandler = std::function<void(CharacterBase *)>;
 class CommandSystem
 {
 private:
-	static inline std::map<const char *, CommandHandler> cmds;
+	static inline std::map<std::string, CommandHandler> cmdMap;
 
 public:
 	static inline void on(const char *cmd, CommandHandler handler)
 	{
-		cmds.insert(std::make_pair(cmd, handler));
+		cmdMap.insert(std::make_pair(cmd, handler));
 	}
 
 	static inline void invoke(const char *cmd, CharacterBase *c)
 	{
-		auto it_find = cmds.find(cmd);
-		if (it_find != cmds.end())
+		auto it_find = cmdMap.find(cmd);
+		if (it_find != cmdMap.end())
 		{
 			auto handler = it_find->second;
 			handler(c);
 		}
 		else
 		{
-			CCLOGERROR("Not found command handler %s", cmd);
+			CCLOGERROR("Not found command handler `%s`", cmd);
 		}
 	}
 
 	static inline void remove(const char *cmd)
 	{
-		cmds.erase(cmd);
+		cmdMap.erase(cmd);
 	}
 
 	static inline void reset()
 	{
-		cmds.clear();
+		cmdMap.clear();
 		init();
+
+		if (cmdMap.size() > 0)
+			CCLOG("Command System ] [ Count: %ld", cmdMap.size());
+		else
+			CCLOG("Command System ] [ Initial error, not found any command");
 	}
 
 private:
