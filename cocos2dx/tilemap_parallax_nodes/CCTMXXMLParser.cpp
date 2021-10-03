@@ -37,23 +37,8 @@ THE SOFTWARE.
 #include "platform/platform.h"
 
 using namespace std;
-/*
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_MARMALADE)
-    #include "expat.h"
-#else
-    #include <libxml/parser.h>
-    #include <libxml/tree.h>
-    #include <libxml/xmlmemory.h>
-#endif
-*/
 
 NS_CC_BEGIN
-
-/*
-void tmx_startElement(void *ctx, const xmlChar *name, const xmlChar **atts);
-void tmx_endElement(void *ctx, const xmlChar *name);
-void tmx_characters(void *ctx, const xmlChar *ch, int len);
-*/
 
 static const char* valueForKey(const char *key, std::map<std::string, std::string>* dict)
 {

@@ -35,10 +35,6 @@ THE SOFTWARE.
 #include "jpeglib.h"
 #include "tiffio.h"
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-#include "CCFreeTypeFont.h"
-#endif
-
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "platform/android/CCFileUtilsAndroid.h"
 #endif
@@ -97,17 +93,11 @@ CCImage::CCImage()
 , m_bHasAlpha(false)
 , m_bPreMulti(false)
 {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-    m_ft = nullptr;
-#endif
 }
 
 CCImage::~CCImage()
 {
     CC_SAFE_DELETE_ARRAY(m_pData);
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-    CC_SAFE_DELETE(m_ft);
-#endif
 }
 
 bool CCImage::initWithImageFile(const char * strPath, EImageFormat eImgFmt/* = eFmtPng*/)
@@ -192,13 +182,11 @@ bool CCImage::initWithImageData(void * pData,
             bRet = _initWithTiffData(pData, nDataLen);
             break;
         }
-#if (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT) && (CC_TARGET_PLATFORM != CC_PLATFORM_WP8)
        else if (kFmtWebp == eFmt)
         {
             bRet = _initWithWebpData(pData, nDataLen);
             break;
         }
-#endif
         else if (kFmtRawData == eFmt)
         {
             bRet = _initWithRawData(pData, nDataLen, nWidth, nHeight, nBitsPerComponent, false);
@@ -425,9 +413,7 @@ bool CCImage::_initWithPngData(void * pData, int nDatalen)
         info_ptr = png_create_info_struct(png_ptr);
         CC_BREAK_IF(!info_ptr);
 
-#if (CC_TARGET_PLATFORM != CC_PLATFORM_BADA && CC_TARGET_PLATFORM != CC_PLATFORM_NACL)
         CC_BREAK_IF(setjmp(png_jmpbuf(png_ptr)));
-#endif
 
         // set the read call back function
         tImageSource imageSource;
@@ -795,14 +781,14 @@ bool CCImage::_saveImageToPNG(const char * pszFilePath, bool bIsToRGB)
             png_destroy_write_struct(&png_ptr, NULL);
             break;
         }
-#if (CC_TARGET_PLATFORM != CC_PLATFORM_BADA && CC_TARGET_PLATFORM != CC_PLATFORM_NACL)
+
         if (setjmp(png_jmpbuf(png_ptr)))
         {
             fclose(fp);
             png_destroy_write_struct(&png_ptr, &info_ptr);
             break;
         }
-#endif
+
         png_init_io(png_ptr, fp);
 
         if (!bIsToRGB && m_bHasAlpha)

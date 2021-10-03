@@ -99,7 +99,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\sqlite3\libraries\win32\*.*" "$(OutDir)
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(ProjectDir)..\..\external\sqlite3\include;$(ProjectDir)..\..\external;$(ProjectDir)..\..\cocos2dx;$(ProjectDir)..\..\cocos2dx\include;$(ProjectDir)..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\pthread;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\zlib;$(ProjectDir)..\..\CocosDenshion\include;..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(ProjectDir)..\..\external\sqlite3\include;$(ProjectDir)..\..\external;$(ProjectDir)..\..\cocos2dx;$(ProjectDir)..\..\cocos2dx\include;$(ProjectDir)..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\pthread;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\zlib;$(ProjectDir)..\..\CocosDenshion\include;$(ProjectDir)..\..\extension;..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_USREXDLL;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -125,12 +125,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\sqlite3\libraries\win32\*.*" "$(OutDir)
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\cocos2dx\support\tinyxml2\tinyxml2.cpp" />
-    <ClCompile Include="..\CocoStudio\Action\CCActionEaseEx.cpp" />
-    <ClCompile Include="..\CocoStudio\Action\CCActionFrame.cpp" />
-    <ClCompile Include="..\CocoStudio\Action\CCActionFrameEasing.cpp" />
-    <ClCompile Include="..\CocoStudio\Action\CCActionManager.cpp" />
-    <ClCompile Include="..\CocoStudio\Action\CCActionNode.cpp" />
-    <ClCompile Include="..\CocoStudio\Action\CCActionObject.cpp" />
     <ClCompile Include="..\CocoStudio\Armature\animation\CCArmatureAnimation.cpp" />
     <ClCompile Include="..\CocoStudio\Armature\animation\CCProcessBase.cpp" />
     <ClCompile Include="..\CocoStudio\Armature\animation\CCTween.cpp" />
@@ -142,7 +136,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\sqlite3\libraries\win32\*.*" "$(OutDir)
     <ClCompile Include="..\CocoStudio\Armature\display\CCDisplayFactory.cpp" />
     <ClCompile Include="..\CocoStudio\Armature\display\CCDisplayManager.cpp" />
     <ClCompile Include="..\CocoStudio\Armature\display\CCSkin.cpp" />
-    <ClCompile Include="..\CocoStudio\Armature\physics\CCColliderDetector.cpp" />
     <ClCompile Include="..\CocoStudio\Armature\utils\CCArmatureDataManager.cpp" />
     <ClCompile Include="..\CocoStudio\Armature\utils\CCArmatureDefine.cpp" />
     <ClCompile Include="..\CocoStudio\Armature\utils\CCSpriteFrameCacheHelper.cpp" />
@@ -198,12 +191,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\sqlite3\libraries\win32\*.*" "$(OutDir)
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\cocos2dx\support\tinyxml2\tinyxml2.h" />
-    <ClInclude Include="..\CocoStudio\Action\CCActionEaseEx.h" />
-    <ClInclude Include="..\CocoStudio\Action\CCActionFrame.h" />
-    <ClInclude Include="..\CocoStudio\Action\CCActionFrameEasing.h" />
-    <ClInclude Include="..\CocoStudio\Action\CCActionManager.h" />
-    <ClInclude Include="..\CocoStudio\Action\CCActionNode.h" />
-    <ClInclude Include="..\CocoStudio\Action\CCActionObject.h" />
     <ClInclude Include="..\CocoStudio\Armature\animation\CCArmatureAnimation.h" />
     <ClInclude Include="..\CocoStudio\Armature\animation\CCProcessBase.h" />
     <ClInclude Include="..\CocoStudio\Armature\animation\CCTween.h" />

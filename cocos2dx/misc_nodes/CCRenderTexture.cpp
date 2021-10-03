@@ -370,15 +370,6 @@ void CCRenderTexture::begin()
     CCDirector *director = CCDirector::sharedDirector();
     director->setProjection(director->getProjection());
 
-#if CC_TARGET_PLATFORM == CC_PLATFORM_WP8
-    kmMat4 modifiedProjection;
-    kmGLGetMatrix(KM_GL_PROJECTION, &modifiedProjection);
-    kmMat4Multiply(&modifiedProjection, CCEGLView::sharedOpenGLView()->getReverseOrientationMatrix(), &modifiedProjection);
-    kmGLMatrixMode(KM_GL_PROJECTION);
-    kmGLLoadMatrix(&modifiedProjection);
-    kmGLMatrixMode(KM_GL_MODELVIEW);
-#endif
-
     const CCSize& texSize = m_pTexture->getContentSizeInPixels();
 
     // Calculate the adjustment ratios based on the old and new projections

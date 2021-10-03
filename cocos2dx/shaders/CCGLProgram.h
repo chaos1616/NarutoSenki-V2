@@ -117,10 +117,6 @@ public:
      */
     bool initWithVertexShaderByteArray(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray);
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-    /** Initializes the CCGLProgram with precompiled shader program */
-    bool initWithPrecompiledProgramByteArray(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray);
-#endif
     /** Initializes the CCGLProgram with a vertex and fragment with contents of filenames 
      * @js  init
      * @lua NA
@@ -284,10 +280,6 @@ private:
     struct _hashUniformEntry* m_pHashForUniforms;
     bool              m_bUsesTime;
     bool              m_hasShaderCompiler;
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-    std::string       m_shaderId;
-#endif
 };
 
 // end of shaders group

@@ -43,14 +43,7 @@ THE SOFTWARE.
 #include <queue>
 #include <list>
 
-#if (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT) && (CC_TARGET_PLATFORM != CC_PLATFORM_WP8)
 #include <pthread.h>
-#else
-#include "CCPThreadWinRT.h"
-#include <ppl.h>
-#include <ppltasks.h>
-using namespace concurrency;
-#endif
 
 using namespace std;
 
@@ -108,12 +101,10 @@ static CCImage::EImageFormat computeImageFormatType(string& filename)
     {
         ret = CCImage::kFmtTiff;
     }
-#if (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT) && (CC_TARGET_PLATFORM != CC_PLATFORM_WP8)
     else if ((std::string::npos != filename.find(".webp")) || (std::string::npos != filename.find(".WEBP")))
     {
         ret = CCImage::kFmtWebp;
     }
-#endif
    
     return ret;
 }
@@ -294,9 +285,7 @@ void CCTextureCache::addImageAsync(const char *path, CCObject *target, SEL_CallF
         pthread_mutex_init(&s_ImageInfoMutex, NULL);
         pthread_mutex_init(&s_SleepMutex, NULL);
         pthread_cond_init(&s_SleepCondition, NULL);
-#if (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT) && (CC_TARGET_PLATFORM != CC_PLATFORM_WP8)
         pthread_create(&s_loadingThread, NULL, loadImage, NULL);
-#endif
         need_quit = false;
     }
 
@@ -318,19 +307,11 @@ void CCTextureCache::addImageAsync(const char *path, CCObject *target, SEL_CallF
     data->target = target;
     data->selector = selector;
 
-#if (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT) && (CC_TARGET_PLATFORM != CC_PLATFORM_WP8)
     // add async struct into queue
     pthread_mutex_lock(&s_asyncStructQueueMutex);
     s_pAsyncStructQueue->push(data);
     pthread_mutex_unlock(&s_asyncStructQueueMutex);
     pthread_cond_signal(&s_SleepCondition);
-#else
-    // WinRT uses an Async Task to load the image since the ThreadPool has a limited number of threads
-    //std::replace( data->filename.begin(), data->filename.end(), '/', '\\'); 
-    create_task([this, data] {
-        loadImageData(data);
-    });
-#endif
 }
 
 void CCTextureCache::addImageAsyncCallBack(float dt)

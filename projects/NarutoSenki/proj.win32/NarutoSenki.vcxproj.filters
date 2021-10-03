@@ -28,6 +28,12 @@
     <Filter Include="Utils\support">
       <UniqueIdentifier>{6645945a-445f-4ea2-8498-150cf0ed7f79}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Systems">
+      <UniqueIdentifier>{fb6815a4-bfd3-43f5-acd1-191a2b07812b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Enums">
+      <UniqueIdentifier>{82bb5e26-27c3-40ed-a08d-93cb1b60ba32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -232,6 +238,21 @@
     </ClInclude>
     <ClInclude Include="..\..\..\cocos2dx\support\tinyxml2\tinyxml2.h">
       <Filter>Utils\support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Systems\Initializer.hpp">
+      <Filter>Classes\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Systems\CommandSystem.hpp">
+      <Filter>Classes\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enums\Audio.hpp">
+      <Filter>Classes\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enums\Character.hpp">
+      <Filter>Classes\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enums\Enums.hpp">
+      <Filter>Classes\Enums</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

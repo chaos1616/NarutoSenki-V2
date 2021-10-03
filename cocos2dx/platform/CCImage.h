@@ -29,10 +29,6 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-class CCFreeTypeFont;
-#endif
-
 /**
  * @addtogroup platform
  * @{
@@ -190,10 +186,6 @@ protected:
     unsigned char *m_pData;
     bool m_bHasAlpha;
     bool m_bPreMulti;
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-    CCFreeTypeFont* m_ft;
-#endif
 
 private:
     // noncopyable

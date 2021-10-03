@@ -24,10 +24,6 @@ THE SOFTWARE.
 #ifndef __CCSTRING_H__
 #define __CCSTRING_H__
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_BLACKBERRY)
-#include <string.h>
-#endif
-
 #include <stdarg.h>
 #include <string>
 #include <functional>
@@ -73,7 +69,12 @@ public:
     /** init a string with format, it's similar with the c function 'sprintf' 
      * @lua NA
      */
-    bool initWithFormat(const char* format, ...) CC_FORMAT_PRINTF(2, 3);
+    bool initWithFormat(const char* format, ...)
+#ifdef CC_ENABLE_PRINTF_FORMAT
+CC_FORMAT_PRINTF(2, 3);
+#else
+;
+#endif
 
     /** convert to int value */
     int intValue() const;
@@ -118,7 +119,12 @@ public:
      *          it means that you needn't do a release operation unless you retain it.
      *  @lua NA
      */ 
-    static CCString* createWithFormat(const char* format, ...) CC_FORMAT_PRINTF(1, 2);
+    static CCString* createWithFormat(const char* format, ...)
+#ifdef CC_ENABLE_PRINTF_FORMAT
+CC_FORMAT_PRINTF(1, 2);
+#else
+;
+#endif
 
     /** create a string with binary data 
      *  @return A CCString pointer which is an autorelease object pointer,
@@ -145,7 +151,7 @@ public:
     std::string m_sString;
 };
 
-struct CCStringCompare : public std::binary_function<CCString *, CCString *, bool> {
+struct CCStringCompare {
     public:
         bool operator() (CCString * a, CCString * b) const {
             return strcmp(a->getCString(), b->getCString()) < 0;

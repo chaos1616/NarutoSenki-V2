@@ -16,7 +16,6 @@
 #include "CocoStudio/Armature/display/CCDecorativeDisplay.h"
 #include "CocoStudio/Armature/display/CCDisplayManager.h"
 #include "CocoStudio/Armature/display/CCSkin.h"
-#include "CocoStudio/Armature/physics/CCColliderDetector.h"
 #include "CocoStudio/Armature/utils/CCArmatureDataManager.h"
 #include "CocoStudio/Armature/utils/CCTweenFunction.h"
 #include "CocoStudio/Armature/external_tool/sigslot.h"
