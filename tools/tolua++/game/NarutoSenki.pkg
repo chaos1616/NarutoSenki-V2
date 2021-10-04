@@ -1,7 +1,7 @@
 $#include "Defines.h"
 
+$#include "Core/Provider.hpp"
 $#include "CharacterBase.h" 
-$#include "Core/Hero.hpp"
 $#include "Element.h"
 
 $#include "GameScene.h"
@@ -22,7 +22,7 @@ $#include "ActionButton.h"
 $#include "Effect.h"
 $#include "HPBar.h"
 
-$#include "Core/Provider.hpp"
+$pfile "game/CharacterBase.pkg"
 
 /* Defines.h */
 enum abType
@@ -56,15 +56,14 @@ enum gearType
 /* ------- UI Layer ------- */
 
 /* GameScene.h */
-class GameScene : public CCScene
-{
+class GameScene : public CCScene {
 public:
     static GameScene* create();
 	static const char *getPlatform();
 };
 
 /* StartMenu.h */
-class StartMenu : public CCLayer{
+class StartMenu : public CCLayer {
 public:
 	static StartMenu* create();
 
@@ -75,80 +74,50 @@ public:
 };
 
 /* Effect.h */
-class Effect : public CCSprite{
+class Effect : public CCSprite {
 public:
-	Effect();
-	~Effect();
-
-	virtual bool init(const char *szImage, CCObject* Attacker);
-
 	static Effect* create(const char *szImage, CCObject* Attacker);
 
-//	CharacterBase* at;
-
-// private:
-// 	void removeEffect();
-// 	void removeFontEffect();
-// 	CCAction* createEffectAnimation(const char* file, int frameCount, float fps, bool isRepeat);
-// 	CCAction* createFontAnimation();
+	virtual bool init(const char *szImage, CCObject* Attacker);
 };
 
 /* HPBar.h */
-class HPBar : public CCSprite{
-	// HPBar();
-	// ~HPBar();
+class HPBar : public CCSprite {
 public:
 	static HPBar *create(const char *szImage);
 
-//	protected: CharacterBase * _delegate;public: virtual CharacterBase * getDelegate();
-	// virtual bool init(const char *szImage);
-	// void changeBar(const char *szImage);
-	// void loseHP(float percent);
-//	private: CCSprite * hpBottom;
-	public: virtual CCSprite* getHPBottom();
-//	private: CCSprite * hpBar;
-	public: virtual CCSprite* getHPBAR();
+	CharacterBase * getDelegate();
+	bool init(const char *szImage);
+	void changeBar(const char *szImage);
+	void loseHP(float percent);
+	CCSprite* getHPBottom();
+	CCSprite* getHPBAR();
 };
 
 /* LoadLayer.h */
-class LoadLayer : public CCLayer{
+class LoadLayer : public CCLayer {
 public:
-	LoadLayer();
-	~LoadLayer();
-
-//	CCArray* tempHeros;
-	bool init();
-
-//	int loadNum;
-
 	static LoadLayer* create();
 
-//	private: GameLayer* _gameLayer;
-	public: virtual GameLayer* getGameLayer();
-	public: virtual void setGameLayer(GameLayer* var);
-//	private: BGLayer* _bgLayer;
-	public: virtual BGLayer* getBGLayer();
-	public: virtual void setBGLayer(BGLayer* var);
-//	private: HudLayer* _hudLayer;
-	public: virtual HudLayer* getHudLayer();
-	public: virtual void setHudLayer(HudLayer* var);
+//	CCArray* tempHeros;
+//	int loadNum;
+
+	bool init();
+	GameLayer* getGameLayer();
+	void setGameLayer(GameLayer* var);
+	BGLayer* getBGLayer();
+	void setBGLayer(BGLayer* var);
+	HudLayer* getHudLayer();
+	void setHudLayer(HudLayer* var);
 
 	void preloadAudio();
 	void preloadIMG();
 	void playBGM(float dt);
 	void onLoadFinish(float dt);
-
-// private:
-	// 	void preloadPlist(CCObject* obj);
-
-// protected:
-//	void onEnter();
-//	void onExit();
 };
 
 /* SelectLayer.h */
-class SelectLayer : public CCLayer
-{
+class SelectLayer : public CCLayer {
 public:
 	static SelectLayer *create();
 
@@ -163,7 +132,7 @@ public:
 };
 
 /* KTools.h */
-class KTools : public CCObject{
+class KTools : public CCObject {
 public:
 	static void prepareFileMD5();
 	static void prepareFileSHA();
@@ -198,7 +167,7 @@ public:
 };
 
 /* CCTips.h */
-class CCTips : public CCSprite{
+class CCTips : public CCSprite {
 public:
 	static CCTips *create(const char *tips);
 };
@@ -210,16 +179,14 @@ public:
     static CCClippingNode* create();
     static CCClippingNode* create(CCNode *pStencil);
 
-    virtual ~CCClippingNode();
+    bool init();
+    bool init(CCNode *pStencil);
+    void onEnter();
+    void onEnterTransitionDidFinish();
+    void onExitTransitionDidStart();
 
-    virtual bool init();
-    virtual bool init(CCNode *pStencil);
-    virtual void onEnter();
-    virtual void onEnterTransitionDidFinish();
-    virtual void onExitTransitionDidStart();
-
-    virtual void onExit();
-    virtual void visit();
+    void onExit();
+    void visit();
 
     CCNode* getStencil() const;
     void setStencil(CCNode *pStencil);

@@ -5,8 +5,8 @@ echo. * Check VC++ environment...
 echo. */
 echo.
 
-set VSTOOLS="%VS142COMNTOOLS%"
-set VC_VER=142
+set VSTOOLS="%VS143COMNTOOLS%"
+set VC_VER=143
 
 set VSTOOLS=%VSTOOLS:"=%
 set "VSTOOLS=%VSTOOLS:\=/%"
@@ -14,7 +14,7 @@ set "VSTOOLS=%VSTOOLS:\=/%"
 set VSVARS="%VSTOOLS%vsvars32.bat"
 
 if not defined VSVARS (
-    echo Can't find VC2019 installed!
+    echo Can't find VC2022 installed!
     goto ERROR
 )
 

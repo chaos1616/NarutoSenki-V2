@@ -90,4 +90,4 @@ $pfile "cocos/CCScrollView.pkg"
 $pfile "cocos/CCTableView.pkg"
 $pfile "cocos/CCComponent.pkg"
 
-$pfile "game/NarutoSenki.pkg"
+$pfile "NarutoSenki.pkg"

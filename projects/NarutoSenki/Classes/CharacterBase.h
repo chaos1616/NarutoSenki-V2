@@ -430,8 +430,10 @@ protected:
 	void				setCommand(CCNode* sender,void* data);
 	void				setBuffEffect(const char* type);
 	void				removeBuffEffect(const char* type);
-	public: void		disableBuff(float dt);
+public:
+	void				disableBuff(float dt);
 	void				healBuff(float dt);
+protected:
 	void				dehealBuff(float dt);
 
 	void				removeClone(float dt);
