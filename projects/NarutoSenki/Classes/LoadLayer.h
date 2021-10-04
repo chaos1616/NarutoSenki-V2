@@ -1,5 +1,4 @@
 #pragma once
-#include "Defines.h"
 #include "GameLayer.h"
 #include "BGLayer.h"
 #include "HudLayer.h"

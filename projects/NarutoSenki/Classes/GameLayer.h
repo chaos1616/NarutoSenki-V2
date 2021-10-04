@@ -1,5 +1,4 @@
 #pragma once
-#include "Defines.h"
 #include "GameOver.h"
 #include "GearLayer.h"
 #include "PauseLayer.h"

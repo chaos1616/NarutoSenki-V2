@@ -4,6 +4,7 @@
 using namespace cocos2d;
 
 class GameLayer;
+
 class PauseLayer : public CCLayer
 {
 public:

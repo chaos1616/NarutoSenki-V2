@@ -1,7 +1,6 @@
 #pragma once
 #include "Core/Hero.hpp"
 #include "Enums/Enums.hpp"
-#include <cstring>
 
 namespace Command
 {

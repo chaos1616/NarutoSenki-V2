@@ -26,7 +26,7 @@ echo.
 
 call %VSVARS%
 
-MSBUILD cocos2d-win32.sln /p:Configuration="Release" /m
+%MSBUILD% cocos2d-win32.sln /p:Configuration="Release" /m
 
 echo./*
 echo. * Check the cocos2d-win32 application "NarutoSenki.exe" ...

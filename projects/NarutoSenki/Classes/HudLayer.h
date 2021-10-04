@@ -1,5 +1,4 @@
 #pragma once
-#include "Defines.h"
 #include "ActionButton.h"
 #include "Core/Hero.hpp"
 #include "JoyStick.h"

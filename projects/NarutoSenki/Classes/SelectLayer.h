@@ -1,5 +1,4 @@
 #pragma once
-#include "Defines.h"
 #include "LoadLayer.h"
 
 class SelectLayer : public CCLayer
