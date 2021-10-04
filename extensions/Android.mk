@@ -24,7 +24,6 @@ GUI/CCScrollView/CCTableViewCell.cpp \
 GUI/CCScrollView/CCSorting.cpp \
 GUI/CCEditBox/CCEditBox.cpp \
 GUI/CCEditBox/CCEditBoxImplAndroid.cpp \
-LocalStorage/LocalStorageAndroid.cpp \
 CocoStudio/Armature/CCArmature.cpp \
 CocoStudio/Armature/CCBone.cpp \
 CocoStudio/Armature/animation/CCArmatureAnimation.cpp \
@@ -69,7 +68,6 @@ LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \
                            $(LOCAL_PATH)/GUI/CCControlExtension \
                            $(LOCAL_PATH)/GUI/CCScrollView \
-                           $(LOCAL_PATH)/LocalStorage \
                            $(LOCAL_PATH)/CocoStudio/Armature \
                            $(LOCAL_PATH)/CocoStudio
 
