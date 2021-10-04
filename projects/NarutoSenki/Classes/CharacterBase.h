@@ -496,6 +496,7 @@ public:
 	inline CCString*	getSpcAttackValue2Str() { return _spcattackValue2; }
 	inline CCString*	getSpcAttackValue3Str() { return _spcattackValue3; }
 	inline CCString*	getTempAttackValue1Str() { return _tempAttackValue1; }
+	inline bool			hasTempAttackValue1() { return _tempAttackValue1 != nullptr; }
 	inline bool			isCharacter(const char *c) { return is_same(_character->getCString(), c); }
 	inline bool			isCharacter(const char *c1, const char *c2) {
 		auto n = _character->getCString();

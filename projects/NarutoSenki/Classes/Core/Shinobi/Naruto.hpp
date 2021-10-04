@@ -249,7 +249,7 @@ class Naruto : public Hero
 
 		setWalkSpeed(224);
 		_originSpeed = 224;
-		if (getTempAttackValue1())
+		if (hasTempAttackValue1())
 		{
 			setnAttackValue(to_ccstring(getTempAttackValue1()));
 			settempAttackValue1(nullptr);
@@ -483,7 +483,7 @@ class Naruto : public Hero
 			knockDown();
 			setKnockDownAction(createAnimation(knockDownArray, 10.0f, false, true));
 		}
-		else if (getTempAttackValue1())
+		else if (hasTempAttackValue1())
 		{
 			setnAttackValue(to_ccstring(getTempAttackValue1()));
 			settempAttackValue1(nullptr);
@@ -716,7 +716,7 @@ class Naruto : public Hero
 			idle();
 		}
 
-		if (getTempAttackValue1())
+		if (hasTempAttackValue1())
 		{
 			setnAttackValue(to_ccstring(getTempAttackValue1()));
 			settempAttackValue1(nullptr);

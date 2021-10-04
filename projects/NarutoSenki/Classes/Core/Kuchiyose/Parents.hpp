@@ -130,7 +130,7 @@ class Parents : public Hero
 	{
 		if (_skillChangeBuffValue)
 		{
-			if (getTempAttackValue1())
+			if (hasTempAttackValue1())
 			{
 				setnAttackValue(to_ccstring(getTempAttackValue1()));
 				settempAttackValue1(nullptr);

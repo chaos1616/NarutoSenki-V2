@@ -230,7 +230,7 @@ class Itachi : public Hero
 
 		setWalkSpeed(224);
 		_originSpeed = 224;
-		if (getTempAttackValue1())
+		if (hasTempAttackValue1())
 		{
 			setnAttackValue(to_ccstring(getTempAttackValue1()));
 			settempAttackValue1(nullptr);
@@ -282,7 +282,7 @@ class Itachi : public Hero
 			setWalkSpeed(224);
 
 			_originSpeed = 224;
-			if (getTempAttackValue1())
+			if (hasTempAttackValue1())
 			{
 				setnAttackValue(to_ccstring(getTempAttackValue1()));
 				settempAttackValue1(nullptr);

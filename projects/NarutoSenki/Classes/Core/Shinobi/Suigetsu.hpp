@@ -225,7 +225,7 @@ class Suigetsu : public Hero
 		if (_skillChangeBuffValue)
 		{
 			_isArmored = false;
-			if (getTempAttackValue1())
+			if (hasTempAttackValue1())
 			{
 				setnAttackValue(to_ccstring(getTempAttackValue1()));
 				settempAttackValue1(nullptr);

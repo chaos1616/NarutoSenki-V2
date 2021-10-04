@@ -41,7 +41,8 @@ GameLayer::GameLayer()
 	_isOugis2Game = false;
 	_isHardCoreGame = false;
 	_isRandomChar = false;
-	team = 1;
+
+	playerTeam = 1;
 	currentPlayer = nullptr;
 
 	_isGear = false;
@@ -78,6 +79,7 @@ bool GameLayer::init()
 	_enableGear = gd.enableGear;
 	_isHardCoreGame = gd.isHardCore;
 	_isRandomChar = gd.isRandomChar;
+	playerTeam = gd.playerTeam;
 
 	return CCLayer::init();
 }
@@ -135,10 +137,10 @@ void GameLayer::initGard()
 	setRand();
 	int index = random(2);
 	auto guardName = index == 0 ? kGuardian_Roshi : kGuardian_Han;
-	auto groupName = team > 0 ? Akatsuki : Konoha;
+	auto groupName = playerTeam > 0 ? Akatsuki : Konoha;
 	auto guardian = Provider::create(CCString::create(guardName), CCString::create("Com"), CCString::create(groupName));
 
-	if (team > 0)
+	if (playerTeam > 0)
 	{
 		guardian->setPosition(ccp(2800, 80));
 		guardian->setSpawnPoint(ccp(2800, 80));
@@ -318,6 +320,7 @@ void GameLayer::playGameOpeningAnimation(float dt)
 
 void GameLayer::onGameStart(float dt)
 {
+	auto handler = getGameModeHandler();
 	_isStarted = true;
 
 	getHudLayer()->openingSprite->removeFromParent();
@@ -325,9 +328,9 @@ void GameLayer::onGameStart(float dt)
 	// getHudLayer()->initHeroInterface();
 	schedule(schedule_selector(GameLayer::updateGameTime), 1.0f);
 	schedule(schedule_selector(GameLayer::checkBackgroundMusic), 2.0f);
-	if (!getGameModeHandler()->skipInitFlogs)
+	if (!handler->skipInitFlogs)
 	{
-		schedule(schedule_selector(GameLayer::addFlog), 15.0f);
+		schedule(schedule_selector(GameLayer::addFlog), handler->flogSpawnDuration);
 		initFlogs();
 		addFlog(0);
 	}
@@ -672,14 +675,14 @@ void GameLayer::checkTower()
 
 	if (konohaTowerCount == 0 || akatsukiTowerCount == 0)
 	{
-		if (team > 0)
+		if (playerTeam > 0) // Player group is Konoha
 		{
 			if (konohaTowerCount == 0)
 				onGameOver(false);
 			else
 				onGameOver(true);
 		}
-		else
+		else  // Player group is Akatsuki
 		{
 			if (akatsukiTowerCount == 0)
 				onGameOver(false);

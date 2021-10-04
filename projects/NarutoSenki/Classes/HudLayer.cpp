@@ -277,7 +277,7 @@ void HudLayer::initHeroInterface()
 	AkaLabel = CCLabelBMFont::create("0", "Fonts/red.fnt");
 	AkaLabel->setScale(0.35f);
 
-	if (_delegate->team > 0)
+	if (_delegate->playerTeam > 0)
 	{
 		KonoLabel->setAnchorPoint(ccp(1, 1));
 		AkaLabel->setAnchorPoint(ccp(0, 1));
@@ -1274,7 +1274,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		CCSprite *CutBg;
 		const char *cutPath1;
 		const char *cutPath2;
-		if (_delegate->team > 0)
+		if (_delegate->playerTeam > 0)
 		{
 			cutPath1 = "CutBg.png";
 			cutPath2 = "CutBg2.png";

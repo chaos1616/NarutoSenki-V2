@@ -242,7 +242,7 @@ class Hiruzen : public Hero
 
 		_isArmored = false;
 		_isOnlySkillLocked = false;
-		if (getTempAttackValue1())
+		if (hasTempAttackValue1())
 		{
 			setnAttackValue(to_ccstring(getTempAttackValue1()));
 			settempAttackValue1(nullptr);

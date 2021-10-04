@@ -2012,7 +2012,7 @@ bool CharacterBase::setGear(gearType type)
 			_isCanGear03 = true;
 			break;
 		case gear04:
-			if (getTempAttackValue1())
+			if (hasTempAttackValue1())
 			{
 				settempAttackValue1(to_ccstring(getTempAttackValue1() + 160));
 			}
@@ -5480,7 +5480,7 @@ bool CharacterBase::findTargetEnemy(const char *type, bool isTowerDected)
 			target->_isVisable && !target->_isInvincible)
 		{
 			// float gardZone;
-			if (getDelegate()->team > 0)
+			if (getDelegate()->playerTeam > 0)
 			{
 				if (target->getPositionX() >= 81 * 32)
 				{

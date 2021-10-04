@@ -46,8 +46,10 @@ public:
 struct GameData
 {
 	bool enableGear = true;
-	bool isHardCore;
+	bool isHardCore = true;
 	bool isRandomChar;
+
+	int playerTeam;
 };
 
 class IGameModeHandler
@@ -59,19 +61,19 @@ class IGameModeHandler
 private:
 	CCArray *_heroArr = nullptr;
 	// map
-	int mapId;
+	int mapId = 0;
 	// tower
-	bool enableKonohaTowers;
-	bool enableAkatsukiTowers;
+	bool enableKonohaTowers = true;
+	bool enableAkatsukiTowers = true;
 	// flog
-	bool skipInitFlogs;
-	bool enableKonohaFlogs;
-	bool enableAkatsukiFlogs;
-	float flogDuration;
-	bool isLimitFlog;
+	bool skipInitFlogs = false;
+	bool enableKonohaFlogs = false;
+	bool enableAkatsukiFlogs = false;
+	float flogSpawnDuration = 15.0f;
+	bool isLimitFlog = false;
 	int maxFlogWaves;
 	// hero
-	bool enableHeroReborn;
+	bool enableHeroReborn = true;
 
 	void Internal_GameOver()
 	{
@@ -136,7 +138,7 @@ protected:
 	{
 		this->enableKonohaFlogs = enableKonohaFlogs;
 		this->enableAkatsukiFlogs = enableAkatsukiFlogs;
-		this->flogDuration = (duration < 5 || duration > 60) ? 15.0f : duration;
+		this->flogSpawnDuration = (duration < 5 || duration > 60) ? 15.0f : duration;
 		this->isLimitFlog = maxWaves >= 0;
 		this->maxFlogWaves = maxWaves;
 	}
@@ -192,7 +194,8 @@ protected:
 		int team = random(2);
 		// TODO: Support custom player group
 		// playerGroup = playerGroup == nullptr ? (team > 0 ? Konoha : Akatsuki) : playerGroup;
-		playerGroup = team > 0 ? Konoha : Akatsuki;
+		playerGroup = team > 0 ? Akatsuki : Konoha;
+		this->gd.playerTeam = team;
 		this->playerGroup = playerGroup;
 		uint8_t totalCount = playerCount + enemyCount;
 		uint8_t comCount = totalCount > 0 ? totalCount - 1 : 0;
@@ -295,7 +298,7 @@ protected:
 				dic = CCDictionary::create();
 				tmpChar = CCString::create(hero->getCString());
 				tmpRole = CCString::create("Com");
-				tmpGroup = CCString::create(team > 0 ? Konoha : Akatsuki);
+				tmpGroup = CCString::create(team > 0 ? Akatsuki : Konoha);
 				dic->setObject(tmpChar, "character");
 				dic->setObject(tmpRole, "role");
 				dic->setObject(tmpGroup, "group");
@@ -317,7 +320,7 @@ protected:
 				dic = CCDictionary::create();
 				tmpChar = CCString::create(hero->getCString());
 				tmpRole = CCString::create("Com");
-				tmpGroup = CCString::create(team > 0 ? Akatsuki : Konoha);
+				tmpGroup = CCString::create(team > 0 ? Konoha : Akatsuki);
 				dic->setObject(tmpChar, "character");
 				dic->setObject(tmpRole, "role");
 				dic->setObject(tmpGroup, "group");
@@ -330,6 +333,11 @@ protected:
 		_heroArr = herosArr;
 		_heroArr->retain();
 		return _heroArr;
+	}
+
+	inline void setPlayerTeamByGroup(const char *group)
+	{
+		gd.playerTeam = is_same(group, Konoha) ? 1 : 0;
 	}
 
 	/**
@@ -379,7 +387,7 @@ protected:
 		return !ret ? kHeroList[i] : defaultChar;
 	}
 
-	inline const char *getSelectOrRandomHero()
+	inline const char *getSelectedOrRandomHero()
 	{
 		return selectLayer->_playerSelect ? selectLayer->_playerSelect : getRandomHero();
 	}

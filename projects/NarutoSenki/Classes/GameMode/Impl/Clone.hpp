@@ -26,8 +26,9 @@ public:
 		const char *playerGroup;
 		const char *enemyGroup;
 		getRandomGroups(playerGroup, enemyGroup);
+		setPlayerTeamByGroup(playerGroup);
 
-		auto playerHero = getSelectOrRandomHero();
+		auto playerHero = getSelectedOrRandomHero();
 		auto enemyHero = getRandomHeroExcept(playerHero);
 
 		addHero(playerHero, kRolePlayer, playerGroup);

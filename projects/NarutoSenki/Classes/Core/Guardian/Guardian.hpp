@@ -44,15 +44,8 @@ class Guardian : public Hero
 				CCARRAY_FOREACH(_delegate->_TowerArray, pObject)
 				{
 					auto target = (CharacterBase *)pObject;
-					const char *gardTower;
-					if (getDelegate()->team > 0)
-					{
-						gardTower = "AkatsukiCenter";
-					}
-					else
-					{
-						gardTower = "KonohaCenter";
-					}
+					auto *gardTower = getDelegate()->playerTeam > 0 ? "AkatsukiCenter" : "KonohaCenter";
+
 					if (is_same(target->getCharacter()->getCString(), gardTower) && target->getHpPercent() < 0.5f)
 					{
 						isTurn = true;

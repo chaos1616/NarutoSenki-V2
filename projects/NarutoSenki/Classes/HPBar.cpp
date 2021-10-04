@@ -55,15 +55,7 @@ void HPBar::loseHP(float percent)
 {
 	if (_delegate->getDelegate()->_isHardCoreGame)
 	{
-		const char *gardTower;
-		if (_delegate->getDelegate()->team > 0)
-		{
-			gardTower = "AkatsukiCenter";
-		}
-		else
-		{
-			gardTower = "KonohaCenter";
-		}
+		auto gardTower = _delegate->getDelegate()->playerTeam > 0 ? "AkatsukiCenter" : "KonohaCenter";
 
 		if (is_same(_delegate->getCharacter()->getCString(), gardTower))
 		{
@@ -481,15 +473,7 @@ void HPBar::loseHP(float percent)
 				currentSlayer->setKillNum(to_ccstring(realKillNum));
 				_delegate->getDelegate()->setReport(currentSlayer->getCharacter()->getCString(), _delegate->getCharacter()->getCString(), currentSlayer->getKillNum());
 
-				const char *currentTeam;
-				if (_delegate->getDelegate()->team > 0)
-				{
-					currentTeam = Konoha;
-				}
-				else
-				{
-					currentTeam = Akatsuki;
-				}
+				auto currentTeam = _delegate->getDelegate()->playerTeam > 0 ? Konoha : Akatsuki;
 
 				if (is_same(currentSlayer->getGroup()->getCString(), currentTeam))
 				{
