@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>MaskKadon_Idle_001.png</key>
+            <key>MaskKaton_Idle_001.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{133,98},{50,78}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{50,78}</string>
             </dict>
-            <key>MaskKadon_Move_001.png</key>
+            <key>MaskKaton_Move_001.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{131,150},{51,76}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{199,124}</string>
             </dict>
-            <key>MaskKadon_Move_002.png</key>
+            <key>MaskKaton_Move_002.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{133,2},{103,94}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{199,124}</string>
             </dict>
-            <key>MaskKadon_Move_003.png</key>
+            <key>MaskKaton_Move_003.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,254},{127,124}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{199,124}</string>
             </dict>
-            <key>MaskKadon_Move_004.png</key>
+            <key>MaskKaton_Move_004.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,128},{127,124}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{199,124}</string>
             </dict>
-            <key>MaskKadon_Move_005.png</key>
+            <key>MaskKaton_Move_005.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{129,124}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{199,124}</string>
             </dict>
-            <key>MaskKadon_Move_006.png</key>
+            <key>MaskKaton_Move_006.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,380},{125,124}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{199,124}</string>
             </dict>
-            <key>MaskKadon_Walk_001.png</key>
+            <key>MaskKaton_Walk_001.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{133,98},{50,78}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{50,78}</string>
             </dict>
-            <key>MaskKadon_Walk_002.png</key>
+            <key>MaskKaton_Walk_002.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{131,203},{49,76}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{49,76}</string>
             </dict>
-            <key>MaskKadon_Walk_003.png</key>
+            <key>MaskKaton_Walk_003.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{131,254},{50,74}}</string>
@@ -140,13 +140,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>MaskKadon.pvr.ccz</string>
+            <string>MaskKaton.pvr.ccz</string>
             <key>size</key>
             <string>{256,512}</string>
             <key>smartupdate</key>
             <string>$TexturePacker:SmartUpdate:66e9d3869c35ad31d9b33085413e5cf9$</string>
             <key>textureFileName</key>
-            <string>MaskKadon.pvr.ccz</string>
+            <string>MaskKaton.pvr.ccz</string>
         </dict>
     </dict>
 </plist>

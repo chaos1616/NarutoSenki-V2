@@ -90,9 +90,9 @@ public:
 		__begin__
 		is("Sakura") 						ptr = new Sakura();
 		is("Pain") 							ptr = new Pain();
-		is("MaskRaidon") 					ptr = new Mask();
-		is("MaskFudon") 					ptr = new Mask();
-		is("MaskKadon") 					ptr = new Mask();
+		is("MaskRaiton") 					ptr = new Mask();
+		is("MaskFuton") 					ptr = new Mask();
+		is("MaskKaton") 					ptr = new Mask();
 		is("Slug") 							ptr = new Slug();
 		is("Centipede") 					ptr = new Centipede();
 		is("Nagato") 						ptr = new Nagato();

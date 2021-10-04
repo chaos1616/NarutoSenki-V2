@@ -186,9 +186,9 @@ void LoadLayer::perloadCharIMG(const char *player)
 	}
 	else if (is_same(player, "Kakuzu"))
 	{
-		addSprites(mkpath(MaskRaidon));
-		addSprites(mkpath(MaskFudon));
-		addSprites(mkpath(MaskKadon));
+		addSprites(mkpath(MaskRaiton));
+		addSprites(mkpath(MaskFuton));
+		addSprites(mkpath(MaskKaton));
 	}
 	else if (is_same(player, "Naruto"))
 	{
@@ -268,9 +268,9 @@ void LoadLayer::unloadCharIMG(const CharacterBase *c)
 	}
 	else if (is_same(charName, "Kakuzu"))
 	{
-		removeSprites("Element/MaskFudon/MaskFudon.plist");
-		removeSprites("Element/MaskRaidon/MaskRaidon.plist");
-		removeSprites("Element/MaskKadon/MaskKadon.plist");
+		removeSprites("Element/MaskFuton/MaskFuton.plist");
+		removeSprites("Element/MaskRaiton/MaskRaiton.plist");
+		removeSprites("Element/MaskKaton/MaskKaton.plist");
 	}
 	else if (is_same(charName, "Naruto"))
 	{

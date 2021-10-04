@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{200,110}</string>
             </dict>
-            <key>FudonSRK2_Dead_01.png</key>
+            <key>FutonSRK2_Dead_01.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{219,349},{124,87}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{142,111}</string>
             </dict>
-            <key>FudonSRK2_Dead_02.png</key>
+            <key>FutonSRK2_Dead_02.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{112,359},{126,105}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{142,109}</string>
             </dict>
-            <key>FudonSRK2_Dead_03.png</key>
+            <key>FutonSRK2_Dead_03.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{392,2},{118,102}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{142,108}</string>
             </dict>
-            <key>FudonSRK2_Dead_04.png</key>
+            <key>FutonSRK2_Dead_04.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{317,191},{120,95}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{142,113}</string>
             </dict>
-            <key>FudonSRK2_Dead_05.png</key>
+            <key>FutonSRK2_Dead_05.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{227,191},{124,88}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{142,104}</string>
             </dict>
-            <key>FudonSRK2_Dead_06.png</key>
+            <key>FutonSRK2_Dead_06.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,369},{136,108}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{142,108}</string>
             </dict>
-            <key>FudonSRK2_Dead_07.png</key>
+            <key>FutonSRK2_Dead_07.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{108,191},{126,117}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{142,117}</string>
             </dict>
-            <key>FudonSRK2_Move_01.png</key>
+            <key>FutonSRK2_Move_01.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{282,317},{90,28}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{90,46}</string>
             </dict>
-            <key>FudonSRK2_Move_02.png</key>
+            <key>FutonSRK2_Move_02.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{190,319},{90,28}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{90,46}</string>
             </dict>
-            <key>FudonSRK2_Move_03.png</key>
+            <key>FutonSRK2_Move_03.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{387,313},{78,24}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{78,46}</string>
             </dict>
-            <key>FudonSRK_Dead_01.png</key>
+            <key>FutonSRK_Dead_01.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{108,319},{80,38}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{80,38}</string>
             </dict>
-            <key>FudonSRK_Dead_02.png</key>
+            <key>FutonSRK_Dead_02.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{26,114},{91,67}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{91,67}</string>
             </dict>
-            <key>FudonSRK_Dead_03.png</key>
+            <key>FutonSRK_Dead_03.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{387,393},{120,82}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{120,82}</string>
             </dict>
-            <key>FudonSRK_Dead_04.png</key>
+            <key>FutonSRK_Dead_04.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{414,272},{97,88}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{97,88}</string>
             </dict>
-            <key>FudonSRK_Dead_05.png</key>
+            <key>FutonSRK_Dead_05.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{414,191},{93,79}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{93,79}</string>
             </dict>
-            <key>FudonSRK_Dead_06.png</key>
+            <key>FutonSRK_Dead_06.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{392,106},{118,83}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{118,83}</string>
             </dict>
-            <key>FudonSRK_Dead_07.png</key>
+            <key>FutonSRK_Dead_07.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{119,114},{108,60}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{108,60}</string>
             </dict>
-            <key>FudonSRK_Dead_08.png</key>
+            <key>FutonSRK_Dead_08.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{282,114},{107,53}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{107,53}</string>
             </dict>
-            <key>FudonSRK_Move_01.png</key>
+            <key>FutonSRK_Move_01.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,114},{70,22}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{78,46}</string>
             </dict>
-            <key>FudonSRK_Move_02.png</key>
+            <key>FutonSRK_Move_02.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{303,475},{82,24}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{90,46}</string>
             </dict>
-            <key>FudonSRK_Move_03.png</key>
+            <key>FutonSRK_Move_03.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{219,475},{82,24}}</string>

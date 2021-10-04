@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{99,39}</string>
             </dict>
-            <key>TodonPillar_Move_001.png</key>
+            <key>DotonPillar_Move_001.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,424},{80,30}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{142,110}</string>
             </dict>
-            <key>TodonPillar_Move_002.png</key>
+            <key>DotonPillar_Move_002.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{34,424},{100,50}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{142,110}</string>
             </dict>
-            <key>TodonPillar_Move_003.png</key>
+            <key>DotonPillar_Move_003.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,306},{124,72}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{142,110}</string>
             </dict>
-            <key>TodonPillar_Move_004.png</key>
+            <key>DotonPillar_Move_004.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,202},{138,102}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{142,110}</string>
             </dict>
-            <key>TodonPillar_Move_005.png</key>
+            <key>DotonPillar_Move_005.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{142,215},{122,104}}</string>

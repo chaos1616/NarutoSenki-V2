@@ -3,24 +3,24 @@
 
 	<action value="Idle">
 		<date>
-			<dateName type="attackType">MaskFudon</dateName>
+			<dateName type="attackType">MaskFuton</dateName>
 			<dateName type="attackValue">20000</dateName>
 			<dateName type="attackRangeX">66</dateName>
 			<dateName type="attackRangeY">90</dateName>
 			<coldName type="coldDown">320</coldName>
 		</date>
 		<frame>
-			<frameName>MaskFudon_Idle_001.png</frameName>
+			<frameName>MaskFuton_Idle_001.png</frameName>
 		</frame>
 	</action>
 
 	<action value="Walk">
 		<frame>
-			<frameName>MaskFudon_Walk_001.png</frameName>
+			<frameName>MaskFuton_Walk_001.png</frameName>
 			<eventName type="setDelay">10</eventName>
-			<frameName>MaskFudon_Walk_002.png</frameName>
+			<frameName>MaskFuton_Walk_002.png</frameName>
 			<eventName type="setDelay">10</eventName>
-			<frameName>MaskFudon_Walk_003.png</frameName>
+			<frameName>MaskFuton_Walk_003.png</frameName>
 			<eventName type="setDelay">10</eventName>
 		</frame>
 	</action>
@@ -28,31 +28,31 @@
 	<action value="Hurt">
 		<frame>
 			<eventName type="setMove">32</eventName>
-			<frameName>MaskFudon_Idle_001.png</frameName>
+			<frameName>MaskFuton_Idle_001.png</frameName>
 		</frame>
 	</action>
 
 	<action value="AirHurt">
 		<frame>
-			<frameName>MaskFudon_Idle_001.png</frameName>
+			<frameName>MaskFuton_Idle_001.png</frameName>
 		</frame>
 	</action>
 
 	<action value="KnockDown">
 		<frame>
-			<frameName>MaskFudon_Idle_001.png</frameName>
+			<frameName>MaskFuton_Idle_001.png</frameName>
 		</frame>
 	</action>
 
 	<action value="Float">
 		<frame>
-			<frameName>MaskFudon_Idle_001.png</frameName>
+			<frameName>MaskFuton_Idle_001.png</frameName>
 		</frame>
 	</action>
 
 	<action value="Dead">
 		<frame>
-			<frameName>MaskFudon_Idle_001.png</frameName>
+			<frameName>MaskFuton_Idle_001.png</frameName>
 		</frame>
 	</action>
 
@@ -65,12 +65,12 @@
 			<coldName type="coldDown">0</coldName>
 		</date>
 		<frame>
-			<frameName>MaskFudon_Walk_001.png</frameName>
+			<frameName>MaskFuton_Walk_001.png</frameName>
 			<eventName type="setDelay">10</eventName>
-			<frameName>MaskFudon_Walk_002.png</frameName>
+			<frameName>MaskFuton_Walk_002.png</frameName>
 			<eventName type="setAttackBox">a_hit</eventName>
 			<eventName type="setDelay">10</eventName>
-			<frameName>MaskFudon_Walk_003.png</frameName>
+			<frameName>MaskFuton_Walk_003.png</frameName>
 			<eventName type="setDelay">10</eventName>
 		</frame>
 	</action>
@@ -84,14 +84,14 @@
 			<coldName type="coldDown">10</coldName>
 		</date>
 		<frame>
-			<frameName>MaskFudon_Move_001.png</frameName>
-			<frameName>MaskFudon_Move_002.png</frameName>
-			<frameName>MaskFudon_Move_003.png</frameName>
+			<frameName>MaskFuton_Move_001.png</frameName>
+			<frameName>MaskFuton_Move_002.png</frameName>
+			<frameName>MaskFuton_Move_003.png</frameName>
 			<eventName type="setAttackBox">o_hit</eventName>
-			<frameName>MaskFudon_Move_004.png</frameName>
-			<frameName>MaskFudon_Move_005.png</frameName>
+			<frameName>MaskFuton_Move_004.png</frameName>
+			<frameName>MaskFuton_Move_005.png</frameName>
 			<eventName type="setAttackBox">o_hit</eventName>
-			<frameName>MaskFudon_Move_006.png</frameName>
+			<frameName>MaskFuton_Move_006.png</frameName>
 		</frame>
 	</action>
 

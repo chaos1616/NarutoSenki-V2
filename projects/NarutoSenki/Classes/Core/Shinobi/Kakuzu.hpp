@@ -297,9 +297,9 @@ class Kakuzu : public Hero
 			_monsterArray = CCArray::create();
 			_monsterArray->retain();
 		}
-		bool isRaidon = false;
-		bool isFudon = false;
-		bool isKadon = false;
+		bool isRaiton = false;
+		bool isFuton = false;
+		bool isKaton = false;
 		int countMon = 0;
 		if (hasMonsterArrayAny())
 		{
@@ -307,38 +307,38 @@ class Kakuzu : public Hero
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				auto mo = (Monster *)pObject;
-				if (mo->isCharacter("MaskRaidon"))
+				if (mo->isCharacter("MaskRaiton"))
 				{
 					countMon++;
-					isRaidon = true;
+					isRaiton = true;
 				}
-				if (mo->isCharacter("MaskFudon"))
+				if (mo->isCharacter("MaskFuton"))
 				{
 					countMon++;
-					isFudon = true;
+					isFuton = true;
 				}
-				if (mo->isCharacter("MaskKadon"))
+				if (mo->isCharacter("MaskKaton"))
 				{
 					countMon++;
-					isKadon = true;
+					isKaton = true;
 				}
 			}
 		}
 
 		Hero *clone = nullptr;
-		if (hearts > 0 && (!isRaidon || !isKadon || !isFudon))
+		if (hearts > 0 && (!isRaiton || !isKaton || !isFuton))
 		{
-			if (!isRaidon)
+			if (!isRaiton)
 			{
-				clone = create<Mask>(CCString::create("MaskRaidon"), CCString::create(kRoleKugutsu), getGroup());
+				clone = create<Mask>(CCString::create("MaskRaiton"), CCString::create(kRoleKugutsu), getGroup());
 			}
-			else if (!isFudon)
+			else if (!isFuton)
 			{
-				clone = create<Mask>(CCString::create("MaskFudon"), CCString::create(kRoleKugutsu), getGroup());
+				clone = create<Mask>(CCString::create("MaskFuton"), CCString::create(kRoleKugutsu), getGroup());
 			}
-			else if (!isKadon)
+			else if (!isKaton)
 			{
-				clone = create<Mask>(CCString::create("MaskKadon"), CCString::create(kRoleKugutsu), getGroup());
+				clone = create<Mask>(CCString::create("MaskKaton"), CCString::create(kRoleKugutsu), getGroup());
 			}
 			clone->_isArmored = true;
 			_monsterArray->addObject(clone);

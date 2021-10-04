@@ -172,7 +172,7 @@
 			<frameName>RikudoNaruto_Skill03_04.png</frameName>
 			<eventName type="setMove">8</eventName>
 			<eventName type="setCommand">findTarget</eventName>
-			<eventName type="setMon">FudonSRK2</eventName>
+			<eventName type="setMon">FutonSRK2</eventName>
 			<eventName type="setDelay">10</eventName>
 			<frameName>RikudoNaruto_NAttack_003.png</frameName>
 		</frame>

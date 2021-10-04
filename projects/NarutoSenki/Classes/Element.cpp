@@ -251,9 +251,9 @@ void HeroElement::dealloc()
 				_delegate->getHudLayer()->skill4Button->unLock();
 			}
 		}
-		else if (isCharacter("MaskFudon",
-							 "MaskRaidon",
-							 "MaskKadon"))
+		else if (isCharacter("MaskFuton",
+							 "MaskRaiton",
+							 "MaskKaton"))
 		{
 			if (_master->hearts > 0)
 			{
@@ -533,8 +533,8 @@ void Monster::initAction()
 	setDeadAction(createAnimation(deadArray, 10.0f, false, false));
 	if (isCharacter("Kage",
 					"KageHand",
-					"FudonSRK",
-					"FudonSRK2",
+					"FutonSRK",
+					"FutonSRK2",
 					"Kubi"))
 	{
 		setNAttackAction(createAnimation(nattackArray, 10.0, false, false));
@@ -660,8 +660,8 @@ void Monster::setAI(float dt)
 				_mainTarget = nullptr;
 		}
 	}
-	else if (is_same(charName, "FudonSRK2") ||
-			 is_same(charName, "FudonSRK"))
+	else if (is_same(charName, "FutonSRK2") ||
+			 is_same(charName, "FutonSRK"))
 	{
 	}
 	else
@@ -682,8 +682,8 @@ void Monster::setAI(float dt)
 		sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
 					ccp(getPositionX(), _originY ? _originY : getPositionY()));
 
-		if (is_same(charName, "FudonSRK2") ||
-			is_same(charName, "FudonSRK"))
+		if (is_same(charName, "FutonSRK2") ||
+			is_same(charName, "FutonSRK"))
 		{
 			if (abs(sp.x) > 48 || abs(sp.y) > 32)
 			{
@@ -765,7 +765,7 @@ void Monster::dealloc()
 	setActionState(State::DEAD);
 	stopAllActions();
 
-	if (isCharacter("FudonSRK", "FudonSRK2"))
+	if (isCharacter("FutonSRK", "FutonSRK2"))
 	{
 		auto call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc2));
 		auto seqArray = CCArray::create();

@@ -5,7 +5,7 @@ class Mask : public Hero
 {
 	void perform()
 	{
-		if (isCharacter("MaskRaidon"))
+		if (isCharacter("MaskRaiton"))
 		{
 			if (notFindFlog(0))
 			{

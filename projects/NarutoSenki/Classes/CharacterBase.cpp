@@ -3630,7 +3630,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		monster->attack(NAttack);
 	}
 	else if (is_same(monsterName, "SuiRyuDan") ||
-			 is_same(monsterName, "TodonPillar") ||
+			 is_same(monsterName, "DotonPillar") ||
 			 is_same(monsterName, "Yataikuzu") ||
 			 is_same(monsterName, "Yominuma") ||
 			 is_same(monsterName, "Dogs") ||
@@ -3744,8 +3744,8 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		monster->attack(NAttack);
 		monster->setDirectMove(128, 2.0f, false);
 	}
-	else if (is_same(monsterName, "FudonSRK2") ||
-			 is_same(monsterName, "FudonSRK"))
+	else if (is_same(monsterName, "FutonSRK2") ||
+			 is_same(monsterName, "FutonSRK"))
 	{
 		monster->setPosition(ccp(getPositionX() + (_isFlipped == true ? -48 : 48), getPositionY()));
 

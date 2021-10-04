@@ -4,135 +4,135 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>MaskFudon_Idle_001.png</key>
+            <key>MaskRaiton_Idle_001.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,194},{93,30}}</string>
+                <string>{{104,190},{46,100}}</string>
                 <key>offset</key>
-                <string>{-1,21}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,8},{93,30}}</string>
-                <key>sourceSize</key>
-                <string>{95,88}</string>
-            </dict>
-            <key>MaskFudon_Move_001.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{143,146},{93,30}}</string>
-                <key>offset</key>
-                <string>{-8,18}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{89,11},{93,30}}</string>
+                <string>{{0,0},{46,100}}</string>
                 <key>sourceSize</key>
-                <string>{287,88}</string>
+                <string>{46,100}</string>
             </dict>
-            <key>MaskFudon_Move_002.png</key>
+            <key>MaskRaiton_Move_001.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,146},{139,46}}</string>
+                <string>{{104,190},{46,100}}</string>
                 <key>offset</key>
-                <string>{22,5}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{96,16},{139,46}}</string>
-                <key>sourceSize</key>
-                <string>{287,88}</string>
-            </dict>
-            <key>MaskFudon_Move_003.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,98},{191,46}}</string>
-                <key>offset</key>
-                <string>{48,5}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{96,16},{191,46}}</string>
-                <key>sourceSize</key>
-                <string>{287,88}</string>
-            </dict>
-            <key>MaskFudon_Move_004.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,50},{191,46}}</string>
-                <key>offset</key>
-                <string>{48,5}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{96,16},{191,46}}</string>
-                <key>sourceSize</key>
-                <string>{287,88}</string>
-            </dict>
-            <key>MaskFudon_Move_005.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{195,2},{191,46}}</string>
-                <key>offset</key>
-                <string>{48,5}</string>
+                <string>{-4,-1}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{96,16},{191,46}}</string>
+                <string>{{71,2},{46,100}}</string>
                 <key>sourceSize</key>
-                <string>{287,88}</string>
+                <string>{196,102}</string>
             </dict>
-            <key>MaskFudon_Move_006.png</key>
+            <key>MaskRaiton_Move_002.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{191,46}}</string>
+                <string>{{2,238},{76,98}}</string>
                 <key>offset</key>
-                <string>{48,5}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{96,16},{191,46}}</string>
-                <key>sourceSize</key>
-                <string>{287,88}</string>
-            </dict>
-            <key>MaskFudon_Walk_001.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,194},{93,30}}</string>
-                <key>offset</key>
-                <string>{-1,21}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,8},{93,30}}</string>
-                <key>sourceSize</key>
-                <string>{95,88}</string>
-            </dict>
-            <key>MaskFudon_Walk_002.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,226},{93,28}}</string>
-                <key>offset</key>
-                <string>{0,21}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{1,9},{93,28}}</string>
-                <key>sourceSize</key>
-                <string>{95,88}</string>
-            </dict>
-            <key>MaskFudon_Walk_003.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{97,194},{91,30}}</string>
-                <key>offset</key>
-                <string>{-1,23}</string>
+                <string>{12,-1}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{1,6},{91,30}}</string>
+                <string>{{72,3},{76,98}}</string>
                 <key>sourceSize</key>
-                <string>{95,88}</string>
+                <string>{196,102}</string>
+            </dict>
+            <key>MaskRaiton_Move_003.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{128,2},{124,92}}</string>
+                <key>offset</key>
+                <string>{36,-4}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{72,9},{124,92}}</string>
+                <key>sourceSize</key>
+                <string>{196,102}</string>
+            </dict>
+            <key>MaskRaiton_Move_004.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{124,92}}</string>
+                <key>offset</key>
+                <string>{36,-4}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{72,9},{124,92}}</string>
+                <key>sourceSize</key>
+                <string>{196,102}</string>
+            </dict>
+            <key>MaskRaiton_Move_005.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,96},{122,92}}</string>
+                <key>offset</key>
+                <string>{36,-4}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{73,9},{122,92}}</string>
+                <key>sourceSize</key>
+                <string>{196,102}</string>
+            </dict>
+            <key>MaskRaiton_Move_006.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{126,96},{112,92}}</string>
+                <key>offset</key>
+                <string>{30,-4}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{72,9},{112,92}}</string>
+                <key>sourceSize</key>
+                <string>{196,102}</string>
+            </dict>
+            <key>MaskRaiton_Walk_001.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{104,190},{46,100}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{46,100}}</string>
+                <key>sourceSize</key>
+                <string>{46,100}</string>
+            </dict>
+            <key>MaskRaiton_Walk_002.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,190},{46,100}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{46,100}}</string>
+                <key>sourceSize</key>
+                <string>{46,100}</string>
+            </dict>
+            <key>MaskRaiton_Walk_003.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{206,190},{46,99}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{46,99}}</string>
+                <key>sourceSize</key>
+                <string>{46,99}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -140,13 +140,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>MaskFudon.pvr.ccz</string>
+            <string>MaskRaiton.pvr.ccz</string>
             <key>size</key>
             <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9804a1f1fc8243bff9f884e9534c9eb2$</string>
+            <string>$TexturePacker:SmartUpdate:d73e2861919632cbe9ea8b831263982c$</string>
             <key>textureFileName</key>
-            <string>MaskFudon.pvr.ccz</string>
+            <string>MaskRaiton.pvr.ccz</string>
         </dict>
     </dict>
 </plist>

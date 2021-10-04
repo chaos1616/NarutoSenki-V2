@@ -120,7 +120,7 @@
 		<frame>
 			<eventName type="setSound">Audio/Hiruzen/Hiruzen_skill1.ogg</eventName>
 			<frameName>Hiruzen_Skill01_001.png</frameName>
-			<eventName type="setMon">TodonPillar</eventName>
+			<eventName type="setMon">DotonPillar</eventName>
 			<frameName>Hiruzen_Skill01_002.png</frameName>
 			<eventName type="setDelay">20</eventName>
 		</frame>

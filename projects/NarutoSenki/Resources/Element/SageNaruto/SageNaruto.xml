@@ -177,7 +177,7 @@
 			<eventName type="setSkillEffect">smk</eventName>
 			<frameName>SageNaruto_Skill03_12.png</frameName>
 			<eventName type="setCommand">findTarget</eventName>
-			<eventName type="setMon">FudonSRK</eventName>
+			<eventName type="setMon">FutonSRK</eventName>
 			<frameName>SageNaruto_Skill03_13.png</frameName>
 			<frameName>SageNaruto_Skill03_14.png</frameName>
 			<eventName type="setDelay">10</eventName>
