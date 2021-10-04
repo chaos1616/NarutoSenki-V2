@@ -28,7 +28,7 @@ using CommandHandler = std::function<void(CharacterBase *)>;
 class CommandSystem
 {
 private:
-	static inline std::map<std::string, CommandHandler> cmdMap;
+	static inline std::unordered_map<std::string, CommandHandler> cmdMap;
 
 public:
 	static inline void on(const char *cmd, CommandHandler handler)
