@@ -327,7 +327,7 @@ void CharacterBase::update(float dt)
 
 	if (!_isControlled && _actionState != State::DEAD)
 	{
-		if (isPlayer() || isCom())
+		if (isPlayerOrCom())
 		{
 			if (isNotGuardian())
 			{
@@ -408,7 +408,7 @@ void CharacterBase::update(float dt)
 
 		setPosition(ccp(posX, poxY));
 		_delegate->reorderChild(this, -getPositionY());
-		if (isPlayer() || isCom())
+		if (isPlayerOrCom())
 		{
 			CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", this);
 		}
@@ -726,7 +726,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 					}
 					// hero hurt
-					else if (isPlayer() || isCom() || isClone())
+					else if (isPlayerOrCom() || isClone())
 					{
 						if (is_same(hitType, "l_hit"))
 						{
@@ -1680,7 +1680,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 			}
 		}
 
-		if (isPlayer() || isCom())
+		if (isPlayerOrCom())
 		{
 			uint32_t gainValue = 0;
 
@@ -5029,7 +5029,7 @@ void CharacterBase::dead()
 	}
 
 	//kill all buffEffect
-	if (isPlayer() || isCom())
+	if (isPlayerOrCom())
 	{
 		unschedule(schedule_selector(CharacterBase::healBuff));
 		_buffStartTime = 0;
@@ -5103,7 +5103,7 @@ void CharacterBase::dead()
 	stopAllActions();
 	_actionState = State::DEAD;
 
-	if (isPlayer() || isCom())
+	if (isPlayerOrCom())
 	{
 		CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", this);
 	}

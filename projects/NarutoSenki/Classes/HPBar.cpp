@@ -338,7 +338,7 @@ void HPBar::loseHP(float percent)
 				}
 			}
 		}
-		else if ((_delegate->isPlayer() || _delegate->isCom()))
+		else if (_delegate->isPlayerOrCom())
 		{
 			if (_delegate->isCharacter("Kakuzu") && _delegate->getDelegate()->_isOugis2Game)
 			{
