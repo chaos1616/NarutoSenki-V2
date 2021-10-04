@@ -12,6 +12,7 @@ set VSTOOLS=%VSTOOLS:"=%
 set "VSTOOLS=%VSTOOLS:\=/%"
 
 set VSVARS="%VSTOOLS%vsvars32.bat"
+set MSBUILD="C:\Program Files\Microsoft Visual Studio\2022\Preview\Msbuild\Current\Bin\msbuild.exe"
 
 if not defined VSVARS (
     echo Can't find VC2022 installed!
@@ -25,7 +26,7 @@ echo.
 
 call %VSVARS%
 
-msbuild cocos2d-win32.sln /p:Configuration="Debug" /m
+MSBUILD cocos2d-win32.sln /p:Configuration="Debug" /m
 
 echo./*
 echo. * Check the cocos2d-win32 application "NarutoSenki.exe" ...
