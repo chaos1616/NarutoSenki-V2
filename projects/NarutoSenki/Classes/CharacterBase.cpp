@@ -934,7 +934,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 											if (pianyi)
 											{
 												attacker->_isCatchOne = true;
-												setPosition(CCPointMake(attacker->getPositionX(), attacker->getPositionY() + 1));
+												setPosition(ccp(attacker->getPositionX(), attacker->getPositionY() + 1));
 												_delegate->reorderChild(this, -getPositionY());
 											}
 										}
@@ -954,7 +954,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 											if (pianyi)
 											{
 												attacker->_isCatchOne = true;
-												setPosition(CCPointMake(attacker->getPositionX() + 2, attacker->getPositionY() - 2));
+												setPosition(ccp(attacker->getPositionX() + 2, attacker->getPositionY() - 2));
 												_delegate->reorderChild(this, -getPositionY());
 											}
 										}
@@ -983,7 +983,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 											if (pianyi)
 											{
 												attacker->_isCatchOne = true;
-												setPosition(CCPointMake(attacker->getPositionX() + (attacker->_isFlipped ? -28 : 28), attacker->getPositionY() - 1));
+												setPosition(ccp(attacker->getPositionX() + (attacker->_isFlipped ? -28 : 28), attacker->getPositionY() - 1));
 												setFlipX(attacker->_isFlipped ? false : true);
 												_delegate->reorderChild(this, -getPositionY());
 											}
@@ -3684,7 +3684,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	}
 	else if (is_same(monsterName, "KageHand"))
 	{
-		CCPoint dir = CCPointMake(_isFlipped ? getPositionX() - getContentSize().width : getPositionX() + getContentSize().width, getPositionY());
+		CCPoint dir = ccp(_isFlipped ? getPositionX() - getContentSize().width : getPositionX() + getContentSize().width, getPositionY());
 		monster->setPosition(dir);
 		stopAllActions();
 
@@ -5646,13 +5646,13 @@ bool CharacterBase::stepBack2()
 
 	if (isKonohaGroup() && getPositionX() >= _delegate->currentMap->getTileSize().width * 2)
 	{
-		moveDirection = CCPoint(ccp(-1, _diretionY));
+		moveDirection = ccp(-1, _diretionY);
 		walk(moveDirection);
 		return true;
 	}
 	else if (isAkatsukiGroup() && getPositionX() <= (_delegate->currentMap->getMapSize().width - 2) * _delegate->currentMap->getTileSize().width)
 	{
-		moveDirection = CCPoint(ccp(1, _diretionY));
+		moveDirection = ccp(1, _diretionY);
 		walk(moveDirection);
 		return true;
 	}
