@@ -253,9 +253,6 @@ class Choji : public Hero
 
 	void setActionResume() override
 	{
-		if (_skillChangeBuffValue == 0)
-			return;
-
 		unschedule(schedule_selector(Choji::resumeAction));
 
 		setnAttackValue(to_ccstring(getNAttackValue() - 460));
@@ -272,7 +269,7 @@ class Choji : public Hero
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
 
-		lockOugisButtons();
+		unlockOugisButtons();
 
 		if (_hpBar)
 		{

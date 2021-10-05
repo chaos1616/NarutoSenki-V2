@@ -302,7 +302,6 @@ class Hidan : public Hero
 				mo->removeFromParent();
 				mo = nullptr;
 			}
-
 			getMonsterArray()->removeAllObjects();
 			_monsterArray = nullptr;
 		}
@@ -322,14 +321,12 @@ class Hidan : public Hero
 
 	void setActionResume() override
 	{
-		if (_skillChangeBuffValue == 0)
-			return;
-
 		unschedule(schedule_selector(Hidan::resumeAction));
 		_isArmored = false;
 		_isTaunt = false;
 		_isOnlySkillLocked = false;
-		lockOugisButtons();
+		unlockOugisButtons();
+
 		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));

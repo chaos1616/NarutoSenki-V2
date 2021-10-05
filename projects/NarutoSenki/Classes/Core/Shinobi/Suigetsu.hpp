@@ -222,25 +222,22 @@ class Suigetsu : public Hero
 
 	void setActionResume() override
 	{
-		if (_skillChangeBuffValue)
+		_isArmored = false;
+		if (hasTempAttackValue1())
 		{
-			_isArmored = false;
-			if (hasTempAttackValue1())
-			{
-				setnAttackValue(to_ccstring(getTempAttackValue1()));
-				settempAttackValue1(nullptr);
-			}
-			_isOnlySkillLocked = false;
-			lockOugisButtons();
-
-			_nattackRangeX = 16;
-			_nattackRangeY = 48;
-
-			setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-			setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-			setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-
-			_skillChangeBuffValue = 0;
+			setnAttackValue(to_ccstring(getTempAttackValue1()));
+			settempAttackValue1(nullptr);
 		}
+		_isOnlySkillLocked = false;
+		unlockOugisButtons();
+
+		_nattackRangeX = 16;
+		_nattackRangeY = 48;
+
+		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
+		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
+		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+
+		_skillChangeBuffValue = 0;
 	}
 };

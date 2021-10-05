@@ -281,9 +281,6 @@ class Kakuzu : public Hero
 
 	void setActionResume() override
 	{
-		if (_skillChangeBuffValue == 0)
-			return;
-
 		unschedule(schedule_selector(Kakuzu::resumeAction));
 		removeBuffEffect("sBuff");
 

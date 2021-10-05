@@ -246,9 +246,6 @@ class Tobi : public Hero
 
 	void setActionResume() override
 	{
-		if (_skillChangeBuffValue == 0)
-			return;
-
 		unschedule(schedule_selector(Tobi::resumeAction));
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 

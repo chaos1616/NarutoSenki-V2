@@ -118,44 +118,38 @@ class Parents : public Hero
 
 		if (getMaster()->isPlayer())
 		{
-			if (_delegate->getHudLayer()->skill2Button)
-			{
-				_delegate->getHudLayer()->skill2Button->setLock();
-			}
+			_delegate->getHudLayer()->skill2Button->setLock();
 		}
 		setWalkSpeed(460);
 	}
 
 	void setActionResume() override
 	{
-		if (_skillChangeBuffValue)
+		if (_skillChangeBuffValue == 0)
+			return;
+
+		if (hasTempAttackValue1())
 		{
-			if (hasTempAttackValue1())
-			{
-				setnAttackValue(to_ccstring(getTempAttackValue1()));
-				settempAttackValue1(nullptr);
-			}
-			_isOnlySkillLocked = false;
+			setnAttackValue(to_ccstring(getTempAttackValue1()));
+			settempAttackValue1(nullptr);
+		}
+		_isOnlySkillLocked = false;
 
-			_nattackRangeX = 16;
-			_nattackRangeY = 48;
+		_nattackRangeX = 16;
+		_nattackRangeY = 48;
 
-			setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-			setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
+		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
 
-			_skillChangeBuffValue = 0;
+		_skillChangeBuffValue = 0;
 
-			setWalkSpeed(224);
+		setWalkSpeed(224);
 
-			_originSpeed = 224;
+		_originSpeed = 224;
 
-			if (getMaster()->isPlayer())
-			{
-				if (_delegate->getHudLayer()->skill2Button)
-				{
-					_delegate->getHudLayer()->skill2Button->unLock();
-				}
-			}
+		if (getMaster()->isPlayer())
+		{
+			_delegate->getHudLayer()->skill2Button->unLock();
 		}
 	}
 };

@@ -278,36 +278,36 @@ class Deidara : public Hero
 
 	void setActionResume() override
 	{
-		if (_skillChangeBuffValue)
+		if (_skillChangeBuffValue == 0)
+			return;
+
+		unschedule(schedule_selector(Deidara::resumeAction));
+
+		if (_skillChangeBuffValue == 17)
 		{
-			unschedule(schedule_selector(Deidara::resumeAction));
-
-			if (_skillChangeBuffValue == 17)
-			{
-				setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-			}
-			else if (_skillChangeBuffValue == 18)
-			{
-				_isArmored = false;
-				_isAllAttackLocked = false;
-				_originSpeed = 224;
-
-				setWalkSpeed(224);
-
-				lockOugisButtons();
-
-				setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-				setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-
-				if (_hpBar)
-				{
-					_hpBar->setPositionY(getHeight());
-				}
-				unschedule(schedule_selector(Deidara::setMonPer));
-			}
-
-			_skillChangeBuffValue = 0;
+			setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
 		}
+		else if (_skillChangeBuffValue == 18)
+		{
+			_isArmored = false;
+			_isAllAttackLocked = false;
+			_originSpeed = 224;
+
+			setWalkSpeed(224);
+
+			unlockOugisButtons();
+
+			setIdleAction(createAnimation(idleArray, 5.0f, true, false));
+			setWalkAction(createAnimation(walkArray, 10.0f, true, false));
+
+			if (_hpBar)
+			{
+				_hpBar->setPositionY(getHeight());
+			}
+			unschedule(schedule_selector(Deidara::setMonPer));
+		}
+
+		_skillChangeBuffValue = 0;
 	}
 
 	Hero *createClone(int cloneTime) override

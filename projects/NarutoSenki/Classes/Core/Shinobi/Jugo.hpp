@@ -213,28 +213,28 @@ class Jugo : public Hero
 
 	void setActionResume() override
 	{
-		if (_skillChangeBuffValue)
+		if (_skillChangeBuffValue == 0)
+			return;
+
+		if (hasTempAttackValue1())
 		{
-			if (hasTempAttackValue1())
-			{
-				setnAttackValue(to_ccstring(getTempAttackValue1()));
-				settempAttackValue1(nullptr);
-			}
-			_isOnlySkillLocked = false;
-			lockOugisButtons();
-
-			_nattackRangeX = 16;
-			_nattackRangeY = 48;
-
-			setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-			setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-			setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-
-			_skillChangeBuffValue = 0;
-
-			setWalkSpeed(224);
-
-			_originSpeed = 224;
+			setnAttackValue(to_ccstring(getTempAttackValue1()));
+			settempAttackValue1(nullptr);
 		}
+		_isOnlySkillLocked = false;
+		unlockOugisButtons();
+
+		_nattackRangeX = 16;
+		_nattackRangeY = 48;
+
+		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
+		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
+		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+
+		_skillChangeBuffValue = 0;
+
+		setWalkSpeed(224);
+
+		_originSpeed = 224;
 	}
 };

@@ -264,9 +264,6 @@ class Itachi : public Hero
 
 	void setActionResume() override
 	{
-		if (_skillChangeBuffValue == 0)
-			return;
-
 		if (_skillChangeBuffValue == 17)
 		{
 			unschedule(schedule_selector(Itachi::resumeAction));
@@ -277,7 +274,7 @@ class Itachi : public Hero
 			setKnockDownAction(createAnimation(knockDownArray, 10.0f, false, true));
 
 			_isOnlySkillLocked = false;
-			lockOugisButtons();
+			unlockOugisButtons();
 
 			setWalkSpeed(224);
 

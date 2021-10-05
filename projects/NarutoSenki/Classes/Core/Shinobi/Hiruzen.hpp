@@ -237,9 +237,6 @@ class Hiruzen : public Hero
 
 	void setActionResume() override
 	{
-		if (_skillChangeBuffValue == 0)
-			return;
-
 		_isArmored = false;
 		_isOnlySkillLocked = false;
 		if (hasTempAttackValue1())
@@ -251,7 +248,7 @@ class Hiruzen : public Hero
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
 
-		lockOugisButtons();
+		unlockOugisButtons();
 
 		_skillChangeBuffValue = 0;
 	}

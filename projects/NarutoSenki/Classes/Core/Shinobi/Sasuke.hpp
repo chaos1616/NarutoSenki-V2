@@ -667,7 +667,7 @@ class Sasuke : public Hero
 			setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
 
 			_isOnlySkillLocked = false;
-			lockOugisButtons();
+			unlockOugisButtons();
 
 			setWalkSpeed(224);
 

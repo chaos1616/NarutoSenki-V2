@@ -226,7 +226,7 @@ class Gaara : public Hero
 
 		_isOnlySkillLocked = false;
 
-		lockOugisButtons();
+		unlockOugisButtons();
 		_gardValue -= 5000;
 		_isArmored = false;
 		_skillChangeBuffValue = 0;
