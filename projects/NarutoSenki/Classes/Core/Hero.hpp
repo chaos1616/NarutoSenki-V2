@@ -289,7 +289,7 @@ public:
 // setAIHandler(yourHero::yourAIHandlerFunctionName);	// Custom	handler
 #define setAIHandler(funcName) aiHandler = std::bind(&funcName, this)
 
-		/** Character Macros */
+	/** Character Macros */
 
 #define match_char_exp(_name, _fn, _name2, _fn2) \
 	if (isCharacter(_name))                      \
