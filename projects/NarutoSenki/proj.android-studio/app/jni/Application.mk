@@ -1,6 +1,6 @@
 APP_STL := c++_shared
 
-APP_CPPFLAGS := -frtti -fsigned-char -fexceptions
+APP_CPPFLAGS :=  -std=c++17 -frtti -fsigned-char -fexceptions
 APP_LDFLAGS := -latomic
 
 #APP_ALLOW_MISSING_DEPS=true\

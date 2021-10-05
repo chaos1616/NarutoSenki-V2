@@ -58,6 +58,9 @@ assets/
 local.properties
 samples/
 
+# Doesn't ignore prebuilt libs
+!cocos2dx/platform/third_party/**/libs
+
 # Ignore python compiled files
 *.pyc
 

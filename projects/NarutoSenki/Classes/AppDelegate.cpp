@@ -27,7 +27,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	pEngine->addSearchPath("../lua");
 	CCFileUtils::sharedFileUtils()->addSearchPath("../lua");
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-	pStack->setXXTEAKeyAndSign("2dxLua", strlen("2dxLua"), "XXTEA", strlen("XXTEA"));
+	// pStack->setXXTEAKeyAndSign("2dxLua", strlen("2dxLua"), "XXTEA", strlen("XXTEA"));
 	pEngine->addSearchPath("lua");
 	CCFileUtils::sharedFileUtils()->addSearchPath("lua");
 	CCLOG("------ Android WritablePath -> %s", CCFileUtils::sharedFileUtils()->getWritablePath().c_str());
