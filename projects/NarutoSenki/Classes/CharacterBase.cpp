@@ -1679,103 +1679,103 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 					_delegate->setCKRLose(true);
 			}
 		}
+	}
 
-		if (isPlayerOrCom())
+	if (isPlayerOrCom())
+	{
+		uint32_t gainValue = 0;
+
+		if (attacker->isCharacter("Kisame") && attacker->_skillChangeBuffValue)
 		{
-			uint32_t gainValue = 0;
-
-			if (attacker->isCharacter("Kisame") && attacker->_skillChangeBuffValue)
-			{
-				if (currentAttacker->isAttackGainCKR)
-					gainValue = realValue * 80 / 100;
-				else
-					gainValue = realValue * 65 / 100;
-			}
-			else if (currentAttacker->isAttackGainCKR)
-			{
-				gainValue = realValue * 15 / 100;
-			}
-
-			if (gainValue != 0)
-			{
-				if (currentAttacker->_level >= 2 && !currentAttacker->_isControlled)
-				{
-					if (45000 - currentAttacker->getCkrValue() >= gainValue)
-					{
-						uint32_t newValue = currentAttacker->getCkrValue() + gainValue;
-						currentAttacker->setCKR(to_ccstring(newValue));
-					}
-					else
-					{
-						currentAttacker->setCKR(CCString::create("45000"));
-					}
-
-					if (currentAttacker->getCkrValue() >= 15000)
-						currentAttacker->_isCanOugis1 = true;
-
-					if (currentAttacker->isPlayer())
-						_delegate->setCKRLose(false);
-				}
-
-				if (currentAttacker->_level >= 4 && !currentAttacker->_isControlled)
-				{
-					if (50000 - currentAttacker->getCkr2Value() >= gainValue)
-					{
-						uint32_t newValue = currentAttacker->getCkr2Value() + gainValue;
-						currentAttacker->setCKR2(to_ccstring(newValue));
-					}
-					else
-					{
-						currentAttacker->setCKR2(CCString::create("50000"));
-					}
-
-					if (currentAttacker->getCkr2Value() >= 25000)
-						currentAttacker->_isCanOugis2 = true;
-
-					if (currentAttacker->isPlayer())
-						_delegate->setCKRLose(true);
-				}
-			}
+			if (currentAttacker->isAttackGainCKR)
+				gainValue = realValue * 80 / 100;
+			else
+				gainValue = realValue * 65 / 100;
+		}
+		else if (currentAttacker->isAttackGainCKR)
+		{
+			gainValue = realValue * 15 / 100;
 		}
 
-		if (isPlayer() || (isNotTower() &&
-						   abs(ccpSub(getPosition(), _delegate->currentPlayer->getPosition()).x) < winSize.width / 2))
+		if (gainValue != 0)
 		{
-			//create damage value display
-			bool _isDisplay = false;
-
-			if (attacker->isPlayer() || isPlayer())
+			if (currentAttacker->_level >= 2 && !currentAttacker->_isControlled)
 			{
-				_isDisplay = true;
-			}
-			if (attacker->getMaster())
-			{
-				if (attacker->getMaster()->isPlayer())
-					_isDisplay = true;
-			}
-
-			if (_isDisplay)
-			{
-				if (criticalValue <= 20)
-					setDamgeDisplay(realValue, "white");
-				else if (criticalValue <= 40)
-					setDamgeDisplay(realValue, "yellow");
-				else
-					setDamgeDisplay(realValue, "red");
-			}
-
-			//create damage effect
-			if (isFlog() && attacker->isNotFlog())
-			{
-				if (is_same(effectType, "a_hit"))
+				if (45000 - currentAttacker->getCkrValue() >= gainValue)
 				{
-					setDamgeEffect("a_hit");
+					uint32_t newValue = currentAttacker->getCkrValue() + gainValue;
+					currentAttacker->setCKR(to_ccstring(newValue));
 				}
+				else
+				{
+					currentAttacker->setCKR(CCString::create("45000"));
+				}
+
+				if (currentAttacker->getCkrValue() >= 15000)
+					currentAttacker->_isCanOugis1 = true;
+
+				if (currentAttacker->isPlayer())
+					_delegate->setCKRLose(false);
 			}
-			else if (attacker->isNotFlog())
+
+			if (currentAttacker->_level >= 4 && !currentAttacker->_isControlled)
 			{
-				setDamgeEffect(effectType);
+				if (50000 - currentAttacker->getCkr2Value() >= gainValue)
+				{
+					uint32_t newValue = currentAttacker->getCkr2Value() + gainValue;
+					currentAttacker->setCKR2(to_ccstring(newValue));
+				}
+				else
+				{
+					currentAttacker->setCKR2(CCString::create("50000"));
+				}
+
+				if (currentAttacker->getCkr2Value() >= 25000)
+					currentAttacker->_isCanOugis2 = true;
+
+				if (currentAttacker->isPlayer())
+					_delegate->setCKRLose(true);
 			}
+		}
+	}
+
+	if (isPlayer() || (isNotTower() &&
+					   abs(ccpSub(getPosition(), _delegate->currentPlayer->getPosition()).x) < winSize.width / 2))
+	{
+		//create damage value display
+		bool _isDisplay = false;
+
+		if (attacker->isPlayer() || isPlayer())
+		{
+			_isDisplay = true;
+		}
+		if (attacker->getMaster())
+		{
+			if (attacker->getMaster()->isPlayer())
+				_isDisplay = true;
+		}
+
+		if (_isDisplay)
+		{
+			if (criticalValue <= 20)
+				setDamgeDisplay(realValue, "white");
+			else if (criticalValue <= 40)
+				setDamgeDisplay(realValue, "yellow");
+			else
+				setDamgeDisplay(realValue, "red");
+		}
+
+		//create damage effect
+		if (isFlog() && attacker->isNotFlog())
+		{
+			if (is_same(effectType, "a_hit"))
+			{
+				setDamgeEffect("a_hit");
+			}
+		}
+		else if (attacker->isNotFlog())
+		{
+			setDamgeEffect(effectType);
 		}
 	}
 }
