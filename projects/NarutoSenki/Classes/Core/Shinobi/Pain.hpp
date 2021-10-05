@@ -6,7 +6,7 @@ class Pain : public Hero
 #define kPain__ "Pain"
 #define kNagato "Nagato"
 
-	void perform()
+	void perform() override
 	{
 	}
 

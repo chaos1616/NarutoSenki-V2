@@ -4,7 +4,7 @@
 
 class Kiba : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
@@ -166,7 +166,7 @@ class Kiba : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		if (_skillChangeBuffValue == 17)
 		{
@@ -206,7 +206,7 @@ class Kiba : public Hero
 		}
 	}
 
-	void resumeAction(float dt)
+	void resumeAction(float dt) override
 	{
 		if (_powerUPBuffValue)
 		{
@@ -223,7 +223,7 @@ class Kiba : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	void setActionResume()
+	void setActionResume() override
 	{
 		if (_powerUPBuffValue)
 		{
@@ -257,7 +257,7 @@ class Kiba : public Hero
 		_skillChangeBuffValue = 0;
 	}
 
-	Hero *createClone(int cloneTime)
+	Hero *createClone(int cloneTime) override
 	{
 		if (!_monsterArray)
 		{

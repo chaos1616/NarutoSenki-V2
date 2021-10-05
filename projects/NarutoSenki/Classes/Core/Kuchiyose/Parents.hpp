@@ -3,7 +3,7 @@
 
 class Parents : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		if (notFindHero(winSize.width / 2 - 32, true))
 		{
@@ -103,7 +103,7 @@ class Parents : public Hero
 			idle();
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		settempAttackValue1(to_ccstring(getNAttackValue()));
 		setnAttackValue(to_ccstring(2460));
@@ -126,7 +126,7 @@ class Parents : public Hero
 		setWalkSpeed(460);
 	}
 
-	void setActionResume()
+	void setActionResume() override
 	{
 		if (_skillChangeBuffValue)
 		{

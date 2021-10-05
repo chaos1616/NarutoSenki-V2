@@ -6,7 +6,7 @@ class Jiraiya : public Hero
 #define kJiraiya____ "Jiraiya"
 #define kSageJiraiya "SageJiraiya"
 
-	void setID(CCString *character, CCString *role, CCString *group)
+	void setID(CCString *character, CCString *role, CCString *group) override
 	{
 		Hero::setID(character, role, group);
 
@@ -16,7 +16,7 @@ class Jiraiya : public Hero
 
 	// Jiraiya
 
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();

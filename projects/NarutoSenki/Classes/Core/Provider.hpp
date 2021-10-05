@@ -74,7 +74,7 @@
 // TODO: Impl a default AI logic
 class DefaultAI : public Hero
 {
-	void perform()
+	void perform() override
 	{
 	}
 };

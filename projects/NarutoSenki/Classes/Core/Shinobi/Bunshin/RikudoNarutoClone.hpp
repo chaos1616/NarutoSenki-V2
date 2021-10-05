@@ -3,7 +3,7 @@
 
 class RikudoNarutoClone : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		if (notFindHero(0))
 		{

@@ -4,7 +4,7 @@
 
 class Kakashi : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
@@ -175,7 +175,7 @@ class Kakashi : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		setSkill1Action(createAnimation(skillSPC1Array, 10.0f, false, true));
 		setSkill2Action(createAnimation(skillSPC2Array, 10.0f, false, true));
@@ -226,7 +226,7 @@ class Kakashi : public Hero
 		}
 	}
 
-	void resumeAction(float dt)
+	void resumeAction(float dt) override
 	{
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 		setSkill1Action(createAnimation(skill1Array, 10.0f, false, true));
@@ -244,7 +244,7 @@ class Kakashi : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	Hero *createClone(int cloneTime)
+	Hero *createClone(int cloneTime) override
 	{
 		auto clone = create<DogWall>(CCString::create("DogWall"), CCString::create(kRoleSummon), getGroup());
 		clone->setPosition(ccp(getPositionX() + (_isFlipped ? -56 : 56), getPositionY()));

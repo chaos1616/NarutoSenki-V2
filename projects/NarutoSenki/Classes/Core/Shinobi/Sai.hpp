@@ -3,7 +3,7 @@
 
 class Sai : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
@@ -214,7 +214,7 @@ class Sai : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		if (_skillChangeBuffValue == 17)
 		{
@@ -241,7 +241,7 @@ class Sai : public Hero
 		}
 	}
 
-	void resumeAction(float dt)
+	void resumeAction(float dt) override
 	{
 		if (_skillChangeBuffValue == 17)
 		{
@@ -275,7 +275,7 @@ class Sai : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	void setActionResume()
+	void setActionResume() override
 	{
 		if (_skillChangeBuffValue)
 		{

@@ -3,7 +3,7 @@
 
 class Hidan : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		bool _isFound = false;
@@ -263,7 +263,7 @@ class Hidan : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		_isArmored = true;
 		_isTaunt = true;
@@ -275,7 +275,7 @@ class Hidan : public Hero
 		lockOugisButtons();
 	}
 
-	void resumeAction(float dt)
+	void resumeAction(float dt) override
 	{
 		_isArmored = false;
 		_isTaunt = false;
@@ -320,7 +320,7 @@ class Hidan : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	void setActionResume()
+	void setActionResume() override
 	{
 		if (_skillChangeBuffValue == 0)
 			return;

@@ -4,7 +4,7 @@
 
 class Deidara : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
@@ -215,7 +215,7 @@ class Deidara : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		if (_skillChangeBuffValue == 17)
 		{
@@ -242,7 +242,7 @@ class Deidara : public Hero
 		}
 	}
 
-	void resumeAction(float dt)
+	void resumeAction(float dt) override
 	{
 		if (_skillChangeBuffValue == 17)
 		{
@@ -276,7 +276,7 @@ class Deidara : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	void setActionResume()
+	void setActionResume() override
 	{
 		if (_skillChangeBuffValue)
 		{
@@ -310,7 +310,7 @@ class Deidara : public Hero
 		}
 	}
 
-	Hero *createClone(int cloneTime)
+	Hero *createClone(int cloneTime) override
 	{
 		auto clone = create<Centipede>(CCString::create("Centipede"), CCString::create(kRoleSummon), getGroup());
 		clone->_isArmored = true;

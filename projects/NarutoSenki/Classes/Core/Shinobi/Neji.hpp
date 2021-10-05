@@ -3,7 +3,7 @@
 
 class Neji : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();

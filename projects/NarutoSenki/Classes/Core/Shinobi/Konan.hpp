@@ -3,7 +3,7 @@
 
 class Konan : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
@@ -219,7 +219,7 @@ class Konan : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		_isAllAttackLocked = true;
 		_isArmored = true;
@@ -241,7 +241,7 @@ class Konan : public Hero
 		lockOugisButtons();
 	}
 
-	void resumeAction(float dt)
+	void resumeAction(float dt) override
 	{
 		_isAllAttackLocked = false;
 		_isArmored = false;

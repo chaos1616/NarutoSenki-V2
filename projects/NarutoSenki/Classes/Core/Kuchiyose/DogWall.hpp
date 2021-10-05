@@ -3,12 +3,12 @@
 
 class DogWall : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		attack(NAttack);
 	}
 
-	void setAI(float dt)
+	void setAI(float dt) override
 	{
 		attack(NAttack);
 	}

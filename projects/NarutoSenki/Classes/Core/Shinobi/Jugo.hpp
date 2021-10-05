@@ -3,7 +3,7 @@
 
 class Jugo : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
@@ -191,7 +191,7 @@ class Jugo : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		settempAttackValue1(to_ccstring(getNAttackValue()));
 		setnAttackValue(to_ccstring(1960));
@@ -211,7 +211,7 @@ class Jugo : public Hero
 		lockOugisButtons();
 	}
 
-	void setActionResume()
+	void setActionResume() override
 	{
 		if (_skillChangeBuffValue)
 		{

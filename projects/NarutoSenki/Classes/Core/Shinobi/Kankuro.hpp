@@ -6,7 +6,7 @@
 
 class Kankuro : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
@@ -200,7 +200,7 @@ class Kankuro : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		if (isPlayer())
 		{
@@ -209,7 +209,7 @@ class Kankuro : public Hero
 		}
 	}
 
-	void setActionResume()
+	void setActionResume() override
 	{
 		if (isPlayer())
 		{
@@ -219,7 +219,7 @@ class Kankuro : public Hero
 		_skillChangeBuffValue = 0;
 	}
 
-	Hero *createClone(int cloneTime)
+	Hero *createClone(int cloneTime) override
 	{
 		Hero *clone = nullptr;
 

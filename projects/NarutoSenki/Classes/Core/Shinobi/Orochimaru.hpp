@@ -3,7 +3,7 @@
 
 class Orochimaru : public Hero
 {
-	void perform()
+	void perform() override
 	{
 	}
 };

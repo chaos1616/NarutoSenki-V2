@@ -3,7 +3,7 @@
 
 class Tobi : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
@@ -190,7 +190,7 @@ class Tobi : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		setWalkAction(createAnimation(skillSPC1Array, 10.0f, true, false));
 
@@ -229,7 +229,7 @@ class Tobi : public Hero
 		}
 	}
 
-	void resumeAction(float dt)
+	void resumeAction(float dt) override
 	{
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 
@@ -244,7 +244,7 @@ class Tobi : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	void setActionResume()
+	void setActionResume() override
 	{
 		if (_skillChangeBuffValue == 0)
 			return;

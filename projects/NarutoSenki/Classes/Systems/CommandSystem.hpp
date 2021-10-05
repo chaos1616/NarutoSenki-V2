@@ -66,7 +66,7 @@ public:
 		init();
 
 		if (cmdMap.size() > 0)
-			CCLOG("Command System ] [ Count: %ld", cmdMap.size());
+			CCLOG("Command System ] [ Count: %", cmdMap.size());
 		else
 			CCLOG("Command System ] [ Initial error, not found any command");
 	}

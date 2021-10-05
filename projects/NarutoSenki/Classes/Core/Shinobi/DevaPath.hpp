@@ -5,7 +5,7 @@
 
 class DevaPath : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		if (notFindHero(0))
 		{
@@ -102,7 +102,7 @@ class DevaPath : public Hero
 		stepOn();
 	}
 
-	Hero *createClone(int cloneTime)
+	Hero *createClone(int cloneTime) override
 	{
 		Hero *clone = nullptr;
 		if (!_monsterArray)

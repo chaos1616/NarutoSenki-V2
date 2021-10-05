@@ -42,7 +42,7 @@ class Kakuzu : public Hero
 		}
 	}
 
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		if (isFreeActionState())
@@ -269,17 +269,17 @@ class Kakuzu : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		setBuffEffect("jdBuff");
 	}
 
-	void resumeAction(float dt)
+	void resumeAction(float dt) override
 	{
 		removeBuffEffect("sBuff");
 	}
 
-	void setActionResume()
+	void setActionResume() override
 	{
 		if (_skillChangeBuffValue == 0)
 			return;
@@ -290,7 +290,7 @@ class Kakuzu : public Hero
 		_skillChangeBuffValue = 0;
 	}
 
-	Hero *createClone(int cloneTime)
+	Hero *createClone(int cloneTime) override
 	{
 		if (!_monsterArray)
 		{

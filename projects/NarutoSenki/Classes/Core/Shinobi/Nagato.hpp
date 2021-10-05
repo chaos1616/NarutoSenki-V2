@@ -4,11 +4,11 @@
 
 class Nagato : public Hero
 {
-	void perform()
+	void perform() override
 	{
 	}
 
-	Hero *createClone(int cloneTime)
+	Hero *createClone(int cloneTime) override
 	{
 		auto clone = create<DevaPath>(CCString::create("DevaPath"), CCString::create(kRoleClone), getGroup());
 		clone->_isArmored = true;

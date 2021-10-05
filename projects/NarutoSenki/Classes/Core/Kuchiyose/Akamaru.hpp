@@ -3,7 +3,7 @@
 
 class Akamaru : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		if (notFindHero(winSize.width / 2 - 32, true))
 		{
@@ -99,7 +99,7 @@ class Akamaru : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		_powerUPBuffValue = 360;
 		setnAttackValue(to_ccstring(getNAttackValue() + _powerUPBuffValue));
@@ -114,7 +114,7 @@ class Akamaru : public Hero
 		}
 	}
 
-	void resumeAction(float dt)
+	void resumeAction(float dt) override
 	{
 		if (_powerUPBuffValue)
 		{

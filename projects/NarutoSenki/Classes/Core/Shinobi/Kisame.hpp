@@ -3,7 +3,7 @@
 
 class Kisame : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
@@ -204,7 +204,7 @@ class Kisame : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		settempAttackValue1(to_ccstring(getNAttackValue()));
 		setnAttackValue(to_ccstring(660));
@@ -224,7 +224,7 @@ class Kisame : public Hero
 		lockOugisButtons();
 	}
 
-	void setActionResume()
+	void setActionResume() override
 	{
 		if (_skillChangeBuffValue)
 		{

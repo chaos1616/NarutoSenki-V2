@@ -23,7 +23,7 @@ class Ino : public Hero
 		// }
 	}
 
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
@@ -221,7 +221,7 @@ class Ino : public Hero
 		}
 	}
 
-	void resumeAction(float dt)
+	void resumeAction(float dt) override
 	{
 		if (!_isArmored)
 			return;
@@ -262,7 +262,7 @@ class Ino : public Hero
 		_isArmored = false;
 	}
 
-	void setActionResume()
+	void setActionResume() override
 	{
 		unschedule(schedule_selector(Ino::resumeAction));
 		CCObject *pObject;

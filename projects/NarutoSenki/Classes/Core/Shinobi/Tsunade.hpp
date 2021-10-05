@@ -4,7 +4,7 @@
 
 class Tsunade : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
@@ -180,7 +180,7 @@ class Tsunade : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		setnAttackValue(to_ccstring(getNAttackValue() + 250));
 		_isOnlySkillLocked = true;
@@ -200,7 +200,7 @@ class Tsunade : public Hero
 		lockOugisButtons();
 	}
 
-	void resumeAction(float dt)
+	void resumeAction(float dt) override
 	{
 		setnAttackValue(to_ccstring(getNAttackValue() - 250));
 		_nattackRangeX = 16;
@@ -225,7 +225,7 @@ class Tsunade : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	Hero *createClone(int cloneTime)
+	Hero *createClone(int cloneTime) override
 	{
 		auto clone = create<Slug>(CCString::create("Slug"), CCString::create(kRoleSummon), getGroup());
 		clone->_isArmored = true;

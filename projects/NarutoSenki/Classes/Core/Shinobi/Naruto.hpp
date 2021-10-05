@@ -13,7 +13,7 @@ class Naruto : public Hero
 #define kSageNaruto__ "SageNaruto"
 #define kRikudoNaruto "RikudoNaruto"
 
-	void setID(CCString *character, CCString *role, CCString *group)
+	void setID(CCString *character, CCString *role, CCString *group) override
 	{
 		Hero::setID(character, role, group);
 
@@ -22,21 +22,21 @@ class Naruto : public Hero
 						kRikudoNaruto, setAIHandler(Naruto::perform_RikudoNaruto));
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		match_char_exp3(kNaruto______, changeAction_Naruto(),
 						kSageNaruto__, changeAction_SageNaruto(),
 						kRikudoNaruto, changeAction_RikudoNaruto());
 	}
 
-	void resumeAction(float dt)
+	void resumeAction(float dt) override
 	{
 		match_char_exp3(kNaruto______, resumeAction_Naruto(dt),
 						kSageNaruto__, resumeAction_SageNaruto(dt),
 						kRikudoNaruto, resumeAction_RikudoNaruto(dt));
 	}
 
-	Hero *createClone(int cloneTime)
+	Hero *createClone(int cloneTime) override
 	{
 		match_char_exp3(kNaruto______, return createClone_Naruto(cloneTime),
 						kSageNaruto__, return createClone_SageNaruto(cloneTime),
@@ -46,7 +46,7 @@ class Naruto : public Hero
 
 	// Naruto
 
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();

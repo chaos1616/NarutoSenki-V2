@@ -3,7 +3,7 @@
 
 class Minato : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
@@ -276,7 +276,7 @@ class Minato : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		if (_skillChangeBuffValue == 17)
 		{
@@ -303,7 +303,7 @@ class Minato : public Hero
 		}
 	}
 
-	void resumeAction(float dt)
+	void resumeAction(float dt) override
 	{
 		setnAttackValue(to_ccstring(getNAttackValue() - 200));
 		_nattackRangeX = 16;
@@ -315,7 +315,7 @@ class Minato : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	void setActionResume()
+	void setActionResume() override
 	{
 		setSkill1Action(createAnimation(skill1Array, 10.0f, false, true));
 		_skillChangeBuffValue = 0;

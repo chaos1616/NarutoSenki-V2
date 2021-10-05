@@ -3,7 +3,7 @@
 
 class Choji : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
@@ -196,7 +196,7 @@ class Choji : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		_isArmored = true;
 		setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
@@ -220,7 +220,7 @@ class Choji : public Hero
 		}
 	}
 
-	void resumeAction(float dt)
+	void resumeAction(float dt) override
 	{
 		setnAttackValue(to_ccstring(getNAttackValue() - 460));
 		_nattackRangeX = 16;
@@ -251,7 +251,7 @@ class Choji : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	void setActionResume()
+	void setActionResume() override
 	{
 		if (_skillChangeBuffValue == 0)
 			return;

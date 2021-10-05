@@ -8,7 +8,7 @@ class Lee : public Hero
 
 	int bamen = 0;
 
-	void setID(CCString *character, CCString *role, CCString *group)
+	void setID(CCString *character, CCString *role, CCString *group) override
 	{
 		Hero::setID(character, role, group);
 
@@ -107,7 +107,7 @@ class Lee : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		if (bamen == 0 && !_heartEffect)
 		{
@@ -170,7 +170,7 @@ class Lee : public Hero
 		}
 	}
 
-	void setRestore2(float dt)
+	void setRestore2(float dt) override
 	{
 		CharacterBase::setRestore2(dt);
 
@@ -233,7 +233,7 @@ class Lee : public Hero
 
 	// Lee
 
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();

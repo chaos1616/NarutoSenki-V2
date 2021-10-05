@@ -3,7 +3,7 @@
 
 class Itachi : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
@@ -195,7 +195,7 @@ class Itachi : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
 		setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
@@ -218,7 +218,7 @@ class Itachi : public Hero
 		lockOugisButtons();
 	}
 
-	void resumeAction(float dt)
+	void resumeAction(float dt) override
 	{
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
@@ -262,7 +262,7 @@ class Itachi : public Hero
 		CharacterBase::resumeAction(dt);
 	}
 
-	void setActionResume()
+	void setActionResume() override
 	{
 		if (_skillChangeBuffValue == 0)
 			return;

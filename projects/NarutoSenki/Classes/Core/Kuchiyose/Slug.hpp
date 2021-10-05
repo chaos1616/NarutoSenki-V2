@@ -3,7 +3,7 @@
 
 class Slug : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		if (notFindFlog(0))
 		{

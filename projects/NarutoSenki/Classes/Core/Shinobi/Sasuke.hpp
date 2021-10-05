@@ -6,7 +6,7 @@ class Sasuke : public Hero
 #define kSasuke________ "Sasuke"
 #define kImmortalSasuke "ImmortalSasuke"
 
-	void setID(CCString *character, CCString *role, CCString *group)
+	void setID(CCString *character, CCString *role, CCString *group) override
 	{
 		Hero::setID(character, role, group);
 
@@ -14,19 +14,19 @@ class Sasuke : public Hero
 					   kImmortalSasuke, setAIHandler(Sasuke::perform_SasukeImmortal));
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		match_char_exp(kSasuke________, changeAction_Sasuke(),
 					   kImmortalSasuke, changeAction_SasukeImmortal());
 	}
 
-	void resumeAction(float dt)
+	void resumeAction(float dt) override
 	{
 		match_char_exp(kSasuke________, resumeAction_Sasuke(dt),
 					   kImmortalSasuke, resumeAction_SasukeImmortal(dt));
 	}
 
-	void setActionResume()
+	void setActionResume() override
 	{
 		match_char_exp(kSasuke________, setActionResume_Sasuke(),
 					   kImmortalSasuke, setActionResume_SasukeImmortal());
@@ -34,7 +34,7 @@ class Sasuke : public Hero
 
 	// Sasuke
 
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();

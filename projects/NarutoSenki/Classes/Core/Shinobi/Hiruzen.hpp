@@ -3,7 +3,7 @@
 
 class Hiruzen : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
@@ -218,7 +218,7 @@ class Hiruzen : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		_isArmored = true;
 		_nattackRangeX = 16;
@@ -235,7 +235,7 @@ class Hiruzen : public Hero
 		lockOugisButtons();
 	}
 
-	void setActionResume()
+	void setActionResume() override
 	{
 		if (_skillChangeBuffValue == 0)
 			return;

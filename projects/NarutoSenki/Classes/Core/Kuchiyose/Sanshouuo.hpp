@@ -3,7 +3,7 @@
 
 class Sanshouuo : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		if (notFindHero(winSize.width / 2 - 32, true))
 		{

@@ -3,7 +3,7 @@
 
 class Guardian : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		if (!findTargetEnemy(kRoleHero, true))
 		{
@@ -87,7 +87,7 @@ class Guardian : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		setnAttackValue(to_ccstring(getNAttackValue() + 700));
 		_nattackRangeX = 0;

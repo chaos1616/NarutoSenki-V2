@@ -3,7 +3,7 @@
 
 class Tenten : public Hero
 {
-	void perform()
+	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
@@ -207,12 +207,12 @@ class Tenten : public Hero
 		}
 	}
 
-	void changeAction()
+	void changeAction() override
 	{
 		setNAttackAction(createAnimation(skillSPC1Array, 10.0f, false, true));
 	}
 
-	void resumeAction(float dt)
+	void resumeAction(float dt) override
 	{
 		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
 		CharacterBase::resumeAction(dt);
