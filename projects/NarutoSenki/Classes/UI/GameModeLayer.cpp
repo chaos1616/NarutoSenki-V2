@@ -8,14 +8,6 @@
 //     return data;
 // }
 
-GameModeLayer::GameModeLayer()
-{
-}
-
-GameModeLayer::~GameModeLayer()
-{
-}
-
 bool GameModeLayer::init()
 {
 	CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
