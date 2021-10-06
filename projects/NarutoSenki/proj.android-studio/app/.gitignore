@@ -1,3 +1,5 @@
+.externalNativeBuild
+release/
+debug/
 /build
 /jniLibs
-*.jks

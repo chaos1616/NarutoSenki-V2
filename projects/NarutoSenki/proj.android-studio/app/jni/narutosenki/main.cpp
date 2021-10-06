@@ -20,7 +20,7 @@ extern "C"
 		return JNI_VERSION_1_4;
 	}
 
-	void Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeInit(JNIEnv *env, jobject thiz, jint w, jint h)
+	void Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeInit(JNIEnv *env, jclass obj, jint w, jint h)
 	{
 		if (!CCDirector::sharedDirector()->getOpenGLView())
 		{

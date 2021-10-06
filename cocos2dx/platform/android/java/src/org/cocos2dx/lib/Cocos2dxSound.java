@@ -38,7 +38,7 @@ public class Cocos2dxSound {
 	// ===========================================================
 	// Constants
 	// ===========================================================
-	public static final int MAX_SIMULTANEOUS_STREAMS_DEFAULT = 6 * 3 * 2;
+	public static final int MAX_SIMULTANEOUS_STREAMS_DEFAULT = 150;
 	public static final int MAX_SIMULTANEOUS_STREAMS_I9100 = 20;
 
 	private static final String TAG = "Cocos2dxSound";
@@ -67,7 +67,7 @@ public class Cocos2dxSound {
 
 	private static final float SOUND_RATE = 1.0f;
 	private static final int SOUND_PRIORITY = 1;
-	private static final int SOUND_QUALITY = 5;
+	private static final int SOUND_QUALITY = 0;
 
 	private final static int INVALID_SOUND_ID = -1;
 	private final static int INVALID_STREAM_ID = -1;

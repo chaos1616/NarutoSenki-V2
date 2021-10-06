@@ -22,11 +22,11 @@ string g_apkPath;
 
 extern "C" {
 
-    JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetApkPath(JNIEnv*  env, jobject thiz, jstring apkPath) {
+    JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetApkPath(JNIEnv*  env, jclass obj, jstring apkPath) {
         g_apkPath = JniHelper::jstring2string(apkPath);
     }
 
-    JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetEditTextDialogResult(JNIEnv * env, jobject obj, jbyteArray text) {
+    JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetEditTextDialogResult(JNIEnv * env, jclass obj, jbyteArray text) {
         jsize  size = env->GetArrayLength(text);
 
         if (size > 0) {

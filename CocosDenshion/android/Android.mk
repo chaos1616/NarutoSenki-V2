@@ -8,11 +8,10 @@ LOCAL_MODULE_FILENAME := libcocosdenshion
 LOCAL_SRC_FILES := SimpleAudioEngine.cpp \
                    jni/SimpleAudioEngineJni.cpp
 
-SHAREDLIBS += -lopenal -lalut -logg -lvorbis -lvorbisfile
-
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../include
 
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/../include \
+LOCAL_C_INCLUDES := $(LOCAL_PATH) \
+                    $(LOCAL_PATH)/../include \
                     $(LOCAL_PATH)/../../cocos2dx \
                     $(LOCAL_PATH)/../../cocos2dx/include \
                     $(LOCAL_PATH)/../../cocos2dx/kazmath/include \

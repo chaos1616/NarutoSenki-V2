@@ -7,7 +7,7 @@ android {
     buildToolsVersion "31.0.0"
 
     defaultConfig {
-        applicationId "re.naruto.game"
+        applicationId "net.zakume.game"
         minSdkVersion 21
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 31
@@ -19,24 +19,23 @@ android {
                 ndkBuild {
                     targets 'cocos2dcpp'
                     // arguments 'NDK_TOOLCHAIN_VERSION=clang'
-                     arguments '-j' + Runtime.runtime.availableProcessors()
+                    arguments '-j' + Runtime.runtime.availableProcessors()
                     arguments 'NDK_TOOLCHAIN_VERSION=4.9'
                     // arguments 'APP_PLATFORM=android-'+PROP_APP_PLATFORM
 
                     def module_paths = [
-                                        project.file("../../../..").absolutePath,
-                                        project.file("../../../../cocos2dx").absolutePath,
-                                        project.file("../../../../cocos2dx/platform/third_party/android/prebuilt").absolutePath,
-                                        project.file("../../../../external").absolutePath,
-                                        project.file("../../../../extensions").absolutePath,
-                                        project.file("../../../../CocosDenshion/android").absolutePath
-                                        ]
+                            project.file("../../../..").absolutePath,
+                            project.file("../../../../cocos2dx").absolutePath,
+                            project.file("../../../../cocos2dx/platform/third_party/android/prebuilt").absolutePath,
+                            project.file("../../../../external").absolutePath,
+                            project.file("../../../../extensions").absolutePath,
+                            project.file("../../../../CocosDenshion/android").absolutePath
+                    ]
                     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
                         // should use '/'
-                        module_paths = module_paths.collect {it.replaceAll('\\\\', '/')}
+                        module_paths = module_paths.collect { it.replaceAll('\\\\', '/') }
                         arguments 'NDK_MODULE_PATH=' + module_paths.join(";")
-                    }
-                    else {
+                    } else {
                         arguments 'NDK_MODULE_PATH=' + module_paths.join(':')
                     }
                 }
@@ -45,9 +44,8 @@ android {
 
         ndk {
             abiFilters = []
-            abiFilters.addAll(PROP_APP_ABI.split(':').collect{it as String})
+            abiFilters.addAll(PROP_APP_ABI.split(':').collect { it as String })
         }
-        applicationIdSuffix PROP_APP_OPTIM
     }
 
     sourceSets.main {
@@ -67,8 +65,15 @@ android {
     }
 
     signingConfigs {
-
-       release {
+        debug {
+            if (project.hasProperty("DEBUG_STORE_FILE")) {
+                storeFile file(DEBUG_STORE_FILE)
+                storePassword DEBUG_STORE_PASSWORD
+                keyAlias DEBUG_KEY_ALIAS
+                keyPassword DEBUG_KEY_PASSWORD
+            }
+        }
+        release {
             if (project.hasProperty("RELEASE_STORE_FILE")) {
                 storeFile file(RELEASE_STORE_FILE)
                 storePassword RELEASE_STORE_PASSWORD
@@ -80,8 +85,9 @@ android {
 
     buildTypes {
         release {
-            shrinkResources true
-            minifyEnabled true
+            minifyEnabled false // NOTE: Crash when minifyEnabled is true
+            jniDebuggable true
+            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             if (project.hasProperty("RELEASE_STORE_FILE")) {
                 signingConfig signingConfigs.release
