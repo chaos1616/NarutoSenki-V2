@@ -373,7 +373,7 @@ void ActionButton::setProgressMark()
 	proressblinkSprite->setAnchorPoint(ccp(0.5f, 0.5f));
 	proressblinkSprite->setPosition(ccp(proressmarkSprite->getContentSize().width / 2, proressmarkSprite->getContentSize().height / 2));
 
-	CCFadeOut *fd = CCFadeOut::create(0.2f);
+	auto fd = CCFadeOut::create(0.2f);
 	proressblinkSprite->runAction(CCRepeatForever::create(fd));
 	clipper->addChild(proressblinkSprite, 50);
 
@@ -402,7 +402,7 @@ void ActionButton::setProgressMark()
 #endif
 	_delegate->addChild(progressPointSprite, -25);
 
-	CCFadeOut *fd2 = CCFadeOut::create(0.5f);
+	auto fd2 = CCFadeOut::create(0.5f);
 	proressblinkMask = CCSprite::createWithSpriteFrameName("icon_bg6.png");
 	proressblinkMask->setPosition(getPosition());
 	proressblinkMask->setAnchorPoint(ccp(0, 0));
@@ -420,7 +420,7 @@ void ActionButton::setProgressMark()
 			if (_delegate->skill4Button->proressblinkMask && !_delegate->skill4Button->_isLock)
 			{
 				_delegate->skill4Button->proressblinkMask->stopAllActions();
-				CCFadeOut *fd2 = CCFadeOut::create(0.5f);
+				auto fd2 = CCFadeOut::create(0.5f);
 				_delegate->skill4Button->proressblinkMask->runAction(CCRepeatForever::create(fd2));
 			}
 		}
@@ -457,7 +457,7 @@ void ActionButton::updateProgressMark()
 			{
 				proressblinkMask->setVisible(true);
 				proressblinkMask->stopAllActions();
-				CCFadeOut *fd2 = CCFadeOut::create(0.5f);
+				auto fd2 = CCFadeOut::create(0.5f);
 				proressblinkMask->runAction(CCRepeatForever::create(fd2));
 
 				if (_delegate->skill5Button)
@@ -465,7 +465,7 @@ void ActionButton::updateProgressMark()
 					if (_delegate->skill5Button->proressblinkMask && !_delegate->skill5Button->_isLock)
 					{
 						_delegate->skill5Button->proressblinkMask->stopAllActions();
-						CCFadeOut *fd2 = CCFadeOut::create(0.5f);
+						auto fd2 = CCFadeOut::create(0.5f);
 						_delegate->skill5Button->proressblinkMask->runAction(CCRepeatForever::create(fd2));
 					}
 				}
@@ -513,7 +513,7 @@ void ActionButton::updateProgressMark()
 			{
 				proressblinkMask->setVisible(true);
 				proressblinkMask->stopAllActions();
-				CCFadeOut *fd2 = CCFadeOut::create(0.5f);
+				auto fd2 = CCFadeOut::create(0.5f);
 				proressblinkMask->runAction(CCRepeatForever::create(fd2));
 
 				if (_delegate->skill4Button)
@@ -521,7 +521,7 @@ void ActionButton::updateProgressMark()
 					if (_delegate->skill4Button->proressblinkMask && !_delegate->skill4Button->_isLock)
 					{
 						_delegate->skill4Button->proressblinkMask->stopAllActions();
-						CCFadeOut *fd2 = CCFadeOut::create(0.5f);
+						auto fd2 = CCFadeOut::create(0.5f);
 						_delegate->skill4Button->proressblinkMask->runAction(CCRepeatForever::create(fd2));
 					}
 				}

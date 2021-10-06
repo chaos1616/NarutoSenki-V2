@@ -903,7 +903,7 @@ void HudLayer::clearBuffDisplay(CCNode *sender)
 		auto call = CCCallFuncN::create(bs, callfuncN_selector(HudLayer::clearBuffDisplay));
 		auto delay = CCDelayTime::create(4.0f);
 		bs->setTag(1);
-		CCFadeOut *fade = CCFadeOut::create(0.5f);
+		auto fade = CCFadeOut::create(0.5f);
 		auto fadeseq = CCRepeatForever::create(CCSequence::createWithTwoActions(fade, fade->reverse()));
 		auto seq = CCSequence::createWithTwoActions(delay, call);
 		bs->runAction(seq);
@@ -1006,9 +1006,9 @@ void HudLayer::setReportCache()
 					reportSPCSprite = createSPCReport(killnum->getCString(), num2);
 					reportSPCSprite->setPosition(ccp(winSize.width / 2, winSize.height - 115));
 					addChild(reportSPCSprite, 500);
-					CCFadeIn *fn = CCFadeIn::create(0.8f);
-					CCMoveBy *mv = CCMoveBy::create(0.8f, ccp(0, 10));
-					CCSpawn *sp = CCSpawn::createWithTwoActions(fn, mv);
+					auto fn = CCFadeIn::create(0.8f);
+					auto mv = CCMoveBy::create(0.8f, ccp(0, 10));
+					auto sp = CCSpawn::createWithTwoActions(fn, mv);
 					auto delay2 = CCDelayTime::create(1.6f);
 					auto call2 = CCCallFunc::create(this, callfunc_selector(HudLayer::clearSPCReport));
 					auto list = CCArray::create();

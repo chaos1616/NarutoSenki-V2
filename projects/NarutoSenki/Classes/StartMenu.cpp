@@ -633,8 +633,8 @@ void StartMenu::scrollMenu(int posY)
 				auto spn = CCMoveTo::create(0.5, ccp(105, _pos02));
 				reorderChild(menu, 1);
 				menu->_isBottom = true;
-				CCFadeOut *fo = CCFadeOut::create(0.3f);
-				CCSpawn *seq = CCSpawn::createWithTwoActions(spn, fo);
+				auto fo = CCFadeOut::create(0.3f);
+				auto seq = CCSpawn::createWithTwoActions(spn, fo);
 				menu->runAction(seq);
 			}
 			else if (menu->getPositionY() == _pos03)
@@ -658,8 +658,8 @@ void StartMenu::scrollMenu(int posY)
 				auto spn = CCMoveTo::create(0.5, ccp(105, _pos03));
 				reorderChild(menu, 1);
 				menu->setVisible(true);
-				CCFadeIn *fi = CCFadeIn::create(0.3f);
-				CCSpawn *seq = CCSpawn::createWithTwoActions(spn, fi);
+				auto fi = CCFadeIn::create(0.3f);
+				auto seq = CCSpawn::createWithTwoActions(spn, fi);
 				menu->_isBottom = false;
 				menu->runAction(seq);
 			}
@@ -701,8 +701,8 @@ void StartMenu::scrollMenu(int posY)
 				auto spn = CCMoveTo::create(0.5, ccp(105, _pos02));
 				reorderChild(menu, 1);
 				menu->_isBottom = true;
-				CCFadeOut *fo = CCFadeOut::create(0.3f);
-				CCSpawn *seq = CCSpawn::createWithTwoActions(spn, fo);
+				auto fo = CCFadeOut::create(0.3f);
+				auto seq = CCSpawn::createWithTwoActions(spn, fo);
 				menu->runAction(seq);
 			}
 			else if (menu->getPositionY() == _pos02 && menu->_isBottom)
@@ -710,8 +710,8 @@ void StartMenu::scrollMenu(int posY)
 				auto spn = CCMoveTo::create(0.5, ccp(105, _pos01));
 				reorderChild(menu, 2);
 				menu->setVisible(true);
-				CCFadeIn *fi = CCFadeIn::create(0.3f);
-				CCSpawn *seq = CCSpawn::createWithTwoActions(spn, fi);
+				auto fi = CCFadeIn::create(0.3f);
+				auto seq = CCSpawn::createWithTwoActions(spn, fi);
 				menu->_isBottom = false;
 				menu->runAction(seq);
 			}
