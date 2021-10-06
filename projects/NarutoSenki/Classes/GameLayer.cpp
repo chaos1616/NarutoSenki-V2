@@ -682,7 +682,7 @@ void GameLayer::checkTower()
 			else
 				onGameOver(true);
 		}
-		else  // Player group is Akatsuki
+		else // Player group is Akatsuki
 		{
 			if (akatsukiTowerCount == 0)
 				onGameOver(false);
@@ -841,7 +841,8 @@ void GameLayer::onLeft()
 	CCARRAY_FOREACH(childArray, pObject)
 	{
 		auto ac = (CharacterBase *)pObject;
-		CCNotificationCenter::sharedNotificationCenter()->removeObserver(ac, "acceptAttack");
+		ac->unscheduleAllSelectors();
+		CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(ac);
 	}
 
 	removeSprites(CCString::createWithFormat("Element/Tower/Tower%d.plist", mapId)->getCString());
@@ -849,9 +850,6 @@ void GameLayer::onLeft()
 	CCARRAY_FOREACH(_CharacterArray, pObject)
 	{
 		auto player = (CharacterBase *)pObject;
-		player->removeFromParentAndCleanup(true);
-		if (player->_shadow)
-			player->_shadow->removeFromParentAndCleanup(true);
 		LoadLayer::unloadCharIMG(player);
 	}
 

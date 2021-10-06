@@ -89,7 +89,7 @@ bool GameModeLayer::init()
 
 	menuLabel = CCLabelTTF::create();
 	menuLabel->setAnchorPoint(ccp(0, 0));
-	menuLabel->setPosition(ccp(10, 3));
+	menuLabel->setPosition(ccp(10, 2));
 	addChild(menuLabel, 5);
 
 	// init return button

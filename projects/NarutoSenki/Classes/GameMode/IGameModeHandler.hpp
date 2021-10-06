@@ -156,7 +156,10 @@ protected:
 		dic->setObject(CCString::create(role), "role");
 		dic->setObject(CCString::create(group), "group");
 		if (!_heroArr)
+		{
 			_heroArr = CCArray::create();
+			_heroArr->retain();
+		}
 		_heroArr->addObject(dic);
 		heroVector.push_back(name);
 	}
