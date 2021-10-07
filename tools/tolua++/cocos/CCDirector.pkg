@@ -9,6 +9,7 @@ typedef enum {
 class CCDirector : public CCObject
 {
     CCScene* getRunningScene(void);
+    bool     isRootScene(void);
 
     double getAnimationInterval(void);
 

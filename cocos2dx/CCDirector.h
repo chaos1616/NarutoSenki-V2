@@ -120,6 +120,7 @@ public:
 
     /** Get current running Scene. Director can only run one Scene at the time */
     inline CCScene* getRunningScene(void) { return m_pRunningScene; }
+	inline bool isRootScene(void) { return m_pobScenesStack->count() == 1; }
 
     /** Get the FPS value */
     inline double getAnimationInterval(void) { return m_dAnimationInterval; }
