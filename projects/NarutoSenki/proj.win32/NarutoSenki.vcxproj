@@ -98,6 +98,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateMapFile>true</GenerateMapFile>
       <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers />
     </Link>
     <PostBuildEvent>
       <Command>if not exist "$(SolutionDir)projects\NarutoSenki\__BIN__" mkdir "$(SolutionDir)projects\NarutoSenki\__BIN__"
