@@ -594,12 +594,12 @@ protected:
 	void				increaseAllCkrs(uint32_t value, bool enableLv2 = true, bool enableLv4 = true);
 	inline void			increaseHpAndUpdateUI(uint32_t value);
 	// find enemy extensions
-	inline bool 		findHero(int searchRange,bool masterRange = false) { return findEnemy(kRoleHero, searchRange, masterRange); }
-	inline bool 		findFlog(int searchRange,bool masterRange = false) { return findEnemy(kRoleFlog, searchRange, masterRange); }
-	inline bool 		findTower(int searchRange,bool masterRange = false) { return findEnemy(kRoleTower, searchRange, masterRange); }
-	inline bool 		notFindHero(int searchRange,bool masterRange = false) { return !findEnemy(kRoleHero, searchRange, masterRange); }
-	inline bool 		notFindFlog(int searchRange,bool masterRange = false) { return !findEnemy(kRoleFlog, searchRange, masterRange); }
-	inline bool 		notFindTower(int searchRange,bool masterRange = false) { return !findEnemy(kRoleTower, searchRange, masterRange); }
+	inline bool 		findHero(int searchRange, bool masterRange = false) { return findEnemy(kRoleHero, searchRange, masterRange); }
+	inline bool 		findFlog(int searchRange, bool masterRange = false) { return findEnemy(kRoleFlog, searchRange, masterRange); }
+	inline bool 		findTower(int searchRange, bool masterRange = false) { return findEnemy(kRoleTower, searchRange, masterRange); }
+	inline bool 		notFindHero(int searchRange, bool masterRange = false) { return !findEnemy(kRoleHero, searchRange, masterRange); }
+	inline bool 		notFindFlog(int searchRange, bool masterRange = false) { return !findEnemy(kRoleFlog, searchRange, masterRange); }
+	inline bool 		notFindTower(int searchRange, bool masterRange = false) { return !findEnemy(kRoleTower, searchRange, masterRange); }
 	inline bool 		findHeroHalf() { return findEnemy2(kRoleHero); }
 	inline bool 		findFlogHalf() { return findEnemy2(kRoleFlog); }
 	inline bool 		findTowerHalf() { return findEnemy2(kRoleTower); }
@@ -618,6 +618,8 @@ protected:
 	}
 public:
 	// actoin state extensions
+
+	// Action is State::IDLE or State::WALK or State::NATTACK
 	inline bool 		isFreeActionState() {
 		return _actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK;
 	}

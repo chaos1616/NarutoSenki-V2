@@ -199,8 +199,8 @@ void CharacterBase::updateDataByLVOnly()
 		_isCanOugis1 = true;
 		if (isPlayer())
 		{
-			getDelegate()->setCKRLose(false);
-			getDelegate()->removeOugisMark(1);
+			_delegate->setCKRLose(false);
+			_delegate->removeOugisMark(1);
 		}
 		tempMaxHP += 500;
 		attackValue += 9;
@@ -217,8 +217,8 @@ void CharacterBase::updateDataByLVOnly()
 		_isCanOugis2 = true;
 		if (isPlayer())
 		{
-			getDelegate()->setCKRLose(true);
-			getDelegate()->removeOugisMark(2);
+			_delegate->setCKRLose(true);
+			_delegate->removeOugisMark(2);
 		}
 		tempMaxHP += 2000;
 		attackValue += 27;
@@ -5203,7 +5203,7 @@ bool CharacterBase::findTargetEnemy(const char *type, bool isTowerDected)
 			target->_isVisable && !target->_isInvincible)
 		{
 			// float gardZone;
-			if (getDelegate()->playerTeam > 0)
+			if (_delegate->playerTeam > 0)
 			{
 				if (target->getPositionX() >= 81 * 32)
 				{
