@@ -139,7 +139,7 @@ void PauseLayer::onResume(CCObject *sender)
 	}
 
 	CCDirector::sharedDirector()->popScene();
-	_delegate->_isPause = false;
+	getGameLayer()->_isPause = false;
 }
 
 void PauseLayer::onBackToMenu(CCObject *sender)
@@ -175,10 +175,10 @@ void PauseLayer::onBackToMenu(CCObject *sender)
 void PauseLayer::onLeft(CCObject *sender)
 {
 	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
-	_delegate->_isSurrender = true;
+	getGameLayer()->_isSurrender = true;
 	CCDirector::sharedDirector()->popScene();
 
-	_delegate->_isPause = false;
+	getGameLayer()->_isPause = false;
 }
 
 void PauseLayer::onCancel(CCObject *sender)

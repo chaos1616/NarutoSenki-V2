@@ -37,5 +37,4 @@ private:
 	void onCancel(CCObject *sender);
 	void onLeft(CCObject *sender);
 	void onUPloadBtn(CCObject *sender);
-	CC_SYNTHESIZE(GameLayer *, _delegate, Delegate);
 };

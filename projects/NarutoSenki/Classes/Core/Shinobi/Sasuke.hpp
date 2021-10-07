@@ -51,7 +51,7 @@ class Sasuke : public Hero
 			}
 		}
 
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -103,7 +103,7 @@ class Sasuke : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored)
 				{
 					changeSide(sp);
 					attack(OUGIS2);
@@ -231,7 +231,7 @@ class Sasuke : public Hero
 			setHurtAction(createAnimation(skillSPC5Array, 10.0f, false, true));
 
 			CCObject *pObject;
-			CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+			CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 			{
 				auto tempHero = (CharacterBase *)pObject;
 				if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->getActionState() != State::HURT && tempHero->getActionState() != State::DEAD)
@@ -359,7 +359,7 @@ class Sasuke : public Hero
 			}
 		}
 
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -417,7 +417,7 @@ class Sasuke : public Hero
 					attack(OUGIS1);
 					return;
 				}
-				else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
+				else if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
@@ -542,7 +542,7 @@ class Sasuke : public Hero
 			setHurtAction(createAnimation(skillSPC1Array, 10.0f, false, true));
 
 			CCObject *pObject;
-			CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+			CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 			{
 				auto tempHero = (CharacterBase *)pObject;
 				if (isNotSameGroupAs(tempHero) &&

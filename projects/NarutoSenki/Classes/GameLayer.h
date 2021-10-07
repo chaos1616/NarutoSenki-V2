@@ -21,17 +21,27 @@ class CharacterBase;
 class GameLayer;
 class HudLayer;
 
-static GameLayer *_gLayer = nullptr;
-static bool _isFullScreen = false;
+extern GameLayer *_gLayer;
+extern bool _isFullScreen;
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 static GLFWwindow *_window = nullptr;
 #endif
 
+static inline GameLayer *getGameLayer()
+{
+	return _gLayer;
+}
+
 class GameLayer : public CCLayer
 {
+	using OnHUDInitializedCallback = std::function<void()>;
+
+	friend class LoadLayer;
+
 public:
 	GameLayer();
 	~GameLayer();
+
 	CREATE_FUNC(GameLayer);
 
 	CCTMXTiledMap *currentMap;
@@ -62,6 +72,8 @@ public:
 	void checkBackgroundMusic(float dt);
 
 	CC_SYNTHESIZE(HudLayer *, _hudLayer, HudLayer);
+	inline void onHUDInitialized(const OnHUDInitializedCallback &callback);
+	inline bool isHUDInit();
 	void setTowerState(int charNO);
 
 	CC_SYNTHESIZE_RETAIN(CCString *, totalKills, TotalKills);
@@ -144,7 +156,8 @@ private:
 	void onEnter();
 	void onExit();
 
-	void setupKeyEventHandler();
+	void setKeyEventHandler();
+	void removeKeyEventHandler();
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	int _lastPressedMovementKey;
@@ -154,4 +167,11 @@ private:
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	static void LPFN_ACCELEROMETER_KEYHOOK(UINT message, WPARAM wParam, LPARAM lParam);
 #endif
+
+	void invokeAllCallbacks();
+
+	bool isHUDInitialized = false;
+	std::vector<OnHUDInitializedCallback> callbackssList;
 };
+
+#define BIND(funcName) std::bind(&funcName, this)

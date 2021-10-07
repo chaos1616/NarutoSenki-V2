@@ -89,7 +89,7 @@ public:
 
 	void setHPbar()
 	{
-		if (strcmp(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) != 0)
+		if (strcmp(getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()) != 0)
 			_hpBar = HPBar::create("hp_bar_r.png");
 		else
 			_hpBar = HPBar::create("hp_bar.png");
@@ -110,9 +110,9 @@ public:
 		for (int i = 0; i < 2; i++)
 		{
 			if (i == 0)
-				list = _delegate->_KonohaFlogArray;
+				list = getGameLayer()->_KonohaFlogArray;
 			else if (i == 1)
-				list = _delegate->_AkatsukiFlogArray;
+				list = getGameLayer()->_AkatsukiFlogArray;
 
 			CCARRAY_FOREACH(list, pObject)
 			{
@@ -127,11 +127,11 @@ public:
 			}
 		}
 
-		int index = _delegate->_TowerArray->indexOfObject(this);
-		_delegate->_TowerArray->removeObjectAtIndex(index);
-		// _delegate->getHudLayer()->setTowerState(getCharNO());
-		_delegate->setTowerState(getCharNO());
-		_delegate->checkTower();
+		int index = getGameLayer()->_TowerArray->indexOfObject(this);
+		getGameLayer()->_TowerArray->removeObjectAtIndex(index);
+		// getGameLayer()->getHudLayer()->setTowerState(getCharNO());
+		getGameLayer()->setTowerState(getCharNO());
+		getGameLayer()->checkTower();
 		removeFromParentAndCleanup(true);
 	}
 };

@@ -8,7 +8,7 @@ class Tsunade : public Hero
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear03);
@@ -60,7 +60,7 @@ class Tsunade : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isArmored)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 					if (abs(sp.x) > 64 || abs(sp.y) > 16)
 					{

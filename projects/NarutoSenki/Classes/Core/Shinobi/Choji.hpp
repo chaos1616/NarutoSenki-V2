@@ -20,7 +20,7 @@ class Choji : public Hero
 			}
 		}
 
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -117,7 +117,7 @@ class Choji : public Hero
 						changeSide(sp);
 						attack(SKILL2);
 					}
-					else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isArmored)
+					else if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(OUGIS2);
@@ -171,7 +171,7 @@ class Choji : public Hero
 					changeSide(sp);
 					attack(OUGIS1);
 				}
-				else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->isTower() && !_isArmored)
+				else if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->isTower() && !_isArmored)
 				{
 					changeSide(sp);
 					attack(OUGIS2);

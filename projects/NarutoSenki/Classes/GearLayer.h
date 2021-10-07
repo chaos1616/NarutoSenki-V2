@@ -40,8 +40,6 @@ public:
 private:
 	void onResume(CCObject *sender);
 	void onGearBuy(CCObject *sender);
-
-	CC_SYNTHESIZE(GameLayer *, _delegate, Delegate);
 };
 
 class GearButton : public CCSprite, public CCTouchDelegate

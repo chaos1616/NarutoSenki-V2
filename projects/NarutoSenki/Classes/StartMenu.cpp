@@ -299,12 +299,12 @@ bool StartMenu::init()
 
 		setMenus(CCArray::createWithCapacity(3));
 
-		auto network_btn = MenuButton::create("menu01.png");
-		network_btn->setDelegate(this);
-		network_btn->setBtnType(Custom);
-		network_btn->setScale(0.5f);
-		network_btn->setPositionY(_pos03);
-		_menu_array->addObject(network_btn);
+		auto gamemode_btn = MenuButton::create("menu01.png");
+		gamemode_btn->setDelegate(this);
+		gamemode_btn->setBtnType(Custom);
+		gamemode_btn->setScale(0.5f);
+		gamemode_btn->setPositionY(_pos03);
+		_menu_array->addObject(gamemode_btn);
 
 		auto credits_btn = MenuButton::create("menu04.png");
 		credits_btn->setDelegate(this);

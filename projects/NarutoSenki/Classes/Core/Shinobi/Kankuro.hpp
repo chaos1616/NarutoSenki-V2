@@ -6,6 +6,13 @@
 
 class Kankuro : public Hero
 {
+	void setID(CCString *character, CCString *role, CCString *group) override
+	{
+		Hero::setID(character, role, group);
+
+		getGameLayer()->onHUDInitialized(BIND(Kankuro::tryLockSkillButton));
+	}
+
 	void perform() override
 	{
 		_mainTarget = nullptr;
@@ -23,7 +30,7 @@ class Kankuro : public Hero
 			}
 		}
 
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -116,7 +123,7 @@ class Kankuro : public Hero
 					attack(OUGIS1);
 					return;
 				}
-				else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !isFound3)
+				else if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !isFound3)
 				{
 					changeSide(sp);
 					attack(OUGIS2);
@@ -171,7 +178,7 @@ class Kankuro : public Hero
 					changeSide(sp);
 					attack(OUGIS1);
 				}
-				else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !isFound3)
+				else if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !isFound3)
 				{
 					changeSide(sp);
 					attack(OUGIS2);
@@ -204,8 +211,8 @@ class Kankuro : public Hero
 	{
 		if (isPlayer())
 		{
-			_delegate->getHudLayer()->skill1Button->setLock();
-			_delegate->getHudLayer()->skill2Button->unLock();
+			getGameLayer()->getHudLayer()->skill1Button->setLock();
+			getGameLayer()->getHudLayer()->skill2Button->unLock();
 		}
 	}
 
@@ -213,8 +220,8 @@ class Kankuro : public Hero
 	{
 		if (isPlayer())
 		{
-			_delegate->getHudLayer()->skill1Button->unLock();
-			_delegate->getHudLayer()->skill2Button->setLock();
+			getGameLayer()->getHudLayer()->skill1Button->unLock();
+			getGameLayer()->getHudLayer()->skill2Button->setLock();
 		}
 		_skillChangeBuffValue = 0;
 	}
@@ -238,7 +245,7 @@ class Kankuro : public Hero
 			clone = create<Sanshouuo>(CCString::create("Sanshouuo"), CCString::create(kRoleKugutsu), getGroup());
 			if (isPlayer())
 			{
-				_delegate->getHudLayer()->skill4Button->setLock();
+				getGameLayer()->getHudLayer()->skill4Button->setLock();
 			}
 		}
 		else if (cloneTime == 2)
@@ -246,12 +253,21 @@ class Kankuro : public Hero
 			clone = create<Saso>(CCString::create("Saso"), CCString::create(kRoleKugutsu), getGroup());
 			if (isPlayer())
 			{
-				_delegate->getHudLayer()->skill5Button->setLock();
+				getGameLayer()->getHudLayer()->skill5Button->setLock();
 			}
 		}
 
 		clone->_isArmored = true;
 		_monsterArray->addObject(clone);
 		return clone;
+	}
+
+private:
+	inline void tryLockSkillButton()
+	{
+		if (isPlayer())
+		{
+			getGameLayer()->getHudLayer()->skill2Button->setLock();
+		}
 	}
 };

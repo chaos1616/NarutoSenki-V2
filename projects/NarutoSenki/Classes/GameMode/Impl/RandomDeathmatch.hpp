@@ -57,7 +57,7 @@ public:
 			{
 				c->enableReborn = false;
 				if (liveCount == 0)
-					_gLayer->onGameOver(!c->isGroup(playerGroup));
+					getGameLayer()->onGameOver(!c->isGroup(playerGroup));
 			}
 			else
 			{
@@ -80,7 +80,7 @@ public:
 
 		if (c->changeCharId > -1)
 		{
-			auto gameLayer = c->getDelegate();
+			auto gameLayer = getGameLayer();
 			// initial a new random character
 			auto newCharName = heroVector[c->changeCharId];
 			CCLOG("[Change Character] From %s to %s", c->getCharacter()->getCString(), newCharName);

@@ -1,6 +1,6 @@
 #include "CharacterBase.h"
-#include "HudLayer.h"
 #include "Core/Provider.hpp"
+#include "HudLayer.h"
 #include "GameMode/GameModeImpl.h"
 #include "MyUtils/CCShake.h"
 #include "Systems/CommandSystem.hpp"
@@ -199,8 +199,8 @@ void CharacterBase::updateDataByLVOnly()
 		_isCanOugis1 = true;
 		if (isPlayer())
 		{
-			_delegate->setCKRLose(false);
-			_delegate->removeOugisMark(1);
+			getGameLayer()->setCKRLose(false);
+			getGameLayer()->removeOugisMark(1);
 		}
 		tempMaxHP += 500;
 		attackValue += 9;
@@ -217,8 +217,8 @@ void CharacterBase::updateDataByLVOnly()
 		_isCanOugis2 = true;
 		if (isPlayer())
 		{
-			_delegate->setCKRLose(true);
-			_delegate->removeOugisMark(2);
+			getGameLayer()->setCKRLose(true);
+			getGameLayer()->removeOugisMark(2);
 		}
 		tempMaxHP += 2000;
 		attackValue += 27;
@@ -363,7 +363,7 @@ void CharacterBase::update(float dt)
 		{
 			//save the stop Area
 			CCObject *pObject;
-			CCARRAY_FOREACH(_delegate->_TowerArray, pObject)
+			CCARRAY_FOREACH(getGameLayer()->_TowerArray, pObject)
 			{
 				Tower *tower = (Tower *)pObject;
 				if (tower)
@@ -398,16 +398,16 @@ void CharacterBase::update(float dt)
 			}
 		}
 
-		float posX = MIN(_delegate->currentMap->getMapSize().width * _delegate->currentMap->getTileSize().width,
+		float posX = MIN(getGameLayer()->currentMap->getMapSize().width * getGameLayer()->currentMap->getTileSize().width,
 						 MAX(0, _desiredPosition.x));
 
 		// map height		: 10
 		// backgroud height	: 4.5
 		// floor height		: 5.5
-		float poxY = MIN(_delegate->currentMap->getTileSize().height * 5.5, MAX(0, _desiredPosition.y));
+		float poxY = MIN(getGameLayer()->currentMap->getTileSize().height * 5.5, MAX(0, _desiredPosition.y));
 
 		setPosition(ccp(posX, poxY));
-		_delegate->reorderChild(this, -getPositionY());
+		getGameLayer()->reorderChild(this, -getPositionY());
 		if (isPlayerOrCom())
 		{
 			CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", this);
@@ -552,7 +552,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 
 						CCObject *pObject;
-						CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+						CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 						{
 							auto tempHero = (Hero *)pObject;
 							if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::DEAD)
@@ -597,17 +597,16 @@ void CharacterBase::acceptAttack(CCObject *object)
 									unschedule(schedule_selector(CharacterBase::setAI));
 									_isAI = false;
 									// Set controlled character to player
-									_delegate->currentPlayer = this;
-									_delegate->getHudLayer()->updateSkillButtons();
+									getGameLayer()->controlChar = this;
+									getGameLayer()->currentPlayer = this;
+									getGameLayer()->getHudLayer()->updateSkillButtons();
 									idle();
-
-									_delegate->controlChar = this;
 								}
 
 								if (isPlayer())
 								{
 									doAI();
-									_delegate->getHudLayer()->_isAllButtonLocked = true;
+									getGameLayer()->getHudLayer()->_isAllButtonLocked = true;
 								}
 								changeGroup();
 							}
@@ -755,7 +754,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 									}
 									if (countMON < 3 && attacker->getLV() >= 2)
 									{
-										_delegate->getHudLayer()->skill4Button->unLock();
+										getGameLayer()->getHudLayer()->skill4Button->unLock();
 									}
 								}
 							}
@@ -785,7 +784,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 									}
 
 									CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", this);
-									_delegate->reorderChild(this, -getPositionY());
+									getGameLayer()->reorderChild(this, -getPositionY());
 								}
 							}
 						}
@@ -918,7 +917,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 											{
 												attacker->_isCatchOne = true;
 												setPosition(ccp(attacker->getPositionX(), attacker->getPositionY() + 1));
-												_delegate->reorderChild(this, -getPositionY());
+												getGameLayer()->reorderChild(this, -getPositionY());
 											}
 										}
 										else if (attacker->getMaster()->isCharacter("Itachi") ||
@@ -938,7 +937,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 											{
 												attacker->_isCatchOne = true;
 												setPosition(ccp(attacker->getPositionX() + 2, attacker->getPositionY() - 2));
-												_delegate->reorderChild(this, -getPositionY());
+												getGameLayer()->reorderChild(this, -getPositionY());
 											}
 										}
 									}
@@ -968,7 +967,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 												attacker->_isCatchOne = true;
 												setPosition(ccp(attacker->getPositionX() + (attacker->_isFlipped ? -28 : 28), attacker->getPositionY() - 1));
 												setFlipX(attacker->_isFlipped ? false : true);
-												_delegate->reorderChild(this, -getPositionY());
+												getGameLayer()->reorderChild(this, -getPositionY());
 											}
 										}
 										else if (attacker->isCharacter("Tobi"))
@@ -1060,7 +1059,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 							}
 
 							CCObject *pObject;
-							CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+							CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 							{
 								auto tempHero = (Hero *)pObject;
 								if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::DEAD)
@@ -1364,7 +1363,7 @@ void CharacterBase::setShadow(CCNode *sender, void *data)
 	auto delay = CCDelayTime::create(0.1f);
 	auto call = CCCallFuncN::create(charN, callfuncN_selector(CharacterBase::enableShadow));
 	charN->runAction(CCSequence::createWithTwoActions(delay, call));
-	_delegate->addChild(charN, -getPositionY() - 1);
+	getGameLayer()->addChild(charN, -getPositionY() - 1);
 }
 
 void CharacterBase::enableShadow(CCNode *sender)
@@ -1385,7 +1384,7 @@ void CharacterBase::disableShadow(CCNode *sender)
 
 void CharacterBase::setOugis(CCNode *sender)
 {
-	_delegate->setOugis(this);
+	getGameLayer()->setOugis(this);
 }
 
 CCRect CharacterBase::setHalfBox()
@@ -1585,7 +1584,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const char *effectType, i
 	}
 
 	if (isPlayer() || (isNotTower() &&
-					   abs(ccpSub(getPosition(), _delegate->currentPlayer->getPosition()).x) < winSize.width / 2))
+					   abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2))
 	{
 		//create damage value display
 		bool _isDisplay = false;
@@ -1640,7 +1639,7 @@ void CharacterBase::setCoinDisplay(int num)
 	coinDisplay->addChild(rewardLabel);
 
 	coinDisplay->setPosition(ccp(getPositionX(), getPositionY() + getContentSize().height / 2));
-	_delegate->addChild(coinDisplay, 5000);
+	getGameLayer()->addChild(coinDisplay, 5000);
 
 	auto mv = CCMoveBy::create(0.5f, ccp(0, 12));
 	auto fadeOut = CCFadeOut::create(0.8f);
@@ -1677,7 +1676,7 @@ void CharacterBase::setDamgeDisplay(int value, const char *type)
 			damageFont->setPosition(ccp(getPositionX() + rand() % 16, getPositionY() + getHeight() + rand() % 16));
 		}
 
-		_delegate->addChild(damageFont, currentNumberTag);
+		getGameLayer()->addChild(damageFont, currentNumberTag);
 		_damageArray->addObject(damageFont);
 
 		auto sd = CCScaleBy::create(0.2f, 0.5f);
@@ -1712,19 +1711,19 @@ void CharacterBase::removeDamageDisplay()
 
 void CharacterBase::setDamgeEffect(const char *type)
 {
-	if (isPlayer() || abs(ccpSub(getPosition(), _delegate->currentPlayer->getPosition()).x) < winSize.width / 2)
+	if (isPlayer() || abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2)
 	{
 		if (damageEffectCount < 2)
 		{
 			if (isNotFlog())
 			{
 				Effect *ef = Effect::create(type, this);
-				_delegate->damageEffectBatch->addChild(ef, 5000);
+				getGameLayer()->damageEffectBatch->addChild(ef, 5000);
 			}
 			else
 			{
 				Effect *ef = Effect::create(type, this);
-				_delegate->damageEffectBatch->addChild(ef);
+				getGameLayer()->damageEffectBatch->addChild(ef);
 			}
 
 			damageEffectCount++;
@@ -1738,21 +1737,21 @@ void CharacterBase::setSkillEffect(CCNode *sender, void *data)
 	auto type = ((CCString *)(file->objectForKey(1)))->getCString();
 
 	if (isPlayer() ||
-		abs(ccpSub(getPosition(), _delegate->currentPlayer->getPosition()).x) < winSize.width / 2)
+		abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2)
 	{
 		Effect *ef = Effect::create(type, this);
 		if (is_same(type, "Bagua") ||
 			is_same(type, "Kujiyose"))
 		{
-			_delegate->addChild(ef, -500);
+			getGameLayer()->addChild(ef, -500);
 		}
 		else if (is_same(type, "DarkFlame"))
 		{
-			_delegate->addChild(ef, -ef->getPositionY());
+			getGameLayer()->addChild(ef, -ef->getPositionY());
 		}
 		else
 		{
-			_delegate->skillEffectBatch->addChild(ef);
+			getGameLayer()->skillEffectBatch->addChild(ef);
 		}
 	}
 }
@@ -1783,7 +1782,7 @@ void CharacterBase::setItem(abType type)
 	{
 		if (_isAI)
 		{
-			_delegate->getHudLayer()->offCoin(to_cstr(50));
+			getGameLayer()->getHudLayer()->offCoin(to_cstr(50));
 		}
 	}
 	else
@@ -1823,7 +1822,7 @@ bool CharacterBase::setGear(gearType type)
 		getGearArray()->addObject(gearItem);
 
 		if (isPlayer())
-			_delegate->getHudLayer()->offCoin(to_cstr(gearCost));
+			getGameLayer()->getHudLayer()->offCoin(to_cstr(gearCost));
 		else
 			minusCoin(gearCost);
 
@@ -1857,13 +1856,13 @@ bool CharacterBase::setGear(gearType type)
 
 			if (isPlayer())
 			{
-				_delegate->getHudLayer()->skill1Button->setCD(to_ccstring(_sattackcoldDown1 * 1000));
-				_delegate->getHudLayer()->skill2Button->setCD(to_ccstring(_sattackcoldDown2 * 1000));
-				_delegate->getHudLayer()->skill3Button->setCD(to_ccstring(_sattackcoldDown3 * 1000));
+				getGameLayer()->getHudLayer()->skill1Button->setCD(to_ccstring(_sattackcoldDown1 * 1000));
+				getGameLayer()->getHudLayer()->skill2Button->setCD(to_ccstring(_sattackcoldDown2 * 1000));
+				getGameLayer()->getHudLayer()->skill3Button->setCD(to_ccstring(_sattackcoldDown3 * 1000));
 
-				_delegate->getHudLayer()->skill1Button->_isColdChanged = true;
-				_delegate->getHudLayer()->skill2Button->_isColdChanged = true;
-				_delegate->getHudLayer()->skill3Button->_isColdChanged = true;
+				getGameLayer()->getHudLayer()->skill1Button->_isColdChanged = true;
+				getGameLayer()->getHudLayer()->skill2Button->_isColdChanged = true;
+				getGameLayer()->getHudLayer()->skill3Button->_isColdChanged = true;
 			}
 			break;
 		case gear06:
@@ -1871,8 +1870,8 @@ bool CharacterBase::setGear(gearType type)
 			break;
 		case gear07:
 			gearRecoverValue = 3000;
-			_delegate->getHudLayer()->item1Button->setCD(to_ccstring(3000));
-			_delegate->getHudLayer()->item1Button->_isColdChanged = true;
+			getGameLayer()->getHudLayer()->item1Button->setCD(to_ccstring(3000));
+			getGameLayer()->getHudLayer()->item1Button->_isColdChanged = true;
 			break;
 		case gear08:
 			uint32_t tempMaxHP = getMaxHPValue();
@@ -1911,7 +1910,7 @@ void CharacterBase::useGear(gearType type)
 				addChild(_speedItemEffect);
 
 				scheduleOnce(schedule_selector(CharacterBase::enableGear00), 15.0f);
-				if (isPlayer() || is_same(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()))
+				if (isPlayer() || is_same(getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()))
 					setOpacity(150);
 				else
 					setVisible(false);
@@ -1964,7 +1963,7 @@ void CharacterBase::useGear(gearType type)
 				{
 					setPositionY(_originY);
 					_originY = 0;
-					_delegate->reorderChild(this, -getPositionY());
+					getGameLayer()->reorderChild(this, -getPositionY());
 				}
 
 				idle();
@@ -1978,7 +1977,7 @@ void CharacterBase::useGear(gearType type)
 				callValue2->setObject(CCString::create("Audio/Effect/poof2.ogg"), 1);
 				setSound(this, callValue2);
 
-				if (isPlayer() || is_same(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()))
+				if (isPlayer() || is_same(getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()))
 					setOpacity(150);
 				else
 					setVisible(false);
@@ -2079,9 +2078,9 @@ void CharacterBase::setRestore2(float dt)
 	if (_hpBar)
 	{
 		bool isZone = false;
-		if (isAkatsukiGroup() && getPositionX() <= _delegate->currentMap->getTileSize().width * 2)
+		if (isAkatsukiGroup() && getPositionX() <= getGameLayer()->currentMap->getTileSize().width * 2)
 			isZone = true;
-		else if (isKonohaGroup() && getPositionX() >= (_delegate->currentMap->getMapSize().width - 2) * _delegate->currentMap->getTileSize().width)
+		else if (isKonohaGroup() && getPositionX() >= (getGameLayer()->currentMap->getMapSize().width - 2) * getGameLayer()->currentMap->getTileSize().width)
 			isZone = true;
 
 		if (isZone)
@@ -2115,13 +2114,13 @@ void CharacterBase::setSound(CCNode *sender, void *data)
 	{
 		bool _isPlayable = false;
 		if (isPlayer() ||
-			abs(ccpSub(getPosition(), _delegate->currentPlayer->getPosition()).x) < winSize.width / 2)
+			abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2)
 		{
 			_isPlayable = true;
 		}
-		if (_delegate->controlChar)
+		if (getGameLayer()->controlChar)
 		{
-			if (abs(ccpSub(getPosition(), _delegate->controlChar->getPosition()).x) < winSize.width / 2)
+			if (abs(ccpSub(getPosition(), getGameLayer()->controlChar->getPosition()).x) < winSize.width / 2)
 			{
 				_isPlayable = true;
 			}
@@ -2143,13 +2142,13 @@ void CharacterBase::setDSound(CCNode *sender, void *data)
 	{
 		bool _isPlayable = false;
 		if (isPlayer() ||
-			abs(ccpSub(getPosition(), _delegate->currentPlayer->getPosition()).x) < winSize.width / 2)
+			abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2)
 		{
 			_isPlayable = true;
 		}
-		if (_delegate->controlChar)
+		if (getGameLayer()->controlChar)
 		{
-			if (abs(ccpSub(getPosition(), _delegate->controlChar->getPosition()).x) < winSize.width / 2)
+			if (abs(ccpSub(getPosition(), getGameLayer()->controlChar->getPosition()).x) < winSize.width / 2)
 			{
 				_isPlayable = true;
 			}
@@ -2182,7 +2181,7 @@ void CharacterBase::setAttackBox(CCNode *sender, void *data)
 
 			if (_role && isPlayer())
 			{
-				_delegate->setHPLose(getHpPercent());
+				getGameLayer()->setHPLose(getHpPercent());
 			}
 
 			_attackType = _spcattackType1;
@@ -2196,14 +2195,14 @@ void CharacterBase::setAttackBox(CCNode *sender, void *data)
 
 	if (isPlayer())
 	{
-		if ((_actionState == State::OATTACK || _actionState == State::O2ATTACK) && _isHitOne == true && !_delegate->_isShacking)
+		if ((_actionState == State::OATTACK || _actionState == State::O2ATTACK) && _isHitOne == true && !getGameLayer()->_isShacking)
 		{
-			_delegate->_isShacking = true;
+			getGameLayer()->_isShacking = true;
 			CCScene *f = CCDirector::sharedDirector()->getRunningScene();
 			auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::disableShack));
 			f->runAction(CCSequence::createWithTwoActions(CCShake::create(0.05f, 12), call));
 		}
-		if (_delegate->_isAttackButtonRelease && _actionState == State::NATTACK && !_isOnlySkillLocked && !_isAI)
+		if (getGameLayer()->_isAttackButtonRelease && _actionState == State::NATTACK && !_isOnlySkillLocked && !_isAI)
 		{
 			idle();
 			return;
@@ -2214,7 +2213,7 @@ void CharacterBase::setAttackBox(CCNode *sender, void *data)
 void CharacterBase::getSticker(float dt)
 {
 	CCObject *pObject;
-	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+	CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 	{
 		auto tempHero = (Hero *)pObject;
 		CharacterBase *tempSticker = nullptr;
@@ -2234,7 +2233,7 @@ void CharacterBase::getSticker(float dt)
 
 void CharacterBase::disableShack()
 {
-	_delegate->_isShacking = false;
+	getGameLayer()->_isShacking = false;
 	if (isTower())
 	{
 		_isHitOne = false;
@@ -2257,8 +2256,8 @@ void CharacterBase::setMove(CCNode *sender, void *data)
 		moveLength = *((int *)&data);
 	}
 
-	if (getPositionX() > _delegate->currentMap->getTileSize().width &&
-		getPositionX() < (_delegate->currentMap->getMapSize().width - 1) * _delegate->currentMap->getTileSize().width)
+	if (getPositionX() > getGameLayer()->currentMap->getTileSize().width &&
+		getPositionX() < (getGameLayer()->currentMap->getMapSize().width - 1) * getGameLayer()->currentMap->getTileSize().width)
 	{
 		CCActionInterval *mv;
 		if (_actionState == State::HURT)
@@ -2307,8 +2306,8 @@ void CharacterBase::setJump(CCNode *sender, void *data)
 void CharacterBase::setCharge(CCNode *sender, void *data)
 {
 	int moveLength = *((int *)&data);
-	if ((getPositionX() < _delegate->currentMap->getTileSize().width && _isFlipped) ||
-		(getPositionX() > (_delegate->currentMap->getMapSize().width - 1) * _delegate->currentMap->getTileSize().width && !_isFlipped))
+	if ((getPositionX() < getGameLayer()->currentMap->getTileSize().width && _isFlipped) ||
+		(getPositionX() > (getGameLayer()->currentMap->getMapSize().width - 1) * getGameLayer()->currentMap->getTileSize().width && !_isFlipped))
 	{
 		return;
 	}
@@ -2330,8 +2329,8 @@ void CharacterBase::setChargeB(CCNode *sender, void *data)
 	else
 		delay = 0.1f;
 
-	if ((getPositionX() < _delegate->currentMap->getTileSize().width && _isFlipped) ||
-		(getPositionX() > (_delegate->currentMap->getMapSize().width - 1) * _delegate->currentMap->getTileSize().width && !_isFlipped))
+	if ((getPositionX() < getGameLayer()->currentMap->getTileSize().width && _isFlipped) ||
+		(getPositionX() > (getGameLayer()->currentMap->getMapSize().width - 1) * getGameLayer()->currentMap->getTileSize().width && !_isFlipped))
 	{
 		return;
 	}
@@ -2378,7 +2377,7 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 		if (is_same(attackType, "hsBuff"))
 		{
 			CCObject *pObject;
-			CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+			CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 			{
 				auto tempHero = (CharacterBase *)pObject;
 				if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::HURT && tempHero->_actionState != State::DEAD)
@@ -2488,7 +2487,7 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 	}
 	else if (is_same(attackType, "stBuff"))
 	{
-		if (isPlayer() || is_same(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()))
+		if (isPlayer() || is_same(getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()))
 			setOpacity(150);
 		else
 			setVisible(false);
@@ -2514,7 +2513,7 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 	}
 
 	if (isPlayer())
-		_delegate->getHudLayer()->setBuffDisplay(attackType, buffStayTime);
+		getGameLayer()->getHudLayer()->setBuffDisplay(attackType, buffStayTime);
 }
 
 void CharacterBase::setBuffEffect(const char *type)
@@ -2686,7 +2685,7 @@ void CharacterBase::healBuff(float dt)
 	if (isCharacter("Karin"))
 	{
 		CCObject *pObject;
-		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 		{
 			auto tempHero = (Hero *)pObject;
 			if (isSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::DEAD)
@@ -2699,7 +2698,7 @@ void CharacterBase::healBuff(float dt)
 					tempHero->increaseHpAndUpdateUI(_healBuffValue);
 
 					if (tempHero->isPlayer())
-						_delegate->setHPLose(tempHero->getHpPercent());
+						getGameLayer()->setHPLose(tempHero->getHpPercent());
 
 					if (tempHero->_isVisable)
 					{
@@ -2718,7 +2717,7 @@ void CharacterBase::healBuff(float dt)
 	else if (isCharacter("Chiyo"))
 	{
 		CCObject *pObject;
-		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 		{
 			auto tempHero = (Hero *)pObject;
 			if (isSameGroupAs(tempHero) &&
@@ -2750,9 +2749,9 @@ void CharacterBase::healBuff(float dt)
 		CCArray *list;
 
 		if (isAkatsukiGroup())
-			list = _delegate->_AkatsukiFlogArray;
+			list = getGameLayer()->_AkatsukiFlogArray;
 		else
-			list = _delegate->_KonohaFlogArray;
+			list = getGameLayer()->_KonohaFlogArray;
 
 		CCARRAY_FOREACH(list, pObject)
 		{
@@ -2795,7 +2794,7 @@ void CharacterBase::dehealBuff(float dt)
 	}
 
 	CCObject *pObject;
-	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+	CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 	{
 		auto tempHero = (Hero *)pObject;
 		if (tempHero->isCharacter("Asuma"))
@@ -2808,14 +2807,14 @@ void CharacterBase::dehealBuff(float dt)
 		setDamage(_slayer, "c_hit", _dehealBuffValue, false);
 
 	if (isPlayer())
-		_delegate->setHPLose(getHpPercent());
+		getGameLayer()->setHPLose(getHpPercent());
 }
 
 // NOTE: Only for Shikamaru's KageHand
 void CharacterBase::lostBlood(float dt)
 {
 	CCObject *pObject;
-	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+	CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 	{
 		auto tempHero = (Hero *)pObject;
 		if (tempHero->isCharacter("Shikamaru"))
@@ -2826,7 +2825,7 @@ void CharacterBase::lostBlood(float dt)
 	setDamage(_slayer, "c_hit", lostBloodValue, false);
 
 	if (isPlayer())
-		_delegate->setHPLose(getHpPercent());
+		getGameLayer()->setHPLose(getHpPercent());
 }
 
 void CharacterBase::removeLostBlood(float dt)
@@ -2886,8 +2885,8 @@ void CharacterBase::getCollider()
 
 void CharacterBase::stopMove(float dt)
 {
-	if (getPositionX() <= _delegate->currentMap->getTileSize().width ||
-		getPositionX() >= (_delegate->currentMap->getMapSize().width - 1) * _delegate->currentMap->getTileSize().width)
+	if (getPositionX() <= getGameLayer()->currentMap->getTileSize().width ||
+		getPositionX() >= (getGameLayer()->currentMap->getMapSize().width - 1) * getGameLayer()->currentMap->getTileSize().width)
 	{
 		unschedule(schedule_selector(CharacterBase::stopMove));
 		getActionManager()->removeAction(_moveAction);
@@ -2895,7 +2894,7 @@ void CharacterBase::stopMove(float dt)
 	}
 
 	CCObject *pObject;
-	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+	CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 	{
 		auto tempHero = (Hero *)pObject;
 		if (isNotSameGroupAs(tempHero) && tempHero->_isVisable && tempHero->_actionState != State::DEAD && tempHero->_actionState != State::JUMP && !tempHero->_isInvincible)
@@ -2931,7 +2930,6 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 	CCString *bulletType = str;
 
 	Bullet *bullet = Bullet::create();
-	bullet->setDelegate(_delegate);
 	bullet->setID(bulletType, CCString::create("Bullet"), _group);
 	bullet->idle();
 	if (_master)
@@ -2949,7 +2947,7 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 		bullet->_isFlipped = true;
 	}
 
-	_delegate->addChild(bullet, -getPositionY());
+	getGameLayer()->addChild(bullet, -getPositionY());
 
 	if (is_same(bulletType->getCString(), "PaperSrk"))
 	{
@@ -3034,7 +3032,6 @@ void CharacterBase::setBulletGroup(float dt)
 	for (int i = 0; i < 2; i++)
 	{
 		Bullet *bullet = Bullet::create();
-		bullet->setDelegate(_delegate);
 		float rangeX = 0;
 
 		bullet->setID(CCString::create("HugeSRK"), CCString::create("Bullet"), _group);
@@ -3058,7 +3055,7 @@ void CharacterBase::setBulletGroup(float dt)
 			CCPoint location = ccp(getPositionX() + (_isFlipped ? -rangeX : rangeX), getPositionY() + (getHeight() / 2 - 23));
 			bullet->setPosition(location);
 		}
-		_delegate->addChild(bullet, currentSkillTag);
+		getGameLayer()->addChild(bullet, currentSkillTag);
 		bullet->idle();
 		if (_skillUPBuffValue)
 		{
@@ -3095,7 +3092,6 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 		clone->setMaster(this);
 	}
 
-	clone->setDelegate(_delegate);
 	clone->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32), getPositionY() - 1));
 
 	if (isCharacter("SageNaruto", "Naruto") ||
@@ -3145,8 +3141,8 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 	callValue->setObject(CCString::create("smk"), 1);
 	clone->setSkillEffect(clone, callValue);
 	clone->idle();
-	_delegate->_CharacterArray->addObject(clone);
-	_delegate->addChild(clone, -clone->getPositionY());
+	getGameLayer()->_CharacterArray->addObject(clone);
+	getGameLayer()->addChild(clone, -clone->getPositionY());
 	clone->doAI();
 
 	if (cloneTime > 0)
@@ -3174,8 +3170,6 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	}
 
 	auto monster = Monster::create();
-	monster->setDelegate(_delegate);
-
 	monster->setID(monsterType, CCString::create(kRoleMon), _group);
 
 	if (getMaster())
@@ -3365,7 +3359,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		monster->setSkillEffect(monster, callValue);
 		_monsterArray->addObject(monster);
 		monster->doAI();
-		if (strcmp(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) != 0)
+		if (strcmp(getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()) != 0)
 		{
 			monster->setVisible(false);
 		}
@@ -3436,7 +3430,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 
 		if (isPlayer())
 		{
-			_delegate->getHudLayer()->skill1Button->setLock();
+			getGameLayer()->getHudLayer()->skill1Button->setLock();
 		}
 	}
 	else if (is_same(monsterName, "InkDragon"))
@@ -3551,11 +3545,11 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	else if (is_same(monsterName, "CircleMark") ||
 			 is_same(monsterName, "Yominuma"))
 	{
-		_delegate->addChild(monster, -5000);
+		getGameLayer()->addChild(monster, -5000);
 	}
 	else
 	{
-		_delegate->addChild(monster, -monster->getPositionY());
+		getGameLayer()->addChild(monster, -monster->getPositionY());
 	}
 }
 
@@ -3568,7 +3562,6 @@ void CharacterBase::setMonPer(float dt)
 	}
 
 	auto monster = Monster::create();
-	monster->setDelegate(_delegate);
 
 	if (isCharacter("Deidara"))
 	{
@@ -3592,7 +3585,7 @@ void CharacterBase::setMonPer(float dt)
 	_monsterArray->addObject(monster);
 	monster->doAI();
 
-	_delegate->addChild(monster, -monster->getPositionY());
+	getGameLayer()->addChild(monster, -monster->getPositionY());
 }
 
 void CharacterBase::setTrap(CCNode *sender, void *data)
@@ -3603,7 +3596,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 	if (is_same(trapType->getCString(), "Amaterasu"))
 	{
 		CCObject *pObject;
-		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 		{
 			auto tempHero = (CharacterBase *)pObject;
 			if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::HURT && tempHero->_actionState != State::DEAD)
@@ -3641,7 +3634,6 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 				if (z == 0)
 				{
 					Bullet *trap = Bullet::create();
-					trap->setDelegate(_delegate);
 					trap->_master = this;
 					trap->setID(trapType, CCString::create(kRoleMon), _group);
 					trap->setAnchorPoint(ccp(0.5, 0));
@@ -3649,14 +3641,13 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 					trap->idle();
 					trap->attack(NAttack);
 					trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 4.0f);
-					_delegate->addChild(trap, -trap->getPositionY());
+					getGameLayer()->addChild(trap, -trap->getPositionY());
 				}
 				else if (z == 1)
 				{
 					for (int i = 0; i < 3; i++)
 					{
 						Bullet *trap = Bullet::create();
-						trap->setDelegate(_delegate);
 						trap->_master = this;
 						trap->setID(trapType, CCString::create(kRoleMon), _group);
 						trap->setAnchorPoint(ccp(0.5, 0));
@@ -3664,13 +3655,12 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 						trap->idle();
 						trap->attack(NAttack);
 						trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 4.0f);
-						_delegate->addChild(trap, -trap->getPositionY());
+						getGameLayer()->addChild(trap, -trap->getPositionY());
 					}
 				}
 				else if (z == 2)
 				{
 					Bullet *trap = Bullet::create();
-					trap->setDelegate(_delegate);
 					trap->_master = this;
 					trap->setID(trapType, CCString::create(kRoleMon), _group);
 					trap->setAnchorPoint(ccp(0.5, 0));
@@ -3678,7 +3668,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 					trap->idle();
 					trap->attack(NAttack);
 					trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 4.0f);
-					_delegate->addChild(trap, -trap->getPositionY());
+					getGameLayer()->addChild(trap, -trap->getPositionY());
 				}
 			}
 			return;
@@ -3691,7 +3681,6 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 				for (int i = 0; i < 3; i++)
 				{
 					Bullet *trap = Bullet::create();
-					trap->setDelegate(_delegate);
 					trap->_master = this;
 					trap->setID(trapType, CCString::create(kRoleMon), _group);
 
@@ -3699,7 +3688,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 					trap->idle();
 					trap->attack(NAttack);
 					trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 2.5f);
-					_delegate->addChild(trap, -trap->getPositionY());
+					getGameLayer()->addChild(trap, -trap->getPositionY());
 				}
 			}
 			else if (z == 1)
@@ -3707,27 +3696,25 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 				for (int i = 0; i < 2; i++)
 				{
 					Bullet *trap = Bullet::create();
-					trap->setDelegate(_delegate);
 					trap->_master = this;
 					trap->setID(trapType, CCString::create(kRoleMon), _group);
 					trap->setPosition(ccp(getPositionX() + (_isFlipped ? -80 : 80), getPositionY() + (32 - i * 24)));
 					trap->idle();
 					trap->attack(NAttack);
 					trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 2.5f);
-					_delegate->addChild(trap, -trap->getPositionY());
+					getGameLayer()->addChild(trap, -trap->getPositionY());
 				}
 			}
 			else
 			{
 				Bullet *trap = Bullet::create();
-				trap->setDelegate(_delegate);
 				trap->_master = this;
 				trap->setID(trapType, CCString::create(kRoleMon), _group);
 				trap->setPosition(ccp(getPositionX() + (_isFlipped ? -48 : 48), getPositionY() + 22));
 				trap->idle();
 				trap->attack(NAttack);
 				trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 2.5f);
-				_delegate->addChild(trap, -trap->getPositionY());
+				getGameLayer()->addChild(trap, -trap->getPositionY());
 			}
 		}
 	}
@@ -3736,7 +3723,6 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 		for (int i = 0; i < 3; i++)
 		{
 			Bullet *trap = Bullet::create();
-			trap->setDelegate(_delegate);
 			trap->setAnchorPoint(ccp(0.5f, 0));
 			trap->_master = this;
 			trap->setID(trapType, CCString::create(kRoleMon), _group);
@@ -3749,13 +3735,13 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 				trap->setPosition(ccp(getPositionX(), getPositionY() + 24));
 
 			trap->attack(NAttack);
-			_delegate->addChild(trap, -trap->getPositionY());
+			getGameLayer()->addChild(trap, -trap->getPositionY());
 		}
 	}
 	else if (is_same(trapType->getCString(), "KageBom"))
 	{
 		CCObject *pObject;
-		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 		{
 			auto tempHero = (Hero *)pObject;
 			if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::DEAD && tempHero->_isVisable && !tempHero->_isSticking)
@@ -3765,13 +3751,12 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 				if (abs(distanceX) <= tempRange1)
 				{
 					Monster *trap = Monster::create();
-					trap->setDelegate(_delegate);
 					trap->_master = this;
 					trap->setID(trapType, CCString::create(kRoleMon), _group);
 					trap->setPosition(ccp(tempHero->getPositionX(), tempHero->getPositionY()));
 					trap->idle();
 					trap->attack(NAttack);
-					_delegate->addChild(trap, -trap->getPositionY());
+					getGameLayer()->addChild(trap, -trap->getPositionY());
 				}
 			}
 		}
@@ -3895,7 +3880,7 @@ void CharacterBase::setTransform()
 	}
 
 	if (_role && isPlayer())
-		_delegate->setHPLose(getHpPercent());
+		getGameLayer()->setHPLose(getHpPercent());
 
 	setnAttackValue(tempAttackValue);
 
@@ -3907,31 +3892,31 @@ void CharacterBase::setTransform()
 	{
 		auto charName = _character->getCString();
 
-		_delegate->getHudLayer()->skill1Button->setCD(to_ccstring(_sattackcoldDown1 * 1000));
-		_delegate->getHudLayer()->skill2Button->setCD(to_ccstring(_sattackcoldDown2 * 1000));
-		_delegate->getHudLayer()->skill3Button->setCD(to_ccstring(_sattackcoldDown3 * 1000));
+		getGameLayer()->getHudLayer()->skill1Button->setCD(to_ccstring(_sattackcoldDown1 * 1000));
+		getGameLayer()->getHudLayer()->skill2Button->setCD(to_ccstring(_sattackcoldDown2 * 1000));
+		getGameLayer()->getHudLayer()->skill3Button->setCD(to_ccstring(_sattackcoldDown3 * 1000));
 
-		_delegate->getHudLayer()->skill1Button->_isColdChanged = true;
-		_delegate->getHudLayer()->skill2Button->_isColdChanged = true;
-		_delegate->getHudLayer()->skill3Button->_isColdChanged = true;
+		getGameLayer()->getHudLayer()->skill1Button->_isColdChanged = true;
+		getGameLayer()->getHudLayer()->skill2Button->_isColdChanged = true;
+		getGameLayer()->getHudLayer()->skill3Button->_isColdChanged = true;
 
 		auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("%s_skill1.png", charName)->getCString());
 		if (frame)
-			_delegate->getHudLayer()->skill1Button->setDisplayFrame(frame);
+			getGameLayer()->getHudLayer()->skill1Button->setDisplayFrame(frame);
 		frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("%s_skill2.png", charName)->getCString());
 		if (frame)
-			_delegate->getHudLayer()->skill2Button->setDisplayFrame(frame);
+			getGameLayer()->getHudLayer()->skill2Button->setDisplayFrame(frame);
 		frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("%s_skill3.png", charName)->getCString());
 		if (frame)
-			_delegate->getHudLayer()->skill3Button->setDisplayFrame(frame);
+			getGameLayer()->getHudLayer()->skill3Button->setDisplayFrame(frame);
 		frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("%s_skill4.png", charName)->getCString());
-		if (frame && _delegate->getHudLayer()->skill4Button)
-			_delegate->getHudLayer()->skill4Button->setDisplayFrame(frame);
+		if (frame && getGameLayer()->getHudLayer()->skill4Button)
+			getGameLayer()->getHudLayer()->skill4Button->setDisplayFrame(frame);
 		frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("%s_skill5.png", charName)->getCString());
-		if (frame && _delegate->getHudLayer()->skill5Button)
-			_delegate->getHudLayer()->skill5Button->setDisplayFrame(frame);
+		if (frame && getGameLayer()->getHudLayer()->skill5Button)
+			getGameLayer()->getHudLayer()->skill5Button->setDisplayFrame(frame);
 
-		_delegate->getHudLayer()->initGearButton(charName);
+		getGameLayer()->getHudLayer()->initGearButton(charName);
 	}
 }
 
@@ -3945,7 +3930,7 @@ void CharacterBase::attack(abType type)
 {
 	if (isPlayer() && type == NAttack)
 	{
-		if (!_delegate->getSkillFinish() && !_isOnlySkillLocked)
+		if (!getGameLayer()->getSkillFinish() && !_isOnlySkillLocked)
 			return;
 	}
 
@@ -3962,7 +3947,7 @@ void CharacterBase::attack(abType type)
 		if (isPlayer())
 		{
 			if (_isControlled)
-				_delegate->getHudLayer()->skill1Button->click();
+				getGameLayer()->getHudLayer()->skill1Button->click();
 		}
 
 		_attackValue = getSAttackValue1();
@@ -3975,7 +3960,7 @@ void CharacterBase::attack(abType type)
 		if (isPlayer())
 		{
 			if (_isControlled)
-				_delegate->getHudLayer()->skill2Button->click();
+				getGameLayer()->getHudLayer()->skill2Button->click();
 		}
 
 		_attackValue = getSAttackValue2();
@@ -3988,7 +3973,7 @@ void CharacterBase::attack(abType type)
 		if (isPlayer())
 		{
 			if (_isControlled)
-				_delegate->getHudLayer()->skill3Button->click();
+				getGameLayer()->getHudLayer()->skill3Button->click();
 		}
 
 		_attackValue = getSAttackValue3();
@@ -4060,7 +4045,7 @@ void CharacterBase::nAttack()
 		{
 			if (isPlayer())
 			{
-				_delegate->setSkillFinish(false);
+				getGameLayer()->setSkillFinish(false);
 			}
 			if (isNotBullet())
 			{
@@ -4104,7 +4089,7 @@ void CharacterBase::sAttack(abType type)
 				_actionState = State::SATTACK;
 				if (isPlayer())
 				{
-					_delegate->setSkillFinish(false);
+					getGameLayer()->setSkillFinish(false);
 				}
 				runAction(_skill1Action);
 			}
@@ -4118,7 +4103,7 @@ void CharacterBase::sAttack(abType type)
 				_actionState = State::SATTACK;
 				if (isPlayer())
 				{
-					_delegate->setSkillFinish(false);
+					getGameLayer()->setSkillFinish(false);
 				}
 				runAction(_skill2Action);
 			}
@@ -4134,7 +4119,7 @@ void CharacterBase::sAttack(abType type)
 				_actionState = State::SATTACK;
 				if (isPlayer())
 				{
-					_delegate->setSkillFinish(false);
+					getGameLayer()->setSkillFinish(false);
 				}
 				runAction(_skill3Action);
 			}
@@ -4154,7 +4139,7 @@ void CharacterBase::oAttack(abType type)
 	{
 		if (isPlayer())
 		{
-			_delegate->setSkillFinish(false);
+			getGameLayer()->setSkillFinish(false);
 		}
 		if (!_isVisable)
 		{
@@ -4197,7 +4182,7 @@ bool CharacterBase::checkHasMovement()
 	// DRIVEND BY JOYSTICK
 	return false;
 #else
-	return _delegate->checkHasAnyMovement();
+	return getGameLayer()->checkHasAnyMovement();
 #endif
 }
 
@@ -4226,15 +4211,15 @@ void CharacterBase::idle()
 		{
 			if (!_isAllAttackLocked && !_isOnlySkillLocked)
 			{
-				_delegate->setSkillFinish(true);
+				getGameLayer()->setSkillFinish(true);
 			}
 		}
 
-		if (!_delegate->_isAttackButtonRelease &&
+		if (!getGameLayer()->_isAttackButtonRelease &&
 			_isPlayer &&
 			_attackType && !_isAllAttackLocked)
 		{
-			_delegate->setSkillFinish(true);
+			getGameLayer()->setSkillFinish(true);
 			attack(NAttack);
 		}
 		else
@@ -4330,7 +4315,7 @@ bool CharacterBase::hurt()
 		!_isArmored)
 	{
 		CCObject *pObject;
-		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 		{
 			auto tempHero = (Hero *)pObject;
 			if (isSameGroupAs(tempHero) &&
@@ -4364,7 +4349,7 @@ bool CharacterBase::hurt()
 
 		if (isPlayer())
 		{
-			_delegate->setSkillFinish(false);
+			getGameLayer()->setSkillFinish(false);
 		}
 
 		_actionState = State::HURT;
@@ -4401,10 +4386,10 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 		{
 			setPositionY(_originY);
 			_originY = 0;
-			_delegate->reorderChild(this, -getPositionY());
+			getGameLayer()->reorderChild(this, -getPositionY());
 		}
 		CCObject *pObject;
-		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 		{
 			auto tempHero = (Hero *)pObject;
 			if (isSameGroupAs(tempHero) &&
@@ -4443,7 +4428,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 
 		if (isPlayer())
 		{
-			_delegate->setSkillFinish(false);
+			getGameLayer()->setSkillFinish(false);
 		}
 		if (isStick)
 		{
@@ -4521,7 +4506,7 @@ void CharacterBase::airHurt()
 	{
 		if (isPlayer())
 		{
-			_delegate->setSkillFinish(false);
+			getGameLayer()->setSkillFinish(false);
 		}
 
 		if (_actionState == State::AIRHURT)
@@ -4552,7 +4537,7 @@ void CharacterBase::absorb(CCPoint position, bool isImmediate)
 
 		if (isPlayer())
 		{
-			_delegate->setSkillFinish(false);
+			getGameLayer()->setSkillFinish(false);
 		}
 		_actionState = State::HURT;
 
@@ -4598,7 +4583,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 		!_isArmored)
 	{
 		CCObject *pObject;
-		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 		{
 			auto tempHero = (Hero *)pObject;
 			if (isSameGroupAs(tempHero) &&
@@ -4637,7 +4622,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 
 		if (isPlayer())
 		{
-			_delegate->setSkillFinish(false);
+			getGameLayer()->setSkillFinish(false);
 		}
 		_actionState = State::FLOAT;
 		stopAllActions();
@@ -4703,11 +4688,11 @@ void CharacterBase::dead()
 				_isControlled = false;
 				doAI();
 
-				_delegate->currentPlayer = _controller;
-				_delegate->getHudLayer()->updateSkillButtons();
+				getGameLayer()->currentPlayer = _controller;
+				getGameLayer()->getHudLayer()->updateSkillButtons();
 			}
 
-			_delegate->controlChar = nullptr;
+			getGameLayer()->controlChar = nullptr;
 		}
 
 		changeGroup();
@@ -4715,7 +4700,7 @@ void CharacterBase::dead()
 		if (isPlayer())
 		{
 			_isAI = false;
-			_delegate->getHudLayer()->_isAllButtonLocked = false;
+			getGameLayer()->getHudLayer()->_isAllButtonLocked = false;
 		}
 
 		if (_controller->_actionState != State::DEAD)
@@ -4744,9 +4729,9 @@ void CharacterBase::dead()
 
 	if (isPlayer())
 	{
-		_delegate->setSkillFinish(false);
-		_delegate->getHudLayer()->hpLabel->setString("0");
-		_delegate->getHudLayer()->status_hpbar->setOpacity(0);
+		getGameLayer()->setSkillFinish(false);
+		getGameLayer()->getHudLayer()->hpLabel->setString("0");
+		getGameLayer()->getHudLayer()->status_hpbar->setOpacity(0);
 	}
 
 	//kill all buffEffect
@@ -4777,9 +4762,9 @@ void CharacterBase::dead()
 
 			if (isPlayer())
 			{
-				auto deadStr = _delegate->getHudLayer()->deadLabel->getString();
+				auto deadStr = getGameLayer()->getHudLayer()->deadLabel->getString();
 				int deads = to_int(deadStr) + 1;
-				_delegate->getHudLayer()->deadLabel->setString(to_cstr(deads));
+				getGameLayer()->getHudLayer()->deadLabel->setString(to_cstr(deads));
 			}
 		}
 
@@ -4818,7 +4803,7 @@ void CharacterBase::dead()
 	{
 		setPositionY(_originY);
 		_originY = 0;
-		_delegate->reorderChild(this, -getPositionY());
+		getGameLayer()->reorderChild(this, -getPositionY());
 	}
 
 	stopAllActions();
@@ -4901,22 +4886,22 @@ bool CharacterBase::findEnemy(const char *type, int searchRange, bool masterRang
 	CCArray *list;
 	if (is_same(kRoleHero, type))
 	{
-		list = _delegate->_CharacterArray;
+		list = getGameLayer()->_CharacterArray;
 	}
 	else if (is_same(kRoleFlog, type))
 	{
 		if (isAkatsukiGroup())
 		{
-			list = _delegate->_KonohaFlogArray;
+			list = getGameLayer()->_KonohaFlogArray;
 		}
 		else
 		{
-			list = _delegate->_AkatsukiFlogArray;
+			list = getGameLayer()->_AkatsukiFlogArray;
 		}
 	}
 	else if (is_same(kRoleTower, type))
 	{
-		list = _delegate->_TowerArray;
+		list = getGameLayer()->_TowerArray;
 	}
 
 	CCObject *pObject;
@@ -4991,22 +4976,22 @@ bool CharacterBase::findEnemy2(const char *type)
 	CCArray *list;
 	if (is_same(kRoleHero, type))
 	{
-		list = _delegate->_CharacterArray;
+		list = getGameLayer()->_CharacterArray;
 	}
 	else if (is_same(kRoleFlog, type))
 	{
 		if (isAkatsukiGroup())
 		{
-			list = _delegate->_KonohaFlogArray;
+			list = getGameLayer()->_KonohaFlogArray;
 		}
 		else
 		{
-			list = _delegate->_AkatsukiFlogArray;
+			list = getGameLayer()->_AkatsukiFlogArray;
 		}
 	}
 	else if (is_same(kRoleTower, type))
 	{
-		list = _delegate->_TowerArray;
+		list = getGameLayer()->_TowerArray;
 	}
 
 	CCObject *pObject;
@@ -5052,7 +5037,7 @@ bool CharacterBase::findEnemy2(const char *type)
 
 				if (is_same(_group->getCString(), target->_group->getCString()))
 				{
-					if (abs(sp.x) < _delegate->currentMap->getTileSize().width * 3)
+					if (abs(sp.x) < getGameLayer()->currentMap->getTileSize().width * 3)
 					{
 						if (target->isNotGuardian())
 						{
@@ -5071,7 +5056,7 @@ bool CharacterBase::findEnemy2(const char *type)
 											(target->getCkr2Value() / 25000) * target->_sattackCombatPoint5;
 					}
 
-					if (!target->_isInvincible && (target->getPositionX() >= _delegate->currentMap->getTileSize().width * 3 && target->getPositionX() <= (_delegate->currentMap->getMapSize().width - 3) * _delegate->currentMap->getTileSize().width))
+					if (!target->_isInvincible && (target->getPositionX() >= getGameLayer()->currentMap->getTileSize().width * 3 && target->getPositionX() <= (getGameLayer()->currentMap->getMapSize().width - 3) * getGameLayer()->currentMap->getTileSize().width))
 					{
 						if (curDistance && curDistance > distance)
 						{
@@ -5095,7 +5080,7 @@ bool CharacterBase::findEnemy2(const char *type)
 
 bool CharacterBase::checkBase()
 {
-	auto list = _delegate->_CharacterArray;
+	auto list = getGameLayer()->_CharacterArray;
 	CCObject *pObject;
 
 	CCARRAY_FOREACH(list, pObject)
@@ -5128,11 +5113,11 @@ bool CharacterBase::checkBase()
 
 	if (isAkatsukiGroup())
 	{
-		list = _delegate->_KonohaFlogArray;
+		list = getGameLayer()->_KonohaFlogArray;
 	}
 	else
 	{
-		list = _delegate->_AkatsukiFlogArray;
+		list = getGameLayer()->_AkatsukiFlogArray;
 	}
 
 	CCARRAY_FOREACH(list, pObject)
@@ -5171,17 +5156,17 @@ bool CharacterBase::findTargetEnemy(const char *type, bool isTowerDected)
 	CCArray *list;
 	if (is_same(kRoleHero, type))
 	{
-		list = _delegate->_CharacterArray;
+		list = getGameLayer()->_CharacterArray;
 	}
 	else if (is_same(kRoleFlog, type))
 	{
 		if (isAkatsukiGroup())
 		{
-			list = _delegate->_KonohaFlogArray;
+			list = getGameLayer()->_KonohaFlogArray;
 		}
 		else
 		{
-			list = _delegate->_AkatsukiFlogArray;
+			list = getGameLayer()->_AkatsukiFlogArray;
 		}
 	}
 
@@ -5201,7 +5186,7 @@ bool CharacterBase::findTargetEnemy(const char *type, bool isTowerDected)
 			target->_isVisable && !target->_isInvincible)
 		{
 			// float gardZone;
-			if (_delegate->playerTeam > 0)
+			if (getGameLayer()->playerTeam > 0)
 			{
 				if (target->getPositionX() >= 81 * 32)
 				{
@@ -5284,8 +5269,8 @@ bool CharacterBase::stepBack()
 	else
 		moveDirection = ccpNormalize(ccp(1, 0));
 
-	if (getPositionX() >= _delegate->currentMap->getTileSize().width * 2 &&
-		getPositionX() <= (_delegate->currentMap->getMapSize().width - 2) * _delegate->currentMap->getTileSize().width)
+	if (getPositionX() >= getGameLayer()->currentMap->getTileSize().width * 2 &&
+		getPositionX() <= (getGameLayer()->currentMap->getMapSize().width - 2) * getGameLayer()->currentMap->getTileSize().width)
 	{
 		walk(moveDirection);
 		return true;
@@ -5310,7 +5295,7 @@ bool CharacterBase::stepBack2()
 	{
 		if (randomDirection > 5)
 		{
-			if (getPositionY() + 96 < _delegate->currentMap->getTileSize().height * 5.5)
+			if (getPositionY() + 96 < getGameLayer()->currentMap->getTileSize().height * 5.5)
 			{
 				_diretionY = 1;
 				_backY = getPositionY() + 96;
@@ -5339,7 +5324,7 @@ bool CharacterBase::stepBack2()
 	{
 		if (randomDirection > 5)
 		{
-			if (_diretionY == 1 && (getPositionY() >= _backY || getPositionY() > _delegate->currentMap->getTileSize().height * 5))
+			if (_diretionY == 1 && (getPositionY() >= _backY || getPositionY() > getGameLayer()->currentMap->getTileSize().height * 5))
 			{
 				_diretionY = -1;
 				_backY = getPositionY() - 96;
@@ -5352,10 +5337,10 @@ bool CharacterBase::stepBack2()
 		}
 		else
 		{
-			if (_diretionY == 1 && getPositionY() <= _delegate->currentMap->getTileSize().height * 5)
+			if (_diretionY == 1 && getPositionY() <= getGameLayer()->currentMap->getTileSize().height * 5)
 			{
 				_diretionY = 1;
-				_backY = _delegate->currentMap->getTileSize().height * 5;
+				_backY = getGameLayer()->currentMap->getTileSize().height * 5;
 			}
 			else if (getPositionY() > 16)
 			{
@@ -5365,13 +5350,13 @@ bool CharacterBase::stepBack2()
 		}
 	}
 
-	if (isKonohaGroup() && getPositionX() >= _delegate->currentMap->getTileSize().width * 2)
+	if (isKonohaGroup() && getPositionX() >= getGameLayer()->currentMap->getTileSize().width * 2)
 	{
 		moveDirection = ccp(-1, _diretionY);
 		walk(moveDirection);
 		return true;
 	}
-	else if (isAkatsukiGroup() && getPositionX() <= (_delegate->currentMap->getMapSize().width - 2) * _delegate->currentMap->getTileSize().width)
+	else if (isAkatsukiGroup() && getPositionX() <= (getGameLayer()->currentMap->getMapSize().width - 2) * getGameLayer()->currentMap->getTileSize().width)
 	{
 		moveDirection = ccp(1, _diretionY);
 		walk(moveDirection);
@@ -5388,7 +5373,7 @@ bool CharacterBase::checkRetri()
 {
 	if (_isCanItem1 && getCoinValue() >= 50)
 	{
-		if (_delegate->_isHardCoreGame)
+		if (getGameLayer()->_isHardCoreGame)
 		{
 			if (battleCondiction >= 0)
 			{
@@ -5423,12 +5408,12 @@ bool CharacterBase::checkRetri()
 	{
 		if (isKonohaGroup())
 		{
-			if (getPositionX() >= _delegate->currentMap->getTileSize().width * 60)
+			if (getPositionX() >= getGameLayer()->currentMap->getTileSize().width * 60)
 				return false;
 		}
 		else
 		{
-			if (getPositionX() <= _delegate->currentMap->getTileSize().width * 36)
+			if (getPositionX() <= getGameLayer()->currentMap->getTileSize().width * 36)
 				return false;
 		}
 	}
@@ -5476,7 +5461,7 @@ void CharacterBase::changeGroup()
 
 	if (_hpBar && isNotPlayer())
 	{
-		if (strcmp(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) != 0)
+		if (strcmp(getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()) != 0)
 		{
 			_hpBar->changeBar("hp_bar_r.png");
 		}
@@ -5493,13 +5478,13 @@ void CharacterBase::changeGroup()
 			CCArray *list;
 
 			if (i == 0)
-				list = _delegate->_CharacterArray;
+				list = getGameLayer()->_CharacterArray;
 			else if (i == 1)
-				list = _delegate->_TowerArray;
+				list = getGameLayer()->_TowerArray;
 			else if (i == 2)
-				list = _delegate->_AkatsukiFlogArray;
+				list = getGameLayer()->_AkatsukiFlogArray;
 			else if (i == 3)
-				list = _delegate->_KonohaFlogArray;
+				list = getGameLayer()->_KonohaFlogArray;
 
 			CCObject *pObject;
 			CCARRAY_FOREACH(list, pObject)
@@ -5594,7 +5579,7 @@ void CharacterBase::increaseAllCkrs(uint32_t value, bool enableLv2, bool enableL
 			_isCanOugis1 = true;
 
 		if (isPlayer())
-			_delegate->setCKRLose(false);
+			getGameLayer()->setCKRLose(false);
 	}
 
 	if (_level >= 4 && enableLv4)
@@ -5606,7 +5591,7 @@ void CharacterBase::increaseAllCkrs(uint32_t value, bool enableLv2, bool enableL
 			_isCanOugis2 = true;
 
 		if (isPlayer())
-			_delegate->setCKRLose(true);
+			getGameLayer()->setCKRLose(true);
 	}
 }
 

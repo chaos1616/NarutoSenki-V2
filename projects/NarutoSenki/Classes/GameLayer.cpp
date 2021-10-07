@@ -7,6 +7,9 @@
 #include "Core/Provider.hpp"
 #include "GameMode/GameModeImpl.h"
 
+GameLayer *_gLayer = nullptr;
+bool _isFullScreen = false;
+
 GameLayer::GameLayer()
 {
 	mapId = 0;
@@ -48,8 +51,6 @@ GameLayer::GameLayer()
 	_isGear = false;
 	_isPause = false;
 
-	_gLayer = nullptr;
-	_isFullScreen = false;
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	_lastPressedMovementKey = -100;
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
@@ -61,12 +62,7 @@ GameLayer::GameLayer()
 GameLayer::~GameLayer()
 {
 	_gLayer = nullptr;
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	CCDirector::sharedDirector()->getOpenGLView()->setAccelerometerKeyHook(nullptr);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-	glfwSetKeyCallback(_window, nullptr);
-#endif
+	removeKeyEventHandler();
 }
 
 bool GameLayer::init()
@@ -119,8 +115,17 @@ void GameLayer::onExit()
 		CC_SAFE_RELEASE(_KonohaFlogArray);
 		CC_SAFE_RELEASE(_AkatsukiFlogArray);
 		CC_SAFE_RELEASE(_CharacterArray);
-		_gLayer = nullptr;
 	}
+}
+
+void GameLayer::onHUDInitialized(const OnHUDInitializedCallback &callback)
+{
+	callbackssList.push_back(callback);
+}
+
+bool GameLayer::isHUDInit()
+{
+	return isHUDInitialized;
 }
 
 void GameLayer::initTileMap()
@@ -150,7 +155,6 @@ void GameLayer::initGard()
 		guardian->setPosition(ccp(272, 80));
 		guardian->setSpawnPoint(ccp(272, 80));
 	}
-	guardian->setDelegate(this);
 
 	addChild(guardian, -guardian->getPositionY());
 	guardian->setLV(6);
@@ -281,7 +285,6 @@ CharacterBase *GameLayer::addHero(CCString *character, CCString *role, CCString 
 	{
 		currentPlayer = hero;
 	}
-	hero->setDelegate(this);
 	hero->setPosition(spawnPoint);
 	hero->setSpawnPoint(spawnPoint);
 	//NOTE: Set all characters speed to zero. (Control movement before game real start)
@@ -325,7 +328,6 @@ void GameLayer::onGameStart(float dt)
 
 	getHudLayer()->openingSprite->removeFromParent();
 	getHudLayer()->openingSprite = nullptr;
-	// getHudLayer()->initHeroInterface();
 	schedule(schedule_selector(GameLayer::updateGameTime), 1.0f);
 	schedule(schedule_selector(GameLayer::checkBackgroundMusic), 2.0f);
 	if (!handler->skipInitFlogs)
@@ -335,7 +337,7 @@ void GameLayer::onGameStart(float dt)
 		addFlog(0);
 	}
 
-	setupKeyEventHandler();
+	setKeyEventHandler();
 
 	CCObject *pObject;
 	CCARRAY_FOREACH(_CharacterArray, pObject)
@@ -377,7 +379,6 @@ void GameLayer::addFlog(float dt)
 	for (i = 0; i < NUM_FLOG; i++)
 	{
 		aiFlog = Flog::create();
-		aiFlog->setDelegate(this);
 		aiFlog->setID(KonohaFlogName, CCString::create(kRoleFlog), CCString::create(Konoha));
 		if (i < NUM_FLOG / 2)
 			mainPosY = (5.5 - i / 1.5) * 32;
@@ -395,7 +396,6 @@ void GameLayer::addFlog(float dt)
 	for (i = 0; i < NUM_FLOG; i++)
 	{
 		aiFlog = Flog::create();
-		aiFlog->setDelegate(this);
 		aiFlog->setID(AkatsukiFlogName, CCString::create(kRoleFlog), CCString::create(Akatsuki));
 		if (i < NUM_FLOG / 2)
 			mainPosY = (5.5 - i / 1.5) * 32;
@@ -436,7 +436,6 @@ void GameLayer::initTower()
 		CCString *name = (CCString *)dict->objectForKey("name");
 
 		Tower *tower = Tower::create();
-		tower->setDelegate(this);
 		char towerName[7] = "abcdef";
 		strncpy(towerName, name->getCString(), 6);
 		if (is_same(towerName, Konoha))
@@ -764,8 +763,6 @@ void GameLayer::onPause()
 
 	CCScene *pscene = CCScene::create();
 	PauseLayer *layer = PauseLayer::create(snapshoot);
-
-	layer->setDelegate(this);
 	pscene->addChild(layer);
 	CCDirector::sharedDirector()->pushScene(pscene);
 }
@@ -790,9 +787,7 @@ void GameLayer::onGear()
 
 	CCScene *pscene = CCScene::create();
 	GearLayer *layer = GearLayer::create(snapshoot);
-	_gLayer->_gearLayer = layer;
-
-	layer->setDelegate(this);
+	_gearLayer = layer;
 	layer->updatePlayerGear();
 	pscene->addChild(layer);
 	CCDirector::sharedDirector()->pushScene(pscene);
@@ -800,8 +795,7 @@ void GameLayer::onGear()
 
 void GameLayer::onGameOver(bool isWin)
 {
-	// Stop all keyboard events
-	_gLayer = nullptr;
+	removeKeyEventHandler();
 
 	if (_isPause)
 	{
@@ -828,7 +822,6 @@ void GameLayer::onGameOver(bool isWin)
 	CCScene *pscene = CCScene::create();
 	GameOver *layer = GameOver::create(snapshoot);
 	layer->setWin(isWin);
-	layer->setDelegate(this);
 	pscene->addChild(layer);
 	CCDirector::sharedDirector()->pushScene(pscene);
 }
@@ -841,6 +834,7 @@ void GameLayer::onLeft()
 	CCARRAY_FOREACH(childArray, pObject)
 	{
 		auto ac = (CharacterBase *)pObject;
+		ac->unscheduleUpdate();
 		ac->unscheduleAllSelectors();
 		CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(ac);
 	}
@@ -957,12 +951,21 @@ void GameLayer::removeOugis()
 	ougisChar = nullptr;
 }
 
-void GameLayer::setupKeyEventHandler()
+void GameLayer::setKeyEventHandler()
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	CCDirector::sharedDirector()->getOpenGLView()->setAccelerometerKeyHook((cocos2d::CCEGLView::LPFN_ACCELEROMETER_KEYHOOK)(&GameLayer::LPFN_ACCELEROMETER_KEYHOOK));
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 	glfwSetKeyCallback(_window, keyEventHandle);
+#endif
+}
+
+void GameLayer::removeKeyEventHandler()
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	CCDirector::sharedDirector()->getOpenGLView()->setAccelerometerKeyHook(nullptr);
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+	glfwSetKeyCallback(_window, nullptr);
 #endif
 }
 
@@ -975,6 +978,17 @@ int GameLayer::getMapCount()
 		mapCount++;
 	CCLOG("===== Found %d maps =====", mapCount);
 	return mapCount;
+}
+
+void GameLayer::invokeAllCallbacks()
+{
+	isHUDInitialized = true;
+	if (callbackssList.size() > 0)
+	{
+		for (auto &callback : callbackssList)
+			callback();
+		callbackssList.clear();
+	}
 }
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
@@ -1060,9 +1074,6 @@ bool GameLayer::checkHasAnyMovement()
 /** NOTE: Impl key listener */
 void GameLayer::keyEventHandle(GLFWwindow *window, int key, int scancode, int keyState, int mods)
 {
-	if (_gLayer == nullptr)
-		return;
-
 	//NOTE: only attack button can hold
 	// Other keys is only click
 	if (keyState == 2 && key != KEY_J)

@@ -3,8 +3,6 @@
 
 using namespace cocos2d;
 
-class GameLayer;
-
 class PauseLayer : public CCLayer
 {
 public:
@@ -29,6 +27,4 @@ private:
 	void onBGM(CCObject *sender);
 	void onPreload(CCObject *sender);
 	void onVoice(CCObject *sender);
-
-	CC_SYNTHESIZE(GameLayer *, _delegate, Delegate);
 };

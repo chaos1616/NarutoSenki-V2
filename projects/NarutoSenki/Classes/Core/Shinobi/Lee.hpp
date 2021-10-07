@@ -6,7 +6,10 @@ class Lee : public Hero
 #define kLee____ "Lee"
 #define kRockLee "RockLee"
 
-	int bamen = 0;
+	static const uint8_t kMax_Lee_HachimonTonkouLevel = 5;
+
+	// Hachimon tonkou level
+	uint8_t htLv = 0;
 
 	void setID(CCString *character, CCString *role, CCString *group) override
 	{
@@ -14,15 +17,21 @@ class Lee : public Hero
 
 		match_char_exp(kLee____, setAIHandler(Lee::perform),
 					   kRockLee, setAIHandler(Lee::perform_RockLee));
+
+		// NOTE: Because Lee can transform to RockLee
+		if (getGameLayer()->isHUDInit())
+			tryLockSkillButton();
+		else
+			getGameLayer()->onHUDInitialized(BIND(Lee::tryLockSkillButton));
 	}
 
 	void dead() override
 	{
 		CharacterBase::dead();
 
-		if (bamen > 0)
+		if (htLv > 0)
 		{
-			if (bamen == 5)
+			if (htLv == 5)
 			{
 				setWalkSpeed(224);
 				_originSpeed = 224;
@@ -31,18 +40,18 @@ class Lee : public Hero
 				setsAttackValue2(to_ccstring(getSAttackValue2() - 100));
 				setnAttackValue(to_ccstring(getNAttackValue() - 60));
 			}
-			else if (bamen == 4)
+			else if (htLv == 4)
 			{
 				setsAttackValue3(to_ccstring(getSAttackValue3() - 100));
 				setsAttackValue2(to_ccstring(getSAttackValue2() - 100));
 			}
-			else if (bamen == 3)
+			else if (htLv == 3)
 			{
 				setTransform();
 
 				if (isPlayer())
 				{
-					_delegate->getHudLayer()->skill3Button->setLock();
+					getGameLayer()->getHudLayer()->skill3Button->setLock();
 				}
 
 				if (_skillBuffEffect)
@@ -51,28 +60,30 @@ class Lee : public Hero
 					_skillBuffEffect = nullptr;
 				}
 			}
-			else if (bamen == 2)
+			else if (htLv == 2)
 			{
 				setsAttackValue2(to_ccstring(getSAttackValue2() - 100));
 			}
-			else if (bamen == 1)
+			else if (htLv == 1)
 			{
 				if (isPlayer())
 				{
-					_delegate->getHudLayer()->skill4Button->setLock();
+					getGameLayer()->getHudLayer()->skill4Button->setLock();
 				}
 				setnAttackValue(to_ccstring(getNAttackValue() - 30));
 			}
-			bamen--;
+			htLv--;
 
-			if (bamen == 0)
+			tryLockSkillButton();
+
+			if (htLv == 0)
 			{
 				_heartEffect->removeFromParent();
 				_heartEffect = nullptr;
 			}
 			else
 			{
-				auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Bamen_Effect_%02d.png", bamen - 1)->getCString());
+				auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Bamen_Effect_%02d.png", htLv - 1)->getCString());
 				_heartEffect->setDisplayFrame(frame);
 			}
 		}
@@ -90,34 +101,30 @@ class Lee : public Hero
 			// NOTE: See `Kakuzu::changeHPbar()`
 			if (_exp >= 500 && _level == 1 + 1)
 			{
-				if (bamen < 1)
-				{
-					_delegate->getHudLayer()->skill4Button->setLock();
-				}
+				if (htLv < 1)
+					getGameLayer()->getHudLayer()->skill4Button->setLock();
 			}
 			else if (_exp >= 1500 && _level == 3 + 1)
 			{
-				if (bamen < 3)
-				{
-					_delegate->getHudLayer()->skill5Button->setLock();
-				}
+				if (htLv < 3)
+					getGameLayer()->getHudLayer()->skill5Button->setLock();
 			}
 		}
 	}
 
 	void changeAction() override
 	{
-		if (bamen == 0 && !_heartEffect)
+		if (htLv == 0 && !_heartEffect)
 		{
 			_heartEffect = CCSprite::createWithSpriteFrameName("Bamen_Effect_00.png");
 			_heartEffect->setPosition(ccp(getContentSize().width + 40, 60));
 			addChild(_heartEffect);
 		}
 
-		if (bamen < 5)
+		if (htLv < kMax_Lee_HachimonTonkouLevel)
 		{
-			bamen += 1;
-			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Bamen_Effect_%02d.png", bamen - 1)->getCString());
+			htLv++;
+			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Bamen_Effect_%02d.png", htLv - 1)->getCString());
 			_heartEffect->setDisplayFrame(frame);
 		}
 		else
@@ -125,19 +132,20 @@ class Lee : public Hero
 			return;
 		}
 
-		if (bamen == 1)
+		if (htLv == 1)
 		{
 			setnAttackValue(to_ccstring(getNAttackValue() + 30));
+
 			if (isPlayer())
 			{
-				_delegate->getHudLayer()->skill4Button->unLock();
+				getGameLayer()->getHudLayer()->skill4Button->unLock();
 			}
 		}
-		else if (bamen == 2)
+		else if (htLv == 2)
 		{
 			setsAttackValue2(to_ccstring(getSAttackValue2() + 100));
 		}
-		else if (bamen == 3)
+		else if (htLv == 3)
 		{
 			if (!_skillBuffEffect)
 			{
@@ -146,18 +154,16 @@ class Lee : public Hero
 			setTransform();
 
 			if (isPlayer())
-			{
-				_delegate->getHudLayer()->skill3Button->unLock();
-			}
+				getGameLayer()->getHudLayer()->skill3Button->unLock();
 
 			unlockSkill5Button();
 		}
-		else if (bamen == 4)
+		else if (htLv == 4)
 		{
 			setsAttackValue2(to_ccstring(getSAttackValue2() + 100));
 			setsAttackValue3(to_ccstring(getSAttackValue3() + 100));
 		}
-		else if (bamen == 5)
+		else if (htLv == 5)
 		{
 			setWalkAction(createAnimation(skillSPC1Array, 10.0f, true, false));
 			setWalkSpeed(320);
@@ -174,19 +180,20 @@ class Lee : public Hero
 
 		uint32_t hp = getHPValue();
 
-		if (bamen >= 8)
-		{
-			setHPValue(hp > 1000 ? hp - 1000 : 100);
-		}
-		else if (bamen >= 5)
+		// TODO: Make Maito Gai
+		// if (htLv >= 8)
+		// {
+		// 	setHPValue(hp > 1000 ? hp - 1000 : 100);
+		// }
+		if (htLv >= 5)
 		{
 			setHPValue(hp > 200 ? hp - 200 : 100);
 		}
-		else if (bamen >= 4)
+		else if (htLv >= 4)
 		{
 			setHPValue(hp > 150 ? hp - 150 : 100);
 		}
-		else if (bamen >= 3)
+		else if (htLv >= 3)
 		{
 			setHPValue(hp > 100 ? hp - 100 : 100);
 		}
@@ -211,7 +218,7 @@ class Lee : public Hero
 			}
 		}
 
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -263,7 +270,7 @@ class Lee : public Hero
 
 			if ((isFreeActionState()) && abs(sp.x) < 128)
 			{
-				if (_isCanSkill1 && bamen < 5)
+				if (_isCanSkill1 && htLv < 5)
 				{
 					changeSide(sp);
 					attack(SKILL1);
@@ -285,7 +292,7 @@ class Lee : public Hero
 						walk(moveDirection);
 						return;
 					}
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && bamen >= 1)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && htLv >= 1)
 					{
 						changeSide(sp);
 						attack(OUGIS1);
@@ -367,7 +374,7 @@ class Lee : public Hero
 			}
 		}
 
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -419,13 +426,13 @@ class Lee : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanSkill1 && bamen < 5)
+				if (_isCanSkill1 && htLv < 5)
 				{
 					changeSide(sp);
 					attack(SKILL1);
 					return;
 				}
-				else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && bamen >= 3)
+				else if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && htLv >= 3)
 				{
 					changeSide(sp);
 					attack(OUGIS2);
@@ -438,7 +445,7 @@ class Lee : public Hero
 						idle();
 					return;
 				}
-				else if (abs(sp.x) < 128 || bamen >= 5)
+				else if (abs(sp.x) < 128 || htLv >= 5)
 				{
 					if (abs(sp.x) > 46 || abs(sp.y) > 32)
 					{
@@ -447,7 +454,7 @@ class Lee : public Hero
 						return;
 					}
 
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && bamen >= 1)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && htLv >= 1)
 					{
 						changeSide(sp);
 						attack(OUGIS1);
@@ -457,7 +464,7 @@ class Lee : public Hero
 						changeSide(sp);
 						attack(SKILL2);
 					}
-					else if (_isCanSkill3 && bamen >= 3)
+					else if (_isCanSkill3 && htLv >= 3)
 					{
 						changeSide(sp);
 						attack(SKILL3);
@@ -495,7 +502,7 @@ class Lee : public Hero
 					changeSide(sp);
 					attack(SKILL2);
 				}
-				else if (_isCanSkill3 && bamen >= 3 && isBaseDanger && _mainTarget->isFlog())
+				else if (_isCanSkill3 && htLv >= 3 && isBaseDanger && _mainTarget->isFlog())
 				{
 					changeSide(sp);
 					attack(SKILL3);
@@ -517,6 +524,15 @@ class Lee : public Hero
 		else
 		{
 			stepOn();
+		}
+	}
+
+private:
+	inline void tryLockSkillButton()
+	{
+		if (htLv < 3 && isPlayer())
+		{
+			getGameLayer()->getHudLayer()->skill3Button->setLock();
 		}
 	}
 };

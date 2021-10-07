@@ -53,19 +53,19 @@ void HPBar::changeBar(const char *szImage)
 
 void HPBar::loseHP(float percent)
 {
-	if (_delegate->getDelegate()->_isHardCoreGame)
+	if (getGameLayer()->_isHardCoreGame)
 	{
-		auto gardTower = _delegate->getDelegate()->playerTeam > 0 ? "AkatsukiCenter" : "KonohaCenter";
+		auto gardTower = getGameLayer()->playerTeam > 0 ? "AkatsukiCenter" : "KonohaCenter";
 
 		if (is_same(_delegate->getCharacter()->getCString(), gardTower))
 		{
-			if (!_delegate->getDelegate()->_isGuardian && percent <= 0.8)
+			if (!getGameLayer()->_isGuardian && percent <= 0.8)
 			{
-				_delegate->getDelegate()->initGard();
+				getGameLayer()->initGard();
 			}
 		}
 
-		if (_delegate->getDelegate()->_isGuardian)
+		if (getGameLayer()->_isGuardian)
 		{
 			auto _slayer = (CharacterBase *)_delegate->_slayer;
 			if (_slayer)
@@ -145,20 +145,20 @@ void HPBar::loseHP(float percent)
 				if (_delegate->getMaxHPValue() == 10000)
 				{
 					_delegate->setCoinDisplay(30);
-					_delegate->getDelegate()->setCoin("30");
-					_delegate->getDelegate()->getHudLayer()->setEXPLose(0);
+					getGameLayer()->setCoin("30");
+					getGameLayer()->getHudLayer()->setEXPLose(0);
 				}
 				else if (_delegate->getMaxHPValue() == 5000)
 				{
 					_delegate->setCoinDisplay(20);
-					_delegate->getDelegate()->setCoin("20");
-					_delegate->getDelegate()->getHudLayer()->setEXPLose(0);
+					getGameLayer()->setCoin("20");
+					getGameLayer()->getHudLayer()->setEXPLose(0);
 				}
 				else
 				{
 					_delegate->setCoinDisplay(10);
-					_delegate->getDelegate()->setCoin("10");
-					_delegate->getDelegate()->getHudLayer()->setEXPLose(0);
+					getGameLayer()->setCoin("10");
+					getGameLayer()->getHudLayer()->setEXPLose(0);
 				}
 			}
 
@@ -217,7 +217,7 @@ void HPBar::loseHP(float percent)
 
 			if ((currentSlayer->isNotFlog()))
 			{
-				_delegate->getDelegate()->setReport(currentSlayer->getCharacter()->getCString(), kRoleTower, currentSlayer->getKillNum());
+				getGameLayer()->setReport(currentSlayer->getCharacter()->getCString(), kRoleTower, currentSlayer->getKillNum());
 
 				if (currentSlayer->getLV() != 6)
 				{
@@ -236,29 +236,29 @@ void HPBar::loseHP(float percent)
 
 				if (currentSlayer->isPlayer())
 				{
-					if (_delegate->getDelegate()->_isHardCoreGame)
+					if (getGameLayer()->_isHardCoreGame)
 					{
 						if (_delegate->getMaxHPValue() > 40000)
 						{
-							_delegate->getDelegate()->setCoin("1000");
+							getGameLayer()->setCoin("1000");
 							_delegate->setCoinDisplay(1000);
 						}
 						else
 						{
-							_delegate->getDelegate()->setCoin("500");
+							getGameLayer()->setCoin("500");
 							_delegate->setCoinDisplay(500);
 						}
 					}
 					else
 					{
-						_delegate->getDelegate()->setCoin("300");
+						getGameLayer()->setCoin("300");
 						_delegate->setCoinDisplay(300);
 					}
 
-					_delegate->getDelegate()->getHudLayer()->setEXPLose(0);
+					getGameLayer()->getHudLayer()->setEXPLose(0);
 				}
 
-				if (_delegate->getDelegate()->_isHardCoreGame)
+				if (getGameLayer()->_isHardCoreGame)
 				{
 					if (_delegate->getMaxHPValue() > 40000)
 					{
@@ -276,7 +276,7 @@ void HPBar::loseHP(float percent)
 			}
 
 			CCObject *pObject;
-			CCARRAY_FOREACH(_delegate->getDelegate()->_CharacterArray, pObject)
+			CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 			{
 				auto otherSlayer = (Hero *)pObject;
 				if (is_same(currentSlayer->getGroup()->getCString(), otherSlayer->getGroup()->getCString()) &&
@@ -290,29 +290,29 @@ void HPBar::loseHP(float percent)
 
 					if (otherSlayer->isPlayer())
 					{
-						if (_delegate->getDelegate()->_isHardCoreGame)
+						if (getGameLayer()->_isHardCoreGame)
 						{
 							if (_delegate->getMaxHPValue() > 40000)
 							{
-								_delegate->getDelegate()->setCoin("850");
+								getGameLayer()->setCoin("850");
 								_delegate->setCoinDisplay(850);
 							}
 							else
 							{
-								_delegate->getDelegate()->setCoin("350");
+								getGameLayer()->setCoin("350");
 								_delegate->setCoinDisplay(350);
 							}
 						}
 						else
 						{
-							_delegate->getDelegate()->setCoin("150");
+							getGameLayer()->setCoin("150");
 							_delegate->setCoinDisplay(150);
 						}
 
-						_delegate->getDelegate()->getHudLayer()->setEXPLose(0);
+						getGameLayer()->getHudLayer()->setEXPLose(0);
 					}
 
-					if (_delegate->getDelegate()->_isHardCoreGame)
+					if (getGameLayer()->_isHardCoreGame)
 					{
 						if (_delegate->getMaxHPValue() > 40000)
 						{
@@ -332,7 +332,7 @@ void HPBar::loseHP(float percent)
 		}
 		else if (_delegate->isPlayerOrCom())
 		{
-			if (_delegate->isCharacter("Kakuzu") && _delegate->getDelegate()->_isOugis2Game)
+			if (_delegate->isCharacter("Kakuzu") && getGameLayer()->_isOugis2Game)
 			{
 				bool reieveAble = false;
 				if (_delegate->getCkr2Value() >= 25000 && _delegate->hearts > 0)
@@ -358,16 +358,16 @@ void HPBar::loseHP(float percent)
 					{
 						setPositionY(_delegate->_originY);
 						_delegate->_originY = 0;
-						_delegate->getDelegate()->reorderChild(_delegate, -_delegate->getPositionY());
+						getGameLayer()->reorderChild(_delegate, -_delegate->getPositionY());
 					}
 
 					if (_delegate->isPlayer())
 					{
-						_delegate->getDelegate()->getHudLayer()->skill5Button->unLock();
+						getGameLayer()->getHudLayer()->skill5Button->unLock();
 						_delegate->setActionState(State::IDLE);
-						_delegate->getDelegate()->setSkillFinish(true);
-						_delegate->getDelegate()->getHudLayer()->skill5Button->click();
-						_delegate->getDelegate()->getHudLayer()->skill5Button->setLock();
+						getGameLayer()->setSkillFinish(true);
+						getGameLayer()->getHudLayer()->skill5Button->click();
+						getGameLayer()->getHudLayer()->skill5Button->setLock();
 					}
 					else
 					{
@@ -389,7 +389,7 @@ void HPBar::loseHP(float percent)
 					{
 						if (_delegate->isPlayer())
 						{
-							_delegate->getDelegate()->getHudLayer()->skill4Button->setLock();
+							getGameLayer()->getHudLayer()->skill4Button->setLock();
 						}
 					}
 
@@ -461,7 +461,7 @@ void HPBar::loseHP(float percent)
 					{
 						if (currentSlayer->getMonsterArray() && currentSlayer->getMonsterArray()->count() < 3 && currentSlayer->getLV() >= 2)
 						{
-							_delegate->getDelegate()->getHudLayer()->skill4Button->unLock();
+							getGameLayer()->getHudLayer()->skill4Button->unLock();
 						}
 					}
 				}
@@ -471,24 +471,24 @@ void HPBar::loseHP(float percent)
 			{
 				int realKillNum = to_int(currentSlayer->getKillNum()->getCString()) + 1;
 				currentSlayer->setKillNum(to_ccstring(realKillNum));
-				_delegate->getDelegate()->setReport(currentSlayer->getCharacter()->getCString(), _delegate->getCharacter()->getCString(), currentSlayer->getKillNum());
+				getGameLayer()->setReport(currentSlayer->getCharacter()->getCString(), _delegate->getCharacter()->getCString(), currentSlayer->getKillNum());
 
-				auto currentTeam = _delegate->getDelegate()->playerTeam > 0 ? Konoha : Akatsuki;
+				auto currentTeam = getGameLayer()->playerTeam > 0 ? Konoha : Akatsuki;
 
 				if (is_same(currentSlayer->getGroup()->getCString(), currentTeam))
 				{
-					int teamKills = to_int(_delegate->getDelegate()->getHudLayer()->KonoLabel->getString()) + 1;
-					_delegate->getDelegate()->getHudLayer()->KonoLabel->setString(to_cstr(teamKills));
+					int teamKills = to_int(getGameLayer()->getHudLayer()->KonoLabel->getString()) + 1;
+					getGameLayer()->getHudLayer()->KonoLabel->setString(to_cstr(teamKills));
 				}
 				else
 				{
-					int teamKills = to_int(_delegate->getDelegate()->getHudLayer()->AkaLabel->getString()) + 1;
-					_delegate->getDelegate()->getHudLayer()->AkaLabel->setString(to_cstr(teamKills));
+					int teamKills = to_int(getGameLayer()->getHudLayer()->AkaLabel->getString()) + 1;
+					getGameLayer()->getHudLayer()->AkaLabel->setString(to_cstr(teamKills));
 				}
 				if (currentSlayer->isNotGuardian())
 				{
-					int newValue = to_int(_delegate->getDelegate()->getTotalKills()->getCString()) + 1;
-					_delegate->getDelegate()->setTotalKills(to_ccstring(newValue));
+					int newValue = to_int(getGameLayer()->getTotalKills()->getCString()) + 1;
+					getGameLayer()->setTotalKills(to_ccstring(newValue));
 				}
 
 				if (currentSlayer->getLV() != 6)
@@ -510,27 +510,27 @@ void HPBar::loseHP(float percent)
 				{
 					if (_delegate->isGuardian())
 					{
-						_delegate->getDelegate()->setCoin("1000");
+						getGameLayer()->setCoin("1000");
 						_delegate->setCoinDisplay(1000);
 					}
 					else
 					{
-						if (_delegate->getDelegate()->_isHardCoreGame)
+						if (getGameLayer()->_isHardCoreGame)
 						{
-							_delegate->getDelegate()->setCoin(to_cstr(50 + (_delegate->getLV() - 1) * 10));
+							getGameLayer()->setCoin(to_cstr(50 + (_delegate->getLV() - 1) * 10));
 							_delegate->setCoinDisplay(50 + (_delegate->getLV() - 1) * 10);
 						}
 						else
 						{
-							_delegate->getDelegate()->setCoin(to_cstr(50));
+							getGameLayer()->setCoin(to_cstr(50));
 							_delegate->setCoinDisplay(50);
 						}
 					}
 
-					_delegate->getDelegate()->getHudLayer()->setEXPLose(0);
-					const char *kl = _delegate->getDelegate()->getHudLayer()->killLabel->getString();
+					getGameLayer()->getHudLayer()->setEXPLose(0);
+					const char *kl = getGameLayer()->getHudLayer()->killLabel->getString();
 					int kills = to_int(kl) + 1;
-					_delegate->getDelegate()->getHudLayer()->killLabel->setString(to_cstr(kills));
+					getGameLayer()->getHudLayer()->killLabel->setString(to_cstr(kills));
 				}
 
 				if (_delegate->isGuardian())
@@ -539,7 +539,7 @@ void HPBar::loseHP(float percent)
 				}
 				else
 				{
-					if (_delegate->getDelegate()->_isHardCoreGame)
+					if (getGameLayer()->_isHardCoreGame)
 					{
 						currentSlayer->addCoin(50 + (_delegate->getLV() - 1) * 10);
 					}
@@ -551,7 +551,7 @@ void HPBar::loseHP(float percent)
 			}
 
 			CCObject *pObject;
-			CCARRAY_FOREACH(_delegate->getDelegate()->_CharacterArray, pObject)
+			CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 			{
 				auto otherSlayer = (Hero *)pObject;
 				if (is_same(currentSlayer->getGroup()->getCString(), otherSlayer->getGroup()->getCString()) &&
@@ -565,27 +565,27 @@ void HPBar::loseHP(float percent)
 
 					if (otherSlayer->isPlayer())
 					{
-						if (_delegate->getDelegate()->_isHardCoreGame)
+						if (getGameLayer()->_isHardCoreGame)
 						{
 							if (_delegate->isGuardian())
 							{
-								_delegate->getDelegate()->setCoin(to_cstr(850));
+								getGameLayer()->setCoin(to_cstr(850));
 								_delegate->setCoinDisplay(850);
 							}
 							else
 							{
-								_delegate->getDelegate()->setCoin(to_cstr(25 + (_delegate->getLV() - 1) * 10));
+								getGameLayer()->setCoin(to_cstr(25 + (_delegate->getLV() - 1) * 10));
 								_delegate->setCoinDisplay(25 + (_delegate->getLV() - 1) * 10);
 							}
 						}
 						else
 						{
-							_delegate->getDelegate()->setCoin(to_cstr(25));
+							getGameLayer()->setCoin(to_cstr(25));
 							_delegate->setCoinDisplay(25);
 						}
-						_delegate->getDelegate()->getHudLayer()->setEXPLose(0);
+						getGameLayer()->getHudLayer()->setEXPLose(0);
 					}
-					if (_delegate->getDelegate()->_isHardCoreGame)
+					if (getGameLayer()->_isHardCoreGame)
 					{
 						if (_delegate->isGuardian())
 						{
@@ -612,7 +612,7 @@ void HPBar::loseHP(float percent)
 		hpBar->runAction(s);
 
 		if (_delegate->isPlayer())
-			_delegate->getDelegate()->setHPLose(percent);
+			getGameLayer()->setHPLose(percent);
 	}
 }
 

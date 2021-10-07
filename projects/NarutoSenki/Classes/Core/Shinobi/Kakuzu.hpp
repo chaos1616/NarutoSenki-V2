@@ -16,7 +16,7 @@ class Kakuzu : public Hero
 
 		if (isPlayer() && getLV() >= 2)
 		{
-			_delegate->getHudLayer()->skill4Button->unLock();
+			getGameLayer()->getHudLayer()->skill4Button->unLock();
 		}
 	}
 
@@ -33,12 +33,12 @@ class Kakuzu : public Hero
 		{
 			if (hearts < 1)
 			{
-				_delegate->getHudLayer()->skill4Button->setLock();
+				getGameLayer()->getHudLayer()->skill4Button->setLock();
 			}
 		}
 		else if (_exp >= 1500 && _level == 3 + 1)
 		{
-			_delegate->getHudLayer()->skill5Button->setLock();
+			getGameLayer()->getHudLayer()->skill5Button->setLock();
 		}
 	}
 
@@ -54,7 +54,7 @@ class Kakuzu : public Hero
 				float curDistance = 0;
 				CCPoint sp;
 
-				CCARRAY_FOREACH(getDelegate()->_CharacterArray, pObject)
+				CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 				{
 					auto target = (CharacterBase *)pObject;
 					if (target->isPlayerOrCom() &&
@@ -113,7 +113,7 @@ class Kakuzu : public Hero
 		}
 
 		findHeroHalf();
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear03);
@@ -351,7 +351,7 @@ class Kakuzu : public Hero
 			{
 				if (isPlayer())
 				{
-					_delegate->getHudLayer()->skill4Button->setLock();
+					getGameLayer()->getHudLayer()->skill4Button->setLock();
 				}
 			}
 		}

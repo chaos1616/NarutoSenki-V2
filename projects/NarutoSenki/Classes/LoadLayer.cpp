@@ -364,20 +364,20 @@ void LoadLayer::onLoadFinish(float dt)
 {
 	CCScene *gameScene = CCScene::create();
 
+	_hudLayer = HudLayer::create();
+
 	_gameLayer = GameLayer::create();
+	_gameLayer->setHudLayer(_hudLayer);
+	_gameLayer->setTotalKills(CCString::create("0"));
+	_gameLayer->setTotalTM(CCString::create("0"));
 	_gameLayer->Heros = tempHeros;
 	_gameLayer->initHeros();
 
 	_bgLayer = BGLayer::create();
-	_bgLayer->setDelegate(_gameLayer);
+	_bgLayer->initBg(_gameLayer->mapId);
 
-	_hudLayer = HudLayer::create();
-	_hudLayer->setDelegate(_gameLayer);
 	_hudLayer->initHeroInterface();
-
-	_gameLayer->setHudLayer(_hudLayer);
-	_gameLayer->setTotalKills(CCString::create("0"));
-	_gameLayer->setTotalTM(CCString::create("0"));
+	_gameLayer->invokeAllCallbacks();
 
 	gameScene->addChild(_gameLayer, GlTag);
 	gameScene->addChild(_bgLayer, BgTag);

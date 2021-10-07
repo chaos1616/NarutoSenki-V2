@@ -80,13 +80,13 @@ void HeroElement::setShadows()
 		_shadow = CCSprite::createWithSpriteFrameName("shadows.png");
 		_shadow->setAnchorPoint(ccp(0.5, 0.5));
 		_shadow->setPosition(getPosition());
-		getDelegate()->shadowBatch->addChild(_shadow);
+		getGameLayer()->shadowBatch->addChild(_shadow);
 	}
 }
 
 void HeroElement::setHPbar()
 {
-	if (strcmp(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) != 0)
+	if (strcmp(getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()) != 0)
 	{
 		_hpBar = HPBar::create("hp_bar_r.png");
 	}
@@ -114,8 +114,8 @@ void HeroElement::changeHPbar()
 		_isCanOugis1 = true;
 		if (isPlayer())
 		{
-			getDelegate()->setCKRLose(false);
-			getDelegate()->removeOugisMark(1);
+			getGameLayer()->setCKRLose(false);
+			getGameLayer()->removeOugisMark(1);
 		}
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 500;
@@ -140,8 +140,8 @@ void HeroElement::changeHPbar()
 		_isCanOugis2 = true;
 		if (isPlayer())
 		{
-			getDelegate()->setCKRLose(true);
-			getDelegate()->removeOugisMark(2);
+			getGameLayer()->setCKRLose(true);
+			getGameLayer()->removeOugisMark(2);
 		}
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 2000;
@@ -193,10 +193,10 @@ void HeroElement::dealloc()
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				auto mo = (CharacterBase *)pObject;
-				int index = _delegate->_CharacterArray->indexOfObject(mo);
+				int index = getGameLayer()->_CharacterArray->indexOfObject(mo);
 				if (index >= 0)
 				{
-					_delegate->_CharacterArray->removeObjectAtIndex(index);
+					getGameLayer()->_CharacterArray->removeObjectAtIndex(index);
 				}
 				CCNotificationCenter::sharedNotificationCenter()->removeObserver(mo, "acceptAttack");
 				mo->stopAllActions();
@@ -214,10 +214,10 @@ void HeroElement::dealloc()
 	{
 		unschedule(schedule_selector(CharacterBase::setAI));
 		CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "acceptAttack");
-		int index = _delegate->_CharacterArray->indexOfObject(this);
+		int index = getGameLayer()->_CharacterArray->indexOfObject(this);
 		if (index >= 0)
 		{
-			_delegate->_CharacterArray->removeObjectAtIndex(index);
+			getGameLayer()->_CharacterArray->removeObjectAtIndex(index);
 		}
 
 		if (_master && _master->getMonsterArray())
@@ -235,7 +235,7 @@ void HeroElement::dealloc()
 
 			if (getMaster()->isPlayer())
 			{
-				_delegate->getHudLayer()->skill5Button->unLock();
+				getGameLayer()->getHudLayer()->skill5Button->unLock();
 			}
 		}
 		else if (isCharacter("Akamaru",
@@ -248,7 +248,7 @@ void HeroElement::dealloc()
 		{
 			if (getMaster()->isPlayer())
 			{
-				_delegate->getHudLayer()->skill4Button->unLock();
+				getGameLayer()->getHudLayer()->skill4Button->unLock();
 			}
 		}
 		else if (isCharacter("MaskFuton",
@@ -259,7 +259,7 @@ void HeroElement::dealloc()
 			{
 				if (_master->isPlayer())
 				{
-					_delegate->getHudLayer()->skill4Button->unLock();
+					getGameLayer()->getHudLayer()->skill4Button->unLock();
 				}
 			}
 		}
@@ -267,7 +267,7 @@ void HeroElement::dealloc()
 		{
 			if (getMaster()->isPlayer())
 			{
-				_delegate->getHudLayer()->skill5Button->unLock();
+				getGameLayer()->getHudLayer()->skill5Button->unLock();
 			}
 		}
 
@@ -279,14 +279,14 @@ void HeroElement::dealloc()
 		{
 			if (isPlayer())
 			{
-				_delegate->getHudLayer()->skill4Button->unLock();
-				_delegate->getHudLayer()->skill5Button->unLock();
+				getGameLayer()->getHudLayer()->skill4Button->unLock();
+				getGameLayer()->getHudLayer()->skill5Button->unLock();
 			}
 		}
 		else if (isCharacter("Shikamaru", "Choji"))
 		{
 			CCObject *pObject;
-			CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+			CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 			{
 				auto tempHero = (Hero *)pObject;
 				if (tempHero->_isSticking)
@@ -303,7 +303,7 @@ void HeroElement::dealloc()
 		{
 			if (isPlayer())
 			{
-				_delegate->getHudLayer()->skill1Button->unLock();
+				getGameLayer()->getHudLayer()->skill1Button->unLock();
 			}
 		}
 
@@ -350,7 +350,7 @@ void HeroElement::reborn(float dt)
 	{
 		// TODO: Spectating Mode
 		// if (isPlayer())
-		// _delegate->getHudLayer()->enableSpectatingMode();
+		// getGameLayer()->getHudLayer()->enableSpectatingMode();
 		return;
 	}
 
@@ -380,15 +380,15 @@ void HeroElement::reborn(float dt)
 		if (getLV() < 4)
 		{
 			if (isKonohaGroup())
-				setEXP(getEXP() + getDelegate()->kEXPBound);
+				setEXP(getEXP() + getGameLayer()->kEXPBound);
 			else
-				setEXP(getEXP() + getDelegate()->aEXPBound);
+				setEXP(getEXP() + getGameLayer()->aEXPBound);
 
 			changeHPbar();
 
 			if (isPlayer())
 			{
-				_delegate->getHudLayer()->setEXPLose(0);
+				getGameLayer()->getHudLayer()->setEXPLose(0);
 			}
 		}
 
@@ -425,12 +425,12 @@ void HeroElement::reborn(float dt)
 			{
 				doAI();
 			}
-			_delegate->getHudLayer()->status_hpbar->setOpacity(255);
-			_delegate->setHPLose(getHpPercent());
+			getGameLayer()->getHudLayer()->status_hpbar->setOpacity(255);
+			getGameLayer()->setHPLose(getHpPercent());
 		}
 		scheduleUpdate();
 	}
-	_delegate->reorderChild(this, -getPositionY());
+	getGameLayer()->reorderChild(this, -getPositionY());
 }
 
 /*---------------
@@ -547,7 +547,7 @@ void Monster::initAction()
 
 void Monster::setHPbar()
 {
-	if (strcmp(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) != 0)
+	if (strcmp(getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()) != 0)
 	{
 		_hpBar = HPBar::create("hp_bar_r.png");
 	}
@@ -618,7 +618,7 @@ void Monster::setAI(float dt)
 	if (is_same(charName, "Kage"))
 	{
 		CCObject *pObject;
-		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 		{
 			auto tempHero = (Hero *)pObject;
 			if (strcmp(getGroup()->getCString(), tempHero->getGroup()->getCString()) != 0 &&
@@ -784,9 +784,9 @@ void Monster::dealloc()
 		if (_master->isPlayer())
 		{
 			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Minato_skill1.png");
-			_delegate->getHudLayer()->skill1Button->setDisplayFrame(frame);
-			_delegate->getHudLayer()->skill1Button->_clickNum++;
-			_delegate->clearDoubleClick();
+			getGameLayer()->getHudLayer()->skill1Button->setDisplayFrame(frame);
+			getGameLayer()->getHudLayer()->skill1Button->_clickNum++;
+			getGameLayer()->clearDoubleClick();
 		}
 
 		CCObject *pObject;

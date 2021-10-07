@@ -64,7 +64,7 @@ void MiniIcon::updatePosition(CCPoint location)
 	int y = floor(location.y / 32) * 5;
 
 	setPosition(ccp(x, y));
-	_delegate->reorderChild(this, 500);
+	getGameLayer()->reorderChild(this, 500);
 }
 
 MiniIcon *MiniIcon::create(const char *szImage, bool isNotification)
@@ -119,7 +119,7 @@ HudLayer::~HudLayer()
 
 void HudLayer::onEnter()
 {
-	if (_delegate->_isExiting)
+	if (getGameLayer()->_isExiting)
 	{
 		return;
 	}
@@ -129,7 +129,7 @@ void HudLayer::onEnter()
 void HudLayer::onExit()
 {
 	CCLayer::onExit();
-	if (_delegate->_isExiting)
+	if (getGameLayer()->_isExiting)
 	{
 		CC_SAFE_RELEASE(_reportListArray);
 		CC_SAFE_RELEASE(_towerIconArray);
@@ -155,19 +155,14 @@ bool HudLayer::init()
 	return bRet;
 }
 
-void HudLayer::setDelegate(GameLayer *layer)
-{
-	_delegate = layer;
-}
-
 void HudLayer::JoyStickRelease()
 {
-	_delegate->JoyStickRelease();
+	getGameLayer()->JoyStickRelease();
 }
 
 void HudLayer::JoyStickUpdate(CCPoint direction)
 {
-	_delegate->JoyStickUpdate(direction);
+	getGameLayer()->JoyStickUpdate(direction);
 }
 
 void HudLayer::initGearButton(const char *charName)
@@ -277,7 +272,7 @@ void HudLayer::initHeroInterface()
 	AkaLabel = CCLabelBMFont::create("0", "Fonts/red.fnt");
 	AkaLabel->setScale(0.35f);
 
-	if (_delegate->playerTeam > 0)
+	if (getGameLayer()->playerTeam > 0)
 	{
 		KonoLabel->setAnchorPoint(ccp(1, 1));
 		AkaLabel->setAnchorPoint(ccp(0, 1));
@@ -300,16 +295,17 @@ void HudLayer::initHeroInterface()
 	hengLabel->setPosition(ccp(winSize.width - 37, KonoLabel->getPositionY() + 2));
 	addChild(hengLabel, 5000);
 
-	initGearButton(_delegate->currentPlayer->getCharacter()->getCString());
+	auto currentPlayer = getGameLayer()->currentPlayer;
+	initGearButton(currentPlayer->getCharacter()->getCString());
 
-	hpLabel = CCLabelBMFont::create(_delegate->currentPlayer->getHP()->getCString(), "Fonts/1.fnt");
+	hpLabel = CCLabelBMFont::create(currentPlayer->getHP()->getCString(), "Fonts/1.fnt");
 	hpLabel->setScale(0.35f);
 	hpLabel->setPosition(ccp(0, winSize.height - 54));
 	hpLabel->setAnchorPoint(ccp(0, 0));
 
 	addChild(hpLabel, 5000);
 
-	int exp = _delegate->currentPlayer->getEXP() - ((_delegate->currentPlayer->getLV() - 1) * 500) / 500;
+	int exp = currentPlayer->getEXP() - ((currentPlayer->getLV() - 1) * 500) / 500;
 	expLabel = CCLabelBMFont::create(CCString::createWithFormat("%i%%", exp)->getCString(), "Fonts/1.fnt");
 	expLabel->setScale(0.35f);
 	expLabel->setPosition(ccp(94, winSize.height - 54));
@@ -337,36 +333,34 @@ void HudLayer::initHeroInterface()
 
 	//init SKIll Button
 
-	skill1Button = ActionButton::create(CCString::createWithFormat("%s_skill1.png", _delegate->currentPlayer->getCharacter()->getCString())->getCString());
+	skill1Button = ActionButton::create(CCString::createWithFormat("%s_skill1.png", currentPlayer->getCharacter()->getCString())->getCString());
 	skill1Button->setDelegate(this);
 	skill1Button->setABType(SKILL1);
 	uiBatch->addChild(skill1Button);
 
-	skill2Button = ActionButton::create(CCString::createWithFormat("%s_skill2.png", _delegate->currentPlayer->getCharacter()->getCString())->getCString());
+	skill2Button = ActionButton::create(CCString::createWithFormat("%s_skill2.png", currentPlayer->getCharacter()->getCString())->getCString());
 	skill2Button->setDelegate(this);
 	skill2Button->setABType(SKILL2);
 	uiBatch->addChild(skill2Button);
 
-	skill3Button = ActionButton::create(CCString::createWithFormat("%s_skill3.png", _delegate->currentPlayer->getCharacter()->getCString())->getCString());
+	skill3Button = ActionButton::create(CCString::createWithFormat("%s_skill3.png", currentPlayer->getCharacter()->getCString())->getCString());
 	skill3Button->setDelegate(this);
 	skill3Button->setABType(SKILL3);
 	uiBatch->addChild(skill3Button);
 
-	updateSpecialSkillButtons();
-
-	skill4Button = ActionButton::create(CCString::createWithFormat("%s_skill4.png", _delegate->currentPlayer->getCharacter()->getCString())->getCString());
+	skill4Button = ActionButton::create(CCString::createWithFormat("%s_skill4.png", currentPlayer->getCharacter()->getCString())->getCString());
 	skill4Button->setDelegate(this);
 	skill4Button->setABType(OUGIS1);
 	uiBatch->addChild(skill4Button);
 
-	skill5Button = ActionButton::create(CCString::createWithFormat("%s_skill5.png", _delegate->currentPlayer->getCharacter()->getCString())->getCString());
+	skill5Button = ActionButton::create(CCString::createWithFormat("%s_skill5.png", currentPlayer->getCharacter()->getCString())->getCString());
 	skill5Button->setDelegate(this);
 	skill5Button->setABType(OUGIS2);
 	uiBatch->addChild(skill5Button);
 
 	//init Item
 	item1Button = ActionButton::create("item1.png");
-	if (_delegate->_isHardCoreGame)
+	if (getGameLayer()->_isHardCoreGame)
 	{
 		item1Button->setCD(to_ccstring(5000));
 	}
@@ -474,13 +468,13 @@ void HudLayer::initHeroInterface()
 	miniLayer->setAnchorPoint(ccp(0, 0));
 	miniLayer->setPosition(ccp(winSize.width - 112, winSize.height - 38));
 	CCObject *pObject;
-	CCARRAY_FOREACH(_delegate->_TowerArray, pObject)
+	CCARRAY_FOREACH(getGameLayer()->_TowerArray, pObject)
 	{
 		auto player = (CharacterBase *)pObject;
 		const char *path = "";
 		MiniIcon *mi;
 
-		if (is_same(player->getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()))
+		if (is_same(player->getGroup()->getCString(), currentPlayer->getGroup()->getCString()))
 		{
 			path = "tower_icon1.png";
 		}
@@ -502,7 +496,7 @@ void HudLayer::initHeroInterface()
 		_towerIconArray->addObject(mi);
 	}
 
-	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+	CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 	{
 		auto player = (CharacterBase *)pObject;
 		if (player->isPlayerOrCom())
@@ -521,7 +515,7 @@ void HudLayer::initHeroInterface()
 				}
 				else
 				{
-					if (is_same(player->getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()))
+					if (is_same(player->getGroup()->getCString(), currentPlayer->getGroup()->getCString()))
 					{
 						path = "com_icon.png";
 					}
@@ -541,12 +535,15 @@ void HudLayer::initHeroInterface()
 	}
 
 	addChild(miniLayer, 500);
+	// Call after all addChild functions
+	// thats can make ActionButton::setLock -> setMask work
+	updateSpecialSkillButtons();
 }
 
 void HudLayer::addMapIcon()
 {
 	CCObject *pObject;
-	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+	CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 	{
 		auto player = (CharacterBase *)pObject;
 		if (player->isGuardian())
@@ -599,11 +596,11 @@ void HudLayer::updateGears()
 		return;
 	}
 
-	if (_delegate->currentPlayer->getGearArray() && _delegate->currentPlayer->getGearArray()->count() > 0)
+	if (getGameLayer()->currentPlayer->getGearArray() && getGameLayer()->currentPlayer->getGearArray()->count() > 0)
 	{
 		CCObject *pObject;
 		int i = 0;
-		CCARRAY_FOREACH(_delegate->currentPlayer->getGearArray(), pObject)
+		CCARRAY_FOREACH(getGameLayer()->currentPlayer->getGearArray(), pObject)
 		{
 			CCString *tmpGear = (CCString *)pObject;
 			if (tmpGear->intValue() != gear1Button->_gearType && i == 0)
@@ -648,7 +645,7 @@ void HudLayer::setHPLose(float percent)
 	CCRotateTo *ra = CCRotateTo::create(0.2f, -((1 - percent) * 180), -((1 - percent) * 180));
 	status_hpbar->runAction(ra);
 
-	uint32_t hp = _delegate->currentPlayer->getHPValue();
+	uint32_t hp = getGameLayer()->currentPlayer->getHPValue();
 	hpLabel->setString(to_cstr(hp));
 }
 
@@ -704,8 +701,8 @@ void HudLayer::setCKRLose(bool isCRK2)
 
 void HudLayer::setEXPLose(float percent)
 {
-	int exp = _delegate->currentPlayer->getEXP();
-	int lvExp = (_delegate->currentPlayer->getLV() - 1) * 500;
+	int exp = getGameLayer()->currentPlayer->getEXP();
+	int lvExp = (getGameLayer()->currentPlayer->getLV() - 1) * 500;
 	float Percent = (exp - lvExp) / 500.0 * 100;
 	if (Percent > 100)
 	{
@@ -757,7 +754,7 @@ bool HudLayer::offCoin(const char *value)
 		tempCoin -= to_int(value);
 		CCString *realCoin = to_ccstring(tempCoin);
 		coinLabel->setString(realCoin->getCString());
-		_delegate->currentPlayer->minusCoin(to_int(value));
+		getGameLayer()->currentPlayer->minusCoin(to_int(value));
 		return true;
 	}
 	else
@@ -816,7 +813,7 @@ void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 	float scale = 0.40f;
 #endif
 
-	CCSprite *buffSprite = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_%s.png", _delegate->currentPlayer->getCharacter()->getCString(), buffName)->getCString());
+	CCSprite *buffSprite = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_%s.png", getGameLayer()->currentPlayer->getCharacter()->getCString(), buffName)->getCString());
 	if (buffSprite == nullptr)
 		return;
 	buffSprite->setAnchorPoint(ccp(0, 0));
@@ -1181,47 +1178,47 @@ CCSprite *HudLayer::createReport(const char *name1, const char *name2, float &le
 
 void HudLayer::attackButtonClick(abType type)
 {
-	_delegate->attackButtonClick(type);
+	getGameLayer()->attackButtonClick(type);
 }
 
 void HudLayer::gearButtonClick(gearType type)
 {
-	_delegate->gearButtonClick(type);
+	getGameLayer()->gearButtonClick(type);
 }
 
 void HudLayer::attackButtonRelease()
 {
-	_delegate->attackButtonRelease();
+	getGameLayer()->attackButtonRelease();
 }
 
 void HudLayer::pauseButtonClick(CCObject *sender)
 {
-	_delegate->onPause();
+	getGameLayer()->onPause();
 }
 
 void HudLayer::gearButtonClick(CCObject *sender)
 {
 	if (!_isAllButtonLocked)
 	{
-		_delegate->onGear();
+		getGameLayer()->onGear();
 	}
 }
 
 bool HudLayer::getSkillFinish()
 {
-	return _delegate->getSkillFinish();
+	return getGameLayer()->getSkillFinish();
 }
 
 bool HudLayer::getOugisEnable(bool isCKR2)
 {
 	if (!isCKR2)
 	{
-		uint32_t ckr = _delegate->currentPlayer->getCkrValue();
+		uint32_t ckr = getGameLayer()->currentPlayer->getCkrValue();
 		return ckr >= 15000;
 	}
 	else
 	{
-		uint32_t ckr2 = _delegate->currentPlayer->getCkr2Value();
+		uint32_t ckr2 = getGameLayer()->currentPlayer->getCkr2Value();
 		return ckr2 >= 25000;
 	}
 }
@@ -1230,18 +1227,18 @@ void HudLayer::costCKR(uint32_t value, bool isCKR2)
 {
 	if (!isCKR2)
 	{
-		uint32_t ckr = _delegate->currentPlayer->getCkrValue();
+		uint32_t ckr = getGameLayer()->currentPlayer->getCkrValue();
 		ckr = ckr >= value ? ckr - value : 0;
 
-		_delegate->currentPlayer->setCkrValue(ckr);
+		getGameLayer()->currentPlayer->setCkrValue(ckr);
 		setCKRLose(false);
 	}
 	else
 	{
-		uint32_t ckr2 = _delegate->currentPlayer->getCkr2Value();
+		uint32_t ckr2 = getGameLayer()->currentPlayer->getCkr2Value();
 		ckr2 = ckr2 >= value ? ckr2 - value : 0;
 
-		_delegate->currentPlayer->setCkr2Value(ckr2);
+		getGameLayer()->currentPlayer->setCkr2Value(ckr2);
 		setCKRLose(true);
 	}
 }
@@ -1265,7 +1262,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		CCSprite *CutBg;
 		const char *cutPath1;
 		const char *cutPath2;
-		if (_delegate->playerTeam > 0)
+		if (getGameLayer()->playerTeam > 0)
 		{
 			cutPath1 = "CutBg.png";
 			cutPath2 = "CutBg2.png";
@@ -1398,7 +1395,7 @@ void HudLayer::removeOugis(CCNode *sender)
 		object->resumeSchedulerAndActions();
 	}
 
-	_delegate->removeOugis();
+	getGameLayer()->removeOugis();
 }
 
 void HudLayer::initSkillButtons()
@@ -1423,7 +1420,7 @@ void HudLayer::setSkillButtons(bool isVisable)
 
 void HudLayer::updateSkillButtons()
 {
-	auto player = _delegate->currentPlayer;
+	auto player = getGameLayer()->currentPlayer;
 	if (!player)
 		return;
 	std::string charName = player->getCharacter()->getCString();
@@ -1436,13 +1433,18 @@ void HudLayer::updateSkillButtons()
 		gearMenuSprite->setNormalImage(avator);
 
 	auto cache = CCSpriteFrameCache::sharedSpriteFrameCache();
+	const char *frameName;
+	CCSpriteFrame *frame;
 
-#define updateButtonInfo(index)                                                                                       \
-	if (skill##index##Button)                                                                                         \
-	{                                                                                                                 \
-		skill##index##Button->setDisplayFrame(cache->spriteFrameByName((charName + "_skill" #index ".png").c_str())); \
-		skill##index##Button->setCD(to_ccstring(player->_sattackcoldDown1 * 1000));                                   \
-		skill##index##Button->_isColdChanged = true;                                                                  \
+#define updateButtonInfo(index)                                                     \
+	frameName = (charName + "_skill" #index ".png").c_str();                        \
+	frame = cache->spriteFrameByName(frameName);                                    \
+	if (skill##index##Button)                                                       \
+	{                                                                               \
+		if (frame)                                                                  \
+			skill##index##Button->setDisplayFrame(frame);                           \
+		skill##index##Button->setCD(to_ccstring(player->_sattackcoldDown1 * 1000)); \
+		skill##index##Button->_isColdChanged = true;                                \
 	}
 
 	updateButtonInfo(1);
@@ -1455,7 +1457,7 @@ void HudLayer::updateSkillButtons()
 
 void HudLayer::updateSpecialSkillButtons()
 {
-	auto currentPlayer = _delegate->currentPlayer;
+	auto currentPlayer = getGameLayer()->currentPlayer;
 	if (currentPlayer == nullptr)
 	{
 		CCLOGERROR("Current player is null.");
@@ -1471,28 +1473,9 @@ void HudLayer::updateSpecialSkillButtons()
 	skill1Button->_isColdChanged = true;
 	skill2Button->_isColdChanged = true;
 	skill3Button->_isColdChanged = true;
-
-	if (currentPlayer->isCharacter("Kankuro") ||
-		currentPlayer->isCharacter("Chiyo") ||
-		currentPlayer->isCharacter("Kiba"))
-	{
-		skill2Button->setLock();
-	}
-	else
-	{
-		skill2Button->unLock();
-	}
-
-	if (currentPlayer->isCharacter("Kiba") ||
-		currentPlayer->isCharacter("Chiyo") ||
-		currentPlayer->isCharacter("Lee"))
-	{
-		skill3Button->setLock();
-	}
-	else
-	{
-		skill3Button->unLock();
-	}
+	skill1Button->unLock();
+	skill2Button->unLock();
+	skill3Button->unLock();
 }
 
 void HudLayer::resetSkillButtons()

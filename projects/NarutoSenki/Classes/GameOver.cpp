@@ -74,7 +74,7 @@ bool GameOver::init(CCRenderTexture *snapshoot)
 
 void GameOver::listResult()
 {
-	if (_delegate->_isHardCoreGame)
+	if (getGameLayer()->_isHardCoreGame)
 	{
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/battle_over1.ogg");
 	}
@@ -83,10 +83,10 @@ void GameOver::listResult()
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/battle_over.ogg");
 	}
 
-	auto path = CCString::createWithFormat("%s_half.png", _delegate->currentPlayer->getCharacter()->getCString());
+	auto path = CCString::createWithFormat("%s_half.png", getGameLayer()->currentPlayer->getCharacter()->getCString());
 	CCSprite *half = CCSprite::createWithSpriteFrameName(path->getCString());
 
-	if (_delegate->currentPlayer->isCharacter("Konan",
+	if (getGameLayer()->currentPlayer->isCharacter("Konan",
 											  "Karin",
 											  "Suigetsu",
 											  "Hidan",
@@ -96,7 +96,7 @@ void GameOver::listResult()
 											  "SageJiraiya",
 											  "Minato",
 											  "Tobi") ||
-		_delegate->currentPlayer->isCharacter("Lee",
+		getGameLayer()->currentPlayer->isCharacter("Lee",
 											  "RockLee",
 											  "Hinata",
 											  "Asuma",
@@ -115,15 +115,15 @@ void GameOver::listResult()
 	list_bg->setPosition(ccp(winSize.width / 2 - result_bg->getContentSize().width / 2 + 2, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 26));
 	addChild(list_bg, 5);
 
-	int _hour = _delegate->_minute / 60;
-	int _minute = _delegate->_minute % 60;
+	int _hour = getGameLayer()->_minute / 60;
+	int _minute = getGameLayer()->_minute % 60;
 
 	CCSprite *timeBG = CCSprite::createWithSpriteFrameName("time_bg.png");
 	timeBG->setAnchorPoint(ccp(0, 0));
 	timeBG->setPosition(ccp(winSize.width / 2 + result_bg->getContentSize().width / 2 - 11 - timeBG->getContentSize().width, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 46));
 	addChild(timeBG, 6);
 
-	CCString *tempTime = CCString::createWithFormat("%02d:%02d:%02d", _hour, _minute, _delegate->_second);
+	CCString *tempTime = CCString::createWithFormat("%02d:%02d:%02d", _hour, _minute, getGameLayer()->_second);
 
 	auto gameClock = CCLabelBMFont::create(tempTime->getCString(), "Fonts/1.fnt");
 	gameClock->setAnchorPoint(ccp(0.5f, 0));
@@ -131,18 +131,18 @@ void GameOver::listResult()
 	gameClock->setScale(0.48f);
 	addChild(gameClock, 7);
 
-	float _totalSecond = _delegate->_minute * 60 + _delegate->_second;
+	float _totalSecond = getGameLayer()->_minute * 60 + getGameLayer()->_second;
 	float resultScore = 0;
-	int killDead = to_int(_delegate->currentPlayer->getKillNum()->getCString()) - _delegate->currentPlayer->_deadNum;
+	int killDead = to_int(getGameLayer()->currentPlayer->getKillNum()->getCString()) - getGameLayer()->currentPlayer->_deadNum;
 
-	if (_totalSecond != to_int(_delegate->getTotalTM()->getCString()))
+	if (_totalSecond != to_int(getGameLayer()->getTotalTM()->getCString()))
 	{
 		SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
 		CCDirector::sharedDirector()->end();
 		return;
 	}
 
-	if (_delegate->_isHardCoreGame)
+	if (getGameLayer()->_isHardCoreGame)
 	{
 		if (_totalSecond > 900.0)
 		{
@@ -177,7 +177,7 @@ void GameOver::listResult()
 	int konohaKill = 0;
 	int akatsukiKill = 0;
 
-	CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+	CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 	{
 		auto hero = (Hero *)pObject;
 		if (hero->isClone() ||
@@ -267,9 +267,9 @@ void GameOver::listResult()
 		i++;
 	}
 
-	if (_totalSecond > 900 && _delegate->_isSurrender)
+	if (_totalSecond > 900 && getGameLayer()->_isSurrender)
 	{
-		if (is_same(_delegate->currentPlayer->getGroup()->getCString(), Konoha))
+		if (is_same(getGameLayer()->currentPlayer->getGroup()->getCString(), Konoha))
 		{
 			if (konohaKill > akatsukiKill)
 			{
@@ -287,17 +287,17 @@ void GameOver::listResult()
 
 	if (Cheats < MaxCheats)
 	{
-		if (akatsukiKill + konohaKill != to_int(_delegate->getTotalKills()->getCString()))
+		if (akatsukiKill + konohaKill != to_int(getGameLayer()->getTotalKills()->getCString()))
 		{
 			SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
 			CCDirector::sharedDirector()->end();
 			return;
 		}
 
-		int realKillNum = to_int(_delegate->currentPlayer->getKillNum()->getCString());
+		int realKillNum = to_int(getGameLayer()->currentPlayer->getKillNum()->getCString());
 
 		std::string tempReward = "";
-		if (_delegate->_isHardCoreGame)
+		if (getGameLayer()->_isHardCoreGame)
 		{
 			tempReward = "FDDD";
 		}
@@ -365,11 +365,11 @@ void GameOver::listResult()
 
 	if (_isWin)
 	{
-		if (resultScore >= 140 && _delegate->_isHardCoreGame && _delegate->_isRandomChar && !_delegate->_enableGear)
+		if (resultScore >= 140 && getGameLayer()->_isHardCoreGame && getGameLayer()->_isRandomChar && !getGameLayer()->_enableGear)
 			imgSrc = "result_SSSR.png";
-		else if (resultScore >= 120 && _delegate->_isHardCoreGame && _delegate->_isRandomChar && !_delegate->_enableGear)
+		else if (resultScore >= 120 && getGameLayer()->_isHardCoreGame && getGameLayer()->_isRandomChar && !getGameLayer()->_enableGear)
 			imgSrc = "result_SSR.png";
-		else if (resultScore >= 100 && _delegate->_isHardCoreGame && _delegate->_isRandomChar && !_delegate->_enableGear)
+		else if (resultScore >= 100 && getGameLayer()->_isHardCoreGame && getGameLayer()->_isRandomChar && !getGameLayer()->_enableGear)
 			imgSrc = "result_SR.png";
 		else if (resultScore >= 140)
 			imgSrc = "result_SSS.png";
@@ -396,9 +396,9 @@ void GameOver::listResult()
 		recordSprite->setPosition(ccp(winSize.width / 2 + result_bg->getContentSize().width / 2 - recordSprite->getContentSize().width - 12, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 88));
 		addChild(recordSprite, 7);
 
-		if (_isWin && _delegate->_isHardCoreGame)
+		if (_isWin && getGameLayer()->_isHardCoreGame)
 		{
-			finnalScore = resultScore + float(_delegate->currentPlayer->_flogNum) / 100;
+			finnalScore = resultScore + float(getGameLayer()->currentPlayer->_flogNum) / 100;
 			// CCString *recordString = CCString::createWithFormat("%0.2fPts", finnalScore);
 
 			// auto recordScore = CCLabelBMFont::create(recordString->getCString(), "Fonts/1.fnt");
@@ -413,28 +413,28 @@ void GameOver::listResult()
 			// upMenu->setPosition(ccp(winSize.width / 2 + result_bg->getContentSize().width / 2 - 14, winSize.height / 2 + result_bg->getContentSize().height / 2 - 62));
 			// addChild(upMenu, 7);
 
-			// detailRecord = CCString::createWithFormat("%02d:%02d,%s,%d,%d", _minute, _delegate->_second, _delegate->currentPlayer->getKillNum()->getCString(), _delegate->currentPlayer->_deadNum, _delegate->currentPlayer->_flogNum)->getCString();
+			// detailRecord = CCString::createWithFormat("%02d:%02d,%s,%d,%d", _minute, getGameLayer()->_second, getGameLayer()->currentPlayer->getKillNum()->getCString(), getGameLayer()->currentPlayer->_deadNum, getGameLayer()->currentPlayer->_flogNum)->getCString();
 		}
 		if (Cheats < MaxCheats)
 		{
-			resultChar = _delegate->currentPlayer->getCharacter();
-			if (_delegate->currentPlayer->isCharacter("SageNaruto"))
+			resultChar = getGameLayer()->currentPlayer->getCharacter();
+			if (getGameLayer()->currentPlayer->isCharacter("SageNaruto"))
 			{
 				resultChar = CCString::create("Naruto");
 			}
-			else if (_delegate->currentPlayer->isCharacter("RikudoNaruto"))
+			else if (getGameLayer()->currentPlayer->isCharacter("RikudoNaruto"))
 			{
 				resultChar = CCString::create("Naruto");
 			}
-			else if (_delegate->currentPlayer->isCharacter("SageJiraiya"))
+			else if (getGameLayer()->currentPlayer->isCharacter("SageJiraiya"))
 			{
 				resultChar = CCString::create("Jiraiya");
 			}
-			else if (_delegate->currentPlayer->isCharacter("ImmortalSasuke"))
+			else if (getGameLayer()->currentPlayer->isCharacter("ImmortalSasuke"))
 			{
 				resultChar = CCString::create("Sasuke");
 			}
-			else if (_delegate->currentPlayer->isCharacter("RockLee"))
+			else if (getGameLayer()->currentPlayer->isCharacter("RockLee"))
 			{
 				resultChar = CCString::create("Lee");
 			}
@@ -460,17 +460,17 @@ void GameOver::listResult()
 				CCString *realWin = to_ccstring(tempWin);
 				KTools::saveSQLite("CharRecord", "name", resultChar->getCString(), "column1", (char *)realWin->getCString(), false);
 
-				if (_delegate->_isRandomChar && resultScore >= 120)
+				if (getGameLayer()->_isRandomChar && resultScore >= 120)
 				{
 					CCObject *pObject;
 
-					if (_delegate->currentPlayer->_isControlled)
+					if (getGameLayer()->currentPlayer->_isControlled)
 					{
-						_delegate->currentPlayer->_isControlled = false;
-						_delegate->currentPlayer->changeGroup();
+						getGameLayer()->currentPlayer->_isControlled = false;
+						getGameLayer()->currentPlayer->changeGroup();
 					}
 
-					CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+					CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 					{
 						auto hero = (Hero *)pObject;
 						if (hero->isClone() ||
@@ -488,7 +488,7 @@ void GameOver::listResult()
 							hero->changeGroup();
 						}
 
-						if (is_same(hero->getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()))
+						if (is_same(hero->getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()))
 						{
 							CCString *winNum = KTools::readSQLite("CharRecord", "name", hero->getCharacter()->getCString(), "column1");
 							int tempWin = 0;
@@ -531,7 +531,7 @@ void GameOver::listResult()
 						}
 						else if (to_int(recordMinute) == _minute)
 						{
-							if (to_uint(recordSecond) > _delegate->_second)
+							if (to_uint(recordSecond) > getGameLayer()->_second)
 							{
 								isNewRecord = true;
 							}
@@ -579,7 +579,7 @@ void GameOver::listResult()
 	overMenu->setPosition(ccp(winSize.width / 2 + result_bg->getContentSize().width / 2 - 12, winSize.height / 2 + result_bg->getContentSize().height / 2 - 18));
 	addChild(overMenu, 7);
 
-	_delegate->_isSurrender = false;
+	getGameLayer()->_isSurrender = false;
 
 	// Reset cheats value
 	auto mode = getGameMode();
@@ -632,7 +632,7 @@ void GameOver::onLeft(CCObject *sender)
 {
 	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
 
-	_delegate->_isExiting = true;
+	getGameLayer()->_isExiting = true;
 	CCDirector::sharedDirector()->popScene();
 }
 

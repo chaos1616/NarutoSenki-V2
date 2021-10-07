@@ -7,7 +7,7 @@ class Tobi : public Hero
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear03);
@@ -59,7 +59,7 @@ class Tobi : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
@@ -198,7 +198,7 @@ class Tobi : public Hero
 		_originSpeed = 320;
 
 		CCObject *pObject;
-		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 		{
 			auto tempHero = (CharacterBase *)pObject;
 			if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->getActionState() != State::HURT && tempHero->getActionState() != State::DEAD)

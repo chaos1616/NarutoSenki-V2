@@ -7,8 +7,6 @@
 #define DESKTOP_UI_SCALE 0.8f
 #define DESKTOP_UI_MASK_SCALE 0.8f + 0.04f
 
-class GameLayer;
-
 class MiniIcon : public CCSprite
 {
 public:
@@ -78,7 +76,6 @@ public:
 	CCMenu *gearMenu;
 	CC_SYNTHESIZE(CCArray *, _towerIconArray, TowerIconArray);
 
-	GameLayer *_delegate;
 	CCLayer *miniLayer;
 	JoyStick *_joyStick;
 
@@ -89,7 +86,6 @@ public:
 	void setCKRLose(bool isCRK2);
 	void setEXPLose(float percent);
 
-	void setDelegate(GameLayer *layer);
 	void initHeroInterface();
 	void attackButtonClick(abType type);
 	void gearButtonClick(gearType type);

@@ -39,7 +39,7 @@ class Hidan : public Hero
 						if (_isArmored)
 						{
 							CCObject *pObject;
-							CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+							CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 							{
 								auto tempHero = (CharacterBase *)pObject;
 								if (tempHero->getGroup() != getGroup() && tempHero->getHPValue() < 2000 && tempHero->getActionState() != State::DEAD && tempHero->isPlayerOrCom())
@@ -74,7 +74,7 @@ class Hidan : public Hero
 			}
 		}
 
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -126,7 +126,7 @@ class Hidan : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
@@ -292,10 +292,10 @@ class Hidan : public Hero
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				auto mo = (CharacterBase *)pObject;
-				int index = _delegate->_CharacterArray->indexOfObject(mo);
+				int index = getGameLayer()->_CharacterArray->indexOfObject(mo);
 				if (index >= 0)
 				{
-					_delegate->_CharacterArray->removeObjectAtIndex(index);
+					getGameLayer()->_CharacterArray->removeObjectAtIndex(index);
 				}
 				mo->setActionState(State::DEAD);
 				CCNotificationCenter::sharedNotificationCenter()->removeObserver(mo, "acceptAttack");
@@ -308,7 +308,7 @@ class Hidan : public Hero
 
 		if (isPlayer())
 		{
-			_delegate->getHudLayer()->skill1Button->unLock();
+			getGameLayer()->getHudLayer()->skill1Button->unLock();
 		}
 
 		if (_actionState != State::DEAD)
@@ -337,10 +337,10 @@ class Hidan : public Hero
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				auto mo = (CharacterBase *)pObject;
-				int index = _delegate->_CharacterArray->indexOfObject(mo);
+				int index = getGameLayer()->_CharacterArray->indexOfObject(mo);
 				if (index >= 0)
 				{
-					_delegate->_CharacterArray->removeObjectAtIndex(index);
+					getGameLayer()->_CharacterArray->removeObjectAtIndex(index);
 				}
 				mo->setActionState(State::DEAD);
 				CCNotificationCenter::sharedNotificationCenter()->removeObserver(mo, "acceptAttack");
@@ -353,7 +353,7 @@ class Hidan : public Hero
 
 		if (isPlayer())
 		{
-			_delegate->getHudLayer()->skill1Button->unLock();
+			getGameLayer()->getHudLayer()->skill1Button->unLock();
 		}
 
 		if (_actionState != State::DEAD)

@@ -253,8 +253,6 @@ public:
 	CC_SYNTHESIZE(CCPoint,_desiredPosition, DesiredPosition);
 
 	CC_SYNTHESIZE(State,_actionState, ActionState);
-	CC_SYNTHESIZE(GameLayer*,_delegate, Delegate);
-
 
 
 	CC_SYNTHESIZE_RETAIN(CCAction*,_idleAction, IdleAction);

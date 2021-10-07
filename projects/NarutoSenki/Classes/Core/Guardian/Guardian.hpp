@@ -41,10 +41,10 @@ class Guardian : public Hero
 				bool isTurn = false;
 
 				CCObject *pObject;
-				CCARRAY_FOREACH(_delegate->_TowerArray, pObject)
+				CCARRAY_FOREACH(getGameLayer()->_TowerArray, pObject)
 				{
 					auto target = (CharacterBase *)pObject;
-					auto *gardTower = getDelegate()->playerTeam > 0 ? "AkatsukiCenter" : "KonohaCenter";
+					auto *gardTower = getGameLayer()->playerTeam > 0 ? "AkatsukiCenter" : "KonohaCenter";
 
 					if (is_same(target->getCharacter()->getCString(), gardTower) && target->getHpPercent() < 0.5f)
 					{

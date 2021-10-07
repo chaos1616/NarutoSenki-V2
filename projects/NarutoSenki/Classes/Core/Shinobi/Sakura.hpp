@@ -7,7 +7,7 @@ class Sakura : public Hero
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear00);
@@ -42,7 +42,7 @@ class Sakura : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_skillChangeBuffValue && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_skillChangeBuffValue && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{

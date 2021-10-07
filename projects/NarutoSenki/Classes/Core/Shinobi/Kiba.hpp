@@ -4,11 +4,18 @@
 
 class Kiba : public Hero
 {
+	void setID(CCString *character, CCString *role, CCString *group) override
+	{
+		Hero::setID(character, role, group);
+
+		getGameLayer()->onHUDInitialized(BIND(Kiba::tryLockSkillButton));
+	}
+
 	void perform() override
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear00);
@@ -43,7 +50,7 @@ class Kiba : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_powerUPBuffValue && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_powerUPBuffValue && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
 					if (abs(sp.x) > 32 || abs(sp.y) > 32)
 					{
@@ -174,9 +181,9 @@ class Kiba : public Hero
 
 			if (isPlayer())
 			{
-				_delegate->getHudLayer()->skill1Button->setLock();
-				_delegate->getHudLayer()->skill2Button->unLock();
-				_delegate->getHudLayer()->skill3Button->unLock();
+				getGameLayer()->getHudLayer()->skill1Button->setLock();
+				getGameLayer()->getHudLayer()->skill2Button->unLock();
+				getGameLayer()->getHudLayer()->skill3Button->unLock();
 			}
 
 			setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
@@ -238,9 +245,9 @@ class Kiba : public Hero
 
 		if (isPlayer())
 		{
-			_delegate->getHudLayer()->skill1Button->unLock();
-			_delegate->getHudLayer()->skill2Button->setLock();
-			_delegate->getHudLayer()->skill3Button->setLock();
+			getGameLayer()->getHudLayer()->skill1Button->unLock();
+			getGameLayer()->getHudLayer()->skill2Button->setLock();
+			getGameLayer()->getHudLayer()->skill3Button->setLock();
 		}
 
 		if (_hpBar)
@@ -269,5 +276,15 @@ class Kiba : public Hero
 		clone->_isArmored = true;
 		_monsterArray->addObject(clone);
 		return clone;
+	}
+
+private:
+	inline void tryLockSkillButton()
+	{
+		if (isPlayer())
+		{
+			getGameLayer()->getHudLayer()->skill2Button->setLock();
+			getGameLayer()->getHudLayer()->skill3Button->setLock();
+		}
 	}
 };

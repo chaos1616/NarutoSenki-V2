@@ -50,7 +50,7 @@ class Naruto : public Hero
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear03);
@@ -102,7 +102,7 @@ class Naruto : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored)
 				{
 					changeSide(sp);
 					attack(OUGIS2);
@@ -284,7 +284,7 @@ class Naruto : public Hero
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear03);
@@ -336,7 +336,7 @@ class Naruto : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored)
 				{
 					changeSide(sp);
 					attack(OUGIS2);
@@ -507,7 +507,7 @@ class Naruto : public Hero
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear03);
@@ -563,7 +563,7 @@ class Naruto : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored)
 				{
 					changeSide(sp);
 					attack(OUGIS2);

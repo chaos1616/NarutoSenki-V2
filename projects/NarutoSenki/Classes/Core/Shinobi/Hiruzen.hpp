@@ -7,7 +7,7 @@ class Hiruzen : public Hero
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear00);
@@ -67,7 +67,7 @@ class Hiruzen : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && !_isArmored && _mainTarget->getHPValue() < 10000 && !_mainTarget->_isCanGear06)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored && _mainTarget->getHPValue() < 10000 && !_mainTarget->_isCanGear06)
 				{
 					if (abs(sp.x) < 32)
 					{

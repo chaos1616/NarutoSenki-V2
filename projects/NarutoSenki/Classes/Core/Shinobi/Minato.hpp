@@ -20,7 +20,7 @@ class Minato : public Hero
 			}
 		}
 
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -126,7 +126,7 @@ class Minato : public Hero
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				else if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000)
+				else if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getGP() < 5000)
 				{
 					if (abs(sp.x) > 64 || abs(sp.y) > 16)
 					{
@@ -285,10 +285,10 @@ class Minato : public Hero
 			if (isPlayer())
 			{
 				auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Minato_skill1_1.png");
-				_delegate->getHudLayer()->skill1Button->setDisplayFrame(frame);
-				if (_delegate->getHudLayer()->skill1Button->_clickNum < 2)
+				getGameLayer()->getHudLayer()->skill1Button->setDisplayFrame(frame);
+				if (getGameLayer()->getHudLayer()->skill1Button->_clickNum < 2)
 				{
-					_delegate->getHudLayer()->skill1Button->_clickNum++;
+					getGameLayer()->getHudLayer()->skill1Button->_clickNum++;
 				}
 			}
 		}

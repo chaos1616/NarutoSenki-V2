@@ -11,14 +11,14 @@ class Ino : public Hero
 		// if (isPlayer())
 		// {
 		// 	// Has controlled other hero
-		// 	if (_delegate->currentPlayer != this)
+		// 	if (getGameLayer()->currentPlayer != this)
 		// 	{
-		// 		auto other = _delegate->currentPlayer;
+		// 		auto other = getGameLayer()->currentPlayer;
 		// 		other->changeGroup();
 		// 		other->doAI();
 
-		// 		_delegate->currentPlayer = this;
-		// 		_delegate->getHudLayer()->updateSkillButtons();
+		// 		getGameLayer()->currentPlayer = this;
+		// 		getGameLayer()->getHudLayer()->updateSkillButtons();
 		// 	}
 		// }
 	}
@@ -45,7 +45,7 @@ class Ino : public Hero
 			}
 		}
 
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -103,7 +103,7 @@ class Ino : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game)
 				{
 					if (abs(sp.x) > 96 || abs(sp.y) > 16)
 					{
@@ -227,7 +227,7 @@ class Ino : public Hero
 			return;
 
 		CCObject *pObject;
-		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 		{
 			auto tempHero = (Hero *)pObject;
 			if (tempHero->_isControlled)
@@ -237,18 +237,18 @@ class Ino : public Hero
 				{
 					tempHero->_isAI = false;
 					tempHero->unschedule(schedule_selector(Ino::setAI));
-					_delegate->getHudLayer()->_isAllButtonLocked = false;
+					getGameLayer()->getHudLayer()->_isAllButtonLocked = false;
 				}
 				if (isPlayer())
 				{
-					// auto controlledHero = _delegate->currentPlayer;
+					// auto controlledHero = getGameLayer()->currentPlayer;
 					// controlledHero->_isAI = true;
 					// controlledHero->doAI();
 					// _isControlled = false;
 
-					// _delegate->currentPlayer = this;
-					_delegate->controlChar = nullptr;
-					// _delegate->getHudLayer()->updateSkillButtons();
+					// getGameLayer()->currentPlayer = this;
+					getGameLayer()->controlChar = nullptr;
+					// getGameLayer()->getHudLayer()->updateSkillButtons();
 				}
 				if (_actionState != State::DEAD)
 				{
@@ -266,7 +266,7 @@ class Ino : public Hero
 	{
 		unschedule(schedule_selector(Ino::resumeAction));
 		CCObject *pObject;
-		CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 		{
 			auto tempHero = (Hero *)pObject;
 			if (tempHero->_isControlled)
@@ -277,11 +277,11 @@ class Ino : public Hero
 				{
 					tempHero->unschedule(schedule_selector(Ino::setAI));
 					tempHero->_isAI = false;
-					_delegate->getHudLayer()->_isAllButtonLocked = false;
+					getGameLayer()->getHudLayer()->_isAllButtonLocked = false;
 				}
 				if (isPlayer())
 				{
-					_delegate->controlChar = nullptr;
+					getGameLayer()->controlChar = nullptr;
 				}
 				tempHero->setController(nullptr);
 			}

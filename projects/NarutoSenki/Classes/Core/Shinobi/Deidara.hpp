@@ -8,7 +8,7 @@ class Deidara : public Hero
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear00);
@@ -45,7 +45,7 @@ class Deidara : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isArmored)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isArmored)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
@@ -175,7 +175,7 @@ class Deidara : public Hero
 			{
 				if (_mainTarget->isTower() &&
 					_isCanOugis2 &&
-					!_isControlled && _delegate->_isOugis2Game && !_isArmored && isBaseDanger)
+					!_isControlled && getGameLayer()->_isOugis2Game && !_isArmored && isBaseDanger)
 				{
 					changeSide(sp);
 					attack(OUGIS2);

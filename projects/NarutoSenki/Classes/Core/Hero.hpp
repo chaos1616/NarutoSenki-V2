@@ -28,6 +28,9 @@ public:
 
 	virtual void setID(CCString *character, CCString *role, CCString *group)
 	{
+		setRole(role);
+		setGroup(group);
+
 		auto charName = character->getCString();
 		if (getCharacter())
 		{
@@ -36,15 +39,16 @@ public:
 			{
 				auto oldCharName = getCharacter()->getCString();
 				bool isUpdateUI = strcmp(oldCharName, charName) != 0;
+				setCharacter(character);
 
 				if (isUpdateUI)
-					_delegate->updateHudSkillButtons();
+					getGameLayer()->updateHudSkillButtons();
 			}
 		}
-
-		setCharacter(character);
-		setRole(role);
-		setGroup(group);
+		else
+		{
+			setCharacter(character);
+		}
 
 		CCArray *animationArray = CCArray::create();
 		const char *filePath;
@@ -314,32 +318,32 @@ public:
 /** UI Macros */
 #define lockSkill4Button() \
 	if (isPlayer())        \
-		_delegate->getHudLayer()->skill4Button->setLock();
+		getGameLayer()->getHudLayer()->skill4Button->setLock();
 
 #define unlockSkill4Button() \
 	if (isPlayer())          \
-		_delegate->getHudLayer()->skill4Button->unLock();
+		getGameLayer()->getHudLayer()->skill4Button->unLock();
 
 #define lockSkill5Button() \
 	if (isPlayer())        \
-		_delegate->getHudLayer()->skill5Button->setLock();
+		getGameLayer()->getHudLayer()->skill5Button->setLock();
 
 #define unlockSkill5Button() \
 	if (isPlayer())          \
-		_delegate->getHudLayer()->skill5Button->unLock();
+		getGameLayer()->getHudLayer()->skill5Button->unLock();
 
 #define lockOugisButtons()                                 \
 	if (isPlayer())                                        \
 	{                                                      \
-		_delegate->getHudLayer()->skill4Button->setLock(); \
-		_delegate->getHudLayer()->skill5Button->setLock(); \
+		getGameLayer()->getHudLayer()->skill4Button->setLock(); \
+		getGameLayer()->getHudLayer()->skill5Button->setLock(); \
 	}
 
 #define unlockOugisButtons()                              \
 	if (isPlayer())                                       \
 	{                                                     \
-		_delegate->getHudLayer()->skill4Button->unLock(); \
-		_delegate->getHudLayer()->skill5Button->unLock(); \
+		getGameLayer()->getHudLayer()->skill4Button->unLock(); \
+		getGameLayer()->getHudLayer()->skill5Button->unLock(); \
 	}
 
 protected:

@@ -118,7 +118,7 @@ class Parents : public Hero
 
 		if (getMaster()->isPlayer())
 		{
-			_delegate->getHudLayer()->skill2Button->setLock();
+			getGameLayer()->getHudLayer()->skill2Button->setLock();
 		}
 		setWalkSpeed(460);
 	}
@@ -149,7 +149,7 @@ class Parents : public Hero
 
 		if (getMaster()->isPlayer())
 		{
-			_delegate->getHudLayer()->skill2Button->unLock();
+			getGameLayer()->getHudLayer()->skill2Button->unLock();
 		}
 	}
 };

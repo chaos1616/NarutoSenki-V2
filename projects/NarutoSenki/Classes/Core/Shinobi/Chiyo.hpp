@@ -5,6 +5,13 @@
 
 class Chiyo : public Hero
 {
+	void setID(CCString *character, CCString *role, CCString *group) override
+	{
+		Hero::setID(character, role, group);
+
+		getGameLayer()->onHUDInitialized(BIND(Chiyo::tryLockSkillButton));
+	}
+
 	void perform() override
 	{
 		_mainTarget = nullptr;
@@ -22,7 +29,7 @@ class Chiyo : public Hero
 			}
 		}
 
-		if (getCoinValue() >= 500 && !_isControlled && _delegate->_enableGear)
+		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray()->count() == 0)
 				setGear(gear06);
@@ -92,7 +99,7 @@ class Chiyo : public Hero
 				{
 					CCObject *pObject;
 					int countNum = 0;
-					CCARRAY_FOREACH(_delegate->_CharacterArray, pObject)
+					CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 					{
 						auto tempHero = (Hero *)pObject;
 						if (isSameGroupAs(tempHero) &&
@@ -111,7 +118,7 @@ class Chiyo : public Hero
 						return;
 					}
 				}
-				if (_isCanOugis2 && !_isControlled && _delegate->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
 					if (abs(sp.x) > 96 || abs(sp.y) > 32)
 					{
@@ -204,9 +211,9 @@ class Chiyo : public Hero
 	{
 		if (isPlayer())
 		{
-			_delegate->getHudLayer()->skill1Button->setLock();
-			_delegate->getHudLayer()->skill2Button->unLock();
-			_delegate->getHudLayer()->skill3Button->unLock();
+			getGameLayer()->getHudLayer()->skill1Button->setLock();
+			getGameLayer()->getHudLayer()->skill2Button->unLock();
+			getGameLayer()->getHudLayer()->skill3Button->unLock();
 		}
 	}
 
@@ -214,9 +221,9 @@ class Chiyo : public Hero
 	{
 		if (isPlayer())
 		{
-			_delegate->getHudLayer()->skill1Button->unLock();
-			_delegate->getHudLayer()->skill2Button->setLock();
-			_delegate->getHudLayer()->skill3Button->setLock();
+			getGameLayer()->getHudLayer()->skill1Button->unLock();
+			getGameLayer()->getHudLayer()->skill2Button->setLock();
+			getGameLayer()->getHudLayer()->skill3Button->setLock();
 		}
 		_skillChangeBuffValue = 0;
 	}
@@ -234,5 +241,15 @@ class Chiyo : public Hero
 		clone->_isArmored = true;
 		_monsterArray->addObject(clone);
 		return clone;
+	}
+
+private:
+	inline void tryLockSkillButton()
+	{
+		if (isPlayer())
+		{
+			getGameLayer()->getHudLayer()->skill2Button->setLock();
+			getGameLayer()->getHudLayer()->skill3Button->setLock();
+		}
 	}
 };

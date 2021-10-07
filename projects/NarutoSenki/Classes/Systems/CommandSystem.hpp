@@ -102,7 +102,7 @@ private:
 
 			   tempChar->setAnchorPoint(ccp(0.5f, 0));
 			   tempChar->setPosition(c->getPosition());
-			   c->_delegate->addChild(tempChar, -c->_originY);
+			   getGameLayer()->addChild(tempChar, -c->_originY);
 
 			   tempChar->runAction(seq);
 		   });
@@ -238,7 +238,7 @@ private:
 
 			   if (c->isNotCharacter("Yominuma"))
 			   {
-				   c->_delegate->reorderChild(c, -tsPosY);
+				   getGameLayer()->reorderChild(c, -tsPosY);
 			   }
 		   });
 		on(Command::reTransport, [](CharacterBase *c)
@@ -268,7 +268,7 @@ private:
 			   if (_isCounter)
 			   {
 				   CCObject *pObject;
-				   CCARRAY_FOREACH(c->_delegate->_CharacterArray, pObject)
+				   CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 				   {
 					   auto tempHero = (Hero *)pObject;
 					   if (c->isNotSameGroupAs(tempHero) &&
@@ -288,7 +288,7 @@ private:
 
 							   if (tempHero->isPlayer())
 							   {
-								   c->_delegate->setHPLose(tempHero->getHpPercent());
+								   getGameLayer()->setHPLose(tempHero->getHpPercent());
 							   }
 						   }
 					   }
@@ -309,7 +309,7 @@ private:
 
 					   if (c->isPlayer())
 					   {
-						   c->_delegate->setHPLose(c->getHpPercent());
+						   getGameLayer()->setHPLose(c->getHpPercent());
 					   }
 				   }
 			   }
@@ -319,7 +319,7 @@ private:
 		on(Command::setRevive, [](CharacterBase *c)
 		   {
 			   CCObject *pObject;
-			   CCARRAY_FOREACH(c->_delegate->_CharacterArray, pObject)
+			   CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 			   {
 				   auto tempHero = (Hero *)pObject;
 				   if (c->isSameGroupAs(tempHero) &&
@@ -335,7 +335,7 @@ private:
 		on(Command::setTrade, [](CharacterBase *c)
 		   {
 			   CCObject *pObject;
-			   CCARRAY_FOREACH(c->_delegate->_CharacterArray, pObject)
+			   CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
 			   {
 				   auto tempHero = (Hero *)pObject;
 				   if (tempHero->hearts > 0 &&
@@ -358,15 +358,15 @@ private:
 
 						   if (c->isPlayer())
 						   {
-							   if (c->_delegate->_isHardCoreGame)
+							   if (getGameLayer()->_isHardCoreGame)
 							   {
-								   c->_delegate->setCoin(to_cstr(50 + (tempHero->getLV() - 1) * 10));
+								   getGameLayer()->setCoin(to_cstr(50 + (tempHero->getLV() - 1) * 10));
 								   c->setCoinDisplay(50 + (tempHero->getLV() - 1) * 10);
 								   c->addCoin(50 + (tempHero->getLV() - 1) * 10);
 							   }
 							   else
 							   {
-								   c->_delegate->setCoin("50");
+								   getGameLayer()->setCoin("50");
 								   c->setCoinDisplay(50);
 								   c->addCoin(50);
 							   }
@@ -398,7 +398,7 @@ private:
 			   c->setPosition(ccp(tsPosX, tsPosY));
 			   CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", c);
 
-			   c->_delegate->reorderChild(c, -tsPosY);
+			   getGameLayer()->reorderChild(c, -tsPosY);
 		   });
 	}
 };

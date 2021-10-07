@@ -136,7 +136,7 @@ public:
 
 	void setHPbar()
 	{
-		if (strcmp(getGroup()->getCString(), _delegate->currentPlayer->getGroup()->getCString()) != 0)
+		if (strcmp(getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()) != 0)
 			_hpBar = HPBar::create("flog_bar_r.png");
 		else
 			_hpBar = HPBar::create("flog_bar.png");
@@ -154,13 +154,13 @@ protected:
 
 		if (isKonohaGroup())
 		{
-			int index = _delegate->_KonohaFlogArray->indexOfObject(this);
-			_delegate->_KonohaFlogArray->removeObjectAtIndex(index);
+			int index = getGameLayer()->_KonohaFlogArray->indexOfObject(this);
+			getGameLayer()->_KonohaFlogArray->removeObjectAtIndex(index);
 		}
 		else
 		{
-			int index = _delegate->_AkatsukiFlogArray->indexOfObject(this);
-			_delegate->_AkatsukiFlogArray->removeObjectAtIndex(index);
+			int index = getGameLayer()->_AkatsukiFlogArray->indexOfObject(this);
+			getGameLayer()->_AkatsukiFlogArray->removeObjectAtIndex(index);
 		}
 		removeFromParent();
 	}

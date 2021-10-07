@@ -137,7 +137,7 @@ bool ActionButton::isCanClick()
 			// isSkillFinish consider the AttackAction is done or not to prevent the skill invalid release
 			if (_abType == Item1)
 			{
-				if (!_delegate->ougisLayer && !_timeCout && !_isLock && _delegate->_delegate->currentPlayer->getActionState() != State::DEAD)
+				if (!_delegate->ougisLayer && !_timeCout && !_isLock && getGameLayer()->currentPlayer->getActionState() != State::DEAD)
 				{
 					if (_delegate->offCoin(_cost))
 					{
@@ -149,7 +149,7 @@ bool ActionButton::isCanClick()
 			{
 				if (!_isLock)
 				{
-					_delegate->_delegate->onGear();
+					getGameLayer()->onGear();
 				}
 				return false;
 			}
@@ -157,7 +157,7 @@ bool ActionButton::isCanClick()
 			{
 				if (!_delegate->ougisLayer && !_timeCout && !_isLock)
 				{
-					if (_gearType == gear06 && _delegate->_delegate->currentPlayer->getActionState() != State::DEAD)
+					if (_gearType == gear06 && getGameLayer()->currentPlayer->getActionState() != State::DEAD)
 					{
 						return true;
 					}
@@ -312,7 +312,7 @@ void ActionButton::setMarkSprite(const char *mark)
 
 	if (getABType() == GearBtn)
 	{
-		if (_delegate->_delegate->_enableGear)
+		if (getGameLayer()->_enableGear)
 		{
 			gearSign = CCSprite::createWithSpriteFrameName("gearsign.png");
 			gearSign->setPosition(ccp(getPositionX() + 17, getPositionY() + 17));
@@ -429,8 +429,8 @@ void ActionButton::setProgressMark()
 
 void ActionButton::updateProgressMark()
 {
-	uint32_t ckr = _delegate->_delegate->currentPlayer->getCkrValue();
-	uint32_t ckr2 = _delegate->_delegate->currentPlayer->getCkr2Value();
+	uint32_t ckr = getGameLayer()->currentPlayer->getCkrValue();
+	uint32_t ckr2 = getGameLayer()->currentPlayer->getCkr2Value();
 
 	if (getABType() == OUGIS1)
 	{
@@ -587,8 +587,8 @@ void ActionButton::unLock()
 		markSprite->setPercentage(0);
 	}
 
-	uint32_t ckr = _delegate->_delegate->currentPlayer->getCkrValue();
-	uint32_t ckr2 = _delegate->_delegate->currentPlayer->getCkr2Value();
+	uint32_t ckr = getGameLayer()->currentPlayer->getCkrValue();
+	uint32_t ckr2 = getGameLayer()->currentPlayer->getCkr2Value();
 
 	if (getABType() == OUGIS1)
 	{

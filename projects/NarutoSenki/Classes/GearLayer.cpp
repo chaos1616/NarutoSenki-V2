@@ -265,7 +265,7 @@ GearLayer::GearLayer()
 
 GearLayer::~GearLayer()
 {
-	_delegate->_isGear = false;
+	getGameLayer()->_isGear = false;
 }
 
 bool GearLayer::init(CCRenderTexture *snapshoot)
@@ -353,15 +353,15 @@ void GearLayer::confirmPurchase()
 	// this function for keyboard buy event
 	onGearBuy(nullptr);
 	// refresh HUB
-	getDelegate()->getHudLayer()->updateGears();
+	getGameLayer()->getHudLayer()->updateGears();
 }
 
 void GearLayer::onResume(CCObject *sender)
 {
-	getDelegate()->getHudLayer()->updateGears();
+	getGameLayer()->getHudLayer()->updateGears();
 	CCDirector::sharedDirector()->popScene();
 
-	_delegate->_isGear = false;
+	getGameLayer()->_isGear = false;
 }
 
 void GearLayer::onGearBuy(CCObject *sender)
@@ -371,7 +371,7 @@ void GearLayer::onGearBuy(CCObject *sender)
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
 	}
 
-	if (_delegate->currentPlayer->setGear(currentGear))
+	if (getGameLayer()->currentPlayer->setGear(currentGear))
 	{
 		updatePlayerGear();
 	}
@@ -379,7 +379,7 @@ void GearLayer::onGearBuy(CCObject *sender)
 
 void GearLayer::updatePlayerGear()
 {
-	if (_delegate->currentPlayer->getGearArray() && _delegate->currentPlayer->getGearArray()->count() > 0)
+	if (getGameLayer()->currentPlayer->getGearArray() && getGameLayer()->currentPlayer->getGearArray()->count() > 0)
 	{
 		if (currentGear_layer != nullptr)
 		{
@@ -389,7 +389,7 @@ void GearLayer::updatePlayerGear()
 		currentGear_layer->setAnchorPoint(ccp(0, 0));
 		CCObject *pObject;
 		int i = 0;
-		CCARRAY_FOREACH(_delegate->currentPlayer->getGearArray(), pObject)
+		CCARRAY_FOREACH(getGameLayer()->currentPlayer->getGearArray(), pObject)
 		{
 			CCString *tmpGear = (CCString *)pObject;
 			GearButton *btn = GearButton::create("");
@@ -403,7 +403,7 @@ void GearLayer::updatePlayerGear()
 		addChild(currentGear_layer, 800);
 	}
 
-	coinLabel->setString(to_cstr(_delegate->currentPlayer->getCoinValue()));
+	coinLabel->setString(to_cstr(getGameLayer()->currentPlayer->getCoinValue()));
 	updateGearList();
 }
 
@@ -439,10 +439,10 @@ void GearLayer::updateGearList()
 			btn = GearButton::create("value_500.png");
 		}
 		bool isBuyed = false;
-		if (_delegate->currentPlayer->getGearArray() && _delegate->currentPlayer->getGearArray()->count() > 0)
+		if (getGameLayer()->currentPlayer->getGearArray() && getGameLayer()->currentPlayer->getGearArray()->count() > 0)
 		{
 			CCObject *pObject;
-			CCARRAY_FOREACH(_delegate->currentPlayer->getGearArray(), pObject)
+			CCARRAY_FOREACH(getGameLayer()->currentPlayer->getGearArray(), pObject)
 			{
 				CCString *tmpGear = (CCString *)pObject;
 				if (to_int(tmpGear->getCString()) == i)
