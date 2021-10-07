@@ -28,17 +28,23 @@ public:
 
 	virtual void setID(CCString *character, CCString *role, CCString *group)
 	{
-		auto oldCharName = getCharacter() ? getCharacter()->getCString() : nullptr;
+		auto charName = character->getCString();
+		if (getCharacter())
+		{
+			// update player UI
+			if (isPlayer())
+			{
+				auto oldCharName = getCharacter()->getCString();
+				bool isUpdateUI = strcmp(oldCharName, charName) != 0;
+
+				if (isUpdateUI)
+					_delegate->updateHudSkillButtons();
+			}
+		}
+
 		setCharacter(character);
 		setRole(role);
 		setGroup(group);
-
-		// Updated hud layer
-		auto charName = getCharacter()->getCString();
-		if (isPlayer() && oldCharName && strcmp(oldCharName, charName) != 0)
-		{
-			_delegate->updateHudSkillButtons();
-		}
 
 		CCArray *animationArray = CCArray::create();
 		const char *filePath;
