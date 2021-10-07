@@ -136,7 +136,7 @@ void HeroElement::changeHPbar()
 	{
 		_level = 4;
 		uint32_t newValue = getCkr2Value() + 25001;
-		setCKR2Value(newValue);
+		setCkr2Value(newValue);
 		_isCanOugis2 = true;
 		if (isPlayer())
 		{

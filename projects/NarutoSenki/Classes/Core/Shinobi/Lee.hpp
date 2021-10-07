@@ -42,10 +42,7 @@ class Lee : public Hero
 
 				if (isPlayer())
 				{
-					if (_delegate->getHudLayer()->skill3Button)
-					{
-						_delegate->getHudLayer()->skill3Button->setLock();
-					}
+					_delegate->getHudLayer()->skill3Button->setLock();
 				}
 
 				if (_skillBuffEffect)
@@ -66,7 +63,8 @@ class Lee : public Hero
 				}
 				setnAttackValue(to_ccstring(getNAttackValue() - 30));
 			}
-			bamen -= 1;
+			bamen--;
+
 			if (bamen == 0)
 			{
 				_heartEffect->removeFromParent();

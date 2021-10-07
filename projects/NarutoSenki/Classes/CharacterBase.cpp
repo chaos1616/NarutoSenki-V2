@@ -436,9 +436,9 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 	if (isCharacter("Tobi"))
 	{
-		if (_skillChangeBuffValue && (getActionState() == State::IDLE ||
-									  getActionState() == State::WALK ||
-									  getActionState() == State::NATTACK))
+		if (_skillChangeBuffValue && (_actionState == State::IDLE ||
+									  _actionState == State::WALK ||
+									  _actionState == State::NATTACK))
 		{
 			if (getOpacity() == 255)
 			{
@@ -449,12 +449,15 @@ void CharacterBase::acceptAttack(CCObject *object)
 		}
 	}
 
-	if (attacker->isCharacter("Hiruzen") && attacker->getActionState() == State::O2ATTACK)
+	if (attacker->isCharacter("Hiruzen") && attacker->_actionState == State::O2ATTACK)
 	{
-		isCannotMiss = true;
+		isCannotMiss = true; // TODO: Add this as a parameter of CharacterBase::acceptAttack
 	}
 
-	if (strcmp(_group->getCString(), attacker->_group->getCString()) != 0 && _isVisable && (!_isInvincible || isCannotMiss) && getActionState() != State::DEAD)
+	if (isNotSameGroupAs(attacker) &&
+		_isVisable &&
+		(!_isInvincible || isCannotMiss) &&
+		_actionState != State::DEAD)
 	{
 		// Tower
 		if (isTower())
@@ -501,8 +504,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 			if (isHit)
 			{
-				_slayer = attacker;
-				setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
+				setDamage(attacker);
 
 				if (!_isHitOne)
 				{
@@ -546,8 +548,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 					{
 						if (attacker->_master && attacker->_master->_actionState != State::DEAD)
 						{
-							attacker->_master->_slayer = this;
-							attacker->_master->setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
+							attacker->_master->setDamage(this, attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
 						}
 
 						CCObject *pObject;
@@ -556,8 +557,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 							auto tempHero = (Hero *)pObject;
 							if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::DEAD)
 							{
-								tempHero->_slayer = this;
-								tempHero->setDamage(attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
+								tempHero->setDamage(this, attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
 							}
 						}
 
@@ -565,8 +565,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 					}
 				}
 
-				_slayer = attacker;
-				setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
+				setDamage(attacker);
 
 				if (attacker->isCharacter("HiraishinKunai") ||
 					attacker->isCharacter("Shintenshin"))
@@ -584,7 +583,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 								_isControlled = true;
 								_controller = attacker->_master;
 
-								if (attacker->_master->getActionState() == State::O2ATTACK)
+								if (attacker->_master->_actionState == State::O2ATTACK)
 								{
 									attacker->_master->stopAllActions();
 									attacker->_master->runAction(createAnimation(attacker->_master->skillSPC1Array, 10.0f, false, false));
@@ -666,10 +665,10 @@ void CharacterBase::acceptAttack(CCObject *object)
 				{
 					const char *hitType = attacker->_effectType;
 
-					//hit or not !
+					// hit or not !
 					attacker->_isHitOne = true;
 
-					//record the slayer
+					// record the slayer
 					_slayer = attacker;
 
 					//flog hurt
@@ -1050,15 +1049,13 @@ void CharacterBase::acceptAttack(CCObject *object)
 						{
 							if (attacker->_master && attacker->_master->_actionState != State::DEAD)
 							{
-								attacker->_master->_slayer = this;
-								attacker->_master->setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
+								attacker->_master->setDamage(this, attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
 							}
 							else if (!attacker->_master)
 							{
 								if (attacker->_actionState != State::DEAD)
 								{
-									attacker->_slayer = this;
-									attacker->setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
+									attacker->setDamage(this, attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
 								}
 							}
 
@@ -1068,8 +1065,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 								auto tempHero = (Hero *)pObject;
 								if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::DEAD)
 								{
-									tempHero->_slayer = this;
-									tempHero->setDamage(attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
+									tempHero->setDamage(this, attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
 								}
 							}
 
@@ -1082,13 +1078,12 @@ void CharacterBase::acceptAttack(CCObject *object)
 						{
 							if (attacker->_actionState != State::DEAD)
 							{
-								attacker->_slayer = this;
-								attacker->setDamage(attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
+								attacker->setDamage(this, attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
 							}
 						}
 					}
 
-					setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
+					setDamage(attacker);
 				}
 			}
 		}
@@ -1414,7 +1409,12 @@ void CharacterBase::disableHpBar(float dt)
 		_hpBar->setVisible(false);
 }
 
-void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFlipped)
+void CharacterBase::setDamage(CharacterBase *attacker)
+{
+	setDamage(attacker, attacker->_effectType, attacker->_attackValue, _isFlipped);
+}
+
+void CharacterBase::setDamage(CharacterBase *attacker, const char *effectType, int attackValue, bool isFlipped)
 {
 	if (isTower())
 	{
@@ -1428,7 +1428,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 	int criticalValue;
 	uint32_t realValue;
 
-	auto attacker = _slayer;
+	_slayer = attacker;
 	CharacterBase *currentAttacker;
 	if (attacker->getMaster())
 		currentAttacker = attacker->getMaster();
@@ -1447,7 +1447,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 	else
 	{
 		bool isCannotMiss = false; // is this attack has 100 percent accuracy
-		if (attacker->isCharacter("Hiruzen") && attacker->getActionState() == State::O2ATTACK)
+		if (attacker->isCharacter("Hiruzen") && attacker->_actionState == State::O2ATTACK)
 		{
 			isCannotMiss = true;
 		}
@@ -1457,7 +1457,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 			realValue = attackValue + criticalValue;
 		}
 		else if ((attacker->getMaster() ||
-				  attacker->getActionState() == State::NATTACK) &&
+				  attacker->_actionState == State::NATTACK) &&
 				 attacker->hasArmorBroken)
 		{
 			realValue = attackValue + criticalValue;
@@ -1484,7 +1484,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 					CCARRAY_FOREACH(getMonsterArray(), pObject)
 					{
 						auto mo = (Monster *)pObject;
-						if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK)
+						if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK)
 						{
 							CCPoint sp = ccpSub(mo->getPosition(), getPosition());
 							if (sp.x <= 48)
@@ -1897,9 +1897,9 @@ void CharacterBase::useGear(gearType type)
 
 	if (type == gear00)
 	{
-		if (getActionState() == State::NATTACK ||
-			getActionState() == State::WALK ||
-			getActionState() == State::IDLE)
+		if (_actionState == State::NATTACK ||
+			_actionState == State::WALK ||
+			_actionState == State::IDLE)
 		{
 			if (getWalkSpeed() == 224)
 			{
@@ -1948,19 +1948,19 @@ void CharacterBase::useGear(gearType type)
 
 		if (!_isInvincible && !_isArmored)
 		{
-			if (getActionState() == State::IDLE ||
-				getActionState() == State::WALK ||
-				getActionState() == State::FLOAT ||
-				getActionState() == State::AIRHURT ||
-				getActionState() == State::HURT ||
-				getActionState() == State::KNOCKDOWN)
+			if (_actionState == State::IDLE ||
+				_actionState == State::WALK ||
+				_actionState == State::FLOAT ||
+				_actionState == State::AIRHURT ||
+				_actionState == State::HURT ||
+				_actionState == State::KNOCKDOWN)
 			{
 				if (_isSticking)
 				{
 					_isSticking = false;
 				}
-				if (getActionState() == State::FLOAT ||
-					getActionState() == State::AIRHURT)
+				if (_actionState == State::FLOAT ||
+					_actionState == State::AIRHURT)
 				{
 					setPositionY(_originY);
 					_originY = 0;
@@ -2087,7 +2087,7 @@ void CharacterBase::setRestore2(float dt)
 		if (isZone)
 			setHPValue(getHPValue() > 1000 ? getHPValue() - 1000 : 100);
 
-		if (getActionState() == State::IDLE && getHpPercent() < 1)
+		if (_actionState == State::IDLE && getHpPercent() < 1)
 		{
 			increaseHpAndUpdateUI(300);
 		}
@@ -2803,9 +2803,9 @@ void CharacterBase::dehealBuff(float dt)
 	}
 
 	if (getHPValue() <= _dehealBuffValue)
-		setDamage("c_hit", _dehealBuffValue, false);
+		setDamage(_slayer, "c_hit", _dehealBuffValue, false);
 	else
-		setDamage("c_hit", _dehealBuffValue, false);
+		setDamage(_slayer, "c_hit", _dehealBuffValue, false);
 
 	if (isPlayer())
 		_delegate->setHPLose(getHpPercent());
@@ -2822,10 +2822,8 @@ void CharacterBase::lostBlood(float dt)
 			_slayer = tempHero;
 	}
 
-	if (getHPValue() <= lostBloodValue)
-		setDamage("c_hit", lostBloodValue, false);
-	else
-		setDamage("c_hit", lostBloodValue, false);
+	// if (getHPValue() <= lostBloodValue)
+	setDamage(_slayer, "c_hit", lostBloodValue, false);
 
 	if (isPlayer())
 		_delegate->setHPLose(getHpPercent());
@@ -4353,7 +4351,7 @@ bool CharacterBase::hurt()
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				auto mo = (Monster *)pObject;
-				if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK && mo->getActionState() != State::DEAD)
+				if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK && mo->_actionState != State::DEAD)
 				{
 					CCPoint sp = ccpSub(mo->getPosition(), getPosition());
 					if (sp.x <= 48)
@@ -4428,7 +4426,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				auto mo = (Monster *)pObject;
-				if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK && mo->getActionState() != State::DEAD)
+				if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK && mo->_actionState != State::DEAD)
 				{
 					CCPoint sp = ccpSub(mo->getPosition(), getPosition());
 					if (sp.x <= 48)
@@ -4622,7 +4620,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				auto mo = (Monster *)pObject;
-				if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->getActionState() != State::SATTACK && mo->getActionState() != State::DEAD)
+				if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK && mo->_actionState != State::DEAD)
 				{
 					CCPoint sp = ccpSub(mo->getPosition(), getPosition());
 					if (sp.x <= 48)
@@ -4720,7 +4718,7 @@ void CharacterBase::dead()
 			_delegate->getHudLayer()->_isAllButtonLocked = false;
 		}
 
-		if (_controller->getActionState() != State::DEAD)
+		if (_controller->_actionState != State::DEAD)
 		{
 			_controller->unschedule(schedule_selector(CharacterBase::resumeAction));
 			_controller->idle();
@@ -4937,10 +4935,10 @@ bool CharacterBase::findEnemy(const char *type, int searchRange, bool masterRang
 		{
 			continue;
 		}
-		if ((getActionState() == State::OATTACK ||
-			 getActionState() == State::O2ATTACK) ||
-			(getMaster() && (getMaster()->getActionState() == State::OATTACK ||
-							 getActionState() == State::O2ATTACK)))
+		if ((_actionState == State::OATTACK ||
+			 _actionState == State::O2ATTACK) ||
+			(getMaster() && (getMaster()->_actionState == State::OATTACK ||
+							 _actionState == State::O2ATTACK)))
 		{
 			if (target->isClone() ||
 				target->isSummon() ||

@@ -995,7 +995,6 @@ void HudLayer::setReportCache()
 					}
 				}
 
-				// ɱ
 				if (num2 == 1)
 				{
 					if (reportSPCSprite)
@@ -1459,7 +1458,7 @@ void HudLayer::updateSpecialSkillButtons()
 	auto currentPlayer = _delegate->currentPlayer;
 	if (currentPlayer == nullptr)
 	{
-		CCLOG("Current player is null.");
+		CCLOGERROR("Current player is null.");
 		return;
 	}
 

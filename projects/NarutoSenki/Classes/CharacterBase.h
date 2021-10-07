@@ -404,7 +404,8 @@ protected:
 	void				stopMove(float dt);
 	void				stopJump(CCNode* sender,void* data);
 	void				setAttackBox(CCNode* sender,void* data);
-	void				setDamage(const char* effectType,int attackValue,bool isFlipped);
+	inline void			setDamage(CharacterBase* attacker);
+	void				setDamage(CharacterBase *attacker,const char* effectType,int attackValue,bool isFlipped);
 	void				setDamgeDisplay(int value,const char* type);
 
 	void				setItemEffect(CCNode* sender,void* data);

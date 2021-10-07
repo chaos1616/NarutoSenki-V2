@@ -277,14 +277,13 @@ private:
 					   {
 						   if (tempHero->_hpBar)
 						   {
-							   tempHero->_slayer = c;
 							   if (tempHero->getHPValue() <= 2000)
 							   {
-								   tempHero->setDamage("c_hit", tempHero->getHPValue(), false);
+								   tempHero->setDamage(c, "c_hit", tempHero->getHPValue(), false);
 							   }
 							   else
 							   {
-								   tempHero->setDamage("c_hit", 2000, false);
+								   tempHero->setDamage(c, "c_hit", 2000, false);
 							   }
 
 							   if (tempHero->isPlayer())
@@ -299,14 +298,13 @@ private:
 			   {
 				   if (c->_hpBar)
 				   {
-					   c->_slayer = c;
 					   if (c->getHPValue() <= 2000)
 					   {
-						   c->setDamage("c_hit", c->getHPValue(), false);
+						   c->setDamage(c, "c_hit", c->getHPValue(), false);
 					   }
 					   else
 					   {
-						   c->setDamage("c_hit", 2000, false);
+						   c->setDamage(c, "c_hit", 2000, false);
 					   }
 
 					   if (c->isPlayer())
