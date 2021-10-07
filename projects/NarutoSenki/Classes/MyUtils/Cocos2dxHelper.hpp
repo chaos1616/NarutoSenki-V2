@@ -7,7 +7,7 @@ using namespace cocos2d;
 #define nameof(varType) #varType
 #define typeof(varType) typeid(varType).name()
 
-#define SAFE_CLEAR_CCARRAY(arr)       \
+#define SAFE_CLEAR_CCARRAY(arr)  \
 	if (arr)                     \
 	{                            \
 		arr->removeAllObjects(); \
@@ -43,6 +43,7 @@ using namespace cocos2d;
 /**
  * Sprite extension
  */
+
 static inline CCSpriteFrame *getSrpiteFrame(std::string name)
 {
 	return CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name.c_str());

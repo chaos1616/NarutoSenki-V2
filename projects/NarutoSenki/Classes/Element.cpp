@@ -110,7 +110,7 @@ void HeroElement::changeHPbar()
 	{
 		_level = 2;
 		uint32_t newValue = getCkrValue() + 15001;
-		setCKR(to_ccstring(newValue));
+		setCkrValue(newValue);
 		_isCanOugis1 = true;
 		if (isPlayer())
 		{
@@ -119,7 +119,7 @@ void HeroElement::changeHPbar()
 		}
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 500;
-		setMaxHP(to_ccstring(tempMaxHP));
+		setMaxHPValue(tempMaxHP);
 		setnAttackValue(to_ccstring(getNAttackValue() + 9));
 		_rebornTime += 1;
 	}
@@ -128,7 +128,7 @@ void HeroElement::changeHPbar()
 		_level = 3;
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 1000;
-		setMaxHP(to_ccstring(tempMaxHP));
+		setMaxHPValue(tempMaxHP);
 		setnAttackValue(to_ccstring(getNAttackValue() + 18));
 		_rebornTime += 2;
 	}
@@ -136,7 +136,7 @@ void HeroElement::changeHPbar()
 	{
 		_level = 4;
 		uint32_t newValue = getCkr2Value() + 25001;
-		setCKR2(to_ccstring(newValue));
+		setCKR2Value(newValue);
 		_isCanOugis2 = true;
 		if (isPlayer())
 		{
@@ -145,7 +145,7 @@ void HeroElement::changeHPbar()
 		}
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 2000;
-		setMaxHP(to_ccstring(tempMaxHP));
+		setMaxHPValue(tempMaxHP);
 		setnAttackValue(to_ccstring(getNAttackValue() + 27));
 		_rebornTime += 3;
 	}
@@ -154,7 +154,7 @@ void HeroElement::changeHPbar()
 		_level = 5;
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 2500;
-		setMaxHP(to_ccstring(tempMaxHP));
+		setMaxHPValue(tempMaxHP);
 		setnAttackValue(to_ccstring(getNAttackValue() + 36));
 		_rebornTime += 4;
 	}
@@ -163,7 +163,7 @@ void HeroElement::changeHPbar()
 		_level = 6;
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 3000;
-		setMaxHP(to_ccstring(tempMaxHP));
+		setMaxHPValue(tempMaxHP);
 		setnAttackValue(to_ccstring(getNAttackValue() + 45));
 		_rebornTime += 5;
 	}
@@ -373,7 +373,7 @@ void HeroElement::reborn(float dt)
 	{
 		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", nullptr);
 		setOpacity(255);
-		setHP(CCString::create(getMaxHP()->getCString()));
+		setHPValue(getMaxHPValue(), false);
 		setHPbar();
 		_actionState = State::HURT;
 
@@ -491,16 +491,16 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	int tmpCombatPoint;
 
 	readData(tmpData, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
-	setMaxHP(to_ccstring(to_uint(tmpHpMax->getCString())));
-	setHP(CCString::create(getMaxHP()->getCString()));
+	setMaxHPValue(tmpHpMax->uintValue(), false);
+	setHPValue(getMaxHPValue(), false);
 
 	setHeight(tmpHeight);
 	setWalkSpeed(tmpSpeed);
 
 	if (!getCKR() && !getCKR2())
 	{
-		setCKR(CCString::create("0"));
-		setCKR2(CCString::create("0"));
+		setCkrValue(0);
+		setCkr2Value(0);
 	}
 
 	//init WalkFrame
@@ -521,7 +521,7 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	_nattackType->retain();
 	nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-	setCoin(CCString::create("50"));
+	setCoinValue(50);
 
 	initAction();
 }
@@ -569,7 +569,7 @@ void Monster::changeHPbar()
 		_level = 2;
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 1000;
-		setMaxHP(to_ccstring(tempMaxHP));
+		setMaxHPValue(tempMaxHP);
 		setnAttackValue(to_ccstring(getNAttackValue() + 9));
 	}
 	else if (_exp >= 1000 && _level == 2)
@@ -577,7 +577,7 @@ void Monster::changeHPbar()
 		_level = 3;
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 1500;
-		setMaxHP(to_ccstring(tempMaxHP));
+		setMaxHPValue(tempMaxHP);
 		setnAttackValue(to_ccstring(getNAttackValue() + 18));
 	}
 	else if (_exp >= 1500 && _level == 3)
@@ -585,7 +585,7 @@ void Monster::changeHPbar()
 		_level = 4;
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 2000;
-		setMaxHP(to_ccstring(tempMaxHP));
+		setMaxHPValue(tempMaxHP);
 		setnAttackValue(to_ccstring(getNAttackValue() + 27));
 	}
 	else if (_exp >= 2000 && _level == 4)
@@ -593,7 +593,7 @@ void Monster::changeHPbar()
 		_level = 5;
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 2500;
-		setMaxHP(to_ccstring(tempMaxHP));
+		setMaxHPValue(tempMaxHP);
 		setnAttackValue(to_ccstring(getNAttackValue() + 36));
 	}
 	else if (_exp >= 2500 && _level == 5)
@@ -601,7 +601,7 @@ void Monster::changeHPbar()
 		_level = 6;
 		uint32_t tempMaxHP = getMaxHPValue();
 		tempMaxHP += 3000;
-		setMaxHP(to_ccstring(tempMaxHP));
+		setMaxHPValue(tempMaxHP);
 		setnAttackValue(to_ccstring(getNAttackValue() + 48));
 	}
 

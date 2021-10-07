@@ -610,10 +610,9 @@ void HPBar::loseHP(float percent)
 	{
 		auto s = CCScaleTo::create(0.2f, percent, 1);
 		hpBar->runAction(s);
+
 		if (_delegate->isPlayer())
-		{
 			_delegate->getDelegate()->setHPLose(percent);
-		}
 	}
 }
 

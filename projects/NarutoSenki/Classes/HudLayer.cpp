@@ -1232,25 +1232,17 @@ void HudLayer::costCKR(uint32_t value, bool isCKR2)
 	if (!isCKR2)
 	{
 		uint32_t ckr = _delegate->currentPlayer->getCkrValue();
+		ckr = ckr >= value ? ckr - value : 0;
 
-		if (ckr > value)
-			ckr -= value;
-		else
-			ckr = 0;
-
-		_delegate->currentPlayer->setCKR(to_ccstring(ckr));
+		_delegate->currentPlayer->setCkrValue(ckr);
 		setCKRLose(false);
 	}
 	else
 	{
 		uint32_t ckr2 = _delegate->currentPlayer->getCkr2Value();
+		ckr2 = ckr2 >= value ? ckr2 - value : 0;
 
-		if (ckr2 > value)
-			ckr2 -= value;
-		else
-			ckr2 = 0;
-
-		_delegate->currentPlayer->setCKR2(to_ccstring(ckr2));
+		_delegate->currentPlayer->setCkr2Value(ckr2);
 		setCKRLose(true);
 	}
 }
@@ -1450,7 +1442,7 @@ void HudLayer::updateSkillButtons()
 	if (skill##index##Button)                                                                                         \
 	{                                                                                                                 \
 		skill##index##Button->setDisplayFrame(cache->spriteFrameByName((charName + "_skill" #index ".png").c_str())); \
-		skill##index##Button->setCD(to_ccstring(player->_sattackcoldDown1 * 1000));              \
+		skill##index##Button->setCD(to_ccstring(player->_sattackcoldDown1 * 1000));                                   \
 		skill##index##Button->_isColdChanged = true;                                                                  \
 	}
 

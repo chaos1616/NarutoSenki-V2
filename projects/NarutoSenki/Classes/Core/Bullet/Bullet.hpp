@@ -66,7 +66,7 @@ public:
 			deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
 		}
 
-		setCoin(CCString::create("50"));
+		setCoinValue(50);
 
 		initAction();
 	}

@@ -460,13 +460,13 @@ void GameLayer::initTower()
 			//4v4
 			if (Cheats >= MaxCheats)
 			{
-				tower->setMaxHP(to_ccstring(80000));
+				tower->setMaxHPValue(80000, false);
 			}
 			else
 			{
-				tower->setMaxHP(to_ccstring(50000));
+				tower->setMaxHPValue(50000, false);
 			}
-			tower->setHP(CCString::create(tower->getMaxHP()->getCString()));
+			tower->setHPValue(tower->getMaxHPValue(), false);
 		}
 		tower->setHPbar();
 		tower->_hpBar->setVisible(false);

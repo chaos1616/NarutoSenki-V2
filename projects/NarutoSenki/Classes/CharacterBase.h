@@ -284,7 +284,7 @@ public:
 	void				acceptAttack(CCObject* object);
 
 
-	float				getHpPercent();
+	inline float		getHpPercent();
 
 	bool				checkHasMovement();
 
@@ -470,12 +470,27 @@ protected:
 	void				onExit();
 
 public:
+	// UI
+	inline void 		updateHpBar();
 	// character extensions
 	inline int			getCoinValue() { return to_int(_coin->getCString()); }
+	inline void			setCoinValue(uint32_t var) { setCoin(to_ccstring(var)); }
 	inline uint32_t		getCkrValue() { return to_uint(_ckr->getCString()); }
+	inline void			setCkrValue(uint32_t var) { setCKR(to_ccstring(var)); }
 	inline uint32_t		getCkr2Value() { return to_uint(_ckr2->getCString()); }
+	inline void			setCkr2Value(uint32_t var) { setCKR2(to_ccstring(var)); }
 	inline uint32_t		getHPValue() { return to_uint(_hp->getCString()); }
+	inline void			setHPValue(uint32_t var, bool isUpdateHpBar = true) {
+		setHP(to_ccstring(var));
+		if (isUpdateHpBar)
+			updateHpBar();
+	}
 	inline uint32_t		getMaxHPValue() { return to_uint(_maxHP->getCString()); }
+	inline void			setMaxHPValue(uint32_t var, bool isUpdateHpBar = true) {
+		setMaxHP(to_ccstring(var));
+		if (isUpdateHpBar)
+			updateHpBar();
+	}
 	inline int			getNAttackValue() { return to_int(_nattackValue->getCString()); }
 	inline int			getSAttackValue1() { return to_int(_sattackValue1->getCString()); }
 	inline int			getSAttackValue2() { return to_int(_sattackValue2->getCString()); }
@@ -575,6 +590,9 @@ public:
 	// monster extensions
 	inline bool			hasMonsterArrayAny() { return _monsterArray && _monsterArray->count() > 0; }
 protected:
+	// Utilities
+	void				increaseAllCkrs(uint32_t value, bool enableLv2 = true, bool enableLv4 = true);
+	inline void			increaseHpAndUpdateUI(uint32_t value);
 	// find enemy extensions
 	inline bool 		findHero(int searchRange,bool masterRange = false) { return findEnemy(kRoleHero, searchRange, masterRange); }
 	inline bool 		findFlog(int searchRange,bool masterRange = false) { return findEnemy(kRoleFlog, searchRange, masterRange); }

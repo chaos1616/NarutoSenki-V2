@@ -174,60 +174,23 @@ class Lee : public Hero
 	{
 		CharacterBase::setRestore2(dt);
 
-		if (!_hpBar)
-			return;
+		uint32_t hp = getHPValue();
 
 		if (bamen >= 8)
 		{
-			if (getHPValue() > 1000)
-			{
-				setHP(to_ccstring(getHPValue() - 1000));
-				_hpBar->loseHP(getHpPercent());
-			}
-			else
-			{
-				setHP(to_ccstring(100));
-				_hpBar->loseHP(getHpPercent());
-			}
+			setHPValue(hp > 1000 ? hp - 1000 : 100);
 		}
 		else if (bamen >= 5)
 		{
-			if (getHPValue() > 200)
-			{
-				setHP(to_ccstring(getHPValue() - 200));
-				_hpBar->loseHP(getHpPercent());
-			}
-			else
-			{
-				setHP(to_ccstring(100));
-				_hpBar->loseHP(getHpPercent());
-			}
+			setHPValue(hp > 200 ? hp - 200 : 100);
 		}
 		else if (bamen >= 4)
 		{
-			if (getHPValue() > 150)
-			{
-				setHP(to_ccstring(getHPValue() - 150));
-				_hpBar->loseHP(getHpPercent());
-			}
-			else
-			{
-				setHP(to_ccstring(100));
-				_hpBar->loseHP(getHpPercent());
-			}
+			setHPValue(hp > 150 ? hp - 150 : 100);
 		}
 		else if (bamen >= 3)
 		{
-			if (getHPValue() > 100)
-			{
-				setHP(to_ccstring(getHPValue() - 100));
-				_hpBar->loseHP(getHpPercent());
-			}
-			else
-			{
-				setHP(to_ccstring(100));
-				_hpBar->loseHP(getHpPercent());
-			}
+			setHPValue(hp > 100 ? hp - 100 : 100);
 		}
 	}
 

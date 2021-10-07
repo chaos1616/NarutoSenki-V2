@@ -63,8 +63,8 @@ public:
 		int tmpCombatPoint;
 
 		readData(tmpData, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
-		setMaxHP(to_ccstring(to_uint(tmpHpMax->getCString())));
-		setHP(CCString::create(getMaxHP()->getCString()));
+		setMaxHPValue(tmpHpMax->uintValue(), false);
+		setHPValue(getMaxHPValue(), false);
 		setHeight(tmpHeight);
 		setWalkSpeed(tmpSpeed);
 
@@ -72,8 +72,8 @@ public:
 
 		if (!getCKR() && !getCKR2())
 		{
-			setCKR(CCString::create("0"));
-			setCKR2(CCString::create("0"));
+			setCkrValue(0);
+			setCkr2Value(0);
 		}
 
 		//init WalkFrame
@@ -113,7 +113,7 @@ public:
 		_damageArray = CCArray::create();
 		_damageArray->retain();
 
-		setCoin(CCString::create("50"));
+		setCoinValue(50);
 
 		initAction();
 		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", nullptr);

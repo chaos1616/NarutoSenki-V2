@@ -236,7 +236,7 @@ void CharacterBase::updateDataByLVOnly()
 		attackValue += 45;
 		_rebornTime += 5;
 	}
-	setMaxHP(to_ccstring(tempMaxHP));
+	setMaxHPValue(tempMaxHP, false);
 	setnAttackValue(to_ccstring(attackValue));
 }
 
@@ -503,10 +503,6 @@ void CharacterBase::acceptAttack(CCObject *object)
 			{
 				_slayer = attacker;
 				setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
-				if (_hpBar)
-				{
-					_hpBar->loseHP(getHpPercent());
-				}
 
 				if (!_isHitOne)
 				{
@@ -551,12 +547,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 						if (attacker->_master && attacker->_master->_actionState != State::DEAD)
 						{
 							attacker->_master->_slayer = this;
-
 							attacker->_master->setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
-							if (attacker->_master->_hpBar)
-							{
-								attacker->_master->_hpBar->loseHP(attacker->_master->getHpPercent());
-							}
 						}
 
 						CCObject *pObject;
@@ -567,10 +558,6 @@ void CharacterBase::acceptAttack(CCObject *object)
 							{
 								tempHero->_slayer = this;
 								tempHero->setDamage(attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
-								if (tempHero->_hpBar)
-								{
-									tempHero->_hpBar->loseHP(tempHero->getHpPercent());
-								}
 							}
 						}
 
@@ -580,10 +567,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 				_slayer = attacker;
 				setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
-				if (_hpBar)
-				{
-					_hpBar->loseHP(getHpPercent());
-				}
+
 				if (attacker->isCharacter("HiraishinKunai") ||
 					attacker->isCharacter("Shintenshin"))
 				{
@@ -1067,24 +1051,14 @@ void CharacterBase::acceptAttack(CCObject *object)
 							if (attacker->_master && attacker->_master->_actionState != State::DEAD)
 							{
 								attacker->_master->_slayer = this;
-
 								attacker->_master->setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
-								if (attacker->_master->_hpBar)
-								{
-									attacker->_master->_hpBar->loseHP(attacker->_master->getHpPercent());
-								}
 							}
 							else if (!attacker->_master)
 							{
 								if (attacker->_actionState != State::DEAD)
 								{
 									attacker->_slayer = this;
-
 									attacker->setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
-									if (attacker->_hpBar)
-									{
-										attacker->_hpBar->loseHP(attacker->getHpPercent());
-									}
 								}
 							}
 
@@ -1096,10 +1070,6 @@ void CharacterBase::acceptAttack(CCObject *object)
 								{
 									tempHero->_slayer = this;
 									tempHero->setDamage(attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
-									if (tempHero->_hpBar)
-									{
-										tempHero->_hpBar->loseHP(tempHero->getHpPercent());
-									}
 								}
 							}
 
@@ -1113,22 +1083,12 @@ void CharacterBase::acceptAttack(CCObject *object)
 							if (attacker->_actionState != State::DEAD)
 							{
 								attacker->_slayer = this;
-
 								attacker->setDamage(attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
-								if (attacker->_hpBar)
-								{
-									attacker->_hpBar->loseHP(attacker->getHpPercent());
-								}
 							}
 						}
 					}
 
 					setDamage(attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
-					//lose the hp
-					if (_hpBar)
-					{
-						_hpBar->loseHP(getHpPercent());
-					}
 				}
 			}
 		}
@@ -1541,12 +1501,9 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 		}
 	}
 
-	if (getHPValue() < realValue)
-		setHP(to_ccstring(0));
-	else
-		setHP(to_ccstring(getHPValue() - realValue));
+	setHPValue(getHPValue() < realValue ? 0 : getHPValue() - realValue);
 
-	if (isClone())
+	if (isClone() && _master && !_master->_isControlled)
 	{
 		uint32_t boundValue = 0;
 		if (isCharacter("Naruto"))
@@ -1569,48 +1526,9 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 					boundValue = 0;
 			}
 
-			if (_master)
-			{
-				if (_master->getLV() >= 2 && !_master->_isControlled)
-				{
-					if (45000 - _master->getCkrValue() >= boundValue)
-					{
-						uint32_t newValue = _master->getCkrValue() + boundValue;
-						_master->setCKR(to_ccstring(newValue));
-					}
-					else
-					{
-						_master->setCKR(CCString::create("45000"));
-					}
-
-					if (_master->getCkrValue() >= 15000)
-						_master->_isCanOugis1 = true;
-
-					if (_master->isPlayer())
-						_delegate->setCKRLose(false);
-				}
-
-				if (_master->getLV() >= 4 && !_master->_isControlled)
-				{
-					if (50000 - _master->getCkr2Value() >= boundValue)
-					{
-						uint32_t newValue = _master->getCkr2Value() + boundValue;
-						_master->setCKR2(to_ccstring(newValue));
-					}
-					else
-					{
-						_master->setCKR2(CCString::create("50000"));
-					}
-
-					if (_master->getCkr2Value() >= 25000)
-						_master->_isCanOugis2 = true;
-
-					if (_master->isPlayer())
-						_delegate->setCKRLose(true);
-				}
-			}
+			_master->increaseAllCkrs(boundValue);
 		}
-		else
+		else if (!_isControlled)
 		{
 			uint32_t boundValue;
 
@@ -1641,47 +1559,12 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 			if (attacker->isCharacter("Hinata") && attacker->_skillUPBuffValue)
 				isGainable = false;
 
-			if (_level >= 2 && !_isControlled && isGainable)
-			{
-				if (45000 - getCkrValue() >= boundValue)
-				{
-					uint32_t newValue = getCkrValue() + boundValue;
-					setCKR(to_ccstring(newValue));
-				}
-				else
-				{
-					setCKR(CCString::create("45000"));
-				}
-
-				if (getCkrValue() >= 15000)
-					_isCanOugis1 = true;
-
-				if (isPlayer())
-					_delegate->setCKRLose(false);
-			}
-
-			if (_level >= 4 && !_isControlled && isGainable)
-			{
-				if (50000 - getCkr2Value() >= boundValue)
-				{
-					uint32_t newValue = getCkr2Value() + boundValue;
-					setCKR2(to_ccstring(newValue));
-				}
-				else
-				{
-					setCKR2(CCString::create("50000"));
-				}
-
-				if (getCkr2Value() >= 25000)
-					_isCanOugis2 = true;
-
-				if (isPlayer())
-					_delegate->setCKRLose(true);
-			}
+			if (isGainable)
+				increaseAllCkrs(boundValue);
 		}
 	}
 
-	if (isPlayerOrCom())
+	if (isPlayerOrCom() && !currentAttacker->_isControlled)
 	{
 		uint32_t gainValue = 0;
 
@@ -1698,45 +1581,7 @@ void CharacterBase::setDamage(const char *effectType, int attackValue, bool isFl
 		}
 
 		if (gainValue != 0)
-		{
-			if (currentAttacker->_level >= 2 && !currentAttacker->_isControlled)
-			{
-				if (45000 - currentAttacker->getCkrValue() >= gainValue)
-				{
-					uint32_t newValue = currentAttacker->getCkrValue() + gainValue;
-					currentAttacker->setCKR(to_ccstring(newValue));
-				}
-				else
-				{
-					currentAttacker->setCKR(CCString::create("45000"));
-				}
-
-				if (currentAttacker->getCkrValue() >= 15000)
-					currentAttacker->_isCanOugis1 = true;
-
-				if (currentAttacker->isPlayer())
-					_delegate->setCKRLose(false);
-			}
-
-			if (currentAttacker->_level >= 4 && !currentAttacker->_isControlled)
-			{
-				if (50000 - currentAttacker->getCkr2Value() >= gainValue)
-				{
-					uint32_t newValue = currentAttacker->getCkr2Value() + gainValue;
-					currentAttacker->setCKR2(to_ccstring(newValue));
-				}
-				else
-				{
-					currentAttacker->setCKR2(CCString::create("50000"));
-				}
-
-				if (currentAttacker->getCkr2Value() >= 25000)
-					currentAttacker->_isCanOugis2 = true;
-
-				if (currentAttacker->isPlayer())
-					_delegate->setCKRLose(true);
-			}
-		}
+			currentAttacker->increaseAllCkrs(gainValue);
 	}
 
 	if (isPlayer() || (isNotTower() &&
@@ -1950,22 +1795,7 @@ void CharacterBase::setItem(abType type)
 	if (_hpBar)
 	{
 		uint32_t hpRestore = 3000 + gearRecoverValue;
-		if (getMaxHPValue() - getHPValue() <= hpRestore)
-		{
-			setHP(CCString::create(getMaxHP()->getCString()));
-			if (_hpBar)
-			{
-				_hpBar->loseHP(getHpPercent());
-			}
-		}
-		else
-		{
-			setHP(to_ccstring(getHPValue() + hpRestore));
-			if (_hpBar)
-			{
-				_hpBar->loseHP(getHpPercent());
-			}
-		}
+		increaseHpAndUpdateUI(hpRestore);
 
 		if (!_isHealling && !_healItemEffect)
 		{
@@ -2047,11 +1877,7 @@ bool CharacterBase::setGear(gearType type)
 		case gear08:
 			uint32_t tempMaxHP = getMaxHPValue();
 			tempMaxHP += 6000;
-			setMaxHP(to_ccstring(tempMaxHP));
-			if (_hpBar)
-			{
-				_hpBar->loseHP(getHpPercent());
-			}
+			setMaxHPValue(tempMaxHP);
 			hasArmor = true;
 			break;
 		}
@@ -2224,31 +2050,22 @@ void CharacterBase::enableGear06(float dt)
 
 void CharacterBase::addCoin(int num)
 {
-	setCoin(to_ccstring(getCoinValue() + num));
+	setCoinValue(getCoinValue() + num);
 }
 
 void CharacterBase::minusCoin(int num)
 {
 	if (getCoinValue() > num)
-		setCoin(to_ccstring(getCoinValue() - num));
+		setCoinValue(getCoinValue() - num);
 	else
-		setCoin(to_ccstring(0));
+		setCoinValue(0);
 }
 
 void CharacterBase::setRestore(float dt)
 {
 	if (_hpBar)
 	{
-		if (getMaxHPValue() - getHPValue() <= 800)
-		{
-			setHP(CCString::create(getMaxHP()->getCString()));
-			_hpBar->loseHP(getHpPercent());
-		}
-		else
-		{
-			setHP(to_ccstring(getHPValue() + 800));
-			_hpBar->loseHP(getHpPercent());
-		}
+		increaseHpAndUpdateUI(800);
 
 		_healItemEffect = Effect::create("hp_restore", this);
 		_healItemEffect->setPosition(ccp(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
@@ -2263,39 +2080,16 @@ void CharacterBase::setRestore2(float dt)
 	{
 		bool isZone = false;
 		if (isAkatsukiGroup() && getPositionX() <= _delegate->currentMap->getTileSize().width * 2)
-		{
 			isZone = true;
-		}
 		else if (isKonohaGroup() && getPositionX() >= (_delegate->currentMap->getMapSize().width - 2) * _delegate->currentMap->getTileSize().width)
-		{
 			isZone = true;
-		}
+
 		if (isZone)
-		{
-			if (getHPValue() > 1000)
-			{
-				setHP(to_ccstring(getHPValue() - 1000));
-				_hpBar->loseHP(getHpPercent());
-			}
-			else
-			{
-				setHP(to_ccstring(100));
-				_hpBar->loseHP(getHpPercent());
-			}
-		}
+			setHPValue(getHPValue() > 1000 ? getHPValue() - 1000 : 100);
 
 		if (getActionState() == State::IDLE && getHpPercent() < 1)
 		{
-			if (getMaxHPValue() - getHPValue() <= 300)
-			{
-				setHP(CCString::create(getMaxHP()->getCString()));
-				_hpBar->loseHP(getHpPercent());
-			}
-			else
-			{
-				setHP(to_ccstring(getHPValue() + 300));
-				_hpBar->loseHP(getHpPercent());
-			}
+			increaseHpAndUpdateUI(300);
 		}
 	}
 }
@@ -2384,16 +2178,7 @@ void CharacterBase::setAttackBox(CCNode *sender, void *data)
 						"ImmortalSasuke",
 						"DevaPath"))
 		{
-			if (getMaxHPValue() - getHPValue() <= 260)
-			{
-				setHP(CCString::create(getMaxHP()->getCString()));
-				_hpBar->loseHP(getHpPercent());
-			}
-			else
-			{
-				setHP(to_ccstring(getHPValue() + 260));
-				_hpBar->loseHP(getHpPercent());
-			}
+			increaseHpAndUpdateUI(260);
 
 			if (_role && isPlayer())
 			{
@@ -2883,6 +2668,7 @@ void CharacterBase::healBuff(float dt)
 		_buffStartTime = curTime;
 	}
 	int limitTime = 10000;
+
 	if (isCharacter("Tsunade"))
 	{
 		limitTime = 15000;
@@ -2896,6 +2682,7 @@ void CharacterBase::healBuff(float dt)
 		_buffStartTime = 0;
 		return;
 	}
+
 	if (isCharacter("Karin"))
 	{
 		CCObject *pObject;
@@ -2909,18 +2696,7 @@ void CharacterBase::healBuff(float dt)
 				if (abs(distanceX) <= tempRange1 &&
 					abs(tempHero->getPositionY() - getPositionY()) <= 128)
 				{
-					if (tempHero->getMaxHPValue() - tempHero->getHPValue() <= _healBuffValue)
-					{
-						tempHero->setHP(CCString::create(tempHero->getMaxHP()->getCString()));
-						if (tempHero->_hpBar)
-							tempHero->_hpBar->loseHP(tempHero->getHpPercent());
-					}
-					else
-					{
-						tempHero->setHP(to_ccstring(tempHero->getHPValue() + _healBuffValue));
-						if (tempHero->_hpBar)
-							tempHero->_hpBar->loseHP(tempHero->getHpPercent());
-					}
+					tempHero->increaseHpAndUpdateUI(_healBuffValue);
 
 					if (tempHero->isPlayer())
 						_delegate->setHPLose(tempHero->getHpPercent());
@@ -2952,43 +2728,7 @@ void CharacterBase::healBuff(float dt)
 				CCPoint sp = ccpSub(tempHero->getPosition(), getPosition());
 				if (abs(sp.x) <= winSize.width / 2)
 				{
-					if (tempHero->_level >= 2)
-					{
-						if (45000 - tempHero->getCkrValue() >= _healBuffValue)
-						{
-							float newValue = tempHero->getCkrValue() + _healBuffValue;
-							tempHero->setCKR(to_ccstring(newValue));
-						}
-						else
-						{
-							tempHero->setCKR(CCString::create("45000"));
-						}
-
-						if (tempHero->getCkrValue() >= 15000)
-							tempHero->_isCanOugis1 = true;
-
-						if (tempHero->isPlayer())
-							_delegate->setCKRLose(false);
-					}
-
-					if (tempHero->_level >= 4)
-					{
-						if (50000 - tempHero->getCkr2Value() >= _healBuffValue)
-						{
-							float newValue = tempHero->getCkr2Value() + _healBuffValue;
-							tempHero->setCKR2(to_ccstring(newValue));
-						}
-						else
-						{
-							tempHero->setCKR2(CCString::create("50000"));
-						}
-
-						if (tempHero->getCkr2Value() >= 25000)
-							tempHero->_isCanOugis2 = true;
-
-						if (tempHero->isPlayer())
-							tempHero->_delegate->setCKRLose(true);
-					}
+					tempHero->increaseAllCkrs(_healBuffValue);
 
 					if (tempHero->_isVisable)
 					{
@@ -3024,40 +2764,14 @@ void CharacterBase::healBuff(float dt)
 				if (abs(distanceX) <= tempRange1 &&
 					abs(tempHero->getPositionY() - getPositionY()) <= 128)
 				{
-					if (tempHero->getMaxHPValue() - tempHero->getHPValue() <= _healBuffValue)
-					{
-						tempHero->setHP(CCString::create(tempHero->getMaxHP()->getCString()));
-						if (tempHero->_hpBar)
-							tempHero->_hpBar->loseHP(tempHero->getHpPercent());
-					}
-					else
-					{
-						tempHero->setHP(to_ccstring(tempHero->getHPValue() + int(_healBuffValue)));
-						if (tempHero->_hpBar)
-							tempHero->_hpBar->loseHP(tempHero->getHpPercent());
-					}
+					tempHero->increaseHpAndUpdateUI(_healBuffValue);
 				}
 			}
 		}
 	}
 	else if (isCharacter("Sakura", "Tsunade"))
 	{
-		if (getMaxHPValue() - getHPValue() <= _healBuffValue)
-		{
-			setHP(CCString::create(_maxHP->getCString()));
-			if (_hpBar)
-				_hpBar->loseHP(getHpPercent());
-		}
-		else
-		{
-			setHP(to_ccstring(getHPValue() + _healBuffValue));
-			if (_hpBar)
-				_hpBar->loseHP(getHpPercent());
-		}
-		if (_role && isPlayer())
-		{
-			_delegate->setHPLose(getHpPercent());
-		}
+		increaseHpAndUpdateUI(_healBuffValue);
 	}
 }
 
@@ -3093,9 +2807,6 @@ void CharacterBase::dehealBuff(float dt)
 	else
 		setDamage("c_hit", _dehealBuffValue, false);
 
-	if (_hpBar)
-		_hpBar->loseHP(getHpPercent());
-
 	if (isPlayer())
 		_delegate->setHPLose(getHpPercent());
 }
@@ -3115,9 +2826,6 @@ void CharacterBase::lostBlood(float dt)
 		setDamage("c_hit", lostBloodValue, false);
 	else
 		setDamage("c_hit", lostBloodValue, false);
-
-	if (_hpBar)
-		_hpBar->loseHP(getHpPercent());
 
 	if (isPlayer())
 		_delegate->setHPLose(getHpPercent());
@@ -3395,14 +3103,14 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 	if (isCharacter("SageNaruto", "Naruto") ||
 		(isCharacter("RikudoNaruto") && cloneTime == 10))
 	{
-		clone->setHP(CCString::create(getHP()->getCString()));
+		clone->setHPValue(getHPValue(), false);
 	}
 	else
 	{
-		clone->setHP(CCString::create(getMaxHP()->getCString()));
+		clone->setHPValue(getMaxHPValue(), false);
 	}
 
-	clone->setMaxHP(CCString::create(getMaxHP()->getCString()));
+	clone->setMaxHPValue(getMaxHPValue(), false);
 	clone->_exp = _exp;
 	clone->setnAttackValue(to_ccstring(getNAttackValue()));
 	clone->_gardValue = _gardValue;
@@ -4173,13 +3881,12 @@ void CharacterBase::setTransform()
 	else if (isCharacter("Pain"))
 		setID(CCString::create("Nagato"), _role, _group);
 
-	setMaxHP(to_ccstring(getMaxHPValue()));
-	setHP(to_ccstring(getHPValue()));
+	setMaxHPValue(getMaxHPValue(), false);
+	setHPValue(getHPValue());
 
 	if (_hpBar)
 	{
 		_hpBar->setPositionY(getHeight());
-		_hpBar->loseHP(getHpPercent());
 	}
 
 	if (isGearCD)
@@ -4295,9 +4002,17 @@ void CharacterBase::attack(abType type)
 	case OUGIS1:
 		if (isNotPlayer() || _isAI)
 		{
-			uint32_t newValue = getCkrValue() - 15000;
-			setCKR(to_ccstring(newValue));
-			if (getCkrValue() < 15000)
+			uint32_t ckr = getCkrValue();
+			if (ckr >= 15000)
+			{
+				ckr -= 15000;
+				setCkrValue(ckr);
+			}
+			else
+			{
+				setCkrValue(0);
+			}
+			if (ckr < 15000)
 			{
 				_isCanOugis1 = false;
 			}
@@ -4312,9 +4027,17 @@ void CharacterBase::attack(abType type)
 	case OUGIS2:
 		if (isNotPlayer() || _isAI)
 		{
-			uint32_t newValue = getCkr2Value() - 25000;
-			setCKR2(to_ccstring(newValue));
-			if (getCkr2Value() < 25000)
+			uint32_t ckr2 = getCkr2Value();
+			if (ckr2 >= 25000)
+			{
+				ckr2 -= 25000;
+				setCkr2Value(ckr2);
+			}
+			else
+			{
+				setCkr2Value(0);
+			}
+			if (ckr2 < 25000)
 			{
 				_isCanOugis2 = false;
 			}
@@ -5856,4 +5579,46 @@ void CharacterBase::enableSkill2(float dt)
 void CharacterBase::enableSkill3(float dt)
 {
 	_isCanSkill3 = true;
+}
+
+/**
+ * Utilities
+ */
+
+void CharacterBase::increaseAllCkrs(uint32_t value, bool enableLv2, bool enableLv4)
+{
+	if (_level >= 2 && enableLv2)
+	{
+		uint32_t ckr = min(getCkrValue() + value, 45000);
+		setCkrValue(ckr);
+
+		if (ckr >= 15000)
+			_isCanOugis1 = true;
+
+		if (isPlayer())
+			_delegate->setCKRLose(false);
+	}
+
+	if (_level >= 4 && enableLv4)
+	{
+		uint32_t ckr2 = min(getCkr2Value() + value, 50000);
+		setCkr2Value(ckr2);
+
+		if (ckr2 >= 25000)
+			_isCanOugis2 = true;
+
+		if (isPlayer())
+			_delegate->setCKRLose(true);
+	}
+}
+
+void CharacterBase::increaseHpAndUpdateUI(uint32_t value)
+{
+	setHPValue(min(getHPValue() + value, getMaxHPValue()));
+}
+
+void CharacterBase::updateHpBar()
+{
+	if (_hpBar)
+		_hpBar->loseHP(getHpPercent());
 }

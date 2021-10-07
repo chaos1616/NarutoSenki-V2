@@ -110,8 +110,7 @@ private:
 		   {
 			   if (c->_hpBar)
 			   {
-				   c->setHP(CCString::create(c->getMaxHP()->getCString()));
-				   c->_hpBar->loseHP(c->getHpPercent());
+				   c->setHPValue(c->getMaxHPValue());
 				   c->_hpBar->setPositionY(c->getHeight());
 			   }
 		   });
@@ -164,43 +163,7 @@ private:
 		on(Command::setGainCKR, [](CharacterBase *c)
 		   {
 			   uint32_t boundValue = 1500;
-			   if (c->getLV() >= 2)
-			   {
-				   if (45000 - c->getCkrValue() >= boundValue)
-				   {
-					   uint32_t newValue = c->getCkrValue() + boundValue;
-					   c->setCKR(to_ccstring(newValue));
-				   }
-				   else
-				   {
-					   c->setCKR(CCString::create("45000"));
-				   }
-
-				   if (c->getCkrValue() >= 15000)
-					   c->_isCanOugis1 = true;
-
-				   if (c->isPlayer())
-					   c->_delegate->setCKRLose(false);
-			   }
-
-			   if (c->getLV() >= 4 && !c->_isControlled)
-			   {
-				   if (50000 - c->getCkr2Value() >= boundValue)
-				   {
-					   uint32_t newValue = c->getCkr2Value() + boundValue;
-					   c->setCKR2(to_ccstring(newValue));
-				   }
-				   else
-				   {
-					   c->setCKR2(CCString::create("50000"));
-				   }
-
-				   if (c->getCkr2Value() >= 25000)
-					   c->_isCanOugis2 = true;
-
-				   if (c->isPlayer())
-					   c->_delegate->setCKRLose(true);
-			   }
+			   c->increaseAllCkrs(boundValue, true, !c->_isControlled);
 		   });
 		on(Command::setInvincible, [](CharacterBase *c)
 		   {
@@ -324,8 +287,6 @@ private:
 								   tempHero->setDamage("c_hit", 2000, false);
 							   }
 
-							   tempHero->_hpBar->loseHP(tempHero->getHpPercent());
-
 							   if (tempHero->isPlayer())
 							   {
 								   c->_delegate->setHPLose(tempHero->getHpPercent());
@@ -347,7 +308,6 @@ private:
 					   {
 						   c->setDamage("c_hit", 2000, false);
 					   }
-					   c->_hpBar->loseHP(c->getHpPercent());
 
 					   if (c->isPlayer())
 					   {
@@ -395,12 +355,7 @@ private:
 							   uint32_t tempMaxHP = c->getMaxHPValue();
 							   tempMaxHP += 100;
 							   c->setnAttackValue(to_ccstring(c->getNAttackValue() + 5));
-							   c->setMaxHP(to_ccstring(tempMaxHP));
-
-							   if (c->_hpBar)
-							   {
-								   c->_hpBar->loseHP(c->getHpPercent());
-							   }
+							   c->setMaxHPValue(tempMaxHP);
 						   }
 
 						   if (c->isPlayer())

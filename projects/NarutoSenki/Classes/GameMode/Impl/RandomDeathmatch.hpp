@@ -184,11 +184,7 @@ public:
 				{
 					uint32_t tempMaxHP = newChar->getMaxHPValue();
 					tempMaxHP += 6000;
-					newChar->setMaxHP(to_ccstring(tempMaxHP));
-					if (newChar->_hpBar)
-					{
-						newChar->_hpBar->loseHP(newChar->getHpPercent());
-					}
+					newChar->setMaxHPValue(tempMaxHP);
 					newChar->hasArmor = true;
 				}
 			}

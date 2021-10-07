@@ -58,23 +58,23 @@ public:
 		int tmpCombatPoint;
 
 		readData(tmpData, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
-		setMaxHP(to_ccstring(to_uint(tmpHpMax->getCString())));
-		setHP(CCString::create(getMaxHP()->getCString()));
+		setMaxHPValue(tmpHpMax->uintValue(), false);
+		setHPValue(getMaxHPValue(), false);
 
 		setHeight(tmpHeight);
 		setWalkSpeed(tmpSpeed);
 
 		if (!getCKR() && !getCKR2())
 		{
-			setCKR(CCString::create("0"));
-			setCKR2(CCString::create("0"));
+			setCkrValue(0);
+			setCkr2Value(0);
 		}
 
 		//init DeadFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
 		deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		setCoin(CCString::create("50"));
+		setCoinValue(50);
 
 		initAction();
 
