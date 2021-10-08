@@ -1460,9 +1460,12 @@ void HudLayer::updateSpecialSkillButtons()
 	skill1Button->_isColdChanged = true;
 	skill2Button->_isColdChanged = true;
 	skill3Button->_isColdChanged = true;
-	skill1Button->unLock();
-	skill2Button->unLock();
-	skill3Button->unLock();
+	if (skill1Button->_isLock)
+		skill1Button->unLock();
+	if (skill2Button->_isLock)
+		skill2Button->unLock();
+	if (skill3Button->_isLock)
+		skill3Button->unLock();
 }
 
 void HudLayer::resetSkillButtons()

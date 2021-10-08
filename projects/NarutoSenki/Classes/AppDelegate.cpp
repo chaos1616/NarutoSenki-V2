@@ -21,7 +21,6 @@ bool AppDelegate::applicationDidFinishLaunching()
 	CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);
 
 	CCLuaStack *pStack = pEngine->getLuaStack();
-	lua_State *tolua_s = pStack->getLuaState();
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 	pEngine->addSearchPath("../lua");
@@ -30,7 +29,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	// pStack->setXXTEAKeyAndSign("2dxLua", strlen("2dxLua"), "XXTEA", strlen("XXTEA"));
 	pEngine->addSearchPath("lua");
 	CCFileUtils::sharedFileUtils()->addSearchPath("lua");
-	CCLOG("------ Android WritablePath -> %s", CCFileUtils::sharedFileUtils()->getWritablePath().c_str());
+	CCLOG("------ Android writable path -> %s", CCFileUtils::sharedFileUtils()->getWritablePath().c_str());
 #endif
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	pEngine->addSearchPath("../../lua");
