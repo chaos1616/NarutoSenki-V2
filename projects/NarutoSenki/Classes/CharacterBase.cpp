@@ -5572,7 +5572,7 @@ void CharacterBase::increaseAllCkrs(uint32_t value, bool enableLv2, bool enableL
 {
 	if (_level >= 2 && enableLv2)
 	{
-		uint32_t ckr = min(getCkrValue() + value, 45000);
+		uint32_t ckr = MIN(getCkrValue() + value, 45000);
 		setCkrValue(ckr);
 
 		if (ckr >= 15000)
@@ -5584,7 +5584,7 @@ void CharacterBase::increaseAllCkrs(uint32_t value, bool enableLv2, bool enableL
 
 	if (_level >= 4 && enableLv4)
 	{
-		uint32_t ckr2 = min(getCkr2Value() + value, 50000);
+		uint32_t ckr2 = MIN(getCkr2Value() + value, 50000);
 		setCkr2Value(ckr2);
 
 		if (ckr2 >= 25000)
@@ -5597,7 +5597,7 @@ void CharacterBase::increaseAllCkrs(uint32_t value, bool enableLv2, bool enableL
 
 void CharacterBase::increaseHpAndUpdateUI(uint32_t value)
 {
-	setHPValue(min(getHPValue() + value, getMaxHPValue()));
+	setHPValue(MIN(getHPValue() + value, getMaxHPValue()));
 }
 
 void CharacterBase::updateHpBar()
