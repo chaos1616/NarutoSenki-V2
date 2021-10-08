@@ -423,8 +423,9 @@ void ActionButton::setProgressMark()
 
 void ActionButton::updateProgressMark()
 {
-	uint32_t ckr = getGameLayer()->currentPlayer->getCkrValue();
-	uint32_t ckr2 = getGameLayer()->currentPlayer->getCkr2Value();
+	// NOTE: Using uint32_t will get wrong results.
+	int ckr = getGameLayer()->currentPlayer->getCkrValue();
+	int ckr2 = getGameLayer()->currentPlayer->getCkr2Value();
 
 	if (getABType() == OUGIS1)
 	{

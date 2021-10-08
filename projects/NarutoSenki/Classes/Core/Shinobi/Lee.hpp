@@ -74,8 +74,6 @@ class Lee : public Hero
 			}
 			htLv--;
 
-			tryLockSkillButton();
-
 			if (htLv == 0)
 			{
 				_heartEffect->removeFromParent();
