@@ -117,7 +117,6 @@ public:
 
 		int index = getGameLayer()->_TowerArray->indexOfObject(this);
 		getGameLayer()->_TowerArray->removeObjectAtIndex(index);
-		// getGameLayer()->getHudLayer()->setTowerState(getCharNO());
 		getGameLayer()->setTowerState(getCharNO());
 		getGameLayer()->checkTower();
 		removeFromParentAndCleanup(true);

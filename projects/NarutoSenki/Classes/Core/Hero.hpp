@@ -332,16 +332,16 @@ public:
 	if (isPlayer())          \
 		getGameLayer()->getHudLayer()->skill5Button->unLock();
 
-#define lockOugisButtons()                                 \
-	if (isPlayer())                                        \
-	{                                                      \
+#define lockOugisButtons()                                      \
+	if (isPlayer())                                             \
+	{                                                           \
 		getGameLayer()->getHudLayer()->skill4Button->setLock(); \
 		getGameLayer()->getHudLayer()->skill5Button->setLock(); \
 	}
 
-#define unlockOugisButtons()                              \
-	if (isPlayer())                                       \
-	{                                                     \
+#define unlockOugisButtons()                                   \
+	if (isPlayer())                                            \
+	{                                                          \
 		getGameLayer()->getHudLayer()->skill4Button->unLock(); \
 		getGameLayer()->getHudLayer()->skill5Button->unLock(); \
 	}
