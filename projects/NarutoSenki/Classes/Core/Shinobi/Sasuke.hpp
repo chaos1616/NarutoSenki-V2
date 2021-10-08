@@ -277,7 +277,7 @@ class Sasuke : public Hero
 
 			_nattackRangeX = _spcattackRangeX3;
 			_nattackRangeY = _spcattackRangeY3;
-			_tempAttackType = _nattackType;
+			_originNAttackType = _nattackType->m_sString;
 			_nattackType = _spcattackType3;
 
 			_gardValue += 5000;
@@ -314,7 +314,7 @@ class Sasuke : public Hero
 			}
 			_nattackRangeX = 16;
 			_nattackRangeY = 48;
-			_nattackType = _tempAttackType;
+			_nattackType->m_sString = _originNAttackType;
 			_gardValue -= 5000;
 			_isArmored = false;
 
@@ -686,4 +686,7 @@ class Sasuke : public Hero
 			_skillChangeBuffValue = 0;
 		}
 	}
+
+private:
+	std::string _originNAttackType;
 };

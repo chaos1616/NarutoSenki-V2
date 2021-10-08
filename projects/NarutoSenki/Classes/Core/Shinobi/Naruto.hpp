@@ -228,7 +228,7 @@ class Naruto : public Hero
 
 		_nattackRangeX = _spcattackRangeX3;
 		_nattackRangeY = _spcattackRangeY3;
-		_tempAttackType = _nattackType;
+		_originNAttackType = _nattackType->m_sString;
 		_nattackType = _spcattackType3;
 
 		_gardValue += 5000;
@@ -258,7 +258,7 @@ class Naruto : public Hero
 
 		_nattackRangeX = 16;
 		_nattackRangeY = 48;
-		_nattackType = _tempAttackType;
+		_nattackType->m_sString = _originNAttackType;
 		_gardValue -= 5000;
 		_isArmored = false;
 
@@ -734,4 +734,7 @@ class Naruto : public Hero
 		clone->hasArmorBroken = true;
 		return clone;
 	}
+
+private:
+	std::string _originNAttackType;
 };

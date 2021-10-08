@@ -92,7 +92,7 @@ class Guardian : public Hero
 		setnAttackValue(to_ccstring(getNAttackValue() + 700));
 		_nattackRangeX = 0;
 		_nattackRangeY = 48;
-		_tempAttackType = _nattackType;
+		_originNAttackType = _nattackType->m_sString;
 		_nattackType = _spcattackType2;
 
 		_isArmored = true;
@@ -105,4 +105,7 @@ class Guardian : public Hero
 		setNAttackAction(createAnimation(skillSPC2Array, 10.0f, false, true));
 		setIdleAction(createAnimation(skillSPC3Array, 5.0f, true, false));
 	}
+
+private:
+	std::string _originNAttackType;
 };

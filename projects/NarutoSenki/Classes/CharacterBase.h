@@ -233,10 +233,7 @@ public:
 	uint32_t		_spcattackcoldDown3;
 
 	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_tempAttackValue1,tempAttackValue1);
-	int			_tempcoldDown1;
 
-
-	CC_SYNTHESIZE(CCString*,_tempAttackType,TempAttackType);
 
 	PROP(const char*,_effectType,EffectType);
 	bool			_hurtFromLeft;
