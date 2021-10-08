@@ -8,26 +8,14 @@ class Bullet : public CharacterBase
 public:
 	CREATE_FUNC(Bullet);
 
-	Bullet()
-	{
-	}
-
-	~Bullet()
-	{
-	}
-
 	bool init()
 	{
-		bool bRet = false;
-		do
-		{
-			//CC_BREAK_IF(!CharacterBase::initWithSpriteFrameName("coin.png"));
-			CC_BREAK_IF(!CharacterBase::init());
-			scheduleUpdate();
-			bRet = true;
-		} while (0);
+		// RETURN_FALSE_IF(!CharacterBase::initWithSpriteFrameName("coin.png"));
+		RETURN_FALSE_IF(!CharacterBase::init());
 
-		return bRet;
+		scheduleUpdate();
+
+		return true;
 	}
 
 	void setID(CCString *character, CCString *role, CCString *group)

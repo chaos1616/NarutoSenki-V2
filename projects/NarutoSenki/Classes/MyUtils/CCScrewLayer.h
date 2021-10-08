@@ -9,17 +9,17 @@ public:
 	~CCScrewLayer();
 
 	float prePosY;
-	virtual bool init();
-	CREATE_FUNC(CCScrewLayer);
-	CC_SYNTHESIZE_RETAIN(CCArray *, itemArray, ItemArray);
 	float minY;
 	int totalRow;
 	int line_height;
+	CC_SYNTHESIZE_RETAIN(CCArray *, itemArray, ItemArray);
+
+	CREATE_FUNC(CCScrewLayer);
 
 protected:
-	virtual bool ccTouchBegan(CCTouch *touch, CCEvent *event);
-	virtual void ccTouchMoved(CCTouch *touch, CCEvent *event);
-	virtual void ccTouchEnded(CCTouch *touch, CCEvent *event);
+	bool ccTouchBegan(CCTouch *touch, CCEvent *event);
+	void ccTouchMoved(CCTouch *touch, CCEvent *event);
+	void ccTouchEnded(CCTouch *touch, CCEvent *event);
 
 	void onEnter();
 	void onExit();
@@ -30,19 +30,20 @@ class CCScrewItem : public CCSprite, public CCTouchDelegate
 public:
 	CCScrewItem();
 	~CCScrewItem();
-	virtual bool init();
+
+	CCMenu *linemenu;
+	CCSprite *lockItem;
+	CC_SYNTHESIZE(CCScrewLayer *, _delegate, Delegate);
+
+	CCRect getRect2();
 
 	CREATE_FUNC(CCScrewItem);
-	CCRect getRect2();
-	CCMenu *linemenu;
-	CC_SYNTHESIZE(CCScrewLayer *, _delegate, Delegate);
-	CCSprite *lockItem;
 
 protected:
-	virtual void onEnter();
-	virtual void onExit();
-	virtual bool ccTouchBegan(CCTouch *touch, CCEvent *event);
-	virtual void ccTouchEnded(CCTouch *touch, CCEvent *event);
+	void onEnter();
+	void onExit();
+	bool ccTouchBegan(CCTouch *touch, CCEvent *event);
+	void ccTouchEnded(CCTouch *touch, CCEvent *event);
 
 	bool containsTouchLocation(CCTouch *touch);
 };

@@ -40,18 +40,13 @@ HeroElement::~HeroElement()
 
 bool HeroElement::init()
 {
-	bool bRet = false;
-	do
-	{
-		CC_BREAK_IF(!CharacterBase::init());
+	RETURN_FALSE_IF(!CharacterBase::init());
 
-		setAnchorPoint(ccp(0.5, 0));
-		scheduleUpdate();
-		//schedule(schedule_selector(HeroElement::checkRefCount),0.5f);
-		bRet = true;
-	} while (0);
+	setAnchorPoint(ccp(0.5, 0));
+	scheduleUpdate();
+	//schedule(schedule_selector(HeroElement::checkRefCount),0.5f);
 
-	return bRet;
+	return true;
 }
 
 void HeroElement::initAction()
@@ -450,16 +445,12 @@ Monster::~Monster()
 
 bool Monster::init()
 {
-	bool bRet = false;
-	do
-	{
-		CC_BREAK_IF(!CharacterBase::init());
-		setAnchorPoint(ccp(0.5, 0));
-		scheduleUpdate();
-		bRet = true;
-	} while (0);
+	RETURN_FALSE_IF(!CharacterBase::init());
 
-	return bRet;
+	setAnchorPoint(ccp(0.5, 0));
+	scheduleUpdate();
+
+	return true;
 }
 
 void Monster::setID(CCString *character, CCString *role, CCString *group)

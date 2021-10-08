@@ -12,28 +12,13 @@ public:
 	GameMode mode;
 	bool useMask2;
 
-	ModeMenuButton()
-	{
-		lockMask = nullptr;
-	}
-
-	~ModeMenuButton()
-	{
-	}
-
 	bool init(const char *szImage)
 	{
-		bool bRet = false;
-		do
-		{
-			CC_BREAK_IF(!CCSprite::initWithFile(szImage));
-			// initWithSpriteFrameName(szImage);
-			setAnchorPoint(ccp(0.5, 0.5));
+		RETURN_FALSE_IF(!CCSprite::initWithFile(szImage));
+		// initWithSpriteFrameName(szImage);
+		setAnchorPoint(ccp(0.5, 0.5));
 
-			bRet = true;
-		} while (0);
-
-		return bRet;
+		return true;
 	}
 
 	void onEnter()

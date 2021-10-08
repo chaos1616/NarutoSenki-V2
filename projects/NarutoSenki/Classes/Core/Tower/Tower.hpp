@@ -8,26 +8,14 @@ class Tower : public CharacterBase
 public:
 	CREATE_FUNC(Tower);
 
-	Tower()
-	{
-	}
-
-	~Tower()
-	{
-	}
-
 	bool init()
 	{
-		bool bRet = false;
-		do
-		{
-			CC_BREAK_IF(!CharacterBase::init());
-			setAnchorPoint(ccp(0.5, 0.5));
-			scheduleUpdate();
-			bRet = true;
-		} while (0);
+		RETURN_FALSE_IF(!CharacterBase::init());
 
-		return bRet;
+		setAnchorPoint(ccp(0.5, 0.5));
+		scheduleUpdate();
+
+		return true;
 	}
 
 	void setID(CCString *character, CCString *role, CCString *group)

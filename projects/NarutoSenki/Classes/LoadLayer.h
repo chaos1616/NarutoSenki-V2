@@ -23,12 +23,10 @@ public:
 	LoadLayer();
 	~LoadLayer();
 
-	CCArray *tempHeros;
 	bool init();
 
 	int loadNum;
-
-	CREATE_FUNC(LoadLayer);
+	CCArray *tempHeros;
 
 	CC_SYNTHESIZE_RETAIN(GameLayer *, _gameLayer, GameLayer);
 	CC_SYNTHESIZE_RETAIN(BGLayer *, _bgLayer, BGLayer);
@@ -42,6 +40,7 @@ public:
 	void playBGM(float dt);
 	void onLoadFinish(float dt);
 
+	CREATE_FUNC(LoadLayer);
 	static void perloadCharIMG(const char *player);
 	static void unloadCharIMG(const CharacterBase *player);
 

@@ -12,20 +12,6 @@ CCScrewLayer::~CCScrewLayer()
 {
 }
 
-bool CCScrewLayer::init()
-{
-	bool bRet = false;
-	do
-	{
-		CC_BREAK_IF(!CCLayer::init());
-
-		bRet = true;
-
-	} while (0);
-
-	return bRet;
-}
-
 void CCScrewLayer::onEnter()
 {
 	CCLayer::onEnter();
@@ -82,29 +68,6 @@ void CCScrewLayer::ccTouchEnded(CCTouch *touch, CCEvent *event)
 /*----------------------
 init CCScrewItem ;
 ----------------------*/
-CCScrewItem::CCScrewItem()
-{
-	linemenu = nullptr;
-	lockItem = nullptr;
-}
-
-CCScrewItem::~CCScrewItem()
-{
-}
-
-bool CCScrewItem::init()
-{
-	bool bRet = false;
-	do
-	{
-		CC_BREAK_IF(!CCSprite::init());
-
-		bRet = true;
-
-	} while (0);
-
-	return bRet;
-}
 
 void CCScrewItem::onEnter()
 {

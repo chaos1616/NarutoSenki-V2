@@ -42,8 +42,6 @@ public:
 	GameLayer();
 	~GameLayer();
 
-	CREATE_FUNC(GameLayer);
-
 	CCTMXTiledMap *currentMap;
 	CharacterBase *currentPlayer;
 	CCPoint spawnPoint;
@@ -148,8 +146,8 @@ public:
 	bool _isPause;
 	GearLayer *_gearLayer;
 
+	CREATE_FUNC(GameLayer);
 	static bool checkHasAnyMovement();
-
 	static int getMapCount();
 
 private:

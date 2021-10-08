@@ -52,7 +52,8 @@ public:
 class CCTips : public CCSprite
 {
 public:
-	virtual bool init(const char *tips);
+	bool init(const char *tips);
+
 	static CCTips *create(const char *tips);
 
 protected:

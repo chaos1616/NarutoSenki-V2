@@ -32,18 +32,12 @@ ActionButton::~ActionButton()
 
 bool ActionButton::init(const char *szImage)
 {
-	bool bRet = false;
-	do
-	{
-		CC_BREAK_IF(!CCSprite::init());
-		initWithSpriteFrameName(szImage);
-		setAnchorPoint(ccp(0, 0));
+	RETURN_FALSE_IF(!CCSprite::init());
 
-		bRet = true;
+	initWithSpriteFrameName(szImage);
+	setAnchorPoint(ccp(0, 0));
 
-	} while (0);
-
-	return bRet;
+	return true;
 }
 
 void ActionButton::onEnter()

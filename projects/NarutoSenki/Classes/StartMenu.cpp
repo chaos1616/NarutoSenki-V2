@@ -18,29 +18,15 @@ bool enableCustomSelect = false;
 /*----------------------
 init MenuButton ;
 ----------------------*/
-MenuButton::MenuButton()
-{
-	_isTop = false;
-	_isBottom = false;
-}
-
-MenuButton::~MenuButton()
-{
-}
 
 bool MenuButton::init(const char *szImage)
 {
-	bool bRet = false;
-	do
-	{
-		CC_BREAK_IF(!CCSprite::init());
-		initWithSpriteFrameName(szImage);
-		setAnchorPoint(ccp(0.5, 0));
+	RETURN_FALSE_IF(!CCSprite::init());
 
-		bRet = true;
-	} while (0);
+	initWithSpriteFrameName(szImage);
+	setAnchorPoint(ccp(0.5, 0));
 
-	return bRet;
+	return true;
 }
 
 void MenuButton::onEnter()
@@ -227,180 +213,173 @@ StartMenu::~StartMenu()
 
 bool StartMenu::init()
 {
-	bool bRet = false;
-	do
+	RETURN_FALSE_IF(!CCLayer::init());
+
+	addSprites("Menu.plist");
+	addSprites("Result.plist");
+	addSprites("NamePlate.plist");
+
+	//CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+
+	//CCSprite* bgSprite = CCSprite::create("red_bg.png");
+	////pSprite->setPosition(ccp(winSize.width/2 + origin.x, winSize.height/2 + origin.y));
+	// FULL_SCREEN_SPRITE(bgSprite);
+	//bgSprite->setAnchorPoint(ccp(0,0));
+	//bgSprite->setPosition(ccp(0,0));
+	//addChild(bgSprite, -5);
+
+	//produce groud
+	CCSprite *gold_left = CCSprite::createWithSpriteFrameName("gold_left.png");
+	gold_left->setAnchorPoint(ccp(0, 0));
+	gold_left->setPosition(ccp(0, 20));
+	addChild(gold_left, 1);
+
+	CCSprite *gold_right = CCSprite::createWithSpriteFrameName("gold_right.png");
+	gold_right->setAnchorPoint(ccp(0, 1));
+	gold_right->setPosition(ccp(winSize.width - gold_right->getContentSize().width - 20, winSize.height - 20));
+	addChild(gold_right, 1);
+
+	//produce the cloud
+	CCSprite *cloud_left = CCSprite::createWithSpriteFrameName("cloud.png");
+	cloud_left->setPosition(ccp(0, 15));
+	cloud_left->setFlipX(true);
+	cloud_left->setFlipY(true);
+	cloud_left->setAnchorPoint(ccp(0, 0));
+	addChild(cloud_left, 1);
+
+	auto cmv1 = CCMoveBy::create(1, ccp(-15, 0));
+	auto cseq1 = CCRepeatForever::create(CCSequence::create(cmv1, cmv1->reverse(), nullptr));
+	cloud_left->runAction(cseq1);
+
+	CCSprite *cloud_right = CCSprite::createWithSpriteFrameName("cloud.png");
+	cloud_right->setPosition(ccp(winSize.width - cloud_right->getContentSize().width,
+								 winSize.height - (cloud_right->getContentSize().height + 15)));
+	cloud_right->setAnchorPoint(ccp(0, 0));
+	addChild(cloud_right, 1);
+
+	auto cmv2 = CCMoveBy::create(1, ccp(15, 0));
+	auto cseq2 = CCRepeatForever::create(CCSequence::create(cmv2, cmv2->reverse(), nullptr));
+	cloud_right->runAction(cseq2);
+
+	//produce the menu_bar
+	CCSprite *menu_bar_b = CCSprite::create("menu_bar2.png");
+	menu_bar_b->setAnchorPoint(ccp(0, 0));
+	FULL_SCREEN_SPRITE(menu_bar_b);
+	addChild(menu_bar_b, 2);
+
+	CCSprite *menu_bar_t = CCSprite::create("menu_bar3.png");
+	menu_bar_t->setAnchorPoint(ccp(0, 0));
+	menu_bar_t->setPosition(ccp(0, winSize.height - menu_bar_t->getContentSize().height));
+	FULL_SCREEN_SPRITE(menu_bar_t);
+	addChild(menu_bar_t, 2);
+
+	CCSprite *startmenu_title = CCSprite::createWithSpriteFrameName("startmenu_title.png");
+	startmenu_title->setAnchorPoint(ccp(0, 0));
+	startmenu_title->setPosition(ccp(2, winSize.height - startmenu_title->getContentSize().height - 2));
+	addChild(startmenu_title, 3);
+
+	//produce the menu button
+
+	setMenus(CCArray::createWithCapacity(3));
+
+	auto gamemode_btn = MenuButton::create("menu01.png");
+	gamemode_btn->setDelegate(this);
+	gamemode_btn->setBtnType(Custom);
+	gamemode_btn->setScale(0.5f);
+	gamemode_btn->setPositionY(_pos03);
+	_menu_array->addObject(gamemode_btn);
+
+	auto credits_btn = MenuButton::create("menu04.png");
+	credits_btn->setDelegate(this);
+	credits_btn->setBtnType(Credits);
+	credits_btn->setScale(0.5f);
+	credits_btn->setVisible(false);
+	credits_btn->_isBottom = true;
+	credits_btn->setPositionY(_pos02);
+	_menu_array->addObject(credits_btn);
+
+	auto training_btn = MenuButton::create("menu02.png");
+	training_btn->setDelegate(this);
+	training_btn->setBtnType(Training);
+	training_btn->_isTop = true;
+	training_btn->setPositionY(_pos02);
+	_menu_array->addObject(training_btn);
+
+	auto exit_btn = MenuButton::create("menu03.png");
+	exit_btn->setDelegate(this);
+	exit_btn->setBtnType(Exit);
+	exit_btn->setScale(0.5f);
+	exit_btn->setPositionY(_pos01);
+	_menu_array->addObject(exit_btn);
+
+	menuText = CCSprite::createWithSpriteFrameName("menu02_text.png");
+	menuText->setAnchorPoint(ccp(0, 0));
+	menuText->setPosition(ccp(10, 2));
+	addChild(menuText, 5);
+
+	CCObject *pObject = nullptr;
+	CCARRAY_FOREACH(_menu_array, pObject)
 	{
-		CC_BREAK_IF(!CCLayer::init());
+		auto menu = (MenuButton *)pObject;
+		menu->setPositionX(105);
+		addChild(menu, 2);
+	}
+	auto versionLabel = CCLabelBMFont::create(VERSION_CODE, "Fonts/1.fnt");
+	versionLabel->setScale(0.3f);
+	versionLabel->setPosition(winSize.width - 25, 10);
+	addChild(versionLabel, 5);
 
-		addSprites("Menu.plist");
-		addSprites("Result.plist");
-		addSprites("NamePlate.plist");
+	CCSprite *avator = CCSprite::createWithSpriteFrameName("avator1.png");
+	avator->setAnchorPoint(ccp(0, 0));
+	avator->setOpacity(0);
+	avator->setPosition(ccp(winSize.width - avator->getContentSize().width, 19));
+	addChild(avator, 1);
 
-		//CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+	auto tempArray = CCArray::create();
 
-		//CCSprite* bgSprite = CCSprite::create("red_bg.png");
-		////pSprite->setPosition(ccp(winSize.width/2 + origin.x, winSize.height/2 + origin.y));
-		// FULL_SCREEN_SPRITE(bgSprite);
-		//bgSprite->setAnchorPoint(ccp(0,0));
-		//bgSprite->setPosition(ccp(0,0));
-		//addChild(bgSprite, -5);
+	int i = 1;
 
-		//produce groud
-		CCSprite *gold_left = CCSprite::createWithSpriteFrameName("gold_left.png");
-		gold_left->setAnchorPoint(ccp(0, 0));
-		gold_left->setPosition(ccp(0, 20));
-		addChild(gold_left, 1);
+	auto list = CCArray::create();
+	while (i < 5)
+	{
+		auto path = CCString::createWithFormat("avator%d.png", i);
+		auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path->getCString());
+		tempArray->addObject(frame);
+		auto tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
+		auto tempAction = CCAnimate::create(tempAnimation);
+		list->addObject(tempAction);
+		auto fadeIn = CCFadeIn::create(0.8f);
+		auto delay = CCDelayTime::create(1.0f);
+		auto fadeOut = CCFadeOut::create(0.5f);
+		list->addObject(fadeIn);
+		list->addObject(delay);
+		list->addObject(fadeOut);
+		i += 1;
+	}
 
-		CCSprite *gold_right = CCSprite::createWithSpriteFrameName("gold_right.png");
-		gold_right->setAnchorPoint(ccp(0, 1));
-		gold_right->setPosition(ccp(winSize.width - gold_right->getContentSize().width - 20, winSize.height - 20));
-		addChild(gold_right, 1);
+	avator->runAction(CCRepeatForever::create(CCSequence::create(list)));
+	CCMenuItem *news_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("news_btn.png"), nullptr, nullptr, this, menu_selector(StartMenu::onNewsBtn));
+	CCMenu *menu = CCMenu::create(news_btn, nullptr);
+	news_btn->setAnchorPoint(ccp(0, 0.5f));
+	menu->setPosition(15, winSize.height - 50);
+	addChild(menu, 5);
 
-		//produce the cloud
-		CCSprite *cloud_left = CCSprite::createWithSpriteFrameName("cloud.png");
-		cloud_left->setPosition(ccp(0, 15));
-		cloud_left->setFlipX(true);
-		cloud_left->setFlipY(true);
-		cloud_left->setAnchorPoint(ccp(0, 0));
-		addChild(cloud_left, 1);
+	setNotice();
 
-		auto cmv1 = CCMoveBy::create(1, ccp(-15, 0));
-		auto cseq1 = CCRepeatForever::create(CCSequence::create(cmv1, cmv1->reverse(), nullptr));
-		cloud_left->runAction(cseq1);
+	login_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("login_btn.png"), nullptr, nullptr, this, menu_selector(StartMenu::onLoginBtn));
+	CCMenu *menu2 = CCMenu::create(login_btn, nullptr);
+	login_btn->setAnchorPoint(ccp(1, 0.5f));
+	menu2->setPosition(winSize.width - 15, winSize.height - 50);
+	addChild(menu2, 5);
 
-		CCSprite *cloud_right = CCSprite::createWithSpriteFrameName("cloud.png");
-		cloud_right->setPosition(ccp(winSize.width - cloud_right->getContentSize().width,
-									 winSize.height - (cloud_right->getContentSize().height + 15)));
-		cloud_right->setAnchorPoint(ccp(0, 0));
-		addChild(cloud_right, 1);
+	if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	{
+		setKeypadEnabled(true);
+	}
 
-		auto cmv2 = CCMoveBy::create(1, ccp(15, 0));
-		auto cseq2 = CCRepeatForever::create(CCSequence::create(cmv2, cmv2->reverse(), nullptr));
-		cloud_right->runAction(cseq2);
+	scheduleUpdate();
 
-		//produce the menu_bar
-		CCSprite *menu_bar_b = CCSprite::create("menu_bar2.png");
-		menu_bar_b->setAnchorPoint(ccp(0, 0));
-		FULL_SCREEN_SPRITE(menu_bar_b);
-		addChild(menu_bar_b, 2);
-
-		CCSprite *menu_bar_t = CCSprite::create("menu_bar3.png");
-		menu_bar_t->setAnchorPoint(ccp(0, 0));
-		menu_bar_t->setPosition(ccp(0, winSize.height - menu_bar_t->getContentSize().height));
-		FULL_SCREEN_SPRITE(menu_bar_t);
-		addChild(menu_bar_t, 2);
-
-		CCSprite *startmenu_title = CCSprite::createWithSpriteFrameName("startmenu_title.png");
-		startmenu_title->setAnchorPoint(ccp(0, 0));
-		startmenu_title->setPosition(ccp(2, winSize.height - startmenu_title->getContentSize().height - 2));
-		addChild(startmenu_title, 3);
-
-		//produce the menu button
-
-		setMenus(CCArray::createWithCapacity(3));
-
-		auto gamemode_btn = MenuButton::create("menu01.png");
-		gamemode_btn->setDelegate(this);
-		gamemode_btn->setBtnType(Custom);
-		gamemode_btn->setScale(0.5f);
-		gamemode_btn->setPositionY(_pos03);
-		_menu_array->addObject(gamemode_btn);
-
-		auto credits_btn = MenuButton::create("menu04.png");
-		credits_btn->setDelegate(this);
-		credits_btn->setBtnType(Credits);
-		credits_btn->setScale(0.5f);
-		credits_btn->setVisible(false);
-		credits_btn->_isBottom = true;
-		credits_btn->setPositionY(_pos02);
-		_menu_array->addObject(credits_btn);
-
-		auto training_btn = MenuButton::create("menu02.png");
-		training_btn->setDelegate(this);
-		training_btn->setBtnType(Training);
-		training_btn->_isTop = true;
-		training_btn->setPositionY(_pos02);
-		_menu_array->addObject(training_btn);
-
-		auto exit_btn = MenuButton::create("menu03.png");
-		exit_btn->setDelegate(this);
-		exit_btn->setBtnType(Exit);
-		exit_btn->setScale(0.5f);
-		exit_btn->setPositionY(_pos01);
-		_menu_array->addObject(exit_btn);
-
-		menuText = CCSprite::createWithSpriteFrameName("menu02_text.png");
-		menuText->setAnchorPoint(ccp(0, 0));
-		menuText->setPosition(ccp(10, 2));
-		addChild(menuText, 5);
-
-		CCObject *pObject = nullptr;
-		CCARRAY_FOREACH(_menu_array, pObject)
-		{
-			auto menu = (MenuButton *)pObject;
-			menu->setPositionX(105);
-			addChild(menu, 2);
-		}
-		auto versionLabel = CCLabelBMFont::create(VERSION_CODE, "Fonts/1.fnt");
-		versionLabel->setScale(0.3f);
-		versionLabel->setPosition(winSize.width - 25, 10);
-		addChild(versionLabel, 5);
-
-		CCSprite *avator = CCSprite::createWithSpriteFrameName("avator1.png");
-		avator->setAnchorPoint(ccp(0, 0));
-		avator->setOpacity(0);
-		avator->setPosition(ccp(winSize.width - avator->getContentSize().width, 19));
-		addChild(avator, 1);
-
-		auto tempArray = CCArray::create();
-
-		int i = 1;
-
-		auto list = CCArray::create();
-		while (i < 5)
-		{
-			auto path = CCString::createWithFormat("avator%d.png", i);
-			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path->getCString());
-			tempArray->addObject(frame);
-			auto tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
-			auto tempAction = CCAnimate::create(tempAnimation);
-			list->addObject(tempAction);
-			auto fadeIn = CCFadeIn::create(0.8f);
-			auto delay = CCDelayTime::create(1.0f);
-			auto fadeOut = CCFadeOut::create(0.5f);
-			list->addObject(fadeIn);
-			list->addObject(delay);
-			list->addObject(fadeOut);
-			i += 1;
-		}
-
-		avator->runAction(CCRepeatForever::create(CCSequence::create(list)));
-		CCMenuItem *news_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("news_btn.png"), nullptr, nullptr, this, menu_selector(StartMenu::onNewsBtn));
-		CCMenu *menu = CCMenu::create(news_btn, nullptr);
-		news_btn->setAnchorPoint(ccp(0, 0.5f));
-		menu->setPosition(15, winSize.height - 50);
-		addChild(menu, 5);
-
-		setNotice();
-
-		login_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("login_btn.png"), nullptr, nullptr, this, menu_selector(StartMenu::onLoginBtn));
-		CCMenu *menu2 = CCMenu::create(login_btn, nullptr);
-		login_btn->setAnchorPoint(ccp(1, 0.5f));
-		menu2->setPosition(winSize.width - 15, winSize.height - 50);
-		addChild(menu2, 5);
-
-		if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-		{
-			setKeypadEnabled(true);
-		}
-
-		scheduleUpdate();
-
-		bRet = true;
-
-	} while (0);
-
-	return bRet;
+	return true;
 }
 
 void StartMenu::onEnter()

@@ -30,7 +30,6 @@ public:
 	Monster();
 	~Monster();
 
-	CREATE_FUNC(Monster);
 	bool init();
 	void initAction();
 	void setID(CCString *character, CCString *role, CCString *group);
@@ -39,6 +38,8 @@ public:
 	void setDirectMove(int length, float delay, bool isReverse);
 	void setEaseIn(int length, float delay);
 	void setDirectMoveBy(int length, float delay);
+
+	CREATE_FUNC(Monster);
 
 protected:
 	void dealloc();

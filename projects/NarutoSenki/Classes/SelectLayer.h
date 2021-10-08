@@ -4,11 +4,6 @@
 class SelectLayer : public CCLayer
 {
 public:
-	static SelectLayer *create();
-
-	SelectLayer();
-	~SelectLayer();
-
 	const char *_selectHero = nullptr;
 	const char *_playerSelect = nullptr;
 	const char *_com1Select = nullptr;
@@ -27,8 +22,10 @@ public:
 
 	void keyBackClicked();
 
+	CREATE_FUNC(SelectLayer);
+
 private:
-	bool isStart;
+	bool isStart = false;
 
 	void onBackToMenu(CCObject *sender);
 };

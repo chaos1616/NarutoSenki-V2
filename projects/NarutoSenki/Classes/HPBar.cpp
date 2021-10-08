@@ -1,48 +1,31 @@
 #include "Core/Hero.hpp"
 #include "HudLayer.h"
 
-HPBar::HPBar()
-{
-	hpBar = nullptr;
-	hpBottom = nullptr;
-}
-
-HPBar::~HPBar()
-{
-}
-
 bool HPBar::init(const char *szImage)
 {
-	bool bRet = false;
-	do
+	RETURN_FALSE_IF(!CCSprite::init());
+
+	char fileName[3] = "xx";
+	strncpy(fileName, szImage, 2);
+
+	hpBar = CCSprite::createWithSpriteFrameName(szImage);
+	hpBar->setAnchorPoint(ccp(0, 0));
+	addChild(hpBar, 1);
+
+	if (is_same(fileName, "hp"))
 	{
-		CC_BREAK_IF(!CCSprite::init());
+		hpBottom = CCSprite::createWithSpriteFrameName("hp_bottom.png");
+		hpBar->setPosition(ccp(15, 1));
+	}
+	else
+	{
+		hpBottom = CCSprite::createWithSpriteFrameName("flog_bar_buttom.png");
+		hpBar->setPosition(ccp(1, 1));
+	}
+	hpBottom->setAnchorPoint(ccp(0, 0));
+	addChild(hpBottom, -1);
 
-		char fileName[3] = "xx";
-		strncpy(fileName, szImage, 2);
-
-		hpBar = CCSprite::createWithSpriteFrameName(szImage);
-		hpBar->setAnchorPoint(ccp(0, 0));
-		addChild(hpBar, 1);
-
-		if (is_same(fileName, "hp"))
-		{
-			hpBottom = CCSprite::createWithSpriteFrameName("hp_bottom.png");
-			hpBar->setPosition(ccp(15, 1));
-		}
-		else
-		{
-			hpBottom = CCSprite::createWithSpriteFrameName("flog_bar_buttom.png");
-			hpBar->setPosition(ccp(1, 1));
-		}
-		hpBottom->setAnchorPoint(ccp(0, 0));
-		addChild(hpBottom, -1);
-
-		bRet = true;
-
-	} while (0);
-
-	return bRet;
+	return true;
 }
 
 void HPBar::changeBar(const char *szImage)

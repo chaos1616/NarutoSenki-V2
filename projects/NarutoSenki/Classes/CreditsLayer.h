@@ -5,12 +5,9 @@ class GameLayer;
 class CreditsLayer : public CCLayer
 {
 public:
-	CreditsLayer();
-	~CreditsLayer();
-
 	bool init();
 
-	CREATE_FUNC(CreditsLayer);
+	void keyBackClicked();
 
-	virtual void keyBackClicked();
+	CREATE_FUNC(CreditsLayer);
 };

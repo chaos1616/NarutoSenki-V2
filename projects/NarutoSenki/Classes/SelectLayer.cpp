@@ -7,21 +7,6 @@
 #include "../../../cocos2dx/platform/android/jni/JniHelper.h"
 #endif
 
-SelectLayer::SelectLayer()
-{
-	_playerSelect = nullptr;
-	_selectList = nullptr;
-	_com1Select = nullptr;
-	_com2Select = nullptr;
-	_com3Select = nullptr;
-
-	isStart = false;
-}
-
-SelectLayer::~SelectLayer()
-{
-}
-
 void SelectLayer::onGameStart()
 {
 	if (isStart)
@@ -50,19 +35,4 @@ void SelectLayer::onGameStart()
 void SelectLayer::keyBackClicked()
 {
 	lua_call_func("backToStartMenu");
-}
-
-SelectLayer *SelectLayer::create()
-{
-	SelectLayer *sl = new SelectLayer();
-	if (sl->init())
-	{
-		sl->autorelease();
-		return sl;
-	}
-	else
-	{
-		delete sl;
-		return nullptr;
-	}
 }

@@ -21,32 +21,26 @@ class StartMenu;
 class MenuButton : public CCSprite, public CCTouchDelegate
 {
 public:
-	MenuButton();
-	~MenuButton();
-
 	bool _isTop;
 	bool _isBottom;
 	btnType _btnType;
+	float prePosY;
+	CC_SYNTHESIZE(StartMenu *, _startMenu, Delegate);
 
-	virtual bool init(const char *szImage);
-	static MenuButton *create(const char *szImage);
-
+	bool init(const char *szImage);
 	CCRect getRect();
-
 	void setBtnType(btnType type);
 	btnType getBtnType();
 	void playSound();
 
-	float prePosY;
-
-	CC_SYNTHESIZE(StartMenu *, _startMenu, Delegate);
+	static MenuButton *create(const char *szImage);
 
 protected:
-	virtual void onEnter();
-	virtual void onExit();
-	virtual bool ccTouchBegan(CCTouch *touch, CCEvent *event);
-	virtual void ccTouchMoved(CCTouch *touch, CCEvent *event);
-	virtual void ccTouchEnded(CCTouch *touch, CCEvent *event);
+	void onEnter();
+	void onExit();
+	bool ccTouchBegan(CCTouch *touch, CCEvent *event);
+	void ccTouchMoved(CCTouch *touch, CCEvent *event);
+	void ccTouchEnded(CCTouch *touch, CCEvent *event);
 
 	inline bool containsTouchLocation(CCTouch *touch);
 };
@@ -79,10 +73,6 @@ public:
 
 	CCLayer *hardCoreLayer;
 
-	static const int _pos01 = 48;
-	static const int _pos02 = 92;
-	static const int _pos03 = 150;
-
 	bool isClockwise;
 	bool isDrag;
 
@@ -93,12 +83,17 @@ public:
 	void update(float dt);
 	CCLabelTTF *noticeLabel;
 
-	virtual void keyBackClicked();
+	void keyBackClicked();
 
 	void setHandle(LUA_FUNCTION handler) { _handler = handler; }
 	void setCheats(int cheats);
 
 	CC_SYNTHESIZE_RETAIN(CCArray *, _menu_array, Menus);
+
+	static const int _pos01 = 48;
+	static const int _pos02 = 92;
+	static const int _pos03 = 150;
+
 	CREATE_FUNC(StartMenu);
 
 protected:

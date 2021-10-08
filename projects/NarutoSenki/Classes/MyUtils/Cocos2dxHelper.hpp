@@ -14,6 +14,14 @@ using namespace cocos2d;
 		arr = nullptr;           \
 	}
 
+#define RETURN_FALSE_IF(var) \
+	if (var)                 \
+		return false;
+
+#define RETURN_TRUE_IF(var) \
+	if (var)                \
+		return true;
+
 #define addSprites(filePath) CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(filePath)
 #define removeSprites(filePath) CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile(filePath)
 

@@ -15,21 +15,20 @@ public:
 	bool init(CCRenderTexture *snapshoot);
 	CC_SYNTHESIZE(bool, _isWin, Win);
 
-	static GameOver *create(CCRenderTexture *snapshoot);
-
 	CCLayer *exitLayer;
 	CCLayer *cheatLayer;
 	CCSprite *result_bg;
 
 	bool isPosting;
 	CCSprite *refreshBtn;
-
 	CCMenuItem *upload_btn;
 
 	//CC_SYNTHESIZE_RETAIN(CCString*,detailRecord,DetialRecord);
 	std::string detailRecord;
 	float finnalScore;
 	CC_SYNTHESIZE_RETAIN(CCString *, resultChar, ResultChar);
+
+	static GameOver *create(CCRenderTexture *snapshoot);
 
 private:
 	void onBackToMenu(CCObject *sender);

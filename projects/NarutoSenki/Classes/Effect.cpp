@@ -2,14 +2,6 @@
 #include "CharacterBase.h"
 #include "GameLayer.h"
 
-Effect::Effect()
-{
-}
-
-Effect::~Effect()
-{
-}
-
 bool Effect::init(const char *name, CCObject *attacker)
 {
 	if (!CCSprite::init())

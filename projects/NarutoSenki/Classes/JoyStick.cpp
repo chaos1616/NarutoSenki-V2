@@ -1,38 +1,23 @@
 #include "JoyStick.h"
 #include "HudLayer.h"
 
-JoyStick::JoyStick()
-{
-	_delegate = nullptr;
-}
-
-JoyStick::~JoyStick()
-{
-}
-
 bool JoyStick::init()
 {
-	bool bRet = false;
-	do
-	{
-		CC_BREAK_IF(!CCSprite::init());
-		initWithSpriteFrameName("JoyStickBg.png");
-		setAnchorPoint(ccp(0, 0));
+	RETURN_FALSE_IF(!CCSprite::init());
 
-		_joyStickControl = CCSprite::createWithSpriteFrameName("JoyStick.png");
-		_joyStickControl->setAnchorPoint(ccp(0, 0));
+	initWithSpriteFrameName("JoyStickBg.png");
+	setAnchorPoint(ccp(0, 0));
 
-		_defaultPotion = ccp(getContentSize().width / 2 - _joyStickControl->getContentSize().width / 2,
-							 getContentSize().height / 2 - _joyStickControl->getContentSize().height / 2);
+	_joyStickControl = CCSprite::createWithSpriteFrameName("JoyStick.png");
+	_joyStickControl->setAnchorPoint(ccp(0, 0));
 
-		_joyStickControl->setPosition(_defaultPotion);
-		addChild(_joyStickControl);
+	_defaultPotion = ccp(getContentSize().width / 2 - _joyStickControl->getContentSize().width / 2,
+						 getContentSize().height / 2 - _joyStickControl->getContentSize().height / 2);
 
-		bRet = true;
+	_joyStickControl->setPosition(_defaultPotion);
+	addChild(_joyStickControl);
 
-	} while (0);
-
-	return bRet;
+	return true;
 }
 
 void JoyStick::onEnter()

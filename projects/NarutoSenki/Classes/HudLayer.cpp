@@ -12,26 +12,21 @@ MiniIcon::~MiniIcon()
 
 bool MiniIcon::init(const char *szImage, bool isNotification)
 {
-	bool bRet = false;
-	do
+	RETURN_FALSE_IF(!CCSprite::init());
+
+	initWithSpriteFrameName(szImage);
+
+	if (isNotification)
 	{
-		CC_BREAK_IF(!CCSprite::init());
-		initWithSpriteFrameName(szImage);
+		setAnchorPoint(ccp(0.5f, 0));
+		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(MiniIcon::updateMap), "updateMap", nullptr);
+	}
+	else
+	{
+		setAnchorPoint(ccp(0.5f, 0.5f));
+	}
 
-		if (isNotification)
-		{
-			setAnchorPoint(ccp(0.5f, 0));
-			CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(MiniIcon::updateMap), "updateMap", nullptr);
-		}
-		else
-		{
-			setAnchorPoint(ccp(0.5f, 0.5f));
-		}
-
-		bRet = true;
-	} while (0);
-
-	return bRet;
+	return true;
 }
 
 void MiniIcon::updateMap(CCObject *sender)
@@ -93,7 +88,6 @@ HudLayer::HudLayer()
 
 	_isAllButtonLocked = false;
 
-	isOpenSQL = false;
 	skill4Button = nullptr;
 	skill5Button = nullptr;
 	ougisLayer = nullptr;
@@ -138,21 +132,14 @@ void HudLayer::onExit()
 
 bool HudLayer::init()
 {
-	bool bRet = false;
-	do
-	{
-		CC_BREAK_IF(!CCLayer::init());
+	RETURN_FALSE_IF(!CCLayer::init());
 
-		texUI = CCTextureCache::sharedTextureCache()->addImage("UI.png");
-		uiBatch = CCSpriteBatchNode::createWithTexture(texUI);
+	texUI = CCTextureCache::sharedTextureCache()->addImage("UI.png");
+	uiBatch = CCSpriteBatchNode::createWithTexture(texUI);
 
-		addChild(uiBatch);
+	addChild(uiBatch);
 
-		bRet = true;
-
-	} while (0);
-
-	return bRet;
+	return true;
 }
 
 void HudLayer::JoyStickRelease()

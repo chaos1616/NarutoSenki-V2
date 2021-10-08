@@ -13,13 +13,14 @@ public:
 	MiniIcon();
 	~MiniIcon();
 
+	bool init(const char *szImage, bool isNotification);
+
 	CC_SYNTHESIZE(int, _charNO, CharNO);
 	static MiniIcon *create(const char *szImage, bool isNotification);
 	void updateMap(CCObject *sender);
 	void updateState();
 
 	void updatePosition(CCPoint location);
-	virtual bool init(const char *szImage, bool isNotification);
 
 	CCLayer *_delegate;
 };
@@ -29,9 +30,6 @@ class HudLayer : public CCLayer
 public:
 	HudLayer();
 	~HudLayer();
-
-	void updateSQL(float dt);
-	bool isOpenSQL;
 
 	CCSprite *status_bar;
 	CCSprite *status_hpbar;
@@ -115,8 +113,8 @@ public:
 	CCSprite *createReport(const char *name1, const char *name2, float &length);
 	CCSprite *createSPCReport(const char *killNum, int num);
 
-	virtual bool getSkillFinish();
-	virtual bool getOugisEnable(bool isCKR2);
+	bool getSkillFinish();
+	bool getOugisEnable(bool isCKR2);
 
 	CCLayer *ougisLayer;
 	void setOugis(CCString *character, CCString *group);
@@ -130,9 +128,7 @@ public:
 	void setCoin(const char *value);
 	bool offCoin(const char *value);
 
-	virtual bool init();
-
-	CREATE_FUNC(HudLayer);
+	bool init();
 
 	void updateGears();
 	void initGearButton(const char *charName);
@@ -143,7 +139,9 @@ public:
 	void updateSpecialSkillButtons();
 	void resetSkillButtons();
 
+	CREATE_FUNC(HudLayer);
+
 protected:
-	virtual void onEnter();
-	virtual void onExit();
+	void onEnter();
+	void onExit();
 };

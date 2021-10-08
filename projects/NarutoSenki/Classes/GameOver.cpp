@@ -22,86 +22,77 @@ GameOver::~GameOver()
 
 bool GameOver::init(CCRenderTexture *snapshoot)
 {
-	bool bRet = false;
-	do
-	{
-		CC_BREAK_IF(!CCLayer::init());
+	RETURN_FALSE_IF(!CCLayer::init());
 
-		SimpleAudioEngine::sharedEngine()->stopAllEffects();
-		SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
+	SimpleAudioEngine::sharedEngine()->stopAllEffects();
+	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
 
-		CCTexture2D *bgTexture = snapshoot->getSprite()->getTexture();
-		CCSprite *bg = CCSprite::createWithTexture(bgTexture);
-		bg->setAnchorPoint(ccp(0, 0));
-		bg->setFlipY(true);
-		addChild(bg, 0);
+	CCTexture2D *bgTexture = snapshoot->getSprite()->getTexture();
+	CCSprite *bg = CCSprite::createWithTexture(bgTexture);
+	bg->setAnchorPoint(ccp(0, 0));
+	bg->setFlipY(true);
+	addChild(bg, 0);
 
-		CCLayer *blend = CCLayerColor::create(ccc4(0, 0, 0, 150), winSize.width, winSize.height);
-		addChild(blend, 1);
+	CCLayer *blend = CCLayerColor::create(ccc4(0, 0, 0, 150), winSize.width, winSize.height);
+	addChild(blend, 1);
 
-		//produce the menu_bar
-		CCSprite *menu_bar_b = CCSprite::create("menu_bar2.png");
-		menu_bar_b->setAnchorPoint(ccp(0, 0));
-		FULL_SCREEN_SPRITE(menu_bar_b);
-		addChild(menu_bar_b, 2);
+	//produce the menu_bar
+	CCSprite *menu_bar_b = CCSprite::create("menu_bar2.png");
+	menu_bar_b->setAnchorPoint(ccp(0, 0));
+	FULL_SCREEN_SPRITE(menu_bar_b);
+	addChild(menu_bar_b, 2);
 
-		CCSprite *menu_bar_t = CCSprite::create("menu_bar3.png");
-		menu_bar_t->setAnchorPoint(ccp(0, 0));
-		menu_bar_t->setPosition(ccp(0, winSize.height - menu_bar_t->getContentSize().height));
-		FULL_SCREEN_SPRITE(menu_bar_t);
-		addChild(menu_bar_t, 2);
+	CCSprite *menu_bar_t = CCSprite::create("menu_bar3.png");
+	menu_bar_t->setAnchorPoint(ccp(0, 0));
+	menu_bar_t->setPosition(ccp(0, winSize.height - menu_bar_t->getContentSize().height));
+	FULL_SCREEN_SPRITE(menu_bar_t);
+	addChild(menu_bar_t, 2);
 
-		CCSprite *result_title = CCSprite::createWithSpriteFrameName("result_title.png");
-		result_title->setAnchorPoint(ccp(0, 0));
-		result_title->setPosition(ccp(2, winSize.height - result_title->getContentSize().height - 2));
-		addChild(result_title, 3);
+	CCSprite *result_title = CCSprite::createWithSpriteFrameName("result_title.png");
+	result_title->setAnchorPoint(ccp(0, 0));
+	result_title->setPosition(ccp(2, winSize.height - result_title->getContentSize().height - 2));
+	addChild(result_title, 3);
 
-		result_bg = CCSprite::createWithSpriteFrameName("gameover_bg.png");
-		result_bg->setAnchorPoint(ccp(0.5f, 0.5f));
-		result_bg->setScale(0.5f);
-		result_bg->setPosition(ccp(winSize.width / 2, winSize.height / 2 - 6));
-		addChild(result_bg, 4);
+	result_bg = CCSprite::createWithSpriteFrameName("gameover_bg.png");
+	result_bg->setAnchorPoint(ccp(0.5f, 0.5f));
+	result_bg->setScale(0.5f);
+	result_bg->setPosition(ccp(winSize.width / 2, winSize.height / 2 - 6));
+	addChild(result_bg, 4);
 
-		CCScaleTo *su = CCScaleTo::create(0.2f, 1.0);
-		auto seq = CCSequence::create(su, CCCallFunc::create(this, callfunc_selector(GameOver::listResult)), nullptr);
-		result_bg->runAction(seq);
+	CCScaleTo *su = CCScaleTo::create(0.2f, 1.0);
+	auto seq = CCSequence::create(su, CCCallFunc::create(this, callfunc_selector(GameOver::listResult)), nullptr);
+	result_bg->runAction(seq);
 
-		bRet = true;
-	} while (0);
-
-	return bRet;
+	return true;
 }
 
 void GameOver::listResult()
 {
 	if (getGameLayer()->_isHardCoreGame)
-	{
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/battle_over1.ogg");
-	}
+
 	else
-	{
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/battle_over.ogg");
-	}
 
 	auto path = CCString::createWithFormat("%s_half.png", getGameLayer()->currentPlayer->getCharacter()->getCString());
 	CCSprite *half = CCSprite::createWithSpriteFrameName(path->getCString());
 
 	if (getGameLayer()->currentPlayer->isCharacter("Konan",
-											  "Karin",
-											  "Suigetsu",
-											  "Hidan",
-											  "Tobirama",
-											  "Tsunade",
-											  "Kankuro",
-											  "SageJiraiya",
-											  "Minato",
-											  "Tobi") ||
+												   "Karin",
+												   "Suigetsu",
+												   "Hidan",
+												   "Tobirama",
+												   "Tsunade",
+												   "Kankuro",
+												   "SageJiraiya",
+												   "Minato",
+												   "Tobi") ||
 		getGameLayer()->currentPlayer->isCharacter("Lee",
-											  "RockLee",
-											  "Hinata",
-											  "Asuma",
-											  "Chiyo",
-											  "Kisame"))
+												   "RockLee",
+												   "Hinata",
+												   "Asuma",
+												   "Chiyo",
+												   "Kisame"))
 	{
 		half->setFlipX(true);
 	}

@@ -17,7 +17,6 @@ public:
 	~GearLayer();
 
 	bool init(CCRenderTexture *snapshoot);
-	static GearLayer *create(CCRenderTexture *snapshoot);
 
 	CCLayer *gears_layer;
 	CCLayer *currentGear_layer;
@@ -29,13 +28,13 @@ public:
 #endif
 	CCSprite *gears_bg;
 
+	ScrewLayer *_screwLayer;
 	gearType currentGear;
 	void updatePlayerGear();
 	void updateGearList();
-
-	ScrewLayer *_screwLayer;
-
 	void confirmPurchase();
+
+	static GearLayer *create(CCRenderTexture *snapshoot);
 
 private:
 	void onResume(CCObject *sender);
@@ -45,34 +44,28 @@ private:
 class GearButton : public CCSprite, public CCTouchDelegate
 {
 public:
-	GearButton();
-	~GearButton();
+	bool init(const char *szImage);
 
+	bool _isBuyed;
 	gearType _gearType;
 	gearbtnType _btnType;
-
-	virtual bool init(const char *szImage);
-	static GearButton *create(const char *szImage);
+	CCSprite *soIcon;
+	CC_SYNTHESIZE(GearLayer *, _delegate, Delegate);
 
 	CCRect getRect();
 	void setBtnType(gearType type, gearbtnType type2, bool isBuyed);
 	gearType getBtnType();
 	void playSound();
-
-	bool _isBuyed;
-
-	CC_SYNTHESIZE(GearLayer *, _delegate, Delegate);
-
-	CCSprite *soIcon;
-
 	void click();
 
+	static GearButton *create(const char *szImage);
+
 protected:
-	virtual void onEnter();
-	virtual void onExit();
-	virtual bool ccTouchBegan(CCTouch *touch, CCEvent *event);
-	virtual void ccTouchMoved(CCTouch *touch, CCEvent *event);
-	virtual void ccTouchEnded(CCTouch *touch, CCEvent *event);
+	void onEnter();
+	void onExit();
+	bool ccTouchBegan(CCTouch *touch, CCEvent *event);
+	void ccTouchMoved(CCTouch *touch, CCEvent *event);
+	void ccTouchEnded(CCTouch *touch, CCEvent *event);
 
 	inline bool containsTouchLocation(CCTouch *touch);
 };
@@ -80,13 +73,9 @@ protected:
 class ScrewLayer : public CCLayer
 {
 public:
-	ScrewLayer();
-	~ScrewLayer();
+	bool init();
 
 	float prePosY;
-	virtual bool init();
-	CREATE_FUNC(ScrewLayer);
-
 	CC_SYNTHESIZE(GearLayer *, _delegate, Delegate);
 
 	CCSprite *screwBar;
@@ -95,10 +84,12 @@ public:
 	int gearNum;
 	CC_SYNTHESIZE_RETAIN(CCArray *, _gearArray, GearArray);
 
+	CREATE_FUNC(ScrewLayer);
+
 protected:
-	virtual bool ccTouchBegan(CCTouch *touch, CCEvent *event);
-	virtual void ccTouchMoved(CCTouch *touch, CCEvent *event);
-	virtual void ccTouchEnded(CCTouch *touch, CCEvent *event);
+	bool ccTouchBegan(CCTouch *touch, CCEvent *event);
+	void ccTouchMoved(CCTouch *touch, CCEvent *event);
+	void ccTouchEnded(CCTouch *touch, CCEvent *event);
 
 	void onEnter();
 	void onExit();

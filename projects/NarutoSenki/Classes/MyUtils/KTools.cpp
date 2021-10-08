@@ -652,38 +652,31 @@ std::string KTools::encodeData(std::string data)
 
 bool CCTips::init(const char *tips)
 {
-	bool bRet = false;
-	do
-	{
-		CC_BREAK_IF(!CCSprite::init());
-		setAnchorPoint(ccp(0.5, 0.5));
-		auto strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
-		const char *reply = ((CCString *)strings->objectForKey(tips))->m_sString.c_str();
+	RETURN_FALSE_IF(!CCSprite::init());
 
-		CCLabelTTF *tipLabel = CCLabelTTF::create(reply, FONT_TYPE, 12);
-		addChild(tipLabel, 5000);
-		setPosition(ccp(winSize.width / 2, 50));
-		auto call = CCCallFunc::create(this, callfunc_selector(CCTips::onDestroy));
+	setAnchorPoint(ccp(0.5, 0.5));
+	auto strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
+	const char *reply = ((CCString *)strings->objectForKey(tips))->m_sString.c_str();
 
-		auto mv = CCMoveBy::create(0.2f, ccp(0, 12));
-		auto fadeOut = CCFadeOut::create(0.2f);
-		auto delay = CCDelayTime::create(2.0f);
-		auto sp = CCSpawn::create(fadeOut, mv, nullptr);
+	CCLabelTTF *tipLabel = CCLabelTTF::create(reply, FONT_TYPE, 12);
+	addChild(tipLabel, 5000);
+	setPosition(ccp(winSize.width / 2, 50));
+	auto call = CCCallFunc::create(this, callfunc_selector(CCTips::onDestroy));
 
-		auto seqArray = CCArray::create();
-		seqArray->addObject(sp);
-		seqArray->addObject(delay);
-		seqArray->addObject(call);
+	auto mv = CCMoveBy::create(0.2f, ccp(0, 12));
+	auto fadeOut = CCFadeOut::create(0.2f);
+	auto delay = CCDelayTime::create(2.0f);
+	auto sp = CCSpawn::create(fadeOut, mv, nullptr);
 
-		auto seq = CCSequence::create(seqArray);
+	auto seqArray = CCArray::create();
+	seqArray->addObject(sp);
+	seqArray->addObject(delay);
+	seqArray->addObject(call);
 
-		runAction(seq);
+	auto seq = CCSequence::create(seqArray);
+	runAction(seq);
 
-		bRet = true;
-
-	} while (0);
-
-	return bRet;
+	return true;
 }
 
 void CCTips::onDestroy()

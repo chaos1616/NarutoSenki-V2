@@ -23,9 +23,8 @@ public:
 
 	bool _isColdChanged;
 
-	virtual bool init(const char *szImage);
-	static ActionButton *create(const char *szImage);
-	virtual bool isCanClick();
+	bool init(const char *szImage);
+	bool isCanClick();
 	CCRect getRect();
 
 	void click();
@@ -58,14 +57,16 @@ public:
 	CC_SYNTHESIZE_RETAIN(CCAction *, _freezeAction, FreezeAction);
 	//CC_SYNTHESIZE_RETAIN(CCProgressTimer*,markSprite,MarkSprite);
 	CC_SYNTHESIZE(HudLayer *, _delegate, Delegate);
-	virtual void beganAnimation(bool isLock = false);
+	void beganAnimation(bool isLock = false);
 	void updateCDLabel(float dt);
 
+	static ActionButton *create(const char *szImage);
+
 protected:
-	virtual void onEnter();
-	virtual void onExit();
-	virtual bool ccTouchBegan(CCTouch *touch, CCEvent *event);
-	virtual void ccTouchEnded(CCTouch *touch, CCEvent *event);
+	void onEnter();
+	void onExit();
+	bool ccTouchBegan(CCTouch *touch, CCEvent *event);
+	void ccTouchEnded(CCTouch *touch, CCEvent *event);
 
 	void createFreezeAnimation();
 	void clearClick();

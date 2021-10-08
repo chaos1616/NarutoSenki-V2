@@ -1,7 +1,5 @@
 #include "CCStrokeLabel.h"
 
-using namespace cocos2d;
-
 CCStrokeLabel *CCStrokeLabel::create(cocos2d::CCLabelTTF *labelTTF, cocos2d::ccColor3B fullColor, cocos2d::ccColor3B StrokeColor, float strokeSize)
 {
 	CCStrokeLabel *tmp = new CCStrokeLabel;

@@ -6,11 +6,8 @@ using namespace cocos2d;
 class PauseLayer : public CCLayer
 {
 public:
-	PauseLayer();
-	~PauseLayer();
-
 	bool init(CCRenderTexture *snapshoot);
-	static PauseLayer *create(CCRenderTexture *snapshoot);
+
 	CCMenu *pauseMenu;
 	CCMenu *soundMenu;
 	CCMenu *preMenu;
@@ -18,6 +15,8 @@ public:
 	CCMenuItem *bgm_btn;
 	CCMenuItem *voice_btn;
 	CCMenuItem *pre_btn;
+
+	static PauseLayer *create(CCRenderTexture *snapshoot);
 
 private:
 	void onResume(CCObject *sender);

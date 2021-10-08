@@ -78,7 +78,7 @@ class Effect : public CCSprite {
 public:
 	static Effect* create(const char *szImage, CCObject* Attacker);
 
-	virtual bool init(const char *szImage, CCObject* Attacker);
+	bool init(const char *szImage, CCObject* Attacker);
 };
 
 /* HPBar.h */
