@@ -424,6 +424,8 @@ void ActionButton::setProgressMark()
 void ActionButton::updateProgressMark()
 {
 	// NOTE: Using uint32_t will get wrong results.
+	// uint32_t ckr = 100;
+	// float result = -1 * ckr; //=> 4294967196
 	int ckr = getGameLayer()->currentPlayer->getCkrValue();
 	int ckr2 = getGameLayer()->currentPlayer->getCkr2Value();
 

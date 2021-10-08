@@ -104,7 +104,7 @@ void HeroElement::changeHPbar()
 	if (_exp >= 500 && _level == 1)
 	{
 		_level = 2;
-		uint32_t newValue = getCkrValue() + 15001;
+		uint32_t newValue = getCkrValue() + 15000;
 		setCkrValue(newValue);
 		_isCanOugis1 = true;
 		if (isPlayer())
@@ -130,7 +130,7 @@ void HeroElement::changeHPbar()
 	else if (_exp >= 1500 && _level == 3)
 	{
 		_level = 4;
-		uint32_t newValue = getCkr2Value() + 25001;
+		uint32_t newValue = getCkr2Value() + 25000;
 		setCkr2Value(newValue);
 		_isCanOugis2 = true;
 		if (isPlayer())

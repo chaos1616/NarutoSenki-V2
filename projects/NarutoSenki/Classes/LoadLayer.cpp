@@ -84,6 +84,7 @@ void LoadLayer::preloadIMG()
 
 	if (tempHeros)
 	{
+		// TODO: Use vector<CharacterBase> loadedList to skip already loaded character.
 		int i = 0;
 		CCObject *pObject = nullptr;
 		CCARRAY_FOREACH(tempHeros, pObject)

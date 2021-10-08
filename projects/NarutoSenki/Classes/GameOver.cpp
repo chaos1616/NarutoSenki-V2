@@ -504,7 +504,7 @@ void GameOver::listResult()
 				}
 				else
 				{
-					std::string bestTime = (std::string)recordTime->getCString();
+					std::string bestTime = recordTime->getCString();
 					auto recordHour = bestTime.substr(0, 2).c_str();
 					auto recordMinute = bestTime.substr(3, 2).c_str();
 					auto recordSecond = bestTime.substr(6, 2).c_str();
