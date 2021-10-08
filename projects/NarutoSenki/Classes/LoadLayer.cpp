@@ -311,19 +311,13 @@ void LoadLayer::setLoadingAnimation(const char *player, int index)
 	loadingAvator->setAnchorPoint(ccp(0, 0));
 
 	CCArray *animeFrames = CCArray::create();
-	CCString *str;
 
 	const char *file = CCString::createWithFormat("%s_Walk_", player)->getCString();
-	int frameCount;
-	//FIXME: use the other way get animation frame count
-	if (is_same(player, "Konan"))
-		frameCount = 1;
-	else
-		frameCount = 7;
-
+	//FIXME: Use the other way get animation frame count
+	int frameCount = is_same(player, "Konan") ? 1 : 7;
 	for (int i = 1; i < frameCount; i++)
 	{
-		str = CCString::createWithFormat("%s%02d.png", file, i);
+		auto str = CCString::createWithFormat("%s%02d.png", file, i);
 		auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(str->getCString());
 		animeFrames->addObject(frame);
 	}
