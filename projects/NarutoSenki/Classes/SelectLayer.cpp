@@ -29,6 +29,8 @@ void SelectLayer::onGameStart()
 	else
 		isStart = true;
 
+	setKeypadEnabled(false);
+
 	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
 	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
 

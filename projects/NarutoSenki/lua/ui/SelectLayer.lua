@@ -262,9 +262,7 @@ function SelectLayer:init()
 
     if save.isBGM() then audio.playMusic(ns.music.SELECT_MUSIC, true) end
 
-    -- if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID then
     self:setKeypadEnabled(true)
-    -- end
 end
 
 function SelectLayer:initCustomSelectMode()
@@ -480,8 +478,6 @@ function SelectLayer:noComSelect()
 end
 
 function backToStartMenu()
-    if director.isRootScene() then return end
-
     _G.mode = nil
     audio.playSound('Audio/Menu/cancel.ogg')
     local menuScene = CCScene:create()
@@ -489,5 +485,5 @@ function backToStartMenu()
 
     hook.registerInitHandlerOnly(menuLayer)
     menuScene:addChild(menuLayer)
-    director.replaceSceneWithFade(menuScene, 1.5)
+    director.replaceSceneWithFade(menuScene, 1)
 end
