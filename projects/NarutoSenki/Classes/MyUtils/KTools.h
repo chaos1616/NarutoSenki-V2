@@ -37,8 +37,6 @@ public:
 	static void decode(std::string &str);
 	static int checkMD5(std::string findPath = "");
 
-	static bool checkPackage();
-
 	static std::string getKeycode(std::string path);
 
 	static CCString *readSQLite(const char *table, const char *column, const char *value, const char *targetColumn);

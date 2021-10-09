@@ -333,21 +333,6 @@ void KTools::prepareFileOGG(const char *listName, bool unload /* =false */)
 	}
 }
 
-bool KTools::checkPackage()
-{
-	// std::string *packageList[10];
-
-	// #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-	// JniMethodInfo minfo;
-	// bool isHave = JniHelper::getMethodInfo(minfo,"net/zakume/game/NarutoSenki","getPackages", "([Ljava/lang/String;I)[Ljava/lang/String");
-
-	// if (isHave) {
-	// }
-
-	// #endif
-	return true;
-}
-
 sqlite3 *KTools::prepareTableInDB()
 {
 	sqlite3 *pDB = nullptr;

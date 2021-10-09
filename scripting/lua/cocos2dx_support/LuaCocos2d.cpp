@@ -68342,67 +68342,6 @@ static int tolua_Cocos2d_KTools_checkMD500(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: dfsFolder of class  KTools */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_KTools_dfsFolder00
-static int tolua_Cocos2d_KTools_dfsFolder00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"KTools",0,&tolua_err) ||
-     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,1,&tolua_err) ||
-     !tolua_isnumber(tolua_S,4,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,5,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  std::string folderPath = ((std::string)  tolua_tocppstring(tolua_S,2,0));
-  int depth = ((int)  tolua_tonumber(tolua_S,3,0));
-  int type = ((int)  tolua_tonumber(tolua_S,4,0));
-  {
-   KTools::dfsFolder(folderPath,depth,type);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'dfsFolder'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: checkPackage of class  KTools */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_KTools_checkPackage00
-static int tolua_Cocos2d_KTools_checkPackage00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"KTools",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   bool tolua_ret = (bool)  KTools::checkPackage();
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'checkPackage'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: getKeycode of class  KTools */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_KTools_getKeycode00
 static int tolua_Cocos2d_KTools_getKeycode00(lua_State* tolua_S)
@@ -72607,8 +72546,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"encode",tolua_Cocos2d_KTools_encode00);
    tolua_function(tolua_S,"decode",tolua_Cocos2d_KTools_decode00);
    tolua_function(tolua_S,"checkMD5",tolua_Cocos2d_KTools_checkMD500);
-   tolua_function(tolua_S,"dfsFolder",tolua_Cocos2d_KTools_dfsFolder00);
-   tolua_function(tolua_S,"checkPackage",tolua_Cocos2d_KTools_checkPackage00);
    tolua_function(tolua_S,"getKeycode",tolua_Cocos2d_KTools_getKeycode00);
    tolua_function(tolua_S,"readSQLite",tolua_Cocos2d_KTools_readSQLite00);
    tolua_function(tolua_S,"saveSQLite",tolua_Cocos2d_KTools_saveSQLite00);
