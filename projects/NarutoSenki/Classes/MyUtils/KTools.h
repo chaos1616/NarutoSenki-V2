@@ -37,8 +37,6 @@ public:
 	static void decode(std::string &str);
 	static int checkMD5(std::string findPath = "");
 
-	static void dfsFolder(std::string folderPath, int depth = 0, int type = 0);
-
 	static bool checkPackage();
 
 	static std::string getKeycode(std::string path);

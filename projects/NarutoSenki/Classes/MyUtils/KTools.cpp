@@ -44,7 +44,6 @@ void KTools::updateData()
 
 bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 {
-	tinyxml2::XMLDocument doc;
 	unsigned long nSize;
 	auto data = (const char *)CCFileUtils::sharedFileUtils()->getFileData(filePath, "r", &nSize);
 	if (data == nullptr)
@@ -52,6 +51,7 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 		CCMessageBox(CCString::createWithFormat("Data %s is null", filePath)->getCString(), "Read XML Error");
 		return false;
 	}
+	tinyxml2::XMLDocument doc;
 	auto err = doc.Parse(data, nSize);
 	if (err)
 	{
@@ -285,103 +285,6 @@ void KTools::initColumeInDB()
 		sqlite3_exec(pDB, sql->getCString(), nullptr, nullptr, &errorMsg);
 		KTools::updateData();
 	}
-
-	/*std::string folderPath =CCFileUtils::sharedFileUtils()->getWritablePath()+"DLC";
-	KTools::dfsFolder(folderPath);*/
-}
-
-void KTools::dfsFolder(std::string folderPath, int depth /* = 0 */, int type /* =0 */)
-{
-#ifdef WIN32
-	_finddata_t FileInfo;
-	std::string strfind = folderPath + "\\*";
-	long Handle = _findfirst(strfind.c_str(), &FileInfo);
-
-	if (Handle == -1L)
-	{
-		exit(-1);
-	}
-	do
-	{
-		if (FileInfo.attrib & _A_SUBDIR)
-		{
-			if (!is_same(FileInfo.name, ".") &&
-				!is_same(FileInfo.name, ".."))
-			{
-				std::string newPath = folderPath + "\\" + FileInfo.name;
-				if (type == 0)
-				{
-					KTools::dfsFolder(newPath, 0);
-				}
-				else if (type == 1)
-				{
-					KTools::dfsFolder(newPath, 0, 1);
-				}
-			}
-		}
-		else
-		{
-			if (type == 0)
-			{
-				std::string filename = (folderPath + "\\" + FileInfo.name);
-				std::remove(filename.c_str());
-			}
-			else if (type == 1)
-			{
-				std::string filename = (folderPath + "\\" + FileInfo.name);
-				CCLOG("<path src=\"%s\">%s</path>", folderPath.substr(6).c_str(), filename.c_str());
-			}
-
-			//std::cout << folderPath << "\\" << FileInfo.name  << " " << endl;
-		}
-	} while (_findnext(Handle, &FileInfo) == 0);
-
-	_findclose(Handle);
-#else
-	DIR *dp;
-	struct dirent *entry;
-	struct stat statbuf;
-	if ((dp = opendir(folderPath.c_str())) == nullptr)
-	{
-		//CCLOG("damn:%s",folderPath.c_str());
-		//fprintf(stderr,"cannot open directory: %s\n", folderPath.c_str());
-		return;
-	}
-	chdir(folderPath.c_str());
-	while ((entry = readdir(dp)) != nullptr)
-	{
-		lstat(entry->d_name, &statbuf);
-		if (S_ISDIR(statbuf.st_mode))
-		{
-			if (is_same(".", entry->d_name) ||
-				is_same("..", entry->d_name))
-				continue;
-			if (type == 0)
-			{
-				dfsFolder(entry->d_name, depth + 4);
-			}
-			else
-			{
-				dfsFolder(entry->d_name, depth + 4, 1);
-			}
-		}
-		else
-		{
-			std::string filename = entry->d_name;
-			if (type == 0)
-			{
-				remove(filename.c_str());
-			}
-			else if (type == 1)
-			{
-				//CCLOG("damn3:%s",filename.c_str());
-				SimpleAudioEngine::sharedEngine()->preloadEffect(filename.c_str());
-			}
-		}
-	}
-	chdir("..");
-	closedir(dp);
-#endif
 }
 
 void KTools::prepareFileOGG(const char *listName, bool unload /* =false */)
@@ -402,9 +305,9 @@ void KTools::prepareFileOGG(const char *listName, bool unload /* =false */)
 		return;
 	}
 
-	tinyxml2::XMLDocument doc;
 	unsigned long nSize;
 	const char *pXmlBuffer = (const char *)CCFileUtils::sharedFileUtils()->getFileData(md5Path.c_str(), "r", &nSize);
+	tinyxml2::XMLDocument doc;
 	doc.Parse(pXmlBuffer);
 
 	auto rootEle = doc.RootElement();
