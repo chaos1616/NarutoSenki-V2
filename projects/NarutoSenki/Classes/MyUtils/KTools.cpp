@@ -1,16 +1,7 @@
-#include "KTools.h"
 #include "Defines.h"
+#include "KTools.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "../../../cocos2dx/platform/android/jni/JniHelper.h"
-#endif
-
-#ifdef _WIN32
-#include <io.h>
-#else
-#include <unistd.h>
-#include <stdio.h>
-#include <dirent.h>
-#include <sys/stat.h>
 #endif
 
 void KTools::prepareFileMD5()
