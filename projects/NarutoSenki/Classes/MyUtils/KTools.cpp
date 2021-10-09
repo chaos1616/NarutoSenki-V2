@@ -13,8 +13,6 @@
 #include <sys/stat.h>
 #endif
 
-using namespace tinyxml2;
-
 void KTools::prepareFileMD5()
 {
 }
@@ -51,12 +49,14 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 	auto data = (const char *)CCFileUtils::sharedFileUtils()->getFileData(filePath, "r", &nSize);
 	if (data == nullptr)
 	{
-		CCLOGERROR("data %s is null", filePath);
+		CCMessageBox(CCString::createWithFormat("Data %s is null", filePath)->getCString(), "Read XML Error");
+		return false;
 	}
-	XMLError err = doc.Parse(data, nSize);
+	auto err = doc.Parse(data, nSize);
 	if (err)
 	{
-		CCLOGERROR("XML Error: %s", tinyxml2::XMLDocument::ErrorIDToName(err));
+		CCMessageBox(CCString::createWithFormat("XML Error: %s", tinyxml2::XMLDocument::ErrorIDToName(err))->getCString(), "Parse XML Error");
+		return false;
 	}
 
 	auto rootEle = doc.RootElement();
