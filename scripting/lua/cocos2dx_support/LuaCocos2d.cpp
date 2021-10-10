@@ -147,6 +147,13 @@ static int tolua_collect_CCEditBox (lua_State* tolua_S)
 	return 0;
 }
 
+static int tolua_collect_SelectLayer (lua_State* tolua_S)
+{
+ SelectLayer* self = (SelectLayer*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
 static int tolua_collect_ccColor3B (lua_State* tolua_S)
 {
  ccColor3B* self = (ccColor3B*) tolua_tousertype(tolua_S,1,0);
@@ -67636,6 +67643,35 @@ static int tolua_Cocos2d_LoadLayer_onLoadFinish00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: delete of class  SelectLayer */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_SelectLayer_delete00
+static int tolua_Cocos2d_SelectLayer_delete00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"SelectLayer",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  SelectLayer* self = (SelectLayer*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'delete'", NULL);
+#endif
+  Mtolua_delete(self);
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'delete'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: create of class  SelectLayer */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_SelectLayer_create00
 static int tolua_Cocos2d_SelectLayer_create00(lua_State* tolua_S)
@@ -72483,8 +72519,13 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"playBGM",tolua_Cocos2d_LoadLayer_playBGM00);
    tolua_function(tolua_S,"onLoadFinish",tolua_Cocos2d_LoadLayer_onLoadFinish00);
   tolua_endmodule(tolua_S);
+  #ifdef __cplusplus
+  tolua_cclass(tolua_S,"SelectLayer","SelectLayer","CCLayer",tolua_collect_SelectLayer);
+  #else
   tolua_cclass(tolua_S,"SelectLayer","SelectLayer","CCLayer",NULL);
+  #endif
   tolua_beginmodule(tolua_S,"SelectLayer");
+   tolua_function(tolua_S,"delete",tolua_Cocos2d_SelectLayer_delete00);
    tolua_function(tolua_S,"create",tolua_Cocos2d_SelectLayer_create00);
    tolua_function(tolua_S,"setSelectHero",tolua_Cocos2d_SelectLayer_setSelectHero00);
    tolua_function(tolua_S,"setCom1Select",tolua_Cocos2d_SelectLayer_setCom1Select00);

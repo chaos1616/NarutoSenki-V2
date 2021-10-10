@@ -252,7 +252,7 @@ function SelectLayer:init()
     if _G.platform == 'desktop' then
         local skill_btn = ui.newImageMenuItem({
             image = '#return_btn.png',
-            listener = backToStartMenu
+            listener = handler(self, SelectLayer.backToStartMenu)
         })
         local menu3 = ui.newMenu({skill_btn})
         menu3:setAnchorPoint(0, 0)
@@ -261,7 +261,13 @@ function SelectLayer:init()
     end
 
     if save.isBGM() then audio.playMusic(ns.music.SELECT_MUSIC, true) end
+end
 
+function SelectLayer:onEnter()
+    self:setKeypadEnabled(true)
+end
+
+function SelectLayer:onExit()
     self:setKeypadEnabled(true)
 end
 
@@ -475,6 +481,12 @@ function SelectLayer:noComSelect()
     else
         return self._playerSelect
     end
+end
+
+function SelectLayer:backToStartMenu()
+    self:setKeypadEnabled(false)
+
+    backToStartMenu()
 end
 
 function backToStartMenu()

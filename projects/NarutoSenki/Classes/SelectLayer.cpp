@@ -7,6 +7,11 @@
 #include "../../../cocos2dx/platform/android/jni/JniHelper.h"
 #endif
 
+SelectLayer::~SelectLayer()
+{
+	CC_SAFE_RELEASE(_selectList);
+}
+
 void SelectLayer::onGameStart()
 {
 	if (isStart)
@@ -35,5 +40,7 @@ void SelectLayer::onGameStart()
 void SelectLayer::keyBackClicked()
 {
 	setKeypadEnabled(false);
+	getGameModeHandler()->selectLayer = nullptr;
+
 	lua_call_func("backToStartMenu");
 }

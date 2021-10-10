@@ -372,11 +372,6 @@ bool StartMenu::init()
 	menu2->setPosition(winSize.width - 15, winSize.height - 50);
 	addChild(menu2, 5);
 
-	if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-	{
-		setKeypadEnabled(true);
-	}
-
 	scheduleUpdate();
 
 	return true;

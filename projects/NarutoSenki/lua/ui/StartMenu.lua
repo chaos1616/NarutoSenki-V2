@@ -84,7 +84,7 @@ function enterSelectLayer(gameMode, enableCustomSelect)
     hook.registerInitHandlerOnly(selectLayer)
 
     selectScene:addChild(selectLayer)
-    director.replaceSceneWithFade(selectScene, 1.5)
+    director.replaceSceneWithFade(selectScene, 1.25)
 end
 
 function onGameOver()
