@@ -197,18 +197,15 @@ void GameModeLayer::selectMode(GameMode mode)
 			enableCustomSelect = false;
 		else
 			enableCustomSelect = Cheats >= MaxCheats;
-		// FIXME: call lua global function enterSelectLayer
-		if (_handler != 0)
-		{
-			auto pStack = get_luastack;
-			pStack->pushInt(mode);
-			pStack->pushBoolean(enableCustomSelect);
-			pStack->executeFunctionByHandler(_handler, 2);
-		}
-		else
-		{
-			CCLOG("GameModeLayer lua handler can not be null");
-		}
+
+		// call lua global function StartMenu.enterSelectLayer
+		auto pStack = get_luastack;
+		auto state = pStack->getLuaState();
+		lua_getglobal(state, "enterSelectLayer");
+		pStack->pushInt(mode);
+		pStack->pushBoolean(enableCustomSelect);
+		pStack->executeFunction(2);
+
 		getGameModeHandler()->init();
 	}
 }

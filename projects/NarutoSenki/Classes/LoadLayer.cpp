@@ -212,9 +212,11 @@ void LoadLayer::perloadCharIMG(const char *player)
 	}
 	else if (is_same(player, "Pain"))
 	{
-		addSprites(mkpath(DevaPath));
-		addSprites(mkpath(AsuraPath));
 		addSprites(mkpath(AnimalPath));
+		addSprites(mkpath(AsuraPath));
+		addSprites(mkpath(NarakaPath));
+		// addSprites(mkpath(HumanPath));
+		// addSprites(mkpath(PertaPath));
 		addSprites(mkpath(Nagato));
 		KTools::prepareFileOGG("Nagato");
 	}
@@ -293,14 +295,14 @@ void LoadLayer::unloadCharIMG(const CharacterBase *c)
 		KTools::prepareFileOGG("Nagato", true);
 		removeSprites("Element/AnimalPath/AnimalPath.plist");
 		removeSprites("Element/AsuraPath/AsuraPath.plist");
-		removeSprites("Element/DevaPath/DevaPath.plist");
+		removeSprites("Element/NarakaPath/NarakaPath.plist");
 		removeSprites("Element/Nagato/Nagato.plist");
 	}
 	else if (is_same(charName, "Nagato"))
 	{
 		removeSprites("Element/AnimalPath/AnimalPath.plist");
 		removeSprites("Element/AsuraPath/AsuraPath.plist");
-		removeSprites("Element/DevaPath/DevaPath.plist");
+		removeSprites("Element/NarakaPath/NarakaPath.plist");
 	}
 }
 

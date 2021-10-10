@@ -32,7 +32,7 @@ GameLayer::GameLayer()
 	totalTM = nullptr;
 	_isShacking = false;
 	_isSurrender = false;
-	_isGuardian = false;
+	_hasSpawnedGuardian = false;
 
 	_isStarted = false;
 	_isExiting = false;
@@ -45,7 +45,6 @@ GameLayer::GameLayer()
 	_isHardCoreGame = false;
 	_isRandomChar = false;
 
-	playerTeam = 1;
 	currentPlayer = nullptr;
 
 	_isGear = false;
@@ -71,11 +70,11 @@ bool GameLayer::init()
 	setTouchEnabled(true);
 
 	_gLayer = this;
-	auto &gd = getGameModeHandler()->gd;
+	const auto &gd = getGameModeHandler()->gd;
 	_enableGear = gd.enableGear;
 	_isHardCoreGame = gd.isHardCore;
 	_isRandomChar = gd.isRandomChar;
-	playerTeam = gd.playerTeam;
+	playerGroup = gd.playerGroup;
 
 	return CCLayer::init();
 }
@@ -141,11 +140,11 @@ void GameLayer::initGard()
 {
 	setRand();
 	int index = random(2);
-	auto guardName = index == 0 ? kGuardian_Roshi : kGuardian_Han;
-	auto groupName = playerTeam > 0 ? Akatsuki : Konoha;
-	auto guardian = Provider::create(CCString::create(guardName), CCString::create("Com"), CCString::create(groupName));
+	auto guardianName = index == 0 ? kGuardian_Roshi : kGuardian_Han;
+	auto guardianGroup = playerGroup == Konoha ? Akatsuki : Konoha;
+	auto guardian = Provider::create(CCString::create(guardianName), CCString::create("Com"), CCString::create(guardianGroup));
 
-	if (playerTeam > 0)
+	if (playerGroup == Konoha)
 	{
 		guardian->setPosition(ccp(2800, 80));
 		guardian->setSpawnPoint(ccp(2800, 80));
@@ -171,7 +170,8 @@ void GameLayer::initGard()
 
 	_CharacterArray->addObject(guardian);
 	_hudLayer->addMapIcon();
-	_isGuardian = true;
+
+	_hasSpawnedGuardian = true;
 }
 
 void GameLayer::initHeros()
@@ -188,7 +188,6 @@ void GameLayer::initHeros()
 
 	CCTMXObjectGroup *group = currentMap->objectGroupNamed("object");
 	CCArray *objectArray = group->getObjects();
-	CharacterBase *hero;
 
 	_isOugis2Game = true;
 
@@ -231,7 +230,7 @@ void GameLayer::initHeros()
 					spawnPoint = ccp(2608, 80);
 			}
 
-			hero = addHero(player, role, group, spawnPoint, i + 1);
+			auto hero = addHero(player, role, group, spawnPoint, i + 1);
 			_CharacterArray->addObject(hero);
 			i++;
 		}
@@ -264,7 +263,7 @@ void GameLayer::initHeros()
 			int y = ((CCString *)mapdict->objectForKey("y"))->intValue();
 			spawnPoint = ccp(x, y);
 
-			hero = addHero(player, role, group, spawnPoint, i + 1);
+			auto hero = addHero(player, role, group, spawnPoint, i + 1);
 			_CharacterArray->addObject(hero);
 			i++;
 		}
@@ -301,6 +300,7 @@ CharacterBase *GameLayer::addHero(CCString *character, CCString *role, CCString 
 	hero->schedule(schedule_selector(CharacterBase::setRestore2), 1.0f);
 
 	addChild(hero, -hero->getPositionY());
+
 	getGameModeHandler()->onCharacterInit(hero);
 	return hero;
 }
@@ -647,9 +647,7 @@ void GameLayer::checkTower()
 		auto tmpHero = (CharacterBase *)pObject;
 
 		if (tmpHero->isNotCom())
-		{
 			continue;
-		}
 
 		if (tmpHero->isKonohaGroup())
 		{
@@ -674,20 +672,10 @@ void GameLayer::checkTower()
 
 	if (konohaTowerCount == 0 || akatsukiTowerCount == 0)
 	{
-		if (playerTeam > 0) // Player group is Konoha
-		{
-			if (konohaTowerCount == 0)
-				onGameOver(false);
-			else
-				onGameOver(true);
-		}
-		else // Player group is Akatsuki
-		{
-			if (akatsukiTowerCount == 0)
-				onGameOver(false);
-			else
-				onGameOver(true);
-		}
+		if (playerGroup == Konoha)
+			onGameOver(konohaTowerCount != 0);
+		else
+			onGameOver(akatsukiTowerCount != 0);
 	}
 }
 

@@ -81,7 +81,7 @@ void HeroElement::setShadows()
 
 void HeroElement::setHPbar()
 {
-	if (strcmp(getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()) != 0)
+	if (getGameLayer()->playerGroup != getGroup()->getCString())
 	{
 		_hpBar = HPBar::create("hp_bar_r.png");
 	}
@@ -224,11 +224,11 @@ void HeroElement::dealloc()
 			}
 		}
 
-		if (isCharacter("DevaPath"))
+		if (isCharacter("NarakaPath"))
 		{
-			getMaster()->_skillChangeBuffValue = 0;
+			_master->_skillChangeBuffValue = 0;
 
-			if (getMaster()->isPlayer())
+			if (_master->isPlayer())
 			{
 				getGameLayer()->getHudLayer()->skill5Button->unLock();
 			}
@@ -241,7 +241,7 @@ void HeroElement::dealloc()
 		}
 		else if (isCharacter("Sanshouuo"))
 		{
-			if (getMaster()->isPlayer())
+			if (_master->isPlayer())
 			{
 				getGameLayer()->getHudLayer()->skill4Button->unLock();
 			}
@@ -260,7 +260,7 @@ void HeroElement::dealloc()
 		}
 		else if (isCharacter("Saso"))
 		{
-			if (getMaster()->isPlayer())
+			if (_master->isPlayer())
 			{
 				getGameLayer()->getHudLayer()->skill5Button->unLock();
 			}
@@ -383,7 +383,7 @@ void HeroElement::reborn(float dt)
 
 			if (isPlayer())
 			{
-				getGameLayer()->getHudLayer()->setEXPLose(0);
+				getGameLayer()->getHudLayer()->setEXPLose();
 			}
 		}
 
@@ -538,7 +538,7 @@ void Monster::initAction()
 
 void Monster::setHPbar()
 {
-	if (strcmp(getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()) != 0)
+	if (getGameLayer()->playerGroup != getGroup()->getCString())
 	{
 		_hpBar = HPBar::create("hp_bar_r.png");
 	}
@@ -905,9 +905,9 @@ void Monster::setResume()
 	}
 	else
 	{
-		if (getMaster() && getMaster()->isCharacter("Shikamaru"))
+		if (_master && _master->isCharacter("Shikamaru"))
 		{
-			getMaster()->idle();
+			_master->idle();
 		}
 	}
 }

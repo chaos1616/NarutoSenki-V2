@@ -116,7 +116,7 @@ class Parents : public Hero
 		setWalkAction(createAnimation(skillSPC1Array, 10.0f, true, false));
 		setNAttackAction(createAnimation(skillSPC2Array, 10.0f, false, true));
 
-		if (getMaster()->isPlayer())
+		if (_master->isPlayer())
 		{
 			getGameLayer()->getHudLayer()->skill2Button->setLock();
 		}
@@ -147,7 +147,7 @@ class Parents : public Hero
 
 		_originSpeed = 224;
 
-		if (getMaster()->isPlayer())
+		if (_master->isPlayer())
 		{
 			getGameLayer()->getHudLayer()->skill2Button->unLock();
 		}

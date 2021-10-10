@@ -68,7 +68,7 @@ namespace CharacterEnum
 	mk_const(Pain);
 	mk_const(AnimalPath);
 	mk_const(AsuraPath);
-	mk_const(DevaPath);
+	mk_const(NarakaPath);
 
 	mk_const(Sai);
 	mk_const(Sakura);

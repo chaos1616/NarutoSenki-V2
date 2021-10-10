@@ -8,7 +8,7 @@ class IGameModeHandler;
 
 enum GameMode
 {
-	// 1 VS 1
+	// 1 VS 1 // TODO: As a test mode
 	OneVsOne,
 	// 3 VS 3
 	Classic,
@@ -21,7 +21,7 @@ enum GameMode
 	// 3 VS 3
 	Clone,
 	// 3 VS 3
-	Deathmatch,
+	Deathmatch, // TODO
 	// 3 VS 3
 	RandomDeathmatch,
 
@@ -47,9 +47,9 @@ struct GameData
 {
 	bool enableGear = true;
 	bool isHardCore = true;
-	bool isRandomChar;
+	bool isRandomChar = false;
 
-	int playerTeam;
+	std::string playerGroup;
 };
 
 class IGameModeHandler
@@ -89,7 +89,7 @@ protected:
 	int oldCheats;
 	std::vector<const char *> heroVector;
 	// player
-	const char *playerGroup;
+	const char *playerGroup = nullptr;
 
 public:
 	const uint8_t kMaxCharCount = 4;
@@ -198,7 +198,7 @@ protected:
 		// TODO: Support custom player group
 		// playerGroup = playerGroup == nullptr ? (team > 0 ? Konoha : Akatsuki) : playerGroup;
 		playerGroup = team > 0 ? Akatsuki : Konoha;
-		this->gd.playerTeam = team;
+		this->gd.playerGroup = playerGroup;
 		this->playerGroup = playerGroup;
 		uint8_t totalCount = playerCount + enemyCount;
 		uint8_t comCount = totalCount > 0 ? totalCount - 1 : 0;
@@ -340,7 +340,7 @@ protected:
 
 	inline void setPlayerTeamByGroup(const char *group)
 	{
-		gd.playerTeam = is_same(group, Konoha) ? 1 : 0;
+		gd.playerGroup = group;
 	}
 
 	/**

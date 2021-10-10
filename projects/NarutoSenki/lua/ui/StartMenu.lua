@@ -65,11 +65,9 @@ function StartMenu:init()
     -- startmenu_title:setPosition(2, display.height -
     --                                 startmenu_title:getContentSize().height - 2)
     -- self:addChild(startmenu_title, 3)
-
-    self:setHandle(StartMenu.enterSelectPanel)
 end
 
-function StartMenu.enterSelectPanel(gameMode, enableCustomSelect)
+function enterSelectLayer(gameMode, enableCustomSelect)
     tools.addSprites('Select.plist')
     tools.addSprites('UI.plist')
     tools.addSprites('Report.plist')

@@ -78,6 +78,7 @@ public:
 	float				_debuffStartTime;
 	CC_SYNTHESIZE(int,_knockLength, KnockLength);
 	CC_SYNTHESIZE(bool,_knockDirection, KnockDirection);
+
 	bool				_isAllAttackLocked;
 	bool				_isOnlySkillLocked;
 	bool				_isInvincible;
@@ -87,7 +88,6 @@ public:
 	bool				_isSuicide;
 
 	bool				_isSticking;
-
 	bool				_isPausing;
 
 	CCPoint				_markPoint;
@@ -585,10 +585,10 @@ public:
 	inline bool			isAkatsukiGroup() { return is_same(_group->getCString(), Akatsuki); }
 	// monster extensions
 	inline bool			hasMonsterArrayAny() { return _monsterArray && _monsterArray->count() > 0; }
-protected:
 	// Utilities
 	void				increaseAllCkrs(uint32_t value, bool enableLv2 = true, bool enableLv4 = true);
 	inline void			increaseHpAndUpdateUI(uint32_t value);
+protected:
 	// find enemy extensions
 	inline bool 		findHero(int searchRange, bool masterRange = false) { return findEnemy(kRoleHero, searchRange, masterRange); }
 	inline bool 		findFlog(int searchRange, bool masterRange = false) { return findEnemy(kRoleFlog, searchRange, masterRange); }

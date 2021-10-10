@@ -76,6 +76,7 @@ bool PauseLayer::init(CCRenderTexture *snapshoot)
 
 	return true;
 }
+
 void PauseLayer::onBGM(CCObject *sender)
 {
 	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isBGM") == true)

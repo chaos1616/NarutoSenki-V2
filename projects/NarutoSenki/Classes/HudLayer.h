@@ -82,7 +82,7 @@ public:
 
 	void setHPLose(float percent);
 	void setCKRLose(bool isCRK2);
-	void setEXPLose(float percent);
+	void setEXPLose();
 
 	void initHeroInterface();
 	void attackButtonClick(abType type);
@@ -141,7 +141,9 @@ public:
 
 	CREATE_FUNC(HudLayer);
 
-protected:
+private:
 	void onEnter();
 	void onExit();
+
+	bool _isInitPlayerHud = false;
 };

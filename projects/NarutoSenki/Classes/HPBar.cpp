@@ -38,17 +38,17 @@ void HPBar::loseHP(float percent)
 {
 	if (getGameLayer()->_isHardCoreGame)
 	{
-		auto gardTower = getGameLayer()->playerTeam > 0 ? "AkatsukiCenter" : "KonohaCenter";
+		auto gardTower = getGameLayer()->playerGroup == Konoha ? "AkatsukiCenter" : "KonohaCenter";
 
 		if (is_same(_delegate->getCharacter()->getCString(), gardTower))
 		{
-			if (!getGameLayer()->_isGuardian && percent <= 0.8)
+			if (not getGameLayer()->_hasSpawnedGuardian && percent <= 0.8)
 			{
 				getGameLayer()->initGard();
 			}
 		}
 
-		if (getGameLayer()->_isGuardian)
+		if (getGameLayer()->_hasSpawnedGuardian)
 		{
 			auto _slayer = (CharacterBase *)_delegate->_slayer;
 			if (_slayer)
@@ -129,19 +129,19 @@ void HPBar::loseHP(float percent)
 				{
 					_delegate->setCoinDisplay(30);
 					getGameLayer()->setCoin("30");
-					getGameLayer()->getHudLayer()->setEXPLose(0);
+					getGameLayer()->getHudLayer()->setEXPLose();
 				}
 				else if (_delegate->getMaxHPValue() == 5000)
 				{
 					_delegate->setCoinDisplay(20);
 					getGameLayer()->setCoin("20");
-					getGameLayer()->getHudLayer()->setEXPLose(0);
+					getGameLayer()->getHudLayer()->setEXPLose();
 				}
 				else
 				{
 					_delegate->setCoinDisplay(10);
 					getGameLayer()->setCoin("10");
-					getGameLayer()->getHudLayer()->setEXPLose(0);
+					getGameLayer()->getHudLayer()->setEXPLose();
 				}
 			}
 
@@ -238,7 +238,7 @@ void HPBar::loseHP(float percent)
 						_delegate->setCoinDisplay(300);
 					}
 
-					getGameLayer()->getHudLayer()->setEXPLose(0);
+					getGameLayer()->getHudLayer()->setEXPLose();
 				}
 
 				if (getGameLayer()->_isHardCoreGame)
@@ -292,7 +292,7 @@ void HPBar::loseHP(float percent)
 							_delegate->setCoinDisplay(150);
 						}
 
-						getGameLayer()->getHudLayer()->setEXPLose(0);
+						getGameLayer()->getHudLayer()->setEXPLose();
 					}
 
 					if (getGameLayer()->_isHardCoreGame)
@@ -456,9 +456,8 @@ void HPBar::loseHP(float percent)
 				currentSlayer->setKillNum(to_ccstring(realKillNum));
 				getGameLayer()->setReport(currentSlayer->getCharacter()->getCString(), _delegate->getCharacter()->getCString(), currentSlayer->getKillNum());
 
-				auto currentTeam = getGameLayer()->playerTeam > 0 ? Konoha : Akatsuki;
-
-				if (is_same(currentSlayer->getGroup()->getCString(), currentTeam))
+				auto currentTeam = getGameLayer()->playerGroup;
+				if (currentTeam == currentSlayer->getGroup()->getCString())
 				{
 					int teamKills = to_int(getGameLayer()->getHudLayer()->KonoLabel->getString()) + 1;
 					getGameLayer()->getHudLayer()->KonoLabel->setString(to_cstr(teamKills));
@@ -468,6 +467,7 @@ void HPBar::loseHP(float percent)
 					int teamKills = to_int(getGameLayer()->getHudLayer()->AkaLabel->getString()) + 1;
 					getGameLayer()->getHudLayer()->AkaLabel->setString(to_cstr(teamKills));
 				}
+
 				if (currentSlayer->isNotGuardian())
 				{
 					int newValue = to_int(getGameLayer()->getTotalKills()->getCString()) + 1;
@@ -510,7 +510,7 @@ void HPBar::loseHP(float percent)
 						}
 					}
 
-					getGameLayer()->getHudLayer()->setEXPLose(0);
+					getGameLayer()->getHudLayer()->setEXPLose();
 					const char *kl = getGameLayer()->getHudLayer()->killLabel->getString();
 					int kills = to_int(kl) + 1;
 					getGameLayer()->getHudLayer()->killLabel->setString(to_cstr(kills));
@@ -566,7 +566,7 @@ void HPBar::loseHP(float percent)
 							getGameLayer()->setCoin(to_cstr(25));
 							_delegate->setCoinDisplay(25);
 						}
-						getGameLayer()->getHudLayer()->setEXPLose(0);
+						getGameLayer()->getHudLayer()->setEXPLose();
 					}
 					if (getGameLayer()->_isHardCoreGame)
 					{

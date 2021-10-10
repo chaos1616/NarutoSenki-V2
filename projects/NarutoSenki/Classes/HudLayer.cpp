@@ -154,10 +154,15 @@ void HudLayer::JoyStickUpdate(CCPoint direction)
 
 void HudLayer::initGearButton(const char *charName)
 {
+	gearMenuSprite = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_avator.png", charName)->getCString()), nullptr, nullptr, this, menu_selector(HudLayer::gearButtonClick));
+	if (gearMenuSprite == nullptr)
+	{
+		CCLOGERROR("Not found %s avator sprite", charName);
+		return;
+	}
+
 	if (gearMenu)
 		gearMenu->removeFromParentAndCleanup(true);
-
-	gearMenuSprite = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_avator.png", charName)->getCString()), nullptr, nullptr, this, menu_selector(HudLayer::gearButtonClick));
 	gearMenuSprite->setAnchorPoint(ccp(0, 0));
 	gearMenu = CCMenu::create(gearMenuSprite, nullptr);
 	gearMenu->setPosition(ccp(0, winSize.height - gearMenuSprite->getContentSize().height));
@@ -259,7 +264,7 @@ void HudLayer::initHeroInterface()
 	AkaLabel = CCLabelBMFont::create("0", "Fonts/red.fnt");
 	AkaLabel->setScale(0.35f);
 
-	if (getGameLayer()->playerTeam > 0)
+	if (getGameLayer()->playerGroup == Konoha)
 	{
 		KonoLabel->setAnchorPoint(ccp(1, 1));
 		AkaLabel->setAnchorPoint(ccp(0, 1));
@@ -525,6 +530,8 @@ void HudLayer::initHeroInterface()
 	// Call after all addChild functions
 	// thats can make ActionButton::setLock -> setMask work
 	updateSpecialSkillButtons();
+
+	_isInitPlayerHud = true;
 }
 
 void HudLayer::addMapIcon()
@@ -686,7 +693,7 @@ void HudLayer::setCKRLose(bool isCRK2)
 	}
 }
 
-void HudLayer::setEXPLose(float percent)
+void HudLayer::setEXPLose()
 {
 	int exp = getGameLayer()->currentPlayer->getEXP();
 	int lvExp = (getGameLayer()->currentPlayer->getLV() - 1) * 500;
@@ -1249,7 +1256,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		CCSprite *CutBg;
 		const char *cutPath1;
 		const char *cutPath2;
-		if (getGameLayer()->playerTeam > 0)
+		if (getGameLayer()->playerGroup == Konoha)
 		{
 			cutPath1 = "CutBg.png";
 			cutPath2 = "CutBg2.png";
@@ -1423,22 +1430,32 @@ void HudLayer::updateSkillButtons()
 	const char *frameName;
 	CCSpriteFrame *frame;
 
-#define updateButtonInfo(index)                                                     \
-	frameName = (charName + "_skill" #index ".png").c_str();                        \
-	frame = cache->spriteFrameByName(frameName);                                    \
-	if (skill##index##Button)                                                       \
-	{                                                                               \
-		if (frame)                                                                  \
-			skill##index##Button->setDisplayFrame(frame);                           \
-		skill##index##Button->setCD(to_ccstring(player->_sattackcoldDown1 * 1000)); \
-		skill##index##Button->_isColdChanged = true;                                \
+#define updateButtonInfo(index)                                                           \
+	frameName = (charName + "_skill" #index ".png").c_str();                              \
+	frame = cache->spriteFrameByName(frameName);                                          \
+	if (skill##index##Button)                                                             \
+	{                                                                                     \
+		if (frame)                                                                        \
+			skill##index##Button->setDisplayFrame(frame);                                 \
+		skill##index##Button->setCD(to_ccstring(player->_sattackcoldDown##index * 1000)); \
+		skill##index##Button->_isColdChanged = true;                                      \
+	}
+
+#define updateOugiButtonInfo(index)                          \
+	frameName = (charName + "_skill" #index ".png").c_str(); \
+	frame = cache->spriteFrameByName(frameName);             \
+	if (skill##index##Button)                                \
+	{                                                        \
+		if (frame)                                           \
+			skill##index##Button->setDisplayFrame(frame);    \
+		skill##index##Button->_isColdChanged = true;         \
 	}
 
 	updateButtonInfo(1);
 	updateButtonInfo(2);
 	updateButtonInfo(3);
-	updateButtonInfo(4);
-	updateButtonInfo(5);
+	updateOugiButtonInfo(4);
+	updateOugiButtonInfo(5);
 	updateSpecialSkillButtons();
 }
 

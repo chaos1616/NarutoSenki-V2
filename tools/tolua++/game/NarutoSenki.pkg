@@ -67,9 +67,6 @@ class StartMenu : public CCLayer {
 public:
 	static StartMenu* create();
 
-	void enterCustomMode();
-
-	void setHandle(LUA_FUNCTION handler);
 	void setCheats(int cheats);
 };
 

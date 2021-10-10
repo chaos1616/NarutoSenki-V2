@@ -145,17 +145,44 @@ enum gearType
 #define Akatsuki "Akatsuki"
 #define AkatsukiID 1
 
-/** NOTE: No AI support characters
-  * Kimimaro. Orochimaru. Pain
-  */
 static const char *kHeroList[] = {
-	"Konan", "Sakura", "Naruto", "Sai", "Deidara",
-	"Kakashi", "Itachi", "Tenten", "Jiraiya", "Suigetsu",
-	"Tsunade", "Tobirama", "Neji", "Ino", "Asuma", "Gaara",
-	"Karin", "Sasuke", "Hidan", "Choji", "Kankuro",
-	"Shino", "Minato", "Tobi", "Kakuzu", "Hinata",
-	"Shikamaru", "Chiyo", "Kisame",
-	"Hiruzen", "Kiba", "Jugo", "Lee"};
+	"Asuma",
+	"Chiyo",
+	"Choji",
+	"Deidara",
+	"Gaara",
+	"Hidan",
+	"Hinata",
+	"Hiruzen",
+	"Itachi",
+	"Jiraiya",
+	"Jugo",
+	"Kakashi",
+	"Kakuzu",
+	"Kankuro",
+	"Karin",
+	"Kiba",
+	"Kimimaro",
+	"Kisame",
+	"Konan",
+	"Lee",
+	"Minato",
+	"Naruto",
+	"Neji",
+	"Ino",
+	"Orochimaru",
+	"Pain",
+	"Sai",
+	"Sakura",
+	"Sasuke",
+	"Shikamaru",
+	"Shino",
+	"Suigetsu",
+	"Tenten",
+	"Tobi",
+	"Tobirama",
+	"Tsunade",
+};
 static const int kHeroNum = sizeof(kHeroList) / sizeof(char *);
 
 // Resloutions

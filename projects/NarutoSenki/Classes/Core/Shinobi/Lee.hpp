@@ -152,9 +152,10 @@ class Lee : public Hero
 			setTransform();
 
 			if (isPlayer())
+			{
 				getGameLayer()->getHudLayer()->skill3Button->unLock();
-
-			unlockSkill5Button();
+				getGameLayer()->getHudLayer()->skill5Button->unLock();
+			}
 		}
 		else if (htLv == 4)
 		{
@@ -524,6 +525,10 @@ class Lee : public Hero
 			stepOn();
 		}
 	}
+
+	// Callbacks
+
+	bool isEnableSkill05() override { return htLv >= 3; }
 
 private:
 	inline void tryLockSkillButton()

@@ -2,8 +2,10 @@
 #include "Hero.hpp"
 #include "Shinobi/AnimalPath.hpp"
 #include "Shinobi/AsuraPath.hpp"
+#include "Shinobi/HumanPath.hpp"
+#include "Shinobi/PertaPath.hpp"
 
-class DevaPath : public Hero
+class NarakaPath : public Hero
 {
 	void perform() override
 	{
@@ -57,8 +59,10 @@ class DevaPath : public Hero
 				}
 				else if (isFreeActionState())
 				{
-					bool isHaveKuilei1 = false;
-					bool isHaveKuilei2 = false;
+					bool isHaveKugutsu1 = false;
+					bool isHaveKugutsu2 = false;
+					bool isHaveKugutsu3 = false;
+					bool isHaveKugutsu4 = false;
 
 					if (hasMonsterArrayAny())
 					{
@@ -68,26 +72,41 @@ class DevaPath : public Hero
 							auto mo = (Monster *)pObject;
 							if (mo->isCharacter("AnimalPath"))
 							{
-								isHaveKuilei1 = true;
+								isHaveKugutsu1 = true;
+							}
+							else if (mo->isCharacter("AsuraPath"))
+							{
+								isHaveKugutsu2 = true;
+							}
+							else if (mo->isCharacter("HumanPath"))
+							{
+								isHaveKugutsu3 = true;
 							}
 
-							if (mo->isCharacter("AsuraPath"))
+							else if (mo->isCharacter("PertaPath"))
 							{
-								isHaveKuilei2 = true;
+								isHaveKugutsu4 = true;
 							}
 						}
 					}
 
-					if (_isCanSkill1 && !isHaveKuilei1)
+					if (_isCanSkill1 && !isHaveKugutsu1)
 					{
 						attack(SKILL1);
 						scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcoldDown1);
 					}
-					else if (_isCanSkill2 && !isHaveKuilei2)
+					else if (_isCanSkill2 && !isHaveKugutsu2)
 					{
 						changeSide(sp);
 						attack(SKILL2);
 						scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sattackcoldDown2);
+					}
+					else if (_isCanSkill3 && !isHaveKugutsu4)
+					{
+
+						this->changeSide(sp);
+						this->attack(SKILL3);
+						this->scheduleOnce(schedule_selector(CharacterBase::enableSkill3), _sattackcoldDown3);
 					}
 					else
 					{
@@ -111,14 +130,16 @@ class DevaPath : public Hero
 			_monsterArray->retain();
 		}
 
+		// TODO: How to balance the hero
 		if (cloneTime == 0)
-		{
 			clone = create<AnimalPath>(CCString::create("AnimalPath"), CCString::create(kRoleSummon), getGroup());
-		}
-		else
-		{
+		else if (cloneTime == -1)
 			clone = create<AsuraPath>(CCString::create("AsuraPath"), CCString::create(kRoleSummon), getGroup());
-		}
+		else if (cloneTime == -2)
+			clone = create<PertaPath>(CCString::create("PertaPath"), CCString::create(kRoleSummon), getGroup());
+		else if (cloneTime == -3)
+			clone = create<HumanPath>(CCString::create("HumanPath"), CCString::create(kRoleSummon), getGroup());
+
 		_monsterArray->addObject(clone);
 		clone->_isArmored = true;
 		return clone;

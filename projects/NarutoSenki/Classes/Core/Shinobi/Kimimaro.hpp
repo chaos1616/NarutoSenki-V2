@@ -1,7 +1,7 @@
 #pragma once
 #include "Hero.hpp"
 
-class Orochimaru : public Hero
+class Kimimaro : public Hero
 {
 	void perform() override
 	{
@@ -28,11 +28,11 @@ class Orochimaru : public Hero
 			}
 			else if (getGearArray()->count() == 1)
 			{
-				setGear(gear08);
+				setGear(gear05);
 			}
 			else if (getGearArray()->count() == 2)
 			{
-				setGear(gear01);
+				setGear(gear07);
 			}
 		}
 
@@ -88,9 +88,10 @@ class Orochimaru : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game)
+
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored)
 				{
-					if (abs(sp.x) > 128 || abs(sp.y) > 16)
+					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
@@ -102,6 +103,7 @@ class Orochimaru : public Hero
 				}
 				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000)
 				{
+
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);
@@ -114,19 +116,40 @@ class Orochimaru : public Hero
 				}
 				else if (_isCanSkill2 && _mainTarget->getGP() < 5000)
 				{
-					if ((abs(sp.x) > 96 || abs(sp.y) > 32))
+					if ((abs(sp.x) > 128 || abs(sp.y) > 16))
 					{
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
+						return;
+					}
+					else if (abs(sp.x) < 96)
+					{
+						stepBack();
 						return;
 					}
 					changeSide(sp);
 					attack(SKILL2);
 					return;
 				}
+				else if (_isCanSkill1 && _mainTarget->getGP() < 5000)
+				{
+					if ((abs(sp.x) > 128 || abs(sp.y) > 16))
+					{
+						moveDirection = ccpNormalize(sp);
+						walk(moveDirection);
+						return;
+					}
+					else if (abs(sp.x) < 96)
+					{
+						stepBack();
+						return;
+					}
+					changeSide(sp);
+					attack(SKILL1);
+				}
 				else if (_isCanSkill3 && _mainTarget->getGP() < 5000)
 				{
-					if ((abs(sp.x) > 96 || abs(sp.y) > 32))
+					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
@@ -134,19 +157,6 @@ class Orochimaru : public Hero
 					}
 					changeSide(sp);
 					attack(SKILL3);
-					return;
-				}
-
-				if (_isCanSkill1 && _mainTarget->getGP() < 5000)
-				{
-					if (abs(sp.x) > 96 || abs(sp.y) > 16)
-					{
-						moveDirection = ccpNormalize(sp);
-						walk(moveDirection);
-						return;
-					}
-					changeSide(sp);
-					attack(SKILL1);
 					return;
 				}
 				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControlled)
@@ -164,17 +174,11 @@ class Orochimaru : public Hero
 				}
 				else if (abs(sp.x) < 128)
 				{
-					if ((abs(sp.x) > 32 || abs(sp.y) > 32))
+					if (abs(sp.x) > 32 || abs(sp.y) > 32)
 					{
 						moveDirection = ccpNormalize(sp);
 						walk(moveDirection);
 						return;
-					}
-
-					if (_isCanOugis1 && !_isControlled && getHpPercent() < 0.9 && _mainTarget->getGP() < 5000)
-					{
-						changeSide(sp);
-						attack(OUGIS1);
 					}
 					else
 					{

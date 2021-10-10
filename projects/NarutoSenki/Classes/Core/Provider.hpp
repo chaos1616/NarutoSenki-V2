@@ -18,20 +18,16 @@
 #include "Shinobi/Kankuro.hpp"
 #include "Shinobi/Karin.hpp"
 #include "Shinobi/Kiba.hpp"
+#include "Shinobi/Kimimaro.hpp"
 #include "Shinobi/Kisame.hpp"
 #include "Shinobi/Konan.hpp"
 #include "Shinobi/Lee.hpp"
 #include "Shinobi/Minato.hpp"
-#include "Shinobi/Nagato.hpp"
+// #include "Shinobi/Nagato.hpp"
 #include "Shinobi/Naruto.hpp"
 #include "Shinobi/Neji.hpp"
 #include "Shinobi/Orochimaru.hpp"
-// Pain
 #include "Shinobi/Pain.hpp"
-#include "Shinobi/AnimalPath.hpp"
-#include "Shinobi/AsuraPath.hpp"
-#include "Shinobi/DevaPath.hpp"
-
 #include "Shinobi/Sai.hpp"
 #include "Shinobi/Sakura.hpp"
 #include "Shinobi/Sasuke.hpp"
@@ -88,59 +84,60 @@ public:
 		const char *name = character->getCString();
 
 		__begin__
-		is("Sakura") 						ptr = new Sakura();
-		is("Pain") 							ptr = new Pain();
-		is("MaskRaiton") 					ptr = new Mask();
+		is("Akamaru") 						ptr = new Akamaru();
+		is("Asuma") 						ptr = new Asuma();
+		is("Centipede") 					ptr = new Centipede();
+		is("Chiyo") 						ptr = new Chiyo();
+		is("Choji") 						ptr = new Choji();
+		is("Deidara") 						ptr = new Deidara();
+		is("DogWall") 						ptr = new DogWall();
+		is("Gaara") 						ptr = new Gaara();
+		is("Hidan") 						ptr = new Hidan();
+		is("Hinata") 						ptr = new Hinata();
+		is("Hiruzen") 						ptr = new Hiruzen();
+		is("Ino") 							ptr = new Ino();
+		is("Itachi") 						ptr = new Itachi();
+		is_or("Jiraiya", "SageJiraiya") 	ptr = new Jiraiya();
+		is("Jugo") 							ptr = new Jugo();
+		is("Kakashi") 						ptr = new Kakashi();
+		is("Kakuzu") 						ptr = new Kakuzu();
+		is("Kankuro") 						ptr = new Kankuro();
+		is("Karasu") 						ptr = new Karasu();
+		is("Karin") 						ptr = new Karin();
+		is("Kiba") 							ptr = new Kiba();
+		is("Kimimaro") 						ptr = new Kimimaro();
+		is("Kisame") 						ptr = new Kisame();
+		is("Konan") 						ptr = new Konan();
+		is("Kurama") 						ptr = new Kurama();
+		is_or("Lee", "RockLee") 			ptr = new Lee();
 		is("MaskFuton") 					ptr = new Mask();
 		is("MaskKaton") 					ptr = new Mask();
-		is("Slug") 							ptr = new Slug();
-		is("Centipede") 					ptr = new Centipede();
-		is("Nagato") 						ptr = new Nagato();
-		is("Asuma") 						ptr = new Asuma();
-		is("DevaPath") 						ptr = new DevaPath();
-		is("AsuraPath") 					ptr = new AsuraPath();
-		is("AnimalPath") 					ptr = new AnimalPath();
-		is("Sai") 							ptr = new Sai();
-		is("Tenten") 						ptr = new Tenten();
-		is("Suigetsu") 						ptr = new Suigetsu();
-		is("Konan") 						ptr = new Konan();
-		is_or("Jiraiya", "SageJiraiya") 	ptr = new Jiraiya();
-		is("Shikamaru") 					ptr = new Shikamaru();
-		is_or("Sasuke", "ImmortalSasuke") 	ptr = new Sasuke();
-		is("Deidara") 						ptr = new Deidara();
+		is("MaskRaiton") 					ptr = new Mask();
 		is("Minato") 						ptr = new Minato();
-		is("DogWall") 						ptr = new DogWall();
-		is("Kakashi") 						ptr = new Kakashi();
-		is("Tobi") 							ptr = new Tobi();
-		is("Hinata") 						ptr = new Hinata();
-		is("Neji") 							ptr = new Neji();
-		is("Choji") 						ptr = new Choji();
-		is("Itachi") 						ptr = new Itachi();
-		is("Orochimaru") 					ptr = new Orochimaru();
-		is("Kurama") 						ptr = new Kurama();
 		is("Naruto") 						is_tag(kRoleClone) ptr = new NarutoClone();			else ptr = new Naruto();
-		is("SageNaruto") 					is_tag(kRoleClone) ptr = new SageNarutoClone();		else ptr = new Naruto();
 		is("RikudoNaruto") 					is_tag(kRoleClone) ptr = new RikudoNarutoClone();	else ptr = new Naruto();
-		is("Gaara") 						ptr = new Gaara();
-		is("Tobirama") 						ptr = new Tobirama();
-		is("Akamaru") 						ptr = new Akamaru();
-		is("Karasu") 						ptr = new Karasu();
-		is("Saso") 							ptr = new Saso();
-		is("Parents") 						ptr = new Parents();
+		is("SageNaruto") 					is_tag(kRoleClone) ptr = new SageNarutoClone();		else ptr = new Naruto();
+		is("Neji") 							ptr = new Neji();
+		is("Orochimaru") 					ptr = new Orochimaru();
+		is_or("Pain", "Nagato") 			ptr = new Pain();
+		is("AnimalPath") 					ptr = new AnimalPath();
+		is("AsuraPath") 					ptr = new AsuraPath();
+		is("NarakaPath") 					ptr = new NarakaPath();
+		is("PertaPath") 					ptr = new PertaPath();
+		is("HumanPath") 					ptr = new HumanPath();
+		is("Sai") 							ptr = new Sai();
+		is("Sakura") 						ptr = new Sakura();
 		is("Sanshouuo") 					ptr = new Sanshouuo();
-		is("Kankuro") 						ptr = new Kankuro();
-		is("Chiyo") 						ptr = new Chiyo();
-		is("Kiba") 							ptr = new Kiba();
-		is("Karin") 						ptr = new Karin();
-		is_or("Lee", "RockLee") 			ptr = new Lee();
-		is("Tsunade") 						ptr = new Tsunade();
-		is("Jugo") 							ptr = new Jugo();
-		is("Kisame") 						ptr = new Kisame();
-		is("Ino") 							ptr = new Ino();
-		is("Hidan") 						ptr = new Hidan();
+		is("Saso") 							ptr = new Saso();
+		is_or("Sasuke", "ImmortalSasuke") 	ptr = new Sasuke();
+		is("Shikamaru") 					ptr = new Shikamaru();
 		is("Shino") 						ptr = new Shino();
-		is("Hiruzen") 						ptr = new Hiruzen();
-		is("Kakuzu") 						ptr = new Kakuzu();
+		is("Slug") 							ptr = new Slug();
+		is("Suigetsu") 						ptr = new Suigetsu();
+		is("Tenten") 						ptr = new Tenten();
+		is("Tobi") 							ptr = new Tobi();
+		is("Tobirama") 						ptr = new Tobirama();
+		is("Tsunade") 						ptr = new Tsunade();
 		is_or("Roshi", "Han")				ptr = new Guardian();
 		else								ptr = new DefaultAI();
 

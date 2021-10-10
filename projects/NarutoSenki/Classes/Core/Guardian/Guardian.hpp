@@ -39,13 +39,12 @@ class Guardian : public Hero
 			else if (isFreeActionState())
 			{
 				bool isTurn = false;
+				auto gardTower = getGameLayer()->getGuardianGroup();
 
 				CCObject *pObject;
 				CCARRAY_FOREACH(getGameLayer()->_TowerArray, pObject)
 				{
 					auto target = (CharacterBase *)pObject;
-					auto *gardTower = getGameLayer()->playerTeam > 0 ? "AkatsukiCenter" : "KonohaCenter";
-
 					if (is_same(target->getCharacter()->getCString(), gardTower) && target->getHpPercent() < 0.5f)
 					{
 						isTurn = true;

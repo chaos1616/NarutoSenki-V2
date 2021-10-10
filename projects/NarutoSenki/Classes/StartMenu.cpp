@@ -134,7 +134,7 @@ void MenuButton::ccTouchEnded(CCTouch *touch, CCEvent *event)
 			break;
 		case Custom:
 			SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
-			_startMenu->enterCustomMode();
+			// TODO
 			break;
 		case HardCore:
 			SimpleAudioEngine::sharedEngine()->playEffect(SELECT_SOUND);
@@ -438,7 +438,7 @@ void StartMenu::setNotice()
 		notice_bg->setPosition(ccp(15, 228));
 		notice_layer->addChild(notice_bg);
 
-		// FIXME: CCClippingNode not working on android
+		// FIXME: CCClippingNode not working on android 11.0
 		CCClippingNode *clipper = CCClippingNode::create();
 		CCNode *stencil = CCSprite::createWithSpriteFrameName("notice_mask.png");
 		stencil->setAnchorPoint(ccp(0, 0));
@@ -536,58 +536,14 @@ void StartMenu::onHardLayerCallBack()
 	}
 }
 
-void StartMenu::enterCustomMode()
+void StartMenu::onTrainingCallBack()
 {
 	// Enter game mode scene
 	auto modeScene = CCScene::create();
 	auto gameModeLayer = GameModeLayer::create();
-	gameModeLayer->setHandler(_handler);
 	modeScene->addChild(gameModeLayer);
 
-	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.5f, modeScene));
-}
-
-void StartMenu::enterTrainingMode()
-{
-	s_GameMode = GameMode::Classic;
-
-	enableCustomSelect = true;
-	enterSelectLayer();
-}
-
-void StartMenu::enterSelectLayer()
-{
-	// call lua StartMenu:enterSelectPanel
-	if (_handler != 0)
-	{
-		auto pStack = get_luastack;
-		pStack->pushBoolean(enableCustomSelect);
-		pStack->executeFunctionByHandler(_handler, 1);
-	}
-	else
-	{
-		addSprites("Select.plist");
-		addSprites("UI.plist");
-		addSprites("Report.plist");
-		addSprites("Ougis.plist");
-		addSprites("Ougis2.plist");
-		addSprites("Map.plist");
-		addSprites("Gears.plist");
-
-		auto selectScene = CCScene::create();
-		CCNode *selectLayer = SelectLayer::create();
-		selectScene->addChild(selectLayer);
-
-		CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.5f, selectScene));
-		CCLOG("StartMenu lua handler can not be null");
-	}
-}
-
-void StartMenu::onTrainingCallBack()
-{
-	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
-
-	enterSelectLayer();
+	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.25f, modeScene));
 }
 
 void StartMenu::onCreditsCallBack()
@@ -596,7 +552,7 @@ void StartMenu::onCreditsCallBack()
 	CCScene *creditsScene = CCScene::create();
 	CreditsLayer *creditsLayer = CreditsLayer::create();
 	creditsScene->addChild(creditsLayer);
-	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.5f, creditsScene));
+	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.25f, creditsScene));
 }
 
 void StartMenu::scrollMenu(int posY)

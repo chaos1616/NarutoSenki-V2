@@ -1,6 +1,5 @@
 #pragma once
 #include "Element.h"
-#include "HudLayer.h"
 
 typedef std::function<void()> AIHandler;
 
@@ -32,33 +31,12 @@ public:
 		setGroup(group);
 
 		auto charName = character->getCString();
-		if (getCharacter())
-		{
-			// update player UI
-			if (isPlayer())
-			{
-				auto oldCharName = getCharacter()->getCString();
-				bool isUpdateUI = strcmp(oldCharName, charName) != 0;
-				setCharacter(character);
-
-				if (isUpdateUI)
-					getGameLayer()->updateHudSkillButtons();
-			}
-		}
-		else
-		{
-			setCharacter(character);
-		}
 
 		CCArray *animationArray = CCArray::create();
-		const char *filePath;
-
-		filePath = CCString::createWithFormat("Element/%s/%s.xml", charName, charName)->getCString();
-
+		const char *filePath = CCString::createWithFormat("Element/%s/%s.xml", charName, charName)->getCString();
 		KTools::readXMLToArray(filePath, animationArray);
 
-		//init Attribute; & indleFrame
-
+		// init
 		CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
 		CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 		idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
@@ -71,12 +49,15 @@ public:
 		uint32_t tmpSpeed;
 		int tmpCombatPoint;
 		readData(tmpData, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
-		setMaxHPValue(tmpHpMax->uintValue(), false);
-		setHPValue(getMaxHPValue(), false);
-
+		if (!getCharacter()) // Set hp when character is not awaken
+		{
+			setMaxHPValue(tmpHpMax->uintValue(), false);
+			setHPValue(getMaxHPValue(), false);
+		}
 		setHeight(tmpHeight);
 		setWalkSpeed(tmpSpeed);
 		_originSpeed = tmpSpeed;
+
 		if (getKillNum() == nullptr)
 		{
 			setKillNum(to_ccstring(0));
@@ -252,6 +233,11 @@ public:
 			_heartEffect->setPosition(ccp(getContentSize().width + 40, 70));
 			addChild(_heartEffect);
 		}
+		else
+		{
+			// reset value
+			_isArmored = false;
+		}
 
 		_damageArray = CCArray::create();
 		_damageArray->retain();
@@ -262,12 +248,41 @@ public:
 			setCoinValue(50);
 		}
 
+		if (getCharacter())
+		{
+			// update player UI
+			if (isPlayer())
+			{
+				auto oldCharName = getCharacter()->getCString();
+				bool isUpdateUI = strcmp(oldCharName, charName) != 0;
+				setCharacter(character);
+
+				if (isUpdateUI)
+					getGameLayer()->updateHudSkillButtons();
+			}
+		}
+		else
+		{
+			setCharacter(character);
+		}
+
 		initAction();
 		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", nullptr);
 	}
 
 	/** Provide default AI logic */
 	virtual void perform() = 0;
+
+	/** Callback */
+
+	/** Call on IGameModeHandler::onCharacterInit()
+	 * @call_order:
+	 * 	-> CharacterBase::setID()
+	 * 	-> IGameModeHandler::onCharacterInit()
+	 */
+
+	virtual bool isEnableSkill04() { return true; }
+	virtual bool isEnableSkill05() { return true; }
 
 	/** Utilities functions */
 	template <typename THero>

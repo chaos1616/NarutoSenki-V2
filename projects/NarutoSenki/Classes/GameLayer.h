@@ -57,7 +57,7 @@ public:
 
 	CCArray *Heros;
 	bool _isAttackButtonRelease;
-	bool _isGuardian;
+	bool _hasSpawnedGuardian;
 	// int _guardianNum;
 	CCArray *_KonohaFlogArray;
 	CCArray *_AkatsukiFlogArray;
@@ -138,9 +138,11 @@ public:
 	bool _isHardCoreGame;
 	bool _isRandomChar;
 
-	int playerTeam;
+	std::string playerGroup;
 	bool _isStarted;
 	bool _isExiting;
+
+	inline const char *getGuardianGroup() { return playerGroup == Konoha ? "AkatsukiCenter" : "KonohaCenter"; }
 
 	bool _isGear;
 	bool _isPause;

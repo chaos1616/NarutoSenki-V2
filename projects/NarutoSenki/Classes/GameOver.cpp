@@ -508,38 +508,10 @@ void GameOver::listResult()
 					auto recordHour = bestTime.substr(0, 2).c_str();
 					auto recordMinute = bestTime.substr(3, 2).c_str();
 					auto recordSecond = bestTime.substr(6, 2).c_str();
-					bool isNewRecord = false;
 
-					if (to_int(recordHour) > _hour)
-					{
-						isNewRecord = true;
-					}
-					else if (to_int(recordHour) == _hour)
-					{
-						if (to_int(recordMinute) > _minute)
-						{
-							isNewRecord = true;
-						}
-						else if (to_int(recordMinute) == _minute)
-						{
-							if (to_uint(recordSecond) > getGameLayer()->_second)
-							{
-								isNewRecord = true;
-							}
-							else
-							{
-								isNewRecord = false;
-							}
-						}
-						else
-						{
-							isNewRecord = false;
-						}
-					}
-					else
-					{
-						isNewRecord = false;
-					}
+					auto recordTime = recordHour * 60 * 60 + recordMinute * 60 + recordSecond;
+					auto currentTime = getGameLayer()->_minute * 60 + getGameLayer()->_second;
+					bool isNewRecord = currentTime < recordTime;
 
 					if (isNewRecord)
 					{
@@ -550,20 +522,11 @@ void GameOver::listResult()
 		}
 	}
 
-	if (Cheats < MaxCheats)
-	{
-		auto version = CCLabelBMFont::create(GAMEOVER_VER, "Fonts/1.fnt");
-		version->setPosition(ccp(winSize.width / 2 + 94, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 6));
-		version->setScale(0.3f);
-		addChild(version, 5);
-	}
-	else
-	{
-		auto version = CCLabelBMFont::create("The Carnival", "Fonts/1.fnt");
-		version->setPosition(ccp(winSize.width / 2 + 94, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 6));
-		version->setScale(0.3f);
-		addChild(version, 5);
-	}
+	// auto version = CCLabelBMFont::create(Cheats < MaxCheats ? GAMEOVER_VER : GAMEOVER_VER, "Fonts/1.fnt");
+	auto version = CCLabelBMFont::create(GAMEOVER_VER, "Fonts/1.fnt");
+	version->setPosition(ccp(winSize.width / 2 + 94, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 6));
+	version->setScale(0.3f);
+	addChild(version, 5);
 
 	CCMenuItem *btm_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("close_btn1.png"), CCSprite::createWithSpriteFrameName("close_btn2.png"), nullptr, this, menu_selector(GameOver::onBackToMenu));
 	CCMenu *overMenu = CCMenu::create(btm_btn, nullptr);
@@ -617,7 +580,7 @@ void GameOver::onBackToMenu(CCObject *sender)
 		exitLayer->addChild(btm_text, 2);
 		addChild(exitLayer, 500);
 	}
-};
+}
 
 void GameOver::onLeft(CCObject *sender)
 {

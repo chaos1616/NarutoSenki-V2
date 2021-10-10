@@ -85,7 +85,6 @@ public:
 
 	void keyBackClicked();
 
-	void setHandle(LUA_FUNCTION handler) { _handler = handler; }
 	void setCheats(int cheats);
 
 	CC_SYNTHESIZE_RETAIN(CCArray *, _menu_array, Menus);
@@ -96,10 +95,7 @@ public:
 
 	CREATE_FUNC(StartMenu);
 
-protected:
+private:
 	void onEnter();
 	void onExit();
-
-private:
-	int _handler;
 };
