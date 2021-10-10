@@ -7,6 +7,7 @@ bool PauseLayer::init(CCRenderTexture *snapshoot)
 		return false;
 
 	SimpleAudioEngine::sharedEngine()->stopAllEffects();
+	SimpleAudioEngine::sharedEngine()->pauseAllEffects();
 	SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 
 	CCTexture2D *bgTexture = snapshoot->getSprite()->getTexture();
@@ -124,6 +125,10 @@ void PauseLayer::onResume(CCObject *sender)
 	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isBGM"))
 	{
 		SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+	}
+	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
+	{
+		SimpleAudioEngine::sharedEngine()->resumeAllEffects();
 	}
 
 	CCDirector::sharedDirector()->popScene();
