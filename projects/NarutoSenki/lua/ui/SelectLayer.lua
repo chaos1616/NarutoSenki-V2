@@ -478,6 +478,8 @@ function SelectLayer:noComSelect()
 end
 
 function backToStartMenu()
+    log('back to main menu')
+
     _G.mode = nil
     audio.playSound('Audio/Menu/cancel.ogg')
     local menuScene = CCScene:create()

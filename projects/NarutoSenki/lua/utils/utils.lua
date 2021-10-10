@@ -6,7 +6,6 @@ director = {}
 tips = {}
 fmt = string.format
 
-local kt = KTools
 local sharedDirector = CCDirector:sharedDirector()
 local sharedTextureCache = CCTextureCache:sharedTextureCache()
 local sharedSpriteFrameCache = CCSpriteFrameCache:sharedSpriteFrameCache()
@@ -14,12 +13,12 @@ local sharedAnimationCache = CCAnimationCache:sharedAnimationCache()
 
 function tools.readXMLToArray(filePath, array)
     if nil ~= filePath or array ~= nil then
-        return kt:readXMLToArray(filePath, array)
+        return KTools:readXMLToArray(filePath, array)
     end
 end
 
-function tools.loadOgg(name) kt:prepareFileOGG(name, false) end
-function tools.unloadOgg(name) kt:prepareFileOGG(name, true) end
+function tools.loadOgg(name) KTools:prepareFileOGG(name, false) end
+function tools.unloadOgg(name) KTools:prepareFileOGG(name, true) end
 
 function tools.addSprites(...)
     assert(not ... ~= nil, 'addSprites: The table can not be nil')
@@ -36,8 +35,8 @@ function tools.is_c_type(userdata, cType)
 end
 
 function tools.initSqliteDB()
-    kt:initTableInDB()
-    kt:initColumeInDB()
+    KTools:initTableInDB()
+    KTools:initColumeInDB()
 end
 
 function tools.printTable(mt)
@@ -50,32 +49,19 @@ function tools.printTable(mt)
     end
 end
 
--- Sqlite Utils
+-- SQLite Utils
 
---[[
-@param string table     = 'GameRecord'
-@param string column    = nil
-@param string value     = nil
-
-@return string
-]]
-function tools.readFromSQLite(table, column, value)
-    local ret =
-        kt:readFromSQLite(table and table or "GameRecord", column, value)
-    return ret and ret:getCString() or nil
+function tools.readCoinFromSQL()
+    local coins = KTools:readCoinFromSQL()
+    return coins == '' and '0' or coins
 end
 
---[[
-@param string table
-@param string column
-@param string value
-@param string targetColumn
+function tools.readWinNumFromSQL(heroName)
+    return KTools:readWinNumFromSQL(heroName)
+end
 
-@return string
-]]
-function tools.readSQLite(table, column, value, targetColumn)
-    local ret = kt:readSQLite(table, column, value, targetColumn)
-    return ret and ret:getCString() or nil
+function tools.readRecordTimeFromSQL(heroName)
+    return KTools:readRecordTimeFromSQL(heroName)
 end
 
 function tools.printUserdata(ud)

@@ -68059,61 +68059,6 @@ static int tolua_Cocos2d_KTools_prepareTableInDB00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: checkData of class  KTools */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_KTools_checkData00
-static int tolua_Cocos2d_KTools_checkData00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"KTools",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   bool tolua_ret = (bool)  KTools::checkData();
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'checkData'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: updateData of class  KTools */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_KTools_updateData00
-static int tolua_Cocos2d_KTools_updateData00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"KTools",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   KTools::updateData();
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'updateData'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: saveToSQLite of class  KTools */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_KTools_saveToSQLite00
 static int tolua_Cocos2d_KTools_saveToSQLite00(lua_State* tolua_S)
@@ -68171,10 +68116,8 @@ static int tolua_Cocos2d_KTools_readFromSQLite00(lua_State* tolua_S)
   const char* column = ((const char*)  tolua_tostring(tolua_S,3,NULL));
   const char* value = ((const char*)  tolua_tostring(tolua_S,4,NULL));
   {
-   CCString* tolua_ret = (CCString*)  KTools::readFromSQLite(table,column,value);
-    int nID = (tolua_ret) ? (int)tolua_ret->m_uID : -1;
-    int* pLuaID = (tolua_ret) ? &tolua_ret->m_nLuaID : NULL;
-    toluafix_pushusertype_ccobject(tolua_S, nID, pLuaID, (void*)tolua_ret,"CCString");
+   std::string tolua_ret = (std::string)  KTools::readFromSQLite(table,column,value);
+   tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
   }
  }
  return 1;
@@ -68331,10 +68274,8 @@ static int tolua_Cocos2d_KTools_readSQLite00(lua_State* tolua_S)
   const char* value = ((const char*)  tolua_tostring(tolua_S,4,0));
   const char* targetColumn = ((const char*)  tolua_tostring(tolua_S,5,0));
   {
-   CCString* tolua_ret = (CCString*)  KTools::readSQLite(table,column,value,targetColumn);
-    int nID = (tolua_ret) ? (int)tolua_ret->m_uID : -1;
-    int* pLuaID = (tolua_ret) ? &tolua_ret->m_nLuaID : NULL;
-    toluafix_pushusertype_ccobject(tolua_S, nID, pLuaID, (void*)tolua_ret,"CCString");
+   std::string tolua_ret = (std::string)  KTools::readSQLite(table,column,value,targetColumn);
+   tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
   }
  }
  return 1;
@@ -68380,6 +68321,94 @@ static int tolua_Cocos2d_KTools_saveSQLite00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'saveSQLite'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: readWinNumFromSQL of class  KTools */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_KTools_readWinNumFromSQL00
+static int tolua_Cocos2d_KTools_readWinNumFromSQL00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"KTools",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const char* heroName = ((const char*)  tolua_tostring(tolua_S,2,0));
+  {
+   int tolua_ret = (int)  KTools::readWinNumFromSQL(heroName);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'readWinNumFromSQL'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: readCoinFromSQL of class  KTools */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_KTools_readCoinFromSQL00
+static int tolua_Cocos2d_KTools_readCoinFromSQL00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"KTools",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   const char* tolua_ret = (const char*)  KTools::readCoinFromSQL();
+   tolua_pushstring(tolua_S,(const char*)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'readCoinFromSQL'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: readRecordTimeFromSQL of class  KTools */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_KTools_readRecordTimeFromSQL00
+static int tolua_Cocos2d_KTools_readRecordTimeFromSQL00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"KTools",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const char* heroName = ((const char*)  tolua_tostring(tolua_S,2,0));
+  {
+   const char* tolua_ret = (const char*)  KTools::readRecordTimeFromSQL(heroName);
+   tolua_pushstring(tolua_S,(const char*)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'readRecordTimeFromSQL'.",&tolua_err);
  return 0;
 #endif
 }
@@ -72473,8 +72502,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"initTableInDB",tolua_Cocos2d_KTools_initTableInDB00);
    tolua_function(tolua_S,"initColumeInDB",tolua_Cocos2d_KTools_initColumeInDB00);
    tolua_function(tolua_S,"prepareTableInDB",tolua_Cocos2d_KTools_prepareTableInDB00);
-   tolua_function(tolua_S,"checkData",tolua_Cocos2d_KTools_checkData00);
-   tolua_function(tolua_S,"updateData",tolua_Cocos2d_KTools_updateData00);
    tolua_function(tolua_S,"saveToSQLite",tolua_Cocos2d_KTools_saveToSQLite00);
    tolua_function(tolua_S,"readFromSQLite",tolua_Cocos2d_KTools_readFromSQLite00);
    tolua_function(tolua_S,"encode",tolua_Cocos2d_KTools_encode00);
@@ -72483,6 +72510,9 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getKeycode",tolua_Cocos2d_KTools_getKeycode00);
    tolua_function(tolua_S,"readSQLite",tolua_Cocos2d_KTools_readSQLite00);
    tolua_function(tolua_S,"saveSQLite",tolua_Cocos2d_KTools_saveSQLite00);
+   tolua_function(tolua_S,"readWinNumFromSQL",tolua_Cocos2d_KTools_readWinNumFromSQL00);
+   tolua_function(tolua_S,"readCoinFromSQL",tolua_Cocos2d_KTools_readCoinFromSQL00);
+   tolua_function(tolua_S,"readRecordTimeFromSQL",tolua_Cocos2d_KTools_readRecordTimeFromSQL00);
    tolua_function(tolua_S,"encodeData",tolua_Cocos2d_KTools_encodeData00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"CCTips","CCTips","CCSprite",NULL);

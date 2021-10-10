@@ -26,11 +26,12 @@ public:
 	//CC_SYNTHESIZE_RETAIN(CCString*,detailRecord,DetialRecord);
 	std::string detailRecord;
 	float finnalScore;
-	CC_SYNTHESIZE_RETAIN(CCString *, resultChar, ResultChar);
 
 	static GameOver *create(CCRenderTexture *snapshoot);
 
 private:
+	const char *resultChar;
+
 	void onBackToMenu(CCObject *sender);
 	void listResult();
 	void onCancel(CCObject *sender);

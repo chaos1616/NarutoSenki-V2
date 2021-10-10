@@ -26,13 +26,14 @@ void SelectLayer::onGameStart()
 	gameModeHandler->selectLayer = this;
 	gameModeHandler->onInitHeros();
 	loadLayer->tempHeros = gameModeHandler->getHerosArray();
+	loadLayer->preloadAudio();
 	loadScene->addChild(loadLayer);
 
-	loadLayer->preloadAudio();
-	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.5f, loadScene));
+	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.25f, loadScene));
 }
 
 void SelectLayer::keyBackClicked()
 {
+	setKeypadEnabled(false);
 	lua_call_func("backToStartMenu");
 }

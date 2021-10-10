@@ -26,6 +26,4 @@ public:
 
 private:
 	bool isStart = false;
-
-	void onBackToMenu(CCObject *sender);
 };

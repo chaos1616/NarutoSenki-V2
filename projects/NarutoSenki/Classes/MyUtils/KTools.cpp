@@ -24,15 +24,6 @@ std::string KTools::getKeycode(std::string path)
 	return strKeyCode;
 }
 
-bool KTools::checkData()
-{
-	return true;
-}
-
-void KTools::updateData()
-{
-}
-
 bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 {
 	unsigned long nSize;
@@ -44,6 +35,7 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 	}
 	tinyxml2::XMLDocument doc;
 	auto err = doc.Parse(data, nSize);
+	delete data;
 	if (err)
 	{
 		CCMessageBox(CCString::createWithFormat("XML Error: %s", tinyxml2::XMLDocument::ErrorIDToName(err))->getCString(), "Parse XML Error");
@@ -117,8 +109,6 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 		actionEle = actionEle->NextSiblingElement();
 	}
 
-	delete data;
-
 	return true;
 }
 
@@ -166,81 +156,70 @@ void KTools::initTableInDB()
 		return;
 	}
 
-	CCString *sql = CCString::create("drop table IF EXISTS Achievement");
+	auto sql = "drop table IF EXISTS Achievement";
 
-	sqlite3_exec(pDB, sql->getCString(), nullptr, nullptr, &errorMsg);
+	sqlite3_exec(pDB, sql, nullptr, nullptr, &errorMsg);
 
-	sql = CCString::create("create table if not exists CharRecord (name char(20)  primary key ,column1 char(10),column2 char(10),column3 char(10))");
-	sqlite3_exec(pDB, sql->getCString(), nullptr, nullptr, &errorMsg);
+	sql = "create table if not exists CharRecord (name char(20)  primary key ,column1 char(10),column2 char(10),column3 char(10))";
+	sqlite3_exec(pDB, sql, nullptr, nullptr, &errorMsg);
 
-	sql = CCString::create("select * from  GameRecord");
+	sql = "select * from  GameRecord";
 
-	sqlite3_exec(pDB, sql->getCString(), nullptr, nullptr, &errorMsg);
+	sqlite3_exec(pDB, sql, nullptr, nullptr, &errorMsg);
 
 	if (errorMsg != nullptr)
 	{
 		errorMsg = nullptr;
-		sql = CCString::create("create table if not exists GameRecord (id char(10) primary key,coin char(20),version char(20))");
-		sqlite3_exec(pDB, sql->getCString(), nullptr, nullptr, &errorMsg);
+		sql = "create table if not exists GameRecord (id char(10) primary key,coin char(20),version char(20))";
+		sqlite3_exec(pDB, sql, nullptr, nullptr, &errorMsg);
 
-		std::string str = "n>";
-		CCString *coin = CCString::create(str);
-
-		sql = CCString::createWithFormat("insert into GameRecord values(1,'%s','1')", coin->getCString());
-		int result = sqlite3_exec(pDB, sql->getCString(), nullptr, nullptr, &errorMsg);
+		auto coin = "n>";
+		sql = CCString::createWithFormat("insert into GameRecord values(1,'%s','1')", coin)->getCString();
+		int result = sqlite3_exec(pDB, sql, nullptr, nullptr, &errorMsg);
 
 		if (errorMsg != nullptr)
 		{
-			CCLOG("exec sql %s failed with mgs: %s", sql->getCString(), errorMsg);
+			CCLOG("exec sql %s failed with mgs: %s", sql, errorMsg);
 			sqlite3_close(pDB);
 			return;
 		}
-
-		KTools::updateData();
 	}
 
 	bool isExisted_;
 
-	sql = CCString::create("select count(*) from  CharRecord");
-	sqlite3_exec(pDB, sql->getCString(), isExisted, &isExisted_, &errorMsg);
+	sql = "select count(*) from  CharRecord";
+	sqlite3_exec(pDB, sql, isExisted, &isExisted_, &errorMsg);
 
 	if (!isExisted_)
 	{
 		for (int i = 0; i < kHeroNum; i++)
 		{
 			std::string name = kHeroList[i];
-
 			int key = rand() % 50 + 40;
 			encode(name, key);
-			CCString *nameDB = CCString::create(name);
 
-			std::string column1 = "0";
+			std::string column1DB = "0";
 			key = rand() % 60 + 40;
-			encode(column1, key);
-			CCString *column1DB = CCString::create(column1);
+			encode(column1DB, key);
 
-			std::string column2 = "0";
+			std::string column2DB = "0";
 			key = rand() % 60 + 40;
-			encode(column2, key);
-			CCString *column2DB = CCString::create(column2);
+			encode(column2DB, key);
 
-			std::string column3 = "";
+			std::string column3DB = "";
 			key = rand() % 60 + 40;
-			encode(column3, key);
-			CCString *column3DB = CCString::create(column3);
+			encode(column3DB, key);
 
-			CCString *sql = CCString::createWithFormat("insert into  CharRecord values('%s','%s','%s','%s')", nameDB->getCString(), column1DB->getCString(), column2DB->getCString(), column3DB->getCString());
-			sqlite3_exec(pDB, sql->getCString(), nullptr, nullptr, &errorMsg);
+			sql = CCString::createWithFormat("insert into  CharRecord values('%s','%s','%s','%s')", name.c_str(), column1DB.c_str(), column2DB.c_str(), column3DB.c_str())->getCString();
+			sqlite3_exec(pDB, sql, nullptr, nullptr, &errorMsg);
 
 			if (errorMsg != nullptr)
 			{
-				CCLOG("exec sql %s failed with mgs: %s", sql->getCString(), errorMsg);
+				CCLOG("exec sql %s failed with mgs: %s", sql, errorMsg);
 				sqlite3_close(pDB);
 				return;
 			}
 		}
-
-		KTools::updateData();
 	}
 
 	sqlite3_close(pDB);
@@ -262,8 +241,8 @@ void KTools::initColumeInDB()
 	int row = 0;
 	int column = 0;
 
-	CCString *sql = CCString::create("select coin from GameRecord");
-	sqlite3_get_table(pDB, sql->getCString(), &result2, &row, &column, nullptr);
+	auto sql = "select coin from GameRecord";
+	sqlite3_get_table(pDB, sql, &result2, &row, &column, nullptr);
 	std::string str2 = result2[1];
 	decode(str2);
 
@@ -271,10 +250,9 @@ void KTools::initColumeInDB()
 	decode(str3);
 	if (to_int(str2.c_str()) > to_int(str3.c_str()))
 	{
-		CCString *coin = CCString::create("uuuuu<");
-		sql = CCString::createWithFormat("update GameRecord set coin='%s'", coin->getCString());
-		sqlite3_exec(pDB, sql->getCString(), nullptr, nullptr, &errorMsg);
-		KTools::updateData();
+		auto coin = "uuuuu<";
+		sql = CCString::createWithFormat("update GameRecord set coin='%s'", coin)->getCString();
+		sqlite3_exec(pDB, sql, nullptr, nullptr, &errorMsg);
 	}
 }
 
@@ -300,6 +278,7 @@ void KTools::prepareFileOGG(const char *listName, bool unload /* =false */)
 	const char *pXmlBuffer = (const char *)CCFileUtils::sharedFileUtils()->getFileData(md5Path.c_str(), "r", &nSize);
 	tinyxml2::XMLDocument doc;
 	doc.Parse(pXmlBuffer);
+	delete pXmlBuffer;
 
 	auto rootEle = doc.RootElement();
 	auto fileEle = rootEle->FirstChildElement();
@@ -348,20 +327,17 @@ bool KTools::saveToSQLite(const char *table /* ="GameRecord"*/, const char *colu
 	if (pDB != nullptr)
 	{
 		int key = rand() % 60 + 40;
-		std::string str = value;
+		std::string coin = value;
+		encode(coin, key);
 
-		encode(str, key);
-		CCString *coin = CCString::create(str);
-		CCString *sql = CCString::createWithFormat("update %s set %s='%s'", table, column, coin->getCString());
-		sqlite3_exec(pDB, sql->getCString(), nullptr, nullptr, &errorMsg);
+		auto sql = CCString::createWithFormat("update %s set %s='%s'", table, column, coin.c_str())->getCString();
+		sqlite3_exec(pDB, sql, nullptr, nullptr, &errorMsg);
 
 		if (errorMsg != nullptr)
 		{
 			sqlite3_close(pDB);
 			return false;
 		}
-
-		KTools::updateData();
 
 		return true;
 	}
@@ -370,31 +346,30 @@ bool KTools::saveToSQLite(const char *table /* ="GameRecord"*/, const char *colu
 	sqlite3_close(pDB);
 }
 
-CCString *KTools::readFromSQLite(const char *table /* ="GameRecord" */, const char *column /* =nullptr */, const char *value /* =nullptr */)
+std::string KTools::readFromSQLite(const char *table /* ="GameRecord" */, const char *column /* =nullptr */, const char *value /* =nullptr */)
 {
 	sqlite3 *pDB = prepareTableInDB();
 
 	if (pDB != nullptr)
 	{
 		char **result;
-		CCString *sql = CCString::createWithFormat("select %s from  GameRecord", "coin");
+		auto sql = CCString::createWithFormat("select %s from  GameRecord", "coin")->getCString();
 		int row = 0;
 		int column = 0;
 
-		sqlite3_get_table(pDB, sql->getCString(), &result, &row, &column, nullptr);
+		sqlite3_get_table(pDB, sql, &result, &row, &column, nullptr);
 
 		std::string str = result[1];
 		decode(str);
-		CCString *coin = CCString::createWithFormat("%s", str.c_str());
 		sqlite3_free_table(result);
 		sqlite3_close(pDB);
-		return coin;
+		return str;
 	}
 	sqlite3_close(pDB);
-	return 0;
+	return "";
 }
 
-CCString *KTools::readSQLite(const char *table, const char *column, const char *value, const char *targetColumn)
+std::string KTools::readSQLite(const char *table, const char *column, const char *value, const char *targetColumn)
 {
 	sqlite3 *pDB = prepareTableInDB();
 
@@ -402,11 +377,11 @@ CCString *KTools::readSQLite(const char *table, const char *column, const char *
 	{
 		char **result;
 
-		CCString *sql = CCString::createWithFormat(("select %s,%s from  %s "), column, targetColumn, table);
+		auto sql = CCString::createWithFormat(("select %s,%s from  %s "), column, targetColumn, table)->getCString();
 		int row = 0;
 		int column = 0;
 
-		sqlite3_get_table(pDB, sql->getCString(), &result, &row, &column, nullptr);
+		sqlite3_get_table(pDB, sql, &result, &row, &column, nullptr);
 
 		std::string target;
 		for (int i = 0; i <= row * 2; i++)
@@ -422,23 +397,18 @@ CCString *KTools::readSQLite(const char *table, const char *column, const char *
 			}
 		}
 
-		CCString *targetValue = CCString::create("");
+		if (!is_same(targetColumn, "column3") &&
+			!is_same(targetColumn, "column4"))
+		{
+			target = std::to_string(to_int(target.c_str()));
+		}
 
-		if (is_same(targetColumn, "column3") ||
-			is_same(targetColumn, "column4"))
-		{
-			targetValue = CCString::createWithFormat("%s", target.c_str());
-		}
-		else
-		{
-			targetValue = to_ccstring(to_int(target.c_str()));
-		}
 		sqlite3_free_table(result);
 		sqlite3_close(pDB);
-		return targetValue;
+		return target;
 	}
 	sqlite3_close(pDB);
-	return 0;
+	return "";
 }
 
 void KTools::saveSQLite(const char *table, const char *relatedColumn, const char *value, const char *targetColumn, char *targetValue, bool isPlus)
@@ -450,11 +420,11 @@ void KTools::saveSQLite(const char *table, const char *relatedColumn, const char
 	{
 		char **result;
 
-		CCString *sql = CCString::createWithFormat(("select %s,%s from  %s "), relatedColumn, targetColumn, table);
+		auto sql = CCString::createWithFormat(("select %s,%s from  %s "), relatedColumn, targetColumn, table)->getCString();
 		int row = 0;
 		int column = 0;
 
-		sqlite3_get_table(pDB, sql->getCString(), &result, &row, &column, nullptr);
+		sqlite3_get_table(pDB, sql, &result, &row, &column, nullptr);
 
 		std::string target;
 		std::string columnValue;
@@ -475,7 +445,7 @@ void KTools::saveSQLite(const char *table, const char *relatedColumn, const char
 		if (isPlus)
 		{
 			saveValue = std::string(targetValue) + target;
-			sql = CCString::createWithFormat(("update %s set %s='%s' where %s='%s'"), table, targetColumn, saveValue.c_str(), relatedColumn, columnValue.c_str());
+			sql = CCString::createWithFormat(("update %s set %s='%s' where %s='%s'"), table, targetColumn, saveValue.c_str(), relatedColumn, columnValue.c_str())->getCString();
 		}
 		else
 		{
@@ -483,14 +453,14 @@ void KTools::saveSQLite(const char *table, const char *relatedColumn, const char
 		}
 		int key = rand() % 50 + 40;
 		encode(saveValue, key);
-		sql = CCString::createWithFormat(("update %s set %s='%s' where %s='%s'"), table, targetColumn, saveValue.c_str(), relatedColumn, columnValue.c_str());
-		sqlite3_exec(pDB, sql->getCString(), nullptr, nullptr, nullptr);
+		sql = CCString::createWithFormat(("update %s set %s='%s' where %s='%s'"), table, targetColumn, saveValue.c_str(), relatedColumn, columnValue.c_str())->getCString();
+		sqlite3_exec(pDB, sql, nullptr, nullptr, nullptr);
 
 		if (isPlus)
 		{
 			char **result2;
-			sql = CCString::create("select coin from GameRecord");
-			sqlite3_get_table(pDB, sql->getCString(), &result2, &row, &column, nullptr);
+			sql = "select coin from GameRecord";
+			sqlite3_get_table(pDB, sql, &result2, &row, &column, nullptr);
 			std::string str2 = result2[1];
 			decode(str2);
 
@@ -499,20 +469,34 @@ void KTools::saveSQLite(const char *table, const char *relatedColumn, const char
 
 			if (to_int(str2.c_str()) > to_int(str3.c_str()))
 			{
-				CCString *coin = CCString::create("uuuuu<");
-				sql = CCString::createWithFormat("update GameRecord set coin='%s'", coin->getCString());
-				sqlite3_exec(pDB, sql->getCString(), nullptr, nullptr, &errorMsg);
+				auto coin = "uuuuu<";
+				sql = CCString::createWithFormat("update GameRecord set coin='%s'", coin)->getCString();
+				sqlite3_exec(pDB, sql, nullptr, nullptr, &errorMsg);
 			}
 		}
 
 		sqlite3_free_table(result);
-
-		KTools::updateData();
-
 		sqlite3_close(pDB);
 		return;
 	}
 	sqlite3_close(pDB);
+}
+
+int KTools::readWinNumFromSQL(const char *heroName)
+{
+	auto winNum = readSQLite("CharRecord", "name", heroName, "column1").c_str();
+	return to_int(winNum);
+}
+
+const char *KTools::readCoinFromSQL()
+{
+	return readFromSQLite().c_str();
+}
+
+const char *KTools::readRecordTimeFromSQL(const char *heroName)
+{
+	auto recordTime = readSQLite("CharRecord", "name", heroName, "column3").c_str();
+	return recordTime;
 }
 
 std::string KTools::encodeData(std::string data)

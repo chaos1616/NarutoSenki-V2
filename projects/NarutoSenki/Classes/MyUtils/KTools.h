@@ -28,10 +28,8 @@ public:
 
 	static sqlite3 *prepareTableInDB();
 
-	static bool checkData();
-	static void updateData();
 	static bool saveToSQLite(const char *table = "GameRecord", const char *column = nullptr, const char *value = nullptr, bool isBuy = false);
-	static CCString *readFromSQLite(const char *table = "GameRecord", const char *column = nullptr, const char *value = nullptr);
+	static std::string readFromSQLite(const char *table = "GameRecord", const char *column = nullptr, const char *value = nullptr);
 
 	static void encode(std::string &str, int randomKey);
 	static void decode(std::string &str);
@@ -39,8 +37,12 @@ public:
 
 	static std::string getKeycode(std::string path);
 
-	static CCString *readSQLite(const char *table, const char *column, const char *value, const char *targetColumn);
+	static std::string readSQLite(const char *table, const char *column, const char *value, const char *targetColumn);
 	static void saveSQLite(const char *table, const char *relatedColumn, const char *value, const char *targetColumn, char *targetValue, bool isPlus);
+
+	static int readWinNumFromSQL(const char *heroName);
+	static const char *readCoinFromSQL();
+	static const char *readRecordTimeFromSQL(const char *heroName);
 
 	static std::string encodeData(std::string data);
 };

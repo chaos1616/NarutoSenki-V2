@@ -3,7 +3,6 @@
 
 LoadLayer::LoadLayer()
 {
-	tempHeros = nullptr;
 	loadNum = 0;
 	_hudLayer = nullptr;
 	_bgLayer = nullptr;
@@ -14,7 +13,6 @@ LoadLayer::LoadLayer()
 
 LoadLayer::~LoadLayer()
 {
-	CC_SAFE_RELEASE(tempHeros);
 }
 
 bool LoadLayer::init()

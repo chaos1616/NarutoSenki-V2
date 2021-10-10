@@ -122,8 +122,8 @@ function SkillLayer:initInterface()
     bgSprite:setAnchorPoint(0, 0)
     self:addChild(bgSprite, -5)
 
-    local winNum = tonumber(tools.readSQLite('CharRecord', 'name',
-                                             self.selectHero, 'column1'))
+    local winNum = tools.readWinNumFromSQL(self.selectHero)
+
     local rank_src
     local isBlink = false
     local skillbg_src
@@ -163,7 +163,7 @@ function SkillLayer:initInterface()
                        display.cy + skill_bg:getContentSize().width / 2 - 74)
     self:addChild(goldBG, 9)
 
-    local coinsNum = tools.readFromSQLite()
+    local coinsNum = tools.readCoinFromSQL()
     self.coinLabel = CCLabelBMFont:create(coinsNum, 'Fonts/1.fnt')
     self.coinLabel:setScale(0.3)
     self.coinLabel:setAnchorPoint(0.5, 0)
@@ -250,8 +250,7 @@ function SkillLayer:initInterface()
                               skill_bg:getContentSize().height / 2 + 74)
     self:addChild(detailBG1, 5)
 
-    local recordTime = tools.readSQLite('CharRecord', 'name', self.selectHero,
-                                        'column3')
+    local recordTime = tools.readRecordTimeFromSQL(self.selectHero)
     local bestLabel
     if recordTime == '' then
         bestLabel = CCLabelBMFont:create('00:00:00', 'Fonts/1.fnt')

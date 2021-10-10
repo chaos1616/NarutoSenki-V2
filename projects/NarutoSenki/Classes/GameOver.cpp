@@ -3,8 +3,6 @@
 #include "Core/Hero.hpp"
 #include "GameMode/GameModeImpl.h"
 
-#include <fstream>
-
 GameOver::GameOver()
 {
 	exitLayer = nullptr;
@@ -114,9 +112,8 @@ void GameOver::listResult()
 	timeBG->setPosition(ccp(winSize.width / 2 + result_bg->getContentSize().width / 2 - 11 - timeBG->getContentSize().width, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 46));
 	addChild(timeBG, 6);
 
-	CCString *tempTime = CCString::createWithFormat("%02d:%02d:%02d", _hour, _minute, getGameLayer()->_second);
-
-	auto gameClock = CCLabelBMFont::create(tempTime->getCString(), "Fonts/1.fnt");
+	auto tempTime = CCString::createWithFormat("%02d:%02d:%02d", _hour, _minute, getGameLayer()->_second)->getCString();
+	auto gameClock = CCLabelBMFont::create(tempTime, "Fonts/1.fnt");
 	gameClock->setAnchorPoint(ccp(0.5f, 0));
 	gameClock->setPosition(ccp(timeBG->getPositionX() + timeBG->getContentSize().width / 2, timeBG->getPositionY() + 3));
 	gameClock->setScale(0.48f);
@@ -136,24 +133,16 @@ void GameOver::listResult()
 	if (getGameLayer()->_isHardCoreGame)
 	{
 		if (_totalSecond > 900.0)
-		{
 			resultScore = float((killDead / float(_totalSecond / 60)) / 3) * 100;
-		}
 		else
-		{
 			resultScore = float((killDead - ((_totalSecond / 60 - 15) * 3)) / 45) * 100;
-		}
 	}
 	else
 	{
 		if (_totalSecond > 600.0)
-		{
 			resultScore = float((killDead / float(_totalSecond / 60)) / 4) * 100;
-		}
 		else
-		{
 			resultScore = float((killDead - ((_totalSecond / 60 - 10) * 4)) / 40) * 100;
-		}
 	}
 
 	if (_totalSecond < 2 * 30 + 5 && _isWin)
@@ -263,16 +252,12 @@ void GameOver::listResult()
 		if (is_same(getGameLayer()->currentPlayer->getGroup()->getCString(), Konoha))
 		{
 			if (konohaKill > akatsukiKill)
-			{
 				_isWin = true;
-			}
 		}
 		else
 		{
 			if (akatsukiKill > konohaKill)
-			{
 				_isWin = true;
-			}
 		}
 	}
 
@@ -287,28 +272,15 @@ void GameOver::listResult()
 
 		int realKillNum = to_int(getGameLayer()->currentPlayer->getKillNum()->getCString());
 
-		std::string tempReward = "";
-		if (getGameLayer()->_isHardCoreGame)
-		{
-			tempReward = "FDDD";
-		}
-		else
-		{
-			tempReward = "ONNN";
-		}
-
+		std::string tempReward = getGameLayer()->_isHardCoreGame ? "FDDD" : "ONNN";
 		KTools::decode(tempReward);
 
-		CCString *cl = KTools::readFromSQLite();
+		auto cl = KTools::readFromSQLite();
 		int rewardNum;
 		if (_isWin)
-		{
 			rewardNum = realKillNum * 75 + to_int(tempReward.c_str());
-		}
 		else
-		{
 			rewardNum = realKillNum * 50;
-		}
 
 		CCSprite *coinBG = CCSprite::createWithSpriteFrameName("coin_bg.png");
 		coinBG->setAnchorPoint(ccp(0, 0));
@@ -320,25 +292,24 @@ void GameOver::listResult()
 		adExtra->setPosition(ccp(coinBG->getPositionX() + 70, coinBG->getPositionY() + 22));
 		addChild(adExtra, 7);
 
-		CCString *extraCoin;
+		const char *extraCoin;
 		int tempCoin;
 		if (_isWin)
 		{
 			std::string tempEtra = "idd4";
 			KTools::decode(tempEtra);
-			tempCoin = rewardNum + to_int(cl->getCString()) + to_int(tempEtra.c_str());
-			extraCoin = CCString::createWithFormat("+%d", 500);
+			tempCoin = rewardNum + to_int(cl.c_str()) + to_int(tempEtra.c_str());
+			extraCoin = "+500";
 		}
 		else
 		{
-			tempCoin = rewardNum + to_int(cl->getCString());
-			extraCoin = CCString::createWithFormat("+%d", 0);
+			tempCoin = rewardNum + to_int(cl.c_str());
+			extraCoin = "+0";
 		}
 
-		CCString *realCoin = to_ccstring(tempCoin);
-		KTools::saveToSQLite("GameRecord", "coin", realCoin->getCString(), false);
+		KTools::saveToSQLite("GameRecord", "coin", std::to_string(tempCoin).c_str(), false);
 
-		auto extraLabel = CCLabelBMFont::create(extraCoin->getCString(), "Fonts/yellow.fnt");
+		auto extraLabel = CCLabelBMFont::create(extraCoin, "Fonts/yellow.fnt");
 		extraLabel->setScale(0.5f);
 		extraLabel->setAnchorPoint(ccp(0.5f, 0));
 		extraLabel->setPosition(ccp(coinBG->getPositionX() + 68, coinBG->getPositionY() + 3));
@@ -408,48 +379,30 @@ void GameOver::listResult()
 		}
 		if (Cheats < MaxCheats)
 		{
-			resultChar = getGameLayer()->currentPlayer->getCharacter();
+			resultChar = getGameLayer()->currentPlayer->getCharacter()->getCString();
 			if (getGameLayer()->currentPlayer->isCharacter("SageNaruto"))
-			{
-				resultChar = CCString::create("Naruto");
-			}
+				resultChar = "Naruto";
 			else if (getGameLayer()->currentPlayer->isCharacter("RikudoNaruto"))
-			{
-				resultChar = CCString::create("Naruto");
-			}
+				resultChar = "Naruto";
 			else if (getGameLayer()->currentPlayer->isCharacter("SageJiraiya"))
-			{
-				resultChar = CCString::create("Jiraiya");
-			}
+				resultChar = "Jiraiya";
 			else if (getGameLayer()->currentPlayer->isCharacter("ImmortalSasuke"))
-			{
-				resultChar = CCString::create("Sasuke");
-			}
+				resultChar = "Sasuke";
 			else if (getGameLayer()->currentPlayer->isCharacter("RockLee"))
-			{
-				resultChar = CCString::create("Lee");
-			}
+				resultChar = "Lee";
 
 			if (_isWin)
 			{
-				CCString *winNum = KTools::readSQLite("CharRecord", "name", resultChar->getCString(), "column1");
-				int tempWin = 0;
-
+				int winNum = KTools::readWinNumFromSQL(resultChar);
 				if (resultScore >= 140)
-				{
-					tempWin = to_int(winNum->getCString()) + 3;
-				}
+					winNum += 3;
 				else if (resultScore >= 120)
-				{
-					tempWin = to_int(winNum->getCString()) + 2;
-				}
+					winNum += 2;
 				else
-				{
-					tempWin = to_int(winNum->getCString()) + 1;
-				}
+					winNum += 1;
 
-				CCString *realWin = to_ccstring(tempWin);
-				KTools::saveSQLite("CharRecord", "name", resultChar->getCString(), "column1", (char *)realWin->getCString(), false);
+				auto realWin = std::to_string(winNum).c_str();
+				KTools::saveSQLite("CharRecord", "name", resultChar, "column1", (char *)realWin, false);
 
 				if (getGameLayer()->_isRandomChar && resultScore >= 120)
 				{
@@ -481,41 +434,36 @@ void GameOver::listResult()
 
 						if (is_same(hero->getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()))
 						{
-							CCString *winNum = KTools::readSQLite("CharRecord", "name", hero->getCharacter()->getCString(), "column1");
-							int tempWin = 0;
+							int winNum = KTools::readWinNumFromSQL(hero->getCharacter()->getCString());
 							if (resultScore >= 140)
-							{
-								tempWin = to_int(winNum->getCString()) + 2;
-							}
+								winNum += 2;
 							else
-							{
-								tempWin = to_int(winNum->getCString()) + 1;
-							}
+								winNum += 1;
 
-							CCString *realWin = to_ccstring(tempWin);
-							KTools::saveSQLite("CharRecord", "name", hero->getCharacter()->getCString(), "column1", (char *)realWin->getCString(), false);
+							auto realWin = std::to_string(winNum).c_str();
+							KTools::saveSQLite("CharRecord", "name", hero->getCharacter()->getCString(), "column1", (char *)realWin, false);
 						}
 					}
 				}
-				CCString *recordTime = KTools::readSQLite("CharRecord", "name", resultChar->getCString(), "column3");
-				if (recordTime->length() == 0)
+
+				auto bestTime = KTools::readSQLite("CharRecord", "name", resultChar, "column3");
+				if (bestTime.empty())
 				{
-					KTools::saveSQLite("CharRecord", "name", resultChar->getCString(), "column3", (char *)tempTime->getCString(), false);
+					KTools::saveSQLite("CharRecord", "name", resultChar, "column3", (char *)tempTime, false);
 				}
 				else
 				{
-					std::string bestTime = recordTime->getCString();
-					auto recordHour = bestTime.substr(0, 2).c_str();
-					auto recordMinute = bestTime.substr(3, 2).c_str();
-					auto recordSecond = bestTime.substr(6, 2).c_str();
+					int recordHour = to_int(bestTime.substr(0, 2).c_str());
+					int recordMinute = to_int(bestTime.substr(3, 2).c_str());
+					int recordSecond = to_int(bestTime.substr(6, 2).c_str());
 
-					auto recordTime = recordHour * 60 * 60 + recordMinute * 60 + recordSecond;
-					auto currentTime = getGameLayer()->_minute * 60 + getGameLayer()->_second;
+					int recordTime = recordHour * 60 * 60 + recordMinute * 60 + recordSecond;
+					int currentTime = getGameLayer()->_minute * 60 + getGameLayer()->_second;
 					bool isNewRecord = currentTime < recordTime;
 
 					if (isNewRecord)
 					{
-						KTools::saveSQLite("CharRecord", "name", resultChar->getCString(), "column3", (char *)tempTime->getCString(), false);
+						KTools::saveSQLite("CharRecord", "name", resultChar, "column3", (char *)tempTime, false);
 					}
 				}
 			}

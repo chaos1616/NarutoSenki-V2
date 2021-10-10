@@ -9,5 +9,5 @@ function CreditsLayer_BackToStartMenu()
 
     hook.registerInitHandlerOnly(menuLayer)
     menuScene:addChild(menuLayer)
-    director.replaceSceneWithFade(menuScene, 1.5)
+    director.replaceSceneWithFade(menuScene, 1)
 end
