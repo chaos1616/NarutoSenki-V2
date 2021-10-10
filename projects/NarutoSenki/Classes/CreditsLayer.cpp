@@ -61,9 +61,13 @@ bool CreditsLayer::init()
 	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isBGM"))
 		SimpleAudioEngine::sharedEngine()->playBackgroundMusic(CREDITS_MUSIC, true);
 
-	setKeypadEnabled(true);
-
 	return true;
+}
+
+void CreditsLayer::onEnterTransitionDidFinish()
+{
+	CCLayer::onEnterTransitionDidFinish();
+	setKeypadEnabled(true);
 }
 
 void CreditsLayer::keyBackClicked()

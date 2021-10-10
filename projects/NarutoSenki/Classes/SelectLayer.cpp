@@ -10,6 +10,10 @@
 SelectLayer::~SelectLayer()
 {
 	CC_SAFE_RELEASE(_selectList);
+
+	auto handler = getGameModeHandler();
+	handler->selectLayer = nullptr;
+	handler->resetCheats();
 }
 
 void SelectLayer::onGameStart()
@@ -37,10 +41,21 @@ void SelectLayer::onGameStart()
 	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.25f, loadScene));
 }
 
+void SelectLayer::onExitTransitionDidStart()
+{
+	CCLayer::onExitTransitionDidStart();
+	setKeypadEnabled(false);
+}
+
+void SelectLayer::onEnterTransitionDidFinish()
+{
+	CCLayer::onEnterTransitionDidFinish();
+	setKeypadEnabled(true);
+}
+
 void SelectLayer::keyBackClicked()
 {
 	setKeypadEnabled(false);
-	getGameModeHandler()->selectLayer = nullptr;
 
 	lua_call_func("backToStartMenu");
 }

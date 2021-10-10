@@ -8,7 +8,6 @@ public:
 	{
 		CCLOG("Enter 4 VS 4 mode.");
 
-		oldCheats = Cheats;
 		Cheats = 7;
 		gd.isHardCore = true;
 	}
@@ -24,6 +23,7 @@ public:
 
 	void onGameOver()
 	{
+		resetCheats();
 	}
 
 	void onCharacterInit(CharacterBase *c)

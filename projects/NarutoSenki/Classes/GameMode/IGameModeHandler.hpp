@@ -109,8 +109,14 @@ public:
 
 	inline const GameData &getGameData() { return gd; }
 	inline int getOldCheats() { return oldCheats; }
+	inline int resetCheats() { return Cheats = oldCheats; }
 
 protected:
+	IGameModeHandler()
+	{
+		oldCheats = Cheats;
+	}
+
 	CCArray *getHerosArray()
 	{
 		return _heroArr;

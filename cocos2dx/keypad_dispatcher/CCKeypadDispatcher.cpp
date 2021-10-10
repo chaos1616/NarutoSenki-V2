@@ -82,9 +82,19 @@ void CCKeypadDispatcher::addDelegate(CCKeypadDelegate* pDelegate)
         return;
     }
 
+	// NOTE: This function will be called twice on lua
+	CCKeypadHandler* pHandler = NULL;
+	CCObject* pObj = NULL;
+	CCARRAY_FOREACH(m_pDelegates, pObj)
+	{
+		pHandler = (CCKeypadHandler*)pObj;
+		if (pHandler && pHandler->getDelegate() == pDelegate)
+			return;
+	}
+
     if (! m_bLocked)
     {
-        forceAddDelegate(pDelegate);
+		forceAddDelegate(pDelegate);
     }
     else
     {

@@ -93,5 +93,5 @@ function onGameOver()
 
     hook.registerInitHandlerOnly(menuLayer)
     menuScene:addChild(menuLayer)
-    director.replaceSceneWithFade(menuScene, 2.0)
+    director.replaceSceneWithFade(menuScene, 1.25)
 end

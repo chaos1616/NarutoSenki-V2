@@ -22,10 +22,12 @@ public:
 	void onGameStart();
 	void setPlayerSelected(const char *charName) {}
 
-	void keyBackClicked();
-
 	CREATE_FUNC(SelectLayer);
 
 private:
+	void onExitTransitionDidStart();
+	void onEnterTransitionDidFinish();
+	void keyBackClicked();
+
 	bool isStart = false;
 };

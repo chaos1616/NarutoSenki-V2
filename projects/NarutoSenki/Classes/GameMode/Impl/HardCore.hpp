@@ -8,7 +8,6 @@ public:
 	{
 		CCLOG("Enter HardCore mode.");
 
-		oldCheats = Cheats;
 		Cheats = 7; // Use 4 vs 4 map position
 		gd.enableGear = false;
 		gd.isHardCore = true;
@@ -25,6 +24,7 @@ public:
 
 	void onGameOver()
 	{
+		resetCheats();
 	}
 
 	void onCharacterInit(CharacterBase *c)
