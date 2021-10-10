@@ -2,6 +2,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Debug (windwos)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "NarutoSenki.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/projects/NarutoSenki/__BIN__/",
+            "environment": [],
+            "console": "internalConsole",
+            "preLaunchTask": "compile-win32-debug"
+        },
+        {
             "name": "Debug (linux)",
             "type": "cppdbg",
             "request": "launch",
@@ -19,18 +31,6 @@
                     "ignoreFailures": false
                 }
             ]
-        },
-        {
-            "name": "Debug (windwos)",
-            "type": "cppvsdbg",
-            "request": "launch",
-            "program": "NarutoSenki.exe",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/projects/NarutoSenki/__BIN__/",
-            "environment": [],
-            "console": "internalConsole",
-            "preLaunchTask": "compile-win32-debug"
         },
         {
             "name": "Python: Current File",

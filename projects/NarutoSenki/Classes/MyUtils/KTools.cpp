@@ -313,7 +313,7 @@ sqlite3 *KTools::prepareTableInDB()
 
 	if (result != SQLITE_OK)
 	{
-		CCLOG("open sql file Failed!");
+		CCMessageBox(path.c_str(), "open sql file Failed!");
 		return nullptr;
 	}
 

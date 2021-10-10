@@ -10,10 +10,6 @@
 SelectLayer::~SelectLayer()
 {
 	CC_SAFE_RELEASE(_selectList);
-
-	auto handler = getGameModeHandler();
-	handler->selectLayer = nullptr;
-	handler->resetCheats();
 }
 
 void SelectLayer::onGameStart()
@@ -56,6 +52,10 @@ void SelectLayer::onEnterTransitionDidFinish()
 void SelectLayer::keyBackClicked()
 {
 	setKeypadEnabled(false);
+
+	auto handler = getGameModeHandler();
+	handler->selectLayer = nullptr;
+	handler->resetCheats();
 
 	lua_call_func("backToStartMenu");
 }

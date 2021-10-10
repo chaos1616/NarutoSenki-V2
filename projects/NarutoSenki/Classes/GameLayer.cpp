@@ -203,31 +203,22 @@ void GameLayer::initHeros()
 			CCString *group = CCString::create(tempdict->valueForKey("group")->getCString());
 
 			int mapPos = i;
-			if (is_same(group->getCString(), Akatsuki))
+
+			if (mapPos == 0)
 			{
-				if (mapPos <= MapPosCount)
-					mapPos += 4;
+				spawnPoint = ccp(432, 80);
+			}
+			else if (mapPos == 7)
+			{
+				spawnPoint = ccp(2608, 80);
 			}
 			else
-			{
-				if (mapPos > MapPosCount)
-					mapPos -= 4;
-			}
-
-			if (mapPos > 0 && mapPos < 7)
 			{
 				CCObject *mapObject = objectArray->objectAtIndex(mapPos - 1);
 				auto mapdict = (CCDictionary *)mapObject;
 				int x = ((CCString *)mapdict->objectForKey("x"))->intValue();
 				int y = ((CCString *)mapdict->objectForKey("y"))->intValue();
 				spawnPoint = ccp(x, y);
-			}
-			else
-			{
-				if (mapPos == 0 && is_same(group->getCString(), Konoha))
-					spawnPoint = ccp(432, 80);
-				else if (is_same(group->getCString(), Akatsuki))
-					spawnPoint = ccp(2608, 80);
 			}
 
 			auto hero = addHero(player, role, group, spawnPoint, i + 1);
