@@ -157,7 +157,7 @@ public:
 	static void saveSQLite(const char *table, const char *relatedColumn, const char *value, const char *targetColumn, char *targetValue, bool isPlus);
 
 	static int readWinNumFromSQL(const char *heroName);
-	static const char *readCoinFromSQL();
+	static int readCoinFromSQL();
 	static const char *readRecordTimeFromSQL(const char *heroName);
 
 	static std::string encodeData(std::string data);

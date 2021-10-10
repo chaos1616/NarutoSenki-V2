@@ -275,7 +275,7 @@ void GameOver::listResult()
 		std::string tempReward = getGameLayer()->_isHardCoreGame ? "FDDD" : "ONNN";
 		KTools::decode(tempReward);
 
-		auto cl = KTools::readFromSQLite();
+		int coins = KTools::readCoinFromSQL();
 		int rewardNum;
 		if (_isWin)
 			rewardNum = realKillNum * 75 + to_int(tempReward.c_str());
@@ -298,12 +298,12 @@ void GameOver::listResult()
 		{
 			std::string tempEtra = "idd4";
 			KTools::decode(tempEtra);
-			tempCoin = rewardNum + to_int(cl.c_str()) + to_int(tempEtra.c_str());
+			tempCoin = rewardNum + coins + to_int(tempEtra.c_str());
 			extraCoin = "+500";
 		}
 		else
 		{
-			tempCoin = rewardNum + to_int(cl.c_str());
+			tempCoin = rewardNum + coins;
 			extraCoin = "+0";
 		}
 

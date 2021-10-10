@@ -164,7 +164,7 @@ function SkillLayer:initInterface()
     self:addChild(goldBG, 9)
 
     local coinsNum = tools.readCoinFromSQL()
-    self.coinLabel = CCLabelBMFont:create(coinsNum, 'Fonts/1.fnt')
+    self.coinLabel = CCLabelBMFont:create(tostring(coinsNum), 'Fonts/1.fnt')
     self.coinLabel:setScale(0.3)
     self.coinLabel:setAnchorPoint(0.5, 0)
     self.coinLabel:setPosition(goldBG:getPositionX() -
@@ -186,11 +186,10 @@ function SkillLayer:initInterface()
     -- bonds:setMidpoint(CCPoint(0, 0)) -- is default value
     bonds:setBarChangeRate(CCPoint(0, 1))
 
-    coinsNum = tonumber(coinsNum)
     if coinsNum >= 99999 then
         bonds:setPercentage(100)
     elseif coinsNum >= 80000 then
-        bonds:setPercentage(toint(coinsNum / 1000))
+        bonds:setPercentage(coinsNum / 1000)
     end
 
     bonds:setPosition(

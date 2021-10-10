@@ -68407,8 +68407,8 @@ static int tolua_Cocos2d_KTools_readCoinFromSQL00(lua_State* tolua_S)
 #endif
  {
   {
-   const char* tolua_ret = (const char*)  KTools::readCoinFromSQL();
-   tolua_pushstring(tolua_S,(const char*)tolua_ret);
+   int tolua_ret = (int)  KTools::readCoinFromSQL();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;

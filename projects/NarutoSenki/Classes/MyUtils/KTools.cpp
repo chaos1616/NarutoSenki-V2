@@ -488,9 +488,10 @@ int KTools::readWinNumFromSQL(const char *heroName)
 	return to_int(winNum);
 }
 
-const char *KTools::readCoinFromSQL()
+int KTools::readCoinFromSQL()
 {
-	return readFromSQLite().c_str();
+	auto coins = readFromSQLite();
+	return to_int(coins.c_str());
 }
 
 const char *KTools::readRecordTimeFromSQL(const char *heroName)

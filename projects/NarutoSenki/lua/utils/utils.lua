@@ -53,7 +53,7 @@ end
 
 function tools.readCoinFromSQL()
     local coins = KTools:readCoinFromSQL()
-    return coins == '' and '0' or coins
+    return coins
 end
 
 function tools.readWinNumFromSQL(heroName)
