@@ -1,14 +1,14 @@
-#ifndef __DEFINES_H__
-#define __DEFINES_H__
+#pragma once
 #include "cocos2d.h"
 #include "cocos-ext.h"
 #include "SimpleAudioEngine.h"
-
+#include "Data/Types.h"
 #include "MyUtils/Cocos2dxHelper.hpp"
 
 using namespace cocos2d;
 using namespace cocos2d::extension;
 using namespace CocosDenshion;
+using namespace std;
 
 //global parameter
 #define winSize CCDirector::sharedDirector()->getWinSize()
@@ -404,7 +404,6 @@ static const int kHeroNum = sizeof(kHeroList) / sizeof(char *);
 #define KEY_F11 0x7A
 #define KEY_F12 0x7B
 
-#endif
 #endif
 
 // Macros

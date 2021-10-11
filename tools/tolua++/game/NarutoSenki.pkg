@@ -133,9 +133,6 @@ public:
 /* KTools.h */
 class KTools : public CCObject {
 public:
-	static void prepareFileMD5();
-	static void prepareFileSHA();
-
 	static bool readXMLToArray(const char *filePath, CCArray *array);
 	static void prepareFileOGG(const char *listName, bool unload = false);
 
@@ -149,7 +146,6 @@ public:
 
 	static void encode(std::string &str, int randomKey);
 	static void decode(std::string &str);
-	static int checkMD5(std::string findPath = "");
 
 	static std::string getKeycode(std::string path);
 

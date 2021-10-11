@@ -1,21 +1,7 @@
-#include "Defines.h"
 #include "KTools.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "../../../cocos2dx/platform/android/jni/JniHelper.h"
 #endif
-
-void KTools::prepareFileMD5()
-{
-}
-
-void KTools::prepareFileSHA()
-{
-}
-
-int KTools::checkMD5(std::string findPath /* ="" */)
-{
-	return 1;
-}
 
 std::string KTools::getKeycode(std::string path)
 {

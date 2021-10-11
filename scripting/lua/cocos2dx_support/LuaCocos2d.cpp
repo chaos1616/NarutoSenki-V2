@@ -67896,60 +67896,6 @@ static int tolua_Cocos2d_SelectLayer_onGameStart00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: prepareFileMD5 of class  KTools */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_KTools_prepareFileMD500
-static int tolua_Cocos2d_KTools_prepareFileMD500(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"KTools",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   KTools::prepareFileMD5();
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'prepareFileMD5'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: prepareFileSHA of class  KTools */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_KTools_prepareFileSHA00
-static int tolua_Cocos2d_KTools_prepareFileSHA00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"KTools",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   KTools::prepareFileSHA();
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'prepareFileSHA'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: readXMLToArray of class  KTools */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_KTools_readXMLToArray00
 static int tolua_Cocos2d_KTools_readXMLToArray00(lua_State* tolua_S)
@@ -68222,36 +68168,6 @@ static int tolua_Cocos2d_KTools_decode00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'decode'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: checkMD5 of class  KTools */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_KTools_checkMD500
-static int tolua_Cocos2d_KTools_checkMD500(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"KTools",0,&tolua_err) ||
-     !tolua_iscppstring(tolua_S,2,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  std::string findPath = ((std::string)  tolua_tocppstring(tolua_S,2,""));
-  {
-   int tolua_ret = (int)  KTools::checkMD5(findPath);
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'checkMD5'.",&tolua_err);
  return 0;
 #endif
 }
@@ -72536,8 +72452,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"KTools","KTools","CCObject",NULL);
   tolua_beginmodule(tolua_S,"KTools");
-   tolua_function(tolua_S,"prepareFileMD5",tolua_Cocos2d_KTools_prepareFileMD500);
-   tolua_function(tolua_S,"prepareFileSHA",tolua_Cocos2d_KTools_prepareFileSHA00);
    tolua_function(tolua_S,"readXMLToArray",tolua_Cocos2d_KTools_readXMLToArray00);
    tolua_function(tolua_S,"prepareFileOGG",tolua_Cocos2d_KTools_prepareFileOGG00);
    tolua_function(tolua_S,"initTableInDB",tolua_Cocos2d_KTools_initTableInDB00);
@@ -72547,7 +72461,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"readFromSQLite",tolua_Cocos2d_KTools_readFromSQLite00);
    tolua_function(tolua_S,"encode",tolua_Cocos2d_KTools_encode00);
    tolua_function(tolua_S,"decode",tolua_Cocos2d_KTools_decode00);
-   tolua_function(tolua_S,"checkMD5",tolua_Cocos2d_KTools_checkMD500);
    tolua_function(tolua_S,"getKeycode",tolua_Cocos2d_KTools_getKeycode00);
    tolua_function(tolua_S,"readSQLite",tolua_Cocos2d_KTools_readSQLite00);
    tolua_function(tolua_S,"saveSQLite",tolua_Cocos2d_KTools_saveSQLite00);

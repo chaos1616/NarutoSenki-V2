@@ -1,8 +1,5 @@
 #pragma once
-#include "cocos2d.h"
-#include "SimpleAudioEngine.h"
-#include "platform/CCFileUtils.h"
-#include "support/tinyxml2/tinyxml2.h"
+#include "Defines.h"
 #include "MyUtils/CMD5Checksum.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "../../external/sqlite3/src/sqlite3.h"
@@ -10,16 +7,11 @@
 #include "sqlite3.h"
 #endif
 
-USING_NS_CC;
-
 class CMD5Checksum;
 
 class KTools : public CCObject
 {
 public:
-	static void prepareFileMD5();
-	static void prepareFileSHA();
-
 	static bool readXMLToArray(const char *filePath, CCArray *&array);
 	static void prepareFileOGG(const char *listName, bool unload = false);
 
@@ -33,7 +25,6 @@ public:
 
 	static void encode(std::string &str, int randomKey);
 	static void decode(std::string &str);
-	static int checkMD5(std::string findPath = "");
 
 	static std::string getKeycode(std::string path);
 

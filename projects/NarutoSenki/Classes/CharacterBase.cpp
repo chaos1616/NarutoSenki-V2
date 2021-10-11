@@ -240,6 +240,7 @@ void CharacterBase::updateDataByLVOnly()
 	setnAttackValue(to_ccstring(attackValue));
 }
 
+// TODO: Move to setData(HeroMetadata data)
 void CharacterBase::readData(CCArray *tmpData, CCString *&attackType, CCString *&attackValue, int &attackRangeX, int &attackRangeY, uint32_t &coldDown, int &combatPoint)
 {
 	CCDictionary *tmpDict;
@@ -2994,20 +2995,13 @@ void CharacterBase::stopJump(CCNode *sender, void *data)
 void CharacterBase::setBullet(CCNode *sender, void *data)
 {
 	auto file = (CCDictionary *)data;
-	CCString *str = (CCString *)(file->objectForKey(1));
-	CCString *bulletType = str;
+	CCString *bulletName = (CCString *)(file->objectForKey(1));
+	std::string bulletType = bulletName->m_sString;
 
 	Bullet *bullet = Bullet::create();
-	bullet->setID(bulletType, CCString::create("Bullet"), _group);
+	bullet->setID(bulletName, CCString::create("Bullet"), _group);
 	bullet->idle();
-	if (_master)
-	{
-		bullet->_master = _master;
-	}
-	else
-	{
-		bullet->_master = this;
-	}
+	bullet->_master = _master ? _master : this;
 
 	if (_isFlipped)
 	{
@@ -3017,7 +3011,7 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 
 	getGameLayer()->addChild(bullet, -getPositionY());
 
-	if (is_same(bulletType->getCString(), "PaperSrk"))
+	if (bulletType == "PaperSrk")
 	{
 		bullet->setScale(0.8f);
 		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32),
@@ -3025,7 +3019,7 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 		bullet->attack(NAttack);
 		bullet->setMove(192, 2.0f, false);
 	}
-	else if (is_same(bulletType->getCString(), "PaperSpear"))
+	else if (bulletType == "PaperSpear")
 	{
 		bullet->setScale(0.8f);
 		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -68 : 68),
@@ -3033,24 +3027,20 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 		bullet->attack(NAttack);
 		bullet->setMove(192, 2.0f, false);
 	}
-	else if (is_same(bulletType->getCString(), "HugeSRK"))
+	else if (bulletType == "HugeSRK")
 	{
-		float rangeX = 76;
-
 		bullet->setScale(0.8f);
-		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -rangeX : rangeX),
+		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -76 : 76),
 								getPositionY() + getHeight() / 2));
 		if (_skillUPBuffValue)
-		{
 			bullet->setnAttackValue(to_ccstring(bullet->getNAttackValue() + _skillUPBuffValue));
-		}
 
 		bullet->scheduleOnce(schedule_selector(Bullet::setAttack), 0.5f);
 		scheduleOnce(schedule_selector(CharacterBase::setBulletGroup), 0.2f);
 		bullet->setEaseIn(224, 5.0f);
 	}
-	else if (is_same(bulletType->getCString(), "FlyKnife") ||
-			 is_same(bulletType->getCString(), "TentenSRK"))
+	else if (bulletType == "FlyKnife" ||
+			 bulletType == "TentenSRK")
 	{
 		bullet->setScale(0.8f);
 		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32),
@@ -3059,15 +3049,15 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 		bullet->setEaseIn(224, 2.0f);
 		bullet->attack(NAttack);
 	}
-	else if (is_same(bulletType->getCString(), "HiraishinKunai") ||
-			 is_same(bulletType->getCString(), "Shintenshin"))
+	else if (bulletType == "HiraishinKunai" ||
+			 bulletType == "Shintenshin")
 	{
 		if (!_monsterArray)
 		{
 			_monsterArray = CCArray::create();
 			_monsterArray->retain();
 		}
-		if (is_same(bulletType->getCString(), "HiraishinKunai"))
+		if (bulletType == "HiraishinKunai")
 		{
 			bullet->setScale(0.8f);
 			bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -42 : 42),
