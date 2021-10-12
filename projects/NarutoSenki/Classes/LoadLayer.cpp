@@ -82,14 +82,18 @@ void LoadLayer::preloadIMG()
 
 	if (tempHeros)
 	{
-		// TODO: Use vector<CharacterBase> loadedList to skip already loaded character.
 		int i = 0;
 		CCObject *pObject = nullptr;
 		CCARRAY_FOREACH(tempHeros, pObject)
 		{
-			auto tempdict = (CCDictionary *)pObject;
-			auto player = tempdict->valueForKey("character")->getCString();
-			perloadCharIMG(player);
+			auto c = ((CCDictionary *)pObject)->valueForKey("character");
+			auto player = c->getCString();
+
+			if (std::find(loadVector.begin(), loadVector.end(), c->m_sString) == loadVector.end())
+			{
+				perloadCharIMG(player);
+				loadVector.push_back(player);
+			}
 
 			if (i == 0 || (i < count && _enableGear))
 				setLoadingAnimation(player, i);
@@ -155,8 +159,8 @@ void LoadLayer::perloadCharIMG(const char *player)
 	const char *path = CCString::createWithFormat("Element/Skills/%s_Skill.plist", player)->getCString();
 	if (CCFileUtils::sharedFileUtils()->isFileExist(path))
 		addSprites(path);
-	else
-		CCLOG("Not found file %s", path);
+	// else
+	// CCLOG("Not found file %s", path);
 
 	KTools::prepareFileOGG(player);
 

@@ -1,19 +1,7 @@
 #pragma once
-#include "GameLayer.h"
 #include "BGLayer.h"
+#include "GameLayer.h"
 #include "HudLayer.h"
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-#include "../../../cocos2dx/platform/android/jni/JniHelper.h"
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-#include <direct.h>
-#include <io.h>
-#else
-#include <unistd.h>
-#include <stdio.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#endif
 
 class CharacterBase;
 
@@ -44,6 +32,8 @@ public:
 	static void perloadCharIMG(const char *player);
 	static void unloadCharIMG(const CharacterBase *player);
 
-protected:
+private:
 	void setLoadingAnimation(const char *player, int index);
+
+	std::vector<std::string> loadVector;
 };
