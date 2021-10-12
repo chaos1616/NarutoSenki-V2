@@ -92,9 +92,9 @@ void GearButton::click()
 	auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("gearDetail_%02d.png", gearType(_gearType))->getCString());
 	_delegate->gearDetail->setDisplayFrame(frame);
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 	auto icon = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("gear_%02d.png", gearType(_gearType))->getCString());
-	_delegate->gearDetailIcon->setDisplayFrame(icon);
+	_delegate->gearBigIcon->setDisplayFrame(icon);
 #endif
 }
 
@@ -286,10 +286,10 @@ bool GearLayer::init(CCRenderTexture *snapshoot)
 	addChild(gearDetail, 600);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	gearDetailIcon = CCSprite::createWithSpriteFrameName("gear_00.png");
-	gearDetailIcon->setAnchorPoint(ccp(0.5f, 0));
-	gearDetailIcon->setPosition(ccp(gears_bg->getPositionX() + gears_bg->getContentSize().width / 2 - 54, 90));
-	addChild(gearDetailIcon, 600);
+	gearBigIcon = CCSprite::createWithSpriteFrameName("gear_00.png");
+	gearBigIcon->setAnchorPoint(ccp(0.5f, 0));
+	gearBigIcon->setPosition(ccp(gears_bg->getPositionX() + gears_bg->getContentSize().width / 2 - 54, 90));
+	addChild(gearBigIcon, 600);
 #endif
 
 	CCMenuItem *buy_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("gearBuy_btn.png"),
