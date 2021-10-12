@@ -66994,42 +66994,6 @@ static int tolua_Cocos2d_Effect_create00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: init of class  Effect */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_Effect_init00
-static int tolua_Cocos2d_Effect_init00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Effect",0,&tolua_err) ||
-     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,3,"CCObject",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Effect* self = (Effect*)  tolua_tousertype(tolua_S,1,0);
-  const char* szImage = ((const char*)  tolua_tostring(tolua_S,2,0));
-  CCObject* Attacker = ((CCObject*)  tolua_tousertype(tolua_S,3,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'init'", NULL);
-#endif
-  {
-   bool tolua_ret = (bool)  self->init(szImage,Attacker);
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'init'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: create of class  HPBar */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_HPBar_create00
 static int tolua_Cocos2d_HPBar_create00(lua_State* tolua_S)
@@ -67891,38 +67855,6 @@ static int tolua_Cocos2d_SelectLayer_onGameStart00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'onGameStart'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: readXMLToArray of class  KTools */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_KTools_readXMLToArray00
-static int tolua_Cocos2d_KTools_readXMLToArray00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"KTools",0,&tolua_err) ||
-     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,3,"CCArray",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  const char* filePath = ((const char*)  tolua_tostring(tolua_S,2,0));
-  CCArray* array = ((CCArray*)  tolua_tousertype(tolua_S,3,0));
-  {
-   bool tolua_ret = (bool)  KTools::readXMLToArray(filePath,array);
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'readXMLToArray'.",&tolua_err);
  return 0;
 #endif
 }
@@ -72408,7 +72340,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
   tolua_cclass(tolua_S,"Effect","Effect","CCSprite",NULL);
   tolua_beginmodule(tolua_S,"Effect");
    tolua_function(tolua_S,"create",tolua_Cocos2d_Effect_create00);
-   tolua_function(tolua_S,"init",tolua_Cocos2d_Effect_init00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"HPBar","HPBar","CCSprite",NULL);
   tolua_beginmodule(tolua_S,"HPBar");
@@ -72452,7 +72383,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"KTools","KTools","CCObject",NULL);
   tolua_beginmodule(tolua_S,"KTools");
-   tolua_function(tolua_S,"readXMLToArray",tolua_Cocos2d_KTools_readXMLToArray00);
    tolua_function(tolua_S,"prepareFileOGG",tolua_Cocos2d_KTools_prepareFileOGG00);
    tolua_function(tolua_S,"initTableInDB",tolua_Cocos2d_KTools_initTableInDB00);
    tolua_function(tolua_S,"initColumeInDB",tolua_Cocos2d_KTools_initColumeInDB00);
