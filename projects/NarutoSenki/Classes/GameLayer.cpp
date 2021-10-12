@@ -308,14 +308,9 @@ void GameLayer::playGameOpeningAnimation(float dt)
 {
 	getHudLayer()->playGameOpeningAnimation();
 
-	if (_isHardCoreGame)
-	{
-		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/battle_start1.ogg");
-	}
-	else
-	{
-		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/battle_start.ogg");
-	}
+	setRand();
+	auto path = random(2) == 0 ? "Audio/Menu/battle_start1.ogg" : "Audio/Menu/battle_start.ogg";
+	SimpleAudioEngine::sharedEngine()->playEffect(path);
 
 	scheduleOnce(schedule_selector(GameLayer::onGameStart), 0.75f);
 }
