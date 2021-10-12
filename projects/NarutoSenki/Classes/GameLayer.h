@@ -55,7 +55,6 @@ public:
 	int kEXPBound;
 	int aEXPBound;
 
-	CCArray *Heros;
 	bool _isAttackButtonRelease;
 	bool _hasSpawnedGuardian;
 	// int _guardianNum;

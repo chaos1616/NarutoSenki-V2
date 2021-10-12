@@ -35,7 +35,6 @@ void SelectLayer::onGameStart()
 	auto gameModeHandler = getGameModeHandler();
 	gameModeHandler->selectLayer = this;
 	gameModeHandler->onInitHeros();
-	loadLayer->tempHeros = gameModeHandler->getHerosArray();
 	loadLayer->preloadAudio();
 	loadScene->addChild(loadLayer);
 

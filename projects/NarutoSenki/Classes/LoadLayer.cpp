@@ -68,7 +68,8 @@ bool LoadLayer::init()
 
 void LoadLayer::preloadIMG()
 {
-	int count = tempHeros->count();
+	auto herosDataVector = getGameModeHandler()->getHerosArray();
+	int count = herosDataVector.size();
 	if (count == 2) // 1v1
 		count = 0;
 	else if (count == 4) // Boss mode (3v1)
@@ -80,26 +81,19 @@ void LoadLayer::preloadIMG()
 	else if (count == 8) // 4v4
 		count = 4;
 
-	if (tempHeros)
+	int i = 0;
+	for (const auto &data : herosDataVector)
 	{
-		int i = 0;
-		CCObject *pObject = nullptr;
-		CCARRAY_FOREACH(tempHeros, pObject)
+		auto name = data.character;
+		if (std::find(loadVector.begin(), loadVector.end(), name) == loadVector.end())
 		{
-			auto c = ((CCDictionary *)pObject)->valueForKey("character");
-			auto player = c->getCString();
-
-			if (std::find(loadVector.begin(), loadVector.end(), c->m_sString) == loadVector.end())
-			{
-				perloadCharIMG(player);
-				loadVector.push_back(player);
-			}
-
-			if (i == 0 || (i < count && _enableGear))
-				setLoadingAnimation(player, i);
-			i++;
+			perloadCharIMG(name.c_str());
+			loadVector.push_back(name);
 		}
-		tempHeros->retain();
+
+		if (i == 0 || (i < count && _enableGear))
+			setLoadingAnimation(name.c_str(), i);
+		i++;
 	}
 
 	if (_isHardCoreMode)
@@ -135,7 +129,6 @@ void LoadLayer::preloadIMG()
 	}
 
 	CCSprite *loading = CCSprite::createWithSpriteFrameName("loading_font.png");
-
 	loading->setPosition(ccp(winSize.width - 120, 45));
 	auto fade = CCFadeOut::create(1.0f);
 	auto fadeseq = CCRepeatForever::create(CCSequence::create(fade, fade->reverse(), nullptr));
@@ -363,7 +356,6 @@ void LoadLayer::onLoadFinish(float dt)
 	_gameLayer->setHudLayer(_hudLayer);
 	_gameLayer->setTotalKills(CCString::create("0"));
 	_gameLayer->setTotalTM(CCString::create("0"));
-	_gameLayer->Heros = tempHeros;
 	_gameLayer->initHeros();
 
 	_bgLayer = BGLayer::create();

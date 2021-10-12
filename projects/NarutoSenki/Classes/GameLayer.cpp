@@ -182,6 +182,8 @@ void GameLayer::initHeros()
 	addSprites("Element/hpBar/hpBar.plist");
 
 	auto handler = getGameModeHandler();
+	auto herosDataVector = handler->getHerosArray();
+
 	_CharacterArray = CCArray::create();
 	CCObject *pObject = nullptr;
 	int i = 0;
@@ -194,16 +196,10 @@ void GameLayer::initHeros()
 	// 4v4
 	if (Cheats >= MaxCheats)
 	{
-		CCARRAY_FOREACH(Heros, pObject)
+		for (const auto &data : herosDataVector)
 		{
-			auto tempdict = (CCDictionary *)pObject;
-
-			CCString *player = CCString::create(tempdict->valueForKey("character")->getCString());
-			CCString *role = CCString::create(tempdict->valueForKey("role")->getCString());
-			CCString *group = CCString::create(tempdict->valueForKey("group")->getCString());
-
 			int mapPos = i;
-			if (is_same(group->getCString(), Akatsuki))
+			if (data.group == Akatsuki)
 			{
 				if (mapPos <= MapPosCount)
 					mapPos += 4;
@@ -223,29 +219,23 @@ void GameLayer::initHeros()
 			}
 			else
 			{
-				if (mapPos == 0 && is_same(group->getCString(), Konoha))
+				if (mapPos == 0)
 					spawnPoint = ccp(432, 80);
-				else if (is_same(group->getCString(), Akatsuki))
+				else
 					spawnPoint = ccp(2608, 80);
 			}
 
-			auto hero = addHero(player, role, group, spawnPoint, i + 1);
+			auto hero = addHero(CCString::create(data.character), CCString::create(data.role), CCString::create(data.group), spawnPoint, i + 1);
 			_CharacterArray->addObject(hero);
 			i++;
 		}
 	}
 	else
 	{
-		CCARRAY_FOREACH(Heros, pObject)
+		for (const auto &data : herosDataVector)
 		{
-			auto tempdict = (CCDictionary *)pObject;
-
-			CCString *player = CCString::create(tempdict->valueForKey("character")->getCString());
-			CCString *role = CCString::create(tempdict->valueForKey("role")->getCString());
-			CCString *group = CCString::create(tempdict->valueForKey("group")->getCString());
-
 			int mapPos = i;
-			if (is_same(group->getCString(), Akatsuki))
+			if (data.group == Akatsuki)
 			{
 				if (mapPos <= MapPosCount - 1)
 					mapPos += MapPosCount;
@@ -262,7 +252,7 @@ void GameLayer::initHeros()
 			int y = ((CCString *)mapdict->objectForKey("y"))->intValue();
 			spawnPoint = ccp(x, y);
 
-			auto hero = addHero(player, role, group, spawnPoint, i + 1);
+			auto hero = addHero(CCString::create(data.character), CCString::create(data.role), CCString::create(data.group), spawnPoint, i + 1);
 			_CharacterArray->addObject(hero);
 			i++;
 		}

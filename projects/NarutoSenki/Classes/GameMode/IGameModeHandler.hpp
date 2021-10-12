@@ -59,7 +59,7 @@ class IGameModeHandler
 	friend class SelectLayer;
 
 private:
-	CCArray *_heroArr = nullptr;
+	std::vector<HeroData> heroDataVector;
 	// map
 	int mapId = 0;
 	// tower
@@ -77,9 +77,9 @@ private:
 
 	void Internal_GameOver()
 	{
-		CC_SAFE_RELEASE_NULL(_heroArr);
-
 		onGameOver();
+
+		clearHeroArray();
 	}
 
 protected:
@@ -110,6 +110,7 @@ public:
 	inline const GameData &getGameData() { return gd; }
 	inline int getOldCheats() { return oldCheats; }
 	inline int resetCheats() { return Cheats = oldCheats; }
+	inline const std::vector<HeroData> &getHerosArray() { return heroDataVector; }
 
 protected:
 	IGameModeHandler()
@@ -117,14 +118,9 @@ protected:
 		oldCheats = Cheats;
 	}
 
-	CCArray *getHerosArray()
-	{
-		return _heroArr;
-	}
-
 	void clearHeroArray()
 	{
-		CC_SAFE_RELEASE(_heroArr);
+		heroDataVector.clear();
 		heroVector.clear();
 	}
 
@@ -155,45 +151,36 @@ protected:
 	}
 
 	// init hero
-	void addHero(const char *name, const char *role, const char *group, uint32_t lv = 1)
+	inline void addHero(const char *name, const char *role, const char *group, uint32_t lv = 1)
 	{
-		auto dic = CCDictionary::create();
-		dic->setObject(CCString::create(name), "character");
-		dic->setObject(CCString::create(role), "role");
-		dic->setObject(CCString::create(group), "group");
-		if (!_heroArr)
-		{
-			_heroArr = CCArray::create();
-			_heroArr->retain();
-		}
-		_heroArr->addObject(dic);
+		heroDataVector.push_back({name, role, group});
 		heroVector.push_back(name);
 	}
 
-	void addHeros(int count, const char *name, const char *role, const char *group, uint32_t lv = 1)
+	inline void addHeros(int count, const char *name, const char *role, const char *group, uint32_t lv = 1)
 	{
 		for (int i = 0; i < count; i++)
 			addHero(name, role, group, lv);
 	}
 
-	void addKonohaHero(CCArray *heros, const char *name, const char *role, uint32_t lv = 1)
+	inline void addKonohaHero(const std::vector<const char *> &heros, const char *name, const char *role, uint32_t lv = 1)
 	{
 		addHero(name, role, Konoha, lv);
 	}
 
-	void addAkatsukiHero(CCArray *heros, const char *name, const char *role, uint32_t lv = 1)
+	inline void addAkatsukiHero(const std::vector<const char *> &heros, const char *name, const char *role, uint32_t lv = 1)
 	{
 		addHero(name, role, Akatsuki, lv);
 	}
 
-	CCArray *initHeros(uint32_t playerCount, uint32_t enemyCount)
+	inline void initHeros(uint32_t playerCount, uint32_t enemyCount)
 	{
-		return initHeros(playerCount, enemyCount, nullptr, nullptr);
+		initHeros(playerCount, enemyCount, nullptr, nullptr);
 	}
 
-	CCArray *initHeros(uint8_t playerCount, uint8_t enemyCount,
-					   const char *playerSelect, const char *playerGroup,
-					   const char *com1Select = nullptr, const char *com2Select = nullptr, const char *com3Select = nullptr)
+	void initHeros(uint8_t playerCount, uint8_t enemyCount,
+				   const char *playerSelect, const char *playerGroup,
+				   const char *com1Select = nullptr, const char *com2Select = nullptr, const char *com3Select = nullptr)
 	{
 		clearHeroArray();
 
@@ -220,43 +207,35 @@ protected:
 			selectLayer->_com3Select = com3Select;
 
 		// init player hero
-		CCString *tmpChar;
+		std::string tmpChar;
 		if (selectLayer->_playerSelect)
 		{
-			tmpChar = CCString::create(selectLayer->_playerSelect);
+			tmpChar = selectLayer->_playerSelect;
 		}
 		else
 		{
-			int num2 = selectLayer->_selectList->count();
+			auto selcetList = selectLayer->_selectList;
+			int count = selcetList->count();
 			setRand();
-			int index = random(num2);
-			tmpChar = (CCString *)selectLayer->_selectList->objectAtIndex(index);
+			int index = random(count);
+			tmpChar = ((CCString *)selcetList->objectAtIndex(index))->m_sString;
 			do
 			{
-				int num = selectLayer->_selectList->count();
 				setRand();
-				int index = random(num);
-				tmpChar = (CCString *)selectLayer->_selectList->objectAtIndex(index);
-			} while (is_same(tmpChar->getCString(), "None"));
+				index = random(count);
+				tmpChar = ((CCString *)selcetList->objectAtIndex(index))->m_sString;
+			} while (tmpChar == "None");
 
-			selectLayer->_playerSelect = tmpChar->getCString();
+			selectLayer->_playerSelect = tmpChar.c_str();
 			gd.isRandomChar = true;
 		}
 
-		heroVector.push_back(tmpChar->getCString());
-
-		CCString *tmpRole = CCString::create("Player");
-		CCString *tmpGroup = CCString::create(playerGroup);
-
-		auto dic = CCDictionary::create();
-		dic->setObject(tmpChar, "character");
-		dic->setObject(tmpRole, "role");
-		dic->setObject(tmpGroup, "group");
-
-		CCArray *herosArr = CCArray::createWithObject(dic);
-		CCArray *realHero = CCArray::create();
+		// push player
+		heroDataVector.push_back({tmpChar, kRolePlayer, playerGroup});
+		heroVector.push_back(tmpChar.c_str());
 
 		// init com heros
+		std::vector<const char *> realHeroVector;
 		for (int i = 0; i < kHeroNum; i++)
 		{
 			if (is_same(selectLayer->_playerSelect, kHeroList[i]))
@@ -268,80 +247,55 @@ protected:
 			if (selectLayer->_com3Select && is_same(selectLayer->_com3Select, kHeroList[i]))
 				continue;
 
-			CCString *hero = CCString::create(kHeroList[i]);
-			realHero->addObject(hero);
+			realHeroVector.push_back(kHeroList[i]);
 		}
 
+		const char *hero;
 		for (int i = 0; i < comCount; i++)
 		{
-			CCString *hero;
 			if (i < comOfPlayerGroupCount)
 			{
 				if (i == 0 && selectLayer->_com1Select)
 				{
-					hero = CCString::create(selectLayer->_com1Select);
+					hero = selectLayer->_com1Select;
 				}
 				else if (i == 1 && selectLayer->_com2Select)
 				{
-					hero = CCString::create(selectLayer->_com2Select);
+					hero = selectLayer->_com2Select;
 				}
 				else if (i == 2 && selectLayer->_com3Select)
 				{
-					hero = CCString::create(selectLayer->_com3Select);
+					hero = selectLayer->_com3Select;
 				}
 				else
 				{
-					int length = realHero->count();
+					int count = realHeroVector.size();
 					setRand();
-					int index = random(length);
-					if (index == length)
-					{
-						index = realHero->count() - 1;
-					}
+					int index = random(count);
+					if (index == count)
+						index = realHeroVector.size() - 1;
 
-					CCObject *tempObject = realHero->objectAtIndex(index);
-					hero = (CCString *)tempObject;
-					realHero->removeObjectAtIndex(index);
+					hero = realHeroVector.at(index);
+					realHeroVector.erase(std::find(realHeroVector.begin(), realHeroVector.end(), hero));
 				}
 
-				dic = CCDictionary::create();
-				tmpChar = CCString::create(hero->getCString());
-				tmpRole = CCString::create("Com");
-				tmpGroup = CCString::create(team > 0 ? Akatsuki : Konoha);
-				dic->setObject(tmpChar, "character");
-				dic->setObject(tmpRole, "role");
-				dic->setObject(tmpGroup, "group");
-
-				herosArr->addObject(dic);
-				heroVector.push_back(tmpChar->getCString());
+				heroDataVector.push_back({hero, kRoleCom, team > 0 ? Akatsuki : Konoha});
+				heroVector.push_back(hero);
 			}
 			else
 			{
-				int length = realHero->count();
+				int count = realHeroVector.size();
 				setRand();
-				int index = random(length);
-				if (index == length)
-					index = realHero->count() - 1;
+				int index = random(count);
+				if (index == count)
+					index = realHeroVector.size() - 1;
 
-				CCObject *tempObject = realHero->objectAtIndex(index);
-				CCString *hero = (CCString *)tempObject;
-
-				dic = CCDictionary::create();
-				tmpChar = CCString::create(hero->getCString());
-				tmpRole = CCString::create("Com");
-				tmpGroup = CCString::create(team > 0 ? Konoha : Akatsuki);
-				dic->setObject(tmpChar, "character");
-				dic->setObject(tmpRole, "role");
-				dic->setObject(tmpGroup, "group");
-
-				herosArr->addObject(dic);
-				heroVector.push_back(tmpChar->getCString());
-				realHero->removeObjectAtIndex(index);
+				hero = realHeroVector.at(index);
+				heroDataVector.push_back({hero, kRoleCom, team > 0 ? Konoha : Akatsuki});
+				heroVector.push_back(hero);
+				realHeroVector.erase(std::find(realHeroVector.begin(), realHeroVector.end(), hero));
 			}
 		}
-		_heroArr = herosArr;
-		_heroArr->retain();
-		return _heroArr;
 	}
 
 	inline void setPlayerTeamByGroup(const char *group)

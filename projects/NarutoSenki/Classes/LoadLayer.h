@@ -14,7 +14,6 @@ public:
 	bool init();
 
 	int loadNum;
-	CCArray *tempHeros;
 
 	CC_SYNTHESIZE_RETAIN(GameLayer *, _gameLayer, GameLayer);
 	CC_SYNTHESIZE_RETAIN(BGLayer *, _bgLayer, BGLayer);
