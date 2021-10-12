@@ -1,92 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animation>
+<unit>
 
-	<action value="Idle">
-		<date>
-			<dateName type="attackType">FutonSRK</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">57</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">480</coldName>
-		</date>
+	<action name="Idle">
+		<data>
+			<p type="attackType">FutonSRK</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">57</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">480</p>
+		</data>
 		<frame>
-			<frameName>FutonSRK_Move_01.png</frameName>
+			<f>FutonSRK_Move_01</f>
 		</frame>
 	</action>
 
-	<action value="Walk">
+	<action name="Walk">
 		<frame>
-			<frameName>FutonSRK_Move_01.png</frameName>
+			<f>FutonSRK_Move_01</f>
 		</frame>
 	</action>
 
-	<action value="Hurt">
-		<frame>
-		</frame>
-	</action>
-
-	<action value="AirHurt">
-		<frame>
-
-		</frame>
-	</action>
-
-	<action value="KnockDown">
+	<action name="Hurt">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Float">
+	<action name="AirHurt">
+		<frame>
+
+		</frame>
+	</action>
+
+	<action name="KnockDown">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Dead">
+	<action name="Float">
 		<frame>
-			<frameName>FutonSRK_Dead_01.png</frameName>
-			<eventName type="setSound">Audio/Effect/futon_effect.ogg</eventName>
-			<frameName>FutonSRK_Dead_02.png</frameName>
-			<eventName type="setAttackBox">ab_hit</eventName>
-			<frameName>FutonSRK_Dead_03.png</frameName>
-			<frameName>FutonSRK_Dead_04.png</frameName>
-			<eventName type="setAttackBox">b_hit</eventName>
-			<frameName>FutonSRK_Dead_05.png</frameName>
-			<frameName>FutonSRK_Dead_02.png</frameName>
-			<eventName type="setAttackBox">ab_hit</eventName>
-			<frameName>FutonSRK_Dead_03.png</frameName>
-			<frameName>FutonSRK_Dead_04.png</frameName>
-			<eventName type="setAttackBox">b_hit</eventName>
-			<frameName>FutonSRK_Dead_05.png</frameName>
-			<frameName>FutonSRK_Dead_06.png</frameName>
-			<eventName type="setAttackBox">b_hit</eventName>
-			<frameName>FutonSRK_Dead_07.png</frameName>
-			<frameName>FutonSRK_Dead_08.png</frameName>
 		</frame>
 	</action>
 
-	<action value="nAttack">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">460</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="Dead">
 		<frame>
-			<frameName>FutonSRK_Move_01.png</frameName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<frameName>FutonSRK_Move_02.png</frameName>
-			<frameName>FutonSRK_Move_03.png</frameName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<frameName>FutonSRK_Move_01.png</frameName>
-			<frameName>FutonSRK_Move_02.png</frameName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<frameName>FutonSRK_Move_01.png</frameName>
-			<frameName>FutonSRK_Move_02.png</frameName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<frameName>FutonSRK_Move_03.png</frameName>
-			<eventName type="setDetonation">0</eventName>
+			<f>FutonSRK_Dead_01</f>
+			<e type="setSound">Audio/Effect/futon_effect.ogg</e>
+			<f>FutonSRK_Dead_02</f>
+			<e type="setAttackBox">ab_hit</e>
+			<f>FutonSRK_Dead_03</f>
+			<f>FutonSRK_Dead_04</f>
+			<e type="setAttackBox">b_hit</e>
+			<f>FutonSRK_Dead_05</f>
+			<f>FutonSRK_Dead_02</f>
+			<e type="setAttackBox">ab_hit</e>
+			<f>FutonSRK_Dead_03</f>
+			<f>FutonSRK_Dead_04</f>
+			<e type="setAttackBox">b_hit</e>
+			<f>FutonSRK_Dead_05</f>
+			<f>FutonSRK_Dead_06</f>
+			<e type="setAttackBox">b_hit</e>
+			<f>FutonSRK_Dead_07</f>
+			<f>FutonSRK_Dead_08</f>
 		</frame>
 	</action>
 
-</animation>
+	<action name="nAttack">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">460</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">0</p>
+		</data>
+		<frame>
+			<f>FutonSRK_Move_01</f>
+			<e type="setAttackBox">c_hit</e>
+			<f>FutonSRK_Move_02</f>
+			<f>FutonSRK_Move_03</f>
+			<e type="setAttackBox">c_hit</e>
+			<f>FutonSRK_Move_01</f>
+			<f>FutonSRK_Move_02</f>
+			<e type="setAttackBox">c_hit</e>
+			<f>FutonSRK_Move_01</f>
+			<f>FutonSRK_Move_02</f>
+			<e type="setAttackBox">c_hit</e>
+			<f>FutonSRK_Move_03</f>
+			<e type="setDetonation">0</e>
+		</frame>
+	</action>
+
+</unit>

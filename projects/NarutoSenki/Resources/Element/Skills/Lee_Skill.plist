@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>LeeBom_Move_01.png</key>
+            <key>LeeBom_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{157,101}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{167,101}</string>
             </dict>
-            <key>LeeBom_Move_02.png</key>
+            <key>LeeBom_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,161},{167,99}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{167,101}</string>
             </dict>
-            <key>LeeBom_Move_04.png</key>
+            <key>LeeBom_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,330},{167,95}}</string>

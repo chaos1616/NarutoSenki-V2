@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>MaskFuton_Idle_001.png</key>
+            <key>MaskFuton_Idle_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,194},{93,30}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{95,88}</string>
             </dict>
-            <key>MaskFuton_Move_001.png</key>
+            <key>MaskFuton_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{143,146},{93,30}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{287,88}</string>
             </dict>
-            <key>MaskFuton_Move_002.png</key>
+            <key>MaskFuton_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,146},{139,46}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{287,88}</string>
             </dict>
-            <key>MaskFuton_Move_003.png</key>
+            <key>MaskFuton_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,98},{191,46}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{287,88}</string>
             </dict>
-            <key>MaskFuton_Move_004.png</key>
+            <key>MaskFuton_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,50},{191,46}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{287,88}</string>
             </dict>
-            <key>MaskFuton_Move_005.png</key>
+            <key>MaskFuton_Move_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{195,2},{191,46}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{287,88}</string>
             </dict>
-            <key>MaskFuton_Move_006.png</key>
+            <key>MaskFuton_Move_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{191,46}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{287,88}</string>
             </dict>
-            <key>MaskFuton_Walk_001.png</key>
+            <key>MaskFuton_Walk_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,194},{93,30}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{95,88}</string>
             </dict>
-            <key>MaskFuton_Walk_002.png</key>
+            <key>MaskFuton_Walk_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,226},{93,28}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{95,88}</string>
             </dict>
-            <key>MaskFuton_Walk_003.png</key>
+            <key>MaskFuton_Walk_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{97,194},{91,30}}</string>

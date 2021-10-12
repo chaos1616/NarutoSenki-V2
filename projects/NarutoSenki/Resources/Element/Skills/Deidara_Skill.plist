@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>ClayBird_Move_001.png</key>
+            <key>ClayBird_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{494,250},{16,19}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{40,57}</string>
             </dict>
-            <key>ClayBird_Move_002.png</key>
+            <key>ClayBird_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{472,286},{14,15}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{40,57}</string>
             </dict>
-            <key>ClayBird_Move_003.png</key>
+            <key>ClayBird_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{472,226},{24,13}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{40,57}</string>
             </dict>
-            <key>ClayBird_Move_004.png</key>
+            <key>ClayBird_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{472,2},{40,37}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{40,61}</string>
             </dict>
-            <key>ClayBird_Move_005.png</key>
+            <key>ClayBird_Move_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{460,520},{40,43}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{40,61}</string>
             </dict>
-            <key>DeidaraBom_Move_01.png</key>
+            <key>DeidaraBom_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{460,430},{88,46}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{88,46}</string>
             </dict>
-            <key>DeidaraBom_Move_02.png</key>
+            <key>DeidaraBom_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{284,564},{192,54}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{192,54}</string>
             </dict>
-            <key>DeidaraBom_Move_03.png</key>
+            <key>DeidaraBom_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,758},{246,83}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{246,83}</string>
             </dict>
-            <key>DeidaraBom_Move_04.png</key>
+            <key>DeidaraBom_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,564},{280,84}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{280,84}</string>
             </dict>
-            <key>DeidaraBom_Move_05.png</key>
+            <key>DeidaraBom_Move_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,472},{284,90}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{284,90}</string>
             </dict>
-            <key>DeidaraBom_Move_06.png</key>
+            <key>DeidaraBom_Move_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,358},{328,112}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{328,112}</string>
             </dict>
-            <key>DeidaraBom_Move_07.png</key>
+            <key>DeidaraBom_Move_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{340,334},{322,118}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{322,118}</string>
             </dict>
-            <key>DeidaraBom_Move_08.png</key>
+            <key>DeidaraBom_Move_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{342,118}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{342,118}</string>
             </dict>
-            <key>DeidaraBom_Move_09.png</key>
+            <key>DeidaraBom_Move_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{346,2},{330,124}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{330,124}</string>
             </dict>
-            <key>DeidaraBom_Move_10.png</key>
+            <key>DeidaraBom_Move_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,238},{336,118}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{336,118}</string>
             </dict>
-            <key>DeidaraBom_Move_11.png</key>
+            <key>DeidaraBom_Move_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,122},{340,114}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{340,114}</string>
             </dict>
-            <key>DeidaraBom_Move_12.png</key>
+            <key>DeidaraBom_Move_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{87,650},{190,52}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{190,52}</string>
             </dict>
-            <key>Spider_Walk_01.png</key>
+            <key>Spider_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{492,271},{18,13}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{18,13}</string>
             </dict>
-            <key>Spider_Walk_02.png</key>
+            <key>Spider_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{472,271},{18,13}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{18,13}</string>
             </dict>
-            <key>Spider_Walk_03.png</key>
+            <key>Spider_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{472,241},{20,13}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{20,13}</string>
             </dict>
-            <key>Spider_Walk_04.png</key>
+            <key>Spider_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{472,256},{18,13}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{18,13}</string>
             </dict>
-            <key>bom_01.png</key>
+            <key>bom_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{498,226},{22,12}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{22,94}</string>
             </dict>
-            <key>bom_02.png</key>
+            <key>bom_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{472,134},{30,90}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{30,94}</string>
             </dict>
-            <key>bom_03.png</key>
+            <key>bom_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{472,44},{33,88}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{33,94}</string>
             </dict>
-            <key>bom_04.png</key>
+            <key>bom_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{460,334},{46,94}}</string>

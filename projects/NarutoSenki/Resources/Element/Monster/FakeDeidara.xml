@@ -1,78 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animation>
+<unit>
 
-	<action value="Idle">
-		<date>
-			<dateName type="attackType">Deidara</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">51</dateName>
-			<dateName type="attackRangeY">11</dateName>
-			<coldName type="coldDown">224</coldName>
-		</date>
+	<action name="Idle">
+		<data>
+			<p type="attackType">Deidara</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">51</p>
+			<p type="attackRangeY">11</p>
+			<p type="cd">224</p>
+		</data>
 		<frame>
-			<frameName>Deidara_Skill03_02.png</frameName>
+			<f>Deidara_Skill03_02</f>
 		</frame>
 	</action>
 
-	<action value="Walk">
+	<action name="Walk">
 		<frame>
-			<frameName>Deidara_Skill03_02.png</frameName>
+			<f>Deidara_Skill03_02</f>
 		</frame>
 	</action>
 
-	<action value="Hurt">
-		<frame>
-		</frame>
-	</action>
-
-	<action value="AirHurt">
-		<frame>
-
-		</frame>
-	</action>
-
-	<action value="KnockDown">
+	<action name="Hurt">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Float">
+	<action name="AirHurt">
+		<frame>
+
+		</frame>
+	</action>
+
+	<action name="KnockDown">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Dead">
+	<action name="Float">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="nAttack">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">2260</dateName>
-			<dateName type="attackRangeX">96</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="Dead">
 		<frame>
-			<eventName type="setSound">Audio/Deidara/deidara_skill3.ogg</eventName>
-			<frameName>Deidara_Skill03_02.png</frameName>
-			<frameName>Deidara_Skill03_04.png</frameName>
-			<frameName>Deidara_Skill03_05.png</frameName>
-			<frameName>Deidara_Skill03_06.png</frameName>
-			<frameName>Deidara_Skill03_07.png</frameName>
-			<eventName type="setSound">Audio/Effect/bom.ogg</eventName>
-			<eventName type="setAttackBox">a_hit</eventName>
-			<frameName>Deidara_Skill03_08.png</frameName>
-			<frameName>Deidara_Skill03_09.png</frameName>
-			<frameName>Deidara_Skill03_10.png</frameName>
-			<frameName>Deidara_Skill03_11.png</frameName>
-			<frameName>Deidara_Skill03_12.png</frameName>
-			<frameName>Deidara_Skill03_13.png</frameName>
-			<frameName>Deidara_Skill03_14.png</frameName>
-			<frameName>Deidara_Skill03_15.png</frameName>
-			<eventName type="setDetonation">0</eventName>
 		</frame>
 	</action>
 
-</animation>
+	<action name="nAttack">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">2260</p>
+			<p type="attackRangeX">96</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">0</p>
+		</data>
+		<frame>
+			<e type="setSound">Audio/Deidara/deidara_skill3.ogg</e>
+			<f>Deidara_Skill03_02</f>
+			<f>Deidara_Skill03_04</f>
+			<f>Deidara_Skill03_05</f>
+			<f>Deidara_Skill03_06</f>
+			<f>Deidara_Skill03_07</f>
+			<e type="setSound">Audio/Effect/bom.ogg</e>
+			<e type="setAttackBox">a_hit</e>
+			<f>Deidara_Skill03_08</f>
+			<f>Deidara_Skill03_09</f>
+			<f>Deidara_Skill03_10</f>
+			<f>Deidara_Skill03_11</f>
+			<f>Deidara_Skill03_12</f>
+			<f>Deidara_Skill03_13</f>
+			<f>Deidara_Skill03_14</f>
+			<f>Deidara_Skill03_15</f>
+			<e type="setDetonation">0</e>
+		</frame>
+	</action>
+
+</unit>

@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Sai_AirHurt_01.png</key>
+            <key>Sai_AirHurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{358,768},{49,60}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{49,60}</string>
             </dict>
-            <key>Sai_AirHurt_02.png</key>
+            <key>Sai_AirHurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{478,528},{24,77}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{24,77}</string>
             </dict>
-            <key>Sai_Float_01.png</key>
+            <key>Sai_Float_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{433,752},{60,49}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{60,49}</string>
             </dict>
-            <key>Sai_Float_02.png</key>
+            <key>Sai_Float_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{453,680},{70,56}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{70,56}</string>
             </dict>
-            <key>Sai_Float_03.png</key>
+            <key>Sai_Float_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{254,617},{56,70}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{56,70}</string>
             </dict>
-            <key>Sai_Hurt_01.png</key>
+            <key>Sai_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,669},{51,71}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{51,71}</string>
             </dict>
-            <key>Sai_Hurt_02.png</key>
+            <key>Sai_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{214,780},{43,65}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{43,71}</string>
             </dict>
-            <key>Sai_Idle_01.png</key>
+            <key>Sai_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{222,689},{46,71}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{46,71}</string>
             </dict>
-            <key>Sai_Idle_02.png</key>
+            <key>Sai_Idle_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,722},{46,71}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{46,71}</string>
             </dict>
-            <key>Sai_Idle_03.png</key>
+            <key>Sai_Idle_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{463,607},{46,71}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{46,71}</string>
             </dict>
-            <key>Sai_Idle_04.png</key>
+            <key>Sai_Idle_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,770},{46,69}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{46,71}</string>
             </dict>
-            <key>Sai_KnockDown_01.png</key>
+            <key>Sai_KnockDown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{347,311},{61,36}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{61,50}</string>
             </dict>
-            <key>Sai_KnockDown_02.png</key>
+            <key>Sai_KnockDown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{288,538},{77,24}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{77,50}</string>
             </dict>
-            <key>Sai_KnockDown_03.png</key>
+            <key>Sai_KnockDown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{359,231},{78,26}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{78,50}</string>
             </dict>
-            <key>Sai_KnockDown_04.png</key>
+            <key>Sai_KnockDown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{359,150},{79,26}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{79,50}</string>
             </dict>
-            <key>Sai_KnockDown_05.png</key>
+            <key>Sai_KnockDown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{281,791},{42,50}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{42,50}</string>
             </dict>
-            <key>Sai_NAttack_01.png</key>
+            <key>Sai_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{295,695},{43,69}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{43,71}</string>
             </dict>
-            <key>Sai_NAttack_02.png</key>
+            <key>Sai_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{380,644},{71,71}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{71,71}</string>
             </dict>
-            <key>Sai_NAttack_03.png</key>
+            <key>Sai_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{76,624},{69,71}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{69,71}</string>
             </dict>
-            <key>Sai_NAttack_04.png</key>
+            <key>Sai_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{75,745},{46,69}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{46,71}</string>
             </dict>
-            <key>Sai_NAttack_05.png</key>
+            <key>Sai_NAttack_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{383,530},{82,65}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{82,71}</string>
             </dict>
-            <key>Sai_NAttack_06.png</key>
+            <key>Sai_NAttack_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{206,538},{80,65}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{80,71}</string>
             </dict>
-            <key>Sai_NAttack_07.png</key>
+            <key>Sai_NAttack_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{75,695},{48,71}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{48,71}</string>
             </dict>
-            <key>Sai_NAttack_08.png</key>
+            <key>Sai_NAttack_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{180,605},{43,72}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{43,72}</string>
             </dict>
-            <key>Sai_NAttack_09.png</key>
+            <key>Sai_NAttack_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{140,796},{54,62}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{54,72}</string>
             </dict>
-            <key>Sai_NAttack_10.png</key>
+            <key>Sai_NAttack_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{387,293},{115,66}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{115,72}</string>
             </dict>
-            <key>Sai_NAttack_11.png</key>
+            <key>Sai_NAttack_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{315,527},{60,66}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{60,72}</string>
             </dict>
-            <key>Sai_NAttack_12.png</key>
+            <key>Sai_NAttack_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{103,552},{75,70}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{75,72}</string>
             </dict>
-            <key>Sai_NAttack_13.png</key>
+            <key>Sai_NAttack_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,623},{44,72}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{44,72}</string>
             </dict>
-            <key>Sai_NAttack_14.png</key>
+            <key>Sai_NAttack_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{148,700},{46,70}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{46,72}</string>
             </dict>
-            <key>Sai_Skill01_05.png</key>
+            <key>Sai_Skill01_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{478,449},{29,77}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{29,77}</string>
             </dict>
-            <key>Sai_Skill02_01.png</key>
+            <key>Sai_Skill02_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,818},{50,65}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{50,71}</string>
             </dict>
-            <key>Sai_Skill02_02.png</key>
+            <key>Sai_Skill02_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{220,737},{41,69}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{41,71}</string>
             </dict>
-            <key>Sai_Skill02_05.png</key>
+            <key>Sai_Skill02_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{387,226},{116,65}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{190,65}</string>
             </dict>
-            <key>Sai_Skill02_06.png</key>
+            <key>Sai_Skill02_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{233,83},{154,65}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{190,65}</string>
             </dict>
-            <key>Sai_Skill02_07.png</key>
+            <key>Sai_Skill02_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,148},{130,65}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{190,65}</string>
             </dict>
-            <key>Sai_Skill04_01.png</key>
+            <key>Sai_Skill04_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,572},{49,72}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{49,72}</string>
             </dict>
-            <key>Sai_Skill04_02.png</key>
+            <key>Sai_Skill04_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{315,476},{49,68}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{49,68}</string>
             </dict>
-            <key>Sai_Skill04_03.png</key>
+            <key>Sai_Skill04_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{73,793},{61,65}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{61,65}</string>
             </dict>
-            <key>Sai_Skill04_04.png</key>
+            <key>Sai_Skill04_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,215},{83,111}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{83,111}</string>
             </dict>
-            <key>Sai_Skill04_05.png</key>
+            <key>Sai_Skill04_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{111,323},{43,107}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{43,107}</string>
             </dict>
-            <key>Sai_Skill04_06.png</key>
+            <key>Sai_Skill04_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{382,597},{45,79}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{45,79}</string>
             </dict>
-            <key>Sai_Skill04_07.png</key>
+            <key>Sai_Skill04_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{149,650},{48,71}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{48,71}</string>
             </dict>
-            <key>Sai_Skill05_001.png</key>
+            <key>Sai_Skill05_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,400},{83,101}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{171,101}</string>
             </dict>
-            <key>Sai_Skill05_002.png</key>
+            <key>Sai_Skill05_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{111,368},{89,101}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{171,101}</string>
             </dict>
-            <key>Sai_Skill05_003.png</key>
+            <key>Sai_Skill05_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{232,150},{125,101}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{171,101}</string>
             </dict>
-            <key>Sai_Skill05_004.png</key>
+            <key>Sai_Skill05_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{214,439},{97,99}}</string>
@@ -615,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{171,101}</string>
             </dict>
-            <key>Sai_Skill05_005.png</key>
+            <key>Sai_Skill05_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{105,459},{99,91}}</string>
@@ -628,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{171,101}</string>
             </dict>
-            <key>Sai_Skill05_006.png</key>
+            <key>Sai_Skill05_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,485},{99,85}}</string>
@@ -641,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{171,101}</string>
             </dict>
-            <key>Sai_Skill05_007.png</key>
+            <key>Sai_Skill05_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{233,2},{163,79}}</string>
@@ -654,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{361,93}</string>
             </dict>
-            <key>Sai_Skill05_008.png</key>
+            <key>Sai_Skill05_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{229,87}}</string>
@@ -667,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{361,93}</string>
             </dict>
-            <key>Sai_Skill10_01.png</key>
+            <key>Sai_Skill10_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{146,748},{66,46}}</string>
@@ -680,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{146,46}</string>
             </dict>
-            <key>Sai_Skill10_02.png</key>
+            <key>Sai_Skill10_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{115,271},{108,50}}</string>
@@ -693,7 +693,7 @@
                 <key>sourceSize</key>
                 <string>{146,50}</string>
             </dict>
-            <key>Sai_Skill10_03.png</key>
+            <key>Sai_Skill10_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,91},{146,55}}</string>
@@ -706,7 +706,7 @@
                 <key>sourceSize</key>
                 <string>{146,65}</string>
             </dict>
-            <key>Sai_Skill10_04.png</key>
+            <key>Sai_Skill10_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{389,88},{120,50}}</string>
@@ -719,7 +719,7 @@
                 <key>sourceSize</key>
                 <string>{146,50}</string>
             </dict>
-            <key>Sai_Skill11_01.png</key>
+            <key>Sai_Skill11_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{220,339},{98,106}}</string>
@@ -732,7 +732,7 @@
                 <key>sourceSize</key>
                 <string>{108,134}</string>
             </dict>
-            <key>Sai_Skill11_02.png</key>
+            <key>Sai_Skill11_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{385,361},{86,111}}</string>
@@ -745,7 +745,7 @@
                 <key>sourceSize</key>
                 <string>{120,129}</string>
             </dict>
-            <key>Sai_Skill11_03.png</key>
+            <key>Sai_Skill11_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{385,449},{91,79}}</string>
@@ -758,7 +758,7 @@
                 <key>sourceSize</key>
                 <string>{107,107}</string>
             </dict>
-            <key>Sai_Skill11_04.png</key>
+            <key>Sai_Skill11_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{134,185},{84,96}}</string>
@@ -771,7 +771,7 @@
                 <key>sourceSize</key>
                 <string>{108,114}</string>
             </dict>
-            <key>Sai_Skill11_05.png</key>
+            <key>Sai_Skill11_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{389,140},{84,116}}</string>
@@ -784,7 +784,7 @@
                 <key>sourceSize</key>
                 <string>{108,142}</string>
             </dict>
-            <key>Sai_Skill11_06.png</key>
+            <key>Sai_Skill11_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{398,2},{84,112}}</string>
@@ -797,7 +797,7 @@
                 <key>sourceSize</key>
                 <string>{108,136}</string>
             </dict>
-            <key>Sai_Skill12_01.png</key>
+            <key>Sai_Skill12_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,300},{98,107}}</string>
@@ -810,7 +810,7 @@
                 <key>sourceSize</key>
                 <string>{128,145}</string>
             </dict>
-            <key>Sai_Skill12_02.png</key>
+            <key>Sai_Skill12_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{385,361},{86,111}}</string>
@@ -823,7 +823,7 @@
                 <key>sourceSize</key>
                 <string>{128,139}</string>
             </dict>
-            <key>Sai_Skill12_03.png</key>
+            <key>Sai_Skill12_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{150,91},{92,80}}</string>
@@ -836,7 +836,7 @@
                 <key>sourceSize</key>
                 <string>{128,134}</string>
             </dict>
-            <key>Sai_Skill12_04.png</key>
+            <key>Sai_Skill12_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{398,2},{84,112}}</string>
@@ -849,7 +849,7 @@
                 <key>sourceSize</key>
                 <string>{128,134}</string>
             </dict>
-            <key>Sai_Skill12_05.png</key>
+            <key>Sai_Skill12_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{389,140},{84,116}}</string>
@@ -862,7 +862,7 @@
                 <key>sourceSize</key>
                 <string>{128,134}</string>
             </dict>
-            <key>Sai_Skill12_06.png</key>
+            <key>Sai_Skill12_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{232,253},{84,113}}</string>
@@ -875,7 +875,7 @@
                 <key>sourceSize</key>
                 <string>{128,131}</string>
             </dict>
-            <key>Sai_Walk_01.png</key>
+            <key>Sai_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{291,740},{65,49}}</string>
@@ -888,7 +888,7 @@
                 <key>sourceSize</key>
                 <string>{65,51}</string>
             </dict>
-            <key>Sai_Walk_02.png</key>
+            <key>Sai_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{312,642},{66,51}}</string>
@@ -901,7 +901,7 @@
                 <key>sourceSize</key>
                 <string>{66,51}</string>
             </dict>
-            <key>Sai_Walk_03.png</key>
+            <key>Sai_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{328,425},{55,49}}</string>
@@ -914,7 +914,7 @@
                 <key>sourceSize</key>
                 <string>{55,51}</string>
             </dict>
-            <key>Sai_Walk_04.png</key>
+            <key>Sai_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{366,717},{65,49}}</string>
@@ -927,7 +927,7 @@
                 <key>sourceSize</key>
                 <string>{65,51}</string>
             </dict>
-            <key>Sai_Walk_05.png</key>
+            <key>Sai_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{314,589},{66,51}}</string>
@@ -940,7 +940,7 @@
                 <key>sourceSize</key>
                 <string>{66,51}</string>
             </dict>
-            <key>Sai_Walk_06.png</key>
+            <key>Sai_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{328,374},{55,49}}</string>

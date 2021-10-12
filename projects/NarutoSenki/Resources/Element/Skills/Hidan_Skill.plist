@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>CircleMark_Move_01.png</key>
+            <key>CircleMark_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{156,100},{81,24}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{81,32}</string>
             </dict>
-            <key>CircleMark_Move_02.png</key>
+            <key>CircleMark_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{156,70},{81,28}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{81,32}</string>
             </dict>
-            <key>CircleMark_Move_03.png</key>
+            <key>CircleMark_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{156,36},{81,32}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{81,32}</string>
             </dict>
-            <key>CircleMark_Move_04.png</key>
+            <key>CircleMark_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{156,2},{81,32}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{81,32}</string>
             </dict>
-            <key>Wave_Move_01.png</key>
+            <key>Wave_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{152,151}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{152,151}</string>
             </dict>
-            <key>Wave_Move_02.png</key>
+            <key>Wave_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{156,126},{80,118}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{80,118}</string>
             </dict>
-            <key>Wave_Move_03.png</key>
+            <key>Wave_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,155},{74,79}}</string>

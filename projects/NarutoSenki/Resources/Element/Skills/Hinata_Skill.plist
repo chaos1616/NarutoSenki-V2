@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Tenmu_Move_01.png</key>
+            <key>Tenmu_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{396,2},{100,99}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{182,173}</string>
             </dict>
-            <key>Tenmu_Move_02.png</key>
+            <key>Tenmu_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,168},{182,173}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{182,173}</string>
             </dict>
-            <key>Tenmu_Move_03.png</key>
+            <key>Tenmu_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{201,2},{193,168}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{215,172}</string>
             </dict>
-            <key>Tenmu_Move_04.png</key>
+            <key>Tenmu_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{197,164}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{215,172}</string>
             </dict>
-            <key>Tenmu_Move_05.png</key>
+            <key>Tenmu_Move_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,343},{181,156}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{215,172}</string>
             </dict>
-            <key>Tenmu_Move_06.png</key>
+            <key>Tenmu_Move_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{185,343},{149,150}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{215,172}</string>
             </dict>
-            <key>Tenmu_Move_07.png</key>
+            <key>Tenmu_Move_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{186,172},{139,132}}</string>

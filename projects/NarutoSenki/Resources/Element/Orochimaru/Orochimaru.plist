@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Orochimaru_AirHurt_01.png</key>
+            <key>Orochimaru_AirHurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{134,654},{53,56}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{53,56}</string>
             </dict>
-            <key>Orochimaru_Float_01.png</key>
+            <key>Orochimaru_Float_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{204,607},{56,53}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{56,53}</string>
             </dict>
-            <key>Orochimaru_Float_02.png</key>
+            <key>Orochimaru_Float_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{214,355},{57,67}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{57,67}</string>
             </dict>
-            <key>Orochimaru_Float_03.png</key>
+            <key>Orochimaru_Float_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{214,296},{67,57}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{67,57}</string>
             </dict>
-            <key>Orochimaru_Hurt_01.png</key>
+            <key>Orochimaru_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{360,513},{47,75}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{47,75}</string>
             </dict>
-            <key>Orochimaru_Hurt_02.png</key>
+            <key>Orochimaru_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,661},{52,63}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{52,63}</string>
             </dict>
-            <key>Orochimaru_Idle_01.png</key>
+            <key>Orochimaru_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,567},{39,68}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{39,68}</string>
             </dict>
-            <key>Orochimaru_Idle_02.png</key>
+            <key>Orochimaru_Idle_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{73,536},{39,68}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{39,68}</string>
             </dict>
-            <key>Orochimaru_Idle_03.png</key>
+            <key>Orochimaru_Idle_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{212,566},{39,68}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{39,68}</string>
             </dict>
-            <key>Orochimaru_Idle_04.png</key>
+            <key>Orochimaru_Idle_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{212,525},{39,68}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{39,68}</string>
             </dict>
-            <key>Orochimaru_KnockDown_01.png</key>
+            <key>Orochimaru_KnockDown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,490},{71,42}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{71,42}</string>
             </dict>
-            <key>Orochimaru_KnockDown_02.png</key>
+            <key>Orochimaru_KnockDown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{75,493},{70,41}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{70,41}</string>
             </dict>
-            <key>Orochimaru_KnockDown_03.png</key>
+            <key>Orochimaru_KnockDown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{258,119},{83,23}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{83,23}</string>
             </dict>
-            <key>Orochimaru_KnockDown_04.png</key>
+            <key>Orochimaru_KnockDown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{416,47},{84,23}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{84,23}</string>
             </dict>
-            <key>Orochimaru_KnockDown_05.png</key>
+            <key>Orochimaru_KnockDown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{162,472},{55,48}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{55,48}</string>
             </dict>
-            <key>Orochimaru_NAttack_01.png</key>
+            <key>Orochimaru_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{383,327},{37,80}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{37,80}</string>
             </dict>
-            <key>Orochimaru_NAttack_02.png</key>
+            <key>Orochimaru_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{441,484},{69,71}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{69,71}</string>
             </dict>
-            <key>Orochimaru_NAttack_03.png</key>
+            <key>Orochimaru_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{283,298},{98,72}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{98,72}</string>
             </dict>
-            <key>Orochimaru_NAttack_04.png</key>
+            <key>Orochimaru_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{465,327},{45,75}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{45,75}</string>
             </dict>
-            <key>Orochimaru_NAttack_05.png</key>
+            <key>Orochimaru_NAttack_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{363,436},{76,75}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{76,75}</string>
             </dict>
-            <key>Orochimaru_NAttack_06.png</key>
+            <key>Orochimaru_NAttack_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,214},{108,74}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{108,74}</string>
             </dict>
-            <key>Orochimaru_NAttack_07.png</key>
+            <key>Orochimaru_NAttack_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,290},{83,74}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{83,74}</string>
             </dict>
-            <key>Orochimaru_NAttack_08.png</key>
+            <key>Orochimaru_NAttack_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{214,471},{52,66}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{52,66}</string>
             </dict>
-            <key>Orochimaru_NAttack_09.png</key>
+            <key>Orochimaru_NAttack_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,443},{45,71}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{45,71}</string>
             </dict>
-            <key>Orochimaru_NAttack_10.png</key>
+            <key>Orochimaru_NAttack_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{437,557},{56,71}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{56,71}</string>
             </dict>
-            <key>Orochimaru_NAttack_11.png</key>
+            <key>Orochimaru_NAttack_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{412,72},{98,73}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{98,73}</string>
             </dict>
-            <key>Orochimaru_NAttack_12.png</key>
+            <key>Orochimaru_NAttack_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{87,345},{83,72}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{83,72}</string>
             </dict>
-            <key>Orochimaru_Skill01_01.png</key>
+            <key>Orochimaru_Skill01_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{282,527},{39,75}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{39,75}</string>
             </dict>
-            <key>Orochimaru_Skill01_02.png</key>
+            <key>Orochimaru_Skill01_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{214,414},{55,67}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{55,67}</string>
             </dict>
-            <key>Orochimaru_Skill01_03.png</key>
+            <key>Orochimaru_Skill01_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{447,404},{78,63}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{230,63}</string>
             </dict>
-            <key>Orochimaru_Skill01_04.png</key>
+            <key>Orochimaru_Skill01_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{284,2},{130,63}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{230,63}</string>
             </dict>
-            <key>Orochimaru_Skill01_05.png</key>
+            <key>Orochimaru_Skill01_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{142,63}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{230,63}</string>
             </dict>
-            <key>Orochimaru_Skill01_06.png</key>
+            <key>Orochimaru_Skill01_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{283,233},{106,63}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{230,63}</string>
             </dict>
-            <key>Orochimaru_Skill01_07.png</key>
+            <key>Orochimaru_Skill01_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{69,644},{52,63}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{230,63}</string>
             </dict>
-            <key>Orochimaru_Skill01_08.png</key>
+            <key>Orochimaru_Skill01_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{282,568},{52,62}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{230,62}</string>
             </dict>
-            <key>Orochimaru_Skill02_01.png</key>
+            <key>Orochimaru_Skill02_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{139,596},{56,63}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{56,63}</string>
             </dict>
-            <key>Orochimaru_Skill02_02.png</key>
+            <key>Orochimaru_Skill02_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{416,2},{92,43}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{92,43}</string>
             </dict>
-            <key>Orochimaru_Skill02_03.png</key>
+            <key>Orochimaru_Skill02_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{283,147},{108,39}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{108,39}</string>
             </dict>
-            <key>Orochimaru_Skill02_04.png</key>
+            <key>Orochimaru_Skill02_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{124,194},{109,39}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{109,39}</string>
             </dict>
-            <key>Orochimaru_Skill02_05.png</key>
+            <key>Orochimaru_Skill02_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{283,188},{107,43}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{107,43}</string>
             </dict>
-            <key>Orochimaru_Skill02_06.png</key>
+            <key>Orochimaru_Skill02_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{162,419},{50,51}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{50,51}</string>
             </dict>
-            <key>Orochimaru_Skill03_01.png</key>
+            <key>Orochimaru_Skill03_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{383,327},{37,80}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{37,80}</string>
             </dict>
-            <key>Orochimaru_Skill03_02.png</key>
+            <key>Orochimaru_Skill03_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{283,408},{78,71}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{78,71}</string>
             </dict>
-            <key>Orochimaru_Skill03_03.png</key>
+            <key>Orochimaru_Skill03_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{391,253},{102,72}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{220,72}</string>
             </dict>
-            <key>Orochimaru_Skill03_04.png</key>
+            <key>Orochimaru_Skill03_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{391,253},{102,72}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{220,72}</string>
             </dict>
-            <key>Orochimaru_Skill03_05.png</key>
+            <key>Orochimaru_Skill03_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{84,419},{76,72}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{220,72}</string>
             </dict>
-            <key>Orochimaru_Skill03_06.png</key>
+            <key>Orochimaru_Skill03_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{235,219},{46,75}}</string>
@@ -615,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{220,75}</string>
             </dict>
-            <key>Orochimaru_Skill03_07.png</key>
+            <key>Orochimaru_Skill03_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{284,67},{126,78}}</string>
@@ -628,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{220,78}</string>
             </dict>
-            <key>Orochimaru_Skill03_08.png</key>
+            <key>Orochimaru_Skill03_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{146,2},{136,74}}</string>
@@ -641,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{220,74}</string>
             </dict>
-            <key>Orochimaru_Skill03_09.png</key>
+            <key>Orochimaru_Skill03_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,67},{132,74}}</string>
@@ -654,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{220,74}</string>
             </dict>
-            <key>Orochimaru_Skill03_10.png</key>
+            <key>Orochimaru_Skill03_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{112,269},{100,74}}</string>
@@ -667,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{220,74}</string>
             </dict>
-            <key>Orochimaru_Skill04_01.png</key>
+            <key>Orochimaru_Skill04_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{282,481},{44,76}}</string>
@@ -680,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{44,76}</string>
             </dict>
-            <key>Orochimaru_Skill04_02.png</key>
+            <key>Orochimaru_Skill04_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{139,596},{56,63}}</string>
@@ -693,7 +693,7 @@
                 <key>sourceSize</key>
                 <string>{56,63}</string>
             </dict>
-            <key>Orochimaru_Skill04_03.png</key>
+            <key>Orochimaru_Skill04_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{162,419},{50,51}}</string>
@@ -706,7 +706,7 @@
                 <key>sourceSize</key>
                 <string>{50,51}</string>
             </dict>
-            <key>Orochimaru_Skill04_04.png</key>
+            <key>Orochimaru_Skill04_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{172,386},{31,40}}</string>
@@ -719,7 +719,7 @@
                 <key>sourceSize</key>
                 <string>{31,40}</string>
             </dict>
-            <key>Orochimaru_Skill04_05.png</key>
+            <key>Orochimaru_Skill04_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{172,345},{39,40}}</string>
@@ -732,7 +732,7 @@
                 <key>sourceSize</key>
                 <string>{39,40}</string>
             </dict>
-            <key>Orochimaru_Skill04_06.png</key>
+            <key>Orochimaru_Skill04_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{67,698},{41,45}}</string>
@@ -745,7 +745,7 @@
                 <key>sourceSize</key>
                 <string>{107,45}</string>
             </dict>
-            <key>Orochimaru_Skill04_07.png</key>
+            <key>Orochimaru_Skill04_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{258,78},{39,24}}</string>
@@ -758,7 +758,7 @@
                 <key>sourceSize</key>
                 <string>{107,24}</string>
             </dict>
-            <key>Orochimaru_Skill04_08.png</key>
+            <key>Orochimaru_Skill04_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,715},{35,27}}</string>
@@ -771,7 +771,7 @@
                 <key>sourceSize</key>
                 <string>{107,27}</string>
             </dict>
-            <key>Orochimaru_Skill04_09.png</key>
+            <key>Orochimaru_Skill04_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{235,194},{23,15}}</string>
@@ -784,7 +784,7 @@
                 <key>sourceSize</key>
                 <string>{107,15}</string>
             </dict>
-            <key>Orochimaru_Skill04_10.png</key>
+            <key>Orochimaru_Skill04_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{112,235},{101,32}}</string>
@@ -797,7 +797,7 @@
                 <key>sourceSize</key>
                 <string>{101,32}</string>
             </dict>
-            <key>Orochimaru_Skill04_11.png</key>
+            <key>Orochimaru_Skill04_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{393,147},{104,107}}</string>
@@ -810,7 +810,7 @@
                 <key>sourceSize</key>
                 <string>{104,107}</string>
             </dict>
-            <key>Orochimaru_Skill04_12.png</key>
+            <key>Orochimaru_Skill04_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{124,154},{120,38}}</string>
@@ -823,7 +823,7 @@
                 <key>sourceSize</key>
                 <string>{120,38}</string>
             </dict>
-            <key>Orochimaru_Skill04_13.png</key>
+            <key>Orochimaru_Skill04_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,143},{120,69}}</string>
@@ -836,7 +836,7 @@
                 <key>sourceSize</key>
                 <string>{120,69}</string>
             </dict>
-            <key>Orochimaru_Skill04_14.png</key>
+            <key>Orochimaru_Skill04_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{136,78},{120,74}}</string>
@@ -849,7 +849,7 @@
                 <key>sourceSize</key>
                 <string>{120,74}</string>
             </dict>
-            <key>Orochimaru_Skill04_15.png</key>
+            <key>Orochimaru_Skill04_15</key>
             <dict>
                 <key>frame</key>
                 <string>{{162,472},{55,48}}</string>
@@ -862,7 +862,7 @@
                 <key>sourceSize</key>
                 <string>{55,48}</string>
             </dict>
-            <key>Orochimaru_Skill05_01.png</key>
+            <key>Orochimaru_Skill05_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,404},{37,80}}</string>
@@ -875,7 +875,7 @@
                 <key>sourceSize</key>
                 <string>{37,80}</string>
             </dict>
-            <key>Orochimaru_Skill05_02.png</key>
+            <key>Orochimaru_Skill05_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{283,372},{34,80}}</string>
@@ -888,7 +888,7 @@
                 <key>sourceSize</key>
                 <string>{34,80}</string>
             </dict>
-            <key>Orochimaru_Skill05_03.png</key>
+            <key>Orochimaru_Skill05_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{365,403},{31,80}}</string>
@@ -901,7 +901,7 @@
                 <key>sourceSize</key>
                 <string>{31,80}</string>
             </dict>
-            <key>Orochimaru_Skill05_04.png</key>
+            <key>Orochimaru_Skill05_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,366},{36,81}}</string>
@@ -914,7 +914,7 @@
                 <key>sourceSize</key>
                 <string>{36,81}</string>
             </dict>
-            <key>Orochimaru_Skill05_05.png</key>
+            <key>Orochimaru_Skill05_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{383,366},{35,80}}</string>
@@ -927,7 +927,7 @@
                 <key>sourceSize</key>
                 <string>{35,80}</string>
             </dict>
-            <key>Orochimaru_Skill05_06.png</key>
+            <key>Orochimaru_Skill05_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,534},{31,69}}</string>
@@ -940,7 +940,7 @@
                 <key>sourceSize</key>
                 <string>{31,69}</string>
             </dict>
-            <key>Orochimaru_Walk_01.png</key>
+            <key>Orochimaru_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{435,615},{74,62}}</string>
@@ -953,7 +953,7 @@
                 <key>sourceSize</key>
                 <string>{74,62}</string>
             </dict>
-            <key>Orochimaru_Walk_02.png</key>
+            <key>Orochimaru_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,608},{51,65}}</string>
@@ -966,7 +966,7 @@
                 <key>sourceSize</key>
                 <string>{51,65}</string>
             </dict>
-            <key>Orochimaru_Walk_03.png</key>
+            <key>Orochimaru_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{147,529},{63,65}}</string>
@@ -979,7 +979,7 @@
                 <key>sourceSize</key>
                 <string>{63,65}</string>
             </dict>
-            <key>Orochimaru_Walk_04.png</key>
+            <key>Orochimaru_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{359,562},{74,62}}</string>
@@ -992,7 +992,7 @@
                 <key>sourceSize</key>
                 <string>{74,62}</string>
             </dict>
-            <key>Orochimaru_Walk_05.png</key>
+            <key>Orochimaru_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,608},{51,65}}</string>
@@ -1005,7 +1005,7 @@
                 <key>sourceSize</key>
                 <string>{51,65}</string>
             </dict>
-            <key>Orochimaru_Walk_06.png</key>
+            <key>Orochimaru_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{72,577},{65,65}}</string>

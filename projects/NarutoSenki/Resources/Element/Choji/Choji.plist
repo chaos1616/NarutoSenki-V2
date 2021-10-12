@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Choji_AirHurt_01.png</key>
+            <key>Choji_AirHurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{636,216},{66,87}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{66,87}</string>
             </dict>
-            <key>Choji_AirHurt_02.png</key>
+            <key>Choji_AirHurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{493,550},{49,84}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{49,84}</string>
             </dict>
-            <key>Choji_Float_01.png</key>
+            <key>Choji_Float_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{634,305},{87,66}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{87,66}</string>
             </dict>
-            <key>Choji_Float_02.png</key>
+            <key>Choji_Float_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,661},{84,49}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{84,49}</string>
             </dict>
-            <key>Choji_Float_03.png</key>
+            <key>Choji_Float_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{129,224},{47,84}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{47,84}</string>
             </dict>
-            <key>Choji_Hurt_01.png</key>
+            <key>Choji_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{698,513},{61,70}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{61,70}</string>
             </dict>
-            <key>Choji_Hurt_02.png</key>
+            <key>Choji_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{450,185},{52,68}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{52,68}</string>
             </dict>
-            <key>Choji_Idle_01.png</key>
+            <key>Choji_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{951,668},{65,77}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{71,77}</string>
             </dict>
-            <key>Choji_Idle_02.png</key>
+            <key>Choji_Idle_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{632,394},{65,77}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{71,77}</string>
             </dict>
-            <key>Choji_Idle_03.png</key>
+            <key>Choji_Idle_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{109,600},{65,75}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{71,77}</string>
             </dict>
-            <key>Choji_KnockDown_01.png</key>
+            <key>Choji_KnockDown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{704,296},{87,66}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{87,66}</string>
             </dict>
-            <key>Choji_KnockDown_02.png</key>
+            <key>Choji_KnockDown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{375,583},{84,47}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{84,47}</string>
             </dict>
-            <key>Choji_KnockDown_03.png</key>
+            <key>Choji_KnockDown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{266,606},{84,40}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{84,40}</string>
             </dict>
-            <key>Choji_KnockDown_04.png</key>
+            <key>Choji_KnockDown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{540,606},{45,65}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{45,65}</string>
             </dict>
-            <key>Choji_KnockDown_05.png</key>
+            <key>Choji_KnockDown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{702,385},{66,51}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{66,51}</string>
             </dict>
-            <key>Choji_KnockDown_06.png</key>
+            <key>Choji_KnockDown_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{431,662},{54,53}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{54,53}</string>
             </dict>
-            <key>Choji_NAttack_01.png</key>
+            <key>Choji_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{951,461},{51,71}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{51,71}</string>
             </dict>
-            <key>Choji_NAttack_02.png</key>
+            <key>Choji_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{874,504},{75,74}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{75,74}</string>
             </dict>
-            <key>Choji_NAttack_03.png</key>
+            <key>Choji_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{450,109},{68,74}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{68,74}</string>
             </dict>
-            <key>Choji_NAttack_04.png</key>
+            <key>Choji_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{699,438},{69,73}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{69,73}</string>
             </dict>
-            <key>Choji_NAttack_05.png</key>
+            <key>Choji_NAttack_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{285,523},{88,81}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{88,81}</string>
             </dict>
-            <key>Choji_NAttack_06.png</key>
+            <key>Choji_NAttack_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{177,536},{87,81}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{87,81}</string>
             </dict>
-            <key>Choji_NAttack_07.png</key>
+            <key>Choji_NAttack_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{704,210},{68,84}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{68,84}</string>
             </dict>
-            <key>Choji_NAttack_08.png</key>
+            <key>Choji_NAttack_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{261,648},{44,76}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{44,76}</string>
             </dict>
-            <key>Choji_NAttack_09.png</key>
+            <key>Choji_NAttack_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{176,619},{83,73}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{83,73}</string>
             </dict>
-            <key>Choji_NAttack_10.png</key>
+            <key>Choji_NAttack_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{88,677},{81,73}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{81,73}</string>
             </dict>
-            <key>Choji_Skill01_02.png</key>
+            <key>Choji_Skill01_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{352,632},{59,77}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{59,77}</string>
             </dict>
-            <key>Choji_Skill01_03.png</key>
+            <key>Choji_Skill01_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{579,551},{53,78}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{53,78}</string>
             </dict>
-            <key>Choji_Skill02_04.png</key>
+            <key>Choji_Skill02_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{431,662},{54,53}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{54,53}</string>
             </dict>
-            <key>Choji_Skill02_05.png</key>
+            <key>Choji_Skill02_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{178,296},{110,65}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{114,65}</string>
             </dict>
-            <key>Choji_Skill02_06.png</key>
+            <key>Choji_Skill02_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{520,282},{112,64}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{114,64}</string>
             </dict>
-            <key>Choji_Skill02_07.png</key>
+            <key>Choji_Skill02_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,300},{114,65}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{114,65}</string>
             </dict>
-            <key>Choji_Skill02_08.png</key>
+            <key>Choji_Skill02_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{520,216},{114,64}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{114,64}</string>
             </dict>
-            <key>Choji_Skill02_09.png</key>
+            <key>Choji_Skill02_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{178,296},{110,65}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{114,65}</string>
             </dict>
-            <key>Choji_Skill02_10.png</key>
+            <key>Choji_Skill02_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{540,653},{62,62}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{62,62}</string>
             </dict>
-            <key>Choji_Skill03_01.png</key>
+            <key>Choji_Skill03_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{607,637},{63,62}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{63,62}</string>
             </dict>
-            <key>Choji_Skill03_02.png</key>
+            <key>Choji_Skill03_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,712},{54,78}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{54,78}</string>
             </dict>
-            <key>Choji_Skill03_03.png</key>
+            <key>Choji_Skill03_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,367},{86,109}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{86,109}</string>
             </dict>
-            <key>Choji_Skill03_04.png</key>
+            <key>Choji_Skill03_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{874,428},{75,74}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{133,92}</string>
             </dict>
-            <key>Choji_Skill03_05.png</key>
+            <key>Choji_Skill03_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{607,473},{89,76}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{133,92}</string>
             </dict>
-            <key>Choji_Skill03_06.png</key>
+            <key>Choji_Skill03_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{770,569},{101,76}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{133,92}</string>
             </dict>
-            <key>Choji_Skill03_07.png</key>
+            <key>Choji_Skill03_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{178,218},{125,76}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{133,92}</string>
             </dict>
-            <key>Choji_Skill03_08.png</key>
+            <key>Choji_Skill03_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,224},{125,74}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{133,92}</string>
             </dict>
-            <key>Choji_Skill04_02.png</key>
+            <key>Choji_Skill04_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{951,403},{56,71}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{56,71}</string>
             </dict>
-            <key>Choji_Skill04_03.png</key>
+            <key>Choji_Skill04_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{392,503},{78,99}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{78,99}</string>
             </dict>
-            <key>Choji_Skill04_04.png</key>
+            <key>Choji_Skill04_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{770,497},{70,102}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{70,102}</string>
             </dict>
-            <key>Choji_Skill04_05.png</key>
+            <key>Choji_Skill04_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{305,278},{86,111}}</string>
@@ -615,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{86,111}</string>
             </dict>
-            <key>Choji_Skill04_06.png</key>
+            <key>Choji_Skill04_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{770,425},{70,102}}</string>
@@ -628,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{70,102}</string>
             </dict>
-            <key>Choji_Skill04_07.png</key>
+            <key>Choji_Skill04_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{444,239},{74,100}}</string>
@@ -641,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{74,100}</string>
             </dict>
-            <key>Choji_Skill04_08.png</key>
+            <key>Choji_Skill04_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{873,580},{76,88}}</string>
@@ -654,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{102,88}</string>
             </dict>
-            <key>Choji_Skill05_01.png</key>
+            <key>Choji_Skill05_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{461,601},{59,77}}</string>
@@ -667,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{59,77}</string>
             </dict>
-            <key>Choji_Skill05_02.png</key>
+            <key>Choji_Skill05_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{659,576},{59,77}}</string>
@@ -680,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{59,77}</string>
             </dict>
-            <key>Choji_Skill09_001.png</key>
+            <key>Choji_Skill09_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,109},{174,113}}</string>
@@ -693,7 +693,7 @@
                 <key>sourceSize</key>
                 <string>{262,135}</string>
             </dict>
-            <key>Choji_Skill09_002.png</key>
+            <key>Choji_Skill09_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{520,107},{182,107}}</string>
@@ -706,7 +706,7 @@
                 <key>sourceSize</key>
                 <string>{262,135}</string>
             </dict>
-            <key>Choji_Skill09_003.png</key>
+            <key>Choji_Skill09_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{774,218},{176,107}}</string>
@@ -719,7 +719,7 @@
                 <key>sourceSize</key>
                 <string>{262,135}</string>
             </dict>
-            <key>Choji_Skill09_004.png</key>
+            <key>Choji_Skill09_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{774,109},{180,107}}</string>
@@ -732,7 +732,7 @@
                 <key>sourceSize</key>
                 <string>{262,135}</string>
             </dict>
-            <key>Choji_Skill10_001.png</key>
+            <key>Choji_Skill10_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{288,366},{94,107}}</string>
@@ -745,7 +745,7 @@
                 <key>sourceSize</key>
                 <string>{436,141}</string>
             </dict>
-            <key>Choji_Skill10_002.png</key>
+            <key>Choji_Skill10_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{262,105}}</string>
@@ -758,7 +758,7 @@
                 <key>sourceSize</key>
                 <string>{436,141}</string>
             </dict>
-            <key>Choji_Skill10_003.png</key>
+            <key>Choji_Skill10_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{266,2},{252,105}}</string>
@@ -771,7 +771,7 @@
                 <key>sourceSize</key>
                 <string>{436,141}</string>
             </dict>
-            <key>Choji_Skill10_004.png</key>
+            <key>Choji_Skill10_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,455},{108,105}}</string>
@@ -784,7 +784,7 @@
                 <key>sourceSize</key>
                 <string>{436,141}</string>
             </dict>
-            <key>Choji_Skill10_005.png</key>
+            <key>Choji_Skill10_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{178,109},{134,107}}</string>
@@ -797,7 +797,7 @@
                 <key>sourceSize</key>
                 <string>{436,141}</string>
             </dict>
-            <key>Choji_Skill10_006.png</key>
+            <key>Choji_Skill10_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{314,109},{134,101}}</string>
@@ -810,7 +810,7 @@
                 <key>sourceSize</key>
                 <string>{436,141}</string>
             </dict>
-            <key>Choji_Skill10_007.png</key>
+            <key>Choji_Skill10_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{520,2},{252,103}}</string>
@@ -823,7 +823,7 @@
                 <key>sourceSize</key>
                 <string>{436,141}</string>
             </dict>
-            <key>Choji_Skill10_008.png</key>
+            <key>Choji_Skill10_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{774,2},{248,105}}</string>
@@ -836,7 +836,7 @@
                 <key>sourceSize</key>
                 <string>{436,141}</string>
             </dict>
-            <key>Choji_Skill11_001.png</key>
+            <key>Choji_Skill11_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{520,348},{99,110}}</string>
@@ -849,7 +849,7 @@
                 <key>sourceSize</key>
                 <string>{99,110}</string>
             </dict>
-            <key>Choji_Skill11_002.png</key>
+            <key>Choji_Skill11_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,562},{97,105}}</string>
@@ -862,7 +862,7 @@
                 <key>sourceSize</key>
                 <string>{97,105}</string>
             </dict>
-            <key>Choji_Skill11_003.png</key>
+            <key>Choji_Skill11_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{397,405},{96,105}}</string>
@@ -875,7 +875,7 @@
                 <key>sourceSize</key>
                 <string>{96,105}</string>
             </dict>
-            <key>Choji_Skill11_004.png</key>
+            <key>Choji_Skill11_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{177,437},{97,106}}</string>
@@ -888,7 +888,7 @@
                 <key>sourceSize</key>
                 <string>{97,106}</string>
             </dict>
-            <key>Choji_Skill11_005.png</key>
+            <key>Choji_Skill11_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{504,449},{99,101}}</string>
@@ -901,7 +901,7 @@
                 <key>sourceSize</key>
                 <string>{99,101}</string>
             </dict>
-            <key>Choji_Skill11_006.png</key>
+            <key>Choji_Skill11_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{772,327},{96,104}}</string>
@@ -914,7 +914,7 @@
                 <key>sourceSize</key>
                 <string>{96,104}</string>
             </dict>
-            <key>Choji_Walk_01.png</key>
+            <key>Choji_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{112,467},{65,63}}</string>
@@ -927,7 +927,7 @@
                 <key>sourceSize</key>
                 <string>{65,63}</string>
             </dict>
-            <key>Choji_Walk_02.png</key>
+            <key>Choji_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{951,604},{69,62}}</string>
@@ -940,7 +940,7 @@
                 <key>sourceSize</key>
                 <string>{69,62}</string>
             </dict>
-            <key>Choji_Walk_03.png</key>
+            <key>Choji_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{672,637},{60,61}}</string>
@@ -953,7 +953,7 @@
                 <key>sourceSize</key>
                 <string>{60,61}</string>
             </dict>
-            <key>Choji_Walk_04.png</key>
+            <key>Choji_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{112,534},{64,63}}</string>
@@ -966,7 +966,7 @@
                 <key>sourceSize</key>
                 <string>{64,63}</string>
             </dict>
-            <key>Choji_Walk_05.png</key>
+            <key>Choji_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{951,340},{71,61}}</string>
@@ -979,7 +979,7 @@
                 <key>sourceSize</key>
                 <string>{71,61}</string>
             </dict>
-            <key>Choji_Walk_06.png</key>
+            <key>Choji_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{118,310},{57,61}}</string>
@@ -992,7 +992,7 @@
                 <key>sourceSize</key>
                 <string>{57,61}</string>
             </dict>
-            <key>dcBuff_Effect_01.png</key>
+            <key>dcBuff_Effect_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{956,109},{66,125}}</string>
@@ -1005,7 +1005,7 @@
                 <key>sourceSize</key>
                 <string>{72,143}</string>
             </dict>
-            <key>dcBuff_Effect_02.png</key>
+            <key>dcBuff_Effect_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{314,212},{64,128}}</string>
@@ -1018,7 +1018,7 @@
                 <key>sourceSize</key>
                 <string>{68,146}</string>
             </dict>
-            <key>dcBuff_Effect_03.png</key>
+            <key>dcBuff_Effect_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{285,462},{59,105}}</string>
@@ -1031,7 +1031,7 @@
                 <key>sourceSize</key>
                 <string>{67,137}</string>
             </dict>
-            <key>dcBuff_Effect_04.png</key>
+            <key>dcBuff_Effect_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{952,236},{70,102}}</string>
@@ -1044,7 +1044,7 @@
                 <key>sourceSize</key>
                 <string>{76,126}</string>
             </dict>
-            <key>dcBuff_Effect_05.png</key>
+            <key>dcBuff_Effect_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{177,363},{72,109}}</string>
@@ -1057,7 +1057,7 @@
                 <key>sourceSize</key>
                 <string>{76,131}</string>
             </dict>
-            <key>dcBuff_Effect_06.png</key>
+            <key>dcBuff_Effect_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{878,327},{71,99}}</string>
@@ -1070,7 +1070,7 @@
                 <key>sourceSize</key>
                 <string>{75,131}</string>
             </dict>
-            <key>dcBuff_Effect_07.png</key>
+            <key>dcBuff_Effect_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{951,514},{70,88}}</string>
@@ -1083,7 +1083,7 @@
                 <key>sourceSize</key>
                 <string>{74,128}</string>
             </dict>
-            <key>dcBuff_Effect_08.png</key>
+            <key>dcBuff_Effect_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{704,107},{68,101}}</string>
@@ -1096,7 +1096,7 @@
                 <key>sourceSize</key>
                 <string>{72,121}</string>
             </dict>
-            <key>dcBuff_Effect_09.png</key>
+            <key>dcBuff_Effect_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{418,341},{62,100}}</string>
@@ -1109,7 +1109,7 @@
                 <key>sourceSize</key>
                 <string>{68,120}</string>
             </dict>
-            <key>dcBuff_Effect_10.png</key>
+            <key>dcBuff_Effect_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{113,373},{62,92}}</string>

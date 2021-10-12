@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Akamaru_Idle_001.png</key>
+            <key>Akamaru_Idle_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{224,58},{91,67}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{95,85}</string>
             </dict>
-            <key>Akamaru_Idle_002.png</key>
+            <key>Akamaru_Idle_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{201,127},{91,65}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{95,85}</string>
             </dict>
-            <key>Akamaru_Idle_003.png</key>
+            <key>Akamaru_Idle_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{95,227},{87,77}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{95,85}</string>
             </dict>
-            <key>Akamaru_Move_001.png</key>
+            <key>Akamaru_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{410,107},{91,65}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{95,85}</string>
             </dict>
-            <key>Akamaru_Move_002.png</key>
+            <key>Akamaru_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{317,96},{91,65}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{95,85}</string>
             </dict>
-            <key>Akamaru_Move_003.png</key>
+            <key>Akamaru_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{188,194},{91,63}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{95,85}</string>
             </dict>
-            <key>Akamaru_Skill01_002.png</key>
+            <key>Akamaru_Skill01_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,82},{104,31}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{124,79}</string>
             </dict>
-            <key>Akamaru_Skill01_003.png</key>
+            <key>Akamaru_Skill01_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,37},{110,43}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{124,79}</string>
             </dict>
-            <key>Akamaru_Skill01_004.png</key>
+            <key>Akamaru_Skill01_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{114,58},{108,33}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{124,79}</string>
             </dict>
-            <key>Akamaru_Skill01_005.png</key>
+            <key>Akamaru_Skill01_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{120,33}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{124,79}</string>
             </dict>
-            <key>Akamaru_Skill10_01.png</key>
+            <key>Akamaru_Skill10_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{108,93},{91,66}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{91,66}</string>
             </dict>
-            <key>Akamaru_Skill10_02.png</key>
+            <key>Akamaru_Skill10_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,182},{91,64}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{91,64}</string>
             </dict>
-            <key>Akamaru_Skill10_03.png</key>
+            <key>Akamaru_Skill10_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,248},{86,76}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{86,76}</string>
             </dict>
-            <key>Akamaru_Skill11_01.png</key>
+            <key>Akamaru_Skill11_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{95,161},{91,64}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{91,64}</string>
             </dict>
-            <key>Akamaru_Skill11_02.png</key>
+            <key>Akamaru_Skill11_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,115},{91,65}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{91,65}</string>
             </dict>
-            <key>Akamaru_Skill11_03.png</key>
+            <key>Akamaru_Skill11_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{294,163},{91,63}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{91,63}</string>
             </dict>
-            <key>Akamaru_Walk_001.png</key>
+            <key>Akamaru_Walk_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{237,2},{109,54}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{117,62}</string>
             </dict>
-            <key>Akamaru_Walk_002.png</key>
+            <key>Akamaru_Walk_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{348,54},{109,40}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{117,62}</string>
             </dict>
-            <key>Akamaru_Walk_003.png</key>
+            <key>Akamaru_Walk_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{348,2},{109,50}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{117,62}</string>
             </dict>
-            <key>Akamaru_Walk_004.png</key>
+            <key>Akamaru_Walk_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{459,2},{103,46}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{117,62}</string>
             </dict>
-            <key>Akamaru_Walk_005.png</key>
+            <key>Akamaru_Walk_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{124,2},{111,54}}</string>

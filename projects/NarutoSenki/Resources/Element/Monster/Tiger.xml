@@ -1,74 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animation>
+<unit>
 
-	<action value="Idle">
-		<date>
-			<dateName type="attackType">Tiger</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">29</dateName>
-			<dateName type="attackRangeY">15</dateName>
-			<coldName type="coldDown">320</coldName>
-		</date>
+	<action name="Idle">
+		<data>
+			<p type="attackType">Tiger</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">29</p>
+			<p type="attackRangeY">15</p>
+			<p type="cd">320</p>
+		</data>
 		<frame>
-			<frameName>Tiger_Idle_001.png</frameName>
-			<frameName>Tiger_Idle_002.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Tiger_Idle_003.png</frameName>
-			<eventName type="setDelay">10</eventName>
+			<f>Tiger_Idle_001</f>
+			<f>Tiger_Idle_002</f>
+			<e type="setDelay">10</e>
+			<f>Tiger_Idle_003</f>
+			<e type="setDelay">10</e>
 		</frame>
 	</action>
 
-	<action value="Walk">
+	<action name="Walk">
 		<frame>
-			<frameName>Tiger_Move_001.png</frameName>
-			<frameName>Tiger_Move_002.png</frameName>
-			<frameName>Tiger_Move_003.png</frameName>
-			<frameName>Tiger_Move_004.png</frameName>
-			<frameName>Tiger_Move_005.png</frameName>
+			<f>Tiger_Move_001</f>
+			<f>Tiger_Move_002</f>
+			<f>Tiger_Move_003</f>
+			<f>Tiger_Move_004</f>
+			<f>Tiger_Move_005</f>
 		</frame>
 	</action>
 
-	<action value="Hurt">
-		<frame>
-		</frame>
-	</action>
-
-	<action value="AirHurt">
+	<action name="Hurt">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="KnockDown">
+	<action name="AirHurt">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Float">
+	<action name="KnockDown">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Dead">
+	<action name="Float">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="nAttack">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">1560</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="Dead">
 		<frame>
-			<frameName>Tiger_Attack_001.png</frameName>
-			<frameName>ink_boom01.png</frameName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/stick_damage.ogg</eventName>
-			<frameName>ink_boom02.png</frameName>
-			<eventName type="setDetonation">0</eventName>
 		</frame>
 	</action>
 
-</animation>
+	<action name="nAttack">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">1560</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">0</p>
+		</data>
+		<frame>
+			<f>Tiger_Attack_001</f>
+			<f>ink_boom01</f>
+			<e type="setAttackBox">c_hit</e>
+			<e type="setDSound">Audio/Effect/stick_damage.ogg</e>
+			<f>ink_boom02</f>
+			<e type="setDetonation">0</e>
+		</frame>
+	</action>
+
+</unit>

@@ -1,110 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animation>
+<unit>
 
-	<action value="Idle">
-		<date>
-			<dateName type="attackType">KageHands</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">51</dateName>
-			<dateName type="attackRangeY">11</dateName>
-			<coldName type="coldDown">224</coldName>
-		</date>
+	<action name="Idle">
+		<data>
+			<p type="attackType">KageHands</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">51</p>
+			<p type="attackRangeY">11</p>
+			<p type="cd">224</p>
+		</data>
 		<frame>
-			<frameName>KageHands_Move_001.png</frameName>
+			<f>KageHands_Move_001</f>
 		</frame>
 	</action>
 
-	<action value="Walk">
+	<action name="Walk">
 		<frame>
-			<frameName>KageHands_Move_001.png</frameName>
+			<f>KageHands_Move_001</f>
 		</frame>
 	</action>
 
-	<action value="Hurt">
-		<frame>
-		</frame>
-	</action>
-
-	<action value="AirHurt">
-		<frame>
-
-		</frame>
-	</action>
-
-	<action value="KnockDown">
+	<action name="Hurt">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Float">
+	<action name="AirHurt">
+		<frame>
+
+		</frame>
+	</action>
+
+	<action name="KnockDown">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Dead">
+	<action name="Float">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="nAttack">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">160</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="Dead">
 		<frame>
-			<frameName>KageHands_Move_001.png</frameName>
-			<frameName>KageHands_Move_002.png</frameName>
-			<frameName>KageHands_Move_003.png</frameName>
-			<eventName type="setAttackBox">s_hit</eventName>
-			<frameName>KageHands_Move_004.png</frameName>
-			<frameName>KageHands_Move_005.png</frameName>
-			<eventName type="setAttackBox">s_hit</eventName>
-			<frameName>KageHands_Move_006.png</frameName>
-			<frameName>KageHands_Move_007.png</frameName>
-			<eventName type="setAttackBox">s_hit</eventName>
-			<frameName>KageHands_Move_004.png</frameName>
-			<frameName>KageHands_Move_005.png</frameName>
-			<eventName type="setAttackBox">s_hit</eventName>
-			<frameName>KageHands_Move_006.png</frameName>
-			<frameName>KageHands_Move_007.png</frameName>
-			<eventName type="setAttackBox">s_hit</eventName>
-			<frameName>KageHands_Move_004.png</frameName>
-			<frameName>KageHands_Move_005.png</frameName>
-			<eventName type="setAttackBox">s_hit</eventName>
-			<frameName>KageHands_Move_006.png</frameName>
-			<frameName>KageHands_Move_007.png</frameName>
-			<eventName type="setAttackBox">s_hit</eventName>
-			<frameName>KageHands_Move_004.png</frameName>
-			<frameName>KageHands_Move_005.png</frameName>
-			<eventName type="setAttackBox">s_hit</eventName>
-			<frameName>KageHands_Move_006.png</frameName>
-			<frameName>KageHands_Move_007.png</frameName>
-			<eventName type="setAttackBox">s_hit</eventName>
-			<frameName>KageHands_Move_004.png</frameName>
-			<frameName>KageHands_Move_005.png</frameName>
-			<eventName type="setAttackBox">s_hit</eventName>
-			<frameName>KageHands_Move_006.png</frameName>
-			<frameName>KageHands_Move_007.png</frameName>
-			<eventName type="setAttackBox">s_hit</eventName>
-			<frameName>KageHands_Move_004.png</frameName>
-			<frameName>KageHands_Move_005.png</frameName>
-			<eventName type="setAttackBox">s_hit</eventName>
-			<frameName>KageHands_Move_006.png</frameName>
-			<frameName>KageHands_Move_007.png</frameName>
-			<eventName type="setAttackBox">s_hit</eventName>
-			<frameName>KageHands_Move_004.png</frameName>
-			<frameName>KageHands_Move_005.png</frameName>
-			<eventName type="setAttackBox">s_hit</eventName>
-			<frameName>KageHands_Move_006.png</frameName>
-			<frameName>KageHands_Move_007.png</frameName>
-			<eventName type="setAttackBox">s_hit</eventName>
-			<frameName>KageHands_Move_003.png</frameName>
-			<frameName>KageHands_Move_002.png</frameName>
-			<eventName type="setDetonation">0</eventName>
 		</frame>
 	</action>
 
-</animation>
+	<action name="nAttack">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">160</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">0</p>
+		</data>
+		<frame>
+			<f>KageHands_Move_001</f>
+			<f>KageHands_Move_002</f>
+			<f>KageHands_Move_003</f>
+			<e type="setAttackBox">s_hit</e>
+			<f>KageHands_Move_004</f>
+			<f>KageHands_Move_005</f>
+			<e type="setAttackBox">s_hit</e>
+			<f>KageHands_Move_006</f>
+			<f>KageHands_Move_007</f>
+			<e type="setAttackBox">s_hit</e>
+			<f>KageHands_Move_004</f>
+			<f>KageHands_Move_005</f>
+			<e type="setAttackBox">s_hit</e>
+			<f>KageHands_Move_006</f>
+			<f>KageHands_Move_007</f>
+			<e type="setAttackBox">s_hit</e>
+			<f>KageHands_Move_004</f>
+			<f>KageHands_Move_005</f>
+			<e type="setAttackBox">s_hit</e>
+			<f>KageHands_Move_006</f>
+			<f>KageHands_Move_007</f>
+			<e type="setAttackBox">s_hit</e>
+			<f>KageHands_Move_004</f>
+			<f>KageHands_Move_005</f>
+			<e type="setAttackBox">s_hit</e>
+			<f>KageHands_Move_006</f>
+			<f>KageHands_Move_007</f>
+			<e type="setAttackBox">s_hit</e>
+			<f>KageHands_Move_004</f>
+			<f>KageHands_Move_005</f>
+			<e type="setAttackBox">s_hit</e>
+			<f>KageHands_Move_006</f>
+			<f>KageHands_Move_007</f>
+			<e type="setAttackBox">s_hit</e>
+			<f>KageHands_Move_004</f>
+			<f>KageHands_Move_005</f>
+			<e type="setAttackBox">s_hit</e>
+			<f>KageHands_Move_006</f>
+			<f>KageHands_Move_007</f>
+			<e type="setAttackBox">s_hit</e>
+			<f>KageHands_Move_004</f>
+			<f>KageHands_Move_005</f>
+			<e type="setAttackBox">s_hit</e>
+			<f>KageHands_Move_006</f>
+			<f>KageHands_Move_007</f>
+			<e type="setAttackBox">s_hit</e>
+			<f>KageHands_Move_003</f>
+			<f>KageHands_Move_002</f>
+			<e type="setDetonation">0</e>
+		</frame>
+	</action>
+
+</unit>

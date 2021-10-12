@@ -1,434 +1,434 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animation>
+<unit>
 
-	<action value="Idle">
-		<date>
-			<dateName type="attackType">Minato</dateName>
-			<dateName type="attackValue">5500</dateName>
-			<dateName type="attackRangeX">40</dateName>
-			<dateName type="attackRangeY">80</dateName>
-			<coldName type="coldDown">224</coldName>
-		</date>
+	<action name="Idle">
+		<data>
+			<p type="attackType">Minato</p>
+			<p type="attackValue">5500</p>
+			<p type="attackRangeX">40</p>
+			<p type="attackRangeY">80</p>
+			<p type="cd">224</p>
+		</data>
 		<frame>
-			<frameName>Minato_Idle_01.png</frameName>
-			<frameName>Minato_Idle_02.png</frameName>
-			<frameName>Minato_Idle_03.png</frameName>
-			<frameName>Minato_Idle_04.png</frameName>
-			<frameName>Minato_Idle_03.png</frameName>
-			<frameName>Minato_Idle_02.png</frameName>
+			<f>Minato_Idle_01</f>
+			<f>Minato_Idle_02</f>
+			<f>Minato_Idle_03</f>
+			<f>Minato_Idle_04</f>
+			<f>Minato_Idle_03</f>
+			<f>Minato_Idle_02</f>
 		</frame>
 	</action>
 
-	<action value="Walk">
+	<action name="Walk">
 		<frame>
-			<frameName>Minato_Walk_01.png</frameName>
-			<frameName>Minato_Walk_02.png</frameName>
-			<frameName>Minato_Walk_03.png</frameName>
-			<frameName>Minato_Walk_04.png</frameName>
-			<frameName>Minato_Walk_05.png</frameName>
-			<frameName>Minato_Walk_06.png</frameName>
+			<f>Minato_Walk_01</f>
+			<f>Minato_Walk_02</f>
+			<f>Minato_Walk_03</f>
+			<f>Minato_Walk_04</f>
+			<f>Minato_Walk_05</f>
+			<f>Minato_Walk_06</f>
 		</frame>
 	</action>
 
-	<action value="Hurt">
+	<action name="Hurt">
 		<frame>
-			<eventName type="setMove">32</eventName>
-			<frameName>Minato_Hurt_01.png</frameName>
-			<frameName>Minato_Hurt_02.png</frameName>
+			<e type="setMove">32</e>
+			<f>Minato_Hurt_01</f>
+			<f>Minato_Hurt_02</f>
 		</frame>
 	</action>
 
-	<action value="AirHurt">
+	<action name="AirHurt">
 		<frame>
-			<frameName>Minato_AirHurt_01.png</frameName>
+			<f>Minato_AirHurt_01</f>
 		</frame>
 	</action>
 
-	<action value="KnockDown">
+	<action name="KnockDown">
 		<frame>
-			<frameName>Minato_KnockDown_01.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Minato_KnockDown_02.png</frameName>
-			<frameName>Minato_KnockDown_03.png</frameName>
-			<eventName type="setDelay">60</eventName>
-			<frameName>Minato_KnockDown_04.png</frameName>
-			<frameName>Minato_KnockDown_05.png</frameName>
+			<f>Minato_KnockDown_01</f>
+			<e type="setDelay">10</e>
+			<f>Minato_KnockDown_02</f>
+			<f>Minato_KnockDown_03</f>
+			<e type="setDelay">60</e>
+			<f>Minato_KnockDown_04</f>
+			<f>Minato_KnockDown_05</f>
 		</frame>
 	</action>
 
-	<action value="Float">
+	<action name="Float">
 		<frame>
-			<frameName>Minato_Float_01.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Minato_Float_02.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Minato_Float_03.png</frameName>
+			<f>Minato_Float_01</f>
+			<e type="setDelay">10</e>
+			<f>Minato_Float_02</f>
+			<e type="setDelay">10</e>
+			<f>Minato_Float_03</f>
 		</frame>
 	</action>
 
-	<action value="Dead">
+	<action name="Dead">
 		<frame>
-			<frameName>Minato_KnockDown_01.png</frameName>
-			<frameName>Minato_KnockDown_02.png</frameName>
-			<frameName>Minato_KnockDown_03.png</frameName>
+			<f>Minato_KnockDown_01</f>
+			<f>Minato_KnockDown_02</f>
+			<f>Minato_KnockDown_03</f>
 		</frame>
 	</action>
 
-	<action value="nAttack">
-		<date>
-			<dateName type="attackType">nAttack</dateName>
-			<dateName type="attackValue">80</dateName>
-			<dateName type="attackRangeX">16</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="nAttack">
+		<data>
+			<p type="attackType">nAttack</p>
+			<p type="attackValue">80</p>
+			<p type="attackRangeX">16</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">0</p>
+		</data>
 		<frame>
-			<frameName>Minato_NAttack_01.png</frameName>
-			<frameName>Minato_NAttack_02.png</frameName>
-			<frameName>Minato_NAttack_03.png</frameName>
-			<eventName type="setMove">8</eventName>
-			<frameName>Minato_NAttack_04.png</frameName>
-			<eventName type="setSound">Audio/Effect/combo1.ogg</eventName>
-			<eventName type="setAttackBox">n_hit</eventName>
-			<frameName>Minato_NAttack_05.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Minato_NAttack_06.png</frameName>
-			<frameName>Minato_NAttack_07.png</frameName>
-			<eventName type="setSound">Audio/Effect/kuwu.ogg</eventName>
-			<eventName type="setAttackBox">bl_hit</eventName>
-			<frameName>Minato_NAttack_08.png</frameName>
-			<frameName>Minato_NAttack_09.png</frameName>
-			<frameName>Minato_NAttack_10.png</frameName>
-			<eventName type="setMove">16</eventName>
-			<frameName>Minato_NAttack_11.png</frameName>
-			<eventName type="setSound">Audio/Minato/Minato_combo.ogg</eventName>
-			<eventName type="setSound">Audio/Effect/combo3.ogg</eventName>
-			<eventName type="setAttackBox">l_hit</eventName>
-			<frameName>Minato_NAttack_12.png</frameName>
+			<f>Minato_NAttack_01</f>
+			<f>Minato_NAttack_02</f>
+			<f>Minato_NAttack_03</f>
+			<e type="setMove">8</e>
+			<f>Minato_NAttack_04</f>
+			<e type="setSound">Audio/Effect/combo1.ogg</e>
+			<e type="setAttackBox">n_hit</e>
+			<f>Minato_NAttack_05</f>
+			<e type="setDelay">10</e>
+			<f>Minato_NAttack_06</f>
+			<f>Minato_NAttack_07</f>
+			<e type="setSound">Audio/Effect/kuwu.ogg</e>
+			<e type="setAttackBox">bl_hit</e>
+			<f>Minato_NAttack_08</f>
+			<f>Minato_NAttack_09</f>
+			<f>Minato_NAttack_10</f>
+			<e type="setMove">16</e>
+			<f>Minato_NAttack_11</f>
+			<e type="setSound">Audio/Minato/Minato_combo.ogg</e>
+			<e type="setSound">Audio/Effect/combo3.ogg</e>
+			<e type="setAttackBox">l_hit</e>
+			<f>Minato_NAttack_12</f>
 		</frame>
 	</action>
 
-	<action value="skill01">
-		<date>
-			<dateName type="attackType">cBuff</dateName>
-			<dateName type="attackValue">150</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">0</dateName>
-			<coldName type="coldDown">10</coldName>
-			<dateName type="combatPoint">3900</dateName>
-		</date>
+	<action name="skill01">
+		<data>
+			<p type="attackType">cBuff</p>
+			<p type="attackValue">150</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">0</p>
+			<p type="cd">10</p>
+			<p type="combatPoint">3900</p>
+		</data>
 		<frame>
-			<frameName>Minato_Skill01_01.png</frameName>
-			<eventName type="setSound">Audio/Minato/Minato_skill1.ogg</eventName>
-			<frameName>Minato_Skill01_02.png</frameName>
-			<frameName>Minato_Skill01_03.png</frameName>
-			<frameName>Minato_Skill01_04.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<eventName type="setBuff">17</eventName>
-			<eventName type="setMon">HiraishinMark</eventName>
+			<f>Minato_Skill01_01</f>
+			<e type="setSound">Audio/Minato/Minato_skill1.ogg</e>
+			<f>Minato_Skill01_02</f>
+			<f>Minato_Skill01_03</f>
+			<f>Minato_Skill01_04</f>
+			<e type="setDelay">10</e>
+			<e type="setBuff">17</e>
+			<e type="setMon">HiraishinMark</e>
 		</frame>
 	</action>
 
-	<action value="skill02">
-		<date>
-			<dateName type="attackType">Summon</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">0</dateName>
-			<coldName type="coldDown">15</coldName>
-			<dateName type="combatPoint">2280</dateName>
-		</date>
+	<action name="skill02">
+		<data>
+			<p type="attackType">Summon</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">0</p>
+			<p type="cd">15</p>
+			<p type="combatPoint">2280</p>
+		</data>
 		<frame>
-			<eventName type="setSound">Audio/Minato/Minato_skill2.ogg</eventName>
-			<frameName>Minato_Skill02_01.png</frameName>
-			<frameName>Minato_Skill02_02.png</frameName>
-			<eventName type="setBullet">HiraishinKunai</eventName>
-			<frameName>Minato_Skill02_03.png</frameName>
-			<frameName>Minato_Skill02_04.png</frameName>
-			<frameName>Minato_Skill02_05.png</frameName>
-			<eventName type="setSound">Audio/Effect/rasen.ogg</eventName>
-			<frameName>Minato_Skill02_06.png</frameName>
-			<frameName>Minato_Skill02_07.png</frameName>
-			<frameName>Minato_Skill02_05.png</frameName>
-			<frameName>Minato_Skill02_06.png</frameName>
-			<frameName>Minato_Skill02_07.png</frameName>
-			<frameName>Minato_Skill02_05.png</frameName>
-			<frameName>Minato_Skill02_06.png</frameName>
-			<frameName>Minato_Skill02_07.png</frameName>
-			<frameName>Minato_Skill02_05.png</frameName>
-			<frameName>Minato_Skill02_06.png</frameName>
-			<frameName>Minato_Skill02_07.png</frameName>
-			<frameName>Minato_Skill02_05.png</frameName>
-			<frameName>Minato_Skill02_06.png</frameName>
-			<frameName>Minato_Skill02_07.png</frameName>
-			<frameName>Minato_Skill02_05.png</frameName>
-			<frameName>Minato_Skill02_06.png</frameName>
-			<frameName>Minato_Skill02_07.png</frameName>
-			<frameName>Minato_Skill02_05.png</frameName>
-			<frameName>Minato_Skill02_06.png</frameName>
-			<frameName>Minato_Skill02_07.png</frameName>
-			<frameName>Minato_Skill02_05.png</frameName>
-			<frameName>Minato_Skill02_06.png</frameName>
-			<frameName>Minato_Skill02_07.png</frameName>
+			<e type="setSound">Audio/Minato/Minato_skill2.ogg</e>
+			<f>Minato_Skill02_01</f>
+			<f>Minato_Skill02_02</f>
+			<e type="setBullet">HiraishinKunai</e>
+			<f>Minato_Skill02_03</f>
+			<f>Minato_Skill02_04</f>
+			<f>Minato_Skill02_05</f>
+			<e type="setSound">Audio/Effect/rasen.ogg</e>
+			<f>Minato_Skill02_06</f>
+			<f>Minato_Skill02_07</f>
+			<f>Minato_Skill02_05</f>
+			<f>Minato_Skill02_06</f>
+			<f>Minato_Skill02_07</f>
+			<f>Minato_Skill02_05</f>
+			<f>Minato_Skill02_06</f>
+			<f>Minato_Skill02_07</f>
+			<f>Minato_Skill02_05</f>
+			<f>Minato_Skill02_06</f>
+			<f>Minato_Skill02_07</f>
+			<f>Minato_Skill02_05</f>
+			<f>Minato_Skill02_06</f>
+			<f>Minato_Skill02_07</f>
+			<f>Minato_Skill02_05</f>
+			<f>Minato_Skill02_06</f>
+			<f>Minato_Skill02_07</f>
+			<f>Minato_Skill02_05</f>
+			<f>Minato_Skill02_06</f>
+			<f>Minato_Skill02_07</f>
+			<f>Minato_Skill02_05</f>
+			<f>Minato_Skill02_06</f>
+			<f>Minato_Skill02_07</f>
 		</frame>
 	</action>
 
-	<action value="skill03">
-		<date>
-			<dateName type="attackType">cBuff</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">10</dateName>
-			<coldName type="coldDown">25</coldName>
-			<dateName type="combatPoint">0</dateName>
-		</date>
+	<action name="skill03">
+		<data>
+			<p type="attackType">cBuff</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">10</p>
+			<p type="cd">25</p>
+			<p type="combatPoint">0</p>
+		</data>
 		<frame>
-			<eventName type="setSound">Audio/Minato/Minato_skill3.ogg</eventName>
-			<frameName>Minato_Skill05_03.png</frameName>
-			<frameName>Minato_Skill05_04.png</frameName>
-			<frameName>Minato_Skill05_05.png</frameName>
-			<frameName>Minato_Skill05_06.png</frameName>
-			<frameName>Minato_Skill05_07.png</frameName>
-			<frameName>Minato_Skill05_08.png</frameName>
-			<frameName>Minato_Skill05_09.png</frameName>
-			<eventName type="setBuff">18</eventName>
+			<e type="setSound">Audio/Minato/Minato_skill3.ogg</e>
+			<f>Minato_Skill05_03</f>
+			<f>Minato_Skill05_04</f>
+			<f>Minato_Skill05_05</f>
+			<f>Minato_Skill05_06</f>
+			<f>Minato_Skill05_07</f>
+			<f>Minato_Skill05_08</f>
+			<f>Minato_Skill05_09</f>
+			<e type="setBuff">18</e>
 		</frame>
 	</action>
 
-	<action value="skill04">
-		<date>
-			<dateName type="attackType">cAttack</dateName>
-			<dateName type="attackValue">360</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">1</coldName>
-			<dateName type="combatPoint">3600</dateName>
-		</date>
+	<action name="skill04">
+		<data>
+			<p type="attackType">cAttack</p>
+			<p type="attackValue">360</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">1</p>
+			<p type="combatPoint">3600</p>
+		</data>
 		<frame>
-			<eventName type="setSound">Audio/Effect/ougis.ogg</eventName>
-			<frameName>Minato_Skill04_001.png</frameName>
-			<eventName type="setSound">Audio/Minato/Minato_skill4.ogg</eventName>
-			<frameName>Minato_Skill04_002.png</frameName>
-			<eventName type="setCommand">setInvincible</eventName>
-			<frameName>Minato_Skill04_003.png</frameName>
-			<eventName type="setAttackBox">f_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/damage_o.ogg</eventName>
-			<frameName>Minato_Skill04_004.png</frameName>
-			<frameName>Minato_Skill04_005.png</frameName>
-			<eventName type="setSound">Audio/Effect/hiraishin_effect.ogg</eventName>
-			<frameName>Minato_Skill04_006.png</frameName>
-			<frameName>Minato_Skill04_007.png</frameName>
-			<eventName type="setAttackBox">ac_hit</eventName>
-			<frameName>Minato_Skill04_008.png</frameName>
-			<eventName type="setSound">Audio/Effect/hiraishin_effect.ogg</eventName>
-			<frameName>Minato_Skill04_009.png</frameName>
-			<frameName>Minato_Skill04_010.png</frameName>
-			<eventName type="setAttackBox">ac_hit</eventName>
-			<frameName>Minato_Skill04_011.png</frameName>
-			<eventName type="setSound">Audio/Effect/hiraishin_effect.ogg</eventName>
-			<frameName>Minato_Skill04_012.png</frameName>
-			<frameName>Minato_Skill04_013.png</frameName>
-			<frameName>Minato_Skill04_014.png</frameName>
-			<eventName type="setCharge">320</eventName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Minato_Skill04_015.png</frameName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/damage_rasen.ogg</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Minato_Skill04_016.png</frameName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/damage_rasen.ogg</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Minato_Skill04_017.png</frameName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/damage_rasen.ogg</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Minato_Skill04_018.png</frameName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/damage_rasen.ogg</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Minato_Skill04_019.png</frameName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/damage_rasen.ogg</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Minato_Skill04_020.png</frameName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/damage_rasen.ogg</eventName>
-			<eventName type="setDelay">10</eventName>
-			<eventName type="setCommand">reInvincible</eventName>
+			<e type="setSound">Audio/Effect/ougis.ogg</e>
+			<f>Minato_Skill04_001</f>
+			<e type="setSound">Audio/Minato/Minato_skill4.ogg</e>
+			<f>Minato_Skill04_002</f>
+			<e type="setCommand">setInvincible</e>
+			<f>Minato_Skill04_003</f>
+			<e type="setAttackBox">f_hit</e>
+			<e type="setDSound">Audio/Effect/damage_o.ogg</e>
+			<f>Minato_Skill04_004</f>
+			<f>Minato_Skill04_005</f>
+			<e type="setSound">Audio/Effect/hiraishin_effect.ogg</e>
+			<f>Minato_Skill04_006</f>
+			<f>Minato_Skill04_007</f>
+			<e type="setAttackBox">ac_hit</e>
+			<f>Minato_Skill04_008</f>
+			<e type="setSound">Audio/Effect/hiraishin_effect.ogg</e>
+			<f>Minato_Skill04_009</f>
+			<f>Minato_Skill04_010</f>
+			<e type="setAttackBox">ac_hit</e>
+			<f>Minato_Skill04_011</f>
+			<e type="setSound">Audio/Effect/hiraishin_effect.ogg</e>
+			<f>Minato_Skill04_012</f>
+			<f>Minato_Skill04_013</f>
+			<f>Minato_Skill04_014</f>
+			<e type="setCharge">320</e>
+			<e type="setAttackBox">c_hit</e>
+			<e type="setDelay">10</e>
+			<f>Minato_Skill04_015</f>
+			<e type="setAttackBox">c_hit</e>
+			<e type="setDSound">Audio/Effect/damage_rasen.ogg</e>
+			<e type="setDelay">10</e>
+			<f>Minato_Skill04_016</f>
+			<e type="setAttackBox">c_hit</e>
+			<e type="setDSound">Audio/Effect/damage_rasen.ogg</e>
+			<e type="setDelay">10</e>
+			<f>Minato_Skill04_017</f>
+			<e type="setAttackBox">c_hit</e>
+			<e type="setDSound">Audio/Effect/damage_rasen.ogg</e>
+			<e type="setDelay">10</e>
+			<f>Minato_Skill04_018</f>
+			<e type="setAttackBox">c_hit</e>
+			<e type="setDSound">Audio/Effect/damage_rasen.ogg</e>
+			<e type="setDelay">10</e>
+			<f>Minato_Skill04_019</f>
+			<e type="setAttackBox">c_hit</e>
+			<e type="setDSound">Audio/Effect/damage_rasen.ogg</e>
+			<e type="setDelay">10</e>
+			<f>Minato_Skill04_020</f>
+			<e type="setAttackBox">c_hit</e>
+			<e type="setDSound">Audio/Effect/damage_rasen.ogg</e>
+			<e type="setDelay">10</e>
+			<e type="setCommand">reInvincible</e>
 		</frame>
 	</action>
 
-	<action value="skill05">
-		<date>
-			<dateName type="attackType">cAttack</dateName>
-			<dateName type="attackValue">1060</dateName>
-			<dateName type="attackRangeX">16</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">1</coldName>
-			<dateName type="combatPoint">9260</dateName>
-		</date>
+	<action name="skill05">
+		<data>
+			<p type="attackType">cAttack</p>
+			<p type="attackValue">1060</p>
+			<p type="attackRangeX">16</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">1</p>
+			<p type="combatPoint">9260</p>
+		</data>
 		<frame>
-			<eventName type="setCommand">setInvincible</eventName>
-			<frameName>Minato_Skill03_001.png</frameName>
-			<eventName type="setOugis">10</eventName>
-			<frameName>Minato_Skill03_001.png</frameName>
-			<eventName type="setMon">FakeMinato</eventName>
-			<eventName type="setSound">Audio/Minato/Minato_skill5.ogg</eventName>
-			<eventName type="setDelay">70</eventName>
-			<frameName>Minato_Skill03_002.png</frameName>
-			<frameName>Minato_Skill03_003.png</frameName>
-			<frameName>Minato_Skill03_004.png</frameName>
-			<frameName>Minato_Skill03_005.png</frameName>
-			<frameName>Minato_Skill03_006.png</frameName>
-			<frameName>Minato_Skill03_007.png</frameName>
-			<frameName>Minato_Skill03_008.png</frameName>
-			<frameName>Minato_Skill03_009.png</frameName>
-			<frameName>Minato_Skill03_010.png</frameName>
-			<frameName>Minato_Skill03_011.png</frameName>
-			<frameName>Minato_Skill03_012.png</frameName>
-			<frameName>Minato_Skill03_013.png</frameName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<eventName type="setSound">Audio/Effect/damage_rasen.ogg</eventName>
-			<frameName>Minato_Skill03_014.png</frameName>
-			<frameName>Minato_Skill03_015.png</frameName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<eventName type="setSound">Audio/Effect/damage_rasen.ogg</eventName>
-			<frameName>Minato_Skill03_016.png</frameName>
-			<frameName>Minato_Skill03_017.png</frameName>
-			<eventName type="setAttackBox">b_hit</eventName>
-			<eventName type="setSound">Audio/Effect/damage_h.ogg</eventName>
-			<frameName>Minato_Skill03_018.png</frameName>
-			<frameName>Minato_Skill03_019.png</frameName>
-			<frameName>Minato_Skill03_020.png</frameName>
-			<frameName>Minato_Skill03_021.png</frameName>
-			<eventName type="setDelay">30</eventName>
-			<eventName type="setCommand">reInvincible</eventName>
+			<e type="setCommand">setInvincible</e>
+			<f>Minato_Skill03_001</f>
+			<e type="setOugis">10</e>
+			<f>Minato_Skill03_001</f>
+			<e type="setMon">FakeMinato</e>
+			<e type="setSound">Audio/Minato/Minato_skill5.ogg</e>
+			<e type="setDelay">70</e>
+			<f>Minato_Skill03_002</f>
+			<f>Minato_Skill03_003</f>
+			<f>Minato_Skill03_004</f>
+			<f>Minato_Skill03_005</f>
+			<f>Minato_Skill03_006</f>
+			<f>Minato_Skill03_007</f>
+			<f>Minato_Skill03_008</f>
+			<f>Minato_Skill03_009</f>
+			<f>Minato_Skill03_010</f>
+			<f>Minato_Skill03_011</f>
+			<f>Minato_Skill03_012</f>
+			<f>Minato_Skill03_013</f>
+			<e type="setAttackBox">c_hit</e>
+			<e type="setSound">Audio/Effect/damage_rasen.ogg</e>
+			<f>Minato_Skill03_014</f>
+			<f>Minato_Skill03_015</f>
+			<e type="setAttackBox">c_hit</e>
+			<e type="setSound">Audio/Effect/damage_rasen.ogg</e>
+			<f>Minato_Skill03_016</f>
+			<f>Minato_Skill03_017</f>
+			<e type="setAttackBox">b_hit</e>
+			<e type="setSound">Audio/Effect/damage_h.ogg</e>
+			<f>Minato_Skill03_018</f>
+			<f>Minato_Skill03_019</f>
+			<f>Minato_Skill03_020</f>
+			<f>Minato_Skill03_021</f>
+			<e type="setDelay">30</e>
+			<e type="setCommand">reInvincible</e>
 		</frame>
 
 	</action>
 
-	<action value="skill06">
+	<action name="skill06">
 		<frame></frame>
 	</action>
-	<action value="skill07">
+	<action name="skill07">
 		<frame></frame>
 	</action>
-	<action value="skill08">
+	<action name="skill08">
 		<frame></frame>
 	</action>
-	<action value="skill09">
+	<action name="skill09">
 		<frame></frame>
 	</action>
-	<action value="skill10">
-		<date>
-			<dateName type="attackType">Transport</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">0</dateName>
-			<coldName type="coldDown">1</coldName>
-		</date>
+	<action name="skill10">
+		<data>
+			<p type="attackType">Transport</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">0</p>
+			<p type="cd">1</p>
+		</data>
 		<frame>
-			<eventName type="setSkillEffect">Hiraishin</eventName>
-			<eventName type="setSound">Audio/Effect/hiraishin_effect2.ogg</eventName>
-			<eventName type="setCommand">setTransport2</eventName>
-			<frameName>Minato_Skill10_01.png</frameName>
-			<frameName>Minato_Skill10_02.png</frameName>
-			<frameName>Minato_Skill10_03.png</frameName>
-			<frameName>Minato_Skill10_04.png</frameName>
-			<frameName>Minato_Skill10_05.png</frameName>
-			<frameName>Minato_Skill10_06.png</frameName>
+			<e type="setSkillEffect">Hiraishin</e>
+			<e type="setSound">Audio/Effect/hiraishin_effect2.ogg</e>
+			<e type="setCommand">setTransport2</e>
+			<f>Minato_Skill10_01</f>
+			<f>Minato_Skill10_02</f>
+			<f>Minato_Skill10_03</f>
+			<f>Minato_Skill10_04</f>
+			<f>Minato_Skill10_05</f>
+			<f>Minato_Skill10_06</f>
 		</frame>
 	</action>
-	<action value="skill11">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">760</dateName>
-			<dateName type="attackRangeX">16</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">15</coldName>
-		</date>
+	<action name="skill11">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">760</p>
+			<p type="attackRangeX">16</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">15</p>
+		</data>
 		<frame>
-			<eventName type="setCommand">setInvincible</eventName>
-			<eventName type="setSkillEffect">Hiraishin</eventName>
-			<eventName type="setSound">Audio/Effect/hiraishin_effect.ogg</eventName>
-			<eventName type="setCommand">setTransport</eventName>
-			<frameName>Minato_Skill02_09.png</frameName>
-			<eventName type="setSound">Audio/Minato/Minato_skill2_1.ogg</eventName>
-			<frameName>Minato_Skill02_10.png</frameName>
-			<frameName>Minato_Skill02_11.png</frameName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/damage_c.ogg</eventName>
-			<frameName>Minato_Skill02_12.png</frameName>
-			<frameName>Minato_Skill02_13.png</frameName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/damage_c.ogg</eventName>
-			<frameName>Minato_Skill02_14.png</frameName>
-			<frameName>Minato_Skill02_15.png</frameName>
-			<eventName type="setAttackBox">b_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/damage_h.ogg</eventName>
-			<frameName>Minato_Skill02_16.png</frameName>
-			<frameName>Minato_Skill02_17.png</frameName>
-			<frameName>Minato_Skill02_18.png</frameName>
-			<eventName type="setActionResume2">20</eventName>
-			<eventName type="setCommand">setTransport</eventName>
-			<eventName type="setCommand">reInvincible</eventName>
-			<frameName>Minato_Skill02_19.png</frameName>
-			<frameName>Minato_Skill02_20.png</frameName>
-			<frameName>Minato_Skill02_21.png</frameName>
-			<frameName>Minato_Skill02_22.png</frameName>
-		</frame>
-
-	</action>
-	<action value="skill12">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">16</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">1</coldName>
-		</date>
-		<frame>
-			<eventName type="setSkillEffect">Hiraishin</eventName>
-			<eventName type="setSound">Audio/Effect/hiraishin_effect.ogg</eventName>
-			<eventName type="setCommand">findTarget</eventName>
-			<eventName type="setCommand">setTransport</eventName>
-			<frameName>Minato_NAttack_01.png</frameName>
-			<frameName>Minato_NAttack_02.png</frameName>
-			<frameName>Minato_NAttack_03.png</frameName>
-			<frameName>Minato_Skill12_01.png</frameName>
-			<eventName type="setSound">Audio/Effect/combo1.ogg</eventName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<eventName type="setSkillEffect">Hiraishin</eventName>
-			<eventName type="setSound">Audio/Effect/hiraishin_effect.ogg</eventName>
-			<eventName type="setCommand">findTarget</eventName>
-			<eventName type="setCommand">setTransport</eventName>
-			<frameName>Minato_Skill12_02.png</frameName>
-			<frameName>Minato_Skill12_03.png</frameName>
-			<frameName>Minato_Skill12_04.png</frameName>
-			<frameName>Minato_NAttack_06.png</frameName>
-			<frameName>Minato_NAttack_07.png</frameName>
-			<eventName type="setSound">Audio/Effect/kuwu.ogg</eventName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<frameName>Minato_Skill12_05.png</frameName>
-			<eventName type="setSkillEffect">Hiraishin</eventName>
-			<eventName type="setSound">Audio/Effect/hiraishin_effect.ogg</eventName>
-			<eventName type="setCommand">findTarget</eventName>
-			<eventName type="setCommand">setTransport</eventName>
-			<frameName>Minato_Skill12_06.png</frameName>
-			<frameName>Minato_Skill12_07.png</frameName>
-			<frameName>Minato_Skill12_08.png</frameName>
-			<frameName>Minato_Skill12_09.png</frameName>
-			<eventName type="setMove">16</eventName>
-			<frameName>Minato_Skill12_10.png</frameName>
-			<eventName type="setSound">Audio/Minato/Minato_combo.ogg</eventName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<frameName>Minato_Skill12_11.png</frameName>
-			<frameName>Minato_Skill12_12.png</frameName>
+			<e type="setCommand">setInvincible</e>
+			<e type="setSkillEffect">Hiraishin</e>
+			<e type="setSound">Audio/Effect/hiraishin_effect.ogg</e>
+			<e type="setCommand">setTransport</e>
+			<f>Minato_Skill02_09</f>
+			<e type="setSound">Audio/Minato/Minato_skill2_1.ogg</e>
+			<f>Minato_Skill02_10</f>
+			<f>Minato_Skill02_11</f>
+			<e type="setAttackBox">c_hit</e>
+			<e type="setDSound">Audio/Effect/damage_c.ogg</e>
+			<f>Minato_Skill02_12</f>
+			<f>Minato_Skill02_13</f>
+			<e type="setAttackBox">c_hit</e>
+			<e type="setDSound">Audio/Effect/damage_c.ogg</e>
+			<f>Minato_Skill02_14</f>
+			<f>Minato_Skill02_15</f>
+			<e type="setAttackBox">b_hit</e>
+			<e type="setDSound">Audio/Effect/damage_h.ogg</e>
+			<f>Minato_Skill02_16</f>
+			<f>Minato_Skill02_17</f>
+			<f>Minato_Skill02_18</f>
+			<e type="setActionResume2">20</e>
+			<e type="setCommand">setTransport</e>
+			<e type="setCommand">reInvincible</e>
+			<f>Minato_Skill02_19</f>
+			<f>Minato_Skill02_20</f>
+			<f>Minato_Skill02_21</f>
+			<f>Minato_Skill02_22</f>
 		</frame>
 
 	</action>
+	<action name="skill12">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">16</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">1</p>
+		</data>
+		<frame>
+			<e type="setSkillEffect">Hiraishin</e>
+			<e type="setSound">Audio/Effect/hiraishin_effect.ogg</e>
+			<e type="setCommand">findTarget</e>
+			<e type="setCommand">setTransport</e>
+			<f>Minato_NAttack_01</f>
+			<f>Minato_NAttack_02</f>
+			<f>Minato_NAttack_03</f>
+			<f>Minato_Skill12_01</f>
+			<e type="setSound">Audio/Effect/combo1.ogg</e>
+			<e type="setAttackBox">c_hit</e>
+			<e type="setSkillEffect">Hiraishin</e>
+			<e type="setSound">Audio/Effect/hiraishin_effect.ogg</e>
+			<e type="setCommand">findTarget</e>
+			<e type="setCommand">setTransport</e>
+			<f>Minato_Skill12_02</f>
+			<f>Minato_Skill12_03</f>
+			<f>Minato_Skill12_04</f>
+			<f>Minato_NAttack_06</f>
+			<f>Minato_NAttack_07</f>
+			<e type="setSound">Audio/Effect/kuwu.ogg</e>
+			<e type="setAttackBox">c_hit</e>
+			<f>Minato_Skill12_05</f>
+			<e type="setSkillEffect">Hiraishin</e>
+			<e type="setSound">Audio/Effect/hiraishin_effect.ogg</e>
+			<e type="setCommand">findTarget</e>
+			<e type="setCommand">setTransport</e>
+			<f>Minato_Skill12_06</f>
+			<f>Minato_Skill12_07</f>
+			<f>Minato_Skill12_08</f>
+			<f>Minato_Skill12_09</f>
+			<e type="setMove">16</e>
+			<f>Minato_Skill12_10</f>
+			<e type="setSound">Audio/Minato/Minato_combo.ogg</e>
+			<e type="setAttackBox">c_hit</e>
+			<f>Minato_Skill12_11</f>
+			<f>Minato_Skill12_12</f>
+		</frame>
+
+	</action>
 
 
-</animation>
+</unit>

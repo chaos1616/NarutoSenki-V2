@@ -81,7 +81,7 @@ class Lee : public Hero
 			}
 			else
 			{
-				auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Bamen_Effect_%02d.png", htLv - 1)->getCString());
+				auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Bamen_Effect_%02d", htLv - 1)->getCString());
 				_heartEffect->setDisplayFrame(frame);
 			}
 		}
@@ -114,7 +114,7 @@ class Lee : public Hero
 	{
 		if (htLv == 0 && !_heartEffect)
 		{
-			_heartEffect = CCSprite::createWithSpriteFrameName("Bamen_Effect_00.png");
+			_heartEffect = CCSprite::createWithSpriteFrameName("Bamen_Effect_00");
 			_heartEffect->setPosition(ccp(getContentSize().width + 40, 60));
 			addChild(_heartEffect);
 		}
@@ -122,7 +122,7 @@ class Lee : public Hero
 		if (htLv < kMax_Lee_HachimonTonkouLevel)
 		{
 			htLv++;
-			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Bamen_Effect_%02d.png", htLv - 1)->getCString());
+			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Bamen_Effect_%02d", htLv - 1)->getCString());
 			_heartEffect->setDisplayFrame(frame);
 		}
 		else

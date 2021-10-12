@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>FakeTobirama_Move_01.png</key>
+            <key>FakeTobirama_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{463,2},{33,34}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{71,76}</string>
             </dict>
-            <key>FakeTobirama_Move_02.png</key>
+            <key>FakeTobirama_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{331,716},{59,76}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{71,76}</string>
             </dict>
-            <key>FakeTobirama_Move_03.png</key>
+            <key>FakeTobirama_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{130,753},{71,76}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{71,76}</string>
             </dict>
-            <key>FakeTobirama_Move_04.png</key>
+            <key>FakeTobirama_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{253,706},{74,76}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{74,76}</string>
             </dict>
-            <key>FakeTobirama_Move_05.png</key>
+            <key>FakeTobirama_Move_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,763},{69,76}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{69,76}</string>
             </dict>
-            <key>FakeTobirama_Move_06.png</key>
+            <key>FakeTobirama_Move_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{331,777},{59,68}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{71,76}</string>
             </dict>
-            <key>FakeTobirama_Move_07.png</key>
+            <key>FakeTobirama_Move_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{409,716},{71,70}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{71,76}</string>
             </dict>
-            <key>FakeTobirama_Move_08.png</key>
+            <key>FakeTobirama_Move_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{453,312},{53,68}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{71,76}</string>
             </dict>
-            <key>SuiRyuDan_Move_01.png</key>
+            <key>SuiRyuDan_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{463,37},{78,19}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{78,19}</string>
             </dict>
-            <key>SuiRyuDan_Move_02.png</key>
+            <key>SuiRyuDan_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{393,580},{113,74}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{113,74}</string>
             </dict>
-            <key>SuiRyuDan_Move_03.png</key>
+            <key>SuiRyuDan_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{264,532},{127,92}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{127,92}</string>
             </dict>
-            <key>SuiRyuDan_Move_04.png</key>
+            <key>SuiRyuDan_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,671},{126,90}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{126,90}</string>
             </dict>
-            <key>SuiRyuDan_Move_06.png</key>
+            <key>SuiRyuDan_Move_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{134,598},{127,88}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{127,88}</string>
             </dict>
-            <key>SuiRyuDan_Move_07.png</key>
+            <key>SuiRyuDan_Move_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{263,626},{123,78}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{123,78}</string>
             </dict>
-            <key>SuiRyuDan_Move_08.png</key>
+            <key>SuiRyuDan_Move_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,600},{127,69}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{127,69}</string>
             </dict>
-            <key>SuiRyuDan_Move_09.png</key>
+            <key>SuiRyuDan_Move_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{130,688},{121,63}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{121,63}</string>
             </dict>
-            <key>SuiRyuDan_Move_10.png</key>
+            <key>SuiRyuDan_Move_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{388,656},{122,58}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{122,58}</string>
             </dict>
-            <key>Suiji_Move_001.png</key>
+            <key>Suiji_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{410,382},{96,90}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{150,150}</string>
             </dict>
-            <key>Suiji_Move_002.png</key>
+            <key>Suiji_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{134,532},{128,64}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{150,150}</string>
             </dict>
-            <key>Suiji_Move_003.png</key>
+            <key>Suiji_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,532},{130,66}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{150,150}</string>
             </dict>
-            <key>Suiji_Move_004.png</key>
+            <key>Suiji_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{453,192},{118,56}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{150,150}</string>
             </dict>
-            <key>Suijin_Move_01.png</key>
+            <key>Suijin_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{410,474},{104,94}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{190,120}</string>
             </dict>
-            <key>Suijin_Move_02.png</key>
+            <key>Suijin_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{221,382},{148,187}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{190,199}</string>
             </dict>
-            <key>Suijin_Move_03.png</key>
+            <key>Suijin_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,192},{150,224}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{190,226}</string>
             </dict>
-            <key>Suijin_Move_04.png</key>
+            <key>Suijin_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{236,2},{188,225}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{190,229}</string>
             </dict>
-            <key>Suijin_Move_05.png</key>
+            <key>Suijin_Move_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,344},{186,217}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{190,217}</string>
             </dict>
-            <key>Suijin_Move_06.png</key>
+            <key>Suijin_Move_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{188,232}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{190,238}</string>
             </dict>
-            <key>Suijin_Move_07.png</key>
+            <key>Suijin_Move_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{228,192},{188,223}}</string>

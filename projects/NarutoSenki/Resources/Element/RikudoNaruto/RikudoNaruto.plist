@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>RikudoNaruto_AirHurt_01.png</key>
+            <key>RikudoNaruto_AirHurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{440,361},{54,52}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{54,52}</string>
             </dict>
-            <key>RikudoNaruto_AirHurt_02.png</key>
+            <key>RikudoNaruto_AirHurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{702,163},{40,71}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{40,71}</string>
             </dict>
-            <key>RikudoNaruto_Float_001.png</key>
+            <key>RikudoNaruto_Float_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{361,914},{52,52}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{54,52}</string>
             </dict>
-            <key>RikudoNaruto_Float_002.png</key>
+            <key>RikudoNaruto_Float_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{958,123},{67,63}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{67,63}</string>
             </dict>
-            <key>RikudoNaruto_Float_003.png</key>
+            <key>RikudoNaruto_Float_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{302,851},{62,61}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{62,61}</string>
             </dict>
-            <key>RikudoNaruto_Hurt_01.png</key>
+            <key>RikudoNaruto_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{174,381},{55,73}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{55,73}</string>
             </dict>
-            <key>RikudoNaruto_Hurt_02.png</key>
+            <key>RikudoNaruto_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{814,881},{50,68}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{50,68}</string>
             </dict>
-            <key>RikudoNaruto_Idle_001.png</key>
+            <key>RikudoNaruto_Idle_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{675,904},{65,68}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{69,70}</string>
             </dict>
-            <key>RikudoNaruto_Idle_002.png</key>
+            <key>RikudoNaruto_Idle_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{742,881},{65,70}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{69,70}</string>
             </dict>
-            <key>RikudoNaruto_Idle_003.png</key>
+            <key>RikudoNaruto_Idle_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{603,885},{65,70}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{69,70}</string>
             </dict>
-            <key>RikudoNaruto_Idle_004.png</key>
+            <key>RikudoNaruto_Idle_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{603,952},{65,66}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{69,70}</string>
             </dict>
-            <key>RikudoNaruto_KnockDown_001.png</key>
+            <key>RikudoNaruto_KnockDown_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{133,961},{60,47}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{60,47}</string>
             </dict>
-            <key>RikudoNaruto_KnockDown_002.png</key>
+            <key>RikudoNaruto_KnockDown_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{220,280},{78,30}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{78,30}</string>
             </dict>
-            <key>RikudoNaruto_KnockDown_003.png</key>
+            <key>RikudoNaruto_KnockDown_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{415,914},{41,50}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{41,50}</string>
             </dict>
-            <key>RikudoNaruto_KnockDown_004.png</key>
+            <key>RikudoNaruto_KnockDown_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{739,1006},{65,53}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{65,53}</string>
             </dict>
-            <key>RikudoNaruto_KnockDown_005.png</key>
+            <key>RikudoNaruto_KnockDown_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{235,851},{47,65}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{47,65}</string>
             </dict>
-            <key>RikudoNaruto_NAttack_001.png</key>
+            <key>RikudoNaruto_NAttack_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{478,912},{49,68}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{87,94}</string>
             </dict>
-            <key>RikudoNaruto_NAttack_002.png</key>
+            <key>RikudoNaruto_NAttack_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{440,286},{73,54}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{87,94}</string>
             </dict>
-            <key>RikudoNaruto_NAttack_003.png</key>
+            <key>RikudoNaruto_NAttack_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{299,914},{51,60}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{87,94}</string>
             </dict>
-            <key>RikudoNaruto_NAttack_004.png</key>
+            <key>RikudoNaruto_NAttack_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{958,2},{47,64}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{87,94}</string>
             </dict>
-            <key>RikudoNaruto_NAttack_005.png</key>
+            <key>RikudoNaruto_NAttack_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{169,682},{70,67}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{70,67}</string>
             </dict>
-            <key>RikudoNaruto_NAttack_006.png</key>
+            <key>RikudoNaruto_NAttack_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{946,317},{57,73}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{57,73}</string>
             </dict>
-            <key>RikudoNaruto_NAttack_007.png</key>
+            <key>RikudoNaruto_NAttack_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{946,192},{75,60}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{75,60}</string>
             </dict>
-            <key>RikudoNaruto_NAttack_008.png</key>
+            <key>RikudoNaruto_NAttack_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{920,1065},{51,65}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{51,65}</string>
             </dict>
-            <key>RikudoNaruto_NAttack_010.png</key>
+            <key>RikudoNaruto_NAttack_010</key>
             <dict>
                 <key>frame</key>
                 <string>{{174,496},{51,72}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{87,94}</string>
             </dict>
-            <key>RikudoNaruto_NAttack_011.png</key>
+            <key>RikudoNaruto_NAttack_011</key>
             <dict>
                 <key>frame</key>
                 <string>{{548,912},{53,66}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{87,94}</string>
             </dict>
-            <key>RikudoNaruto_NAttack_012.png</key>
+            <key>RikudoNaruto_NAttack_012</key>
             <dict>
                 <key>frame</key>
                 <string>{{958,51},{63,70}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{87,94}</string>
             </dict>
-            <key>RikudoNaruto_NAttack_013.png</key>
+            <key>RikudoNaruto_NAttack_013</key>
             <dict>
                 <key>frame</key>
                 <string>{{946,254},{61,74}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{87,94}</string>
             </dict>
-            <key>RikudoNaruto_Skill01_01.png</key>
+            <key>RikudoNaruto_Skill01_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{866,834},{58,67}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{66,71}</string>
             </dict>
-            <key>RikudoNaruto_Skill01_02.png</key>
+            <key>RikudoNaruto_Skill01_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{671,974},{60,66}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{66,66}</string>
             </dict>
-            <key>RikudoNaruto_Skill01_03.png</key>
+            <key>RikudoNaruto_Skill01_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{235,953},{60,47}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{66,61}</string>
             </dict>
-            <key>RikudoNaruto_Skill01_04.png</key>
+            <key>RikudoNaruto_Skill01_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{376,767},{108,62}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{162,62}</string>
             </dict>
-            <key>RikudoNaruto_Skill01_06.png</key>
+            <key>RikudoNaruto_Skill01_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{744,456},{182,106}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{314,106}</string>
             </dict>
-            <key>RikudoNaruto_Skill01_07.png</key>
+            <key>RikudoNaruto_Skill01_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{744,347},{186,107}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{314,107}</string>
             </dict>
-            <key>RikudoNaruto_Skill01_08.png</key>
+            <key>RikudoNaruto_Skill01_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{496,326},{186,111}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{314,111}</string>
             </dict>
-            <key>RikudoNaruto_Skill01_09.png</key>
+            <key>RikudoNaruto_Skill01_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{252,286},{186,113}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{314,113}</string>
             </dict>
-            <key>RikudoNaruto_Skill02_001.png</key>
+            <key>RikudoNaruto_Skill02_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{174,438},{56,72}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{58,74}</string>
             </dict>
-            <key>RikudoNaruto_Skill02_002.png</key>
+            <key>RikudoNaruto_Skill02_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{866,952},{56,68}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{58,74}</string>
             </dict>
-            <key>RikudoNaruto_Skill02_003.png</key>
+            <key>RikudoNaruto_Skill02_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{869,706},{56,68}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{58,74}</string>
             </dict>
-            <key>RikudoNaruto_Skill03_01.png</key>
+            <key>RikudoNaruto_Skill03_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,704},{95,132}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{165,136}</string>
             </dict>
-            <key>RikudoNaruto_Skill03_02.png</key>
+            <key>RikudoNaruto_Skill03_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{486,803},{115,107}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{165,107}</string>
             </dict>
-            <key>RikudoNaruto_Skill03_03.png</key>
+            <key>RikudoNaruto_Skill03_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{133,838},{121,100}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{165,100}</string>
             </dict>
-            <key>RikudoNaruto_Skill03_04.png</key>
+            <key>RikudoNaruto_Skill03_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{169,549},{78,60}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{78,60}</string>
             </dict>
-            <key>RikudoNaruto_Skill04_001.png</key>
+            <key>RikudoNaruto_Skill04_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{866,776},{56,59}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{260,177}</string>
             </dict>
-            <key>RikudoNaruto_Skill04_002.png</key>
+            <key>RikudoNaruto_Skill04_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{866,903},{58,47}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{260,177}</string>
             </dict>
-            <key>RikudoNaruto_Skill04_003.png</key>
+            <key>RikudoNaruto_Skill04_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{502,2},{240,159}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{260,177}</string>
             </dict>
-            <key>RikudoNaruto_Skill04_004.png</key>
+            <key>RikudoNaruto_Skill04_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{254,147},{240,137}}</string>
@@ -615,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{260,177}</string>
             </dict>
-            <key>RikudoNaruto_Skill04_005.png</key>
+            <key>RikudoNaruto_Skill04_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{743,564},{126,97}}</string>
@@ -628,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{260,177}</string>
             </dict>
-            <key>RikudoNaruto_Skill04_006.png</key>
+            <key>RikudoNaruto_Skill04_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{250,177}}</string>
@@ -641,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{260,177}</string>
             </dict>
-            <key>RikudoNaruto_Skill04_007.png</key>
+            <key>RikudoNaruto_Skill04_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{249,559},{156,157}}</string>
@@ -654,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{260,177}</string>
             </dict>
-            <key>RikudoNaruto_Skill04_008.png</key>
+            <key>RikudoNaruto_Skill04_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{743,663},{124,107}}</string>
@@ -667,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{260,177}</string>
             </dict>
-            <key>RikudoNaruto_Skill04_009.png</key>
+            <key>RikudoNaruto_Skill04_009</key>
             <dict>
                 <key>frame</key>
                 <string>{{254,2},{246,143}}</string>
@@ -680,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{260,177}</string>
             </dict>
-            <key>RikudoNaruto_Skill04_010.png</key>
+            <key>RikudoNaruto_Skill04_010</key>
             <dict>
                 <key>frame</key>
                 <string>{{241,717},{132,133}}</string>
@@ -693,7 +693,7 @@
                 <key>sourceSize</key>
                 <string>{260,177}</string>
             </dict>
-            <key>RikudoNaruto_Skill04_011.png</key>
+            <key>RikudoNaruto_Skill04_011</key>
             <dict>
                 <key>frame</key>
                 <string>{{742,772},{122,107}}</string>
@@ -706,7 +706,7 @@
                 <key>sourceSize</key>
                 <string>{260,177}</string>
             </dict>
-            <key>RikudoNaruto_Skill04_012.png</key>
+            <key>RikudoNaruto_Skill04_012</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,280},{216,99}}</string>
@@ -719,7 +719,7 @@
                 <key>sourceSize</key>
                 <string>{260,177}</string>
             </dict>
-            <key>RikudoNaruto_Skill04_013.png</key>
+            <key>RikudoNaruto_Skill04_013</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,181},{224,97}}</string>
@@ -732,7 +732,7 @@
                 <key>sourceSize</key>
                 <string>{260,177}</string>
             </dict>
-            <key>RikudoNaruto_Skill04_014.png</key>
+            <key>RikudoNaruto_Skill04_014</key>
             <dict>
                 <key>frame</key>
                 <string>{{744,2},{212,169}}</string>
@@ -745,7 +745,7 @@
                 <key>sourceSize</key>
                 <string>{260,177}</string>
             </dict>
-            <key>RikudoNaruto_Skill04_015.png</key>
+            <key>RikudoNaruto_Skill04_015</key>
             <dict>
                 <key>frame</key>
                 <string>{{496,163},{204,161}}</string>
@@ -758,7 +758,7 @@
                 <key>sourceSize</key>
                 <string>{260,177}</string>
             </dict>
-            <key>RikudoNaruto_Skill04_016.png</key>
+            <key>RikudoNaruto_Skill04_016</key>
             <dict>
                 <key>frame</key>
                 <string>{{490,654},{150,147}}</string>
@@ -771,7 +771,7 @@
                 <key>sourceSize</key>
                 <string>{260,177}</string>
             </dict>
-            <key>RikudoNaruto_Skill04_017.png</key>
+            <key>RikudoNaruto_Skill04_017</key>
             <dict>
                 <key>frame</key>
                 <string>{{169,611},{70,69}}</string>
@@ -784,7 +784,7 @@
                 <key>sourceSize</key>
                 <string>{260,177}</string>
             </dict>
-            <key>RikudoNaruto_Skill04_018.png</key>
+            <key>RikudoNaruto_Skill04_018</key>
             <dict>
                 <key>frame</key>
                 <string>{{417,548},{62,71}}</string>
@@ -797,7 +797,7 @@
                 <key>sourceSize</key>
                 <string>{260,177}</string>
             </dict>
-            <key>RikudoNaruto_Skill05_001.png</key>
+            <key>RikudoNaruto_Skill05_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{655,466},{88,86}}</string>
@@ -810,7 +810,7 @@
                 <key>sourceSize</key>
                 <string>{112,92}</string>
             </dict>
-            <key>RikudoNaruto_Skill05_002.png</key>
+            <key>RikudoNaruto_Skill05_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{642,667},{98,82}}</string>
@@ -823,7 +823,7 @@
                 <key>sourceSize</key>
                 <string>{112,88}</string>
             </dict>
-            <key>RikudoNaruto_Skill05_003.png</key>
+            <key>RikudoNaruto_Skill05_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{927,746},{100,82}}</string>
@@ -836,7 +836,7 @@
                 <key>sourceSize</key>
                 <string>{112,82}</string>
             </dict>
-            <key>RikudoNaruto_Skill05_004.png</key>
+            <key>RikudoNaruto_Skill05_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{928,662},{88,82}}</string>
@@ -849,7 +849,7 @@
                 <key>sourceSize</key>
                 <string>{112,82}</string>
             </dict>
-            <key>RikudoNaruto_Skill09_001.png</key>
+            <key>RikudoNaruto_Skill09_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{603,834},{49,80}}</string>
@@ -862,7 +862,7 @@
                 <key>sourceSize</key>
                 <string>{71,84}</string>
             </dict>
-            <key>RikudoNaruto_Skill09_002.png</key>
+            <key>RikudoNaruto_Skill09_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{408,716},{49,80}}</string>
@@ -875,7 +875,7 @@
                 <key>sourceSize</key>
                 <string>{71,84}</string>
             </dict>
-            <key>RikudoNaruto_Skill09_003.png</key>
+            <key>RikudoNaruto_Skill09_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{408,665},{49,80}}</string>
@@ -888,7 +888,7 @@
                 <key>sourceSize</key>
                 <string>{71,84}</string>
             </dict>
-            <key>RikudoNaruto_Skill09_004.png</key>
+            <key>RikudoNaruto_Skill09_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{408,612},{51,80}}</string>
@@ -901,7 +901,7 @@
                 <key>sourceSize</key>
                 <string>{71,84}</string>
             </dict>
-            <key>RikudoNaruto_Skill10_01.png</key>
+            <key>RikudoNaruto_Skill10_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{376,831},{100,81}}</string>
@@ -914,7 +914,7 @@
                 <key>sourceSize</key>
                 <string>{110,85}</string>
             </dict>
-            <key>RikudoNaruto_Skill10_02.png</key>
+            <key>RikudoNaruto_Skill10_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{926,848},{100,81}}</string>
@@ -927,7 +927,7 @@
                 <key>sourceSize</key>
                 <string>{110,85}</string>
             </dict>
-            <key>RikudoNaruto_Skill10_03.png</key>
+            <key>RikudoNaruto_Skill10_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{642,751},{98,81}}</string>
@@ -940,7 +940,7 @@
                 <key>sourceSize</key>
                 <string>{110,85}</string>
             </dict>
-            <key>RikudoNaruto_Skill10_04.png</key>
+            <key>RikudoNaruto_Skill10_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{490,540},{160,112}}</string>
@@ -953,7 +953,7 @@
                 <key>sourceSize</key>
                 <string>{266,126}</string>
             </dict>
-            <key>RikudoNaruto_Skill10_05.png</key>
+            <key>RikudoNaruto_Skill10_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{744,173},{200,172}}</string>
@@ -966,7 +966,7 @@
                 <key>sourceSize</key>
                 <string>{266,180}</string>
             </dict>
-            <key>RikudoNaruto_Skill10_06.png</key>
+            <key>RikudoNaruto_Skill10_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,540},{162,165}}</string>
@@ -979,7 +979,7 @@
                 <key>sourceSize</key>
                 <string>{266,165}</string>
             </dict>
-            <key>RikudoNaruto_Skill10_07.png</key>
+            <key>RikudoNaruto_Skill10_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,381},{170,157}}</string>
@@ -992,7 +992,7 @@
                 <key>sourceSize</key>
                 <string>{266,175}</string>
             </dict>
-            <key>RikudoNaruto_Skill10_08.png</key>
+            <key>RikudoNaruto_Skill10_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{249,401},{166,156}}</string>
@@ -1005,7 +1005,7 @@
                 <key>sourceSize</key>
                 <string>{266,156}</string>
             </dict>
-            <key>RikudoNaruto_Skill11_001.png</key>
+            <key>RikudoNaruto_Skill11_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{924,1008},{68,55}}</string>
@@ -1018,7 +1018,7 @@
                 <key>sourceSize</key>
                 <string>{68,55}</string>
             </dict>
-            <key>RikudoNaruto_Skill11_002.png</key>
+            <key>RikudoNaruto_Skill11_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{684,396},{68,58}}</string>
@@ -1031,7 +1031,7 @@
                 <key>sourceSize</key>
                 <string>{68,58}</string>
             </dict>
-            <key>RikudoNaruto_Skill11_003.png</key>
+            <key>RikudoNaruto_Skill11_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{812,951},{62,52}}</string>
@@ -1044,7 +1044,7 @@
                 <key>sourceSize</key>
                 <string>{62,52}</string>
             </dict>
-            <key>RikudoNaruto_Skill11_004.png</key>
+            <key>RikudoNaruto_Skill11_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{685,834},{68,55}}</string>
@@ -1057,7 +1057,7 @@
                 <key>sourceSize</key>
                 <string>{68,55}</string>
             </dict>
-            <key>RikudoNaruto_Skill11_005.png</key>
+            <key>RikudoNaruto_Skill11_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{926,950},{68,56}}</string>
@@ -1070,7 +1070,7 @@
                 <key>sourceSize</key>
                 <string>{68,56}</string>
             </dict>
-            <key>RikudoNaruto_Skill11_006.png</key>
+            <key>RikudoNaruto_Skill11_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{235,900},{62,51}}</string>
@@ -1083,7 +1083,7 @@
                 <key>sourceSize</key>
                 <string>{62,51}</string>
             </dict>
-            <key>RikudoNaruto_Skill12_001.png</key>
+            <key>RikudoNaruto_Skill12_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{932,376},{157,89}}</string>
@@ -1096,7 +1096,7 @@
                 <key>sourceSize</key>
                 <string>{209,139}</string>
             </dict>
-            <key>RikudoNaruto_Skill12_002.png</key>
+            <key>RikudoNaruto_Skill12_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,904},{129,99}}</string>
@@ -1109,7 +1109,7 @@
                 <key>sourceSize</key>
                 <string>{209,139}</string>
             </dict>
-            <key>RikudoNaruto_Skill12_003.png</key>
+            <key>RikudoNaruto_Skill12_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{417,415},{131,71}}</string>
@@ -1122,7 +1122,7 @@
                 <key>sourceSize</key>
                 <string>{209,139}</string>
             </dict>
-            <key>RikudoNaruto_Skill12_004.png</key>
+            <key>RikudoNaruto_Skill12_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{652,556},{109,89}}</string>
@@ -1135,7 +1135,7 @@
                 <key>sourceSize</key>
                 <string>{209,139}</string>
             </dict>
-            <key>RikudoNaruto_Skill12_005.png</key>
+            <key>RikudoNaruto_Skill12_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{490,439},{163,99}}</string>
@@ -1148,7 +1148,7 @@
                 <key>sourceSize</key>
                 <string>{209,139}</string>
             </dict>
-            <key>RikudoNaruto_Skill12_006.png</key>
+            <key>RikudoNaruto_Skill12_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,801},{129,101}}</string>
@@ -1161,7 +1161,7 @@
                 <key>sourceSize</key>
                 <string>{209,139}</string>
             </dict>
-            <key>RikudoNaruto_Skill12_007.png</key>
+            <key>RikudoNaruto_Skill12_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{928,535},{125,89}}</string>
@@ -1174,7 +1174,7 @@
                 <key>sourceSize</key>
                 <string>{209,139}</string>
             </dict>
-            <key>RikudoNaruto_Skill12_008.png</key>
+            <key>RikudoNaruto_Skill12_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{136,751},{103,85}}</string>
@@ -1187,7 +1187,7 @@
                 <key>sourceSize</key>
                 <string>{209,139}</string>
             </dict>
-            <key>RikudoNaruto_Walk_01.png</key>
+            <key>RikudoNaruto_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{871,635},{69,55}}</string>
@@ -1200,7 +1200,7 @@
                 <key>sourceSize</key>
                 <string>{69,55}</string>
             </dict>
-            <key>RikudoNaruto_Walk_02.png</key>
+            <key>RikudoNaruto_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{684,326},{68,58}}</string>
@@ -1213,7 +1213,7 @@
                 <key>sourceSize</key>
                 <string>{68,58}</string>
             </dict>
-            <key>RikudoNaruto_Walk_03.png</key>
+            <key>RikudoNaruto_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{863,1022},{55,52}}</string>
@@ -1226,7 +1226,7 @@
                 <key>sourceSize</key>
                 <string>{55,52}</string>
             </dict>
-            <key>RikudoNaruto_Walk_04.png</key>
+            <key>RikudoNaruto_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{871,564},{69,55}}</string>
@@ -1239,7 +1239,7 @@
                 <key>sourceSize</key>
                 <string>{69,55}</string>
             </dict>
-            <key>RikudoNaruto_Walk_05.png</key>
+            <key>RikudoNaruto_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{742,948},{68,56}}</string>
@@ -1252,7 +1252,7 @@
                 <key>sourceSize</key>
                 <string>{68,56}</string>
             </dict>
-            <key>RikudoNaruto_Walk_06.png</key>
+            <key>RikudoNaruto_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{806,1015},{55,52}}</string>

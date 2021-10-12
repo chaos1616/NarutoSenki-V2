@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Deidara_AirHurt_01.png</key>
+            <key>Deidara_AirHurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{609,302},{41,64}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{41,64}</string>
             </dict>
-            <key>Deidara_AirHurt_02.png</key>
+            <key>Deidara_AirHurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{382,276},{35,81}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{35,81}</string>
             </dict>
-            <key>Deidara_Float_01.png</key>
+            <key>Deidara_Float_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{736,302},{64,41}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{64,41}</string>
             </dict>
-            <key>Deidara_Float_02.png</key>
+            <key>Deidara_Float_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{319,478},{56,64}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{56,64}</string>
             </dict>
-            <key>Deidara_Float_03.png</key>
+            <key>Deidara_Float_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{186,505},{64,56}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{64,56}</string>
             </dict>
-            <key>Deidara_FlyMove_01.png</key>
+            <key>Deidara_FlyMove_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{782,2},{128,105}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{128,139}</string>
             </dict>
-            <key>Deidara_FlyMove_02.png</key>
+            <key>Deidara_FlyMove_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{652,2},{128,105}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{128,139}</string>
             </dict>
-            <key>Deidara_FlyMove_03.png</key>
+            <key>Deidara_FlyMove_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{522,2},{128,106}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{128,134}</string>
             </dict>
-            <key>Deidara_FlyMove_04.png</key>
+            <key>Deidara_FlyMove_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{128,124}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{128,134}</string>
             </dict>
-            <key>Deidara_FlyMove_05.png</key>
+            <key>Deidara_FlyMove_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{262,2},{128,110}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{128,134}</string>
             </dict>
-            <key>Deidara_FlyMove_06.png</key>
+            <key>Deidara_FlyMove_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{132,2},{128,123}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{128,131}</string>
             </dict>
-            <key>Deidara_Fly_01.png</key>
+            <key>Deidara_Fly_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{522,110},{108,121}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{108,139}</string>
             </dict>
-            <key>Deidara_Fly_02.png</key>
+            <key>Deidara_Fly_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{132,127},{108,119}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{120,139}</string>
             </dict>
-            <key>Deidara_Fly_03.png</key>
+            <key>Deidara_Fly_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{779,219},{107,111}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{107,139}</string>
             </dict>
-            <key>Deidara_Fly_04.png</key>
+            <key>Deidara_Fly_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{392,2},{108,128}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{108,136}</string>
             </dict>
-            <key>Deidara_Fly_05.png</key>
+            <key>Deidara_Fly_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{392,112},{108,120}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{108,142}</string>
             </dict>
-            <key>Deidara_Fly_06.png</key>
+            <key>Deidara_Fly_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{779,109},{108,112}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{108,136}</string>
             </dict>
-            <key>Deidara_Hurt_01.png</key>
+            <key>Deidara_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{252,337},{52,75}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{52,75}</string>
             </dict>
-            <key>Deidara_Hurt_02.png</key>
+            <key>Deidara_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{737,225},{40,75}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{40,75}</string>
             </dict>
-            <key>Deidara_Idle_01.png</key>
+            <key>Deidara_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{652,398},{52,79}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{52,79}</string>
             </dict>
-            <key>Deidara_Idle_02.png</key>
+            <key>Deidara_Idle_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{118,237},{52,78}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{52,78}</string>
             </dict>
-            <key>Deidara_Idle_03.png</key>
+            <key>Deidara_Idle_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{514,312},{52,80}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{52,80}</string>
             </dict>
-            <key>Deidara_Idle_04.png</key>
+            <key>Deidara_Idle_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{198,237},{52,77}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{52,77}</string>
             </dict>
-            <key>Deidara_KnockDown_01.png</key>
+            <key>Deidara_KnockDown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{253,231},{81,35}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{81,59}</string>
             </dict>
-            <key>Deidara_KnockDown_02.png</key>
+            <key>Deidara_KnockDown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{863,328},{80,23}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{80,59}</string>
             </dict>
-            <key>Deidara_KnockDown_03.png</key>
+            <key>Deidara_KnockDown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{446,518},{65,49}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{65,59}</string>
             </dict>
-            <key>Deidara_KnockDown_04.png</key>
+            <key>Deidara_KnockDown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{189,454},{49,57}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{49,59}</string>
             </dict>
-            <key>Deidara_KnockDown_05.png</key>
+            <key>Deidara_KnockDown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{319,444},{32,57}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{32,59}</string>
             </dict>
-            <key>Deidara_NAttack_01.png</key>
+            <key>Deidara_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,396},{56,69}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{56,69}</string>
             </dict>
-            <key>Deidara_NAttack_02.png</key>
+            <key>Deidara_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{366,566},{47,67}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{47,69}</string>
             </dict>
-            <key>Deidara_NAttack_03.png</key>
+            <key>Deidara_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{514,366},{79,69}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{79,69}</string>
             </dict>
-            <key>Deidara_NAttack_04.png</key>
+            <key>Deidara_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{118,291},{75,69}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{75,69}</string>
             </dict>
-            <key>Deidara_NAttack_05.png</key>
+            <key>Deidara_NAttack_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{244,556},{47,67}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{47,67}</string>
             </dict>
-            <key>Deidara_NAttack_06.png</key>
+            <key>Deidara_NAttack_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{252,268},{75,67}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{75,67}</string>
             </dict>
-            <key>Deidara_NAttack_07.png</key>
+            <key>Deidara_NAttack_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{514,437},{72,67}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{72,67}</string>
             </dict>
-            <key>Deidara_NAttack_08.png</key>
+            <key>Deidara_NAttack_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{195,316},{55,69}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{55,69}</string>
             </dict>
-            <key>Deidara_NAttack_09.png</key>
+            <key>Deidara_NAttack_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{118,412},{47,69}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{47,69}</string>
             </dict>
-            <key>Deidara_NAttack_10.png</key>
+            <key>Deidara_NAttack_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{382,313},{73,69}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{73,69}</string>
             </dict>
-            <key>Deidara_NAttack_11.png</key>
+            <key>Deidara_NAttack_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{380,438},{72,69}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{72,69}</string>
             </dict>
-            <key>Deidara_Skill01_001.png</key>
+            <key>Deidara_Skill01_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{74,346},{42,69}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{76,85}</string>
             </dict>
-            <key>Deidara_Skill01_002.png</key>
+            <key>Deidara_Skill01_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{466,222},{46,71}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{76,85}</string>
             </dict>
-            <key>Deidara_Skill01_003.png</key>
+            <key>Deidara_Skill01_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{652,225},{58,83}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{76,85}</string>
             </dict>
-            <key>Deidara_Skill02_02.png</key>
+            <key>Deidara_Skill02_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{652,285},{38,82}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{38,82}</string>
             </dict>
-            <key>Deidara_Skill02_03.png</key>
+            <key>Deidara_Skill02_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{652,362},{34,82}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{34,82}</string>
             </dict>
-            <key>Deidara_Skill02_05.png</key>
+            <key>Deidara_Skill02_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{652,285},{38,82}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{38,82}</string>
             </dict>
-            <key>Deidara_Skill02_06.png</key>
+            <key>Deidara_Skill02_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{652,325},{35,82}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{35,82}</string>
             </dict>
-            <key>Deidara_Skill02_07.png</key>
+            <key>Deidara_Skill02_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{383,222},{52,81}}</string>
@@ -615,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{74,81}</string>
             </dict>
-            <key>Deidara_Skill02_08.png</key>
+            <key>Deidara_Skill02_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{779,360},{58,81}}</string>
@@ -628,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{84,81}</string>
             </dict>
-            <key>Deidara_Skill03_00.png</key>
+            <key>Deidara_Skill03_00</key>
             <dict>
                 <key>frame</key>
                 <string>{{336,231},{44,67}}</string>
@@ -641,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{44,67}</string>
             </dict>
-            <key>Deidara_Skill03_02.png</key>
+            <key>Deidara_Skill03_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{73,417},{42,68}}</string>
@@ -654,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{42,82}</string>
             </dict>
-            <key>Deidara_Skill03_04.png</key>
+            <key>Deidara_Skill03_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{779,328},{30,82}}</string>
@@ -667,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{30,82}</string>
             </dict>
-            <key>Deidara_Skill03_05.png</key>
+            <key>Deidara_Skill03_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{609,220},{41,80}}</string>
@@ -680,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{41,82}</string>
             </dict>
-            <key>Deidara_Skill03_06.png</key>
+            <key>Deidara_Skill03_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{465,295},{47,80}}</string>
@@ -693,7 +693,7 @@
                 <key>sourceSize</key>
                 <string>{47,82}</string>
             </dict>
-            <key>Deidara_Skill03_07.png</key>
+            <key>Deidara_Skill03_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{514,220},{93,90}}</string>
@@ -706,7 +706,7 @@
                 <key>sourceSize</key>
                 <string>{93,90}</string>
             </dict>
-            <key>Deidara_Skill03_08.png</key>
+            <key>Deidara_Skill03_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,128},{101,119}}</string>
@@ -719,7 +719,7 @@
                 <key>sourceSize</key>
                 <string>{101,119}</string>
             </dict>
-            <key>Deidara_Skill03_09.png</key>
+            <key>Deidara_Skill03_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{652,109},{125,114}}</string>
@@ -732,7 +732,7 @@
                 <key>sourceSize</key>
                 <string>{125,116}</string>
             </dict>
-            <key>Deidara_Skill03_10.png</key>
+            <key>Deidara_Skill03_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{262,114},{119,115}}</string>
@@ -745,7 +745,7 @@
                 <key>sourceSize</key>
                 <string>{119,115}</string>
             </dict>
-            <key>Deidara_Skill03_11.png</key>
+            <key>Deidara_Skill03_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,231},{114,113}}</string>
@@ -758,7 +758,7 @@
                 <key>sourceSize</key>
                 <string>{114,117}</string>
             </dict>
-            <key>Deidara_Skill03_12.png</key>
+            <key>Deidara_Skill03_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{912,2},{110,117}}</string>
@@ -771,7 +771,7 @@
                 <key>sourceSize</key>
                 <string>{110,117}</string>
             </dict>
-            <key>Deidara_Skill03_13.png</key>
+            <key>Deidara_Skill03_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{893,121},{109,111}}</string>
@@ -784,7 +784,7 @@
                 <key>sourceSize</key>
                 <string>{113,117}</string>
             </dict>
-            <key>Deidara_Skill03_14.png</key>
+            <key>Deidara_Skill03_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{892,232},{109,89}}</string>
@@ -797,7 +797,7 @@
                 <key>sourceSize</key>
                 <string>{111,113}</string>
             </dict>
-            <key>Deidara_Skill03_15.png</key>
+            <key>Deidara_Skill03_15</key>
             <dict>
                 <key>frame</key>
                 <string>{{892,323},{109,61}}</string>
@@ -810,7 +810,7 @@
                 <key>sourceSize</key>
                 <string>{109,113}</string>
             </dict>
-            <key>Deidara_Skill04_01.png</key>
+            <key>Deidara_Skill04_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{736,368},{40,55}}</string>
@@ -823,7 +823,7 @@
                 <key>sourceSize</key>
                 <string>{40,85}</string>
             </dict>
-            <key>Deidara_Skill05_13.png</key>
+            <key>Deidara_Skill05_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{329,300},{51,72}}</string>
@@ -836,7 +836,7 @@
                 <key>sourceSize</key>
                 <string>{51,72}</string>
             </dict>
-            <key>Deidara_Skill05_14.png</key>
+            <key>Deidara_Skill05_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{513,506},{60,70}}</string>
@@ -849,7 +849,7 @@
                 <key>sourceSize</key>
                 <string>{60,70}</string>
             </dict>
-            <key>Deidara_Skill05_15.png</key>
+            <key>Deidara_Skill05_15</key>
             <dict>
                 <key>frame</key>
                 <string>{{118,362},{48,69}}</string>
@@ -862,7 +862,7 @@
                 <key>sourceSize</key>
                 <string>{48,69}</string>
             </dict>
-            <key>Deidara_Skill05_16.png</key>
+            <key>Deidara_Skill05_16</key>
             <dict>
                 <key>frame</key>
                 <string>{{250,391},{49,68}}</string>
@@ -875,7 +875,7 @@
                 <key>sourceSize</key>
                 <string>{49,68}</string>
             </dict>
-            <key>Deidara_Skill05_17.png</key>
+            <key>Deidara_Skill05_17</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,346},{48,70}}</string>
@@ -888,7 +888,7 @@
                 <key>sourceSize</key>
                 <string>{48,70}</string>
             </dict>
-            <key>Deidara_Skill05_19.png</key>
+            <key>Deidara_Skill05_19</key>
             <dict>
                 <key>frame</key>
                 <string>{{457,377},{55,68}}</string>
@@ -901,7 +901,7 @@
                 <key>sourceSize</key>
                 <string>{55,68}</string>
             </dict>
-            <key>Deidara_Skill05_20.png</key>
+            <key>Deidara_Skill05_20</key>
             <dict>
                 <key>frame</key>
                 <string>{{380,384},{52,73}}</string>
@@ -914,7 +914,7 @@
                 <key>sourceSize</key>
                 <string>{52,73}</string>
             </dict>
-            <key>Deidara_Skill05_22.png</key>
+            <key>Deidara_Skill05_22</key>
             <dict>
                 <key>frame</key>
                 <string>{{377,509},{55,67}}</string>
@@ -927,7 +927,7 @@
                 <key>sourceSize</key>
                 <string>{55,67}</string>
             </dict>
-            <key>Deidara_Skill05_23.png</key>
+            <key>Deidara_Skill05_23</key>
             <dict>
                 <key>frame</key>
                 <string>{{117,461},{55,67}}</string>
@@ -940,7 +940,7 @@
                 <key>sourceSize</key>
                 <string>{55,67}</string>
             </dict>
-            <key>Deidara_Skill05_24.png</key>
+            <key>Deidara_Skill05_24</key>
             <dict>
                 <key>frame</key>
                 <string>{{248,499},{55,67}}</string>
@@ -953,7 +953,7 @@
                 <key>sourceSize</key>
                 <string>{55,67}</string>
             </dict>
-            <key>Deidara_Skill05_25.png</key>
+            <key>Deidara_Skill05_25</key>
             <dict>
                 <key>frame</key>
                 <string>{{250,442},{55,67}}</string>
@@ -966,7 +966,7 @@
                 <key>sourceSize</key>
                 <string>{55,67}</string>
             </dict>
-            <key>Deidara_Skill05_26.png</key>
+            <key>Deidara_Skill05_26</key>
             <dict>
                 <key>frame</key>
                 <string>{{595,368},{55,71}}</string>
@@ -979,7 +979,7 @@
                 <key>sourceSize</key>
                 <string>{55,71}</string>
             </dict>
-            <key>Deidara_Skill10_001.png</key>
+            <key>Deidara_Skill10_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{454,447},{57,69}}</string>
@@ -992,7 +992,7 @@
                 <key>sourceSize</key>
                 <string>{117,77}</string>
             </dict>
-            <key>Deidara_Skill10_002.png</key>
+            <key>Deidara_Skill10_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{317,544},{47,67}}</string>
@@ -1005,7 +1005,7 @@
                 <key>sourceSize</key>
                 <string>{117,77}</string>
             </dict>
-            <key>Deidara_Skill10_003.png</key>
+            <key>Deidara_Skill10_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{189,387},{59,65}}</string>
@@ -1018,7 +1018,7 @@
                 <key>sourceSize</key>
                 <string>{117,77}</string>
             </dict>
-            <key>Deidara_Walk_01.png</key>
+            <key>Deidara_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,573},{62,66}}</string>
@@ -1031,7 +1031,7 @@
                 <key>sourceSize</key>
                 <string>{62,68}</string>
             </dict>
-            <key>Deidara_Walk_02.png</key>
+            <key>Deidara_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{70,518},{66,66}}</string>
@@ -1044,7 +1044,7 @@
                 <key>sourceSize</key>
                 <string>{66,68}</string>
             </dict>
-            <key>Deidara_Walk_03.png</key>
+            <key>Deidara_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,454},{49,68}}</string>
@@ -1057,7 +1057,7 @@
                 <key>sourceSize</key>
                 <string>{49,68}</string>
             </dict>
-            <key>Deidara_Walk_04.png</key>
+            <key>Deidara_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{588,441},{62,66}}</string>
@@ -1070,7 +1070,7 @@
                 <key>sourceSize</key>
                 <string>{62,68}</string>
             </dict>
-            <key>Deidara_Walk_05.png</key>
+            <key>Deidara_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,505},{66,66}}</string>
@@ -1083,7 +1083,7 @@
                 <key>sourceSize</key>
                 <string>{66,68}</string>
             </dict>
-            <key>Deidara_Walk_06.png</key>
+            <key>Deidara_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{329,374},{49,68}}</string>

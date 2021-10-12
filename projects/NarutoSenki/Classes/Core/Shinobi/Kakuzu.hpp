@@ -10,7 +10,7 @@ class Kakuzu : public Hero
 
 		if (_heartEffect)
 		{
-			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", hearts)->getCString());
+			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d", hearts)->getCString());
 			_heartEffect->setDisplayFrame(frame);
 		}
 
@@ -343,7 +343,7 @@ class Kakuzu : public Hero
 			hearts -= 1;
 			if (_heartEffect)
 			{
-				auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", hearts)->getCString());
+				auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d", hearts)->getCString());
 				_heartEffect->setDisplayFrame(frame);
 			}
 

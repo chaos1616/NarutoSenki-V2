@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Amaterasu_Move_01.png</key>
+            <key>Amaterasu_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{486,277},{57,40}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{57,48}</string>
             </dict>
-            <key>Amaterasu_Move_02.png</key>
+            <key>Amaterasu_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{486,235},{57,40}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{57,48}</string>
             </dict>
-            <key>Amaterasu_Move_03.png</key>
+            <key>Amaterasu_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{486,193},{59,40}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{59,48}</string>
             </dict>
-            <key>Amaterasu_Move_04.png</key>
+            <key>Amaterasu_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{486,319},{53,40}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{53,48}</string>
             </dict>
-            <key>Amaterasu_Move_05.png</key>
+            <key>Amaterasu_Move_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{486,361},{43,40}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{43,48}</string>
             </dict>
-            <key>Amaterasu_Move_06.png</key>
+            <key>Amaterasu_Move_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{436,380},{39,40}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{39,48}</string>
             </dict>
-            <key>Qilin_Move_001.png</key>
+            <key>Qilin_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{869,508},{124,152}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{222,212}</string>
             </dict>
-            <key>Qilin_Move_002.png</key>
+            <key>Qilin_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{869,634},{118,148}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{222,212}</string>
             </dict>
-            <key>Qilin_Move_003.png</key>
+            <key>Qilin_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,754},{104,144}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{222,212}</string>
             </dict>
-            <key>Qilin_Move_004.png</key>
+            <key>Qilin_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,636},{114,124}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{222,212}</string>
             </dict>
-            <key>Qilin_Move_005.png</key>
+            <key>Qilin_Move_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,900},{104,114}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{222,212}</string>
             </dict>
-            <key>Qilin_Move_006.png</key>
+            <key>Qilin_Move_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{250,380},{64,184}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{222,212}</string>
             </dict>
-            <key>Qilin_Move_007.png</key>
+            <key>Qilin_Move_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,385},{64,182}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{222,212}</string>
             </dict>
-            <key>Qilin_Move_008.png</key>
+            <key>Qilin_Move_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{531,383},{124,170}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{222,212}</string>
             </dict>
-            <key>Qilin_Move_009.png</key>
+            <key>Qilin_Move_009</key>
             <dict>
                 <key>frame</key>
                 <string>{{776,366},{140,176}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{222,212}</string>
             </dict>
-            <key>Qilin_Move_010.png</key>
+            <key>Qilin_Move_010</key>
             <dict>
                 <key>frame</key>
                 <string>{{703,508},{126,164}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{222,212}</string>
             </dict>
-            <key>SasukeSusano_Move_01.png</key>
+            <key>SasukeSusano_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{547,194},{227,187}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{227,187}</string>
             </dict>
-            <key>SasukeSusano_Move_02.png</key>
+            <key>SasukeSusano_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{274,189}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{274,189}</string>
             </dict>
-            <key>SasukeSusano_Move_03.png</key>
+            <key>SasukeSusano_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{278,2},{271,189}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{271,189}</string>
             </dict>
-            <key>SasukeSusano_Move_04.png</key>
+            <key>SasukeSusano_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,193},{246,190}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{268,190}</string>
             </dict>
-            <key>SasukeSusano_Move_05.png</key>
+            <key>SasukeSusano_Move_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{551,2},{246,190}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{260,190}</string>
             </dict>
-            <key>SasukeSusano_Move_06.png</key>
+            <key>SasukeSusano_Move_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{250,193},{234,185}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{286,189}</string>
             </dict>
-            <key>SasukeSusano_Move_07.png</key>
+            <key>SasukeSusano_Move_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{799,185},{204,179}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{224,189}</string>
             </dict>
-            <key>SasukeSusano_Move_08.png</key>
+            <key>SasukeSusano_Move_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{799,2},{205,181}}</string>

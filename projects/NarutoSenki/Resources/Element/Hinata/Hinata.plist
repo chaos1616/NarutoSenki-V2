@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Hinata_AirHurt_01.png</key>
+            <key>Hinata_AirHurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{802,585},{44,55}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{44,55}</string>
             </dict>
-            <key>Hinata_AirHurt_02.png</key>
+            <key>Hinata_AirHurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{593,208},{28,69}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{28,69}</string>
             </dict>
-            <key>Hinata_Float_01.png</key>
+            <key>Hinata_Float_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{745,555},{55,44}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{55,44}</string>
             </dict>
-            <key>Hinata_Float_02.png</key>
+            <key>Hinata_Float_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{884,531},{62,58}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{62,58}</string>
             </dict>
-            <key>Hinata_Float_03.png</key>
+            <key>Hinata_Float_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{686,507},{59,38}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{59,38}</string>
             </dict>
-            <key>Hinata_Hurt_01.png</key>
+            <key>Hinata_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{686,547},{42,57}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{42,57}</string>
             </dict>
-            <key>Hinata_Hurt_02.png</key>
+            <key>Hinata_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{291,424},{49,62}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{49,62}</string>
             </dict>
-            <key>Hinata_Idle_01.png</key>
+            <key>Hinata_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{816,448},{49,67}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{55,69}</string>
             </dict>
-            <key>Hinata_Idle_02.png</key>
+            <key>Hinata_Idle_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{816,397},{49,67}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{55,69}</string>
             </dict>
-            <key>Hinata_Idle_03.png</key>
+            <key>Hinata_Idle_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{696,305},{49,67}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{55,69}</string>
             </dict>
-            <key>Hinata_Idle_04.png</key>
+            <key>Hinata_Idle_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{326,311},{51,67}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{55,69}</string>
             </dict>
-            <key>Hinata_KnockDown_01.png</key>
+            <key>Hinata_KnockDown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{511,401},{69,46}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{69,48}</string>
             </dict>
-            <key>Hinata_KnockDown_02.png</key>
+            <key>Hinata_KnockDown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{539,449},{58,41}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{58,41}</string>
             </dict>
-            <key>Hinata_KnockDown_03.png</key>
+            <key>Hinata_KnockDown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{922,116},{76,27}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{76,27}</string>
             </dict>
-            <key>Hinata_KnockDown_04.png</key>
+            <key>Hinata_KnockDown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{94,442},{51,38}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{53,40}</string>
             </dict>
-            <key>Hinata_KnockDown_05.png</key>
+            <key>Hinata_KnockDown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{147,442},{38,41}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{38,41}</string>
             </dict>
-            <key>Hinata_KnockDown_06.png</key>
+            <key>Hinata_KnockDown_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{292,380},{42,63}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{42,63}</string>
             </dict>
-            <key>Hinata_NAttack_01.png</key>
+            <key>Hinata_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{703,234},{42,69}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{42,69}</string>
             </dict>
-            <key>Hinata_NAttack_02.png</key>
+            <key>Hinata_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{747,389},{67,65}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{69,69}</string>
             </dict>
-            <key>Hinata_NAttack_03.png</key>
+            <key>Hinata_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{948,499},{65,65}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{65,69}</string>
             </dict>
-            <key>Hinata_NAttack_04.png</key>
+            <key>Hinata_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{747,342},{45,69}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{45,69}</string>
             </dict>
-            <key>Hinata_NAttack_05.png</key>
+            <key>Hinata_NAttack_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{885,410},{61,60}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{61,60}</string>
             </dict>
-            <key>Hinata_NAttack_06.png</key>
+            <key>Hinata_NAttack_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{831,231},{80,61}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{80,65}</string>
             </dict>
-            <key>Hinata_NAttack_07.png</key>
+            <key>Hinata_NAttack_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{747,280},{78,60}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{78,60}</string>
             </dict>
-            <key>Hinata_NAttack_08.png</key>
+            <key>Hinata_NAttack_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{948,422},{40,67}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{40,69}</string>
             </dict>
-            <key>Hinata_NAttack_09.png</key>
+            <key>Hinata_NAttack_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{617,448},{58,67}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{58,67}</string>
             </dict>
-            <key>Hinata_NAttack_10.png</key>
+            <key>Hinata_NAttack_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{695,374},{50,65}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{52,67}</string>
             </dict>
-            <key>Hinata_NAttack_11.png</key>
+            <key>Hinata_NAttack_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{885,472},{57,61}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{57,67}</string>
             </dict>
-            <key>Hinata_NAttack_12.png</key>
+            <key>Hinata_NAttack_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{511,261},{73,59}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{73,67}</string>
             </dict>
-            <key>Hinata_NAttack_13.png</key>
+            <key>Hinata_NAttack_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{952,2},{70,59}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{70,67}</string>
             </dict>
-            <key>Hinata_NAttack_14.png</key>
+            <key>Hinata_NAttack_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{454,378},{55,65}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{55,67}</string>
             </dict>
-            <key>Hinata_Skill01_001.png</key>
+            <key>Hinata_Skill01_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{511,372},{27,72}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{69,102}</string>
             </dict>
-            <key>Hinata_Skill01_002.png</key>
+            <key>Hinata_Skill01_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{621,373},{27,72}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{69,102}</string>
             </dict>
-            <key>Hinata_Skill01_003.png</key>
+            <key>Hinata_Skill01_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{200,324},{25,72}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{69,102}</string>
             </dict>
-            <key>Hinata_Skill01_004.png</key>
+            <key>Hinata_Skill01_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{511,208},{51,80}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{69,102}</string>
             </dict>
-            <key>Hinata_Skill01_005.png</key>
+            <key>Hinata_Skill01_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{836,116},{57,84}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{69,102}</string>
             </dict>
-            <key>Hinata_Skill01_006.png</key>
+            <key>Hinata_Skill01_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{379,184},{67,98}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{69,102}</string>
             </dict>
-            <key>Hinata_Skill02_02.png</key>
+            <key>Hinata_Skill02_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{948,464},{33,67}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{33,67}</string>
             </dict>
-            <key>Hinata_Skill02_03.png</key>
+            <key>Hinata_Skill02_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{623,217},{78,64}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{88,74}</string>
             </dict>
-            <key>Hinata_Skill02_04.png</key>
+            <key>Hinata_Skill02_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{636,2},{112,65}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{112,81}</string>
             </dict>
-            <key>Hinata_Skill02_05.png</key>
+            <key>Hinata_Skill02_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{128,114},{112,66}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{112,74}</string>
             </dict>
-            <key>Hinata_Skill02_06.png</key>
+            <key>Hinata_Skill02_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{227,333},{52,63}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{96,69}</string>
             </dict>
-            <key>Hinata_Skill02_07.png</key>
+            <key>Hinata_Skill02_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{951,63},{71,86}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{131,92}</string>
             </dict>
-            <key>Hinata_Skill02_08.png</key>
+            <key>Hinata_Skill02_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,438},{67,90}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{131,92}</string>
             </dict>
-            <key>Hinata_Skill02_09.png</key>
+            <key>Hinata_Skill02_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{862,57},{57,87}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{131,87}</string>
             </dict>
-            <key>Hinata_Skill03_02.png</key>
+            <key>Hinata_Skill03_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{948,566},{33,65}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{33,65}</string>
             </dict>
-            <key>Hinata_Skill03_03.png</key>
+            <key>Hinata_Skill03_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{582,508},{49,57}}</string>
@@ -615,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{49,57}</string>
             </dict>
-            <key>Hinata_Skill03_04.png</key>
+            <key>Hinata_Skill03_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,379},{96,57}}</string>
@@ -628,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{112,69}</string>
             </dict>
-            <key>Hinata_Skill03_05.png</key>
+            <key>Hinata_Skill03_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{831,175},{82,54}}</string>
@@ -641,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{112,72}</string>
             </dict>
-            <key>Hinata_Skill03_06.png</key>
+            <key>Hinata_Skill03_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{748,112},{86,52}}</string>
@@ -654,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{112,62}</string>
             </dict>
-            <key>Hinata_Skill03_07.png</key>
+            <key>Hinata_Skill03_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{128,182},{100,56}}</string>
@@ -667,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{112,64}</string>
             </dict>
-            <key>Hinata_Skill03_08.png</key>
+            <key>Hinata_Skill03_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{862,2},{88,53}}</string>
@@ -680,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{112,67}</string>
             </dict>
-            <key>Hinata_Skill03_09.png</key>
+            <key>Hinata_Skill03_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{624,163},{84,52}}</string>
@@ -693,7 +693,7 @@
                 <key>sourceSize</key>
                 <string>{112,62}</string>
             </dict>
-            <key>Hinata_Skill03_10.png</key>
+            <key>Hinata_Skill03_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{102,324},{96,58}}</string>
@@ -706,7 +706,7 @@
                 <key>sourceSize</key>
                 <string>{112,62}</string>
             </dict>
-            <key>Hinata_Skill03_11.png</key>
+            <key>Hinata_Skill03_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{747,226},{82,52}}</string>
@@ -719,7 +719,7 @@
                 <key>sourceSize</key>
                 <string>{112,62}</string>
             </dict>
-            <key>Hinata_Skill03_12.png</key>
+            <key>Hinata_Skill03_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{747,166},{82,58}}</string>
@@ -732,7 +732,7 @@
                 <key>sourceSize</key>
                 <string>{112,60}</string>
             </dict>
-            <key>Hinata_Skill03_13.png</key>
+            <key>Hinata_Skill03_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{417,445},{60,51}}</string>
@@ -745,7 +745,7 @@
                 <key>sourceSize</key>
                 <string>{60,51}</string>
             </dict>
-            <key>Hinata_Skill03_14.png</key>
+            <key>Hinata_Skill03_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{355,444},{60,52}}</string>
@@ -758,7 +758,7 @@
                 <key>sourceSize</key>
                 <string>{60,52}</string>
             </dict>
-            <key>Hinata_Skill04_01.png</key>
+            <key>Hinata_Skill04_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{621,283},{39,73}}</string>
@@ -771,7 +771,7 @@
                 <key>sourceSize</key>
                 <string>{39,73}</string>
             </dict>
-            <key>Hinata_Skill04_02.png</key>
+            <key>Hinata_Skill04_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{511,322},{48,73}}</string>
@@ -784,7 +784,7 @@
                 <key>sourceSize</key>
                 <string>{66,75}</string>
             </dict>
-            <key>Hinata_Skill04_03.png</key>
+            <key>Hinata_Skill04_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{455,253},{54,74}}</string>
@@ -797,7 +797,7 @@
                 <key>sourceSize</key>
                 <string>{54,76}</string>
             </dict>
-            <key>Hinata_Skill04_04.png</key>
+            <key>Hinata_Skill04_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{948,359},{61,74}}</string>
@@ -810,7 +810,7 @@
                 <key>sourceSize</key>
                 <string>{61,74}</string>
             </dict>
-            <key>Hinata_Skill04_05.png</key>
+            <key>Hinata_Skill04_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{128,112},{0,0}}</string>
@@ -823,7 +823,7 @@
                 <key>sourceSize</key>
                 <string>{61,74}</string>
             </dict>
-            <key>Hinata_Skill04_06.png</key>
+            <key>Hinata_Skill04_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{827,294},{66,75}}</string>
@@ -836,7 +836,7 @@
                 <key>sourceSize</key>
                 <string>{66,75}</string>
             </dict>
-            <key>Hinata_Skill04_07.png</key>
+            <key>Hinata_Skill04_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{379,351},{40,73}}</string>
@@ -849,7 +849,7 @@
                 <key>sourceSize</key>
                 <string>{66,75}</string>
             </dict>
-            <key>Hinata_Skill04_08.png</key>
+            <key>Hinata_Skill04_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{621,324},{47,72}}</string>
@@ -862,7 +862,7 @@
                 <key>sourceSize</key>
                 <string>{47,72}</string>
             </dict>
-            <key>Hinata_Skill04_09.png</key>
+            <key>Hinata_Skill04_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{455,253},{54,74}}</string>
@@ -875,7 +875,7 @@
                 <key>sourceSize</key>
                 <string>{54,74}</string>
             </dict>
-            <key>Hinata_Skill05_001.png</key>
+            <key>Hinata_Skill05_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{198,438},{56,60}}</string>
@@ -888,7 +888,7 @@
                 <key>sourceSize</key>
                 <string>{132,114}</string>
             </dict>
-            <key>Hinata_Skill05_002.png</key>
+            <key>Hinata_Skill05_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{948,295},{62,74}}</string>
@@ -901,7 +901,7 @@
                 <key>sourceSize</key>
                 <string>{132,114}</string>
             </dict>
-            <key>Hinata_Skill05_003.png</key>
+            <key>Hinata_Skill05_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{242,165},{102,94}}</string>
@@ -914,7 +914,7 @@
                 <key>sourceSize</key>
                 <string>{132,114}</string>
             </dict>
-            <key>Hinata_Skill05_004.png</key>
+            <key>Hinata_Skill05_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,293},{98,84}}</string>
@@ -927,7 +927,7 @@
                 <key>sourceSize</key>
                 <string>{132,114}</string>
             </dict>
-            <key>Hinata_Skill05_005.png</key>
+            <key>Hinata_Skill05_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{512,114},{110,92}}</string>
@@ -940,7 +940,7 @@
                 <key>sourceSize</key>
                 <string>{132,114}</string>
             </dict>
-            <key>Hinata_Skill05_006.png</key>
+            <key>Hinata_Skill05_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{636,69},{110,92}}</string>
@@ -953,7 +953,7 @@
                 <key>sourceSize</key>
                 <string>{132,114}</string>
             </dict>
-            <key>Hinata_Skill05_007.png</key>
+            <key>Hinata_Skill05_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{128,240},{98,82}}</string>
@@ -966,7 +966,7 @@
                 <key>sourceSize</key>
                 <string>{132,114}</string>
             </dict>
-            <key>Hinata_Skill05_008.png</key>
+            <key>Hinata_Skill05_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{228,261},{96,70}}</string>
@@ -979,7 +979,7 @@
                 <key>sourceSize</key>
                 <string>{132,114}</string>
             </dict>
-            <key>Hinata_Skill05_009.png</key>
+            <key>Hinata_Skill05_009</key>
             <dict>
                 <key>frame</key>
                 <string>{{621,402},{44,69}}</string>
@@ -992,7 +992,7 @@
                 <key>sourceSize</key>
                 <string>{44,69}</string>
             </dict>
-            <key>Hinata_Skill05_010.png</key>
+            <key>Hinata_Skill05_010</key>
             <dict>
                 <key>frame</key>
                 <string>{{479,449},{49,58}}</string>
@@ -1005,7 +1005,7 @@
                 <key>sourceSize</key>
                 <string>{49,58}</string>
             </dict>
-            <key>Hinata_Skill05_011.png</key>
+            <key>Hinata_Skill05_011</key>
             <dict>
                 <key>frame</key>
                 <string>{{380,129},{110,53}}</string>
@@ -1018,7 +1018,7 @@
                 <key>sourceSize</key>
                 <string>{124,69}</string>
             </dict>
-            <key>Hinata_Skill05_012.png</key>
+            <key>Hinata_Skill05_012</key>
             <dict>
                 <key>frame</key>
                 <string>{{390,2},{122,52}}</string>
@@ -1031,7 +1031,7 @@
                 <key>sourceSize</key>
                 <string>{124,64}</string>
             </dict>
-            <key>Hinata_Skill05_013.png</key>
+            <key>Hinata_Skill05_013</key>
             <dict>
                 <key>frame</key>
                 <string>{{264,111},{114,52}}</string>
@@ -1044,7 +1044,7 @@
                 <key>sourceSize</key>
                 <string>{124,78}</string>
             </dict>
-            <key>Hinata_Skill05_014.png</key>
+            <key>Hinata_Skill05_014</key>
             <dict>
                 <key>frame</key>
                 <string>{{100,384},{96,56}}</string>
@@ -1057,7 +1057,7 @@
                 <key>sourceSize</key>
                 <string>{124,74}</string>
             </dict>
-            <key>Hinata_Skill05_015.png</key>
+            <key>Hinata_Skill05_015</key>
             <dict>
                 <key>frame</key>
                 <string>{{904,340},{42,68}}</string>
@@ -1070,7 +1070,7 @@
                 <key>sourceSize</key>
                 <string>{42,68}</string>
             </dict>
-            <key>Hinata_Skill05_016.png</key>
+            <key>Hinata_Skill05_016</key>
             <dict>
                 <key>frame</key>
                 <string>{{479,184},{30,67}}</string>
@@ -1083,7 +1083,7 @@
                 <key>sourceSize</key>
                 <string>{30,67}</string>
             </dict>
-            <key>Hinata_Skill05_017.png</key>
+            <key>Hinata_Skill05_017</key>
             <dict>
                 <key>frame</key>
                 <string>{{379,310},{39,74}}</string>
@@ -1096,7 +1096,7 @@
                 <key>sourceSize</key>
                 <string>{39,74}</string>
             </dict>
-            <key>Hinata_Skill05_018.png</key>
+            <key>Hinata_Skill05_018</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,222},{99,69}}</string>
@@ -1109,7 +1109,7 @@
                 <key>sourceSize</key>
                 <string>{99,69}</string>
             </dict>
-            <key>Hinata_Skill05_019.png</key>
+            <key>Hinata_Skill05_019</key>
             <dict>
                 <key>frame</key>
                 <string>{{390,56},{120,71}}</string>
@@ -1122,7 +1122,7 @@
                 <key>sourceSize</key>
                 <string>{140,71}</string>
             </dict>
-            <key>Hinata_Skill05_021.png</key>
+            <key>Hinata_Skill05_021</key>
             <dict>
                 <key>frame</key>
                 <string>{{692,441},{53,64}}</string>
@@ -1135,7 +1135,7 @@
                 <key>sourceSize</key>
                 <string>{53,86}</string>
             </dict>
-            <key>Hinata_Skill05_022.png</key>
+            <key>Hinata_Skill05_022</key>
             <dict>
                 <key>frame</key>
                 <string>{{134,2},{128,110}}</string>
@@ -1148,7 +1148,7 @@
                 <key>sourceSize</key>
                 <string>{170,110}</string>
             </dict>
-            <key>Hinata_Skill05_023.png</key>
+            <key>Hinata_Skill05_023</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{130,108}}</string>
@@ -1161,7 +1161,7 @@
                 <key>sourceSize</key>
                 <string>{170,110}</string>
             </dict>
-            <key>Hinata_Skill05_024.png</key>
+            <key>Hinata_Skill05_024</key>
             <dict>
                 <key>frame</key>
                 <string>{{264,2},{124,107}}</string>
@@ -1174,7 +1174,7 @@
                 <key>sourceSize</key>
                 <string>{170,109}</string>
             </dict>
-            <key>Hinata_Skill05_025.png</key>
+            <key>Hinata_Skill05_025</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,112},{124,108}}</string>
@@ -1187,7 +1187,7 @@
                 <key>sourceSize</key>
                 <string>{170,110}</string>
             </dict>
-            <key>Hinata_Skill05_026.png</key>
+            <key>Hinata_Skill05_026</key>
             <dict>
                 <key>frame</key>
                 <string>{{750,2},{110,108}}</string>
@@ -1200,7 +1200,7 @@
                 <key>sourceSize</key>
                 <string>{170,110}</string>
             </dict>
-            <key>Hinata_Skill05_027.png</key>
+            <key>Hinata_Skill05_027</key>
             <dict>
                 <key>frame</key>
                 <string>{{514,2},{120,110}}</string>
@@ -1213,7 +1213,7 @@
                 <key>sourceSize</key>
                 <string>{170,110}</string>
             </dict>
-            <key>Hinata_Skill05_028.png</key>
+            <key>Hinata_Skill05_028</key>
             <dict>
                 <key>frame</key>
                 <string>{{379,253},{55,74}}</string>
@@ -1226,7 +1226,7 @@
                 <key>sourceSize</key>
                 <string>{55,80}</string>
             </dict>
-            <key>Hinata_Skill05_029.png</key>
+            <key>Hinata_Skill05_029</key>
             <dict>
                 <key>frame</key>
                 <string>{{103,222},{23,71}}</string>
@@ -1239,7 +1239,7 @@
                 <key>sourceSize</key>
                 <string>{35,73}</string>
             </dict>
-            <key>Hinata_Skill05_030.png</key>
+            <key>Hinata_Skill05_030</key>
             <dict>
                 <key>frame</key>
                 <string>{{818,362},{33,68}}</string>
@@ -1252,7 +1252,7 @@
                 <key>sourceSize</key>
                 <string>{33,68}</string>
             </dict>
-            <key>Hinata_Skill05_031.png</key>
+            <key>Hinata_Skill05_031</key>
             <dict>
                 <key>frame</key>
                 <string>{{260,475},{44,60}}</string>
@@ -1265,7 +1265,7 @@
                 <key>sourceSize</key>
                 <string>{44,60}</string>
             </dict>
-            <key>Hinata_Skill05_032.png</key>
+            <key>Hinata_Skill05_032</key>
             <dict>
                 <key>frame</key>
                 <string>{{641,508},{43,53}}</string>
@@ -1278,7 +1278,7 @@
                 <key>sourceSize</key>
                 <string>{43,53}</string>
             </dict>
-            <key>Hinata_Skill10_01.png</key>
+            <key>Hinata_Skill10_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{915,194},{34,71}}</string>
@@ -1291,7 +1291,7 @@
                 <key>sourceSize</key>
                 <string>{34,75}</string>
             </dict>
-            <key>Hinata_Skill10_02.png</key>
+            <key>Hinata_Skill10_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{747,456},{46,67}}</string>
@@ -1304,7 +1304,7 @@
                 <key>sourceSize</key>
                 <string>{46,75}</string>
             </dict>
-            <key>Hinata_Walk_01.png</key>
+            <key>Hinata_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{747,504},{66,49}}</string>
@@ -1317,7 +1317,7 @@
                 <key>sourceSize</key>
                 <string>{66,53}</string>
             </dict>
-            <key>Hinata_Walk_02.png</key>
+            <key>Hinata_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{357,393},{62,49}}</string>
@@ -1330,7 +1330,7 @@
                 <key>sourceSize</key>
                 <string>{62,53}</string>
             </dict>
-            <key>Hinata_Walk_03.png</key>
+            <key>Hinata_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{455,329},{54,47}}</string>
@@ -1343,7 +1343,7 @@
                 <key>sourceSize</key>
                 <string>{54,53}</string>
             </dict>
-            <key>Hinata_Walk_04.png</key>
+            <key>Hinata_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{816,499},{66,49}}</string>
@@ -1356,7 +1356,7 @@
                 <key>sourceSize</key>
                 <string>{66,53}</string>
             </dict>
-            <key>Hinata_Walk_05.png</key>
+            <key>Hinata_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{227,387},{62,49}}</string>
@@ -1369,7 +1369,7 @@
                 <key>sourceSize</key>
                 <string>{62,53}</string>
             </dict>
-            <key>Hinata_Walk_06.png</key>
+            <key>Hinata_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{859,591},{53,47}}</string>
@@ -1382,7 +1382,7 @@
                 <key>sourceSize</key>
                 <string>{53,53}</string>
             </dict>
-            <key>hsBuff_Effect_01.png</key>
+            <key>hsBuff_Effect_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{346,238},{71,31}}</string>
@@ -1395,7 +1395,7 @@
                 <key>sourceSize</key>
                 <string>{71,35}</string>
             </dict>
-            <key>hsBuff_Effect_02.png</key>
+            <key>hsBuff_Effect_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{815,550},{65,33}}</string>
@@ -1408,7 +1408,7 @@
                 <key>sourceSize</key>
                 <string>{71,35}</string>
             </dict>
-            <key>hsBuff_Effect_03.png</key>
+            <key>hsBuff_Effect_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{586,352},{71,33}}</string>
@@ -1421,7 +1421,7 @@
                 <key>sourceSize</key>
                 <string>{71,35}</string>
             </dict>
-            <key>hsBuff_Effect_04.png</key>
+            <key>hsBuff_Effect_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{586,279},{71,33}}</string>
@@ -1434,7 +1434,7 @@
                 <key>sourceSize</key>
                 <string>{71,35}</string>
             </dict>
-            <key>hsBuff_Effect_05.png</key>
+            <key>hsBuff_Effect_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{913,267},{71,33}}</string>
@@ -1447,7 +1447,7 @@
                 <key>sourceSize</key>
                 <string>{71,35}</string>
             </dict>
-            <key>hsBuff_Effect_06.png</key>
+            <key>hsBuff_Effect_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{951,188},{71,35}}</string>
@@ -1460,7 +1460,7 @@
                 <key>sourceSize</key>
                 <string>{71,35}</string>
             </dict>
-            <key>hsBuff_Effect_07.png</key>
+            <key>hsBuff_Effect_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{710,163},{69,35}}</string>
@@ -1473,7 +1473,7 @@
                 <key>sourceSize</key>
                 <string>{71,35}</string>
             </dict>
-            <key>hsBuff_Effect_08.png</key>
+            <key>hsBuff_Effect_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{951,151},{71,35}}</string>
@@ -1486,7 +1486,7 @@
                 <key>sourceSize</key>
                 <string>{71,35}</string>
             </dict>
-            <key>hsBuff_Effect_09.png</key>
+            <key>hsBuff_Effect_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{582,425},{69,33}}</string>
@@ -1499,7 +1499,7 @@
                 <key>sourceSize</key>
                 <string>{71,35}</string>
             </dict>
-            <key>hsBuff_Effect_10.png</key>
+            <key>hsBuff_Effect_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{951,260},{71,33}}</string>
@@ -1512,7 +1512,7 @@
                 <key>sourceSize</key>
                 <string>{71,35}</string>
             </dict>
-            <key>hsBuff_Effect_11.png</key>
+            <key>hsBuff_Effect_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{951,225},{71,33}}</string>
@@ -1525,7 +1525,7 @@
                 <key>sourceSize</key>
                 <string>{71,35}</string>
             </dict>
-            <key>hsBuff_Effect_12.png</key>
+            <key>hsBuff_Effect_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{346,165},{71,31}}</string>

@@ -1,69 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animation>
+<unit>
 
-	<action value="Idle">
-		<date>
-			<dateName type="attackType">KageHand</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">51</dateName>
-			<dateName type="attackRangeY">11</dateName>
-			<coldName type="coldDown">224</coldName>
-		</date>
+	<action name="Idle">
+		<data>
+			<p type="attackType">KageHand</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">51</p>
+			<p type="attackRangeY">11</p>
+			<p type="cd">224</p>
+		</data>
 		<frame>
-			<frameName>KageHand_Move_01.png</frameName>
+			<f>KageHand_Move_01</f>
 		</frame>
 	</action>
 
-	<action value="Walk">
+	<action name="Walk">
 		<frame>
-			<frameName>KageHand_Move_01.png</frameName>
+			<f>KageHand_Move_01</f>
 		</frame>
 	</action>
 
-	<action value="Hurt">
-		<frame>
-		</frame>
-	</action>
-
-	<action value="AirHurt">
-		<frame>
-
-		</frame>
-	</action>
-
-	<action value="KnockDown">
+	<action name="Hurt">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Float">
+	<action name="AirHurt">
+		<frame>
+
+		</frame>
+	</action>
+
+	<action name="KnockDown">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Dead">
+	<action name="Float">
 		<frame>
-			<frameName>KageHand_Move_02.png</frameName>
-			<frameName>KageHand_Move_01.png</frameName>
 		</frame>
 	</action>
 
-	<action value="nAttack">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">1963</dateName>
-			<dateName type="attackRangeX">16</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="Dead">
 		<frame>
-			<frameName>KageHand_Move_01.png</frameName>
-			<frameName>KageHand_Move_02.png</frameName>
-			<frameName>KageHand_Move_03.png</frameName>
-			<eventName type="setAttackBox">ct_hit</eventName>
-			<eventName type="setDelay">20</eventName>
-			<eventName type="setDetonation">0</eventName>
+			<f>KageHand_Move_02</f>
+			<f>KageHand_Move_01</f>
 		</frame>
 	</action>
 
-</animation>
+	<action name="nAttack">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">1963</p>
+			<p type="attackRangeX">16</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">0</p>
+		</data>
+		<frame>
+			<f>KageHand_Move_01</f>
+			<f>KageHand_Move_02</f>
+			<f>KageHand_Move_03</f>
+			<e type="setAttackBox">ct_hit</e>
+			<e type="setDelay">20</e>
+			<e type="setDetonation">0</e>
+		</frame>
+	</action>
+
+</unit>

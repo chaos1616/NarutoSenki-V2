@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Minato_AirHurt_01.png</key>
+            <key>Minato_AirHurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{827,812},{41,71}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{41,71}</string>
             </dict>
-            <key>Minato_AirHurt_02.png</key>
+            <key>Minato_AirHurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{908,691},{57,74}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{57,74}</string>
             </dict>
-            <key>Minato_Float_01.png</key>
+            <key>Minato_Float_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{88,843},{58,45}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{58,45}</string>
             </dict>
-            <key>Minato_Float_02.png</key>
+            <key>Minato_Float_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{908,691},{57,74}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{57,74}</string>
             </dict>
-            <key>Minato_Float_03.png</key>
+            <key>Minato_Float_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{605,741},{74,57}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{74,57}</string>
             </dict>
-            <key>Minato_Hurt_01.png</key>
+            <key>Minato_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{681,771},{54,71}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{54,71}</string>
             </dict>
-            <key>Minato_Hurt_02.png</key>
+            <key>Minato_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{759,757},{40,73}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{40,73}</string>
             </dict>
-            <key>Minato_Idle_01.png</key>
+            <key>Minato_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{440,459},{34,83}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{64,83}</string>
             </dict>
-            <key>Minato_Idle_02.png</key>
+            <key>Minato_Idle_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{398,922},{42,83}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{64,83}</string>
             </dict>
-            <key>Minato_Idle_03.png</key>
+            <key>Minato_Idle_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{387,528},{50,83}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{64,83}</string>
             </dict>
-            <key>Minato_Idle_04.png</key>
+            <key>Minato_Idle_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{368,837},{54,83}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{64,83}</string>
             </dict>
-            <key>Minato_KnockDown_01.png</key>
+            <key>Minato_KnockDown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{754,799},{71,41}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{71,41}</string>
             </dict>
-            <key>Minato_KnockDown_02.png</key>
+            <key>Minato_KnockDown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{605,741},{74,57}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{74,57}</string>
             </dict>
-            <key>Minato_KnockDown_03.png</key>
+            <key>Minato_KnockDown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{657,546},{77,24}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{77,24}</string>
             </dict>
-            <key>Minato_KnockDown_04.png</key>
+            <key>Minato_KnockDown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{831,916},{54,54}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{54,54}</string>
             </dict>
-            <key>Minato_KnockDown_05.png</key>
+            <key>Minato_KnockDown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{385,696},{48,56}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{48,56}</string>
             </dict>
-            <key>Minato_NAttack_01.png</key>
+            <key>Minato_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{583,865},{42,68}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{42,68}</string>
             </dict>
-            <key>Minato_NAttack_02.png</key>
+            <key>Minato_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{385,613},{50,81}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{50,81}</string>
             </dict>
-            <key>Minato_NAttack_03.png</key>
+            <key>Minato_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{442,922},{81,79}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{81,79}</string>
             </dict>
-            <key>Minato_NAttack_04.png</key>
+            <key>Minato_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{249,945},{77,79}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{77,79}</string>
             </dict>
-            <key>Minato_NAttack_05.png</key>
+            <key>Minato_NAttack_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{435,784},{44,81}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{44,81}</string>
             </dict>
-            <key>Minato_NAttack_06.png</key>
+            <key>Minato_NAttack_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{939,2},{83,81}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{83,81}</string>
             </dict>
-            <key>Minato_NAttack_07.png</key>
+            <key>Minato_NAttack_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{285,874},{81,68}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{81,68}</string>
             </dict>
-            <key>Minato_NAttack_08.png</key>
+            <key>Minato_NAttack_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{441,381},{38,76}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{38,76}</string>
             </dict>
-            <key>Minato_NAttack_09.png</key>
+            <key>Minato_NAttack_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{762,592},{42,77}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{42,77}</string>
             </dict>
-            <key>Minato_NAttack_10.png</key>
+            <key>Minato_NAttack_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{837,754},{56,68}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{56,68}</string>
             </dict>
-            <key>Minato_NAttack_11.png</key>
+            <key>Minato_NAttack_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{172,392},{65,77}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{65,77}</string>
             </dict>
-            <key>Minato_NAttack_12.png</key>
+            <key>Minato_NAttack_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{761,636},{53,76}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{53,76}</string>
             </dict>
-            <key>Minato_Skill01_01.png</key>
+            <key>Minato_Skill01_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{605,695},{44,76}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{44,76}</string>
             </dict>
-            <key>Minato_Skill01_02.png</key>
+            <key>Minato_Skill01_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{104,758},{31,83}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{31,83}</string>
             </dict>
-            <key>Minato_Skill01_03.png</key>
+            <key>Minato_Skill01_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,829},{84,58}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{84,58}</string>
             </dict>
-            <key>Minato_Skill01_04.png</key>
+            <key>Minato_Skill01_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{965,819},{61,55}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{61,55}</string>
             </dict>
-            <key>Minato_Skill02_01.png</key>
+            <key>Minato_Skill02_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{435,784},{44,81}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{44,81}</string>
             </dict>
-            <key>Minato_Skill02_02.png</key>
+            <key>Minato_Skill02_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{285,874},{81,68}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{81,68}</string>
             </dict>
-            <key>Minato_Skill02_03.png</key>
+            <key>Minato_Skill02_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{441,381},{38,76}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{38,76}</string>
             </dict>
-            <key>Minato_Skill02_04.png</key>
+            <key>Minato_Skill02_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{683,660},{44,76}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{44,76}</string>
             </dict>
-            <key>Minato_Skill02_05.png</key>
+            <key>Minato_Skill02_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,951},{71,67}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{75,67}</string>
             </dict>
-            <key>Minato_Skill02_06.png</key>
+            <key>Minato_Skill02_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{908,750},{73,67}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{75,67}</string>
             </dict>
-            <key>Minato_Skill02_07.png</key>
+            <key>Minato_Skill02_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{839,679},{73,67}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{75,67}</string>
             </dict>
-            <key>Minato_Skill02_09.png</key>
+            <key>Minato_Skill02_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{439,580},{34,34}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{124,146}</string>
             </dict>
-            <key>Minato_Skill02_10.png</key>
+            <key>Minato_Skill02_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{908,623},{66,74}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{124,146}</string>
             </dict>
-            <key>Minato_Skill02_11.png</key>
+            <key>Minato_Skill02_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{146,599},{84,136}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{124,140}</string>
             </dict>
-            <key>Minato_Skill02_12.png</key>
+            <key>Minato_Skill02_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{239,428},{100,146}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{124,146}</string>
             </dict>
-            <key>Minato_Skill02_13.png</key>
+            <key>Minato_Skill02_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{238,595},{124,145}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{124,155}</string>
             </dict>
-            <key>Minato_Skill02_14.png</key>
+            <key>Minato_Skill02_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{471,626},{116,132}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{124,132}</string>
             </dict>
-            <key>Minato_Skill02_15.png</key>
+            <key>Minato_Skill02_15</key>
             <dict>
                 <key>frame</key>
                 <string>{{476,502},{122,132}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{124,132}</string>
             </dict>
-            <key>Minato_Skill02_16.png</key>
+            <key>Minato_Skill02_16</key>
             <dict>
                 <key>frame</key>
                 <string>{{168,867},{76,57}}</string>
@@ -615,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{124,127}</string>
             </dict>
-            <key>Minato_Skill02_17.png</key>
+            <key>Minato_Skill02_17</key>
             <dict>
                 <key>frame</key>
                 <string>{{583,909},{66,63}}</string>
@@ -628,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{124,127}</string>
             </dict>
-            <key>Minato_Skill02_18.png</key>
+            <key>Minato_Skill02_18</key>
             <dict>
                 <key>frame</key>
                 <string>{{831,855},{62,59}}</string>
@@ -641,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{124,127}</string>
             </dict>
-            <key>Minato_Skill02_19.png</key>
+            <key>Minato_Skill02_19</key>
             <dict>
                 <key>frame</key>
                 <string>{{439,544},{34,34}}</string>
@@ -654,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{34,86}</string>
             </dict>
-            <key>Minato_Skill02_20.png</key>
+            <key>Minato_Skill02_20</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,889},{60,83}}</string>
@@ -667,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{82,83}</string>
             </dict>
-            <key>Minato_Skill02_21.png</key>
+            <key>Minato_Skill02_21</key>
             <dict>
                 <key>frame</key>
                 <string>{{939,159},{70,83}}</string>
@@ -680,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{82,83}</string>
             </dict>
-            <key>Minato_Skill02_22.png</key>
+            <key>Minato_Skill02_22</key>
             <dict>
                 <key>frame</key>
                 <string>{{939,85},{72,83}}</string>
@@ -693,7 +693,7 @@
                 <key>sourceSize</key>
                 <string>{82,83}</string>
             </dict>
-            <key>Minato_Skill03_001.png</key>
+            <key>Minato_Skill03_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{135,867},{31,82}}</string>
@@ -706,7 +706,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_002.png</key>
+            <key>Minato_Skill03_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{868,368},{39,82}}</string>
@@ -719,7 +719,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_003.png</key>
+            <key>Minato_Skill03_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{387,428},{51,98}}</string>
@@ -732,7 +732,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_004.png</key>
+            <key>Minato_Skill03_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{610,502},{45,124}}</string>
@@ -745,7 +745,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_005.png</key>
+            <key>Minato_Skill03_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,627},{55,138}}</string>
@@ -758,7 +758,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_006.png</key>
+            <key>Minato_Skill03_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,392},{61,168}}</string>
@@ -771,7 +771,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_007.png</key>
+            <key>Minato_Skill03_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{688,368},{87,178}}</string>
@@ -784,7 +784,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_008.png</key>
+            <key>Minato_Skill03_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{239,226},{97,206}}</string>
@@ -797,7 +797,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_009.png</key>
+            <key>Minato_Skill03_009</key>
             <dict>
                 <key>frame</key>
                 <string>{{239,325},{101,200}}</string>
@@ -810,7 +810,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_010.png</key>
+            <key>Minato_Skill03_010</key>
             <dict>
                 <key>frame</key>
                 <string>{{699,174},{87,208}}</string>
@@ -823,7 +823,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_011.png</key>
+            <key>Minato_Skill03_011</key>
             <dict>
                 <key>frame</key>
                 <string>{{482,275},{99,204}}</string>
@@ -836,7 +836,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_012.png</key>
+            <key>Minato_Skill03_012</key>
             <dict>
                 <key>frame</key>
                 <string>{{699,263},{103,206}}</string>
@@ -849,7 +849,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_013.png</key>
+            <key>Minato_Skill03_013</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{239,200}}</string>
@@ -862,7 +862,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_014.png</key>
+            <key>Minato_Skill03_014</key>
             <dict>
                 <key>frame</key>
                 <string>{{243,2},{237,222}}</string>
@@ -875,7 +875,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_015.png</key>
+            <key>Minato_Skill03_015</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,204},{235,186}}</string>
@@ -888,7 +888,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_016.png</key>
+            <key>Minato_Skill03_016</key>
             <dict>
                 <key>frame</key>
                 <string>{{482,95},{215,178}}</string>
@@ -901,7 +901,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_017.png</key>
+            <key>Minato_Skill03_017</key>
             <dict>
                 <key>frame</key>
                 <string>{{718,2},{219,170}}</string>
@@ -914,7 +914,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_018.png</key>
+            <key>Minato_Skill03_018</key>
             <dict>
                 <key>frame</key>
                 <string>{{232,721},{67,128}}</string>
@@ -927,7 +927,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_019.png</key>
+            <key>Minato_Skill03_019</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,758},{69,100}}</string>
@@ -940,7 +940,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_020.png</key>
+            <key>Minato_Skill03_020</key>
             <dict>
                 <key>frame</key>
                 <string>{{137,802},{63,84}}</string>
@@ -953,7 +953,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill03_021.png</key>
+            <key>Minato_Skill03_021</key>
             <dict>
                 <key>frame</key>
                 <string>{{141,737},{63,84}}</string>
@@ -966,7 +966,7 @@
                 <key>sourceSize</key>
                 <string>{405,222}</string>
             </dict>
-            <key>Minato_Skill04_001.png</key>
+            <key>Minato_Skill04_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{762,592},{42,77}}</string>
@@ -979,7 +979,7 @@
                 <key>sourceSize</key>
                 <string>{432,141}</string>
             </dict>
-            <key>Minato_Skill04_002.png</key>
+            <key>Minato_Skill04_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{227,874},{56,69}}</string>
@@ -992,7 +992,7 @@
                 <key>sourceSize</key>
                 <string>{432,141}</string>
             </dict>
-            <key>Minato_Skill04_003.png</key>
+            <key>Minato_Skill04_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{330,944},{66,77}}</string>
@@ -1005,7 +1005,7 @@
                 <key>sourceSize</key>
                 <string>{432,141}</string>
             </dict>
-            <key>Minato_Skill04_004.png</key>
+            <key>Minato_Skill04_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{527,825},{54,77}}</string>
@@ -1018,7 +1018,7 @@
                 <key>sourceSize</key>
                 <string>{432,141}</string>
             </dict>
-            <key>Minato_Skill04_005.png</key>
+            <key>Minato_Skill04_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{168,867},{76,57}}</string>
@@ -1031,7 +1031,7 @@
                 <key>sourceSize</key>
                 <string>{432,141}</string>
             </dict>
-            <key>Minato_Skill04_006.png</key>
+            <key>Minato_Skill04_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{908,541},{80,103}}</string>
@@ -1044,7 +1044,7 @@
                 <key>sourceSize</key>
                 <string>{432,141}</string>
             </dict>
-            <key>Minato_Skill04_007.png</key>
+            <key>Minato_Skill04_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{909,439},{100,113}}</string>
@@ -1057,7 +1057,7 @@
                 <key>sourceSize</key>
                 <string>{432,141}</string>
             </dict>
-            <key>Minato_Skill04_008.png</key>
+            <key>Minato_Skill04_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{168,867},{76,57}}</string>
@@ -1070,7 +1070,7 @@
                 <key>sourceSize</key>
                 <string>{432,141}</string>
             </dict>
-            <key>Minato_Skill04_009.png</key>
+            <key>Minato_Skill04_009</key>
             <dict>
                 <key>frame</key>
                 <string>{{238,530},{146,63}}</string>
@@ -1083,7 +1083,7 @@
                 <key>sourceSize</key>
                 <string>{432,141}</string>
             </dict>
-            <key>Minato_Skill04_010.png</key>
+            <key>Minato_Skill04_010</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,455},{158,75}}</string>
@@ -1096,7 +1096,7 @@
                 <key>sourceSize</key>
                 <string>{432,141}</string>
             </dict>
-            <key>Minato_Skill04_011.png</key>
+            <key>Minato_Skill04_011</key>
             <dict>
                 <key>frame</key>
                 <string>{{168,867},{76,57}}</string>
@@ -1109,7 +1109,7 @@
                 <key>sourceSize</key>
                 <string>{432,141}</string>
             </dict>
-            <key>Minato_Skill04_012.png</key>
+            <key>Minato_Skill04_012</key>
             <dict>
                 <key>frame</key>
                 <string>{{482,2},{234,91}}</string>
@@ -1122,7 +1122,7 @@
                 <key>sourceSize</key>
                 <string>{432,141}</string>
             </dict>
-            <key>Minato_Skill04_013.png</key>
+            <key>Minato_Skill04_013</key>
             <dict>
                 <key>frame</key>
                 <string>{{605,628},{76,65}}</string>
@@ -1135,7 +1135,7 @@
                 <key>sourceSize</key>
                 <string>{432,141}</string>
             </dict>
-            <key>Minato_Skill04_014.png</key>
+            <key>Minato_Skill04_014</key>
             <dict>
                 <key>frame</key>
                 <string>{{162,471},{126,74}}</string>
@@ -1148,7 +1148,7 @@
                 <key>sourceSize</key>
                 <string>{158,80}</string>
             </dict>
-            <key>Minato_Skill04_015.png</key>
+            <key>Minato_Skill04_015</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,684},{137,72}}</string>
@@ -1161,7 +1161,7 @@
                 <key>sourceSize</key>
                 <string>{173,72}</string>
             </dict>
-            <key>Minato_Skill04_016.png</key>
+            <key>Minato_Skill04_016</key>
             <dict>
                 <key>frame</key>
                 <string>{{227,790},{122,82}}</string>
@@ -1174,7 +1174,7 @@
                 <key>sourceSize</key>
                 <string>{298,82}</string>
             </dict>
-            <key>Minato_Skill04_017.png</key>
+            <key>Minato_Skill04_017</key>
             <dict>
                 <key>frame</key>
                 <string>{{688,457},{170,88}}</string>
@@ -1187,7 +1187,7 @@
                 <key>sourceSize</key>
                 <string>{298,92}</string>
             </dict>
-            <key>Minato_Skill04_018.png</key>
+            <key>Minato_Skill04_018</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,532},{142,93}}</string>
@@ -1200,7 +1200,7 @@
                 <key>sourceSize</key>
                 <string>{298,93}</string>
             </dict>
-            <key>Minato_Skill04_019.png</key>
+            <key>Minato_Skill04_019</key>
             <dict>
                 <key>frame</key>
                 <string>{{909,231},{206,113}}</string>
@@ -1213,7 +1213,7 @@
                 <key>sourceSize</key>
                 <string>{298,123}</string>
             </dict>
-            <key>Minato_Skill04_020.png</key>
+            <key>Minato_Skill04_020</key>
             <dict>
                 <key>frame</key>
                 <string>{{481,376},{174,124}}</string>
@@ -1226,7 +1226,7 @@
                 <key>sourceSize</key>
                 <string>{298,124}</string>
             </dict>
-            <key>Minato_Skill04_20.png</key>
+            <key>Minato_Skill04_20</key>
             <dict>
                 <key>frame</key>
                 <string>{{481,376},{174,124}}</string>
@@ -1239,7 +1239,7 @@
                 <key>sourceSize</key>
                 <string>{298,124}</string>
             </dict>
-            <key>Minato_Skill05_02.png</key>
+            <key>Minato_Skill05_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{683,547},{44,77}}</string>
@@ -1252,7 +1252,7 @@
                 <key>sourceSize</key>
                 <string>{46,83}</string>
             </dict>
-            <key>Minato_Skill05_03.png</key>
+            <key>Minato_Skill05_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{762,547},{43,77}}</string>
@@ -1265,7 +1265,7 @@
                 <key>sourceSize</key>
                 <string>{47,83}</string>
             </dict>
-            <key>Minato_Skill05_04.png</key>
+            <key>Minato_Skill05_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{657,376},{29,83}}</string>
@@ -1278,7 +1278,7 @@
                 <key>sourceSize</key>
                 <string>{43,83}</string>
             </dict>
-            <key>Minato_Skill05_05.png</key>
+            <key>Minato_Skill05_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{657,461},{28,83}}</string>
@@ -1291,7 +1291,7 @@
                 <key>sourceSize</key>
                 <string>{34,83}</string>
             </dict>
-            <key>Minato_Skill05_06.png</key>
+            <key>Minato_Skill05_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{435,700},{32,82}}</string>
@@ -1304,7 +1304,7 @@
                 <key>sourceSize</key>
                 <string>{32,82}</string>
             </dict>
-            <key>Minato_Skill05_07.png</key>
+            <key>Minato_Skill05_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{437,616},{32,82}}</string>
@@ -1317,7 +1317,7 @@
                 <key>sourceSize</key>
                 <string>{32,82}</string>
             </dict>
-            <key>Minato_Skill05_08.png</key>
+            <key>Minato_Skill05_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{447,297},{32,82}}</string>
@@ -1330,7 +1330,7 @@
                 <key>sourceSize</key>
                 <string>{32,82}</string>
             </dict>
-            <key>Minato_Skill05_09.png</key>
+            <key>Minato_Skill05_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{424,837},{40,83}}</string>
@@ -1343,7 +1343,7 @@
                 <key>sourceSize</key>
                 <string>{40,83}</string>
             </dict>
-            <key>Minato_Skill10_01.png</key>
+            <key>Minato_Skill10_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{653,890},{67,61}}</string>
@@ -1356,7 +1356,7 @@
                 <key>sourceSize</key>
                 <string>{67,61}</string>
             </dict>
-            <key>Minato_Skill10_02.png</key>
+            <key>Minato_Skill10_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{683,706},{74,63}}</string>
@@ -1369,7 +1369,7 @@
                 <key>sourceSize</key>
                 <string>{74,63}</string>
             </dict>
-            <key>Minato_Skill10_03.png</key>
+            <key>Minato_Skill10_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{683,593},{76,65}}</string>
@@ -1382,7 +1382,7 @@
                 <key>sourceSize</key>
                 <string>{76,65}</string>
             </dict>
-            <key>Minato_Skill10_04.png</key>
+            <key>Minato_Skill10_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{773,908},{65,56}}</string>
@@ -1395,7 +1395,7 @@
                 <key>sourceSize</key>
                 <string>{65,56}</string>
             </dict>
-            <key>Minato_Skill10_05.png</key>
+            <key>Minato_Skill10_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{895,874},{62,58}}</string>
@@ -1408,7 +1408,7 @@
                 <key>sourceSize</key>
                 <string>{62,58}</string>
             </dict>
-            <key>Minato_Skill10_06.png</key>
+            <key>Minato_Skill10_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{440,459},{34,83}}</string>
@@ -1421,7 +1421,7 @@
                 <key>sourceSize</key>
                 <string>{34,83}</string>
             </dict>
-            <key>Minato_Skill12_01.png</key>
+            <key>Minato_Skill12_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{168,945},{77,79}}</string>
@@ -1434,7 +1434,7 @@
                 <key>sourceSize</key>
                 <string>{77,79}</string>
             </dict>
-            <key>Minato_Skill12_02.png</key>
+            <key>Minato_Skill12_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{447,262},{33,33}}</string>
@@ -1447,7 +1447,7 @@
                 <key>sourceSize</key>
                 <string>{59,81}</string>
             </dict>
-            <key>Minato_Skill12_03.png</key>
+            <key>Minato_Skill12_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{466,830},{59,81}}</string>
@@ -1460,7 +1460,7 @@
                 <key>sourceSize</key>
                 <string>{59,81}</string>
             </dict>
-            <key>Minato_Skill12_04.png</key>
+            <key>Minato_Skill12_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{362,754},{71,81}}</string>
@@ -1473,7 +1473,7 @@
                 <key>sourceSize</key>
                 <string>{71,81}</string>
             </dict>
-            <key>Minato_Skill12_05.png</key>
+            <key>Minato_Skill12_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{868,452},{38,76}}</string>
@@ -1486,7 +1486,7 @@
                 <key>sourceSize</key>
                 <string>{38,76}</string>
             </dict>
-            <key>Minato_Skill12_06.png</key>
+            <key>Minato_Skill12_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{447,226},{34,33}}</string>
@@ -1499,7 +1499,7 @@
                 <key>sourceSize</key>
                 <string>{58,79}</string>
             </dict>
-            <key>Minato_Skill12_07.png</key>
+            <key>Minato_Skill12_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{523,913},{58,77}}</string>
@@ -1512,7 +1512,7 @@
                 <key>sourceSize</key>
                 <string>{58,79}</string>
             </dict>
-            <key>Minato_Skill12_08.png</key>
+            <key>Minato_Skill12_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{518,744},{72,79}}</string>
@@ -1525,7 +1525,7 @@
                 <key>sourceSize</key>
                 <string>{72,79}</string>
             </dict>
-            <key>Minato_Skill12_09.png</key>
+            <key>Minato_Skill12_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{900,819},{53,63}}</string>
@@ -1538,7 +1538,7 @@
                 <key>sourceSize</key>
                 <string>{55,79}</string>
             </dict>
-            <key>Minato_Skill12_10.png</key>
+            <key>Minato_Skill12_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{664,827},{70,61}}</string>
@@ -1551,7 +1551,7 @@
                 <key>sourceSize</key>
                 <string>{70,79}</string>
             </dict>
-            <key>Minato_Skill12_11.png</key>
+            <key>Minato_Skill12_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{860,530},{46,69}}</string>
@@ -1564,7 +1564,7 @@
                 <key>sourceSize</key>
                 <string>{56,79}</string>
             </dict>
-            <key>Minato_Skill12_12.png</key>
+            <key>Minato_Skill12_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{714,953},{65,57}}</string>
@@ -1577,7 +1577,7 @@
                 <key>sourceSize</key>
                 <string>{67,79}</string>
             </dict>
-            <key>Minato_Walk_01.png</key>
+            <key>Minato_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{761,691},{74,64}}</string>
@@ -1590,7 +1590,7 @@
                 <key>sourceSize</key>
                 <string>{74,64}</string>
             </dict>
-            <key>Minato_Walk_02.png</key>
+            <key>Minato_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{71,951},{71,63}}</string>
@@ -1603,7 +1603,7 @@
                 <key>sourceSize</key>
                 <string>{71,63}</string>
             </dict>
-            <key>Minato_Walk_03.png</key>
+            <key>Minato_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{651,953},{61,66}}</string>
@@ -1616,7 +1616,7 @@
                 <key>sourceSize</key>
                 <string>{61,66}</string>
             </dict>
-            <key>Minato_Walk_04.png</key>
+            <key>Minato_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{592,800},{70,63}}</string>
@@ -1629,7 +1629,7 @@
                 <key>sourceSize</key>
                 <string>{70,63}</string>
             </dict>
-            <key>Minato_Walk_05.png</key>
+            <key>Minato_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{841,601},{76,65}}</string>
@@ -1642,7 +1642,7 @@
                 <key>sourceSize</key>
                 <string>{76,65}</string>
             </dict>
-            <key>Minato_Walk_06.png</key>
+            <key>Minato_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{736,842},{64,67}}</string>

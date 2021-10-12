@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>FireRain_Move_001.png</key>
+            <key>FireRain_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{224,2},{98,108}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{114,150}</string>
             </dict>
-            <key>FireRain_Move_002.png</key>
+            <key>FireRain_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{118,2},{100,104}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{114,150}</string>
             </dict>
-            <key>FireRain_Move_003.png</key>
+            <key>FireRain_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{112,380},{112,110}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{114,150}</string>
             </dict>
-            <key>FireRain_Move_004.png</key>
+            <key>FireRain_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,258},{114,120}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{114,150}</string>
             </dict>
-            <key>FireRain_Move_005.png</key>
+            <key>FireRain_Move_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{114,132}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{114,150}</string>
             </dict>
-            <key>FireRain_Move_006.png</key>
+            <key>FireRain_Move_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,136},{114,120}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{114,150}</string>
             </dict>
-            <key>FireRain_Move_007.png</key>
+            <key>FireRain_Move_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,380},{108,118}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{114,150}</string>
             </dict>
-            <key>Shenwei2_Move_01.png</key>
+            <key>Shenwei2_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{118,286},{74,78}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{94,100}</string>
             </dict>
-            <key>Shenwei2_Move_02.png</key>
+            <key>Shenwei2_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{224,102},{94,100}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{94,100}</string>
             </dict>
-            <key>Shenwei2_Move_03.png</key>
+            <key>Shenwei2_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{423,126},{86,80}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{94,100}</string>
             </dict>
-            <key>Shenwei2_Move_04.png</key>
+            <key>Shenwei2_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{240,258},{34,38}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{94,100}</string>
             </dict>
-            <key>Shenwei2_Move_05.png</key>
+            <key>Shenwei2_Move_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{118,261},{22,22}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{94,100}</string>
             </dict>
-            <key>Shenwei2_Move_06.png</key>
+            <key>Shenwei2_Move_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{126,494},{12,12}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{94,100}</string>
             </dict>
-            <key>Shenwei_Move_001.png</key>
+            <key>Shenwei_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{118,104},{97,92}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{113,102}</string>
             </dict>
-            <key>Shenwei_Move_002.png</key>
+            <key>Shenwei_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{326,104},{95,88}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{113,102}</string>
             </dict>
-            <key>Shenwei_Move_003.png</key>
+            <key>Shenwei_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{326,194},{91,84}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{113,102}</string>
             </dict>
-            <key>Shenwei_Move_004.png</key>
+            <key>Shenwei_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{419,208},{81,76}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{113,102}</string>
             </dict>
-            <key>Shenwei_Move_005.png</key>
+            <key>Shenwei_Move_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{118,198},{61,58}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{113,102}</string>
             </dict>
-            <key>Shenwei_Move_006.png</key>
+            <key>Shenwei_Move_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{334,2},{101,100}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{113,102}</string>
             </dict>
-            <key>TamaBomb_Move_000.png</key>
+            <key>TamaBomb_Move_000</key>
             <dict>
                 <key>frame</key>
                 <string>{{112,494},{12,12}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{100,50}</string>
             </dict>
-            <key>TamaBomb_Move_002.png</key>
+            <key>TamaBomb_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{194,260},{30,32}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{64,64}</string>
             </dict>
-            <key>TamaBomb_Move_003.png</key>
+            <key>TamaBomb_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{437,66},{62,58}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{64,64}</string>
             </dict>
-            <key>TamaBomb_Move_004.png</key>
+            <key>TamaBomb_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{178,198},{60,60}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{64,64}</string>
             </dict>
-            <key>TamaBomb_Move_005.png</key>
+            <key>TamaBomb_Move_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{437,2},{62,62}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{64,64}</string>
             </dict>
-            <key>TamaBomb_Move_006.png</key>
+            <key>TamaBomb_Move_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{240,198},{58,60}}</string>

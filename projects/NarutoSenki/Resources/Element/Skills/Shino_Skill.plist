@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>BugClone_Move_001.png</key>
+            <key>BugClone_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{350,740},{71,81}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{73,83}</string>
             </dict>
-            <key>BugClone_Move_002.png</key>
+            <key>BugClone_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{364,667},{71,83}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{73,83}</string>
             </dict>
-            <key>BugClone_Move_003.png</key>
+            <key>BugClone_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{267,703},{73,81}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{73,83}</string>
             </dict>
-            <key>BugClone_Move_004.png</key>
+            <key>BugClone_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{182,703},{69,83}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{73,83}</string>
             </dict>
-            <key>BugPillar_Move_001.png</key>
+            <key>BugPillar_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{482,640},{25,16}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{139,128}</string>
             </dict>
-            <key>BugPillar_Move_002.png</key>
+            <key>BugPillar_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{449,689},{75,50}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{139,128}</string>
             </dict>
-            <key>BugPillar_Move_003.png</key>
+            <key>BugPillar_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{380,526},{123,92}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{139,128}</string>
             </dict>
-            <key>BugPillar_Move_004.png</key>
+            <key>BugPillar_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{382,408},{123,116}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{139,128}</string>
             </dict>
-            <key>BugPillar_Move_005.png</key>
+            <key>BugPillar_Move_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{382,277},{129,124}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{139,128}</string>
             </dict>
-            <key>BugPillar_Move_006.png</key>
+            <key>BugPillar_Move_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{382,2},{83,126}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{139,128}</string>
             </dict>
-            <key>BugPillar_Move_007.png</key>
+            <key>BugPillar_Move_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{364,620},{45,116}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{139,128}</string>
             </dict>
-            <key>BugTomado_Move_001.png</key>
+            <key>BugTomado_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,357},{93,188}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{133,188}</string>
             </dict>
-            <key>BugTomado_Move_002.png</key>
+            <key>BugTomado_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,452},{91,188}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{133,188}</string>
             </dict>
-            <key>BugTomado_Move_003.png</key>
+            <key>BugTomado_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{192,355},{97,188}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{133,188}</string>
             </dict>
-            <key>BugTomado_Move_004.png</key>
+            <key>BugTomado_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{192,252},{101,188}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{133,188}</string>
             </dict>
-            <key>BugTomado_Move_005.png</key>
+            <key>BugTomado_Move_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,137},{113,188}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{133,188}</string>
             </dict>
-            <key>BugTomado_Move_006.png</key>
+            <key>BugTomado_Move_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{192,2},{127,188}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{133,188}</string>
             </dict>
-            <key>BugTomado_Move_007.png</key>
+            <key>BugTomado_Move_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{133,188}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{133,188}</string>
             </dict>
-            <key>BugTomado_Move_008.png</key>
+            <key>BugTomado_Move_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{382,87},{125,188}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{133,188}</string>
             </dict>
-            <key>BugTomado_Move_009.png</key>
+            <key>BugTomado_Move_009</key>
             <dict>
                 <key>frame</key>
                 <string>{{192,131},{119,188}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{133,188}</string>
             </dict>
-            <key>BugTomado_Move_010.png</key>
+            <key>BugTomado_Move_010</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,252},{103,188}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{133,188}</string>
             </dict>
-            <key>BugTomado_Move_011.png</key>
+            <key>BugTomado_Move_011</key>
             <dict>
                 <key>frame</key>
                 <string>{{192,454},{81,186}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{133,188}</string>
             </dict>
-            <key>BugTomado_Move_012.png</key>
+            <key>BugTomado_Move_012</key>
             <dict>
                 <key>frame</key>
                 <string>{{192,537},{73,182}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{133,188}</string>
             </dict>
-            <key>BugTomado_Move_013.png</key>
+            <key>BugTomado_Move_013</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,545},{59,182}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{133,188}</string>
             </dict>
-            <key>BugTomado_Move_014.png</key>
+            <key>BugTomado_Move_014</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,606},{63,180}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{133,188}</string>
             </dict>
-            <key>BugTomado_Move_015.png</key>
+            <key>BugTomado_Move_015</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,671},{85,178}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{133,188}</string>
             </dict>
-            <key>BugTomado_Move_016.png</key>
+            <key>BugTomado_Move_016</key>
             <dict>
                 <key>frame</key>
                 <string>{{184,612},{89,178}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{133,188}</string>
             </dict>
-            <key>Bug_Move_001.png</key>
+            <key>Bug_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{482,620},{18,25}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{22,65}</string>
             </dict>
-            <key>Bug_Move_002.png</key>
+            <key>Bug_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{449,667},{20,24}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{22,64}</string>
             </dict>
-            <key>Bug_Move_003.png</key>
+            <key>Bug_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{482,658},{20,24}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{22,64}</string>
             </dict>
-            <key>Bug_Move_004.png</key>
+            <key>Bug_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{433,766},{20,22}}</string>

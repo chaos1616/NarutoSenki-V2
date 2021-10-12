@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>FemalePainFlog_Float_01.png</key>
+            <key>FemalePainFlog_Float_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{90,61},{44,38}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{44,38}</string>
             </dict>
-            <key>FemalePainFlog_Idle_01.png</key>
+            <key>FemalePainFlog_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{99,2},{33,43}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{33,43}</string>
             </dict>
-            <key>FemalePainFlog_KnockDown_01.png</key>
+            <key>FemalePainFlog_KnockDown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{112,197},{38,44}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{38,44}</string>
             </dict>
-            <key>FemalePainFlog_KnockDown_02.png</key>
+            <key>FemalePainFlog_KnockDown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{63,2},{57,34}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{57,44}</string>
             </dict>
-            <key>FemalePainFlog_KnockDown_03.png</key>
+            <key>FemalePainFlog_KnockDown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,225},{62,28}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{62,44}</string>
             </dict>
-            <key>FemalePainFlog_KnockDown_04.png</key>
+            <key>FemalePainFlog_KnockDown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,160},{63,18}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{63,44}</string>
             </dict>
-            <key>FemalePainFlog_NAttack_01.png</key>
+            <key>FemalePainFlog_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{68,141},{54,47}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{54,47}</string>
             </dict>
-            <key>FemalePainFlog_NAttack_02.png</key>
+            <key>FemalePainFlog_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{43,81},{58,45}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{58,47}</string>
             </dict>
-            <key>FemalePainFlog_NAttack_03.png</key>
+            <key>FemalePainFlog_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{59,77}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{59,77}</string>
             </dict>
-            <key>FemalePainFlog_NAttack_04.png</key>
+            <key>FemalePainFlog_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,81},{39,77}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{59,77}</string>
             </dict>
-            <key>FemalePainFlog_Walk_01.png</key>
+            <key>FemalePainFlog_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{117,107},{38,33}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{38,33}</string>
             </dict>
-            <key>FemalePainFlog_Walk_02.png</key>
+            <key>FemalePainFlog_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{22,160},{44,60}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{44,60}</string>
             </dict>
-            <key>FemalePainFlog_Walk_03.png</key>
+            <key>FemalePainFlog_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{68,197},{44,42}}</string>

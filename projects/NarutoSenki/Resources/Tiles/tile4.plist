@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>b1.png</key>
+            <key>b1</key>
             <dict>
                 <key>frame</key>
                 <string>{{32,640},{57,160}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{57,160}</string>
             </dict>
-            <key>floor.png</key>
+            <key>floor</key>
             <dict>
                 <key>frame</key>
                 <string>{{32,32},{512,192}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{512,192}</string>
             </dict>
-            <key>t1.png</key>
+            <key>t1</key>
             <dict>
                 <key>frame</key>
                 <string>{{32,761},{123,64}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{123,64}</string>
             </dict>
-            <key>t2.png</key>
+            <key>t2</key>
             <dict>
                 <key>frame</key>
                 <string>{{32,697},{130,64}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{130,64}</string>
             </dict>
-            <key>t3.png</key>
+            <key>t3</key>
             <dict>
                 <key>frame</key>
                 <string>{{32,544},{191,96}}</string>

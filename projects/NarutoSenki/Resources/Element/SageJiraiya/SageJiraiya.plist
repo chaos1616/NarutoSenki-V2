@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>SageJiraiya_AirHurt_02.png</key>
+            <key>SageJiraiya_AirHurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{962,897},{63,89}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{63,89}</string>
             </dict>
-            <key>SageJiraiya_Float_01.png</key>
+            <key>SageJiraiya_Float_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{726,211},{77,89}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{77,89}</string>
             </dict>
-            <key>SageJiraiya_Float_02.png</key>
+            <key>SageJiraiya_Float_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{956,580},{89,63}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{89,63}</string>
             </dict>
-            <key>SageJiraiya_Float_03.png</key>
+            <key>SageJiraiya_Float_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{1010,489},{53,89}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{53,89}</string>
             </dict>
-            <key>SageJiraiya_Hurt_01.png</key>
+            <key>SageJiraiya_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{413,221},{71,69}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{71,69}</string>
             </dict>
-            <key>SageJiraiya_Hurt_02.png</key>
+            <key>SageJiraiya_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{554,221},{70,68}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{70,70}</string>
             </dict>
-            <key>SageJiraiya_Idle_01.png</key>
+            <key>SageJiraiya_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{1082,371},{64,65}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{64,65}</string>
             </dict>
-            <key>SageJiraiya_Idle_02.png</key>
+            <key>SageJiraiya_Idle_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{1124,211},{63,64}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{63,64}</string>
             </dict>
-            <key>SageJiraiya_Idle_03.png</key>
+            <key>SageJiraiya_Idle_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{1147,77},{62,63}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{62,63}</string>
             </dict>
-            <key>SageJiraiya_Idle_04.png</key>
+            <key>SageJiraiya_Idle_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{1147,142},{62,62}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{62,62}</string>
             </dict>
-            <key>SageJiraiya_KnockDown_02.png</key>
+            <key>SageJiraiya_KnockDown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{956,580},{89,63}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{89,63}</string>
             </dict>
-            <key>SageJiraiya_KnockDown_03.png</key>
+            <key>SageJiraiya_KnockDown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{409,812},{97,39}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{97,39}</string>
             </dict>
-            <key>SageJiraiya_NAttack_01.png</key>
+            <key>SageJiraiya_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{406,540},{50,77}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{52,77}</string>
             </dict>
-            <key>SageJiraiya_NAttack_02.png</key>
+            <key>SageJiraiya_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{907,135},{101,74}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{101,78}</string>
             </dict>
-            <key>SageJiraiya_NAttack_03.png</key>
+            <key>SageJiraiya_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{673,495},{93,73}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{93,73}</string>
             </dict>
-            <key>SageJiraiya_NAttack_04.png</key>
+            <key>SageJiraiya_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{1063,211},{59,74}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{59,74}</string>
             </dict>
-            <key>SageJiraiya_NAttack_05.png</key>
+            <key>SageJiraiya_NAttack_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{961,671},{88,72}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{88,72}</string>
             </dict>
-            <key>SageJiraiya_NAttack_06.png</key>
+            <key>SageJiraiya_NAttack_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{815,917},{100,71}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{102,83}</string>
             </dict>
-            <key>SageJiraiya_NAttack_07.png</key>
+            <key>SageJiraiya_NAttack_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{1035,667},{83,72}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{83,72}</string>
             </dict>
-            <key>SageJiraiya_NAttack_08.png</key>
+            <key>SageJiraiya_NAttack_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{508,801},{50,76}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{50,76}</string>
             </dict>
-            <key>SageJiraiya_NAttack_09.png</key>
+            <key>SageJiraiya_NAttack_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{322,540},{52,82}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{52,82}</string>
             </dict>
-            <key>SageJiraiya_NAttack_11.png</key>
+            <key>SageJiraiya_NAttack_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{874,712},{85,75}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{85,83}</string>
             </dict>
-            <key>SageJiraiya_NAttack_12.png</key>
+            <key>SageJiraiya_NAttack_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{1021,580},{85,63}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{87,63}</string>
             </dict>
-            <key>SageJiraiya_Skill01_01.png</key>
+            <key>SageJiraiya_Skill01_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{947,211},{53,77}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{53,77}</string>
             </dict>
-            <key>SageJiraiya_Skill01_02.png</key>
+            <key>SageJiraiya_Skill01_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{1010,130},{70,79}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{70,79}</string>
             </dict>
-            <key>SageJiraiya_Skill01_04.png</key>
+            <key>SageJiraiya_Skill01_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{332,221},{69,79}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{69,85}</string>
             </dict>
-            <key>SageJiraiya_Skill01_06.png</key>
+            <key>SageJiraiya_Skill01_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{858,489},{97,63}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{97,79}</string>
             </dict>
-            <key>SageJiraiya_Skill01_07.png</key>
+            <key>SageJiraiya_Skill01_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{815,789},{126,63}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{126,79}</string>
             </dict>
-            <key>SageJiraiya_Skill01_08.png</key>
+            <key>SageJiraiya_Skill01_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{880,789},{121,64}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{121,64}</string>
             </dict>
-            <key>SageJiraiya_Skill01_09.png</key>
+            <key>SageJiraiya_Skill01_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{626,221},{98,67}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{98,67}</string>
             </dict>
-            <key>SageJiraiya_Skill02_001.png</key>
+            <key>SageJiraiya_Skill02_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{1111,836},{71,81}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{79,81}</string>
             </dict>
-            <key>SageJiraiya_Skill02_002.png</key>
+            <key>SageJiraiya_Skill02_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{882,211},{63,77}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{79,81}</string>
             </dict>
-            <key>SageJiraiya_Skill02_003.png</key>
+            <key>SageJiraiya_Skill02_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{1088,287},{65,61}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{79,81}</string>
             </dict>
-            <key>SageJiraiya_Skill03_01.png</key>
+            <key>SageJiraiya_Skill03_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{1089,752},{82,72}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{82,72}</string>
             </dict>
-            <key>SageJiraiya_Skill03_02.png</key>
+            <key>SageJiraiya_Skill03_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{486,221},{69,66}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{69,72}</string>
             </dict>
-            <key>SageJiraiya_Skill03_03.png</key>
+            <key>SageJiraiya_Skill03_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{946,789},{106,66}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{184,66}</string>
             </dict>
-            <key>SageJiraiya_Skill03_04.png</key>
+            <key>SageJiraiya_Skill03_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{1049,2},{126,66}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{184,66}</string>
             </dict>
-            <key>SageJiraiya_Skill03_05.png</key>
+            <key>SageJiraiya_Skill03_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,902},{118,66}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{184,66}</string>
             </dict>
-            <key>SageJiraiya_Skill03_06.png</key>
+            <key>SageJiraiya_Skill03_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{981,2},{126,66}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{184,66}</string>
             </dict>
-            <key>SageJiraiya_Skill03_07.png</key>
+            <key>SageJiraiya_Skill03_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{1102,931},{72,82}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{72,82}</string>
             </dict>
-            <key>SageJiraiya_Skill03_08.png</key>
+            <key>SageJiraiya_Skill03_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{1002,211},{59,76}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{59,76}</string>
             </dict>
-            <key>SageJiraiya_Skill03_09.png</key>
+            <key>SageJiraiya_Skill03_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{888,912},{109,72}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{257,84}</string>
             </dict>
-            <key>SageJiraiya_Skill03_10.png</key>
+            <key>SageJiraiya_Skill03_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{907,2},{131,72}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{257,84}</string>
             </dict>
-            <key>SageJiraiya_Skill03_11.png</key>
+            <key>SageJiraiya_Skill03_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{390,854},{151,72}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{257,84}</string>
             </dict>
-            <key>SageJiraiya_Skill03_12.png</key>
+            <key>SageJiraiya_Skill03_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{542,853},{169,72}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{257,84}</string>
             </dict>
-            <key>SageJiraiya_Skill03_13.png</key>
+            <key>SageJiraiya_Skill03_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{464,853},{169,76}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{257,84}</string>
             </dict>
-            <key>SageJiraiya_Skill03_14.png</key>
+            <key>SageJiraiya_Skill03_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{310,854},{161,78}}</string>
@@ -615,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{257,84}</string>
             </dict>
-            <key>SageJiraiya_Skill04_01.png</key>
+            <key>SageJiraiya_Skill04_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{1180,2},{60,59}}</string>
@@ -628,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{60,59}</string>
             </dict>
-            <key>SageJiraiya_Skill04_02.png</key>
+            <key>SageJiraiya_Skill04_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{1014,761},{73,84}}</string>
@@ -641,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{73,84}</string>
             </dict>
-            <key>SageJiraiya_Skill04_03.png</key>
+            <key>SageJiraiya_Skill04_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{803,495},{53,90}}</string>
@@ -654,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{73,90}</string>
             </dict>
-            <key>SageJiraiya_Skill04_04.png</key>
+            <key>SageJiraiya_Skill04_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{748,495},{53,90}}</string>
@@ -667,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{73,90}</string>
             </dict>
-            <key>SageJiraiya_Skill04_05.png</key>
+            <key>SageJiraiya_Skill04_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{817,211},{63,77}}</string>
@@ -680,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{351,199}</string>
             </dict>
-            <key>SageJiraiya_Skill04_06.png</key>
+            <key>SageJiraiya_Skill04_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{456,292},{217,191}}</string>
@@ -693,7 +693,7 @@
                 <key>sourceSize</key>
                 <string>{351,199}</string>
             </dict>
-            <key>SageJiraiya_Skill04_07.png</key>
+            <key>SageJiraiya_Skill04_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{683,590},{197,189}}</string>
@@ -706,7 +706,7 @@
                 <key>sourceSize</key>
                 <string>{351,199}</string>
             </dict>
-            <key>SageJiraiya_Skill04_08.png</key>
+            <key>SageJiraiya_Skill04_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{490,592},{207,191}}</string>
@@ -719,7 +719,7 @@
                 <key>sourceSize</key>
                 <string>{351,199}</string>
             </dict>
-            <key>SageJiraiya_Skill04_09.png</key>
+            <key>SageJiraiya_Skill04_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{332,2},{217,193}}</string>
@@ -732,7 +732,7 @@
                 <key>sourceSize</key>
                 <string>{351,199}</string>
             </dict>
-            <key>SageJiraiya_Skill04_10.png</key>
+            <key>SageJiraiya_Skill04_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{616,801},{197,199}}</string>
@@ -745,7 +745,7 @@
                 <key>sourceSize</key>
                 <string>{351,199}</string>
             </dict>
-            <key>SageJiraiya_Skill04_11.png</key>
+            <key>SageJiraiya_Skill04_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{710,2},{207,195}}</string>
@@ -758,7 +758,7 @@
                 <key>sourceSize</key>
                 <string>{351,199}</string>
             </dict>
-            <key>SageJiraiya_Skill04_12.png</key>
+            <key>SageJiraiya_Skill04_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{527,2},{217,181}}</string>
@@ -771,7 +771,7 @@
                 <key>sourceSize</key>
                 <string>{351,199}</string>
             </dict>
-            <key>SageJiraiya_Skill04_13.png</key>
+            <key>SageJiraiya_Skill04_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{830,290},{197,187}}</string>
@@ -784,7 +784,7 @@
                 <key>sourceSize</key>
                 <string>{351,199}</string>
             </dict>
-            <key>SageJiraiya_Skill04_14.png</key>
+            <key>SageJiraiya_Skill04_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{649,290},{203,179}}</string>
@@ -797,7 +797,7 @@
                 <key>sourceSize</key>
                 <string>{351,199}</string>
             </dict>
-            <key>SageJiraiya_Skill04_15.png</key>
+            <key>SageJiraiya_Skill04_15</key>
             <dict>
                 <key>frame</key>
                 <string>{{923,489},{85,89}}</string>
@@ -810,7 +810,7 @@
                 <key>sourceSize</key>
                 <string>{351,199}</string>
             </dict>
-            <key>SageJiraiya_Skill04_16.png</key>
+            <key>SageJiraiya_Skill04_16</key>
             <dict>
                 <key>frame</key>
                 <string>{{1180,2},{60,59}}</string>
@@ -823,7 +823,7 @@
                 <key>sourceSize</key>
                 <string>{64,71}</string>
             </dict>
-            <key>SageJiraiya_Skill05_01.png</key>
+            <key>SageJiraiya_Skill05_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{1027,931},{73,82}}</string>
@@ -836,7 +836,7 @@
                 <key>sourceSize</key>
                 <string>{73,82}</string>
             </dict>
-            <key>SageJiraiya_Skill05_02.png</key>
+            <key>SageJiraiya_Skill05_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{1027,847},{82,82}}</string>
@@ -849,7 +849,7 @@
                 <key>sourceSize</key>
                 <string>{82,82}</string>
             </dict>
-            <key>SageJiraiya_Skill05_03.png</key>
+            <key>SageJiraiya_Skill05_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{874,588},{122,80}}</string>
@@ -862,7 +862,7 @@
                 <key>sourceSize</key>
                 <string>{500,84}</string>
             </dict>
-            <key>SageJiraiya_Skill05_04.png</key>
+            <key>SageJiraiya_Skill05_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{485,511},{186,79}}</string>
@@ -875,7 +875,7 @@
                 <key>sourceSize</key>
                 <string>{500,83}</string>
             </dict>
-            <key>SageJiraiya_Skill05_05.png</key>
+            <key>SageJiraiya_Skill05_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,606},{294,87}}</string>
@@ -888,7 +888,7 @@
                 <key>sourceSize</key>
                 <string>{500,91}</string>
             </dict>
-            <key>SageJiraiya_Skill05_06.png</key>
+            <key>SageJiraiya_Skill05_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,304},{300,144}}</string>
@@ -901,7 +901,7 @@
                 <key>sourceSize</key>
                 <string>{500,148}</string>
             </dict>
-            <key>SageJiraiya_Skill05_07.png</key>
+            <key>SageJiraiya_Skill05_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{300,160}}</string>
@@ -914,7 +914,7 @@
                 <key>sourceSize</key>
                 <string>{500,164}</string>
             </dict>
-            <key>SageJiraiya_Skill05_08.png</key>
+            <key>SageJiraiya_Skill05_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{164,2},{288,166}}</string>
@@ -927,7 +927,7 @@
                 <key>sourceSize</key>
                 <string>{500,170}</string>
             </dict>
-            <key>SageJiraiya_Skill05_09.png</key>
+            <key>SageJiraiya_Skill05_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{148,304},{288,172}}</string>
@@ -940,7 +940,7 @@
                 <key>sourceSize</key>
                 <string>{500,174}</string>
             </dict>
-            <key>SageJiraiya_Skill05_10.png</key>
+            <key>SageJiraiya_Skill05_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{91,606},{288,174}}</string>
@@ -953,7 +953,7 @@
                 <key>sourceSize</key>
                 <string>{500,176}</string>
             </dict>
-            <key>SageJiraiya_Skill05_11.png</key>
+            <key>SageJiraiya_Skill05_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{267,594},{258,140}}</string>
@@ -966,7 +966,7 @@
                 <key>sourceSize</key>
                 <string>{500,144}</string>
             </dict>
-            <key>SageJiraiya_Skill05_12.png</key>
+            <key>SageJiraiya_Skill05_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{322,292},{246,132}}</string>
@@ -979,7 +979,7 @@
                 <key>sourceSize</key>
                 <string>{500,136}</string>
             </dict>
-            <key>SageJiraiya_Skill05_13.png</key>
+            <key>SageJiraiya_Skill05_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{70,902},{238,112}}</string>
@@ -992,7 +992,7 @@
                 <key>sourceSize</key>
                 <string>{500,116}</string>
             </dict>
-            <key>SageJiraiya_Skill05_14.png</key>
+            <key>SageJiraiya_Skill05_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{409,592},{218,79}}</string>
@@ -1005,7 +1005,7 @@
                 <key>sourceSize</key>
                 <string>{500,83}</string>
             </dict>
-            <key>SageJiraiya_Walk_01.png</key>
+            <key>SageJiraiya_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{1176,919},{81,67}}</string>
@@ -1018,7 +1018,7 @@
                 <key>sourceSize</key>
                 <string>{81,67}</string>
             </dict>
-            <key>SageJiraiya_Walk_02.png</key>
+            <key>SageJiraiya_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{1082,130},{79,63}}</string>
@@ -1031,7 +1031,7 @@
                 <key>sourceSize</key>
                 <string>{81,67}</string>
             </dict>
-            <key>SageJiraiya_Walk_03.png</key>
+            <key>SageJiraiya_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{1065,452},{73,61}}</string>
@@ -1044,7 +1044,7 @@
                 <key>sourceSize</key>
                 <string>{73,67}</string>
             </dict>
-            <key>SageJiraiya_Walk_04.png</key>
+            <key>SageJiraiya_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{1019,289},{80,67}}</string>
@@ -1057,7 +1057,7 @@
                 <key>sourceSize</key>
                 <string>{82,67}</string>
             </dict>
-            <key>SageJiraiya_Walk_05.png</key>
+            <key>SageJiraiya_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{1019,371},{79,61}}</string>
@@ -1070,7 +1070,7 @@
                 <key>sourceSize</key>
                 <string>{79,67}</string>
             </dict>
-            <key>SageJiraiya_Walk_06.png</key>
+            <key>SageJiraiya_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{1117,2},{73,61}}</string>

@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Slug_Move_01.png</key>
+            <key>Slug_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{132,2},{128,86}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{128,86}</string>
             </dict>
-            <key>Slug_Move_02.png</key>
+            <key>Slug_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{128,86}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{128,86}</string>
             </dict>
-            <key>Slug_Move_03.png</key>
+            <key>Slug_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,90},{128,85}}</string>

@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>SakuraBom_Move_01.png</key>
+            <key>SakuraBom_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{166,176}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{174,176}</string>
             </dict>
-            <key>SakuraBom_Move_02.png</key>
+            <key>SakuraBom_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{154,180},{170,137}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{174,147}</string>
             </dict>
-            <key>SakuraBom_Move_03.png</key>
+            <key>SakuraBom_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,356},{172,148}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{174,150}</string>
             </dict>
-            <key>SakuraBom_Move_04.png</key>
+            <key>SakuraBom_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,180},{174,150}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{174,150}</string>
             </dict>
-            <key>Tuji_Move_01.png</key>
+            <key>Tuji_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{248,352},{110,80}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{110,80}</string>
             </dict>
-            <key>Tuji_Move_02.png</key>
+            <key>Tuji_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{176,352},{116,70}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{116,70}</string>
             </dict>
-            <key>Tuji_Move_03.png</key>
+            <key>Tuji_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{170,2},{97,62}}</string>

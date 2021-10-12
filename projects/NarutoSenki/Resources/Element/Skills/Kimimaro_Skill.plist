@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>BoneBullet_Move_01.png</key>
+            <key>BoneBullet_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{109,49},{13,13}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{13,13}</string>
             </dict>
-            <key>BoneBullet_Move_02.png</key>
+            <key>BoneBullet_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{109,34},{14,13}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{14,13}</string>
             </dict>
-            <key>BoneBullet_Move_03.png</key>
+            <key>BoneBullet_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{78,34},{16,29}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{16,29}</string>
             </dict>
-            <key>BoneBullet_Move_04.png</key>
+            <key>BoneBullet_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,88},{17,35}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{17,35}</string>
             </dict>
-            <key>BoneBullet_Move_05.png</key>
+            <key>BoneBullet_Move_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{58,34},{18,41}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{18,41}</string>
             </dict>
-            <key>BoneBullet_Move_06.png</key>
+            <key>BoneBullet_Move_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{38,34},{18,41}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{18,41}</string>
             </dict>
-            <key>Bone_Move_01.png</key>
+            <key>Bone_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{60,30}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{60,52}</string>
             </dict>
-            <key>Bone_Move_02.png</key>
+            <key>Bone_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{64,2},{58,30}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{60,52}</string>
             </dict>
-            <key>Bone_Move_03.png</key>
+            <key>Bone_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,34},{52,34}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{60,56}</string>
             </dict>
-            <key>Bone_Move_04.png</key>
+            <key>Bone_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{21,88},{44,32}}</string>

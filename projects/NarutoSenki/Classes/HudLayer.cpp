@@ -1427,28 +1427,25 @@ void HudLayer::updateSkillButtons()
 		gearMenuSprite->setNormalImage(avator);
 
 	auto cache = CCSpriteFrameCache::sharedSpriteFrameCache();
-	const char *frameName;
 	CCSpriteFrame *frame;
 
 #define updateButtonInfo(index)                                                           \
-	frameName = (charName + "_skill" #index ".png").c_str();                              \
-	frame = cache->spriteFrameByName(frameName);                                          \
+	frame = cache->spriteFrameByName((charName + "_skill" #index ".png").c_str());        \
 	if (skill##index##Button)                                                             \
 	{                                                                                     \
-		if (frame)                                                                        \
+		if (frame != nullptr)                                                             \
 			skill##index##Button->setDisplayFrame(frame);                                 \
-		skill##index##Button->setCD(to_ccstring(player->_sattackcoldDown##index * 1000)); \
+		skill##index##Button->setCD(to_ccstring(player->_sattackcooldown##index * 1000)); \
 		skill##index##Button->_isColdChanged = true;                                      \
 	}
 
-#define updateOugiButtonInfo(index)                          \
-	frameName = (charName + "_skill" #index ".png").c_str(); \
-	frame = cache->spriteFrameByName(frameName);             \
-	if (skill##index##Button)                                \
-	{                                                        \
-		if (frame)                                           \
-			skill##index##Button->setDisplayFrame(frame);    \
-		skill##index##Button->_isColdChanged = true;         \
+#define updateOugiButtonInfo(index)                                                \
+	frame = cache->spriteFrameByName((charName + "_skill" #index ".png").c_str()); \
+	if (skill##index##Button)                                                      \
+	{                                                                              \
+		if (frame != nullptr)                                                      \
+			skill##index##Button->setDisplayFrame(frame);                          \
+		skill##index##Button->_isColdChanged = true;                               \
 	}
 
 	updateButtonInfo(1);
@@ -1471,9 +1468,9 @@ void HudLayer::updateSpecialSkillButtons()
 	skill1Button->setDoubleSkill(currentPlayer->_sattack1isDouble);
 	skill2Button->setDoubleSkill(currentPlayer->_sattack2isDouble);
 	skill3Button->setDoubleSkill(currentPlayer->_sattack3isDouble);
-	skill1Button->setCD(to_ccstring(currentPlayer->_sattackcoldDown1 * 1000));
-	skill2Button->setCD(to_ccstring(currentPlayer->_sattackcoldDown2 * 1000));
-	skill3Button->setCD(to_ccstring(currentPlayer->_sattackcoldDown3 * 1000));
+	skill1Button->setCD(to_ccstring(currentPlayer->_sattackcooldown1 * 1000));
+	skill2Button->setCD(to_ccstring(currentPlayer->_sattackcooldown2 * 1000));
+	skill3Button->setCD(to_ccstring(currentPlayer->_sattackcooldown3 * 1000));
 	skill1Button->_isColdChanged = true;
 	skill2Button->_isColdChanged = true;
 	skill3Button->_isColdChanged = true;

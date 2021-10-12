@@ -112,7 +112,7 @@ public:
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(8));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 
-		readData(tmpData, _sattackType1, tmpValue, _sattackRangeX1, _sattackRangeY1, _sattackcoldDown1, _sattackCombatPoint1);
+		readData(tmpData, _sattackType1, tmpValue, _sattackRangeX1, _sattackRangeY1, _sattackcooldown1, _sattackCombatPoint1);
 		setsAttackValue1(tmpValue);
 		_sattackType1->retain();
 
@@ -121,7 +121,7 @@ public:
 		//init skill2 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(9));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-		readData(tmpData, _sattackType2, tmpValue, _sattackRangeX2, _sattackRangeY2, _sattackcoldDown2, _sattackCombatPoint2);
+		readData(tmpData, _sattackType2, tmpValue, _sattackRangeX2, _sattackRangeY2, _sattackcooldown2, _sattackCombatPoint2);
 		_sattackType2->retain();
 		setsAttackValue2(tmpValue);
 		skill2Array = (CCArray *)(tmpAction->objectAtIndex(1));
@@ -141,7 +141,7 @@ public:
 		//init skill3 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(10));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-		readData(tmpData, _sattackType3, tmpValue, _sattackRangeX3, _sattackRangeY3, _sattackcoldDown3, _sattackCombatPoint3);
+		readData(tmpData, _sattackType3, tmpValue, _sattackRangeX3, _sattackRangeY3, _sattackcooldown3, _sattackCombatPoint3);
 		_sattackType3->retain();
 		setsAttackValue3(tmpValue);
 		skill3Array = (CCArray *)(tmpAction->objectAtIndex(1));
@@ -149,7 +149,7 @@ public:
 		//init skill4 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(11));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-		readData(tmpData, _sattackType4, tmpValue, _sattackRangeX4, _sattackRangeY4, _sattackcoldDown4, _sattackCombatPoint4);
+		readData(tmpData, _sattackType4, tmpValue, _sattackRangeX4, _sattackRangeY4, _sattackcooldown4, _sattackCombatPoint4);
 		setsAttackValue4(tmpValue);
 		_sattackType4->retain();
 		skill4Array = (CCArray *)(tmpAction->objectAtIndex(1));
@@ -158,7 +158,7 @@ public:
 
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(12));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-		readData(tmpData, _sattackType5, tmpValue, _sattackRangeX5, _sattackRangeY5, _sattackcoldDown5, _sattackCombatPoint5);
+		readData(tmpData, _sattackType5, tmpValue, _sattackRangeX5, _sattackRangeY5, _sattackcooldown5, _sattackCombatPoint5);
 		setsAttackValue5(tmpValue);
 		_sattackType5->retain();
 		skill5Array = (CCArray *)(tmpAction->objectAtIndex(1));
@@ -169,7 +169,7 @@ public:
 			CC_BREAK_IF(animationArray->count() <= 17);
 			tmpAction = (CCArray *)(animationArray->objectAtIndex(17));
 			tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-			readData(tmpData, _spcattackType1, tmpValue, _spcattackRangeX1, _spcattackRangeY1, _spcattackcoldDown1, tmpCombatPoint);
+			readData(tmpData, _spcattackType1, tmpValue, _spcattackRangeX1, _spcattackRangeY1, _spcattackcooldown1, tmpCombatPoint);
 			if (_spcattackType1)
 			{
 				skillSPC1Array = (CCArray *)(tmpAction->objectAtIndex(1));
@@ -180,7 +180,7 @@ public:
 			CC_BREAK_IF(animationArray->count() <= 18);
 			tmpAction = (CCArray *)(animationArray->objectAtIndex(18));
 			tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-			readData(tmpData, _spcattackType2, tmpValue, _spcattackRangeX2, _spcattackRangeY2, _spcattackcoldDown2, tmpCombatPoint);
+			readData(tmpData, _spcattackType2, tmpValue, _spcattackRangeX2, _spcattackRangeY2, _spcattackcooldown2, tmpCombatPoint);
 			if (_spcattackType2)
 			{
 				skillSPC2Array = (CCArray *)(tmpAction->objectAtIndex(1));
@@ -191,7 +191,7 @@ public:
 			CC_BREAK_IF(animationArray->count() <= 19);
 			tmpAction = (CCArray *)(animationArray->objectAtIndex(19));
 			tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-			readData(tmpData, _spcattackType3, tmpValue, _spcattackRangeX3, _spcattackRangeY3, _spcattackcoldDown3, tmpCombatPoint);
+			readData(tmpData, _spcattackType3, tmpValue, _spcattackRangeX3, _spcattackRangeY3, _spcattackcooldown3, tmpCombatPoint);
 			if (_spcattackType3)
 			{
 				skillSPC3Array = (CCArray *)(tmpAction->objectAtIndex(1));
@@ -229,7 +229,7 @@ public:
 		}
 		else if (is_same(charName, "Kakuzu"))
 		{
-			_heartEffect = CCSprite::createWithSpriteFrameName("Heart_Effect_00.png");
+			_heartEffect = CCSprite::createWithSpriteFrameName("Heart_Effect_00");
 			_heartEffect->setPosition(ccp(getContentSize().width + 40, 70));
 			addChild(_heartEffect);
 		}

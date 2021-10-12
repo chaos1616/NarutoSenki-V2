@@ -69,7 +69,7 @@ class AsuraPath : public Hero
 					{
 						changeSide(sp);
 						attack(SKILL1);
-						scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcoldDown1);
+						scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcooldown1);
 					}
 					else
 					{

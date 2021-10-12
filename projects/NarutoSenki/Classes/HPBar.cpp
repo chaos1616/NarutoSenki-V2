@@ -364,7 +364,7 @@ void HPBar::loseHP(float percent)
 
 					if (_delegate->_heartEffect)
 					{
-						auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", _delegate->hearts)->getCString());
+						auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d", _delegate->hearts)->getCString());
 						_delegate->_heartEffect->setDisplayFrame(frame);
 					}
 
@@ -436,7 +436,7 @@ void HPBar::loseHP(float percent)
 
 					if (currentSlayer->_heartEffect)
 					{
-						auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", currentSlayer->hearts)->getCString());
+						auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d", currentSlayer->hearts)->getCString());
 						currentSlayer->_heartEffect->setDisplayFrame(frame);
 					}
 

@@ -72,7 +72,7 @@ void HeroElement::setShadows()
 {
 	if (!_shadow)
 	{
-		_shadow = CCSprite::createWithSpriteFrameName("shadows.png");
+		_shadow = CCSprite::createWithSpriteFrameName("shadows");
 		_shadow->setAnchorPoint(ccp(0.5, 0.5));
 		_shadow->setPosition(getPosition());
 		getGameLayer()->shadowBatch->addChild(_shadow);
@@ -770,7 +770,7 @@ void Monster::dealloc()
 	{
 		_master->_isCanSkill1 = false;
 		_master->setActionResume();
-		_master->scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcoldDown1);
+		_master->scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcooldown1);
 
 		if (_master->isPlayer())
 		{

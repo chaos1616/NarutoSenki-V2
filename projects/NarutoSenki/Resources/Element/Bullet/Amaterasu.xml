@@ -1,69 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animation>
+<unit>
 
-	<action value="Idle">
-		<date>
-			<dateName type="attackType">Amaterasu</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">57</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="Idle">
+		<data>
+			<p type="attackType">Amaterasu</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">57</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">0</p>
+		</data>
 		<frame>
-			<frameName>Amaterasu_Move_01.png</frameName>
+			<f>Amaterasu_Move_01</f>
 		</frame>
 	</action>
 
-	<action value="Walk">
-		<frame>
-
-		</frame>
-	</action>
-
-	<action value="Hurt">
-		<frame>
-		</frame>
-	</action>
-
-	<action value="AirHurt">
+	<action name="Walk">
 		<frame>
 
 		</frame>
 	</action>
 
-	<action value="KnockDown">
+	<action name="Hurt">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Float">
+	<action name="AirHurt">
+		<frame>
+
+		</frame>
+	</action>
+
+	<action name="KnockDown">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Dead">
+	<action name="Float">
 		<frame>
-			<frameName>Amaterasu_Move_04.png</frameName>
-			<frameName>Amaterasu_Move_05.png</frameName>
-			<frameName>Amaterasu_Move_06.png</frameName>
 		</frame>
 	</action>
 
-	<action value="nAttack">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">60</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="Dead">
 		<frame>
-			<frameName>Amaterasu_Move_01.png</frameName>
-			<eventName type="setAttackBox">a_hit</eventName>
-			<frameName>Amaterasu_Move_02.png</frameName>
-			<frameName>Amaterasu_Move_03.png</frameName>
-			<eventName type="setAttackBox">a_hit</eventName>
+			<f>Amaterasu_Move_04</f>
+			<f>Amaterasu_Move_05</f>
+			<f>Amaterasu_Move_06</f>
 		</frame>
 	</action>
 
-</animation>
+	<action name="nAttack">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">60</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">0</p>
+		</data>
+		<frame>
+			<f>Amaterasu_Move_01</f>
+			<e type="setAttackBox">a_hit</e>
+			<f>Amaterasu_Move_02</f>
+			<f>Amaterasu_Move_03</f>
+			<e type="setAttackBox">a_hit</e>
+		</frame>
+	</action>
+
+</unit>

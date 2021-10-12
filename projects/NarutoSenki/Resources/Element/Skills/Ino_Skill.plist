@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Rose_Move_01.png</key>
+            <key>Rose_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,68},{22,13}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{22,13}</string>
             </dict>
-            <key>Shintenshin_Move_01.png</key>
+            <key>Shintenshin_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{64,49}}</string>

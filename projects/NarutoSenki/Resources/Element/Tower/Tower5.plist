@@ -3,7 +3,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>htower.png</key>
+            <key>htower</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,124},{121,120}}</string>
@@ -16,7 +16,7 @@
                 <key>sourceSize</key>
                 <string>{121,170}</string>
             </dict>
-            <key>tower.png</key>
+            <key>tower</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{121,120}}</string>

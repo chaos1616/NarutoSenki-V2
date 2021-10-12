@@ -497,7 +497,7 @@ class Naruto : public Hero
 		clone->setSkill1Action(clone->createAnimation(clone->skillSPC1Array, 10.0f, false, true));
 		clone->setsAttackValue1(getSAttackValue1Str());
 		clone->setsAttack1Type(_spcattackType1);
-		clone->_sattackcoldDown1 = _spcattackcoldDown1;
+		clone->_sattackcooldown1 = _spcattackcooldown1;
 		return clone;
 	}
 

@@ -3,7 +3,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Pain_AirHurt_01.png</key>
+            <key>Pain_AirHurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{139,546},{45,66}}</string>
@@ -16,7 +16,7 @@
                 <key>sourceSize</key>
                 <string>{45,66}</string>
             </dict>
-            <key>Pain_Float_01.png</key>
+            <key>Pain_Float_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{71,543},{66,45}}</string>
@@ -29,7 +29,7 @@
                 <key>sourceSize</key>
                 <string>{66,45}</string>
             </dict>
-            <key>Pain_Float_02.png</key>
+            <key>Pain_Float_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{170,335},{79,40}}</string>
@@ -42,7 +42,7 @@
                 <key>sourceSize</key>
                 <string>{79,40}</string>
             </dict>
-            <key>Pain_Float_03.png</key>
+            <key>Pain_Float_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{149,501},{67,43}}</string>
@@ -55,7 +55,7 @@
                 <key>sourceSize</key>
                 <string>{67,43}</string>
             </dict>
-            <key>Pain_Hurt_01.png</key>
+            <key>Pain_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{427,377},{45,79}}</string>
@@ -68,7 +68,7 @@
                 <key>sourceSize</key>
                 <string>{45,79}</string>
             </dict>
-            <key>Pain_Hurt_02.png</key>
+            <key>Pain_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{437,106},{49,71}}</string>
@@ -81,7 +81,7 @@
                 <key>sourceSize</key>
                 <string>{49,79}</string>
             </dict>
-            <key>Pain_Hurt_03.png</key>
+            <key>Pain_Hurt_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{71,590},{51,63}}</string>
@@ -94,7 +94,7 @@
                 <key>sourceSize</key>
                 <string>{51,79}</string>
             </dict>
-            <key>Pain_Idle_01.png</key>
+            <key>Pain_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,265},{32,83}}</string>
@@ -107,7 +107,7 @@
                 <key>sourceSize</key>
                 <string>{34,83}</string>
             </dict>
-            <key>Pain_Idle_02.png</key>
+            <key>Pain_Idle_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,229},{34,83}}</string>
@@ -120,7 +120,7 @@
                 <key>sourceSize</key>
                 <string>{34,83}</string>
             </dict>
-            <key>Pain_Idle_03.png</key>
+            <key>Pain_Idle_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{87,226},{34,83}}</string>
@@ -133,7 +133,7 @@
                 <key>sourceSize</key>
                 <string>{34,83}</string>
             </dict>
-            <key>Pain_Idle_04.png</key>
+            <key>Pain_Idle_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,229},{34,83}}</string>
@@ -146,7 +146,7 @@
                 <key>sourceSize</key>
                 <string>{34,83}</string>
             </dict>
-            <key>Pain_Idle_05.png</key>
+            <key>Pain_Idle_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,265},{32,83}}</string>
@@ -159,7 +159,7 @@
                 <key>sourceSize</key>
                 <string>{34,83}</string>
             </dict>
-            <key>Pain_Idle_06.png</key>
+            <key>Pain_Idle_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{87,262},{32,83}}</string>
@@ -172,7 +172,7 @@
                 <key>sourceSize</key>
                 <string>{34,83}</string>
             </dict>
-            <key>Pain_Idle_07.png</key>
+            <key>Pain_Idle_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{172,252},{32,83}}</string>
@@ -185,7 +185,7 @@
                 <key>sourceSize</key>
                 <string>{34,83}</string>
             </dict>
-            <key>Pain_Idle_08.png</key>
+            <key>Pain_Idle_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{87,262},{32,83}}</string>
@@ -198,7 +198,7 @@
                 <key>sourceSize</key>
                 <string>{34,83}</string>
             </dict>
-            <key>Pain_Idle_09.png</key>
+            <key>Pain_Idle_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{87,262},{32,83}}</string>
@@ -211,7 +211,7 @@
                 <key>sourceSize</key>
                 <string>{34,83}</string>
             </dict>
-            <key>Pain_KnockDown_01.png</key>
+            <key>Pain_KnockDown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{87,296},{81,40}}</string>
@@ -224,7 +224,7 @@
                 <key>sourceSize</key>
                 <string>{81,74}</string>
             </dict>
-            <key>Pain_KnockDown_02.png</key>
+            <key>Pain_KnockDown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{180,106},{85,36}}</string>
@@ -237,7 +237,7 @@
                 <key>sourceSize</key>
                 <string>{85,74}</string>
             </dict>
-            <key>Pain_KnockDown_03.png</key>
+            <key>Pain_KnockDown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{296,489},{62,46}}</string>
@@ -250,7 +250,7 @@
                 <key>sourceSize</key>
                 <string>{62,74}</string>
             </dict>
-            <key>Pain_KnockDown_04.png</key>
+            <key>Pain_KnockDown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{414,487},{53,54}}</string>
@@ -263,7 +263,7 @@
                 <key>sourceSize</key>
                 <string>{53,74}</string>
             </dict>
-            <key>Pain_KnockDown_05.png</key>
+            <key>Pain_KnockDown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,495},{39,68}}</string>
@@ -276,7 +276,7 @@
                 <key>sourceSize</key>
                 <string>{39,68}</string>
             </dict>
-            <key>Pain_NAttack_01.png</key>
+            <key>Pain_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{346,386},{63,78}}</string>
@@ -289,7 +289,7 @@
                 <key>sourceSize</key>
                 <string>{63,78}</string>
             </dict>
-            <key>Pain_NAttack_02.png</key>
+            <key>Pain_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{235,429},{56,74}}</string>
@@ -302,7 +302,7 @@
                 <key>sourceSize</key>
                 <string>{56,78}</string>
             </dict>
-            <key>Pain_NAttack_03.png</key>
+            <key>Pain_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{251,360},{67,78}}</string>
@@ -315,7 +315,7 @@
                 <key>sourceSize</key>
                 <string>{67,78}</string>
             </dict>
-            <key>Pain_NAttack_04.png</key>
+            <key>Pain_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{426,424},{61,78}}</string>
@@ -328,7 +328,7 @@
                 <key>sourceSize</key>
                 <string>{61,78}</string>
             </dict>
-            <key>Pain_NAttack_05.png</key>
+            <key>Pain_NAttack_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{157,443},{56,68}}</string>
@@ -341,7 +341,7 @@
                 <key>sourceSize</key>
                 <string>{56,78}</string>
             </dict>
-            <key>Pain_NAttack_06.png</key>
+            <key>Pain_NAttack_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{79,486},{55,68}}</string>
@@ -354,7 +354,7 @@
                 <key>sourceSize</key>
                 <string>{55,76}</string>
             </dict>
-            <key>Pain_NAttack_07.png</key>
+            <key>Pain_NAttack_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{80,368},{51,76}}</string>
@@ -367,7 +367,7 @@
                 <key>sourceSize</key>
                 <string>{51,76}</string>
             </dict>
-            <key>Pain_NAttack_08.png</key>
+            <key>Pain_NAttack_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{346,249},{82,60}}</string>
@@ -380,7 +380,7 @@
                 <key>sourceSize</key>
                 <string>{82,76}</string>
             </dict>
-            <key>Pain_NAttack_09.png</key>
+            <key>Pain_NAttack_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{257,255},{82,50}}</string>
@@ -393,7 +393,7 @@
                 <key>sourceSize</key>
                 <string>{82,76}</string>
             </dict>
-            <key>Pain_NAttack_10.png</key>
+            <key>Pain_NAttack_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{79,486},{55,68}}</string>
@@ -406,7 +406,7 @@
                 <key>sourceSize</key>
                 <string>{55,76}</string>
             </dict>
-            <key>Pain_NAttack_11.png</key>
+            <key>Pain_NAttack_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{172,286},{47,81}}</string>
@@ -419,7 +419,7 @@
                 <key>sourceSize</key>
                 <string>{47,81}</string>
             </dict>
-            <key>Pain_NAttack_12.png</key>
+            <key>Pain_NAttack_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,364},{76,67}}</string>
@@ -432,7 +432,7 @@
                 <key>sourceSize</key>
                 <string>{76,81}</string>
             </dict>
-            <key>Pain_NAttack_13.png</key>
+            <key>Pain_NAttack_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,536},{66,67}}</string>
@@ -445,7 +445,7 @@
                 <key>sourceSize</key>
                 <string>{66,81}</string>
             </dict>
-            <key>Pain_NAttack_14.png</key>
+            <key>Pain_NAttack_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{345,451},{56,67}}</string>
@@ -458,7 +458,7 @@
                 <key>sourceSize</key>
                 <string>{56,81}</string>
             </dict>
-            <key>Pain_NAttack_15.png</key>
+            <key>Pain_NAttack_15</key>
             <dict>
                 <key>frame</key>
                 <string>{{227,487},{55,67}}</string>
@@ -471,7 +471,7 @@
                 <key>sourceSize</key>
                 <string>{55,81}</string>
             </dict>
-            <key>Pain_Skill01_01.png</key>
+            <key>Pain_Skill01_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{261,221},{32,83}}</string>
@@ -484,7 +484,7 @@
                 <key>sourceSize</key>
                 <string>{64,83}</string>
             </dict>
-            <key>Pain_Skill01_02.png</key>
+            <key>Pain_Skill01_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{352,106},{52,83}}</string>
@@ -497,7 +497,7 @@
                 <key>sourceSize</key>
                 <string>{64,83}</string>
             </dict>
-            <key>Pain_Skill01_03.png</key>
+            <key>Pain_Skill01_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{352,160},{50,83}}</string>
@@ -510,7 +510,7 @@
                 <key>sourceSize</key>
                 <string>{64,83}</string>
             </dict>
-            <key>Pain_Skill01_04.png</key>
+            <key>Pain_Skill01_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{265,183},{36,83}}</string>
@@ -523,7 +523,7 @@
                 <key>sourceSize</key>
                 <string>{64,83}</string>
             </dict>
-            <key>Pain_Skill02_01.png</key>
+            <key>Pain_Skill02_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{346,336},{48,79}}</string>
@@ -536,7 +536,7 @@
                 <key>sourceSize</key>
                 <string>{48,79}</string>
             </dict>
-            <key>Pain_Skill02_02.png</key>
+            <key>Pain_Skill02_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{435,219},{66,75}}</string>
@@ -549,7 +549,7 @@
                 <key>sourceSize</key>
                 <string>{66,79}</string>
             </dict>
-            <key>Pain_Skill02_03.png</key>
+            <key>Pain_Skill02_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{428,325},{50,79}}</string>
@@ -562,7 +562,7 @@
                 <key>sourceSize</key>
                 <string>{50,79}</string>
             </dict>
-            <key>Pain_Skill02_04.png</key>
+            <key>Pain_Skill02_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{80,421},{63,75}}</string>
@@ -575,7 +575,7 @@
                 <key>sourceSize</key>
                 <string>{63,79}</string>
             </dict>
-            <key>Pain_Skill02_05.png</key>
+            <key>Pain_Skill02_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{158,377},{64,75}}</string>
@@ -588,7 +588,7 @@
                 <key>sourceSize</key>
                 <string>{64,79}</string>
             </dict>
-            <key>Pain_Skill02_06.png</key>
+            <key>Pain_Skill02_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,433},{60,75}}</string>
@@ -601,7 +601,7 @@
                 <key>sourceSize</key>
                 <string>{60,79}</string>
             </dict>
-            <key>Pain_Skill03_01.png</key>
+            <key>Pain_Skill03_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{176,215},{35,83}}</string>
@@ -614,7 +614,7 @@
                 <key>sourceSize</key>
                 <string>{35,83}</string>
             </dict>
-            <key>Pain_Skill03_02.png</key>
+            <key>Pain_Skill03_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,299},{34,81}}</string>
@@ -627,7 +627,7 @@
                 <key>sourceSize</key>
                 <string>{34,83}</string>
             </dict>
-            <key>Pain_Skill03_03.png</key>
+            <key>Pain_Skill03_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{267,106},{75,83}}</string>
@@ -640,7 +640,7 @@
                 <key>sourceSize</key>
                 <string>{75,83}</string>
             </dict>
-            <key>Pain_Skill03_04.png</key>
+            <key>Pain_Skill03_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,158},{69,83}}</string>
@@ -653,7 +653,7 @@
                 <key>sourceSize</key>
                 <string>{69,83}</string>
             </dict>
-            <key>Pain_Skill03_05.png</key>
+            <key>Pain_Skill03_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{91,155},{69,83}}</string>
@@ -666,7 +666,7 @@
                 <key>sourceSize</key>
                 <string>{69,83}</string>
             </dict>
-            <key>Pain_Skill03_06.png</key>
+            <key>Pain_Skill03_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,158},{69,83}}</string>
@@ -679,7 +679,7 @@
                 <key>sourceSize</key>
                 <string>{69,83}</string>
             </dict>
-            <key>Pain_Skill03_07.png</key>
+            <key>Pain_Skill03_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{180,144},{69,83}}</string>
@@ -692,7 +692,7 @@
                 <key>sourceSize</key>
                 <string>{69,83}</string>
             </dict>
-            <key>Pain_Skill04_01.png</key>
+            <key>Pain_Skill04_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{350,212},{35,83}}</string>
@@ -705,7 +705,7 @@
                 <key>sourceSize</key>
                 <string>{35,87}</string>
             </dict>
-            <key>Pain_Skill04_02.png</key>
+            <key>Pain_Skill04_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,106},{50,87}}</string>
@@ -718,7 +718,7 @@
                 <key>sourceSize</key>
                 <string>{50,87}</string>
             </dict>
-            <key>Pain_Skill04_03.png</key>
+            <key>Pain_Skill04_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{91,106},{47,87}}</string>
@@ -731,7 +731,7 @@
                 <key>sourceSize</key>
                 <string>{47,87}</string>
             </dict>
-            <key>Pain_Skill05_01.png</key>
+            <key>Pain_Skill05_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{344,509},{44,52}}</string>
@@ -744,7 +744,7 @@
                 <key>sourceSize</key>
                 <string>{44,52}</string>
             </dict>
-            <key>Pain_Skill05_02.png</key>
+            <key>Pain_Skill05_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{383,2},{125,102}}</string>
@@ -757,7 +757,7 @@
                 <key>sourceSize</key>
                 <string>{125,102}</string>
             </dict>
-            <key>Pain_Skill05_03.png</key>
+            <key>Pain_Skill05_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{256,2},{125,102}}</string>
@@ -770,7 +770,7 @@
                 <key>sourceSize</key>
                 <string>{125,102}</string>
             </dict>
-            <key>Pain_Skill05_04.png</key>
+            <key>Pain_Skill05_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{129,2},{125,102}}</string>
@@ -783,7 +783,7 @@
                 <key>sourceSize</key>
                 <string>{125,102}</string>
             </dict>
-            <key>Pain_Skill05_05.png</key>
+            <key>Pain_Skill05_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{125,102}}</string>
@@ -796,7 +796,7 @@
                 <key>sourceSize</key>
                 <string>{125,102}</string>
             </dict>
-            <key>Pain_Skill05_06.png</key>
+            <key>Pain_Skill05_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{255,334},{24,80}}</string>
@@ -809,7 +809,7 @@
                 <key>sourceSize</key>
                 <string>{24,80}</string>
             </dict>
-            <key>Pain_Skill05_07.png</key>
+            <key>Pain_Skill05_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,335},{27,80}}</string>
@@ -822,7 +822,7 @@
                 <key>sourceSize</key>
                 <string>{27,80}</string>
             </dict>
-            <key>Pain_Skill05_08.png</key>
+            <key>Pain_Skill05_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{255,334},{24,80}}</string>
@@ -835,7 +835,7 @@
                 <key>sourceSize</key>
                 <string>{24,80}</string>
             </dict>
-            <key>Pain_Skill05_09.png</key>
+            <key>Pain_Skill05_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{255,307},{25,80}}</string>
@@ -848,7 +848,7 @@
                 <key>sourceSize</key>
                 <string>{25,80}</string>
             </dict>
-            <key>Pain_Skill05_10.png</key>
+            <key>Pain_Skill05_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{84,338},{28,78}}</string>
@@ -861,7 +861,7 @@
                 <key>sourceSize</key>
                 <string>{28,78}</string>
             </dict>
-            <key>Pain_Skill05_11.png</key>
+            <key>Pain_Skill05_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{430,287},{36,80}}</string>
@@ -874,7 +874,7 @@
                 <key>sourceSize</key>
                 <string>{36,80}</string>
             </dict>
-            <key>Pain_Skill05_12.png</key>
+            <key>Pain_Skill05_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{346,311},{23,80}}</string>
@@ -887,7 +887,7 @@
                 <key>sourceSize</key>
                 <string>{23,80}</string>
             </dict>
-            <key>Pain_Walk_01.png</key>
+            <key>Pain_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{136,593},{60,62}}</string>
@@ -900,7 +900,7 @@
                 <key>sourceSize</key>
                 <string>{60,62}</string>
             </dict>
-            <key>Pain_Walk_02.png</key>
+            <key>Pain_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{218,544},{66,60}}</string>
@@ -913,7 +913,7 @@
                 <key>sourceSize</key>
                 <string>{66,62}</string>
             </dict>
-            <key>Pain_Walk_03.png</key>
+            <key>Pain_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,666},{59,58}}</string>
@@ -926,7 +926,7 @@
                 <key>sourceSize</key>
                 <string>{59,62}</string>
             </dict>
-            <key>Pain_Walk_04.png</key>
+            <key>Pain_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,604},{60,62}}</string>
@@ -939,7 +939,7 @@
                 <key>sourceSize</key>
                 <string>{60,62}</string>
             </dict>
-            <key>Pain_Walk_05.png</key>
+            <key>Pain_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{437,157},{68,60}}</string>
@@ -952,7 +952,7 @@
                 <key>sourceSize</key>
                 <string>{68,62}</string>
             </dict>
-            <key>Pain_Walk_06.png</key>
+            <key>Pain_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{66,643},{59,58}}</string>
@@ -965,7 +965,7 @@
                 <key>sourceSize</key>
                 <string>{59,62}</string>
             </dict>
-            <key>sBuff_Effect_01.png</key>
+            <key>sBuff_Effect_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{337,307},{26,7}}</string>
@@ -978,7 +978,7 @@
                 <key>sourceSize</key>
                 <string>{26,37}</string>
             </dict>
-            <key>sBuff_Effect_02.png</key>
+            <key>sBuff_Effect_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{331,381},{28,13}}</string>
@@ -991,7 +991,7 @@
                 <key>sourceSize</key>
                 <string>{28,37}</string>
             </dict>
-            <key>sBuff_Effect_03.png</key>
+            <key>sBuff_Effect_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{331,411},{27,11}}</string>
@@ -1004,7 +1004,7 @@
                 <key>sourceSize</key>
                 <string>{27,37}</string>
             </dict>
-            <key>sBuff_Effect_04.png</key>
+            <key>sBuff_Effect_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{311,468},{28,19}}</string>
@@ -1017,7 +1017,7 @@
                 <key>sourceSize</key>
                 <string>{28,37}</string>
             </dict>
-            <key>sBuff_Effect_05.png</key>
+            <key>sBuff_Effect_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{311,429},{28,15}}</string>
@@ -1030,7 +1030,7 @@
                 <key>sourceSize</key>
                 <string>{28,37}</string>
             </dict>
-            <key>sBuff_Effect_06.png</key>
+            <key>sBuff_Effect_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{328,440},{26,15}}</string>
@@ -1043,7 +1043,7 @@
                 <key>sourceSize</key>
                 <string>{26,37}</string>
             </dict>
-            <key>sBuff_Effect_07.png</key>
+            <key>sBuff_Effect_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{470,487},{27,23}}</string>
@@ -1056,7 +1056,7 @@
                 <key>sourceSize</key>
                 <string>{27,37}</string>
             </dict>
-            <key>sBuff_Effect_08.png</key>
+            <key>sBuff_Effect_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{470,512},{26,19}}</string>
@@ -1069,7 +1069,7 @@
                 <key>sourceSize</key>
                 <string>{26,37}</string>
             </dict>
-            <key>sBuff_Effect_09.png</key>
+            <key>sBuff_Effect_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{337,335},{22,7}}</string>
@@ -1082,7 +1082,7 @@
                 <key>sourceSize</key>
                 <string>{22,37}</string>
             </dict>
-            <key>sBuff_Effect_10.png</key>
+            <key>sBuff_Effect_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{337,359},{20,5}}</string>

@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>ImmortalSasuke_AirHurt_01.png</key>
+            <key>ImmortalSasuke_AirHurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{151,596},{50,60}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{50,60}</string>
             </dict>
-            <key>ImmortalSasuke_AirHurt_02.png</key>
+            <key>ImmortalSasuke_AirHurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{916,330},{28,76}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{28,76}</string>
             </dict>
-            <key>ImmortalSasuke_Float_01.png</key>
+            <key>ImmortalSasuke_Float_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{225,568},{60,50}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{60,50}</string>
             </dict>
-            <key>ImmortalSasuke_Float_02.png</key>
+            <key>ImmortalSasuke_Float_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{152,400},{40,75}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{40,75}</string>
             </dict>
-            <key>ImmortalSasuke_Float_03.png</key>
+            <key>ImmortalSasuke_Float_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{389,447},{67,47}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{67,47}</string>
             </dict>
-            <key>ImmortalSasuke_Hurt_01.png</key>
+            <key>ImmortalSasuke_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{304,506},{49,72}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{49,72}</string>
             </dict>
-            <key>ImmortalSasuke_Hurt_02.png</key>
+            <key>ImmortalSasuke_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{438,245},{45,72}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{45,72}</string>
             </dict>
-            <key>ImmortalSasuke_Idle_01.png</key>
+            <key>ImmortalSasuke_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{312,408},{42,75}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{42,75}</string>
             </dict>
-            <key>ImmortalSasuke_Idle_02.png</key>
+            <key>ImmortalSasuke_Idle_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{438,319},{42,75}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{42,75}</string>
             </dict>
-            <key>ImmortalSasuke_Idle_03.png</key>
+            <key>ImmortalSasuke_Idle_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{587,270},{42,75}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{42,75}</string>
             </dict>
-            <key>ImmortalSasuke_Idle_04.png</key>
+            <key>ImmortalSasuke_Idle_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{438,319},{42,75}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{42,75}</string>
             </dict>
-            <key>ImmortalSasuke_KnockDown_01.png</key>
+            <key>ImmortalSasuke_KnockDown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{78,497},{72,49}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{72,53}</string>
             </dict>
-            <key>ImmortalSasuke_KnockDown_02.png</key>
+            <key>ImmortalSasuke_KnockDown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{152,357},{75,41}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{75,41}</string>
             </dict>
-            <key>ImmortalSasuke_KnockDown_03.png</key>
+            <key>ImmortalSasuke_KnockDown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{916,408},{77,22}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{77,22}</string>
             </dict>
-            <key>ImmortalSasuke_KnockDown_04.png</key>
+            <key>ImmortalSasuke_KnockDown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{438,470},{38,47}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{38,51}</string>
             </dict>
-            <key>ImmortalSasuke_KnockDown_05.png</key>
+            <key>ImmortalSasuke_KnockDown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{255,225},{79,39}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{81,51}</string>
             </dict>
-            <key>ImmortalSasuke_KnockDown_06.png</key>
+            <key>ImmortalSasuke_KnockDown_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{229,410},{74,64}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{74,66}</string>
             </dict>
-            <key>ImmortalSasuke_KnockDown_07.png</key>
+            <key>ImmortalSasuke_KnockDown_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{80,433},{62,70}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{62,72}</string>
             </dict>
-            <key>ImmortalSasuke_KnockDown_08.png</key>
+            <key>ImmortalSasuke_KnockDown_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{631,374},{51,66}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{51,68}</string>
             </dict>
-            <key>ImmortalSasuke_NAttack_01.png</key>
+            <key>ImmortalSasuke_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{389,375},{47,70}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{47,70}</string>
             </dict>
-            <key>ImmortalSasuke_NAttack_02.png</key>
+            <key>ImmortalSasuke_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{940,454},{81,62}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{81,62}</string>
             </dict>
-            <key>ImmortalSasuke_NAttack_03.png</key>
+            <key>ImmortalSasuke_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{89,274},{80,62}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{80,62}</string>
             </dict>
-            <key>ImmortalSasuke_NAttack_04.png</key>
+            <key>ImmortalSasuke_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{305,452},{52,74}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{52,74}</string>
             </dict>
-            <key>ImmortalSasuke_NAttack_05.png</key>
+            <key>ImmortalSasuke_NAttack_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{228,524},{42,72}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{42,72}</string>
             </dict>
-            <key>ImmortalSasuke_NAttack_06.png</key>
+            <key>ImmortalSasuke_NAttack_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{152,540},{71,54}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{71,54}</string>
             </dict>
-            <key>ImmortalSasuke_NAttack_07.png</key>
+            <key>ImmortalSasuke_NAttack_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{336,245},{100,61}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{100,61}</string>
             </dict>
-            <key>ImmortalSasuke_NAttack_08.png</key>
+            <key>ImmortalSasuke_NAttack_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{336,190},{134,53}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{200,53}</string>
             </dict>
-            <key>ImmortalSasuke_NAttack_09.png</key>
+            <key>ImmortalSasuke_NAttack_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{802,275},{124,53}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{200,53}</string>
             </dict>
-            <key>ImmortalSasuke_NAttack_10.png</key>
+            <key>ImmortalSasuke_NAttack_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{949,268},{68,72}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{68,72}</string>
             </dict>
-            <key>ImmortalSasuke_NAttack_11.png</key>
+            <key>ImmortalSasuke_NAttack_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{631,301},{95,71}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{95,71}</string>
             </dict>
-            <key>ImmortalSasuke_NAttack_12.png</key>
+            <key>ImmortalSasuke_NAttack_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{88,356},{62,75}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{62,75}</string>
             </dict>
-            <key>ImmortalSasuke_NAttack_13.png</key>
+            <key>ImmortalSasuke_NAttack_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{802,330},{100,112}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{146,112}</string>
             </dict>
-            <key>ImmortalSasuke_NAttack_14.png</key>
+            <key>ImmortalSasuke_NAttack_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{153,225},{62,100}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{146,112}</string>
             </dict>
-            <key>ImmortalSasuke_NAttack_15.png</key>
+            <key>ImmortalSasuke_NAttack_15</key>
             <dict>
                 <key>frame</key>
                 <string>{{485,270},{52,100}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{146,112}</string>
             </dict>
-            <key>ImmortalSasuke_NAttack_16.png</key>
+            <key>ImmortalSasuke_NAttack_16</key>
             <dict>
                 <key>frame</key>
                 <string>{{438,396},{42,72}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{146,112}</string>
             </dict>
-            <key>ImmortalSasuke_Skill01_01.png</key>
+            <key>ImmortalSasuke_Skill01_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{558,347},{62,71}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{62,71}</string>
             </dict>
-            <key>ImmortalSasuke_Skill01_02.png</key>
+            <key>ImmortalSasuke_Skill01_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{728,351},{72,59}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{72,59}</string>
             </dict>
-            <key>ImmortalSasuke_Skill01_03.png</key>
+            <key>ImmortalSasuke_Skill01_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{956,2},{96,66}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{110,84}</string>
             </dict>
-            <key>ImmortalSasuke_Skill01_04.png</key>
+            <key>ImmortalSasuke_Skill01_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,484},{74,66}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{110,84}</string>
             </dict>
-            <key>ImmortalSasuke_Skill01_05.png</key>
+            <key>ImmortalSasuke_Skill01_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,338},{84,66}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{110,84}</string>
             </dict>
-            <key>ImmortalSasuke_Skill01_06.png</key>
+            <key>ImmortalSasuke_Skill01_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{153,289},{80,66}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{110,84}</string>
             </dict>
-            <key>ImmortalSasuke_Skill02_01.png</key>
+            <key>ImmortalSasuke_Skill02_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{235,344},{64,75}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{86,75}</string>
             </dict>
-            <key>ImmortalSasuke_Skill02_02.png</key>
+            <key>ImmortalSasuke_Skill02_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{312,346},{60,75}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{86,75}</string>
             </dict>
-            <key>ImmortalSasuke_Skill02_03.png</key>
+            <key>ImmortalSasuke_Skill02_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{946,338},{57,76}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{57,80}</string>
             </dict>
-            <key>ImmortalSasuke_Skill02_04.png</key>
+            <key>ImmortalSasuke_Skill02_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{168,101}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{292,101}</string>
             </dict>
-            <key>ImmortalSasuke_Skill02_05.png</key>
+            <key>ImmortalSasuke_Skill02_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{172,2},{166,91}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{292,91}</string>
             </dict>
-            <key>ImmortalSasuke_Skill02_06.png</key>
+            <key>ImmortalSasuke_Skill02_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{340,2},{164,95}}</string>
@@ -615,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{292,95}</string>
             </dict>
-            <key>ImmortalSasuke_Skill02_07.png</key>
+            <key>ImmortalSasuke_Skill02_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,105},{154,81}}</string>
@@ -628,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{292,81}</string>
             </dict>
-            <key>ImmortalSasuke_Skill02_11.png</key>
+            <key>ImmortalSasuke_Skill02_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{78,548},{53,71}}</string>
@@ -641,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{53,71}</string>
             </dict>
-            <key>ImmortalSasuke_Skill03_01.png</key>
+            <key>ImmortalSasuke_Skill03_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{764,193},{36,78}}</string>
@@ -654,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{36,78}</string>
             </dict>
-            <key>ImmortalSasuke_Skill03_02.png</key>
+            <key>ImmortalSasuke_Skill03_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{152,499},{39,74}}</string>
@@ -667,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{39,74}</string>
             </dict>
-            <key>ImmortalSasuke_Skill03_03.png</key>
+            <key>ImmortalSasuke_Skill03_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,447},{35,75}}</string>
@@ -680,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{35,75}</string>
             </dict>
-            <key>ImmortalSasuke_Skill03_04.png</key>
+            <key>ImmortalSasuke_Skill03_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{255,266},{35,77}}</string>
@@ -693,7 +693,7 @@
                 <key>sourceSize</key>
                 <string>{35,77}</string>
             </dict>
-            <key>ImmortalSasuke_Skill04_01.png</key>
+            <key>ImmortalSasuke_Skill04_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{389,375},{47,70}}</string>
@@ -706,7 +706,7 @@
                 <key>sourceSize</key>
                 <string>{47,70}</string>
             </dict>
-            <key>ImmortalSasuke_Skill04_02.png</key>
+            <key>ImmortalSasuke_Skill04_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{228,524},{42,72}}</string>
@@ -719,7 +719,7 @@
                 <key>sourceSize</key>
                 <string>{42,72}</string>
             </dict>
-            <key>ImmortalSasuke_Skill04_03.png</key>
+            <key>ImmortalSasuke_Skill04_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{228,476},{46,74}}</string>
@@ -732,7 +732,7 @@
                 <key>sourceSize</key>
                 <string>{46,74}</string>
             </dict>
-            <key>ImmortalSasuke_Skill04_04.png</key>
+            <key>ImmortalSasuke_Skill04_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{305,452},{52,74}}</string>
@@ -745,7 +745,7 @@
                 <key>sourceSize</key>
                 <string>{52,74}</string>
             </dict>
-            <key>ImmortalSasuke_Skill04_05.png</key>
+            <key>ImmortalSasuke_Skill04_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{482,324},{54,74}}</string>
@@ -758,7 +758,7 @@
                 <key>sourceSize</key>
                 <string>{54,74}</string>
             </dict>
-            <key>ImmortalSasuke_Skill04_06.png</key>
+            <key>ImmortalSasuke_Skill04_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{391,308},{45,65}}</string>
@@ -771,7 +771,7 @@
                 <key>sourceSize</key>
                 <string>{45,65}</string>
             </dict>
-            <key>ImmortalSasuke_Skill04_07.png</key>
+            <key>ImmortalSasuke_Skill04_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{70,603},{48,60}}</string>
@@ -784,7 +784,7 @@
                 <key>sourceSize</key>
                 <string>{48,60}</string>
             </dict>
-            <key>ImmortalSasuke_Skill04_08.png</key>
+            <key>ImmortalSasuke_Skill04_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{949,196},{73,70}}</string>
@@ -797,7 +797,7 @@
                 <key>sourceSize</key>
                 <string>{73,70}</string>
             </dict>
-            <key>ImmortalSasuke_Skill04_09.png</key>
+            <key>ImmortalSasuke_Skill04_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,274},{85,62}}</string>
@@ -810,7 +810,7 @@
                 <key>sourceSize</key>
                 <string>{85,62}</string>
             </dict>
-            <key>ImmortalSasuke_Skill04_10.png</key>
+            <key>ImmortalSasuke_Skill04_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{482,435},{58,62}}</string>
@@ -823,7 +823,7 @@
                 <key>sourceSize</key>
                 <string>{58,62}</string>
             </dict>
-            <key>ImmortalSasuke_Skill05_01.png</key>
+            <key>ImmortalSasuke_Skill05_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{313,308},{36,76}}</string>
@@ -836,7 +836,7 @@
                 <key>sourceSize</key>
                 <string>{36,76}</string>
             </dict>
-            <key>ImmortalSasuke_Skill05_02.png</key>
+            <key>ImmortalSasuke_Skill05_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{764,273},{36,76}}</string>
@@ -849,7 +849,7 @@
                 <key>sourceSize</key>
                 <string>{36,76}</string>
             </dict>
-            <key>ImmortalSasuke_Skill05_03.png</key>
+            <key>ImmortalSasuke_Skill05_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{235,303},{39,76}}</string>
@@ -862,7 +862,7 @@
                 <key>sourceSize</key>
                 <string>{39,76}</string>
             </dict>
-            <key>ImmortalSasuke_Skill05_04.png</key>
+            <key>ImmortalSasuke_Skill05_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,406},{39,76}}</string>
@@ -875,7 +875,7 @@
                 <key>sourceSize</key>
                 <string>{39,76}</string>
             </dict>
-            <key>ImmortalSasuke_Skill05_05.png</key>
+            <key>ImmortalSasuke_Skill05_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{482,380},{53,74}}</string>
@@ -888,7 +888,7 @@
                 <key>sourceSize</key>
                 <string>{53,76}</string>
             </dict>
-            <key>ImmortalSasuke_Skill05_06.png</key>
+            <key>ImmortalSasuke_Skill05_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{152,442},{55,74}}</string>
@@ -901,7 +901,7 @@
                 <key>sourceSize</key>
                 <string>{55,76}</string>
             </dict>
-            <key>ImmortalSasuke_Skill05_07.png</key>
+            <key>ImmortalSasuke_Skill05_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{946,397},{55,76}}</string>
@@ -914,7 +914,7 @@
                 <key>sourceSize</key>
                 <string>{55,76}</string>
             </dict>
-            <key>ImmortalSasuke_Skill10_01.png</key>
+            <key>ImmortalSasuke_Skill10_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{956,100},{66,94}}</string>
@@ -927,7 +927,7 @@
                 <key>sourceSize</key>
                 <string>{200,94}</string>
             </dict>
-            <key>ImmortalSasuke_Skill10_02.png</key>
+            <key>ImmortalSasuke_Skill10_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{172,95},{128,162}}</string>
@@ -940,7 +940,7 @@
                 <key>sourceSize</key>
                 <string>{200,162}</string>
             </dict>
-            <key>ImmortalSasuke_Skill10_03.png</key>
+            <key>ImmortalSasuke_Skill10_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{632,193},{130,106}}</string>
@@ -953,7 +953,7 @@
                 <key>sourceSize</key>
                 <string>{200,106}</string>
             </dict>
-            <key>ImmortalSasuke_Skill10_04.png</key>
+            <key>ImmortalSasuke_Skill10_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{657,2},{148,98}}</string>
@@ -966,7 +966,7 @@
                 <key>sourceSize</key>
                 <string>{200,98}</string>
             </dict>
-            <key>ImmortalSasuke_Skill11_01.png</key>
+            <key>ImmortalSasuke_Skill11_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{485,179},{145,89}}</string>
@@ -979,7 +979,7 @@
                 <key>sourceSize</key>
                 <string>{151,89}</string>
             </dict>
-            <key>ImmortalSasuke_Skill11_02.png</key>
+            <key>ImmortalSasuke_Skill11_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{807,93},{147,89}}</string>
@@ -992,7 +992,7 @@
                 <key>sourceSize</key>
                 <string>{151,89}</string>
             </dict>
-            <key>ImmortalSasuke_Skill11_03.png</key>
+            <key>ImmortalSasuke_Skill11_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{506,2},{149,84}}</string>
@@ -1005,7 +1005,7 @@
                 <key>sourceSize</key>
                 <string>{151,84}</string>
             </dict>
-            <key>ImmortalSasuke_Skill12_01.png</key>
+            <key>ImmortalSasuke_Skill12_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{802,184},{145,89}}</string>
@@ -1018,7 +1018,7 @@
                 <key>sourceSize</key>
                 <string>{151,89}</string>
             </dict>
-            <key>ImmortalSasuke_Skill12_02.png</key>
+            <key>ImmortalSasuke_Skill12_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{807,2},{147,89}}</string>
@@ -1031,7 +1031,7 @@
                 <key>sourceSize</key>
                 <string>{151,89}</string>
             </dict>
-            <key>ImmortalSasuke_Skill12_03.png</key>
+            <key>ImmortalSasuke_Skill12_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,188},{149,84}}</string>
@@ -1044,7 +1044,7 @@
                 <key>sourceSize</key>
                 <string>{151,84}</string>
             </dict>
-            <key>ImmortalSasuke_Skill12_04.png</key>
+            <key>ImmortalSasuke_Skill12_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{336,99},{147,89}}</string>
@@ -1057,7 +1057,7 @@
                 <key>sourceSize</key>
                 <string>{151,89}</string>
             </dict>
-            <key>ImmortalSasuke_Skill12_05.png</key>
+            <key>ImmortalSasuke_Skill12_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{655,102},{145,89}}</string>
@@ -1070,7 +1070,7 @@
                 <key>sourceSize</key>
                 <string>{151,89}</string>
             </dict>
-            <key>ImmortalSasuke_Skill12_06.png</key>
+            <key>ImmortalSasuke_Skill12_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{506,88},{147,89}}</string>
@@ -1083,7 +1083,7 @@
                 <key>sourceSize</key>
                 <string>{151,89}</string>
             </dict>
-            <key>ImmortalSasuke_Walk_01.png</key>
+            <key>ImmortalSasuke_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,552},{66,56}}</string>
@@ -1096,7 +1096,7 @@
                 <key>sourceSize</key>
                 <string>{66,56}</string>
             </dict>
-            <key>ImmortalSasuke_Walk_02.png</key>
+            <key>ImmortalSasuke_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{378,516},{62,54}}</string>
@@ -1109,7 +1109,7 @@
                 <key>sourceSize</key>
                 <string>{62,54}</string>
             </dict>
-            <key>ImmortalSasuke_Walk_03.png</key>
+            <key>ImmortalSasuke_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{699,412},{59,53}}</string>
@@ -1122,7 +1122,7 @@
                 <key>sourceSize</key>
                 <string>{59,53}</string>
             </dict>
-            <key>ImmortalSasuke_Walk_04.png</key>
+            <key>ImmortalSasuke_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{558,411},{65,56}}</string>
@@ -1135,7 +1135,7 @@
                 <key>sourceSize</key>
                 <string>{65,56}</string>
             </dict>
-            <key>ImmortalSasuke_Walk_05.png</key>
+            <key>ImmortalSasuke_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{302,557},{61,54}}</string>
@@ -1148,7 +1148,7 @@
                 <key>sourceSize</key>
                 <string>{61,54}</string>
             </dict>
-            <key>ImmortalSasuke_Walk_06.png</key>
+            <key>ImmortalSasuke_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,610},{59,53}}</string>

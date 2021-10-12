@@ -1,96 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animation>
+<unit>
 
-	<action value="Idle">
-		<date>
-			<dateName type="attackType">Kubi</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">49</dateName>
-			<dateName type="attackRangeY">47</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="Idle">
+		<data>
+			<p type="attackType">Kubi</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">49</p>
+			<p type="attackRangeY">47</p>
+			<p type="cd">0</p>
+		</data>
 		<frame>
-			<frameName>Kubi_Move_01.png</frameName>
+			<f>Kubi_Move_01</f>
 		</frame>
 	</action>
 
-	<action value="Walk">
+	<action name="Walk">
 		<frame>
-			<frameName>Kubi_Move_01.png</frameName>
+			<f>Kubi_Move_01</f>
 		</frame>
 	</action>
 
-	<action value="Hurt">
-		<frame>
-		</frame>
-	</action>
-
-	<action value="AirHurt">
-		<frame>
-
-		</frame>
-	</action>
-
-	<action value="KnockDown">
+	<action name="Hurt">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Float">
+	<action name="AirHurt">
 		<frame>
-		</frame>
-	</action>
-
-	<action value="Dead">
-		<frame>
-			<frameName>Kubi_Move_01.png</frameName>
-		</frame>
-	</action>
-
-	<action value="nAttack">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">120</dateName>
-			<dateName type="attackRangeX">32</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
-		<frame>
-			<frameName>Kubi_Move_01.png</frameName>
-			<eventName type="setAttackBox">o_hit</eventName>
-			<frameName>Kubi_Move_02.png</frameName>
-			<frameName>Kubi_Move_03.png</frameName>
-			<eventName type="setAttackBox">o_hit</eventName>
-			<frameName>Kubi_Move_04.png</frameName>
-
-
-			<frameName>Kubi_Move_01.png</frameName>
-			<eventName type="setAttackBox">o_hit</eventName>
-			<frameName>Kubi_Move_02.png</frameName>
-			<frameName>Kubi_Move_03.png</frameName>
-			<eventName type="setAttackBox">ab_hit</eventName>
-			<frameName>Kubi_Move_04.png</frameName>
-			<eventName type="setAttackBox">ab_hit</eventName>
-
-			<frameName>Kubi_Move_01.png</frameName>
-			<eventName type="setAttackBox">ab_hit</eventName>
-			<frameName>Kubi_Move_02.png</frameName>
-			<eventName type="setAttackBox">ab_hit</eventName>
-			<frameName>Kubi_Move_03.png</frameName>
-			<eventName type="setAttackBox">ab_hit</eventName>
-			<frameName>Kubi_Move_04.png</frameName>
-			<eventName type="setAttackBox">ab_hit</eventName>
-
-			<frameName>Kubi_Move_01.png</frameName>
-			<eventName type="setAttackBox">ab_hit</eventName>
-			<frameName>Kubi_Move_02.png</frameName>
-			<eventName type="setAttackBox">ab_hit</eventName>
-			<frameName>Kubi_Move_03.png</frameName>
-			<eventName type="setAttackBox">ab_hit</eventName>
-			<frameName>Kubi_Move_04.png</frameName>
-			<eventName type="setAttackBox">ab_hit</eventName>
 
 		</frame>
 	</action>
 
-</animation>
+	<action name="KnockDown">
+		<frame>
+		</frame>
+	</action>
+
+	<action name="Float">
+		<frame>
+		</frame>
+	</action>
+
+	<action name="Dead">
+		<frame>
+			<f>Kubi_Move_01</f>
+		</frame>
+	</action>
+
+	<action name="nAttack">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">120</p>
+			<p type="attackRangeX">32</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">0</p>
+		</data>
+		<frame>
+			<f>Kubi_Move_01</f>
+			<e type="setAttackBox">o_hit</e>
+			<f>Kubi_Move_02</f>
+			<f>Kubi_Move_03</f>
+			<e type="setAttackBox">o_hit</e>
+			<f>Kubi_Move_04</f>
+
+
+			<f>Kubi_Move_01</f>
+			<e type="setAttackBox">o_hit</e>
+			<f>Kubi_Move_02</f>
+			<f>Kubi_Move_03</f>
+			<e type="setAttackBox">ab_hit</e>
+			<f>Kubi_Move_04</f>
+			<e type="setAttackBox">ab_hit</e>
+
+			<f>Kubi_Move_01</f>
+			<e type="setAttackBox">ab_hit</e>
+			<f>Kubi_Move_02</f>
+			<e type="setAttackBox">ab_hit</e>
+			<f>Kubi_Move_03</f>
+			<e type="setAttackBox">ab_hit</e>
+			<f>Kubi_Move_04</f>
+			<e type="setAttackBox">ab_hit</e>
+
+			<f>Kubi_Move_01</f>
+			<e type="setAttackBox">ab_hit</e>
+			<f>Kubi_Move_02</f>
+			<e type="setAttackBox">ab_hit</e>
+			<f>Kubi_Move_03</f>
+			<e type="setAttackBox">ab_hit</e>
+			<f>Kubi_Move_04</f>
+			<e type="setAttackBox">ab_hit</e>
+
+		</frame>
+	</action>
+
+</unit>

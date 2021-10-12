@@ -67,7 +67,7 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 				while (frameEle)
 				{
 					const char *nodeKey;
-					if (strcmp(frameEle->Name(), "frameName"))
+					if (strcmp(frameEle->Name(), "f"))
 					{
 						nodeKey = frameEle->FirstAttribute()->Value();
 					}

@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Kuroari_Move_01.png</key>
+            <key>Kuroari_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,213},{59,95}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{59,95}</string>
             </dict>
-            <key>Kuroari_Move_02.png</key>
+            <key>Kuroari_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{114,211},{110,79}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{110,79}</string>
             </dict>
-            <key>Kuroari_Move_03.png</key>
+            <key>Kuroari_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,132},{110,79}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{110,79}</string>
             </dict>
-            <key>Kuroari_Move_04.png</key>
+            <key>Kuroari_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{128,130},{110,79}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{110,79}</string>
             </dict>
-            <key>Sanshouuo_Move_01.png</key>
+            <key>Sanshouuo_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{135,2},{114,40}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{114,42}</string>
             </dict>
-            <key>Sanshouuo_Move_02.png</key>
+            <key>Sanshouuo_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{135,44},{113,42}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{113,42}</string>
             </dict>
-            <key>Sanshouuo_Move_03.png</key>
+            <key>Sanshouuo_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{131,42}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{131,42}</string>
             </dict>
-            <key>Sanshouuo_Move_04.png</key>
+            <key>Sanshouuo_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{128,88},{124,40}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{124,42}</string>
             </dict>
-            <key>Sanshouuo_Move_05.png</key>
+            <key>Sanshouuo_Move_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,46},{128,40}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{128,42}</string>
             </dict>
-            <key>Sanshouuo_Move_06.png</key>
+            <key>Sanshouuo_Move_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,88},{124,42}}</string>

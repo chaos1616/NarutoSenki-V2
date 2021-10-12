@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>RockLee_AirHurt_02.png</key>
+            <key>RockLee_AirHurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{220,77},{40,73}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{40,73}</string>
             </dict>
-            <key>RockLee_Hurt_01.png</key>
+            <key>RockLee_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{131,262},{55,59}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{55,59}</string>
             </dict>
-            <key>RockLee_Hurt_02.png</key>
+            <key>RockLee_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{131,262},{55,59}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{55,59}</string>
             </dict>
-            <key>RockLee_Idle_01.png</key>
+            <key>RockLee_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{295,77},{41,72}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{45,72}</string>
             </dict>
-            <key>RockLee_Idle_02.png</key>
+            <key>RockLee_Idle_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{292,163},{41,70}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{45,72}</string>
             </dict>
-            <key>RockLee_Idle_03.png</key>
+            <key>RockLee_Idle_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{292,120},{41,70}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{45,72}</string>
             </dict>
-            <key>RockLee_Idle_04.png</key>
+            <key>RockLee_Idle_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{290,206},{41,68}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{45,72}</string>
             </dict>
-            <key>RockLee_KnockDown_01.png</key>
+            <key>RockLee_KnockDown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{360,209},{55,42}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{55,42}</string>
             </dict>
-            <key>RockLee_KnockDown_02.png</key>
+            <key>RockLee_KnockDown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{364,139},{68,39}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{68,39}</string>
             </dict>
-            <key>RockLee_KnockDown_03.png</key>
+            <key>RockLee_KnockDown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{405,122},{71,25}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{71,25}</string>
             </dict>
-            <key>RockLee_KnockDown_04.png</key>
+            <key>RockLee_KnockDown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{351,304},{35,50}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{35,50}</string>
             </dict>
-            <key>RockLee_NAttack_01.png</key>
+            <key>RockLee_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{165,194},{51,66}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{51,66}</string>
             </dict>
-            <key>RockLee_NAttack_02.png</key>
+            <key>RockLee_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{218,218},{58,66}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{58,66}</string>
             </dict>
-            <key>RockLee_NAttack_03.png</key>
+            <key>RockLee_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{404,213},{54,66}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{54,66}</string>
             </dict>
-            <key>RockLee_NAttack_04.png</key>
+            <key>RockLee_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{369,77},{34,60}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{34,60}</string>
             </dict>
-            <key>RockLee_NAttack_05.png</key>
+            <key>RockLee_NAttack_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{286,249},{63,63}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{63,63}</string>
             </dict>
-            <key>RockLee_NAttack_06.png</key>
+            <key>RockLee_NAttack_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{405,58},{73,62}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{73,62}</string>
             </dict>
-            <key>RockLee_NAttack_07.png</key>
+            <key>RockLee_NAttack_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{472,240},{36,65}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{36,65}</string>
             </dict>
-            <key>RockLee_NAttack_08.png</key>
+            <key>RockLee_NAttack_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{480,74},{28,52}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{28,52}</string>
             </dict>
-            <key>RockLee_NAttack_09.png</key>
+            <key>RockLee_NAttack_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{405,149},{62,69}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{62,69}</string>
             </dict>
-            <key>RockLee_NAttack_10.png</key>
+            <key>RockLee_NAttack_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{95,144},{62,68}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{62,68}</string>
             </dict>
-            <key>RockLee_Skill01_001.png</key>
+            <key>RockLee_Skill01_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{165,144},{53,48}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{119,84}</string>
             </dict>
-            <key>RockLee_Skill01_002.png</key>
+            <key>RockLee_Skill01_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{220,167},{49,68}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{119,84}</string>
             </dict>
-            <key>RockLee_Skill01_003.png</key>
+            <key>RockLee_Skill01_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{115,76}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{119,84}</string>
             </dict>
-            <key>RockLee_Skill01_004.png</key>
+            <key>RockLee_Skill01_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{119,76},{99,66}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{119,84}</string>
             </dict>
-            <key>RockLee_Skill01_005.png</key>
+            <key>RockLee_Skill01_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,80},{91,74}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{119,84}</string>
             </dict>
-            <key>RockLee_Skill03_001.png</key>
+            <key>RockLee_Skill03_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{325,2},{78,73}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{102,91}</string>
             </dict>
-            <key>RockLee_Skill03_002.png</key>
+            <key>RockLee_Skill03_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{223,2},{100,73}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{102,143}</string>
             </dict>
-            <key>RockLee_Skill03_003.png</key>
+            <key>RockLee_Skill03_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{119,2},{102,72}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{102,150}</string>
             </dict>
-            <key>RockLee_Skill04_001.png</key>
+            <key>RockLee_Skill04_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{478,128},{32,40}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{222,180}</string>
             </dict>
-            <key>RockLee_Skill04_003.png</key>
+            <key>RockLee_Skill04_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{405,2},{54,76}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{222,180}</string>
             </dict>
-            <key>RockLee_Skill04_004.png</key>
+            <key>RockLee_Skill04_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{476,170},{26,68}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{222,180}</string>
             </dict>
-            <key>RockLee_Skill04_005.png</key>
+            <key>RockLee_Skill04_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{483,2},{26,70}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{222,180}</string>
             </dict>
-            <key>RockLee_Skill04_01.png</key>
+            <key>RockLee_Skill04_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{220,119},{46,70}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{46,70}</string>
             </dict>
-            <key>RockLee_Skill04_014.png</key>
+            <key>RockLee_Skill04_014</key>
             <dict>
                 <key>frame</key>
                 <string>{{351,266},{36,50}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{222,180}</string>
             </dict>
-            <key>RockLee_Walk_01.png</key>
+            <key>RockLee_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,156},{63,57}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{63,57}</string>
             </dict>
-            <key>RockLee_Walk_02.png</key>
+            <key>RockLee_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{403,269},{63,60}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{63,60}</string>
             </dict>
-            <key>RockLee_Walk_03.png</key>
+            <key>RockLee_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,277},{55,56}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{55,56}</string>
             </dict>
-            <key>RockLee_Walk_04.png</key>
+            <key>RockLee_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{67,208},{62,57}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{62,57}</string>
             </dict>
-            <key>RockLee_Walk_05.png</key>
+            <key>RockLee_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,215},{61,60}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{61,60}</string>
             </dict>
-            <key>RockLee_Walk_06.png</key>
+            <key>RockLee_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{65,267},{55,57}}</string>

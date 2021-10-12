@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>IzumoFlog_Float_01.png</key>
+            <key>IzumoFlog_Float_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,102},{46,35}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{46,35}</string>
             </dict>
-            <key>IzumoFlog_Idle_01.png</key>
+            <key>IzumoFlog_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{42,220},{33,42}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{33,46}</string>
             </dict>
-            <key>IzumoFlog_KnockDown_01.png</key>
+            <key>IzumoFlog_KnockDown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,139},{35,46}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{35,46}</string>
             </dict>
-            <key>IzumoFlog_KnockDown_02.png</key>
+            <key>IzumoFlog_KnockDown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{65,68},{57,27}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{57,27}</string>
             </dict>
-            <key>IzumoFlog_KnockDown_03.png</key>
+            <key>IzumoFlog_KnockDown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{66,2},{60,18}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{60,18}</string>
             </dict>
-            <key>IzumoFlog_KnockDown_04.png</key>
+            <key>IzumoFlog_KnockDown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{66,2},{60,18}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{60,18}</string>
             </dict>
-            <key>IzumoFlog_NAttack_01.png</key>
+            <key>IzumoFlog_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{65,97},{47,52}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{47,56}</string>
             </dict>
-            <key>IzumoFlog_NAttack_02.png</key>
+            <key>IzumoFlog_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{50,146},{44,44}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{44,56}</string>
             </dict>
-            <key>IzumoFlog_NAttack_03.png</key>
+            <key>IzumoFlog_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{62,56}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{62,56}</string>
             </dict>
-            <key>IzumoFlog_NAttack_04.png</key>
+            <key>IzumoFlog_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,60},{61,40}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{61,56}</string>
             </dict>
-            <key>IzumoFlog_Walk_01.png</key>
+            <key>IzumoFlog_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,220},{38,34}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{38,34}</string>
             </dict>
-            <key>IzumoFlog_Walk_02.png</key>
+            <key>IzumoFlog_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{66,22},{44,59}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{44,59}</string>
             </dict>
-            <key>IzumoFlog_Walk_03.png</key>
+            <key>IzumoFlog_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,176},{42,42}}</string>

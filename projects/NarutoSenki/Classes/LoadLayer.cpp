@@ -306,19 +306,18 @@ void LoadLayer::unloadCharIMG(const CharacterBase *c)
 
 void LoadLayer::setLoadingAnimation(const char *player, int index)
 {
-	CCSprite *loadingAvator = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_Walk_01.png", player)->getCString());
+	CCSprite *loadingAvator = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_Walk_01", player)->getCString());
 	loadingAvator->setFlipX(true);
 	loadingAvator->setPosition(ccp(winSize.width - 100 + index * 16, 30));
 	loadingAvator->setAnchorPoint(ccp(0, 0));
 
 	CCArray *animeFrames = CCArray::create();
 
-	const char *file = CCString::createWithFormat("%s_Walk_", player)->getCString();
 	//FIXME: Use the other way get animation frame count
 	int frameCount = is_same(player, "Konan") ? 1 : 7;
 	for (int i = 1; i < frameCount; i++)
 	{
-		auto str = CCString::createWithFormat("%s%02d.png", file, i);
+		auto str = CCString::createWithFormat("%s_Walk_%02d", player, i);
 		auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(str->getCString());
 		animeFrames->addObject(frame);
 	}

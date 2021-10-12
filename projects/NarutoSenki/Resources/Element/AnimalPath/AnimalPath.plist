@@ -3,7 +3,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>AnimalPath_Idle_01.png</key>
+            <key>AnimalPath_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{81,162},{24,77}}</string>
@@ -16,7 +16,7 @@
                 <key>sourceSize</key>
                 <string>{24,77}</string>
             </dict>
-            <key>AnimalPath_NAttack_01.png</key>
+            <key>AnimalPath_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{160,130},{32,77}}</string>
@@ -29,7 +29,7 @@
                 <key>sourceSize</key>
                 <string>{32,77}</string>
             </dict>
-            <key>AnimalPath_NAttack_02.png</key>
+            <key>AnimalPath_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,96},{65,77}}</string>
@@ -42,7 +42,7 @@
                 <key>sourceSize</key>
                 <string>{65,77}</string>
             </dict>
-            <key>AnimalPath_NAttack_03.png</key>
+            <key>AnimalPath_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{160,96},{32,77}}</string>
@@ -55,7 +55,7 @@
                 <key>sourceSize</key>
                 <string>{32,77}</string>
             </dict>
-            <key>AnimalPath_NAttack_04.png</key>
+            <key>AnimalPath_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,163},{23,77}}</string>
@@ -68,7 +68,7 @@
                 <key>sourceSize</key>
                 <string>{23,77}</string>
             </dict>
-            <key>AnimalPath_Skill01_01.png</key>
+            <key>AnimalPath_Skill01_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{81,96},{34,77}}</string>
@@ -81,7 +81,7 @@
                 <key>sourceSize</key>
                 <string>{34,77}</string>
             </dict>
-            <key>AnimalPath_Skill01_02.png</key>
+            <key>AnimalPath_Skill01_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{81,132},{28,77}}</string>
@@ -94,7 +94,7 @@
                 <key>sourceSize</key>
                 <string>{28,77}</string>
             </dict>
-            <key>AnimalPath_Skill01_03.png</key>
+            <key>AnimalPath_Skill01_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{199,226},{38,49}}</string>
@@ -107,7 +107,7 @@
                 <key>sourceSize</key>
                 <string>{136,119}</string>
             </dict>
-            <key>AnimalPath_Skill01_04.png</key>
+            <key>AnimalPath_Skill01_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{92,119}}</string>
@@ -120,7 +120,7 @@
                 <key>sourceSize</key>
                 <string>{136,119}</string>
             </dict>
-            <key>AnimalPath_Walk_01.png</key>
+            <key>AnimalPath_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{70,188},{63,60}}</string>
@@ -133,7 +133,7 @@
                 <key>sourceSize</key>
                 <string>{63,60}</string>
             </dict>
-            <key>AnimalPath_Walk_02.png</key>
+            <key>AnimalPath_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,188},{66,59}}</string>
@@ -146,7 +146,7 @@
                 <key>sourceSize</key>
                 <string>{66,59}</string>
             </dict>
-            <key>AnimalPath_Walk_03.png</key>
+            <key>AnimalPath_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{135,226},{50,62}}</string>
@@ -159,7 +159,7 @@
                 <key>sourceSize</key>
                 <string>{50,62}</string>
             </dict>
-            <key>AnimalPath_Walk_04.png</key>
+            <key>AnimalPath_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{66,250},{60,57}}</string>
@@ -172,7 +172,7 @@
                 <key>sourceSize</key>
                 <string>{60,57}</string>
             </dict>
-            <key>AnimalPath_Walk_05.png</key>
+            <key>AnimalPath_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{160,164},{67,60}}</string>
@@ -185,7 +185,7 @@
                 <key>sourceSize</key>
                 <string>{67,60}</string>
             </dict>
-            <key>AnimalPath_Walk_06.png</key>
+            <key>AnimalPath_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,249},{50,62}}</string>
@@ -198,7 +198,7 @@
                 <key>sourceSize</key>
                 <string>{50,62}</string>
             </dict>
-            <key>Panda.png</key>
+            <key>Panda</key>
             <dict>
                 <key>frame</key>
                 <string>{{123,2},{92,118}}</string>

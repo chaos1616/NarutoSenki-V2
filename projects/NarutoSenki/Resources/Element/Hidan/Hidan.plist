@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Hidan_AirHurt_001.png</key>
+            <key>Hidan_AirHurt_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,445},{58,90}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{58,90}</string>
             </dict>
-            <key>Hidan_AirHurt_02.png</key>
+            <key>Hidan_AirHurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{176,620},{58,84}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{58,84}</string>
             </dict>
-            <key>Hidan_Float_001.png</key>
+            <key>Hidan_Float_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,385},{90,58}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{90,58}</string>
             </dict>
-            <key>Hidan_Float_002.png</key>
+            <key>Hidan_Float_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{176,620},{58,84}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{58,84}</string>
             </dict>
-            <key>Hidan_Float_003.png</key>
+            <key>Hidan_Float_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{800,365},{81,84}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{81,84}</string>
             </dict>
-            <key>Hidan_Hurt_01.png</key>
+            <key>Hidan_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{684,416},{84,79}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{84,79}</string>
             </dict>
-            <key>Hidan_Hurt_02.png</key>
+            <key>Hidan_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{186,94},{84,60}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{84,60}</string>
             </dict>
-            <key>Hidan_Idle_001.png</key>
+            <key>Hidan_Idle_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,591},{85,71}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{101,71}</string>
             </dict>
-            <key>Hidan_Idle_002.png</key>
+            <key>Hidan_Idle_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{89,543},{85,71}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{101,71}</string>
             </dict>
-            <key>Hidan_Idle_003.png</key>
+            <key>Hidan_Idle_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{359,252},{85,71}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{101,71}</string>
             </dict>
-            <key>Hidan_Idle_004.png</key>
+            <key>Hidan_Idle_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{89,543},{85,71}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{101,71}</string>
             </dict>
-            <key>Hidan_KnockDown_001.png</key>
+            <key>Hidan_KnockDown_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{330,582},{77,84}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{79,84}</string>
             </dict>
-            <key>Hidan_KnockDown_002.png</key>
+            <key>Hidan_KnockDown_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{347,339},{83,91}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{83,91}</string>
             </dict>
-            <key>Hidan_KnockDown_003.png</key>
+            <key>Hidan_KnockDown_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{245,409},{90,48}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{90,48}</string>
             </dict>
-            <key>Hidan_KnockDown_004.png</key>
+            <key>Hidan_KnockDown_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{94,483},{86,58}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{86,58}</string>
             </dict>
-            <key>Hidan_KnockDown_005.png</key>
+            <key>Hidan_KnockDown_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{770,448},{84,68}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{84,68}</string>
             </dict>
-            <key>Hidan_NAttack_001.png</key>
+            <key>Hidan_NAttack_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{886,365},{84,74}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{162,102}</string>
             </dict>
-            <key>Hidan_NAttack_002.png</key>
+            <key>Hidan_NAttack_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,733},{84,74}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{162,102}</string>
             </dict>
-            <key>Hidan_NAttack_003.png</key>
+            <key>Hidan_NAttack_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{89,685},{84,76}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{162,102}</string>
             </dict>
-            <key>Hidan_NAttack_004.png</key>
+            <key>Hidan_NAttack_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{243,604},{84,76}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{162,102}</string>
             </dict>
-            <key>Hidan_NAttack_005.png</key>
+            <key>Hidan_NAttack_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{886,441},{84,72}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{162,102}</string>
             </dict>
-            <key>Hidan_NAttack_006.png</key>
+            <key>Hidan_NAttack_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{511,495},{84,78}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{162,102}</string>
             </dict>
-            <key>Hidan_NAttack_007.png</key>
+            <key>Hidan_NAttack_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{686,312},{112,102}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{162,102}</string>
             </dict>
-            <key>Hidan_NAttack_008.png</key>
+            <key>Hidan_NAttack_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{247,252},{110,68}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{162,102}</string>
             </dict>
-            <key>Hidan_NAttack_009.png</key>
+            <key>Hidan_NAttack_009</key>
             <dict>
                 <key>frame</key>
                 <string>{{621,290},{84,63}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{84,63}</string>
             </dict>
-            <key>Hidan_NAttack_010.png</key>
+            <key>Hidan_NAttack_010</key>
             <dict>
                 <key>frame</key>
                 <string>{{622,64},{84,66}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{84,66}</string>
             </dict>
-            <key>Hidan_NAttack_011.png</key>
+            <key>Hidan_NAttack_011</key>
             <dict>
                 <key>frame</key>
                 <string>{{186,180},{92,59}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{92,59}</string>
             </dict>
-            <key>Hidan_NAttack_012.png</key>
+            <key>Hidan_NAttack_012</key>
             <dict>
                 <key>frame</key>
                 <string>{{622,150},{138,65}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{206,65}</string>
             </dict>
-            <key>Hidan_Run_01.png</key>
+            <key>Hidan_Run_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{621,376},{84,61}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{98,61}</string>
             </dict>
-            <key>Hidan_Run_02.png</key>
+            <key>Hidan_Run_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{621,462},{84,59}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{98,61}</string>
             </dict>
-            <key>Hidan_Run_03.png</key>
+            <key>Hidan_Run_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{768,518},{84,57}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{98,61}</string>
             </dict>
-            <key>Hidan_Run_04.png</key>
+            <key>Hidan_Run_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{184,274},{84,61}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{98,61}</string>
             </dict>
-            <key>Hidan_Run_05.png</key>
+            <key>Hidan_Run_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{621,462},{84,59}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{98,61}</string>
             </dict>
-            <key>Hidan_Run_06.png</key>
+            <key>Hidan_Run_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{856,515},{84,57}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{98,61}</string>
             </dict>
-            <key>Hidan_Skill01_001.png</key>
+            <key>Hidan_Skill01_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{244,459},{85,74}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{137,90}</string>
             </dict>
-            <key>Hidan_Skill01_002.png</key>
+            <key>Hidan_Skill01_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{432,284},{97,90}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{137,90}</string>
             </dict>
-            <key>Hidan_Skill01_003.png</key>
+            <key>Hidan_Skill01_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{531,426},{67,88}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{137,90}</string>
             </dict>
-            <key>Hidan_Skill01_004.png</key>
+            <key>Hidan_Skill01_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{96,310},{85,86}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{137,90}</string>
             </dict>
-            <key>Hidan_Skill01_005.png</key>
+            <key>Hidan_Skill01_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{531,339},{85,88}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{137,90}</string>
             </dict>
-            <key>Hidan_Skill02_001.png</key>
+            <key>Hidan_Skill02_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{418,514},{84,77}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{84,77}</string>
             </dict>
-            <key>Hidan_Skill02_002.png</key>
+            <key>Hidan_Skill02_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{847,276},{140,87}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{296,95}</string>
             </dict>
-            <key>Hidan_Skill02_003.png</key>
+            <key>Hidan_Skill02_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{689,220},{156,90}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{296,94}</string>
             </dict>
-            <key>Hidan_Skill02_004.png</key>
+            <key>Hidan_Skill02_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{884,2},{138,87}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{296,89}</string>
             </dict>
-            <key>Hidan_Skill02_005.png</key>
+            <key>Hidan_Skill02_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{248,64},{188,83}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{296,83}</string>
             </dict>
-            <key>Hidan_Skill03_001.png</key>
+            <key>Hidan_Skill03_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{868,91},{154,106}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{188,106}</string>
             </dict>
-            <key>Hidan_Skill03_002.png</key>
+            <key>Hidan_Skill03_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,94},{182,106}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{188,106}</string>
             </dict>
-            <key>Hidan_Skill03_003.png</key>
+            <key>Hidan_Skill03_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{690,90},{176,128}}</string>
@@ -615,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{188,140}</string>
             </dict>
-            <key>Hidan_Skill03_004.png</key>
+            <key>Hidan_Skill03_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,202},{180,106}}</string>
@@ -628,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{188,106}</string>
             </dict>
-            <key>Hidan_Skill04_001.png</key>
+            <key>Hidan_Skill04_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{682,497},{84,58}}</string>
@@ -641,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{84,58}</string>
             </dict>
-            <key>Hidan_Skill04_002.png</key>
+            <key>Hidan_Skill04_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{247,322},{85,98}}</string>
@@ -654,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{121,98}</string>
             </dict>
-            <key>Hidan_Skill04_003.png</key>
+            <key>Hidan_Skill04_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{432,167},{115,124}}</string>
@@ -667,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{121,132}</string>
             </dict>
-            <key>Hidan_Skill04_004.png</key>
+            <key>Hidan_Skill04_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{432,376},{67,97}}</string>
@@ -680,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{121,109}</string>
             </dict>
-            <key>Hidan_Skill04_005.png</key>
+            <key>Hidan_Skill04_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{432,376},{67,97}}</string>
@@ -693,7 +693,7 @@
                 <key>sourceSize</key>
                 <string>{125,109}</string>
             </dict>
-            <key>Hidan_Skill04_006.png</key>
+            <key>Hidan_Skill04_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{337,432},{85,79}}</string>
@@ -706,7 +706,7 @@
                 <key>sourceSize</key>
                 <string>{125,109}</string>
             </dict>
-            <key>Hidan_Skill04_007.png</key>
+            <key>Hidan_Skill04_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{183,447},{85,59}}</string>
@@ -719,7 +719,7 @@
                 <key>sourceSize</key>
                 <string>{157,127}</string>
             </dict>
-            <key>Hidan_Skill04_008.png</key>
+            <key>Hidan_Skill04_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{690,2},{192,86}}</string>
@@ -732,7 +732,7 @@
                 <key>sourceSize</key>
                 <string>{382,90}</string>
             </dict>
-            <key>Hidan_Skill04_009.png</key>
+            <key>Hidan_Skill04_009</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{244,90}}</string>
@@ -745,7 +745,7 @@
                 <key>sourceSize</key>
                 <string>{382,90}</string>
             </dict>
-            <key>Hidan_Skill04_010.png</key>
+            <key>Hidan_Skill04_010</key>
             <dict>
                 <key>frame</key>
                 <string>{{248,2},{238,60}}</string>
@@ -758,7 +758,7 @@
                 <key>sourceSize</key>
                 <string>{382,90}</string>
             </dict>
-            <key>Hidan_Skill04_011.png</key>
+            <key>Hidan_Skill04_011</key>
             <dict>
                 <key>frame</key>
                 <string>{{488,2},{200,60}}</string>
@@ -771,7 +771,7 @@
                 <key>sourceSize</key>
                 <string>{382,90}</string>
             </dict>
-            <key>Hidan_Skill04_012.png</key>
+            <key>Hidan_Skill04_012</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,310},{92,73}}</string>
@@ -784,7 +784,7 @@
                 <key>sourceSize</key>
                 <string>{182,101}</string>
             </dict>
-            <key>Hidan_Skill04_013.png</key>
+            <key>Hidan_Skill04_013</key>
             <dict>
                 <key>frame</key>
                 <string>{{248,149},{182,101}}</string>
@@ -797,7 +797,7 @@
                 <key>sourceSize</key>
                 <string>{182,101}</string>
             </dict>
-            <key>Hidan_Skill04_014.png</key>
+            <key>Hidan_Skill04_014</key>
             <dict>
                 <key>frame</key>
                 <string>{{438,64},{182,101}}</string>
@@ -810,7 +810,7 @@
                 <key>sourceSize</key>
                 <string>{182,101}</string>
             </dict>
-            <key>Hidan_Skill04_015.png</key>
+            <key>Hidan_Skill04_015</key>
             <dict>
                 <key>frame</key>
                 <string>{{868,199},{152,75}}</string>
@@ -823,7 +823,7 @@
                 <key>sourceSize</key>
                 <string>{182,101}</string>
             </dict>
-            <key>Hidan_Skill05_001.png</key>
+            <key>Hidan_Skill05_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{502,634},{70,74}}</string>
@@ -836,7 +836,7 @@
                 <key>sourceSize</key>
                 <string>{78,76}</string>
             </dict>
-            <key>Hidan_Skill05_002.png</key>
+            <key>Hidan_Skill05_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{590,624},{70,74}}</string>
@@ -849,7 +849,7 @@
                 <key>sourceSize</key>
                 <string>{78,76}</string>
             </dict>
-            <key>Hidan_Skill05_003.png</key>
+            <key>Hidan_Skill05_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{673,557},{70,74}}</string>
@@ -862,7 +862,7 @@
                 <key>sourceSize</key>
                 <string>{78,76}</string>
             </dict>
-            <key>Hidan_Skill05_004.png</key>
+            <key>Hidan_Skill05_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{930,589},{70,74}}</string>
@@ -875,7 +875,7 @@
                 <key>sourceSize</key>
                 <string>{78,76}</string>
             </dict>
-            <key>Hidan_Skill05_005.png</key>
+            <key>Hidan_Skill05_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{854,574},{70,74}}</string>
@@ -888,7 +888,7 @@
                 <key>sourceSize</key>
                 <string>{78,76}</string>
             </dict>
-            <key>Hidan_Skill05_006.png</key>
+            <key>Hidan_Skill05_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{942,515},{72,74}}</string>
@@ -901,7 +901,7 @@
                 <key>sourceSize</key>
                 <string>{78,76}</string>
             </dict>
-            <key>Hidan_Skill05_007.png</key>
+            <key>Hidan_Skill05_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{597,548},{74,74}}</string>
@@ -914,7 +914,7 @@
                 <key>sourceSize</key>
                 <string>{78,76}</string>
             </dict>
-            <key>Hidan_Skill10_001.png</key>
+            <key>Hidan_Skill10_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,505},{84,85}}</string>
@@ -927,7 +927,7 @@
                 <key>sourceSize</key>
                 <string>{90,87}</string>
             </dict>
-            <key>Hidan_Skill10_002.png</key>
+            <key>Hidan_Skill10_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{94,397},{84,87}}</string>
@@ -940,7 +940,7 @@
                 <key>sourceSize</key>
                 <string>{90,87}</string>
             </dict>
-            <key>Hidan_Skill12_001.png</key>
+            <key>Hidan_Skill12_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{243,535},{85,67}}</string>
@@ -953,7 +953,7 @@
                 <key>sourceSize</key>
                 <string>{113,67}</string>
             </dict>
-            <key>Hidan_Skill12_002.png</key>
+            <key>Hidan_Skill12_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{331,513},{85,67}}</string>
@@ -966,7 +966,7 @@
                 <key>sourceSize</key>
                 <string>{113,67}</string>
             </dict>
-            <key>Hidan_Skill12_003.png</key>
+            <key>Hidan_Skill12_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{424,445},{85,67}}</string>
@@ -979,7 +979,7 @@
                 <key>sourceSize</key>
                 <string>{113,67}</string>
             </dict>
-            <key>Hidan_Skill12_004.png</key>
+            <key>Hidan_Skill12_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,664},{85,67}}</string>
@@ -992,7 +992,7 @@
                 <key>sourceSize</key>
                 <string>{113,67}</string>
             </dict>
-            <key>Hidan_Skill12_005.png</key>
+            <key>Hidan_Skill12_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{89,616},{85,67}}</string>
@@ -1005,7 +1005,7 @@
                 <key>sourceSize</key>
                 <string>{113,67}</string>
             </dict>
-            <key>Hidan_Skill12_006.png</key>
+            <key>Hidan_Skill12_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{184,360},{85,59}}</string>
@@ -1018,7 +1018,7 @@
                 <key>sourceSize</key>
                 <string>{113,67}</string>
             </dict>
-            <key>Hidan_Walk_01.png</key>
+            <key>Hidan_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{558,253},{84,61}}</string>
@@ -1031,7 +1031,7 @@
                 <key>sourceSize</key>
                 <string>{98,61}</string>
             </dict>
-            <key>Hidan_Walk_02.png</key>
+            <key>Hidan_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{182,534},{84,59}}</string>
@@ -1044,7 +1044,7 @@
                 <key>sourceSize</key>
                 <string>{98,61}</string>
             </dict>
-            <key>Hidan_Walk_03.png</key>
+            <key>Hidan_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{416,593},{84,57}}</string>
@@ -1057,7 +1057,7 @@
                 <key>sourceSize</key>
                 <string>{98,61}</string>
             </dict>
-            <key>Hidan_Walk_04.png</key>
+            <key>Hidan_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{558,167},{84,61}}</string>
@@ -1070,7 +1070,7 @@
                 <key>sourceSize</key>
                 <string>{98,61}</string>
             </dict>
-            <key>Hidan_Walk_05.png</key>
+            <key>Hidan_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{182,534},{84,59}}</string>
@@ -1083,7 +1083,7 @@
                 <key>sourceSize</key>
                 <string>{98,61}</string>
             </dict>
-            <key>Hidan_Walk_06.png</key>
+            <key>Hidan_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{504,575},{84,57}}</string>

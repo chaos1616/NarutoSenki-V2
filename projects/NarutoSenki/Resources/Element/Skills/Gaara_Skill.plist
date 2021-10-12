@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Sabaku_Move_03.png</key>
+            <key>Sabaku_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{362,378},{136,17}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{140,17}</string>
             </dict>
-            <key>Sabaku_Move_04.png</key>
+            <key>Sabaku_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{319,478},{150,38}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{150,38}</string>
             </dict>
-            <key>Sabaku_Move_05.png</key>
+            <key>Sabaku_Move_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{359,565},{149,36}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{149,36}</string>
             </dict>
-            <key>Sabaku_Move_06.png</key>
+            <key>Sabaku_Move_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{162,478},{155,41}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{155,41}</string>
             </dict>
-            <key>Sabaku_Move_07.png</key>
+            <key>Sabaku_Move_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,459},{158,49}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{158,49}</string>
             </dict>
-            <key>Sabaku_Move_08.png</key>
+            <key>Sabaku_Move_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,383},{159,74}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{159,74}</string>
             </dict>
-            <key>Sabaku_Move_09.png</key>
+            <key>Sabaku_Move_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{183,378},{177,98}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{177,98}</string>
             </dict>
-            <key>Sabaku_Move_10.png</key>
+            <key>Sabaku_Move_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{198,2},{193,118}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{195,118}</string>
             </dict>
-            <key>Sabaku_Move_11.png</key>
+            <key>Sabaku_Move_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,40},{192,129}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{192,129}</string>
             </dict>
-            <key>Sabaku_Move_12.png</key>
+            <key>Sabaku_Move_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{196,122},{192,92}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{192,92}</string>
             </dict>
-            <key>Sabaku_Move_13.png</key>
+            <key>Sabaku_Move_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{196,216},{192,81}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{192,81}</string>
             </dict>
-            <key>Sabaku_Move_14.png</key>
+            <key>Sabaku_Move_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,256},{192,73}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{192,73}</string>
             </dict>
-            <key>Sabaku_Move_15.png</key>
+            <key>Sabaku_Move_15</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,171},{192,83}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{192,83}</string>
             </dict>
-            <key>Sabaku_Move_16.png</key>
+            <key>Sabaku_Move_16</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{194,36}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{194,36}</string>
             </dict>
-            <key>SandBall_Move_01.png</key>
+            <key>SandBall_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{129,510},{98,30}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{98,88}</string>
             </dict>
-            <key>SandBall_Move_02.png</key>
+            <key>SandBall_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{104,669},{92,56}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{92,88}</string>
             </dict>
-            <key>SandBall_Move_03.png</key>
+            <key>SandBall_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{104,727},{91,64}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{91,88}</string>
             </dict>
-            <key>SandBall_Move_04.png</key>
+            <key>SandBall_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,742},{86,84}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{86,88}</string>
             </dict>
-            <key>SandBall_Move_05.png</key>
+            <key>SandBall_Move_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{267,630},{86,88}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{86,88}</string>
             </dict>
-            <key>SandBall_Move_06.png</key>
+            <key>SandBall_Move_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{356,738},{82,86}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{84,88}</string>
             </dict>
-            <key>SandBall_Move_07.png</key>
+            <key>SandBall_Move_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{266,718},{78,88}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{80,88}</string>
             </dict>
-            <key>SandBall_Move_08.png</key>
+            <key>SandBall_Move_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{90,793},{75,84}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{77,88}</string>
             </dict>
-            <key>SandBall_Move_09.png</key>
+            <key>SandBall_Move_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{161,595},{72,104}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{74,110}</string>
             </dict>
-            <key>SandBall_Move_10.png</key>
+            <key>SandBall_Move_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{161,521},{72,122}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{74,126}</string>
             </dict>
-            <key>SandBall_Move_11.png</key>
+            <key>SandBall_Move_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,586},{72,122}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{74,126}</string>
             </dict>
-            <key>SandBall_Move_12.png</key>
+            <key>SandBall_Move_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{381,489},{74,129}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{74,131}</string>
             </dict>
-            <key>SandBall_Move_13.png</key>
+            <key>SandBall_Move_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,510},{74,125}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{74,131}</string>
             </dict>
-            <key>SandBall_Move_14.png</key>
+            <key>SandBall_Move_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{393,2},{99,111}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{99,131}</string>
             </dict>
-            <key>SandBall_Move_15.png</key>
+            <key>SandBall_Move_15</key>
             <dict>
                 <key>frame</key>
                 <string>{{383,352},{127,135}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{127,145}</string>
             </dict>
-            <key>SandHand_Move_001.png</key>
+            <key>SandHand_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{496,270},{66,14}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{144,106}</string>
             </dict>
-            <key>SandHand_Move_002.png</key>
+            <key>SandHand_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{198,669},{70,66}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{144,106}</string>
             </dict>
-            <key>SandHand_Move_003.png</key>
+            <key>SandHand_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,828},{70,76}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{144,106}</string>
             </dict>
-            <key>SandHand_Move_004.png</key>
+            <key>SandHand_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{390,270},{104,80}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{144,106}</string>
             </dict>
-            <key>SandHand_Move_005.png</key>
+            <key>SandHand_Move_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,660},{100,80}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{144,106}</string>
             </dict>
-            <key>SandHand_Move_006.png</key>
+            <key>SandHand_Move_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{357,666},{70,102}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{144,106}</string>
             </dict>
-            <key>SandWave_Move_001.png</key>
+            <key>SandWave_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{285,521},{103,27}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{225,123}</string>
             </dict>
-            <key>SandWave_Move_002.png</key>
+            <key>SandWave_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{359,603},{135,61}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{225,123}</string>
             </dict>
-            <key>SandWave_Move_003.png</key>
+            <key>SandWave_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{393,103},{165,109}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{225,123}</string>
             </dict>
-            <key>SandWave_Move_004.png</key>
+            <key>SandWave_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{196,299},{185,77}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{225,123}</string>
             </dict>
-            <key>SandWave_Move_005.png</key>
+            <key>SandWave_Move_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,331},{183,33}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{225,123}</string>
             </dict>
-            <key>SandWave_Move_006.png</key>
+            <key>SandWave_Move_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,366},{179,15}}</string>

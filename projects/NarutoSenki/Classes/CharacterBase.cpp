@@ -241,7 +241,7 @@ void CharacterBase::updateDataByLVOnly()
 }
 
 // TODO: Move to setData(HeroMetadata data)
-void CharacterBase::readData(CCArray *tmpData, CCString *&attackType, CCString *&attackValue, int &attackRangeX, int &attackRangeY, uint32_t &coldDown, int &combatPoint)
+void CharacterBase::readData(CCArray *tmpData, CCString *&attackType, CCString *&attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint)
 {
 	CCDictionary *tmpDict;
 
@@ -263,7 +263,7 @@ void CharacterBase::readData(CCArray *tmpData, CCString *&attackType, CCString *
 			attackRangeY = tmpDict->valueForKey("attackRangeY")->intValue();
 			break;
 		case 4:
-			coldDown = tmpDict->valueForKey("coldDown")->uintValue();
+			cooldown = tmpDict->valueForKey("cd")->uintValue();
 		case 5:
 			combatPoint = tmpDict->valueForKey("combatPoint")->intValue();
 		}
@@ -736,7 +736,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 									if (attacker->_heartEffect)
 									{
-										auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d.png", attacker->hearts)->getCString());
+										auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d", attacker->hearts)->getCString());
 										attacker->_heartEffect->setDisplayFrame(frame);
 									}
 								}
@@ -1129,7 +1129,7 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 		{
 			auto key = CCString::create(ele->getStrKey())->getCString();
 			auto keyValue = dic->valueForKey(key)->getCString();
-			if (is_same(key, "frameName"))
+			if (is_same(key, "f"))
 			{
 				auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(keyValue);
 				animeFrames->addObject(frame);
@@ -1648,7 +1648,7 @@ void CharacterBase::setCoinDisplay(int num)
 {
 	CCSprite *coinDisplay = CCSprite::create();
 
-	CCSprite *coinSprite = CCSprite::createWithSpriteFrameName("coin.png");
+	CCSprite *coinSprite = CCSprite::createWithSpriteFrameName("coin");
 	coinSprite->setPosition(ccp(14, 0));
 	coinDisplay->addChild(coinSprite);
 
@@ -1870,15 +1870,15 @@ bool CharacterBase::setGear(gearType type)
 			break;
 		case gear05:
 			isGearCD = true;
-			_sattackcoldDown1 -= 5;
-			_sattackcoldDown2 -= 5;
-			_sattackcoldDown3 -= 5;
+			_sattackcooldown1 -= 5;
+			_sattackcooldown2 -= 5;
+			_sattackcooldown3 -= 5;
 
 			if (isPlayer())
 			{
-				getGameLayer()->getHudLayer()->skill1Button->setCD(to_ccstring(_sattackcoldDown1 * 1000));
-				getGameLayer()->getHudLayer()->skill2Button->setCD(to_ccstring(_sattackcoldDown2 * 1000));
-				getGameLayer()->getHudLayer()->skill3Button->setCD(to_ccstring(_sattackcoldDown3 * 1000));
+				getGameLayer()->getHudLayer()->skill1Button->setCD(to_ccstring(_sattackcooldown1 * 1000));
+				getGameLayer()->getHudLayer()->skill2Button->setCD(to_ccstring(_sattackcooldown2 * 1000));
+				getGameLayer()->getHudLayer()->skill3Button->setCD(to_ccstring(_sattackcooldown3 * 1000));
 
 				getGameLayer()->getHudLayer()->skill1Button->_isColdChanged = true;
 				getGameLayer()->getHudLayer()->skill2Button->_isColdChanged = true;
@@ -3942,9 +3942,9 @@ void CharacterBase::setTransform()
 
 	if (isGearCD)
 	{
-		_sattackcoldDown1 -= 5;
-		_sattackcoldDown2 -= 5;
-		_sattackcoldDown3 -= 5;
+		_sattackcooldown1 -= 5;
+		_sattackcooldown2 -= 5;
+		_sattackcooldown3 -= 5;
 	}
 
 	if (isPlayer())
@@ -4142,7 +4142,7 @@ void CharacterBase::sAttack(abType type)
 			}
 			_isCanSkill1 = false;
 
-			scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcoldDown1);
+			scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcooldown1);
 			break;
 		case SKILL2:
 			if (_isCanSkill2)
@@ -4157,7 +4157,7 @@ void CharacterBase::sAttack(abType type)
 
 			_isCanSkill2 = false;
 
-			scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sattackcoldDown2);
+			scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sattackcooldown2);
 
 			break;
 		case SKILL3:
@@ -4172,7 +4172,7 @@ void CharacterBase::sAttack(abType type)
 			}
 			_isCanSkill3 = false;
 
-			scheduleOnce(schedule_selector(CharacterBase::enableSkill3), _sattackcoldDown3);
+			scheduleOnce(schedule_selector(CharacterBase::enableSkill3), _sattackcooldown3);
 			break;
 		default:
 			break;
@@ -4505,17 +4505,18 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 		{
 			_isSticking = true;
 			auto attacker = _slayer;
-			CCString *path;
+			std::string path = getCharacter()->getCString();
 			if (attacker->isCharacter("Kakuzu"))
-			{
-				path = CCString::createWithFormat("%s_AirHurt_02.png", getCharacter()->getCString());
-			}
+				path += "_AirHurt_02";
 			else
+				path += "_Hurt_02";
+
+			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path.c_str());
+			if (frame == nullptr)
 			{
-				path = CCString::createWithFormat("%s_Hurt_02.png", getCharacter()->getCString());
+				CCMessageBox(path.c_str(), "Not found hard hurt frame");
 			}
 
-			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path->getCString());
 			auto tempArray = CCArray::create();
 			tempArray->addObject(frame);
 			auto tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);

@@ -1,77 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animation>
+<unit>
 
-	<action value="Idle">
-		<date>
-			<dateName type="attackType">Tenmu</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">51</dateName>
-			<dateName type="attackRangeY">11</dateName>
-			<coldName type="coldDown">224</coldName>
-		</date>
+	<action name="Idle">
+		<data>
+			<p type="attackType">Tenmu</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">51</p>
+			<p type="attackRangeY">11</p>
+			<p type="cd">224</p>
+		</data>
 		<frame>
-			<frameName>Tenmu_Move_01.png</frameName>
+			<f>Tenmu_Move_01</f>
 		</frame>
 	</action>
 
-	<action value="Walk">
+	<action name="Walk">
 		<frame>
-			<frameName>Tenmu_Move_01.png</frameName>
+			<f>Tenmu_Move_01</f>
 		</frame>
 	</action>
 
-	<action value="Hurt">
-		<frame>
-		</frame>
-	</action>
-
-	<action value="AirHurt">
-		<frame>
-
-		</frame>
-	</action>
-
-	<action value="KnockDown">
+	<action name="Hurt">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Float">
+	<action name="AirHurt">
+		<frame>
+
+		</frame>
+	</action>
+
+	<action name="KnockDown">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Dead">
+	<action name="Float">
 		<frame>
-			<frameName>Tenmu_Move_01.png</frameName>
 		</frame>
 	</action>
 
-	<action value="nAttack">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">660</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="Dead">
 		<frame>
-			<frameName>Tenmu_Move_01.png</frameName>
-			<eventName type="setAttackBox">ac_hit</eventName>
-			<frameName>Tenmu_Move_02.png</frameName>
-			<frameName>Tenmu_Move_03.png</frameName>
-			<eventName type="setAttackBox">ac_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/damage_i.ogg</eventName>
-			<frameName>Tenmu_Move_04.png</frameName>
-			<frameName>Tenmu_Move_05.png</frameName>
-			<eventName type="setAttackBox">ac_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/damage_i.ogg</eventName>
-			<frameName>Tenmu_Move_06.png</frameName>
-			<frameName>Tenmu_Move_07.png</frameName>
-			<eventName type="setAttackBox">ac_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/damage_i.ogg</eventName>
-			<eventName type="setDetonation">0</eventName>
+			<f>Tenmu_Move_01</f>
 		</frame>
 	</action>
 
-</animation>
+	<action name="nAttack">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">660</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">0</p>
+		</data>
+		<frame>
+			<f>Tenmu_Move_01</f>
+			<e type="setAttackBox">ac_hit</e>
+			<f>Tenmu_Move_02</f>
+			<f>Tenmu_Move_03</f>
+			<e type="setAttackBox">ac_hit</e>
+			<e type="setDSound">Audio/Effect/damage_i.ogg</e>
+			<f>Tenmu_Move_04</f>
+			<f>Tenmu_Move_05</f>
+			<e type="setAttackBox">ac_hit</e>
+			<e type="setDSound">Audio/Effect/damage_i.ogg</e>
+			<f>Tenmu_Move_06</f>
+			<f>Tenmu_Move_07</f>
+			<e type="setAttackBox">ac_hit</e>
+			<e type="setDSound">Audio/Effect/damage_i.ogg</e>
+			<e type="setDetonation">0</e>
+		</frame>
+	</action>
+
+</unit>

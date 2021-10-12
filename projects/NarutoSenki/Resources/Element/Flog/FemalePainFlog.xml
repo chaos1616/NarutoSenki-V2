@@ -1,94 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animation>
+<unit>
 
-	<action value="Idle">
-		<date>
-			<dateName type="attackType">FemalePainFlog</dateName>
-			<dateName type="attackValue">3000</dateName>
-			<dateName type="attackRangeX">33</dateName>
-			<dateName type="attackRangeY">40</dateName>
-			<coldName type="coldDown">160</coldName>
-		</date>
+	<action name="Idle">
+		<data>
+			<p type="attackType">FemalePainFlog</p>
+			<p type="attackValue">3000</p>
+			<p type="attackRangeX">33</p>
+			<p type="attackRangeY">40</p>
+			<p type="cd">160</p>
+		</data>
 		<frame>
-			<frameName>FemalePainFlog_Idle_01.png</frameName>
-			<frameName>FemalePainFlog_Walk_01.png</frameName>
+			<f>FemalePainFlog_Idle_01</f>
+			<f>FemalePainFlog_Walk_01</f>
 		</frame>
 	</action>
 
-	<action value="Walk">
+	<action name="Walk">
 		<frame>
-			<frameName>FemalePainFlog_Walk_01.png</frameName>
-			<frameName>FemalePainFlog_Walk_02.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>FemalePainFlog_Walk_03.png</frameName>
-			<eventName type="setDelay">10</eventName>
+			<f>FemalePainFlog_Walk_01</f>
+			<f>FemalePainFlog_Walk_02</f>
+			<e type="setDelay">10</e>
+			<f>FemalePainFlog_Walk_03</f>
+			<e type="setDelay">10</e>
 		</frame>
 	</action>
 
-	<action value="Hurt">
+	<action name="Hurt">
 		<frame>
-			<eventName type="setMove">32</eventName>
-			<frameName>FemalePainFlog_KnockDown_01.png</frameName>
-
-		</frame>
-	</action>
-
-	<action value="AirHurt">
-		<frame>
-			<frameName>FemalePainFlog_KnockDown_01.png</frameName>
-		</frame>
-	</action>
-
-	<action value="KnockDown">
-		<frame>
-			<frameName>FemalePainFlog_KnockDown_01.png</frameName>
-			<frameName>FemalePainFlog_KnockDown_02.png</frameName>
-			<frameName>FemalePainFlog_KnockDown_03.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>FemalePainFlog_KnockDown_04.png</frameName>
-			<eventName type="setDelay">60</eventName>
-			<frameName>FemalePainFlog_Idle_01.png</frameName>
+			<e type="setMove">32</e>
+			<f>FemalePainFlog_KnockDown_01</f>
 
 		</frame>
 	</action>
 
-	<action value="Float">
+	<action name="AirHurt">
 		<frame>
-			<frameName>FemalePainFlog_Float_01.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>FemalePainFlog_KnockDown_02.png</frameName>
-			<eventName type="setDelay">30</eventName>
+			<f>FemalePainFlog_KnockDown_01</f>
 		</frame>
 	</action>
 
-	<action value="Dead">
+	<action name="KnockDown">
 		<frame>
-			<frameName>FemalePainFlog_KnockDown_01.png</frameName>
-			<frameName>FemalePainFlog_KnockDown_02.png</frameName>
-			<frameName>FemalePainFlog_KnockDown_03.png</frameName>
-			<frameName>FemalePainFlog_KnockDown_04.png</frameName>
+			<f>FemalePainFlog_KnockDown_01</f>
+			<f>FemalePainFlog_KnockDown_02</f>
+			<f>FemalePainFlog_KnockDown_03</f>
+			<e type="setDelay">10</e>
+			<f>FemalePainFlog_KnockDown_04</f>
+			<e type="setDelay">60</e>
+			<f>FemalePainFlog_Idle_01</f>
+
 		</frame>
 	</action>
 
-	<action value="nAttack">
-		<date>
-			<dateName type="attackType">nAttack</dateName>
-			<dateName type="attackValue">20</dateName>
-			<dateName type="attackRangeX">8</dateName>
-			<dateName type="attackRangeY">8</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="Float">
 		<frame>
-			<frameName>FemalePainFlog_NAttack_01.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>FemalePainFlog_NAttack_02.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>FemalePainFlog_NAttack_03.png</frameName>
-			<frameName>FemalePainFlog_NAttack_04.png</frameName>
-			<eventName type="setAttackBox">n_hit</eventName>
-			<eventName type="setDelay">10</eventName>
+			<f>FemalePainFlog_Float_01</f>
+			<e type="setDelay">10</e>
+			<f>FemalePainFlog_KnockDown_02</f>
+			<e type="setDelay">30</e>
+		</frame>
+	</action>
+
+	<action name="Dead">
+		<frame>
+			<f>FemalePainFlog_KnockDown_01</f>
+			<f>FemalePainFlog_KnockDown_02</f>
+			<f>FemalePainFlog_KnockDown_03</f>
+			<f>FemalePainFlog_KnockDown_04</f>
+		</frame>
+	</action>
+
+	<action name="nAttack">
+		<data>
+			<p type="attackType">nAttack</p>
+			<p type="attackValue">20</p>
+			<p type="attackRangeX">8</p>
+			<p type="attackRangeY">8</p>
+			<p type="cd">0</p>
+		</data>
+		<frame>
+			<f>FemalePainFlog_NAttack_01</f>
+			<e type="setDelay">10</e>
+			<f>FemalePainFlog_NAttack_02</f>
+			<e type="setDelay">10</e>
+			<f>FemalePainFlog_NAttack_03</f>
+			<f>FemalePainFlog_NAttack_04</f>
+			<e type="setAttackBox">n_hit</e>
+			<e type="setDelay">10</e>
 		</frame>
 	</action>
 
 
-</animation>
+</unit>

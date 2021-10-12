@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Jugo_AirHurt_01.png</key>
+            <key>Jugo_AirHurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{746,162},{74,62}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{74,62}</string>
             </dict>
-            <key>Jugo_AirHurt_02.png</key>
+            <key>Jugo_AirHurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{717,419},{48,74}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{48,74}</string>
             </dict>
-            <key>Jugo_Float_01.png</key>
+            <key>Jugo_Float_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{720,250},{62,74}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{62,74}</string>
             </dict>
-            <key>Jugo_Float_02.png</key>
+            <key>Jugo_Float_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{692,83},{77,69}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{77,69}</string>
             </dict>
-            <key>Jugo_Float_03.png</key>
+            <key>Jugo_Float_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{675,171},{69,77}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{69,77}</string>
             </dict>
-            <key>Jugo_Hurt_01.png</key>
+            <key>Jugo_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{819,897},{67,67}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{67,67}</string>
             </dict>
-            <key>Jugo_Hurt_02.png</key>
+            <key>Jugo_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{695,899},{69,65}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{69,65}</string>
             </dict>
-            <key>Jugo_Idle_01.png</key>
+            <key>Jugo_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{425,323},{63,61}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{63,61}</string>
             </dict>
-            <key>Jugo_Idle_02.png</key>
+            <key>Jugo_Idle_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{712,832},{65,62}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{65,62}</string>
             </dict>
-            <key>Jugo_Idle_03.png</key>
+            <key>Jugo_Idle_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{776,832},{66,63}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{66,63}</string>
             </dict>
-            <key>Jugo_Idle_04.png</key>
+            <key>Jugo_Idle_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{712,832},{65,62}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{65,62}</string>
             </dict>
-            <key>Jugo_KnockDown_01.png</key>
+            <key>Jugo_KnockDown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{610,551},{81,50}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{81,50}</string>
             </dict>
-            <key>Jugo_KnockDown_02.png</key>
+            <key>Jugo_KnockDown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{763,80},{74,54}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{74,54}</string>
             </dict>
-            <key>Jugo_KnockDown_03.png</key>
+            <key>Jugo_KnockDown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{479,806},{88,26}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{88,26}</string>
             </dict>
-            <key>Jugo_KnockDown_04.png</key>
+            <key>Jugo_KnockDown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{641,899},{73,52}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{73,52}</string>
             </dict>
-            <key>Jugo_KnockDown_05.png</key>
+            <key>Jugo_KnockDown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{622,634},{58,62}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{58,62}</string>
             </dict>
-            <key>Jugo_KnockDown_06.png</key>
+            <key>Jugo_KnockDown_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{635,834},{75,63}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{75,63}</string>
             </dict>
-            <key>Jugo_NAttack_01.png</key>
+            <key>Jugo_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{736,495},{62,63}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{62,63}</string>
             </dict>
-            <key>Jugo_NAttack_02.png</key>
+            <key>Jugo_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{531,570},{63,77}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{63,77}</string>
             </dict>
-            <key>Jugo_NAttack_03.png</key>
+            <key>Jugo_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{587,2},{86,77}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{86,77}</string>
             </dict>
-            <key>Jugo_NAttack_04.png</key>
+            <key>Jugo_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{666,2},{79,77}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{79,77}</string>
             </dict>
-            <key>Jugo_NAttack_05.png</key>
+            <key>Jugo_NAttack_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{569,776},{56,67}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{56,67}</string>
             </dict>
-            <key>Jugo_NAttack_06.png</key>
+            <key>Jugo_NAttack_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{660,460},{55,80}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{55,80}</string>
             </dict>
-            <key>Jugo_NAttack_07.png</key>
+            <key>Jugo_NAttack_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{702,694},{71,79}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{71,79}</string>
             </dict>
-            <key>Jugo_NAttack_08.png</key>
+            <key>Jugo_NAttack_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{322,900},{112,71}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{112,71}</string>
             </dict>
-            <key>Jugo_NAttack_09.png</key>
+            <key>Jugo_NAttack_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{479,697},{107,71}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{107,71}</string>
             </dict>
-            <key>Jugo_NAttack_10.png</key>
+            <key>Jugo_NAttack_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{569,776},{56,67}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{56,67}</string>
             </dict>
-            <key>Jugo_NAttack_11.png</key>
+            <key>Jugo_NAttack_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{736,495},{62,63}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{62,63}</string>
             </dict>
-            <key>Jugo_NAttack_12.png</key>
+            <key>Jugo_NAttack_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{388,636},{60,74}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{60,74}</string>
             </dict>
-            <key>Jugo_NAttack_13.png</key>
+            <key>Jugo_NAttack_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{352,236},{148,71}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{148,71}</string>
             </dict>
-            <key>Jugo_NAttack_14.png</key>
+            <key>Jugo_NAttack_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{543,94},{87,68}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{87,68}</string>
             </dict>
-            <key>Jugo_NAttack_15.png</key>
+            <key>Jugo_NAttack_15</key>
             <dict>
                 <key>frame</key>
                 <string>{{647,264},{77,71}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{77,71}</string>
             </dict>
-            <key>Jugo_Run_01.png</key>
+            <key>Jugo_Run_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{560,899},{106,79}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{200,79}</string>
             </dict>
-            <key>Jugo_Run_02.png</key>
+            <key>Jugo_Run_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,902},{120,79}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{200,79}</string>
             </dict>
-            <key>Jugo_Run_03.png</key>
+            <key>Jugo_Run_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{398,698},{134,79}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{200,79}</string>
             </dict>
-            <key>Jugo_Skill01_01.png</key>
+            <key>Jugo_Skill01_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{398,834},{65,64}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{79,80}</string>
             </dict>
-            <key>Jugo_Skill01_02.png</key>
+            <key>Jugo_Skill01_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{627,378},{79,80}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{79,80}</string>
             </dict>
-            <key>Jugo_Skill01_03.png</key>
+            <key>Jugo_Skill01_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{171,902},{114,69}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{114,69}</string>
             </dict>
-            <key>Jugo_Skill01_04.png</key>
+            <key>Jugo_Skill01_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{487,900},{108,71}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{108,71}</string>
             </dict>
-            <key>Jugo_Skill02_01.png</key>
+            <key>Jugo_Skill02_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{583,468},{81,75}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{81,75}</string>
             </dict>
-            <key>Jugo_Skill02_02.png</key>
+            <key>Jugo_Skill02_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{406,2},{106,63}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{106,63}</string>
             </dict>
-            <key>Jugo_Skill02_03.png</key>
+            <key>Jugo_Skill02_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{526,834},{107,63}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{107,63}</string>
             </dict>
-            <key>Jugo_Skill02_04.png</key>
+            <key>Jugo_Skill02_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{466,484},{106,63}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{106,63}</string>
             </dict>
-            <key>Jugo_Skill02_06.png</key>
+            <key>Jugo_Skill02_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{464,636},{59,75}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{59,75}</string>
             </dict>
-            <key>Jugo_Skill02_07.png</key>
+            <key>Jugo_Skill02_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{358,386},{97,58}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{97,58}</string>
             </dict>
-            <key>Jugo_Skill02_08.png</key>
+            <key>Jugo_Skill02_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{418,386},{96,57}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{96,57}</string>
             </dict>
-            <key>Jugo_Skill02_10.png</key>
+            <key>Jugo_Skill02_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{686,623},{77,69}}</string>
@@ -615,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{77,69}</string>
             </dict>
-            <key>Jugo_Skill03_02.png</key>
+            <key>Jugo_Skill03_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{638,775},{56,65}}</string>
@@ -628,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{56,65}</string>
             </dict>
-            <key>Jugo_Skill03_03.png</key>
+            <key>Jugo_Skill03_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{490,323},{58,81}}</string>
@@ -641,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{58,81}</string>
             </dict>
-            <key>Jugo_Skill03_04.png</key>
+            <key>Jugo_Skill03_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{83,902},{86,116}}</string>
@@ -654,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{120,124}</string>
             </dict>
-            <key>Jugo_Skill03_05.png</key>
+            <key>Jugo_Skill03_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{395,900},{90,110}}</string>
@@ -667,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{120,124}</string>
             </dict>
-            <key>Jugo_Skill04_01.png</key>
+            <key>Jugo_Skill04_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{762,899},{55,69}}</string>
@@ -680,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{55,69}</string>
             </dict>
-            <key>Jugo_Skill04_02.png</key>
+            <key>Jugo_Skill04_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{552,695},{79,74}}</string>
@@ -693,7 +693,7 @@
                 <key>sourceSize</key>
                 <string>{79,74}</string>
             </dict>
-            <key>Jugo_Skill04_03.png</key>
+            <key>Jugo_Skill04_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{242,900},{78,112}}</string>
@@ -706,7 +706,7 @@
                 <key>sourceSize</key>
                 <string>{78,112}</string>
             </dict>
-            <key>Jugo_Skill04_04.png</key>
+            <key>Jugo_Skill04_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{406,110},{55,105}}</string>
@@ -719,7 +719,7 @@
                 <key>sourceSize</key>
                 <string>{55,105}</string>
             </dict>
-            <key>Jugo_Skill04_05.png</key>
+            <key>Jugo_Skill04_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{767,419},{63,62}}</string>
@@ -732,7 +732,7 @@
                 <key>sourceSize</key>
                 <string>{63,62}</string>
             </dict>
-            <key>Jugo_Skill04_06.png</key>
+            <key>Jugo_Skill04_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{708,343},{70,74}}</string>
@@ -745,7 +745,7 @@
                 <key>sourceSize</key>
                 <string>{70,84}</string>
             </dict>
-            <key>Jugo_Skill04_12.png</key>
+            <key>Jugo_Skill04_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{297,400},{59,88}}</string>
@@ -758,7 +758,7 @@
                 <key>sourceSize</key>
                 <string>{59,88}</string>
             </dict>
-            <key>Jugo_Skill04_14.png</key>
+            <key>Jugo_Skill04_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{705,775},{55,74}}</string>
@@ -771,7 +771,7 @@
                 <key>sourceSize</key>
                 <string>{55,74}</string>
             </dict>
-            <key>Jugo_Skill04_15.png</key>
+            <key>Jugo_Skill04_15</key>
             <dict>
                 <key>frame</key>
                 <string>{{745,2},{48,76}}</string>
@@ -784,7 +784,7 @@
                 <key>sourceSize</key>
                 <string>{48,76}</string>
             </dict>
-            <key>Jugo_Skill04_16.png</key>
+            <key>Jugo_Skill04_16</key>
             <dict>
                 <key>frame</key>
                 <string>{{465,834},{64,59}}</string>
@@ -797,7 +797,7 @@
                 <key>sourceSize</key>
                 <string>{64,59}</string>
             </dict>
-            <key>Jugo_Skill04_17.png</key>
+            <key>Jugo_Skill04_17</key>
             <dict>
                 <key>frame</key>
                 <string>{{711,970},{67,51}}</string>
@@ -810,7 +810,7 @@
                 <key>sourceSize</key>
                 <string>{67,51}</string>
             </dict>
-            <key>Jugo_Skill04_18.png</key>
+            <key>Jugo_Skill04_18</key>
             <dict>
                 <key>frame</key>
                 <string>{{641,974},{48,68}}</string>
@@ -823,7 +823,7 @@
                 <key>sourceSize</key>
                 <string>{48,68}</string>
             </dict>
-            <key>Jugo_Skill05_01.png</key>
+            <key>Jugo_Skill05_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{780,970},{54,48}}</string>
@@ -836,7 +836,7 @@
                 <key>sourceSize</key>
                 <string>{54,48}</string>
             </dict>
-            <key>Jugo_Skill05_02.png</key>
+            <key>Jugo_Skill05_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{635,834},{75,63}}</string>
@@ -849,7 +849,7 @@
                 <key>sourceSize</key>
                 <string>{75,63}</string>
             </dict>
-            <key>Jugo_Skill05_03.png</key>
+            <key>Jugo_Skill05_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{463,110},{90,78}}</string>
@@ -862,7 +862,7 @@
                 <key>sourceSize</key>
                 <string>{90,78}</string>
             </dict>
-            <key>Jugo_Skill05_04.png</key>
+            <key>Jugo_Skill05_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{218,400},{88,77}}</string>
@@ -875,7 +875,7 @@
                 <key>sourceSize</key>
                 <string>{88,77}</string>
             </dict>
-            <key>Jugo_Skill05_05.png</key>
+            <key>Jugo_Skill05_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{477,386},{95,74}}</string>
@@ -888,7 +888,7 @@
                 <key>sourceSize</key>
                 <string>{95,74}</string>
             </dict>
-            <key>Jugo_Skill05_06.png</key>
+            <key>Jugo_Skill05_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{425,217},{104,84}}</string>
@@ -901,7 +901,7 @@
                 <key>sourceSize</key>
                 <string>{104,84}</string>
             </dict>
-            <key>Jugo_Skill05_07.png</key>
+            <key>Jugo_Skill05_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{200,698},{200,196}}</string>
@@ -914,7 +914,7 @@
                 <key>sourceSize</key>
                 <string>{314,200}</string>
             </dict>
-            <key>Jugo_Skill05_08.png</key>
+            <key>Jugo_Skill05_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,698},{196,202}}</string>
@@ -927,7 +927,7 @@
                 <key>sourceSize</key>
                 <string>{314,214}</string>
             </dict>
-            <key>Jugo_Skill05_09.png</key>
+            <key>Jugo_Skill05_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,490},{200,206}}</string>
@@ -940,7 +940,7 @@
                 <key>sourceSize</key>
                 <string>{314,216}</string>
             </dict>
-            <key>Jugo_Skill05_10.png</key>
+            <key>Jugo_Skill05_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{200,250}}</string>
@@ -953,7 +953,7 @@
                 <key>sourceSize</key>
                 <string>{314,272}</string>
             </dict>
-            <key>Jugo_Skill05_11.png</key>
+            <key>Jugo_Skill05_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{204,2},{200,232}}</string>
@@ -966,7 +966,7 @@
                 <key>sourceSize</key>
                 <string>{314,250}</string>
             </dict>
-            <key>Jugo_Skill05_12.png</key>
+            <key>Jugo_Skill05_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,254},{214,234}}</string>
@@ -979,7 +979,7 @@
                 <key>sourceSize</key>
                 <string>{314,244}</string>
             </dict>
-            <key>Jugo_Skill05_13.png</key>
+            <key>Jugo_Skill05_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{795,2},{52,74}}</string>
@@ -992,7 +992,7 @@
                 <key>sourceSize</key>
                 <string>{52,74}</string>
             </dict>
-            <key>Jugo_Skill05_14.png</key>
+            <key>Jugo_Skill05_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{471,2},{66,90}}</string>
@@ -1005,7 +1005,7 @@
                 <key>sourceSize</key>
                 <string>{100,90}</string>
             </dict>
-            <key>Jugo_Skill05_15.png</key>
+            <key>Jugo_Skill05_15</key>
             <dict>
                 <key>frame</key>
                 <string>{{539,2},{46,90}}</string>
@@ -1018,7 +1018,7 @@
                 <key>sourceSize</key>
                 <string>{100,90}</string>
             </dict>
-            <key>Jugo_Skill05_16.png</key>
+            <key>Jugo_Skill05_16</key>
             <dict>
                 <key>frame</key>
                 <string>{{204,654},{36,90}}</string>
@@ -1031,7 +1031,7 @@
                 <key>sourceSize</key>
                 <string>{100,90}</string>
             </dict>
-            <key>Jugo_Skill05_17.png</key>
+            <key>Jugo_Skill05_17</key>
             <dict>
                 <key>frame</key>
                 <string>{{296,654},{34,90}}</string>
@@ -1044,7 +1044,7 @@
                 <key>sourceSize</key>
                 <string>{100,90}</string>
             </dict>
-            <key>Jugo_Skill10_01.png</key>
+            <key>Jugo_Skill10_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{541,635},{58,79}}</string>
@@ -1057,7 +1057,7 @@
                 <key>sourceSize</key>
                 <string>{58,79}</string>
             </dict>
-            <key>Jugo_Skill11_02.png</key>
+            <key>Jugo_Skill11_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{531,483},{50,85}}</string>
@@ -1070,7 +1070,7 @@
                 <key>sourceSize</key>
                 <string>{50,85}</string>
             </dict>
-            <key>Jugo_Skill11_03.png</key>
+            <key>Jugo_Skill11_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{511,202},{83,89}}</string>
@@ -1083,7 +1083,7 @@
                 <key>sourceSize</key>
                 <string>{83,89}</string>
             </dict>
-            <key>Jugo_Skill11_04.png</key>
+            <key>Jugo_Skill11_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{218,236},{162,132}}</string>
@@ -1096,7 +1096,7 @@
                 <key>sourceSize</key>
                 <string>{240,132}</string>
             </dict>
-            <key>Jugo_Skill11_05.png</key>
+            <key>Jugo_Skill11_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{204,490},{162,132}}</string>
@@ -1109,7 +1109,7 @@
                 <key>sourceSize</key>
                 <string>{240,132}</string>
             </dict>
-            <key>Jugo_Skill11_06.png</key>
+            <key>Jugo_Skill11_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{338,490},{144,126}}</string>
@@ -1122,7 +1122,7 @@
                 <key>sourceSize</key>
                 <string>{240,132}</string>
             </dict>
-            <key>Jugo_Walk_01.png</key>
+            <key>Jugo_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{613,90},{77,79}}</string>
@@ -1135,7 +1135,7 @@
                 <key>sourceSize</key>
                 <string>{77,79}</string>
             </dict>
-            <key>Jugo_Walk_02.png</key>
+            <key>Jugo_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{573,293},{72,83}}</string>
@@ -1148,7 +1148,7 @@
                 <key>sourceSize</key>
                 <string>{72,83}</string>
             </dict>
-            <key>Jugo_Walk_03.png</key>
+            <key>Jugo_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{662,542},{72,79}}</string>
@@ -1161,7 +1161,7 @@
                 <key>sourceSize</key>
                 <string>{72,79}</string>
             </dict>
-            <key>Jugo_Walk_04.png</key>
+            <key>Jugo_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{596,183},{77,79}}</string>
@@ -1174,7 +1174,7 @@
                 <key>sourceSize</key>
                 <string>{77,79}</string>
             </dict>
-            <key>Jugo_Walk_05.png</key>
+            <key>Jugo_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{553,383},{72,83}}</string>
@@ -1187,7 +1187,7 @@
                 <key>sourceSize</key>
                 <string>{72,83}</string>
             </dict>
-            <key>Jugo_Walk_06.png</key>
+            <key>Jugo_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{628,694},{72,79}}</string>

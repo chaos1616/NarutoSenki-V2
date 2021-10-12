@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Asuma_AirHurt_01.png</key>
+            <key>Asuma_AirHurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{248,311},{55,65}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{55,65}</string>
             </dict>
-            <key>Asuma_AirHurt_02.png</key>
+            <key>Asuma_AirHurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{146,331},{34,84}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{34,84}</string>
             </dict>
-            <key>Asuma_Float_001.png</key>
+            <key>Asuma_Float_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{88,338},{65,55}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{65,55}</string>
             </dict>
-            <key>Asuma_Float_002.png</key>
+            <key>Asuma_Float_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{82,562},{71,54}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{71,54}</string>
             </dict>
-            <key>Asuma_Float_003.png</key>
+            <key>Asuma_Float_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{86,489},{54,71}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{54,71}</string>
             </dict>
-            <key>Asuma_Hurt_01.png</key>
+            <key>Asuma_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,269},{54,84}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{54,84}</string>
             </dict>
-            <key>Asuma_Hurt_02.png</key>
+            <key>Asuma_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{406,359},{58,78}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{58,78}</string>
             </dict>
-            <key>Asuma_Idle_001.png</key>
+            <key>Asuma_Idle_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{305,440},{48,81}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{58,93}</string>
             </dict>
-            <key>Asuma_Idle_002.png</key>
+            <key>Asuma_Idle_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{305,388},{50,81}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{58,93}</string>
             </dict>
-            <key>Asuma_Idle_003.png</key>
+            <key>Asuma_Idle_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,501},{50,79}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{58,93}</string>
             </dict>
-            <key>Asuma_Idle_004.png</key>
+            <key>Asuma_Idle_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{143,409},{50,81}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{58,93}</string>
             </dict>
-            <key>Asuma_KnockDown_001.png</key>
+            <key>Asuma_KnockDown_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,325},{84,34}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{84,34}</string>
             </dict>
-            <key>Asuma_KnockDown_002.png</key>
+            <key>Asuma_KnockDown_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{879,120},{88,23}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{88,23}</string>
             </dict>
-            <key>Asuma_KnockDown_003.png</key>
+            <key>Asuma_KnockDown_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{304,490},{75,62}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{75,62}</string>
             </dict>
-            <key>Asuma_KnockDown_004.png</key>
+            <key>Asuma_KnockDown_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{558,455},{59,68}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{59,68}</string>
             </dict>
-            <key>Asuma_KnockDown_005.png</key>
+            <key>Asuma_KnockDown_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{388,439},{50,76}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{50,76}</string>
             </dict>
-            <key>Asuma_NAttack_001.png</key>
+            <key>Asuma_NAttack_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{248,234},{55,75}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{97,99}</string>
             </dict>
-            <key>Asuma_NAttack_002.png</key>
+            <key>Asuma_NAttack_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{143,461},{79,73}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{97,99}</string>
             </dict>
-            <key>Asuma_NAttack_003.png</key>
+            <key>Asuma_NAttack_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{230,378},{79,73}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{97,99}</string>
             </dict>
-            <key>Asuma_NAttack_004.png</key>
+            <key>Asuma_NAttack_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{299,554},{65,71}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{97,99}</string>
             </dict>
-            <key>Asuma_NAttack_005.png</key>
+            <key>Asuma_NAttack_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{224,501},{73,71}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{97,99}</string>
             </dict>
-            <key>Asuma_NAttack_006.png</key>
+            <key>Asuma_NAttack_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{76,635},{59,67}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{97,99}</string>
             </dict>
-            <key>Asuma_NAttack_007.png</key>
+            <key>Asuma_NAttack_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{582,209},{37,95}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{97,99}</string>
             </dict>
-            <key>Asuma_NAttack_008.png</key>
+            <key>Asuma_NAttack_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{466,376},{39,93}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{97,99}</string>
             </dict>
-            <key>Asuma_NAttack_009.png</key>
+            <key>Asuma_NAttack_009</key>
             <dict>
                 <key>frame</key>
                 <string>{{415,288},{49,69}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{97,99}</string>
             </dict>
-            <key>Asuma_Skill01_001.png</key>
+            <key>Asuma_Skill01_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{733,338},{110,74}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{190,74}</string>
             </dict>
-            <key>Asuma_Skill01_002.png</key>
+            <key>Asuma_Skill01_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{466,209},{114,92}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{190,92}</string>
             </dict>
-            <key>Asuma_Skill01_003.png</key>
+            <key>Asuma_Skill01_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{906,2},{116,94}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{190,94}</string>
             </dict>
-            <key>Asuma_Skill01_004.png</key>
+            <key>Asuma_Skill01_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{872,329},{118,95}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{190,101}</string>
             </dict>
-            <key>Asuma_Skill01_005.png</key>
+            <key>Asuma_Skill01_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{305,210},{108,80}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{190,94}</string>
             </dict>
-            <key>Asuma_Skill01_006.png</key>
+            <key>Asuma_Skill01_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{466,303},{106,71}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{190,71}</string>
             </dict>
-            <key>Asuma_Skill01_007.png</key>
+            <key>Asuma_Skill01_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{415,210},{49,76}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{49,76}</string>
             </dict>
-            <key>Asuma_Skill02_001.png</key>
+            <key>Asuma_Skill02_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{619,410},{84,81}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{200,93}</string>
             </dict>
-            <key>Asuma_Skill02_002.png</key>
+            <key>Asuma_Skill02_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{622,195},{126,105}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{200,111}</string>
             </dict>
-            <key>Asuma_Skill02_003.png</key>
+            <key>Asuma_Skill02_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{621,302},{106,110}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{200,122}</string>
             </dict>
-            <key>Asuma_Skill02_004.png</key>
+            <key>Asuma_Skill02_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{146,234},{100,95}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{200,115}</string>
             </dict>
-            <key>Asuma_Skill02_005.png</key>
+            <key>Asuma_Skill02_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,433},{82,66}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{200,84}</string>
             </dict>
-            <key>Asuma_Skill02_006.png</key>
+            <key>Asuma_Skill02_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{158,72}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{200,84}</string>
             </dict>
-            <key>Asuma_Skill02_007.png</key>
+            <key>Asuma_Skill02_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{318,2},{154,71}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{200,87}</string>
             </dict>
-            <key>Asuma_Skill02_008.png</key>
+            <key>Asuma_Skill02_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,193},{142,74}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{200,76}</string>
             </dict>
-            <key>Asuma_Skill03_001.png</key>
+            <key>Asuma_Skill03_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{226,459},{40,76}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{126,76}</string>
             </dict>
-            <key>Asuma_Skill03_002.png</key>
+            <key>Asuma_Skill03_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{142,536},{64,73}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{126,73}</string>
             </dict>
-            <key>Asuma_Skill03_003.png</key>
+            <key>Asuma_Skill03_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{466,417},{74,90}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{126,90}</string>
             </dict>
-            <key>Asuma_Skill03_004.png</key>
+            <key>Asuma_Skill03_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{305,292},{94,99}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{126,99}</string>
             </dict>
-            <key>Asuma_Skill03_005.png</key>
+            <key>Asuma_Skill03_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{751,120},{126,108}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{230,108}</string>
             </dict>
-            <key>Asuma_Skill03_006.png</key>
+            <key>Asuma_Skill03_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,76},{154,115}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{230,115}</string>
             </dict>
-            <key>Asuma_Skill03_007.png</key>
+            <key>Asuma_Skill03_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{162,2},{154,117}}</string>
@@ -615,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{230,123}</string>
             </dict>
-            <key>Asuma_Skill03_008.png</key>
+            <key>Asuma_Skill03_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{774,2},{130,116}}</string>
@@ -628,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{230,116}</string>
             </dict>
-            <key>Asuma_Skill03_009.png</key>
+            <key>Asuma_Skill03_009</key>
             <dict>
                 <key>frame</key>
                 <string>{{574,306},{42,76}}</string>
@@ -641,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{42,76}</string>
             </dict>
-            <key>Asuma_Skill04_000.png</key>
+            <key>Asuma_Skill04_000</key>
             <dict>
                 <key>frame</key>
                 <string>{{138,602},{53,69}}</string>
@@ -654,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{53,69}</string>
             </dict>
-            <key>Asuma_Skill04_001.png</key>
+            <key>Asuma_Skill04_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{145,367},{40,83}}</string>
@@ -667,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{96,83}</string>
             </dict>
-            <key>Asuma_Skill04_002.png</key>
+            <key>Asuma_Skill04_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,361},{70,83}}</string>
@@ -680,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{96,83}</string>
             </dict>
-            <key>Asuma_Skill04_003.png</key>
+            <key>Asuma_Skill04_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{625,2},{147,86}}</string>
@@ -693,7 +693,7 @@
                 <key>sourceSize</key>
                 <string>{153,88}</string>
             </dict>
-            <key>Asuma_Skill04_004.png</key>
+            <key>Asuma_Skill04_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{474,2},{149,70}}</string>
@@ -706,7 +706,7 @@
                 <key>sourceSize</key>
                 <string>{153,82}</string>
             </dict>
-            <key>Asuma_Skill04_005.png</key>
+            <key>Asuma_Skill04_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{158,121},{145,111}}</string>
@@ -719,7 +719,7 @@
                 <key>sourceSize</key>
                 <string>{153,121}</string>
             </dict>
-            <key>Asuma_Skill04_006.png</key>
+            <key>Asuma_Skill04_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{622,90},{127,103}}</string>
@@ -732,7 +732,7 @@
                 <key>sourceSize</key>
                 <string>{153,135}</string>
             </dict>
-            <key>Asuma_Skill04_007.png</key>
+            <key>Asuma_Skill04_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{906,98},{115,122}}</string>
@@ -745,7 +745,7 @@
                 <key>sourceSize</key>
                 <string>{153,130}</string>
             </dict>
-            <key>Asuma_Skill04_008.png</key>
+            <key>Asuma_Skill04_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{879,222},{105,124}}</string>
@@ -758,7 +758,7 @@
                 <key>sourceSize</key>
                 <string>{153,138}</string>
             </dict>
-            <key>Asuma_Skill04_009.png</key>
+            <key>Asuma_Skill04_009</key>
             <dict>
                 <key>frame</key>
                 <string>{{87,405},{54,82}}</string>
@@ -771,7 +771,7 @@
                 <key>sourceSize</key>
                 <string>{170,90}</string>
             </dict>
-            <key>Asuma_Skill04_010.png</key>
+            <key>Asuma_Skill04_010</key>
             <dict>
                 <key>frame</key>
                 <string>{{318,75},{146,133}}</string>
@@ -784,7 +784,7 @@
                 <key>sourceSize</key>
                 <string>{170,133}</string>
             </dict>
-            <key>Asuma_Skill04_011.png</key>
+            <key>Asuma_Skill04_011</key>
             <dict>
                 <key>frame</key>
                 <string>{{474,74},{146,133}}</string>
@@ -797,7 +797,7 @@
                 <key>sourceSize</key>
                 <string>{170,147}</string>
             </dict>
-            <key>Asuma_Skill04_012.png</key>
+            <key>Asuma_Skill04_012</key>
             <dict>
                 <key>frame</key>
                 <string>{{750,230},{120,106}}</string>
@@ -810,7 +810,7 @@
                 <key>sourceSize</key>
                 <string>{170,106}</string>
             </dict>
-            <key>Asuma_Skill05_001.png</key>
+            <key>Asuma_Skill05_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,553},{40,78}}</string>
@@ -823,7 +823,7 @@
                 <key>sourceSize</key>
                 <string>{40,78}</string>
             </dict>
-            <key>Asuma_Walk_01.png</key>
+            <key>Asuma_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{217,574},{70,65}}</string>
@@ -836,7 +836,7 @@
                 <key>sourceSize</key>
                 <string>{104,69}</string>
             </dict>
-            <key>Asuma_Walk_02.png</key>
+            <key>Asuma_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{381,491},{72,65}}</string>
@@ -849,7 +849,7 @@
                 <key>sourceSize</key>
                 <string>{104,69}</string>
             </dict>
-            <key>Asuma_Walk_03.png</key>
+            <key>Asuma_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{88,269},{56,67}}</string>
@@ -862,7 +862,7 @@
                 <key>sourceSize</key>
                 <string>{104,69}</string>
             </dict>
-            <key>Asuma_Walk_04.png</key>
+            <key>Asuma_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,664},{66,65}}</string>
@@ -875,7 +875,7 @@
                 <key>sourceSize</key>
                 <string>{104,69}</string>
             </dict>
-            <key>Asuma_Walk_05.png</key>
+            <key>Asuma_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,595},{72,67}}</string>
@@ -888,7 +888,7 @@
                 <key>sourceSize</key>
                 <string>{104,69}</string>
             </dict>
-            <key>Asuma_Walk_06.png</key>
+            <key>Asuma_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{561,384},{56,69}}</string>

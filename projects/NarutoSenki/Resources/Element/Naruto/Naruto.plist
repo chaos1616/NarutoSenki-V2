@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Naruto_AirHurt_01.png</key>
+            <key>Naruto_AirHurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{531,473},{49,50}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{49,50}</string>
             </dict>
-            <key>Naruto_AirHurt_02.png</key>
+            <key>Naruto_AirHurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{901,367},{35,68}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{35,68}</string>
             </dict>
-            <key>Naruto_Float_01.png</key>
+            <key>Naruto_Float_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{596,470},{50,49}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{50,49}</string>
             </dict>
-            <key>Naruto_Float_02.png</key>
+            <key>Naruto_Float_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{140,629},{65,58}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{65,58}</string>
             </dict>
-            <key>Naruto_Float_03.png</key>
+            <key>Naruto_Float_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{871,490},{58,56}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{58,56}</string>
             </dict>
-            <key>Naruto_Hurt_01.png</key>
+            <key>Naruto_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{77,567},{53,69}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{53,69}</string>
             </dict>
-            <key>Naruto_Hurt_02.png</key>
+            <key>Naruto_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{531,423},{48,63}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{48,69}</string>
             </dict>
-            <key>Naruto_Idle_001.png</key>
+            <key>Naruto_Idle_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{807,392},{61,62}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{63,66}</string>
             </dict>
-            <key>Naruto_Idle_002.png</key>
+            <key>Naruto_Idle_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{70,677},{61,64}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{63,66}</string>
             </dict>
-            <key>Naruto_Idle_003.png</key>
+            <key>Naruto_Idle_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{309,538},{63,66}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{63,66}</string>
             </dict>
-            <key>Naruto_Idle_004.png</key>
+            <key>Naruto_Idle_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{748,112},{63,62}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{63,66}</string>
             </dict>
-            <key>Naruto_KnockDown_01.png</key>
+            <key>Naruto_KnockDown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{496,284},{58,41}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{58,69}</string>
             </dict>
-            <key>Naruto_KnockDown_02.png</key>
+            <key>Naruto_KnockDown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{496,344},{68,35}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{68,69}</string>
             </dict>
-            <key>Naruto_KnockDown_03.png</key>
+            <key>Naruto_KnockDown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{511,194},{75,28}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{75,28}</string>
             </dict>
-            <key>Naruto_KnockDown_04.png</key>
+            <key>Naruto_KnockDown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{901,317},{37,48}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{37,48}</string>
             </dict>
-            <key>Naruto_KnockDown_05.png</key>
+            <key>Naruto_KnockDown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{871,437},{62,51}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{62,51}</string>
             </dict>
-            <key>Naruto_KnockDown_06.png</key>
+            <key>Naruto_KnockDown_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{198,324},{42,58}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{42,58}</string>
             </dict>
-            <key>Naruto_NAttack_01.png</key>
+            <key>Naruto_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{807,455},{48,62}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{54,62}</string>
             </dict>
-            <key>Naruto_NAttack_02.png</key>
+            <key>Naruto_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{324,410},{78,60}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{84,62}</string>
             </dict>
-            <key>Naruto_NAttack_03.png</key>
+            <key>Naruto_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{539,306},{76,60}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{76,62}</string>
             </dict>
-            <key>Naruto_NAttack_04.png</key>
+            <key>Naruto_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{617,316},{47,68}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{47,68}</string>
             </dict>
-            <key>Naruto_NAttack_05.png</key>
+            <key>Naruto_NAttack_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{686,368},{53,64}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{59,64}</string>
             </dict>
-            <key>Naruto_NAttack_06.png</key>
+            <key>Naruto_NAttack_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{413,351},{81,60}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{87,64}</string>
             </dict>
-            <key>Naruto_NAttack_07.png</key>
+            <key>Naruto_NAttack_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{333,348},{78,60}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{84,64}</string>
             </dict>
-            <key>Naruto_NAttack_08.png</key>
+            <key>Naruto_NAttack_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{153,526},{46,70}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{52,70}</string>
             </dict>
-            <key>Naruto_NAttack_09.png</key>
+            <key>Naruto_NAttack_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{602,420},{48,64}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{52,70}</string>
             </dict>
-            <key>Naruto_NAttack_10.png</key>
+            <key>Naruto_NAttack_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,596},{59,68}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{65,70}</string>
             </dict>
-            <key>Naruto_NAttack_11.png</key>
+            <key>Naruto_NAttack_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{237,484},{57,70}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{61,70}</string>
             </dict>
-            <key>Naruto_Skill01_02.png</key>
+            <key>Naruto_Skill01_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{161,458},{74,66}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{74,66}</string>
             </dict>
-            <key>Naruto_Skill01_03.png</key>
+            <key>Naruto_Skill01_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{85,426},{74,66}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{74,66}</string>
             </dict>
-            <key>Naruto_Skill01_05.png</key>
+            <key>Naruto_Skill01_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,712},{64,59}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{64,59}</string>
             </dict>
-            <key>Naruto_Skill01_06.png</key>
+            <key>Naruto_Skill01_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,533},{73,61}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{73,61}</string>
             </dict>
-            <key>Naruto_Skill01_07.png</key>
+            <key>Naruto_Skill01_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{618,175},{126,70}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{126,76}</string>
             </dict>
-            <key>Naruto_Skill01_08.png</key>
+            <key>Naruto_Skill01_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{948,102},{126,74}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{126,76}</string>
             </dict>
-            <key>Naruto_Skill01_09.png</key>
+            <key>Naruto_Skill01_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{414,116},{126,76}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{126,76}</string>
             </dict>
-            <key>Naruto_Skill02_02.png</key>
+            <key>Naruto_Skill02_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,657},{53,66}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{53,66}</string>
             </dict>
-            <key>Naruto_Skill02_03.png</key>
+            <key>Naruto_Skill02_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{72,622},{53,66}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{53,66}</string>
             </dict>
-            <key>Naruto_Skill02_04.png</key>
+            <key>Naruto_Skill02_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{476,414},{53,66}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{53,66}</string>
             </dict>
-            <key>Naruto_Skill03_02.png</key>
+            <key>Naruto_Skill03_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{617,247},{94,67}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{130,67}</string>
             </dict>
-            <key>Naruto_Skill03_04.png</key>
+            <key>Naruto_Skill03_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{243,281},{88,68}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{130,68}</string>
             </dict>
-            <key>Naruto_Skill03_05.png</key>
+            <key>Naruto_Skill03_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{413,194},{88,96}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{130,96}</string>
             </dict>
-            <key>Naruto_Skill03_07.png</key>
+            <key>Naruto_Skill03_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{938,434},{83,71}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{83,71}</string>
             </dict>
-            <key>Naruto_Skill03_08.png</key>
+            <key>Naruto_Skill03_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{106,275},{90,70}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{98,70}</string>
             </dict>
-            <key>Naruto_Skill03_09.png</key>
+            <key>Naruto_Skill03_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,186},{116,73}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{160,75}</string>
             </dict>
-            <key>Naruto_Skill03_10.png</key>
+            <key>Naruto_Skill03_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{126,118},{116,76}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{160,82}</string>
             </dict>
-            <key>Naruto_Skill03_11.png</key>
+            <key>Naruto_Skill03_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{120,196},{110,77}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{160,77}</string>
             </dict>
-            <key>Naruto_Skill03_12.png</key>
+            <key>Naruto_Skill03_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{244,118},{114,71}}</string>
@@ -615,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{160,79}</string>
             </dict>
-            <key>Naruto_Skill04_001.png</key>
+            <key>Naruto_Skill04_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{668,423},{57,50}}</string>
@@ -628,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{117,92}</string>
             </dict>
-            <key>Naruto_Skill04_002.png</key>
+            <key>Naruto_Skill04_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{216,598},{65,58}}</string>
@@ -641,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{117,92}</string>
             </dict>
-            <key>Naruto_Skill04_003.png</key>
+            <key>Naruto_Skill04_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{940,354},{81,78}}</string>
@@ -654,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{117,92}</string>
             </dict>
-            <key>Naruto_Skill05_005.png</key>
+            <key>Naruto_Skill05_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{393,480},{66,64}}</string>
@@ -667,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{356,114}</string>
             </dict>
-            <key>Naruto_Skill05_008.png</key>
+            <key>Naruto_Skill05_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{541,238},{74,66}}</string>
@@ -680,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{356,114}</string>
             </dict>
-            <key>Naruto_Skill05_009.png</key>
+            <key>Naruto_Skill05_009</key>
             <dict>
                 <key>frame</key>
                 <string>{{321,472},{70,64}}</string>
@@ -693,7 +693,7 @@
                 <key>sourceSize</key>
                 <string>{356,114}</string>
             </dict>
-            <key>Naruto_Skill05_010.png</key>
+            <key>Naruto_Skill05_010</key>
             <dict>
                 <key>frame</key>
                 <string>{{242,351},{80,68}}</string>
@@ -706,7 +706,7 @@
                 <key>sourceSize</key>
                 <string>{356,114}</string>
             </dict>
-            <key>Naruto_Skill05_011.png</key>
+            <key>Naruto_Skill05_011</key>
             <dict>
                 <key>frame</key>
                 <string>{{812,102},{134,64}}</string>
@@ -719,7 +719,7 @@
                 <key>sourceSize</key>
                 <string>{356,114}</string>
             </dict>
-            <key>Naruto_Skill05_012.png</key>
+            <key>Naruto_Skill05_012</key>
             <dict>
                 <key>frame</key>
                 <string>{{746,177},{126,64}}</string>
@@ -732,7 +732,7 @@
                 <key>sourceSize</key>
                 <string>{356,114}</string>
             </dict>
-            <key>Naruto_Skill05_013.png</key>
+            <key>Naruto_Skill05_013</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,118},{122,66}}</string>
@@ -745,7 +745,7 @@
                 <key>sourceSize</key>
                 <string>{356,114}</string>
             </dict>
-            <key>Naruto_Skill05_014.png</key>
+            <key>Naruto_Skill05_014</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,329},{90,66}}</string>
@@ -758,7 +758,7 @@
                 <key>sourceSize</key>
                 <string>{356,114}</string>
             </dict>
-            <key>Naruto_Skill05_015.png</key>
+            <key>Naruto_Skill05_015</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,261},{102,66}}</string>
@@ -771,7 +771,7 @@
                 <key>sourceSize</key>
                 <string>{356,114}</string>
             </dict>
-            <key>Naruto_Skill05_016.png</key>
+            <key>Naruto_Skill05_016</key>
             <dict>
                 <key>frame</key>
                 <string>{{942,230},{122,80}}</string>
@@ -784,7 +784,7 @@
                 <key>sourceSize</key>
                 <string>{356,114}</string>
             </dict>
-            <key>Naruto_Skill05_017.png</key>
+            <key>Naruto_Skill05_017</key>
             <dict>
                 <key>frame</key>
                 <string>{{812,231},{124,84}}</string>
@@ -797,7 +797,7 @@
                 <key>sourceSize</key>
                 <string>{356,114}</string>
             </dict>
-            <key>Naruto_Skill05_018.png</key>
+            <key>Naruto_Skill05_018</key>
             <dict>
                 <key>frame</key>
                 <string>{{244,191},{112,88}}</string>
@@ -810,7 +810,7 @@
                 <key>sourceSize</key>
                 <string>{356,114}</string>
             </dict>
-            <key>Naruto_Skill05_019.png</key>
+            <key>Naruto_Skill05_019</key>
             <dict>
                 <key>frame</key>
                 <string>{{542,116},{120,74}}</string>
@@ -823,7 +823,7 @@
                 <key>sourceSize</key>
                 <string>{356,114}</string>
             </dict>
-            <key>Naruto_Skill05_020.png</key>
+            <key>Naruto_Skill05_020</key>
             <dict>
                 <key>frame</key>
                 <string>{{812,2},{188,98}}</string>
@@ -836,7 +836,7 @@
                 <key>sourceSize</key>
                 <string>{356,114}</string>
             </dict>
-            <key>Naruto_Skill05_021.png</key>
+            <key>Naruto_Skill05_021</key>
             <dict>
                 <key>frame</key>
                 <string>{{618,2},{192,108}}</string>
@@ -849,7 +849,7 @@
                 <key>sourceSize</key>
                 <string>{356,114}</string>
             </dict>
-            <key>Naruto_Skill05_022.png</key>
+            <key>Naruto_Skill05_022</key>
             <dict>
                 <key>frame</key>
                 <string>{{414,2},{202,112}}</string>
@@ -862,7 +862,7 @@
                 <key>sourceSize</key>
                 <string>{356,114}</string>
             </dict>
-            <key>Naruto_Skill05_023.png</key>
+            <key>Naruto_Skill05_023</key>
             <dict>
                 <key>frame</key>
                 <string>{{208,2},{204,114}}</string>
@@ -875,7 +875,7 @@
                 <key>sourceSize</key>
                 <string>{356,114}</string>
             </dict>
-            <key>Naruto_Skill05_024.png</key>
+            <key>Naruto_Skill05_024</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{204,114}}</string>
@@ -888,7 +888,7 @@
                 <key>sourceSize</key>
                 <string>{356,114}</string>
             </dict>
-            <key>Naruto_Skill10_001.png</key>
+            <key>Naruto_Skill10_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{177,384},{72,63}}</string>
@@ -901,7 +901,7 @@
                 <key>sourceSize</key>
                 <string>{84,69}</string>
             </dict>
-            <key>Naruto_Skill10_002.png</key>
+            <key>Naruto_Skill10_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{404,413},{70,65}}</string>
@@ -914,7 +914,7 @@
                 <key>sourceSize</key>
                 <string>{84,69}</string>
             </dict>
-            <key>Naruto_Skill10_003.png</key>
+            <key>Naruto_Skill10_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,476},{74,55}}</string>
@@ -927,7 +927,7 @@
                 <key>sourceSize</key>
                 <string>{84,69}</string>
             </dict>
-            <key>Naruto_Skill11_001.png</key>
+            <key>Naruto_Skill11_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{713,305},{93,61}}</string>
@@ -940,7 +940,7 @@
                 <key>sourceSize</key>
                 <string>{93,61}</string>
             </dict>
-            <key>Naruto_Skill11_002.png</key>
+            <key>Naruto_Skill11_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{808,317},{91,73}}</string>
@@ -953,7 +953,7 @@
                 <key>sourceSize</key>
                 <string>{91,73}</string>
             </dict>
-            <key>Naruto_Skill11_003.png</key>
+            <key>Naruto_Skill11_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{413,284},{65,81}}</string>
@@ -966,7 +966,7 @@
                 <key>sourceSize</key>
                 <string>{65,81}</string>
             </dict>
-            <key>Naruto_Skill11_004.png</key>
+            <key>Naruto_Skill11_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{78,494},{71,73}}</string>
@@ -979,7 +979,7 @@
                 <key>sourceSize</key>
                 <string>{71,73}</string>
             </dict>
-            <key>Naruto_Skill12_001.png</key>
+            <key>Naruto_Skill12_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{333,283},{78,63}}</string>
@@ -992,7 +992,7 @@
                 <key>sourceSize</key>
                 <string>{78,63}</string>
             </dict>
-            <key>Naruto_Skill12_002.png</key>
+            <key>Naruto_Skill12_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{242,421},{77,61}}</string>
@@ -1005,7 +1005,7 @@
                 <key>sourceSize</key>
                 <string>{77,63}</string>
             </dict>
-            <key>Naruto_Skill12_003.png</key>
+            <key>Naruto_Skill12_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{812,168},{128,61}}</string>
@@ -1018,7 +1018,7 @@
                 <key>sourceSize</key>
                 <string>{128,63}</string>
             </dict>
-            <key>Naruto_Skill12_004.png</key>
+            <key>Naruto_Skill12_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{618,112},{128,61}}</string>
@@ -1031,7 +1031,7 @@
                 <key>sourceSize</key>
                 <string>{128,63}</string>
             </dict>
-            <key>Naruto_Skill12_005.png</key>
+            <key>Naruto_Skill12_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{358,193},{88,53}}</string>
@@ -1044,7 +1044,7 @@
                 <key>sourceSize</key>
                 <string>{88,73}</string>
             </dict>
-            <key>Naruto_Skill12_006.png</key>
+            <key>Naruto_Skill12_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{198,275},{47,43}}</string>
@@ -1057,7 +1057,7 @@
                 <key>sourceSize</key>
                 <string>{47,73}</string>
             </dict>
-            <key>Naruto_Skill12_007.png</key>
+            <key>Naruto_Skill12_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{360,118},{51,73}}</string>
@@ -1070,7 +1070,7 @@
                 <key>sourceSize</key>
                 <string>{51,73}</string>
             </dict>
-            <key>Naruto_Skill13_001.png</key>
+            <key>Naruto_Skill13_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,397},{81,77}}</string>
@@ -1083,7 +1083,7 @@
                 <key>sourceSize</key>
                 <string>{81,77}</string>
             </dict>
-            <key>Naruto_Skill13_002.png</key>
+            <key>Naruto_Skill13_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{94,347},{81,77}}</string>
@@ -1096,7 +1096,7 @@
                 <key>sourceSize</key>
                 <string>{81,77}</string>
             </dict>
-            <key>Naruto_Walk_01.png</key>
+            <key>Naruto_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{533,368},{67,53}}</string>
@@ -1109,7 +1109,7 @@
                 <key>sourceSize</key>
                 <string>{73,53}</string>
             </dict>
-            <key>Naruto_Walk_02.png</key>
+            <key>Naruto_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{148,574},{66,53}}</string>
@@ -1122,7 +1122,7 @@
                 <key>sourceSize</key>
                 <string>{72,53}</string>
             </dict>
-            <key>Naruto_Walk_03.png</key>
+            <key>Naruto_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{752,419},{53,49}}</string>
@@ -1135,7 +1135,7 @@
                 <key>sourceSize</key>
                 <string>{59,53}</string>
             </dict>
-            <key>Naruto_Walk_04.png</key>
+            <key>Naruto_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{617,365},{67,53}}</string>
@@ -1148,7 +1148,7 @@
                 <key>sourceSize</key>
                 <string>{73,53}</string>
             </dict>
-            <key>Naruto_Walk_05.png</key>
+            <key>Naruto_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{225,543},{66,53}}</string>
@@ -1161,7 +1161,7 @@
                 <key>sourceSize</key>
                 <string>{72,53}</string>
             </dict>
-            <key>Naruto_Walk_06.png</key>
+            <key>Naruto_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{752,368},{53,49}}</string>

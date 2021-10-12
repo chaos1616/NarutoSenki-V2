@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Tobirama_AirHurt_01.png</key>
+            <key>Tobirama_AirHurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{310,528},{53,68}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{53,68}</string>
             </dict>
-            <key>Tobirama_AirHurt_02.png</key>
+            <key>Tobirama_AirHurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,622},{28,86}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{28,86}</string>
             </dict>
-            <key>Tobirama_Float_01.png</key>
+            <key>Tobirama_Float_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{310,598},{68,53}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{68,53}</string>
             </dict>
-            <key>Tobirama_Float_02.png</key>
+            <key>Tobirama_Float_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{83,768},{77,61}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{77,61}</string>
             </dict>
-            <key>Tobirama_Float_03.png</key>
+            <key>Tobirama_Float_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{118,141},{61,78}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{61,78}</string>
             </dict>
-            <key>Tobirama_Hurt_01.png</key>
+            <key>Tobirama_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{229,282},{52,80}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{52,80}</string>
             </dict>
-            <key>Tobirama_Hurt_02.png</key>
+            <key>Tobirama_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{462,244},{48,82}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{48,82}</string>
             </dict>
-            <key>Tobirama_Idle_01.png</key>
+            <key>Tobirama_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{92,535},{36,88}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{38,88}</string>
             </dict>
-            <key>Tobirama_Idle_02.png</key>
+            <key>Tobirama_Idle_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,517},{36,88}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{38,88}</string>
             </dict>
-            <key>Tobirama_Idle_03.png</key>
+            <key>Tobirama_Idle_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,477},{38,88}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{38,88}</string>
             </dict>
-            <key>Tobirama_Idle_04.png</key>
+            <key>Tobirama_Idle_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,517},{36,88}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{38,88}</string>
             </dict>
-            <key>Tobirama_KnockDown_01.png</key>
+            <key>Tobirama_KnockDown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,592},{86,28}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{86,28}</string>
             </dict>
-            <key>Tobirama_KnockDown_02.png</key>
+            <key>Tobirama_KnockDown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{203,289},{90,22}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{90,22}</string>
             </dict>
-            <key>Tobirama_KnockDown_03.png</key>
+            <key>Tobirama_KnockDown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{162,785},{73,41}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{73,41}</string>
             </dict>
-            <key>Tobirama_KnockDown_04.png</key>
+            <key>Tobirama_KnockDown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{452,557},{49,53}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{49,53}</string>
             </dict>
-            <key>Tobirama_KnockDown_05.png</key>
+            <key>Tobirama_KnockDown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{458,487},{52,68}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{52,68}</string>
             </dict>
-            <key>Tobirama_NAttack_01.png</key>
+            <key>Tobirama_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,555},{35,88}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{35,88}</string>
             </dict>
-            <key>Tobirama_NAttack_02.png</key>
+            <key>Tobirama_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{365,620},{39,84}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{39,84}</string>
             </dict>
-            <key>Tobirama_NAttack_03.png</key>
+            <key>Tobirama_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,761},{34,79}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{34,79}</string>
             </dict>
-            <key>Tobirama_NAttack_04.png</key>
+            <key>Tobirama_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,652},{71,84}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{71,84}</string>
             </dict>
-            <key>Tobirama_NAttack_05.png</key>
+            <key>Tobirama_NAttack_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{224,666},{71,84}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{71,86}</string>
             </dict>
-            <key>Tobirama_NAttack_06.png</key>
+            <key>Tobirama_NAttack_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,725},{34,80}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{34,86}</string>
             </dict>
-            <key>Tobirama_NAttack_07.png</key>
+            <key>Tobirama_NAttack_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{459,411},{50,74}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{50,74}</string>
             </dict>
-            <key>Tobirama_NAttack_08.png</key>
+            <key>Tobirama_NAttack_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{362,776},{44,81}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{44,83}</string>
             </dict>
-            <key>Tobirama_NAttack_09.png</key>
+            <key>Tobirama_NAttack_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{88,697},{34,81}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{34,81}</string>
             </dict>
-            <key>Tobirama_NAttack_10.png</key>
+            <key>Tobirama_NAttack_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{365,661},{67,81}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{69,83}</string>
             </dict>
-            <key>Tobirama_NAttack_11.png</key>
+            <key>Tobirama_NAttack_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{227,511},{67,81}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{67,83}</string>
             </dict>
-            <key>Tobirama_NAttack_12.png</key>
+            <key>Tobirama_NAttack_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{462,328},{48,81}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{48,83}</string>
             </dict>
-            <key>Tobirama_NAttack_13.png</key>
+            <key>Tobirama_NAttack_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{459,411},{50,74}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{50,88}</string>
             </dict>
-            <key>Tobirama_NAttack_14.png</key>
+            <key>Tobirama_NAttack_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{227,464},{45,82}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{45,88}</string>
             </dict>
-            <key>Tobirama_NAttack_15.png</key>
+            <key>Tobirama_NAttack_15</key>
             <dict>
                 <key>frame</key>
                 <string>{{227,409},{53,82}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{53,88}</string>
             </dict>
-            <key>Tobirama_NAttack_16.png</key>
+            <key>Tobirama_NAttack_16</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,929},{63,70}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{63,88}</string>
             </dict>
-            <key>Tobirama_NAttack_17.png</key>
+            <key>Tobirama_NAttack_17</key>
             <dict>
                 <key>frame</key>
                 <string>{{447,745},{63,70}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{63,70}</string>
             </dict>
-            <key>Tobirama_NAttack_18.png</key>
+            <key>Tobirama_NAttack_18</key>
             <dict>
                 <key>frame</key>
                 <string>{{84,733},{33,80}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{35,80}</string>
             </dict>
-            <key>Tobirama_NAttack_19.png</key>
+            <key>Tobirama_NAttack_19</key>
             <dict>
                 <key>frame</key>
                 <string>{{92,497},{36,88}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{36,88}</string>
             </dict>
-            <key>Tobirama_Skill02_03.png</key>
+            <key>Tobirama_Skill02_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,397},{38,89}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{38,89}</string>
             </dict>
-            <key>Tobirama_Skill02_04.png</key>
+            <key>Tobirama_Skill02_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{92,457},{38,88}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{38,88}</string>
             </dict>
-            <key>Tobirama_Skill02_05.png</key>
+            <key>Tobirama_Skill02_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{93,377},{38,89}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{38,89}</string>
             </dict>
-            <key>Tobirama_Skill02_06.png</key>
+            <key>Tobirama_Skill02_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,437},{38,88}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{38,88}</string>
             </dict>
-            <key>Tobirama_Skill02_07.png</key>
+            <key>Tobirama_Skill02_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{222,739},{49,76}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{49,88}</string>
             </dict>
-            <key>Tobirama_Skill02_08.png</key>
+            <key>Tobirama_Skill02_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{118,221},{109,66}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{331,66}</string>
             </dict>
-            <key>Tobirama_Skill02_09.png</key>
+            <key>Tobirama_Skill02_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{187,2},{183,66}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{331,66}</string>
             </dict>
-            <key>Tobirama_Skill02_10.png</key>
+            <key>Tobirama_Skill02_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{183,69}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{331,69}</string>
             </dict>
-            <key>Tobirama_Skill02_11.png</key>
+            <key>Tobirama_Skill02_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{187,70},{183,65}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{331,65}</string>
             </dict>
-            <key>Tobirama_Skill02_12.png</key>
+            <key>Tobirama_Skill02_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,73},{177,66}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{331,66}</string>
             </dict>
-            <key>Tobirama_Skill03_03.png</key>
+            <key>Tobirama_Skill03_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{93,417},{38,88}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{38,88}</string>
             </dict>
-            <key>Tobirama_Skill03_04.png</key>
+            <key>Tobirama_Skill03_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{372,371},{38,88}}</string>
@@ -615,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{38,88}</string>
             </dict>
-            <key>Tobirama_Skill03_05.png</key>
+            <key>Tobirama_Skill03_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,437},{38,88}}</string>
@@ -628,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{38,88}</string>
             </dict>
-            <key>Tobirama_Skill03_06.png</key>
+            <key>Tobirama_Skill03_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{93,417},{38,88}}</string>
@@ -641,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{38,88}</string>
             </dict>
-            <key>Tobirama_Skill04_01.png</key>
+            <key>Tobirama_Skill04_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{364,730},{44,81}}</string>
@@ -654,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{44,81}</string>
             </dict>
-            <key>Tobirama_Skill04_02.png</key>
+            <key>Tobirama_Skill04_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{181,628},{41,75}}</string>
@@ -667,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{41,77}</string>
             </dict>
-            <key>Tobirama_Skill04_03.png</key>
+            <key>Tobirama_Skill04_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{311,388},{68,57}}</string>
@@ -680,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{70,83}</string>
             </dict>
-            <key>Tobirama_Skill04_04.png</key>
+            <key>Tobirama_Skill04_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{311,458},{68,56}}</string>
@@ -693,7 +693,7 @@
                 <key>sourceSize</key>
                 <string>{68,88}</string>
             </dict>
-            <key>Tobirama_Skill04_05.png</key>
+            <key>Tobirama_Skill04_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{182,548},{41,78}}</string>
@@ -706,7 +706,7 @@
                 <key>sourceSize</key>
                 <string>{41,88}</string>
             </dict>
-            <key>Tobirama_Skill04_06.png</key>
+            <key>Tobirama_Skill04_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{310,734},{50,69}}</string>
@@ -719,7 +719,7 @@
                 <key>sourceSize</key>
                 <string>{50,93}</string>
             </dict>
-            <key>Tobirama_Skill04_07.png</key>
+            <key>Tobirama_Skill04_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{225,626},{38,83}}</string>
@@ -732,7 +732,7 @@
                 <key>sourceSize</key>
                 <string>{38,93}</string>
             </dict>
-            <key>Tobirama_Skill04_08.png</key>
+            <key>Tobirama_Skill04_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{92,573},{55,87}}</string>
@@ -745,7 +745,7 @@
                 <key>sourceSize</key>
                 <string>{55,93}</string>
             </dict>
-            <key>Tobirama_Skill04_09.png</key>
+            <key>Tobirama_Skill04_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{369,484},{55,87}}</string>
@@ -758,7 +758,7 @@
                 <key>sourceSize</key>
                 <string>{55,87}</string>
             </dict>
-            <key>Tobirama_Skill04_10.png</key>
+            <key>Tobirama_Skill04_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{229,221},{59,80}}</string>
@@ -771,7 +771,7 @@
                 <key>sourceSize</key>
                 <string>{59,82}</string>
             </dict>
-            <key>Tobirama_Skill04_11.png</key>
+            <key>Tobirama_Skill04_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{171,705},{49,78}}</string>
@@ -784,7 +784,7 @@
                 <key>sourceSize</key>
                 <string>{49,82}</string>
             </dict>
-            <key>Tobirama_Skill04_12.png</key>
+            <key>Tobirama_Skill04_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{182,461},{43,85}}</string>
@@ -797,7 +797,7 @@
                 <key>sourceSize</key>
                 <string>{43,85}</string>
             </dict>
-            <key>Tobirama_Skill04_13.png</key>
+            <key>Tobirama_Skill04_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{90,630},{65,85}}</string>
@@ -810,7 +810,7 @@
                 <key>sourceSize</key>
                 <string>{65,89}</string>
             </dict>
-            <key>Tobirama_Skill04_14.png</key>
+            <key>Tobirama_Skill04_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{225,580},{44,83}}</string>
@@ -823,7 +823,7 @@
                 <key>sourceSize</key>
                 <string>{44,89}</string>
             </dict>
-            <key>Tobirama_Skill04_15.png</key>
+            <key>Tobirama_Skill04_15</key>
             <dict>
                 <key>frame</key>
                 <string>{{184,381},{41,78}}</string>
@@ -836,7 +836,7 @@
                 <key>sourceSize</key>
                 <string>{41,78}</string>
             </dict>
-            <key>Tobirama_Skill05_01.png</key>
+            <key>Tobirama_Skill05_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,555},{35,88}}</string>
@@ -849,7 +849,7 @@
                 <key>sourceSize</key>
                 <string>{35,88}</string>
             </dict>
-            <key>Tobirama_Skill05_02.png</key>
+            <key>Tobirama_Skill05_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{372,244},{45,88}}</string>
@@ -862,7 +862,7 @@
                 <key>sourceSize</key>
                 <string>{45,88}</string>
             </dict>
-            <key>Tobirama_Skill05_03.png</key>
+            <key>Tobirama_Skill05_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,437},{38,88}}</string>
@@ -875,7 +875,7 @@
                 <key>sourceSize</key>
                 <string>{38,88}</string>
             </dict>
-            <key>Tobirama_Skill05_04.png</key>
+            <key>Tobirama_Skill05_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{273,790},{33,33}}</string>
@@ -888,7 +888,7 @@
                 <key>sourceSize</key>
                 <string>{59,81}</string>
             </dict>
-            <key>Tobirama_Skill05_05.png</key>
+            <key>Tobirama_Skill05_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{311,312},{59,74}}</string>
@@ -901,7 +901,7 @@
                 <key>sourceSize</key>
                 <string>{71,74}</string>
             </dict>
-            <key>Tobirama_Skill05_06.png</key>
+            <key>Tobirama_Skill05_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{81,831},{71,74}}</string>
@@ -914,7 +914,7 @@
                 <key>sourceSize</key>
                 <string>{71,74}</string>
             </dict>
-            <key>Tobirama_Skill05_07.png</key>
+            <key>Tobirama_Skill05_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,322},{89,73}}</string>
@@ -927,7 +927,7 @@
                 <key>sourceSize</key>
                 <string>{115,79}</string>
             </dict>
-            <key>Tobirama_Skill05_08.png</key>
+            <key>Tobirama_Skill05_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{106,289},{95,86}}</string>
@@ -940,7 +940,7 @@
                 <key>sourceSize</key>
                 <string>{115,88}</string>
             </dict>
-            <key>Tobirama_Skill05_09.png</key>
+            <key>Tobirama_Skill05_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{365,541},{85,77}}</string>
@@ -953,7 +953,7 @@
                 <key>sourceSize</key>
                 <string>{115,77}</string>
             </dict>
-            <key>Tobirama_Skill05_10.png</key>
+            <key>Tobirama_Skill05_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{273,790},{33,33}}</string>
@@ -966,7 +966,7 @@
                 <key>sourceSize</key>
                 <string>{59,81}</string>
             </dict>
-            <key>Tobirama_Skill05_11.png</key>
+            <key>Tobirama_Skill05_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{311,137},{59,87}}</string>
@@ -979,7 +979,7 @@
                 <key>sourceSize</key>
                 <string>{71,87}</string>
             </dict>
-            <key>Tobirama_Skill05_12.png</key>
+            <key>Tobirama_Skill05_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{370,411},{71,87}}</string>
@@ -992,7 +992,7 @@
                 <key>sourceSize</key>
                 <string>{71,87}</string>
             </dict>
-            <key>Tobirama_Skill05_13.png</key>
+            <key>Tobirama_Skill05_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,797},{60,77}}</string>
@@ -1005,7 +1005,7 @@
                 <key>sourceSize</key>
                 <string>{120,77}</string>
             </dict>
-            <key>Tobirama_Skill05_14.png</key>
+            <key>Tobirama_Skill05_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,236},{102,84}}</string>
@@ -1018,7 +1018,7 @@
                 <key>sourceSize</key>
                 <string>{120,92}</string>
             </dict>
-            <key>Tobirama_Skill05_15.png</key>
+            <key>Tobirama_Skill05_15</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,141},{114,93}}</string>
@@ -1031,7 +1031,7 @@
                 <key>sourceSize</key>
                 <string>{120,93}</string>
             </dict>
-            <key>Tobirama_Skill05_16.png</key>
+            <key>Tobirama_Skill05_16</key>
             <dict>
                 <key>frame</key>
                 <string>{{273,790},{33,33}}</string>
@@ -1044,7 +1044,7 @@
                 <key>sourceSize</key>
                 <string>{59,81}</string>
             </dict>
-            <key>Tobirama_Skill05_17.png</key>
+            <key>Tobirama_Skill05_17</key>
             <dict>
                 <key>frame</key>
                 <string>{{67,929},{61,68}}</string>
@@ -1057,7 +1057,7 @@
                 <key>sourceSize</key>
                 <string>{71,68}</string>
             </dict>
-            <key>Tobirama_Skill05_18.png</key>
+            <key>Tobirama_Skill05_18</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,859},{71,68}}</string>
@@ -1070,7 +1070,7 @@
                 <key>sourceSize</key>
                 <string>{71,68}</string>
             </dict>
-            <key>Tobirama_Skill05_19.png</key>
+            <key>Tobirama_Skill05_19</key>
             <dict>
                 <key>frame</key>
                 <string>{{372,172},{70,127}}</string>
@@ -1083,7 +1083,7 @@
                 <key>sourceSize</key>
                 <string>{126,135}</string>
             </dict>
-            <key>Tobirama_Skill05_19_1.png</key>
+            <key>Tobirama_Skill05_19_1</key>
             <dict>
                 <key>frame</key>
                 <string>{{372,94},{76,133}}</string>
@@ -1096,7 +1096,7 @@
                 <key>sourceSize</key>
                 <string>{126,139}</string>
             </dict>
-            <key>Tobirama_Skill05_20.png</key>
+            <key>Tobirama_Skill05_20</key>
             <dict>
                 <key>frame</key>
                 <string>{{372,2},{90,137}}</string>
@@ -1109,7 +1109,7 @@
                 <key>sourceSize</key>
                 <string>{126,139}</string>
             </dict>
-            <key>Tobirama_Skill05_21.png</key>
+            <key>Tobirama_Skill05_21</key>
             <dict>
                 <key>frame</key>
                 <string>{{181,137},{82,128}}</string>
@@ -1122,7 +1122,7 @@
                 <key>sourceSize</key>
                 <string>{126,128}</string>
             </dict>
-            <key>Tobirama_Skill05_22.png</key>
+            <key>Tobirama_Skill05_22</key>
             <dict>
                 <key>frame</key>
                 <string>{{184,381},{41,78}}</string>
@@ -1135,7 +1135,7 @@
                 <key>sourceSize</key>
                 <string>{41,78}</string>
             </dict>
-            <key>Tobirama_Skill05_23.png</key>
+            <key>Tobirama_Skill05_23</key>
             <dict>
                 <key>frame</key>
                 <string>{{273,790},{33,33}}</string>
@@ -1148,7 +1148,7 @@
                 <key>sourceSize</key>
                 <string>{59,81}</string>
             </dict>
-            <key>Tobirama_Skill05_24.png</key>
+            <key>Tobirama_Skill05_24</key>
             <dict>
                 <key>frame</key>
                 <string>{{311,226},{59,84}}</string>
@@ -1161,7 +1161,7 @@
                 <key>sourceSize</key>
                 <string>{71,90}</string>
             </dict>
-            <key>Tobirama_Skill05_25.png</key>
+            <key>Tobirama_Skill05_25</key>
             <dict>
                 <key>frame</key>
                 <string>{{227,336},{71,82}}</string>
@@ -1174,7 +1174,7 @@
                 <key>sourceSize</key>
                 <string>{71,90}</string>
             </dict>
-            <key>Tobirama_Skill05_26.png</key>
+            <key>Tobirama_Skill05_26</key>
             <dict>
                 <key>frame</key>
                 <string>{{372,331},{38,88}}</string>
@@ -1187,7 +1187,7 @@
                 <key>sourceSize</key>
                 <string>{38,88}</string>
             </dict>
-            <key>Tobirama_Skill05_27.png</key>
+            <key>Tobirama_Skill05_27</key>
             <dict>
                 <key>frame</key>
                 <string>{{372,371},{38,88}}</string>
@@ -1200,7 +1200,7 @@
                 <key>sourceSize</key>
                 <string>{38,88}</string>
             </dict>
-            <key>Tobirama_Skill05_28.png</key>
+            <key>Tobirama_Skill05_28</key>
             <dict>
                 <key>frame</key>
                 <string>{{92,457},{38,88}}</string>
@@ -1213,7 +1213,7 @@
                 <key>sourceSize</key>
                 <string>{38,88}</string>
             </dict>
-            <key>Tobirama_Skill05_29.png</key>
+            <key>Tobirama_Skill05_29</key>
             <dict>
                 <key>frame</key>
                 <string>{{93,417},{38,88}}</string>
@@ -1226,7 +1226,7 @@
                 <key>sourceSize</key>
                 <string>{38,88}</string>
             </dict>
-            <key>Tobirama_Skill05_30.png</key>
+            <key>Tobirama_Skill05_30</key>
             <dict>
                 <key>frame</key>
                 <string>{{372,291},{38,88}}</string>
@@ -1239,7 +1239,7 @@
                 <key>sourceSize</key>
                 <string>{38,88}</string>
             </dict>
-            <key>Tobirama_Skill05_31.png</key>
+            <key>Tobirama_Skill05_31</key>
             <dict>
                 <key>frame</key>
                 <string>{{372,331},{38,88}}</string>
@@ -1252,7 +1252,7 @@
                 <key>sourceSize</key>
                 <string>{38,88}</string>
             </dict>
-            <key>Tobirama_Walk_01.png</key>
+            <key>Tobirama_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{205,790},{66,63}}</string>
@@ -1265,7 +1265,7 @@
                 <key>sourceSize</key>
                 <string>{66,63}</string>
             </dict>
-            <key>Tobirama_Walk_02.png</key>
+            <key>Tobirama_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{448,675},{62,68}}</string>
@@ -1278,7 +1278,7 @@
                 <key>sourceSize</key>
                 <string>{62,68}</string>
             </dict>
-            <key>Tobirama_Walk_03.png</key>
+            <key>Tobirama_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{452,608},{52,65}}</string>
@@ -1291,7 +1291,7 @@
                 <key>sourceSize</key>
                 <string>{52,65}</string>
             </dict>
-            <key>Tobirama_Walk_04.png</key>
+            <key>Tobirama_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{130,904},{62,64}}</string>
@@ -1304,7 +1304,7 @@
                 <key>sourceSize</key>
                 <string>{62,64}</string>
             </dict>
-            <key>Tobirama_Walk_05.png</key>
+            <key>Tobirama_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{445,817},{64,67}}</string>
@@ -1317,7 +1317,7 @@
                 <key>sourceSize</key>
                 <string>{64,67}</string>
             </dict>
-            <key>Tobirama_Walk_06.png</key>
+            <key>Tobirama_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{310,668},{52,64}}</string>

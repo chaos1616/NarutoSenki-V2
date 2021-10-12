@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <animation>
 
-	<action value="Idle">
+	<action name="Idle">
 		<date>
-			<dateName type="attackType">Tower</dateName>
-			<dateName type="attackValue">80000</dateName>
-			<dateName type="attackRangeX">102</dateName>
-			<dateName type="attackRangeY">100</dateName>
-			<coldName type="coldDown">0</coldName>
+			<p type="attackType">Tower</p>
+			<p type="attackValue">80000</p>
+			<p type="attackRangeX">102</p>
+			<p type="attackRangeY">100</p>
+			<p type="coldDown">0</p>
 		</date>
 		<frame>
-			<frameName>htower.png</frameName>
+			<f>htower</f>
 		</frame>
 	</action>
 
-	<action value="Walk">
+	<action name="Walk">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Hurt">
+	<action name="Hurt">
 		<frame>
 
 		</frame>
 	</action>
 
-	<action value="AirHurt">
+	<action name="AirHurt">
 		<frame></frame>
 	</action>
 
-	<action value="KnockDown">
+	<action name="KnockDown">
 		<frame></frame>
 	</action>
 
-	<action value="Float">
+	<action name="Float">
 		<frame></frame>
 	</action>
 
-	<action value="Dead">
+	<action name="Dead">
 		<frame>
-			<frameName>htower.png</frameName>
+			<f>htower</f>
 		</frame>
 	</action>
 

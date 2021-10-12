@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Saso_Hurt_01.png</key>
+            <key>Saso_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{281,87},{58,75}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{58,75}</string>
             </dict>
-            <key>Saso_Idle_01.png</key>
+            <key>Saso_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{94,182},{34,75}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{34,75}</string>
             </dict>
-            <key>Saso_KnockDown_01.png</key>
+            <key>Saso_KnockDown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{402,235},{49,62}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{49,62}</string>
             </dict>
-            <key>Saso_KnockDown_02.png</key>
+            <key>Saso_KnockDown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{466,235},{49,41}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{49,41}</string>
             </dict>
-            <key>Saso_KnockDown_03.png</key>
+            <key>Saso_KnockDown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{335,214},{65,24}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{65,24}</string>
             </dict>
-            <key>Saso_NAttack_01.png</key>
+            <key>Saso_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{263,164},{46,71}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{46,71}</string>
             </dict>
-            <key>Saso_NAttack_02.png</key>
+            <key>Saso_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{98,88},{92,71}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{140,71}</string>
             </dict>
-            <key>Saso_NAttack_03.png</key>
+            <key>Saso_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{263,212},{54,70}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{54,70}</string>
             </dict>
-            <key>Saso_NAttack_04.png</key>
+            <key>Saso_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{172,87},{107,66}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{107,66}</string>
             </dict>
-            <key>Saso_NAttack_05.png</key>
+            <key>Saso_NAttack_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,228},{89,66}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{89,66}</string>
             </dict>
-            <key>Saso_NAttack_06.png</key>
+            <key>Saso_NAttack_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{409,167},{67,66}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{67,66}</string>
             </dict>
-            <key>Saso_NAttack_07.png</key>
+            <key>Saso_NAttack_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{336,167},{45,71}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{45,71}</string>
             </dict>
-            <key>Saso_NAttack_08.png</key>
+            <key>Saso_NAttack_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{167,225},{64,69}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{64,69}</string>
             </dict>
-            <key>Saso_NAttack_09.png</key>
+            <key>Saso_NAttack_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,88},{94,68}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{154,68}</string>
             </dict>
-            <key>Saso_NAttack_10.png</key>
+            <key>Saso_NAttack_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{171,155},{90,68}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{154,68}</string>
             </dict>
-            <key>Saso_NAttack_11.png</key>
+            <key>Saso_NAttack_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,158},{90,68}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{154,68}</string>
             </dict>
-            <key>Saso_Skill02_01.png</key>
+            <key>Saso_Skill02_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{94,218},{51,71}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{51,71}</string>
             </dict>
-            <key>Saso_Skill02_02.png</key>
+            <key>Saso_Skill02_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{342,82},{152,83}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{266,85}</string>
             </dict>
-            <key>Saso_Skill02_03.png</key>
+            <key>Saso_Skill02_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{168,84}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{266,86}</string>
             </dict>
-            <key>Saso_Skill02_04.png</key>
+            <key>Saso_Skill02_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{172,2},{168,83}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{266,87}</string>
             </dict>
-            <key>Saso_Skill02_05.png</key>
+            <key>Saso_Skill02_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{342,2},{158,78}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{266,90}</string>
             </dict>
-            <key>Saso_Walk_01.png</key>
+            <key>Saso_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,296},{69,58}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{69,58}</string>
             </dict>
-            <key>Saso_Walk_02.png</key>
+            <key>Saso_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{93,271},{69,58}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{69,58}</string>
             </dict>
-            <key>Saso_Walk_03.png</key>
+            <key>Saso_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,296},{69,58}}</string>

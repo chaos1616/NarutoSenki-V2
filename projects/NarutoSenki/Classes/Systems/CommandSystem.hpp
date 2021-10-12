@@ -83,7 +83,7 @@ private:
 			   {
 				   while (i < 11)
 				   {
-					   auto path = CCString::createWithFormat("Tenten_Extern_0%d.png", i);
+					   auto path = CCString::createWithFormat("Tenten_Extern_0%d", i);
 					   auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path->getCString());
 					   tempArray->addObject(frame);
 					   i += 1;
@@ -98,7 +98,7 @@ private:
 			   list->addObject(call);
 			   auto seq = CCSequence::create(list);
 
-			   CCSprite *tempChar = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_Extern_01.png", c->getCharacter()->getCString())->getCString());
+			   CCSprite *tempChar = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_Extern_01", c->getCharacter()->getCString())->getCString());
 
 			   tempChar->setAnchorPoint(ccp(0.5f, 0));
 			   tempChar->setPosition(c->getPosition());

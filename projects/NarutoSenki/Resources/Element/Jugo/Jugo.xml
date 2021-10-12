@@ -1,326 +1,326 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animation>
+<unit>
 
-	<action value="Idle">
-		<date>
-			<dateName type="attackType">Jugo</dateName>
-			<dateName type="attackValue">5000</dateName>
-			<dateName type="attackRangeX">70</dateName>
-			<dateName type="attackRangeY">80</dateName>
-			<coldName type="coldDown">224</coldName>
-		</date>
+	<action name="Idle">
+		<data>
+			<p type="attackType">Jugo</p>
+			<p type="attackValue">5000</p>
+			<p type="attackRangeX">70</p>
+			<p type="attackRangeY">80</p>
+			<p type="cd">224</p>
+		</data>
 		<frame>
-			<frameName>Jugo_Idle_01.png</frameName>
-			<frameName>Jugo_Idle_02.png</frameName>
-			<frameName>Jugo_Idle_03.png</frameName>
-			<frameName>Jugo_Idle_04.png</frameName>
+			<f>Jugo_Idle_01</f>
+			<f>Jugo_Idle_02</f>
+			<f>Jugo_Idle_03</f>
+			<f>Jugo_Idle_04</f>
 		</frame>
 	</action>
 
-	<action value="Walk">
+	<action name="Walk">
 		<frame>
-			<frameName>Jugo_Walk_01.png</frameName>
-			<frameName>Jugo_Walk_02.png</frameName>
-			<frameName>Jugo_Walk_03.png</frameName>
-			<frameName>Jugo_Walk_04.png</frameName>
-			<frameName>Jugo_Walk_05.png</frameName>
-			<frameName>Jugo_Walk_06.png</frameName>
-
-		</frame>
-	</action>
-
-	<action value="Hurt">
-		<frame>
-			<eventName type="setMove">32</eventName>
-			<frameName>Jugo_Hurt_01.png</frameName>
-			<frameName>Jugo_Hurt_02.png</frameName>
-			<eventName type="setSound">Audio/Jugo/Jugo_hurt.ogg</eventName>
-		</frame>
-	</action>
-
-	<action value="AirHurt">
-		<frame>
-			<frameName>Jugo_AirHurt_01.png</frameName>
-		</frame>
-	</action>
-
-	<action value="KnockDown">
-		<frame>
-			<frameName>Jugo_KnockDown_01.png</frameName>
-			<frameName>Jugo_KnockDown_02.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Jugo_KnockDown_03.png</frameName>
-			<eventName type="setDelay">60</eventName>
-			<frameName>Jugo_KnockDown_04.png</frameName>
-			<frameName>Jugo_KnockDown_05.png</frameName>
-			<frameName>Jugo_KnockDown_06.png</frameName>
+			<f>Jugo_Walk_01</f>
+			<f>Jugo_Walk_02</f>
+			<f>Jugo_Walk_03</f>
+			<f>Jugo_Walk_04</f>
+			<f>Jugo_Walk_05</f>
+			<f>Jugo_Walk_06</f>
 
 		</frame>
 	</action>
 
-	<action value="Float">
+	<action name="Hurt">
 		<frame>
-			<frameName>Jugo_Float_01.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Jugo_Float_02.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Jugo_Float_03.png</frameName>
+			<e type="setMove">32</e>
+			<f>Jugo_Hurt_01</f>
+			<f>Jugo_Hurt_02</f>
+			<e type="setSound">Audio/Jugo/Jugo_hurt.ogg</e>
 		</frame>
 	</action>
 
-	<action value="Dead">
+	<action name="AirHurt">
 		<frame>
-			<frameName>Jugo_KnockDown_01.png</frameName>
-			<frameName>Jugo_KnockDown_02.png</frameName>
-			<frameName>Jugo_KnockDown_03.png</frameName>
-			<eventName type="setSound">Audio/Jugo/Jugo_dead.ogg</eventName>
+			<f>Jugo_AirHurt_01</f>
+		</frame>
+	</action>
+
+	<action name="KnockDown">
+		<frame>
+			<f>Jugo_KnockDown_01</f>
+			<f>Jugo_KnockDown_02</f>
+			<e type="setDelay">10</e>
+			<f>Jugo_KnockDown_03</f>
+			<e type="setDelay">60</e>
+			<f>Jugo_KnockDown_04</f>
+			<f>Jugo_KnockDown_05</f>
+			<f>Jugo_KnockDown_06</f>
 
 		</frame>
 	</action>
 
-	<action value="nAttack">
-		<date>
-			<dateName type="attackType">nAttack</dateName>
-			<dateName type="attackValue">80</dateName>
-			<dateName type="attackRangeX">16</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="Float">
 		<frame>
-			<frameName>Jugo_NAttack_01.png</frameName>
-			<frameName>Jugo_NAttack_02.png</frameName>
-			<frameName>Jugo_NAttack_03.png</frameName>
-			<eventName type="setSound">Audio/Effect/combo1.ogg</eventName>
-			<eventName type="setAttackBox">n_hit</eventName>
-			<frameName>Jugo_NAttack_04.png</frameName>
-			<frameName>Jugo_NAttack_05.png</frameName>
-			<frameName>Jugo_NAttack_06.png</frameName>
-			<frameName>Jugo_NAttack_07.png</frameName>
-			<frameName>Jugo_NAttack_08.png</frameName>
-			<eventName type="setMove">8</eventName>
-			<frameName>Jugo_NAttack_09.png</frameName>
-			<eventName type="setSound">Audio/Effect/combo2.ogg</eventName>
-			<eventName type="setAttackBox">n_hit</eventName>
-			<frameName>Jugo_NAttack_10.png</frameName>
-			<frameName>Jugo_NAttack_11.png</frameName>
-			<frameName>Jugo_NAttack_12.png</frameName>
-			<frameName>Jugo_NAttack_13.png</frameName>
-			<eventName type="setSound">Audio/Jugo/Jugo_combo.ogg</eventName>
-			<eventName type="setMove">16</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Jugo_NAttack_14.png</frameName>
-			<eventName type="setSound">Audio/Effect/combo3.ogg</eventName>
-			<eventName type="setAttackBox">l_hit</eventName>
-			<frameName>Jugo_NAttack_15.png</frameName>
+			<f>Jugo_Float_01</f>
+			<e type="setDelay">10</e>
+			<f>Jugo_Float_02</f>
+			<e type="setDelay">10</e>
+			<f>Jugo_Float_03</f>
 		</frame>
 	</action>
 
-	<action value="skill01">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">1060</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">10</coldName>
-			<dateName type="combatPoint">1060</dateName>
-		</date>
+	<action name="Dead">
 		<frame>
-			<frameName>Jugo_Skill01_01.png</frameName>
-			<eventName type="setSound">Audio/Jugo/Jugo_skill1.ogg</eventName>
-			<frameName>Jugo_Skill01_02.png</frameName>
-			<frameName>Jugo_Skill01_03.png</frameName>
-			<eventName type="setChargeB">192</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Jugo_Skill01_04.png</frameName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/damage_l.ogg</eventName>
+			<f>Jugo_KnockDown_01</f>
+			<f>Jugo_KnockDown_02</f>
+			<f>Jugo_KnockDown_03</f>
+			<e type="setSound">Audio/Jugo/Jugo_dead.ogg</e>
+
 		</frame>
 	</action>
 
-	<action value="skill02">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">660</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">15</coldName>
-			<dateName type="combatPoint">1320</dateName>
-		</date>
+	<action name="nAttack">
+		<data>
+			<p type="attackType">nAttack</p>
+			<p type="attackValue">80</p>
+			<p type="attackRangeX">16</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">0</p>
+		</data>
 		<frame>
-			<eventName type="setSound">Audio/Jugo/Jugo_skill2.ogg</eventName>
-			<frameName>Jugo_Skill02_01.png</frameName>
-			<eventName type="setCharge">280</eventName>
-			<frameName>Jugo_Skill02_02.png</frameName>
-			<frameName>Jugo_Skill02_03.png</frameName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/damage_o.ogg</eventName>
-			<frameName>Jugo_Skill02_04.png</frameName>
-			<frameName>Jugo_Skill02_06.png</frameName>
-			<frameName>Jugo_Skill02_07.png</frameName>
-			<eventName type="setMon">Crash</eventName>
-			<frameName>Jugo_Skill02_08.png</frameName>
-			<eventName type="setAttackBox">b_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/damage_h.ogg</eventName>
-			<frameName>Jugo_Skill02_10.png</frameName>
+			<f>Jugo_NAttack_01</f>
+			<f>Jugo_NAttack_02</f>
+			<f>Jugo_NAttack_03</f>
+			<e type="setSound">Audio/Effect/combo1.ogg</e>
+			<e type="setAttackBox">n_hit</e>
+			<f>Jugo_NAttack_04</f>
+			<f>Jugo_NAttack_05</f>
+			<f>Jugo_NAttack_06</f>
+			<f>Jugo_NAttack_07</f>
+			<f>Jugo_NAttack_08</f>
+			<e type="setMove">8</e>
+			<f>Jugo_NAttack_09</f>
+			<e type="setSound">Audio/Effect/combo2.ogg</e>
+			<e type="setAttackBox">n_hit</e>
+			<f>Jugo_NAttack_10</f>
+			<f>Jugo_NAttack_11</f>
+			<f>Jugo_NAttack_12</f>
+			<f>Jugo_NAttack_13</f>
+			<e type="setSound">Audio/Jugo/Jugo_combo.ogg</e>
+			<e type="setMove">16</e>
+			<e type="setDelay">10</e>
+			<f>Jugo_NAttack_14</f>
+			<e type="setSound">Audio/Effect/combo3.ogg</e>
+			<e type="setAttackBox">l_hit</e>
+			<f>Jugo_NAttack_15</f>
 		</frame>
 	</action>
 
-	<action value="skill03">
-		<date>
-			<dateName type="attackType">cBuff</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">25</dateName>
-			<coldName type="coldDown">25</coldName>
-			<dateName type="combatPoint">2460</dateName>
-		</date>
+	<action name="skill01">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">1060</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">10</p>
+			<p type="combatPoint">1060</p>
+		</data>
 		<frame>
-			<eventName type="setSound">Audio/Jugo/Jugo_skill3.ogg</eventName>
-			<frameName>Jugo_Skill03_02.png</frameName>
-			<frameName>Jugo_Skill03_04.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Jugo_Skill03_05.png</frameName>
-			<eventName type="setBuff">17</eventName>
+			<f>Jugo_Skill01_01</f>
+			<e type="setSound">Audio/Jugo/Jugo_skill1.ogg</e>
+			<f>Jugo_Skill01_02</f>
+			<f>Jugo_Skill01_03</f>
+			<e type="setChargeB">192</e>
+			<e type="setDelay">10</e>
+			<f>Jugo_Skill01_04</f>
+			<e type="setAttackBox">c_hit</e>
+			<e type="setDSound">Audio/Effect/damage_l.ogg</e>
 		</frame>
 	</action>
 
-	<action value="skill04">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">1560</dateName>
-			<dateName type="attackRangeX">16</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">1</coldName>
-			<dateName type="combatPoint">3120</dateName>
-		</date>
+	<action name="skill02">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">660</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">15</p>
+			<p type="combatPoint">1320</p>
+		</data>
 		<frame>
-			<eventName type="setSound">Audio/Effect/ougis.ogg</eventName>
-			<eventName type="setSound">Audio/Jugo/Jugo_skill4_1.ogg</eventName>
-			<frameName>Jugo_Skill04_01.png</frameName>
-			<frameName>Jugo_Skill04_02.png</frameName>
-			<frameName>Jugo_Skill04_03.png</frameName>
-			<eventName type="setMove">32</eventName>
-			<frameName>Jugo_Skill04_04.png</frameName>
-			<eventName type="setAttackBox">f_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/damage_o2.ogg</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Jugo_Skill04_05.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Jugo_Skill04_06.png</frameName>
-			<eventName type="setJump">true</eventName>
-			<eventName type="setDelay">40</eventName>
-			<frameName>Jugo_Skill04_14.png</frameName>
-			<frameName>Jugo_Skill04_15.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Jugo_Skill04_16.png</frameName>
-			<eventName type="setSound">Audio/Jugo/Jugo_skill4_2.ogg</eventName>
-			<eventName type="setMon">Crash2</eventName>
-			<eventName type="setAttackBox">b_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/damage_k.ogg</eventName>
-			<frameName>Jugo_Skill04_17.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Jugo_Skill04_18.png</frameName>
+			<e type="setSound">Audio/Jugo/Jugo_skill2.ogg</e>
+			<f>Jugo_Skill02_01</f>
+			<e type="setCharge">280</e>
+			<f>Jugo_Skill02_02</f>
+			<f>Jugo_Skill02_03</f>
+			<e type="setAttackBox">c_hit</e>
+			<e type="setDSound">Audio/Effect/damage_o.ogg</e>
+			<f>Jugo_Skill02_04</f>
+			<f>Jugo_Skill02_06</f>
+			<f>Jugo_Skill02_07</f>
+			<e type="setMon">Crash</e>
+			<f>Jugo_Skill02_08</f>
+			<e type="setAttackBox">b_hit</e>
+			<e type="setDSound">Audio/Effect/damage_h.ogg</e>
+			<f>Jugo_Skill02_10</f>
 		</frame>
 	</action>
-	<action value="skill05">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">2660</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">1</coldName>
-			<dateName type="combatPoint">7980</dateName>
-		</date>
+
+	<action name="skill03">
+		<data>
+			<p type="attackType">cBuff</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">25</p>
+			<p type="cd">25</p>
+			<p type="combatPoint">2460</p>
+		</data>
 		<frame>
-			<eventName type="setSound">Audio/Effect/ougis.ogg</eventName>
-			<frameName>Jugo_Skill05_01.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<eventName type="setCommand">setInvincible</eventName>
-			<frameName>Jugo_Skill05_02.png</frameName>
-			<eventName type="setOugis">10</eventName>
-			<frameName>Jugo_Skill05_03.png</frameName>
-			<frameName>Jugo_Skill05_04.png</frameName>
-			<frameName>Jugo_Skill05_05.png</frameName>
-			<eventName type="setSound">Audio/Jugo/Jugo_skill5.ogg</eventName>
-			<frameName>Jugo_Skill05_06.png</frameName>
-			<frameName>Jugo_Skill05_07.png</frameName>
-			<eventName type="setSound">Audio/Effect/break_sound3.ogg</eventName>
-			<eventName type="setAttackBox">a_hit</eventName>
-			<frameName>Jugo_Skill05_08.png</frameName>
-			<frameName>Jugo_Skill05_09.png</frameName>
-			<eventName type="setAttackBox">a_hit</eventName>
-			<frameName>Jugo_Skill05_10.png</frameName>
-			<frameName>Jugo_Skill05_11.png</frameName>
-			<eventName type="setAttackBox">a_hit</eventName>
-			<frameName>Jugo_Skill05_12.png</frameName>
-			<frameName>Jugo_Skill05_13.png</frameName>
-			<frameName>Jugo_Skill05_14.png</frameName>
-			<frameName>Jugo_Skill05_15.png</frameName>
-			<frameName>Jugo_Skill05_16.png</frameName>
-			<frameName>Jugo_Skill05_17.png</frameName>
-			<eventName type="setCommand">reInvincible</eventName>
+			<e type="setSound">Audio/Jugo/Jugo_skill3.ogg</e>
+			<f>Jugo_Skill03_02</f>
+			<f>Jugo_Skill03_04</f>
+			<e type="setDelay">10</e>
+			<f>Jugo_Skill03_05</f>
+			<e type="setBuff">17</e>
 		</frame>
 	</action>
-	<action value="skill06">
+
+	<action name="skill04">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">1560</p>
+			<p type="attackRangeX">16</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">1</p>
+			<p type="combatPoint">3120</p>
+		</data>
+		<frame>
+			<e type="setSound">Audio/Effect/ougis.ogg</e>
+			<e type="setSound">Audio/Jugo/Jugo_skill4_1.ogg</e>
+			<f>Jugo_Skill04_01</f>
+			<f>Jugo_Skill04_02</f>
+			<f>Jugo_Skill04_03</f>
+			<e type="setMove">32</e>
+			<f>Jugo_Skill04_04</f>
+			<e type="setAttackBox">f_hit</e>
+			<e type="setDSound">Audio/Effect/damage_o2.ogg</e>
+			<e type="setDelay">10</e>
+			<f>Jugo_Skill04_05</f>
+			<e type="setDelay">10</e>
+			<f>Jugo_Skill04_06</f>
+			<e type="setJump">true</e>
+			<e type="setDelay">40</e>
+			<f>Jugo_Skill04_14</f>
+			<f>Jugo_Skill04_15</f>
+			<e type="setDelay">10</e>
+			<f>Jugo_Skill04_16</f>
+			<e type="setSound">Audio/Jugo/Jugo_skill4_2.ogg</e>
+			<e type="setMon">Crash2</e>
+			<e type="setAttackBox">b_hit</e>
+			<e type="setDSound">Audio/Effect/damage_k.ogg</e>
+			<f>Jugo_Skill04_17</f>
+			<e type="setDelay">10</e>
+			<f>Jugo_Skill04_18</f>
+		</frame>
+	</action>
+	<action name="skill05">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">2660</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">1</p>
+			<p type="combatPoint">7980</p>
+		</data>
+		<frame>
+			<e type="setSound">Audio/Effect/ougis.ogg</e>
+			<f>Jugo_Skill05_01</f>
+			<e type="setDelay">10</e>
+			<e type="setCommand">setInvincible</e>
+			<f>Jugo_Skill05_02</f>
+			<e type="setOugis">10</e>
+			<f>Jugo_Skill05_03</f>
+			<f>Jugo_Skill05_04</f>
+			<f>Jugo_Skill05_05</f>
+			<e type="setSound">Audio/Jugo/Jugo_skill5.ogg</e>
+			<f>Jugo_Skill05_06</f>
+			<f>Jugo_Skill05_07</f>
+			<e type="setSound">Audio/Effect/break_sound3.ogg</e>
+			<e type="setAttackBox">a_hit</e>
+			<f>Jugo_Skill05_08</f>
+			<f>Jugo_Skill05_09</f>
+			<e type="setAttackBox">a_hit</e>
+			<f>Jugo_Skill05_10</f>
+			<f>Jugo_Skill05_11</f>
+			<e type="setAttackBox">a_hit</e>
+			<f>Jugo_Skill05_12</f>
+			<f>Jugo_Skill05_13</f>
+			<f>Jugo_Skill05_14</f>
+			<f>Jugo_Skill05_15</f>
+			<f>Jugo_Skill05_16</f>
+			<f>Jugo_Skill05_17</f>
+			<e type="setCommand">reInvincible</e>
+		</frame>
+	</action>
+	<action name="skill06">
 		<frame></frame>
 	</action>
-	<action value="skill07">
+	<action name="skill07">
 		<frame></frame>
 	</action>
-	<action value="skill08">
+	<action name="skill08">
 		<frame></frame>
 	</action>
-	<action value="skill09">
+	<action name="skill09">
 		<frame></frame>
 	</action>
-	<action value="skill10">
-		<date>
-			<dateName type="attackType">Idle</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">0</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="skill10">
+		<data>
+			<p type="attackType">Idle</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">0</p>
+			<p type="cd">0</p>
+		</data>
 		<frame>
-			<frameName>Jugo_Skill10_01.png</frameName>
+			<f>Jugo_Skill10_01</f>
 		</frame>
 	</action>
-	<action value="skill11">
-		<date>
-			<dateName type="attackType">Walk</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">0</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="skill11">
+		<data>
+			<p type="attackType">Walk</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">0</p>
+			<p type="cd">0</p>
+		</data>
 		<frame>
-			<frameName>Jugo_Run_01.png</frameName>
-			<frameName>Jugo_Run_02.png</frameName>
-			<frameName>Jugo_Run_03.png</frameName>
+			<f>Jugo_Run_01</f>
+			<f>Jugo_Run_02</f>
+			<f>Jugo_Run_03</f>
 		</frame>
 	</action>
-	<action value="skill12">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">32</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="skill12">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">32</p>
+			<p type="cd">0</p>
+		</data>
 		<frame>
-			<frameName>Jugo_Skill11_02.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Jugo_Skill11_03.png</frameName>
-			<eventName type="setSound">Audio/Jugo/Jugo_skill10.ogg</eventName>
-			<frameName>Jugo_Skill11_04.png</frameName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<eventName type="setDSound">Audio/Effect/damage_h.ogg</eventName>
-			<eventName type="setActionResume">20</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Jugo_Skill11_05.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Jugo_Skill11_06.png</frameName>
+			<f>Jugo_Skill11_02</f>
+			<e type="setDelay">10</e>
+			<f>Jugo_Skill11_03</f>
+			<e type="setSound">Audio/Jugo/Jugo_skill10.ogg</e>
+			<f>Jugo_Skill11_04</f>
+			<e type="setAttackBox">c_hit</e>
+			<e type="setDSound">Audio/Effect/damage_h.ogg</e>
+			<e type="setActionResume">20</e>
+			<e type="setDelay">10</e>
+			<f>Jugo_Skill11_05</f>
+			<e type="setDelay">10</e>
+			<f>Jugo_Skill11_06</f>
 		</frame>
 	</action>
 
-</animation>
+</unit>

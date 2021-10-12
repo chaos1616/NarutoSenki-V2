@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Sanbao_Move_001.png</key>
+            <key>Sanbao_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{186,132},{114,130}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{310,144}</string>
             </dict>
-            <key>Sanbao_Move_002.png</key>
+            <key>Sanbao_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{194,124}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{310,144}</string>
             </dict>
-            <key>Sanbao_Move_003.png</key>
+            <key>Sanbao_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{198,2},{186,128}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{310,144}</string>
             </dict>
-            <key>Sanbao_Move_004.png</key>
+            <key>Sanbao_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{386,2},{186,124}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{310,144}</string>
             </dict>
-            <key>Sanbao_Move_005.png</key>
+            <key>Sanbao_Move_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,128},{182,128}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{310,144}</string>
             </dict>
-            <key>Sanbao_Move_006.png</key>
+            <key>Sanbao_Move_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{186,248},{124,112}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{310,144}</string>
             </dict>
-            <key>Sanbao_Move_007.png</key>
+            <key>Sanbao_Move_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{318,190},{128,120}}</string>

@@ -10,7 +10,6 @@ public:
 
 	bool init()
 	{
-		// RETURN_FALSE_IF(!CharacterBase::initWithSpriteFrameName("coin.png"));
 		RETURN_FALSE_IF(!CharacterBase::init());
 
 		scheduleUpdate();

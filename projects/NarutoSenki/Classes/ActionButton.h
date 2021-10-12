@@ -45,7 +45,7 @@ public:
 	CC_SYNTHESIZE(abType, _abType, ABType);
 	gearType _gearType;
 
-	CC_SYNTHESIZE_RETAIN(CCString *, _coldDown, CD);
+	CC_SYNTHESIZE_RETAIN(CCString *, _cooldown, CD);
 	CC_SYNTHESIZE(bool, _isDoubleSkill, DoubleSkill);
 	CC_SYNTHESIZE_RETAIN(CCString *, _timeCout, TimeCout);
 

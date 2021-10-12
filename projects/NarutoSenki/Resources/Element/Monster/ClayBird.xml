@@ -1,69 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animation>
+<unit>
 
-	<action value="Idle">
-		<date>
-			<dateName type="attackType">ClayBird</dateName>
-			<dateName type="attackValue">6000</dateName>
-			<dateName type="attackRangeX">126</dateName>
-			<dateName type="attackRangeY">76</dateName>
-			<coldName type="coldDown">340</coldName>
-		</date>
+	<action name="Idle">
+		<data>
+			<p type="attackType">ClayBird</p>
+			<p type="attackValue">6000</p>
+			<p type="attackRangeX">126</p>
+			<p type="attackRangeY">76</p>
+			<p type="cd">340</p>
+		</data>
 		<frame>
-			<frameName>ClayBird_Move_001.png</frameName>
-			<frameName>ClayBird_Move_002.png</frameName>
+			<f>ClayBird_Move_001</f>
+			<f>ClayBird_Move_002</f>
 		</frame>
 	</action>
 
-	<action value="Walk">
+	<action name="Walk">
 		<frame>
-			<frameName>ClayBird_Move_001.png</frameName>
-			<frameName>ClayBird_Move_002.png</frameName>
+			<f>ClayBird_Move_001</f>
+			<f>ClayBird_Move_002</f>
 		</frame>
 	</action>
 
-	<action value="Hurt">
-		<frame>
-		</frame>
-	</action>
-
-	<action value="AirHurt">
-		<frame>
-
-		</frame>
-	</action>
-
-	<action value="KnockDown">
+	<action name="Hurt">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Float">
+	<action name="AirHurt">
+		<frame>
+
+		</frame>
+	</action>
+
+	<action name="KnockDown">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Dead">
+	<action name="Float">
 		<frame>
-			<frameName>ClayBird_Move_001.png</frameName>
 		</frame>
 	</action>
 
-	<action value="nAttack">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">260</dateName>
-			<dateName type="attackRangeX">16</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="Dead">
 		<frame>
-			<frameName>ClayBird_Move_003.png</frameName>
-			<frameName>ClayBird_Move_004.png</frameName>
-			<eventName type="setAttackBox">n_hit</eventName>
-			<frameName>ClayBird_Move_005.png</frameName>
-			<eventName type="setDetonation">0</eventName>
+			<f>ClayBird_Move_001</f>
 		</frame>
 	</action>
 
-</animation>
+	<action name="nAttack">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">260</p>
+			<p type="attackRangeX">16</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">0</p>
+		</data>
+		<frame>
+			<f>ClayBird_Move_003</f>
+			<f>ClayBird_Move_004</f>
+			<e type="setAttackBox">n_hit</e>
+			<f>ClayBird_Move_005</f>
+			<e type="setDetonation">0</e>
+		</frame>
+	</action>
+
+</unit>

@@ -1,262 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animation>
+<unit>
 
-	<action value="Idle">
-		<date>
-			<dateName type="attackType">Pain</dateName>
-			<dateName type="attackValue">6000</dateName>
-			<dateName type="attackRangeX">24</dateName>
-			<dateName type="attackRangeY">83</dateName>
-			<coldName type="coldDown">224</coldName>
-		</date>
+	<action name="Idle">
+		<data>
+			<p type="attackType">Pain</p>
+			<p type="attackValue">6000</p>
+			<p type="attackRangeX">24</p>
+			<p type="attackRangeY">83</p>
+			<p type="cd">224</p>
+		</data>
 		<frame>
-			<frameName>Pain_Idle_01.png</frameName>
-			<frameName>Pain_Idle_02.png</frameName>
-			<frameName>Pain_Idle_03.png</frameName>
-			<frameName>Pain_Idle_04.png</frameName>
-			<frameName>Pain_Idle_05.png</frameName>
-			<frameName>Pain_Idle_06.png</frameName>
-			<frameName>Pain_Idle_07.png</frameName>
-			<frameName>Pain_Idle_08.png</frameName>
+			<f>Pain_Idle_01</f>
+			<f>Pain_Idle_02</f>
+			<f>Pain_Idle_03</f>
+			<f>Pain_Idle_04</f>
+			<f>Pain_Idle_05</f>
+			<f>Pain_Idle_06</f>
+			<f>Pain_Idle_07</f>
+			<f>Pain_Idle_08</f>
 		</frame>
 	</action>
 
-	<action value="Walk">
+	<action name="Walk">
 		<frame>
-			<frameName>Pain_Walk_01.png</frameName>
-			<frameName>Pain_Walk_02.png</frameName>
-			<frameName>Pain_Walk_03.png</frameName>
-			<frameName>Pain_Walk_04.png</frameName>
-			<frameName>Pain_Walk_05.png</frameName>
-			<frameName>Pain_Walk_06.png</frameName>
+			<f>Pain_Walk_01</f>
+			<f>Pain_Walk_02</f>
+			<f>Pain_Walk_03</f>
+			<f>Pain_Walk_04</f>
+			<f>Pain_Walk_05</f>
+			<f>Pain_Walk_06</f>
 		</frame>
 	</action>
 
-	<action value="Hurt">
+	<action name="Hurt">
 		<frame>
-			<eventName type="setMove">32</eventName>
-			<frameName>Pain_Hurt_01.png</frameName>
-			<frameName>Pain_Hurt_02.png</frameName>
-			<frameName>Pain_Hurt_03.png</frameName>
-			<eventName type="setSound">Audio/Pain/pain_hurt.ogg</eventName>
+			<e type="setMove">32</e>
+			<f>Pain_Hurt_01</f>
+			<f>Pain_Hurt_02</f>
+			<f>Pain_Hurt_03</f>
+			<e type="setSound">Audio/Pain/pain_hurt.ogg</e>
 		</frame>
 	</action>
 
-	<action value="AirHurt">
+	<action name="AirHurt">
 		<frame>
-			<frameName>Pain_AirHurt_01.png</frameName>
+			<f>Pain_AirHurt_01</f>
 		</frame>
 	</action>
 
-	<action value="KnockDown">
+	<action name="KnockDown">
 		<frame>
-			<frameName>Pain_KnockDown_01.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Pain_KnockDown_02.png</frameName>
-			<eventName type="setDelay">60</eventName>
-			<frameName>Pain_KnockDown_03.png</frameName>
-			<frameName>Pain_KnockDown_04.png</frameName>
-			<frameName>Pain_KnockDown_05.png</frameName>
+			<f>Pain_KnockDown_01</f>
+			<e type="setDelay">10</e>
+			<f>Pain_KnockDown_02</f>
+			<e type="setDelay">60</e>
+			<f>Pain_KnockDown_03</f>
+			<f>Pain_KnockDown_04</f>
+			<f>Pain_KnockDown_05</f>
 		</frame>
 	</action>
 
-	<action value="Float">
+	<action name="Float">
 		<frame>
-			<frameName>Pain_Float_01.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Pain_Float_02.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Pain_Float_03.png</frameName>
+			<f>Pain_Float_01</f>
+			<e type="setDelay">10</e>
+			<f>Pain_Float_02</f>
+			<e type="setDelay">10</e>
+			<f>Pain_Float_03</f>
 		</frame>
 	</action>
 
-	<action value="Dead">
+	<action name="Dead">
 		<frame>
-			<frameName>Pain_KnockDown_01.png</frameName>
-			<frameName>Pain_KnockDown_02.png</frameName>
-			<eventName type="setSound">Audio/Pain/pain_dead.ogg</eventName>
+			<f>Pain_KnockDown_01</f>
+			<f>Pain_KnockDown_02</f>
+			<e type="setSound">Audio/Pain/pain_dead.ogg</e>
 		</frame>
 	</action>
 
-	<action value="nAttack">
-		<date>
-			<dateName type="attackType">nAttack</dateName>
-			<dateName type="attackValue">100</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">16</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="nAttack">
+		<data>
+			<p type="attackType">nAttack</p>
+			<p type="attackValue">100</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">16</p>
+			<p type="cd">0</p>
+		</data>
 		<frame>
-			<frameName>Pain_NAttack_01.png</frameName>
-			<frameName>Pain_NAttack_02.png</frameName>
-			<frameName>Pain_NAttack_03.png</frameName>
-			<eventName type="setSound">Audio/Effect/combo1.ogg</eventName>
-			<eventName type="setAttackBox">n_hit</eventName>
-			<frameName>Pain_NAttack_04.png</frameName>
-			<frameName>Pain_NAttack_05.png</frameName>
-			<frameName>Pain_NAttack_06.png</frameName>
-			<frameName>Pain_NAttack_07.png</frameName>
-			<eventName type="setMove">8</eventName>
-			<frameName>Pain_NAttack_08.png</frameName>
-			<frameName>Pain_NAttack_09.png</frameName>
-			<eventName type="setSound">Audio/Effect/combo2.ogg</eventName>
-			<eventName type="setAttackBox">n_hit</eventName>
-			<frameName>Pain_NAttack_10.png</frameName>
-			<frameName>Pain_NAttack_11.png</frameName>
-			<frameName>Pain_NAttack_12.png</frameName>
-			<eventName type="setSound">Audio/Pain/pain_combo.ogg</eventName>
-			<eventName type="setMove">16</eventName>
-			<frameName>Pain_NAttack_13.png</frameName>
-			<eventName type="setAttackBox">l_hit</eventName>
-			<eventName type="setSound">Audio/Effect/combo3.ogg</eventName>
-			<frameName>Pain_NAttack_14.png</frameName>
-			<frameName>Pain_NAttack_15.png</frameName>
+			<f>Pain_NAttack_01</f>
+			<f>Pain_NAttack_02</f>
+			<f>Pain_NAttack_03</f>
+			<e type="setSound">Audio/Effect/combo1.ogg</e>
+			<e type="setAttackBox">n_hit</e>
+			<f>Pain_NAttack_04</f>
+			<f>Pain_NAttack_05</f>
+			<f>Pain_NAttack_06</f>
+			<f>Pain_NAttack_07</f>
+			<e type="setMove">8</e>
+			<f>Pain_NAttack_08</f>
+			<f>Pain_NAttack_09</f>
+			<e type="setSound">Audio/Effect/combo2.ogg</e>
+			<e type="setAttackBox">n_hit</e>
+			<f>Pain_NAttack_10</f>
+			<f>Pain_NAttack_11</f>
+			<f>Pain_NAttack_12</f>
+			<e type="setSound">Audio/Pain/pain_combo.ogg</e>
+			<e type="setMove">16</e>
+			<f>Pain_NAttack_13</f>
+			<e type="setAttackBox">l_hit</e>
+			<e type="setSound">Audio/Effect/combo3.ogg</e>
+			<f>Pain_NAttack_14</f>
+			<f>Pain_NAttack_15</f>
 		</frame>
 	</action>
 
-	<action value="skill01">
-		<date>
-			<dateName type="attackType">sBuff</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">15</dateName>
-			<coldName type="coldDown">25</coldName>
-		</date>
+	<action name="skill01">
+		<data>
+			<p type="attackType">sBuff</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">15</p>
+			<p type="cd">25</p>
+		</data>
 		<frame>
-			<frameName>Pain_Skill01_01.png</frameName>
-			<eventName type="setSound">Audio/Pain/pain_skill1.ogg</eventName>
-			<frameName>Pain_Skill01_02.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Pain_Skill01_03.png</frameName>
-			<eventName type="setDelay">40</eventName>
-			<frameName>Pain_Skill01_04.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<eventName type="setBuff">500</eventName>
+			<f>Pain_Skill01_01</f>
+			<e type="setSound">Audio/Pain/pain_skill1.ogg</e>
+			<f>Pain_Skill01_02</f>
+			<e type="setDelay">10</e>
+			<f>Pain_Skill01_03</f>
+			<e type="setDelay">40</e>
+			<f>Pain_Skill01_04</f>
+			<e type="setDelay">10</e>
+			<e type="setBuff">500</e>
 		</frame>
 	</action>
 
-	<action value="skill02">
-		<date>
-			<dateName type="attackType">abAttack</dateName>
-			<dateName type="attackValue">900</dateName>
-			<dateName type="attackRangeX">192</dateName>
-			<dateName type="attackRangeY">64</dateName>
-			<coldName type="coldDown">15</coldName>
-		</date>
+	<action name="skill02">
+		<data>
+			<p type="attackType">abAttack</p>
+			<p type="attackValue">900</p>
+			<p type="attackRangeX">192</p>
+			<p type="attackRangeY">64</p>
+			<p type="cd">15</p>
+		</data>
 		<frame>
-			<frameName>Pain_Skill02_01.png</frameName>
-			<eventName type="setSound">Audio/Pain/pain_skill2.ogg</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Pain_Skill02_02.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Pain_Skill02_03.png</frameName>
-			<eventName type="setAttackBox">ab_hit</eventName>
-			<frameName>Pain_Skill02_04.png</frameName>
-			<frameName>Pain_Skill02_05.png</frameName>
-			<frameName>Pain_Skill02_06.png</frameName>
+			<f>Pain_Skill02_01</f>
+			<e type="setSound">Audio/Pain/pain_skill2.ogg</e>
+			<e type="setDelay">10</e>
+			<f>Pain_Skill02_02</f>
+			<e type="setDelay">10</e>
+			<f>Pain_Skill02_03</f>
+			<e type="setAttackBox">ab_hit</e>
+			<f>Pain_Skill02_04</f>
+			<f>Pain_Skill02_05</f>
+			<f>Pain_Skill02_06</f>
 		</frame>
 	</action>
 
-	<action value="skill03">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">320</dateName>
-			<dateName type="attackRangeX">160</dateName>
-			<dateName type="attackRangeY">64</dateName>
-			<coldName type="coldDown">25</coldName>
-		</date>
+	<action name="skill03">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">320</p>
+			<p type="attackRangeX">160</p>
+			<p type="attackRangeY">64</p>
+			<p type="cd">25</p>
+		</data>
 		<frame>
-			<frameName>Pain_Skill03_01.png</frameName>
-			<eventName type="setSound">Audio/Pain/pain_skill3.ogg</eventName>
-			<frameName>Pain_Skill03_02.png</frameName>
-			<frameName>Pain_Skill03_03.png</frameName>
-			<frameName>Pain_Skill03_04.png</frameName>
-			<eventName type="setAttackBox">n_hit</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Pain_Skill03_05.png</frameName>
-			<eventName type="setAttackBox">n_hit</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Pain_Skill03_06.png</frameName>
-			<eventName type="setAttackBox">n_hit</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Pain_Skill03_07.png</frameName>
-			<eventName type="setAttackBox">n_hit</eventName>
-			<eventName type="setDelay">10</eventName>
+			<f>Pain_Skill03_01</f>
+			<e type="setSound">Audio/Pain/pain_skill3.ogg</e>
+			<f>Pain_Skill03_02</f>
+			<f>Pain_Skill03_03</f>
+			<f>Pain_Skill03_04</f>
+			<e type="setAttackBox">n_hit</e>
+			<e type="setDelay">10</e>
+			<f>Pain_Skill03_05</f>
+			<e type="setAttackBox">n_hit</e>
+			<e type="setDelay">10</e>
+			<f>Pain_Skill03_06</f>
+			<e type="setAttackBox">n_hit</e>
+			<e type="setDelay">10</e>
+			<f>Pain_Skill03_07</f>
+			<e type="setAttackBox">n_hit</e>
+			<e type="setDelay">10</e>
 		</frame>
 	</action>
 
-	<action value="skill04">
-		<date>
-			<dateName type="attackType">oAttack</dateName>
-			<dateName type="attackValue">250</dateName>
-			<dateName type="attackRangeX">48</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">1</coldName>
-		</date>
+	<action name="skill04">
+		<data>
+			<p type="attackType">oAttack</p>
+			<p type="attackValue">250</p>
+			<p type="attackRangeX">48</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">1</p>
+		</data>
 		<frame>
-			<eventName type="setSound">Audio/Effect/ougis.ogg</eventName>
-			<frameName>Pain_Skill04_01.png</frameName>
-			<eventName type="setFont">dbtx.png</eventName>
-			<eventName type="setDelay">20</eventName>
-			<eventName type="setSound">Audio/Pain/pain_skill4.ogg</eventName>
-			<eventName type="setMon">Jibaku</eventName>
-			<eventName type="setDelay">30</eventName>
-			<frameName>Pain_Skill04_02.png</frameName>
-			<eventName type="setFont">ka.png</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Pain_Skill04_03.png</frameName>
-			<eventName type="setDelay">10</eventName>
+			<e type="setSound">Audio/Effect/ougis.ogg</e>
+			<f>Pain_Skill04_01</f>
+			<e type="setFont">dbtx</e>
+			<e type="setDelay">20</e>
+			<e type="setSound">Audio/Pain/pain_skill4.ogg</e>
+			<e type="setMon">Jibaku</e>
+			<e type="setDelay">30</e>
+			<f>Pain_Skill04_02</f>
+			<e type="setFont">ka</e>
+			<e type="setDelay">10</e>
+			<f>Pain_Skill04_03</f>
+			<e type="setDelay">10</e>
 		</frame>
 	</action>
 
-	<action value="skill05">
-		<date>
-			<dateName type="attackType">oAttack</dateName>
-			<dateName type="attackValue">250</dateName>
-			<dateName type="attackRangeX">48</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">1</coldName>
-		</date>
+	<action name="skill05">
+		<data>
+			<p type="attackType">oAttack</p>
+			<p type="attackValue">250</p>
+			<p type="attackRangeX">48</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">1</p>
+		</data>
 		<frame>
-			<eventName type="setSound">Audio/Effect/ougis.ogg</eventName>
-			<frameName>Pain_Skill05_01.png</frameName>
-			<eventName type="setCommand">setInvincible</eventName>
-			<eventName type="setSkillEffect">Kujiyose</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Pain_Skill05_02.png</frameName>
-			<eventName type="setOugis">10</eventName>
-			<frameName>Pain_Skill05_03.png</frameName>
-			<frameName>Pain_Skill05_04.png</frameName>
-			<frameName>Pain_Skill05_05.png</frameName>
-			<frameName>Pain_Skill05_12.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Pain_Skill05_06.png</frameName>
-			<frameName>Pain_Skill05_07.png</frameName>
-			<frameName>Pain_Skill05_08.png</frameName>
-			<frameName>Pain_Skill05_09.png</frameName>
-			<frameName>Pain_Skill05_10.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Pain_Skill05_11.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<eventName type="setTransform">40</eventName>
-			<eventName type="setCommand">reInvincible</eventName>
+			<e type="setSound">Audio/Effect/ougis.ogg</e>
+			<f>Pain_Skill05_01</f>
+			<e type="setCommand">setInvincible</e>
+			<e type="setSkillEffect">Kujiyose</e>
+			<e type="setDelay">10</e>
+			<f>Pain_Skill05_02</f>
+			<e type="setOugis">10</e>
+			<f>Pain_Skill05_03</f>
+			<f>Pain_Skill05_04</f>
+			<f>Pain_Skill05_05</f>
+			<f>Pain_Skill05_12</f>
+			<e type="setDelay">10</e>
+			<f>Pain_Skill05_06</f>
+			<f>Pain_Skill05_07</f>
+			<f>Pain_Skill05_08</f>
+			<f>Pain_Skill05_09</f>
+			<f>Pain_Skill05_10</f>
+			<e type="setDelay">10</e>
+			<f>Pain_Skill05_11</f>
+			<e type="setDelay">10</e>
+			<e type="setTransform">40</e>
+			<e type="setCommand">reInvincible</e>
 		</frame>
 	</action>
-	<action value="skill06">
+	<action name="skill06">
 		<frame></frame>
 	</action>
-	<action value="skill07">
+	<action name="skill07">
 		<frame></frame>
 	</action>
-	<action value="skill08">
+	<action name="skill08">
 		<frame></frame>
 	</action>
-	<action value="skill09">
+	<action name="skill09">
 		<frame></frame>
 	</action>
-	<action value="skill10">
+	<action name="skill10">
 
 	</action>
 
 
-</animation>
+</unit>

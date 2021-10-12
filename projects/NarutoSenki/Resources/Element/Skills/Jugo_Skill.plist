@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Crash2_Move_01.png</key>
+            <key>Crash2_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{154,132},{104,62}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{150,124}</string>
             </dict>
-            <key>Crash2_Move_02.png</key>
+            <key>Crash2_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,128},{150,64}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{150,124}</string>
             </dict>
-            <key>Crash2_Move_03.png</key>
+            <key>Crash2_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{150,124}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{150,124}</string>
             </dict>
-            <key>Crash_Move_01.png</key>
+            <key>Crash_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{132,238},{126,59}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{128,65}</string>
             </dict>
-            <key>Crash_Move_02.png</key>
+            <key>Crash_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,194},{128,57}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{128,65}</string>
             </dict>
-            <key>Crash_Move_03.png</key>
+            <key>Crash_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{154,2},{128,65}}</string>

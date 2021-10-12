@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>InkBird_Move_01.png</key>
+            <key>InkBird_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,218},{71,58}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{181,140}</string>
             </dict>
-            <key>InkBird_Move_02.png</key>
+            <key>InkBird_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,419},{139,84}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{181,140}</string>
             </dict>
-            <key>InkBird_Move_03.png</key>
+            <key>InkBird_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,278},{139,86}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{181,140}</string>
             </dict>
-            <key>InkBird_Move_04.png</key>
+            <key>InkBird_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{90,278},{119,62}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{181,140}</string>
             </dict>
-            <key>InkBird_Move_05.png</key>
+            <key>InkBird_Move_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{333,143},{133,140}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{181,140}</string>
             </dict>
-            <key>InkBird_Move_06.png</key>
+            <key>InkBird_Move_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{341,2},{139,140}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{181,140}</string>
             </dict>
-            <key>InkBird_Move_12.png</key>
+            <key>InkBird_Move_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{143,399},{107,74}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{181,140}</string>
             </dict>
-            <key>InkBird_Move_13.png</key>
+            <key>InkBird_Move_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{133,218},{57,56}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{181,140}</string>
             </dict>
-            <key>InkDragon_Move_001.png</key>
+            <key>InkDragon_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,138},{329,78}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{339,88}</string>
             </dict>
-            <key>InkDragon_Move_002.png</key>
+            <key>InkDragon_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{337,70}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{339,88}</string>
             </dict>
-            <key>InkDragon_Move_003.png</key>
+            <key>InkDragon_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,74},{337,62}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{339,88}</string>
             </dict>
-            <key>Mouse_Walk_01.png</key>
+            <key>Mouse_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{483,2},{29,15}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{29,15}</string>
             </dict>
-            <key>Mouse_Walk_02.png</key>
+            <key>Mouse_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{483,33},{30,13}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{30,15}</string>
             </dict>
-            <key>Mouse_Walk_03.png</key>
+            <key>Mouse_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{483,65},{31,11}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{31,15}</string>
             </dict>
-            <key>Snake_Walk_01.png</key>
+            <key>Snake_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{498,58},{51,11}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{51,11}</string>
             </dict>
-            <key>Snake_Walk_02.png</key>
+            <key>Snake_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{500,2},{54,9}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{54,11}</string>
             </dict>
-            <key>Snake_Walk_03.png</key>
+            <key>Snake_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{483,98},{59,7}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{59,11}</string>
             </dict>
-            <key>Tiger_Attack_001.png</key>
+            <key>Tiger_Attack_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{219,264},{70,53}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{70,53}</string>
             </dict>
-            <key>Tiger_Idle_001.png</key>
+            <key>Tiger_Idle_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{208,330},{63,49}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{63,51}</string>
             </dict>
-            <key>Tiger_Idle_002.png</key>
+            <key>Tiger_Idle_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{154,277},{63,51}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{63,51}</string>
             </dict>
-            <key>Tiger_Idle_003.png</key>
+            <key>Tiger_Idle_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{208,330},{63,49}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{63,51}</string>
             </dict>
-            <key>Tiger_Move_001.png</key>
+            <key>Tiger_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{154,330},{67,52}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{67,52}</string>
             </dict>
-            <key>Tiger_Move_002.png</key>
+            <key>Tiger_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{219,218},{75,44}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{75,44}</string>
             </dict>
-            <key>Tiger_Move_003.png</key>
+            <key>Tiger_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{75,218},{57,56}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{57,56}</string>
             </dict>
-            <key>Tiger_Move_004.png</key>
+            <key>Tiger_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{271,453},{48,51}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{48,51}</string>
             </dict>
-            <key>Tiger_Move_005.png</key>
+            <key>Tiger_Move_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{219,453},{54,50}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{54,50}</string>
             </dict>
-            <key>ink_boom01.png</key>
+            <key>ink_boom01</key>
             <dict>
                 <key>frame</key>
                 <string>{{219,395},{56,54}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{56,56}</string>
             </dict>
-            <key>ink_boom02.png</key>
+            <key>ink_boom02</key>
             <dict>
                 <key>frame</key>
                 <string>{{133,218},{57,56}}</string>

@@ -171,7 +171,7 @@ public:
 	CC_SYNTHESIZE(CCString*,_sattackType1,sAttack1Type);
 	int				_sattackRangeX1;
 	int				_sattackRangeY1;
-	uint32_t		_sattackcoldDown1;
+	uint32_t		_sattackcooldown1;
 	bool			_sattack1isDouble;
 	int				_sattackCombatPoint1;
 
@@ -184,7 +184,7 @@ public:
 	CC_SYNTHESIZE(CCString*,_sattackType2,sAttack2Type);
 	int				_sattackRangeX2;
 	int				_sattackRangeY2;
-	uint32_t		_sattackcoldDown2;
+	uint32_t		_sattackcooldown2;
 	bool			_sattack2isDouble;
 	int				_sattackCombatPoint2;
 
@@ -192,7 +192,7 @@ public:
 	CC_SYNTHESIZE(CCString*,_sattackType3,sAttack3Type);
 	int				_sattackRangeX3;
 	int				_sattackRangeY3;
-	uint32_t		_sattackcoldDown3;
+	uint32_t		_sattackcooldown3;
 	bool			_sattack3isDouble;
 	int				_sattackCombatPoint3;
 
@@ -200,7 +200,7 @@ public:
 	CC_SYNTHESIZE(CCString*,_sattackType4,sAttack4Type);
 	int				_sattackRangeX4;
 	int				_sattackRangeY4;
-	uint32_t		_sattackcoldDown4;
+	uint32_t		_sattackcooldown4;
 	bool			_sattack4isDouble;
 	int				_sattackCombatPoint4;
 
@@ -208,7 +208,7 @@ public:
 	CC_SYNTHESIZE(CCString*,_sattackType5,sAttack5Type);
 	int				_sattackRangeX5;
 	int				_sattackRangeY5;
-	uint32_t		_sattackcoldDown5;
+	uint32_t		_sattackcooldown5;
 	int				_sattackCombatPoint5;
 
 	//int totalCombatPoint;
@@ -219,19 +219,19 @@ public:
 	CC_SYNTHESIZE(CCString*,_spcattackType1,spcAttack1Type);
 	int				_spcattackRangeX1;
 	int				_spcattackRangeY1;
-	uint32_t		_spcattackcoldDown1;
+	uint32_t		_spcattackcooldown1;
 
 	CC_SYNTHESIZE_RETAIN(CCString*,_spcattackValue2,spcAttackValue2);
 	CC_SYNTHESIZE(CCString*,_spcattackType2,spcAttack2Type);
 	int				_spcattackRangeX2;
 	int				_spcattackRangeY2;
-	uint32_t		_spcattackcoldDown2;
+	uint32_t		_spcattackcooldown2;
 
 	CC_SYNTHESIZE_RETAIN(CCString*,_spcattackValue3,spcAttackValue3);
 	CC_SYNTHESIZE(CCString*,_spcattackType3,spcAttack3Type);
 	int				_spcattackRangeX3;
 	int				_spcattackRangeY3;
-	uint32_t		_spcattackcoldDown3;
+	uint32_t		_spcattackcooldown3;
 
 	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_tempAttackValue1,tempAttackValue1);
 
@@ -384,7 +384,7 @@ public:
 	void				setSkillEffect(CCNode* sender,void* data);
 	virtual void		setRestore2(float dt);
 
-	void				readData(CCArray* tmpData,CCString* &attackType,CCString* &attackValue,int &attackRangeX,int &attackRangeY,uint32_t &coldDown,int &combatPoint);
+	void				readData(CCArray* tmpData,CCString* &attackType,CCString* &attackValue,int &attackRangeX,int &attackRangeY,uint32_t &cooldown,int &combatPoint);
 	CCAction*			createAnimation(CCArray* ationArray,float fps,bool isRepeat,bool isReturn);
 
 protected:

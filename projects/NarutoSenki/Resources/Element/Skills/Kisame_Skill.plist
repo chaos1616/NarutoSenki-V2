@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Shark2_Move_001.png</key>
+            <key>Shark2_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{318,405},{99,64}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{137,88}</string>
             </dict>
-            <key>Shark2_Move_002.png</key>
+            <key>Shark2_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{308,471},{103,70}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{137,88}</string>
             </dict>
-            <key>Shark2_Move_003.png</key>
+            <key>Shark2_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,489},{135,50}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{137,88}</string>
             </dict>
-            <key>Shark2_Move_004.png</key>
+            <key>Shark2_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,541},{133,54}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{137,88}</string>
             </dict>
-            <key>Shark2_Move_005.png</key>
+            <key>Shark2_Move_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{169,458},{137,56}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{137,88}</string>
             </dict>
-            <key>Shark2_Move_006.png</key>
+            <key>Shark2_Move_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{139,516},{133,56}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{137,88}</string>
             </dict>
-            <key>Shark_Move_01.png</key>
+            <key>Shark_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{169,405},{147,51}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{207,67}</string>
             </dict>
-            <key>Shark_Move_02.png</key>
+            <key>Shark_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,402},{165,85}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{207,93}</string>
             </dict>
-            <key>Shark_Move_03.png</key>
+            <key>Shark_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,340},{177,60}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{207,114}</string>
             </dict>
-            <key>Shark_Move_04.png</key>
+            <key>Shark_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{420,252},{187,44}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{207,52}</string>
             </dict>
-            <key>Shark_Move_05.png</key>
+            <key>Shark_Move_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{468,211},{195,39}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{207,55}</string>
             </dict>
-            <key>Shark_Move_06.png</key>
+            <key>Shark_Move_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{217,252},{201,31}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{207,31}</string>
             </dict>
-            <key>Shark_Move_07.png</key>
+            <key>Shark_Move_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{470,2},{207,39}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{207,43}</string>
             </dict>
-            <key>Steam_Move_001.png</key>
+            <key>Steam_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{419,441},{135,72}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{245,138}</string>
             </dict>
-            <key>Steam_Move_002.png</key>
+            <key>Steam_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{217,285},{183,118}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{245,138}</string>
             </dict>
-            <key>Steam_Move_003.png</key>
+            <key>Steam_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,216},{213,122}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{245,138}</string>
             </dict>
-            <key>Steam_Move_004.png</key>
+            <key>Steam_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{239,2},{229,124}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{245,138}</string>
             </dict>
-            <key>Steam_Move_005.png</key>
+            <key>Steam_Move_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{235,126}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{245,138}</string>
             </dict>
-            <key>Steam_Move_006.png</key>
+            <key>Steam_Move_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{239,128},{227,122}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{245,138}</string>
             </dict>
-            <key>Steam_Move_007.png</key>
+            <key>Steam_Move_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,130},{217,84}}</string>

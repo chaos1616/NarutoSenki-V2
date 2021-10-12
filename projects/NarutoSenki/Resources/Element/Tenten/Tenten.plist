@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Tenten_AirHurt_01.png</key>
+            <key>Tenten_AirHurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{254,677},{56,54}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{56,54}</string>
             </dict>
-            <key>Tenten_AirHurt_02.png</key>
+            <key>Tenten_AirHurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{225,450},{29,68}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{29,68}</string>
             </dict>
-            <key>Tenten_Extern_01.png</key>
+            <key>Tenten_Extern_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,350},{66,90}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{66,90}</string>
             </dict>
-            <key>Tenten_Extern_010.png</key>
+            <key>Tenten_Extern_010</key>
             <dict>
                 <key>frame</key>
                 <string>{{94,351},{32,83}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{32,83}</string>
             </dict>
-            <key>Tenten_Extern_02.png</key>
+            <key>Tenten_Extern_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{179,306},{67,88}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{67,88}</string>
             </dict>
-            <key>Tenten_Extern_03.png</key>
+            <key>Tenten_Extern_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{181,237},{67,90}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{67,90}</string>
             </dict>
-            <key>Tenten_Extern_04.png</key>
+            <key>Tenten_Extern_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{419,272},{62,91}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{62,91}</string>
             </dict>
-            <key>Tenten_Extern_05.png</key>
+            <key>Tenten_Extern_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,350},{66,90}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{66,90}</string>
             </dict>
-            <key>Tenten_Extern_06.png</key>
+            <key>Tenten_Extern_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{179,306},{67,88}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{67,88}</string>
             </dict>
-            <key>Tenten_Extern_07.png</key>
+            <key>Tenten_Extern_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{181,237},{67,90}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{67,90}</string>
             </dict>
-            <key>Tenten_Extern_08.png</key>
+            <key>Tenten_Extern_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{419,272},{62,91}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{62,91}</string>
             </dict>
-            <key>Tenten_Extern_09.png</key>
+            <key>Tenten_Extern_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,216},{61,91}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{61,91}</string>
             </dict>
-            <key>Tenten_Float_01.png</key>
+            <key>Tenten_Float_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{456,655},{54,56}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{54,56}</string>
             </dict>
-            <key>Tenten_Float_02.png</key>
+            <key>Tenten_Float_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{196,579},{59,58}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{59,58}</string>
             </dict>
-            <key>Tenten_Float_03.png</key>
+            <key>Tenten_Float_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{450,133},{59,58}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{59,58}</string>
             </dict>
-            <key>Tenten_Hurt_01.png</key>
+            <key>Tenten_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{465,465},{43,67}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{43,67}</string>
             </dict>
-            <key>Tenten_Hurt_02.png</key>
+            <key>Tenten_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{119,646},{42,55}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{42,55}</string>
             </dict>
-            <key>Tenten_Idle_01.png</key>
+            <key>Tenten_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{322,426},{36,70}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{36,70}</string>
             </dict>
-            <key>Tenten_Idle_02.png</key>
+            <key>Tenten_Idle_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{395,393},{36,70}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{36,70}</string>
             </dict>
-            <key>Tenten_Idle_03.png</key>
+            <key>Tenten_Idle_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{155,450},{36,68}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{36,70}</string>
             </dict>
-            <key>Tenten_Idle_04.png</key>
+            <key>Tenten_Idle_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{395,393},{36,70}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{36,70}</string>
             </dict>
-            <key>Tenten_KnockDown_01.png</key>
+            <key>Tenten_KnockDown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{155,488},{68,29}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{68,29}</string>
             </dict>
-            <key>Tenten_KnockDown_02.png</key>
+            <key>Tenten_KnockDown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,459},{72,25}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{72,25}</string>
             </dict>
-            <key>Tenten_KnockDown_03.png</key>
+            <key>Tenten_KnockDown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{316,647},{57,33}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{57,33}</string>
             </dict>
-            <key>Tenten_KnockDown_04.png</key>
+            <key>Tenten_KnockDown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{176,682},{36,48}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{38,48}</string>
             </dict>
-            <key>Tenten_KnockDown_05.png</key>
+            <key>Tenten_KnockDown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{133,555},{38,61}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{38,61}</string>
             </dict>
-            <key>Tenten_NAttack_01.png</key>
+            <key>Tenten_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{322,521},{32,68}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{32,68}</string>
             </dict>
-            <key>Tenten_NAttack_02.png</key>
+            <key>Tenten_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{269,346},{52,64}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{52,68}</string>
             </dict>
-            <key>Tenten_NAttack_03.png</key>
+            <key>Tenten_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{256,533},{41,64}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{41,68}</string>
             </dict>
-            <key>Tenten_NAttack_04.png</key>
+            <key>Tenten_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{273,276},{48,68}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{48,68}</string>
             </dict>
-            <key>Tenten_NAttack_05.png</key>
+            <key>Tenten_NAttack_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{256,476},{55,64}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{55,68}</string>
             </dict>
-            <key>Tenten_NAttack_06.png</key>
+            <key>Tenten_NAttack_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{450,71},{60,60}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{60,68}</string>
             </dict>
-            <key>Tenten_NAttack_07.png</key>
+            <key>Tenten_NAttack_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{320,606},{39,66}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{39,68}</string>
             </dict>
-            <key>Tenten_NAttack_08.png</key>
+            <key>Tenten_NAttack_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{212,520},{42,57}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{42,57}</string>
             </dict>
-            <key>Tenten_NAttack_09.png</key>
+            <key>Tenten_NAttack_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{284,150},{37,59}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{37,59}</string>
             </dict>
-            <key>Tenten_NAttack_10.png</key>
+            <key>Tenten_NAttack_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{136,64},{44,74}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{46,74}</string>
             </dict>
-            <key>Tenten_NAttack_11.png</key>
+            <key>Tenten_NAttack_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{322,464},{55,68}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{57,68}</string>
             </dict>
-            <key>Tenten_NAttack_12.png</key>
+            <key>Tenten_NAttack_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{61,638},{49,56}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{51,60}</string>
             </dict>
-            <key>Tenten_NAttack_13.png</key>
+            <key>Tenten_NAttack_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{60,689},{42,53}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{42,53}</string>
             </dict>
-            <key>Tenten_NAttack_14.png</key>
+            <key>Tenten_NAttack_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{475,336},{35,57}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{35,57}</string>
             </dict>
-            <key>Tenten_Skill01_02.png</key>
+            <key>Tenten_Skill01_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,551},{38,66}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{38,68}</string>
             </dict>
-            <key>Tenten_Skill01_04.png</key>
+            <key>Tenten_Skill01_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{133,140},{46,74}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{48,74}</string>
             </dict>
-            <key>Tenten_Skill01_05.png</key>
+            <key>Tenten_Skill01_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{392,486},{46,68}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{46,68}</string>
             </dict>
-            <key>Tenten_Skill02_01.png</key>
+            <key>Tenten_Skill02_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,679},{42,56}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{42,56}</string>
             </dict>
-            <key>Tenten_Skill02_02.png</key>
+            <key>Tenten_Skill02_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{94,385},{54,75}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{54,75}</string>
             </dict>
-            <key>Tenten_Skill02_03.png</key>
+            <key>Tenten_Skill02_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,418},{39,75}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{39,75}</string>
             </dict>
-            <key>Tenten_Skill02_05.png</key>
+            <key>Tenten_Skill02_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{74,511},{38,67}}</string>
@@ -615,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{38,67}</string>
             </dict>
-            <key>Tenten_Skill02_06.png</key>
+            <key>Tenten_Skill02_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{133,595},{49,59}}</string>
@@ -628,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{49,59}</string>
             </dict>
-            <key>Tenten_Skill02_07.png</key>
+            <key>Tenten_Skill02_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{460,534},{50,56}}</string>
@@ -641,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{50,56}</string>
             </dict>
-            <key>Tenten_Skill03_01.png</key>
+            <key>Tenten_Skill03_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{467,395},{43,68}}</string>
@@ -654,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{43,70}</string>
             </dict>
-            <key>Tenten_Skill03_02.png</key>
+            <key>Tenten_Skill03_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,486},{63,70}}</string>
@@ -667,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{63,70}</string>
             </dict>
-            <key>Tenten_Skill03_03.png</key>
+            <key>Tenten_Skill03_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{403,336},{55,70}}</string>
@@ -680,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{55,70}</string>
             </dict>
-            <key>Tenten_Skill04_07.png</key>
+            <key>Tenten_Skill04_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{143,519},{34,67}}</string>
@@ -693,7 +693,7 @@
                 <key>sourceSize</key>
                 <string>{34,77}</string>
             </dict>
-            <key>Tenten_Skill04_08.png</key>
+            <key>Tenten_Skill04_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{394,431},{53,69}}</string>
@@ -706,7 +706,7 @@
                 <key>sourceSize</key>
                 <string>{61,77}</string>
             </dict>
-            <key>Tenten_Skill04_09.png</key>
+            <key>Tenten_Skill04_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,64},{132,71}}</string>
@@ -719,7 +719,7 @@
                 <key>sourceSize</key>
                 <string>{132,77}</string>
             </dict>
-            <key>Tenten_Skill04_10.png</key>
+            <key>Tenten_Skill04_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,137},{129,77}}</string>
@@ -732,7 +732,7 @@
                 <key>sourceSize</key>
                 <string>{129,77}</string>
             </dict>
-            <key>Tenten_Skill04_11.png</key>
+            <key>Tenten_Skill04_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{181,160},{94,75}}</string>
@@ -745,7 +745,7 @@
                 <key>sourceSize</key>
                 <string>{94,77}</string>
             </dict>
-            <key>Tenten_Skill04_12.png</key>
+            <key>Tenten_Skill04_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{182,2},{139,77}}</string>
@@ -758,7 +758,7 @@
                 <key>sourceSize</key>
                 <string>{139,77}</string>
             </dict>
-            <key>Tenten_Skill04_13.png</key>
+            <key>Tenten_Skill04_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{323,64},{125,75}}</string>
@@ -771,7 +771,7 @@
                 <key>sourceSize</key>
                 <string>{125,77}</string>
             </dict>
-            <key>Tenten_Skill04_14.png</key>
+            <key>Tenten_Skill04_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{323,225},{94,73}}</string>
@@ -784,7 +784,7 @@
                 <key>sourceSize</key>
                 <string>{94,77}</string>
             </dict>
-            <key>Tenten_Skill04_15.png</key>
+            <key>Tenten_Skill04_15</key>
             <dict>
                 <key>frame</key>
                 <string>{{182,81},{100,77}}</string>
@@ -797,7 +797,7 @@
                 <key>sourceSize</key>
                 <string>{100,77}</string>
             </dict>
-            <key>Tenten_Skill04_16.png</key>
+            <key>Tenten_Skill04_16</key>
             <dict>
                 <key>frame</key>
                 <string>{{323,370},{54,70}}</string>
@@ -810,7 +810,7 @@
                 <key>sourceSize</key>
                 <string>{54,70}</string>
             </dict>
-            <key>Tenten_Skill04_17.png</key>
+            <key>Tenten_Skill04_17</key>
             <dict>
                 <key>frame</key>
                 <string>{{323,141},{95,82}}</string>
@@ -823,7 +823,7 @@
                 <key>sourceSize</key>
                 <string>{95,82}</string>
             </dict>
-            <key>Tenten_Skill04_18.png</key>
+            <key>Tenten_Skill04_18</key>
             <dict>
                 <key>frame</key>
                 <string>{{420,193},{90,77}}</string>
@@ -836,7 +836,7 @@
                 <key>sourceSize</key>
                 <string>{90,77}</string>
             </dict>
-            <key>Tenten_Skill04_19.png</key>
+            <key>Tenten_Skill04_19</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,279},{90,69}}</string>
@@ -849,7 +849,7 @@
                 <key>sourceSize</key>
                 <string>{90,69}</string>
             </dict>
-            <key>Tenten_Skill04_20.png</key>
+            <key>Tenten_Skill04_20</key>
             <dict>
                 <key>frame</key>
                 <string>{{94,280},{83,69}}</string>
@@ -862,7 +862,7 @@
                 <key>sourceSize</key>
                 <string>{83,69}</string>
             </dict>
-            <key>Tenten_Skill04_21.png</key>
+            <key>Tenten_Skill04_21</key>
             <dict>
                 <key>frame</key>
                 <string>{{388,643},{38,66}}</string>
@@ -875,7 +875,7 @@
                 <key>sourceSize</key>
                 <string>{38,66}</string>
             </dict>
-            <key>Tenten_Skill05_01.png</key>
+            <key>Tenten_Skill05_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,636},{41,57}}</string>
@@ -888,7 +888,7 @@
                 <key>sourceSize</key>
                 <string>{41,57}</string>
             </dict>
-            <key>Tenten_Skill05_02.png</key>
+            <key>Tenten_Skill05_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{453,2},{67,57}}</string>
@@ -901,7 +901,7 @@
                 <key>sourceSize</key>
                 <string>{67,57}</string>
             </dict>
-            <key>Tenten_Skill05_03.png</key>
+            <key>Tenten_Skill05_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{179,375},{73,75}}</string>
@@ -914,7 +914,7 @@
                 <key>sourceSize</key>
                 <string>{73,75}</string>
             </dict>
-            <key>Tenten_Skill05_04.png</key>
+            <key>Tenten_Skill05_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{95,216},{62,84}}</string>
@@ -927,7 +927,7 @@
                 <key>sourceSize</key>
                 <string>{62,84}</string>
             </dict>
-            <key>Tenten_Skill05_05.png</key>
+            <key>Tenten_Skill05_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{133,137},{0,0}}</string>
@@ -940,7 +940,7 @@
                 <key>sourceSize</key>
                 <string>{66,90}</string>
             </dict>
-            <key>Tenten_Skill05_06.png</key>
+            <key>Tenten_Skill05_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{388,643},{38,66}}</string>
@@ -953,7 +953,7 @@
                 <key>sourceSize</key>
                 <string>{38,66}</string>
             </dict>
-            <key>Tenten_Skill05_07.png</key>
+            <key>Tenten_Skill05_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,591},{43,61}}</string>
@@ -966,7 +966,7 @@
                 <key>sourceSize</key>
                 <string>{43,61}</string>
             </dict>
-            <key>Tenten_Skill05_10.png</key>
+            <key>Tenten_Skill05_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{284,81},{37,67}}</string>
@@ -979,7 +979,7 @@
                 <key>sourceSize</key>
                 <string>{37,67}</string>
             </dict>
-            <key>Tenten_Skill05_13.png</key>
+            <key>Tenten_Skill05_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{277,211},{44,63}}</string>
@@ -992,7 +992,7 @@
                 <key>sourceSize</key>
                 <string>{44,63}</string>
             </dict>
-            <key>Tenten_Skill06_001.png</key>
+            <key>Tenten_Skill06_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{323,300},{78,68}}</string>
@@ -1005,7 +1005,7 @@
                 <key>sourceSize</key>
                 <string>{346,150}</string>
             </dict>
-            <key>Tenten_Skill06_002.png</key>
+            <key>Tenten_Skill06_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{79,441},{74,68}}</string>
@@ -1018,7 +1018,7 @@
                 <key>sourceSize</key>
                 <string>{346,150}</string>
             </dict>
-            <key>Tenten_Skill06_003.png</key>
+            <key>Tenten_Skill06_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{256,412},{62,64}}</string>
@@ -1031,7 +1031,7 @@
                 <key>sourceSize</key>
                 <string>{346,150}</string>
             </dict>
-            <key>Tenten_Skill06_004.png</key>
+            <key>Tenten_Skill06_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{178,60}}</string>
@@ -1044,7 +1044,7 @@
                 <key>sourceSize</key>
                 <string>{346,150}</string>
             </dict>
-            <key>Tenten_Skill06_005.png</key>
+            <key>Tenten_Skill06_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{323,2},{128,60}}</string>
@@ -1057,7 +1057,7 @@
                 <key>sourceSize</key>
                 <string>{346,150}</string>
             </dict>
-            <key>Tenten_Skill06_006.png</key>
+            <key>Tenten_Skill06_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{392,534},{56,66}}</string>
@@ -1070,7 +1070,7 @@
                 <key>sourceSize</key>
                 <string>{346,150}</string>
             </dict>
-            <key>Tenten_Skill10_01.png</key>
+            <key>Tenten_Skill10_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{65,604},{32,58}}</string>
@@ -1083,7 +1083,7 @@
                 <key>sourceSize</key>
                 <string>{32,58}</string>
             </dict>
-            <key>Tenten_Skill10_02.png</key>
+            <key>Tenten_Skill10_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{194,640},{40,58}}</string>
@@ -1096,7 +1096,7 @@
                 <key>sourceSize</key>
                 <string>{40,58}</string>
             </dict>
-            <key>Tenten_Skill10_03.png</key>
+            <key>Tenten_Skill10_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{70,551},{61,51}}</string>
@@ -1109,7 +1109,7 @@
                 <key>sourceSize</key>
                 <string>{61,51}</string>
             </dict>
-            <key>Tenten_Skill10_04.png</key>
+            <key>Tenten_Skill10_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{256,629},{58,46}}</string>
@@ -1122,7 +1122,7 @@
                 <key>sourceSize</key>
                 <string>{58,46}</string>
             </dict>
-            <key>Tenten_Walk_01.png</key>
+            <key>Tenten_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{390,592},{66,49}}</string>
@@ -1135,7 +1135,7 @@
                 <key>sourceSize</key>
                 <string>{66,51}</string>
             </dict>
-            <key>Tenten_Walk_02.png</key>
+            <key>Tenten_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{458,592},{61,51}}</string>
@@ -1148,7 +1148,7 @@
                 <key>sourceSize</key>
                 <string>{61,51}</string>
             </dict>
-            <key>Tenten_Walk_03.png</key>
+            <key>Tenten_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{312,682},{50,49}}</string>
@@ -1161,7 +1161,7 @@
                 <key>sourceSize</key>
                 <string>{50,51}</string>
             </dict>
-            <key>Tenten_Walk_04.png</key>
+            <key>Tenten_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{322,555},{66,49}}</string>
@@ -1174,7 +1174,7 @@
                 <key>sourceSize</key>
                 <string>{66,51}</string>
             </dict>
-            <key>Tenten_Walk_05.png</key>
+            <key>Tenten_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{256,576},{62,51}}</string>
@@ -1187,7 +1187,7 @@
                 <key>sourceSize</key>
                 <string>{62,51}</string>
             </dict>
-            <key>Tenten_Walk_06.png</key>
+            <key>Tenten_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,723},{50,49}}</string>

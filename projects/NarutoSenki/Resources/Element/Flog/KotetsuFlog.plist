@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>KotetsuFlog_Float_01.png</key>
+            <key>KotetsuFlog_Float_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{36,190},{48,32}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{50,32}</string>
             </dict>
-            <key>KotetsuFlog_Idle_01.png</key>
+            <key>KotetsuFlog_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{93,150},{33,42}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{33,42}</string>
             </dict>
-            <key>KotetsuFlog_KnockDown_01.png</key>
+            <key>KotetsuFlog_KnockDown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,190},{32,48}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{32,50}</string>
             </dict>
-            <key>KotetsuFlog_KnockDown_02.png</key>
+            <key>KotetsuFlog_KnockDown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,112},{54,30}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{54,50}</string>
             </dict>
-            <key>KotetsuFlog_KnockDown_03.png</key>
+            <key>KotetsuFlog_KnockDown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{66,48},{58,30}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{58,50}</string>
             </dict>
-            <key>KotetsuFlog_KnockDown_04.png</key>
+            <key>KotetsuFlog_KnockDown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{65,80},{61,18}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{61,50}</string>
             </dict>
-            <key>KotetsuFlog_NAttack_01.png</key>
+            <key>KotetsuFlog_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{65,100},{48,57}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{48,57}</string>
             </dict>
-            <key>KotetsuFlog_NAttack_02.png</key>
+            <key>KotetsuFlog_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,144},{53,44}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{53,44}</string>
             </dict>
-            <key>KotetsuFlog_NAttack_03.png</key>
+            <key>KotetsuFlog_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{62,59}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{62,59}</string>
             </dict>
-            <key>KotetsuFlog_NAttack_04.png</key>
+            <key>KotetsuFlog_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,63},{61,47}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{61,47}</string>
             </dict>
-            <key>KotetsuFlog_Walk_01.png</key>
+            <key>KotetsuFlog_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{57,150},{38,34}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{38,60}</string>
             </dict>
-            <key>KotetsuFlog_Walk_02.png</key>
+            <key>KotetsuFlog_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{66,2},{44,60}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{44,60}</string>
             </dict>
-            <key>KotetsuFlog_Walk_03.png</key>
+            <key>KotetsuFlog_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{70,194},{42,43}}</string>

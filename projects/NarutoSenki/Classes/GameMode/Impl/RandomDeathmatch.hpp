@@ -83,7 +83,7 @@ public:
 			auto gameLayer = getGameLayer();
 			// initial a new random character
 			auto newCharName = heroVector[c->changeCharId];
-			CCLOG("[Change Character] From %s to %s", c->getCharacter()->getCString(), newCharName);
+			CCLOG("[Change Character] %s from %s to %s", c->getRole()->getCString(), c->getCharacter()->getCString(), newCharName);
 
 			if (c->isCharacter(newCharName))
 			{
@@ -163,9 +163,9 @@ public:
 				else if (gear == gear05)
 				{
 					newChar->isGearCD = true;
-					newChar->_sattackcoldDown1 -= 5;
-					newChar->_sattackcoldDown2 -= 5;
-					newChar->_sattackcoldDown3 -= 5;
+					newChar->_sattackcooldown1 -= 5;
+					newChar->_sattackcooldown2 -= 5;
+					newChar->_sattackcooldown3 -= 5;
 				}
 				else if (gear == gear06)
 				{

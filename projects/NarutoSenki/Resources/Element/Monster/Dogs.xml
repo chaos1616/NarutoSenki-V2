@@ -1,70 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animation>
+<unit>
 
-	<action value="Idle">
-		<date>
-			<dateName type="attackType">Dogs</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">51</dateName>
-			<dateName type="attackRangeY">11</dateName>
-			<coldName type="coldDown">224</coldName>
-		</date>
+	<action name="Idle">
+		<data>
+			<p type="attackType">Dogs</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">51</p>
+			<p type="attackRangeY">11</p>
+			<p type="cd">224</p>
+		</data>
 		<frame>
-			<frameName>Dogs_Idle_01.png</frameName>
+			<f>Dogs_Idle_01</f>
 		</frame>
 	</action>
 
-	<action value="Walk">
+	<action name="Walk">
 		<frame>
-			<frameName>Dogs_Idle_01.png</frameName>
+			<f>Dogs_Idle_01</f>
 		</frame>
 	</action>
 
-	<action value="Hurt">
-		<frame>
-		</frame>
-	</action>
-
-	<action value="AirHurt">
-		<frame>
-
-		</frame>
-	</action>
-
-	<action value="KnockDown">
+	<action name="Hurt">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Float">
+	<action name="AirHurt">
+		<frame>
+
+		</frame>
+	</action>
+
+	<action name="KnockDown">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Dead">
+	<action name="Float">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="nAttack">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">2460</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="Dead">
 		<frame>
-			<eventName type="setCommand">findTarget</eventName>
-			<eventName type="setCommand">setTransport</eventName>
-			<frameName>Dogs_Nattack_01.png</frameName>
-			<frameName>Dogs_Nattack_02.png</frameName>
-			<frameName>Dogs_Nattack_03.png</frameName>
-			<frameName>Dogs_Nattack_04.png</frameName>
-			<eventName type="setAttackBox">c_hit</eventName>
-			<eventName type="setDelay">30</eventName>
-			<eventName type="setDetonation">0</eventName>
 		</frame>
 	</action>
 
-</animation>
+	<action name="nAttack">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">2460</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">0</p>
+		</data>
+		<frame>
+			<e type="setCommand">findTarget</e>
+			<e type="setCommand">setTransport</e>
+			<f>Dogs_Nattack_01</f>
+			<f>Dogs_Nattack_02</f>
+			<f>Dogs_Nattack_03</f>
+			<f>Dogs_Nattack_04</f>
+			<e type="setAttackBox">c_hit</e>
+			<e type="setDelay">30</e>
+			<e type="setDetonation">0</e>
+		</frame>
+	</action>
+
+</unit>

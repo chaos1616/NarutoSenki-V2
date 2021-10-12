@@ -1,75 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animation>
+<unit>
 
-	<action value="Idle">
-		<date>
-			<dateName type="attackType">SmallSlug</dateName>
-			<dateName type="attackValue">2000</dateName>
-			<dateName type="attackRangeX">126</dateName>
-			<dateName type="attackRangeY">45</dateName>
-			<coldName type="coldDown">112</coldName>
-		</date>
+	<action name="Idle">
+		<data>
+			<p type="attackType">SmallSlug</p>
+			<p type="attackValue">2000</p>
+			<p type="attackRangeX">126</p>
+			<p type="attackRangeY">45</p>
+			<p type="cd">112</p>
+		</data>
 		<frame>
-			<frameName>SmallSlug_Move_01.png</frameName>
+			<f>SmallSlug_Move_01</f>
 
 		</frame>
 	</action>
 
-	<action value="Walk">
+	<action name="Walk">
 		<frame>
-			<frameName>SmallSlug_Move_01.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>SmallSlug_Move_02.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>SmallSlug_Move_03.png</frameName>
-			<eventName type="setDelay">10</eventName>
+			<f>SmallSlug_Move_01</f>
+			<e type="setDelay">10</e>
+			<f>SmallSlug_Move_02</f>
+			<e type="setDelay">10</e>
+			<f>SmallSlug_Move_03</f>
+			<e type="setDelay">10</e>
 		</frame>
 	</action>
 
-	<action value="Hurt">
-		<frame>
-		</frame>
-	</action>
-
-	<action value="AirHurt">
-		<frame>
-
-		</frame>
-	</action>
-
-	<action value="KnockDown">
+	<action name="Hurt">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Float">
+	<action name="AirHurt">
+		<frame>
+
+		</frame>
+	</action>
+
+	<action name="KnockDown">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Dead">
+	<action name="Float">
 		<frame>
-			<frameName>SmallSlug_Move_01.png</frameName>
 		</frame>
 	</action>
 
-	<action value="nAttack">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">16</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="Dead">
 		<frame>
-			<frameName>SmallSlug_Move_01.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>SmallSlug_Move_02.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>SmallSlug_Move_03.png</frameName>
-			<eventName type="setAttackBox">a_hit</eventName>
-			<eventName type="setDelay">10</eventName>
+			<f>SmallSlug_Move_01</f>
 		</frame>
 	</action>
 
-</animation>
+	<action name="nAttack">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">16</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">0</p>
+		</data>
+		<frame>
+			<f>SmallSlug_Move_01</f>
+			<e type="setDelay">10</e>
+			<f>SmallSlug_Move_02</f>
+			<e type="setDelay">10</e>
+			<f>SmallSlug_Move_03</f>
+			<e type="setAttackBox">a_hit</e>
+			<e type="setDelay">10</e>
+		</frame>
+	</action>
+
+</unit>

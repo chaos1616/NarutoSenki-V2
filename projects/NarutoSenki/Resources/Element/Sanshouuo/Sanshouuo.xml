@@ -1,169 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animation>
+<unit>
 
-	<action value="Idle">
-		<date>
-			<dateName type="attackType">Sanshouuo</dateName>
-			<dateName type="attackValue">8000</dateName>
-			<dateName type="attackRangeX">66</dateName>
-			<dateName type="attackRangeY">75</dateName>
-			<coldName type="coldDown">224</coldName>
-		</date>
+	<action name="Idle">
+		<data>
+			<p type="attackType">Sanshouuo</p>
+			<p type="attackValue">8000</p>
+			<p type="attackRangeX">66</p>
+			<p type="attackRangeY">75</p>
+			<p type="cd">224</p>
+		</data>
 		<frame>
-			<frameName>Sanshouuo_Move_01.png</frameName>
+			<f>Sanshouuo_Move_01</f>
 		</frame>
 	</action>
 
-	<action value="Walk">
+	<action name="Walk">
 		<frame>
-			<frameName>Sanshouuo_Move_01.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Sanshouuo_Move_02.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Sanshouuo_Move_03.png</frameName>
-			<eventName type="setDelay">10</eventName>
+			<f>Sanshouuo_Move_01</f>
+			<e type="setDelay">10</e>
+			<f>Sanshouuo_Move_02</f>
+			<e type="setDelay">10</e>
+			<f>Sanshouuo_Move_03</f>
+			<e type="setDelay">10</e>
 		</frame>
 	</action>
 
-	<action value="Hurt">
+	<action name="Hurt">
 		<frame>
-			<eventName type="setMove">32</eventName>
-			<frameName>Sanshouuo_Move_01.png</frameName>
+			<e type="setMove">32</e>
+			<f>Sanshouuo_Move_01</f>
 		</frame>
 	</action>
 
-	<action value="AirHurt">
+	<action name="AirHurt">
 		<frame>
-			<frameName>Sanshouuo_Move_01.png</frameName>
+			<f>Sanshouuo_Move_01</f>
 		</frame>
 	</action>
 
-	<action value="KnockDown">
+	<action name="KnockDown">
 		<frame>
-			<frameName>Sanshouuo_Move_01.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Sanshouuo_Move_01.png</frameName>
-			<frameName>Sanshouuo_Move_01.png</frameName>
-			<eventName type="setDelay">60</eventName>
-			<frameName>Sanshouuo_Move_01.png</frameName>
+			<f>Sanshouuo_Move_01</f>
+			<e type="setDelay">10</e>
+			<f>Sanshouuo_Move_01</f>
+			<f>Sanshouuo_Move_01</f>
+			<e type="setDelay">60</e>
+			<f>Sanshouuo_Move_01</f>
 		</frame>
 	</action>
 
-	<action value="Float">
+	<action name="Float">
 		<frame>
-			<frameName>Sanshouuo_Move_01.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Sanshouuo_Move_01.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Sanshouuo_Move_01.png</frameName>
+			<f>Sanshouuo_Move_01</f>
+			<e type="setDelay">10</e>
+			<f>Sanshouuo_Move_01</f>
+			<e type="setDelay">10</e>
+			<f>Sanshouuo_Move_01</f>
 		</frame>
 	</action>
 
-	<action value="Dead">
+	<action name="Dead">
 		<frame>
-			<frameName>Sanshouuo_Move_01.png</frameName>
-			<frameName>Sanshouuo_Move_01.png</frameName>
+			<f>Sanshouuo_Move_01</f>
+			<f>Sanshouuo_Move_01</f>
 		</frame>
 	</action>
 
-	<action value="nAttack">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">16</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="nAttack">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">16</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">0</p>
+		</data>
 		<frame>
-			<frameName>Sanshouuo_Move_01.png</frameName>
+			<f>Sanshouuo_Move_01</f>
 
-			<eventName type="setAttackBox">n_hit</eventName>
-			<eventName type="setDelay">40</eventName>
-			<frameName>Sanshouuo_Move_02.png</frameName>
-			<eventName type="setAttackBox">n_hit</eventName>
-			<eventName type="setDelay">40</eventName>
-			<frameName>Sanshouuo_Move_03.png</frameName>
-			<eventName type="setAttackBox">n_hit</eventName>
-			<eventName type="setDelay">40</eventName>
+			<e type="setAttackBox">n_hit</e>
+			<e type="setDelay">40</e>
+			<f>Sanshouuo_Move_02</f>
+			<e type="setAttackBox">n_hit</e>
+			<e type="setDelay">40</e>
+			<f>Sanshouuo_Move_03</f>
+			<e type="setAttackBox">n_hit</e>
+			<e type="setDelay">40</e>
 		</frame>
 	</action>
 
-	<action value="skill01">
-		<date>
-			<dateName type="attackType">cAttack</dateName>
-			<dateName type="attackValue">460</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">15</coldName>
-		</date>
+	<action name="skill01">
+		<data>
+			<p type="attackType">cAttack</p>
+			<p type="attackValue">460</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">15</p>
+		</data>
 		<frame>
-			<frameName>Sanshouuo_Move_04.png</frameName>
-			<eventName type="setAttackBox">a_hit</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Sanshouuo_Move_05.png</frameName>
-			<eventName type="setAttackBox">a_hit</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Sanshouuo_Move_06.png</frameName>
-			<eventName type="setAttackBox">a_hit</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Sanshouuo_Move_07.png</frameName>
-			<eventName type="setAttackBox">a_hit</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Sanshouuo_Move_08.png</frameName>
-			<eventName type="setAttackBox">a_hit</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Sanshouuo_Move_09.png</frameName>
-			<eventName type="setAttackBox">a_hit</eventName>
-			<eventName type="setDelay">10</eventName>
+			<f>Sanshouuo_Move_04</f>
+			<e type="setAttackBox">a_hit</e>
+			<e type="setDelay">10</e>
+			<f>Sanshouuo_Move_05</f>
+			<e type="setAttackBox">a_hit</e>
+			<e type="setDelay">10</e>
+			<f>Sanshouuo_Move_06</f>
+			<e type="setAttackBox">a_hit</e>
+			<e type="setDelay">10</e>
+			<f>Sanshouuo_Move_07</f>
+			<e type="setAttackBox">a_hit</e>
+			<e type="setDelay">10</e>
+			<f>Sanshouuo_Move_08</f>
+			<e type="setAttackBox">a_hit</e>
+			<e type="setDelay">10</e>
+			<f>Sanshouuo_Move_09</f>
+			<e type="setAttackBox">a_hit</e>
+			<e type="setDelay">10</e>
 		</frame>
 	</action>
 
-	<action value="skill02">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">560</dateName>
-			<dateName type="attackRangeX">32</dateName>
-			<dateName type="attackRangeY">32</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
-		<frame>
-		</frame>
-	</action>
-
-	<action value="skill03">
-		<date>
-			<dateName type="attackType">cAttack</dateName>
-			<dateName type="attackValue">300</dateName>
-			<dateName type="attackRangeX">32</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">1</coldName>
-		</date>
+	<action name="skill02">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">560</p>
+			<p type="attackRangeX">32</p>
+			<p type="attackRangeY">32</p>
+			<p type="cd">0</p>
+		</data>
 		<frame>
 		</frame>
 	</action>
 
-	<action value="skill04">
-		<date>
-			<dateName type="attackType">oAttack</dateName>
-			<dateName type="attackValue">660</dateName>
-			<dateName type="attackRangeX">64</dateName>
-			<dateName type="attackRangeY">32</dateName>
-			<coldName type="coldDown">1</coldName>
-		</date>
+	<action name="skill03">
+		<data>
+			<p type="attackType">cAttack</p>
+			<p type="attackValue">300</p>
+			<p type="attackRangeX">32</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">1</p>
+		</data>
 		<frame>
 		</frame>
 	</action>
 
-	<action value="skill05">
-		<date>
-			<dateName type="attackType">oAttack</dateName>
-			<dateName type="attackValue">660</dateName>
-			<dateName type="attackRangeX">64</dateName>
-			<dateName type="attackRangeY">32</dateName>
-			<coldName type="coldDown">1</coldName>
-		</date>
+	<action name="skill04">
+		<data>
+			<p type="attackType">oAttack</p>
+			<p type="attackValue">660</p>
+			<p type="attackRangeX">64</p>
+			<p type="attackRangeY">32</p>
+			<p type="cd">1</p>
+		</data>
 		<frame>
 		</frame>
 	</action>
 
-</animation>
+	<action name="skill05">
+		<data>
+			<p type="attackType">oAttack</p>
+			<p type="attackValue">660</p>
+			<p type="attackRangeX">64</p>
+			<p type="attackRangeY">32</p>
+			<p type="cd">1</p>
+		</data>
+		<frame>
+		</frame>
+	</action>
+
+</unit>

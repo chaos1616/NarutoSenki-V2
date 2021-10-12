@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Centipede_Idle_01.png</key>
+            <key>Centipede_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{176,174},{131,81}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{131,85}</string>
             </dict>
-            <key>Centipede_Idle_02.png</key>
+            <key>Centipede_Idle_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{89,174},{132,85}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{132,85}</string>
             </dict>
-            <key>Centipede_Idle_03.png</key>
+            <key>Centipede_Idle_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{307,87},{138,85}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{138,85}</string>
             </dict>
-            <key>Centipede_NAttack_01.png</key>
+            <key>Centipede_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{320,2},{149,83}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{149,95}</string>
             </dict>
-            <key>Centipede_NAttack_02.png</key>
+            <key>Centipede_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{161,79},{144,93}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{144,95}</string>
             </dict>
-            <key>Centipede_NAttack_03.png</key>
+            <key>Centipede_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,313},{136,93}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{136,95}</string>
             </dict>
-            <key>Centipede_NAttack_04.png</key>
+            <key>Centipede_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{182,307},{127,93}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{127,95}</string>
             </dict>
-            <key>Centipede_NAttack_05.png</key>
+            <key>Centipede_NAttack_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{157,81}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{157,95}</string>
             </dict>
-            <key>Centipede_NAttack_06.png</key>
+            <key>Centipede_NAttack_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{161,2},{157,75}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{157,95}</string>
             </dict>
-            <key>Centipede_Walk_01.png</key>
+            <key>Centipede_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{97,308},{131,83}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{131,87}</string>
             </dict>
-            <key>Centipede_Walk_02.png</key>
+            <key>Centipede_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{259,174},{127,85}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{127,87}</string>
             </dict>
-            <key>Centipede_Walk_03.png</key>
+            <key>Centipede_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,174},{137,85}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{137,87}</string>
             </dict>
-            <key>Centipede_Walk_04.png</key>
+            <key>Centipede_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,85},{138,87}}</string>

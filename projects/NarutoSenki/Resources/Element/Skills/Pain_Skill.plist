@@ -3,7 +3,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>JibakuEX_Move_001.png</key>
+            <key>JibakuEX_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{237,148},{17,17}}</string>
@@ -16,7 +16,7 @@
                 <key>sourceSize</key>
                 <string>{145,121}</string>
             </dict>
-            <key>JibakuEX_Move_002.png</key>
+            <key>JibakuEX_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{101,455},{19,19}}</string>
@@ -29,7 +29,7 @@
                 <key>sourceSize</key>
                 <string>{145,121}</string>
             </dict>
-            <key>JibakuEX_Move_003.png</key>
+            <key>JibakuEX_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{105,228},{61,99}}</string>
@@ -42,7 +42,7 @@
                 <key>sourceSize</key>
                 <string>{145,121}</string>
             </dict>
-            <key>JibakuEX_Move_004.png</key>
+            <key>JibakuEX_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{125,2},{75,121}}</string>
@@ -55,7 +55,7 @@
                 <key>sourceSize</key>
                 <string>{145,121}</string>
             </dict>
-            <key>JibakuEX_Move_005.png</key>
+            <key>JibakuEX_Move_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{77,121}}</string>
@@ -68,7 +68,7 @@
                 <key>sourceSize</key>
                 <string>{145,121}</string>
             </dict>
-            <key>JibakuEX_Move_006.png</key>
+            <key>JibakuEX_Move_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,150},{73,101}}</string>
@@ -81,7 +81,7 @@
                 <key>sourceSize</key>
                 <string>{145,121}</string>
             </dict>
-            <key>JibakuEX_Move_007.png</key>
+            <key>JibakuEX_Move_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{113,149},{77,103}}</string>
@@ -94,7 +94,7 @@
                 <key>sourceSize</key>
                 <string>{145,121}</string>
             </dict>
-            <key>JibakuEX_Move_008.png</key>
+            <key>JibakuEX_Move_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,225},{67,101}}</string>
@@ -107,7 +107,7 @@
                 <key>sourceSize</key>
                 <string>{145,121}</string>
             </dict>
-            <key>JibakuEX_Move_009.png</key>
+            <key>JibakuEX_Move_009</key>
             <dict>
                 <key>frame</key>
                 <string>{{198,318},{49,41}}</string>
@@ -120,7 +120,7 @@
                 <key>sourceSize</key>
                 <string>{145,121}</string>
             </dict>
-            <key>JibakuEX_Move_010.png</key>
+            <key>JibakuEX_Move_010</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,363},{91,63}}</string>
@@ -133,7 +133,7 @@
                 <key>sourceSize</key>
                 <string>{145,121}</string>
             </dict>
-            <key>JibakuEX_Move_011.png</key>
+            <key>JibakuEX_Move_011</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,81},{109,67}}</string>
@@ -146,7 +146,7 @@
                 <key>sourceSize</key>
                 <string>{145,121}</string>
             </dict>
-            <key>JibakuEX_Move_012.png</key>
+            <key>JibakuEX_Move_012</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,294},{91,67}}</string>
@@ -159,7 +159,7 @@
                 <key>sourceSize</key>
                 <string>{145,121}</string>
             </dict>
-            <key>JibakuEX_Move_013.png</key>
+            <key>JibakuEX_Move_013</key>
             <dict>
                 <key>frame</key>
                 <string>{{133,361},{71,63}}</string>
@@ -172,7 +172,7 @@
                 <key>sourceSize</key>
                 <string>{145,121}</string>
             </dict>
-            <key>Jibaku_Move_01.png</key>
+            <key>Jibaku_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{248,2},{5,6}}</string>
@@ -185,7 +185,7 @@
                 <key>sourceSize</key>
                 <string>{5,100}</string>
             </dict>
-            <key>Jibaku_Move_02.png</key>
+            <key>Jibaku_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{218,149},{16,16}}</string>
@@ -198,7 +198,7 @@
                 <key>sourceSize</key>
                 <string>{16,100}</string>
             </dict>
-            <key>Jibaku_Move_03.png</key>
+            <key>Jibaku_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{122,455},{19,18}}</string>
@@ -211,7 +211,7 @@
                 <key>sourceSize</key>
                 <string>{19,100}</string>
             </dict>
-            <key>Jibaku_Move_04.png</key>
+            <key>Jibaku_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{75,455},{25,24}}</string>
@@ -224,7 +224,7 @@
                 <key>sourceSize</key>
                 <string>{25,100}</string>
             </dict>
-            <key>Jibaku_Move_05.png</key>
+            <key>Jibaku_Move_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{218,201},{31,32}}</string>
@@ -237,7 +237,7 @@
                 <key>sourceSize</key>
                 <string>{31,100}</string>
             </dict>
-            <key>Jibaku_Move_06.png</key>
+            <key>Jibaku_Move_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{45,487},{21,22}}</string>
@@ -250,7 +250,7 @@
                 <key>sourceSize</key>
                 <string>{31,100}</string>
             </dict>
-            <key>Jibaku_Move_07.png</key>
+            <key>Jibaku_Move_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{206,234},{42,45}}</string>
@@ -263,7 +263,7 @@
                 <key>sourceSize</key>
                 <string>{42,109}</string>
             </dict>
-            <key>Jibaku_Move_08.png</key>
+            <key>Jibaku_Move_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{198,318},{49,41}}</string>
@@ -276,7 +276,7 @@
                 <key>sourceSize</key>
                 <string>{49,109}</string>
             </dict>
-            <key>Jibaku_Move_09.png</key>
+            <key>Jibaku_Move_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{67,363},{90,64}}</string>
@@ -289,7 +289,7 @@
                 <key>sourceSize</key>
                 <string>{92,116}</string>
             </dict>
-            <key>Jibaku_Move_10.png</key>
+            <key>Jibaku_Move_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{125,79},{110,68}}</string>
@@ -302,7 +302,7 @@
                 <key>sourceSize</key>
                 <string>{116,120}</string>
             </dict>
-            <key>Jibaku_Move_11.png</key>
+            <key>Jibaku_Move_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{105,291},{91,68}}</string>
@@ -315,7 +315,7 @@
                 <key>sourceSize</key>
                 <string>{93,120}</string>
             </dict>
-            <key>Jibaku_Move_12.png</key>
+            <key>Jibaku_Move_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{143,434},{70,64}}</string>
@@ -328,7 +328,7 @@
                 <key>sourceSize</key>
                 <string>{70,120}</string>
             </dict>
-            <key>Rocket_Move_01.png</key>
+            <key>Rocket_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{68,487},{73,19}}</string>
@@ -341,7 +341,7 @@
                 <key>sourceSize</key>
                 <string>{73,67}</string>
             </dict>
-            <key>Rocket_Move_01_1.png</key>
+            <key>Rocket_Move_01_1</key>
             <dict>
                 <key>frame</key>
                 <string>{{237,79},{67,17}}</string>
@@ -354,7 +354,7 @@
                 <key>sourceSize</key>
                 <string>{73,67}</string>
             </dict>
-            <key>Rocket_Move_02.png</key>
+            <key>Rocket_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{45,456},{29,28}}</string>
@@ -367,7 +367,7 @@
                 <key>sourceSize</key>
                 <string>{73,80}</string>
             </dict>
-            <key>Rocket_Move_03.png</key>
+            <key>Rocket_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{206,278},{43,38}}</string>
@@ -380,7 +380,7 @@
                 <key>sourceSize</key>
                 <string>{73,80}</string>
             </dict>
-            <key>Rocket_Move_04.png</key>
+            <key>Rocket_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,456},{41,42}}</string>
@@ -393,7 +393,7 @@
                 <key>sourceSize</key>
                 <string>{73,80}</string>
             </dict>
-            <key>Rocket_Move_05.png</key>
+            <key>Rocket_Move_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{218,167},{35,32}}</string>

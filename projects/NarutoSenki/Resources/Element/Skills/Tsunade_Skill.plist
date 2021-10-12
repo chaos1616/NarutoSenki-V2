@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>SmallSlug_Move_01.png</key>
+            <key>SmallSlug_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,202},{62,41}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{64,43}</string>
             </dict>
-            <key>SmallSlug_Move_02.png</key>
+            <key>SmallSlug_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{45,138},{61,40}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{61,40}</string>
             </dict>
-            <key>SmallSlug_Move_03.png</key>
+            <key>SmallSlug_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,138},{62,41}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{62,41}</string>
             </dict>
-            <key>Tuji_Move_01.png</key>
+            <key>Tuji_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{120,2},{110,80}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{110,80}</string>
             </dict>
-            <key>Tuji_Move_02.png</key>
+            <key>Tuji_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{116,70}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{116,70}</string>
             </dict>
-            <key>Tuji_Move_03.png</key>
+            <key>Tuji_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,74},{97,62}}</string>

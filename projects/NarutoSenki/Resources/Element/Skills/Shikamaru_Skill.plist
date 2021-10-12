@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>KageBom_Move_01.png</key>
+            <key>KageBom_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{122,77},{95,21}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{95,21}</string>
             </dict>
-            <key>KageBom_Move_02.png</key>
+            <key>KageBom_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,7},{123,68}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{123,68}</string>
             </dict>
-            <key>KageBom_Move_03.png</key>
+            <key>KageBom_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,158},{117,64}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{117,64}</string>
             </dict>
-            <key>KageBom_Move_04.png</key>
+            <key>KageBom_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{255,154},{108,76}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{108,76}</string>
             </dict>
-            <key>KageBom_Move_05.png</key>
+            <key>KageBom_Move_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,77},{118,79}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{200,79}</string>
             </dict>
-            <key>KageBom_Move_06.png</key>
+            <key>KageBom_Move_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{146,2},{126,86}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{200,86}</string>
             </dict>
-            <key>KageBom_Move_07.png</key>
+            <key>KageBom_Move_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{388,2},{110,83}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{200,83}</string>
             </dict>
-            <key>KageFeng_Move_001.png</key>
+            <key>KageFeng_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{363,254},{33,33}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{81,115}</string>
             </dict>
-            <key>KageFeng_Move_002.png</key>
+            <key>KageFeng_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,283},{41,85}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{81,115}</string>
             </dict>
-            <key>KageFeng_Move_003.png</key>
+            <key>KageFeng_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{145,169},{63,97}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{81,115}</string>
             </dict>
-            <key>KageFeng_Move_004.png</key>
+            <key>KageFeng_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,224},{57,89}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{81,115}</string>
             </dict>
-            <key>KageHand_Move_01.png</key>
+            <key>KageHand_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{320,232},{41,38}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{59,38}</string>
             </dict>
-            <key>KageHand_Move_02.png</key>
+            <key>KageHand_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{445,158},{59,63}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{59,63}</string>
             </dict>
-            <key>KageHand_Move_03.png</key>
+            <key>KageHand_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{93,224},{45,66}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{59,66}</string>
             </dict>
-            <key>KageHands_Move_001.png</key>
+            <key>KageHands_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{127,7},{34,17}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{128,93}</string>
             </dict>
-            <key>KageHands_Move_002.png</key>
+            <key>KageHands_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{441,219},{62,41}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{128,93}</string>
             </dict>
-            <key>KageHands_Move_003.png</key>
+            <key>KageHands_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{365,158},{78,57}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{128,93}</string>
             </dict>
-            <key>KageHands_Move_004.png</key>
+            <key>KageHands_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{386,87},{110,69}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{128,93}</string>
             </dict>
-            <key>KageHands_Move_005.png</key>
+            <key>KageHands_Move_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{274,81},{110,71}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{128,93}</string>
             </dict>
-            <key>KageHands_Move_006.png</key>
+            <key>KageHands_Move_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{274,2},{112,77}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{128,93}</string>
             </dict>
-            <key>KageHands_Move_007.png</key>
+            <key>KageHands_Move_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{145,90},{108,77}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{128,93}</string>
             </dict>
-            <key>Kage_Dead_01.png</key>
+            <key>Kage_Dead_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{365,217},{74,35}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{74,35}</string>
             </dict>
-            <key>Kage_Dead_02.png</key>
+            <key>Kage_Dead_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{244,232},{74,33}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{74,35}</string>
             </dict>
-            <key>Kage_Dead_03.png</key>
+            <key>Kage_Dead_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{500,2},{34,7}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{74,35}</string>
             </dict>
-            <key>Kage_Move_01.png</key>
+            <key>Kage_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{505,105},{25,3}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{25,3}</string>
             </dict>
-            <key>Kage_Move_02.png</key>
+            <key>Kage_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{505,38},{65,3}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{65,3}</string>
             </dict>
-            <key>Kage_Move_03.png</key>
+            <key>Kage_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{500,38},{110,3}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{110,3}</string>
             </dict>
-            <key>Kage_Move_04.png</key>
+            <key>Kage_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{142,3}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{142,3}</string>
             </dict>
-            <key>QuanRen_Move_001.png</key>
+            <key>QuanRen_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{121,174},{24,21}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{196,105}</string>
             </dict>
-            <key>QuanRen_Move_002.png</key>
+            <key>QuanRen_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{121,174},{24,21}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{196,105}</string>
             </dict>
-            <key>QuanRen_Move_003.png</key>
+            <key>QuanRen_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{121,174},{24,21}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{196,105}</string>
             </dict>
-            <key>QuanRen_Move_004.png</key>
+            <key>QuanRen_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{127,43},{32,15}}</string>

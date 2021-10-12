@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>FlyKnife_Move_01.png</key>
+            <key>FlyKnife_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{494,2},{43,9}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{43,9}</string>
             </dict>
-            <key>Mine_Move_01.png</key>
+            <key>Mine_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{384,334},{27,21}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{27,21}</string>
             </dict>
-            <key>Mine_NAttack_01.png</key>
+            <key>Mine_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{355,334},{27,21}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{27,21}</string>
             </dict>
-            <key>Mine_NAttack_03.png</key>
+            <key>Mine_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{242,545},{28,27}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{28,49}</string>
             </dict>
-            <key>Mine_NAttack_04.png</key>
+            <key>Mine_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{304,312},{43,49}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{43,49}</string>
             </dict>
-            <key>Mine_NAttack_05.png</key>
+            <key>Mine_NAttack_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{242,438},{40,43}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{40,49}</string>
             </dict>
-            <key>Mine_NAttack_06.png</key>
+            <key>Mine_NAttack_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{242,480},{32,33}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{32,49}</string>
             </dict>
-            <key>Shoryu_Move_001.png</key>
+            <key>Shoryu_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{287,479},{122,86}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{364,142}</string>
             </dict>
-            <key>Shoryu_Move_002.png</key>
+            <key>Shoryu_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{304,357},{192,120}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{364,142}</string>
             </dict>
-            <key>Shoryu_Move_003.png</key>
+            <key>Shoryu_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,438},{238,122}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{364,142}</string>
             </dict>
-            <key>Shoryu_Move_004.png</key>
+            <key>Shoryu_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,312},{300,124}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{364,142}</string>
             </dict>
-            <key>Shoryu_Move_005.png</key>
+            <key>Shoryu_Move_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{366,2},{330,126}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{364,142}</string>
             </dict>
-            <key>Shoryu_Move_006.png</key>
+            <key>Shoryu_Move_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,198},{350,112}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{364,142}</string>
             </dict>
-            <key>Shoryu_Move_007.png</key>
+            <key>Shoryu_Move_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{362,78}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{364,142}</string>
             </dict>
-            <key>Shoryu_Move_008.png</key>
+            <key>Shoryu_Move_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,140},{362,56}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{364,142}</string>
             </dict>
-            <key>Shoryu_Move_009.png</key>
+            <key>Shoryu_Move_009</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,82},{362,56}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{364,142}</string>
             </dict>
-            <key>TentenSRK_Move_01.png</key>
+            <key>TentenSRK_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{411,479},{27,27}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{27,27}</string>
             </dict>
-            <key>TentenSRK_Move_02.png</key>
+            <key>TentenSRK_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{242,514},{29,29}}</string>

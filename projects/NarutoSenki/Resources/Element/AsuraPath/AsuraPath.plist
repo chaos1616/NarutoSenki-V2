@@ -3,7 +3,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>AsuraPath_Idle_01.png</key>
+            <key>AsuraPath_Idle_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{85,138},{32,81}}</string>
@@ -16,7 +16,7 @@
                 <key>sourceSize</key>
                 <string>{32,81}</string>
             </dict>
-            <key>AsuraPath_NAttack_01.png</key>
+            <key>AsuraPath_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,121},{35,81}}</string>
@@ -29,7 +29,7 @@
                 <key>sourceSize</key>
                 <string>{35,81}</string>
             </dict>
-            <key>AsuraPath_NAttack_02.png</key>
+            <key>AsuraPath_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{174,2},{34,79}}</string>
@@ -42,7 +42,7 @@
                 <key>sourceSize</key>
                 <string>{34,79}</string>
             </dict>
-            <key>AsuraPath_NAttack_03.png</key>
+            <key>AsuraPath_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{75,84}}</string>
@@ -55,7 +55,7 @@
                 <key>sourceSize</key>
                 <string>{75,84}</string>
             </dict>
-            <key>AsuraPath_NAttack_04.png</key>
+            <key>AsuraPath_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{88,2},{69,84}}</string>
@@ -68,7 +68,7 @@
                 <key>sourceSize</key>
                 <string>{69,84}</string>
             </dict>
-            <key>AsuraPath_Skill01_01.png</key>
+            <key>AsuraPath_Skill01_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{173,123},{36,81}}</string>
@@ -81,7 +81,7 @@
                 <key>sourceSize</key>
                 <string>{36,81}</string>
             </dict>
-            <key>AsuraPath_Skill01_02.png</key>
+            <key>AsuraPath_Skill01_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,79},{40,82}}</string>
@@ -94,7 +94,7 @@
                 <key>sourceSize</key>
                 <string>{40,82}</string>
             </dict>
-            <key>AsuraPath_Skill01_03.png</key>
+            <key>AsuraPath_Skill01_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{88,73},{63,83}}</string>
@@ -107,7 +107,7 @@
                 <key>sourceSize</key>
                 <string>{63,83}</string>
             </dict>
-            <key>AsuraPath_Skill01_04.png</key>
+            <key>AsuraPath_Skill01_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{174,38},{70,83}}</string>
@@ -120,7 +120,7 @@
                 <key>sourceSize</key>
                 <string>{70,83}</string>
             </dict>
-            <key>AsuraPath_Walk_01.png</key>
+            <key>AsuraPath_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,223},{57,64}}</string>
@@ -133,7 +133,7 @@
                 <key>sourceSize</key>
                 <string>{57,64}</string>
             </dict>
-            <key>AsuraPath_Walk_02.png</key>
+            <key>AsuraPath_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{168,161},{64,62}}</string>
@@ -146,7 +146,7 @@
                 <key>sourceSize</key>
                 <string>{64,62}</string>
             </dict>
-            <key>AsuraPath_Walk_03.png</key>
+            <key>AsuraPath_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{197,225},{56,60}}</string>
@@ -159,7 +159,7 @@
                 <key>sourceSize</key>
                 <string>{56,60}</string>
             </dict>
-            <key>AsuraPath_Walk_04.png</key>
+            <key>AsuraPath_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{69,172},{57,64}}</string>
@@ -172,7 +172,7 @@
                 <key>sourceSize</key>
                 <string>{57,64}</string>
             </dict>
-            <key>AsuraPath_Walk_05.png</key>
+            <key>AsuraPath_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,158},{65,63}}</string>
@@ -185,7 +185,7 @@
                 <key>sourceSize</key>
                 <string>{65,63}</string>
             </dict>
-            <key>AsuraPath_Walk_06.png</key>
+            <key>AsuraPath_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{135,225},{56,60}}</string>

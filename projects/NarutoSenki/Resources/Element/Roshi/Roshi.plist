@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Roshi_AirHurt_001.png</key>
+            <key>Roshi_AirHurt_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{380,233},{50,54}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{50,54}</string>
             </dict>
-            <key>Roshi_AirHurt_02.png</key>
+            <key>Roshi_AirHurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{150,483},{37,67}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{37,67}</string>
             </dict>
-            <key>Roshi_Float_001.png</key>
+            <key>Roshi_Float_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{66,851},{54,50}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{54,50}</string>
             </dict>
-            <key>Roshi_Float_002.png</key>
+            <key>Roshi_Float_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{150,483},{37,67}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{37,67}</string>
             </dict>
-            <key>Roshi_Float_003.png</key>
+            <key>Roshi_Float_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{150,444},{67,37}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{67,37}</string>
             </dict>
-            <key>Roshi_Hurt_01.png</key>
+            <key>Roshi_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{151,345},{50,70}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{50,70}</string>
             </dict>
-            <key>Roshi_Hurt_02.png</key>
+            <key>Roshi_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{462,220},{48,67}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{48,67}</string>
             </dict>
-            <key>Roshi_Idle_001.png</key>
+            <key>Roshi_Idle_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{152,297},{46,71}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{50,75}</string>
             </dict>
-            <key>Roshi_Idle_002.png</key>
+            <key>Roshi_Idle_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{462,147},{48,71}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{50,75}</string>
             </dict>
-            <key>Roshi_Idle_003.png</key>
+            <key>Roshi_Idle_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{462,147},{48,71}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{50,75}</string>
             </dict>
-            <key>Roshi_Idle_004.png</key>
+            <key>Roshi_Idle_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{152,249},{46,71}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{50,75}</string>
             </dict>
-            <key>Roshi_Idle_005.png</key>
+            <key>Roshi_Idle_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{152,249},{46,71}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{50,75}</string>
             </dict>
-            <key>Roshi_KnockDown_001.png</key>
+            <key>Roshi_KnockDown_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{466,83},{62,38}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{62,38}</string>
             </dict>
-            <key>Roshi_KnockDown_002.png</key>
+            <key>Roshi_KnockDown_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{150,444},{67,37}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{67,37}</string>
             </dict>
-            <key>Roshi_KnockDown_003.png</key>
+            <key>Roshi_KnockDown_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{152,128},{79,28}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{79,28}</string>
             </dict>
-            <key>Roshi_NAttack_001.png</key>
+            <key>Roshi_NAttack_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{151,397},{45,70}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{73,70}</string>
             </dict>
-            <key>Roshi_NAttack_002.png</key>
+            <key>Roshi_NAttack_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{150,522},{63,66}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{73,70}</string>
             </dict>
-            <key>Roshi_NAttack_003.png</key>
+            <key>Roshi_NAttack_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{306,810},{57,58}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{73,70}</string>
             </dict>
-            <key>Roshi_NAttack_004.png</key>
+            <key>Roshi_NAttack_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{243,798},{61,58}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{73,70}</string>
             </dict>
-            <key>Roshi_Skill01_001.png</key>
+            <key>Roshi_Skill01_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{466,2},{39,79}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{109,139}</string>
             </dict>
-            <key>Roshi_Skill01_002.png</key>
+            <key>Roshi_Skill01_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{464,529},{45,81}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{109,139}</string>
             </dict>
-            <key>Roshi_Skill01_003.png</key>
+            <key>Roshi_Skill01_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{96,790},{59,81}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{109,139}</string>
             </dict>
-            <key>Roshi_Skill01_004.png</key>
+            <key>Roshi_Skill01_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{198,735},{61,81}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{109,139}</string>
             </dict>
-            <key>Roshi_Skill01_005.png</key>
+            <key>Roshi_Skill01_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{152,158},{77,89}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{109,139}</string>
             </dict>
-            <key>Roshi_Skill01_006.png</key>
+            <key>Roshi_Skill01_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{400,756},{81,87}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{109,139}</string>
             </dict>
-            <key>Roshi_Skill01_007.png</key>
+            <key>Roshi_Skill01_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{311,727},{81,87}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{109,139}</string>
             </dict>
-            <key>Roshi_Skill01_008.png</key>
+            <key>Roshi_Skill01_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,541},{89,121}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{109,139}</string>
             </dict>
-            <key>Roshi_Skill01_009.png</key>
+            <key>Roshi_Skill01_009</key>
             <dict>
                 <key>frame</key>
                 <string>{{223,443},{89,121}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{109,139}</string>
             </dict>
-            <key>Roshi_Skill02_001.png</key>
+            <key>Roshi_Skill02_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,632},{100,97}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{320,97}</string>
             </dict>
-            <key>Roshi_Skill02_002.png</key>
+            <key>Roshi_Skill02_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{380,289},{126,122}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{320,122}</string>
             </dict>
-            <key>Roshi_Skill02_003.png</key>
+            <key>Roshi_Skill02_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{346,529},{116,107}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{320,107}</string>
             </dict>
-            <key>Roshi_Skill02_004.png</key>
+            <key>Roshi_Skill02_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{234,122},{226,109}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{320,111}</string>
             </dict>
-            <key>Roshi_Skill02_005.png</key>
+            <key>Roshi_Skill02_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{234,2},{230,118}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{320,122}</string>
             </dict>
-            <key>Roshi_Skill02_006.png</key>
+            <key>Roshi_Skill02_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{230,124}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{320,124}</string>
             </dict>
-            <key>Roshi_Skill10_001.png</key>
+            <key>Roshi_Skill10_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,441},{146,98}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{146,98}</string>
             </dict>
-            <key>Roshi_Skill10_002.png</key>
+            <key>Roshi_Skill10_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{225,339},{146,102}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{146,102}</string>
             </dict>
-            <key>Roshi_Skill10_003.png</key>
+            <key>Roshi_Skill10_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{231,233},{147,104}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{147,104}</string>
             </dict>
-            <key>Roshi_Skill10_004.png</key>
+            <key>Roshi_Skill10_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,235},{148,99}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{148,99}</string>
             </dict>
-            <key>Roshi_Skill10_005.png</key>
+            <key>Roshi_Skill10_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,336},{147,103}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{147,103}</string>
             </dict>
-            <key>Roshi_Skill10_006.png</key>
+            <key>Roshi_Skill10_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,128},{148,105}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{148,105}</string>
             </dict>
-            <key>Roshi_Skill11_001.png</key>
+            <key>Roshi_Skill11_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{334,638},{87,96}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{87,96}</string>
             </dict>
-            <key>Roshi_Skill11_002.png</key>
+            <key>Roshi_Skill11_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{373,413},{123,114}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{123,114}</string>
             </dict>
-            <key>Roshi_Skill11_003.png</key>
+            <key>Roshi_Skill11_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{218,534},{108,114}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{108,114}</string>
             </dict>
-            <key>Roshi_Skill11_004.png</key>
+            <key>Roshi_Skill11_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{125,587},{111,89}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{111,89}</string>
             </dict>
-            <key>Roshi_Skill12_001.png</key>
+            <key>Roshi_Skill12_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{216,644},{89,93}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{89,93}</string>
             </dict>
-            <key>Roshi_Skill12_002.png</key>
+            <key>Roshi_Skill12_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,731},{88,92}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{88,92}</string>
             </dict>
-            <key>Roshi_Skill12_003.png</key>
+            <key>Roshi_Skill12_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{104,700},{88,92}}</string>
@@ -615,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{88,92}</string>
             </dict>
-            <key>Roshi_Walk_01.png</key>
+            <key>Roshi_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{432,697},{63,57}}</string>
@@ -628,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{63,57}</string>
             </dict>
-            <key>Roshi_Walk_02.png</key>
+            <key>Roshi_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{179,798},{62,57}}</string>
@@ -641,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{62,57}</string>
             </dict>
-            <key>Roshi_Walk_03.png</key>
+            <key>Roshi_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,880},{49,52}}</string>
@@ -654,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{49,52}</string>
             </dict>
-            <key>Roshi_Walk_04.png</key>
+            <key>Roshi_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{432,638},{63,57}}</string>
@@ -667,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{63,57}</string>
             </dict>
-            <key>Roshi_Walk_05.png</key>
+            <key>Roshi_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,821},{62,57}}</string>
@@ -680,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{62,57}</string>
             </dict>
-            <key>Roshi_Walk_06.png</key>
+            <key>Roshi_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{122,851},{49,53}}</string>

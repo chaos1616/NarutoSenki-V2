@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Jiraiya_AirHurt_01.png</key>
+            <key>Jiraiya_AirHurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{191,306},{89,80}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{89,80}</string>
             </dict>
-            <key>Jiraiya_AirHurt_02.png</key>
+            <key>Jiraiya_AirHurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,266},{49,93}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{49,93}</string>
             </dict>
-            <key>Jiraiya_Float_01.png</key>
+            <key>Jiraiya_Float_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{350,360},{80,89}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{80,89}</string>
             </dict>
-            <key>Jiraiya_Float_02.png</key>
+            <key>Jiraiya_Float_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{446,255},{92,63}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{92,63}</string>
             </dict>
-            <key>Jiraiya_Float_03.png</key>
+            <key>Jiraiya_Float_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{351,305},{53,92}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{53,92}</string>
             </dict>
-            <key>Jiraiya_Hurt_01.png</key>
+            <key>Jiraiya_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{187,388},{78,88}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{78,88}</string>
             </dict>
-            <key>Jiraiya_Hurt_02.png</key>
+            <key>Jiraiya_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{603,525},{71,74}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{71,74}</string>
             </dict>
-            <key>Jiraiya_Hurt_03.png</key>
+            <key>Jiraiya_Hurt_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{251,622},{70,71}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{70,71}</string>
             </dict>
-            <key>Jiraiya_Idle_001.png</key>
+            <key>Jiraiya_Idle_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{883,407},{71,79}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{75,79}</string>
             </dict>
-            <key>Jiraiya_Idle_002.png</key>
+            <key>Jiraiya_Idle_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{788,478},{71,77}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{75,79}</string>
             </dict>
-            <key>Jiraiya_Idle_003.png</key>
+            <key>Jiraiya_Idle_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{622,452},{71,77}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{75,79}</string>
             </dict>
-            <key>Jiraiya_Idle_004.png</key>
+            <key>Jiraiya_Idle_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{720,371},{71,75}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{75,79}</string>
             </dict>
-            <key>Jiraiya_KnockDown_01.png</key>
+            <key>Jiraiya_KnockDown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{799,133},{101,71}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{101,79}</string>
             </dict>
-            <key>Jiraiya_KnockDown_02.png</key>
+            <key>Jiraiya_KnockDown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,317},{92,63}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{92,63}</string>
             </dict>
-            <key>Jiraiya_KnockDown_03.png</key>
+            <key>Jiraiya_KnockDown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{797,286},{102,40}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{102,40}</string>
             </dict>
-            <key>Jiraiya_KnockDown_04.png</key>
+            <key>Jiraiya_KnockDown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{512,545},{73,71}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{73,71}</string>
             </dict>
-            <key>Jiraiya_KnockDown_05.png</key>
+            <key>Jiraiya_KnockDown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{540,255},{91,70}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{91,78}</string>
             </dict>
-            <key>Jiraiya_KnockDown_06.png</key>
+            <key>Jiraiya_KnockDown_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{161,667},{65,70}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{65,72}</string>
             </dict>
-            <key>Jiraiya_NAttack_01.png</key>
+            <key>Jiraiya_NAttack_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,672},{60,75}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{60,77}</string>
             </dict>
-            <key>Jiraiya_NAttack_02.png</key>
+            <key>Jiraiya_NAttack_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{351,146},{100,77}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{100,77}</string>
             </dict>
-            <key>Jiraiya_NAttack_03.png</key>
+            <key>Jiraiya_NAttack_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{624,373},{83,77}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{83,77}</string>
             </dict>
-            <key>Jiraiya_NAttack_04.png</key>
+            <key>Jiraiya_NAttack_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,465},{51,88}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{51,88}</string>
             </dict>
-            <key>Jiraiya_NAttack_05.png</key>
+            <key>Jiraiya_NAttack_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{271,473},{77,76}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{77,76}</string>
             </dict>
-            <key>Jiraiya_NAttack_06.png</key>
+            <key>Jiraiya_NAttack_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{720,293},{75,76}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{75,76}</string>
             </dict>
-            <key>Jiraiya_NAttack_07.png</key>
+            <key>Jiraiya_NAttack_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{902,167},{103,84}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{103,84}</string>
             </dict>
-            <key>Jiraiya_NAttack_08.png</key>
+            <key>Jiraiya_NAttack_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{902,82},{111,83}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{111,83}</string>
             </dict>
-            <key>Jiraiya_NAttack_09.png</key>
+            <key>Jiraiya_NAttack_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{797,328},{80,84}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{80,84}</string>
             </dict>
-            <key>Jiraiya_NAttack_10.png</key>
+            <key>Jiraiya_NAttack_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{97,266},{67,92}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{67,92}</string>
             </dict>
-            <key>Jiraiya_NAttack_11.png</key>
+            <key>Jiraiya_NAttack_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{96,335},{71,89}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{71,89}</string>
             </dict>
-            <key>Jiraiya_NAttack_12.png</key>
+            <key>Jiraiya_NAttack_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{965,333},{53,74}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{53,74}</string>
             </dict>
-            <key>Jiraiya_NAttack_13.png</key>
+            <key>Jiraiya_NAttack_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{799,206},{100,78}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{100,78}</string>
             </dict>
-            <key>Jiraiya_NAttack_14.png</key>
+            <key>Jiraiya_NAttack_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{351,225},{93,78}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{93,78}</string>
             </dict>
-            <key>Jiraiya_NAttack_21.png</key>
+            <key>Jiraiya_NAttack_21</key>
             <dict>
                 <key>frame</key>
                 <string>{{701,520},{59,77}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{59,77}</string>
             </dict>
-            <key>Jiraiya_NAttack_22.png</key>
+            <key>Jiraiya_NAttack_22</key>
             <dict>
                 <key>frame</key>
                 <string>{{709,444},{74,77}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{74,77}</string>
             </dict>
-            <key>Jiraiya_Skill01_02.png</key>
+            <key>Jiraiya_Skill01_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{89,563},{54,82}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{54,82}</string>
             </dict>
-            <key>Jiraiya_Skill01_03.png</key>
+            <key>Jiraiya_Skill01_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{179,540},{55,82}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{55,82}</string>
             </dict>
-            <key>Jiraiya_Skill01_04.png</key>
+            <key>Jiraiya_Skill01_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{277,388},{71,83}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{71,83}</string>
             </dict>
-            <key>Jiraiya_Skill01_05.png</key>
+            <key>Jiraiya_Skill01_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{182,468},{70,87}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{70,87}</string>
             </dict>
-            <key>Jiraiya_Skill01_06.png</key>
+            <key>Jiraiya_Skill01_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{537,401},{70,83}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{70,83}</string>
             </dict>
-            <key>Jiraiya_Skill01_07.png</key>
+            <key>Jiraiya_Skill01_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{179,540},{55,82}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{55,82}</string>
             </dict>
-            <key>Jiraiya_Skill02_01.png</key>
+            <key>Jiraiya_Skill02_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{537,327},{72,85}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{72,85}</string>
             </dict>
-            <key>Jiraiya_Skill02_02.png</key>
+            <key>Jiraiya_Skill02_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{79,687},{64,66}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{64,66}</string>
             </dict>
-            <key>Jiraiya_Skill02_03.png</key>
+            <key>Jiraiya_Skill02_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,734},{64,65}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{64,65}</string>
             </dict>
-            <key>Jiraiya_Skill03_001.png</key>
+            <key>Jiraiya_Skill03_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{92,408},{73,88}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{203,88}</string>
             </dict>
-            <key>Jiraiya_Skill03_002.png</key>
+            <key>Jiraiya_Skill03_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{350,442},{59,82}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{203,88}</string>
             </dict>
-            <key>Jiraiya_Skill03_003.png</key>
+            <key>Jiraiya_Skill03_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{674,133},{123,78}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{203,88}</string>
             </dict>
-            <key>Jiraiya_Skill03_004.png</key>
+            <key>Jiraiya_Skill03_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{228,226},{121,78}}</string>
@@ -615,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{203,88}</string>
             </dict>
-            <key>Jiraiya_Skill03_005.png</key>
+            <key>Jiraiya_Skill03_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{228,146},{121,78}}</string>
@@ -628,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{203,88}</string>
             </dict>
-            <key>Jiraiya_Skill03_006.png</key>
+            <key>Jiraiya_Skill03_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{674,213},{121,78}}</string>
@@ -641,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{203,88}</string>
             </dict>
-            <key>Jiraiya_Skill03_007.png</key>
+            <key>Jiraiya_Skill03_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{901,253},{121,78}}</string>
@@ -654,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{203,88}</string>
             </dict>
-            <key>Jiraiya_Skill03_008.png</key>
+            <key>Jiraiya_Skill03_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{902,2},{119,78}}</string>
@@ -667,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{203,88}</string>
             </dict>
-            <key>Jiraiya_Skill04_01.png</key>
+            <key>Jiraiya_Skill04_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{633,293},{78,85}}</string>
@@ -680,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{94,85}</string>
             </dict>
-            <key>Jiraiya_Skill04_02.png</key>
+            <key>Jiraiya_Skill04_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,518},{78,85}}</string>
@@ -693,7 +693,7 @@
                 <key>sourceSize</key>
                 <string>{94,85}</string>
             </dict>
-            <key>Jiraiya_Skill04_03.png</key>
+            <key>Jiraiya_Skill04_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{92,483},{78,85}}</string>
@@ -706,7 +706,7 @@
                 <key>sourceSize</key>
                 <string>{94,85}</string>
             </dict>
-            <key>Jiraiya_Skill04_04.png</key>
+            <key>Jiraiya_Skill04_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{84,619},{75,66}}</string>
@@ -719,7 +719,7 @@
                 <key>sourceSize</key>
                 <string>{75,66}</string>
             </dict>
-            <key>Jiraiya_Skill04_05.png</key>
+            <key>Jiraiya_Skill04_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{230,125}}</string>
@@ -732,7 +732,7 @@
                 <key>sourceSize</key>
                 <string>{378,139}</string>
             </dict>
-            <key>Jiraiya_Skill04_06.png</key>
+            <key>Jiraiya_Skill04_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{688,2},{212,129}}</string>
@@ -745,7 +745,7 @@
                 <key>sourceSize</key>
                 <string>{378,129}</string>
             </dict>
-            <key>Jiraiya_Skill04_07.png</key>
+            <key>Jiraiya_Skill04_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{234,2},{228,142}}</string>
@@ -758,7 +758,7 @@
                 <key>sourceSize</key>
                 <string>{378,142}</string>
             </dict>
-            <key>Jiraiya_Skill04_08.png</key>
+            <key>Jiraiya_Skill04_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{464,2},{222,125}}</string>
@@ -771,7 +771,7 @@
                 <key>sourceSize</key>
                 <string>{378,125}</string>
             </dict>
-            <key>Jiraiya_Skill04_09.png</key>
+            <key>Jiraiya_Skill04_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{464,129},{208,124}}</string>
@@ -784,7 +784,7 @@
                 <key>sourceSize</key>
                 <string>{378,124}</string>
             </dict>
-            <key>Jiraiya_Skill04_10.png</key>
+            <key>Jiraiya_Skill04_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,129},{224,135}}</string>
@@ -797,7 +797,7 @@
                 <key>sourceSize</key>
                 <string>{378,135}</string>
             </dict>
-            <key>Jiraiya_Skill05_02.png</key>
+            <key>Jiraiya_Skill05_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{441,403},{82,77}}</string>
@@ -810,7 +810,7 @@
                 <key>sourceSize</key>
                 <string>{82,77}</string>
             </dict>
-            <key>Jiraiya_Skill05_17.png</key>
+            <key>Jiraiya_Skill05_17</key>
             <dict>
                 <key>frame</key>
                 <string>{{445,320},{81,90}}</string>
@@ -823,7 +823,7 @@
                 <key>sourceSize</key>
                 <string>{81,90}</string>
             </dict>
-            <key>Jiraiya_Skill05_18.png</key>
+            <key>Jiraiya_Skill05_18</key>
             <dict>
                 <key>frame</key>
                 <string>{{263,551},{69,76}}</string>
@@ -836,7 +836,7 @@
                 <key>sourceSize</key>
                 <string>{71,90}</string>
             </dict>
-            <key>Jiraiya_Skill05_19.png</key>
+            <key>Jiraiya_Skill05_19</key>
             <dict>
                 <key>frame</key>
                 <string>{{434,482},{70,76}}</string>
@@ -849,7 +849,7 @@
                 <key>sourceSize</key>
                 <string>{70,90}</string>
             </dict>
-            <key>Jiraiya_Skill05_20.png</key>
+            <key>Jiraiya_Skill05_20</key>
             <dict>
                 <key>frame</key>
                 <string>{{525,473},{70,76}}</string>
@@ -862,7 +862,7 @@
                 <key>sourceSize</key>
                 <string>{70,90}</string>
             </dict>
-            <key>Jiraiya_Skill05_21.png</key>
+            <key>Jiraiya_Skill05_21</key>
             <dict>
                 <key>frame</key>
                 <string>{{350,503},{69,76}}</string>
@@ -875,7 +875,7 @@
                 <key>sourceSize</key>
                 <string>{71,90}</string>
             </dict>
-            <key>Jiraiya_Skill05_22.png</key>
+            <key>Jiraiya_Skill05_22</key>
             <dict>
                 <key>frame</key>
                 <string>{{173,597},{68,76}}</string>
@@ -888,7 +888,7 @@
                 <key>sourceSize</key>
                 <string>{68,90}</string>
             </dict>
-            <key>Jiraiya_Skill05_23.png</key>
+            <key>Jiraiya_Skill05_23</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,382},{88,81}}</string>
@@ -901,7 +901,7 @@
                 <key>sourceSize</key>
                 <string>{88,81}</string>
             </dict>
-            <key>Jiraiya_Skill05_24.png</key>
+            <key>Jiraiya_Skill05_24</key>
             <dict>
                 <key>frame</key>
                 <string>{{89,563},{54,82}}</string>
@@ -914,7 +914,7 @@
                 <key>sourceSize</key>
                 <string>{54,82}</string>
             </dict>
-            <key>Jiraiya_Walk_01.png</key>
+            <key>Jiraiya_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{883,333},{80,72}}</string>
@@ -927,7 +927,7 @@
                 <key>sourceSize</key>
                 <string>{80,72}</string>
             </dict>
-            <key>Jiraiya_Walk_02.png</key>
+            <key>Jiraiya_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{282,306},{80,66}}</string>
@@ -940,7 +940,7 @@
                 <key>sourceSize</key>
                 <string>{80,72}</string>
             </dict>
-            <key>Jiraiya_Walk_03.png</key>
+            <key>Jiraiya_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{341,574},{72,66}}</string>
@@ -953,7 +953,7 @@
                 <key>sourceSize</key>
                 <string>{72,72}</string>
             </dict>
-            <key>Jiraiya_Walk_04.png</key>
+            <key>Jiraiya_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,598},{80,72}}</string>
@@ -966,7 +966,7 @@
                 <key>sourceSize</key>
                 <string>{80,72}</string>
             </dict>
-            <key>Jiraiya_Walk_05.png</key>
+            <key>Jiraiya_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{797,410},{79,66}}</string>
@@ -979,7 +979,7 @@
                 <key>sourceSize</key>
                 <string>{79,72}</string>
             </dict>
-            <key>Jiraiya_Walk_06.png</key>
+            <key>Jiraiya_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{428,554},{72,66}}</string>

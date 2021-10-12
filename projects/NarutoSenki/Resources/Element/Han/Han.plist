@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Han_AirHurt_001.png</key>
+            <key>Han_AirHurt_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{383,746},{45,61}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{45,61}</string>
             </dict>
-            <key>Han_AirHurt_02.png</key>
+            <key>Han_AirHurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{240,715},{40,72}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{40,72}</string>
             </dict>
-            <key>Han_Float_001.png</key>
+            <key>Han_Float_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,834},{61,45}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{61,45}</string>
             </dict>
-            <key>Han_Float_002.png</key>
+            <key>Han_Float_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{240,715},{40,72}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{40,72}</string>
             </dict>
-            <key>Han_Float_003.png</key>
+            <key>Han_Float_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{157,680},{81,39}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{81,39}</string>
             </dict>
-            <key>Han_Hurt_01.png</key>
+            <key>Han_Hurt_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{240,715},{40,72}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{40,72}</string>
             </dict>
-            <key>Han_Hurt_02.png</key>
+            <key>Han_Hurt_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{240,715},{40,72}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{40,72}</string>
             </dict>
-            <key>Han_Idle_001.png</key>
+            <key>Han_Idle_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{413,699},{45,72}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{51,72}</string>
             </dict>
-            <key>Han_Idle_002.png</key>
+            <key>Han_Idle_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,787},{45,70}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{51,72}</string>
             </dict>
-            <key>Han_Idle_003.png</key>
+            <key>Han_Idle_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{77,767},{47,70}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{51,72}</string>
             </dict>
-            <key>Han_KnockDown_001.png</key>
+            <key>Han_KnockDown_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,744},{73,41}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{73,41}</string>
             </dict>
-            <key>Han_KnockDown_002.png</key>
+            <key>Han_KnockDown_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{157,680},{81,39}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{81,39}</string>
             </dict>
-            <key>Han_KnockDown_003.png</key>
+            <key>Han_KnockDown_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{481,531},{78,24}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{78,24}</string>
             </dict>
-            <key>Han_NAttack_001.png</key>
+            <key>Han_NAttack_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{256,669},{44,68}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{112,72}</string>
             </dict>
-            <key>Han_NAttack_002.png</key>
+            <key>Han_NAttack_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{413,651},{46,72}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{112,72}</string>
             </dict>
-            <key>Han_NAttack_003.png</key>
+            <key>Han_NAttack_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{100,559},{56,72}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{112,72}</string>
             </dict>
-            <key>Han_NAttack_004.png</key>
+            <key>Han_NAttack_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{256,589},{78,68}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{112,72}</string>
             </dict>
-            <key>Han_Skill01_001.png</key>
+            <key>Han_Skill01_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{157,721},{71,54}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{189,114}</string>
             </dict>
-            <key>Han_Skill01_002.png</key>
+            <key>Han_Skill01_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{97,688},{77,58}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{189,114}</string>
             </dict>
-            <key>Han_Skill01_003.png</key>
+            <key>Han_Skill01_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{326,651},{85,62}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{189,114}</string>
             </dict>
-            <key>Han_Skill01_004.png</key>
+            <key>Han_Skill01_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,650},{93,92}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{189,114}</string>
             </dict>
-            <key>Han_Skill01_005.png</key>
+            <key>Han_Skill01_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{158,589},{89,96}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{189,114}</string>
             </dict>
-            <key>Han_Skill01_006.png</key>
+            <key>Han_Skill01_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,559},{89,96}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{189,114}</string>
             </dict>
-            <key>Han_Skill01_007.png</key>
+            <key>Han_Skill01_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,338},{165,104}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{189,114}</string>
             </dict>
-            <key>Han_Skill01_008.png</key>
+            <key>Han_Skill01_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{169,325},{165,104}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{189,114}</string>
             </dict>
-            <key>Han_Skill02_001.png</key>
+            <key>Han_Skill02_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,444},{154,113}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{170,123}</string>
             </dict>
-            <key>Han_Skill02_002.png</key>
+            <key>Han_Skill02_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{169,431},{156,104}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{170,104}</string>
             </dict>
-            <key>Han_Skill02_003.png</key>
+            <key>Han_Skill02_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{174,2},{170,106}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{170,110}</string>
             </dict>
-            <key>Han_Skill02_004.png</key>
+            <key>Han_Skill02_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{174,110},{168,107}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{170,107}</string>
             </dict>
-            <key>Han_Skill02_005.png</key>
+            <key>Han_Skill02_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{170,122}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{170,122}</string>
             </dict>
-            <key>Han_Skill02_006.png</key>
+            <key>Han_Skill02_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{346,108},{156,104}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{170,108}</string>
             </dict>
-            <key>Han_Skill02_007.png</key>
+            <key>Han_Skill02_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{327,531},{118,152}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{170,152}</string>
             </dict>
-            <key>Han_Skill10_001.png</key>
+            <key>Han_Skill10_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{338,320},{165,104}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{165,104}</string>
             </dict>
-            <key>Han_Skill10_002.png</key>
+            <key>Han_Skill10_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{336,426},{165,103}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{165,103}</string>
             </dict>
-            <key>Han_Skill10_003.png</key>
+            <key>Han_Skill10_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,232},{165,104}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{165,104}</string>
             </dict>
-            <key>Han_Skill10_004.png</key>
+            <key>Han_Skill10_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{171,219},{165,104}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{165,104}</string>
             </dict>
-            <key>Han_Skill11_001.png</key>
+            <key>Han_Skill11_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,444},{154,113}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{154,113}</string>
             </dict>
-            <key>Han_Skill11_002.png</key>
+            <key>Han_Skill11_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{346,2},{158,104}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{158,106}</string>
             </dict>
-            <key>Han_Skill11_003.png</key>
+            <key>Han_Skill11_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,126},{167,104}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{169,106}</string>
             </dict>
-            <key>Han_Skill11_004.png</key>
+            <key>Han_Skill11_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{344,214},{165,104}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{165,104}</string>
             </dict>
-            <key>Han_Skill12_001.png</key>
+            <key>Han_Skill12_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{158,537},{146,50}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{146,50}</string>
             </dict>
-            <key>Han_Walk_01.png</key>
+            <key>Han_Walk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{314,715},{67,59}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{67,59}</string>
             </dict>
-            <key>Han_Walk_02.png</key>
+            <key>Han_Walk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{149,777},{63,57}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{63,57}</string>
             </dict>
-            <key>Han_Walk_03.png</key>
+            <key>Han_Walk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{446,746},{53,55}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{53,55}</string>
             </dict>
-            <key>Han_Walk_04.png</key>
+            <key>Han_Walk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{230,757},{66,59}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{66,59}</string>
             </dict>
-            <key>Han_Walk_05.png</key>
+            <key>Han_Walk_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{74,816},{62,57}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{62,57}</string>
             </dict>
-            <key>Han_Walk_06.png</key>
+            <key>Han_Walk_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{100,633},{53,55}}</string>

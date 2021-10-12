@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animation>
+<unit>
 
-	<action value="Idle">
-		<date>
-			<dateName type="attackType">Tiger</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">29</dateName>
-			<dateName type="attackRangeY">15</dateName>
-			<coldName type="coldDown">224</coldName>
-		</date>
+	<action name="Idle">
+		<data>
+			<p type="attackType">Tiger</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">29</p>
+			<p type="attackRangeY">15</p>
+			<p type="cd">224</p>
+		</data>
 		<frame>
-			<frameName>KageBom_Move_01.png</frameName>
+			<f>KageBom_Move_01</f>
 		</frame>
 	</action>
 
-	<action value="Walk">
+	<action name="Walk">
 		<frame>
-			<frameName>KageBom_Move_01.png</frameName>
+			<f>KageBom_Move_01</f>
 		</frame>
 	</action>
 
-	<action value="Hurt">
-		<frame>
-		</frame>
-	</action>
-
-	<action value="AirHurt">
+	<action name="Hurt">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="KnockDown">
+	<action name="AirHurt">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Float">
+	<action name="KnockDown">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="Dead">
+	<action name="Float">
 		<frame>
 		</frame>
 	</action>
 
-	<action value="nAttack">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">1960</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="Dead">
 		<frame>
-			<frameName>KageBom_Move_01.png</frameName>
-			<eventName type="setAttackBox">ct_hit</eventName>
-			<frameName>KageBom_Move_02.png</frameName>
-			<frameName>KageBom_Move_03.png</frameName>
-			<frameName>KageBom_Move_04.png</frameName>
-			<eventName type="setDelay">280</eventName>
-			<frameName>KageBom_Move_05.png</frameName>
-			<eventName type="setSound">Audio/Effect/bom.ogg</eventName>
-			<eventName type="setAttackBox">o2_hit</eventName>
-			<frameName>KageBom_Move_06.png</frameName>
-			<frameName>KageBom_Move_07.png</frameName>
-			<eventName type="setDetonation">0</eventName>
 		</frame>
 	</action>
-</animation>
+
+	<action name="nAttack">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">1960</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">0</p>
+		</data>
+		<frame>
+			<f>KageBom_Move_01</f>
+			<e type="setAttackBox">ct_hit</e>
+			<f>KageBom_Move_02</f>
+			<f>KageBom_Move_03</f>
+			<f>KageBom_Move_04</f>
+			<e type="setDelay">280</e>
+			<f>KageBom_Move_05</f>
+			<e type="setSound">Audio/Effect/bom.ogg</e>
+			<e type="setAttackBox">o2_hit</e>
+			<f>KageBom_Move_06</f>
+			<f>KageBom_Move_07</f>
+			<e type="setDetonation">0</e>
+		</frame>
+	</action>
+</unit>

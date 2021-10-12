@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Kubi_Move_01.png</key>
+            <key>Kubi_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,152},{60,29}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{60,59}</string>
             </dict>
-            <key>Kubi_Move_02.png</key>
+            <key>Kubi_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{215,30},{58,31}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{60,59}</string>
             </dict>
-            <key>Kubi_Move_03.png</key>
+            <key>Kubi_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{44,212},{52,31}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{60,59}</string>
             </dict>
-            <key>Kubi_Move_04.png</key>
+            <key>Kubi_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{91,148},{44,31}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{60,59}</string>
             </dict>
-            <key>WaterBom_Move_01.png</key>
+            <key>WaterBom_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,214},{40,40}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{40,74}</string>
             </dict>
-            <key>WaterBom_Move_02.png</key>
+            <key>WaterBom_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{146,2},{67,59}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{67,83}</string>
             </dict>
-            <key>WaterBom_Move_03.png</key>
+            <key>WaterBom_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{74,2},{70,59}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{70,83}</string>
             </dict>
-            <key>WaterBom_Move_04.png</key>
+            <key>WaterBom_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{70,59}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{70,83}</string>
             </dict>
-            <key>WaterBom_Move_05.png</key>
+            <key>WaterBom_Move_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,90},{60,59}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{60,83}</string>
             </dict>
-            <key>WaterBom_Move_06.png</key>
+            <key>WaterBom_Move_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{63,90},{56,55}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{56,83}</string>
             </dict>
-            <key>WaterBom_Move_07.png</key>
+            <key>WaterBom_Move_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{33,152},{58,56}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{58,84}</string>
             </dict>
-            <key>WaterBullet_Move_01.png</key>
+            <key>WaterBullet_Move_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{249,12},{7,3}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{7,55}</string>
             </dict>
-            <key>WaterBullet_Move_02.png</key>
+            <key>WaterBullet_Move_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{249,2},{8,3}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{8,55}</string>
             </dict>
-            <key>WaterBullet_Move_03.png</key>
+            <key>WaterBullet_Move_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,63},{10,19}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{10,63}</string>
             </dict>
-            <key>WaterBullet_Move_04.png</key>
+            <key>WaterBullet_Move_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{14,63},{11,26}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{11,66}</string>
             </dict>
-            <key>WaterBullet_Move_05.png</key>
+            <key>WaterBullet_Move_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{215,16},{12,32}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{12,68}</string>
             </dict>
-            <key>WaterBullet_Move_06.png</key>
+            <key>WaterBullet_Move_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{215,2},{12,32}}</string>

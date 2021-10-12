@@ -12,7 +12,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 	if (is_same(name, "n_hit") ||
 		is_same(name, "b_hit"))
 	{
-		initWithSpriteFrameName("red_damge_01.png");
+		initWithSpriteFrameName("red_damge_01");
 		setAnchorPoint(ccp(0.5f, 0));
 		setScale(0.6f);
 		float randomY = rand() % 16;
@@ -35,7 +35,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 			 is_same(name, "s_hit"))
 	{
 		setScale(0.8f);
-		initWithSpriteFrameName("red_damge_01.png");
+		initWithSpriteFrameName("red_damge_01");
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(ccp(at->getPositionX(), at->getPositionY()));
 		auto effectAction = createEffectAnimation("red_damge_", 4, 14, false);
@@ -46,7 +46,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 			 is_same(name, "bf_hit") ||
 			 is_same(name, "sl_hit"))
 	{
-		initWithSpriteFrameName("blue_damge_01.png");
+		initWithSpriteFrameName("blue_damge_01");
 		//setAnchorPoint(ccp(0.5f,0));
 		setScale(0.6f);
 		int randomInt = rand() % 30 + 10;
@@ -57,7 +57,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 	}
 	else if (is_same(name, "a_hit"))
 	{
-		initWithSpriteFrameName("bottom_damage_01.png");
+		initWithSpriteFrameName("bottom_damage_01");
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(ccp(at->getPositionX() + 16, at->getPositionY()));
 		auto effectAction = createEffectAnimation("bottom_damage_", 6, 20, false);
@@ -65,14 +65,14 @@ bool Effect::init(const char *name, CCObject *attacker)
 	}
 	else if (is_same(name, "Kagura"))
 	{
-		initWithSpriteFrameName("Kagura_01.png");
+		initWithSpriteFrameName("Kagura_01");
 		auto effectAction = createEffectAnimation("Kagura_", 9, 10, false);
 		setAnchorPoint(ccp(0.5f, 0.5f));
 		runAction(effectAction);
 	}
 	else if (is_same(name, "Hupo"))
 	{
-		initWithSpriteFrameName("Hupo_01.png");
+		initWithSpriteFrameName("Hupo_01");
 		auto effectAction = createEffectAnimation("Hupo_", 7, 10, false);
 		setAnchorPoint(ccp(0.5f, 0.5f));
 		runAction(effectAction);
@@ -80,7 +80,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 	else if (is_same(name, "hp_restore") ||
 			 is_same(name, "speedUp"))
 	{
-		initWithSpriteFrameName(CCString::createWithFormat("%s_01.png", name)->getCString());
+		initWithSpriteFrameName(CCString::createWithFormat("%s_01", name)->getCString());
 		auto effectAction = createEffectAnimation(CCString::createWithFormat("%s_", name)->getCString(), 5, 5, false);
 		auto call = CCCallFunc::create(at, callfunc_selector(CharacterBase::disableEffect));
 		auto seqArray = CCArray::create();
@@ -91,7 +91,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 	}
 	else if (is_same(name, "smk"))
 	{
-		initWithSpriteFrameName("smk_01.png");
+		initWithSpriteFrameName("smk_01");
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(at->getPosition());
 		auto effectAction = createEffectAnimation("smk_", 5, 10, false);
@@ -103,7 +103,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 	}
 	else if (is_same(name, "tishen"))
 	{
-		initWithSpriteFrameName("tishen_01.png");
+		initWithSpriteFrameName("tishen_01");
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(at->getPosition());
 		auto effectAction = createEffectAnimation("tishen_", 6, 10, false);
@@ -111,7 +111,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 	}
 	else if (is_same(name, "stun"))
 	{
-		initWithSpriteFrameName("smk_01.png");
+		initWithSpriteFrameName("smk_01");
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(ccp(at->getPositionX(), at->getPositionY() + at->getContentSize().height - 2));
 		auto effectAction = createEffectAnimation("stun_", 5, 5, false);
@@ -119,7 +119,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 	}
 	else if (is_same(name, "DarkFlame"))
 	{
-		initWithSpriteFrameName("DarkFlame_Effect_01.png");
+		initWithSpriteFrameName("DarkFlame_Effect_01");
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(ccp(at->getPositionX(), at->getPositionY()));
 		auto effectAction = createEffectAnimation("DarkFlame_Effect_", 5, 10, true);
@@ -132,7 +132,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 	}
 	else if (is_same(name, "Bagua"))
 	{
-		initWithSpriteFrameName("Bagua_01.png");
+		initWithSpriteFrameName("Bagua_01");
 		auto effectAction = createEffectAnimation("Bagua_", 24, 10, false);
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(ccp(at->getPositionX() + 2, at->getPositionY() - 52));
@@ -140,7 +140,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 	}
 	else if (is_same(name, "Kujiyose"))
 	{
-		initWithSpriteFrameName("Kujiyose.png");
+		initWithSpriteFrameName(name);
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(ccp(at->getPositionX(), at->getPositionY() - getContentSize().height / 2));
 		auto delay = CCDelayTime::create(0.3f);
@@ -150,7 +150,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 	}
 	else if (is_same(name, "kazi"))
 	{
-		initWithSpriteFrameName("kazi.png");
+		initWithSpriteFrameName(name);
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(ccp(at->getPositionX() + (at->_isFlipped ? -32 : 32),
 						at->getPositionY() + at->getContentSize().height / 2));
@@ -164,7 +164,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 			 is_same(name, "sharingan3") ||
 			 is_same(name, "sharingan4"))
 	{
-		initWithSpriteFrameName(CCString::createWithFormat(("%s.png"), name)->getCString());
+		initWithSpriteFrameName(name);
 		setPosition(ccp(at->getPositionX() + (at->_isFlipped ? -32 : 32),
 						at->getPositionY() + at->getContentSize().height));
 		auto rt = CCRotateBy::create(0.3f, 180, 180);
@@ -176,7 +176,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 	else if (is_same(name, "Hiraishin") ||
 			 is_same(name, "Hiraishin2"))
 	{
-		initWithSpriteFrameName(CCString::createWithFormat("%sEffect_01.png", name)->getCString());
+		initWithSpriteFrameName(CCString::createWithFormat("%sEffect_01", name)->getCString());
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(at->getPosition());
 		auto effectAction = createEffectAnimation(CCString::createWithFormat("%sEffect_", name)->getCString(), 4, 10, false);
@@ -184,14 +184,14 @@ bool Effect::init(const char *name, CCObject *attacker)
 	}
 	else if (is_same(name, "hBuff"))
 	{
-		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01.png", name)->getCString());
+		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01", name)->getCString());
 		setAnchorPoint(ccp(0.5f, 0));
 		auto effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 4, 5, true);
 		runAction(effectAction);
 	}
 	else if (is_same(name, "sBuff"))
 	{
-		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01.png", name)->getCString());
+		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01", name)->getCString());
 		setAnchorPoint(ccp(0.5f, 0));
 		auto effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 10, 10, true);
 		runAction(effectAction);
@@ -199,14 +199,14 @@ bool Effect::init(const char *name, CCObject *attacker)
 	else if (is_same(name, "hsBuff") ||
 			 is_same(name, "tBuff"))
 	{
-		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01.png", name)->getCString());
+		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01", name)->getCString());
 		setAnchorPoint(ccp(0.5f, 0));
 		auto effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 13, 10, true);
 		runAction(effectAction);
 	}
 	else if (is_same(name, "dcBuff"))
 	{
-		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01.png", name)->getCString());
+		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01", name)->getCString());
 		setAnchorPoint(ccp(0.5f, 0));
 		auto effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 11, 10, true);
 		runAction(effectAction);
@@ -214,7 +214,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 	else if (is_same(name, "jdBuff") ||
 			 is_same(name, "bmBuff"))
 	{
-		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01.png", name)->getCString());
+		initWithSpriteFrameName(CCString::createWithFormat("%s_Effect_01", name)->getCString());
 		setAnchorPoint(ccp(0.5f, 0));
 		auto effectAction = createEffectAnimation(CCString::createWithFormat("%s_Effect_", name)->getCString(), 9, 10, true);
 		runAction(effectAction);
@@ -223,7 +223,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			CCSprite *ef = CCSprite::createWithSpriteFrameName("FireEffect_01.png");
+			CCSprite *ef = CCSprite::createWithSpriteFrameName("FireEffect_01");
 			ef->setAnchorPoint(ccp(0.5f, 0));
 			if (i == 0)
 			{
@@ -258,7 +258,7 @@ CCAction *Effect::createEffectAnimation(const char *file, int frameCount, float 
 
 	for (int i = 1; i < frameCount; i++)
 	{
-		str = CCString::createWithFormat("%s%02d.png", file, i);
+		str = CCString::createWithFormat("%s%02d", file, i);
 		auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(str->getCString());
 		animeFrames->addObject(frame);
 	}

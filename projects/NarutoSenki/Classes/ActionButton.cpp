@@ -12,7 +12,7 @@ ActionButton::ActionButton()
 	_isMarkVisable = true;
 	_timeCout = nullptr;
 	_isLock = false;
-	_coldDown = nullptr;
+	_cooldown = nullptr;
 	_isColdChanged = false;
 	_gearType = None;
 
@@ -27,7 +27,7 @@ ActionButton::ActionButton()
 ActionButton::~ActionButton()
 {
 	CC_SAFE_RELEASE(_timeCout);
-	CC_SAFE_RELEASE(_coldDown);
+	CC_SAFE_RELEASE(_cooldown);
 }
 
 bool ActionButton::init(const char *szImage)
@@ -615,7 +615,7 @@ void ActionButton::createFreezeAnimation()
 {
 	auto to = CCProgressTo::create(0, 99.999f);
 
-	int delay = _coldDown->intValue() / 1000;
+	int delay = _cooldown->intValue() / 1000;
 	auto to1 = CCProgressTo::create(delay, 0);
 
 	CCAction *freezeAction;

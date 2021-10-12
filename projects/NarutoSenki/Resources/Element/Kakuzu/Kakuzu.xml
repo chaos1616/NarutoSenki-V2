@@ -1,285 +1,285 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animation>
+<unit>
 
-	<action value="Idle">
-		<date>
-			<dateName type="attackType">Kakuzu</dateName>
-			<dateName type="attackValue">5000</dateName>
-			<dateName type="attackRangeX">63</dateName>
-			<dateName type="attackRangeY">80</dateName>
-			<coldName type="coldDown">224</coldName>
-		</date>
+	<action name="Idle">
+		<data>
+			<p type="attackType">Kakuzu</p>
+			<p type="attackValue">5000</p>
+			<p type="attackRangeX">63</p>
+			<p type="attackRangeY">80</p>
+			<p type="cd">224</p>
+		</data>
 		<frame>
-			<frameName>Kakuzu_Idle_001.png</frameName>
-			<frameName>Kakuzu_Idle_002.png</frameName>
-			<frameName>Kakuzu_Idle_003.png</frameName>
-			<frameName>Kakuzu_Idle_004.png</frameName>
-		</frame>
-	</action>
-
-	<action value="Walk">
-		<frame>
-			<frameName>Kakuzu_Walk_01.png</frameName>
-			<frameName>Kakuzu_Walk_02.png</frameName>
-			<frameName>Kakuzu_Walk_03.png</frameName>
-			<frameName>Kakuzu_Walk_04.png</frameName>
-			<frameName>Kakuzu_Walk_05.png</frameName>
-			<frameName>Kakuzu_Walk_06.png</frameName>
+			<f>Kakuzu_Idle_001</f>
+			<f>Kakuzu_Idle_002</f>
+			<f>Kakuzu_Idle_003</f>
+			<f>Kakuzu_Idle_004</f>
 		</frame>
 	</action>
 
-	<action value="Hurt">
+	<action name="Walk">
 		<frame>
-			<eventName type="setMove">32</eventName>
-			<frameName>Kakuzu_Hurt_01.png</frameName>
-			<frameName>Kakuzu_Hurt_02.png</frameName>
-			<!-- <eventName type="setSound">Audio/Kakuzu/Kakuzu_hurt.ogg</eventName> -->
+			<f>Kakuzu_Walk_01</f>
+			<f>Kakuzu_Walk_02</f>
+			<f>Kakuzu_Walk_03</f>
+			<f>Kakuzu_Walk_04</f>
+			<f>Kakuzu_Walk_05</f>
+			<f>Kakuzu_Walk_06</f>
 		</frame>
 	</action>
 
-	<action value="AirHurt">
+	<action name="Hurt">
 		<frame>
-			<frameName>Kakuzu_AirHurt_001.png</frameName>
+			<e type="setMove">32</e>
+			<f>Kakuzu_Hurt_01</f>
+			<f>Kakuzu_Hurt_02</f>
+			<!-- <e type="setSound">Audio/Kakuzu/Kakuzu_hurt.ogg</e> -->
 		</frame>
 	</action>
 
-	<action value="KnockDown">
+	<action name="AirHurt">
 		<frame>
-			<frameName>Kakuzu_KnockDown_001.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Kakuzu_KnockDown_002.png</frameName>
-			<eventName type="setDelay">60</eventName>
-			<frameName>Kakuzu_KnockDown_003.png</frameName>
-			<frameName>Kakuzu_KnockDown_004.png</frameName>
-			<frameName>Kakuzu_KnockDown_005.png</frameName>
+			<f>Kakuzu_AirHurt_001</f>
 		</frame>
 	</action>
 
-	<action value="Float">
+	<action name="KnockDown">
 		<frame>
-			<frameName>Kakuzu_Float_001.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Kakuzu_Float_002.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Kakuzu_Float_003.png</frameName>
+			<f>Kakuzu_KnockDown_001</f>
+			<e type="setDelay">10</e>
+			<f>Kakuzu_KnockDown_002</f>
+			<e type="setDelay">60</e>
+			<f>Kakuzu_KnockDown_003</f>
+			<f>Kakuzu_KnockDown_004</f>
+			<f>Kakuzu_KnockDown_005</f>
 		</frame>
 	</action>
 
-	<action value="Dead">
+	<action name="Float">
 		<frame>
-			<frameName>Kakuzu_KnockDown_001.png</frameName>
-			<frameName>Kakuzu_KnockDown_002.png</frameName>
-			<eventName type="setSound">Audio/Kakuzu/Kakuzu_dead.ogg</eventName>
+			<f>Kakuzu_Float_001</f>
+			<e type="setDelay">10</e>
+			<f>Kakuzu_Float_002</f>
+			<e type="setDelay">10</e>
+			<f>Kakuzu_Float_003</f>
 		</frame>
 	</action>
 
-	<action value="nAttack">
-		<date>
-			<dateName type="attackType">nAttack</dateName>
-			<dateName type="attackValue">80</dateName>
-			<dateName type="attackRangeX">16</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="Dead">
 		<frame>
-			<frameName>Kakuzu_NAttack_001.png</frameName>
-			<frameName>Kakuzu_NAttack_002.png</frameName>
-			<frameName>Kakuzu_NAttack_003.png</frameName>
-			<eventName type="setAttackBox">n_hit</eventName>
-			<eventName type="setSound">Audio/Effect/combo1.ogg</eventName>
-			<frameName>Kakuzu_NAttack_004.png</frameName>
-			<frameName>Kakuzu_NAttack_005.png</frameName>
-			<eventName type="setMove">8</eventName>
-			<frameName>Kakuzu_NAttack_006.png</frameName>
-			<eventName type="setAttackBox">n_hit</eventName>
-			<eventName type="setSound">Audio/Effect/combo2.ogg</eventName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Kakuzu_NAttack_007.png</frameName>
-			<frameName>Kakuzu_NAttack_008.png</frameName>
-			<frameName>Kakuzu_NAttack_009.png</frameName>
-			<eventName type="setSound">Audio/Kakuzu/Kakuzu_combo.ogg</eventName>
-			<eventName type="setMove">16</eventName>
-			<frameName>Kakuzu_NAttack_012.png</frameName>
-			<frameName>Kakuzu_NAttack_010.png</frameName>
-			<eventName type="setAttackBox">l_hit</eventName>
-			<frameName>Kakuzu_NAttack_011.png</frameName>
-			<eventName type="setSound">Audio/Effect/kong.ogg</eventName>
-			<eventName type="setDelay">10</eventName>
+			<f>Kakuzu_KnockDown_001</f>
+			<f>Kakuzu_KnockDown_002</f>
+			<e type="setSound">Audio/Kakuzu/Kakuzu_dead.ogg</e>
 		</frame>
 	</action>
 
-	<action value="skill01">
-		<date>
-			<dateName type="attackType">aAttack</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">0</dateName>
-			<coldName type="coldDown">10</coldName>
-			<dateName type="combatPoint">0</dateName>
-		</date>
+	<action name="nAttack">
+		<data>
+			<p type="attackType">nAttack</p>
+			<p type="attackValue">80</p>
+			<p type="attackRangeX">16</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">0</p>
+		</data>
 		<frame>
-			<frameName>Kakuzu_Skill01_001.png</frameName>
-			<eventName type="setSound">Audio/Kakuzu/Kakuzu_skill1.ogg</eventName>
-			<frameName>Kakuzu_Skill01_002.png</frameName>
-			<eventName type="setCommand">setTrade</eventName>
-			<eventName type="setDelay">20</eventName>
-			<frameName>Kakuzu_Skill01_001.png</frameName>
-			<frameName>Kakuzu_Skill01_003.png</frameName>
-			<frameName>Kakuzu_Skill01_004.png</frameName>
-			<frameName>Kakuzu_Skill01_005.png</frameName>
-		</frame>
-	</action>
-	<action value="skill02">
-		<date>
-			<dateName type="attackType">cAttack</dateName>
-			<dateName type="attackValue">460</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">48</dateName>
-			<coldName type="coldDown">15</coldName>
-			<dateName type="combatPoint">1840</dateName>
-		</date>
-		<frame>
-			<frameName>Kakuzu_Skill03_001.png</frameName>
-			<eventName type="setSound">Audio/Kakuzu/Kakuzu_skill2.ogg</eventName>
-			<frameName>Kakuzu_Skill03_002.png</frameName>
-			<eventName type="setAttackBox">o_hit</eventName>
-			<frameName>Kakuzu_Skill03_003.png</frameName>
-			<frameName>Kakuzu_Skill03_004.png</frameName>
-			<eventName type="setAttackBox">ab_hit</eventName>
-			<frameName>Kakuzu_Skill03_005.png</frameName>
-			<frameName>Kakuzu_Skill03_006.png</frameName>
-			<eventName type="setAttackBox">ct_hit</eventName>
-			<frameName>Kakuzu_Skill03_007.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Kakuzu_Skill03_008.png</frameName>
-			<frameName>Kakuzu_Skill03_009.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Kakuzu_Skill03_010.png</frameName>
-			<eventName type="setSound">Audio/Kakuzu/Kakuzu_skill2_1.ogg</eventName>
-			<eventName type="setAttackBox">bc_hit</eventName>
-			<frameName>Kakuzu_Skill03_011.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Kakuzu_Skill03_012.png</frameName>
-			<eventName type="setDelay">30</eventName>
-		</frame>
-	</action>
-	<action value="skill03">
-		<date>
-			<dateName type="attackType">cBuff</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">15</dateName>
-			<coldName type="coldDown">20</coldName>
-			<dateName type="combatPoint">0</dateName>
-		</date>
-		<frame>
-			<eventName type="setSound">Audio/Kakuzu/Kakuzu_skill3.ogg</eventName>
-			<frameName>Kakuzu_Skill02_001.png</frameName>
-			<frameName>Kakuzu_Skill02_002.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Kakuzu_Skill02_003.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Kakuzu_Skill02_004.png</frameName>
-			<eventName type="setBuff">17</eventName>
-			<eventName type="setDelay">20</eventName>
-		</frame>
-	</action>
-	<action value="skill04">
-		<date>
-			<dateName type="attackType">Summon</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">0</dateName>
-			<coldName type="coldDown">1</coldName>
-			<dateName type="combatPoint">0</dateName>
-		</date>
-		<frame>
-			<eventName type="setCommand">setInvincible</eventName>
-			<eventName type="setSound">Audio/Effect/ougis.ogg</eventName>
-			<frameName>Kakuzu_Skill04_001.png</frameName>
-			<eventName type="setSound">Audio/Kakuzu/Kakuzu_skill4.ogg</eventName>
-			<frameName>Kakuzu_Skill04_002.png</frameName>
-			<frameName>Kakuzu_Skill04_003.png</frameName>
-			<eventName type="setClone">0</eventName>
-			<eventName type="setCommand">reInvincible</eventName>
-		</frame>
-	</action>
-	<action value="skill05">
-		<date>
-			<dateName type="attackType">cBuff</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">15</dateName>
-			<coldName type="coldDown">1</coldName>
-			<dateName type="combatPoint">0</dateName>
-		</date>
-		<frame>
-			<eventName type="setCommand">setInvincible</eventName>
-			<eventName type="setSound">Audio/Effect/ougis.ogg</eventName>
-			<frameName>Kakuzu_KnockDown_001.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Kakuzu_KnockDown_002.png</frameName>
-			<eventName type="setDelay">50</eventName>
-			<frameName>Kakuzu_KnockDown_003.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Kakuzu_KnockDown_004.png</frameName>
-			<eventName type="setOugis">10</eventName>
-			<frameName>Kakuzu_KnockDown_005.png</frameName>
-			<eventName type="setCommand">addHP</eventName>
-			<frameName>Kakuzu_Skill05_001.png</frameName>
-			<eventName type="setDelay">10</eventName>
-			<frameName>Kakuzu_Skill05_002.png</frameName>
-			<eventName type="setCommand">reInvincible</eventName>
+			<f>Kakuzu_NAttack_001</f>
+			<f>Kakuzu_NAttack_002</f>
+			<f>Kakuzu_NAttack_003</f>
+			<e type="setAttackBox">n_hit</e>
+			<e type="setSound">Audio/Effect/combo1.ogg</e>
+			<f>Kakuzu_NAttack_004</f>
+			<f>Kakuzu_NAttack_005</f>
+			<e type="setMove">8</e>
+			<f>Kakuzu_NAttack_006</f>
+			<e type="setAttackBox">n_hit</e>
+			<e type="setSound">Audio/Effect/combo2.ogg</e>
+			<e type="setDelay">10</e>
+			<f>Kakuzu_NAttack_007</f>
+			<f>Kakuzu_NAttack_008</f>
+			<f>Kakuzu_NAttack_009</f>
+			<e type="setSound">Audio/Kakuzu/Kakuzu_combo.ogg</e>
+			<e type="setMove">16</e>
+			<f>Kakuzu_NAttack_012</f>
+			<f>Kakuzu_NAttack_010</f>
+			<e type="setAttackBox">l_hit</e>
+			<f>Kakuzu_NAttack_011</f>
+			<e type="setSound">Audio/Effect/kong.ogg</e>
+			<e type="setDelay">10</e>
 		</frame>
 	</action>
 
-	<action value="skill06">
+	<action name="skill01">
+		<data>
+			<p type="attackType">aAttack</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">0</p>
+			<p type="cd">10</p>
+			<p type="combatPoint">0</p>
+		</data>
+		<frame>
+			<f>Kakuzu_Skill01_001</f>
+			<e type="setSound">Audio/Kakuzu/Kakuzu_skill1.ogg</e>
+			<f>Kakuzu_Skill01_002</f>
+			<e type="setCommand">setTrade</e>
+			<e type="setDelay">20</e>
+			<f>Kakuzu_Skill01_001</f>
+			<f>Kakuzu_Skill01_003</f>
+			<f>Kakuzu_Skill01_004</f>
+			<f>Kakuzu_Skill01_005</f>
+		</frame>
+	</action>
+	<action name="skill02">
+		<data>
+			<p type="attackType">cAttack</p>
+			<p type="attackValue">460</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">48</p>
+			<p type="cd">15</p>
+			<p type="combatPoint">1840</p>
+		</data>
+		<frame>
+			<f>Kakuzu_Skill03_001</f>
+			<e type="setSound">Audio/Kakuzu/Kakuzu_skill2.ogg</e>
+			<f>Kakuzu_Skill03_002</f>
+			<e type="setAttackBox">o_hit</e>
+			<f>Kakuzu_Skill03_003</f>
+			<f>Kakuzu_Skill03_004</f>
+			<e type="setAttackBox">ab_hit</e>
+			<f>Kakuzu_Skill03_005</f>
+			<f>Kakuzu_Skill03_006</f>
+			<e type="setAttackBox">ct_hit</e>
+			<f>Kakuzu_Skill03_007</f>
+			<e type="setDelay">10</e>
+			<f>Kakuzu_Skill03_008</f>
+			<f>Kakuzu_Skill03_009</f>
+			<e type="setDelay">10</e>
+			<f>Kakuzu_Skill03_010</f>
+			<e type="setSound">Audio/Kakuzu/Kakuzu_skill2_1.ogg</e>
+			<e type="setAttackBox">bc_hit</e>
+			<f>Kakuzu_Skill03_011</f>
+			<e type="setDelay">10</e>
+			<f>Kakuzu_Skill03_012</f>
+			<e type="setDelay">30</e>
+		</frame>
+	</action>
+	<action name="skill03">
+		<data>
+			<p type="attackType">cBuff</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">15</p>
+			<p type="cd">20</p>
+			<p type="combatPoint">0</p>
+		</data>
+		<frame>
+			<e type="setSound">Audio/Kakuzu/Kakuzu_skill3.ogg</e>
+			<f>Kakuzu_Skill02_001</f>
+			<f>Kakuzu_Skill02_002</f>
+			<e type="setDelay">10</e>
+			<f>Kakuzu_Skill02_003</f>
+			<e type="setDelay">10</e>
+			<f>Kakuzu_Skill02_004</f>
+			<e type="setBuff">17</e>
+			<e type="setDelay">20</e>
+		</frame>
+	</action>
+	<action name="skill04">
+		<data>
+			<p type="attackType">Summon</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">0</p>
+			<p type="cd">1</p>
+			<p type="combatPoint">0</p>
+		</data>
+		<frame>
+			<e type="setCommand">setInvincible</e>
+			<e type="setSound">Audio/Effect/ougis.ogg</e>
+			<f>Kakuzu_Skill04_001</f>
+			<e type="setSound">Audio/Kakuzu/Kakuzu_skill4.ogg</e>
+			<f>Kakuzu_Skill04_002</f>
+			<f>Kakuzu_Skill04_003</f>
+			<e type="setClone">0</e>
+			<e type="setCommand">reInvincible</e>
+		</frame>
+	</action>
+	<action name="skill05">
+		<data>
+			<p type="attackType">cBuff</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">15</p>
+			<p type="cd">1</p>
+			<p type="combatPoint">0</p>
+		</data>
+		<frame>
+			<e type="setCommand">setInvincible</e>
+			<e type="setSound">Audio/Effect/ougis.ogg</e>
+			<f>Kakuzu_KnockDown_001</f>
+			<e type="setDelay">10</e>
+			<f>Kakuzu_KnockDown_002</f>
+			<e type="setDelay">50</e>
+			<f>Kakuzu_KnockDown_003</f>
+			<e type="setDelay">10</e>
+			<f>Kakuzu_KnockDown_004</f>
+			<e type="setOugis">10</e>
+			<f>Kakuzu_KnockDown_005</f>
+			<e type="setCommand">addHP</e>
+			<f>Kakuzu_Skill05_001</f>
+			<e type="setDelay">10</e>
+			<f>Kakuzu_Skill05_002</f>
+			<e type="setCommand">reInvincible</e>
+		</frame>
+	</action>
+
+	<action name="skill06">
 		<frame></frame>
 	</action>
-	<action value="skill07">
+	<action name="skill07">
 		<frame></frame>
 	</action>
-	<action value="skill08">
+	<action name="skill08">
 		<frame></frame>
 	</action>
-	<action value="skill09">
+	<action name="skill09">
 		<frame></frame>
 	</action>
-	<action value="skill10">
-		<date>
-			<dateName type="attackType">Idle</dateName>
-			<dateName type="attackValue">660</dateName>
-			<dateName type="attackRangeX">16</dateName>
-			<dateName type="attackRangeY">32</dateName>
-			<coldName type="coldDown">10</coldName>
-		</date>
+	<action name="skill10">
+		<data>
+			<p type="attackType">Idle</p>
+			<p type="attackValue">660</p>
+			<p type="attackRangeX">16</p>
+			<p type="attackRangeY">32</p>
+			<p type="cd">10</p>
+		</data>
 		<frame>
 
 		</frame>
 	</action>
-	<action value="skill11">
-		<date>
-			<dateName type="attackType">Walk</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">0</dateName>
-			<coldName type="coldDown">15</coldName>
-		</date>
+	<action name="skill11">
+		<data>
+			<p type="attackType">Walk</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">0</p>
+			<p type="cd">15</p>
+		</data>
 		<frame>
 
 		</frame>
 
 	</action>
-	<action value="skill12">
-		<date>
-			<dateName type="attackType">nAttack</dateName>
-			<dateName type="attackValue">0</dateName>
-			<dateName type="attackRangeX">0</dateName>
-			<dateName type="attackRangeY">0</dateName>
-			<coldName type="coldDown">0</coldName>
-		</date>
+	<action name="skill12">
+		<data>
+			<p type="attackType">nAttack</p>
+			<p type="attackValue">0</p>
+			<p type="attackRangeX">0</p>
+			<p type="attackRangeY">0</p>
+			<p type="cd">0</p>
+		</data>
 		<frame>
 
 		</frame>
 	</action>
-</animation>
+</unit>

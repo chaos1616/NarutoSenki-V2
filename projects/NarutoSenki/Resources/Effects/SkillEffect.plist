@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Bagua_01.png</key>
+            <key>Bagua_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{168,293},{85,33}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_02.png</key>
+            <key>Bagua_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{388,200},{97,37}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_03.png</key>
+            <key>Bagua_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{257,101},{253,97}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_04.png</key>
+            <key>Bagua_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,101},{253,97}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_05.png</key>
+            <key>Bagua_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,101},{253,97}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_06.png</key>
+            <key>Bagua_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,101},{253,97}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_07.png</key>
+            <key>Bagua_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,101},{253,97}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_08.png</key>
+            <key>Bagua_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,101},{253,97}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_09.png</key>
+            <key>Bagua_09</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,101},{253,97}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_10.png</key>
+            <key>Bagua_10</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,101},{253,97}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_11.png</key>
+            <key>Bagua_11</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,101},{253,97}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_12.png</key>
+            <key>Bagua_12</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,101},{253,97}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_13.png</key>
+            <key>Bagua_13</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,101},{253,97}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_14.png</key>
+            <key>Bagua_14</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,101},{253,97}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_15.png</key>
+            <key>Bagua_15</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,101},{253,97}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_16.png</key>
+            <key>Bagua_16</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,101},{253,97}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_17.png</key>
+            <key>Bagua_17</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,101},{253,97}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_18.png</key>
+            <key>Bagua_18</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,101},{253,97}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_19.png</key>
+            <key>Bagua_19</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,101},{253,97}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_20.png</key>
+            <key>Bagua_20</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,101},{253,97}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_21.png</key>
+            <key>Bagua_21</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,101},{253,97}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_22.png</key>
+            <key>Bagua_22</key>
             <dict>
                 <key>frame</key>
                 <string>{{257,2},{253,97}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>Bagua_23.png</key>
+            <key>Bagua_23</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{253,97}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{253,97}</string>
             </dict>
-            <key>FireEffect_01.png</key>
+            <key>FireEffect_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{255,293},{30,30}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
-            <key>FireEffect_02.png</key>
+            <key>FireEffect_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{69,444},{28,28}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
-            <key>FireEffect_03.png</key>
+            <key>FireEffect_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{238,390},{32,32}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
-            <key>FireEffect_04.png</key>
+            <key>FireEffect_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{255,325},{28,30}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
-            <key>Hiraishin2Effect_01.png</key>
+            <key>Hiraishin2Effect_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{168,328},{75,57}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{79,89}</string>
             </dict>
-            <key>Hiraishin2Effect_02.png</key>
+            <key>Hiraishin2Effect_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{387,376},{67,63}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{79,89}</string>
             </dict>
-            <key>Hiraishin2Effect_03.png</key>
+            <key>Hiraishin2Effect_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{100,414},{61,59}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{79,89}</string>
             </dict>
-            <key>HiraishinEffect_01.png</key>
+            <key>HiraishinEffect_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{287,301},{75,57}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{79,89}</string>
             </dict>
-            <key>HiraishinEffect_02.png</key>
+            <key>HiraishinEffect_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{387,311},{67,63}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{79,89}</string>
             </dict>
-            <key>HiraishinEffect_03.png</key>
+            <key>HiraishinEffect_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{450,525},{61,59}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{79,89}</string>
             </dict>
-            <key>Hupo_01.png</key>
+            <key>Hupo_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{163,456},{55,58}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{55,68}</string>
             </dict>
-            <key>Hupo_02.png</key>
+            <key>Hupo_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{269,428},{51,66}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{55,68}</string>
             </dict>
-            <key>Hupo_03.png</key>
+            <key>Hupo_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{383,441},{51,66}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{55,68}</string>
             </dict>
-            <key>Hupo_04.png</key>
+            <key>Hupo_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{269,481},{53,52}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{55,68}</string>
             </dict>
-            <key>Hupo_05.png</key>
+            <key>Hupo_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,519},{49,52}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{55,68}</string>
             </dict>
-            <key>Hupo_06.png</key>
+            <key>Hupo_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{119,236},{47,52}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{55,68}</string>
             </dict>
-            <key>Kagura_01.png</key>
+            <key>Kagura_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{223,472},{42,44}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{42,44}</string>
             </dict>
-            <key>Kagura_02.png</key>
+            <key>Kagura_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{119,290},{44,47}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{44,47}</string>
             </dict>
-            <key>Kagura_03.png</key>
+            <key>Kagura_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{99,475},{48,49}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{48,49}</string>
             </dict>
-            <key>Kagura_04.png</key>
+            <key>Kagura_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{324,499},{51,53}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{51,53}</string>
             </dict>
-            <key>Kagura_05.png</key>
+            <key>Kagura_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,460},{57,58}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{57,58}</string>
             </dict>
-            <key>Kagura_06.png</key>
+            <key>Kagura_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{451,462},{59,61}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{59,61}</string>
             </dict>
-            <key>Kagura_07.png</key>
+            <key>Kagura_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{105,349},{63,61}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{63,61}</string>
             </dict>
-            <key>Kagura_08.png</key>
+            <key>Kagura_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{168,387},{67,68}}</string>
@@ -615,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{67,68}</string>
             </dict>
-            <key>Kujiyose.png</key>
+            <key>Kujiyose</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,200},{164,34}}</string>
@@ -628,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{164,34}</string>
             </dict>
-            <key>Traps_Attack_002.png</key>
+            <key>Traps_Attack_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{456,335},{62,54}}</string>
@@ -641,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{100,80}</string>
             </dict>
-            <key>Traps_Attack_003.png</key>
+            <key>Traps_Attack_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{280,360},{66,66}}</string>
@@ -654,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{100,80}</string>
             </dict>
-            <key>Traps_Attack_004.png</key>
+            <key>Traps_Attack_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{388,239},{94,70}}</string>
@@ -667,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{100,80}</string>
             </dict>
-            <key>Traps_Attack_005.png</key>
+            <key>Traps_Attack_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{287,281},{94,18}}</string>
@@ -680,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{100,80}</string>
             </dict>
-            <key>Traps_Move_001.png</key>
+            <key>Traps_Move_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{364,351},{21,48}}</string>
@@ -693,7 +693,7 @@
                 <key>sourceSize</key>
                 <string>{39,60}</string>
             </dict>
-            <key>Traps_Move_002.png</key>
+            <key>Traps_Move_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{364,301},{21,48}}</string>
@@ -706,7 +706,7 @@
                 <key>sourceSize</key>
                 <string>{39,60}</string>
             </dict>
-            <key>Traps_Move_003.png</key>
+            <key>Traps_Move_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{69,396},{29,46}}</string>
@@ -719,7 +719,7 @@
                 <key>sourceSize</key>
                 <string>{39,60}</string>
             </dict>
-            <key>Traps_Move_004.png</key>
+            <key>Traps_Move_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{364,301},{21,48}}</string>
@@ -732,7 +732,7 @@
                 <key>sourceSize</key>
                 <string>{39,60}</string>
             </dict>
-            <key>Traps_Move_005.png</key>
+            <key>Traps_Move_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{364,351},{21,48}}</string>
@@ -745,7 +745,7 @@
                 <key>sourceSize</key>
                 <string>{39,60}</string>
             </dict>
-            <key>Traps_Move_006.png</key>
+            <key>Traps_Move_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{484,285},{21,48}}</string>
@@ -758,7 +758,7 @@
                 <key>sourceSize</key>
                 <string>{39,60}</string>
             </dict>
-            <key>Traps_Move_007.png</key>
+            <key>Traps_Move_007</key>
             <dict>
                 <key>frame</key>
                 <string>{{238,424},{29,46}}</string>
@@ -771,7 +771,7 @@
                 <key>sourceSize</key>
                 <string>{39,60}</string>
             </dict>
-            <key>Traps_Move_008.png</key>
+            <key>Traps_Move_008</key>
             <dict>
                 <key>frame</key>
                 <string>{{484,285},{21,48}}</string>
@@ -784,7 +784,7 @@
                 <key>sourceSize</key>
                 <string>{39,60}</string>
             </dict>
-            <key>hp_restore_01.png</key>
+            <key>hp_restore_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{62,512},{15,49}}</string>
@@ -797,7 +797,7 @@
                 <key>sourceSize</key>
                 <string>{15,49}</string>
             </dict>
-            <key>hp_restore_02.png</key>
+            <key>hp_restore_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{62,493},{18,17}}</string>
@@ -810,7 +810,7 @@
                 <key>sourceSize</key>
                 <string>{18,49}</string>
             </dict>
-            <key>hp_restore_03.png</key>
+            <key>hp_restore_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{362,401},{17,19}}</string>
@@ -823,7 +823,7 @@
                 <key>sourceSize</key>
                 <string>{17,49}</string>
             </dict>
-            <key>hp_restore_04.png</key>
+            <key>hp_restore_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{487,223},{21,23}}</string>
@@ -836,7 +836,7 @@
                 <key>sourceSize</key>
                 <string>{21,49}</string>
             </dict>
-            <key>kazi.png</key>
+            <key>kazi</key>
             <dict>
                 <key>frame</key>
                 <string>{{337,454},{44,43}}</string>
@@ -849,7 +849,7 @@
                 <key>sourceSize</key>
                 <string>{44,43}</string>
             </dict>
-            <key>sharingan.png</key>
+            <key>sharingan</key>
             <dict>
                 <key>frame</key>
                 <string>{{129,563},{48,48}}</string>
@@ -862,7 +862,7 @@
                 <key>sourceSize</key>
                 <string>{48,48}</string>
             </dict>
-            <key>sharingan2.png</key>
+            <key>sharingan2</key>
             <dict>
                 <key>frame</key>
                 <string>{{79,525},{48,48}}</string>
@@ -875,7 +875,7 @@
                 <key>sourceSize</key>
                 <string>{48,48}</string>
             </dict>
-            <key>sharingan3.png</key>
+            <key>sharingan3</key>
             <dict>
                 <key>frame</key>
                 <string>{{200,516},{48,48}}</string>
@@ -888,7 +888,7 @@
                 <key>sourceSize</key>
                 <string>{48,48}</string>
             </dict>
-            <key>sharingan4.png</key>
+            <key>sharingan4</key>
             <dict>
                 <key>frame</key>
                 <string>{{150,513},{48,48}}</string>
@@ -901,7 +901,7 @@
                 <key>sourceSize</key>
                 <string>{48,48}</string>
             </dict>
-            <key>smk_01.png</key>
+            <key>smk_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{348,420},{33,32}}</string>
@@ -914,7 +914,7 @@
                 <key>sourceSize</key>
                 <string>{33,32}</string>
             </dict>
-            <key>smk_02.png</key>
+            <key>smk_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{456,399},{61,53}}</string>
@@ -927,7 +927,7 @@
                 <key>sourceSize</key>
                 <string>{61,53}</string>
             </dict>
-            <key>smk_03.png</key>
+            <key>smk_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{383,494},{64,65}}</string>
@@ -940,7 +940,7 @@
                 <key>sourceSize</key>
                 <string>{66,65}</string>
             </dict>
-            <key>smk_04.png</key>
+            <key>smk_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,396},{62,65}}</string>
@@ -953,7 +953,7 @@
                 <key>sourceSize</key>
                 <string>{68,65}</string>
             </dict>
-            <key>speedUp_01.png</key>
+            <key>speedUp_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{82,474},{15,49}}</string>
@@ -966,7 +966,7 @@
                 <key>sourceSize</key>
                 <string>{15,49}</string>
             </dict>
-            <key>speedUp_02.png</key>
+            <key>speedUp_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{62,474},{18,17}}</string>
@@ -979,7 +979,7 @@
                 <key>sourceSize</key>
                 <string>{18,49}</string>
             </dict>
-            <key>speedUp_03.png</key>
+            <key>speedUp_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{456,311},{17,19}}</string>
@@ -992,7 +992,7 @@
                 <key>sourceSize</key>
                 <string>{17,49}</string>
             </dict>
-            <key>speedUp_04.png</key>
+            <key>speedUp_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{487,200},{21,23}}</string>
@@ -1005,7 +1005,7 @@
                 <key>sourceSize</key>
                 <string>{21,49}</string>
             </dict>
-            <key>stun_01.png</key>
+            <key>stun_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{348,390},{28,12}}</string>
@@ -1018,7 +1018,7 @@
                 <key>sourceSize</key>
                 <string>{30,16}</string>
             </dict>
-            <key>stun_02.png</key>
+            <key>stun_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{348,360},{28,12}}</string>
@@ -1031,7 +1031,7 @@
                 <key>sourceSize</key>
                 <string>{30,16}</string>
             </dict>
-            <key>stun_03.png</key>
+            <key>stun_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{119,336},{28,10}}</string>
@@ -1044,7 +1044,7 @@
                 <key>sourceSize</key>
                 <string>{30,16}</string>
             </dict>
-            <key>stun_04.png</key>
+            <key>stun_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{105,319},{28,12}}</string>
@@ -1057,7 +1057,7 @@
                 <key>sourceSize</key>
                 <string>{30,16}</string>
             </dict>
-            <key>tishen_01.png</key>
+            <key>tishen_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{484,246},{25,37}}</string>
@@ -1070,7 +1070,7 @@
                 <key>sourceSize</key>
                 <string>{107,123}</string>
             </dict>
-            <key>tishen_02.png</key>
+            <key>tishen_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,319},{75,101}}</string>
@@ -1083,7 +1083,7 @@
                 <key>sourceSize</key>
                 <string>{107,123}</string>
             </dict>
-            <key>tishen_03.png</key>
+            <key>tishen_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{287,200},{79,99}}</string>
@@ -1096,7 +1096,7 @@
                 <key>sourceSize</key>
                 <string>{107,123}</string>
             </dict>
-            <key>tishen_04.png</key>
+            <key>tishen_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,236},{81,115}}</string>
@@ -1109,7 +1109,7 @@
                 <key>sourceSize</key>
                 <string>{107,123}</string>
             </dict>
-            <key>tishen_05.png</key>
+            <key>tishen_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{168,200},{91,117}}</string>
@@ -1122,7 +1122,7 @@
                 <key>sourceSize</key>
                 <string>{107,123}</string>
             </dict>
-            <key>tishen_06.png</key>
+            <key>tishen_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{245,355},{33,33}}</string>
