@@ -14,7 +14,6 @@ enum class State {
 	OATTACK,	// Ougi 1
 	O2ATTACK,	// Ougi 2
 	HURT,
-	ABHURT,
 	KNOCKDOWN,
 	FLOAT,
 	JUMP,

@@ -121,3 +121,38 @@ namespace Group
 	// mk_const(Konoha);
 	// mk_const(Akatsuki);
 } // namespace Monster
+
+enum class ActionFlag : uint32_t
+{
+	Dead = 1 << 0,
+	Idle = 1 << 1,
+	Walk = 1 << 2,
+	Hurt = 1 << 3,
+	Airhurt = 1 << 4,
+	Knockdown = 1 << 5,
+	Float = 1 << 6,
+	NAttack = 1 << 7,
+	Skill01 = 1 << 8,
+	Skill02 = 1 << 9,
+	Skill03 = 1 << 10,
+	Skill04 = 1 << 11,
+	Skill05 = 1 << 12,
+	SkillSpc01 = 1 << 13,
+	SkillSpc02 = 1 << 14,
+	SkillSpc03 = 1 << 15,
+	SkillSpc04 = 1 << 16,
+	SkillSpc05 = 1 << 17,
+	SkillSpc06 = 1 << 18,
+	SkillSpc07 = 1 << 19,
+	SkillSpc08 = 1 << 20,
+	SkillSpc09 = 1 << 21,
+	SkillSpc10 = 1 << 22,
+};
+
+inline ActionFlag operator~(ActionFlag a) { return (ActionFlag) ~(uint32_t)a; }
+inline ActionFlag operator|(ActionFlag a, ActionFlag b) { return (ActionFlag)((uint32_t)a | (uint32_t)b); }
+inline ActionFlag operator&(ActionFlag a, ActionFlag b) { return (ActionFlag)((uint32_t)a & (uint32_t)b); }
+inline ActionFlag operator^(ActionFlag a, ActionFlag b) { return (ActionFlag)((uint32_t)a ^ (uint32_t)b); }
+inline ActionFlag &operator|=(ActionFlag &a, ActionFlag b) { return (ActionFlag &)((uint32_t &)a |= (uint32_t)b); }
+inline ActionFlag &operator&=(ActionFlag &a, ActionFlag b) { return (ActionFlag &)((uint32_t &)a &= (uint32_t)b); }
+inline ActionFlag &operator^=(ActionFlag &a, ActionFlag b) { return (ActionFlag &)((uint32_t &)a ^= (uint32_t)b); }

@@ -74,8 +74,6 @@ public:
 class Effect : public CCSprite {
 public:
 	static Effect* create(const char *szImage, CCObject* Attacker);
-
-	bool init(const char *szImage, CCObject* Attacker);
 };
 
 /* HPBar.h */
@@ -133,7 +131,6 @@ public:
 /* KTools.h */
 class KTools : public CCObject {
 public:
-	static bool readXMLToArray(const char *filePath, CCArray *array);
 	static void prepareFileOGG(const char *listName, bool unload = false);
 
 	static void initTableInDB();
