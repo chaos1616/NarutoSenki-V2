@@ -142,7 +142,7 @@ void GameLayer::initGard()
 	int index = random(2);
 	auto guardianName = index == 0 ? kGuardian_Roshi : kGuardian_Han;
 	auto guardianGroup = playerGroup == Konoha ? Akatsuki : Konoha;
-	auto guardian = Provider::create(CCString::create(guardianName), CCString::create("Com"), CCString::create(guardianGroup));
+	auto guardian = Provider::create(CCString::create(guardianName), CCString::create(kRoleCom), CCString::create(guardianGroup));
 
 	if (playerGroup == Konoha)
 	{
