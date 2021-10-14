@@ -230,7 +230,7 @@
 	<action name="skill05">
 		<data>
 			<p type="attackType">aAttack</p>
-			<p type="attackValue">2700</p>
+			<p type="attackValue">2200</p>
 			<p type="attackRangeX">0</p>
 			<p type="attackRangeY">48</p>
 			<p type="cd">1</p>
