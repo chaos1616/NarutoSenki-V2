@@ -5465,18 +5465,11 @@ CharacterBase::changeGroupBy(const vector<T *> &list)
 		else
 		{
 			if (target->isFlog())
-			{
 				target->_hpBar->changeBar("flog_bar.png");
-			}
 			else if (target->isTower())
-			{
 				target->_hpBar->changeBar("hp_bar.png");
-			}
-			else
-			{
-				if (target->isNotPlayer())
-					target->_hpBar->changeBar("hp_bar_b.png");
-			}
+			else if (target->isNotPlayer())
+				target->_hpBar->changeBar("hp_bar_b.png");
 		}
 	}
 }

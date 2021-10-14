@@ -4,8 +4,7 @@
 
 bool Effect::init(const char *name, CCObject *attacker)
 {
-	if (!CCSprite::init())
-		return false;
+	RETURN_FALSE_IF(!CCSprite::init());
 
 	at = (CharacterBase *)attacker;
 
