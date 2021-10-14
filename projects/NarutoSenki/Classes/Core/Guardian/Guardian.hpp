@@ -1,5 +1,6 @@
 #pragma once
 #include "Hero.hpp"
+#include "Core/Tower/Tower.hpp"
 
 class Guardian : public Hero
 {
@@ -41,11 +42,9 @@ class Guardian : public Hero
 				bool isTurn = false;
 				auto gardTower = getGameLayer()->getGuardianGroup();
 
-				CCObject *pObject;
-				CCARRAY_FOREACH(getGameLayer()->_TowerArray, pObject)
+				for (auto targetTower : getGameLayer()->_TowerArray)
 				{
-					auto target = (CharacterBase *)pObject;
-					if (is_same(target->getCharacter()->getCString(), gardTower) && target->getHpPercent() < 0.5f)
+					if (targetTower->isCharacter(gardTower) && targetTower->getHpPercent() < 0.5f)
 					{
 						isTurn = true;
 					}

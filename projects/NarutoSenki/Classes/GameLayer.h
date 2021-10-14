@@ -19,6 +19,9 @@
 
 class BGLayer;
 class CharacterBase;
+class Hero;
+class Flog;
+class Tower;
 class GameLayer;
 class HudLayer;
 
@@ -35,7 +38,7 @@ static inline GameLayer *getGameLayer()
 
 class GameLayer : public CCLayer
 {
-	using OnHUDInitializedCallback = std::function<void()>;
+	using OnHUDInitializedCallback = function<void()>;
 
 	friend class LoadLayer;
 
@@ -59,10 +62,10 @@ public:
 	bool _isAttackButtonRelease;
 	bool _hasSpawnedGuardian;
 	// int _guardianNum;
-	CCArray *_KonohaFlogArray;
-	CCArray *_AkatsukiFlogArray;
-	CCArray *_TowerArray;
-	CCArray *_CharacterArray;
+	vector<Flog *> _KonohaFlogArray;
+	vector<Flog *> _AkatsukiFlogArray;
+	vector<Tower *> _TowerArray;
+	vector<Hero *> _CharacterArray;
 
 	bool _isShacking;
 
@@ -93,7 +96,7 @@ public:
 	void updateViewPoint(float dt);
 	void updateGameTime(float dt);
 
-	CharacterBase *addHero(CCString *character, CCString *role, CCString *group, CCPoint spawnPoint, int charNo);
+	Hero *addHero(CCString *character, CCString *role, CCString *group, CCPoint spawnPoint, int charNo);
 	void addFlog(float dt);
 
 	void attackButtonClick(abType type);
@@ -103,7 +106,7 @@ public:
 	void JoyStickRelease();
 	void JoyStickUpdate(CCPoint direction);
 
-	CC_SYNTHESIZE(bool, _isSkillFinish, SkillFinish);
+	PROP(bool, _isSkillFinish, SkillFinish);
 	void checkTower();
 	void checkBackgroundMusic();
 
@@ -138,7 +141,7 @@ public:
 	bool _isHardCoreGame;
 	bool _isRandomChar;
 
-	std::string playerGroup;
+	string playerGroup;
 	bool _isStarted;
 	bool _isExiting;
 
@@ -173,7 +176,7 @@ private:
 	inline CCPoint getCustomSpawnPoint(HeroData &data);
 
 	bool isHUDInitialized = false;
-	std::vector<OnHUDInitializedCallback> callbackssList;
+	vector<OnHUDInitializedCallback> callbackssList;
 };
 
-#define BIND(funcName) std::bind(&funcName, this)
+#define BIND(funcName) bind(&funcName, this)

@@ -1,5 +1,6 @@
 #pragma once
 #include "CharacterBase.h"
+#include "Core/Warrior/Flog.hpp"
 #include "HPBar.h"
 #include "HudLayer.h"
 
@@ -93,8 +94,7 @@ public:
 		setActionState(State::DEAD);
 		stopAllActions();
 
-		CCObject *pObject;
-		CCArray *list;
+		vector<Flog *> list;
 		for (int i = 0; i < 2; i++)
 		{
 			if (i == 0)
@@ -102,21 +102,19 @@ public:
 			else if (i == 1)
 				list = getGameLayer()->_AkatsukiFlogArray;
 
-			CCARRAY_FOREACH(list, pObject)
+			for (auto flog : list)
 			{
-				auto tempFlog = (CharacterBase *)pObject;
-				if (tempFlog->_mainTarget)
+				if (flog->_mainTarget)
 				{
-					if (tempFlog->_mainTarget == (CharacterBase *)this)
+					if (flog->_mainTarget == (CharacterBase *)this)
 					{
-						tempFlog->_mainTarget = nullptr;
+						flog->_mainTarget = nullptr;
 					}
 				}
 			}
 		}
 
-		int index = getGameLayer()->_TowerArray->indexOfObject(this);
-		getGameLayer()->_TowerArray->removeObjectAtIndex(index);
+		std::erase(getGameLayer()->_TowerArray, this);
 		getGameLayer()->setTowerState(getCharNO());
 		getGameLayer()->checkTower();
 		removeFromParentAndCleanup(true);

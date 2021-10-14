@@ -54,13 +54,9 @@ void HPBar::loseHP(float percent)
 			if (_slayer)
 			{
 				if (is_same(_delegate->getCharacter()->getCString(), gardTower))
-				{
 					_slayer->isHurtingTower = true;
-				}
 				else
-				{
 					_slayer->isHurtingTower = false;
-				}
 			}
 		}
 	}
@@ -77,35 +73,23 @@ void HPBar::loseHP(float percent)
 				_slayer->isNotCharacter("KageHands"))
 			{
 				if (_slayer->getSecMaster()->getController())
-				{
 					currentSlayer = _slayer->getSecMaster()->getController();
-				}
 				else
-				{
 					currentSlayer = _slayer->getSecMaster();
-				}
 			}
 			else if (_slayer->getMaster())
 			{
 				if (_slayer->getMaster()->getController())
-				{
 					currentSlayer = _slayer->getMaster()->getController();
-				}
 				else
-				{
 					currentSlayer = _slayer->getMaster();
-				}
 			}
 			else
 			{
 				if (_slayer->getController())
-				{
 					currentSlayer = _slayer->getController();
-				}
 				else
-				{
 					currentSlayer = _slayer;
-				}
 			}
 
 			if (currentSlayer->getLV() != 6)
@@ -147,17 +131,11 @@ void HPBar::loseHP(float percent)
 
 			currentSlayer->_flogNum += 1;
 			if (_delegate->getMaxHPValue() == 10000)
-			{
 				currentSlayer->addCoin(30);
-			}
 			else if (_delegate->getMaxHPValue() == 5000)
-			{
 				currentSlayer->addCoin(20);
-			}
 			else
-			{
 				currentSlayer->addCoin(10);
-			}
 		}
 		else if (_delegate->isTower())
 		{
@@ -167,35 +145,23 @@ void HPBar::loseHP(float percent)
 										"SmallSlug"))
 			{
 				if (_slayer->getSecMaster()->getController())
-				{
 					currentSlayer = _slayer->getSecMaster()->getController();
-				}
 				else
-				{
 					currentSlayer = _slayer->getSecMaster();
-				}
 			}
 			else if (_slayer->getMaster())
 			{
 				if (_slayer->getMaster()->getController())
-				{
 					currentSlayer = _slayer->getMaster()->getController();
-				}
 				else
-				{
 					currentSlayer = _slayer->getMaster();
-				}
 			}
 			else
 			{
 				if (_slayer->getController())
-				{
 					currentSlayer = _slayer->getController();
-				}
 				else
-				{
 					currentSlayer = _slayer;
-				}
 			}
 
 			if ((currentSlayer->isNotFlog()))
@@ -244,13 +210,9 @@ void HPBar::loseHP(float percent)
 				if (getGameLayer()->_isHardCoreGame)
 				{
 					if (_delegate->getMaxHPValue() > 40000)
-					{
 						currentSlayer->addCoin(1000);
-					}
 					else
-					{
 						currentSlayer->addCoin(500);
-					}
 				}
 				else
 				{
@@ -258,10 +220,8 @@ void HPBar::loseHP(float percent)
 				}
 			}
 
-			CCObject *pObject;
-			CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+			for (auto otherSlayer : getGameLayer()->_CharacterArray)
 			{
-				auto otherSlayer = (Hero *)pObject;
 				if (is_same(currentSlayer->getGroup()->getCString(), otherSlayer->getGroup()->getCString()) &&
 					strcmp(currentSlayer->getCharacter()->getCString(), otherSlayer->getCharacter()->getCString()) != 0)
 				{
@@ -298,13 +258,9 @@ void HPBar::loseHP(float percent)
 					if (getGameLayer()->_isHardCoreGame)
 					{
 						if (_delegate->getMaxHPValue() > 40000)
-						{
 							otherSlayer->addCoin(850);
-						}
 						else
-						{
 							otherSlayer->addCoin(350);
-						}
 					}
 					else
 					{
@@ -321,21 +277,16 @@ void HPBar::loseHP(float percent)
 				if (_delegate->getCkr2Value() >= 25000 && _delegate->hearts > 0)
 				{
 					if (_delegate->isPlayer())
-					{
 						reieveAble = true;
-					}
 					else if (_delegate->isCom())
-					{
 						reieveAble = true;
-					}
 				}
 
 				if (reieveAble && _delegate->getActionState() != State::O2ATTACK && !_delegate->_isInvincible && _delegate->getActionState() != State::DEAD)
 				{
 					if (_delegate->_isSticking)
-					{
 						_delegate->_isSticking = false;
-					}
+
 					if (_delegate->getActionState() == State::FLOAT ||
 						_delegate->getActionState() == State::AIRHURT)
 					{
@@ -371,9 +322,7 @@ void HPBar::loseHP(float percent)
 					if (_delegate->hearts < 1)
 					{
 						if (_delegate->isPlayer())
-						{
 							getGameLayer()->getHudLayer()->skill4Button->setLock();
-						}
 					}
 
 					return;
@@ -397,35 +346,23 @@ void HPBar::loseHP(float percent)
 											 "FakeItachi"))
 			{
 				if (_slayer->getSecMaster()->getController())
-				{
 					currentSlayer = _slayer->getSecMaster()->getController();
-				}
 				else
-				{
 					currentSlayer = _slayer->getSecMaster();
-				}
 			}
 			else if (_slayer->getMaster())
 			{
 				if (_slayer->getMaster()->getController())
-				{
 					currentSlayer = _slayer->getMaster()->getController();
-				}
 				else
-				{
 					currentSlayer = _slayer->getMaster();
-				}
 			}
 			else
 			{
 				if (_slayer->getController())
-				{
 					currentSlayer = _slayer->getController();
-				}
 				else
-				{
 					currentSlayer = _slayer;
-				}
 			}
 
 			if (currentSlayer->isCharacter("Kakuzu"))
@@ -523,20 +460,14 @@ void HPBar::loseHP(float percent)
 				else
 				{
 					if (getGameLayer()->_isHardCoreGame)
-					{
 						currentSlayer->addCoin(50 + (_delegate->getLV() - 1) * 10);
-					}
 					else
-					{
 						currentSlayer->addCoin(50);
-					}
 				}
 			}
 
-			CCObject *pObject;
-			CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+			for (auto otherSlayer : getGameLayer()->_CharacterArray)
 			{
-				auto otherSlayer = (Hero *)pObject;
 				if (is_same(currentSlayer->getGroup()->getCString(), otherSlayer->getGroup()->getCString()) &&
 					strcmp(currentSlayer->getCharacter()->getCString(), otherSlayer->getCharacter()->getCString()) != 0)
 				{
@@ -571,13 +502,9 @@ void HPBar::loseHP(float percent)
 					if (getGameLayer()->_isHardCoreGame)
 					{
 						if (_delegate->isGuardian())
-						{
 							otherSlayer->addCoin(850);
-						}
 						else
-						{
 							otherSlayer->addCoin(25 + (_delegate->getLV() - 1) * 10);
-						}
 					}
 					else
 					{

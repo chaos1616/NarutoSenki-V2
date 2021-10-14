@@ -17,10 +17,6 @@ GameLayer::GameLayer()
 	_isAttackButtonRelease = true;
 	_isSkillFinish = true;
 
-	_KonohaFlogArray = nullptr;
-	_AkatsukiFlogArray = nullptr;
-	_CharacterArray = nullptr;
-
 	_second = 0;
 	_minute = 0;
 	_playNum = 2;
@@ -110,10 +106,10 @@ void GameLayer::onExit()
 	if (_isExiting)
 	{
 		_isExiting = false;
-		CC_SAFE_RELEASE(_TowerArray);
-		CC_SAFE_RELEASE(_KonohaFlogArray);
-		CC_SAFE_RELEASE(_AkatsukiFlogArray);
-		CC_SAFE_RELEASE(_CharacterArray);
+		_TowerArray.clear();
+		_KonohaFlogArray.clear();
+		_AkatsukiFlogArray.clear();
+		_CharacterArray.clear();
 	}
 }
 
@@ -159,7 +155,7 @@ void GameLayer::initGard()
 	guardian->setLV(6);
 	guardian->setHPbar();
 	guardian->setShadows();
-	guardian->setCharNO(_CharacterArray->data->num + 1);
+	guardian->setCharNO(_CharacterArray.size() + 1);
 
 	guardian->idle();
 	auto callValue = CCDictionary::create();
@@ -168,7 +164,7 @@ void GameLayer::initGard()
 
 	guardian->doAI();
 
-	_CharacterArray->addObject(guardian);
+	_CharacterArray.push_back(guardian);
 	_hudLayer->addMapIcon();
 
 	_hasSpawnedGuardian = true;
@@ -186,10 +182,7 @@ void GameLayer::initHeros()
 
 	_isOugis2Game = true;
 
-	_CharacterArray = CCArray::create();
-	CCObject *pObject = nullptr;
 	int i = 0;
-
 	CCTMXObjectGroup *group = currentMap->objectGroupNamed("object");
 	CCArray *objectArray = group->getObjects();
 
@@ -201,11 +194,11 @@ void GameLayer::initHeros()
 
 		spawnPoint = getCustomSpawnPoint(hero1);
 		auto hero = addHero(CCString::create(hero1.character), CCString::create(hero1.role), CCString::create(hero1.group), spawnPoint, 1);
-		_CharacterArray->addObject(hero);
+		_CharacterArray.push_back(hero);
 
 		spawnPoint = getCustomSpawnPoint(hero5);
 		hero = addHero(CCString::create(hero5.character), CCString::create(hero5.role), CCString::create(hero5.group), spawnPoint, 5);
-		_CharacterArray->addObject(hero);
+		_CharacterArray.push_back(hero);
 	}
 
 	for (const auto &data : herosDataVector)
@@ -232,11 +225,9 @@ void GameLayer::initHeros()
 		spawnPoint = ccp(x, y);
 
 		auto hero = addHero(CCString::create(data.character), CCString::create(data.role), CCString::create(data.group), spawnPoint, i + 1);
-		_CharacterArray->addObject(hero);
+		_CharacterArray.push_back(hero);
 		i++;
 	}
-
-	_CharacterArray->retain();
 
 	initTower();
 
@@ -244,9 +235,9 @@ void GameLayer::initHeros()
 	scheduleOnce(schedule_selector(GameLayer::playGameOpeningAnimation), 0.5f);
 }
 
-CharacterBase *GameLayer::addHero(CCString *character, CCString *role, CCString *group, CCPoint spawnPoint, int charNo)
+Hero *GameLayer::addHero(CCString *character, CCString *role, CCString *group, CCPoint spawnPoint, int charNo)
 {
-	auto hero = (CharacterBase *)Provider::create(character, role, group);
+	auto hero = Provider::create(character, role, group);
 	if (hero->isPlayer())
 	{
 		currentPlayer = hero;
@@ -301,16 +292,12 @@ void GameLayer::onGameStart(float dt)
 
 	setKeyEventHandler();
 
-	CCObject *pObject;
-	CCARRAY_FOREACH(_CharacterArray, pObject)
+	for (auto hero : _CharacterArray)
 	{
-		auto tempChar = (CharacterBase *)pObject;
-
 		// NOTE: Resume movement speed
-		tempChar->setWalkSpeed(tempChar->_originSpeed);
-
-		if (tempChar->isCom())
-			tempChar->doAI();
+		hero->setWalkSpeed(hero->_originSpeed);
+		if (hero->isCom())
+			hero->doAI();
 	}
 
 	getGameModeHandler()->onGameStart();
@@ -320,14 +307,8 @@ void GameLayer::initFlogs()
 {
 	addSprites("Element/hpBar/flogBar.plist");
 
-	kName = "KotetsuFlog";
-	aName = "FemalePainFlog";
-
-	_KonohaFlogArray = CCArray::create();
-	_AkatsukiFlogArray = CCArray::create();
-
-	_KonohaFlogArray->retain();
-	_AkatsukiFlogArray->retain();
+	kName = FlogEnum::KotetsuFlog;
+	aName = FlogEnum::FemalePainFlog;
 }
 
 void GameLayer::addFlog(float dt)
@@ -336,40 +317,40 @@ void GameLayer::addFlog(float dt)
 	CCString *AkatsukiFlogName = CCString::create(aName);
 
 	int i;
-	Flog *aiFlog;
+	Flog *flog;
 	float mainPosY;
 	for (i = 0; i < NUM_FLOG; i++)
 	{
-		aiFlog = Flog::create();
-		aiFlog->setID(KonohaFlogName, CCString::create(kRoleFlog), CCString::create(Konoha));
+		flog = Flog::create();
+		flog->setID(KonohaFlogName, CCString::create(kRoleFlog), CCString::create(Konoha));
 		if (i < NUM_FLOG / 2)
 			mainPosY = (5.5 - i / 1.5) * 32;
 		else
 			mainPosY = (3.5 - i / 1.5) * 32;
-		aiFlog->_mainPosY = mainPosY;
-		aiFlog->setPosition(ccp(13 * 32, aiFlog->_mainPosY));
-		aiFlog->setHPbar();
-		aiFlog->idle();
-		aiFlog->doAI();
-		_KonohaFlogArray->addObject(aiFlog);
-		addChild(aiFlog, -int(aiFlog->getPositionY()));
+		flog->_mainPosY = mainPosY;
+		flog->setPosition(ccp(13 * 32, flog->_mainPosY));
+		flog->setHPbar();
+		flog->idle();
+		flog->doAI();
+		_KonohaFlogArray.push_back(flog);
+		addChild(flog, -int(flog->getPositionY()));
 	}
 
 	for (i = 0; i < NUM_FLOG; i++)
 	{
-		aiFlog = Flog::create();
-		aiFlog->setID(AkatsukiFlogName, CCString::create(kRoleFlog), CCString::create(Akatsuki));
+		flog = Flog::create();
+		flog->setID(AkatsukiFlogName, CCString::create(kRoleFlog), CCString::create(Akatsuki));
 		if (i < NUM_FLOG / 2)
 			mainPosY = (5.5 - i / 1.5) * 32;
 		else
 			mainPosY = (3.5 - i / 1.5) * 32;
-		aiFlog->_mainPosY = mainPosY;
-		aiFlog->setPosition(ccp(83 * 32, aiFlog->_mainPosY));
-		aiFlog->setHPbar();
-		aiFlog->idle();
-		aiFlog->doAI();
-		_AkatsukiFlogArray->addObject(aiFlog);
-		addChild(aiFlog, -aiFlog->getPositionY());
+		flog->_mainPosY = mainPosY;
+		flog->setPosition(ccp(83 * 32, flog->_mainPosY));
+		flog->setHPbar();
+		flog->idle();
+		flog->doAI();
+		_AkatsukiFlogArray.push_back(flog);
+		addChild(flog, -flog->getPositionY());
 	}
 }
 
@@ -379,9 +360,6 @@ void GameLayer::initTower()
 
 	CCTMXObjectGroup *metaGroup = currentMap->objectGroupNamed("meta");
 	CCArray *metaArray = metaGroup->getObjects();
-
-	_TowerArray = CCArray::create();
-
 	CCObject *pObject;
 	int i = 0;
 
@@ -434,9 +412,7 @@ void GameLayer::initTower()
 		tower->idle();
 		addChild(tower, -tower->getPositionY());
 
-		_TowerArray->addObject(tower);
-		_TowerArray->retain();
-
+		_TowerArray.push_back(tower);
 		i++;
 	}
 }
@@ -567,66 +543,58 @@ void GameLayer::checkTower()
 {
 	int konohaTowerCount = 0;
 	int akatsukiTowerCount = 0;
-	CCObject *pObject;
 
-	CCARRAY_FOREACH(_TowerArray, pObject)
+	for (auto tower : _TowerArray)
 	{
-		Tower *tower = (Tower *)pObject;
 		if (tower->isKonohaGroup())
-		{
 			konohaTowerCount++;
-		}
 		else
-		{
 			akatsukiTowerCount++;
-		}
 	}
 
 	if (konohaTowerCount == 2)
 	{
-		aName = "PainFlog";
+		aName = FlogEnum::PainFlog;
 		kEXPBound = 50;
 	}
 	else if (konohaTowerCount == 1)
 	{
-		aName = "ObitoFlog";
+		aName = FlogEnum::ObitoFlog;
 		kEXPBound = 100;
 	}
 
 	if (akatsukiTowerCount == 2)
 	{
-		kName = "IzumoFlog";
+		kName = FlogEnum::IzumoFlog;
 		aEXPBound = 50;
 	}
 	else if (akatsukiTowerCount == 1)
 	{
-		kName = "KakashiFlog";
+		kName = FlogEnum::KakashiFlog;
 		aEXPBound = 100;
 	}
 
-	CCARRAY_FOREACH(_CharacterArray, pObject)
+	for (auto hero : getGameLayer()->_CharacterArray)
 	{
-		auto tmpHero = (CharacterBase *)pObject;
-
-		if (tmpHero->isNotCom())
+		if (hero->isNotCom())
 			continue;
 
-		if (tmpHero->isKonohaGroup())
+		if (hero->isKonohaGroup())
 		{
-			tmpHero->battleCondiction = konohaTowerCount - akatsukiTowerCount;
+			hero->battleCondiction = konohaTowerCount - akatsukiTowerCount;
 			if (konohaTowerCount == 1)
 			{
-				tmpHero->isBaseDanger = true;
+				hero->isBaseDanger = true;
 			}
 		}
 		else
 		{
-			tmpHero->battleCondiction = akatsukiTowerCount - konohaTowerCount;
+			hero->battleCondiction = akatsukiTowerCount - konohaTowerCount;
 			if (_isHardCoreGame)
 			{
 				if (akatsukiTowerCount == 1)
 				{
-					tmpHero->isBaseDanger = true;
+					hero->isBaseDanger = true;
 				}
 			}
 		}
@@ -789,13 +757,8 @@ void GameLayer::onLeft()
 		CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(ac);
 	}
 
+	LoadLayer::unloadAllCharsIMG(_CharacterArray);
 	removeSprites(CCString::createWithFormat("Element/Tower/Tower%d.plist", mapId)->getCString());
-
-	CCARRAY_FOREACH(_CharacterArray, pObject)
-	{
-		auto player = (CharacterBase *)pObject;
-		LoadLayer::unloadCharIMG(player);
-	}
 
 	if (_isHardCoreGame)
 	{
@@ -808,10 +771,10 @@ void GameLayer::onLeft()
 	KTools::prepareFileOGG("Effect", true);
 	KTools::prepareFileOGG("Ougis", true);
 
-	SAFE_CLEAR_CCARRAY(_CharacterArray);
-	SAFE_CLEAR_CCARRAY(_TowerArray);
-	SAFE_CLEAR_CCARRAY(_KonohaFlogArray);
-	SAFE_CLEAR_CCARRAY(_AkatsukiFlogArray);
+	_CharacterArray.clear();
+	_TowerArray.clear();
+	_KonohaFlogArray.clear();
+	_AkatsukiFlogArray.clear();
 
 	removeSprites("UI.plist");
 	removeSprites("Map.plist");

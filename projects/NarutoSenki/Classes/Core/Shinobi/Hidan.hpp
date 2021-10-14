@@ -38,11 +38,9 @@ class Hidan : public Hero
 					{
 						if (_isArmored)
 						{
-							CCObject *pObject;
-							CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+							for (auto hero : getGameLayer()->_CharacterArray)
 							{
-								auto tempHero = (CharacterBase *)pObject;
-								if (tempHero->getGroup() != getGroup() && tempHero->getHPValue() < 2000 && tempHero->getActionState() != State::DEAD && tempHero->isPlayerOrCom())
+								if (hero->getGroup() != getGroup() && hero->getHPValue() < 2000 && hero->getActionState() != State::DEAD && hero->isPlayerOrCom())
 								{
 									attack(NAttack);
 									return;
@@ -292,11 +290,9 @@ class Hidan : public Hero
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				auto mo = (CharacterBase *)pObject;
-				int index = getGameLayer()->_CharacterArray->indexOfObject(mo);
-				if (index >= 0)
-				{
-					getGameLayer()->_CharacterArray->removeObjectAtIndex(index);
-				}
+
+				std::erase(getGameLayer()->_CharacterArray, mo);
+
 				mo->setActionState(State::DEAD);
 				CCNotificationCenter::sharedNotificationCenter()->removeObserver(mo, "acceptAttack");
 				mo->removeFromParent();
@@ -337,11 +333,9 @@ class Hidan : public Hero
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				auto mo = (CharacterBase *)pObject;
-				int index = getGameLayer()->_CharacterArray->indexOfObject(mo);
-				if (index >= 0)
-				{
-					getGameLayer()->_CharacterArray->removeObjectAtIndex(index);
-				}
+
+				std::erase(getGameLayer()->_CharacterArray, mo);
+
 				mo->setActionState(State::DEAD);
 				CCNotificationCenter::sharedNotificationCenter()->removeObserver(mo, "acceptAttack");
 				mo->removeFromParent();

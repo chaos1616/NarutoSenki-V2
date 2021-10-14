@@ -1,3 +1,4 @@
+#include "Core/Tower/Tower.hpp"
 #include "HudLayer.h"
 #include "MyUtils/CCShake.h"
 
@@ -459,26 +460,20 @@ void HudLayer::initHeroInterface()
 	miniLayer = CCLayer::create();
 	miniLayer->setAnchorPoint(ccp(0, 0));
 	miniLayer->setPosition(ccp(winSize.width - 112, winSize.height - 38));
-	CCObject *pObject;
-	CCARRAY_FOREACH(getGameLayer()->_TowerArray, pObject)
+
+	for (auto tower : getGameLayer()->_TowerArray)
 	{
-		auto player = (CharacterBase *)pObject;
 		const char *path = "";
 		MiniIcon *mi;
-
-		if (is_same(player->getGroup()->getCString(), currentPlayer->getGroup()->getCString()))
-		{
+		if (is_same(tower->getGroup()->getCString(), currentPlayer->getGroup()->getCString()))
 			path = "tower_icon1.png";
-		}
 		else
-		{
 			path = "tower_icon2.png";
-		}
 		mi = MiniIcon::create(path, false);
 		mi->_delegate = miniLayer;
 		miniLayer->addChild(mi);
-		mi->updatePosition(player->getSpawnPoint());
-		mi->setCharNO(player->getCharNO());
+		mi->updatePosition(tower->getSpawnPoint());
+		mi->setCharNO(tower->getCharNO());
 
 		if (!_towerIconArray)
 		{
@@ -488,9 +483,8 @@ void HudLayer::initHeroInterface()
 		_towerIconArray->addObject(mi);
 	}
 
-	CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+	for (auto player : getGameLayer()->_CharacterArray)
 	{
-		auto player = (CharacterBase *)pObject;
 		if (player->isPlayerOrCom())
 		{
 			MiniIcon *mi;
@@ -536,10 +530,8 @@ void HudLayer::initHeroInterface()
 
 void HudLayer::addMapIcon()
 {
-	CCObject *pObject;
-	CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+	for (auto player : getGameLayer()->_CharacterArray)
 	{
-		auto player = (CharacterBase *)pObject;
 		if (player->isGuardian())
 		{
 			MiniIcon *mi;

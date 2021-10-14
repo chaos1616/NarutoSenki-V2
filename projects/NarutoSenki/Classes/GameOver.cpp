@@ -152,14 +152,12 @@ void GameOver::listResult()
 		return;
 	}
 
-	CCObject *pObject;
 	int i = 0;
 	int konohaKill = 0;
 	int akatsukiKill = 0;
 
-	CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+	for (auto hero : getGameLayer()->_CharacterArray)
 	{
-		auto hero = (Hero *)pObject;
 		if (hero->isClone() ||
 			hero->isSummon() ||
 			hero->isKugutsu() ||
@@ -406,17 +404,14 @@ void GameOver::listResult()
 
 				if (getGameLayer()->_isRandomChar && resultScore >= 120)
 				{
-					CCObject *pObject;
-
 					if (getGameLayer()->currentPlayer->_isControlled)
 					{
 						getGameLayer()->currentPlayer->_isControlled = false;
 						getGameLayer()->currentPlayer->changeGroup();
 					}
 
-					CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+					for (auto hero : getGameLayer()->_CharacterArray)
 					{
-						auto hero = (Hero *)pObject;
 						if (hero->isClone() ||
 							hero->isPlayer() ||
 							hero->isSummon() ||

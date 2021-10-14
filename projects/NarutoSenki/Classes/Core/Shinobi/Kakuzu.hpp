@@ -49,14 +49,12 @@ class Kakuzu : public Hero
 		{
 			if (getHpPercent() > 0.3f && !_isControlled && _isCanSkill1)
 			{
-				CCObject *pObject;
 				float distance;
 				float curDistance = 0;
 				CCPoint sp;
 
-				CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+				for (auto target : getGameLayer()->_CharacterArray)
 				{
-					auto target = (CharacterBase *)pObject;
 					if (target->isPlayerOrCom() &&
 						target->getActionState() == State::DEAD)
 					{

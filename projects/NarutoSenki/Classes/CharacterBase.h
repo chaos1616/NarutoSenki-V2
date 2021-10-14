@@ -304,7 +304,10 @@ public:
 	virtual void		changeAction();
 	void				changeAction2();
 	void				changeGroup();
-
+private:
+	template <typename T>
+	typename std::enable_if<std::is_base_of<CharacterBase, T>::value, void>::type changeGroupBy(const vector<T *> &list);
+public:
 	virtual void		resumeAction(float dt);
 	virtual void		setActionResume();
 	void				setActionResume2();
@@ -447,9 +450,15 @@ protected:
 	void				setRestore(float dt);
 
 
-	bool				findEnemy(const char* type,int searchRange,bool masterRange = false);
+	bool				findEnemy(const char* type, int searchRange, bool masterRange = false);
 	bool				findEnemy2(const char* type);
-	bool				findTargetEnemy(const char* type,bool isTowerDected);
+	bool				findTargetEnemy(const char* type, bool isTowerDected);
+	template <typename T>
+	typename std::enable_if<std::is_base_of<CharacterBase, T>::value, bool>::type findEnemyBy(const vector<T *> &list, int searchRange, bool masterRange = false);
+	template <typename T>
+	typename std::enable_if<std::is_base_of<CharacterBase, T>::value, bool>::type findEnemy2By(const vector<T *> &list);
+	template <typename T>
+	typename std::enable_if<std::is_base_of<CharacterBase, T>::value, bool>::type findTargetEnemyBy(const vector<T *> &list, bool isTowerDected);
 	bool				checkBase();
 
 	bool				stepBack();

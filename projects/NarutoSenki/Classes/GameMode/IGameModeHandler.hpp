@@ -1,5 +1,5 @@
 #pragma once
-#include "CharacterBase.h"
+#include "Core/Hero.hpp"
 #include "GameLayer.h"
 #include "LoadLayer.h"
 #include "SelectLayer.h"

@@ -4,6 +4,7 @@
 #include "HudLayer.h"
 
 class CharacterBase;
+class Hero;
 
 class LoadLayer : public CCLayer
 {
@@ -30,9 +31,10 @@ public:
 	CREATE_FUNC(LoadLayer);
 	static void perloadCharIMG(const char *player);
 	static void unloadCharIMG(const CharacterBase *player);
+	static void unloadAllCharsIMG(const vector<Hero *> &players);
 
 private:
 	void setLoadingAnimation(const char *player, int index);
 
-	std::vector<std::string> loadVector;
+	vector<string> loadVector;
 };

@@ -149,15 +149,9 @@ protected:
 		stopAllActions();
 
 		if (isKonohaGroup())
-		{
-			int index = getGameLayer()->_KonohaFlogArray->indexOfObject(this);
-			getGameLayer()->_KonohaFlogArray->removeObjectAtIndex(index);
-		}
+			std::erase(getGameLayer()->_KonohaFlogArray, this);
 		else
-		{
-			int index = getGameLayer()->_AkatsukiFlogArray->indexOfObject(this);
-			getGameLayer()->_AkatsukiFlogArray->removeObjectAtIndex(index);
-		}
+			std::erase(getGameLayer()->_AkatsukiFlogArray, this);
 		removeFromParent();
 	}
 

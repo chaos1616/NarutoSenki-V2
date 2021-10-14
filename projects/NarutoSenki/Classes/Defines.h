@@ -408,28 +408,28 @@ static const int kHeroNum = sizeof(kHeroList) / sizeof(char *);
 
 // Macros
 
-#define PROP(varType, varName, funName)         \
-protected:                                      \
-	varType varName;                            \
-                                                \
-public:                                         \
-	varType get##funName() { return varName; }; \
-	void set##funName(varType var) { varName = var; };
+#define PROP(varType, varName, funName)                \
+protected:                                             \
+	varType varName;                                   \
+                                                       \
+public:                                                \
+	inline varType get##funName() { return varName; }; \
+	inline void set##funName(varType var) { varName = var; };
 
-#define PPROP(varType, varName, funName)        \
-private:                                        \
-	varType varName;                            \
-                                                \
-public:                                         \
-	varType get##funName() { return varName; }; \
-	void set##funName(varType var) { varName = var; };
+#define PPROP(varType, varName, funName)               \
+private:                                               \
+	varType varName;                                   \
+                                                       \
+public:                                                \
+	inline varType get##funName() { return varName; }; \
+	inline void set##funName(varType var) { varName = var; };
 
 #define CC_SYNTHESIZE_RETAIN_SET_ONLY(varType, varName, funName) \
 private:                                                         \
 	varType varName;                                             \
                                                                  \
 public:                                                          \
-	virtual void set##funName(varType var)                       \
+	inline virtual void set##funName(varType var)                \
 	{                                                            \
 		if (varName != var)                                      \
 		{                                                        \

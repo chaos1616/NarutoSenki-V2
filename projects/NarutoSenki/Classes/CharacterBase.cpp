@@ -363,10 +363,8 @@ void CharacterBase::update(float dt)
 		if (isPlayer() && !_isAI && !_isInvincible && !_isArmored)
 		{
 			//save the stop Area
-			CCObject *pObject;
-			CCARRAY_FOREACH(getGameLayer()->_TowerArray, pObject)
+			for (auto tower : getGameLayer()->_TowerArray)
 			{
-				Tower *tower = (Tower *)pObject;
 				if (tower)
 				{
 					int metaWidth = 96;
@@ -552,13 +550,11 @@ void CharacterBase::acceptAttack(CCObject *object)
 							attacker->_master->setDamage(this, attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
 						}
 
-						CCObject *pObject;
-						CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+						for (auto hero : getGameLayer()->_CharacterArray)
 						{
-							auto tempHero = (Hero *)pObject;
-							if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::DEAD)
+							if (isNotSameGroupAs(hero) && hero->isPlayerOrCom() && hero->_actionState != State::DEAD)
 							{
-								tempHero->setDamage(this, attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
+								hero->setDamage(this, attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
 							}
 						}
 
@@ -1080,13 +1076,11 @@ void CharacterBase::acceptAttack(CCObject *object)
 								}
 							}
 
-							CCObject *pObject;
-							CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+							for (auto hero : getGameLayer()->_CharacterArray)
 							{
-								auto tempHero = (Hero *)pObject;
-								if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::DEAD)
+								if (isNotSameGroupAs(hero) && hero->isPlayerOrCom() && hero->_actionState != State::DEAD)
 								{
-									tempHero->setDamage(this, attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
+									hero->setDamage(this, attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
 								}
 							}
 
@@ -2252,16 +2246,14 @@ void CharacterBase::setAttackBox(CCNode *sender, void *data)
 
 void CharacterBase::getSticker(float dt)
 {
-	CCObject *pObject;
-	CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+	for (auto hero : getGameLayer()->_CharacterArray)
 	{
-		auto tempHero = (Hero *)pObject;
 		CharacterBase *tempSticker = nullptr;
-		if (tempHero->_sticker)
+		if (hero->_sticker)
 		{
-			tempSticker = (CharacterBase *)tempHero->_sticker;
+			tempSticker = (CharacterBase *)hero->_sticker;
 		}
-		if (tempSticker && is_same(tempSticker->getCharacter()->getCString(), getCharacter()->getCString()) && tempHero->_isSticking)
+		if (tempSticker && is_same(tempSticker->getCharacter()->getCString(), getCharacter()->getCString()) && hero->_isSticking)
 		{
 			return;
 		}
@@ -2416,31 +2408,29 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 
 		if (is_same(attackType, "hsBuff"))
 		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+			for (auto hero : getGameLayer()->_CharacterArray)
 			{
-				auto tempHero = (CharacterBase *)pObject;
-				if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::HURT && tempHero->_actionState != State::DEAD)
+				if (isNotSameGroupAs(hero) && hero->isPlayerOrCom() && hero->_actionState != State::HURT && hero->_actionState != State::DEAD)
 				{
-					float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
+					float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
 					if (distanceX < winSize.width / 2)
 					{
-						if (!tempHero->_isVisable)
+						if (!hero->_isVisable)
 						{
-							if (tempHero->isCharacter("Konan") ||
-								tempHero->isCharacter("Deidara"))
+							if (hero->isCharacter("Konan") ||
+								hero->isCharacter("Deidara"))
 							{
-								tempHero->unschedule(schedule_selector(CharacterBase::disableBuff));
+								hero->unschedule(schedule_selector(CharacterBase::disableBuff));
 							}
 
-							tempHero->setOpacity(255);
-							tempHero->setVisible(true);
-							tempHero->_isVisable = true;
+							hero->setOpacity(255);
+							hero->setVisible(true);
+							hero->_isVisable = true;
 
-							if (tempHero->_hpBar)
-								tempHero->_hpBar->setVisible(true);
-							if (tempHero->_shadow)
-								tempHero->_shadow->setVisible(true);
+							if (hero->_hpBar)
+								hero->_hpBar->setVisible(true);
+							if (hero->_shadow)
+								hero->_shadow->setVisible(true);
 						}
 					}
 				}
@@ -2737,31 +2727,29 @@ void CharacterBase::healBuff(float dt)
 
 	if (isCharacter("Karin"))
 	{
-		CCObject *pObject;
-		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+		for (auto hero : getGameLayer()->_CharacterArray)
 		{
-			auto tempHero = (Hero *)pObject;
-			if (isSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::DEAD)
+			if (isSameGroupAs(hero) && hero->isPlayerOrCom() && hero->_actionState != State::DEAD)
 			{
-				float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
+				float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
 				float tempRange1 = 128 + getContentSize().width / 2;
 				if (abs(distanceX) <= tempRange1 &&
-					abs(tempHero->getPositionY() - getPositionY()) <= 128)
+					abs(hero->getPositionY() - getPositionY()) <= 128)
 				{
-					tempHero->increaseHpAndUpdateUI(_healBuffValue);
+					hero->increaseHpAndUpdateUI(_healBuffValue);
 
-					if (tempHero->isPlayer())
-						getGameLayer()->setHPLose(tempHero->getHpPercent());
+					if (hero->isPlayer())
+						getGameLayer()->setHPLose(hero->getHpPercent());
 
-					if (tempHero->_isVisable)
+					if (hero->_isVisable)
 					{
-						Effect *tmpEffect = Effect::create("Kagura", tempHero);
-						if (tempHero->isPlayer())
+						Effect *tmpEffect = Effect::create("Kagura", hero);
+						if (hero->isPlayer())
 						{
 							tmpEffect->setOpacity(150);
 						}
-						tmpEffect->setPosition(ccp(tempHero->getContentSize().width / 2, tempHero->getContentSize().height / 2));
-						tempHero->addChild(tmpEffect);
+						tmpEffect->setPosition(ccp(hero->getContentSize().width / 2, hero->getContentSize().height / 2));
+						hero->addChild(tmpEffect);
 					}
 				}
 			}
@@ -2769,28 +2757,26 @@ void CharacterBase::healBuff(float dt)
 	}
 	else if (isCharacter("Chiyo"))
 	{
-		CCObject *pObject;
-		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+		for (auto hero : getGameLayer()->_CharacterArray)
 		{
-			auto tempHero = (Hero *)pObject;
-			if (isSameGroupAs(tempHero) &&
-				tempHero->isPlayerOrCom() &&
-				tempHero->isNotCharacter("Chiyo"))
+			if (isSameGroupAs(hero) &&
+				hero->isPlayerOrCom() &&
+				hero->isNotCharacter("Chiyo"))
 			{
-				CCPoint sp = ccpSub(tempHero->getPosition(), getPosition());
+				CCPoint sp = ccpSub(hero->getPosition(), getPosition());
 				if (abs(sp.x) <= winSize.width / 2)
 				{
-					tempHero->increaseAllCkrs(_healBuffValue);
+					hero->increaseAllCkrs(_healBuffValue);
 
-					if (tempHero->_isVisable)
+					if (hero->_isVisable)
 					{
-						Effect *tmpEffect = Effect::create("Hupo", tempHero);
-						if (tempHero->isPlayer())
+						Effect *tmpEffect = Effect::create("Hupo", hero);
+						if (hero->isPlayer())
 						{
 							tmpEffect->setOpacity(150);
 						}
-						tmpEffect->setPosition(ccp(tempHero->getContentSize().width / 2, tempHero->getContentSize().height / 2 + 6));
-						tempHero->addChild(tmpEffect);
+						tmpEffect->setPosition(ccp(hero->getContentSize().width / 2, hero->getContentSize().height / 2 + 6));
+						hero->addChild(tmpEffect);
 					}
 				}
 			}
@@ -2798,25 +2784,19 @@ void CharacterBase::healBuff(float dt)
 	}
 	else if (isCharacter("Slug"))
 	{
-		CCObject *pObject;
-		CCArray *list;
-
-		if (isAkatsukiGroup())
-			list = getGameLayer()->_AkatsukiFlogArray;
-		else
-			list = getGameLayer()->_KonohaFlogArray;
-
-		CCARRAY_FOREACH(list, pObject)
+		auto list = isAkatsukiGroup()
+						? getGameLayer()->_AkatsukiFlogArray
+						: getGameLayer()->_KonohaFlogArray;
+		for (auto flog : list)
 		{
-			auto tempHero = (CharacterBase *)pObject;
-			if (isSameGroupAs(tempHero) && tempHero->_actionState != State::DEAD)
+			if (isSameGroupAs(flog) && flog->_actionState != State::DEAD)
 			{
-				float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
+				float distanceX = ccpSub(flog->getPosition(), getPosition()).x;
 				float tempRange1 = 128 + getContentSize().width / 2;
 				if (abs(distanceX) <= tempRange1 &&
-					abs(tempHero->getPositionY() - getPositionY()) <= 128)
+					abs(flog->getPositionY() - getPositionY()) <= 128)
 				{
-					tempHero->increaseHpAndUpdateUI(_healBuffValue);
+					flog->increaseHpAndUpdateUI(_healBuffValue);
 				}
 			}
 		}
@@ -2846,12 +2826,10 @@ void CharacterBase::dehealBuff(float dt)
 		return;
 	}
 
-	CCObject *pObject;
-	CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+	for (auto hero : getGameLayer()->_CharacterArray)
 	{
-		auto tempHero = (Hero *)pObject;
-		if (tempHero->isCharacter("Asuma"))
-			_slayer = tempHero;
+		if (hero->isCharacter("Asuma"))
+			_slayer = hero;
 	}
 
 	if (getHPValue() <= _dehealBuffValue)
@@ -2866,12 +2844,10 @@ void CharacterBase::dehealBuff(float dt)
 // NOTE: Only for Shikamaru's KageHand
 void CharacterBase::lostBlood(float dt)
 {
-	CCObject *pObject;
-	CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+	for (auto hero : getGameLayer()->_CharacterArray)
 	{
-		auto tempHero = (Hero *)pObject;
-		if (tempHero->isCharacter("Shikamaru"))
-			_slayer = tempHero;
+		if (hero->isCharacter("Shikamaru"))
+			_slayer = hero;
 	}
 
 	// if (getHPValue() <= lostBloodValue)
@@ -2962,16 +2938,14 @@ void CharacterBase::stopMove(float dt)
 		return;
 	}
 
-	CCObject *pObject;
-	CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+	for (auto hero : getGameLayer()->_CharacterArray)
 	{
-		auto tempHero = (Hero *)pObject;
-		if (isNotSameGroupAs(tempHero) && tempHero->_isVisable && tempHero->_actionState != State::DEAD && tempHero->_actionState != State::JUMP && !tempHero->_isInvincible)
+		if (isNotSameGroupAs(hero) && hero->_isVisable && hero->_actionState != State::DEAD && hero->_actionState != State::JUMP && !hero->_isInvincible)
 		{
-			float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
+			float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
 			float tempRange1 = _attackRangeX + getContentSize().width / 2;
 			if (abs(distanceX) <= tempRange1 &&
-				abs(tempHero->getPositionY() - getPositionY()) <= _attackRangeY)
+				abs(hero->getPositionY() - getPositionY()) <= _attackRangeY)
 			{
 				unschedule(schedule_selector(CharacterBase::stopMove));
 				getActionManager()->removeAction(_moveAction);
@@ -3133,7 +3107,7 @@ Hero *CharacterBase::createClone(int cloneTime)
 void CharacterBase::setClone(CCNode *sender, void *data)
 {
 	int cloneTime = *((int *)&data);
-	auto clone = createClone(cloneTime);
+	Hero *clone = createClone(cloneTime);
 	if (!clone)
 	{
 		CCLOG("Current character %s can not create clone", _character->getCString());
@@ -3199,7 +3173,7 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 	callValue->setObject(CCString::create("smk"), 1);
 	clone->setSkillEffect(clone, callValue);
 	clone->idle();
-	getGameLayer()->_CharacterArray->addObject(clone);
+	getGameLayer()->_CharacterArray.push_back(clone);
 	getGameLayer()->addChild(clone, -clone->getPositionY());
 	clone->doAI();
 
@@ -3677,31 +3651,29 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 
 	if (is_same(trapType->getCString(), "Amaterasu"))
 	{
-		CCObject *pObject;
-		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+		for (auto hero : getGameLayer()->_CharacterArray)
 		{
-			auto tempHero = (CharacterBase *)pObject;
-			if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::HURT && tempHero->_actionState != State::DEAD)
+			if (isNotSameGroupAs(hero) && hero->isPlayerOrCom() && hero->_actionState != State::HURT && hero->_actionState != State::DEAD)
 			{
-				float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
+				float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
 				if (distanceX < winSize.width / 2)
 				{
-					if (!tempHero->_isVisable)
+					if (!hero->_isVisable)
 					{
-						if (tempHero->isCharacter("Konan") ||
-							tempHero->isCharacter("Deidara"))
+						if (hero->isCharacter("Konan") ||
+							hero->isCharacter("Deidara"))
 						{
-							tempHero->unschedule(schedule_selector(CharacterBase::disableBuff));
+							hero->unschedule(schedule_selector(CharacterBase::disableBuff));
 						}
 
-						tempHero->setOpacity(255);
-						tempHero->setVisible(true);
-						tempHero->_isVisable = true;
+						hero->setOpacity(255);
+						hero->setVisible(true);
+						hero->_isVisable = true;
 
-						if (tempHero->_hpBar)
-							tempHero->_hpBar->setVisible(true);
-						if (tempHero->_shadow)
-							tempHero->_shadow->setVisible(true);
+						if (hero->_hpBar)
+							hero->_hpBar->setVisible(true);
+						if (hero->_shadow)
+							hero->_shadow->setVisible(true);
 					}
 				}
 			}
@@ -3822,20 +3794,18 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 	}
 	else if (is_same(trapType->getCString(), "KageBom"))
 	{
-		CCObject *pObject;
-		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+		for (auto hero : getGameLayer()->_CharacterArray)
 		{
-			auto tempHero = (Hero *)pObject;
-			if (isNotSameGroupAs(tempHero) && tempHero->isPlayerOrCom() && tempHero->_actionState != State::DEAD && tempHero->_isVisable && !tempHero->_isSticking)
+			if (isNotSameGroupAs(hero) && hero->isPlayerOrCom() && hero->_actionState != State::DEAD && hero->_isVisable && !hero->_isSticking)
 			{
-				float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
+				float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
 				float tempRange1 = winSize.width / 2;
 				if (abs(distanceX) <= tempRange1)
 				{
 					Monster *trap = Monster::create();
 					trap->_master = this;
 					trap->setID(trapType, CCString::create(kRoleMon), _group);
-					trap->setPosition(ccp(tempHero->getPositionX(), tempHero->getPositionY()));
+					trap->setPosition(ccp(hero->getPositionX(), hero->getPositionY()));
 					trap->idle();
 					trap->attack(NAttack);
 					getGameLayer()->addChild(trap, -trap->getPositionY());
@@ -4361,16 +4331,14 @@ bool CharacterBase::hurt()
 		!_isCatchOne &&
 		!_isArmored)
 	{
-		CCObject *pObject;
-		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+		for (auto hero : getGameLayer()->_CharacterArray)
 		{
-			auto tempHero = (Hero *)pObject;
-			if (isSameGroupAs(tempHero) &&
-				tempHero->isCharacter("Chiyo") &&
-				tempHero->_actionState != State::DEAD &&
-				tempHero->_buffStartTime)
+			if (isSameGroupAs(hero) &&
+				hero->isCharacter("Chiyo") &&
+				hero->_actionState != State::DEAD &&
+				hero->_buffStartTime)
 			{
-				CCPoint sp = ccpSub(tempHero->getPosition(), getPosition());
+				CCPoint sp = ccpSub(hero->getPosition(), getPosition());
 				if (abs(sp.x) <= winSize.width / 2)
 				{
 					return false;
@@ -4435,16 +4403,15 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 			_originY = 0;
 			getGameLayer()->reorderChild(this, -getPositionY());
 		}
-		CCObject *pObject;
-		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+
+		for (auto hero : getGameLayer()->_CharacterArray)
 		{
-			auto tempHero = (Hero *)pObject;
-			if (isSameGroupAs(tempHero) &&
-				tempHero->isCharacter("Chiyo") &&
-				tempHero->_actionState != State::DEAD &&
-				tempHero->_buffStartTime)
+			if (isSameGroupAs(hero) &&
+				hero->isCharacter("Chiyo") &&
+				hero->_actionState != State::DEAD &&
+				hero->_buffStartTime)
 			{
-				CCPoint sp = ccpSub(tempHero->getPosition(), getPosition());
+				CCPoint sp = ccpSub(hero->getPosition(), getPosition());
 				if (abs(sp.x) <= winSize.width / 2)
 				{
 					return false;
@@ -4630,16 +4597,14 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 		!_isCatchOne &&
 		!_isArmored)
 	{
-		CCObject *pObject;
-		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+		for (auto hero : getGameLayer()->_CharacterArray)
 		{
-			auto tempHero = (Hero *)pObject;
-			if (isSameGroupAs(tempHero) &&
-				tempHero->isCharacter("Chiyo") &&
-				tempHero->_actionState != State::DEAD &&
-				tempHero->_buffStartTime)
+			if (isSameGroupAs(hero) &&
+				hero->isCharacter("Chiyo") &&
+				hero->_actionState != State::DEAD &&
+				hero->_buffStartTime)
 			{
-				CCPoint sp = ccpSub(tempHero->getPosition(), getPosition());
+				CCPoint sp = ccpSub(hero->getPosition(), getPosition());
 				if (abs(sp.x) <= winSize.width / 2)
 				{
 					return;
@@ -4931,36 +4896,37 @@ void CharacterBase::doAI()
 
 bool CharacterBase::findEnemy(const char *type, int searchRange, bool masterRange)
 {
-	CCArray *list;
 	if (is_same(kRoleHero, type))
 	{
-		list = getGameLayer()->_CharacterArray;
+		return findEnemyBy(getGameLayer()->_CharacterArray, searchRange, masterRange);
 	}
 	else if (is_same(kRoleFlog, type))
 	{
 		if (isAkatsukiGroup())
-		{
-			list = getGameLayer()->_KonohaFlogArray;
-		}
+			return findEnemyBy(getGameLayer()->_KonohaFlogArray, searchRange, masterRange);
 		else
-		{
-			list = getGameLayer()->_AkatsukiFlogArray;
-		}
+			return findEnemyBy(getGameLayer()->_AkatsukiFlogArray, searchRange, masterRange);
 	}
 	else if (is_same(kRoleTower, type))
 	{
-		list = getGameLayer()->_TowerArray;
+		return findEnemyBy(getGameLayer()->_TowerArray, searchRange, masterRange);
 	}
 
-	CCObject *pObject;
+	return false;
+}
+
+template <typename T>
+typename std::enable_if<std::is_base_of<CharacterBase, T>::value, bool>::type
+// template find ememy
+CharacterBase::findEnemyBy(const vector<T *> &list, int searchRange, bool masterRange)
+{
 	float distance;
 	float curDistance = 0;
 	CCPoint sp;
 	bool findSome = false;
-	CCARRAY_FOREACH(list, pObject)
-	{
-		auto target = (CharacterBase *)pObject;
 
+	for (auto target : list)
+	{
 		if (target->_actionState == State::DEAD ||
 			target->_isVisable == false ||
 			target->_isInvincible ||
@@ -4968,10 +4934,9 @@ bool CharacterBase::findEnemy(const char *type, int searchRange, bool masterRang
 		{
 			continue;
 		}
-		if ((_actionState == State::OATTACK ||
-			 _actionState == State::O2ATTACK) ||
-			(_master && (_master->_actionState == State::OATTACK ||
-						 _actionState == State::O2ATTACK)))
+
+		if ((_actionState == State::OATTACK || _actionState == State::O2ATTACK) ||
+			(_master && (_master->_actionState == State::OATTACK || _actionState == State::O2ATTACK)))
 		{
 			if (target->isClone() ||
 				target->isSummon() ||
@@ -5015,34 +4980,37 @@ bool CharacterBase::findEnemy(const char *type, int searchRange, bool masterRang
 			}
 		}
 	}
+
 	return findSome;
 }
 
 // NOTE: Use half the window width as the search range
 bool CharacterBase::findEnemy2(const char *type)
 {
-	CCArray *list;
 	if (is_same(kRoleHero, type))
 	{
-		list = getGameLayer()->_CharacterArray;
+		return findEnemy2By(getGameLayer()->_CharacterArray);
 	}
 	else if (is_same(kRoleFlog, type))
 	{
 		if (isAkatsukiGroup())
-		{
-			list = getGameLayer()->_KonohaFlogArray;
-		}
+			return findEnemy2By(getGameLayer()->_KonohaFlogArray);
 		else
-		{
-			list = getGameLayer()->_AkatsukiFlogArray;
-		}
+			return findEnemy2By(getGameLayer()->_AkatsukiFlogArray);
 	}
 	else if (is_same(kRoleTower, type))
 	{
-		list = getGameLayer()->_TowerArray;
+		return findEnemy2By(getGameLayer()->_TowerArray);
 	}
 
-	CCObject *pObject;
+	return false;
+}
+
+template <typename T>
+typename std::enable_if<std::is_base_of<CharacterBase, T>::value, bool>::type
+// template find ememy 2
+CharacterBase::findEnemy2By(const vector<T *> &list)
+{
 	float distance;
 	float curDistance = 0;
 	CCPoint sp;
@@ -5051,10 +5019,8 @@ bool CharacterBase::findEnemy2(const char *type)
 	enemyCombatPoint = 0;
 	friendCombatPoint = 0;
 
-	CCARRAY_FOREACH(list, pObject)
+	for (auto target : list)
 	{
-		auto target = (CharacterBase *)pObject;
-
 		if (target->_actionState == State::DEAD ||
 			target->_isVisable == false ||
 			target->isKugutsu())
@@ -5071,17 +5037,11 @@ bool CharacterBase::findEnemy2(const char *type)
 				int baseSkillCombatPoint = 0;
 
 				if (target->_isCanSkill1)
-				{
 					baseSkillCombatPoint += _sattackCombatPoint1;
-				}
 				if (target->_isCanSkill2)
-				{
 					baseSkillCombatPoint += _sattackCombatPoint2;
-				}
 				if (target->_isCanSkill2)
-				{
 					baseSkillCombatPoint += _sattackCombatPoint3;
-				}
 
 				if (is_same(_group->getCString(), target->_group->getCString()))
 				{
@@ -5126,108 +5086,33 @@ bool CharacterBase::findEnemy2(const char *type)
 	return findSome;
 }
 
-bool CharacterBase::checkBase()
+bool CharacterBase::findTargetEnemy(const char *type, bool isTowerDected)
 {
-	auto list = getGameLayer()->_CharacterArray;
-	CCObject *pObject;
-
-	CCARRAY_FOREACH(list, pObject)
+	if (is_same(kRoleHero, type))
 	{
-		auto target = (CharacterBase *)pObject;
-		if (target->_actionState == State::DEAD)
-		{
-			continue;
-		}
-		if (strcmp(_group->getCString(), target->_group->getCString()) != 0)
-		{
-			if (isKonohaGroup())
-			{
-				if (target->getPositionX() <= 11 * 32)
-				{
-					_mainTarget = target;
-					return true;
-				}
-			}
-			else
-			{
-				if (target->getPositionX() >= 85 * 32)
-				{
-					_mainTarget = target;
-					return true;
-				}
-			}
-		}
+		return findTargetEnemyBy(getGameLayer()->_CharacterArray, isTowerDected);
 	}
-
-	if (isAkatsukiGroup())
+	else if (is_same(kRoleFlog, type))
 	{
-		list = getGameLayer()->_KonohaFlogArray;
-	}
-	else
-	{
-		list = getGameLayer()->_AkatsukiFlogArray;
-	}
-
-	CCARRAY_FOREACH(list, pObject)
-	{
-		auto target = (CharacterBase *)pObject;
-		if (target->_actionState == State::DEAD)
-		{
-			continue;
-		}
-		if (strcmp(_group->getCString(), target->_group->getCString()) != 0)
-		{
-			if (isKonohaGroup())
-			{
-				if (target->getPositionX() <= 11 * 32)
-				{
-					_mainTarget = target;
-					return true;
-				}
-			}
-			else
-			{
-				if (target->getPositionX() >= 85 * 32)
-				{
-					_mainTarget = target;
-					return true;
-				}
-			}
-		}
+		if (isAkatsukiGroup())
+			return findTargetEnemyBy(getGameLayer()->_KonohaFlogArray, isTowerDected);
+		else
+			return findTargetEnemyBy(getGameLayer()->_AkatsukiFlogArray, isTowerDected);
 	}
 
 	return false;
 }
 
-bool CharacterBase::findTargetEnemy(const char *type, bool isTowerDected)
+template <typename T>
+typename std::enable_if<std::is_base_of<CharacterBase, T>::value, bool>::type
+CharacterBase::findTargetEnemyBy(const vector<T *> &list, bool isTowerDected)
 {
-	CCArray *list;
-	if (is_same(kRoleHero, type))
-	{
-		list = getGameLayer()->_CharacterArray;
-	}
-	else if (is_same(kRoleFlog, type))
-	{
-		if (isAkatsukiGroup())
-		{
-			list = getGameLayer()->_KonohaFlogArray;
-		}
-		else
-		{
-			list = getGameLayer()->_AkatsukiFlogArray;
-		}
-	}
-
-	CCObject *pObject;
-
 	float curDistance = 0;
 	CCPoint sp;
 	bool findSome = false;
 
-	CCARRAY_FOREACH(list, pObject)
+	for (auto target : list)
 	{
-		auto target = (CharacterBase *)pObject;
-
 		if (isNotSameGroupAs(target) &&
 			target->isNotKugutsu() &&
 			target->_actionState != State::DEAD &&
@@ -5258,14 +5143,72 @@ bool CharacterBase::findTargetEnemy(const char *type, bool isTowerDected)
 			}
 		}
 	}
+
 	if (!isTowerDected)
-	{
 		return findSome;
-	}
 	else
-	{
 		return false;
+}
+
+bool CharacterBase::checkBase()
+{
+	for (auto target : getGameLayer()->_CharacterArray)
+	{
+		if (target->_actionState == State::DEAD)
+			continue;
+
+		if (strcmp(_group->getCString(), target->_group->getCString()) != 0)
+		{
+			if (isKonohaGroup())
+			{
+				if (target->getPositionX() <= 11 * 32)
+				{
+					_mainTarget = target;
+					return true;
+				}
+			}
+			else
+			{
+				if (target->getPositionX() >= 85 * 32)
+				{
+					_mainTarget = target;
+					return true;
+				}
+			}
+		}
 	}
+
+	auto &flogArray = isAkatsukiGroup()
+						  ? getGameLayer()->_KonohaFlogArray
+						  : getGameLayer()->_AkatsukiFlogArray;
+
+	for (auto target : flogArray)
+	{
+		if (target->_actionState == State::DEAD)
+			continue;
+
+		if (strcmp(_group->getCString(), target->_group->getCString()) != 0)
+		{
+			if (isKonohaGroup())
+			{
+				if (target->getPositionX() <= 11 * 32)
+				{
+					_mainTarget = target;
+					return true;
+				}
+			}
+			else
+			{
+				if (target->getPositionX() >= 85 * 32)
+				{
+					_mainTarget = target;
+					return true;
+				}
+			}
+		}
+	}
+
+	return false;
 }
 
 // [For AI] 血量充足后，使AI前进
@@ -5497,55 +5440,42 @@ void CharacterBase::changeGroup()
 
 	if (isPlayer())
 	{
-		for (int i = 0; i < 4; i++)
+		changeGroupBy(getGameLayer()->_CharacterArray);
+		changeGroupBy(getGameLayer()->_TowerArray);
+		changeGroupBy(getGameLayer()->_AkatsukiFlogArray);
+		changeGroupBy(getGameLayer()->_KonohaFlogArray);
+	}
+}
+
+template <typename T>
+typename std::enable_if<std::is_base_of<CharacterBase, T>::value, void>::type
+CharacterBase::changeGroupBy(const vector<T *> &list)
+{
+	for (auto target : list)
+	{
+		if (target->_hpBar == nullptr)
+			continue;
+		if (strcmp(_group->getCString(), target->_group->getCString()) != 0)
 		{
-			CCArray *list;
-
-			if (i == 0)
-				list = getGameLayer()->_CharacterArray;
-			else if (i == 1)
-				list = getGameLayer()->_TowerArray;
-			else if (i == 2)
-				list = getGameLayer()->_AkatsukiFlogArray;
-			else if (i == 3)
-				list = getGameLayer()->_KonohaFlogArray;
-
-			CCObject *pObject;
-			CCARRAY_FOREACH(list, pObject)
+			if (target->isFlog())
+				target->_hpBar->changeBar("flog_bar_r.png");
+			else
+				target->_hpBar->changeBar("hp_bar_r.png");
+		}
+		else
+		{
+			if (target->isFlog())
 			{
-				auto target = (CharacterBase *)pObject;
-				if (target->_hpBar)
-				{
-					if (strcmp(_group->getCString(), target->_group->getCString()) != 0)
-					{
-						if (target->isFlog())
-						{
-							target->_hpBar->changeBar("flog_bar_r.png");
-						}
-						else
-						{
-							target->_hpBar->changeBar("hp_bar_r.png");
-						}
-					}
-					else
-					{
-						if (target->isFlog())
-						{
-							target->_hpBar->changeBar("flog_bar.png");
-						}
-						else if (target->isTower())
-						{
-							target->_hpBar->changeBar("hp_bar.png");
-						}
-						else
-						{
-							if (target->isNotPlayer())
-							{
-								target->_hpBar->changeBar("hp_bar_b.png");
-							}
-						}
-					}
-				}
+				target->_hpBar->changeBar("flog_bar.png");
+			}
+			else if (target->isTower())
+			{
+				target->_hpBar->changeBar("hp_bar.png");
+			}
+			else
+			{
+				if (target->isNotPlayer())
+					target->_hpBar->changeBar("hp_bar_b.png");
 			}
 		}
 	}

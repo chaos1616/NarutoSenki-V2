@@ -226,17 +226,15 @@ class Ino : public Hero
 		if (!_isArmored)
 			return;
 
-		CCObject *pObject;
-		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+		for (auto hero : getGameLayer()->_CharacterArray)
 		{
-			auto tempHero = (Hero *)pObject;
-			if (tempHero->_isControlled)
+			if (hero->_isControlled)
 			{
-				tempHero->_isControlled = false;
-				if (tempHero->isPlayer())
+				hero->_isControlled = false;
+				if (hero->isPlayer())
 				{
-					tempHero->_isAI = false;
-					tempHero->unschedule(schedule_selector(Ino::setAI));
+					hero->_isAI = false;
+					hero->unschedule(schedule_selector(Ino::setAI));
 					getGameLayer()->getHudLayer()->_isAllButtonLocked = false;
 				}
 				if (isPlayer())
@@ -254,8 +252,8 @@ class Ino : public Hero
 				{
 					idle();
 				}
-				tempHero->changeGroup();
-				tempHero->setController(nullptr);
+				hero->changeGroup();
+				hero->setController(nullptr);
 			}
 		}
 
@@ -265,25 +263,24 @@ class Ino : public Hero
 	void setActionResume() override
 	{
 		unschedule(schedule_selector(Ino::resumeAction));
-		CCObject *pObject;
-		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+
+		for (auto hero : getGameLayer()->_CharacterArray)
 		{
-			auto tempHero = (Hero *)pObject;
-			if (tempHero->_isControlled)
+			if (hero->_isControlled)
 			{
-				tempHero->_isControlled = false;
-				tempHero->changeGroup();
-				if (tempHero->isPlayer())
+				hero->_isControlled = false;
+				hero->changeGroup();
+				if (hero->isPlayer())
 				{
-					tempHero->unschedule(schedule_selector(Ino::setAI));
-					tempHero->_isAI = false;
+					hero->unschedule(schedule_selector(Ino::setAI));
+					hero->_isAI = false;
 					getGameLayer()->getHudLayer()->_isAllButtonLocked = false;
 				}
 				if (isPlayer())
 				{
 					getGameLayer()->controlChar = nullptr;
 				}
-				tempHero->setController(nullptr);
+				hero->setController(nullptr);
 			}
 		}
 

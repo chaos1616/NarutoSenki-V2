@@ -183,35 +183,33 @@ class Kakashi : public Hero
 		settempAttackValue1(to_ccstring(getSAttackValue1()));
 		setsAttackValue1(getSpcAttackValue1Str());
 
-		CCObject *pObject;
-		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+		for (auto hero : getGameLayer()->_CharacterArray)
 		{
-			auto tempHero = (CharacterBase *)pObject;
-			if (isNotSameGroupAs(tempHero) &&
-				tempHero->isPlayerOrCom() &&
-				tempHero->getActionState() != State::HURT &&
-				tempHero->getActionState() != State::DEAD)
+			if (isNotSameGroupAs(hero) &&
+				hero->isPlayerOrCom() &&
+				hero->getActionState() != State::HURT &&
+				hero->getActionState() != State::DEAD)
 			{
-				float distanceX = ccpSub(tempHero->getPosition(), getPosition()).x;
+				float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
 				if (distanceX < winSize.width / 2)
 				{
-					if (!tempHero->_isVisable)
+					if (!hero->_isVisable)
 					{
-						if (tempHero->isCharacter("Konan") ||
-							tempHero->isCharacter("Deidara"))
+						if (hero->isCharacter("Konan") ||
+							hero->isCharacter("Deidara"))
 						{
-							tempHero->unschedule(schedule_selector(CharacterBase::disableBuff));
+							hero->unschedule(schedule_selector(CharacterBase::disableBuff));
 						}
 
-						tempHero->setOpacity(255);
-						tempHero->setVisible(true);
+						hero->setOpacity(255);
+						hero->setVisible(true);
 
-						if (tempHero->_hpBar)
-							tempHero->_hpBar->setVisible(true);
-						if (tempHero->_shadow)
-							tempHero->_shadow->setVisible(true);
+						if (hero->_hpBar)
+							hero->_hpBar->setVisible(true);
+						if (hero->_shadow)
+							hero->_shadow->setVisible(true);
 
-						tempHero->_isVisable = true;
+						hero->_isVisable = true;
 					}
 				}
 			}

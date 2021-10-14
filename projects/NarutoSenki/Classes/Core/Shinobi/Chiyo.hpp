@@ -97,17 +97,15 @@ class Chiyo : public Hero
 			{
 				if (_isCanOugis1 && !_isControlled && !_buffStartTime)
 				{
-					CCObject *pObject;
 					int countNum = 0;
-					CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+					for (auto hero : getGameLayer()->_CharacterArray)
 					{
-						auto tempHero = (Hero *)pObject;
-						if (isSameGroupAs(tempHero) &&
-							tempHero->isPlayerOrCom() &&
-							tempHero->getActionState() != State::DEAD &&
-							tempHero->isNotCharacter("Chiyo"))
+						if (isSameGroupAs(hero) &&
+							hero->isPlayerOrCom() &&
+							hero->getActionState() != State::DEAD &&
+							hero->isNotCharacter("Chiyo"))
 						{
-							CCPoint sp = ccpSub(tempHero->getPosition(), getPosition());
+							CCPoint sp = ccpSub(hero->getPosition(), getPosition());
 							if (sp.x <= winSize.width / 2)
 								countNum++;
 						}

@@ -301,6 +301,20 @@ void LoadLayer::unloadCharIMG(const CharacterBase *c)
 	}
 }
 
+void LoadLayer::unloadAllCharsIMG(const vector<Hero *> &players)
+{
+	vector<string> unloadVector(players.size());
+	for (auto player : players)
+	{
+		auto name = player->getCharacter()->getCString();
+		if (std::find(unloadVector.begin(), unloadVector.end(), name) == unloadVector.end())
+		{
+			unloadCharIMG(player);
+			unloadVector.push_back(name);
+		}
+	}
+}
+
 void LoadLayer::setLoadingAnimation(const char *player, int index)
 {
 	CCSprite *loadingAvator = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_Walk_01", player)->getCString());

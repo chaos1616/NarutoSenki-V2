@@ -36,13 +36,13 @@ public:
 		cmdMap.insert(std::make_pair(cmd, handler));
 	}
 
-	static inline void invoke(const char *cmd, CharacterBase *c)
+	static inline void invoke(const char *cmd, CharacterBase *thiz)
 	{
 		auto it_find = cmdMap.find(cmd);
 		if (it_find != cmdMap.end())
 		{
 			auto handler = it_find->second;
-			handler(c);
+			handler(thiz);
 		}
 		else
 		{
@@ -74,12 +74,12 @@ public:
 private:
 	static void init()
 	{
-		on(Command::addExtern, [](CharacterBase *c)
+		on(Command::addExtern, [](CharacterBase *thiz)
 		   {
 			   auto tempArray = CCArray::create();
 
 			   int i = 1;
-			   if (c->isCharacter("Tenten"))
+			   if (thiz->isCharacter("Tenten"))
 			   {
 				   while (i < 11)
 				   {
@@ -91,173 +91,173 @@ private:
 			   }
 
 			   auto tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
-			   auto call = CCCallFuncN::create(c, callfuncN_selector(CharacterBase::disableShadow));
+			   auto call = CCCallFuncN::create(thiz, callfuncN_selector(CharacterBase::disableShadow));
 			   auto tempAction = CCAnimate::create(tempAnimation);
 			   auto list = CCArray::create();
 			   list->addObject(tempAction);
 			   list->addObject(call);
 			   auto seq = CCSequence::create(list);
 
-			   CCSprite *tempChar = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_Extern_01", c->getCharacter()->getCString())->getCString());
+			   CCSprite *tempChar = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_Extern_01", thiz->getCharacter()->getCString())->getCString());
 
 			   tempChar->setAnchorPoint(ccp(0.5f, 0));
-			   tempChar->setPosition(c->getPosition());
-			   getGameLayer()->addChild(tempChar, -c->_originY);
+			   tempChar->setPosition(thiz->getPosition());
+			   getGameLayer()->addChild(tempChar, -thiz->_originY);
 
 			   tempChar->runAction(seq);
 		   });
-		on(Command::addHP, [](CharacterBase *c)
+		on(Command::addHP, [](CharacterBase *thiz)
 		   {
-			   if (c->_hpBar)
+			   if (thiz->_hpBar)
 			   {
-				   c->setHPValue(c->getMaxHPValue());
-				   c->_hpBar->setPositionY(c->getHeight());
+				   thiz->setHPValue(thiz->getMaxHPValue());
+				   thiz->_hpBar->setPositionY(thiz->getHeight());
 			   }
 		   });
-		on(Command::findTarget, [](CharacterBase *c)
+		on(Command::findTarget, [](CharacterBase *thiz)
 		   {
-			   if (c->notFindHero(0))
+			   if (thiz->notFindHero(0))
 			   {
-				   if (c->notFindFlog(0) ||
-					   c->isCharacter("RikudoNaruto", "SageNaruto"))
-					   c->_mainTarget = nullptr;
+				   if (thiz->notFindFlog(0) ||
+					   thiz->isCharacter("RikudoNaruto", "SageNaruto"))
+					   thiz->_mainTarget = nullptr;
 			   }
 
-			   if (c->_mainTarget)
+			   if (thiz->_mainTarget)
 			   {
-				   if (c->isCharacter("Dogs",
-									  "Yominuma",
-									  "SandBall",
-									  "Sabaku",
-									  "Yataikuzu",
-									  "Lee",
-									  "RockLee"))
+				   if (thiz->isCharacter("Dogs",
+										 "Yominuma",
+										 "SandBall",
+										 "Sabaku",
+										 "Yataikuzu",
+										 "Lee",
+										 "RockLee"))
 				   {
-					   c->_markPoint = ccp(c->_mainTarget->getPositionX(), c->_mainTarget->_originY ? c->_mainTarget->_originY : c->_mainTarget->getPositionY());
+					   thiz->_markPoint = ccp(thiz->_mainTarget->getPositionX(), thiz->_mainTarget->_originY ? thiz->_mainTarget->_originY : thiz->_mainTarget->getPositionY());
 				   }
-				   else if (c->isCharacter("Tsukuyomi"))
+				   else if (thiz->isCharacter("Tsukuyomi"))
 				   {
-					   c->_markPoint = ccp(c->_mainTarget->getPositionX(), c->_mainTarget->_originY ? c->_mainTarget->_originY : c->_mainTarget->getPositionY() + 2);
+					   thiz->_markPoint = ccp(thiz->_mainTarget->getPositionX(), thiz->_mainTarget->_originY ? thiz->_mainTarget->_originY : thiz->_mainTarget->getPositionY() + 2);
 				   }
-				   else if (c->isCharacter("KageFeng"))
+				   else if (thiz->isCharacter("KageFeng"))
 				   {
-					   c->_markPoint = ccp(c->_mainTarget->getPositionX(), c->_mainTarget->_originY ? c->_mainTarget->_originY - 6 : c->_mainTarget->getPositionY() - 6);
+					   thiz->_markPoint = ccp(thiz->_mainTarget->getPositionX(), thiz->_mainTarget->_originY ? thiz->_mainTarget->_originY - 6 : thiz->_mainTarget->getPositionY() - 6);
 				   }
 				   else
 				   {
-					   c->_markPoint = ccp(c->_mainTarget->_isFlipped ? c->_mainTarget->getPositionX() + 32 : c->_mainTarget->getPositionX() - 32,
-										   c->_mainTarget->_originY ? c->_mainTarget->_originY : c->_mainTarget->getPositionY());
+					   thiz->_markPoint = ccp(thiz->_mainTarget->_isFlipped ? thiz->_mainTarget->getPositionX() + 32 : thiz->_mainTarget->getPositionX() - 32,
+											  thiz->_mainTarget->_originY ? thiz->_mainTarget->_originY : thiz->_mainTarget->getPositionY());
 				   }
 			   }
 		   });
-		on(Command::pauseJump, [](CharacterBase *c)
+		on(Command::pauseJump, [](CharacterBase *thiz)
 		   {
 			   // pause jump
-			   c->getActionManager()->addAction(c->_jumpUPAction, c, false);
+			   thiz->getActionManager()->addAction(thiz->_jumpUPAction, thiz, false);
 		   });
-		on(Command::setDead, [](CharacterBase *c)
+		on(Command::setDead, [](CharacterBase *thiz)
 		   {
-			   c->_isSuicide = true;
-			   c->dead();
+			   thiz->_isSuicide = true;
+			   thiz->dead();
 		   });
-		on(Command::setGainCKR, [](CharacterBase *c)
+		on(Command::setGainCKR, [](CharacterBase *thiz)
 		   {
 			   uint32_t boundValue = 1500;
-			   c->increaseAllCkrs(boundValue, true, !c->_isControlled);
+			   thiz->increaseAllCkrs(boundValue, true, !thiz->_isControlled);
 		   });
-		on(Command::setInvincible, [](CharacterBase *c)
+		on(Command::setInvincible, [](CharacterBase *thiz)
 		   {
 			   // set character invincible
-			   c->_isInvincible = true;
+			   thiz->_isInvincible = true;
 		   });
-		on(Command::reInvincible, [](CharacterBase *c)
+		on(Command::reInvincible, [](CharacterBase *thiz)
 		   {
 			   // unset character invincible
-			   c->_isInvincible = false;
+			   thiz->_isInvincible = false;
 		   });
-		on(Command::setInvisible, [](CharacterBase *c)
+		on(Command::setInvisible, [](CharacterBase *thiz)
 		   {
-			   c->setVisible(false);
-			   c->_isVisable = false;
+			   thiz->setVisible(false);
+			   thiz->_isVisable = false;
 		   });
-		on(Command::reInvisible, [](CharacterBase *c)
+		on(Command::reInvisible, [](CharacterBase *thiz)
 		   {
-			   c->setVisible(true);
-			   c->_isVisable = true;
+			   thiz->setVisible(true);
+			   thiz->_isVisable = true;
 		   });
-		on(Command::setTransport, [](CharacterBase *c)
+		on(Command::setTransport, [](CharacterBase *thiz)
 		   {
-			   int tsPosX = c->getPositionX();
-			   int tsPosY = c->getPositionY();
+			   int tsPosX = thiz->getPositionX();
+			   int tsPosY = thiz->getPositionY();
 
-			   if (c->_mainTarget)
+			   if (thiz->_mainTarget)
 			   {
-				   if (c->_mainTarget->_isFlipped)
+				   if (thiz->_mainTarget->_isFlipped)
 				   {
-					   c->setFlipX(true);
-					   c->_isFlipped = true;
+					   thiz->setFlipX(true);
+					   thiz->_isFlipped = true;
 				   }
 				   else
 				   {
-					   c->setFlipX(false);
-					   c->_isFlipped = false;
+					   thiz->setFlipX(false);
+					   thiz->_isFlipped = false;
 				   }
 			   }
 
-			   if (c->isCharacter("Sakura"))
+			   if (thiz->isCharacter("Sakura"))
 			   {
-				   float posY = c->getPositionY();
-				   if (!c->_originY)
+				   float posY = thiz->getPositionY();
+				   if (!thiz->_originY)
 				   {
 					   if (posY == 0)
 						   posY = 0.1f;
-					   c->_originY = posY;
+					   thiz->_originY = posY;
 				   }
-				   c->setPosition(ccp(c->getPositionX(), c->getPositionY() + 64));
+				   thiz->setPosition(ccp(thiz->getPositionX(), thiz->getPositionY() + 64));
 				   return;
 			   }
 			   else
 			   {
-				   if (c->_markPoint.x != 0)
+				   if (thiz->_markPoint.x != 0)
 				   {
-					   c->_startPoint = ccp(tsPosX, tsPosY);
-					   tsPosX = c->_markPoint.x;
-					   tsPosY = c->_markPoint.y;
-					   c->_markPoint = ccp(0, 0);
+					   thiz->_startPoint = ccp(tsPosX, tsPosY);
+					   tsPosX = thiz->_markPoint.x;
+					   tsPosY = thiz->_markPoint.y;
+					   thiz->_markPoint = ccp(0, 0);
 				   }
-				   else if (c->_startPoint.x != 0)
+				   else if (thiz->_startPoint.x != 0)
 				   {
-					   tsPosX = c->_startPoint.x;
-					   tsPosY = c->_startPoint.y;
-					   c->_startPoint = ccp(0, 0);
+					   tsPosX = thiz->_startPoint.x;
+					   tsPosY = thiz->_startPoint.y;
+					   thiz->_startPoint = ccp(0, 0);
 				   }
 			   }
 
-			   c->setPosition(ccp(tsPosX, tsPosY));
-			   CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", c);
+			   thiz->setPosition(ccp(tsPosX, tsPosY));
+			   CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", thiz);
 
-			   if (c->isNotCharacter("Yominuma"))
+			   if (thiz->isNotCharacter("Yominuma"))
 			   {
-				   getGameLayer()->reorderChild(c, -tsPosY);
+				   getGameLayer()->reorderChild(thiz, -tsPosY);
 			   }
 		   });
-		on(Command::reTransport, [](CharacterBase *c)
+		on(Command::reTransport, [](CharacterBase *thiz)
 		   {
-			   c->setPosition(ccp(c->getPositionX(), c->_originY));
-			   c->_originY = 0;
+			   thiz->setPosition(ccp(thiz->getPositionX(), thiz->_originY));
+			   thiz->_originY = 0;
 		   });
 		// For special characters
-		on(Command::setCounter, [](CharacterBase *c)
+		on(Command::setCounter, [](CharacterBase *thiz)
 		   {
 			   bool _isCounter = false;
-			   if (c->hasMonsterArrayAny())
+			   if (thiz->hasMonsterArrayAny())
 			   {
 				   CCObject *pObject;
-				   CCARRAY_FOREACH(c->getMonsterArray(), pObject)
+				   CCARRAY_FOREACH(thiz->getMonsterArray(), pObject)
 				   {
 					   auto tempMonster = (CharacterBase *)pObject;
-					   float distanceX = ccpSub(tempMonster->getPosition(), c->getPosition()).x;
-					   float distanceY = ccpSub(tempMonster->getPosition(), c->getPosition()).y;
+					   float distanceX = ccpSub(tempMonster->getPosition(), thiz->getPosition()).x;
+					   float distanceY = ccpSub(tempMonster->getPosition(), thiz->getPosition()).y;
 					   if (abs(distanceX) < 40 && abs(distanceY) < 15)
 					   {
 						   _isCounter = true;
@@ -267,123 +267,105 @@ private:
 
 			   if (_isCounter)
 			   {
-				   CCObject *pObject;
-				   CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+				   for (auto hero : getGameLayer()->_CharacterArray)
 				   {
-					   auto tempHero = (Hero *)pObject;
-					   if (c->isNotSameGroupAs(tempHero) &&
-						   tempHero->isPlayerOrCom() &&
-						   tempHero->_actionState != State::DEAD)
+					   if (thiz->isNotSameGroupAs(hero) &&
+						   hero->isPlayerOrCom() &&
+						   hero->_actionState != State::DEAD)
 					   {
-						   if (tempHero->_hpBar)
+						   if (hero->_hpBar)
 						   {
-							   if (tempHero->getHPValue() <= 2000)
-							   {
-								   tempHero->setDamage(c, "c_hit", tempHero->getHPValue(), false);
-							   }
+							   if (hero->getHPValue() <= 2000)
+								   hero->setDamage(thiz, "c_hit", hero->getHPValue(), false);
 							   else
-							   {
-								   tempHero->setDamage(c, "c_hit", 2000, false);
-							   }
+								   hero->setDamage(thiz, "c_hit", 2000, false);
 
-							   if (tempHero->isPlayer())
-							   {
-								   getGameLayer()->setHPLose(tempHero->getHpPercent());
-							   }
+							   if (hero->isPlayer())
+								   getGameLayer()->setHPLose(hero->getHpPercent());
 						   }
 					   }
 				   }
 			   }
 			   else
 			   {
-				   if (c->_hpBar)
+				   if (thiz->_hpBar)
 				   {
-					   if (c->getHPValue() <= 2000)
-					   {
-						   c->setDamage(c, "c_hit", c->getHPValue(), false);
-					   }
+					   if (thiz->getHPValue() <= 2000)
+						   thiz->setDamage(thiz, "c_hit", thiz->getHPValue(), false);
 					   else
-					   {
-						   c->setDamage(c, "c_hit", 2000, false);
-					   }
+						   thiz->setDamage(thiz, "c_hit", 2000, false);
 
-					   if (c->isPlayer())
-					   {
-						   getGameLayer()->setHPLose(c->getHpPercent());
-					   }
+					   if (thiz->isPlayer())
+						   getGameLayer()->setHPLose(thiz->getHpPercent());
 				   }
 			   }
 
-			   c->setActionResume();
+			   thiz->setActionResume();
 		   });
-		on(Command::setRevive, [](CharacterBase *c)
+		on(Command::setRevive, [](CharacterBase *thiz)
 		   {
-			   CCObject *pObject;
-			   CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+			   for (auto hero : getGameLayer()->_CharacterArray)
 			   {
-				   auto tempHero = (Hero *)pObject;
-				   if (c->isSameGroupAs(tempHero) &&
-					   tempHero->isPlayerOrCom() &&
-					   tempHero->_actionState == State::DEAD &&
-					   tempHero->rebornSprite)
+				   if (thiz->isSameGroupAs(hero) &&
+					   hero->isPlayerOrCom() &&
+					   hero->_actionState == State::DEAD &&
+					   hero->rebornSprite)
 				   {
-					   tempHero->unschedule(schedule_selector(Hero::reborn));
-					   tempHero->reborn(0.1f);
+					   hero->unschedule(schedule_selector(Hero::reborn));
+					   hero->reborn(0.1f);
 				   }
 			   }
 		   });
-		on(Command::setTrade, [](CharacterBase *c)
+		on(Command::setTrade, [](CharacterBase *thiz)
 		   {
-			   CCObject *pObject;
-			   CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+			   for (auto hero : getGameLayer()->_CharacterArray)
 			   {
-				   auto tempHero = (Hero *)pObject;
-				   if (tempHero->hearts > 0 &&
-					   tempHero->_actionState == State::DEAD &&
-					   tempHero->rebornSprite &&
-					   tempHero->isPlayerOrCom() &&
-					   tempHero->isNotCharacter("Kakuzu"))
+				   if (hero->hearts > 0 &&
+					   hero->_actionState == State::DEAD &&
+					   hero->rebornSprite &&
+					   hero->isPlayerOrCom() &&
+					   hero->isNotCharacter("Kakuzu"))
 				   {
-					   CCPoint sp = ccpSub(tempHero->getPosition(), c->getPosition());
+					   CCPoint sp = ccpSub(hero->getPosition(), thiz->getPosition());
 					   if (abs(sp.x) <= 48 && abs(sp.y) <= 48)
 					   {
-						   tempHero->hearts -= 1;
-						   if (c->isNotSameGroupAs(tempHero))
+						   hero->hearts -= 1;
+						   if (thiz->isNotSameGroupAs(hero))
 						   {
-							   uint32_t tempMaxHP = c->getMaxHPValue();
+							   uint32_t tempMaxHP = thiz->getMaxHPValue();
 							   tempMaxHP += 100;
-							   c->setnAttackValue(to_ccstring(c->getNAttackValue() + 5));
-							   c->setMaxHPValue(tempMaxHP);
+							   thiz->setnAttackValue(to_ccstring(thiz->getNAttackValue() + 5));
+							   thiz->setMaxHPValue(tempMaxHP);
 						   }
 
-						   if (c->isPlayer())
+						   if (thiz->isPlayer())
 						   {
 							   if (getGameLayer()->_isHardCoreGame)
 							   {
-								   getGameLayer()->setCoin(to_cstr(50 + (tempHero->getLV() - 1) * 10));
-								   c->setCoinDisplay(50 + (tempHero->getLV() - 1) * 10);
-								   c->addCoin(50 + (tempHero->getLV() - 1) * 10);
+								   getGameLayer()->setCoin(to_cstr(50 + (hero->getLV() - 1) * 10));
+								   thiz->setCoinDisplay(50 + (hero->getLV() - 1) * 10);
+								   thiz->addCoin(50 + (hero->getLV() - 1) * 10);
 							   }
 							   else
 							   {
 								   getGameLayer()->setCoin("50");
-								   c->setCoinDisplay(50);
-								   c->addCoin(50);
+								   thiz->setCoinDisplay(50);
+								   thiz->addCoin(50);
 							   }
 						   }
 					   }
 				   }
 			   }
 		   });
-		on(Command::setTransport2, [](CharacterBase *c)
+		on(Command::setTransport2, [](CharacterBase *thiz)
 		   {
 			   CCObject *pObject;
-			   int tsPosX = c->getPositionX();
-			   int tsPosY = c->getPositionY();
+			   int tsPosX = thiz->getPositionX();
+			   int tsPosY = thiz->getPositionY();
 
-			   if (c->_actionState != State::NATTACK && c->hasMonsterArrayAny())
+			   if (thiz->_actionState != State::NATTACK && thiz->hasMonsterArrayAny())
 			   {
-				   CCARRAY_FOREACH(c->getMonsterArray(), pObject)
+				   CCARRAY_FOREACH(thiz->getMonsterArray(), pObject)
 				   {
 					   auto mo = (Monster *)pObject;
 					   if (mo->isCharacter("HiraishinMark"))
@@ -395,10 +377,10 @@ private:
 				   }
 			   }
 
-			   c->setPosition(ccp(tsPosX, tsPosY));
-			   CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", c);
+			   thiz->setPosition(ccp(tsPosX, tsPosY));
+			   CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", thiz);
 
-			   getGameLayer()->reorderChild(c, -tsPosY);
+			   getGameLayer()->reorderChild(thiz, -tsPosY);
 		   });
 	}
 };

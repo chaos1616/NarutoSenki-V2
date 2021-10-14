@@ -319,16 +319,14 @@ class Pain : public Hero
 
 				if (_isCanSkill1 && !_buffStartTime)
 				{
-					CCObject *pObject;
 					int countNum = 0;
-					CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+					for (auto hero : getGameLayer()->_CharacterArray)
 					{
-						Hero *tempHero = (Hero *)pObject;
-						if (isSameGroupAs(tempHero) == 0 &&
-							tempHero->isPlayerOrCom() &&
-							tempHero->getActionState() == State::DEAD)
+						if (isSameGroupAs(hero) == 0 &&
+							hero->isPlayerOrCom() &&
+							hero->getActionState() == State::DEAD)
 						{
-							CCPoint sp = ccpSub(tempHero->getPosition(), getPosition());
+							CCPoint sp = ccpSub(hero->getPosition(), getPosition());
 							if (abs(sp.x) == winSize.width || abs(sp.y) == winSize.height)
 							{
 								countNum++;

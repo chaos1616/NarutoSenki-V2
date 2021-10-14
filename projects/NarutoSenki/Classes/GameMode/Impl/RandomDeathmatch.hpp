@@ -121,7 +121,7 @@ public:
 				LoadLayer::perloadCharIMG(newCharName);
 			}
 			auto hudLayer = gameLayer->getHudLayer();
-			auto newChar = gameLayer->addHero(CCString::create(newCharName), c->getRole(), c->getGroup(), c->getSpawnPoint(), c->getCharNO());
+			auto newChar = (Hero *)gameLayer->addHero(CCString::create(newCharName), c->getRole(), c->getGroup(), c->getSpawnPoint(), c->getCharNO());
 			bool isPlayer = newChar->isPlayer();
 			newChar->setCoin(c->getCoin());
 			newChar->setCKR(c->getCKR());
@@ -207,7 +207,7 @@ public:
 			{
 				newChar->doAI();
 			}
-			gameLayer->_CharacterArray->replaceObjectAtIndex(c->getCharNO() - 1, newChar);
+			gameLayer->_CharacterArray.at(c->getCharNO() - 1) = newChar;
 		}
 	}
 

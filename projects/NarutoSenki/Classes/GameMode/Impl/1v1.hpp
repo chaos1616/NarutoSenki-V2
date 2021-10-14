@@ -49,25 +49,23 @@ public:
 			getGameLayer()->onHUDInitialized(
 				[&]()
 				{
-					CCObject *pObject;
-					CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+					for (auto hero : getGameLayer()->_CharacterArray)
 					{
-						auto c = (Hero *)pObject;
-						c->setCoinValue(3000);
-						c->setEXP(2500);
+						hero->setCoinValue(3000);
+						hero->setEXP(2500);
 						for (int i = 1; i < 6; i++)
-							c->changeHPbar();
-						c->setHP(c->getMaxHP());
-						c->updateHpBar();
-						c->increaseAllCkrs(25000);
-						c->setRebornTime(10);
+							hero->changeHPbar();
+						hero->setHP(hero->getMaxHP());
+						hero->updateHpBar();
+						hero->increaseAllCkrs(25000);
+						hero->setRebornTime(10);
 						getGameLayer()->getHudLayer()->setEXPLose();
 
-						if (c->isPlayer())
+						if (hero->isPlayer())
 						{
-							if (!c->isEnableSkill04())
+							if (!hero->isEnableSkill04())
 								getGameLayer()->getHudLayer()->skill4Button->setLock();
-							if (!c->isEnableSkill05())
+							if (!hero->isEnableSkill05())
 								getGameLayer()->getHudLayer()->skill5Button->setLock();
 
 							getGameLayer()->setCoin("2950"); // Default hero has 50 coins

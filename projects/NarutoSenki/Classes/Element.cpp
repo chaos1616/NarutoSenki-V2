@@ -188,11 +188,9 @@ void HeroElement::dealloc()
 			CCARRAY_FOREACH(getMonsterArray(), pObject)
 			{
 				auto mo = (CharacterBase *)pObject;
-				int index = getGameLayer()->_CharacterArray->indexOfObject(mo);
-				if (index >= 0)
-				{
-					getGameLayer()->_CharacterArray->removeObjectAtIndex(index);
-				}
+
+				std::erase(getGameLayer()->_CharacterArray, mo);
+
 				CCNotificationCenter::sharedNotificationCenter()->removeObserver(mo, "acceptAttack");
 				mo->stopAllActions();
 				mo->unscheduleAllSelectors();
@@ -209,11 +207,8 @@ void HeroElement::dealloc()
 	{
 		unschedule(schedule_selector(CharacterBase::setAI));
 		CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "acceptAttack");
-		int index = getGameLayer()->_CharacterArray->indexOfObject(this);
-		if (index >= 0)
-		{
-			getGameLayer()->_CharacterArray->removeObjectAtIndex(index);
-		}
+
+		std::erase(getGameLayer()->_CharacterArray, this);
 
 		if (_master && _master->getMonsterArray())
 		{
@@ -280,16 +275,14 @@ void HeroElement::dealloc()
 		}
 		else if (isCharacter("Shikamaru", "Choji"))
 		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+			for (auto hero : getGameLayer()->_CharacterArray)
 			{
-				auto tempHero = (Hero *)pObject;
-				if (tempHero->_isSticking)
+				if (hero->_isSticking)
 				{
-					if (tempHero->getActionState() != State::DEAD)
+					if (hero->getActionState() != State::DEAD)
 					{
-						tempHero->removeLostBlood(0.1f);
-						tempHero->idle();
+						hero->removeLostBlood(0.1f);
+						hero->idle();
 					}
 				}
 			}
@@ -608,20 +601,18 @@ void Monster::setAI(float dt)
 	auto charName = getCharacter()->getCString();
 	if (is_same(charName, "Kage"))
 	{
-		CCObject *pObject;
-		CCARRAY_FOREACH(getGameLayer()->_CharacterArray, pObject)
+		for (auto hero : getGameLayer()->_CharacterArray)
 		{
-			auto tempHero = (Hero *)pObject;
-			if (strcmp(getGroup()->getCString(), tempHero->getGroup()->getCString()) != 0 &&
-				tempHero->getActionState() != State::DEAD &&
-				tempHero->getActionState() != State::O2ATTACK &&
-				!tempHero->_isInvincible &&
-				!tempHero->_isArmored &&
-				tempHero->_isVisable)
+			if (strcmp(getGroup()->getCString(), hero->getGroup()->getCString()) != 0 &&
+				hero->getActionState() != State::DEAD &&
+				hero->getActionState() != State::O2ATTACK &&
+				!hero->_isInvincible &&
+				!hero->_isArmored &&
+				hero->_isVisable)
 			{
-				CCPoint sp = ccpSub(tempHero->getPosition(), getPosition());
-				float distanceY = tempHero->_originY ? abs(getPositionY() - tempHero->_originY) : abs(sp.y);
-				float distanceX = _isFlipped ? tempHero->getPositionX() - getPositionX() + getContentSize().width : tempHero->getPositionX() - getPositionX() - getContentSize().width;
+				CCPoint sp = ccpSub(hero->getPosition(), getPosition());
+				float distanceY = hero->_originY ? abs(getPositionY() - hero->_originY) : abs(sp.y);
+				float distanceX = _isFlipped ? hero->getPositionX() - getPositionX() + getContentSize().width : hero->getPositionX() - getPositionX() - getContentSize().width;
 				if (abs(distanceX) < 32 && distanceY < 48)
 				{
 					if (!_monsterArray)
