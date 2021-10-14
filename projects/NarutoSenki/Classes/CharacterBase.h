@@ -515,6 +515,7 @@ public:
 	inline CCString*	getSpcAttackValue3Str() { return _spcattackValue3; }
 	inline CCString*	getTempAttackValue1Str() { return _tempAttackValue1; }
 	inline bool			hasTempAttackValue1() { return _tempAttackValue1 != nullptr; }
+	inline bool			isCharacter(const string &c) { return _character->m_sString == c; }
 	inline bool			isCharacter(const char *c) { return is_same(_character->getCString(), c); }
 	inline bool			isCharacter(const char *c1, const char *c2) {
 		auto n = _character->getCString();
@@ -552,6 +553,7 @@ public:
 		auto n = _character->getCString();
 		return is_same(n, c1) || is_same(n, c2) || is_same(n, c3) || is_same(n, c4) || is_same(n, c5) || is_same(n, c6) || is_same(n, c7) || is_same(n, c8) || is_same(n, c9) || is_same(n, c10);
 	}
+	inline bool			isNotCharacter(const string &c) { return _character->m_sString != c; }
 	inline bool			isNotCharacter(const char *c) { return !is_same(_character->getCString(), c); }
 	inline bool			isNotCharacter(const char *c1, const char *c2) { return !isCharacter(c1, c2); }
 	inline bool			isNotCharacter(const char *c1, const char *c2, const char *c3) { return !isCharacter(c1, c2, c3); }

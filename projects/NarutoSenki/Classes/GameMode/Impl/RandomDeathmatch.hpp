@@ -82,8 +82,8 @@ public:
 		{
 			auto gameLayer = getGameLayer();
 			// initial a new random character
-			auto newCharName = heroVector[c->changeCharId];
-			CCLOG("[Change Character] %s from %s to %s", c->getRole()->getCString(), c->getCharacter()->getCString(), newCharName);
+			auto newCharName = heroVector.at(c->changeCharId);
+			CCLOG("[Change Character] %s from %s to %s", c->getRole()->getCString(), c->getCharacter()->getCString(), newCharName.c_str());
 
 			if (c->isCharacter(newCharName))
 			{
@@ -113,12 +113,15 @@ public:
 						mo->removeFromParentAndCleanup(true);
 					}
 				}
-				// Unload old character assets
-				// If the new character has a sprite with the same name as the old character,
-				// it may cause some null sprite errors
-				LoadLayer::unloadCharIMG(c);
+				
 				// load new char assets
-				LoadLayer::perloadCharIMG(newCharName);
+				LoadLayer::perloadCharIMG(newCharName.c_str());
+				// Unload old character assets if not used by the other player or AI
+				auto oldCharName = c->getCharacter()->m_sString;
+				if (std::find(heroVector.begin(), heroVector.end(), oldCharName) == heroVector.end())
+				{
+					LoadLayer::unloadCharIMG(c);
+				}
 			}
 			auto hudLayer = gameLayer->getHudLayer();
 			auto newChar = (Hero *)gameLayer->addHero(CCString::create(newCharName), c->getRole(), c->getGroup(), c->getSpawnPoint(), c->getCharNO());
@@ -223,7 +226,7 @@ private:
 		c->changeCharId = index;
 
 		auto newChar = getRandomHeroExceptAll(heroVector);
-		heroVector[index] = newChar;
+		heroVector.at(index) = newChar;
 	}
 
 	inline int getIndexByHero(CharacterBase *c)

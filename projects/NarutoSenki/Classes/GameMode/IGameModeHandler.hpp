@@ -87,7 +87,7 @@ protected:
 	// game
 	GameData gd;
 	int oldCheats;
-	vector<const char *> heroVector;
+	vector<string> heroVector;
 	// player
 	const char *playerGroup = nullptr;
 
@@ -163,12 +163,12 @@ protected:
 			addHero(name, role, group, lv);
 	}
 
-	inline void addKonohaHero(const vector<const char *> &heros, const char *name, const char *role, uint32_t lv = 1)
+	inline void addKonohaHero(const vector<string> &heros, const char *name, const char *role, uint32_t lv = 1)
 	{
 		addHero(name, role, Konoha, lv);
 	}
 
-	inline void addAkatsukiHero(const vector<const char *> &heros, const char *name, const char *role, uint32_t lv = 1)
+	inline void addAkatsukiHero(const vector<string> &heros, const char *name, const char *role, uint32_t lv = 1)
 	{
 		addHero(name, role, Akatsuki, lv);
 	}
@@ -232,10 +232,10 @@ protected:
 
 		// push player
 		heroDataVector.push_back({tmpChar, kRolePlayer, playerGroup});
-		heroVector.push_back(tmpChar.c_str());
+		heroVector.push_back(tmpChar);
 
 		// init com heros
-		vector<const char *> realHeroVector;
+		vector<string> realHeroVector;
 		for (int i = 0; i < kHeroNum; i++)
 		{
 			if (is_same(selectLayer->_playerSelect, kHeroList[i]))
@@ -250,7 +250,7 @@ protected:
 			realHeroVector.push_back(kHeroList[i]);
 		}
 
-		const char *hero;
+		string hero;
 		for (int i = 0; i < comCount; i++)
 		{
 			if (i < comOfPlayerGroupCount)
@@ -329,7 +329,7 @@ protected:
 		}
 	}
 
-	static inline const char *getRandomHeroExceptAll(const vector<const char *> &excepts, const char *defaultChar = "Naruto")
+	static inline const char *getRandomHeroExceptAll(const vector<string> &excepts, const char *defaultChar = "Naruto")
 	{
 		bool ret = true;
 		int i;
@@ -339,7 +339,7 @@ protected:
 			i = random(kHeroNum);
 			for (size_t j = 0; j < excepts.size(); j++)
 			{
-				if (is_same(kHeroList[i], excepts[j]))
+				if (excepts[j] == kHeroList[i])
 				{
 					ret = true;
 					continue;
@@ -360,7 +360,7 @@ protected:
 		return selectLayer->_playerSelect ? selectLayer->_playerSelect : getRandomHeroExcept(except);
 	}
 
-	inline const char *getSelectOrRandomHeroExceptAll(const vector<const char *> &excepts, const char *defaultChar = "Naruto")
+	inline const char *getSelectOrRandomHeroExceptAll(const vector<string> &excepts, const char *defaultChar = "Naruto")
 	{
 		return selectLayer->_playerSelect ? selectLayer->_playerSelect : getRandomHeroExceptAll(excepts, defaultChar);
 	}
