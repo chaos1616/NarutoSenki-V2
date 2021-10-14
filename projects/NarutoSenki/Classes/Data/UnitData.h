@@ -9,6 +9,8 @@ public:
 	string group;
 
 	CCPoint spawnPoint;
+
+	bool isInit = false;
 };
 
 enum class UnitKind

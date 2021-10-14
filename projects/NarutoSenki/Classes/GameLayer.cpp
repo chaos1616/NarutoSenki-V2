@@ -184,6 +184,8 @@ void GameLayer::initHeros()
 	auto handler = getGameModeHandler();
 	auto herosDataVector = handler->getHerosArray();
 
+	_isOugis2Game = true;
+
 	_CharacterArray = CCArray::create();
 	CCObject *pObject = nullptr;
 	int i = 0;
@@ -191,71 +193,47 @@ void GameLayer::initHeros()
 	CCTMXObjectGroup *group = currentMap->objectGroupNamed("object");
 	CCArray *objectArray = group->getObjects();
 
-	_isOugis2Game = true;
-
 	// 4v4
 	if (Cheats >= MaxCheats)
 	{
-		for (const auto &data : herosDataVector)
-		{
-			int mapPos = i;
-			if (data.group == Akatsuki)
-			{
-				if (mapPos <= MapPosCount)
-					mapPos += 4;
-			}
-			else
-			{
-				if (mapPos > MapPosCount)
-					mapPos -= 4;
-			}
-			if (mapPos > 0 && mapPos < 7)
-			{
-				CCObject *mapObject = objectArray->objectAtIndex(mapPos - 1);
-				auto mapdict = (CCDictionary *)mapObject;
-				int x = ((CCString *)mapdict->objectForKey("x"))->intValue();
-				int y = ((CCString *)mapdict->objectForKey("y"))->intValue();
-				spawnPoint = ccp(x, y);
-			}
-			else
-			{
-				if (mapPos == 0)
-					spawnPoint = ccp(432, 80);
-				else
-					spawnPoint = ccp(2608, 80);
-			}
+		auto &hero1 = herosDataVector.at(0);
+		auto &hero5 = herosDataVector.at(4);
 
-			auto hero = addHero(CCString::create(data.character), CCString::create(data.role), CCString::create(data.group), spawnPoint, i + 1);
-			_CharacterArray->addObject(hero);
-			i++;
-		}
+		spawnPoint = getCustomSpawnPoint(hero1);
+		auto hero = addHero(CCString::create(hero1.character), CCString::create(hero1.role), CCString::create(hero1.group), spawnPoint, 1);
+		_CharacterArray->addObject(hero);
+
+		spawnPoint = getCustomSpawnPoint(hero5);
+		hero = addHero(CCString::create(hero5.character), CCString::create(hero5.role), CCString::create(hero5.group), spawnPoint, 5);
+		_CharacterArray->addObject(hero);
 	}
-	else
+
+	for (const auto &data : herosDataVector)
 	{
-		for (const auto &data : herosDataVector)
+		if (data.isInit)
+			continue;
+
+		int mapPos = i;
+		if (data.group == Akatsuki)
 		{
-			int mapPos = i;
-			if (data.group == Akatsuki)
-			{
-				if (mapPos <= MapPosCount - 1)
-					mapPos += MapPosCount;
-			}
-			else
-			{
-				if (mapPos > MapPosCount - 1)
-					mapPos -= MapPosCount;
-			}
-
-			CCObject *mapObject = objectArray->objectAtIndex(mapPos);
-			auto mapdict = (CCDictionary *)mapObject;
-			int x = ((CCString *)mapdict->objectForKey("x"))->intValue();
-			int y = ((CCString *)mapdict->objectForKey("y"))->intValue();
-			spawnPoint = ccp(x, y);
-
-			auto hero = addHero(CCString::create(data.character), CCString::create(data.role), CCString::create(data.group), spawnPoint, i + 1);
-			_CharacterArray->addObject(hero);
-			i++;
+			if (mapPos <= MapPosCount - 1)
+				mapPos += MapPosCount;
 		}
+		else
+		{
+			if (mapPos > MapPosCount - 1)
+				mapPos -= MapPosCount;
+		}
+
+		CCObject *mapObject = objectArray->objectAtIndex(mapPos);
+		auto mapdict = (CCDictionary *)mapObject;
+		int x = ((CCString *)mapdict->objectForKey("x"))->intValue();
+		int y = ((CCString *)mapdict->objectForKey("y"))->intValue();
+		spawnPoint = ccp(x, y);
+
+		auto hero = addHero(CCString::create(data.character), CCString::create(data.role), CCString::create(data.group), spawnPoint, i + 1);
+		_CharacterArray->addObject(hero);
+		i++;
 	}
 
 	_CharacterArray->retain();
@@ -961,6 +939,12 @@ void GameLayer::invokeAllCallbacks()
 			callback();
 		callbackssList.clear();
 	}
+}
+
+CCPoint GameLayer::getCustomSpawnPoint(HeroData &data)
+{
+	data.isInit = true;
+	return data.group == Konoha ? ccp(432, 80) : ccp(2608, 80);
 }
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)

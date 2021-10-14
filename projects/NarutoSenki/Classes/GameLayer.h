@@ -2,6 +2,7 @@
 #include "GameOver.h"
 #include "GearLayer.h"
 #include "PauseLayer.h"
+#include "Data/UnitData.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #include "glfw3.h"
@@ -168,6 +169,8 @@ private:
 #endif
 
 	void invokeAllCallbacks();
+
+	inline CCPoint getCustomSpawnPoint(HeroData &data);
 
 	bool isHUDInitialized = false;
 	std::vector<OnHUDInitializedCallback> callbackssList;
