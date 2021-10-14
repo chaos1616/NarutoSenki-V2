@@ -8,8 +8,6 @@ class GameModeLayer : public CCLayer
 public:
 	static const int kMenuCount = 5;
 
-	CREATE_FUNC(GameModeLayer);
-
 	bool init();
 	void backToMenu(CCObject *sender);
 
@@ -17,6 +15,8 @@ public:
 	bool pushMode(const GameModeData &data);
 	void removeMode(const GameModeData &data);
 	void selectMode(GameMode mode);
+
+	CREATE_FUNC(GameModeLayer);
 
 private:
 	inline bool setSelect(GameMode mode);
