@@ -897,11 +897,11 @@ void CharacterBase::acceptAttack(CCObject *object)
 										}
 										else if (attacker->_master->isCharacter("Shikamaru"))
 										{
-											bool pianyi = false;
+											bool underAttack = false;
 											if (attacker->isCharacter("KageHand"))
 											{
-												pianyi = hardHurt(6000, false, false, true, false);
-												if (pianyi)
+												underAttack = hardHurt(6000, false, false, true, false);
+												if (underAttack)
 												{
 													attacker->stopAllActions();
 													attacker->schedule(schedule_selector(CharacterBase::getSticker), 0.1f);
@@ -913,10 +913,10 @@ void CharacterBase::acceptAttack(CCObject *object)
 											else if (attacker->isCharacter("QuanRen") ||
 													 attacker->isCharacter("KageBom"))
 											{
-												pianyi = hardHurt(3000, false, false, true, false);
+												underAttack = hardHurt(3000, false, false, true, false);
 											}
 
-											if (pianyi)
+											if (underAttack)
 											{
 												attacker->_isCatchOne = true;
 												setPosition(ccp(attacker->getPositionX(), attacker->getPositionY() + 1));
@@ -926,17 +926,17 @@ void CharacterBase::acceptAttack(CCObject *object)
 										else if (attacker->_master->isCharacter("Itachi") ||
 												 attacker->_master->isCharacter("Chiyo"))
 										{
-											bool pianyi = false;
+											bool underAttack = false;
 
 											if (attacker->_master->isCharacter("Chiyo"))
 											{
-												pianyi = hardHurt(2000, false, false, true, false);
+												underAttack = hardHurt(2000, false, false, true, false);
 											}
 											else
 											{
-												pianyi = hardHurt(3000, false, false, true, false);
+												underAttack = hardHurt(3000, false, false, true, false);
 											}
-											if (pianyi)
+											if (underAttack)
 											{
 												attacker->_isCatchOne = true;
 												setPosition(ccp(attacker->getPositionX() + 2, attacker->getPositionY() - 2));
@@ -945,12 +945,12 @@ void CharacterBase::acceptAttack(CCObject *object)
 										}
 										else if (attacker->_master->isCharacter("Nagato"))
 										{
-											bool pianyi = false;
+											bool underAttack = false;
 
 											if (attacker->isCharacter("NarakaPath"))
-												pianyi = hardHurt(2000, false, false, true, false);
+												underAttack = hardHurt(2000, false, false, true, false);
 
-											if (pianyi)
+											if (underAttack)
 											{
 												attacker->_isCatchOne = true;
 												setPosition(ccp(getPositionX() + (_isFlipped ? -30 : 30), getPositionY() - 10));
@@ -971,15 +971,15 @@ void CharacterBase::acceptAttack(CCObject *object)
 										}
 										else if (attacker->isCharacter("Kakuzu"))
 										{
-											bool pianyi = false;
+											bool underAttack = false;
 
 											if (!_isArmored)
 											{
 												setKnockLength(1);
 											}
-											pianyi = hardHurt(1500, false, false, true, true);
+											underAttack = hardHurt(1500, false, false, true, true);
 
-											if (pianyi)
+											if (underAttack)
 											{
 												attacker->_isCatchOne = true;
 												setPosition(ccp(attacker->getPositionX() + (attacker->_isFlipped ? -28 : 28), attacker->getPositionY() - 1));
