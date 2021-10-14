@@ -239,10 +239,8 @@ public:
 	bool			_hurtFromLeft;
 	bool			_hurtFromRight;
 
-
-	CC_SYNTHESIZE(CCArray*,_damageArray,DamageArray);
-
-	uint32_t		damageEffectCount;
+	vector<CCLabelBMFont *>	_damageArray;
+	uint32_t				damageEffectCount;
 	CC_SYNTHESIZE(CCArray*,_monsterArray,MonsterArray);
 
 	//movement

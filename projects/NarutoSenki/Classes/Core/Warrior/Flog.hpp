@@ -21,7 +21,6 @@ public:
 	{
 		CC_SAFE_RELEASE(callValue);
 		CC_SAFE_RELEASE(_nattackType);
-		CC_SAFE_RELEASE(_damageArray);
 	}
 
 	bool init()
@@ -105,9 +104,6 @@ public:
 		setnAttackValue(tmpValue);
 		_nattackType->retain();
 		nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-		_damageArray = CCArray::create();
-		_damageArray->retain();
 
 		setCoinValue(50);
 

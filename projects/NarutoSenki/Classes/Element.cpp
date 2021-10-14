@@ -20,7 +20,6 @@ HeroElement::~HeroElement()
 	CC_SAFE_RELEASE(_spcattackType1);
 	CC_SAFE_RELEASE(_spcattackType2);
 	CC_SAFE_RELEASE(_spcattackType3);
-	CC_SAFE_RELEASE(_damageArray);
 	CC_SAFE_RELEASE(_monsterArray);
 	CC_SAFE_DELETE(skillSPC1Array);
 	CC_SAFE_RELEASE(skillSPC2Array);
@@ -433,7 +432,6 @@ Monster::~Monster()
 {
 	CC_SAFE_RELEASE(callValue);
 	CC_SAFE_RELEASE(_nattackType);
-	CC_SAFE_RELEASE(_damageArray);
 }
 
 bool Monster::init()

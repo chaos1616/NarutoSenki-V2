@@ -106,7 +106,6 @@ CharacterBase::CharacterBase()
 
 	_effectType = nullptr;
 
-	_damageArray = nullptr;
 	_monsterArray = nullptr;
 
 	_originY = 0;
@@ -1674,7 +1673,7 @@ void CharacterBase::removeCoinDisplay(CCNode *sender, void *data)
 
 void CharacterBase::setDamgeDisplay(int value, const char *type)
 {
-	if (_damageArray->count() < 6)
+	if (_damageArray.size() < 6)
 	{
 		auto damageFont = CCLabelBMFont::create(to_cstr(value), CCString::createWithFormat("Fonts/%s.fnt", type)->getCString());
 		damageFont->setAnchorPoint(ccp(0.5, 0.5));
@@ -1691,7 +1690,7 @@ void CharacterBase::setDamgeDisplay(int value, const char *type)
 		}
 
 		getGameLayer()->addChild(damageFont, currentNumberTag);
-		_damageArray->addObject(damageFont);
+		_damageArray.push_back(damageFont);
 
 		auto sd = CCScaleBy::create(0.2f, 0.5f);
 		auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::removeDamageDisplay));
@@ -1713,13 +1712,11 @@ void CharacterBase::setDamgeDisplay(int value, const char *type)
 
 void CharacterBase::removeDamageDisplay()
 {
-	if (_damageArray && _damageArray->count() > 0)
+	if (_damageArray.size() > 0)
 	{
-		CCObject *pObject = _damageArray->objectAtIndex(0);
-		auto damageFont = (CCLabelBMFont *)pObject;
+		auto damageFont = _damageArray.at(0);
 		damageFont->removeFromParent();
-		_damageArray->removeObjectAtIndex(0);
-		damageFont = nullptr;
+		std::erase(_damageArray, damageFont);
 	}
 }
 

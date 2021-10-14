@@ -239,9 +239,6 @@ public:
 			_isArmored = false;
 		}
 
-		_damageArray = CCArray::create();
-		_damageArray->retain();
-
 		if (getLV() == 1 && !getCoin())
 		{
 			setGearArray(CCArray::create());
