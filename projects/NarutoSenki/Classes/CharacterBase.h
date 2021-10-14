@@ -54,11 +54,10 @@ public:
 	bool				_isCatchOne;
 	bool				_isHealling;
 	bool				_isVisable;
-	//buff
-
 
 	CC_SYNTHESIZE(int,_charNO,CharNO);
 
+	//buff
 	uint32_t			_healBuffValue;
 	uint32_t			_dehealBuffValue;
 	uint32_t			_powerUPBuffValue;
@@ -162,12 +161,12 @@ public:
 	CC_SYNTHESIZE(CharacterBase*,_secmaster,SecMaster);
 
 	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_nattackValue,nAttackValue);
-	CC_SYNTHESIZE(CCString*,_nattackType,nAttackType);
+	PROP_REF(string,_nattackType,nAttackType);
 	int				_nattackRangeX;
 	int				_nattackRangeY;
 
 	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_sattackValue1,sAttackValue1);
-	CC_SYNTHESIZE(CCString*,_sattackType1,sAttack1Type);
+	PROP_REF(string,_sattackType1,SAttackType1);
 	int				_sattackRangeX1;
 	int				_sattackRangeY1;
 	uint32_t		_sattackcooldown1;
@@ -175,12 +174,12 @@ public:
 	int				_sattackCombatPoint1;
 
 	uint32_t		 _attackValue;
-	CC_SYNTHESIZE(CCString*,_attackType,AttackType);
+	PROP_REF(string,_attackType,AttackType);
 	int				_attackRangeX;
 	int				_attackRangeY;
 
 	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_sattackValue2,sAttackValue2);
-	CC_SYNTHESIZE(CCString*,_sattackType2,sAttack2Type);
+	PROP_REF(string,_sattackType2,SAttackType2);
 	int				_sattackRangeX2;
 	int				_sattackRangeY2;
 	uint32_t		_sattackcooldown2;
@@ -188,7 +187,7 @@ public:
 	int				_sattackCombatPoint2;
 
 	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_sattackValue3,sAttackValue3);
-	CC_SYNTHESIZE(CCString*,_sattackType3,sAttack3Type);
+	PROP_REF(string,_sattackType3,SAttackType3);
 	int				_sattackRangeX3;
 	int				_sattackRangeY3;
 	uint32_t		_sattackcooldown3;
@@ -196,7 +195,7 @@ public:
 	int				_sattackCombatPoint3;
 
 	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_sattackValue4,sAttackValue4);
-	CC_SYNTHESIZE(CCString*,_sattackType4,sAttack4Type);
+	PROP_REF(string,_sattackType4,SAttackType4);
 	int				_sattackRangeX4;
 	int				_sattackRangeY4;
 	uint32_t		_sattackcooldown4;
@@ -204,7 +203,7 @@ public:
 	int				_sattackCombatPoint4;
 
 	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_sattackValue5,sAttackValue5);
-	CC_SYNTHESIZE(CCString*,_sattackType5,sAttack5Type);
+	PROP_REF(string,_sattackType5,SAttackType5);
 	int				_sattackRangeX5;
 	int				_sattackRangeY5;
 	uint32_t		_sattackcooldown5;
@@ -215,19 +214,19 @@ public:
 	int friendCombatPoint;
 
 	CC_SYNTHESIZE_RETAIN(CCString*,_spcattackValue1,spcAttackValue1);
-	CC_SYNTHESIZE(CCString*,_spcattackType1,spcAttack1Type);
+	PROP_REF(string,_spcattackType1,SpcAttack1Type);
 	int				_spcattackRangeX1;
 	int				_spcattackRangeY1;
 	uint32_t		_spcattackcooldown1;
 
 	CC_SYNTHESIZE_RETAIN(CCString*,_spcattackValue2,spcAttackValue2);
-	CC_SYNTHESIZE(CCString*,_spcattackType2,spcAttack2Type);
+	PROP_REF(string,_spcattackType2,SpcAttack2Type);
 	int				_spcattackRangeX2;
 	int				_spcattackRangeY2;
 	uint32_t		_spcattackcooldown2;
 
 	CC_SYNTHESIZE_RETAIN(CCString*,_spcattackValue3,spcAttackValue3);
-	CC_SYNTHESIZE(CCString*,_spcattackType3,spcAttack3Type);
+	PROP_REF(string,_spcattackType3,SpcAttack3Type);
 	int				_spcattackRangeX3;
 	int				_spcattackRangeY3;
 	uint32_t		_spcattackcooldown3;
@@ -384,6 +383,14 @@ public:
 	void				setSkillEffect(CCNode* sender,void* data);
 	virtual void		setRestore2(float dt);
 
+	// TODO: Upgrade cocos2d-x to V4
+	inline void			readData(CCArray* tmpData,string &attackType,CCString* &attackValue,int &attackRangeX,int &attackRangeY,uint32_t &cooldown,int &combatPoint)
+	{
+		CCString *tmpType;
+		readData(tmpData, tmpType, attackValue, attackRangeX, attackRangeY, cooldown, combatPoint);
+		attackType = tmpType->m_sString;
+		tmpType->release();
+	}
 	void				readData(CCArray* tmpData,CCString* &attackType,CCString* &attackValue,int &attackRangeX,int &attackRangeY,uint32_t &cooldown,int &combatPoint);
 	CCAction*			createAnimation(CCArray* ationArray,float fps,bool isRepeat,bool isReturn);
 

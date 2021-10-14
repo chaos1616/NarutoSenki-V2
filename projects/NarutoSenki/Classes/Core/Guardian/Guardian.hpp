@@ -90,7 +90,7 @@ class Guardian : public Hero
 		setnAttackValue(to_ccstring(getNAttackValue() + 700));
 		_nattackRangeX = 0;
 		_nattackRangeY = 48;
-		_originNAttackType = _nattackType->m_sString;
+		_originNAttackType = _nattackType;
 		_nattackType = _spcattackType2;
 
 		_isArmored = true;

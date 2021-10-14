@@ -203,7 +203,7 @@ class Choji : public Hero
 		setIdleAction(createAnimation(skillSPC4Array, 5.0f, true, false));
 		setWalkAction(createAnimation(skillSPC2Array, 5.0f, true, false));
 
-		_originNAttackType = _nattackType->m_sString;
+		_originNAttackType = _nattackType;
 		_nattackType = _spcattackType3;
 
 		setnAttackValue(to_ccstring(getNAttackValue() + 460));
@@ -225,7 +225,7 @@ class Choji : public Hero
 		setnAttackValue(to_ccstring(getNAttackValue() - 460));
 		_nattackRangeX = 16;
 		_nattackRangeY = 48;
-		_nattackType->m_sString = _originNAttackType;
+		_nattackType = _originNAttackType;
 
 		_isOnlySkillLocked = false;
 		_isArmored = false;

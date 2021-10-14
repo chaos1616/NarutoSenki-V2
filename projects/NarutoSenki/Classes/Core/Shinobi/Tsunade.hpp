@@ -186,7 +186,7 @@ class Tsunade : public Hero
 		_isOnlySkillLocked = true;
 		_nattackRangeX = 32;
 		_nattackRangeY = 48;
-		_originNAttackType = _nattackType->m_sString;
+		_originNAttackType = _nattackType;
 		_nattackType = _spcattackType3;
 
 		_isArmored = true;
@@ -205,7 +205,7 @@ class Tsunade : public Hero
 		setnAttackValue(to_ccstring(getNAttackValue() - 250));
 		_nattackRangeX = 16;
 		_nattackRangeY = 48;
-		_nattackType->m_sString = _originNAttackType;
+		_nattackType = _originNAttackType;
 
 		_isOnlySkillLocked = false;
 

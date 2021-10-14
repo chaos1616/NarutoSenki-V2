@@ -20,7 +20,6 @@ public:
 	~Flog()
 	{
 		CC_SAFE_RELEASE(callValue);
-		CC_SAFE_RELEASE(_nattackType);
 	}
 
 	bool init()
@@ -102,7 +101,6 @@ public:
 		CCString *tmpValue;
 		readData(tmpData, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
 		setnAttackValue(tmpValue);
-		_nattackType->retain();
 		nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
 		setCoinValue(50);

@@ -43,7 +43,6 @@ public:
 
 		readData(tmpData, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
 		setnAttackValue(tmpValue);
-		_nattackType->retain();
 		nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
 		if (isCharacter("Amaterasu"))

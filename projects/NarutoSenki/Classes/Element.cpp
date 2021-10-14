@@ -11,15 +11,6 @@ HeroElement::HeroElement()
 HeroElement::~HeroElement()
 {
 	CC_SAFE_RELEASE(callValue);
-	CC_SAFE_RELEASE(_nattackType);
-	CC_SAFE_RELEASE(_sattackType1);
-	CC_SAFE_RELEASE(_sattackType2);
-	CC_SAFE_RELEASE(_sattackType3);
-	CC_SAFE_RELEASE(_sattackType4);
-	CC_SAFE_RELEASE(_sattackType5);
-	CC_SAFE_RELEASE(_spcattackType1);
-	CC_SAFE_RELEASE(_spcattackType2);
-	CC_SAFE_RELEASE(_spcattackType3);
 	CC_SAFE_RELEASE(_monsterArray);
 	CC_SAFE_DELETE(skillSPC1Array);
 	CC_SAFE_RELEASE(skillSPC2Array);
@@ -431,7 +422,6 @@ Monster::Monster()
 Monster::~Monster()
 {
 	CC_SAFE_RELEASE(callValue);
-	CC_SAFE_RELEASE(_nattackType);
 }
 
 bool Monster::init()
@@ -500,7 +490,6 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	CCString *tmpValue;
 	readData(tmpData, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
 	setnAttackValue(tmpValue);
-	_nattackType->retain();
 	nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
 	setCoinValue(50);

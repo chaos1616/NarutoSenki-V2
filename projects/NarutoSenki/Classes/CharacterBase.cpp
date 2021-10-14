@@ -461,7 +461,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 		if (isTower())
 		{
 			bool isHit = false;
-			if (is_same(attacker->_attackType->getCString(), "nAttack") &&
+			if (attacker->_attackType == "nAttack" &&
 				!is_same(attacker->_effectType, "f_hit") &&
 				!is_same(attacker->_effectType, "c_hit") &&
 				!is_same(attacker->_effectType, "o_hit") &&
@@ -621,7 +621,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 			float tempRange1 = attacker->_attackRangeX + attacker->getContentSize().width / 2 + getContentSize().width / 2;
 
-			if (is_same(attacker->_attackType->getCString(), "aAttack"))
+			if (attacker->_attackType == "aAttack")
 			{
 				if (abs(distanceX) <= tempRange1)
 				{
@@ -2382,28 +2382,27 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 {
 	int buffValue = *((int *)&data);
 	float buffStayTime = _attackRangeY;
-	auto attackType = _attackType->getCString();
 
-	if (is_same(attackType, "hBuff"))
+	if (_attackType == "hBuff")
 	{
 		_healBuffValue = buffValue;
 		schedule(schedule_selector(CharacterBase::healBuff), 1);
 		setBuffEffect("hBuff");
 	}
-	else if (is_same(attackType, "sBuff") ||
-			 is_same(attackType, "rsBuff") ||
-			 is_same(attackType, "hsBuff") ||
-			 is_same(attackType, "dcBuff"))
+	else if (_attackType == "sBuff" ||
+			 _attackType == "rsBuff" ||
+			 _attackType == "hsBuff" ||
+			 _attackType == "dcBuff")
 	{
 		_skillUPBuffValue = buffValue;
 		scheduleOnce(schedule_selector(CharacterBase::disableBuff), buffStayTime);
-		setBuffEffect(attackType);
+		setBuffEffect(_attackType.c_str());
 
 		setsAttackValue1(to_ccstring(getSAttackValue1() + _skillUPBuffValue));
 		setsAttackValue2(to_ccstring(getSAttackValue2() + _skillUPBuffValue));
 		setsAttackValue3(to_ccstring(getSAttackValue3() + _skillUPBuffValue));
 
-		if (is_same(attackType, "hsBuff"))
+		if (_attackType == "hsBuff")
 		{
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
@@ -2438,7 +2437,7 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 			}
 		}
 	}
-	else if (is_same(attackType, "cBuff"))
+	else if (_attackType == "cBuff")
 	{
 		_skillChangeBuffValue = buffValue;
 
@@ -2504,16 +2503,16 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 
 		changeAction();
 	}
-	else if (is_same(attackType, "tBuff"))
+	else if (_attackType == "tBuff")
 	{
 		_skillChangeBuffValue = buffValue;
 		scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
 		scheduleOnce(schedule_selector(CharacterBase::disableBuff), buffStayTime);
-		setBuffEffect(attackType);
+		setBuffEffect(_attackType.c_str());
 
 		changeAction();
 	}
-	else if (is_same(attackType, "gBuff"))
+	else if (_attackType == "gBuff")
 	{
 		_skillChangeBuffValue = buffValue;
 		if (isCharacter("Nagato"))
@@ -2525,7 +2524,7 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 		}
 		changeAction2();
 	}
-	else if (is_same(attackType, "stBuff"))
+	else if (_attackType == "stBuff")
 	{
 		if (isPlayer() || is_same(getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()))
 			setOpacity(150);
@@ -2541,8 +2540,8 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 		_isVisable = false;
 		scheduleOnce(schedule_selector(CharacterBase::disableBuff), buffStayTime);
 	}
-	else if (is_same(attackType, "GroupHeal") ||
-			 is_same(attackType, "GroupBuff"))
+	else if (_attackType == "GroupHeal" ||
+			 _attackType == "GroupBuff")
 	{
 		if (_healBuffValue)
 			_healBuffValue += buffValue;
@@ -2553,7 +2552,7 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 	}
 
 	if (isPlayer())
-		getGameLayer()->getHudLayer()->setBuffDisplay(attackType, buffStayTime);
+		getGameLayer()->getHudLayer()->setBuffDisplay(_attackType.c_str(), buffStayTime);
 }
 
 void CharacterBase::setBuffEffect(const char *type)
@@ -2869,7 +2868,7 @@ void CharacterBase::changeAction2()
 	if (isCharacter("Minato"))
 	{
 		_attackValue = getSpcAttackValue2();
-		setAttackType(getspcAttack2Type());
+		setAttackType(getSpcAttack2Type());
 		_attackRangeX = _spcattackRangeX2;
 		_attackRangeY = _spcattackRangeY2;
 
@@ -4231,7 +4230,8 @@ void CharacterBase::idle()
 
 		if (!getGameLayer()->_isAttackButtonRelease &&
 			_isPlayer &&
-			_attackType && !_isAllAttackLocked)
+			!_attackType.empty() &&
+			!_isAllAttackLocked)
 		{
 			getGameLayer()->setSkillFinish(true);
 			attack(NAttack);

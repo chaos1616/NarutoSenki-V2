@@ -228,7 +228,7 @@ class Naruto : public Hero
 
 		_nattackRangeX = _spcattackRangeX3;
 		_nattackRangeY = _spcattackRangeY3;
-		_originNAttackType = _nattackType->m_sString;
+		_originNAttackType = _nattackType;
 		_nattackType = _spcattackType3;
 
 		_gardValue += 5000;
@@ -258,7 +258,7 @@ class Naruto : public Hero
 
 		_nattackRangeX = 16;
 		_nattackRangeY = 48;
-		_nattackType->m_sString = _originNAttackType;
+		_nattackType = _originNAttackType;
 		_gardValue -= 5000;
 		_isArmored = false;
 
@@ -496,7 +496,7 @@ class Naruto : public Hero
 		auto clone = create<SageNarutoClone>(getCharacter(), CCString::create(kRoleClone), getGroup());
 		clone->setSkill1Action(clone->createAnimation(clone->skillSPC1Array, 10.0f, false, true));
 		clone->setsAttackValue1(getSAttackValue1Str());
-		clone->setsAttack1Type(_spcattackType1);
+		clone->setSAttackType1(_spcattackType1);
 		clone->_sattackcooldown1 = _spcattackcooldown1;
 		return clone;
 	}
