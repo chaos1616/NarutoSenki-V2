@@ -53,7 +53,7 @@ public:
 
 	vector<ActionData> actions;
 
-	static UnitMetadata &Parse(const std::string &filePath)
+	static UnitMetadata &Parse(const string &filePath)
 	{
 		UnitMetadata metadata;
 

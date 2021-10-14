@@ -24,7 +24,7 @@ public:
 	CCMenuItem *upload_btn;
 
 	//CC_SYNTHESIZE_RETAIN(CCString*,detailRecord,DetialRecord);
-	std::string detailRecord;
+	string detailRecord;
 	float finnalScore;
 
 	static GameOver *create(CCRenderTexture *snapshoot);

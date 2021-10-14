@@ -2970,7 +2970,7 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 {
 	auto file = (CCDictionary *)data;
 	CCString *bulletName = (CCString *)(file->objectForKey(1));
-	std::string bulletType = bulletName->m_sString;
+	string bulletType = bulletName->m_sString;
 
 	Bullet *bullet = Bullet::create();
 	bullet->setID(bulletName, CCString::create("Bullet"), _group);
@@ -4472,7 +4472,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 		{
 			_isSticking = true;
 			auto attacker = _slayer;
-			std::string path = getCharacter()->getCString();
+			string path = getCharacter()->getCString();
 			if (attacker->isCharacter("Kakuzu"))
 				path += "_AirHurt_02";
 			else

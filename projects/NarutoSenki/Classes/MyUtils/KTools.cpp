@@ -3,10 +3,10 @@
 #include "../../../cocos2dx/platform/android/jni/JniHelper.h"
 #endif
 
-std::string KTools::getKeycode(std::string path)
+string KTools::getKeycode(string path)
 {
-	std::string strKey = CMD5Checksum::GetMD5(path);
-	std::string strKeyCode = CCString::createWithFormat("%s,%s", strKey.substr(16, 5).c_str(), strKey.substr(6, 5).c_str())->getCString();
+	string strKey = CMD5Checksum::GetMD5(path);
+	string strKeyCode = CCString::createWithFormat("%s,%s", strKey.substr(16, 5).c_str(), strKey.substr(6, 5).c_str())->getCString();
 	return strKeyCode;
 }
 
@@ -105,7 +105,7 @@ int isExisted(void *para, int n_column, char **column_value, char **column_name)
 	return 0;
 }
 
-void KTools::encode(std::string &str, int radomKey)
+void KTools::encode(string &str, int radomKey)
 {
 	for (size_t i = 0; i < str.length(); i++)
 	{
@@ -116,7 +116,7 @@ void KTools::encode(std::string &str, int radomKey)
 	str += radomKey;
 }
 
-void KTools::decode(std::string &str)
+void KTools::decode(string &str)
 {
 	size_t num = str.length() - 1;
 	int key = str[num];
@@ -134,7 +134,7 @@ void KTools::initTableInDB()
 {
 	sqlite3 *pDB = nullptr;
 	char *errorMsg = nullptr;
-	std::string path = CCFileUtils::sharedFileUtils()->getWritablePath() + "sql.db";
+	string path = CCFileUtils::sharedFileUtils()->getWritablePath() + "sql.db";
 	int result = sqlite3_open(path.c_str(), &pDB);
 	if (result != SQLITE_OK)
 	{
@@ -180,19 +180,19 @@ void KTools::initTableInDB()
 	{
 		for (int i = 0; i < kHeroNum; i++)
 		{
-			std::string name = kHeroList[i];
+			string name = kHeroList[i];
 			int key = rand() % 50 + 40;
 			encode(name, key);
 
-			std::string column1DB = "0";
+			string column1DB = "0";
 			key = rand() % 60 + 40;
 			encode(column1DB, key);
 
-			std::string column2DB = "0";
+			string column2DB = "0";
 			key = rand() % 60 + 40;
 			encode(column2DB, key);
 
-			std::string column3DB = "";
+			string column3DB = "";
 			key = rand() % 60 + 40;
 			encode(column3DB, key);
 
@@ -215,7 +215,7 @@ void KTools::initColumeInDB()
 {
 	sqlite3 *pDB = nullptr;
 	char *errorMsg = nullptr;
-	std::string path = CCFileUtils::sharedFileUtils()->getWritablePath() + "sql.db";
+	string path = CCFileUtils::sharedFileUtils()->getWritablePath() + "sql.db";
 	int result = sqlite3_open(path.c_str(), &pDB);
 	if (result != SQLITE_OK)
 	{
@@ -229,10 +229,10 @@ void KTools::initColumeInDB()
 
 	auto sql = "select coin from GameRecord";
 	sqlite3_get_table(pDB, sql, &result2, &row, &column, nullptr);
-	std::string str2 = result2[1];
+	string str2 = result2[1];
 	decode(str2);
 
-	std::string str3 = "uuuuu<";
+	string str3 = "uuuuu<";
 	decode(str3);
 	if (to_int(str2.c_str()) > to_int(str3.c_str()))
 	{
@@ -251,7 +251,7 @@ void KTools::prepareFileOGG(const char *listName, bool unload /* =false */)
 
 	//MD5
 
-	std::string md5Path = "Audio/list.xml";
+	string md5Path = "Audio/list.xml";
 
 	bool isExisted = CCFileUtils::sharedFileUtils()->isFileExist(md5Path);
 
@@ -294,7 +294,7 @@ sqlite3 *KTools::prepareTableInDB()
 	sqlite3 *pDB = nullptr;
 	char *errorMsg = nullptr;
 
-	std::string path = CCFileUtils::sharedFileUtils()->getWritablePath() + "sql.db";
+	string path = CCFileUtils::sharedFileUtils()->getWritablePath() + "sql.db";
 	int result = sqlite3_open(path.c_str(), &pDB);
 
 	if (result != SQLITE_OK)
@@ -313,7 +313,7 @@ bool KTools::saveToSQLite(const char *table /* ="GameRecord"*/, const char *colu
 	if (pDB != nullptr)
 	{
 		int key = rand() % 60 + 40;
-		std::string coin = value;
+		string coin = value;
 		encode(coin, key);
 
 		auto sql = CCString::createWithFormat("update %s set %s='%s'", table, column, coin.c_str())->getCString();
@@ -332,7 +332,7 @@ bool KTools::saveToSQLite(const char *table /* ="GameRecord"*/, const char *colu
 	sqlite3_close(pDB);
 }
 
-std::string KTools::readFromSQLite(const char *table /* ="GameRecord" */, const char *column /* =nullptr */, const char *value /* =nullptr */)
+string KTools::readFromSQLite(const char *table /* ="GameRecord" */, const char *column /* =nullptr */, const char *value /* =nullptr */)
 {
 	sqlite3 *pDB = prepareTableInDB();
 
@@ -345,7 +345,7 @@ std::string KTools::readFromSQLite(const char *table /* ="GameRecord" */, const 
 
 		sqlite3_get_table(pDB, sql, &result, &row, &column, nullptr);
 
-		std::string str = result[1];
+		string str = result[1];
 		decode(str);
 		sqlite3_free_table(result);
 		sqlite3_close(pDB);
@@ -355,7 +355,7 @@ std::string KTools::readFromSQLite(const char *table /* ="GameRecord" */, const 
 	return "";
 }
 
-std::string KTools::readSQLite(const char *table, const char *column, const char *value, const char *targetColumn)
+string KTools::readSQLite(const char *table, const char *column, const char *value, const char *targetColumn)
 {
 	sqlite3 *pDB = prepareTableInDB();
 
@@ -369,10 +369,10 @@ std::string KTools::readSQLite(const char *table, const char *column, const char
 
 		sqlite3_get_table(pDB, sql, &result, &row, &column, nullptr);
 
-		std::string target;
+		string target;
 		for (int i = 0; i <= row * 2; i++)
 		{
-			std::string str = result[i];
+			string str = result[i];
 
 			decode(str);
 			if (is_same(str.c_str(), value))
@@ -412,11 +412,11 @@ void KTools::saveSQLite(const char *table, const char *relatedColumn, const char
 
 		sqlite3_get_table(pDB, sql, &result, &row, &column, nullptr);
 
-		std::string target;
-		std::string columnValue;
+		string target;
+		string columnValue;
 		for (int i = 0; i <= row * 2; i++)
 		{
-			std::string str = result[i];
+			string str = result[i];
 			decode(str);
 			if (is_same(str.c_str(), value))
 			{
@@ -427,15 +427,15 @@ void KTools::saveSQLite(const char *table, const char *relatedColumn, const char
 			}
 		}
 
-		std::string saveValue;
+		string saveValue;
 		if (isPlus)
 		{
-			saveValue = std::string(targetValue) + target;
+			saveValue = string(targetValue) + target;
 			sql = CCString::createWithFormat(("update %s set %s='%s' where %s='%s'"), table, targetColumn, saveValue.c_str(), relatedColumn, columnValue.c_str())->getCString();
 		}
 		else
 		{
-			saveValue = std::string(targetValue);
+			saveValue = string(targetValue);
 		}
 		int key = rand() % 50 + 40;
 		encode(saveValue, key);
@@ -447,10 +447,10 @@ void KTools::saveSQLite(const char *table, const char *relatedColumn, const char
 			char **result2;
 			sql = "select coin from GameRecord";
 			sqlite3_get_table(pDB, sql, &result2, &row, &column, nullptr);
-			std::string str2 = result2[1];
+			string str2 = result2[1];
 			decode(str2);
 
-			std::string str3 = "uuuuu<";
+			string str3 = "uuuuu<";
 			decode(str3);
 
 			if (to_int(str2.c_str()) > to_int(str3.c_str()))
@@ -486,15 +486,15 @@ const char *KTools::readRecordTimeFromSQL(const char *heroName)
 	return recordTime;
 }
 
-std::string KTools::encodeData(std::string data)
+string KTools::encodeData(string data)
 {
 	//SHA1 *sha1;
 	//unsigned char *digest;
-	std::string dataMD5 = CMD5Checksum::GetMD5OfString(data);
+	string dataMD5 = CMD5Checksum::GetMD5OfString(data);
 
 	//sha1=new SHA1;
 	////sha1->addBytes( "goldlion" ,strlen( "goldlion" ));//
-	//std::string result=(char*) digest;
+	//string result=(char*) digest;
 	//delete sha1;
 	//free(digest);
 	return dataMD5;

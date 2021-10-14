@@ -23,6 +23,6 @@ private:
 
 	CCLabelTTF *menuLabel;
 
-	std::vector<ModeMenuButton *> menuButtons = std::vector<ModeMenuButton *>(GameMode::_Internal_Max_Length);
-	std::vector<GameModeData> modes = std::vector<GameModeData>(GameMode::_Internal_Max_Length);
+	vector<ModeMenuButton *> menuButtons = vector<ModeMenuButton *>(GameMode::_Internal_Max_Length);
+	vector<GameModeData> modes = vector<GameModeData>(GameMode::_Internal_Max_Length);
 };

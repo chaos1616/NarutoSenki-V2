@@ -61,9 +61,3 @@ static inline CCSpriteFrame *getSrpiteFrame(const char *name)
 {
 	return CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name);
 }
-
-template <typename To, typename From>
-To container_cast(From &&from)
-{
-	return To(std::begin(from), std::end(from));
-}

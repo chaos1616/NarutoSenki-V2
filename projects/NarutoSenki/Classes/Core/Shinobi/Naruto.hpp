@@ -736,5 +736,5 @@ class Naruto : public Hero
 	}
 
 private:
-	std::string _originNAttackType;
+	string _originNAttackType;
 };

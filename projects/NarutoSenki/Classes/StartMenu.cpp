@@ -658,7 +658,7 @@ void StartMenu::scrollMenu(int posY)
 			}
 		}
 	}
-	std::string src = "";
+	string src = "";
 	CCARRAY_FOREACH(_menu_array, pObject)
 	{
 		auto menu = (MenuButton *)pObject;

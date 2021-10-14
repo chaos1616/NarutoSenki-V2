@@ -31,8 +31,8 @@ enum GameMode
 struct GameModeData
 {
 public:
-	std::string title;
-	std::string description;
+	string title;
+	string description;
 
 	bool isLocked;
 	bool useMask2;
@@ -49,7 +49,7 @@ struct GameData
 	bool isHardCore = true;
 	bool isRandomChar = false;
 
-	std::string playerGroup;
+	string playerGroup;
 };
 
 class IGameModeHandler
@@ -59,7 +59,7 @@ class IGameModeHandler
 	friend class SelectLayer;
 
 private:
-	std::vector<HeroData> heroDataVector;
+	vector<HeroData> heroDataVector;
 	// map
 	int mapId = 0;
 	// tower
@@ -87,7 +87,7 @@ protected:
 	// game
 	GameData gd;
 	int oldCheats;
-	std::vector<const char *> heroVector;
+	vector<const char *> heroVector;
 	// player
 	const char *playerGroup = nullptr;
 
@@ -110,7 +110,7 @@ public:
 	inline const GameData &getGameData() { return gd; }
 	inline int getOldCheats() { return oldCheats; }
 	inline int resetCheats() { return Cheats = oldCheats; }
-	inline const std::vector<HeroData> &getHerosArray() { return heroDataVector; }
+	inline const vector<HeroData> &getHerosArray() { return heroDataVector; }
 
 protected:
 	IGameModeHandler()
@@ -163,12 +163,12 @@ protected:
 			addHero(name, role, group, lv);
 	}
 
-	inline void addKonohaHero(const std::vector<const char *> &heros, const char *name, const char *role, uint32_t lv = 1)
+	inline void addKonohaHero(const vector<const char *> &heros, const char *name, const char *role, uint32_t lv = 1)
 	{
 		addHero(name, role, Konoha, lv);
 	}
 
-	inline void addAkatsukiHero(const std::vector<const char *> &heros, const char *name, const char *role, uint32_t lv = 1)
+	inline void addAkatsukiHero(const vector<const char *> &heros, const char *name, const char *role, uint32_t lv = 1)
 	{
 		addHero(name, role, Akatsuki, lv);
 	}
@@ -207,7 +207,7 @@ protected:
 			selectLayer->_com3Select = com3Select;
 
 		// init player hero
-		std::string tmpChar;
+		string tmpChar;
 		if (selectLayer->_playerSelect)
 		{
 			tmpChar = selectLayer->_playerSelect;
@@ -235,7 +235,7 @@ protected:
 		heroVector.push_back(tmpChar.c_str());
 
 		// init com heros
-		std::vector<const char *> realHeroVector;
+		vector<const char *> realHeroVector;
 		for (int i = 0; i < kHeroNum; i++)
 		{
 			if (is_same(selectLayer->_playerSelect, kHeroList[i]))
@@ -329,7 +329,7 @@ protected:
 		}
 	}
 
-	static inline const char *getRandomHeroExceptAll(const std::vector<const char *> &excepts, const char *defaultChar = "Naruto")
+	static inline const char *getRandomHeroExceptAll(const vector<const char *> &excepts, const char *defaultChar = "Naruto")
 	{
 		bool ret = true;
 		int i;
@@ -360,7 +360,7 @@ protected:
 		return selectLayer->_playerSelect ? selectLayer->_playerSelect : getRandomHeroExcept(except);
 	}
 
-	inline const char *getSelectOrRandomHeroExceptAll(const std::vector<const char *> &excepts, const char *defaultChar = "Naruto")
+	inline const char *getSelectOrRandomHeroExceptAll(const vector<const char *> &excepts, const char *defaultChar = "Naruto")
 	{
 		return selectLayer->_playerSelect ? selectLayer->_playerSelect : getRandomHeroExceptAll(excepts, defaultChar);
 	}

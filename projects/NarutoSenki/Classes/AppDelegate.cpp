@@ -42,10 +42,10 @@ bool AppDelegate::applicationDidFinishLaunching()
 	CCLOG("---------------------------\n");
 
 	auto cwd = CCFileUtils::sharedFileUtils()->getWritablePath();
-	std::string end = "Debug.win32\\";
+	string end = "Debug.win32\\";
 	// If found use visual studio debug
 	// otherwise use visual studio code
-	if (cwd.find(end) != std::string::npos)
+	if (cwd.find(end) != string::npos)
 	{
 		cwd = cwd.substr(0, cwd.length() - end.length());
 		auto luaPath = cwd + "projects\\NarutoSenki\\lua";
@@ -129,7 +129,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	Internal::initAllSystems();
 
 	// 3. execute main lua script
-	std::string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("main.lua");
+	string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("main.lua");
 	pEngine->executeScriptFile(path.c_str());
 
 	return true;

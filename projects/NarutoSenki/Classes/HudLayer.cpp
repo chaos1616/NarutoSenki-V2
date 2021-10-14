@@ -1409,7 +1409,7 @@ void HudLayer::updateSkillButtons()
 	auto player = getGameLayer()->currentPlayer;
 	if (!player)
 		return;
-	std::string charName = player->getCharacter()->getCString();
+	string charName = player->getCharacter()->getCString();
 	if (charName.length() == 0)
 		return;
 

@@ -177,7 +177,7 @@ void GameModeLayer::removeMode(const GameModeData &data)
 void GameModeLayer::selectMode(GameMode mode)
 {
 	auto data = modes[(size_t)mode];
-	std::string label = data.title;
+	string label = data.title;
 	if (data.description.size() > 0)
 	{
 		label += " | ";
