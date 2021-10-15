@@ -5,17 +5,11 @@
 class Flog : public CharacterBase
 {
 public:
-	float _mainPosY;
-	float _randomPosX;
-	float _randomPosY;
+	float _mainPosY = 0;
+	float _randomPosX = 0;
+	float _randomPosY = 0;
 
 	CREATE_FUNC(Flog);
-
-	Flog()
-	{
-		_randomPosX = 0;
-		_randomPosY = 0;
-	}
 
 	~Flog()
 	{
