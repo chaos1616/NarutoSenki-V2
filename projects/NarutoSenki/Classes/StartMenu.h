@@ -87,8 +87,6 @@ public:
 
 	void setCheats(int cheats);
 
-	CC_SYNTHESIZE_RETAIN(CCArray *, _menu_array, Menus);
-
 	static const int _pos01 = 48;
 	static const int _pos02 = 92;
 	static const int _pos03 = 150;
@@ -98,4 +96,6 @@ public:
 private:
 	void onEnter();
 	void onExit();
+
+	vector<MenuButton *> _menuArray;
 };

@@ -195,7 +195,6 @@ init StartMenu layer;
 
 StartMenu::StartMenu()
 {
-	_menu_array = nullptr;
 	isClockwise = false;
 	isDrag = false;
 	hardCoreLayer = nullptr;
@@ -279,15 +278,12 @@ bool StartMenu::init()
 	addChild(startmenu_title, 3);
 
 	//produce the menu button
-
-	setMenus(CCArray::createWithCapacity(3));
-
 	auto gamemode_btn = MenuButton::create("menu01.png");
 	gamemode_btn->setDelegate(this);
 	gamemode_btn->setBtnType(Custom);
 	gamemode_btn->setScale(0.5f);
 	gamemode_btn->setPositionY(_pos03);
-	_menu_array->addObject(gamemode_btn);
+	_menuArray.push_back(gamemode_btn);
 
 	auto credits_btn = MenuButton::create("menu04.png");
 	credits_btn->setDelegate(this);
@@ -296,31 +292,29 @@ bool StartMenu::init()
 	credits_btn->setVisible(false);
 	credits_btn->_isBottom = true;
 	credits_btn->setPositionY(_pos02);
-	_menu_array->addObject(credits_btn);
+	_menuArray.push_back(credits_btn);
 
 	auto training_btn = MenuButton::create("menu02.png");
 	training_btn->setDelegate(this);
 	training_btn->setBtnType(Training);
 	training_btn->_isTop = true;
 	training_btn->setPositionY(_pos02);
-	_menu_array->addObject(training_btn);
+	_menuArray.push_back(training_btn);
 
 	auto exit_btn = MenuButton::create("menu03.png");
 	exit_btn->setDelegate(this);
 	exit_btn->setBtnType(Exit);
 	exit_btn->setScale(0.5f);
 	exit_btn->setPositionY(_pos01);
-	_menu_array->addObject(exit_btn);
+	_menuArray.push_back(exit_btn);
 
 	menuText = CCSprite::createWithSpriteFrameName("menu02_text.png");
 	menuText->setAnchorPoint(ccp(0, 0));
 	menuText->setPosition(ccp(10, 2));
 	addChild(menuText, 5);
 
-	CCObject *pObject = nullptr;
-	CCARRAY_FOREACH(_menu_array, pObject)
+	for (auto menu : _menuArray)
 	{
-		auto menu = (MenuButton *)pObject;
 		menu->setPositionX(105);
 		addChild(menu, 2);
 	}
@@ -552,12 +546,10 @@ void StartMenu::onCreditsCallBack()
 
 void StartMenu::scrollMenu(int posY)
 {
-	CCObject *pObject = nullptr;
 	if (posY > _pos02 || (isDrag && isClockwise))
 	{
-		CCARRAY_FOREACH(_menu_array, pObject)
+		for (auto menu : _menuArray)
 		{
-			auto menu = (MenuButton *)pObject;
 			if (menu->getPositionY() == _pos01)
 			{
 				auto spn = CCMoveTo::create(0.5, ccp(105, _pos02));
@@ -607,9 +599,8 @@ void StartMenu::scrollMenu(int posY)
 	}
 	else
 	{
-		CCARRAY_FOREACH(_menu_array, pObject)
+		for (auto menu : _menuArray)
 		{
-			auto menu = (MenuButton *)pObject;
 			if (menu->getPositionY() == _pos01)
 			{
 				auto spn = CCSpawn::create(
@@ -659,10 +650,8 @@ void StartMenu::scrollMenu(int posY)
 		}
 	}
 	string src = "";
-	CCARRAY_FOREACH(_menu_array, pObject)
+	for (auto menu : _menuArray)
 	{
-		auto menu = (MenuButton *)pObject;
-
 		if (menu->_isTop)
 		{
 			switch (menu->getBtnType())
