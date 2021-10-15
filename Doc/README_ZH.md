@@ -64,16 +64,16 @@
 ### 我都做了什么？
 
 - **更新**
-  - 升级项目到cocos2d-x 2.2.6 & Visual Studio 2022
+  - 升级项目到cocos2d-x 2.2.6 & Visual Studio 2022 preview
   - 升级大多数依赖库到最新版
   - 升级glfw2到glfw3
-  - [Adnroid] 支持android 11.0和圆形图标
+  - [Adnroid] 支持android 12.0和圆形图标
   - [Adnroid] 支持 arm64-v8a
   - [Linux] 使用OpenAL取缔FMod
   - [Windows] 使用OpenAL取缔原生音乐播放器
-  - [Assets] 使用`ogg`格式音频取缔`mp3`
+  - [Assets] 使用`ogg`格式音频取缔`mp3`（仅支持ogg格式音频）
   - LuaJit 更新为git master源（更新安卓luajit编译）
-  - 添加了旧角色 大蛇丸/佩恩/君麻吕 (暂无AI支持)
+  - 添加了旧角色 大蛇丸/佩恩/君麻吕
 - **修复**
   - 修复错误的单词 & 使用英语单词替换一些中文变量
   - 合并 `NetworkLayer`、`SelectLayer` 到 `SelectLayer`
@@ -92,7 +92,6 @@
   - 所有网络相关的代码 & 依赖 (websocket)
   - [Config] 注释了 `Hidan` & `Kakuzu` & `Chiyo` 的hurt音效配置
 - **特点**
-  - 点击`NETWORK`菜单按钮视为进入游戏模式选择界面
   - [Linux & Windows] 键盘支持 (只有在战斗场景才会完全支持)
 
 ### 下一步？
@@ -106,16 +105,14 @@
 
 ## 已知问题
 
-- All
-  - 地图黑线
 - Windows
   - 群里反馈！
 - Linux
-  - `文本组件`的内容显示不完整
+  - `文本组件`的内容显示不完整。
 - Android
   - 战斗开始几秒内部分音效无法播放。
-  - 在安卓端选择角色时可能会卡顿。 (由Lua实现的选择模块导致)
-  - 不道为什么在安卓端的图片遮罩无法正常工作。(其他平台正常工作)
+  - Android 10.0及以上的图片遮罩无法正常工作。(其他平台正常工作)
+  - Android 10.0及以上游戏卡顿。
 
 ## TODO
 
