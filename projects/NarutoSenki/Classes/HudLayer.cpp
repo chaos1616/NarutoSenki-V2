@@ -133,8 +133,8 @@ bool HudLayer::init()
 	RETURN_FALSE_IF(!CCLayer::init());
 
 	texUI = CCTextureCache::sharedTextureCache()->addImage("UI.png");
+	// TODO: Remove batch node when upgrading to cocos2d-x V4
 	uiBatch = CCSpriteBatchNode::createWithTexture(texUI);
-
 	addChild(uiBatch);
 
 	return true;
@@ -198,10 +198,18 @@ void HudLayer::playGameOpeningAnimation()
 
 void HudLayer::initHeroInterface()
 {
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	//init the joyStick
+	auto winWidth = winSize.width;
+	auto winHeight = winSize.height;
+	float mScaleX = 1.0f;
+	float mScaleY = 1.0f;
+
+#if DEBUG || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+	mScaleX = winWidth / 570;
+	mScaleY = winHeight / 320;
+	// init the joyStick
 	_joyStick = JoyStick::create();
-	_joyStick->setPosition(ccp(28, 16));
+	// set relative position in large screen and small screen
+	_joyStick->setPosition(ccp(mScaleX * 28, mScaleY * 16));
 	_joyStick->setDelegate(this);
 	uiBatch->addChild(_joyStick);
 #endif
@@ -209,16 +217,16 @@ void HudLayer::initHeroInterface()
 	//produce status bar
 	status_bar = CCSprite::createWithSpriteFrameName("status_bar_bg.png");
 	status_bar->setAnchorPoint(ccp(0, 0));
-	status_bar->setPosition(ccp(0, winSize.height - status_bar->getContentSize().height));
+	status_bar->setPosition(ccp(0, winHeight - status_bar->getContentSize().height));
 	uiBatch->addChild(status_bar);
 
 	status_hpbar = CCSprite::createWithSpriteFrameName("status_hpbar.png");
-	status_hpbar->setPosition(ccp(53, winSize.height - 54));
+	status_hpbar->setPosition(ccp(53, winHeight - 54));
 	addChild(status_hpbar, 40);
 
 	status_hpMark = CCSprite::createWithSpriteFrameName("status_hpMark.png");
 	status_hpMark->setAnchorPoint(ccp(0, 0));
-	status_hpMark->setPosition(ccp(54, winSize.height - 105));
+	status_hpMark->setPosition(ccp(54, winHeight - 105));
 	addChild(status_hpMark, 45);
 
 	CCSprite *tmpSprite = CCSprite::createWithSpriteFrameName("status_ckrbar.png");
@@ -226,34 +234,34 @@ void HudLayer::initHeroInterface()
 	status_expbar->setType(kCCProgressTimerTypeRadial);
 	status_expbar->setPercentage(0);
 	status_expbar->setReverseDirection(true);
-	status_expbar->setPosition(ccp(54, winSize.height - 54));
+	status_expbar->setPosition(ccp(54, winHeight - 54));
 	addChild(status_expbar, 50);
 	CCMenuItem *menu_button = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("minimap_bg.png"), nullptr, nullptr, this, menu_selector(HudLayer::pauseButtonClick));
 	menu_button->setAnchorPoint(ccp(1, 1));
 	pauseNenu = CCMenu::create(menu_button, nullptr);
-	pauseNenu->setPosition(ccp(winSize.width, winSize.height));
+	pauseNenu->setPosition(ccp(winWidth, winHeight));
 	addChild(pauseNenu);
 
 	CCSprite *killIcon = CCSprite::createWithSpriteFrameName("kill_icon.png");
 	killIcon->setAnchorPoint(ccp(0, 1));
-	killIcon->setPosition(ccp(winSize.width - 114, winSize.height - 46));
+	killIcon->setPosition(ccp(winWidth - 114, winHeight - 46));
 	addChild(killIcon, 5000);
 
 	killLabel = CCLabelBMFont::create("0", "Fonts/1.fnt");
 	killLabel->setScale(0.26f);
 	killLabel->setAnchorPoint(ccp(0, 1));
-	killLabel->setPosition(ccp(killIcon->getPositionX() + killIcon->getContentSize().width / 2 + 5, winSize.height - 56));
+	killLabel->setPosition(ccp(killIcon->getPositionX() + killIcon->getContentSize().width / 2 + 5, winHeight - 56));
 	addChild(killLabel, 5001);
 
 	CCSprite *deadIcon = CCSprite::createWithSpriteFrameName("dead_icon.png");
 	deadIcon->setAnchorPoint(ccp(0, 1));
-	deadIcon->setPosition(ccp(winSize.width - 114 + 26, winSize.height - 47));
+	deadIcon->setPosition(ccp(winWidth - 114 + 26, winHeight - 47));
 	addChild(deadIcon, 5000);
 
 	deadLabel = CCLabelBMFont::create("0", "Fonts/1.fnt");
 	deadLabel->setScale(0.26f);
 	deadLabel->setAnchorPoint(ccp(0, 1));
-	deadLabel->setPosition(ccp(deadIcon->getPositionX() + deadIcon->getContentSize().width / 2 + 5, winSize.height - 56));
+	deadLabel->setPosition(ccp(deadIcon->getPositionX() + deadIcon->getContentSize().width / 2 + 5, winHeight - 56));
 	addChild(deadLabel, 5001);
 
 	KonoLabel = CCLabelBMFont::create("0", "Fonts/blue.fnt");
@@ -266,15 +274,15 @@ void HudLayer::initHeroInterface()
 	{
 		KonoLabel->setAnchorPoint(ccp(1, 1));
 		AkaLabel->setAnchorPoint(ccp(0, 1));
-		KonoLabel->setPosition(ccp(winSize.width - 42, winSize.height - 46));
-		AkaLabel->setPosition(ccp(winSize.width - 32, winSize.height - 46));
+		KonoLabel->setPosition(ccp(winWidth - 42, winHeight - 46));
+		AkaLabel->setPosition(ccp(winWidth - 32, winHeight - 46));
 	}
 	else
 	{
 		AkaLabel->setAnchorPoint(ccp(1, 1));
 		KonoLabel->setAnchorPoint(ccp(0, 1));
-		AkaLabel->setPosition(ccp(winSize.width - 42, winSize.height - 46));
-		KonoLabel->setPosition(ccp(winSize.width - 32, winSize.height - 46));
+		AkaLabel->setPosition(ccp(winWidth - 42, winHeight - 46));
+		KonoLabel->setPosition(ccp(winWidth - 32, winHeight - 46));
 	}
 
 	addChild(KonoLabel, 5000);
@@ -282,7 +290,7 @@ void HudLayer::initHeroInterface()
 	auto hengLabel = CCLabelBMFont::create(":", "Fonts/1.fnt");
 	hengLabel->setScale(0.5f);
 	hengLabel->setAnchorPoint(ccp(0.5f, 1));
-	hengLabel->setPosition(ccp(winSize.width - 37, KonoLabel->getPositionY() + 2));
+	hengLabel->setPosition(ccp(winWidth - 37, KonoLabel->getPositionY() + 2));
 	addChild(hengLabel, 5000);
 
 	auto currentPlayer = getGameLayer()->currentPlayer;
@@ -290,7 +298,7 @@ void HudLayer::initHeroInterface()
 
 	hpLabel = CCLabelBMFont::create(currentPlayer->getHP()->getCString(), "Fonts/1.fnt");
 	hpLabel->setScale(0.35f);
-	hpLabel->setPosition(ccp(0, winSize.height - 54));
+	hpLabel->setPosition(ccp(0, winHeight - 54));
 	hpLabel->setAnchorPoint(ccp(0, 0));
 
 	addChild(hpLabel, 5000);
@@ -298,7 +306,7 @@ void HudLayer::initHeroInterface()
 	int exp = currentPlayer->getEXP() - ((currentPlayer->getLV() - 1) * 500) / 500;
 	expLabel = CCLabelBMFont::create(CCString::createWithFormat("%i%%", exp)->getCString(), "Fonts/1.fnt");
 	expLabel->setScale(0.35f);
-	expLabel->setPosition(ccp(94, winSize.height - 54));
+	expLabel->setPosition(ccp(94, winHeight - 54));
 	expLabel->setAnchorPoint(ccp(0.5f, 0));
 
 	addChild(expLabel, 5000);
@@ -306,12 +314,12 @@ void HudLayer::initHeroInterface()
 	gameClock = CCLabelBMFont::create("00:00", "Fonts/1.fnt");
 	gameClock->setAnchorPoint(ccp(0.5f, 0));
 	gameClock->setScale(0.4f);
-	gameClock->setPosition(ccp(25, 0));
+	gameClock->setPosition(ccp(mScaleX * 25, 0));
 	addChild(gameClock, 5000);
 
 	coinLabel = CCLabelBMFont::create("50", "Fonts/arial.fnt");
 	coinLabel->setAnchorPoint(ccp(0, 0));
-	coinLabel->setPosition(ccp(121, winSize.height - 61));
+	coinLabel->setPosition(ccp(121, winHeight - 61));
 
 	addChild(coinLabel, 5000);
 
@@ -393,15 +401,15 @@ void HudLayer::initHeroInterface()
 	item4Button->setVisible(false);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	nAttackButton->setPosition(ccp(winSize.width - 60, 8));
-	skill1Button->setPosition(ccp(winSize.width - skill1Button->getContentSize().width - 64, 2));
-	skill2Button->setPosition(ccp(winSize.width - 95, 50));
-	skill3Button->setPosition(ccp(winSize.width - 44, 8 + nAttackButton->getContentSize().height + 8));
+	nAttackButton->setPosition(ccp(winWidth - 60, 8));
+	skill1Button->setPosition(ccp(winWidth - skill1Button->getContentSize().width - 64, 2));
+	skill2Button->setPosition(ccp(winWidth - 95, 50));
+	skill3Button->setPosition(ccp(winWidth - 44, 8 + nAttackButton->getContentSize().height + 8));
 	skill4Button->setPosition(ccp(skill1Button->getPositionX() - skill4Button->getContentSize().width - 8, 2));
 	skill5Button->setPosition(ccp(skill4Button->getPositionX() - skill5Button->getContentSize().width - 8, 2));
 
 	item1Button->setPosition(ccp(8, skill3Button->getPositionY() + skill3Button->getContentSize().height));
-	item2Button->setPosition(ccp(winSize.width - 44, skill3Button->getPositionY() + skill3Button->getContentSize().height + 8));
+	item2Button->setPosition(ccp(winWidth - 44, skill3Button->getPositionY() + skill3Button->getContentSize().height + 8));
 	if (skill5Button)
 		item3Button->setPosition(ccp(skill5Button->getPositionX() - skill5Button->getContentSize().width - 8, 2));
 	else if (skill4Button)
@@ -412,17 +420,17 @@ void HudLayer::initHeroInterface()
 #else
 	float width = skill1Button->getContentSize().width;
 
-	nAttackButton->setPosition(ccp(winSize.width + 100, -100));
+	nAttackButton->setPosition(ccp(winWidth + 100, -100));
 
-	skill1Button->setPosition(ccp(winSize.width / 2 - (width + 8) * 2, 2));
+	skill1Button->setPosition(ccp(winWidth / 2 - (width + 8) * 2, 2));
 	skill1Button->setScale(DESKTOP_UI_SCALE);
-	skill2Button->setPosition(ccp(winSize.width / 2 - width - 8, 2));
+	skill2Button->setPosition(ccp(winWidth / 2 - width - 8, 2));
 	skill2Button->setScale(DESKTOP_UI_SCALE);
-	skill3Button->setPosition(ccp(winSize.width / 2, 2));
+	skill3Button->setPosition(ccp(winWidth / 2, 2));
 	skill3Button->setScale(DESKTOP_UI_SCALE);
-	skill4Button->setPosition(ccp(winSize.width / 2 + width + 8, 2));
+	skill4Button->setPosition(ccp(winWidth / 2 + width + 8, 2));
 	skill4Button->setScale(DESKTOP_UI_SCALE);
-	skill5Button->setPosition(ccp(winSize.width / 2 + (width + 8) * 2, 2));
+	skill5Button->setPosition(ccp(winWidth / 2 + (width + 8) * 2, 2));
 	skill5Button->setScale(DESKTOP_UI_SCALE);
 
 	item1Button->setScale(DESKTOP_UI_SCALE);
@@ -433,11 +441,11 @@ void HudLayer::initHeroInterface()
 	// Ramen	Item
 	item1Button->setPosition(ccp(8, 8 + nAttackButton->getContentSize().height + skill1Button->getContentSize().height));
 	// First 	Item (Speed Up & Stealth)
-	item3Button->setPosition(ccp(winSize.width - skill1Button->getContentSize().width - 64, 2));
+	item3Button->setPosition(ccp(winWidth - skill1Button->getContentSize().width - 64, 2));
 	// Second 	Item (変わり身の術)
-	item4Button->setPosition(ccp(winSize.width - 95, 50));
+	item4Button->setPosition(ccp(winWidth - 95, 50));
 	// Third 	Item (Trap)
-	item2Button->setPosition(ccp(winSize.width - 44, 8 + nAttackButton->getContentSize().height + 8));
+	item2Button->setPosition(ccp(winWidth - 44, 8 + nAttackButton->getContentSize().height + 8));
 #endif
 
 	// Set mask
@@ -456,7 +464,7 @@ void HudLayer::initHeroInterface()
 	updateGears();
 	miniLayer = CCLayer::create();
 	miniLayer->setAnchorPoint(ccp(0, 0));
-	miniLayer->setPosition(ccp(winSize.width - 112, winSize.height - 38));
+	miniLayer->setPosition(ccp(winWidth - 112, winHeight - 38));
 
 	for (auto tower : getGameLayer()->_TowerArray)
 	{

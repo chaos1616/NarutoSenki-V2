@@ -3,7 +3,7 @@
 --
 
 -- design resoluation configuration
-CONFIG_SCREEN_WIDTH     = 480
+CONFIG_SCREEN_WIDTH     = 570
 CONFIG_SCREEN_HEIGHT    = 320
 CONFIG_SCREEN_AUTOSCALE = 'FIXED_HEIGHT'
 

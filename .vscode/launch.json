@@ -14,6 +14,17 @@
             "preLaunchTask": "compile-win32-debug"
         },
         {
+            "name": "Debug Without Compile (windwos)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "NarutoSenki.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/projects/NarutoSenki/__BIN__/",
+            "environment": [],
+            "console": "internalConsole"
+        },
+        {
             "name": "Debug (linux)",
             "type": "cppdbg",
             "request": "launch",
@@ -25,6 +36,24 @@
             "externalConsole": false,
             "MIMode": "gdb",
             "preLaunchTask": "compile",
+            "setupCommands": [
+                {
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }
+            ]
+        },
+        {
+            "name": "Debug Without Compile (linux)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/projects/NarutoSenki/__BIN__/NarutoSenki",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
             "setupCommands": [
                 {
                     "text": "-enable-pretty-printing",
