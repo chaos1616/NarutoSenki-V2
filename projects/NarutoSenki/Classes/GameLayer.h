@@ -38,7 +38,7 @@ static inline GameLayer *getGameLayer()
 
 class GameLayer : public CCLayer
 {
-	using OnHUDInitializedCallback = function<void()>;
+	using OnHUDInitializedCallback = std::function<void()>;
 
 	friend class LoadLayer;
 
