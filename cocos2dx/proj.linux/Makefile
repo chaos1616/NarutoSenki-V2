@@ -4,7 +4,6 @@ INCLUDES += \
 -I../platform/third_party/linux/libfreetype2 \
 -I../../extensions \
 -I../../extensions/GUI/CCControlExtension \
--I../../extensions/GUI/CCControlExtension \
 -I../../extensions/Components \
 
 SOURCES = ../actions/CCAction.cpp \
@@ -20,6 +19,7 @@ SOURCES = ../actions/CCAction.cpp \
 ../actions/CCActionTiledGrid.cpp \
 ../actions/CCActionCatmullRom.cpp \
 ../actions/CCActionTween.cpp \
+../base/CCValue.cpp \
 ../base_nodes/CCAtlasNode.cpp \
 ../base_nodes/CCNode.cpp \
 ../cocoa/CCAffineTransform.cpp \

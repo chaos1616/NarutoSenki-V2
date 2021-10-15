@@ -105,6 +105,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\base\CCValue.cpp">
+      <Filter>base_nodes</Filter>
+    </ClCompile>
     <ClCompile Include="..\base_nodes\CCAtlasNode.cpp">
       <Filter>base_nodes</Filter>
     </ClCompile>
@@ -477,6 +480,9 @@
     <ClCompile Include="pch.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\base\CCValue.h">
+      <Filter>base_nodes</Filter>
+    </ClInclude>
     <ClInclude Include="..\base_nodes\CCAtlasNode.h">
       <Filter>base_nodes</Filter>
     </ClInclude>
