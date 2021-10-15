@@ -23,13 +23,14 @@ public:
 
 	static MiniIcon *create(const char *szImage, bool isNotification);
 
-	CCLayer *_delegate;
+	CCLayer *_delegate = nullptr;
 };
 
 struct ReportData
 {
 public:
 	string name1;
+	int char1Id = 0;
 	string name2;
 	uint32_t num = 0;
 	uint32_t kills = 0;

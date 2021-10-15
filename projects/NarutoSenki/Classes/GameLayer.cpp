@@ -969,12 +969,17 @@ CCPoint GameLayer::getCustomSpawnPoint(HeroData &data)
 		break;                                                                      \
 	}
 
-#define ON_GEAR_BY(__ID__, __KEY_STATE__)                                                                       \
-	if (_gLayer->_isGear && __KEY_STATE__)                                                                      \
-	{                                                                                                           \
-		auto gear_btn_##__ID__ = (GearButton *)_gLayer->_gearLayer->_screwLayer->getGearArray().at(__ID__ - 1); \
-		gear_btn_##__ID__->click();                                                                             \
-	}                                                                                                           \
+#define ON_GEAR_BY(__ID__, __KEY_STATE__)                                  \
+	if (_gLayer->_isGear && __KEY_STATE__)                                 \
+	{                                                                      \
+		auto gearArray = _gLayer->_gearLayer->_screwLayer->getGearArray(); \
+		if (gearArray.size() >= __ID__ - 1)                                \
+		{                                                                  \
+			auto gear_btn = gearArray.at(__ID__ - 1);                      \
+			if (gear_btn)                                                  \
+				gear_btn->click();                                         \
+		}                                                                  \
+	}                                                                      \
 	break;
 
 bool GameLayer::checkHasAnyMovement()

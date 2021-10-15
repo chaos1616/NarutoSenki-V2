@@ -12,7 +12,8 @@
                 "${workspaceFolder}/projects/NarutoSenki/Classes/**"
             ],
             "defines": [],
-            "compileCommands": ""
+            "compileCommands": "",
+            "cppStandard": "c++20"
         },
         {
             "name": "Win32",

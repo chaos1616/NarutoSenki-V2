@@ -369,9 +369,12 @@ void GearLayer::updatePlayerGear()
 
 void GearLayer::updateGearList()
 {
-	for (auto btn : _screwLayer->getGearArray())
+	auto &gearArray = _screwLayer->getGearArray();
+	if (!gearArray.empty())
 	{
-		btn->removeFromParentAndCleanup(true);
+		for (auto btn : gearArray)
+			btn->removeFromParentAndCleanup(true);
+		gearArray.clear();
 	}
 
 	currentGear = None;
@@ -415,7 +418,8 @@ void GearLayer::updateGearList()
 		btn->setAnchorPoint(ccp(0, 0));
 		btn->setBtnType(gearType(i), GearButtonType::Buy, isBuyed);
 		btn->setDelegate(this);
-		_screwLayer->getGearArray().push_back(btn);
+
+		gearArray.push_back(btn);
 		_screwLayer->addChild(btn);
 	}
 }

@@ -385,7 +385,7 @@ public:
 	// TODO: Upgrade cocos2d-x to V4
 	inline void			readData(CCArray* tmpData, string &attackType, CCString* &attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint)
 	{
-		CCString *tmpType;
+		CCString *tmpType = nullptr;
 		readData(tmpData, tmpType, attackValue, attackRangeX, attackRangeY, cooldown, combatPoint);
 		if (tmpType)
 		{

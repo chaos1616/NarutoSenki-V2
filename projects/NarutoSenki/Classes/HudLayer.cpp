@@ -123,6 +123,8 @@ void HudLayer::onExit()
 	CCLayer::onExit();
 	if (getGameLayer()->_isExiting)
 	{
+		_reportListArray.clear();
+		_towerIconArray.clear();
 	}
 }
 
@@ -739,36 +741,118 @@ bool HudLayer::offCoin(const char *value)
 
 void HudLayer::setReport(const char *name1, const char *name2, CCString *killNum)
 {
-	float length;
+	bool isDisplay = _reportListArray.empty();
 
-	if (!_reportListArray.empty())
+	if (isDisplay)
 	{
-		_reportListArray.push_back({
-			.name1 = name1,
-			.name2 = name2,
-			.num = 1,
-			.kills = killNum->uintValue(),
-		});
-		return;
+		float length;
+		reportSprite = createReport(name1, name2, length);
+		reportSprite->setPosition(ccp(winSize.width / 2 - length / 2, winSize.height - 80));
+		addChild(reportSprite, 500);
+
+		auto su = CCScaleBy::create(0.2f, 1.0f);
+		auto call = CCCallFunc::create(this, callfunc_selector(HudLayer::setReportCache));
+		auto delay = CCDelayTime::create(2.0f);
+		auto seq = CCSequence::create(su, su->reverse(), delay, call, nullptr);
+		reportSprite->runAction(seq);
 	}
-
-	reportSprite = createReport(name1, name2, length);
-	reportSprite->setPosition(ccp(winSize.width / 2 - length / 2, winSize.height - 80));
-	addChild(reportSprite, 500);
-
-	auto su = CCScaleBy::create(0.2f, 1.0f);
-	auto call = CCCallFunc::create(this, callfunc_selector(HudLayer::setReportCache));
-	auto delay = CCDelayTime::create(2.0f);
-	auto seq = CCSequence::create(su, su->reverse(), delay, call, nullptr);
-	reportSprite->runAction(seq);
 
 	_reportListArray.push_back({
 		.name1 = name1,
+		// .char1Id = charId,
 		.name2 = name2,
 		.num = 1,
 		.kills = killNum->uintValue(),
-		.isDisplay = true,
+		.isDisplay = isDisplay,
 	});
+}
+
+void HudLayer::setReportCache()
+{
+	reportSprite->removeFromParent();
+
+	for (auto &data : _reportListArray)
+	{
+		if (data.isDisplay) // TODO: Improve performance
+			continue;
+
+		float length;
+		reportSprite = createReport(data.name1.c_str(), data.name2.c_str(), length);
+		reportSprite->setPosition(ccp(winSize.width / 2 - length / 2, winSize.height - 80));
+		addChild(reportSprite, 500);
+
+		auto su = CCScaleBy::create(0.2f, 1.1f);
+		auto call = CCCallFunc::create(this, callfunc_selector(HudLayer::setReportCache));
+		auto delay = CCDelayTime::create(2.0f);
+		auto seq = CCSequence::create(su, su->reverse(), delay, call, nullptr);
+
+		reportSprite->runAction(seq);
+
+		if (data.name2 != kRoleTower)
+		{
+			int num2 = 0;
+			for (auto &data2 : _reportListArray)
+			{
+				if (data2.name1 == data.name1 &&
+					// data2.charId == data.charId &&
+					data2.name2 != kRoleTower &&
+					data2.isDisplay)
+				{
+					num2 += 1;
+				}
+			}
+
+			if (num2 == 1)
+			{
+				if (reportSPCSprite)
+				{
+					reportSPCSprite->stopAllActions();
+					reportSPCSprite->removeFromParent();
+				}
+				reportSPCSprite = createSPCReport(data.kills, num2);
+				reportSPCSprite->setPosition(ccp(winSize.width / 2, winSize.height - 115));
+				addChild(reportSPCSprite, 500);
+				auto fn = CCFadeIn::create(0.8f);
+				auto mv = CCMoveBy::create(0.8f, ccp(0, 10));
+				auto sp = CCSpawn::createWithTwoActions(fn, mv);
+				auto delay2 = CCDelayTime::create(1.6f);
+				auto call2 = CCCallFunc::create(this, callfunc_selector(HudLayer::clearSPCReport));
+				auto list = CCArray::create();
+				list->addObject(sp);
+				list->addObject(delay2);
+				list->addObject(call2);
+				auto seq2 = CCSequence::create(list);
+				reportSPCSprite->runAction(seq2);
+			}
+			else if (num2 >= 2)
+			{
+				if (reportSPCSprite)
+				{
+					reportSPCSprite->stopAllActions();
+					reportSPCSprite->removeFromParent();
+				}
+
+				reportSPCSprite = createSPCReport(data.kills, num2);
+				reportSPCSprite->setScale(2.0);
+				reportSPCSprite->setPosition(ccp(winSize.width / 2, winSize.height - 105));
+				addChild(reportSPCSprite, 500);
+				auto st = CCScaleTo::create(0.8f, 1.0f, 1.0f);
+				auto call2 = CCCallFunc::create(this, callfunc_selector(HudLayer::stopSPCReport));
+				auto seq2 = CCSequence::createWithTwoActions(st, call2);
+				reportSPCSprite->runAction(seq2);
+
+				auto sk = CCRepeatForever::create(CCShake::create(0.2f, 4));
+				reportSPCSprite->runAction(sk);
+
+				schedule(schedule_selector(HudLayer::updateSPCReprot), 0.2f);
+			}
+		}
+
+		data.isDisplay = true;
+		return;
+	}
+
+	_reportListArray.clear();
 }
 
 void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
@@ -911,93 +995,6 @@ void HudLayer::updateSPCReprot(float dt)
 	{
 		reportSPCSprite->setPosition(ccp(winSize.width / 2, winSize.height - 105));
 	}
-}
-
-void HudLayer::setReportCache()
-{
-	reportSprite->removeFromParent();
-
-	for (auto &data : _reportListArray)
-	{
-		if (!data.isDisplay)
-			continue;
-
-		float length;
-		reportSprite = createReport(data.name1.c_str(), data.name2.c_str(), length);
-		reportSprite->setPosition(ccp(winSize.width / 2 - length / 2, winSize.height - 80));
-		addChild(reportSprite, 500);
-
-		auto su = CCScaleBy::create(0.2f, 1.1f);
-		auto call = CCCallFunc::create(this, callfunc_selector(HudLayer::setReportCache));
-		auto delay = CCDelayTime::create(2.0f);
-		auto seq = CCSequence::create(su, su->reverse(), delay, call, nullptr);
-
-		reportSprite->runAction(seq);
-
-		if (data.name2 != kRoleTower)
-		{
-			int num2 = 0;
-			for (auto &data2 : _reportListArray)
-			{
-				if (data2.name1 == data.name1 &&
-					data2.name2 != kRoleTower &&
-					data2.isDisplay)
-				{
-					num2 += 1;
-				}
-			}
-
-			if (num2 == 1)
-			{
-				if (reportSPCSprite)
-				{
-					reportSPCSprite->stopAllActions();
-					reportSPCSprite->removeFromParent();
-				}
-				reportSPCSprite = createSPCReport(data.kills, num2);
-				reportSPCSprite->setPosition(ccp(winSize.width / 2, winSize.height - 115));
-				addChild(reportSPCSprite, 500);
-				auto fn = CCFadeIn::create(0.8f);
-				auto mv = CCMoveBy::create(0.8f, ccp(0, 10));
-				auto sp = CCSpawn::createWithTwoActions(fn, mv);
-				auto delay2 = CCDelayTime::create(1.6f);
-				auto call2 = CCCallFunc::create(this, callfunc_selector(HudLayer::clearSPCReport));
-				auto list = CCArray::create();
-				list->addObject(sp);
-				list->addObject(delay2);
-				list->addObject(call2);
-				auto seq2 = CCSequence::create(list);
-				reportSPCSprite->runAction(seq2);
-			}
-			else if (num2 >= 2)
-			{
-				if (reportSPCSprite)
-				{
-					reportSPCSprite->stopAllActions();
-					reportSPCSprite->removeFromParent();
-				}
-
-				reportSPCSprite = createSPCReport(data.kills, num2);
-				reportSPCSprite->setScale(2.0);
-				reportSPCSprite->setPosition(ccp(winSize.width / 2, winSize.height - 105));
-				addChild(reportSPCSprite, 500);
-				auto st = CCScaleTo::create(0.8f, 1.0f, 1.0f);
-				auto call2 = CCCallFunc::create(this, callfunc_selector(HudLayer::stopSPCReport));
-				auto seq2 = CCSequence::createWithTwoActions(st, call2);
-				reportSPCSprite->runAction(seq2);
-
-				auto sk = CCRepeatForever::create(CCShake::create(0.2f, 4));
-				reportSPCSprite->runAction(sk);
-
-				schedule(schedule_selector(HudLayer::updateSPCReprot), 0.2f);
-			}
-		}
-
-		data.isDisplay = true;
-		return;
-	}
-
-	_reportListArray.clear();
 }
 
 CCSprite *HudLayer::createSPCReport(uint32_t killNum, int num)
