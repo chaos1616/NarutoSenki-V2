@@ -8,13 +8,13 @@ class PauseLayer : public CCLayer
 public:
 	bool init(CCRenderTexture *snapshoot);
 
-	CCMenu *pauseMenu;
-	CCMenu *soundMenu;
-	CCMenu *preMenu;
-	CCLayer *exitLayer;
-	CCMenuItem *bgm_btn;
-	CCMenuItem *voice_btn;
-	CCMenuItem *pre_btn;
+	CCMenu *pauseMenu = nullptr;
+	CCMenu *soundMenu = nullptr;
+	CCMenu *preMenu = nullptr;
+	CCLayer *exitLayer = nullptr;
+	CCMenuItem *bgm_btn = nullptr;
+	CCMenuItem *voice_btn = nullptr;
+	CCMenuItem *pre_btn = nullptr;
 
 	static PauseLayer *create(CCRenderTexture *snapshoot);
 

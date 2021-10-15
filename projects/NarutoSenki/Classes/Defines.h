@@ -9,6 +9,7 @@ using namespace cocos2d;
 using namespace cocos2d::extension;
 using namespace CocosDenshion;
 using namespace std;
+using namespace StringUtils;
 
 //global parameter
 #define winSize CCDirector::sharedDirector()->getWinSize()
