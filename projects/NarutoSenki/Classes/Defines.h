@@ -425,6 +425,14 @@ public:                                                       \
 	inline const varType &get##funName() { return varName; }; \
 	inline void set##funName(const varType &var) { varName = var; };
 
+#define PROP_SREF(varType, varName, funName)            \
+protected:                                              \
+	varType varName;                                    \
+                                                        \
+public:                                                 \
+	inline varType &get##funName() { return varName; }; \
+	inline void set##funName(const varType &var) { varName = var; };
+
 #define PPROP(varType, varName, funName)               \
 private:                                               \
 	varType varName;                                   \

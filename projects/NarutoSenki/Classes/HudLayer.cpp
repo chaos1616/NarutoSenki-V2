@@ -981,7 +981,7 @@ void HudLayer::setReportCache()
 				reportSPCSprite->setScale(2.0);
 				reportSPCSprite->setPosition(ccp(winSize.width / 2, winSize.height - 105));
 				addChild(reportSPCSprite, 500);
-				CCScaleTo *st = CCScaleTo::create(0.8f, 1.0f, 1.0f);
+				auto st = CCScaleTo::create(0.8f, 1.0f, 1.0f);
 				auto call2 = CCCallFunc::create(this, callfunc_selector(HudLayer::stopSPCReport));
 				auto seq2 = CCSequence::createWithTwoActions(st, call2);
 				reportSPCSprite->runAction(seq2);

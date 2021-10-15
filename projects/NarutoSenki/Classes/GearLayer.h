@@ -4,10 +4,10 @@
 class GameLayer;
 class ScrewLayer;
 
-enum gearbtnType
+enum class GearButtonType
 {
-	buyType,
-	sellType
+	Buy,
+	Sell
 };
 
 class GearLayer : public CCLayer
@@ -18,18 +18,18 @@ public:
 
 	bool init(CCRenderTexture *snapshoot);
 
-	CCLayer *gears_layer;
-	CCLayer *currentGear_layer;
-	CCLabelBMFont *coinLabel;
+	CCLayer *gears_layer = nullptr;
+	CCLayer *currentGear_layer = nullptr;
+	CCLabelBMFont *coinLabel = nullptr;
 
-	CCSprite *gearDetail;
+	CCSprite *gearDetail = nullptr;
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	CCSprite *gearBigIcon;
 #endif
-	CCSprite *gears_bg;
+	CCSprite *gears_bg = nullptr;
 
-	ScrewLayer *_screwLayer;
-	gearType currentGear;
+	ScrewLayer *_screwLayer = nullptr;
+	gearType currentGear = None;
 	void updatePlayerGear();
 	void updateGearList();
 	void confirmPurchase();
@@ -48,12 +48,12 @@ public:
 
 	bool _isBuyed;
 	gearType _gearType;
-	gearbtnType _btnType;
+	GearButtonType _btnType;
 	CCSprite *soIcon;
 	CC_SYNTHESIZE(GearLayer *, _delegate, Delegate);
 
 	CCRect getRect();
-	void setBtnType(gearType type, gearbtnType type2, bool isBuyed);
+	void setBtnType(gearType gearType, GearButtonType btnType, bool isBuyed);
 	gearType getBtnType();
 	void playSound();
 	void click();
@@ -82,7 +82,7 @@ public:
 
 	int totalRow;
 	int gearNum;
-	CC_SYNTHESIZE_RETAIN(CCArray *, _gearArray, GearArray);
+	PROP_SREF(vector<GearButton *>, _gearArray, GearArray);
 
 	CREATE_FUNC(ScrewLayer);
 

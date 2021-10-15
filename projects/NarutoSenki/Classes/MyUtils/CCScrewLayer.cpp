@@ -2,7 +2,6 @@
 
 CCScrewLayer::CCScrewLayer()
 {
-	itemArray = nullptr;
 	totalRow = 100;
 	minY = 154;
 	line_height = 26;

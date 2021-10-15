@@ -31,7 +31,7 @@ public:
 	CharacterBase();
 	~CharacterBase();
 
-	virtual void		setID(CCString* character,CCString* role,CCString *group);
+	virtual void		setID(CCString* character, CCString* role, CCString* group);
 	virtual	void		setHPbar();
 	virtual	void	   	changeHPbar();
 	void				updateDataByLVOnly();
@@ -110,7 +110,6 @@ public:
 	int 				battleCondiction;
 	// True is only has one tower, false otherwise
 	bool 				isBaseDanger;
-
 
 
 	HPBar*				_hpBar;
@@ -287,12 +286,12 @@ public:
 	void				nAttack();
 	void				oAttack(abType type);
 	bool				hurt();
-	bool				hardHurt(int delayTime,bool isHurtAction,bool isCatch,bool isStick,bool isStun);
-	void				absorb(CCPoint position,bool isImmediate);
+	bool				hardHurt(int delayTime, bool isHurtAction, bool isCatch, bool isStick, bool isStun);
+	void				absorb(CCPoint position, bool isImmediate);
 	void				jump(){}; // No reference
 	void				knockDown();
 	virtual void		dead();
-	void				floatUP(float floatHeight,bool isCancelSkill);
+	void				floatUP(float floatHeight, bool isCancelSkill);
 	void				airHurt();
 
 	virtual void		doAI();
@@ -310,7 +309,7 @@ public:
 	void				setActionResume2();
 	void				reCatched(float dt);
 
-	void				setShadow(CCNode* sender,void* data);
+	void				setShadow(CCNode* sender, void* data);
 	void				disableShadow(CCNode* sender);
 	void				enableShadow(CCNode* sender);
 
@@ -380,40 +379,43 @@ public:
 	void				removeLostBlood(float dt);
 
 	virtual void		setAI(float dt);
-	void				setSkillEffect(CCNode* sender,void* data);
+	void				setSkillEffect(CCNode* sender, void* data);
 	virtual void		setRestore2(float dt);
 
 	// TODO: Upgrade cocos2d-x to V4
-	inline void			readData(CCArray* tmpData,string &attackType,CCString* &attackValue,int &attackRangeX,int &attackRangeY,uint32_t &cooldown,int &combatPoint)
+	inline void			readData(CCArray* tmpData, string &attackType, CCString* &attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint)
 	{
 		CCString *tmpType;
 		readData(tmpData, tmpType, attackValue, attackRangeX, attackRangeY, cooldown, combatPoint);
-		attackType = tmpType->m_sString;
-		tmpType->release();
+		if (tmpType)
+		{
+			attackType = tmpType->m_sString;
+			CC_SAFE_RELEASE(tmpType);
+		}
 	}
-	void				readData(CCArray* tmpData,CCString* &attackType,CCString* &attackValue,int &attackRangeX,int &attackRangeY,uint32_t &cooldown,int &combatPoint);
-	CCAction*			createAnimation(CCArray* ationArray,float fps,bool isRepeat,bool isReturn);
+	void				readData(CCArray* tmpData, CCString* &attackType, CCString* &attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint);
+	CCAction*			createAnimation(CCArray* ationArray, float fps, bool isRepeat, bool isReturn);
 
 protected:
 	CCDictionary*		callValue;
 
-	void				setSound(CCNode* sender,void* data);
-	void				setDSound(CCNode* sender,void* data);
-	void				setMove(CCNode* sender,void* data);
-	void				setCharge(CCNode* sender,void* data);
-	void				setChargeB(CCNode* sender,void* data);
+	void				setSound(CCNode* sender, void* data);
+	void				setDSound(CCNode* sender, void* data);
+	void				setMove(CCNode* sender, void* data);
+	void				setCharge(CCNode* sender, void* data);
+	void				setChargeB(CCNode* sender, void* data);
 	void				getCollider();
 	void				getSticker(float dt);
 	void				stopMove(float dt);
-	void				stopJump(CCNode* sender,void* data);
-	void				setAttackBox(CCNode* sender,void* data);
+	void				stopJump(CCNode* sender, void* data);
+	void				setAttackBox(CCNode* sender, void* data);
 	inline void			setDamage(CharacterBase* attacker);
-	void				setDamage(CharacterBase *attacker,const char* effectType,int attackValue,bool isFlipped);
+	void				setDamage(CharacterBase *attacker,const char* effectType, int attackValue, bool isFlipped);
 	void				setDamgeDisplay(int value,const char* type);
 
-	void				setItemEffect(CCNode* sender,void* data);
+	void				setItemEffect(CCNode* sender, void* data);
 	void				setDamgeEffect(const char* type);
-	void				setMonAttack(CCNode* sender,void* data);
+	void				setMonAttack(CCNode* sender, void* data);
 	void				setTransform();
 	void				setOugis(CCNode* sender);
 
@@ -421,17 +423,17 @@ protected:
 
 
 	virtual Hero*		createClone(int cloneTime);
-	void				setClone(CCNode* sender,void* data);
-	void				setMon(CCNode* sender,void* data);
+	void				setClone(CCNode* sender, void* data);
+	void				setMon(CCNode* sender, void* data);
 	void				setMonPer(float dt);
-	void				setBullet(CCNode* sender,void* data);
+	void				setBullet(CCNode* sender, void* data);
 	void				setBulletGroup(float dt);
 
-	void				setTrap(CCNode* sender,void* data);
+	void				setTrap(CCNode* sender, void* data);
 
 
-	void				setBuff(CCNode* sender,void* data);
-	void				setCommand(CCNode* sender,void* data);
+	void				setBuff(CCNode* sender, void* data);
+	void				setCommand(CCNode* sender, void* data);
 	void				setBuffEffect(const char* type);
 	void				removeBuffEffect(const char* type);
 public:
@@ -442,10 +444,10 @@ protected:
 
 	void				removeClone(float dt);
 	void				removeSelf(float dt);
-	void				setJump(CCNode* sender,void* data);
+	void				setJump(CCNode* sender, void* data);
 
 
-	void				removeCoinDisplay(CCNode* sender,void* data);
+	void				removeCoinDisplay(CCNode* sender, void* data);
 
 	CCRect				setHalfBox();
 	CCRect				setHitBox();

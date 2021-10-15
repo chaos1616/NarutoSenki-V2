@@ -1,6 +1,5 @@
 #pragma once
-#include "cocos2d.h"
-USING_NS_CC;
+#include "Defines.h"
 
 class CCScrewLayer : public CCLayer
 {
@@ -12,7 +11,7 @@ public:
 	float minY;
 	int totalRow;
 	int line_height;
-	CC_SYNTHESIZE_RETAIN(CCArray *, itemArray, ItemArray);
+	// PROP(vector<CCScrewItem *>, itemArray, ItemArray);
 
 	CREATE_FUNC(CCScrewLayer);
 
@@ -35,8 +34,6 @@ public:
 	CCSprite *lockItem;
 	CC_SYNTHESIZE(CCScrewLayer *, _delegate, Delegate);
 
-	CCRect getRect2();
-
 	CREATE_FUNC(CCScrewItem);
 
 protected:
@@ -44,6 +41,7 @@ protected:
 	void onExit();
 	bool ccTouchBegan(CCTouch *touch, CCEvent *event);
 	void ccTouchEnded(CCTouch *touch, CCEvent *event);
+	CCRect getRect2();
 
-	bool containsTouchLocation(CCTouch *touch);
+	inline bool containsTouchLocation(CCTouch *touch);
 };
