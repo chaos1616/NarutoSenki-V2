@@ -64,14 +64,14 @@ bool MenuButton::containsTouchLocation(CCTouch *touch)
 	return getRect().containsPoint(convertTouchToNodeSpace(touch));
 }
 
-void MenuButton::setBtnType(btnType type)
+void MenuButton::setBtnType(MenuButtonType type)
 {
-	_btnType = type;
+	_type = type;
 }
 
-btnType MenuButton::getBtnType()
+MenuButtonType MenuButton::getBtnType()
 {
-	return _btnType;
+	return _type;
 }
 
 bool MenuButton::ccTouchBegan(CCTouch *touch, CCEvent *event)
@@ -96,7 +96,7 @@ void MenuButton::ccTouchMoved(CCTouch *touch, CCEvent *event)
 	}
 	else
 	{
-		if (getBtnType() != HardCore)
+		if (getBtnType() != MenuButtonType::HardCore)
 		{
 			if (abs(touch->getLocation().y - prePosY) > 16)
 			{
@@ -118,25 +118,25 @@ void MenuButton::ccTouchEnded(CCTouch *touch, CCEvent *event)
 {
 	if (_isTop && !_startMenu->isDrag)
 	{
-		switch (_btnType)
+		switch (_type)
 		{
-		case Training:
+		case MenuButtonType::Training:
 			SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
 			_startMenu->onTrainingCallBack();
 			break;
-		case Credits:
+		case MenuButtonType::Credits:
 			SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
 			_startMenu->onCreditsCallBack();
 			break;
-		case Exit:
+		case MenuButtonType::Exit:
 			SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
 			_startMenu->onExitCallBack();
 			break;
-		case Custom:
+		case MenuButtonType::Custom:
 			SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
 			// TODO
 			break;
-		case HardCore:
+		case MenuButtonType::HardCore:
 			SimpleAudioEngine::sharedEngine()->playEffect(SELECT_SOUND);
 			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("menu05_text.png");
 			_startMenu->menuText->setDisplayFrame(frame);
@@ -157,19 +157,21 @@ void MenuButton::playSound()
 {
 	SimpleAudioEngine::sharedEngine()->stopAllEffects();
 
-	switch (_btnType)
+	switch (_type)
 	{
-	case Training:
+	case MenuButtonType::Training:
 		SimpleAudioEngine::sharedEngine()->playEffect(TRAINING_SOUND);
 		break;
-	case Custom:
+	case MenuButtonType::Custom:
 		SimpleAudioEngine::sharedEngine()->playEffect(NETWORK_SOUND);
 		break;
-	case Credits:
+	case MenuButtonType::Credits:
 		SimpleAudioEngine::sharedEngine()->playEffect(CREDITS_SOUND);
 		break;
-	case Exit:
+	case MenuButtonType::Exit:
 		SimpleAudioEngine::sharedEngine()->playEffect(EXIT_SOUND);
+		break;
+	default:
 		break;
 	}
 }
@@ -280,14 +282,14 @@ bool StartMenu::init()
 	//produce the menu button
 	auto gamemode_btn = MenuButton::create("menu01.png");
 	gamemode_btn->setDelegate(this);
-	gamemode_btn->setBtnType(Custom);
+	gamemode_btn->setBtnType(MenuButtonType::Custom);
 	gamemode_btn->setScale(0.5f);
 	gamemode_btn->setPositionY(_pos03);
 	_menuArray.push_back(gamemode_btn);
 
 	auto credits_btn = MenuButton::create("menu04.png");
 	credits_btn->setDelegate(this);
-	credits_btn->setBtnType(Credits);
+	credits_btn->setBtnType(MenuButtonType::Credits);
 	credits_btn->setScale(0.5f);
 	credits_btn->setVisible(false);
 	credits_btn->_isBottom = true;
@@ -296,14 +298,14 @@ bool StartMenu::init()
 
 	auto training_btn = MenuButton::create("menu02.png");
 	training_btn->setDelegate(this);
-	training_btn->setBtnType(Training);
+	training_btn->setBtnType(MenuButtonType::Training);
 	training_btn->_isTop = true;
 	training_btn->setPositionY(_pos02);
 	_menuArray.push_back(training_btn);
 
 	auto exit_btn = MenuButton::create("menu03.png");
 	exit_btn->setDelegate(this);
-	exit_btn->setBtnType(Exit);
+	exit_btn->setBtnType(MenuButtonType::Exit);
 	exit_btn->setScale(0.5f);
 	exit_btn->setPositionY(_pos01);
 	_menuArray.push_back(exit_btn);
@@ -656,17 +658,19 @@ void StartMenu::scrollMenu(int posY)
 		{
 			switch (menu->getBtnType())
 			{
-			case Training:
+			case MenuButtonType::Training:
 				src = "menu02_text.png";
 				break;
-			case Custom:
+			case MenuButtonType::Custom:
 				src = "menu01_text.png";
 				break;
-			case Credits:
+			case MenuButtonType::Credits:
 				src = "menu04_text.png";
 				break;
-			case Exit:
+			case MenuButtonType::Exit:
 				src = "menu03_text.png";
+				break;
+			default:
 				break;
 			}
 		}

@@ -7,7 +7,7 @@
 #include "MyUtils/CCScrewLayer.h"
 
 // declare menuButton
-enum btnType
+enum class MenuButtonType
 {
 	Custom,
 	Training,
@@ -23,14 +23,14 @@ class MenuButton : public CCSprite, public CCTouchDelegate
 public:
 	bool _isTop;
 	bool _isBottom;
-	btnType _btnType;
 	float prePosY;
+	MenuButtonType _type;
 	CC_SYNTHESIZE(StartMenu *, _startMenu, Delegate);
 
 	bool init(const char *szImage);
 	CCRect getRect();
-	void setBtnType(btnType type);
-	btnType getBtnType();
+	void setBtnType(MenuButtonType type);
+	MenuButtonType getBtnType();
 	void playSound();
 
 	static MenuButton *create(const char *szImage);
