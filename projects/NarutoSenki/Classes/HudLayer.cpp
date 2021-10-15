@@ -82,9 +82,6 @@ HudLayer::HudLayer()
 {
 	_joyStick = nullptr;
 
-	_reportListArray = nullptr;
-	_buffCount = 0;
-	_towerIconArray = nullptr;
 	reportSPCSprite = nullptr;
 
 	_isAllButtonLocked = false;
@@ -126,8 +123,6 @@ void HudLayer::onExit()
 	CCLayer::onExit();
 	if (getGameLayer()->_isExiting)
 	{
-		CC_SAFE_RELEASE(_reportListArray);
-		CC_SAFE_RELEASE(_towerIconArray);
 	}
 }
 
@@ -475,12 +470,7 @@ void HudLayer::initHeroInterface()
 		mi->updatePosition(tower->getSpawnPoint());
 		mi->setCharNO(tower->getCharNO());
 
-		if (!_towerIconArray)
-		{
-			_towerIconArray = CCArray::create();
-			_towerIconArray->retain();
-		}
-		_towerIconArray->addObject(mi);
+		_towerIconArray.push_back(mi);
 	}
 
 	for (auto player : getGameLayer()->_CharacterArray)
@@ -711,10 +701,8 @@ void HudLayer::setEXPLose()
 
 void HudLayer::setTowerState(int charNO)
 {
-	CCObject *pObject;
-	CCARRAY_FOREACH(_towerIconArray, pObject)
+	for (auto mi : _towerIconArray)
 	{
-		MiniIcon *mi = (MiniIcon *)pObject;
 		if (mi->getCharNO() == charNO)
 		{
 			mi->updateState();
@@ -753,19 +741,14 @@ void HudLayer::setReport(const char *name1, const char *name2, CCString *killNum
 {
 	float length;
 
-	if (!_reportListArray)
+	if (!_reportListArray.empty())
 	{
-		_reportListArray = CCArray::create();
-		_reportListArray->retain();
-	}
-	else if (_reportListArray->count() > 0)
-	{
-		auto dic = CCDictionary::create();
-		dic->setObject(CCString::create(name1), "name1");
-		dic->setObject(CCString::create(name2), "name2");
-		dic->setObject(to_ccstring(1), "num");
-		dic->setObject(killNum, "kills");
-		_reportListArray->addObject(dic);
+		_reportListArray.push_back({
+			.name1 = name1,
+			.name2 = name2,
+			.num = 1,
+			.kills = killNum->uintValue(),
+		});
 		return;
 	}
 
@@ -779,13 +762,13 @@ void HudLayer::setReport(const char *name1, const char *name2, CCString *killNum
 	auto seq = CCSequence::create(su, su->reverse(), delay, call, nullptr);
 	reportSprite->runAction(seq);
 
-	auto dic = CCDictionary::create();
-	dic->setObject(CCString::create(name1), "name1");
-	dic->setObject(CCString::create(name2), "name2");
-	dic->setObject(to_ccstring(1), "num");
-	dic->setObject(killNum, "kills");
-	dic->setObject(CCString::create("True"), "isDisplay");
-	_reportListArray->addObject(dic);
+	_reportListArray.push_back({
+		.name1 = name1,
+		.name2 = name2,
+		.num = 1,
+		.kills = killNum->uintValue(),
+		.isDisplay = true,
+	});
 }
 
 void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
@@ -933,110 +916,91 @@ void HudLayer::updateSPCReprot(float dt)
 void HudLayer::setReportCache()
 {
 	reportSprite->removeFromParent();
-	CCObject *pObject;
 
-	CCARRAY_FOREACH(_reportListArray, pObject)
+	for (auto &data : _reportListArray)
 	{
-		auto tempdict = (CCDictionary *)pObject;
-		CCString *isDisplay = CCString::create(tempdict->valueForKey("isDisplay")->getCString());
+		if (!data.isDisplay)
+			continue;
 
-		if (!is_same(isDisplay->getCString(), "True"))
+		float length;
+		reportSprite = createReport(data.name1.c_str(), data.name2.c_str(), length);
+		reportSprite->setPosition(ccp(winSize.width / 2 - length / 2, winSize.height - 80));
+		addChild(reportSprite, 500);
+
+		auto su = CCScaleBy::create(0.2f, 1.1f);
+		auto call = CCCallFunc::create(this, callfunc_selector(HudLayer::setReportCache));
+		auto delay = CCDelayTime::create(2.0f);
+		auto seq = CCSequence::create(su, su->reverse(), delay, call, nullptr);
+
+		reportSprite->runAction(seq);
+
+		if (data.name2 != kRoleTower)
 		{
-			CCString *name1 = CCString::create(tempdict->valueForKey("name1")->getCString());
-			CCString *name2 = CCString::create(tempdict->valueForKey("name2")->getCString());
-			CCString *num = CCString::create(tempdict->valueForKey("num")->getCString());
-			CCString *killnum = CCString::create(tempdict->valueForKey("kills")->getCString());
-
-			float length;
-			reportSprite = createReport(name1->getCString(), name2->getCString(), length);
-			reportSprite->setPosition(ccp(winSize.width / 2 - length / 2, winSize.height - 80));
-			addChild(reportSprite, 500);
-
-			auto su = CCScaleBy::create(0.2f, 1.1f);
-			auto call = CCCallFunc::create(this, callfunc_selector(HudLayer::setReportCache));
-			auto delay = CCDelayTime::create(2.0f);
-			auto seq = CCSequence::create(su, su->reverse(), delay, call, nullptr);
-
-			reportSprite->runAction(seq);
-
-			if (strcmp(name2->getCString(), kRoleTower) != 0)
+			int num2 = 0;
+			for (auto &data2 : _reportListArray)
 			{
-				CCObject *pObject2;
-				int num2 = 0;
-				CCARRAY_FOREACH(_reportListArray, pObject2)
+				if (data2.name1 == data.name1 &&
+					data2.name2 != kRoleTower &&
+					data2.isDisplay)
 				{
-					auto tempdict2 = (CCDictionary *)pObject2;
-					CCString *tempName = CCString::create(tempdict2->valueForKey("name1")->getCString());
-					CCString *tempName2 = CCString::create(tempdict2->valueForKey("name2")->getCString());
-					CCString *isDisplay2 = CCString::create(tempdict2->valueForKey("isDisplay")->getCString());
-
-					if (is_same(tempName->getCString(), name1->getCString()) &&
-						strcmp(tempName2->getCString(), kRoleTower) != 0 &&
-						is_same(isDisplay2->getCString(), "True"))
-					{
-						num2 += 1;
-					}
-				}
-
-				if (num2 == 1)
-				{
-					if (reportSPCSprite)
-					{
-						reportSPCSprite->stopAllActions();
-						reportSPCSprite->removeFromParent();
-					}
-					reportSPCSprite = createSPCReport(killnum->getCString(), num2);
-					reportSPCSprite->setPosition(ccp(winSize.width / 2, winSize.height - 115));
-					addChild(reportSPCSprite, 500);
-					auto fn = CCFadeIn::create(0.8f);
-					auto mv = CCMoveBy::create(0.8f, ccp(0, 10));
-					auto sp = CCSpawn::createWithTwoActions(fn, mv);
-					auto delay2 = CCDelayTime::create(1.6f);
-					auto call2 = CCCallFunc::create(this, callfunc_selector(HudLayer::clearSPCReport));
-					auto list = CCArray::create();
-					list->addObject(sp);
-					list->addObject(delay2);
-					list->addObject(call2);
-					auto seq2 = CCSequence::create(list);
-					reportSPCSprite->runAction(seq2);
-				}
-				else if (num2 >= 2)
-				{
-					if (reportSPCSprite)
-					{
-						reportSPCSprite->stopAllActions();
-						reportSPCSprite->removeFromParent();
-					}
-
-					reportSPCSprite = createSPCReport(killnum->getCString(), num2);
-					reportSPCSprite->setScale(2.0);
-					reportSPCSprite->setPosition(ccp(winSize.width / 2, winSize.height - 105));
-					addChild(reportSPCSprite, 500);
-					CCScaleTo *st = CCScaleTo::create(0.8f, 1.0f, 1.0f);
-					auto call2 = CCCallFunc::create(this, callfunc_selector(HudLayer::stopSPCReport));
-					auto seq2 = CCSequence::createWithTwoActions(st, call2);
-					reportSPCSprite->runAction(seq2);
-
-					auto sk = CCRepeatForever::create(CCShake::create(0.2f, 4));
-					reportSPCSprite->runAction(sk);
-
-					schedule(schedule_selector(HudLayer::updateSPCReprot), 0.2f);
+					num2 += 1;
 				}
 			}
 
-			tempdict->setObject(CCString::create("True"), "isDisplay");
-			return;
+			if (num2 == 1)
+			{
+				if (reportSPCSprite)
+				{
+					reportSPCSprite->stopAllActions();
+					reportSPCSprite->removeFromParent();
+				}
+				reportSPCSprite = createSPCReport(data.kills, num2);
+				reportSPCSprite->setPosition(ccp(winSize.width / 2, winSize.height - 115));
+				addChild(reportSPCSprite, 500);
+				auto fn = CCFadeIn::create(0.8f);
+				auto mv = CCMoveBy::create(0.8f, ccp(0, 10));
+				auto sp = CCSpawn::createWithTwoActions(fn, mv);
+				auto delay2 = CCDelayTime::create(1.6f);
+				auto call2 = CCCallFunc::create(this, callfunc_selector(HudLayer::clearSPCReport));
+				auto list = CCArray::create();
+				list->addObject(sp);
+				list->addObject(delay2);
+				list->addObject(call2);
+				auto seq2 = CCSequence::create(list);
+				reportSPCSprite->runAction(seq2);
+			}
+			else if (num2 >= 2)
+			{
+				if (reportSPCSprite)
+				{
+					reportSPCSprite->stopAllActions();
+					reportSPCSprite->removeFromParent();
+				}
+
+				reportSPCSprite = createSPCReport(data.kills, num2);
+				reportSPCSprite->setScale(2.0);
+				reportSPCSprite->setPosition(ccp(winSize.width / 2, winSize.height - 105));
+				addChild(reportSPCSprite, 500);
+				CCScaleTo *st = CCScaleTo::create(0.8f, 1.0f, 1.0f);
+				auto call2 = CCCallFunc::create(this, callfunc_selector(HudLayer::stopSPCReport));
+				auto seq2 = CCSequence::createWithTwoActions(st, call2);
+				reportSPCSprite->runAction(seq2);
+
+				auto sk = CCRepeatForever::create(CCShake::create(0.2f, 4));
+				reportSPCSprite->runAction(sk);
+
+				schedule(schedule_selector(HudLayer::updateSPCReprot), 0.2f);
+			}
 		}
+
+		data.isDisplay = true;
+		return;
 	}
 
-	if (_reportListArray)
-	{
-		_reportListArray->removeAllObjects();
-		_reportListArray = nullptr;
-	}
+	_reportListArray.clear();
 }
 
-CCSprite *HudLayer::createSPCReport(const char *killNum, int num)
+CCSprite *HudLayer::createSPCReport(uint32_t killNum, int num)
 {
 	bool isBrocast = false;
 	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
@@ -1046,25 +1010,25 @@ CCSprite *HudLayer::createSPCReport(const char *killNum, int num)
 
 	if (num == 1)
 	{
-		if (to_int(killNum) < 10)
+		if (killNum < 10)
 		{
 			reportSPCSprite = CCSprite::createWithSpriteFrameName("DoubleKill_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill2_1.ogg");
 		}
-		else if (to_int(killNum) < 20)
+		else if (killNum < 20)
 		{
 			reportSPCSprite = CCSprite::createWithSpriteFrameName("KillingSpree_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill2_2.ogg");
 		}
-		else if (to_int(killNum) < 30)
+		else if (killNum < 30)
 		{
 			reportSPCSprite = CCSprite::createWithSpriteFrameName("Unstoppable_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill2_3.ogg");
 		}
-		else if (to_int(killNum) >= 30)
+		else if (killNum >= 30)
 		{
 			reportSPCSprite = CCSprite::createWithSpriteFrameName("Godlike_rpf.png");
 			if (isBrocast)
@@ -1073,25 +1037,25 @@ CCSprite *HudLayer::createSPCReport(const char *killNum, int num)
 	}
 	else if (num == 2)
 	{
-		if (to_int(killNum) < 10)
+		if (killNum < 10)
 		{
 			reportSPCSprite = CCSprite::createWithSpriteFrameName("TripeKill_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill3_1.ogg");
 		}
-		else if (to_int(killNum) < 20)
+		else if (killNum < 20)
 		{
 			reportSPCSprite = CCSprite::createWithSpriteFrameName("Domination_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill3_2.ogg");
 		}
-		else if (to_int(killNum) < 30)
+		else if (killNum < 30)
 		{
 			reportSPCSprite = CCSprite::createWithSpriteFrameName("Rampage_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill3_3.ogg");
 		}
-		else if (to_int(killNum) >= 30)
+		else if (killNum >= 30)
 		{
 			reportSPCSprite = CCSprite::createWithSpriteFrameName("Holyshit_rpf.png");
 			if (isBrocast)

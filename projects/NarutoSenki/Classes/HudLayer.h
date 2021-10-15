@@ -15,14 +15,26 @@ public:
 
 	bool init(const char *szImage, bool isNotification);
 
-	CC_SYNTHESIZE(int, _charNO, CharNO);
-	static MiniIcon *create(const char *szImage, bool isNotification);
+	PROP(int, _charNO, CharNO);
+
 	void updateMap(CCObject *sender);
 	void updateState();
-
 	void updatePosition(CCPoint location);
 
+	static MiniIcon *create(const char *szImage, bool isNotification);
+
 	CCLayer *_delegate;
+};
+
+struct ReportData
+{
+public:
+	string name1;
+	string name2;
+	uint32_t num = 0;
+	uint32_t kills = 0;
+
+	bool isDisplay = false;
 };
 
 class HudLayer : public CCLayer
@@ -56,8 +68,8 @@ public:
 
 	CCSprite *reportSprite;
 
-	CC_SYNTHESIZE(CCArray *, _reportListArray, ReportListArray);
-	int _buffCount;
+	PROP_REF(vector<ReportData>, _reportListArray, ReportListArray);
+	int _buffCount = 0;
 
 	CCLabelBMFont *hpLabel;
 	CCLabelBMFont *expLabel;
@@ -72,7 +84,7 @@ public:
 	CCLabelBMFont *gameClock;
 	CCMenu *pauseNenu;
 	CCMenu *gearMenu;
-	CC_SYNTHESIZE(CCArray *, _towerIconArray, TowerIconArray);
+	PROP_REF(vector<MiniIcon *>, _towerIconArray, TowerIconArray);
 
 	CCLayer *miniLayer;
 	JoyStick *_joyStick;
@@ -111,7 +123,7 @@ public:
 	CCSprite *openingSprite;
 
 	CCSprite *createReport(const char *name1, const char *name2, float &length);
-	CCSprite *createSPCReport(const char *killNum, int num);
+	CCSprite *createSPCReport(uint32_t killNum, int num);
 
 	bool getSkillFinish();
 	bool getOugisEnable(bool isCKR2);
