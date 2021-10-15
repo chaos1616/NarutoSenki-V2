@@ -4477,8 +4477,13 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 
 			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path.c_str());
 			if (frame == nullptr)
-			{
-				CCMessageBox(path.c_str(), "Not found hard hurt frame");
+			{ // Try use xxx_AirHurt_01 instead of xxx_AirHurt_02
+				path = getCharacter()->getCString();
+				path += "_AirHurt_01";
+				frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path.c_str());
+
+				if (frame == nullptr)
+					CCMessageBox(path.c_str(), "Not found hard hurt frame");
 			}
 
 			auto tempArray = CCArray::create();
