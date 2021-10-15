@@ -65,11 +65,9 @@ public:
 	ActionButton *gear1Button;
 	ActionButton *gear2Button;
 	ActionButton *gear3Button;
+	CCSprite *reportSprite;
 	CCSprite *reportSPCSprite;
 
-	CCSprite *reportSprite;
-
-	PROP_REF(vector<ReportData>, _reportListArray, ReportListArray);
 	int _buffCount = 0;
 
 	CCLabelBMFont *hpLabel;
@@ -85,7 +83,6 @@ public:
 	CCLabelBMFont *gameClock;
 	CCMenu *pauseNenu;
 	CCMenu *gearMenu;
-	PROP_REF(vector<MiniIcon *>, _towerIconArray, TowerIconArray);
 
 	CCLayer *miniLayer;
 	JoyStick *_joyStick;
@@ -159,4 +156,6 @@ private:
 	void onExit();
 
 	bool _isInitPlayerHud = false;
+	vector<ReportData> _reportListArray;
+	vector<MiniIcon *> _towerIconArray;
 };

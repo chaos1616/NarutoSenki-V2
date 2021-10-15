@@ -14,9 +14,6 @@
         "lowercase-global",
         "undefined-global"
     ],
-    "C_Cpp.autoAddFileAssociations": false,
-    "C_Cpp.autocompleteAddParentheses": true,
-    "C_Cpp.errorSquiggles": "Disabled",
     "[cpp]": {
         "editor.detectIndentation": false,
         "editor.tabSize": 4,
@@ -46,5 +43,9 @@
         "editor.detectIndentation": false,
         "editor.tabSize": 4,
         "editor.insertSpaces": false
-    }
+    },
+    "C_Cpp.autoAddFileAssociations": false,
+    "C_Cpp.autocompleteAddParentheses": true,
+    "C_Cpp.errorSquiggles": "Disabled",
+    "C_Cpp.experimentalFeatures": "Enabled"
 }
