@@ -1,6 +1,7 @@
 #include "CharacterBase.h"
 #include "Core/Provider.hpp"
 #include "HudLayer.h"
+#include "GameLayer.h"
 #include "GameMode/GameModeImpl.h"
 #include "MyUtils/CCShake.h"
 #include "Systems/CommandSystem.hpp"

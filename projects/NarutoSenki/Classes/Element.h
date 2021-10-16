@@ -1,5 +1,6 @@
 #pragma once
 #include "CharacterBase.h"
+#include "GameLayer.h"
 #include "HPBar.h"
 
 class HeroElement : public CharacterBase

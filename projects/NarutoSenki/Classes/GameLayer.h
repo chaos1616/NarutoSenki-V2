@@ -108,7 +108,6 @@ public:
 
 	PROP(bool, _isSkillFinish, SkillFinish);
 	void checkTower();
-	void checkBackgroundMusic();
 
 	void onPause();
 	void onGear();
