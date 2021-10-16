@@ -23,8 +23,6 @@
  THE SOFTWARE.
 ****************************************************************************/
 
-#include "platform/CCPlatformMacros.h"
-#include "ccMacros.h"
 #include "base/CCValue.h"
 #include <cmath>
 #include <sstream>
