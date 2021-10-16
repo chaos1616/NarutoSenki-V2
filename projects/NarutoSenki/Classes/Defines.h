@@ -188,8 +188,9 @@ static const int kHeroNum = sizeof(kHeroList) / sizeof(char *);
 
 // Resloutions
 
-#define RES_X = 480
-#define RES_y = 320
+#define RES_X 570
+#define RES_y 320
+#define kSpeedBase 480 / 1280
 
 // End
 

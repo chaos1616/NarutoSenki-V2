@@ -380,11 +380,11 @@ void CharacterBase::update(float dt)
 						float anchorYpoint = metaY + metaHeight / 2;
 						if (getPositionY() > anchorYpoint)
 						{
-							_velocity = ccp(0, 1 * _walkSpeed * winSize.width / 1280);
+							_velocity = ccp(0, 1 * _walkSpeed * kSpeedBase);
 						}
 						else
 						{
-							_velocity = ccp(0, -1 * _walkSpeed * winSize.width / 1280);
+							_velocity = ccp(0, -1 * _walkSpeed * kSpeedBase);
 						}
 						_desiredPosition = ccpAdd(getPosition(), ccpMult(_velocity, dt));
 					}
@@ -2343,7 +2343,7 @@ void CharacterBase::setCharge(CCNode *sender, void *data)
 	}
 	else
 	{
-		_moveAction = CCMoveBy::create(0.1f, ccp(_isFlipped ? -moveLength * winSize.width / 1280 : moveLength * winSize.width / 1280, 0));
+		_moveAction = CCMoveBy::create(0.1f, ccp(_isFlipped ? -moveLength * kSpeedBase : moveLength * kSpeedBase, 0));
 		runAction(_moveAction);
 	}
 }
@@ -2366,7 +2366,7 @@ void CharacterBase::setChargeB(CCNode *sender, void *data)
 	}
 	else
 	{
-		_moveAction = CCMoveBy::create(delay, ccp(_isFlipped ? -moveLength * winSize.width / 1280 : moveLength * winSize.width / 1280, 0));
+		_moveAction = CCMoveBy::create(delay, ccp(_isFlipped ? -moveLength * kSpeedBase : moveLength * kSpeedBase, 0));
 		runAction(_moveAction);
 	}
 }
@@ -4311,7 +4311,7 @@ void CharacterBase::walk(CCPoint direction)
 			}
 		}
 
-		_velocity = ccp(direction.x * _walkSpeed * winSize.width / 1280, direction.y * _walkSpeed * winSize.width / 1280);
+		_velocity = ccp(direction.x * _walkSpeed * kSpeedBase, direction.y * _walkSpeed * kSpeedBase);
 	}
 }
 
