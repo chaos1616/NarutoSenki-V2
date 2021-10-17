@@ -74,7 +74,7 @@ CharacterBase::CharacterBase()
 	_isCanGear06 = false;
 
 	enemyCombatPoint = 0;
-	//totalCombatPoint=0;
+	// totalCombatPoint=0;
 	friendCombatPoint = 0;
 
 	isBaseDanger = false;
@@ -362,7 +362,7 @@ void CharacterBase::update(float dt)
 
 		if (isPlayer() && !_isAI && !_isInvincible && !_isArmored)
 		{
-			//save the stop Area
+			// save the stop Area
 			for (auto tower : getGameLayer()->_TowerArray)
 			{
 				if (tower)
@@ -667,7 +667,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 					// record the slayer
 					_slayer = attacker;
 
-					//flog hurt
+					// flog hurt
 					if (isFlog())
 					{
 						if (is_same(hitType, "o_hit"))
@@ -1229,8 +1229,8 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 						p = strtok(nullptr, split);
 					}
 
-					//auto call = CCCallFuncND::create(this,callfuncND_selector(CharacterBase::setFontEffect),(void*)callValue);
-					//seqArray->addObject(call);
+					// auto call = CCCallFuncND::create(this,callfuncND_selector(CharacterBase::setFontEffect),(void*)callValue);
+					// seqArray->addObject(call);
 				}
 				else if (is_same(key, "setBuff"))
 				{
@@ -1600,7 +1600,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const char *effectType, i
 	if (isPlayer() || (isNotTower() &&
 					   abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2))
 	{
-		//create damage value display
+		// create damage value display
 		bool _isDisplay = false;
 
 		if (attacker->isPlayer() || isPlayer())
@@ -1623,7 +1623,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const char *effectType, i
 				setDamgeDisplay(realValue, "red");
 		}
 
-		//create damage effect
+		// create damage effect
 		if (isFlog() && attacker->isNotFlog())
 		{
 			if (is_same(effectType, "a_hit"))
@@ -3239,7 +3239,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	}
 	else if (is_same(monsterName, "LeeBom"))
 	{
-		//monster->setAnchorPoint(ccp(0.5,0.5f));
+		// monster->setAnchorPoint(ccp(0.5,0.5f));
 		monster->setPosition(ccp(getPositionX(), getPositionY()));
 		_monsterArray->addObject(monster);
 		monster->attack(NAttack);
@@ -3838,7 +3838,7 @@ void CharacterBase::setMonAttack(CCNode *sender, void *data)
 					{
 						if (skillNum == 1)
 						{
-							//mo->attack(SKILL1);
+							// mo->attack(SKILL1);
 						}
 						else if (skillNum == 2)
 						{
@@ -4750,7 +4750,7 @@ void CharacterBase::dead()
 		getGameLayer()->getHudLayer()->status_hpbar->setOpacity(0);
 	}
 
-	//kill all buffEffect
+	// kill all buffEffect
 	if (isPlayerOrCom())
 	{
 		unschedule(schedule_selector(CharacterBase::healBuff));

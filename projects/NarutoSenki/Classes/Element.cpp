@@ -34,7 +34,7 @@ bool HeroElement::init()
 
 	setAnchorPoint(ccp(0.5, 0));
 	scheduleUpdate();
-	//schedule(schedule_selector(HeroElement::checkRefCount),0.5f);
+	// schedule(schedule_selector(HeroElement::checkRefCount),0.5f);
 
 	return true;
 }
@@ -449,7 +449,7 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 
 	KTools::readXMLToArray(filePath, animationArray);
 
-	//init Attribute; & indleFrame
+	// init Attribute; & indleFrame
 
 	CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
 	CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
@@ -475,15 +475,15 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 		setCkr2Value(0);
 	}
 
-	//init WalkFrame
+	// init WalkFrame
 	tmpAction = (CCArray *)(animationArray->objectAtIndex(1));
 	walkArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-	//init DeadFrame
+	// init DeadFrame
 	tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
 	deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-	//init nAttack data & Frame Array
+	// init nAttack data & Frame Array
 	tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
 	tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 	uint32_t tmpCD;

@@ -24,13 +24,13 @@ bool CCStrokeLabel::init()
 		CCSize textureSize = m_label->getContentSize();
 		textureSize.width += 2 * strokeSize;
 		textureSize.height += 2 * strokeSize;
-		//call to clear error
+		// call to clear error
 		glGetError();
 		CCRenderTexture *rt = CCRenderTexture::create(
 			textureSize.width, textureSize.height);
 		if (!rt)
 		{
-			//ERROR_MSG("create render texture failed !!!!");
+			// ERROR_MSG("create render texture failed !!!!");
 			addChild(m_label);
 			return false;
 		}

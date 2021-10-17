@@ -75,42 +75,42 @@ void JoyStick::updateDirectionForTouchLocation(CCTouch *touch)
 
 	if (degrees <= 22.5 && degrees >= -22.5)
 	{
-		//right
+		// right
 		_direction = ccp(1.0, 0.0);
 	}
 	else if (degrees > 22.5 && degrees < 67.5)
 	{
-		//bottom right
+		// bottom right
 		_direction = ccp(1.0, -1.0);
 	}
 	else if (degrees >= 67.5 && degrees <= 112.5)
 	{
-		//bottom
+		// bottom
 		_direction = ccp(0.0, -1.0);
 	}
 	else if (degrees > 112.5 && degrees < 157.5)
 	{
-		//bottom left
+		// bottom left
 		_direction = ccp(-1.0, -1.0);
 	}
 	else if (degrees >= 157.5 || degrees <= -157.5)
 	{
-		//left
+		// left
 		_direction = ccp(-1.0, 0.0);
 	}
 	else if (degrees < -22.5 && degrees > -67.5)
 	{
-		//top right
+		// top right
 		_direction = ccp(1.0, 1.0);
 	}
 	else if (degrees <= -67.5 && degrees >= -112.5)
 	{
-		//top
+		// top
 		_direction = ccp(0.0, 1.0);
 	}
 	else if (degrees < -112.5 && degrees > -157.5)
 	{
-		//top left
+		// top left
 		_direction = ccp(-1.0, 1.0);
 	};
 

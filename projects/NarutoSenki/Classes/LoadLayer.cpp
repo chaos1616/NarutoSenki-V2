@@ -20,7 +20,7 @@ bool LoadLayer::init()
 	if (!CCLayer::init())
 		return false;
 
-	//produce the menu_bar
+	// produce the menu_bar
 	CCSprite *menu_bar_b = CCSprite::create("menu_bar2.png");
 	menu_bar_b->setAnchorPoint(ccp(0, 0));
 	FULL_SCREEN_SPRITE(menu_bar_b);
@@ -37,7 +37,7 @@ bool LoadLayer::init()
 	loading_title->setPosition(ccp(2, winSize.height - loading_title->getContentSize().height - 2));
 	addChild(loading_title, 3);
 
-	//produce the cloud
+	// produce the cloud
 	CCSprite *cloud_left = CCSprite::createWithSpriteFrameName("cloud.png");
 	cloud_left->setPosition(ccp(0, 15));
 	cloud_left->setFlipX(true);
@@ -324,7 +324,7 @@ void LoadLayer::setLoadingAnimation(const char *player, int index)
 
 	CCArray *animeFrames = CCArray::create();
 
-	//FIXME: Use the other way get animation frame count
+	// FIXME: Use the other way get animation frame count
 	int frameCount = is_same(player, "Konan") ? 1 : 7;
 	for (int i = 1; i < frameCount; i++)
 	{

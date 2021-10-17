@@ -214,7 +214,7 @@ void HudLayer::initHeroInterface()
 	uiBatch->addChild(_joyStick);
 #endif
 
-	//produce status bar
+	// produce status bar
 	status_bar = CCSprite::createWithSpriteFrameName("status_bar_bg.png");
 	status_bar->setAnchorPoint(ccp(0, 0));
 	status_bar->setPosition(ccp(0, winHeight - status_bar->getContentSize().height));
@@ -323,13 +323,13 @@ void HudLayer::initHeroInterface()
 
 	addChild(coinLabel, 5000);
 
-	//init NATTACK Button
+	// init NATTACK Button
 	nAttackButton = ActionButton::create("n_attack.png");
 	nAttackButton->setDelegate(this);
 	nAttackButton->setABType(NAttack);
 	uiBatch->addChild(nAttackButton);
 
-	//init SKIll Button
+	// init SKIll Button
 
 	skill1Button = ActionButton::create(CCString::createWithFormat("%s_skill1.png", currentPlayer->getCharacter()->getCString())->getCString());
 	skill1Button->setDelegate(this);
@@ -356,7 +356,7 @@ void HudLayer::initHeroInterface()
 	skill5Button->setABType(OUGIS2);
 	uiBatch->addChild(skill5Button);
 
-	//init Item
+	// init Item
 	item1Button = ActionButton::create("item1.png");
 	if (getGameLayer()->_isHardCoreGame)
 	{
@@ -372,7 +372,7 @@ void HudLayer::initHeroInterface()
 	item1Button->_cost = "50";
 	uiBatch->addChild(item1Button);
 
-	//init Item
+	// init Item
 	item2Button = ActionButton::create("item2.png");
 	item2Button->setCD(to_ccstring(15000));
 	item2Button->setDelegate(this);
@@ -460,7 +460,7 @@ void HudLayer::initHeroInterface()
 	item3Button->setMarkSprite("skill_freeze.png");
 	item4Button->setMarkSprite("skill_freeze.png");
 
-	//init gear
+	// init gear
 	updateGears();
 	miniLayer = CCLayer::create();
 	miniLayer->setAnchorPoint(ccp(0, 0));
@@ -694,8 +694,8 @@ void HudLayer::setEXPLose()
 	{
 		Percent = 100;
 	}
-	//CCRotateTo* ra=CCRotateTo::create(0.2f,((1-Percent/100)*90),((1-Percent/100)*90));
-	//status_expbar->runAction(ra);
+	// CCRotateTo* ra=CCRotateTo::create(0.2f,((1-Percent/100)*90),((1-Percent/100)*90));
+	// status_expbar->runAction(ra);
 	status_expbar->setPercentage((1 + Percent / 100) * 50);
 
 	if (exp >= 2500)
@@ -1355,7 +1355,7 @@ void HudLayer::removeOugis(CCNode *sender)
 
 void HudLayer::initSkillButtons()
 {
-	//TODO: For Ino ougi2 (Player can control other character's skills)
+	// TODO: For Ino ougi2 (Player can control other character's skills)
 }
 
 void HudLayer::setSkillButtons(bool isVisable)

@@ -34,7 +34,7 @@ bool GameOver::init(CCRenderTexture *snapshoot)
 	CCLayer *blend = CCLayerColor::create(ccc4(0, 0, 0, 150), winSize.width, winSize.height);
 	addChild(blend, 1);
 
-	//produce the menu_bar
+	// produce the menu_bar
 	CCSprite *menu_bar_b = CCSprite::create("menu_bar2.png");
 	menu_bar_b->setAnchorPoint(ccp(0, 0));
 	FULL_SCREEN_SPRITE(menu_bar_b);
@@ -166,7 +166,7 @@ void GameOver::listResult()
 			continue;
 		}
 
-		//4v4
+		// 4v4
 		if (Cheats >= MaxCheats)
 		{
 			if (hero->isNotPlayer())
