@@ -1,6 +1,9 @@
 #include "LoadLayer.h"
 #include "GameMode/GameModeImpl.h"
 
+// Character File Name Generator
+#define mkpath(varName) "Element/" #varName "/" #varName ".plist"
+
 LoadLayer::LoadLayer()
 {
 	loadNum = 0;
@@ -149,7 +152,7 @@ void LoadLayer::perloadCharIMG(const char *player)
 
 	CCTexture2D::PVRImagesHavePremultipliedAlpha(true);
 
-	const char *path = CCString::createWithFormat("Element/Skills/%s_Skill.plist", player)->getCString();
+	auto path = CCString::createWithFormat("Element/Skills/%s_Skill.plist", player)->getCString();
 	if (CCFileUtils::sharedFileUtils()->isFileExist(path))
 		addSprites(path);
 	// else
@@ -226,78 +229,73 @@ void LoadLayer::perloadCharIMG(const char *player)
 	}
 }
 
-void LoadLayer::unloadCharIMG(const CharacterBase *c)
+void LoadLayer::unloadCharIMG(CharacterBase *c)
 {
-	if (c == nullptr)
-		return;
-
-	auto roleName = c->getRole()->getCString();
-	auto charName = c->getCharacter()->getCString();
-
-	if (is_same(roleName, kRoleClone) ||
-		is_same(roleName, kRoleSummon))
+	if (c == nullptr || c->isClone() || c->isSummon())
 	{
 		return;
 	}
 
+	auto charName = c->getCharacter()->getCString();
 	auto path = CCString::createWithFormat("Element/%s/%s.plist", charName, charName)->getCString();
 	removeSprites(path);
 
-	if (is_same(roleName, kRoleCom) ||
-		is_same(roleName, kRolePlayer))
+	if (c->isPlayerOrCom())
 	{
 		KTools::prepareFileOGG(charName, true);
 	}
 
 	if (is_same(charName, "Jiraiya"))
 	{
-		removeSprites("Element/SageJiraiya/SageJiraiya.plist");
+		removeSprites(mkpath(SageJiraiya));
 		KTools::prepareFileOGG("SageJiraiya", true);
 	}
 	else if (is_same(charName, "Kankuro"))
 	{
-		removeSprites("Element/Karasu/Karasu.plist");
-		removeSprites("Element/Sanshouuo/Sanshouuo.plist");
+		removeSprites(mkpath(Karasu));
+		removeSprites(mkpath(Sanshouuo));
 	}
 	else if (is_same(charName, "Kakuzu"))
 	{
-		removeSprites("Element/MaskFuton/MaskFuton.plist");
-		removeSprites("Element/MaskRaiton/MaskRaiton.plist");
-		removeSprites("Element/MaskKaton/MaskKaton.plist");
+		removeSprites(mkpath(MaskFuton));
+		removeSprites(mkpath(MaskRaiton));
+		removeSprites(mkpath(MaskKaton));
 	}
 	else if (is_same(charName, "Naruto"))
 	{
-		removeSprites("Element/SageNaruto/SageNaruto.plist");
-		removeSprites("Element/RikudoNaruto/RikudoNaruto.plist");
+		removeSprites(mkpath(SageNaruto));
+		removeSprites(mkpath(RikudoNaruto));
 		KTools::prepareFileOGG("SageNaruto", true);
 		KTools::prepareFileOGG("RikudoNaruto", true);
 	}
 	else if (is_same(charName, "RockLee"))
 	{
-		removeSprites("Element/Lee/Lee.plist");
+		removeSprites(mkpath(Lee));
 	}
 	else if (is_same(charName, "Lee"))
 	{
-		removeSprites("Element/RockLee/RockLee.plist");
+		removeSprites(mkpath(RockLee));
 	}
 	else if (is_same(charName, "Sasuke"))
 	{
 		KTools::prepareFileOGG("ImmortalSasuke", true);
-		removeSprites("Element/ImmortalSasuke/ImmortalSasuke.plist");
+		removeSprites(mkpath(ImmortalSasuke));
 	}
 	else if (is_same(charName, "Pain"))
 	{
 		KTools::prepareFileOGG("Nagato", true);
-		removeSprites("Element/AnimalPath/AnimalPath.plist");
-		removeSprites("Element/AsuraPath/AsuraPath.plist");
-		removeSprites("Element/NarakaPath/NarakaPath.plist");
-		removeSprites("Element/Nagato/Nagato.plist");
+		removeSprites(mkpath(AnimalPath));
+		removeSprites(mkpath(AsuraPath));
+		removeSprites(mkpath(NarakaPath));
+		// addSprites(mkpath(HumanPath));
+		// addSprites(mkpath(PertaPath));
+		removeSprites(mkpath(Nagato));
 	}
 	else if (is_same(charName, "Nagato"))
 	{
-		removeSprites("Element/AnimalPath/AnimalPath.plist");
-		removeSprites("Element/AsuraPath/AsuraPath.plist");
-		removeSprites("Element/NarakaPath/NarakaPath.plist");
+		removeSprites(mkpath(AnimalPath));
+		removeSprites(mkpath(AsuraPath));
+		removeSprites(mkpath(NarakaPath));
 	}
 }
 

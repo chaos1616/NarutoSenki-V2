@@ -30,6 +30,3 @@ using namespace StringUtils;
 // Tile maps (Made with Tiled)
 #define GetMapPath(mapId) CCString::createWithFormat("Tiles/%d.tmx", mapId)->getCString()
 #define GetMapBgPath(mapId) CCString::createWithFormat("Tiles/map_bg%d.png", mapId)->getCString()
-
-// Character File Name Generator
-#define mkpath(varName) "Element/" #varName "/" #varName ".plist"

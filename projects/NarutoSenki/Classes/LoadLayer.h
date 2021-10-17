@@ -30,7 +30,7 @@ public:
 
 	CREATE_FUNC(LoadLayer);
 	static void perloadCharIMG(const char *player);
-	static void unloadCharIMG(const CharacterBase *player);
+	static void unloadCharIMG(CharacterBase *player);
 	static void unloadAllCharsIMG(const vector<Hero *> &players);
 
 private:
