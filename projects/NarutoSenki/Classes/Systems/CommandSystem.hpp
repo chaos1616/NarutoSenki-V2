@@ -252,12 +252,10 @@ private:
 			   bool _isCounter = false;
 			   if (thiz->hasMonsterArrayAny())
 			   {
-				   CCObject *pObject;
-				   CCARRAY_FOREACH(thiz->getMonsterArray(), pObject)
+				   for (auto mo : thiz->getMonsterArray())
 				   {
-					   auto tempMonster = (CharacterBase *)pObject;
-					   float distanceX = ccpSub(tempMonster->getPosition(), thiz->getPosition()).x;
-					   float distanceY = ccpSub(tempMonster->getPosition(), thiz->getPosition()).y;
+					   float distanceX = ccpSub(mo->getPosition(), thiz->getPosition()).x;
+					   float distanceY = ccpSub(mo->getPosition(), thiz->getPosition()).y;
 					   if (abs(distanceX) < 40 && abs(distanceY) < 15)
 					   {
 						   _isCounter = true;
@@ -359,15 +357,13 @@ private:
 		   });
 		on(Command::setTransport2, [](CharacterBase *thiz)
 		   {
-			   CCObject *pObject;
 			   int tsPosX = thiz->getPositionX();
 			   int tsPosY = thiz->getPositionY();
 
 			   if (thiz->_actionState != State::NATTACK && thiz->hasMonsterArrayAny())
 			   {
-				   CCARRAY_FOREACH(thiz->getMonsterArray(), pObject)
+				   for (auto mo : thiz->getMonsterArray())
 				   {
-					   auto mo = (Monster *)pObject;
 					   if (mo->isCharacter("HiraishinMark"))
 					   {
 						   tsPosX = mo->getPositionX();

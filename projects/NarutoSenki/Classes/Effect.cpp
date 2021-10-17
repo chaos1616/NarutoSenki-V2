@@ -295,13 +295,13 @@ void Effect::removeEffect()
 		at->damageEffectCount--;
 	}
 	stopAllActions();
-	removeFromParentAndCleanup(true);
+	removeFromParent();
 }
 
 void Effect::removeFontEffect()
 {
 	stopAllActions();
-	removeFromParentAndCleanup(true);
+	removeFromParent();
 }
 
 Effect *Effect::create(const char *szImage, CCObject *attacker)

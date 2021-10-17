@@ -11,7 +11,6 @@ HeroElement::HeroElement()
 HeroElement::~HeroElement()
 {
 	CC_SAFE_RELEASE(callValue);
-	CC_SAFE_RELEASE(_monsterArray);
 	CC_SAFE_DELETE(skillSPC1Array);
 	CC_SAFE_RELEASE(skillSPC2Array);
 	CC_SAFE_RELEASE(skillSPC3Array);
@@ -174,22 +173,15 @@ void HeroElement::dealloc()
 	{
 		if (hasMonsterArrayAny())
 		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(getMonsterArray(), pObject)
+			for (auto mo : _monsterArray)
 			{
-				auto mo = (CharacterBase *)pObject;
-
 				std::erase(getGameLayer()->_CharacterArray, mo);
 
-				CCNotificationCenter::sharedNotificationCenter()->removeObserver(mo, "acceptAttack");
-				mo->stopAllActions();
-				mo->unscheduleAllSelectors();
+				CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(mo);
 				mo->setActionState(State::DEAD);
 				mo->removeFromParent();
-				mo = nullptr;
 			}
-			getMonsterArray()->removeAllObjects();
-			_monsterArray = nullptr;
+			_monsterArray.clear();
 		}
 	}
 
@@ -200,14 +192,8 @@ void HeroElement::dealloc()
 
 		std::erase(getGameLayer()->_CharacterArray, this);
 
-		if (_master && _master->getMonsterArray())
-		{
-			int index = _master->getMonsterArray()->indexOfObject(this);
-			if (index >= 0)
-			{
-				_master->getMonsterArray()->removeObjectAtIndex(index);
-			}
-		}
+		if (_master)
+			_master->removeMon(this);
 
 		if (isCharacter("NarakaPath"))
 		{
@@ -251,7 +237,7 @@ void HeroElement::dealloc()
 			}
 		}
 
-		removeFromParentAndCleanup(true);
+		removeFromParent();
 	}
 	else
 	{
@@ -602,7 +588,7 @@ void Monster::setAI(float dt)
 				float distanceX = _isFlipped ? hero->getPositionX() - getPositionX() + getContentSize().width : hero->getPositionX() - getPositionX() - getContentSize().width;
 				if (abs(distanceX) < 32 && distanceY < 48)
 				{
-					if (!_monsterArray)
+					if (_monsterArray.empty())
 					{
 						auto dic = CCDictionary::create();
 						CCString *monterName = CCString::create("KageHand");
@@ -758,16 +744,12 @@ void Monster::dealloc()
 			getGameLayer()->clearDoubleClick();
 		}
 
-		CCObject *pObject;
-		CCARRAY_FOREACH(_master->getMonsterArray(), pObject)
+		for (auto mo : _master->getMonsterArray())
 		{
-			auto mo = (Monster *)pObject;
-
 			if (mo->isCharacter("HiraishinMark"))
 			{
-				int index = _master->getMonsterArray()->indexOfObject(mo);
-				_master->getMonsterArray()->removeObjectAtIndex(index);
-				mo->removeFromParentAndCleanup(true);
+				_master->removeMon(mo);
+				mo->removeFromParent();
 			}
 		}
 
@@ -776,25 +758,13 @@ void Monster::dealloc()
 
 	if (isCharacter("SmallSlug"))
 	{
-		if (_secmaster && _secmaster->getMonsterArray())
-		{
-			int index = _secmaster->getMonsterArray()->indexOfObject(this);
-			if (index >= 0)
-			{
-				_secmaster->getMonsterArray()->removeObjectAtIndex(index);
-			}
-		}
+		if (_secmaster)
+			_secmaster->removeMon(this);
 	}
 	else
 	{
-		if (_master && _master->getMonsterArray())
-		{
-			int index = _master->getMonsterArray()->indexOfObject(this);
-			if (index >= 0)
-			{
-				_master->getMonsterArray()->removeObjectAtIndex(index);
-			}
-		}
+		if (_master)
+			_master->removeMon(this);
 	}
 
 	if (isCharacter("KageHand", "Kage"))
@@ -813,7 +783,7 @@ void Monster::dealloc()
 	}
 	else
 	{
-		removeFromParentAndCleanup(true);
+		removeFromParent();
 	}
 }
 
@@ -892,5 +862,5 @@ void Monster::setResume()
 
 void Monster::dealloc2()
 {
-	removeFromParentAndCleanup(true);
+	removeFromParent();
 }

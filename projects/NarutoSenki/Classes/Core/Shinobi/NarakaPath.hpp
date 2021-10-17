@@ -66,10 +66,8 @@ class NarakaPath : public Hero
 
 					if (hasMonsterArrayAny())
 					{
-						CCObject *pObject;
-						CCARRAY_FOREACH(getMonsterArray(), pObject)
+						for (auto mo : _monsterArray)
 						{
-							auto mo = (Monster *)pObject;
 							if (mo->isCharacter("AnimalPath"))
 							{
 								isHaveKugutsu1 = true;
@@ -124,11 +122,6 @@ class NarakaPath : public Hero
 	Hero *createClone(int cloneTime) override
 	{
 		Hero *clone = nullptr;
-		if (!_monsterArray)
-		{
-			_monsterArray = CCArray::create();
-			_monsterArray->retain();
-		}
 
 		// TODO: How to balance the hero
 		if (cloneTime == 0)
@@ -140,7 +133,7 @@ class NarakaPath : public Hero
 		else if (cloneTime == -3)
 			clone = create<HumanPath>(CCString::create("HumanPath"), CCString::create(kRoleSummon), getGroup());
 
-		_monsterArray->addObject(clone);
+		_monsterArray.push_back(clone);
 		clone->_isArmored = true;
 		return clone;
 	}

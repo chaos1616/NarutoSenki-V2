@@ -34,13 +34,11 @@ class Minato : public Hero
 		{
 			if (_isCanSkill1)
 			{
-				CCObject *pObject;
 				bool isMark = false;
 				if (hasMonsterArrayAny())
 				{
-					CCARRAY_FOREACH(getMonsterArray(), pObject)
+					for (auto mo : _monsterArray)
 					{
-						auto mo = (Monster *)pObject;
 						if (mo->isCharacter("HiraishinMark"))
 						{
 							if (isKonohaGroup() && mo->getPositionX() < getPositionX())
@@ -107,13 +105,11 @@ class Minato : public Hero
 
 			if (isFreeActionState())
 			{
-				CCObject *pObject;
 				bool isMark = false;
 				if (hasMonsterArrayAny())
 				{
-					CCARRAY_FOREACH(getMonsterArray(), pObject)
+					for (auto mo : _monsterArray)
 					{
-						auto mo = (Monster *)pObject;
 						if (mo->isCharacter("HiraishinMark"))
 						{
 							isMark = true;
@@ -242,13 +238,11 @@ class Minato : public Hero
 		{
 			if (_isCanSkill1)
 			{
-				CCObject *pObject;
 				bool isMark = false;
 				if (hasMonsterArrayAny())
 				{
-					CCARRAY_FOREACH(getMonsterArray(), pObject)
+					for (auto mo : _monsterArray)
 					{
-						auto mo = (Monster *)pObject;
 						if (mo->isCharacter("HiraishinMark"))
 						{
 							if (isKonohaGroup() && mo->getPositionX() > getPositionX())

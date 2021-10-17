@@ -76,13 +76,11 @@ public:
 	bool init();
 
 	float prePosY;
-	CC_SYNTHESIZE(GearLayer *, _delegate, Delegate);
-
-	CCSprite *screwBar;
-
 	int totalRow;
 	int gearNum;
-	PROP_SREF(vector<GearButton *>, _gearBtnArray, GearBtnArray);
+	CCSprite *screwBar;
+	PROP_Vector(vector<GearButton *>, _gearBtnArray, GearBtnArray);
+	CC_SYNTHESIZE(GearLayer *, _delegate, Delegate);
 
 	CREATE_FUNC(ScrewLayer);
 

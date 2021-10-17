@@ -118,6 +118,6 @@ public:
 		std::erase(getGameLayer()->_TowerArray, this);
 		getGameLayer()->setTowerState(getCharNO());
 		getGameLayer()->checkTower();
-		removeFromParentAndCleanup(true);
+		removeFromParent();
 	}
 };

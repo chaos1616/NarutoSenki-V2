@@ -344,7 +344,7 @@ void GearLayer::updatePlayerGear()
 	if (getGameLayer()->currentPlayer->getGearArray().size() > 0)
 	{
 		if (currentGear_layer != nullptr)
-			currentGear_layer->removeFromParentAndCleanup(true);
+			currentGear_layer->removeFromParent();
 		currentGear_layer = CCLayer::create();
 		currentGear_layer->setAnchorPoint(ccp(0, 0));
 		int i = 0;
@@ -371,7 +371,7 @@ void GearLayer::updateGearList()
 	if (!gearBtns.empty())
 	{
 		for (auto btn : gearBtns)
-			btn->removeFromParentAndCleanup(true);
+			btn->removeFromParent();
 		gearBtns.clear();
 	}
 

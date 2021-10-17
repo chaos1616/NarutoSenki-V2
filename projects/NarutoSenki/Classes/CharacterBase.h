@@ -97,7 +97,7 @@ public:
 	CC_SYNTHESIZE_RETAIN(CCString*,_role,Role);
 	CC_SYNTHESIZE_RETAIN(CCString*,_group,Group);
 	CC_SYNTHESIZE_RETAIN(CCString*,_character,Character);
-	PROP_SREF(vector<gearType>,_gearArray,GearArray);
+	PROP_Vector(vector<gearType>,_gearArray,GearArray);
 
 	bool				enableDead	 = true;
 	bool				enableReborn = true;
@@ -233,7 +233,7 @@ public:
 
 	vector<CCLabelBMFont *>	_damageArray;
 	uint32_t				damageEffectCount;
-	CC_SYNTHESIZE(CCArray*,_monsterArray,MonsterArray);
+	PROP_Vector(vector<CharacterBase*>,_monsterArray,MonsterArray);
 
 	// movement
 	PROP(CCPoint,_velocity, Velocity);
@@ -596,7 +596,11 @@ public:
 	inline bool			isKonohaGroup() { return is_same(_group->getCString(), Konoha); }
 	inline bool			isAkatsukiGroup() { return is_same(_group->getCString(), Akatsuki); }
 	// monster extensions
-	inline bool			hasMonsterArrayAny() { return _monsterArray && _monsterArray->count() > 0; }
+	inline bool			hasMonsterArrayAny() { return !_monsterArray.empty(); }
+	inline void			removeMon(CharacterBase *mo) {
+		if (hasMonsterArrayAny())
+			std::erase(_monsterArray, mo);
+	}
 	// Utilities
 	void				increaseAllCkrs(uint32_t value, bool enableLv2 = true, bool enableLv4 = true);
 	inline void			increaseHpAndUpdateUI(uint32_t value);

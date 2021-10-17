@@ -344,23 +344,17 @@ protected:
 
 	static inline const char *getRandomHeroExceptAll(const vector<string> &excepts, const char *defaultChar = "Naruto")
 	{
-		bool ret = true;
-		int i;
-		while (ret)
+		auto _begin = excepts.begin();
+		auto _end = excepts.end();
+		int idx;
+		for (size_t i = 0; i < kHeroNum * 2; i++) // Max loops is kHeroNum * 2
 		{
 			setRand();
-			i = random(kHeroNum);
-			for (size_t j = 0; j < excepts.size(); j++)
-			{
-				if (excepts[j] == kHeroList[i])
-				{
-					ret = true;
-					continue;
-				}
-				ret &= false;
-			}
+			idx = random(kHeroNum);
+			if (std::find(_begin, _end, kHeroList[idx]) == _end)
+				return kHeroList[idx];
 		}
-		return !ret ? kHeroList[i] : defaultChar;
+		return defaultChar;
 	}
 
 	inline const char *getSelectedOrRandomHero()

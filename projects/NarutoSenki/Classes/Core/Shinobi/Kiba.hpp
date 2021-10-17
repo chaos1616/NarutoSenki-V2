@@ -197,10 +197,8 @@ class Kiba : public Hero
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(getMonsterArray(), pObject)
+			for (auto mo : _monsterArray)
 			{
-				auto mo = (Monster *)pObject;
 				if (mo->isCharacter("Akamaru"))
 				{
 					mo->attack(SKILL2);
@@ -266,15 +264,9 @@ class Kiba : public Hero
 
 	Hero *createClone(int cloneTime) override
 	{
-		if (!_monsterArray)
-		{
-			_monsterArray = CCArray::create();
-			_monsterArray->retain();
-		}
-
 		auto clone = create<Akamaru>(CCString::create("Akamaru"), CCString::create(kRoleClone), getGroup());
 		clone->_isArmored = true;
-		_monsterArray->addObject(clone);
+		_monsterArray.push_back(clone);
 		return clone;
 	}
 

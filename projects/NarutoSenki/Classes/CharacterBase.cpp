@@ -107,8 +107,6 @@ CharacterBase::CharacterBase()
 
 	_effectType = nullptr;
 
-	_monsterArray = nullptr;
-
 	_originY = 0;
 
 	_nattackValue = nullptr;
@@ -528,12 +526,10 @@ void CharacterBase::acceptAttack(CCObject *object)
 					bool _isCounter = false;
 					if (hasMonsterArrayAny())
 					{
-						CCObject *pObject;
-						CCARRAY_FOREACH(_monsterArray, pObject)
+						for (auto mo : _monsterArray)
 						{
-							auto tempMonster = (CharacterBase *)pObject;
-							float distanceX = ccpSub(tempMonster->getPosition(), getPosition()).x;
-							float distanceY = ccpSub(tempMonster->getPosition(), getPosition()).y;
+							float distanceX = ccpSub(mo->getPosition(), getPosition()).x;
+							float distanceY = ccpSub(mo->getPosition(), getPosition()).y;
 							if (abs(distanceX) < 40 && abs(distanceY) < 15)
 							{
 								_isCounter = true;
@@ -737,16 +733,15 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 								if (attacker->isPlayer() && attacker->hearts > 0)
 								{
-									CCObject *pObject;
 									int countMON = 0;
-									CCARRAY_FOREACH(attacker->getMonsterArray(), pObject)
+									for (auto mo : attacker->getMonsterArray())
 									{
-										auto mo = (Monster *)pObject;
 										if (mo->isNotCharacter("Traps"))
 										{
 											countMON++;
 										}
 									}
+
 									if (countMON < 3 && attacker->getLV() >= 2)
 									{
 										getGameLayer()->getHudLayer()->skill4Button->unLock();
@@ -1047,12 +1042,10 @@ void CharacterBase::acceptAttack(CCObject *object)
 						bool _isCounter = false;
 						if (hasMonsterArrayAny())
 						{
-							CCObject *pObject;
-							CCARRAY_FOREACH(_monsterArray, pObject)
+							for (auto mo : _monsterArray)
 							{
-								auto tempMonster = (CharacterBase *)pObject;
-								float distanceX = ccpSub(tempMonster->getPosition(), getPosition()).x;
-								float distanceY = ccpSub(tempMonster->getPosition(), getPosition()).y;
+								float distanceX = ccpSub(mo->getPosition(), getPosition()).x;
+								float distanceY = ccpSub(mo->getPosition(), getPosition()).y;
 								if (abs(distanceX) < 40 && abs(distanceY) < 15)
 								{
 									_isCounter = true;
@@ -1393,7 +1386,7 @@ void CharacterBase::disableShadow(CCNode *sender)
 {
 	CCSprite *charN = (CCSprite *)sender;
 	charN->stopAllActions();
-	charN->removeFromParentAndCleanup(true);
+	charN->removeFromParent();
 }
 
 void CharacterBase::setOugis(CCNode *sender)
@@ -1493,10 +1486,8 @@ void CharacterBase::setDamage(CharacterBase *attacker, const char *effectType, i
 
 				if (isCharacter("Chiyo"))
 				{
-					CCObject *pObject;
-					CCARRAY_FOREACH(getMonsterArray(), pObject)
+					for (auto mo : _monsterArray)
 					{
-						auto mo = (Monster *)pObject;
 						if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK)
 						{
 							CCPoint sp = ccpSub(mo->getPosition(), getPosition());
@@ -1777,10 +1768,8 @@ void CharacterBase::setItem(abType type)
 					"Kakuzu") &&
 		hasMonsterArrayAny())
 	{
-		CCObject *pObject;
-		CCARRAY_FOREACH(getMonsterArray(), pObject)
+		for (auto mo : _monsterArray)
 		{
-			auto mo = (Monster *)pObject;
 			if (mo->isNotCharacter("Traps"))
 			{
 				mo->setItem(Item1);
@@ -2106,13 +2095,13 @@ void CharacterBase::disableEffect()
 {
 	if (_healItemEffect)
 	{
-		_healItemEffect->removeFromParentAndCleanup(true);
+		_healItemEffect->removeFromParent();
 		_healItemEffect = nullptr;
 	}
 
 	if (_speedItemEffect)
 	{
-		_speedItemEffect->removeFromParentAndCleanup(true);
+		_speedItemEffect->removeFromParent();
 		_speedItemEffect = nullptr;
 	}
 }
@@ -3020,11 +3009,6 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 	else if (bulletType == "HiraishinKunai" ||
 			 bulletType == "Shintenshin")
 	{
-		if (!_monsterArray)
-		{
-			_monsterArray = CCArray::create();
-			_monsterArray->retain();
-		}
 		if (bulletType == "HiraishinKunai")
 		{
 			bullet->setScale(0.8f);
@@ -3041,7 +3025,7 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 		bullet->_originY = getPositionY();
 		bullet->setEaseIn(196, 2.0f);
 		bullet->attack(NAttack);
-		_monsterArray->addObject(bullet);
+		_monsterArray.push_back(bullet);
 	}
 	else
 	{
@@ -3189,12 +3173,6 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	const char *monsterName = monsterType->getCString();
 	float monsterStayTime = _attackRangeY;
 
-	if (!_monsterArray)
-	{
-		_monsterArray = CCArray::create();
-		_monsterArray->retain();
-	}
-
 	auto monster = Monster::create();
 	monster->setID(monsterType, CCString::create(kRoleMon), _group);
 
@@ -3231,20 +3209,20 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		is_same(monsterName, "FakeMinato"))
 	{
 		monster->setPosition(ccp(getPositionX(), _originY ? _originY : getPositionY()));
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (is_same(monsterName, "LeeBom"))
 	{
 		// monster->setAnchorPoint(ccp(0.5,0.5f));
 		monster->setPosition(ccp(getPositionX(), getPositionY()));
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (is_same(monsterName, "FakeItachi"))
 	{
 		monster->setPosition(ccp(getPositionX(), _originY ? _originY : getPositionY() - 4));
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (is_same(monsterName, "Tenmu"))
@@ -3283,12 +3261,12 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	}
 	else if (is_same(monsterName, "SmallSlug"))
 	{
-		if (_monsterArray && _monsterArray->count() < 3)
+		if (_monsterArray.size() < 3)
 		{
 			auto callValue = CCDictionary::create();
 			callValue->setObject(CCString::create("smk"), 1);
 			monster->setSkillEffect(monster, callValue);
-			_monsterArray->addObject(monster);
+			_monsterArray.push_back(monster);
 			monster->doAI();
 		}
 		else
@@ -3302,20 +3280,20 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		auto callValue = CCDictionary::create();
 		callValue->setObject(CCString::create("smk"), 1);
 		monster->setSkillEffect(monster, callValue);
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->doAI();
 	}
 	else if (is_same(monsterName, "PaperRain") ||
 			 is_same(monsterName, "Steam"))
 	{
 		monster->setPosition(ccp(_isFlipped ? getPositionX() - 16 : getPositionX() + 16, _originY));
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (is_same(monsterName, "FireRain"))
 	{
 		monster->setPosition(ccp(_isFlipped ? getPositionX() - 75 : getPositionX() + 75, _originY - 1));
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (is_same(monsterName, "Tuji") ||
@@ -3324,13 +3302,13 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	{
 		monster->setPositionY(getPositionY() - 24);
 		monster->setPositionX(getPositionX() + (_isFlipped ? -64 : 64));
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (is_same(monsterName, "ThunderWave"))
 	{
 		monster->setPosition(ccp(getPositionX(), getPositionY() - 1));
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (is_same(monsterName, "Jibaku") ||
@@ -3338,7 +3316,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 			 is_same(monsterName, "Shenwei"))
 	{
 		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -96 : 96), getPositionY()));
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (is_same(monsterName, "Bikyu"))
@@ -3346,25 +3324,25 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		monster->setFlipX(_isFlipped);
 		monster->hasArmorBroken = true;
 		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -(16 + getContentSize().width) : (16 + getContentSize().width)), getPositionY() - 32));
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (is_same(monsterName, "Qilin"))
 	{
 		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -4 : 4), getPositionY() - 6));
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (strcmp(monsterType->getCString(), "Laser") == 0)
 	{
 		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -100 : 100), getPositionY()));
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (strcmp(monsterType->getCString(), "MagicDragon") == 0)
 	{
 		monster->hasArmorBroken = true;
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 		monster->setDirectMove(156, 2.0f, false);
 	}
@@ -3376,7 +3354,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 			 is_same(monsterName, "Bull") ||
 			 is_same(monsterName, "Raintiger"))
 	{
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (is_same(monsterName, "SuiRyuDan") ||
@@ -3407,7 +3385,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		auto callValue = CCDictionary::create();
 		callValue->setObject(CCString::create("smk"), 1);
 		monster->setSkillEffect(monster, callValue);
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->doAI();
 		if (strcmp(getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()) != 0)
 		{
@@ -3428,7 +3406,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		}
 
 		stopAllActions();
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 		monster->doAI();
 	}
@@ -3439,18 +3417,13 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		stopAllActions();
 
 		if (_master)
-		{
-			_master->_monsterArray->addObject(monster);
-		}
+			_master->_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (is_same(monsterName, "KageHands"))
 	{
 		if (_master)
-		{
-			_master->_monsterArray->addObject(monster);
-		}
-
+			_master->_monsterArray.push_back(monster);
 		monster->setPosition(ccp(getPositionX(), getPositionY()));
 		monster->setAnchorPoint(ccp(0.5f, 0.15f));
 		monster->attack(NAttack);
@@ -3458,24 +3431,24 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	else if (is_same(monsterName, "QuanRen"))
 	{
 		monster->setPosition(ccp(_isFlipped ? getPositionX() - 64 : getPositionX() + 64, _originY));
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (is_same(monsterName, "ItachiSusano") ||
 			 is_same(monsterName, "SasukeSusano"))
 	{
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 	}
 	else if (is_same(monsterName, "HiraishinMark"))
 	{
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		_isCanSkill1 = true;
 	}
 	else if (is_same(monsterName, "CircleMark"))
 	{
 		monster->setPosition(ccp(getPositionX(), getPositionY()));
 		monster->setAnchorPoint(ccp(0.5f, 0.5f));
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 
 		if (isPlayer())
@@ -3569,12 +3542,12 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 			 is_same(monsterName, "TamaBomb") ||
 			 is_same(monsterName, "Shenwei2"))
 	{
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else
 	{
-		_monsterArray->addObject(monster);
+		_monsterArray.push_back(monster);
 		monster->doAI();
 	}
 
@@ -3605,12 +3578,6 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 
 void CharacterBase::setMonPer(float dt)
 {
-	if (!_monsterArray)
-	{
-		_monsterArray = CCArray::create();
-		_monsterArray->retain();
-	}
-
 	auto monster = Monster::create();
 
 	if (isCharacter("Deidara"))
@@ -3632,7 +3599,7 @@ void CharacterBase::setMonPer(float dt)
 	monster->setFlipX(_isFlipped);
 	monster->_isFlipped = _isFlipped;
 
-	_monsterArray->addObject(monster);
+	_monsterArray.push_back(monster);
 	monster->doAI();
 
 	getGameLayer()->addChild(monster, -monster->getPositionY());
@@ -3817,59 +3784,51 @@ void CharacterBase::removeSelf(float dt)
 void CharacterBase::setMonAttack(CCNode *sender, void *data)
 {
 	int skillNum = *((int *)&data);
-	if (getMonsterArray())
+
+	for (auto mo : _monsterArray)
 	{
-		CCObject *pObject;
-		CCARRAY_FOREACH(getMonsterArray(), pObject)
+		if (mo->isNotCharacter("Traps"))
 		{
-			auto mo = (Monster *)pObject;
-			if (mo->isNotCharacter("Traps"))
+			if (isCharacter("Kiba"))
 			{
-				if (isCharacter("Kiba"))
+				mo->attack(SKILL1);
+			}
+			else if (isCharacter("Kankuro"))
+			{
+				if (mo->isCharacter("Karasu"))
 				{
-					mo->attack(SKILL1);
-				}
-				else if (isCharacter("Kankuro"))
-				{
-					if (mo->isCharacter("Karasu"))
+					if (skillNum == 1)
 					{
-						if (skillNum == 1)
-						{
-							// mo->attack(SKILL1);
-						}
-						else if (skillNum == 2)
-						{
-							mo->attack(SKILL2);
-						}
+						// mo->attack(SKILL1);
 					}
-				}
-				else if (isCharacter("Chiyo"))
-				{
-					if (mo->isCharacter("Parents"))
+					else if (skillNum == 2)
 					{
-						if (skillNum == 1 && !mo->_skillChangeBuffValue)
-						{
-							mo->attack(SKILL1);
-						}
-						else if (skillNum == 2)
-						{
-							mo->attack(SKILL2);
-						}
-					}
-				}
-				else if (isCharacter("Itachi", "ImmortalSasuke"))
-				{
-					if (_actionState == State::NATTACK)
-					{
-						mo->attack(NAttack);
+						mo->attack(SKILL2);
 					}
 				}
 			}
+			else if (isCharacter("Chiyo"))
+			{
+				if (mo->isCharacter("Parents"))
+				{
+					if (skillNum == 1 && !mo->_skillChangeBuffValue)
+					{
+						mo->attack(SKILL1);
+					}
+					else if (skillNum == 2)
+					{
+						mo->attack(SKILL2);
+					}
+				}
+			}
+			else if (isCharacter("Itachi", "ImmortalSasuke"))
+			{
+				if (_actionState == State::NATTACK)
+				{
+					mo->attack(NAttack);
+				}
+			}
 		}
-	}
-	else
-	{
-		return;
 	}
 }
 
@@ -4287,10 +4246,8 @@ void CharacterBase::walk(CCPoint direction)
 		{
 			if (hasMonsterArrayAny())
 			{
-				CCObject *pObject;
-				CCARRAY_FOREACH(getMonsterArray(), pObject)
+				for (auto mo : _monsterArray)
 				{
-					auto mo = (Monster *)pObject;
 					if (mo->isCharacter("ItachiSusano") ||
 						mo->isCharacter("SasukeSusano"))
 					{
@@ -4342,10 +4299,8 @@ bool CharacterBase::hurt()
 		}
 		if (isCharacter("Chiyo"))
 		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(getMonsterArray(), pObject)
+			for (auto mo : _monsterArray)
 			{
-				auto mo = (Monster *)pObject;
 				if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK && mo->_actionState != State::DEAD)
 				{
 					CCPoint sp = ccpSub(mo->getPosition(), getPosition());
@@ -4416,10 +4371,8 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 
 		if (isCharacter("Chiyo"))
 		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(getMonsterArray(), pObject)
+			for (auto mo : _monsterArray)
 			{
-				auto mo = (Monster *)pObject;
 				if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK && mo->_actionState != State::DEAD)
 				{
 					CCPoint sp = ccpSub(mo->getPosition(), getPosition());
@@ -4614,10 +4567,8 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 
 		if (isCharacter("Chiyo"))
 		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(getMonsterArray(), pObject)
+			for (auto mo : _monsterArray)
 			{
-				auto mo = (Monster *)pObject;
 				if (mo->isCharacter("Parents") && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK && mo->_actionState != State::DEAD)
 				{
 					CCPoint sp = ccpSub(mo->getPosition(), getPosition());
@@ -5407,10 +5358,8 @@ void CharacterBase::changeSide(CCPoint sp)
 	{
 		if (hasMonsterArrayAny())
 		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(getMonsterArray(), pObject)
+			for (auto mo : _monsterArray)
 			{
-				auto mo = (Monster *)pObject;
 				if (mo->isCharacter("ItachiSusano", "SasukeSusano"))
 					mo->_isFlipped = _isFlipped;
 				mo->setFlipX(_isFlipped);

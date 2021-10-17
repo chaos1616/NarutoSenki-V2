@@ -160,7 +160,7 @@ void HudLayer::initGearButton(const char *charName)
 	}
 
 	if (gearMenu)
-		gearMenu->removeFromParentAndCleanup(true);
+		gearMenu->removeFromParent();
 	gearMenuSprite->setAnchorPoint(ccp(0, 0));
 	gearMenu = CCMenu::create(gearMenuSprite, nullptr);
 	gearMenu->setPosition(ccp(0, winSize.height - gearMenuSprite->getContentSize().height));
@@ -923,7 +923,7 @@ void HudLayer::updateBuffDisplay(float dt)
 		}
 		else
 		{
-			bcdLabel1->removeFromParentAndCleanup(true);
+			bcdLabel1->removeFromParent();
 			bcdLabel1 = nullptr;
 			_buffCount--;
 		}
@@ -941,7 +941,7 @@ void HudLayer::updateBuffDisplay2(float dt)
 		}
 		else
 		{
-			bcdLabel2->removeFromParentAndCleanup(true);
+			bcdLabel2->removeFromParent();
 			bcdLabel2 = nullptr;
 			_buffCount--;
 		}
@@ -964,7 +964,7 @@ void HudLayer::clearBuffDisplay(CCNode *sender)
 	}
 	else
 	{
-		bs->removeFromParentAndCleanup(true);
+		bs->removeFromParent();
 	}
 }
 

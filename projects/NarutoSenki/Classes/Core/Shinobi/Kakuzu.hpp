@@ -157,7 +157,7 @@ class Kakuzu : public Hero
 
 		bool isSummonAble = false;
 
-		if (((getMonsterArray() && getMonsterArray()->count() < 3) || !_monsterArray) && hearts > 0)
+		if (_monsterArray.size() < 3 && hearts > 0)
 		{
 			isSummonAble = true;
 		}
@@ -287,36 +287,27 @@ class Kakuzu : public Hero
 
 	Hero *createClone(int cloneTime) override
 	{
-		if (!_monsterArray)
-		{
-			_monsterArray = CCArray::create();
-			_monsterArray->retain();
-		}
 		bool isRaiton = false;
 		bool isFuton = false;
 		bool isKaton = false;
 		int countMon = 0;
-		if (hasMonsterArrayAny())
+
+		for (auto mo : _monsterArray)
 		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(getMonsterArray(), pObject)
+			if (mo->isCharacter("MaskRaiton"))
 			{
-				auto mo = (Monster *)pObject;
-				if (mo->isCharacter("MaskRaiton"))
-				{
-					countMon++;
-					isRaiton = true;
-				}
-				if (mo->isCharacter("MaskFuton"))
-				{
-					countMon++;
-					isFuton = true;
-				}
-				if (mo->isCharacter("MaskKaton"))
-				{
-					countMon++;
-					isKaton = true;
-				}
+				countMon++;
+				isRaiton = true;
+			}
+			if (mo->isCharacter("MaskFuton"))
+			{
+				countMon++;
+				isFuton = true;
+			}
+			if (mo->isCharacter("MaskKaton"))
+			{
+				countMon++;
+				isKaton = true;
 			}
 		}
 
@@ -336,7 +327,7 @@ class Kakuzu : public Hero
 				clone = create<Mask>(CCString::create("MaskKaton"), CCString::create(kRoleKugutsu), getGroup());
 			}
 			clone->_isArmored = true;
-			_monsterArray->addObject(clone);
+			_monsterArray.push_back(clone);
 
 			hearts -= 1;
 			if (_heartEffect)

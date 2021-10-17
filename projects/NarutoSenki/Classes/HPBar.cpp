@@ -379,7 +379,7 @@ void HPBar::loseHP(float percent)
 
 					if (currentSlayer->isPlayer())
 					{
-						if (currentSlayer->getMonsterArray() && currentSlayer->getMonsterArray()->count() < 3 && currentSlayer->getLV() >= 2)
+						if (currentSlayer->getMonsterArray().size() < 3 && currentSlayer->getLV() >= 2)
 						{
 							getGameLayer()->getHudLayer()->skill4Button->unLock();
 						}

@@ -9,10 +9,8 @@ class Hidan : public Hero
 		bool _isFound = false;
 		if (hasMonsterArrayAny())
 		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(getMonsterArray(), pObject)
+			for (auto mo : _monsterArray)
 			{
-				auto mo = (Monster *)pObject;
 				if (mo->isCharacter("CircleMark"))
 				{
 					_mainTarget = mo;
@@ -286,20 +284,15 @@ class Hidan : public Hero
 
 		if (hasMonsterArrayAny())
 		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(getMonsterArray(), pObject)
+			for (auto mo : _monsterArray)
 			{
-				auto mo = (CharacterBase *)pObject;
-
 				std::erase(getGameLayer()->_CharacterArray, mo);
 
+				CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(mo);
 				mo->setActionState(State::DEAD);
-				CCNotificationCenter::sharedNotificationCenter()->removeObserver(mo, "acceptAttack");
 				mo->removeFromParent();
-				mo = nullptr;
 			}
-			getMonsterArray()->removeAllObjects();
-			_monsterArray = nullptr;
+			_monsterArray.clear();
 		}
 
 		if (isPlayer())
@@ -329,20 +322,15 @@ class Hidan : public Hero
 
 		if (hasMonsterArrayAny())
 		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(getMonsterArray(), pObject)
+			for (auto mo : _monsterArray)
 			{
-				auto mo = (CharacterBase *)pObject;
-
 				std::erase(getGameLayer()->_CharacterArray, mo);
 
+				CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(mo);
 				mo->setActionState(State::DEAD);
-				CCNotificationCenter::sharedNotificationCenter()->removeObserver(mo, "acceptAttack");
 				mo->removeFromParent();
-				mo = nullptr;
 			}
-			getMonsterArray()->removeAllObjects();
-			_monsterArray = nullptr;
+			_monsterArray.clear();
 		}
 
 		if (isPlayer())

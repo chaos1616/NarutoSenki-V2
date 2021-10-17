@@ -34,6 +34,8 @@ public:                                                \
 	inline varType &get##funName() { return varName; } \
 	inline void set##funName(const varType &var) { varName = var; }
 
+#define PROP_Vector(varType, varName, funName) PROP_SREF(varType, varName, funName)
+
 // Protected virtual reference property
 
 #define VPPROP(varType, varName, funName)                     \

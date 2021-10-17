@@ -2,7 +2,7 @@
 #include "CharacterBase.h"
 #include "HPBar.h"
 
-//TODO: Rename to 'Projectile'
+// TODO: Rename to 'Projectile'
 class Bullet : public CharacterBase
 {
 public:
@@ -34,7 +34,7 @@ public:
 		CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 		idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		//init nAttack data & Frame Array
+		// init nAttack data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 		uint32_t tmpCD;
@@ -47,7 +47,7 @@ public:
 
 		if (isCharacter("Amaterasu"))
 		{
-			//init DeadFrame
+			// init DeadFrame
 			tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
 			deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
 		}
@@ -133,20 +133,14 @@ protected:
 				}
 			}
 
-			if (_master && _master->getMonsterArray())
-			{
-				int index = _master->getMonsterArray()->indexOfObject(this);
-				if (index >= 0)
-				{
-					_master->getMonsterArray()->removeObjectAtIndex(index);
-				}
-			}
-			removeFromParentAndCleanup(true);
+			if (_master)
+				_master->removeMon(this);
+			removeFromParent();
 		}
 	}
 
 	void dealloc2()
 	{
-		removeFromParentAndCleanup(true);
+		removeFromParent();
 	}
 };

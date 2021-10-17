@@ -646,7 +646,7 @@ void ActionButton::clearOugisMark()
 
 	if (clipper)
 	{
-		clipper->removeFromParentAndCleanup(true);
+		clipper->removeFromParent();
 	}
 	if (progressPointSprite)
 	{

@@ -250,14 +250,12 @@ class Itachi : public Hero
 
 		if (hasMonsterArrayAny())
 		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(getMonsterArray(), pObject)
+			for (auto mo : _monsterArray)
 			{
-				auto mo = (Monster *)pObject;
+				CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(mo);
 				mo->removeFromParent();
 			}
-			getMonsterArray()->removeAllObjects();
-			setMonsterArray(nullptr);
+			_monsterArray.clear();
 		}
 		CharacterBase::resumeAction(dt);
 	}

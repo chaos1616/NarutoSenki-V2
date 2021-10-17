@@ -80,10 +80,8 @@ class Kankuro : public Hero
 
 		if (hasMonsterArrayAny())
 		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(getMonsterArray(), pObject)
+			for (auto mo : _monsterArray)
 			{
-				auto mo = (Monster *)pObject;
 				if (mo->isCharacter("Saso"))
 				{
 					isFound3 = true;
@@ -230,12 +228,6 @@ class Kankuro : public Hero
 	{
 		Hero *clone = nullptr;
 
-		if (!_monsterArray)
-		{
-			_monsterArray = CCArray::create();
-			_monsterArray->retain();
-		}
-
 		if (cloneTime == 0)
 		{
 			clone = create<Karasu>(CCString::create("Karasu"), CCString::create(kRoleKugutsu), getGroup());
@@ -258,7 +250,7 @@ class Kankuro : public Hero
 		}
 
 		clone->_isArmored = true;
-		_monsterArray->addObject(clone);
+		_monsterArray.push_back(clone);
 		return clone;
 	}
 

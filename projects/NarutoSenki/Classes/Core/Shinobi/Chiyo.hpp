@@ -77,10 +77,8 @@ class Chiyo : public Hero
 
 		if (hasMonsterArrayAny())
 		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(getMonsterArray(), pObject)
+			for (auto mo : _monsterArray)
 			{
-				auto mo = (Monster *)pObject;
 				if (mo->isCharacter("Parents"))
 				{
 					isFound1 = true;
@@ -228,16 +226,10 @@ class Chiyo : public Hero
 
 	Hero *createClone(int cloneTime) override
 	{
-		if (!_monsterArray)
-		{
-			_monsterArray = CCArray::create();
-			_monsterArray->retain();
-		}
-
 		auto clone = create<Parents>(CCString::create("Parents"), CCString::create(kRoleKugutsu), getGroup());
 		clone->setPosition(ccp(getPositionX(), getPositionY() - 3));
 		clone->_isArmored = true;
-		_monsterArray->addObject(clone);
+		_monsterArray.push_back(clone);
 		return clone;
 	}
 

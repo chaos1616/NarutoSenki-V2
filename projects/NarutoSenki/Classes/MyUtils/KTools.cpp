@@ -533,7 +533,7 @@ bool CCTips::init(const char *tips)
 void CCTips::onDestroy()
 {
 	removeAllChildren();
-	removeFromParentAndCleanup(true);
+	removeFromParent();
 }
 
 CCTips *CCTips::create(const char *tips)

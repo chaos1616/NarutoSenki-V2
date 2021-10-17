@@ -95,22 +95,18 @@ public:
 				// If the character has changed, then cleanup
 				CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(c);
 				if (c->_shadow)
-					c->_shadow->removeFromParentAndCleanup(true);
+					c->_shadow->removeFromParent();
 				c->stopAllActions();
 				c->unscheduleAllSelectors();
-				c->removeFromParentAndCleanup(true);
-				if (c->getMonsterArray() && c->getMonsterArray()->count() > 0)
+				c->removeFromParent();
+				if (c->hasMonsterArrayAny())
 				{
-					CCObject *pObject;
-					CCARRAY_FOREACH(c->getMonsterArray(), pObject)
+					for (auto mo : c->getMonsterArray())
 					{
-						auto mo = (Monster *)pObject;
 						CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(mo);
 						if (mo->_shadow)
-							mo->_shadow->removeFromParentAndCleanup(true);
-						mo->stopAllActions();
-						mo->unscheduleAllSelectors();
-						mo->removeFromParentAndCleanup(true);
+							mo->_shadow->removeFromParent();
+						mo->removeFromParent();
 					}
 				}
 
