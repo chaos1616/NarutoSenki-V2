@@ -82,7 +82,7 @@ public:
 
 	int totalRow;
 	int gearNum;
-	PROP_SREF(vector<GearButton *>, _gearArray, GearArray);
+	PROP_SREF(vector<GearButton *>, _gearBtnArray, GearBtnArray);
 
 	CREATE_FUNC(ScrewLayer);
 

@@ -203,8 +203,8 @@ void ScrewLayer::ccTouchMoved(CCTouch *touch, CCEvent *event)
 void ScrewLayer::ccTouchEnded(CCTouch *touch, CCEvent *event)
 {
 	prePosY = 0;
-	//CCLOG("%f",getPositionY());
-	//CCLOG("Height:%f",getContentSize().height);
+	// CCLOG("%f",getPositionY());
+	// CCLOG("Height:%f",getContentSize().height);
 
 	if (getPositionY() > totalRow * 74 - 74)
 	{
@@ -369,12 +369,12 @@ void GearLayer::updatePlayerGear()
 
 void GearLayer::updateGearList()
 {
-	auto &gearArray = _screwLayer->getGearArray();
-	if (!gearArray.empty())
+	auto &gearBtns = _screwLayer->getGearBtnArray();
+	if (!gearBtns.empty())
 	{
-		for (auto btn : gearArray)
+		for (auto btn : gearBtns)
 			btn->removeFromParentAndCleanup(true);
-		gearArray.clear();
+		gearBtns.clear();
 	}
 
 	currentGear = None;
@@ -419,7 +419,7 @@ void GearLayer::updateGearList()
 		btn->setBtnType(gearType(i), GearButtonType::Buy, isBuyed);
 		btn->setDelegate(this);
 
-		gearArray.push_back(btn);
+		gearBtns.push_back(btn);
 		_screwLayer->addChild(btn);
 	}
 }
