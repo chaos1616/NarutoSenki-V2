@@ -1,13 +1,10 @@
 #pragma once
 #include "Defines.h"
-#include "MyUtils/CMD5Checksum.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "../../external/sqlite3/src/sqlite3.h"
 #else
 #include "sqlite3.h"
 #endif
-
-class CMD5Checksum;
 
 class KTools : public CCObject
 {

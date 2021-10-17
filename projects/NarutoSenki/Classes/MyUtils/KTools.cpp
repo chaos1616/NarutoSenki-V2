@@ -1,4 +1,5 @@
 #include "KTools.h"
+#include "MyUtils/CMD5Checksum.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "../../../cocos2dx/platform/android/jni/JniHelper.h"
 #endif
@@ -34,7 +35,7 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 	while (actionEle)
 	{
 		const char *actionName = actionEle->FirstAttribute()->Value();
-		//CCLog("[%s]",actionName);
+		// CCLog("[%s]",actionName);
 
 		auto actionNodeEle = actionEle->FirstChildElement();
 		auto actionArray = CCArray::create();
@@ -249,7 +250,7 @@ void KTools::prepareFileOGG(const char *listName, bool unload /* =false */)
 		return;
 	}
 
-	//MD5
+	// MD5
 
 	string md5Path = "Audio/list.xml";
 
@@ -488,15 +489,15 @@ const char *KTools::readRecordTimeFromSQL(const char *heroName)
 
 string KTools::encodeData(string data)
 {
-	//SHA1 *sha1;
-	//unsigned char *digest;
+	// SHA1 *sha1;
+	// unsigned char *digest;
 	string dataMD5 = CMD5Checksum::GetMD5OfString(data);
 
-	//sha1=new SHA1;
+	// sha1=new SHA1;
 	////sha1->addBytes( "goldlion" ,strlen( "goldlion" ));//
-	//string result=(char*) digest;
-	//delete sha1;
-	//free(digest);
+	// string result=(char*) digest;
+	// delete sha1;
+	// free(digest);
 	return dataMD5;
 }
 

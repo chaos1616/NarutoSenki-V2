@@ -63,7 +63,6 @@ public:
 	uint32_t			_skillChangeBuffValue;
 
 
-
 	CCSprite*			_heartEffect;
 	Effect*				_healBuffEffect;
 	Effect*				_powerBuffEffect;
