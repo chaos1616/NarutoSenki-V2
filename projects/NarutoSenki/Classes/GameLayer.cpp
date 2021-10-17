@@ -70,6 +70,7 @@ bool GameLayer::init()
 	_enableGear = gd.enableGear;
 	_isHardCoreGame = gd.isHardCore;
 	_isRandomChar = gd.isRandomChar;
+	is4V4Mode = gd.use4v4SpawnLayout;
 	playerGroup = gd.playerGroup;
 
 	return CCLayer::init();
@@ -186,8 +187,8 @@ void GameLayer::initHeros()
 	CCTMXObjectGroup *group = currentMap->objectGroupNamed("object");
 	CCArray *objectArray = group->getObjects();
 
-	// 4v4
-	if (Cheats >= MaxCheats)
+	// 4v4 spawn layout
+	if (is4V4Mode)
 	{
 		auto &hero1 = herosDataVector.at(0);
 		auto &hero5 = herosDataVector.at(4);
@@ -244,7 +245,7 @@ Hero *GameLayer::addHero(CCString *character, CCString *role, CCString *group, C
 	}
 	hero->setPosition(spawnPoint);
 	hero->setSpawnPoint(spawnPoint);
-	//NOTE: Set all characters speed to zero. (Control movement before game real start)
+	// NOTE: Set all characters speed to zero. (Control movement before game real start)
 	hero->setWalkSpeed(0);
 	if (is_same(group->getCString(), Akatsuki))
 	{
@@ -396,8 +397,7 @@ void GameLayer::initTower()
 
 		if (i == 1 || i == 4)
 		{
-			//4v4
-			if (Cheats >= MaxCheats)
+			if (is4V4Mode)
 			{
 				tower->setMaxHPValue(80000, false);
 			}
@@ -631,7 +631,7 @@ void GameLayer::JoyStickUpdate(CCPoint direction)
 {
 	if (!ougisChar)
 	{
-		//CCLOG("x:%f,y:%f",direction.x,direction.y);
+		// CCLOG("x:%f,y:%f",direction.x,direction.y);
 		currentPlayer->walk(direction);
 	}
 }
@@ -998,8 +998,8 @@ bool GameLayer::checkHasAnyMovement()
 /** NOTE: Impl key listener */
 void GameLayer::keyEventHandle(GLFWwindow *window, int key, int scancode, int keyState, int mods)
 {
-	//NOTE: only attack button can hold
-	// Other keys is only click
+	// NOTE: only attack button can hold
+	//  Other keys is only click
 	if (keyState == 2 && key != KEY_J)
 		return;
 	switch (key)

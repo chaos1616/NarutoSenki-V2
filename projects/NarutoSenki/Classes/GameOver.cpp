@@ -478,12 +478,7 @@ void GameOver::listResult()
 
 	getGameLayer()->_isSurrender = false;
 
-	// Reset cheats value
-	auto mode = getGameMode();
-	if (mode == GameMode::FourVsFour || mode == GameMode::HardCore_4Vs4)
-	{
-		Cheats = getGameModeHandler()->getOldCheats();
-	}
+	getGameModeHandler()->onGameOver();
 }
 
 void GameOver::onUPloadBtn(CCObject *sender)

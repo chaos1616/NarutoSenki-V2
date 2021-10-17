@@ -2,6 +2,8 @@
 #include "UI/GameModeLayer.h"
 #include "UI/ModeMenuButton.hpp"
 
+const GameData kDefaultGameData;
+
 // const GameModeData &GameModeData::from(const char *path)
 // {
 //     GameModeData data = {}
@@ -192,11 +194,15 @@ void GameModeLayer::selectMode(GameMode mode)
 		CCLOG("Selected %s mode", data.title.c_str());
 
 		s_GameMode = mode;
-		bool enableCustomSelect;
+		bool enableCustomSelect = false;
 		if (Cheats < MaxCheats && (mode == GameMode::FourVsFour || mode == GameMode::HardCore_4Vs4))
+		{
 			enableCustomSelect = false;
-		else
+		}
+		else if (mode != GameMode::RandomDeathmatch && mode != GameMode::Clone)
+		{
 			enableCustomSelect = Cheats >= MaxCheats;
+		}
 
 		// call lua global function StartMenu.enterSelectLayer
 		auto pStack = get_luastack;
@@ -206,7 +212,9 @@ void GameModeLayer::selectMode(GameMode mode)
 		pStack->pushBoolean(enableCustomSelect);
 		pStack->executeFunction(2);
 
-		getGameModeHandler()->init();
+		auto handler = getGameModeHandler();
+		handler->setOldCheats(Cheats);
+		handler->init();
 	}
 }
 

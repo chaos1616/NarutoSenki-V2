@@ -20,8 +20,8 @@ enum GameMode
 	Boss,
 	// 3 VS 3
 	Clone,
-	// 3 VS 3
-	Deathmatch, // TODO
+	// TODO：3 VS 3
+	Deathmatch,
 	// 3 VS 3
 	RandomDeathmatch,
 
@@ -49,8 +49,12 @@ struct GameData
 	bool isHardCore = true;
 	bool isRandomChar = false;
 
+	bool use4v4SpawnLayout = false;
+
 	string playerGroup;
 };
+
+extern const GameData kDefaultGameData;
 
 class IGameModeHandler
 {
@@ -79,6 +83,7 @@ private:
 	{
 		onGameOver();
 
+		gd = kDefaultGameData;
 		clearHeroArray();
 	}
 
@@ -86,7 +91,7 @@ protected:
 	SelectLayer *selectLayer = nullptr;
 	// game
 	GameData gd;
-	int oldCheats;
+	int oldCheats = -1;
 	vector<string> heroVector;
 	// player
 	const char *playerGroup = nullptr;
@@ -109,14 +114,22 @@ public:
 
 	inline const GameData &getGameData() { return gd; }
 	inline int getOldCheats() { return oldCheats; }
-	inline int resetCheats() { return Cheats = oldCheats; }
+	inline void setOldCheats(int val) { oldCheats = val; }
+	inline void resetCheats()
+	{
+		if (oldCheats != -1)
+		{
+			Cheats = oldCheats;
+			oldCheats = -1;
+		}
+	}
 	inline const vector<HeroData> &getHerosArray() { return heroDataVector; }
 
 protected:
-	IGameModeHandler()
-	{
-		oldCheats = Cheats;
-	}
+	// IGameModeHandler()
+	// {
+	// 	oldCheats = Cheats;
+	// }
 
 	void clearHeroArray()
 	{

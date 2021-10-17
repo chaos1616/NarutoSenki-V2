@@ -175,6 +175,7 @@ private:
 	inline CCPoint getCustomSpawnPoint(HeroData &data);
 
 	bool isHUDInitialized = false;
+	bool is4V4Mode = false;
 	vector<OnHUDInitializedCallback> callbackssList;
 };
 

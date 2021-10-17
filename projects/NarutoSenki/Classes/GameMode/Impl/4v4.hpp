@@ -10,6 +10,7 @@ public:
 
 		Cheats = 7;
 		gd.isHardCore = true;
+		gd.use4v4SpawnLayout = true;
 	}
 
 	void onInitHeros()
@@ -23,7 +24,6 @@ public:
 
 	void onGameOver()
 	{
-		resetCheats();
 	}
 
 	void onCharacterInit(CharacterBase *c)

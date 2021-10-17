@@ -11,6 +11,7 @@ public:
 		Cheats = 7; // Use 4 vs 4 map position
 		gd.enableGear = false;
 		gd.isHardCore = true;
+		gd.use4v4SpawnLayout = true;
 	}
 
 	void onInitHeros()
@@ -24,7 +25,6 @@ public:
 
 	void onGameOver()
 	{
-		resetCheats();
 	}
 
 	void onCharacterInit(CharacterBase *c)

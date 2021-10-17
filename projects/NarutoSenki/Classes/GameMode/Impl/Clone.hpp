@@ -18,6 +18,8 @@ public:
 	{
 		CCLOG("Enter Clone mode.");
 
+		if (Cheats >= MaxCheats)
+			gd.use4v4SpawnLayout = true;
 		gd.isHardCore = true;
 	}
 
