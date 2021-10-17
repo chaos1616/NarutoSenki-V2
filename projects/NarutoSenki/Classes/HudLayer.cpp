@@ -582,47 +582,42 @@ void HudLayer::updateGears()
 		return;
 	}
 
-	if (getGameLayer()->currentPlayer->getGearArray() && getGameLayer()->currentPlayer->getGearArray()->count() > 0)
+	int i = 0;
+	for (auto gear : getGameLayer()->currentPlayer->getGearArray())
 	{
-		CCObject *pObject;
-		int i = 0;
-		CCARRAY_FOREACH(getGameLayer()->currentPlayer->getGearArray(), pObject)
+		if (gear != gear1Button->_gearType && i == 0)
 		{
-			CCString *tmpGear = (CCString *)pObject;
-			if (tmpGear->intValue() != gear1Button->_gearType && i == 0)
-			{
-				gear1Button->setGearType(tmpGear->intValue());
-			}
-			else if (tmpGear->intValue() != gear2Button->_gearType && i == 1)
-			{
-				gear2Button->setGearType(tmpGear->intValue());
-			}
-			else if (tmpGear->intValue() != gear3Button->_gearType && i == 2)
-			{
-				gear3Button->setGearType(tmpGear->intValue());
-			}
-
-			if (tmpGear->intValue() == 6 && getItem2Button()->_gearType == None)
-			{
-				getItem2Button()->_gearType = gearType(tmpGear->intValue());
-				getItem2Button()->setVisible(true);
-				getItem2Button()->_isLock = false;
-			}
-			else if (tmpGear->intValue() == 0 && getItem3Button()->_gearType == None)
-			{
-				getItem3Button()->_gearType = gearType(tmpGear->intValue());
-				getItem3Button()->_isLock = false;
-				getItem3Button()->setVisible(true);
-			}
-			else if (tmpGear->intValue() == 3 && getItem4Button()->_gearType == None)
-			{
-				getItem4Button()->setVisible(true);
-				getItem4Button()->_gearType = gearType(tmpGear->intValue());
-				getItem4Button()->_isLock = false;
-			}
-
-			i++;
+			gear1Button->setGearType(gear);
 		}
+		else if (gear != gear2Button->_gearType && i == 1)
+		{
+			gear2Button->setGearType(gear);
+		}
+		else if (gear != gear3Button->_gearType && i == 2)
+		{
+			gear3Button->setGearType(gear);
+		}
+
+		if (gear == 6 && getItem2Button()->_gearType == None)
+		{
+			getItem2Button()->_gearType = gearType(gear);
+			getItem2Button()->setVisible(true);
+			getItem2Button()->_isLock = false;
+		}
+		else if (gear == 0 && getItem3Button()->_gearType == None)
+		{
+			getItem3Button()->_gearType = gearType(gear);
+			getItem3Button()->_isLock = false;
+			getItem3Button()->setVisible(true);
+		}
+		else if (gear == 3 && getItem4Button()->_gearType == None)
+		{
+			getItem4Button()->setVisible(true);
+			getItem4Button()->_gearType = gearType(gear);
+			getItem4Button()->_isLock = false;
+		}
+
+		i++;
 	}
 }
 

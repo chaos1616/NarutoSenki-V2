@@ -165,8 +165,6 @@ CharacterBase::CharacterBase()
 
 	cpLabel = nullptr;
 
-	_gearArray = nullptr;
-
 	_affectedByTower = false;
 }
 
@@ -1828,10 +1826,9 @@ bool CharacterBase::setGear(gearType type)
 	else
 		gearCost = 1000;
 
-	if (getGearArray()->count() <= 2 && getCoinValue() >= gearCost)
+	if (getGearArray().size() <= 2 && getCoinValue() >= gearCost)
 	{
-		CCString *gearItem = to_ccstring(gearType(type));
-		getGearArray()->addObject(gearItem);
+		getGearArray().push_back(type);
 
 		if (isPlayer())
 			getGameLayer()->getHudLayer()->offCoin(to_cstr(gearCost));
@@ -5349,9 +5346,9 @@ bool CharacterBase::checkRetri()
 			{
 				if (!_isHealling)
 				{
-					if (getMaxHPValue() - getHPValue() >= 3000 + gearRecoverValue && getGearArray()->count() > 1)
+					if (getMaxHPValue() - getHPValue() >= 3000 + gearRecoverValue && getGearArray().size() > 1)
 						setItem(Item1);
-					else if (getHPValue() < 5000 && getGearArray()->count() > 0)
+					else if (getHPValue() < 5000 && getGearArray().size() > 0)
 						setItem(Item1);
 					else if (getHPValue() < 1500)
 						setItem(Item1);
@@ -5359,7 +5356,7 @@ bool CharacterBase::checkRetri()
 			}
 			else
 			{
-				if (getMaxHPValue() - getHPValue() >= 3000 + gearRecoverValue && !_isHealling && getGearArray()->count() > 0)
+				if (getMaxHPValue() - getHPValue() >= 3000 + gearRecoverValue && !_isHealling && getGearArray().size() > 0)
 					setItem(Item1);
 				else if (getHPValue() < 3000)
 					setItem(Item1);

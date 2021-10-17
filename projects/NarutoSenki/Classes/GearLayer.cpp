@@ -341,19 +341,17 @@ void GearLayer::onGearBuy(CCObject *sender)
 
 void GearLayer::updatePlayerGear()
 {
-	if (getGameLayer()->currentPlayer->getGearArray() && getGameLayer()->currentPlayer->getGearArray()->count() > 0)
+	if (getGameLayer()->currentPlayer->getGearArray().size() > 0)
 	{
 		if (currentGear_layer != nullptr)
 			currentGear_layer->removeFromParentAndCleanup(true);
 		currentGear_layer = CCLayer::create();
 		currentGear_layer->setAnchorPoint(ccp(0, 0));
-		CCObject *pObject;
 		int i = 0;
-		CCARRAY_FOREACH(getGameLayer()->currentPlayer->getGearArray(), pObject)
+		for (auto gear : getGameLayer()->currentPlayer->getGearArray())
 		{
-			CCString *tmpGear = (CCString *)pObject;
 			GearButton *btn = GearButton::create("");
-			btn->setBtnType(gearType(to_int(tmpGear->getCString())), GearButtonType::Sell, false);
+			btn->setBtnType(gear, GearButtonType::Sell, false);
 			btn->setPositionX(13 + i * 34);
 			btn->setDelegate(this);
 			currentGear_layer->addChild(btn);
@@ -393,18 +391,12 @@ void GearLayer::updateGearList()
 		{
 			btn = GearButton::create("value_500.png");
 		}
+
 		bool isBuyed = false;
-		if (getGameLayer()->currentPlayer->getGearArray() && getGameLayer()->currentPlayer->getGearArray()->count() > 0)
+		for (auto gear : getGameLayer()->currentPlayer->getGearArray())
 		{
-			CCObject *pObject;
-			CCARRAY_FOREACH(getGameLayer()->currentPlayer->getGearArray(), pObject)
-			{
-				CCString *tmpGear = (CCString *)pObject;
-				if (to_int(tmpGear->getCString()) == i)
-				{
-					isBuyed = true;
-				}
-			}
+			if (gear == i)
+				isBuyed = true;
 		}
 
 		if (currentGear == None && !isBuyed)

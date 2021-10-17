@@ -222,14 +222,12 @@ void GameOver::listResult()
 			flogNum->setPosition(ccp(posX + 94, avator_small->getPositionY() + avator_small->getContentSize().height / 2));
 		}
 
-		if (hero->getGearArray() && hero->getGearArray()->count() > 0)
+		if (hero->getGearArray().size() > 0)
 		{
-			CCObject *pObject;
 			int i = 0;
-			CCARRAY_FOREACH(hero->getGearArray(), pObject)
+			for (auto gear : hero->getGearArray())
 			{
-				CCString *tmpGear = (CCString *)pObject;
-				CCSprite *gearIcon = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("gear_%02d.png", to_int(tmpGear->getCString()))->getCString());
+				CCSprite *gearIcon = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("gear_%02d.png", gear)->getCString());
 				gearIcon->setPosition(ccp(flogNum->getPositionX() + 22 + i * 19, flogNum->getPositionY() - 1));
 				gearIcon->setScale(0.5f);
 				addChild(gearIcon, 7);

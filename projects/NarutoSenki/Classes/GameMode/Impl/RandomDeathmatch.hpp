@@ -113,7 +113,7 @@ public:
 						mo->removeFromParentAndCleanup(true);
 					}
 				}
-				
+
 				// load new char assets
 				LoadLayer::perloadCharIMG(newCharName.c_str());
 				// Unload old character assets if not used by the other player or AI
@@ -136,10 +136,8 @@ public:
 			newChar->setGearArray(c->getGearArray());
 			newChar->changeHPbar();
 			newChar->updateDataByLVOnly();
-			CCObject *pObject = nullptr;
-			CCARRAY_FOREACH(c->getGearArray(), pObject)
+			for (auto gear : c->getGearArray())
 			{
-				auto gear = (gearType)(((CCString *)pObject)->intValue());
 				if (gear == gear00)
 				{
 					newChar->_isCanGear00 = true;

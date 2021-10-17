@@ -10,11 +10,11 @@ class Tsunade : public Hero
 		findHeroHalf();
 		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
-			if (getGearArray()->count() == 0)
+			if (getGearArray().size() == 0)
 				setGear(gear03);
-			else if (getGearArray()->count() == 1)
+			else if (getGearArray().size() == 1)
 				setGear(gear02);
-			else if (getGearArray()->count() == 2)
+			else if (getGearArray().size() == 2)
 				setGear(gear04);
 		}
 

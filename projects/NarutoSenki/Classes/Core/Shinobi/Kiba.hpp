@@ -17,11 +17,11 @@ class Kiba : public Hero
 		findHeroHalf();
 		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
-			if (getGearArray()->count() == 0)
+			if (getGearArray().size() == 0)
 				setGear(gear00);
-			else if (getGearArray()->count() == 1)
+			else if (getGearArray().size() == 1)
 				setGear(gear04);
-			else if (getGearArray()->count() == 2)
+			else if (getGearArray().size() == 2)
 				setGear(gear08);
 		}
 

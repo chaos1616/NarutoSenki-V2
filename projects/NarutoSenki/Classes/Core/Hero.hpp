@@ -231,7 +231,6 @@ public:
 
 		if (getLV() == 1 && !getCoin())
 		{
-			setGearArray(CCArray::create());
 			setCoinValue(50);
 		}
 
