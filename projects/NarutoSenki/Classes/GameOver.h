@@ -4,8 +4,6 @@
 #include "../../../cocos2dx/platform/android/jni/JniHelper.h"
 #endif
 
-class GameLayer;
-
 class GameOver : public CCLayer
 {
 public:
@@ -13,6 +11,7 @@ public:
 	~GameOver();
 
 	bool init(CCRenderTexture *snapshoot);
+
 	PROP(bool, _isWin, Win);
 
 	CCLayer *exitLayer;
@@ -23,7 +22,7 @@ public:
 	CCSprite *refreshBtn;
 	CCMenuItem *upload_btn;
 
-	//CC_SYNTHESIZE_RETAIN(CCString*,detailRecord,DetialRecord);
+	// CC_SYNTHESIZE_RETAIN(CCString*,detailRecord,DetialRecord);
 	string detailRecord;
 	float finnalScore;
 

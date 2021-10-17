@@ -233,7 +233,7 @@ public:
 
 	vector<CCLabelBMFont *>	_damageArray;
 	uint32_t				damageEffectCount;
-	PROP_Vector(vector<CharacterBase*>,_monsterArray,MonsterArray);
+	PROP_Vector(vector<CharacterBase *>,_monsterArray,MonsterArray);
 
 	// movement
 	PROP(CCPoint,_velocity, Velocity);
@@ -259,9 +259,9 @@ public:
 	CC_SYNTHESIZE_RETAIN(CCAction*,_skill5Action, Skill5Action);
 
 
-	CC_SYNTHESIZE_RETAIN(CCActionInterval* ,_moveAction,MoveAction);
-	CC_SYNTHESIZE_RETAIN(CCAction* ,_floatUPAction,FloatUPAction);
-	CC_SYNTHESIZE_RETAIN(CCActionInterval* ,_jumpUPAction,JumpUPAction);
+	CC_SYNTHESIZE_RETAIN(CCActionInterval*,_moveAction,MoveAction);
+	CC_SYNTHESIZE_RETAIN(CCAction*,_floatUPAction,FloatUPAction);
+	CC_SYNTHESIZE_RETAIN(CCActionInterval*,_jumpUPAction,JumpUPAction);
 
 
 	void				update(float dt);
