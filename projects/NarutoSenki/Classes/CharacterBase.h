@@ -34,10 +34,12 @@ public:
 	virtual	void	   	changeHPbar();
 	void				updateDataByLVOnly();
 	virtual	void		setShadows();
+
+	VPROP(int,_charNO,CharNO);
+
 	uint32_t			_deadNum;
 	uint32_t			_flogNum;
 	CC_SYNTHESIZE_RETAIN(CCString*,_killNum,KillNum);
-
 	CC_SYNTHESIZE_RETAIN(CCString*,_coin,Coin);
 
 
@@ -53,9 +55,7 @@ public:
 	bool				_isHealling;
 	bool				_isVisable;
 
-	CC_SYNTHESIZE(int,_charNO,CharNO);
-
-	//buff
+	// buff
 	uint32_t			_healBuffValue;
 	uint32_t			_dehealBuffValue;
 	uint32_t			_powerUPBuffValue;
@@ -73,8 +73,8 @@ public:
 	Effect*				_speedItemEffect;
 	float				_buffStartTime;
 	float				_debuffStartTime;
-	CC_SYNTHESIZE(int,_knockLength, KnockLength);
-	CC_SYNTHESIZE(bool,_knockDirection, KnockDirection);
+	VPROP(int,_knockLength, KnockLength);
+	VPROP(bool,_knockDirection, KnockDirection);
 
 	bool				_isAllAttackLocked;
 	bool				_isOnlySkillLocked;
@@ -135,22 +135,19 @@ public:
 	bool				_isCanGear03;
 	bool				_isCanGear06;
 
-	CC_SYNTHESIZE(int,_walkSpeed, WalkSpeed);
+	VPROP(int,_walkSpeed, WalkSpeed);
 	int _originSpeed;
 
 	CC_SYNTHESIZE_RETAIN(CCString*,_maxHP,MaxHP);
 	CC_SYNTHESIZE_RETAIN(CCString*,_hp,HP);
-
 	CC_SYNTHESIZE_RETAIN(CCString*,_ckr,CKR);
 	CC_SYNTHESIZE_RETAIN(CCString*,_ckr2,CKR2);
-	CC_SYNTHESIZE(float,_gardValue,GP);
-	CC_SYNTHESIZE(float,_exp,EXP);
-	CC_SYNTHESIZE(uint32_t,_level,LV);
-	CC_SYNTHESIZE(int,_height,Height);
-	CC_SYNTHESIZE(int,_rebornTime,RebornTime);
-
-
-	CC_SYNTHESIZE(CCPoint,_spawnPoint,SpawnPoint);
+	VPROP(float,_gardValue,GP);
+	VPROP(float,_exp,EXP);
+	VPROP(uint32_t,_level,LV);
+	VPROP(int,_height,Height);
+	VPROP(int,_rebornTime,RebornTime);
+	VPROP(CCPoint,_spawnPoint,SpawnPoint);
 
 
 	CC_SYNTHESIZE(CharacterBase*,_master,Master);
@@ -239,13 +236,13 @@ public:
 	uint32_t				damageEffectCount;
 	CC_SYNTHESIZE(CCArray*,_monsterArray,MonsterArray);
 
-	//movement
-	CC_SYNTHESIZE(CCPoint,_velocity, Velocity);
-	CC_SYNTHESIZE(CCPoint,_desiredPosition, DesiredPosition);
+	// movement
+	PROP(CCPoint,_velocity, Velocity);
+	PROP(CCPoint,_desiredPosition, DesiredPosition);
 
-	CC_SYNTHESIZE(State,_actionState, ActionState);
+	VPROP(State,_actionState, ActionState);
 
-
+	// actions
 	CC_SYNTHESIZE_RETAIN(CCAction*,_idleAction, IdleAction);
 	CC_SYNTHESIZE_RETAIN(CCAction*,_nattackAction, NAttackAction);
 	CC_SYNTHESIZE_RETAIN(CCAction*,_walkAction, WalkAction);

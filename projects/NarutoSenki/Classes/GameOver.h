@@ -13,7 +13,7 @@ public:
 	~GameOver();
 
 	bool init(CCRenderTexture *snapshoot);
-	CC_SYNTHESIZE(bool, _isWin, Win);
+	PROP(bool, _isWin, Win);
 
 	CCLayer *exitLayer;
 	CCLayer *cheatLayer;
