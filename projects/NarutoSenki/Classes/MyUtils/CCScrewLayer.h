@@ -11,7 +11,7 @@ public:
 	float minY;
 	int totalRow;
 	int line_height;
-	// PROP(vector<CCScrewItem *>, itemArray, ItemArray);
+	// PROP_SREF(vector<CCScrewItem *>, itemArray, ItemArray);
 
 	CREATE_FUNC(CCScrewLayer);
 

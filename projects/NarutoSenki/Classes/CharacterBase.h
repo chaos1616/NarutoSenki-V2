@@ -97,7 +97,7 @@ public:
 	CC_SYNTHESIZE_RETAIN(CCString*,_role,Role);
 	CC_SYNTHESIZE_RETAIN(CCString*,_group,Group);
 	CC_SYNTHESIZE_RETAIN(CCString*,_character,Character);
-	PROP(vector<gearType>,_gearArray,GearArray);
+	PROP_SREF(vector<gearType>,_gearArray,GearArray);
 
 	bool				enableDead	 = true;
 	bool				enableReborn = true;
