@@ -1,6 +1,67 @@
 #pragma once
 #include "Enums/Enums.hpp"
 
+#define cName(varName, varType) "Element/" varType "/" #varName ".plist"
+
+// Types
+#define kFlog "Flog"
+#define kGuardian "Guardian"
+
+// Roles
+#define kRoleCom "Com"
+#define kRolePlayer "Player"
+#define kRoleTower "Tower"
+#define kRoleBullet "Bullet"
+// Special
+#define kRoleHero "Hero"
+// 分身		Clone
+#define kRoleClone "Clone"
+#define kRoleFlog "Flog"
+// 傀儡		Kugutsu
+#define kRoleKugutsu "Kugutsu"
+#define kRoleMon "Mon"
+// 口寄せ	Summon
+#define kRoleSummon "Summon"
+
+// Flogs
+#define kFlog_Kotetsu cName(KotetsuFlog, kFlog)
+#define kFlog_Izumo cName(IzumoFlog, kFlog)
+#define kFlog_Kakashi cName(KakashiFlog, kFlog)
+#define kFlog_FemalePain cName(FemalePainFlog, kFlog)
+#define kFlog_Pain cName(PainFlog, kFlog)
+#define kFlog_Obito cName(ObitoFlog, kFlog)
+// Guardians
+#define kGuardian_Roshi "Roshi"
+#define kGuardian_Han "Han"
+
+enum abType
+{
+	NAttack,
+	Item1,
+	GearItem,
+	GearBtn,
+	SKILL1,
+	SKILL2,
+	SKILL3,
+	OUGIS1,
+	OUGIS2
+};
+
+// declare GearButton
+enum gearType
+{
+	gear00,
+	gear01,
+	gear02,
+	gear03,
+	gear04,
+	gear05,
+	gear06,
+	gear07,
+	gear08,
+	None
+};
+
 namespace AttackType
 {
 	mk_const(nAttack);

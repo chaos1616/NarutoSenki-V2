@@ -7,12 +7,8 @@ using namespace cocos2d;
 #define nameof(varType) #varType
 #define typeof(varType) typeid(varType).name()
 
-#define SAFE_CLEAR_CCARRAY(arr)  \
-	if (arr)                     \
-	{                            \
-		arr->removeAllObjects(); \
-		arr = nullptr;           \
-	}
+#define to_uint(str) strtoul(str, nullptr, 10)
+#define to_int(str) atoi(str)
 
 #define RETURN_FALSE_IF(var) \
 	if (var)                 \
@@ -51,6 +47,9 @@ using namespace cocos2d;
 /**
  * Sprite extension
  */
+
+#define FULL_SCREEN_SPRITE(__SPRITE__) \
+	__SPRITE__->setScaleX(winSize.width / __SPRITE__->getContentSize().width);
 
 static inline CCSpriteFrame *getSrpiteFrame(std::string name)
 {
