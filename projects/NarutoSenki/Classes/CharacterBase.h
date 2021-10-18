@@ -638,6 +638,7 @@ public:
  * Callbacks
  */
 protected:
+	virtual bool onAcceptAttack(CharacterBase *attacker) { return true; }
 	// Returns true will call CharacterBase::setDamage(attacker), false otherwise.
 	virtual bool onBulletHit(CharacterBase *attacker) { return true; }
 

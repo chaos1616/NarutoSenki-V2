@@ -255,4 +255,27 @@ class Tobi : public Hero
 
 		_skillChangeBuffValue = 0;
 	}
+
+	/**
+	 * Callbacks
+	 */
+
+	bool onAcceptAttack(CharacterBase *attacker) override
+	{
+		if (_skillChangeBuffValue &&
+			(_actionState == State::IDLE ||
+			 _actionState == State::WALK ||
+			 _actionState == State::NATTACK))
+		{
+			if (getOpacity() == 255)
+			{
+				scheduleOnce(schedule_selector(CharacterBase::disableBuff), 0.2f);
+			}
+
+			setOpacity(150);
+			return false;
+		}
+
+		return true;
+	}
 };

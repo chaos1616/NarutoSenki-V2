@@ -429,20 +429,8 @@ void CharacterBase::acceptAttack(CCObject *object)
 	auto attacker = (CharacterBase *)object;
 	bool isCannotMiss = false;
 
-	if (isCharacter("Tobi"))
-	{
-		if (_skillChangeBuffValue && (_actionState == State::IDLE ||
-									  _actionState == State::WALK ||
-									  _actionState == State::NATTACK))
-		{
-			if (getOpacity() == 255)
-			{
-				scheduleOnce(schedule_selector(CharacterBase::disableBuff), 0.2f);
-			}
-			setOpacity(150);
-			return;
-		}
-	}
+	if (!onAcceptAttack(attacker))
+		return;
 
 	if (attacker->isCharacter("Hiruzen") && attacker->_actionState == State::O2ATTACK)
 	{
