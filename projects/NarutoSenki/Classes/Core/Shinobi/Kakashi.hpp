@@ -191,7 +191,7 @@ class Kakashi : public Hero
 				hero->getActionState() != State::DEAD)
 			{
 				float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
-				if (distanceX < winSize.width / 2)
+				if (distanceX < kAttackRange)
 				{
 					if (!hero->_isVisable)
 					{

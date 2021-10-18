@@ -463,14 +463,14 @@ void CharacterBase::acceptAttack(CCObject *object)
 				bool isHitX = false;
 				float distanceX = ccpSub(attacker->getPosition(), getPosition()).x;
 
-				float tempRange1 = attacker->_attackRangeX + attacker->getContentSize().width / 2 + getContentSize().width / 2;
+				float atkRangeX = attacker->_attackRangeX + attacker->getContentSize().width / 2 + getContentSize().width / 2;
 
-				if (!attacker->_isFlipped && distanceX < 0 && -distanceX < tempRange1)
+				if (!attacker->_isFlipped && distanceX < 0 && -distanceX < atkRangeX)
 				{
 					_hurtFromLeft = true;
 					isHitX = true;
 				}
-				else if (attacker->_isFlipped && distanceX > 0 && distanceX < tempRange1)
+				else if (attacker->_isFlipped && distanceX > 0 && distanceX < atkRangeX)
 				{
 					_hurtFromRight = true;
 					isHitX = true;
@@ -569,23 +569,23 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 			float distanceX = ccpSub(attacker->getPosition(), getPosition()).x;
 
-			float tempRange1 = attacker->_attackRangeX + attacker->getContentSize().width / 2 + getContentSize().width / 2;
+			float atkRangeX = attacker->_attackRangeX + attacker->getContentSize().width / 2 + getContentSize().width / 2;
 
 			if (attacker->_attackType == "aAttack")
 			{
-				if (abs(distanceX) <= tempRange1)
+				if (abs(distanceX) <= atkRangeX)
 				{
 					isHitX = true;
 				}
 			}
 			else
 			{
-				if (!attacker->_isFlipped && distanceX < 0 && -distanceX < tempRange1)
+				if (!attacker->_isFlipped && distanceX < 0 && -distanceX < atkRangeX)
 				{
 					_hurtFromLeft = true;
 					isHitX = true;
 				}
-				else if (attacker->_isFlipped && distanceX > 0 && distanceX < tempRange1)
+				else if (attacker->_isFlipped && distanceX > 0 && distanceX < atkRangeX)
 				{
 					_hurtFromRight = true;
 					isHitX = true;
@@ -1491,7 +1491,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const char *effectType, i
 	}
 
 	if (isPlayer() || (isNotTower() &&
-					   abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2))
+					   abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange))
 	{
 		// create damage value display
 		bool _isDisplay = false;
@@ -1616,7 +1616,7 @@ void CharacterBase::removeDamageDisplay()
 
 void CharacterBase::setDamgeEffect(const char *type)
 {
-	if (isPlayer() || abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2)
+	if (isPlayer() || abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange)
 	{
 		if (damageEffectCount < 2)
 		{
@@ -1642,7 +1642,7 @@ void CharacterBase::setSkillEffect(CCNode *sender, void *data)
 	auto type = ((CCString *)(file->objectForKey(1)))->getCString();
 
 	if (isPlayer() ||
-		abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2)
+		abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange)
 	{
 		Effect *ef = Effect::create(type, this);
 		if (is_same(type, "Bagua") ||
@@ -2016,13 +2016,13 @@ void CharacterBase::setSound(CCNode *sender, void *data)
 	{
 		bool _isPlayable = false;
 		if (isPlayer() ||
-			abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2)
+			abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange)
 		{
 			_isPlayable = true;
 		}
 		if (getGameLayer()->controlChar)
 		{
-			if (abs(ccpSub(getPosition(), getGameLayer()->controlChar->getPosition()).x) < winSize.width / 2)
+			if (abs(ccpSub(getPosition(), getGameLayer()->controlChar->getPosition()).x) < kAttackRange)
 			{
 				_isPlayable = true;
 			}
@@ -2044,13 +2044,13 @@ void CharacterBase::setDSound(CCNode *sender, void *data)
 	{
 		bool _isPlayable = false;
 		if (isPlayer() ||
-			abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2)
+			abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange)
 		{
 			_isPlayable = true;
 		}
 		if (getGameLayer()->controlChar)
 		{
-			if (abs(ccpSub(getPosition(), getGameLayer()->controlChar->getPosition()).x) < winSize.width / 2)
+			if (abs(ccpSub(getPosition(), getGameLayer()->controlChar->getPosition()).x) < kAttackRange)
 			{
 				_isPlayable = true;
 			}
@@ -2300,7 +2300,7 @@ void CharacterBase::setBuff(CCNode *sender, void *data)
 				if (isNotSameGroupAs(hero) && hero->isPlayerOrCom() && hero->_actionState != State::HURT && hero->_actionState != State::DEAD)
 				{
 					float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
-					if (distanceX < winSize.width / 2)
+					if (distanceX < kAttackRange)
 					{
 						if (!hero->_isVisable)
 						{
@@ -2619,8 +2619,8 @@ void CharacterBase::healBuff(float dt)
 			if (isSameGroupAs(hero) && hero->isPlayerOrCom() && hero->_actionState != State::DEAD)
 			{
 				float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
-				float tempRange1 = 128 + getContentSize().width / 2;
-				if (abs(distanceX) <= tempRange1 &&
+				float atkRangeX = 128 + getContentSize().width / 2;
+				if (abs(distanceX) <= atkRangeX &&
 					abs(hero->getPositionY() - getPositionY()) <= 128)
 				{
 					hero->increaseHpAndUpdateUI(_healBuffValue);
@@ -2651,7 +2651,7 @@ void CharacterBase::healBuff(float dt)
 				hero->isNotCharacter("Chiyo"))
 			{
 				CCPoint sp = ccpSub(hero->getPosition(), getPosition());
-				if (abs(sp.x) <= winSize.width / 2)
+				if (abs(sp.x) <= kAttackRange)
 				{
 					hero->increaseAllCkrs(_healBuffValue);
 
@@ -2679,8 +2679,8 @@ void CharacterBase::healBuff(float dt)
 			if (isSameGroupAs(flog) && flog->_actionState != State::DEAD)
 			{
 				float distanceX = ccpSub(flog->getPosition(), getPosition()).x;
-				float tempRange1 = 128 + getContentSize().width / 2;
-				if (abs(distanceX) <= tempRange1 &&
+				float atkRangeX = 128 + getContentSize().width / 2;
+				if (abs(distanceX) <= atkRangeX &&
 					abs(flog->getPositionY() - getPositionY()) <= 128)
 				{
 					flog->increaseHpAndUpdateUI(_healBuffValue);
@@ -2830,8 +2830,8 @@ void CharacterBase::stopMove(float dt)
 		if (isNotSameGroupAs(hero) && hero->_isVisable && hero->_actionState != State::DEAD && hero->_actionState != State::JUMP && !hero->_isInvincible)
 		{
 			float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
-			float tempRange1 = _attackRangeX + getContentSize().width / 2;
-			if (abs(distanceX) <= tempRange1 &&
+			float atkRangeX = _attackRangeX + getContentSize().width / 2;
+			if (abs(distanceX) <= atkRangeX &&
 				abs(hero->getPositionY() - getPositionY()) <= _attackRangeY)
 			{
 				unschedule(schedule_selector(CharacterBase::stopMove));
@@ -3521,7 +3521,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 			if (isNotSameGroupAs(hero) && hero->isPlayerOrCom() && hero->_actionState != State::HURT && hero->_actionState != State::DEAD)
 			{
 				float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
-				if (distanceX < winSize.width / 2)
+				if (distanceX < kAttackRange)
 				{
 					if (!hero->_isVisable)
 					{
@@ -4159,7 +4159,7 @@ bool CharacterBase::hurt()
 				hero->_buffStartTime)
 			{
 				CCPoint sp = ccpSub(hero->getPosition(), getPosition());
-				if (abs(sp.x) <= winSize.width / 2)
+				if (abs(sp.x) <= kAttackRange)
 				{
 					return false;
 				}
@@ -4230,7 +4230,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 				hero->_buffStartTime)
 			{
 				CCPoint sp = ccpSub(hero->getPosition(), getPosition());
-				if (abs(sp.x) <= winSize.width / 2)
+				if (abs(sp.x) <= kAttackRange)
 				{
 					return false;
 				}
@@ -4426,7 +4426,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 				hero->_buffStartTime)
 			{
 				CCPoint sp = ccpSub(hero->getPosition(), getPosition());
-				if (abs(sp.x) <= winSize.width / 2)
+				if (abs(sp.x) <= kAttackRange)
 				{
 					return;
 				}
@@ -4778,7 +4778,7 @@ CharacterBase::findEnemyBy(const vector<T *> &list, int searchRange, bool master
 				sp = ccpSub(target->getPosition(), getPosition());
 			}
 
-			if (abs(sp.x) < (searchRange ? searchRange : winSize.width / 2))
+			if (abs(sp.x) < (searchRange ? searchRange : kAttackRange))
 			{
 				if (target->_isTaunt)
 				{
@@ -4849,7 +4849,7 @@ CharacterBase::findEnemy2By(const vector<T *> &list)
 
 		distance = ccpDistance(target->getPosition(), getPosition());
 		sp = ccpSub(target->getPosition(), getPosition());
-		if (abs(sp.x) < winSize.width / 2)
+		if (abs(sp.x) < kAttackRange)
 		{
 			if (target->isNotClone() && target->isNotSummon())
 			{

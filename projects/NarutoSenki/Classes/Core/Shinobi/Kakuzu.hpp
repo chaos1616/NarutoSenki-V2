@@ -61,7 +61,7 @@ class Kakuzu : public Hero
 						distance = ccpDistance(target->getPosition(), getPosition());
 						sp = ccpSub(target->getPosition(), getPosition());
 
-						if (abs(sp.x) < (winSize.width / 2))
+						if (abs(sp.x) < (kAttackRange))
 						{
 							if (target->_isTaunt)
 							{

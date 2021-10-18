@@ -207,8 +207,8 @@ class Shikamaru : public Hero
 				if (isNotSameGroupAs(hero) && hero->isPlayerOrCom() && hero->getActionState() != State::DEAD && hero->_isVisable && !hero->_isSticking)
 				{
 					float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
-					float attackRange = winSize.width / 2;
-					if (abs(distanceX) <= attackRange)
+					float atkRangeX = kAttackRange;
+					if (abs(distanceX) <= atkRangeX)
 					{
 						auto trap = Monster::create();
 						trap->setMaster(this);

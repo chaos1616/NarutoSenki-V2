@@ -5,9 +5,9 @@ class Saso : public Hero
 {
 	void perform() override
 	{
-		if (notFindHero(winSize.width / 2 - 32, true))
+		if (notFindHero(kAttackRange - 32, true))
 		{
-			if (notFindFlog(winSize.width / 2 - 32, true))
+			if (notFindFlog(kAttackRange - 32, true))
 				_mainTarget = nullptr;
 		}
 
@@ -86,7 +86,7 @@ class Saso : public Hero
 			}
 		}
 
-		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > winSize.width / 2 - 64)
+		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > kAttackRange - 64)
 		{
 			CCPoint moveDirection = getDirByMoveTo(_master);
 			walk(moveDirection);

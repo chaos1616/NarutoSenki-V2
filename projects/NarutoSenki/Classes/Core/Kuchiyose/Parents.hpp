@@ -5,7 +5,7 @@ class Parents : public Hero
 {
 	void perform() override
 	{
-		if (notFindHero(winSize.width / 2 - 32, true))
+		if (notFindHero(kAttackRange - 32, true))
 		{
 			if (notFindFlog(48, true))
 			{

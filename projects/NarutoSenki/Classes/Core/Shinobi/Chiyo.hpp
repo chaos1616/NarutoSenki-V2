@@ -104,7 +104,7 @@ class Chiyo : public Hero
 							hero->isNotCharacter("Chiyo"))
 						{
 							CCPoint sp = ccpSub(hero->getPosition(), getPosition());
-							if (sp.x <= winSize.width / 2)
+							if (sp.x <= kAttackRange)
 								countNum++;
 						}
 					}

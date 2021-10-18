@@ -1,6 +1,13 @@
 #pragma once
 #include <Defines.h>
 
+// Tile size
+static const int kTileSize = 32;
+static const int kOneHalfTileSize = kTileSize * 1.5f;
+
+// It was half window width before
+static const int kAttackRange = kTileSize * 9;
+
 struct HeroData
 {
 public:

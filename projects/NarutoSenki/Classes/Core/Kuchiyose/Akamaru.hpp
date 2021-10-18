@@ -5,11 +5,11 @@ class Akamaru : public Hero
 {
 	void perform() override
 	{
-		if (notFindHero(winSize.width / 2 - 32, true))
+		if (notFindHero(kAttackRange - 32, true))
 		{
-			if (notFindFlog(winSize.width / 2 - 32, true))
+			if (notFindFlog(kAttackRange - 32, true))
 			{
-				if (notFindTower(winSize.width / 2 - 32, true))
+				if (notFindTower(kAttackRange - 32, true))
 				{
 					_mainTarget = nullptr;
 				}
@@ -18,7 +18,7 @@ class Akamaru : public Hero
 
 		CCPoint moveDirection;
 
-		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > winSize.width / 2 - 48)
+		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > kAttackRange - 48)
 		{
 			if (isFreeActionState())
 			{
@@ -87,7 +87,7 @@ class Akamaru : public Hero
 			}
 		}
 
-		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > winSize.width / 2 - 64)
+		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > kAttackRange - 64)
 		{
 			CCPoint moveDirection = getDirByMoveTo(_master);
 			walk(moveDirection);
