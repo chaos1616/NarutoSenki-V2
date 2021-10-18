@@ -992,59 +992,8 @@ void CharacterBase::acceptAttack(CCObject *object)
 						}
 					}
 
-					if (isCharacter("Hidan") && _skillChangeBuffValue)
-					{
-						bool _isCounter = false;
-						if (hasMonsterArrayAny())
-						{
-							for (auto mo : _monsterArray)
-							{
-								float distanceX = ccpSub(mo->getPosition(), getPosition()).x;
-								float distanceY = ccpSub(mo->getPosition(), getPosition()).y;
-								if (abs(distanceX) < 40 && abs(distanceY) < 15)
-								{
-									_isCounter = true;
-								}
-							}
-						}
-
-						if (_isCounter && attacker->isNotGuardian())
-						{
-							if (attacker->_master && attacker->_master->_actionState != State::DEAD)
-							{
-								attacker->_master->setDamage(this, attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
-							}
-							else if (!attacker->_master)
-							{
-								if (attacker->_actionState != State::DEAD)
-								{
-									attacker->setDamage(this, attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
-								}
-							}
-
-							for (auto hero : getGameLayer()->_CharacterArray)
-							{
-								if (isNotSameGroupAs(hero) && hero->isPlayerOrCom() && hero->_actionState != State::DEAD)
-								{
-									hero->setDamage(this, attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
-								}
-							}
-
-							return;
-						}
-					}
-					else if (isCharacter("Kakuzu") && _skillChangeBuffValue)
-					{
-						if (!attacker->_master)
-						{
-							if (attacker->_actionState != State::DEAD)
-							{
-								attacker->setDamage(this, attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
-							}
-						}
-					}
-
-					setDamage(attacker);
+					if (onHit(attacker))
+						setDamage(attacker);
 				}
 			}
 		}

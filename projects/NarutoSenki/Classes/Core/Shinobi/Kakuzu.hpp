@@ -347,4 +347,23 @@ class Kakuzu : public Hero
 
 		return clone;
 	}
+
+	/**
+	 * Callbacks
+	 */
+
+	bool onHit(CharacterBase *attacker) override
+	{
+		if (_skillChangeBuffValue >= 0)
+		{
+			if (!attacker->getMaster())
+			{
+				if (attacker->getActionState() != State::DEAD)
+				{
+					attacker->setDamage(this, attacker->getEffectType(), attacker->_attackValue / 2, attacker->_isFlipped);
+				}
+			}
+		}
+		return true;
+	}
 };
