@@ -346,4 +346,48 @@ class Hidan : public Hero
 
 		_skillChangeBuffValue = 0;
 	}
+
+	/**
+	 * Callbacks
+	 */
+
+	bool onBulletHit(CharacterBase *attacker) override
+	{
+		if (_skillChangeBuffValue <= 0)
+			return true;
+
+		bool _isCounter = false;
+		if (hasMonsterArrayAny())
+		{
+			for (auto mo : _monsterArray)
+			{
+				float distanceX = ccpSub(mo->getPosition(), getPosition()).x;
+				float distanceY = ccpSub(mo->getPosition(), getPosition()).y;
+				if (abs(distanceX) < 40 && abs(distanceY) < 15)
+				{
+					_isCounter = true;
+				}
+			}
+		}
+
+		if (_isCounter)
+		{
+			if (attacker->getMaster() && attacker->getMaster()->getActionState() != State::DEAD)
+			{
+				attacker->getMaster()->setDamage(this, attacker->getEffectType(), attacker->_attackValue, attacker->_isFlipped);
+			}
+
+			for (auto hero : getGameLayer()->_CharacterArray)
+			{
+				if (isNotSameGroupAs(hero) && hero->isPlayerOrCom() && hero->getActionState() != State::DEAD)
+				{
+					hero->setDamage(this, attacker->getEffectType(), attacker->_attackValue / 2, attacker->_isFlipped);
+				}
+			}
+
+			return false;
+		}
+
+		return true;
+	}
 };

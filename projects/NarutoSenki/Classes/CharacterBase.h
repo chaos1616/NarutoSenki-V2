@@ -202,7 +202,7 @@ public:
 	uint32_t		_sattackcooldown5;
 	int				_sattackCombatPoint5;
 
-	//int totalCombatPoint;
+	// int totalCombatPoint;
 	int enemyCombatPoint;
 	int friendCombatPoint;
 
@@ -390,9 +390,7 @@ public:
 	void				readData(CCArray* tmpData, CCString* &attackType, CCString* &attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint);
 	CCAction*			createAnimation(CCArray* ationArray, float fps, bool isRepeat, bool isReturn);
 
-protected:
 	CCDictionary*		callValue;
-
 	void				setSound(CCNode* sender, void* data);
 	void				setDSound(CCNode* sender, void* data);
 	void				setMove(CCNode* sender, void* data);
@@ -423,7 +421,7 @@ protected:
 	void				setBullet(CCNode* sender, void* data);
 	void				setBulletGroup(float dt);
 
-	void				setTrap(CCNode* sender, void* data);
+	void				setTrap(CCNode* sender, void* data); // NOTE: Kakuzu ability
 
 
 	void				setBuff(CCNode* sender, void* data);
@@ -636,6 +634,14 @@ public:
 		return _actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK;
 	}
 
+/**
+ * Callbacks
+ */
+protected:
+	// Returns true will call CharacterBase::setDamage(attacker), false otherwise.
+	virtual bool onBulletHit(CharacterBase *attacker) { return true; }
+
+
 private:
-	bool	_affectedByTower;
+	bool			_affectedByTower;
 };

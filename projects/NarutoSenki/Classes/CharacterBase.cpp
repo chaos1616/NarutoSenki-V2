@@ -521,41 +521,8 @@ void CharacterBase::acceptAttack(CCObject *object)
 		{
 			if (setHitBox().intersectsRect(attacker->setHitBox()))
 			{
-				if (isCharacter("Hidan") && _skillChangeBuffValue)
-				{
-					bool _isCounter = false;
-					if (hasMonsterArrayAny())
-					{
-						for (auto mo : _monsterArray)
-						{
-							float distanceX = ccpSub(mo->getPosition(), getPosition()).x;
-							float distanceY = ccpSub(mo->getPosition(), getPosition()).y;
-							if (abs(distanceX) < 40 && abs(distanceY) < 15)
-							{
-								_isCounter = true;
-							}
-						}
-					}
-
-					if (_isCounter)
-					{
-						if (attacker->_master && attacker->_master->_actionState != State::DEAD)
-						{
-							attacker->_master->setDamage(this, attacker->_effectType, attacker->_attackValue, attacker->_isFlipped);
-						}
-
-						for (auto hero : getGameLayer()->_CharacterArray)
-						{
-							if (isNotSameGroupAs(hero) && hero->isPlayerOrCom() && hero->_actionState != State::DEAD)
-							{
-								hero->setDamage(this, attacker->_effectType, attacker->_attackValue / 2, attacker->_isFlipped);
-							}
-						}
-
-						return;
-					}
-				}
-
+				if (!onBulletHit(attacker))
+					return;
 				setDamage(attacker);
 
 				if (attacker->isCharacter("HiraishinKunai") ||
@@ -1338,7 +1305,7 @@ void CharacterBase::setCharFlip()
 	if (_isFlipped)
 	{
 		setFlipX(false);
-		_isFlipped = false;
+		_isFlipped = false; // TODO: Upgrade to V4 then use CCSprite::_isFlippedX instead
 	}
 	else
 	{
@@ -1706,7 +1673,7 @@ void CharacterBase::removeDamageDisplay()
 	{
 		auto damageFont = _damageArray.at(0);
 		damageFont->removeFromParent();
-		std::erase(_damageArray, damageFont);
+		_damageArray.erase(_damageArray.begin());
 	}
 }
 
