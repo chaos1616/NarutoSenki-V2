@@ -3590,93 +3590,57 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 					getGameLayer()->addChild(trap, -trap->getPositionY());
 				}
 			}
-			return;
 		}
-
-		for (int z = 0; z < 3; z++)
+		else
 		{
-			if (z == 0)
+			for (int z = 0; z < 3; z++)
 			{
-				for (int i = 0; i < 3; i++)
+				if (z == 0)
+				{
+					for (int i = 0; i < 3; i++)
+					{
+						Bullet *trap = Bullet::create();
+						trap->_master = this;
+						trap->setID(trapType, CCString::create(kRoleMon), _group);
+
+						trap->setPosition(ccp(getPositionX() + (_isFlipped ? -112 : 112), getPositionY() + (48 - i * 24)));
+						trap->idle();
+						trap->attack(NAttack);
+						trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 2.5f);
+						getGameLayer()->addChild(trap, -trap->getPositionY());
+					}
+				}
+				else if (z == 1)
+				{
+					for (int i = 0; i < 2; i++)
+					{
+						Bullet *trap = Bullet::create();
+						trap->_master = this;
+						trap->setID(trapType, CCString::create(kRoleMon), _group);
+						trap->setPosition(ccp(getPositionX() + (_isFlipped ? -80 : 80), getPositionY() + (32 - i * 24)));
+						trap->idle();
+						trap->attack(NAttack);
+						trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 2.5f);
+						getGameLayer()->addChild(trap, -trap->getPositionY());
+					}
+				}
+				else
 				{
 					Bullet *trap = Bullet::create();
 					trap->_master = this;
 					trap->setID(trapType, CCString::create(kRoleMon), _group);
-
-					trap->setPosition(ccp(getPositionX() + (_isFlipped ? -112 : 112), getPositionY() + (48 - i * 24)));
+					trap->setPosition(ccp(getPositionX() + (_isFlipped ? -48 : 48), getPositionY() + 22));
 					trap->idle();
 					trap->attack(NAttack);
 					trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 2.5f);
 					getGameLayer()->addChild(trap, -trap->getPositionY());
 				}
 			}
-			else if (z == 1)
-			{
-				for (int i = 0; i < 2; i++)
-				{
-					Bullet *trap = Bullet::create();
-					trap->_master = this;
-					trap->setID(trapType, CCString::create(kRoleMon), _group);
-					trap->setPosition(ccp(getPositionX() + (_isFlipped ? -80 : 80), getPositionY() + (32 - i * 24)));
-					trap->idle();
-					trap->attack(NAttack);
-					trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 2.5f);
-					getGameLayer()->addChild(trap, -trap->getPositionY());
-				}
-			}
-			else
-			{
-				Bullet *trap = Bullet::create();
-				trap->_master = this;
-				trap->setID(trapType, CCString::create(kRoleMon), _group);
-				trap->setPosition(ccp(getPositionX() + (_isFlipped ? -48 : 48), getPositionY() + 22));
-				trap->idle();
-				trap->attack(NAttack);
-				trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 2.5f);
-				getGameLayer()->addChild(trap, -trap->getPositionY());
-			}
 		}
 	}
-	else if (is_same(trapType->getCString(), "Kusuri"))
+	else
 	{
-		for (int i = 0; i < 3; i++)
-		{
-			Bullet *trap = Bullet::create();
-			trap->setAnchorPoint(ccp(0.5f, 0));
-			trap->_master = this;
-			trap->setID(trapType, CCString::create(kRoleMon), _group);
-
-			if (i == 0)
-				trap->setPosition(ccp(getPositionX() + (_isFlipped ? -24 : 24), getPositionY() - 24));
-			else if (i == 1)
-				trap->setPosition(ccp(getPositionX() + (_isFlipped ? 24 : -24), getPositionY() - 24));
-			else if (i == 2)
-				trap->setPosition(ccp(getPositionX(), getPositionY() + 24));
-
-			trap->attack(NAttack);
-			getGameLayer()->addChild(trap, -trap->getPositionY());
-		}
-	}
-	else if (is_same(trapType->getCString(), "KageBom"))
-	{
-		for (auto hero : getGameLayer()->_CharacterArray)
-		{
-			if (isNotSameGroupAs(hero) && hero->isPlayerOrCom() && hero->_actionState != State::DEAD && hero->_isVisable && !hero->_isSticking)
-			{
-				float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
-				float tempRange1 = winSize.width / 2;
-				if (abs(distanceX) <= tempRange1)
-				{
-					Monster *trap = Monster::create();
-					trap->_master = this;
-					trap->setID(trapType, CCString::create(kRoleMon), _group);
-					trap->setPosition(ccp(hero->getPositionX(), hero->getPositionY()));
-					trap->idle();
-					trap->attack(NAttack);
-					getGameLayer()->addChild(trap, -trap->getPositionY());
-				}
-			}
-		}
+		onSetTrap(trapType->m_sString);
 	}
 }
 

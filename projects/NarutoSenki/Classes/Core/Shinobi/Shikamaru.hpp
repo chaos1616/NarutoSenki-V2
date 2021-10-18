@@ -7,6 +7,7 @@ class Shikamaru : public Hero
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
+
 		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray().size() == 0)
@@ -190,6 +191,35 @@ class Shikamaru : public Hero
 			if (_isCanGear00)
 				useGear(gear00);
 			stepOn();
+		}
+	}
+
+	/**
+	 * Callbacks
+	 */
+
+	void onSetTrap(const string &trapType) override
+	{
+		if (trapType == "KageBom")
+		{
+			for (auto hero : getGameLayer()->_CharacterArray)
+			{
+				if (isNotSameGroupAs(hero) && hero->isPlayerOrCom() && hero->getActionState() != State::DEAD && hero->_isVisable && !hero->_isSticking)
+				{
+					float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
+					float attackRange = winSize.width / 2;
+					if (abs(distanceX) <= attackRange)
+					{
+						auto trap = Monster::create();
+						trap->setMaster(this);
+						trap->setID(CCString::create(trapType), CCString::create(kRoleMon), getGroup());
+						trap->setPosition(ccp(hero->getPositionX(), hero->getPositionY()));
+						trap->idle();
+						trap->attack(NAttack);
+						getGameLayer()->addChild(trap, -trap->getPositionY());
+					}
+				}
+			}
 		}
 	}
 };

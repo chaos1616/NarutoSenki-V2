@@ -364,6 +364,7 @@ class Kakuzu : public Hero
 				}
 			}
 		}
+
 		return true;
 	}
 };

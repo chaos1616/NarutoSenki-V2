@@ -192,4 +192,32 @@ class Karin : public Hero
 			stepOn();
 		}
 	}
+
+	/**
+	 * Callbacks
+	 */
+
+	void onSetTrap(const string &trapType) override
+	{
+		if (trapType == "Kusuri")
+		{
+			for (int i = 0; i < 3; i++)
+			{
+				auto trap = Bullet::create();
+				trap->setAnchorPoint(ccp(0.5f, 0));
+				trap->setMaster(this);
+				trap->setID(CCString::create(trapType), CCString::create(kRoleMon), getGroup());
+
+				if (i == 0)
+					trap->setPosition(ccp(getPositionX() + (_isFlipped ? -24 : 24), getPositionY() - 24));
+				else if (i == 1)
+					trap->setPosition(ccp(getPositionX() + (_isFlipped ? 24 : -24), getPositionY() - 24));
+				else if (i == 2)
+					trap->setPosition(ccp(getPositionX(), getPositionY() + 24));
+
+				trap->attack(NAttack);
+				getGameLayer()->addChild(trap, -trap->getPositionY());
+			}
+		}
+	}
 };

@@ -420,8 +420,7 @@ public:
 	void				setMonPer(float dt);
 	void				setBullet(CCNode* sender, void* data);
 	void				setBulletGroup(float dt);
-
-	void				setTrap(CCNode* sender, void* data); // NOTE: Kakuzu ability
+	void				setTrap(CCNode* sender, void* data);
 
 
 	void				setBuff(CCNode* sender, void* data);
@@ -644,6 +643,7 @@ protected:
 	// Returns true will call CharacterBase::setDamage(attacker), false otherwise.
 	virtual bool onBulletHit(CharacterBase *attacker) { return true; }
 
+	virtual void onSetTrap(const string &trapType) { }
 
 private:
 	bool			_affectedByTower;
