@@ -128,6 +128,11 @@ void GameLayer::initTileMap()
 {
 	setRand();
 	int mapCount = getMapCount();
+	if (mapCount == 0)
+	{
+		CCMessageBox("Not found any map", "[Error] Not found any map");
+		return;
+	}
 	mapId = random(mapCount) + 1;
 	currentMap = CCTMXTiledMap::create(GetMapPath(mapId));
 	addChild(currentMap, currentMapTag);
