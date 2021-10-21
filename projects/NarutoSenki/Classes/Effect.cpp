@@ -2,11 +2,11 @@
 #include "CharacterBase.h"
 #include "GameLayer.h"
 
-bool Effect::init(const char *name, CCObject *attacker)
+bool Effect::init(const char *name, CharacterBase *attacker)
 {
 	RETURN_FALSE_IF(!CCSprite::init());
 
-	at = (CharacterBase *)attacker;
+	at = attacker;
 
 	if (is_same(name, "n_hit") ||
 		is_same(name, "b_hit"))
@@ -46,7 +46,7 @@ bool Effect::init(const char *name, CCObject *attacker)
 			 is_same(name, "sl_hit"))
 	{
 		initWithSpriteFrameName("blue_damge_01");
-		//setAnchorPoint(ccp(0.5f,0));
+		// setAnchorPoint(ccp(0.5f,0));
 		setScale(0.6f);
 		int randomInt = rand() % 30 + 10;
 		setRotation(randomInt);
@@ -304,7 +304,7 @@ void Effect::removeFontEffect()
 	removeFromParent();
 }
 
-Effect *Effect::create(const char *szImage, CCObject *attacker)
+Effect *Effect::create(const char *szImage, CharacterBase *attacker)
 {
 	Effect *ef = new Effect();
 	if (ef && ef->init(szImage, attacker))

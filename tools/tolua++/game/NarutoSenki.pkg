@@ -73,7 +73,7 @@ public:
 /* Effect.h */
 class Effect : public CCSprite {
 public:
-	static Effect* create(const char *szImage, CCObject* Attacker);
+	static Effect* create(const char *szImage, CharacterBase *attacker);
 };
 
 /* HPBar.h */

@@ -66971,7 +66971,7 @@ static int tolua_Cocos2d_Effect_create00(lua_State* tolua_S)
  if (
      !tolua_isusertable(tolua_S,1,"Effect",0,&tolua_err) ||
      !tolua_isstring(tolua_S,2,0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,3,"CCObject",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,3,"CharacterBase",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
   goto tolua_lerror;
@@ -66979,9 +66979,9 @@ static int tolua_Cocos2d_Effect_create00(lua_State* tolua_S)
 #endif
  {
   const char* szImage = ((const char*)  tolua_tostring(tolua_S,2,0));
-  CCObject* Attacker = ((CCObject*)  tolua_tousertype(tolua_S,3,0));
+  CharacterBase* attacker = ((CharacterBase*)  tolua_tousertype(tolua_S,3,0));
   {
-   Effect* tolua_ret = (Effect*)  Effect::create(szImage,Attacker);
+   Effect* tolua_ret = (Effect*)  Effect::create(szImage,attacker);
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"Effect");
   }
  }
