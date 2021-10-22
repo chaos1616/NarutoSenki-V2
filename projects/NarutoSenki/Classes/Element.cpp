@@ -160,7 +160,7 @@ void HeroElement::changeHPbar()
 
 void HeroElement::checkRefCount(float dt)
 {
-	CCLOG("[Ref Check] %s has %d references", getCharacter()->getCString());
+	CCLOG("[Ref Check] %s has %d references", getCharacter()->getCString(), retainCount());
 }
 
 void HeroElement::dealloc()
