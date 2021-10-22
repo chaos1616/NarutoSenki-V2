@@ -10,7 +10,6 @@ HeroElement::HeroElement()
 
 HeroElement::~HeroElement()
 {
-	CC_SAFE_RELEASE(callValue);
 	CC_SAFE_DELETE(skillSPC1Array);
 	CC_SAFE_RELEASE(skillSPC2Array);
 	CC_SAFE_RELEASE(skillSPC3Array);
@@ -161,7 +160,7 @@ void HeroElement::changeHPbar()
 
 void HeroElement::checkRefCount(float dt)
 {
-	CCLOG("[Ref Check] %s has %d references", getCharacter()->getCString(), callValue->retainCount());
+	CCLOG("[Ref Check] %s has %d references", getCharacter()->getCString());
 }
 
 void HeroElement::dealloc()
@@ -401,15 +400,6 @@ void HeroElement::reborn(float dt)
 init Monster
 ---------------*/
 
-Monster::Monster()
-{
-}
-
-Monster::~Monster()
-{
-	CC_SAFE_RELEASE(callValue);
-}
-
 bool Monster::init()
 {
 	RETURN_FALSE_IF(!CharacterBase::init());
@@ -590,10 +580,7 @@ void Monster::setAI(float dt)
 				{
 					if (_monsterArray.empty())
 					{
-						auto dic = CCDictionary::create();
-						CCString *monterName = CCString::create("KageHand");
-						dic->setObject(monterName, 1);
-						setMon(this, (void *)dic);
+						setMon("KageHand");
 						unschedule(schedule_selector(CharacterBase::setAI));
 					}
 				}

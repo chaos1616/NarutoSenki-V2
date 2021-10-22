@@ -28,9 +28,6 @@ protected:
 class Monster : public CharacterBase
 {
 public:
-	Monster();
-	~Monster();
-
 	bool init();
 	void initAction();
 	void setID(CCString *character, CCString *role, CCString *group);

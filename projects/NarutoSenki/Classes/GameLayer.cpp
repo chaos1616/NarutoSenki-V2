@@ -164,9 +164,7 @@ void GameLayer::initGard()
 	guardian->setCharNO(_CharacterArray.size() + 1);
 
 	guardian->idle();
-	auto callValue = CCDictionary::create();
-	callValue->setObject(CCString::create("smk"), 1);
-	guardian->setSkillEffect(guardian, callValue);
+	guardian->setSkillEffect("smk");
 
 	guardian->doAI();
 

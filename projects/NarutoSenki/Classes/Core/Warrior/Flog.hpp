@@ -12,11 +12,6 @@ public:
 
 	CREATE_FUNC(Flog);
 
-	~Flog()
-	{
-		CC_SAFE_RELEASE(callValue);
-	}
-
 	bool init()
 	{
 		RETURN_FALSE_IF(!CharacterBase::init());

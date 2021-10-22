@@ -31,12 +31,12 @@ private:
 	static inline std::unordered_map<string, CommandHandler> cmdMap;
 
 public:
-	static inline void on(const char *cmd, CommandHandler handler)
+	static inline void on(const string &cmd, CommandHandler handler)
 	{
 		cmdMap.insert(std::make_pair(cmd, handler));
 	}
 
-	static inline void invoke(const char *cmd, CharacterBase *thiz)
+	static inline void invoke(const string &cmd, CharacterBase *thiz)
 	{
 		auto it_find = cmdMap.find(cmd);
 		if (it_find != cmdMap.end())
@@ -50,12 +50,12 @@ public:
 		}
 	}
 
-	static inline void remove(const char *cmd)
+	static inline void remove(const string &cmd)
 	{
 		cmdMap.erase(cmd);
 	}
 
-	static inline void replaceOrInsert(const char *cmd, CommandHandler handler)
+	static inline void replaceOrInsert(const string &cmd, CommandHandler handler)
 	{
 		cmdMap[cmd] = handler;
 	}

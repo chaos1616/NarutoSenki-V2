@@ -5,6 +5,7 @@
 #include "GameMode/GameModeImpl.h"
 #include "MyUtils/CCShake.h"
 #include "Systems/CommandSystem.hpp"
+#include "Utils/CallFunctions.hpp"
 
 CharacterBase::CharacterBase()
 {
@@ -1031,52 +1032,40 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 				seqArray->addObject(tempAction);
 				if (is_same(key, "setAttackBox"))
 				{
-					callValue = CCDictionary::create();
-					callValue->retain();
-					callValue->setObject(CCString::create(keyValue), 1);
-					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setAttackBox), (void *)callValue);
+					auto call = CallFunc::create(std::bind(&CharacterBase::setAttackBox, this, string(keyValue)));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setSound"))
 				{
-					callValue = CCDictionary::create();
-					callValue->retain();
-					callValue->setObject(CCString::create(keyValue), 1);
-					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setSound), (void *)callValue);
+					auto call = CallFunc::create(std::bind(&CharacterBase::setSound, this, string(keyValue)));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setDSound"))
 				{
-					callValue = CCDictionary::create();
-					callValue->retain();
-					callValue->setObject(CCString::create(keyValue), 1);
-					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setDSound), (void *)callValue);
+					auto call = CallFunc::create(std::bind(&CharacterBase::setDSound, this, string(keyValue)));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setDelay"))
 				{
 					float delayTime = dic->valueForKey(key)->intValue();
-					auto delay = CCDelayTime::create(delayTime / 100);
+					auto delay = CCDelayTime::create(delayTime / 100.0f);
 					seqArray->addObject(delay);
 				}
 				else if (is_same(key, "setMove"))
 				{
 					int moveLength = dic->valueForKey(key)->intValue();
-					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setMove), (void *)moveLength);
+					auto call = CallFunc::create(std::bind(&CharacterBase::setMove, this, moveLength));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setSkillEffect"))
 				{
-					callValue = CCDictionary::create();
-					callValue->retain();
-					callValue->setObject(CCString::create(keyValue), 1);
-					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setSkillEffect), (void *)callValue);
+					auto call = CallFunc::create(std::bind(&CharacterBase::setSkillEffect, this, string(keyValue)));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setJump"))
 				{
 					bool jumpDirection = dic->valueForKey(key)->boolValue();
-					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setJump), (void *)jumpDirection);
+					auto call = CallFunc::create(std::bind(&CharacterBase::setJump, this, jumpDirection));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setCharge"))
@@ -1084,61 +1073,52 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 					auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::getCollider));
 					seqArray->addObject(call);
 					int moveLength = dic->valueForKey(key)->intValue();
-					call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setCharge), (void *)moveLength);
+					call = CallFunc::create(std::bind(&CharacterBase::setCharge, this, moveLength));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setChargeB"))
 				{
 					int moveLength = dic->valueForKey(key)->intValue();
-					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setChargeB), (void *)moveLength);
+					auto call = CallFunc::create(std::bind(&CharacterBase::setChargeB, this, moveLength));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setClone"))
 				{
 					int cloneTime = dic->valueForKey(key)->intValue();
-					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setClone), (void *)cloneTime);
+					auto call = CallFunc::create(std::bind(&CharacterBase::setClone, this, cloneTime));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setMon"))
 				{
-					callValue = CCDictionary::create();
-					callValue->retain();
-					callValue->setObject(CCString::create(keyValue), 1);
-					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setMon), (void *)callValue);
+					auto call = CallFunc::create(std::bind(&CharacterBase::setMon, this, string(keyValue)));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setFont"))
 				{
-					callValue = CCDictionary::create();
-					callValue->retain();
-					const char *split = ",";
-					char *p;
-					char *str = new char[20];
-					strcpy(str, keyValue);
-					p = strtok(str, split);
-					int i = 1;
-					while (p != nullptr)
-					{
-						callValue->setObject(CCString::create(p), i);
-						i++;
-						p = strtok(nullptr, split);
-					}
+					// const char *split = ",";
+					// char *p;
+					// char str[] = char[strlen(keyValue)];
+					// strcpy(str, keyValue);
+					// p = strtok(str, split);
+					// vector<string> valueVector;
+					// while (p != nullptr)
+					// {
+					// 	valueVector.push_back(p);
+					// 	p = strtok(nullptr, split);
+					// }
 
-					// auto call = CCCallFuncND::create(this,callfuncND_selector(CharacterBase::setFontEffect),(void*)callValue);
+					// auto call = CallFunc::create(std::bind(&CharacterBase::setFontEffect, this, valueVector));
 					// seqArray->addObject(call);
 				}
 				else if (is_same(key, "setBuff"))
 				{
 					int buffValue = dic->valueForKey(key)->intValue();
-					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setBuff), (void *)buffValue);
+					auto call = CallFunc::create(std::bind(&CharacterBase::setBuff, this, buffValue));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setCommand"))
 				{
-					callValue = CCDictionary::create();
-					callValue->retain();
-					callValue->setObject(CCString::create(keyValue), 1);
-					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setCommand), (void *)callValue);
+					auto call = CallFunc::create(std::bind(&CharacterBase::setCommand, this, string(keyValue)));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setDetonation"))
@@ -1148,24 +1128,18 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 				}
 				else if (is_same(key, "setBullet"))
 				{
-					callValue = CCDictionary::create();
-					callValue->retain();
-					callValue->setObject(CCString::create(keyValue), 1);
-					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setBullet), (void *)callValue);
+					auto call = CallFunc::create(std::bind(&CharacterBase::setBullet, this, string(keyValue)));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setMonAttack"))
 				{
 					int skillNum = dic->valueForKey(key)->intValue();
-					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setMonAttack), (void *)skillNum);
+					auto call = CallFunc::create(std::bind(&CharacterBase::setMonAttack, this, skillNum));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setTrap"))
 				{
-					callValue = CCDictionary::create();
-					callValue->retain();
-					callValue->setObject(CCString::create(keyValue), 1);
-					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setTrap), (void *)callValue);
+					auto call = CallFunc::create(std::bind(&CharacterBase::setTrap, this, string(keyValue)));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setActionResume"))
@@ -1180,10 +1154,8 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 				}
 				else if (is_same(key, "setShadow"))
 				{
-					callValue = CCDictionary::create();
-					callValue->retain();
-					callValue->setObject(animeFrames->objectAtIndex(int(animeFrames->count() - 1)), 1);
-					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setShadow), (void *)callValue);
+					auto frame = (CCSpriteFrame *)(animeFrames->objectAtIndex(animeFrames->count() - 1));
+					auto call = CallFunc::create(std::bind(&CharacterBase::setShadow, this, frame));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setTransform"))
@@ -1199,7 +1171,7 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 				else if (is_same(key, "stopJump"))
 				{
 					int stopTime = dic->valueForKey(key)->intValue();
-					auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::stopJump), (void *)stopTime);
+					auto call = CallFunc::create(std::bind(&CharacterBase::stopJump, this, stopTime));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setFlipped"))
@@ -1251,12 +1223,9 @@ void CharacterBase::setCharFlip()
 	}
 }
 
-void CharacterBase::setShadow(CCNode *sender, void *data)
+void CharacterBase::setShadow(CCSpriteFrame *frame)
 {
-	CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-	auto file = (CCDictionary *)data;
-	auto frame = (CCSpriteFrame *)(file->objectForKey(1));
-	CCSprite *charN = CCSprite::createWithSpriteFrame(frame);
+	auto charN = CCSprite::createWithSpriteFrame(frame);
 	charN->setVisible(false);
 	if (isKonohaGroup())
 	{
@@ -1636,21 +1605,18 @@ void CharacterBase::setDamgeEffect(const char *type)
 	}
 }
 
-void CharacterBase::setSkillEffect(CCNode *sender, void *data)
+void CharacterBase::setSkillEffect(const string &type)
 {
-	auto file = (CCDictionary *)data;
-	auto type = ((CCString *)(file->objectForKey(1)))->getCString();
-
 	if (isPlayer() ||
 		abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange)
 	{
-		Effect *ef = Effect::create(type, this);
-		if (is_same(type, "Bagua") ||
-			is_same(type, "Kujiyose"))
+		Effect *ef = Effect::create(type.c_str(), this);
+		if (type == "Bagua" ||
+			type == "Kujiyose")
 		{
 			getGameLayer()->addChild(ef, -500);
 		}
-		else if (is_same(type, "DarkFlame"))
+		else if (type == "DarkFlame")
 		{
 			getGameLayer()->addChild(ef, -ef->getPositionY());
 		}
@@ -1824,10 +1790,7 @@ void CharacterBase::useGear(gearType type)
 
 				_isVisable = false;
 
-				auto callValue2 = CCDictionary::create();
-				callValue2->setObject(CCString::create("Audio/Effect/suzou_effect.ogg"), 1);
-				setSound(this, callValue2);
-
+				setSound("Audio/Effect/suzou_effect.ogg");
 				schedule(schedule_selector(CharacterBase::disableGear1), 3.0f);
 			}
 		}
@@ -1835,11 +1798,7 @@ void CharacterBase::useGear(gearType type)
 	else if (type == gear03)
 	{
 		_isCanGear03 = false;
-
-		auto tmpValue = CCDictionary::create();
-		tmpValue->setObject(CCString::create("Traps"), 1);
-		setMon(this, (void *)tmpValue);
-
+		setMon("Traps");
 		scheduleOnce(schedule_selector(CharacterBase::enableGear03), 15.0f);
 	}
 	else if (type == gear06)
@@ -1870,14 +1829,9 @@ void CharacterBase::useGear(gearType type)
 
 				idle();
 
-				auto callValue = CCDictionary::create();
-				callValue->setObject(CCString::create("tishen"), 1);
-				setSkillEffect(this, callValue);
+				setSkillEffect("tishen");
 				scheduleOnce(schedule_selector(CharacterBase::disableGear2), 1.0f);
-
-				auto callValue2 = CCDictionary::create();
-				callValue2->setObject(CCString::create("Audio/Effect/poof2.ogg"), 1);
-				setSound(this, callValue2);
+				setSound("Audio/Effect/poof2.ogg");
 
 				if (isPlayer() || is_same(getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()))
 					setOpacity(150);
@@ -2010,7 +1964,7 @@ void CharacterBase::disableEffect()
 	}
 }
 
-void CharacterBase::setSound(CCNode *sender, void *data)
+void CharacterBase::setSound(const string &file)
 {
 	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 	{
@@ -2030,15 +1984,13 @@ void CharacterBase::setSound(CCNode *sender, void *data)
 
 		if (_isPlayable)
 		{
-			auto file = (CCDictionary *)data;
-			CCString *str = (CCString *)(file->objectForKey(1));
-			SimpleAudioEngine::sharedEngine()->preloadEffect(str->getCString());
-			SimpleAudioEngine::sharedEngine()->playEffect(str->getCString());
+			SimpleAudioEngine::sharedEngine()->preloadEffect(file.c_str());
+			SimpleAudioEngine::sharedEngine()->playEffect(file.c_str());
 		}
 	}
 }
 
-void CharacterBase::setDSound(CCNode *sender, void *data)
+void CharacterBase::setDSound(const string &file)
 {
 	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 	{
@@ -2058,20 +2010,15 @@ void CharacterBase::setDSound(CCNode *sender, void *data)
 
 		if (_isPlayable && _isHitOne)
 		{
-			auto file = (CCDictionary *)data;
-			CCString *str = (CCString *)(file->objectForKey(1));
-			SimpleAudioEngine::sharedEngine()->preloadEffect(str->getCString());
-			SimpleAudioEngine::sharedEngine()->playEffect(str->getCString());
+			SimpleAudioEngine::sharedEngine()->preloadEffect(file.c_str());
+			SimpleAudioEngine::sharedEngine()->playEffect(file.c_str());
 		}
 	}
 }
 
-void CharacterBase::setAttackBox(CCNode *sender, void *data)
+void CharacterBase::setAttackBox(const string &effectType)
 {
-	auto file = (CCDictionary *)data;
-	CCString *str = (CCString *)(file->objectForKey(1));
-
-	_effectType = str->getCString();
+	_effectType = effectType.c_str();
 
 	if (_actionState == State::HURT)
 	{
@@ -2160,20 +2107,14 @@ void CharacterBase::disableShack()
 	}
 }
 
-void CharacterBase::setMove(CCNode *sender, void *data)
+void CharacterBase::setMove(int moveLength)
 {
-	int moveLength = 0;
-
 	if (getKnockLength())
 	{
 		if (getKnockLength() == 1)
 			return;
 
 		moveLength = getKnockLength();
-	}
-	else
-	{
-		moveLength = *((int *)&data);
 	}
 
 	if (getPositionX() > getGameLayer()->currentMap->getTileSize().width &&
@@ -2196,7 +2137,7 @@ void CharacterBase::setMove(CCNode *sender, void *data)
 	}
 }
 
-void CharacterBase::setJump(CCNode *sender, void *data)
+void CharacterBase::setJump(bool jumpDirection)
 {
 	if (_actionState != State::FLOAT &&
 		_actionState != State::AIRHURT &&
@@ -2205,7 +2146,6 @@ void CharacterBase::setJump(CCNode *sender, void *data)
 	{
 		_actionState = State::JUMP;
 
-		bool jumpDirection = (bool)data;
 		float posX = getPositionX();
 		float posY = getPositionY();
 		_originY = posY;
@@ -2223,9 +2163,8 @@ void CharacterBase::setJump(CCNode *sender, void *data)
 	}
 }
 
-void CharacterBase::setCharge(CCNode *sender, void *data)
+void CharacterBase::setCharge(int moveLength)
 {
-	int moveLength = *((int *)&data);
 	if ((getPositionX() < getGameLayer()->currentMap->getTileSize().width && _isFlipped) ||
 		(getPositionX() > (getGameLayer()->currentMap->getMapSize().width - 1) * getGameLayer()->currentMap->getTileSize().width && !_isFlipped))
 	{
@@ -2239,16 +2178,8 @@ void CharacterBase::setCharge(CCNode *sender, void *data)
 }
 
 // without getCollider
-void CharacterBase::setChargeB(CCNode *sender, void *data)
+void CharacterBase::setChargeB(int moveLength)
 {
-	int moveLength = *((int *)&data);
-	float delay;
-
-	if (_actionState == State::OATTACK || _actionState == State::O2ATTACK)
-		delay = 0.4f;
-	else
-		delay = 0.1f;
-
 	if ((getPositionX() < getGameLayer()->currentMap->getTileSize().width && _isFlipped) ||
 		(getPositionX() > (getGameLayer()->currentMap->getMapSize().width - 1) * getGameLayer()->currentMap->getTileSize().width && !_isFlipped))
 	{
@@ -2256,22 +2187,21 @@ void CharacterBase::setChargeB(CCNode *sender, void *data)
 	}
 	else
 	{
+		float delay = (_actionState == State::OATTACK || _actionState == State::O2ATTACK)
+						  ? 0.4f
+						  : 0.1f;
 		_moveAction = CCMoveBy::create(delay, ccp(_isFlipped ? -moveLength * kSpeedBase : moveLength * kSpeedBase, 0));
 		runAction(_moveAction);
 	}
 }
 
-void CharacterBase::setCommand(CCNode *sender, void *data)
+void CharacterBase::setCommand(const string &cmd)
 {
-	auto file = (CCDictionary *)data;
-	auto cmd = ((CCString *)(file->objectForKey(1)))->getCString();
-
 	CommandSystem::invoke(cmd, this);
 }
 
-void CharacterBase::setBuff(CCNode *sender, void *data)
+void CharacterBase::setBuff(int buffValue)
 {
-	int buffValue = *((int *)&data);
 	float buffStayTime = _attackRangeY;
 
 	if (_attackType == "hBuff")
@@ -2842,25 +2772,19 @@ void CharacterBase::stopMove(float dt)
 	}
 }
 
-void CharacterBase::stopJump(CCNode *sender, void *data)
+void CharacterBase::stopJump(int stopTime)
 {
-	int stopTime = *((int *)&data);
-
 	if (_actionState == State::JUMP)
 	{
 		getActionManager()->pauseTarget(this);
-		scheduleOnce(schedule_selector(CharacterBase::resumePauseStuff), float(stopTime) / 100);
+		scheduleOnce(schedule_selector(CharacterBase::resumePauseStuff), stopTime / 100.0f);
 	}
 }
 
-void CharacterBase::setBullet(CCNode *sender, void *data)
+void CharacterBase::setBullet(const string &bulletName)
 {
-	auto file = (CCDictionary *)data;
-	CCString *bulletName = (CCString *)(file->objectForKey(1));
-	string bulletType = bulletName->m_sString;
-
 	Bullet *bullet = Bullet::create();
-	bullet->setID(bulletName, CCString::create("Bullet"), _group);
+	bullet->setID(CCString::create(bulletName), CCString::create("Bullet"), _group);
 	bullet->idle();
 	bullet->_master = _master ? _master : this;
 
@@ -2872,7 +2796,7 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 
 	getGameLayer()->addChild(bullet, -getPositionY());
 
-	if (bulletType == "PaperSrk")
+	if (bulletName == "PaperSrk")
 	{
 		bullet->setScale(0.8f);
 		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32),
@@ -2880,7 +2804,7 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 		bullet->attack(NAttack);
 		bullet->setMove(192, 2.0f, false);
 	}
-	else if (bulletType == "PaperSpear")
+	else if (bulletName == "PaperSpear")
 	{
 		bullet->setScale(0.8f);
 		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -68 : 68),
@@ -2888,7 +2812,7 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 		bullet->attack(NAttack);
 		bullet->setMove(192, 2.0f, false);
 	}
-	else if (bulletType == "HugeSRK")
+	else if (bulletName == "HugeSRK")
 	{
 		bullet->setScale(0.8f);
 		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -76 : 76),
@@ -2900,8 +2824,8 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 		scheduleOnce(schedule_selector(CharacterBase::setBulletGroup), 0.2f);
 		bullet->setEaseIn(224, 5.0f);
 	}
-	else if (bulletType == "FlyKnife" ||
-			 bulletType == "TentenSRK")
+	else if (bulletName == "FlyKnife" ||
+			 bulletName == "TentenSRK")
 	{
 		bullet->setScale(0.8f);
 		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32),
@@ -2910,10 +2834,10 @@ void CharacterBase::setBullet(CCNode *sender, void *data)
 		bullet->setEaseIn(224, 2.0f);
 		bullet->attack(NAttack);
 	}
-	else if (bulletType == "HiraishinKunai" ||
-			 bulletType == "Shintenshin")
+	else if (bulletName == "HiraishinKunai" ||
+			 bulletName == "Shintenshin")
 	{
-		if (bulletType == "HiraishinKunai")
+		if (bulletName == "HiraishinKunai")
 		{
 			bullet->setScale(0.8f);
 			bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -42 : 42),
@@ -2986,9 +2910,8 @@ Hero *CharacterBase::createClone(int cloneTime)
 	return nullptr;
 }
 
-void CharacterBase::setClone(CCNode *sender, void *data)
+void CharacterBase::setClone(int cloneTime)
 {
-	int cloneTime = *((int *)&data);
 	Hero *clone = createClone(cloneTime);
 	if (!clone)
 	{
@@ -3051,9 +2974,7 @@ void CharacterBase::setClone(CCNode *sender, void *data)
 
 	clone->setFlipX(_isFlipped);
 	clone->_isFlipped = _isFlipped;
-	auto callValue = CCDictionary::create();
-	callValue->setObject(CCString::create("smk"), 1);
-	clone->setSkillEffect(clone, callValue);
+	clone->setSkillEffect("smk");
 	clone->idle();
 	getGameLayer()->_CharacterArray.push_back(clone);
 	getGameLayer()->addChild(clone, -clone->getPositionY());
@@ -3070,15 +2991,12 @@ void CharacterBase::removeClone(float dt)
 	dead();
 }
 
-void CharacterBase::setMon(CCNode *sender, void *data)
+void CharacterBase::setMon(const string &monName)
 {
-	auto file = (CCDictionary *)data;
-	CCString *monsterType = (CCString *)(file->objectForKey(1));
-	const char *monsterName = monsterType->getCString();
 	float monsterStayTime = _attackRangeY;
 
 	auto monster = Monster::create();
-	monster->setID(monsterType, CCString::create(kRoleMon), _group);
+	monster->setID(CCString::create(monName), CCString::create(kRoleMon), _group);
 
 	if (_master)
 	{
@@ -3103,73 +3021,71 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 	monster->setFlipX(_isFlipped);
 	monster->_isFlipped = _isFlipped;
 
-	if (is_same(monsterName, "FakeDeidara") ||
-		is_same(monsterName, "FakeKisame") ||
-		is_same(monsterName, "DeidaraBom") ||
-		is_same(monsterName, "ChuiDi") ||
-		is_same(monsterName, "SakuraBom") ||
-		is_same(monsterName, "Shoryu") ||
-		is_same(monsterName, "Stream") ||
-		is_same(monsterName, "FakeMinato"))
+	if (monName == "FakeDeidara" ||
+		monName == "FakeKisame" ||
+		monName == "DeidaraBom" ||
+		monName == "ChuiDi" ||
+		monName == "SakuraBom" ||
+		monName == "Shoryu" ||
+		monName == "Stream" ||
+		monName == "FakeMinato")
 	{
 		monster->setPosition(ccp(getPositionX(), _originY ? _originY : getPositionY()));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "LeeBom"))
+	else if (monName == "LeeBom")
 	{
 		// monster->setAnchorPoint(ccp(0.5,0.5f));
 		monster->setPosition(ccp(getPositionX(), getPositionY()));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "FakeItachi"))
+	else if (monName == "FakeItachi")
 	{
 		monster->setPosition(ccp(getPositionX(), _originY ? _originY : getPositionY() - 4));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "Tenmu"))
+	else if (monName == "Tenmu")
 	{
 		monster->setPosition(ccp(getPositionX(), _originY));
 		monster->setAnchorPoint(ccp(0.5, -0.1f));
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "Kaiten"))
+	else if (monName == "Kaiten")
 	{
 		monster->setPosition(ccp(getPositionX(), getPositionY()));
 		monster->setAnchorPoint(ccp(0.5, 0.25f));
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "Crash") ||
-			 is_same(monsterName, "Crash2"))
+	else if (monName == "Crash" ||
+			 monName == "Crash2")
 	{
 		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32), _originY ? _originY : getPositionY()));
 		monster->setAnchorPoint(ccp(0.5, 0.25f));
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "SansyoRed"))
+	else if (monName == "SansyoRed")
 	{
 		monster->setPosition(ccp(_isFlipped ? getPositionX() - 240 : getPositionX() + 240, getPositionY() - 32));
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "SansyoGreen"))
+	else if (monName == "SansyoGreen")
 	{
 		monster->setPosition(ccp(_isFlipped ? getPositionX() - 144 : getPositionX() + 144, getPositionY() - 32 + 1));
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "SansyoBlue"))
+	else if (monName == "SansyoBlue")
 	{
 		monster->setPosition(ccp(_isFlipped ? getPositionX() - 48 : getPositionX() + 48, getPositionY() - 32 + 2));
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "SmallSlug"))
+	else if (monName == "SmallSlug")
 	{
 		if (_monsterArray.size() < 3)
 		{
-			auto callValue = CCDictionary::create();
-			callValue->setObject(CCString::create("smk"), 1);
-			monster->setSkillEffect(monster, callValue);
+			monster->setSkillEffect("smk");
 			_monsterArray.push_back(monster);
 			monster->doAI();
 		}
@@ -3179,51 +3095,49 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 			return;
 		}
 	}
-	else if (is_same(monsterName, "Kuroari"))
+	else if (monName == "Kuroari")
 	{
-		auto callValue = CCDictionary::create();
-		callValue->setObject(CCString::create("smk"), 1);
-		monster->setSkillEffect(monster, callValue);
+		monster->setSkillEffect("smk");
 		_monsterArray.push_back(monster);
 		monster->doAI();
 	}
-	else if (is_same(monsterName, "PaperRain") ||
-			 is_same(monsterName, "Steam"))
+	else if (monName == "PaperRain" ||
+			 monName == "Steam")
 	{
 		monster->setPosition(ccp(_isFlipped ? getPositionX() - 16 : getPositionX() + 16, _originY));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "FireRain"))
+	else if (monName == "FireRain")
 	{
 		monster->setPosition(ccp(_isFlipped ? getPositionX() - 75 : getPositionX() + 75, _originY - 1));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "Tuji") ||
-			 is_same(monsterName, "Tuji2") ||
-			 is_same(monsterName, "Suiji"))
+	else if (monName == "Tuji" ||
+			 monName == "Tuji2" ||
+			 monName == "Suiji")
 	{
 		monster->setPositionY(getPositionY() - 24);
 		monster->setPositionX(getPositionX() + (_isFlipped ? -64 : 64));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "ThunderWave"))
+	else if (monName == "ThunderWave")
 	{
 		monster->setPosition(ccp(getPositionX(), getPositionY() - 1));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "Jibaku") ||
-			 is_same(monsterName, "JibakuEX") ||
-			 is_same(monsterName, "Shenwei"))
+	else if (monName == "Jibaku" ||
+			 monName == "JibakuEX" ||
+			 monName == "Shenwei")
 	{
 		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -96 : 96), getPositionY()));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "Bikyu"))
+	else if (monName == "Bikyu")
 	{
 		monster->setFlipX(_isFlipped);
 		monster->hasArmorBroken = true;
@@ -3231,64 +3145,62 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "Qilin"))
+	else if (monName == "Qilin")
 	{
 		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -4 : 4), getPositionY() - 6));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
-	else if (strcmp(monsterType->getCString(), "Laser") == 0)
+	else if (monName == "Laser")
 	{
 		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -100 : 100), getPositionY()));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
-	else if (strcmp(monsterType->getCString(), "MagicDragon") == 0)
+	else if (monName == "MagicDragon")
 	{
 		monster->hasArmorBroken = true;
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 		monster->setDirectMove(156, 2.0f, false);
 	}
-	else if (is_same(monsterName, "Chameleon") ||
-			 is_same(monsterName, "Naraka") ||
-			 is_same(monsterName, "Roar") ||
-			 is_same(monsterName, "Smoke") ||
-			 is_same(monsterName, "BannShou") ||
-			 is_same(monsterName, "Bull") ||
-			 is_same(monsterName, "Raintiger"))
+	else if (monName == "Chameleon" ||
+			 monName == "Naraka" ||
+			 monName == "Roar" ||
+			 monName == "Smoke" ||
+			 monName == "BannShou" ||
+			 monName == "Bull" ||
+			 monName == "Raintiger")
 	{
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "SuiRyuDan") ||
-			 is_same(monsterName, "DotonPillar") ||
-			 is_same(monsterName, "Yataikuzu") ||
-			 is_same(monsterName, "Yominuma") ||
-			 is_same(monsterName, "Dogs") ||
-			 is_same(monsterName, "SandHand") ||
-			 is_same(monsterName, "KageFeng") ||
-			 is_same(monsterName, "Sanbao") ||
-			 is_same(monsterName, "SandBall") ||
-			 is_same(monsterName, "Sabaku") ||
-			 is_same(monsterName, "SandWave") ||
-			 is_same(monsterName, "Tsukuyomi") ||
-			 is_same(monsterName, "Shark"))
+	else if (monName == "SuiRyuDan" ||
+			 monName == "DotonPillar" ||
+			 monName == "Yataikuzu" ||
+			 monName == "Yominuma" ||
+			 monName == "Dogs" ||
+			 monName == "SandHand" ||
+			 monName == "KageFeng" ||
+			 monName == "Sanbao" ||
+			 monName == "SandBall" ||
+			 monName == "Sabaku" ||
+			 monName == "SandWave" ||
+			 monName == "Tsukuyomi" ||
+			 monName == "Shark")
 	{
 		monster->setPosition(ccp(getPositionX() + (_isFlipped == true ? -48 : 48), getPositionY() - 4));
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "Suijin") ||
-			 is_same(monsterName, "BugPillar"))
+	else if (monName == "Suijin" ||
+			 monName == "BugPillar")
 	{
 		monster->setPosition(ccp(getPositionX() + (_isFlipped == true ? -64 : 64), getPositionY() + 1));
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "Mine"))
+	else if (monName == "Mine")
 	{
-		auto callValue = CCDictionary::create();
-		callValue->setObject(CCString::create("smk"), 1);
-		monster->setSkillEffect(monster, callValue);
+		monster->setSkillEffect("smk");
 		_monsterArray.push_back(monster);
 		monster->doAI();
 		if (strcmp(getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()) != 0)
@@ -3296,7 +3208,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 			monster->setVisible(false);
 		}
 	}
-	else if (is_same(monsterName, "Kage"))
+	else if (monName == "Kage")
 	{
 		_isCatchOne = true;
 		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -getContentSize().width / 2 + 4 : getContentSize().width / 2 - 4), getPositionY()));
@@ -3314,7 +3226,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		monster->attack(NAttack);
 		monster->doAI();
 	}
-	else if (is_same(monsterName, "KageHand"))
+	else if (monName == "KageHand")
 	{
 		CCPoint dir = ccp(_isFlipped ? getPositionX() - getContentSize().width : getPositionX() + getContentSize().width, getPositionY());
 		monster->setPosition(dir);
@@ -3324,7 +3236,7 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 			_master->_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "KageHands"))
+	else if (monName == "KageHands")
 	{
 		if (_master)
 			_master->_monsterArray.push_back(monster);
@@ -3332,23 +3244,23 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		monster->setAnchorPoint(ccp(0.5f, 0.15f));
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "QuanRen"))
+	else if (monName == "QuanRen")
 	{
 		monster->setPosition(ccp(_isFlipped ? getPositionX() - 64 : getPositionX() + 64, _originY));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
-	else if (is_same(monsterName, "ItachiSusano") ||
-			 is_same(monsterName, "SasukeSusano"))
+	else if (monName == "ItachiSusano" ||
+			 monName == "SasukeSusano")
 	{
 		_monsterArray.push_back(monster);
 	}
-	else if (is_same(monsterName, "HiraishinMark"))
+	else if (monName == "HiraishinMark")
 	{
 		_monsterArray.push_back(monster);
 		_isCanSkill1 = true;
 	}
-	else if (is_same(monsterName, "CircleMark"))
+	else if (monName == "CircleMark")
 	{
 		monster->setPosition(ccp(getPositionX(), getPositionY()));
 		monster->setAnchorPoint(ccp(0.5f, 0.5f));
@@ -3360,19 +3272,19 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 			getGameLayer()->getHudLayer()->skill1Button->setLock();
 		}
 	}
-	else if (is_same(monsterName, "InkDragon"))
+	else if (monName == "InkDragon")
 	{
 		monster->setPosition(ccp(_isFlipped ? getPositionX() - 128 : getPositionX() + 128, getPositionY()));
 		monster->attack(NAttack);
 		monster->setDirectMove(156, 2.0f, false);
 	}
-	else if (is_same(monsterName, "BugTomado"))
+	else if (monName == "BugTomado")
 	{
 		monster->attack(NAttack);
 		monster->setDirectMove(128, 2.0f, false);
 	}
-	else if (is_same(monsterName, "FutonSRK2") ||
-			 is_same(monsterName, "FutonSRK"))
+	else if (monName == "FutonSRK2" ||
+			 monName == "FutonSRK")
 	{
 		monster->setPosition(ccp(getPositionX() + (_isFlipped == true ? -48 : 48), getPositionY()));
 
@@ -3410,41 +3322,41 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 			monster->walk(moveDirection);
 		}
 	}
-	else if (is_same(monsterName, "Kubi"))
+	else if (monName == "Kubi")
 	{
 		monster->attack(NAttack);
 		monster->setDirectMove(128, 0.8f, true);
 	}
-	else if (is_same(monsterName, "Shark2"))
+	else if (monName == "Shark2")
 	{
 		monster->attack(NAttack);
 		monster->setEaseIn(224, 3.0f);
 	}
-	else if (is_same(monsterName, "WaterBullet") ||
-			 is_same(monsterName, "BoneBullet") ||
-			 is_same(monsterName, "WaterBom"))
+	else if (monName == "WaterBullet" ||
+			 monName == "BoneBullet" ||
+			 monName == "WaterBom")
 	{
 		monster->attack(NAttack);
 		monster->setEaseIn(224, 1.0f);
 	}
-	else if (is_same(monsterName, "Hasan"))
+	else if (monName == "Hasan")
 	{
 		monster->attack(NAttack);
 		monster->setAnchorPoint(ccp(0.5f, 0.28f));
 		monster->setPosition(ccp(getPositionX() + (_isFlipped == true ? -24 : 24), getPositionY()));
 		monster->setEaseIn(224, 1.0f);
 	}
-	else if (is_same(monsterName, "Wave"))
+	else if (monName == "Wave")
 	{
 		monster->attack(NAttack);
 		monster->setAnchorPoint(ccp(0.5f, 0.1f));
 		monster->setPosition(ccp(getPositionX() + (_isFlipped == true ? -24 : 24), getPositionY()));
 		monster->setEaseIn(224, 1.0f);
 	}
-	else if (is_same(monsterName, "InkBird") ||
-			 is_same(monsterName, "FakeTobirama") ||
-			 is_same(monsterName, "TamaBomb") ||
-			 is_same(monsterName, "Shenwei2"))
+	else if (monName == "InkBird" ||
+			 monName == "FakeTobirama" ||
+			 monName == "TamaBomb" ||
+			 monName == "Shenwei2")
 	{
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
@@ -3455,22 +3367,22 @@ void CharacterBase::setMon(CCNode *sender, void *data)
 		monster->doAI();
 	}
 
-	if (is_same(monsterName, "ItachiSusano"))
+	if (monName == "ItachiSusano")
 	{
 		monster->setFlipX(_isFlipped);
 		monster->setAnchorPoint(ccp(0.5f, 0));
 		monster->setPosition(ccp(146 / 2 - 10, -40));
 		addChild(monster, -1000);
 	}
-	else if (is_same(monsterName, "SasukeSusano"))
+	else if (monName == "SasukeSusano")
 	{
 		monster->setFlipX(_isFlipped);
 		monster->setAnchorPoint(ccp(0.5f, 0));
 		monster->setPosition(ccp(141 / 2, -6));
 		addChild(monster, -1000);
 	}
-	else if (is_same(monsterName, "CircleMark") ||
-			 is_same(monsterName, "Yominuma"))
+	else if (monName == "CircleMark" ||
+			 monName == "Yominuma")
 	{
 		getGameLayer()->addChild(monster, -5000);
 	}
@@ -3491,9 +3403,7 @@ void CharacterBase::setMonPer(float dt)
 	else if (isCharacter("Sai"))
 	{
 		monster->setID(CCString::create("Mouse"), CCString::create(kRoleMon), _group);
-		auto callValue2 = CCDictionary::create();
-		callValue2->setObject(CCString::create("Audio/Sai/ink_mouse.ogg"), 1);
-		setSound(this, callValue2);
+		setSound("Audio/Sai/ink_mouse.ogg");
 	}
 
 	monster->setMaster(this);
@@ -3509,12 +3419,9 @@ void CharacterBase::setMonPer(float dt)
 	getGameLayer()->addChild(monster, -monster->getPositionY());
 }
 
-void CharacterBase::setTrap(CCNode *sender, void *data)
+void CharacterBase::setTrap(const string &trapName)
 {
-	auto file = (CCDictionary *)data;
-	CCString *trapType = (CCString *)(file->objectForKey(1));
-
-	if (is_same(trapType->getCString(), "Amaterasu"))
+	if (trapName == "Amaterasu")
 	{
 		for (auto hero : getGameLayer()->_CharacterArray)
 		{
@@ -3554,7 +3461,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 				{
 					Bullet *trap = Bullet::create();
 					trap->_master = this;
-					trap->setID(trapType, CCString::create(kRoleMon), _group);
+					trap->setID(CCString::create(trapName), CCString::create(kRoleMon), _group);
 					trap->setAnchorPoint(ccp(0.5, 0));
 					trap->setPosition(ccp(targetPoint.x, targetPoint.y + 32));
 					trap->idle();
@@ -3568,7 +3475,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 					{
 						Bullet *trap = Bullet::create();
 						trap->_master = this;
-						trap->setID(trapType, CCString::create(kRoleMon), _group);
+						trap->setID(CCString::create(trapName), CCString::create(kRoleMon), _group);
 						trap->setAnchorPoint(ccp(0.5, 0));
 						trap->setPosition(ccp(targetPoint.x + (i - 1) * 60, targetPoint.y));
 						trap->idle();
@@ -3581,7 +3488,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 				{
 					Bullet *trap = Bullet::create();
 					trap->_master = this;
-					trap->setID(trapType, CCString::create(kRoleMon), _group);
+					trap->setID(CCString::create(trapName), CCString::create(kRoleMon), _group);
 					trap->setAnchorPoint(ccp(0.5, 0));
 					trap->setPosition(ccp(targetPoint.x, targetPoint.y - 32));
 					trap->idle();
@@ -3601,7 +3508,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 					{
 						Bullet *trap = Bullet::create();
 						trap->_master = this;
-						trap->setID(trapType, CCString::create(kRoleMon), _group);
+						trap->setID(CCString::create(trapName), CCString::create(kRoleMon), _group);
 
 						trap->setPosition(ccp(getPositionX() + (_isFlipped ? -112 : 112), getPositionY() + (48 - i * 24)));
 						trap->idle();
@@ -3616,7 +3523,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 					{
 						Bullet *trap = Bullet::create();
 						trap->_master = this;
-						trap->setID(trapType, CCString::create(kRoleMon), _group);
+						trap->setID(CCString::create(trapName), CCString::create(kRoleMon), _group);
 						trap->setPosition(ccp(getPositionX() + (_isFlipped ? -80 : 80), getPositionY() + (32 - i * 24)));
 						trap->idle();
 						trap->attack(NAttack);
@@ -3628,7 +3535,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 				{
 					Bullet *trap = Bullet::create();
 					trap->_master = this;
-					trap->setID(trapType, CCString::create(kRoleMon), _group);
+					trap->setID(CCString::create(trapName), CCString::create(kRoleMon), _group);
 					trap->setPosition(ccp(getPositionX() + (_isFlipped ? -48 : 48), getPositionY() + 22));
 					trap->idle();
 					trap->attack(NAttack);
@@ -3640,7 +3547,7 @@ void CharacterBase::setTrap(CCNode *sender, void *data)
 	}
 	else
 	{
-		onSetTrap(trapType->m_sString);
+		onSetTrap(trapName);
 	}
 }
 
@@ -3649,10 +3556,8 @@ void CharacterBase::removeSelf(float dt)
 	dealloc();
 }
 
-void CharacterBase::setMonAttack(CCNode *sender, void *data)
+void CharacterBase::setMonAttack(int skillNum)
 {
-	int skillNum = *((int *)&data);
-
 	for (auto mo : _monsterArray)
 	{
 		if (mo->isNotCharacter("Traps"))
@@ -4314,14 +4219,11 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 
 		if (isStun)
 		{
-			auto callValue = CCDictionary::create();
-			callValue->setObject(CCString::create("stun"), 1);
-			callValue->retain();
-			auto call = CCCallFuncND::create(this, callfuncND_selector(CharacterBase::setSkillEffect), (void *)callValue);
+			auto call = CallFunc::create(std::bind(&CharacterBase::setSkillEffect, this, "stun"));
 			list->addObject(call);
 		}
 
-		auto delay = CCDelayTime::create(delayTime / 1000);
+		auto delay = CCDelayTime::create(delayTime / 1000.0f);
 		list->addObject(delay);
 
 		auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::idle));
@@ -4664,9 +4566,7 @@ void CharacterBase::dead()
 	else
 	{
 		unschedule(schedule_selector(CharacterBase::removeClone));
-		auto callValue = CCDictionary::create();
-		callValue->setObject(CCString::create("smk"), 1);
-		setSkillEffect(this, callValue);
+		setSkillEffect("smk");
 		dealloc();
 	}
 }
