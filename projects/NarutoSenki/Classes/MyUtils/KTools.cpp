@@ -512,7 +512,7 @@ bool CCTips::init(const char *tips)
 	CCLabelTTF *tipLabel = CCLabelTTF::create(reply, FONT_TYPE, 12);
 	addChild(tipLabel, 5000);
 	setPosition(ccp(winSize.width / 2, 50));
-	auto call = CCCallFunc::create(this, callfunc_selector(CCTips::onDestroy));
+	auto call = CallFunc::create(std::bind(&CCTips::onDestroy, this));
 
 	auto mv = CCMoveBy::create(0.2f, ccp(0, 12));
 	auto fadeOut = CCFadeOut::create(0.2f);

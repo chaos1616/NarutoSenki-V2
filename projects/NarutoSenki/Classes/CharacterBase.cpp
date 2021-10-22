@@ -5,7 +5,6 @@
 #include "GameMode/GameModeImpl.h"
 #include "MyUtils/CCShake.h"
 #include "Systems/CommandSystem.hpp"
-#include "Utils/CallFunctions.hpp"
 
 CharacterBase::CharacterBase()
 {
@@ -493,7 +492,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 				if (!_isHitOne)
 				{
 					_isHitOne = true;
-					auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::disableShack));
+					auto call = CallFunc::create(std::bind(&CharacterBase::disableShack, this));
 					auto delay = CCDelayTime::create(0.5f);
 					auto list = CCArray::create();
 					list->addObject(CCShake::createWithStrength(0.1f, 2, 0));
@@ -1070,7 +1069,7 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 				}
 				else if (is_same(key, "setCharge"))
 				{
-					auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::getCollider));
+					auto call = CallFunc::create(std::bind(&CharacterBase::getCollider, this));
 					seqArray->addObject(call);
 					int moveLength = dic->valueForKey(key)->intValue();
 					call = CallFunc::create(std::bind(&CharacterBase::setCharge, this, moveLength));
@@ -1123,7 +1122,7 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 				}
 				else if (is_same(key, "setDetonation"))
 				{
-					auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::dealloc));
+					auto call = CallFunc::create(std::bind(&CharacterBase::dealloc, this));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setBullet"))
@@ -1144,12 +1143,12 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 				}
 				else if (is_same(key, "setActionResume"))
 				{
-					auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::setActionResume));
+					auto call = CallFunc::create(std::bind(&CharacterBase::setActionResume, this));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setActionResume2"))
 				{
-					auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::setActionResume2));
+					auto call = CallFunc::create(std::bind(&CharacterBase::setActionResume2, this));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setShadow"))
@@ -1160,12 +1159,12 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 				}
 				else if (is_same(key, "setTransform"))
 				{
-					auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::setTransform));
+					auto call = CallFunc::create(std::bind(&CharacterBase::setTransform, this));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "setOugis"))
 				{
-					auto call = CCCallFuncN::create(this, callfuncN_selector(CharacterBase::setOugis));
+					auto call = CallFunc::create(std::bind(&CharacterBase::setOugis, this));
 					seqArray->addObject(call);
 				}
 				else if (is_same(key, "stopJump"))
@@ -1176,7 +1175,7 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 				}
 				else if (is_same(key, "setFlipped"))
 				{
-					auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::setCharFlip));
+					auto call = CallFunc::create(std::bind(&CharacterBase::setCharFlip, this));
 					seqArray->addObject(call);
 				}
 
@@ -1199,7 +1198,7 @@ CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool is
 	{
 		if (isReturn)
 		{
-			auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::idle));
+			auto call = CallFunc::create(std::bind(&CharacterBase::idle, this));
 			seqArray->addObject(call);
 		}
 
@@ -1241,28 +1240,28 @@ void CharacterBase::setShadow(CCSpriteFrame *frame)
 	charN->setFlipX(_isFlipped);
 	charN->setPosition(getPosition());
 	auto delay = CCDelayTime::create(0.1f);
-	auto call = CCCallFuncN::create(charN, callfuncN_selector(CharacterBase::enableShadow));
-	charN->runAction(CCSequence::createWithTwoActions(delay, call));
+	auto call = CallFunc::create(std::bind(&CharacterBase::enableShadow, this, charN));
+	auto seq = CCSequence::createWithTwoActions(delay, call);
+	charN->runAction(seq);
 	getGameLayer()->addChild(charN, -getPositionY() - 1);
 }
 
-void CharacterBase::enableShadow(CCNode *sender)
+void CharacterBase::enableShadow(CCSprite *charN)
 {
-	CCSprite *charN = (CCSprite *)sender;
 	charN->setVisible(true);
 	auto delay = CCDelayTime::create(0.1f);
-	auto call = CCCallFuncN::create(charN, callfuncN_selector(CharacterBase::disableShadow));
-	charN->runAction(CCSequence::createWithTwoActions(delay, call));
+	auto call = CallFunc::create(std::bind(&CharacterBase::disableShadow, this, charN));
+	auto seq = CCSequence::createWithTwoActions(delay, call);
+	charN->runAction(seq);
 }
 
-void CharacterBase::disableShadow(CCNode *sender)
+void CharacterBase::disableShadow(CCSprite *charN)
 {
-	CCSprite *charN = (CCSprite *)sender;
 	charN->stopAllActions();
 	charN->removeFromParent();
 }
 
-void CharacterBase::setOugis(CCNode *sender)
+void CharacterBase::setOugis()
 {
 	getGameLayer()->setOugis(this);
 }
@@ -1519,7 +1518,7 @@ void CharacterBase::setCoinDisplay(int num)
 
 	auto mv = CCMoveBy::create(0.5f, ccp(0, 12));
 	auto fadeOut = CCFadeOut::create(0.8f);
-	auto call = CCCallFuncND::create(coinDisplay, callfuncND_selector(CharacterBase::removeCoinDisplay), nullptr);
+	auto call = CallFunc::create(std::bind(&CharacterBase::removeCoinDisplay, this, coinDisplay));
 	auto sp = CCSpawn::create(fadeOut, mv, nullptr);
 	auto seqArray = CCArray::create();
 	seqArray->addObject(sp);
@@ -1528,10 +1527,9 @@ void CharacterBase::setCoinDisplay(int num)
 	coinDisplay->runAction(seq);
 }
 
-void CharacterBase::removeCoinDisplay(CCNode *sender, void *data)
+void CharacterBase::removeCoinDisplay(CCSprite *coinDisplay)
 {
-	sender->removeFromParent();
-	sender = nullptr;
+	coinDisplay->removeFromParent();
 }
 
 void CharacterBase::setDamgeDisplay(int value, const char *type)
@@ -1556,7 +1554,7 @@ void CharacterBase::setDamgeDisplay(int value, const char *type)
 		_damageArray.push_back(damageFont);
 
 		auto sd = CCScaleBy::create(0.2f, 0.5f);
-		auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::removeDamageDisplay));
+		auto call = CallFunc::create(std::bind(&CharacterBase::removeDamageDisplay, this));
 
 		auto mv = CCMoveBy::create(0.4f, ccp(0, 12));
 		auto fadeOut = CCFadeOut::create(0.4f);
@@ -2068,7 +2066,7 @@ void CharacterBase::setAttackBox(const string &effectType)
 		{
 			getGameLayer()->_isShacking = true;
 			CCScene *f = CCDirector::sharedDirector()->getRunningScene();
-			auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::disableShack));
+			auto call = CallFunc::create(std::bind(&CharacterBase::disableShack, this));
 			f->runAction(CCSequence::createWithTwoActions(CCShake::create(0.05f, 12), call));
 		}
 		if (getGameLayer()->_isAttackButtonRelease && _actionState == State::NATTACK && !_isOnlySkillLocked && !_isAI)
@@ -4096,7 +4094,7 @@ bool CharacterBase::hurt()
 		{
 			auto list = CCArray::create();
 			list->addObject(_hurtAction);
-			auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::idle));
+			auto call = CallFunc::create(std::bind(&CharacterBase::idle, this));
 			list->addObject(call);
 			auto seq = CCSequence::create(list);
 			runAction(seq);
@@ -4226,7 +4224,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 		auto delay = CCDelayTime::create(delayTime / 1000.0f);
 		list->addObject(delay);
 
-		auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::idle));
+		auto call = CallFunc::create(std::bind(&CharacterBase::idle, this));
 		list->addObject(call);
 
 		auto seq = CCSequence::create(list);
@@ -4296,7 +4294,7 @@ void CharacterBase::absorb(CCPoint position, bool isImmediate)
 			list->addObject(mv);
 		}
 
-		auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::idle));
+		auto call = CallFunc::create(std::bind(&CharacterBase::idle, this));
 		list->addObject(call);
 		auto seq = CCSequence::create(list);
 		runAction(seq);
@@ -4373,7 +4371,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 		else
 			_floatAwayAction = CCJumpTo::create(0.3f, ccp(posX + (_isFlipped ? 8 : -8), posY), 16, 1);
 
-		auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::knockDown));
+		auto call = CallFunc::create(std::bind(&CharacterBase::knockDown, this));
 		_floatUPAction = CCSequence::create(_floatAwayAction, call, nullptr);
 
 		runAction(_floatUPAction);
@@ -4551,7 +4549,7 @@ void CharacterBase::dead()
 	if (isNotClone() && isNotSummon())
 	{
 		auto fadeOut = CCFadeOut::create(0.5);
-		auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::dealloc));
+		auto call = CallFunc::create(std::bind(&CharacterBase::dealloc, this));
 		auto seqArray = CCArray::create();
 		seqArray->addObject(_deadAction);
 
@@ -4578,7 +4576,7 @@ void CharacterBase::checkActionFinish(float dt)
 		unschedule(schedule_selector(CharacterBase::checkActionFinish));
 		stopAllActions();
 		auto fadeOut = CCFadeOut::create(0.5);
-		auto call = CCCallFunc::create(this, callfunc_selector(CharacterBase::dealloc));
+		auto call = CallFunc::create(std::bind(&CharacterBase::dealloc, this));
 		auto seqArray = CCArray::create();
 		if (_deadAction)
 		{

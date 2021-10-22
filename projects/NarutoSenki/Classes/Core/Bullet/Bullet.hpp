@@ -73,7 +73,7 @@ public:
 								getPositionY());
 		CCPoint direction2 = getPosition();
 		auto mv = CCMoveTo::create(delay, direction);
-		auto call = CCCallFunc::create(this, callfunc_selector(Bullet::dealloc));
+		auto call = CallFunc::create(std::bind(&Bullet::dealloc, this));
 		CCAction *seq;
 		if (!isReverse)
 		{
@@ -95,7 +95,7 @@ public:
 		auto mv = CCMoveTo::create(1.0f, direction);
 		auto eo = CCEaseIn::create(mv, delay);
 
-		auto call = CCCallFunc::create(this, callfunc_selector(Bullet::dealloc));
+		auto call = CallFunc::create(std::bind(&Bullet::dealloc, this));
 		auto seq = CCSequence::create(eo, call, nullptr);
 		runAction(seq);
 	}
@@ -112,7 +112,7 @@ protected:
 
 		if (isCharacter("Amaterasu"))
 		{
-			auto call = CCCallFunc::create(this, callfunc_selector(Bullet::dealloc2));
+			auto call = CallFunc::create(std::bind(&Bullet::dealloc2, this));
 			auto seqArray = CCArray::create();
 			seqArray->addObject(getDeadAction());
 			seqArray->addObject(call);

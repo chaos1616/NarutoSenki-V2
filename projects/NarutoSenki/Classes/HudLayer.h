@@ -104,7 +104,7 @@ public:
 	void setReportCache();
 	void setBuffDisplay(const char *buffName, float buffStayTime);
 	void clearSPCReport();
-	void clearBuffDisplay(CCNode *sender);
+	void clearBuffDisplay(CCSprite *bs);
 
 	void updateBuffDisplay(float dt);
 	void updateBuffDisplay2(float dt);
@@ -128,7 +128,7 @@ public:
 
 	CCLayer *ougisLayer;
 	void setOugis(CCString *character, CCString *group);
-	void removeOugis(CCNode *sender);
+	void removeOugis();
 
 	bool _isAllButtonLocked;
 

@@ -304,8 +304,8 @@ public:
 	void				reCatched(float dt);
 
 	void				setShadow(CCSpriteFrame *frame);
-	void				disableShadow(CCNode* sender);
-	void				enableShadow(CCNode* sender);
+	void				enableShadow(CCSprite *charN);
+	void				disableShadow(CCSprite *charN);
 
 	void				setItem(abType type);
 	void				disableEffect();
@@ -332,6 +332,7 @@ public:
 	void				useGear(gearType type);
 
 	void				setCoinDisplay(int num);
+	void				removeCoinDisplay(CCSprite *coinDisplay);
 	void				addCoin(int num);
 	void				minusCoin(int num);
 
@@ -408,7 +409,7 @@ public:
 	void				setDamgeEffect(const char* type);
 	void				setMonAttack(int skillNum);
 	void				setTransform();
-	void				setOugis(CCNode* sender);
+	void				setOugis();
 
 	void				setCharFlip();
 
@@ -435,9 +436,6 @@ protected:
 	void				removeClone(float dt);
 	void				removeSelf(float dt);
 	void				setJump(bool jumpDirection);
-
-
-	void				removeCoinDisplay(CCNode* sender, void* data);
 
 	CCRect				setHalfBox();
 	CCRect				setHitBox();

@@ -709,7 +709,7 @@ void Monster::dealloc()
 
 	if (isCharacter("FutonSRK", "FutonSRK2"))
 	{
-		auto call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc2));
+		auto call = CallFunc::create(std::bind(&Monster::dealloc2, this));
 		auto seqArray = CCArray::create();
 		seqArray->addObject(getDeadAction());
 		seqArray->addObject(call);
@@ -756,13 +756,13 @@ void Monster::dealloc()
 
 	if (isCharacter("KageHand", "Kage"))
 	{
-		auto call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc2));
+		auto call = CallFunc::create(std::bind(&Monster::dealloc2, this));
 
 		auto seqArray = CCArray::create();
 		seqArray->addObject(getDeadAction());
 		seqArray->addObject(call);
 
-		auto call2 = CCCallFunc::create(this, callfunc_selector(Monster::setResume));
+		auto call2 = CallFunc::create(std::bind(&Monster::setResume, this));
 		seqArray->addObject(call2);
 
 		auto seq = CCSequence::create(seqArray);
@@ -779,7 +779,7 @@ void Monster::setDirectMove(int length, float delay, bool isReverse)
 	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length, getPositionY());
 	CCPoint direction2 = getPosition();
 	auto mv = CCMoveTo::create(delay, direction);
-	auto call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc));
+	auto call = CallFunc::create(std::bind(&Monster::dealloc, this));
 	CCAction *seq;
 	if (!isReverse)
 	{
@@ -801,7 +801,7 @@ void Monster::setEaseIn(int length, float delay)
 	auto mv = CCMoveTo::create(1.0f, direction);
 	auto eo = CCEaseIn::create(mv, delay);
 
-	auto call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc));
+	auto call = CallFunc::create(std::bind(&Monster::dealloc, this));
 	auto seq = CCSequence::create(eo, call, nullptr);
 	runAction(seq);
 }
@@ -827,7 +827,7 @@ void Monster::setDirectMoveBy(int length, float delay)
 	}
 
 	auto delayTime = CCDelayTime::create(delay);
-	auto call = CCCallFunc::create(this, callfunc_selector(Monster::dealloc));
+	auto call = CallFunc::create(std::bind(&Monster::dealloc, this));
 	auto seq = CCSequence::create(delayTime, call, nullptr);
 	runAction(seq);
 }

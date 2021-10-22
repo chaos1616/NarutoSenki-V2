@@ -81,7 +81,7 @@ bool Effect::init(const char *name, CharacterBase *attacker)
 	{
 		initWithSpriteFrameName(CCString::createWithFormat("%s_01", name)->getCString());
 		auto effectAction = createEffectAnimation(CCString::createWithFormat("%s_", name)->getCString(), 5, 5, false);
-		auto call = CCCallFunc::create(at, callfunc_selector(CharacterBase::disableEffect));
+		auto call = CallFunc::create(std::bind(&CharacterBase::disableEffect, at));
 		auto seqArray = CCArray::create();
 		seqArray->addObject(effectAction);
 		seqArray->addObject(call);
@@ -125,7 +125,7 @@ bool Effect::init(const char *name, CharacterBase *attacker)
 		runAction(effectAction);
 
 		auto delay = CCDelayTime::create(2.8f);
-		auto call = CCCallFunc::create(this, callfunc_selector(Effect::removeEffect));
+		auto call = CallFunc::create(std::bind(&Effect::removeEffect, this));
 		auto seq = CCSequence::create(delay, call, nullptr);
 		runAction(seq);
 	}
@@ -143,7 +143,7 @@ bool Effect::init(const char *name, CharacterBase *attacker)
 		setAnchorPoint(ccp(0.5f, 0));
 		setPosition(ccp(at->getPositionX(), at->getPositionY() - getContentSize().height / 2));
 		auto delay = CCDelayTime::create(0.3f);
-		auto call = CCCallFunc::create(this, callfunc_selector(Effect::removeEffect));
+		auto call = CallFunc::create(std::bind(&Effect::removeEffect, this));
 		auto seq = CCSequence::create(delay, call, nullptr);
 		runAction(seq);
 	}
@@ -154,7 +154,7 @@ bool Effect::init(const char *name, CharacterBase *attacker)
 		setPosition(ccp(at->getPositionX() + (at->_isFlipped ? -32 : 32),
 						at->getPositionY() + at->getContentSize().height / 2));
 		auto su = CCScaleBy::create(0.1f, 1.2f);
-		auto call = CCCallFunc::create(this, callfunc_selector(Effect::removeEffect));
+		auto call = CallFunc::create(std::bind(&Effect::removeEffect, this));
 		auto seq = CCSequence::create(su, su->reverse(), call, nullptr);
 		runAction(seq);
 	}
@@ -168,7 +168,7 @@ bool Effect::init(const char *name, CharacterBase *attacker)
 						at->getPositionY() + at->getContentSize().height));
 		auto rt = CCRotateBy::create(0.3f, 180, 180);
 		auto su = CCScaleBy::create(0.2f, 1.6f);
-		auto call = CCCallFunc::create(this, callfunc_selector(Effect::removeEffect));
+		auto call = CallFunc::create(std::bind(&Effect::removeEffect, this));
 		auto seq = CCSequence::create(rt, su, call, nullptr);
 		runAction(seq);
 	}
@@ -272,7 +272,7 @@ CCAction *Effect::createEffectAnimation(const char *file, int frameCount, float 
 	}
 	else
 	{
-		auto call = CCCallFunc::create(this, callfunc_selector(Effect::removeEffect));
+		auto call = CallFunc::create(std::bind(&Effect::removeEffect, this));
 		seqArray->addObject(call);
 		seq = CCSequence::create(seqArray);
 	}
@@ -283,7 +283,7 @@ CCAction *Effect::createEffectAnimation(const char *file, int frameCount, float 
 CCAction *Effect::createFontAnimation()
 {
 	auto delay = CCDelayTime::create(0.3f);
-	auto call = CCCallFunc::create(this, callfunc_selector(Effect::removeFontEffect));
+	auto call = CallFunc::create(std::bind(&Effect::removeFontEffect, this));
 	auto seq = CCSequence::create(delay, call, nullptr);
 	return seq;
 }

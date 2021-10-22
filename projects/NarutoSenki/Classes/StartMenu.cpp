@@ -570,7 +570,7 @@ void StartMenu::scrollMenu(int posY)
 				reorderChild(menu, 3);
 				menu->_isTop = true;
 
-				auto call = CCCallFunc::create(menu, callfunc_selector(MenuButton::playSound));
+				auto call = CallFunc::create(std::bind(&MenuButton::playSound, menu));
 				auto seqArray = CCArray::create();
 				seqArray->addObject(spn);
 				seqArray->addObject(call);
@@ -612,7 +612,7 @@ void StartMenu::scrollMenu(int posY)
 				reorderChild(menu, 3);
 				menu->_isTop = true;
 
-				auto call = CCCallFunc::create(menu, callfunc_selector(MenuButton::playSound));
+				auto call = CallFunc::create(std::bind(&MenuButton::playSound, menu));
 				auto seqArray = CCArray::create();
 				seqArray->addObject(spn);
 				seqArray->addObject(call);

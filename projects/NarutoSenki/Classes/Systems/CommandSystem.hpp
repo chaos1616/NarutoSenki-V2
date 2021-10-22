@@ -91,7 +91,7 @@ private:
 			   }
 
 			   auto tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
-			   auto call = CCCallFuncN::create(thiz, callfuncN_selector(CharacterBase::disableShadow));
+			   auto call = CallFunc::create(std::bind(&CharacterBase::disableShadow, thiz, thiz));
 			   auto tempAction = CCAnimate::create(tempAnimation);
 			   auto list = CCArray::create();
 			   list->addObject(tempAction);
