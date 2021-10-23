@@ -85,6 +85,7 @@ private:
 
 		gd = kDefaultGameData;
 		clearHeroArray();
+		resetCheats();
 	}
 
 protected:
