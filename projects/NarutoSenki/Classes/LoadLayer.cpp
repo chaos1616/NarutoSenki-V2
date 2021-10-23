@@ -49,7 +49,7 @@ bool LoadLayer::init()
 	addChild(cloud_left, 1);
 
 	auto cmv1 = CCMoveBy::create(1, ccp(-15, 0));
-	auto cseq1 = CCRepeatForever::create(CCSequence::create(cmv1, cmv1->reverse(), nullptr));
+	auto cseq1 = CCRepeatForever::create(newSequence(cmv1, cmv1->reverse()));
 	cloud_left->runAction(cseq1);
 
 	CCSprite *cloud_right = CCSprite::createWithSpriteFrameName("cloud.png");
@@ -59,7 +59,7 @@ bool LoadLayer::init()
 	addChild(cloud_right, 1);
 
 	auto cmv2 = CCMoveBy::create(1, ccp(15, 0));
-	auto cseq2 = CCRepeatForever::create(CCSequence::create(cmv2, cmv2->reverse(), nullptr));
+	auto cseq2 = CCRepeatForever::create(newSequence(cmv2, cmv2->reverse()));
 	cloud_right->runAction(cseq2);
 
 	const auto &gd = getGameModeHandler()->getGameData();
@@ -134,7 +134,7 @@ void LoadLayer::preloadIMG()
 	CCSprite *loading = CCSprite::createWithSpriteFrameName("loading_font.png");
 	loading->setPosition(ccp(winSize.width - 120, 45));
 	auto fade = CCFadeOut::create(1.0f);
-	auto fadeseq = CCRepeatForever::create(CCSequence::create(fade, fade->reverse(), nullptr));
+	auto fadeseq = CCRepeatForever::create(newSequence(fade, fade->reverse()));
 	addChild(loading);
 	loading->runAction(fadeseq);
 
@@ -333,11 +333,10 @@ void LoadLayer::setLoadingAnimation(const char *player, int index)
 
 	auto tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, float(1.0 / 10.0));
 	auto tempAction = CCAnimate::create(tempAnimation);
-	auto seqArray = CCArray::createWithObject(tempAction);
-	auto seq = CCRepeatForever::create(CCSequence::create(seqArray));
+	auto animAction = CCRepeatForever::create(tempAction);
 
 	addChild(loadingAvator);
-	loadingAvator->runAction(seq);
+	loadingAvator->runAction(animAction);
 }
 
 void LoadLayer::playBGM(float dt)

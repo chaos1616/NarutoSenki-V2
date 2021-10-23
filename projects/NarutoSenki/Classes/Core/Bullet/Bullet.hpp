@@ -69,35 +69,33 @@ public:
 
 	void setMove(int length, float delay, bool isReverse)
 	{
-		CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
-								getPositionY());
+		CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length, getPositionY());
 		CCPoint direction2 = getPosition();
 		auto mv = CCMoveTo::create(delay, direction);
 		auto call = CallFunc::create(std::bind(&Bullet::dealloc, this));
-		CCAction *seq;
+		CCAction *moveAction;
+
 		if (!isReverse)
 		{
-			seq = CCSequence::create(mv, call, nullptr);
+			moveAction = newSequence(mv, call);
 		}
 		else
 		{
 			auto mv2 = CCMoveTo::create(delay, direction2);
-			seq = CCSequence::create(mv, mv2, call, nullptr);
+			moveAction = newSequence(mv, mv2, call);
 		}
 
-		runAction(seq);
+		runAction(moveAction);
 	}
 
 	void setEaseIn(int length, float delay)
 	{
-		CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
-								getPositionY());
+		CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length, getPositionY());
 		auto mv = CCMoveTo::create(1.0f, direction);
 		auto eo = CCEaseIn::create(mv, delay);
-
 		auto call = CallFunc::create(std::bind(&Bullet::dealloc, this));
-		auto seq = CCSequence::create(eo, call, nullptr);
-		runAction(seq);
+		auto moveAction = newSequence(eo, call);
+		runAction(moveAction);
 	}
 
 	void setAttack(float dt)
@@ -113,10 +111,7 @@ protected:
 		if (isCharacter("Amaterasu"))
 		{
 			auto call = CallFunc::create(std::bind(&Bullet::dealloc2, this));
-			auto seqArray = CCArray::create();
-			seqArray->addObject(getDeadAction());
-			seqArray->addObject(call);
-			auto seq = CCSequence::create(seqArray);
+			auto seq = newSequence(getDeadAction(), call);
 			runAction(seq);
 		}
 		else

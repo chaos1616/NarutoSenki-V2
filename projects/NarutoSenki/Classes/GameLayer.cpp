@@ -749,15 +749,15 @@ void GameLayer::onGameOver(bool isWin)
 
 void GameLayer::onLeft()
 {
+	CCNotificationCenter::sharedNotificationCenter()->purgeNotificationCenter();
+
 	CCArray *childArray = getChildren();
 	CCObject *pObject;
-
 	CCARRAY_FOREACH(childArray, pObject)
 	{
-		auto ac = (CharacterBase *)pObject;
+		auto ac = (CCNode *)pObject;
 		ac->unscheduleUpdate();
 		ac->unscheduleAllSelectors();
-		CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(ac);
 	}
 
 	LoadLayer::unloadAllCharsIMG(_CharacterArray);

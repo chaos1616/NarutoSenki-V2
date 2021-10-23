@@ -518,13 +518,7 @@ bool CCTips::init(const char *tips)
 	auto fadeOut = CCFadeOut::create(0.2f);
 	auto delay = CCDelayTime::create(2.0f);
 	auto sp = CCSpawn::create(fadeOut, mv, nullptr);
-
-	auto seqArray = CCArray::create();
-	seqArray->addObject(sp);
-	seqArray->addObject(delay);
-	seqArray->addObject(call);
-
-	auto seq = CCSequence::create(seqArray);
+	auto seq = newSequence(sp, delay, call);
 	runAction(seq);
 
 	return true;

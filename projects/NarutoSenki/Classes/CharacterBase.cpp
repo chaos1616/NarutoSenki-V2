@@ -494,11 +494,8 @@ void CharacterBase::acceptAttack(CCObject *object)
 					_isHitOne = true;
 					auto call = CallFunc::create(std::bind(&CharacterBase::disableShack, this));
 					auto delay = CCDelayTime::create(0.5f);
-					auto list = CCArray::create();
-					list->addObject(CCShake::createWithStrength(0.1f, 2, 0));
-					list->addObject(delay);
-					list->addObject(call);
-					runAction(CCSequence::create(list));
+					auto seq = newSequence(CCShake::createWithStrength(0.1f, 2, 0), delay, call);
+					runAction(seq);
 				}
 			}
 
@@ -1000,14 +997,14 @@ void CharacterBase::acceptAttack(CCObject *object)
 	}
 }
 
-CCAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool isRepeat, bool isReturn)
+CCFiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool isRepeat, bool isReturn)
 {
 	CCObject *tObject;
 	CCArray *animeFrames = CCArray::create();
 	auto seqArray = CCArray::create();
 	CCAnimation *tempAnimation;
 	CCAction *tempAction;
-	CCAction *seq;
+	CCFiniteTimeAction *seq;
 
 	CCARRAY_FOREACH(ationArray, tObject)
 	{
@@ -1241,7 +1238,7 @@ void CharacterBase::setShadow(CCSpriteFrame *frame)
 	charN->setPosition(getPosition());
 	auto delay = CCDelayTime::create(0.1f);
 	auto call = CallFunc::create(std::bind(&CharacterBase::enableShadow, this, charN));
-	auto seq = CCSequence::createWithTwoActions(delay, call);
+	auto seq = newSequence(delay, call);
 	charN->runAction(seq);
 	getGameLayer()->addChild(charN, -getPositionY() - 1);
 }
@@ -1251,7 +1248,7 @@ void CharacterBase::enableShadow(CCSprite *charN)
 	charN->setVisible(true);
 	auto delay = CCDelayTime::create(0.1f);
 	auto call = CallFunc::create(std::bind(&CharacterBase::disableShadow, this, charN));
-	auto seq = CCSequence::createWithTwoActions(delay, call);
+	auto seq = newSequence(delay, call);
 	charN->runAction(seq);
 }
 
@@ -1520,10 +1517,7 @@ void CharacterBase::setCoinDisplay(int num)
 	auto fadeOut = CCFadeOut::create(0.8f);
 	auto call = CallFunc::create(std::bind(&CharacterBase::removeCoinDisplay, this, coinDisplay));
 	auto sp = CCSpawn::create(fadeOut, mv, nullptr);
-	auto seqArray = CCArray::create();
-	seqArray->addObject(sp);
-	seqArray->addObject(call);
-	auto seq = CCSequence::create(seqArray);
+	auto seq = newSequence(sp, call);
 	coinDisplay->runAction(seq);
 }
 
@@ -1555,18 +1549,10 @@ void CharacterBase::setDamgeDisplay(int value, const char *type)
 
 		auto sd = CCScaleBy::create(0.2f, 0.5f);
 		auto call = CallFunc::create(std::bind(&CharacterBase::removeDamageDisplay, this));
-
 		auto mv = CCMoveBy::create(0.4f, ccp(0, 12));
 		auto fadeOut = CCFadeOut::create(0.4f);
 		auto sp = CCSpawn::create(fadeOut, mv, nullptr);
-
-		auto seqArray = CCArray::create();
-		seqArray->addObject(sd);
-		seqArray->addObject(sp);
-		seqArray->addObject(call);
-
-		auto seq = CCSequence::create(seqArray);
-
+		auto seq = newSequence(sd, sp, call);
 		damageFont->runAction(seq);
 	}
 }
@@ -2067,7 +2053,7 @@ void CharacterBase::setAttackBox(const string &effectType)
 			getGameLayer()->_isShacking = true;
 			CCScene *f = CCDirector::sharedDirector()->getRunningScene();
 			auto call = CallFunc::create(std::bind(&CharacterBase::disableShack, this));
-			f->runAction(CCSequence::createWithTwoActions(CCShake::create(0.05f, 12), call));
+			f->runAction(newSequence(CCShake::create(0.05f, 12), call));
 		}
 		if (getGameLayer()->_isAttackButtonRelease && _actionState == State::NATTACK && !_isOnlySkillLocked && !_isAI)
 		{
@@ -2148,11 +2134,11 @@ void CharacterBase::setJump(bool jumpDirection)
 		float posY = getPositionY();
 		_originY = posY;
 
-		if (jumpDirection) // Jump Forward
+		if (jumpDirection) // Jump forward
 		{
 			_jumpUPAction = CCJumpTo::create(0.8f, ccp(posX + (_isFlipped ? -64 : 64), posY), 64, 1);
 		}
-		else // Jump Back
+		else // Jump back
 		{
 			_jumpUPAction = CCJumpTo::create(0.8f, ccp(posX + (_isFlipped ? 64 : -64), posY), 64, 1);
 		}
@@ -4092,11 +4078,8 @@ bool CharacterBase::hurt()
 		stopAllActions();
 		if (_hurtAction)
 		{
-			auto list = CCArray::create();
-			list->addObject(_hurtAction);
 			auto call = CallFunc::create(std::bind(&CharacterBase::idle, this));
-			list->addObject(call);
-			auto seq = CCSequence::create(list);
+			auto seq = newSequence(_hurtAction, call);
 			runAction(seq);
 		}
 		return true;
@@ -4372,7 +4355,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 			_floatAwayAction = CCJumpTo::create(0.3f, ccp(posX + (_isFlipped ? 8 : -8), posY), 16, 1);
 
 		auto call = CallFunc::create(std::bind(&CharacterBase::knockDown, this));
-		_floatUPAction = CCSequence::create(_floatAwayAction, call, nullptr);
+		_floatUPAction = newSequence(_floatAwayAction, call);
 
 		runAction(_floatUPAction);
 		runAction(_floatAction);

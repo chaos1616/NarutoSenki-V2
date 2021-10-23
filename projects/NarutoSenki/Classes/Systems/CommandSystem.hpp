@@ -91,12 +91,9 @@ private:
 			   }
 
 			   auto tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
-			   auto call = CallFunc::create(std::bind(&CharacterBase::disableShadow, thiz, thiz));
 			   auto tempAction = CCAnimate::create(tempAnimation);
-			   auto list = CCArray::create();
-			   list->addObject(tempAction);
-			   list->addObject(call);
-			   auto seq = CCSequence::create(list);
+			   auto call = CallFunc::create(std::bind(&CharacterBase::disableShadow, thiz, thiz));
+			   auto seq = newSequence(tempAction, call);
 
 			   CCSprite *tempChar = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_Extern_01", thiz->getCharacter()->getCString())->getCString());
 

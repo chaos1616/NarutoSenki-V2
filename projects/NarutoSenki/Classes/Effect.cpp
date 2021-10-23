@@ -82,10 +82,7 @@ bool Effect::init(const char *name, CharacterBase *attacker)
 		initWithSpriteFrameName(CCString::createWithFormat("%s_01", name)->getCString());
 		auto effectAction = createEffectAnimation(CCString::createWithFormat("%s_", name)->getCString(), 5, 5, false);
 		auto call = CallFunc::create(std::bind(&CharacterBase::disableEffect, at));
-		auto seqArray = CCArray::create();
-		seqArray->addObject(effectAction);
-		seqArray->addObject(call);
-		auto seq = CCSequence::create(seqArray);
+		auto seq = newSequence(effectAction, call);
 		runAction(seq);
 	}
 	else if (is_same(name, "smk"))
@@ -126,7 +123,7 @@ bool Effect::init(const char *name, CharacterBase *attacker)
 
 		auto delay = CCDelayTime::create(2.8f);
 		auto call = CallFunc::create(std::bind(&Effect::removeEffect, this));
-		auto seq = CCSequence::create(delay, call, nullptr);
+		auto seq = newSequence(delay, call);
 		runAction(seq);
 	}
 	else if (is_same(name, "Bagua"))
@@ -144,7 +141,7 @@ bool Effect::init(const char *name, CharacterBase *attacker)
 		setPosition(ccp(at->getPositionX(), at->getPositionY() - getContentSize().height / 2));
 		auto delay = CCDelayTime::create(0.3f);
 		auto call = CallFunc::create(std::bind(&Effect::removeEffect, this));
-		auto seq = CCSequence::create(delay, call, nullptr);
+		auto seq = newSequence(delay, call);
 		runAction(seq);
 	}
 	else if (is_same(name, "kazi"))
@@ -155,7 +152,7 @@ bool Effect::init(const char *name, CharacterBase *attacker)
 						at->getPositionY() + at->getContentSize().height / 2));
 		auto su = CCScaleBy::create(0.1f, 1.2f);
 		auto call = CallFunc::create(std::bind(&Effect::removeEffect, this));
-		auto seq = CCSequence::create(su, su->reverse(), call, nullptr);
+		auto seq = newSequence(su, su->reverse(), call);
 		runAction(seq);
 	}
 	else if (is_same(name, "sharingan") ||
@@ -169,7 +166,7 @@ bool Effect::init(const char *name, CharacterBase *attacker)
 		auto rt = CCRotateBy::create(0.3f, 180, 180);
 		auto su = CCScaleBy::create(0.2f, 1.6f);
 		auto call = CallFunc::create(std::bind(&Effect::removeEffect, this));
-		auto seq = CCSequence::create(rt, su, call, nullptr);
+		auto seq = newSequence(rt, su, call);
 		runAction(seq);
 	}
 	else if (is_same(name, "Hiraishin") ||
@@ -250,7 +247,7 @@ bool Effect::init(const char *name, CharacterBase *attacker)
 	return true;
 }
 
-CCAction *Effect::createEffectAnimation(const char *file, int frameCount, float fps, bool isRepeat)
+CCFiniteTimeAction *Effect::createEffectAnimation(const char *file, int frameCount, float fps, bool isRepeat)
 {
 	CCArray *animeFrames = CCArray::create();
 	CCString *str;
@@ -262,29 +259,25 @@ CCAction *Effect::createEffectAnimation(const char *file, int frameCount, float 
 		animeFrames->addObject(frame);
 	}
 
-	auto tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, 1.0 / fps);
-	auto tempAction = CCAnimate::create(tempAnimation);
-	auto seqArray = CCArray::createWithObject(tempAction);
-	CCAction *seq;
+	auto animation = CCAnimation::createWithSpriteFrames(animeFrames, 1.0 / fps);
+	auto animAction = CCAnimate::create(animation);
+
 	if (isRepeat)
 	{
-		seq = CCRepeatForever::create(CCSequence::create(seqArray));
+		return CCRepeatForever::create(animAction);
 	}
 	else
 	{
 		auto call = CallFunc::create(std::bind(&Effect::removeEffect, this));
-		seqArray->addObject(call);
-		seq = CCSequence::create(seqArray);
+		return newSequence(animAction, call);
 	}
+}
 
-	return seq;
-};
-
-CCAction *Effect::createFontAnimation()
+CCFiniteTimeAction *Effect::createFontAnimation()
 {
 	auto delay = CCDelayTime::create(0.3f);
 	auto call = CallFunc::create(std::bind(&Effect::removeFontEffect, this));
-	auto seq = CCSequence::create(delay, call, nullptr);
+	auto seq = newSequence(delay, call);
 	return seq;
 }
 

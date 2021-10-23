@@ -622,11 +622,11 @@ void ActionButton::createFreezeAnimation()
 	if (_isDoubleSkill)
 	{
 		auto callback = CallFunc::create(std::bind(&ActionButton::clearClick, this));
-		freezeAction = CCSequence::create(to, to1, callback, nullptr);
+		freezeAction = newSequence(to, to1, callback);
 	}
 	else
 	{
-		freezeAction = CCSequence::create(to, to1, nullptr);
+		freezeAction = newSequence(to, to1);
 	}
 
 	setFreezeAction(freezeAction);

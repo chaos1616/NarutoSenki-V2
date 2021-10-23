@@ -134,7 +134,7 @@ public:
 	bool				_isCanGear03;
 	bool				_isCanGear06;
 
-	VPROP(int,_walkSpeed, WalkSpeed);
+	VPROP(int,_walkSpeed,WalkSpeed);
 	int _originSpeed;
 
 	CC_SYNTHESIZE_RETAIN(CCString*,_maxHP,MaxHP);
@@ -242,26 +242,24 @@ public:
 	VPROP(State,_actionState, ActionState);
 
 	// actions
-	CC_SYNTHESIZE_RETAIN(CCAction*,_idleAction, IdleAction);
-	CC_SYNTHESIZE_RETAIN(CCAction*,_nattackAction, NAttackAction);
-	CC_SYNTHESIZE_RETAIN(CCAction*,_walkAction, WalkAction);
-	CC_SYNTHESIZE_RETAIN(CCAction*,_hurtAction, HurtAction);
-	CC_SYNTHESIZE_RETAIN(CCAction*,_knockDownAction, KnockDownAction);
-	CC_SYNTHESIZE_RETAIN(CCAction*,_airHurtAction, AirHurtAction);
-	CC_SYNTHESIZE_RETAIN(CCAction*,_floatAction, FloatAction);
-	CC_SYNTHESIZE_RETAIN(CCAction*,_deadAction, DeadAction); 
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_idleAction, IdleAction);
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_nattackAction, NAttackAction);
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_walkAction, WalkAction);
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_hurtAction, HurtAction);
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_knockDownAction, KnockDownAction);
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_airHurtAction, AirHurtAction);
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_floatAction, FloatAction);
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_deadAction, DeadAction); 
 
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_skill1Action, Skill1Action);
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_skill2Action, Skill2Action);
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_skill3Action, Skill3Action);
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_skill4Action, Skill4Action);
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_skill5Action, Skill5Action);
 
-	CC_SYNTHESIZE_RETAIN(CCAction*,_skill1Action, Skill1Action);
-	CC_SYNTHESIZE_RETAIN(CCAction*,_skill2Action, Skill2Action);
-	CC_SYNTHESIZE_RETAIN(CCAction*,_skill3Action, Skill3Action);
-	CC_SYNTHESIZE_RETAIN(CCAction*,_skill4Action, Skill4Action);
-	CC_SYNTHESIZE_RETAIN(CCAction*,_skill5Action, Skill5Action);
-
-
-	CC_SYNTHESIZE_RETAIN(CCActionInterval*,_moveAction,MoveAction);
-	CC_SYNTHESIZE_RETAIN(CCAction*,_floatUPAction,FloatUPAction);
-	CC_SYNTHESIZE_RETAIN(CCActionInterval*,_jumpUPAction,JumpUPAction);
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_moveAction,MoveAction);
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_floatUPAction,FloatUPAction);
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_jumpUPAction,JumpUPAction);
 
 
 	void				update(float dt);
@@ -388,7 +386,7 @@ public:
 		}
 	}
 	void				readData(CCArray* tmpData, CCString* &attackType, CCString* &attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint);
-	CCAction*			createAnimation(CCArray* ationArray, float fps, bool isRepeat, bool isReturn);
+	CCFiniteTimeAction*	createAnimation(CCArray* ationArray, float fps, bool isRepeat, bool isReturn);
 
 	void				setSound(const string &file);
 	void				setDSound(const string &file);

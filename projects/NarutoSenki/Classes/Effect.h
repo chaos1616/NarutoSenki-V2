@@ -15,8 +15,8 @@ public:
 private:
 	void removeEffect();
 	void removeFontEffect();
-	CCAction *createEffectAnimation(const char *file, int frameCount, float fps, bool isRepeat);
-	CCAction *createFontAnimation();
+	CCFiniteTimeAction *createEffectAnimation(const char *file, int frameCount, float fps, bool isRepeat);
+	CCFiniteTimeAction *createFontAnimation();
 
 	CharacterBase *at;
 };

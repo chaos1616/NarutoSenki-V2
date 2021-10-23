@@ -20,7 +20,7 @@ bool CreditsLayer::init()
 	addChild(cloud_left, 1);
 
 	auto cmv1 = CCMoveBy::create(1, ccp(-15, 0));
-	auto cseq1 = CCRepeatForever::create(CCSequence::create(cmv1, cmv1->reverse(), nullptr));
+	auto cseq1 = CCRepeatForever::create(newSequence(cmv1, cmv1->reverse()));
 	cloud_left->runAction(cseq1);
 
 	CCSprite *cloud_right = CCSprite::createWithSpriteFrameName("cloud.png");
@@ -30,7 +30,7 @@ bool CreditsLayer::init()
 	addChild(cloud_right, 1);
 
 	auto cmv2 = CCMoveBy::create(1, ccp(15, 0));
-	auto cseq2 = CCRepeatForever::create(CCSequence::create(cmv2, cmv2->reverse(), nullptr));
+	auto cseq2 = CCRepeatForever::create(newSequence(cmv2, cmv2->reverse()));
 	cloud_right->runAction(cseq2);
 
 	//produce the menu_bar

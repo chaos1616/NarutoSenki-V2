@@ -710,10 +710,7 @@ void Monster::dealloc()
 	if (isCharacter("FutonSRK", "FutonSRK2"))
 	{
 		auto call = CallFunc::create(std::bind(&Monster::dealloc2, this));
-		auto seqArray = CCArray::create();
-		seqArray->addObject(getDeadAction());
-		seqArray->addObject(call);
-		auto seq = CCSequence::create(seqArray);
+		auto seq = newSequence(getDeadAction(), call);
 		runAction(seq);
 		return;
 	}
@@ -757,15 +754,8 @@ void Monster::dealloc()
 	if (isCharacter("KageHand", "Kage"))
 	{
 		auto call = CallFunc::create(std::bind(&Monster::dealloc2, this));
-
-		auto seqArray = CCArray::create();
-		seqArray->addObject(getDeadAction());
-		seqArray->addObject(call);
-
 		auto call2 = CallFunc::create(std::bind(&Monster::setResume, this));
-		seqArray->addObject(call2);
-
-		auto seq = CCSequence::create(seqArray);
+		auto seq = newSequence(getDeadAction(), call, call2);
 		runAction(seq);
 	}
 	else
@@ -780,18 +770,19 @@ void Monster::setDirectMove(int length, float delay, bool isReverse)
 	CCPoint direction2 = getPosition();
 	auto mv = CCMoveTo::create(delay, direction);
 	auto call = CallFunc::create(std::bind(&Monster::dealloc, this));
-	CCAction *seq;
+	CCAction *moveAction;
+
 	if (!isReverse)
 	{
-		seq = CCSequence::create(mv, call, nullptr);
+		moveAction = newSequence(mv, call);
 	}
 	else
 	{
 		auto mv2 = CCMoveTo::create(delay, direction2);
-		seq = CCSequence::create(mv, mv2, call, nullptr);
+		moveAction = newSequence(mv, mv2, call);
 	}
 
-	runAction(seq);
+	runAction(moveAction);
 }
 
 void Monster::setEaseIn(int length, float delay)
@@ -802,7 +793,7 @@ void Monster::setEaseIn(int length, float delay)
 	auto eo = CCEaseIn::create(mv, delay);
 
 	auto call = CallFunc::create(std::bind(&Monster::dealloc, this));
-	auto seq = CCSequence::create(eo, call, nullptr);
+	auto seq = newSequence(eo, call);
 	runAction(seq);
 }
 
@@ -816,6 +807,7 @@ void Monster::setDirectMoveBy(int length, float delay)
 		auto mv = CCMoveBy::create(0.1f, ccp(_mainTarget->getPositionX() > getPositionX() ? 16 : -16, _mainTarget->getPositionY() > getPositionY() ? 16 : -16));
 
 		runAction(CCRepeatForever::create(mv));
+
 		_mainTarget = nullptr;
 		_master->_mainTarget = nullptr;
 	}
@@ -828,7 +820,7 @@ void Monster::setDirectMoveBy(int length, float delay)
 
 	auto delayTime = CCDelayTime::create(delay);
 	auto call = CallFunc::create(std::bind(&Monster::dealloc, this));
-	auto seq = CCSequence::create(delayTime, call, nullptr);
+	auto seq = newSequence(delayTime, call);
 	runAction(seq);
 }
 

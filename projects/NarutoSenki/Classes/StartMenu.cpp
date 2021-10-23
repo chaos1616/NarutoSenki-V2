@@ -80,7 +80,7 @@ bool MenuButton::ccTouchBegan(CCTouch *touch, CCEvent *event)
 	if (!containsTouchLocation(touch))
 		return false;
 
-	//click();
+	// click();
 
 	prePosY = 0;
 
@@ -220,16 +220,16 @@ bool StartMenu::init()
 	addSprites("Result.plist");
 	addSprites("NamePlate.plist");
 
-	//CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+	// CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
 
-	//CCSprite* bgSprite = CCSprite::create("red_bg.png");
+	// CCSprite* bgSprite = CCSprite::create("red_bg.png");
 	////pSprite->setPosition(ccp(winSize.width/2 + origin.x, winSize.height/2 + origin.y));
 	// FULL_SCREEN_SPRITE(bgSprite);
-	//bgSprite->setAnchorPoint(ccp(0,0));
-	//bgSprite->setPosition(ccp(0,0));
-	//addChild(bgSprite, -5);
+	// bgSprite->setAnchorPoint(ccp(0,0));
+	// bgSprite->setPosition(ccp(0,0));
+	// addChild(bgSprite, -5);
 
-	//produce groud
+	// produce groud
 	CCSprite *gold_left = CCSprite::createWithSpriteFrameName("gold_left.png");
 	gold_left->setAnchorPoint(ccp(0, 0));
 	gold_left->setPosition(ccp(0, 20));
@@ -240,7 +240,7 @@ bool StartMenu::init()
 	gold_right->setPosition(ccp(winSize.width - gold_right->getContentSize().width - 20, winSize.height - 20));
 	addChild(gold_right, 1);
 
-	//produce the cloud
+	// produce the cloud
 	CCSprite *cloud_left = CCSprite::createWithSpriteFrameName("cloud.png");
 	cloud_left->setPosition(ccp(0, 15));
 	cloud_left->setFlipX(true);
@@ -249,7 +249,7 @@ bool StartMenu::init()
 	addChild(cloud_left, 1);
 
 	auto cmv1 = CCMoveBy::create(1, ccp(-15, 0));
-	auto cseq1 = CCRepeatForever::create(CCSequence::create(cmv1, cmv1->reverse(), nullptr));
+	auto cseq1 = CCRepeatForever::create(newSequence(cmv1, cmv1->reverse()));
 	cloud_left->runAction(cseq1);
 
 	CCSprite *cloud_right = CCSprite::createWithSpriteFrameName("cloud.png");
@@ -259,10 +259,10 @@ bool StartMenu::init()
 	addChild(cloud_right, 1);
 
 	auto cmv2 = CCMoveBy::create(1, ccp(15, 0));
-	auto cseq2 = CCRepeatForever::create(CCSequence::create(cmv2, cmv2->reverse(), nullptr));
+	auto cseq2 = CCRepeatForever::create(newSequence(cmv2, cmv2->reverse()));
 	cloud_right->runAction(cseq2);
 
-	//produce the menu_bar
+	// produce the menu_bar
 	CCSprite *menu_bar_b = CCSprite::create("menu_bar2.png");
 	menu_bar_b->setAnchorPoint(ccp(0, 0));
 	FULL_SCREEN_SPRITE(menu_bar_b);
@@ -279,7 +279,7 @@ bool StartMenu::init()
 	startmenu_title->setPosition(ccp(2, winSize.height - startmenu_title->getContentSize().height - 2));
 	addChild(startmenu_title, 3);
 
-	//produce the menu button
+	// produce the menu button
 	auto gamemode_btn = MenuButton::create("menu01.png");
 	gamemode_btn->setDelegate(this);
 	gamemode_btn->setBtnType(MenuButtonType::Custom);
@@ -406,7 +406,7 @@ void StartMenu::update(float dt)
 	}
 
 	float currentX = noticeLabel->getPositionX();
-	//float contentX = getContentSize().width;
+	// float contentX = getContentSize().width;
 	float lableX = noticeLabel->getContentSize().width;
 
 	if (noticeLabel->getPositionX() >= -lableX)
@@ -563,18 +563,14 @@ void StartMenu::scrollMenu(int posY)
 			}
 			else if (menu->getPositionY() == _pos03)
 			{
-				auto spn = CCSpawn::create(
+				auto spn = CCSpawn::createWithTwoActions(
 					CCMoveTo::create(0.5, ccp(105, _pos02)),
-					CCScaleTo::create(0.5, 1),
-					nullptr);
+					CCScaleTo::create(0.5, 1));
 				reorderChild(menu, 3);
 				menu->_isTop = true;
 
 				auto call = CallFunc::create(std::bind(&MenuButton::playSound, menu));
-				auto seqArray = CCArray::create();
-				seqArray->addObject(spn);
-				seqArray->addObject(call);
-				auto seq = CCSequence::create(seqArray);
+				auto seq = newSequence(spn, call);
 				menu->runAction(seq);
 			}
 			else if (menu->getPositionY() == _pos02 && menu->_isBottom)
@@ -589,10 +585,9 @@ void StartMenu::scrollMenu(int posY)
 			}
 			else if (menu->getPositionY() == _pos02 && !menu->_isBottom)
 			{
-				auto spn = CCSpawn::create(
+				auto spn = CCSpawn::createWithTwoActions(
 					CCMoveTo::create(0.5, ccp(105, _pos01)),
-					CCScaleTo::create(0.5, 0.5),
-					nullptr);
+					CCScaleTo::create(0.5, 0.5));
 				reorderChild(menu, 1);
 				menu->_isTop = false;
 				menu->runAction(spn);
@@ -605,18 +600,14 @@ void StartMenu::scrollMenu(int posY)
 		{
 			if (menu->getPositionY() == _pos01)
 			{
-				auto spn = CCSpawn::create(
+				auto spn = CCSpawn::createWithTwoActions(
 					CCMoveTo::create(0.5, ccp(105, _pos02)),
-					CCScaleTo::create(0.5, 1),
-					nullptr);
+					CCScaleTo::create(0.5, 1));
 				reorderChild(menu, 3);
 				menu->_isTop = true;
 
 				auto call = CallFunc::create(std::bind(&MenuButton::playSound, menu));
-				auto seqArray = CCArray::create();
-				seqArray->addObject(spn);
-				seqArray->addObject(call);
-				auto seq = CCSequence::create(seqArray);
+				auto seq = newSequence(spn, call);
 				menu->runAction(seq);
 			}
 			else if (menu->getPositionY() == _pos03)
@@ -641,10 +632,9 @@ void StartMenu::scrollMenu(int posY)
 
 			else if (menu->getPositionY() == _pos02 && !menu->_isBottom)
 			{
-				auto spn = CCSpawn::create(
+				auto spn = CCSpawn::createWithTwoActions(
 					CCMoveTo::create(0.5, ccp(105, _pos03)),
-					CCScaleTo::create(0.5, 0.5),
-					nullptr);
+					CCScaleTo::create(0.5, 0.5));
 				reorderChild(menu, 2);
 				menu->_isTop = false;
 				menu->runAction(spn);

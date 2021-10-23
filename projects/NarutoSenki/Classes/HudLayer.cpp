@@ -638,11 +638,7 @@ void HudLayer::setCKRLose(bool isCRK2)
 				skill4Button->_isMarkVisable = false;
 				auto su = CCScaleBy::create(0.2f, 1.1f);
 				auto call = CallFunc::create(std::bind(&ActionButton::setProgressMark, skill4Button));
-				auto list = CCArray::create();
-				list->addObject(su);
-				list->addObject(su->reverse());
-				list->addObject(call);
-				auto seq = CCSequence::create(list);
+				auto seq = newSequence(su, su->reverse(), call);
 				skill4Button->runAction(seq);
 			}
 			else
@@ -661,11 +657,7 @@ void HudLayer::setCKRLose(bool isCRK2)
 				skill5Button->_isMarkVisable = false;
 				auto su = CCScaleBy::create(0.2f, 1.1f);
 				auto call = CallFunc::create(std::bind(&ActionButton::setProgressMark, skill5Button));
-				auto list = CCArray::create();
-				list->addObject(su);
-				list->addObject(su->reverse());
-				list->addObject(call);
-				auto seq = CCSequence::create(list);
+				auto seq = newSequence(su, su->reverse(), call);
 				skill5Button->runAction(seq);
 			}
 			else
@@ -750,9 +742,9 @@ void HudLayer::setReport(const char *name1, const char *name2, CCString *killNum
 		addChild(reportSprite, 500);
 
 		auto su = CCScaleBy::create(0.2f, 1.0f);
-		auto call = CallFunc::create(std::bind(&HudLayer::setReportCache, this));
 		auto delay = CCDelayTime::create(2.0f);
-		auto seq = CCSequence::create(su, su->reverse(), delay, call, nullptr);
+		auto call = CallFunc::create(std::bind(&HudLayer::setReportCache, this));
+		auto seq = newSequence(su, su->reverse(), delay, call);
 		reportSprite->runAction(seq);
 	}
 
@@ -781,9 +773,9 @@ void HudLayer::setReportCache()
 		addChild(reportSprite, 500);
 
 		auto su = CCScaleBy::create(0.2f, 1.1f);
-		auto call = CallFunc::create(std::bind(&HudLayer::setReportCache, this));
 		auto delay = CCDelayTime::create(2.0f);
-		auto seq = CCSequence::create(su, su->reverse(), delay, call, nullptr);
+		auto call = CallFunc::create(std::bind(&HudLayer::setReportCache, this));
+		auto seq = newSequence(su, su->reverse(), delay, call);
 
 		reportSprite->runAction(seq);
 
@@ -816,11 +808,7 @@ void HudLayer::setReportCache()
 				auto sp = CCSpawn::createWithTwoActions(fn, mv);
 				auto delay2 = CCDelayTime::create(1.6f);
 				auto call2 = CallFunc::create(std::bind(&HudLayer::clearSPCReport, this));
-				auto list = CCArray::create();
-				list->addObject(sp);
-				list->addObject(delay2);
-				list->addObject(call2);
-				auto seq2 = CCSequence::create(list);
+				auto seq2 = newSequence(sp, delay2, call2);
 				reportSPCSprite->runAction(seq2);
 			}
 			else if (num2 >= 2)
@@ -837,7 +825,7 @@ void HudLayer::setReportCache()
 				addChild(reportSPCSprite, 500);
 				auto st = CCScaleTo::create(0.8f, 1.0f, 1.0f);
 				auto call2 = CallFunc::create(std::bind(&HudLayer::stopSPCReport, this));
-				auto seq2 = CCSequence::createWithTwoActions(st, call2);
+				auto seq2 = newSequence(st, call2);
 				reportSPCSprite->runAction(seq2);
 
 				auto sk = CCRepeatForever::create(CCShake::create(0.2f, 4));
@@ -892,14 +880,9 @@ void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 		}
 	}
 
-	auto call = CallFunc::create(std::bind(&HudLayer::clearBuffDisplay, this, buffSprite));
 	auto delay = CCDelayTime::create(buffStayTime - 3);
-
-	auto seqArray = CCArray::create();
-	seqArray->addObject(delay);
-	seqArray->addObject(call);
-
-	auto seq = CCSequence::create(seqArray);
+	auto call = CallFunc::create(std::bind(&HudLayer::clearBuffDisplay, this, buffSprite));
+	auto seq = newSequence(delay, call);
 	buffSprite->runAction(seq);
 	buffSprite->setTag(0);
 
@@ -952,8 +935,8 @@ void HudLayer::clearBuffDisplay(CCSprite *bs)
 		auto delay = CCDelayTime::create(4.0f);
 		bs->setTag(1);
 		auto fade = CCFadeOut::create(0.5f);
-		auto fadeseq = CCRepeatForever::create(CCSequence::createWithTwoActions(fade, fade->reverse()));
-		auto seq = CCSequence::createWithTwoActions(delay, call);
+		auto fadeseq = CCRepeatForever::create(newSequence(fade, fade->reverse()));
+		auto seq = newSequence(delay, call);
 		bs->runAction(seq);
 		bs->runAction(fadeseq);
 	}
@@ -983,7 +966,7 @@ void HudLayer::stopSPCReport()
 		reportSPCSprite->setScale(1.0f);
 		auto delay = CCDelayTime::create(1.6f);
 		auto call = CallFunc::create(std::bind(&HudLayer::clearSPCReport, this));
-		reportSPCSprite->runAction(CCSequence::createWithTwoActions(delay, call));
+		reportSPCSprite->runAction(newSequence(delay, call));
 	}
 }
 
@@ -1323,7 +1306,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 
 		auto delay = CCDelayTime::create(1.0f);
 		auto call = CallFunc::create(std::bind(&HudLayer::removeOugis, this));
-		ougisLayer->runAction(CCSequence::createWithTwoActions(delay, call));
+		ougisLayer->runAction(newSequence(delay, call));
 	}
 }
 

@@ -59,7 +59,7 @@ bool GameOver::init(CCRenderTexture *snapshoot)
 
 	auto su = CCScaleTo::create(0.2f, 1.0);
 	auto call = CallFunc::create(std::bind(&GameOver::listResult, this));
-	auto seq = CCSequence::create(su, call, nullptr);
+	auto seq = newSequence(su, call);
 	result_bg->runAction(seq);
 
 	return true;
