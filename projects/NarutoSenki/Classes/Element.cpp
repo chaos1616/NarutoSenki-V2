@@ -468,7 +468,7 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	setnAttackValue(tmpValue);
 	nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-	setCoinValue(50);
+	setCoin(50);
 
 	initAction();
 }

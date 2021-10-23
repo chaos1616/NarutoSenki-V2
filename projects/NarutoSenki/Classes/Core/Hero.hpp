@@ -231,7 +231,7 @@ public:
 
 		if (getLV() == 1 && !getCoin())
 		{
-			setCoinValue(50);
+			setCoin(50);
 		}
 
 		if (getCharacter())

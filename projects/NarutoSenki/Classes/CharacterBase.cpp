@@ -89,7 +89,6 @@ CharacterBase::CharacterBase()
 	_group = nullptr;
 	_character = nullptr;
 	_killNum = nullptr;
-	_coin = nullptr;
 
 	_master = nullptr;
 	_controller = nullptr;
@@ -1662,14 +1661,14 @@ void CharacterBase::setItem(abType type)
 
 bool CharacterBase::setGear(gearType type)
 {
-	int gearCost = 0;
+	uint32_t gearCost = 0;
 	// The cost of [ 00 03 06 ] is 500
 	if (type % 3 == 0)
 		gearCost = 500;
 	else
 		gearCost = 1000;
 
-	if (getGearArray().size() <= 2 && getCoinValue() >= gearCost)
+	if (getGearArray().size() <= 2 && getCoin() >= gearCost)
 	{
 		getGearArray().push_back(type);
 
@@ -1887,17 +1886,17 @@ void CharacterBase::enableGear06(float dt)
 	_isCanGear06 = true;
 }
 
-void CharacterBase::addCoin(int num)
+void CharacterBase::addCoin(uint32_t num)
 {
-	setCoinValue(getCoinValue() + num);
+	setCoin(getCoin() + num);
 }
 
-void CharacterBase::minusCoin(int num)
+void CharacterBase::minusCoin(uint32_t num)
 {
-	if (getCoinValue() > num)
-		setCoinValue(getCoinValue() - num);
+	if (getCoin() > num)
+		setCoin(getCoin() - num);
 	else
-		setCoinValue(0);
+		setCoin(0);
 }
 
 void CharacterBase::setRestore(float dt)
@@ -5038,7 +5037,7 @@ bool CharacterBase::stepBack2()
 // [For AI] 检查角色是否需要使用【拉面】回血，血量低于界限，则返回true
 bool CharacterBase::checkRetri()
 {
-	if (_isCanItem1 && getCoinValue() >= 50)
+	if (_isCanItem1 && getCoin() >= 50)
 	{
 		if (getGameLayer()->_isHardCoreGame)
 		{

@@ -672,11 +672,10 @@ void HudLayer::setEXPLose()
 {
 	int exp = getGameLayer()->currentPlayer->getEXP();
 	int lvExp = (getGameLayer()->currentPlayer->getLV() - 1) * 500;
-	float Percent = (exp - lvExp) / 500.0 * 100;
+	float Percent = (exp - lvExp) / 500.0f * 100;
 	if (Percent > 100)
-	{
 		Percent = 100;
-	}
+
 	// CCRotateTo* ra=CCRotateTo::create(0.2f,((1-Percent/100)*90),((1-Percent/100)*90));
 	// status_expbar->runAction(ra);
 	status_expbar->setPercentage((1 + Percent / 100) * 50);
@@ -705,23 +704,21 @@ void HudLayer::setTowerState(int charNO)
 
 void HudLayer::setCoin(const char *value)
 {
-	const char *cl = coinLabel->getString();
+	auto cl = coinLabel->getString();
 	int tempCoin = to_int(cl);
 	tempCoin += to_int(value);
-	CCString *realCoin = to_ccstring(tempCoin);
-	coinLabel->setString(realCoin->getCString());
+	coinLabel->setString(to_cstr(tempCoin));
 }
 
 bool HudLayer::offCoin(const char *value)
 {
-	const char *cl = coinLabel->getString();
+	auto cl = coinLabel->getString();
 	int tempCoin = to_int(cl);
 	if (tempCoin - to_int(value) >= 0)
 	{
 		tempCoin -= to_int(value);
-		CCString *realCoin = to_ccstring(tempCoin);
-		coinLabel->setString(realCoin->getCString());
-		getGameLayer()->currentPlayer->minusCoin(to_int(value));
+		coinLabel->setString(to_cstr(tempCoin));
+		getGameLayer()->currentPlayer->minusCoin(to_uint(value));
 		return true;
 	}
 	else

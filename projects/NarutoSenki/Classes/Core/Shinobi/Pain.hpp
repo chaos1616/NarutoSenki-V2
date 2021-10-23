@@ -32,20 +32,14 @@ class Pain : public Hero
 			}
 		}
 
-		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_isHardCoreGame)
+		if (getCoin() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray().size() == 0)
-			{
 				setGear(gear06);
-			}
 			else if (getGearArray().size() == 1)
-			{
 				setGear(gear05);
-			}
 			else if (getGearArray().size() == 2)
-			{
 				setGear(gear01);
-			}
 		}
 
 		if (checkRetri())
@@ -53,16 +47,12 @@ class Pain : public Hero
 			if (_mainTarget != nullptr)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 			else
 			{
 				if (stepBack())
-				{
 					return;
-				}
 			}
 		}
 
@@ -72,24 +62,18 @@ class Pain : public Hero
 			if (isAkatsukiGroup())
 			{
 				if (getPositionX() < 85 * 32)
-				{
 					needBack = true;
-				}
 			}
 			else
 			{
 				if (getPositionX() > 11 * 32)
-				{
 					needBack = true;
-				}
 			}
 
 			if (needBack)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 		}
 
@@ -100,7 +84,6 @@ class Pain : public Hero
 
 			if (isFreeActionState())
 			{
-
 				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game)
 				{
 					changeSide(sp);
@@ -155,7 +138,6 @@ class Pain : public Hero
 					}
 					else
 					{
-
 						idle();
 						return;
 					}
@@ -180,13 +162,10 @@ class Pain : public Hero
 
 		_mainTarget = nullptr;
 		if (notFindFlogHalf())
-		{
 			findTowerHalf();
-		}
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp = getDistanceToTarget();
 
@@ -248,20 +227,14 @@ class Pain : public Hero
 			}
 		}
 
-		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_isHardCoreGame)
+		if (getCoin() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray().size() == 0)
-			{
 				setGear(gear06);
-			}
 			else if (getGearArray().size() == 1)
-			{
 				setGear(gear05);
-			}
 			else if (getGearArray().size() == 2)
-			{
 				setGear(gear07);
-			}
 		}
 
 		if (checkRetri())
@@ -269,16 +242,12 @@ class Pain : public Hero
 			if (_mainTarget != nullptr)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 			else
 			{
 				if (stepBack())
-				{
 					return;
-				}
 			}
 		}
 
@@ -288,24 +257,18 @@ class Pain : public Hero
 			if (isAkatsukiGroup())
 			{
 				if (getPositionX() < 85 * 32)
-				{
 					needBack = true;
-				}
 			}
 			else
 			{
 				if (getPositionX() > 11 * 32)
-				{
 					needBack = true;
-				}
 			}
 
 			if (needBack)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 		}
 
@@ -316,7 +279,6 @@ class Pain : public Hero
 
 			if (isFreeActionState())
 			{
-
 				if (_isCanSkill1 && !_buffStartTime)
 				{
 					int countNum = 0;
@@ -392,7 +354,6 @@ class Pain : public Hero
 					}
 					else
 					{
-
 						idle();
 						return;
 					}
@@ -417,13 +378,10 @@ class Pain : public Hero
 
 		_mainTarget = nullptr;
 		if (notFindFlogHalf())
-		{
 			findTowerHalf();
-		}
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp = getDistanceToTarget();
 

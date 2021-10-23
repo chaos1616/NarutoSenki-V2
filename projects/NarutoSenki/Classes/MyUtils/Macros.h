@@ -92,23 +92,23 @@ public:                                                            \
 	inline const Value &get##funName##_Value() { return varName; } \
 	inline void set##funName(int var) { varName = var; }
 
-#define PROP_UInt8(varName, funName)                                 \
-private:                                                             \
-	Value varName;                                                   \
-                                                                     \
-public:                                                              \
-	inline unsigned char get##funName() { return varName.asByte(); } \
-	inline const Value &get##funName##_Value() { return varName; }   \
-	inline void set##funName(unsigned char var) { varName = var; }
+#define PROP_UInt8(varName, funName)                               \
+private:                                                           \
+	Value varName;                                                 \
+                                                                   \
+public:                                                            \
+	inline uint8_t get##funName() { return varName.asByte(); }     \
+	inline const Value &get##funName##_Value() { return varName; } \
+	inline void set##funName(uint8_t var) { varName = var; }
 
 #define PROP_UInt32(varName, funName)                              \
 private:                                                           \
 	Value varName;                                                 \
                                                                    \
 public:                                                            \
-	inline unsigned int get##funName() { return varName.asInt(); } \
+	inline uint32_t get##funName() { return varName.asInt(); }     \
 	inline const Value &get##funName##_Value() { return varName; } \
-	inline void set##funName(unsigned int var) { varName = var; }
+	inline void set##funName(uint32_t var) { varName = var; }
 
 #define PROP_Float(varName, funName)                               \
 private:                                                           \

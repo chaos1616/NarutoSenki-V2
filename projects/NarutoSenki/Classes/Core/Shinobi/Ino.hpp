@@ -45,7 +45,7 @@ class Ino : public Hero
 			}
 		}
 
-		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
+		if (getCoin() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray().size() == 0)
 				setGear(gear06);
@@ -91,7 +91,7 @@ class Ino : public Hero
 		}
 
 		if (getMaxHPValue() - getHPValue() >= 3000 &&
-			getCoinValue() >= 50 && !_isHealling && _isCanItem1 && _isArmored)
+			getCoin() >= 50 && !_isHealling && _isCanItem1 && _isArmored)
 		{
 			setItem(Item1);
 		}

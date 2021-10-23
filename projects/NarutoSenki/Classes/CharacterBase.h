@@ -40,7 +40,7 @@ public:
 	uint32_t			_deadNum;
 	uint32_t			_flogNum;
 	CC_SYNTHESIZE_RETAIN(CCString*,_killNum,KillNum);
-	CC_SYNTHESIZE_RETAIN(CCString*,_coin,Coin);
+	PROP_UInt32(_coin,Coin);
 
 
 	CharacterBase*		_slayer;
@@ -331,8 +331,8 @@ public:
 
 	void				setCoinDisplay(int num);
 	void				removeCoinDisplay(CCSprite *coinDisplay);
-	void				addCoin(int num);
-	void				minusCoin(int num);
+	void				addCoin(uint32_t num);
+	void				minusCoin(uint32_t num);
 
 	bool				_isCanSkill1;
 	bool				_isCanSkill2;
@@ -397,6 +397,7 @@ public:
 	void				getSticker(float dt);
 	void				stopMove(float dt);
 	void				stopJump(int stopTime);
+	void				setCharFlip();
 	void				setAttackBox(const string &data);
 	inline void			setDamage(CharacterBase* attacker);
 	void				setDamage(CharacterBase *attacker, const char* effectType, int attackValue, bool isFlipped);
@@ -408,8 +409,6 @@ public:
 	void				setMonAttack(int skillNum);
 	void				setTransform();
 	void				setOugis();
-
-	void				setCharFlip();
 
 
 	virtual Hero*		createClone(int cloneTime);
@@ -471,8 +470,6 @@ public:
 	// UI
 	inline void 		updateHpBar();
 	// character extensions
-	inline int			getCoinValue() { return to_int(_coin->getCString()); }
-	inline void			setCoinValue(uint32_t var) { setCoin(to_ccstring(var)); }
 	inline uint32_t		getCkrValue() { return to_uint(_ckr->getCString()); }
 	inline void			setCkrValue(uint32_t var) { setCKR(to_ccstring(var)); }
 	inline uint32_t		getCkr2Value() { return to_uint(_ckr2->getCString()); }

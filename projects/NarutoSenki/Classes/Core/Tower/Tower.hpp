@@ -64,7 +64,7 @@ public:
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
 		deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		setCoinValue(50);
+		setCoin(50);
 
 		initAction();
 

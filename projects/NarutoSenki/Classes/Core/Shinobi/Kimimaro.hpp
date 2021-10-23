@@ -20,20 +20,14 @@ class Kimimaro : public Hero
 			}
 		}
 
-		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_isHardCoreGame)
+		if (getCoin() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray().size() == 0)
-			{
 				setGear(gear06);
-			}
 			else if (getGearArray().size() == 1)
-			{
 				setGear(gear05);
-			}
 			else if (getGearArray().size() == 2)
-			{
 				setGear(gear07);
-			}
 		}
 
 		if (checkRetri())
@@ -41,16 +35,12 @@ class Kimimaro : public Hero
 			if (_mainTarget != nullptr)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 			else
 			{
 				if (stepBack())
-				{
 					return;
-				}
 			}
 		}
 
@@ -60,24 +50,18 @@ class Kimimaro : public Hero
 			if (isAkatsukiGroup())
 			{
 				if (getPositionX() < 85 * 32)
-				{
 					needBack = true;
-				}
 			}
 			else
 			{
 				if (getPositionX() > 11 * 32)
-				{
 					needBack = true;
-				}
 			}
 
 			if (needBack)
 			{
 				if (stepBack2())
-				{
 					return;
-				}
 			}
 		}
 
@@ -88,7 +72,6 @@ class Kimimaro : public Hero
 
 			if (isFreeActionState())
 			{
-
 				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
@@ -193,13 +176,10 @@ class Kimimaro : public Hero
 
 		_mainTarget = nullptr;
 		if (notFindFlogHalf())
-		{
 			findTowerHalf();
-		}
 
 		if (_mainTarget)
 		{
-
 			CCPoint moveDirection;
 			CCPoint sp = getDistanceToTarget();
 

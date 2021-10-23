@@ -93,7 +93,7 @@ public:
 		setnAttackValue(tmpValue);
 		nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		setCoinValue(50);
+		setCoin(50);
 
 		initAction();
 		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", nullptr);

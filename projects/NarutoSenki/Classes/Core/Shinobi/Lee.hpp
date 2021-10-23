@@ -217,7 +217,7 @@ class Lee : public Hero
 			}
 		}
 
-		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
+		if (getCoin() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray().size() == 0)
 				setGear(gear06);
@@ -373,7 +373,7 @@ class Lee : public Hero
 			}
 		}
 
-		if (getCoinValue() >= 500 && !_isControlled && getGameLayer()->_enableGear)
+		if (getCoin() >= 500 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray().size() == 0)
 				setGear(gear06);

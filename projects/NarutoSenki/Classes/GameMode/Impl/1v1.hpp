@@ -51,7 +51,7 @@ public:
 				{
 					for (auto hero : getGameLayer()->_CharacterArray)
 					{
-						hero->setCoinValue(3000);
+						hero->setCoin(3000);
 						hero->setEXP(2500);
 						for (int i = 1; i < 6; i++)
 							hero->changeHPbar();
