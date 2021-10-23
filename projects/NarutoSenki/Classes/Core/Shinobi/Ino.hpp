@@ -33,19 +33,8 @@ class Ino : public Hero
 			return;
 		}
 
-		if (_isCanGear06)
-		{
-			if ((_actionState == State::FLOAT ||
-				 _actionState == State::AIRHURT ||
-				 _actionState == State::HURT ||
-				 _actionState == State::KNOCKDOWN) &&
-				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
-			{
-				useGear(gear06);
-			}
-		}
-
-		if (getCoin() >= 500 && !_isControlled && getGameLayer()->_enableGear)
+		tryUseGear6();
+		if (canBuyGear())
 		{
 			if (getGearArray().size() == 0)
 				setGear(gear06);

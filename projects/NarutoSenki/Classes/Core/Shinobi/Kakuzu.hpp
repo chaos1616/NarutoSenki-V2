@@ -45,6 +45,7 @@ class Kakuzu : public Hero
 	void perform() override
 	{
 		_mainTarget = nullptr;
+
 		if (isFreeActionState())
 		{
 			if (getHpPercent() > 0.3f && !_isControlled && _isCanSkill1)
@@ -111,7 +112,8 @@ class Kakuzu : public Hero
 		}
 
 		findHeroHalf();
-		if (getCoin() >= 500 && !_isControlled && getGameLayer()->_enableGear)
+
+		if (canBuyGear())
 		{
 			if (getGearArray().size() == 0)
 				setGear(gear03);

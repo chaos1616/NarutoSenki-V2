@@ -1,6 +1,7 @@
 #pragma once
 #include "Data/UnitData.h"
 #include "Effect.h"
+#include "GameLayer.h"
 #include "MyUtils/KTools.h"
 
 enum class State {
@@ -608,6 +609,22 @@ protected:
 	inline bool 		notFindFlogHalf() { return !findEnemy2(kRoleFlog); }
 	inline bool 		notFindTowerHalf() { return !findEnemy2(kRoleTower); }
 	// AI extensions
+	inline bool			canBuyGear() {
+		return getGearArray().size() < 3 && getCoin() >= 500 && !_isControlled && getGameLayer()->_enableGear;
+	}
+	inline void			tryUseGear6() {
+		if (_isCanGear06)
+		{
+			if ((_actionState == State::FLOAT ||
+				 _actionState == State::AIRHURT ||
+				 _actionState == State::HURT ||
+				 _actionState == State::KNOCKDOWN) &&
+				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
+			{
+				useGear(gear06);
+			}
+		}
+	}
 	inline CCPoint 		getDirByMoveTo(CharacterBase *target) { return ccpNormalize(ccpSub(target->getPosition(), getPosition())); }
 	inline CCPoint 		getDistanceToTarget() {
 		return _mainTarget->_originY

@@ -8,7 +8,8 @@ class Tsunade : public Hero
 	{
 		_mainTarget = nullptr;
 		findHeroHalf();
-		if (getCoin() >= 500 && !_isControlled && getGameLayer()->_enableGear)
+
+		if (canBuyGear())
 		{
 			if (getGearArray().size() == 0)
 				setGear(gear03);
