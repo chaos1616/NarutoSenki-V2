@@ -19,49 +19,11 @@ class Kankuro : public Hero
 		findHeroHalf();
 
 		tryUseGear6();
-		if (canBuyGear())
-		{
-			if (getGearArray().size() == 0)
-				setGear(gear06);
-			else if (getGearArray().size() == 1)
-				setGear(gear04);
-			else if (getGearArray().size() == 2)
-				setGear(gear08);
-		}
+		tryBuyGear(gear06, gear04, gear08);
 
-		if (checkRetri())
-		{
-			if (_mainTarget != nullptr)
-			{
-				if (stepBack2())
-					return;
-			}
-			else
-			{
-				if (stepBack())
-					return;
-			}
-		}
-
-		if (isBaseDanger && checkBase() && !_isControlled)
-		{
-			bool needBack = false;
-			if (isAkatsukiGroup())
-			{
-				if (getPositionX() < 85 * 32)
-					needBack = true;
-			}
-			else
-			{
-				if (getPositionX() > 11 * 32)
-					needBack = true;
-			}
-			if (needBack)
-			{
-				if (stepBack2())
-					return;
-			}
-		}
+		if (needBackToTowerToRestoreHP() ||
+			needBackToDefendTower())
+			return;
 
 		bool isFound1 = false;
 		bool isFound2 = false;
@@ -116,7 +78,7 @@ class Kankuro : public Hero
 					attack(OUGIS2);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 5000 && !_isHealling && !_isControlled)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 5000 && !_isHealing && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 						stepBack2();
@@ -180,18 +142,11 @@ class Kankuro : public Hero
 					attack(NAttack);
 				}
 			}
+
 			return;
 		}
 
-		if (_isHealling && getHpPercent() < 1)
-		{
-			if (isFreeActionState())
-				idle();
-		}
-		else
-		{
-			stepOn();
-		}
+		checkHealingState();
 	}
 
 	void changeAction() override
@@ -244,7 +199,7 @@ class Kankuro : public Hero
 	}
 
 private:
-	inline void tryLockSkillButton()
+	void tryLockSkillButton()
 	{
 		if (isPlayer())
 		{

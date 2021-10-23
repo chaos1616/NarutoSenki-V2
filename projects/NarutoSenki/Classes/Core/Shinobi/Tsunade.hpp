@@ -9,50 +9,11 @@ class Tsunade : public Hero
 		_mainTarget = nullptr;
 		findHeroHalf();
 
-		if (canBuyGear())
-		{
-			if (getGearArray().size() == 0)
-				setGear(gear03);
-			else if (getGearArray().size() == 1)
-				setGear(gear02);
-			else if (getGearArray().size() == 2)
-				setGear(gear04);
-		}
+		tryBuyGear(gear03, gear02, gear04);
 
-		if (checkRetri())
-		{
-			if (_mainTarget != nullptr)
-			{
-				if (stepBack2())
-					return;
-			}
-			else
-			{
-				if (stepBack())
-					return;
-			}
-		}
-
-		if (isBaseDanger && checkBase() && !_isControlled)
-		{
-			bool needBack = false;
-			if (isAkatsukiGroup())
-			{
-				if (getPositionX() < 85 * 32)
-					needBack = true;
-			}
-			else
-			{
-				if (getPositionX() > 11 * 32)
-					needBack = true;
-			}
-
-			if (needBack)
-			{
-				if (stepBack2())
-					return;
-			}
-		}
+		if (needBackToTowerToRestoreHP() ||
+			needBackToDefendTower())
+			return;
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
@@ -82,7 +43,7 @@ class Tsunade : public Hero
 					attack(SKILL3);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControlled && !_isArmored)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealing && !_isControlled && !_isArmored)
 				{
 					if (abs(sp.x) < 160)
 						stepBack2();
@@ -167,18 +128,11 @@ class Tsunade : public Hero
 					attack(NAttack);
 				}
 			}
+
 			return;
 		}
 
-		if (_isHealling && getHpPercent() < 1)
-		{
-			if (isFreeActionState())
-				idle();
-		}
-		else
-		{
-			stepOn();
-		}
+		checkHealingState();
 	}
 
 	void changeAction() override

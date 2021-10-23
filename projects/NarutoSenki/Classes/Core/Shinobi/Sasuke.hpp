@@ -40,50 +40,11 @@ class Sasuke : public Hero
 		findHeroHalf();
 
 		tryUseGear6();
-		if (canBuyGear())
-		{
-			if (getGearArray().size() == 0)
-				setGear(gear06);
-			else if (getGearArray().size() == 1)
-				setGear(gear01);
-			else if (getGearArray().size() == 2)
-				setGear(gear02);
-		}
+		tryBuyGear(gear06, gear01, gear02);
 
-		if (checkRetri())
-		{
-			if (_mainTarget != nullptr)
-			{
-				if (stepBack2())
-					return;
-			}
-			else
-			{
-				if (stepBack())
-					return;
-			}
-		}
-
-		if (isBaseDanger && checkBase() && !_isControlled)
-		{
-			bool needBack = false;
-			if (isAkatsukiGroup())
-			{
-				if (getPositionX() < 85 * 32)
-					needBack = true;
-			}
-			else
-			{
-				if (getPositionX() > 11 * 32)
-					needBack = true;
-			}
-
-			if (needBack)
-			{
-				if (stepBack2())
-					return;
-			}
-		}
+		if (needBackToTowerToRestoreHP() ||
+			needBackToDefendTower())
+			return;
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
@@ -98,7 +59,7 @@ class Sasuke : public Hero
 					attack(OUGIS2);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isArmored && !_isControlled)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealing && !_isArmored && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 						stepBack2();
@@ -201,15 +162,7 @@ class Sasuke : public Hero
 			return;
 		}
 
-		if (_isHealling && getHpPercent() < 1)
-		{
-			if (isFreeActionState())
-				idle();
-		}
-		else
-		{
-			stepOn();
-		}
+		checkHealingState();
 	}
 
 	inline void changeAction_Sasuke()
@@ -338,50 +291,11 @@ class Sasuke : public Hero
 		findHeroHalf();
 
 		tryUseGear6();
-		if (canBuyGear())
-		{
-			if (getGearArray().size() == 0)
-				setGear(gear06);
-			else if (getGearArray().size() == 1)
-				setGear(gear01);
-			else if (getGearArray().size() == 2)
-				setGear(gear02);
-		}
+		tryBuyGear(gear06, gear01, gear02);
 
-		if (checkRetri())
-		{
-			if (_mainTarget != nullptr)
-			{
-				if (stepBack2())
-					return;
-			}
-			else
-			{
-				if (stepBack())
-					return;
-			}
-		}
-
-		if (isBaseDanger && checkBase() && !_isControlled)
-		{
-			bool needBack = false;
-			if (isAkatsukiGroup())
-			{
-				if (getPositionX() < 85 * 32)
-					needBack = true;
-			}
-			else
-			{
-				if (getPositionX() > 11 * 32)
-					needBack = true;
-			}
-
-			if (needBack)
-			{
-				if (stepBack2())
-					return;
-			}
-		}
+		if (needBackToTowerToRestoreHP() ||
+			needBackToDefendTower())
+			return;
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
@@ -409,7 +323,7 @@ class Sasuke : public Hero
 					attack(OUGIS2);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isArmored && !_isControlled)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealing && !_isArmored && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 						stepBack2();
@@ -502,15 +416,7 @@ class Sasuke : public Hero
 			return;
 		}
 
-		if (_isHealling && getHpPercent() < 1)
-		{
-			if (isFreeActionState())
-				idle();
-		}
-		else
-		{
-			stepOn();
-		}
+		checkHealingState();
 	}
 
 	inline void changeAction_SasukeImmortal()

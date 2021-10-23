@@ -34,6 +34,7 @@ class NarutoClone : public Hero
 					attack(NAttack);
 				}
 			}
+
 			return;
 		}
 

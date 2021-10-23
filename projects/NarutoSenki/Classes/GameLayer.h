@@ -179,4 +179,4 @@ private:
 	vector<OnHUDInitializedCallback> callbackssList;
 };
 
-#define BIND(funcName) bind(&funcName, this)
+#define BIND(funcName) std::bind(&funcName, this)

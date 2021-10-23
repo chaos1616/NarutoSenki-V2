@@ -47,7 +47,6 @@ class Akamaru : public Hero
 						attack(NAttack);
 					}
 				}
-				return;
 			}
 			else
 			{
@@ -55,7 +54,6 @@ class Akamaru : public Hero
 				{
 					moveDirection = ccpNormalize(sp);
 					walk(moveDirection);
-					return;
 				}
 				else
 				{
@@ -82,9 +80,9 @@ class Akamaru : public Hero
 						}
 					}
 				}
-
-				return;
 			}
+
+			return;
 		}
 
 		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > kAttackRange - 64)

@@ -34,6 +34,7 @@ class Kurama : public Hero
 					attack(NAttack);
 				}
 			}
+
 			return;
 		}
 

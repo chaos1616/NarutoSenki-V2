@@ -113,49 +113,11 @@ class Kakuzu : public Hero
 
 		findHeroHalf();
 
-		if (canBuyGear())
-		{
-			if (getGearArray().size() == 0)
-				setGear(gear03);
-			else if (getGearArray().size() == 1)
-				setGear(gear08);
-			else if (getGearArray().size() == 2)
-				setGear(gear04);
-		}
+		tryBuyGear(gear03, gear08, gear04);
 
-		if (checkRetri())
-		{
-			if (_mainTarget != nullptr)
-			{
-				if (stepBack2())
-					return;
-			}
-			else
-			{
-				if (stepBack())
-					return;
-			}
-		}
-
-		if (isBaseDanger && checkBase() && !_isControlled)
-		{
-			bool needBack = false;
-			if (isAkatsukiGroup())
-			{
-				if (getPositionX() < 85 * 32)
-					needBack = true;
-			}
-			else
-			{
-				if (getPositionX() > 11 * 32)
-					needBack = true;
-			}
-			if (needBack)
-			{
-				if (stepBack2())
-					return;
-			}
-		}
+		if (needBackToTowerToRestoreHP() ||
+			needBackToDefendTower())
+			return;
 
 		bool isSummonAble = false;
 
@@ -200,7 +162,7 @@ class Kakuzu : public Hero
 					attack(SKILL2);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 5000 && !_isHealling && !_isControlled)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 5000 && !_isHealing && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 						stepBack2();
@@ -255,18 +217,11 @@ class Kakuzu : public Hero
 					attack(NAttack);
 				}
 			}
+
 			return;
 		}
 
-		if (_isHealling && getHpPercent() < 1)
-		{
-			if (isFreeActionState())
-				idle();
-		}
-		else
-		{
-			stepOn();
-		}
+		checkHealingState();
 	}
 
 	void changeAction() override

@@ -206,50 +206,11 @@ class Lee : public Hero
 		findHeroHalf();
 
 		tryUseGear6();
-		if (canBuyGear())
-		{
-			if (getGearArray().size() == 0)
-				setGear(gear06);
-			else if (getGearArray().size() == 1)
-				setGear(gear07);
-			else if (getGearArray().size() == 2)
-				setGear(gear02);
-		}
+		tryBuyGear(gear06, gear07, gear02);
 
-		if (checkRetri())
-		{
-			if (_mainTarget != nullptr)
-			{
-				if (stepBack2())
-					return;
-			}
-			else
-			{
-				if (stepBack())
-					return;
-			}
-		}
-
-		if (isBaseDanger && checkBase() && !_isControlled)
-		{
-			bool needBack = false;
-			if (isAkatsukiGroup())
-			{
-				if (getPositionX() < 85 * 32)
-					needBack = true;
-			}
-			else
-			{
-				if (getPositionX() > 11 * 32)
-					needBack = true;
-			}
-
-			if (needBack)
-			{
-				if (stepBack2())
-					return;
-			}
-		}
+		if (needBackToTowerToRestoreHP() ||
+			needBackToDefendTower())
+			return;
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
@@ -264,7 +225,7 @@ class Lee : public Hero
 					attack(SKILL1);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControlled)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealing && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 						stepBack2();
@@ -329,18 +290,11 @@ class Lee : public Hero
 					attack(NAttack);
 				}
 			}
+
 			return;
 		}
 
-		if (_isHealling && getHpPercent() < 1)
-		{
-			if (isFreeActionState())
-				idle();
-		}
-		else
-		{
-			stepOn();
-		}
+		checkHealingState();
 	}
 
 	// RockLee
@@ -351,50 +305,11 @@ class Lee : public Hero
 		findHeroHalf();
 
 		tryUseGear6();
-		if (canBuyGear())
-		{
-			if (getGearArray().size() == 0)
-				setGear(gear06);
-			else if (getGearArray().size() == 1)
-				setGear(gear07);
-			else if (getGearArray().size() == 2)
-				setGear(gear02);
-		}
+		tryBuyGear(gear06, gear07, gear02);
 
-		if (checkRetri())
-		{
-			if (_mainTarget != nullptr)
-			{
-				if (stepBack2())
-					return;
-			}
-			else
-			{
-				if (stepBack())
-					return;
-			}
-		}
-
-		if (isBaseDanger && checkBase() && !_isControlled)
-		{
-			bool needBack = false;
-			if (isAkatsukiGroup())
-			{
-				if (getPositionX() < 85 * 32)
-					needBack = true;
-			}
-			else
-			{
-				if (getPositionX() > 11 * 32)
-					needBack = true;
-			}
-
-			if (needBack)
-			{
-				if (stepBack2())
-					return;
-			}
-		}
+		if (needBackToTowerToRestoreHP() ||
+			needBackToDefendTower())
+			return;
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
@@ -414,7 +329,7 @@ class Lee : public Hero
 					changeSide(sp);
 					attack(OUGIS2);
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControlled)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealing && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 						stepBack2();
@@ -490,18 +405,11 @@ class Lee : public Hero
 					attack(NAttack);
 				}
 			}
+
 			return;
 		}
 
-		if (_isHealling && getHpPercent() < 1)
-		{
-			if (isFreeActionState())
-				idle();
-		}
-		else
-		{
-			stepOn();
-		}
+		checkHealingState();
 	}
 
 	// Callbacks
@@ -509,7 +417,7 @@ class Lee : public Hero
 	bool isEnableSkill05() override { return htLv >= 3; }
 
 private:
-	inline void tryLockSkillButton()
+	void tryLockSkillButton()
 	{
 		if (htLv < 3 && isPlayer())
 		{

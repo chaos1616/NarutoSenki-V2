@@ -7,6 +7,7 @@ class Hidan : public Hero
 	{
 		_mainTarget = nullptr;
 		bool _isFound = false;
+
 		if (hasMonsterArrayAny())
 		{
 			for (auto mo : _monsterArray)
@@ -54,55 +55,15 @@ class Hidan : public Hero
 		}
 
 		if (!_isFound)
-		{
 			findHeroHalf();
-		}
 
 		tryUseGear6();
-		if (canBuyGear())
-		{
-			if (getGearArray().size() == 0)
-				setGear(gear06);
-			else if (getGearArray().size() == 1)
-				setGear(gear01);
-			else if (getGearArray().size() == 2)
-				setGear(gear07);
-		}
+		tryBuyGear(gear06, gear01, gear07);
 
-		if (checkRetri() && !_isArmored && !_isFound)
-		{
-			if (_mainTarget != nullptr)
-			{
-				if (stepBack2())
-					return;
-			}
-			else
-			{
-				if (stepBack())
-					return;
-			}
-		}
-
-		if (isBaseDanger && checkBase() && !_isControlled && !_isArmored && !_isFound)
-		{
-			bool needBack = false;
-			if (isAkatsukiGroup())
-			{
-				if (getPositionX() < 85 * 32)
-					needBack = true;
-			}
-			else
-			{
-				if (getPositionX() > 11 * 32)
-					needBack = true;
-			}
-
-			if (needBack)
-			{
-				if (stepBack2())
-					return;
-			}
-		}
+		bool needBack = !_isArmored && !_isFound;
+		if (needBackToTowerToRestoreHP(needBack) ||
+			needBackToDefendTower(needBack))
+			return;
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
@@ -142,7 +103,7 @@ class Hidan : public Hero
 					attack(SKILL2);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControlled && !_isArmored && !_isFound)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealing && !_isControlled && !_isArmored && !_isFound)
 				{
 					if (abs(sp.x) < 160)
 						stepBack2();
@@ -224,28 +185,14 @@ class Hidan : public Hero
 					attack(NAttack);
 				}
 			}
+
 			return;
 		}
 
 		if (!_isArmored)
-		{
-			if (_isHealling && getHpPercent() < 1)
-			{
-				if (isFreeActionState())
-				{
-					idle();
-				}
-			}
-			else
-			{
-				stepOn();
-			}
-		}
-		else
-		{
-			if (isFreeActionState())
-				idle();
-		}
+			checkHealingState();
+		else if (isFreeActionState())
+			idle();
 	}
 
 	void changeAction() override

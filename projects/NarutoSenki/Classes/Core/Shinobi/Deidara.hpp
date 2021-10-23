@@ -9,35 +9,10 @@ class Deidara : public Hero
 		_mainTarget = nullptr;
 		findHeroHalf();
 
-		if (canBuyGear())
-		{
-			if (getGearArray().size() == 0)
-				setGear(gear00);
-			else if (getGearArray().size() == 1)
-				setGear(gear01);
-			else if (getGearArray().size() == 2)
-				setGear(gear05);
-		}
+		tryBuyGear(gear00, gear01, gear05);
 
-		if (checkRetri())
-		{
-			if (_mainTarget != nullptr)
-			{
-				if (stepBack2())
-				{
-					if (_isCanGear00 && !_isArmored)
-					{
-						useGear(gear00);
-					}
-					return;
-				}
-			}
-			else
-			{
-				if (stepBack())
-					return;
-			}
-		}
+		if (needBackToTowerToRestoreHP())
+			return;
 
 		if (_mainTarget && (battleCondiction >= 0 || _isCanSkill3 || _isCanOugis1 || _isArmored))
 		{
@@ -93,7 +68,7 @@ class Deidara : public Hero
 					attack(SKILL2);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControlled)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealing && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 					{
@@ -198,22 +173,11 @@ class Deidara : public Hero
 					attack(NAttack);
 				}
 			}
+
 			return;
 		}
 
-		if (_isHealling && getHpPercent() < 1)
-		{
-			if (isFreeActionState())
-				idle();
-		}
-		else
-		{
-			if (_isCanGear00 && !_isArmored)
-			{
-				useGear(gear00);
-			}
-			stepOn();
-		}
+		checkHealingState();
 	}
 
 	void changeAction() override

@@ -8,58 +8,11 @@ class Shino : public Hero
 		_mainTarget = nullptr;
 		findHeroHalf();
 
-		if (canBuyGear())
-		{
-			if (getGearArray().size() == 0)
-				setGear(gear00);
-			else if (getGearArray().size() == 1)
-				setGear(gear01);
-			else if (getGearArray().size() == 2)
-				setGear(gear02);
-		}
+		tryBuyGear(gear00, gear01, gear02);
 
-		if (checkRetri())
-		{
-			if (_mainTarget != nullptr)
-			{
-				if (stepBack2())
-					return;
-			}
-			else
-			{
-				if (_isCanGear00)
-				{
-					useGear(gear00);
-				}
-				if (stepBack())
-					return;
-			}
-		}
-
-		if (isBaseDanger && checkBase() && !_isControlled)
-		{
-			bool needBack = false;
-			if (isAkatsukiGroup())
-			{
-				if (getPositionX() < 85 * 32)
-					needBack = true;
-			}
-			else
-			{
-				if (getPositionX() > 11 * 32)
-					needBack = true;
-			}
-
-			if (needBack)
-			{
-				if (_isCanGear00)
-				{
-					useGear(gear00);
-				}
-				if (stepBack2())
-					return;
-			}
-		}
+		if (needBackToTowerToRestoreHP() ||
+			needBackToDefendTower())
+			return;
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
@@ -127,7 +80,7 @@ class Shino : public Hero
 					}
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControlled)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealing && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 					{
@@ -158,7 +111,7 @@ class Shino : public Hero
 				else if (abs(sp.x) < 128)
 				{
 					if (getMaxHPValue() - getHPValue() >= 3000 &&
-						getCoin() >= 50 && !_isHealling && _isCanItem1)
+						getCoin() >= 50 && !_isHealing && _isCanItem1)
 					{
 						setItem(Item1);
 					}
@@ -215,20 +168,11 @@ class Shino : public Hero
 					attack(NAttack);
 				}
 			}
+
 			return;
 		}
 
-		if (_isHealling && getHpPercent() < 1)
-		{
-			if (isFreeActionState())
-				idle();
-		}
-		else
-		{
-			if (_isCanGear00)
-				useGear(gear00);
-			stepOn();
-		}
+		checkHealingState();
 	}
 
 	void changeAction() override

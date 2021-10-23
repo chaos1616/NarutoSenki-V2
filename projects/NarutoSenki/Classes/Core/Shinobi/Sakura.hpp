@@ -8,33 +8,10 @@ class Sakura : public Hero
 		_mainTarget = nullptr;
 		findHeroHalf();
 
-		if (canBuyGear())
-		{
-			if (getGearArray().size() == 0)
-				setGear(gear00);
-			else if (getGearArray().size() == 1)
-				setGear(gear04);
-			else if (getGearArray().size() == 2)
-				setGear(gear08);
-		}
+		tryBuyGear(gear00, gear04, gear08);
 
-		if (checkRetri())
-		{
-			if (_mainTarget != nullptr)
-			{
-				if (stepBack2())
-					return;
-			}
-			else
-			{
-				if (_isCanGear00)
-				{
-					useGear(gear00);
-				}
-				if (stepBack())
-					return;
-			}
-		}
+		if (needBackToTowerToRestoreHP())
+			return;
 
 		if (_mainTarget && (battleCondiction >= 0 || _isCanOugis1 || _isCanOugis2))
 		{
@@ -77,7 +54,7 @@ class Sakura : public Hero
 					attack(OUGIS1);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealling && !_isControlled)
+				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealing && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 						stepBack2();
@@ -174,19 +151,10 @@ class Sakura : public Hero
 					attack(NAttack);
 				}
 			}
+
 			return;
 		}
 
-		if (_isHealling && getHpPercent() < 1)
-		{
-			if (isFreeActionState())
-				idle();
-		}
-		else
-		{
-			if (_isCanGear00)
-				useGear(gear00);
-			stepOn();
-		}
+		checkHealingState();
 	}
 };

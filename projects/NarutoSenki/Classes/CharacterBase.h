@@ -53,7 +53,7 @@ public:
 	bool				_isFlipped;
 	bool				_isHitOne;
 	bool				_isCatchOne;
-	bool				_isHealling;
+	bool				_isHealing;
 	bool				_isVisable;
 
 	// buff
@@ -609,8 +609,16 @@ protected:
 	inline bool 		notFindFlogHalf() { return !findEnemy2(kRoleFlog); }
 	inline bool 		notFindTowerHalf() { return !findEnemy2(kRoleTower); }
 	// AI extensions
-	inline bool			canBuyGear() {
-		return getGearArray().size() < 3 && getCoin() >= 500 && !_isControlled && getGameLayer()->_enableGear;
+	void				tryBuyGear(gearType gear1, gearType gear2, gearType gear3) {
+		if (getCoin() >= 500 && getGearArray().size() < 3 && !_isControlled && getGameLayer()->_enableGear)
+		{
+			if (getGearArray().size() == 0)
+				setGear(gear1);
+			else if (getGearArray().size() == 1)
+				setGear(gear2);
+			else if (getGearArray().size() == 2)
+				setGear(gear3);
+		}
 	}
 	inline void			tryUseGear6() {
 		if (_isCanGear06)
@@ -625,7 +633,82 @@ protected:
 			}
 		}
 	}
-	inline CCPoint 		getDirByMoveTo(CharacterBase *target) { return ccpNormalize(ccpSub(target->getPosition(), getPosition())); }
+	bool				needBackToTowerToRestoreHP(bool isNeedBack = true) {
+		if (checkRetri() && isNeedBack)
+		{
+			if (_mainTarget)
+			{
+				if (stepBack2())
+				{
+					if (_isCanGear00 && !_isArmored)
+						useGear(gear00);
+					return true;
+				}
+			}
+			else
+			{
+				if (_isCanGear00)
+					useGear(gear00);
+
+				if (stepBack())
+					return true;
+			}
+		}
+		return false;
+	}
+	bool				needBackToDefendTower(bool isNeedBack = true) {
+		if (isBaseDanger && checkBase() && !_isControlled && isNeedBack)
+		{
+			bool needBack = false;
+			if (isAkatsukiGroup())
+			{
+				if (getPositionX() < 85 * 32)
+					needBack = true;
+			}
+			else
+			{
+				if (getPositionX() > 11 * 32)
+					needBack = true;
+			}
+
+			if (needBack)
+			{
+				if (_isCanGear00)
+					useGear(gear00);
+
+				if (stepBack2())
+					return true;
+			}
+		}
+		return false;
+	}
+	inline bool			checkMove(float x = 32, float y = 32) {
+		auto sp = getDistanceToTarget();
+		if (abs(sp.x) > x || abs(sp.y) > y)
+		{
+			auto moveDirection = ccpNormalize(sp);
+			walk(moveDirection);
+			return true;
+		}
+		return false;
+	}
+	inline void			checkHealingState() {
+		if (_isHealing && getHpPercent() < 1)
+		{
+			if (isFreeActionState())
+				idle();
+		}
+		else
+		{
+			if (_isCanGear00 && !_isArmored)
+				useGear(gear00);
+
+			stepOn();
+		}
+	}
+	inline CCPoint 		getDirByMoveTo(CharacterBase *target) {
+		return ccpNormalize(ccpSub(target->getPosition(), getPosition()));
+	}
 	inline CCPoint 		getDistanceToTarget() {
 		return _mainTarget->_originY
 			? ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition())

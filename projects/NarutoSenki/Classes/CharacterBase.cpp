@@ -57,7 +57,7 @@ CharacterBase::CharacterBase()
 	_isFlipped = false;
 	_isHitOne = false;
 	_isCatchOne = false;
-	_isHealling = false;
+	_isHealing = false;
 	_isVisable = true;
 	_isSticking = false;
 	_isControlled = false;
@@ -329,7 +329,7 @@ void CharacterBase::update(float dt)
 			{
 				if (isKonohaGroup() && getPositionX() <= 11 * 32)
 				{
-					_isHealling = true;
+					_isHealing = true;
 					if (getHpPercent() < 1.0f)
 					{
 						scheduleOnce(schedule_selector(CharacterBase::setRestore), 1.0f);
@@ -337,7 +337,7 @@ void CharacterBase::update(float dt)
 				}
 				else if (isAkatsukiGroup() && getPositionX() >= 85 * 32)
 				{
-					_isHealling = true;
+					_isHealing = true;
 					if (getHpPercent() < 1.0f)
 					{
 						scheduleOnce(schedule_selector(CharacterBase::setRestore), 1.0f);
@@ -345,7 +345,7 @@ void CharacterBase::update(float dt)
 				}
 				else
 				{
-					_isHealling = false;
+					_isHealing = false;
 				}
 			}
 		}
@@ -1648,13 +1648,13 @@ void CharacterBase::setItem(abType type)
 		uint32_t hpRestore = 3000 + gearRecoverValue;
 		increaseHpAndUpdateUI(hpRestore);
 
-		if (!_isHealling && !_healItemEffect)
+		if (!_isHealing && !_healItemEffect)
 		{
 			_healItemEffect = Effect::create("hp_restore", this);
 			_healItemEffect->setPosition(ccp(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
 											 _height));
 			addChild(_healItemEffect);
-			//_isHealling=true;
+			//_isHealing=true;
 		}
 	}
 }
@@ -4952,8 +4952,8 @@ bool CharacterBase::stepBack2()
 {
 	if (_isControlled)
 		return false;
-	CCPoint moveDirection;
 
+	CCPoint moveDirection;
 	setRand();
 	int randomDirection = random(10);
 
@@ -5034,7 +5034,7 @@ bool CharacterBase::stepBack2()
 	}
 }
 
-// [For AI] 检查角色是否需要使用【拉面】回血，血量低于界限，则返回true
+// [For AI] 检查角色是否需要使用【拉面】回血，若血量低于界限，则返回true
 bool CharacterBase::checkRetri()
 {
 	if (_isCanItem1 && getCoin() >= 50)
@@ -5043,7 +5043,7 @@ bool CharacterBase::checkRetri()
 		{
 			if (battleCondiction >= 0)
 			{
-				if (!_isHealling)
+				if (!_isHealing)
 				{
 					if (getMaxHPValue() - getHPValue() >= 3000 + gearRecoverValue && getGearArray().size() > 1)
 						setItem(Item1);
@@ -5055,7 +5055,7 @@ bool CharacterBase::checkRetri()
 			}
 			else
 			{
-				if (getMaxHPValue() - getHPValue() >= 3000 + gearRecoverValue && !_isHealling && getGearArray().size() > 0)
+				if (getMaxHPValue() - getHPValue() >= 3000 + gearRecoverValue && !_isHealing && getGearArray().size() > 0)
 					setItem(Item1);
 				else if (getHPValue() < 3000)
 					setItem(Item1);

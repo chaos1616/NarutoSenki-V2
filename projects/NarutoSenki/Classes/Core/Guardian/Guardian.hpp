@@ -37,7 +37,8 @@ class Guardian : public Hero
 				walk(moveDirection);
 				return;
 			}
-			else if (isFreeActionState())
+
+			if (isFreeActionState())
 			{
 				bool isTurn = false;
 				auto gardTower = getGameLayer()->getGuardianGroup();
@@ -68,20 +69,22 @@ class Guardian : public Hero
 					attack(NAttack);
 				}
 			}
+
 			return;
 		}
 		else
 		{
 			CCPoint moveDirection;
 			CCPoint sp = ccpSub(getSpawnPoint(), getPosition());
+
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
 				moveDirection = ccpNormalize(sp);
 				walk(moveDirection);
 				return;
 			}
-			else
-				idle();
+
+			idle();
 		}
 	}
 
