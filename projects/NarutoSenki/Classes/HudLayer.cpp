@@ -184,16 +184,12 @@ void HudLayer::playGameOpeningAnimation()
 
 	auto tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
 	auto tempAction = CCAnimate::create(tempAnimation);
-	auto list = CCArray::create();
-	list->addObject(tempAction);
-	auto seq = CCSequence::create(list);
 
 	openingSprite = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("gameStart_001.png")->getCString());
-
 	openingSprite->setAnchorPoint(ccp(0.5f, 0.5f));
 	openingSprite->setPosition(ccp(winSize.width / 2 + 32, winSize.height / 2));
 	addChild(openingSprite, 5000);
-	openingSprite->runAction(seq);
+	openingSprite->runAction(tempAction);
 }
 
 void HudLayer::initHeroInterface()
