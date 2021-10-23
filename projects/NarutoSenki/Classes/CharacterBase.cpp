@@ -2290,16 +2290,16 @@ void CharacterBase::setBuff(int buffValue)
 		else
 		{
 			if (isNotGuardian() &&
-				isNotCharacter("Kankuro",
-							   "Chiyo",
-							   "Hiruzen",
-							   "Suigetsu,"
-							   "Jugo",
-							   "Kisame",
-							   "Parents",
-							   "Lee",
-							   "RockLee",
-							   "Nagato"))
+				isNotCharacter("Kankuro") &&
+				isNotCharacter("Chiyo") &&
+				isNotCharacter("Hiruzen") &&
+				isNotCharacter("Suigetsu") &&
+				isNotCharacter("Jugo") &&
+				isNotCharacter("Kisame") &&
+				isNotCharacter("Parents") &&
+				isNotCharacter("Lee") &&
+				isNotCharacter("RockLee") &&
+				isNotCharacter("Nagato"))
 			{
 				scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
 			}

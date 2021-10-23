@@ -69,8 +69,7 @@ void HPBar::loseHP(float percent)
 		if (_delegate->isFlog())
 		{
 			if (_slayer->getSecMaster() &&
-				_slayer->isNotCharacter("KageHand") &&
-				_slayer->isNotCharacter("KageHands"))
+				_slayer->isNotCharacter("KageHand", "KageHands"))
 			{
 				if (_slayer->getSecMaster()->getController())
 					currentSlayer = _slayer->getSecMaster()->getController();
