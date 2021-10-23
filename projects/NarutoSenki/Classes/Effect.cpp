@@ -262,7 +262,7 @@ CCAction *Effect::createEffectAnimation(const char *file, int frameCount, float 
 		animeFrames->addObject(frame);
 	}
 
-	auto tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, float(1.0 / fps));
+	auto tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, 1.0 / fps);
 	auto tempAction = CCAnimate::create(tempAnimation);
 	auto seqArray = CCArray::createWithObject(tempAction);
 	CCAction *seq;

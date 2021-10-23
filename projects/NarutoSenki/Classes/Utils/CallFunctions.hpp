@@ -22,7 +22,7 @@ public:
 
 	bool initWithTarget(const std::function<void()> &func)
 	{
-		this->func = func;
+		_func = func;
 		return true;
 	}
 
@@ -43,17 +43,17 @@ public:
 		}
 
 		CCCallFunc::copyWithZone(zone);
-		pRet->initWithTarget(func);
+		pRet->initWithTarget(_func);
 		CC_SAFE_DELETE(pNewZone);
 		return pRet;
 	}
 
 	void execute()
 	{
-		if (func)
-			func();
+		if (_func)
+			_func();
 	}
 
 protected:
-	std::function<void()> func;
+	std::function<void()> _func;
 };
