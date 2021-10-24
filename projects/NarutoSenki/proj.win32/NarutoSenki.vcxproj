@@ -84,7 +84,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AssemblerOutput>All</AssemblerOutput>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard_C>Default</LanguageStandard_C>
     </ClCompile>
@@ -126,7 +126,7 @@ xcopy /Y /Q "$(SolutionDir)$(Configuration).win32\*.exe" "$(SolutionDir)projects
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
     </ClCompile>
     <Link>

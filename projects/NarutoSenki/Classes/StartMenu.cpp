@@ -1,5 +1,4 @@
 #include "StartMenu.h"
-#include "MyUtils/Cocos2dxHelper.hpp"
 
 GameMode s_GameMode = GameMode::Classic;
 IGameModeHandler *s_ModeHandlers[GameMode::_Internal_Max_Length] = {

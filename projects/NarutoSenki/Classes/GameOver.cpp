@@ -357,7 +357,7 @@ void GameOver::listResult()
 
 		if (_isWin && getGameLayer()->_isHardCoreGame)
 		{
-			finnalScore = resultScore + float(currPlayer->_flogNum) / 100;
+			// finnalScore = resultScore + float(currPlayer->_flogNum) / 100;
 			// CCString *recordString = CCString::createWithFormat("%0.2fPts", finnalScore);
 
 			// auto recordScore = CCLabelBMFont::create(recordString->getCString(), "Fonts/1.fnt");
