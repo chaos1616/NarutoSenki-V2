@@ -42,9 +42,9 @@ bool GearButton::containsTouchLocation(CCTouch *touch)
 	return getRect().containsPoint(convertTouchToNodeSpace(touch));
 }
 
-void GearButton::setBtnType(gearType gearType, GearButtonType btnType, bool isBuyed)
+void GearButton::setBtnType(GearType type, GearButtonType btnType, bool isBuyed)
 {
-	_gearType = gearType;
+	_gearType = type;
 	_btnType = btnType;
 
 	if (_btnType == GearButtonType::Buy)
@@ -69,7 +69,7 @@ void GearButton::setBtnType(gearType gearType, GearButtonType btnType, bool isBu
 	}
 }
 
-gearType GearButton::getBtnType()
+GearType GearButton::getBtnType()
 {
 	return _gearType;
 }
@@ -86,11 +86,11 @@ void GearButton::click()
 		_delegate->currentGear = _gearType;
 	}
 
-	auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("gearDetail_%02d.png", gearType(_gearType))->getCString());
+	auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("gearDetail_%02d.png", _gearType)->getCString());
 	_delegate->gearDetail->setDisplayFrame(frame);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
-	auto icon = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("gear_%02d.png", gearType(_gearType))->getCString());
+	auto icon = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("gear_%02d.png", _gearType)->getCString());
 	_delegate->gearBigIcon->setDisplayFrame(icon);
 #endif
 }
@@ -397,14 +397,14 @@ void GearLayer::updateGearList()
 
 		if (currentGear == None && !isBuyed)
 		{
-			currentGear = gearType(i);
+			currentGear = GearType(i);
 			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("gearDetail_%02d.png", i)->getCString());
 			gearDetail->setDisplayFrame(frame);
 		}
 
 		btn->setPosition(ccp(6 + column * 46, -row * 60));
 		btn->setAnchorPoint(ccp(0, 0));
-		btn->setBtnType(gearType(i), GearButtonType::Buy, isBuyed);
+		btn->setBtnType(GearType(i), GearButtonType::Buy, isBuyed);
 		btn->setDelegate(this);
 
 		gearBtns.push_back(btn);

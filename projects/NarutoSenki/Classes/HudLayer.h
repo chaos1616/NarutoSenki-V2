@@ -94,7 +94,7 @@ public:
 
 	void initHeroInterface();
 	void attackButtonClick(abType type);
-	void gearButtonClick(gearType type);
+	void gearButtonClick(GearType type);
 	void attackButtonRelease();
 	void pauseButtonClick(CCObject *sender);
 	void gearButtonClick(CCObject *sender);

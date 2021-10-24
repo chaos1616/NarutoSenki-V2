@@ -596,20 +596,20 @@ void HudLayer::updateGears()
 
 		if (gear == 6 && getItem2Button()->_gearType == None)
 		{
-			getItem2Button()->_gearType = gearType(gear);
+			getItem2Button()->_gearType = gear;
 			getItem2Button()->setVisible(true);
 			getItem2Button()->_isLock = false;
 		}
 		else if (gear == 0 && getItem3Button()->_gearType == None)
 		{
-			getItem3Button()->_gearType = gearType(gear);
+			getItem3Button()->_gearType = gear;
 			getItem3Button()->_isLock = false;
 			getItem3Button()->setVisible(true);
 		}
 		else if (gear == 3 && getItem4Button()->_gearType == None)
 		{
 			getItem4Button()->setVisible(true);
-			getItem4Button()->_gearType = gearType(gear);
+			getItem4Button()->_gearType = gear;
 			getItem4Button()->_isLock = false;
 		}
 
@@ -1106,7 +1106,7 @@ void HudLayer::attackButtonClick(abType type)
 	getGameLayer()->attackButtonClick(type);
 }
 
-void HudLayer::gearButtonClick(gearType type)
+void HudLayer::gearButtonClick(GearType type)
 {
 	getGameLayer()->gearButtonClick(type);
 }

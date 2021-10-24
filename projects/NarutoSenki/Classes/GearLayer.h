@@ -29,7 +29,7 @@ public:
 	CCSprite *gears_bg = nullptr;
 
 	ScrewLayer *_screwLayer = nullptr;
-	gearType currentGear = None;
+	GearType currentGear = None;
 	void updatePlayerGear();
 	void updateGearList();
 	void confirmPurchase();
@@ -47,14 +47,14 @@ public:
 	bool init(const char *szImage);
 
 	bool _isBuyed;
-	gearType _gearType;
+	GearType _gearType;
 	GearButtonType _btnType;
 	CCSprite *soIcon;
 	CC_SYNTHESIZE(GearLayer *, _delegate, Delegate);
 
 	CCRect getRect();
-	void setBtnType(gearType gearType, GearButtonType btnType, bool isBuyed);
-	gearType getBtnType();
+	void setBtnType(GearType type, GearButtonType btnType, bool isBuyed);
+	GearType getBtnType();
 	void playSound();
 	void click();
 

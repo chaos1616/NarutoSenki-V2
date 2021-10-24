@@ -24,35 +24,6 @@ $#include "HPBar.h"
 
 $pfile "game/CharacterBase.pkg"
 
-/* Defines.h */
-enum abType
-{
-	NAttack,
-	Item1,
-	GearItem,
-	GearBtn,
-	SKILL1,
-	SKILL2,
-	SKILL3,
-	OUGIS1,
-	OUGIS2
-};
-
-enum gearType
-{
-	gear00,
-	gear01,
-	gear02,
-	gear03,
-	gear04,
-	gear05,
-	gear06,
-	gear07,
-	gear08,
-	None
-};
-
-
 /* ------- UI Layer ------- */
 
 /* GameScene.h */

@@ -99,7 +99,7 @@ public:
 	CC_SYNTHESIZE_RETAIN(CCString*,_role,Role);
 	CC_SYNTHESIZE_RETAIN(CCString*,_group,Group);
 	CC_SYNTHESIZE_RETAIN(CCString*,_character,Character);
-	PROP_Vector(vector<gearType>,_gearArray,GearArray);
+	PROP_Vector(vector<GearType>,_gearArray,GearArray);
 
 	bool				enableDead	 = true;
 	bool				enableReborn = true;
@@ -328,8 +328,8 @@ public:
 	void				disableGear2(float dt);
 	void				disableGear3(float dt);
 
-	bool				setGear(gearType type);
-	void				useGear(gearType type);
+	bool				setGear(GearType type);
+	void				useGear(GearType type);
 
 	void				setCoinDisplay(int num);
 	void				removeCoinDisplay(CCSprite *coinDisplay);
@@ -593,7 +593,7 @@ protected:
 	inline bool 		notFindFlogHalf() { return !findEnemy2(kRoleFlog); }
 	inline bool 		notFindTowerHalf() { return !findEnemy2(kRoleTower); }
 	// AI extensions
-	void				tryBuyGear(gearType gear1, gearType gear2, gearType gear3) {
+	void				tryBuyGear(GearType gear1, GearType gear2, GearType gear3) {
 		if (getCoin() >= 500 && getGearArray().size() < 3 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray().size() == 0)

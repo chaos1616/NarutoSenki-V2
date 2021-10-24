@@ -43,7 +43,7 @@ public:
 	bool _isMarkVisable;
 
 	PROP(abType, _abType, ABType);
-	gearType _gearType;
+	GearType _gearType;
 
 	CC_SYNTHESIZE_RETAIN(CCString *, _cooldown, CD);
 	PROP(bool, _isDoubleSkill, DoubleSkill);
@@ -52,7 +52,7 @@ public:
 	void setLock();
 	void unLock();
 	void clearOugisMark();
-	void setGearType(int tmpGearType);
+	void setGearType(GearType type);
 
 	CC_SYNTHESIZE_RETAIN(CCAction *, _freezeAction, FreezeAction);
 	//CC_SYNTHESIZE_RETAIN(CCProgressTimer*,markSprite,MarkSprite);

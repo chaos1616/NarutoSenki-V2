@@ -656,7 +656,7 @@ void GameLayer::attackButtonClick(abType type)
 	}
 }
 
-void GameLayer::gearButtonClick(gearType type)
+void GameLayer::gearButtonClick(GearType type)
 {
 	currentPlayer->useGear(type);
 }

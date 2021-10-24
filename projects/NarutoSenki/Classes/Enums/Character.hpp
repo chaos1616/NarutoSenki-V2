@@ -48,7 +48,7 @@ enum abType
 };
 
 // declare GearButton
-enum gearType
+enum GearType
 {
 	gear00,
 	gear01,

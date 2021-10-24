@@ -100,7 +100,7 @@ public:
 	void addFlog(float dt);
 
 	void attackButtonClick(abType type);
-	void gearButtonClick(gearType type);
+	void gearButtonClick(GearType type);
 	void attackButtonRelease();
 
 	void JoyStickRelease();

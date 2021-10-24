@@ -107,7 +107,7 @@ void ActionButton::click()
 
 bool ActionButton::isCanClick()
 {
-	//recorde current time sec format;
+	// recorde current time sec format;
 
 	cc_timeval timeVal;
 	CCTime::gettimeofdayCocos2d(&timeVal, 0);
@@ -117,7 +117,7 @@ bool ActionButton::isCanClick()
 	{
 		if (_isDoubleSkill)
 		{
-			//double click solution
+			// double click solution
 			if (_clickNum == 0 && _delegate->getSkillFinish() && !_timeCout && !_delegate->ougisLayer)
 			{
 				return true;
@@ -166,7 +166,7 @@ bool ActionButton::isCanClick()
 					}
 				}
 			}
-			//ougis click solution
+			// ougis click solution
 			else if (_abType == OUGIS1)
 			{
 				if (_delegate->getSkillFinish() && _delegate->getOugisEnable(false) && !_isLock && !_delegate->ougisLayer)
@@ -202,7 +202,7 @@ bool ActionButton::isCanClick()
 
 void ActionButton::beganAnimation(bool isLock)
 {
-	//record the click time
+	// record the click time
 	cc_timeval timeVal;
 	CCTime::gettimeofdayCocos2d(&timeVal, 0);
 	_clickTime = timeVal.tv_sec + timeVal.tv_usec / 1000;
@@ -248,13 +248,13 @@ void ActionButton::beganAnimation(bool isLock)
 	}
 }
 
-void ActionButton::setGearType(int tmpGearType)
+void ActionButton::setGearType(GearType type)
 {
-	CCSprite *gearIcon = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("gear_%02d.png", gearType(tmpGearType))->getCString());
+	CCSprite *gearIcon = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("gear_%02d.png", type)->getCString());
 	gearIcon->setScale(0.85f);
 	gearIcon->setPosition(ccp(18, 18));
 	addChild(gearIcon);
-	_gearType = gearType(tmpGearType);
+	_gearType = type;
 
 	if (gearSign)
 	{
@@ -357,7 +357,7 @@ void ActionButton::setProgressMark()
 	clipper->addChild(proressmarkSprite);
 
 	proressmarkSprite->setPosition(ccp(proressmarkSprite->getContentSize().width / 2, proressmarkSprite->getContentSize().height / 2));
-	//50,120,180
+	// 50,120,180
 
 	_delegate->addChild(clipper, -50);
 

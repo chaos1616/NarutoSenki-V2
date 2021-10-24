@@ -1647,7 +1647,7 @@ void CharacterBase::setItem(abType type)
 	}
 }
 
-bool CharacterBase::setGear(gearType type)
+bool CharacterBase::setGear(GearType type)
 {
 	uint32_t gearCost = 0;
 	// The cost of [ 00 03 06 ] is 500
@@ -1728,7 +1728,7 @@ bool CharacterBase::setGear(gearType type)
 	}
 }
 
-void CharacterBase::useGear(gearType type)
+void CharacterBase::useGear(GearType type)
 {
 	if (_isControlled)
 		return;
