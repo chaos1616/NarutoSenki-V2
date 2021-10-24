@@ -67914,7 +67914,7 @@ static int tolua_Cocos2d_KTools_saveSQLite00(lua_State* tolua_S)
      !tolua_isstring(tolua_S,3,0,&tolua_err) ||
      !tolua_isstring(tolua_S,4,0,&tolua_err) ||
      !tolua_isstring(tolua_S,5,0,&tolua_err) ||
-     !tolua_isstring(tolua_S,6,0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,6,0,&tolua_err) ||
      !tolua_isboolean(tolua_S,7,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,8,&tolua_err)
  )
@@ -67926,13 +67926,14 @@ static int tolua_Cocos2d_KTools_saveSQLite00(lua_State* tolua_S)
   const char* relatedColumn = ((const char*)  tolua_tostring(tolua_S,3,0));
   const char* value = ((const char*)  tolua_tostring(tolua_S,4,0));
   const char* targetColumn = ((const char*)  tolua_tostring(tolua_S,5,0));
-  char* targetValue = ((char*)  tolua_tostring(tolua_S,6,0));
+  const string targetValue = ((const string)  tolua_tocppstring(tolua_S,6,0));
   bool isPlus = ((bool)  tolua_toboolean(tolua_S,7,0));
   {
    KTools::saveSQLite(table,relatedColumn,value,targetColumn,targetValue,isPlus);
+   tolua_pushcppstring(tolua_S,(const char*)targetValue);
   }
  }
- return 0;
+ return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'saveSQLite'.",&tolua_err);

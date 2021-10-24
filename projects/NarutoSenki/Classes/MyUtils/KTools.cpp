@@ -398,7 +398,7 @@ string KTools::readSQLite(const char *table, const char *column, const char *val
 	return "";
 }
 
-void KTools::saveSQLite(const char *table, const char *relatedColumn, const char *value, const char *targetColumn, char *targetValue, bool isPlus)
+void KTools::saveSQLite(const char *table, const char *relatedColumn, const char *value, const char *targetColumn, const string &targetValue, bool isPlus)
 {
 	char *errorMsg = nullptr;
 	sqlite3 *pDB = prepareTableInDB();
@@ -431,12 +431,12 @@ void KTools::saveSQLite(const char *table, const char *relatedColumn, const char
 		string saveValue;
 		if (isPlus)
 		{
-			saveValue = string(targetValue) + target;
+			saveValue = targetValue + target;
 			sql = CCString::createWithFormat(("update %s set %s='%s' where %s='%s'"), table, targetColumn, saveValue.c_str(), relatedColumn, columnValue.c_str())->getCString();
 		}
 		else
 		{
-			saveValue = string(targetValue);
+			saveValue = targetValue;
 		}
 		int key = rand() % 50 + 40;
 		encode(saveValue, key);

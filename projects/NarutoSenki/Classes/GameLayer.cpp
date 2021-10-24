@@ -443,8 +443,8 @@ void GameLayer::updateGameTime(float dt)
 		_minute += 1;
 		_second = 0;
 	}
-	CCString *tempTime = CCString::createWithFormat("%02d:%02d", _minute, _second);
-	_hudLayer->gameClock->setString(tempTime->getCString());
+	auto tempTime = format("{:02d}:{:02d}", _minute, _second);
+	_hudLayer->gameClock->setString(tempTime.c_str());
 
 	int newValue = to_int(getTotalTM()->getCString()) + 1;
 	setTotalTM(to_ccstring(newValue));

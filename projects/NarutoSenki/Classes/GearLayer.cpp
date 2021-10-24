@@ -49,13 +49,13 @@ void GearButton::setBtnType(GearType type, GearButtonType btnType, bool isBuyed)
 
 	if (_btnType == GearButtonType::Buy)
 	{
-		CCSprite *gearIcon = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("gear_%02d.png", _gearType)->getCString());
+		CCSprite *gearIcon = CCSprite::createWithSpriteFrameName(format("gear_{:02d}.png", (int)_gearType).c_str());
 		gearIcon->setPosition(ccp(20, 30));
 		addChild(gearIcon);
 	}
 	else
 	{
-		CCSprite *gearIcon = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("gear_%02d.png", _gearType)->getCString());
+		CCSprite *gearIcon = CCSprite::createWithSpriteFrameName(format("gear_{:02d}.png", (int)_gearType).c_str());
 		gearIcon->setScale(0.75f);
 		addChild(gearIcon);
 	}

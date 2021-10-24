@@ -203,7 +203,7 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			CCSprite *ef = CCSprite::createWithSpriteFrameName("FireEffect_01");
+			auto ef = CCSprite::createWithSpriteFrameName("FireEffect_01");
 			ef->setAnchorPoint(ccp(0.5f, 0));
 			if (i == 0)
 			{
@@ -237,8 +237,7 @@ CCFiniteTimeAction *Effect::createEffectAnimation(const string &file, int frameC
 
 	for (int i = 1; i < frameCount; i++)
 	{
-		auto str = CCString::createWithFormat("%s%02d", file.c_str(), i);
-		auto frame = getSrpiteFrame(str);
+		auto frame = getSrpiteFrame("{}{:02d}", file, i);
 		animeFrames->addObject(frame);
 
 		// NOTE: For cocos2d-x 2.x using SpriteBatchNode,

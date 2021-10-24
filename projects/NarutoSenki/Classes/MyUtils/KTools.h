@@ -26,7 +26,7 @@ public:
 	static string getKeycode(string path);
 
 	static string readSQLite(const char *table, const char *column, const char *value, const char *targetColumn);
-	static void saveSQLite(const char *table, const char *relatedColumn, const char *value, const char *targetColumn, char *targetValue, bool isPlus);
+	static void saveSQLite(const char *table, const char *relatedColumn, const char *value, const char *targetColumn, const string &targetValue, bool isPlus);
 
 	static int readWinNumFromSQL(const char *heroName);
 	static int readCoinFromSQL();

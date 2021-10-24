@@ -250,7 +250,7 @@ void ActionButton::beganAnimation(bool isLock)
 
 void ActionButton::setGearType(GearType type)
 {
-	CCSprite *gearIcon = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("gear_%02d.png", type)->getCString());
+	auto gearIcon = CCSprite::createWithSpriteFrameName(format("gear_{:02d}.png", (int)type).c_str());
 	gearIcon->setScale(0.85f);
 	gearIcon->setPosition(ccp(18, 18));
 	addChild(gearIcon);
@@ -291,7 +291,7 @@ void ActionButton::updateCDLabel(float dt)
 
 void ActionButton::setMarkSprite(const char *mark)
 {
-	CCSprite *tmpSprite = CCSprite::createWithSpriteFrameName(mark);
+	auto tmpSprite = CCSprite::createWithSpriteFrameName(mark);
 	markSprite = CCProgressTimer::create(tmpSprite);
 	markSprite->setType(kCCProgressTimerTypeRadial);
 
@@ -347,7 +347,7 @@ void ActionButton::setOugisMark()
 void ActionButton::setProgressMark()
 {
 	clipper = CCClippingNode::create();
-	CCNode *stencil = CCSprite::createWithSpriteFrameName("icon_bg1.png");
+	auto stencil = CCSprite::createWithSpriteFrameName("icon_bg1.png");
 	stencil->setAnchorPoint(ccp(0, 0));
 	clipper->setStencil(stencil);
 
