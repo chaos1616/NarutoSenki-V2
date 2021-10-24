@@ -130,4 +130,11 @@ class Akamaru : public Hero
 		}
 		CharacterBase::resumeAction(dt);
 	}
+
+	void dealloc() override
+	{
+		Hero::dealloc();
+
+		_master->setActionResume();
+	}
 };

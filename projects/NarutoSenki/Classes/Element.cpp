@@ -81,11 +81,11 @@ void Monster::initAction()
 	setIdleAction(createAnimation(idleArray, 5.0, true, false));
 	setWalkAction(createAnimation(walkArray, 10.0, true, false));
 	setDeadAction(createAnimation(deadArray, 10.0f, false, false));
-	if (isCharacter("Kage",
-					"KageHand",
-					"FutonSRK",
-					"FutonSRK2",
-					"Kubi"))
+	if (isCharacter("Kage") ||
+		isCharacter("KageHand") ||
+		isCharacter("FutonSRK") ||
+		isCharacter("FutonSRK2") ||
+		isCharacter("Kubi"))
 	{
 		setNAttackAction(createAnimation(nattackArray, 10.0, false, false));
 	}

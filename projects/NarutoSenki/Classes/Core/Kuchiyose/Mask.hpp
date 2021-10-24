@@ -87,4 +87,14 @@ class Mask : public Hero
 
 		stepOn();
 	}
+
+	void dealloc() override
+	{
+		Hero::dealloc();
+
+		if (_master->hearts > 0)
+		{
+			_master->unlockSkill4Button();
+		}
+	}
 };

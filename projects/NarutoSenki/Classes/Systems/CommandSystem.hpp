@@ -122,13 +122,13 @@ private:
 
 			   if (thiz->_mainTarget)
 			   {
-				   if (thiz->isCharacter("Dogs",
-										 "Yominuma",
-										 "SandBall",
-										 "Sabaku",
-										 "Yataikuzu",
-										 "Lee",
-										 "RockLee"))
+				   if (thiz->isCharacter("Dogs") ||
+					   thiz->isCharacter("Yominuma") ||
+					   thiz->isCharacter("SandBall") ||
+					   thiz->isCharacter("Sabaku") ||
+					   thiz->isCharacter("Yataikuzu") ||
+					   thiz->isCharacter("Lee") ||
+					   thiz->isCharacter("RockLee"))
 				   {
 					   thiz->_markPoint = ccp(thiz->_mainTarget->getPositionX(), thiz->_mainTarget->_originY ? thiz->_mainTarget->_originY : thiz->_mainTarget->getPositionY());
 				   }

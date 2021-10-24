@@ -283,6 +283,14 @@ class Hidan : public Hero
 		_skillChangeBuffValue = 0;
 	}
 
+	void dealloc() override
+	{
+		Hero::dealloc();
+
+		if (isPlayer())
+			getGameLayer()->getHudLayer()->skill1Button->unLock();
+	}
+
 	/**
 	 * Callbacks
 	 */

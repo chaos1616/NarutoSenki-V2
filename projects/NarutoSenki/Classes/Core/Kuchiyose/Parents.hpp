@@ -152,4 +152,11 @@ class Parents : public Hero
 			getGameLayer()->getHudLayer()->skill2Button->unLock();
 		}
 	}
+
+	void dealloc() override
+	{
+		Hero::dealloc();
+
+		_master->setActionResume();
+	}
 };

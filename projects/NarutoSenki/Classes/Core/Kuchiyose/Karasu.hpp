@@ -121,4 +121,11 @@ class Karasu : public Hero
 			}
 		}
 	}
+
+	void dealloc() override
+	{
+		Hero::dealloc();
+
+		_master->setActionResume();
+	}
 };

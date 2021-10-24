@@ -142,6 +142,23 @@ class Shikamaru : public Hero
 		checkHealingState();
 	}
 
+	void dealloc() override
+	{
+		Hero::dealloc();
+
+		for (auto hero : getGameLayer()->_CharacterArray)
+		{
+			if (hero->_isSticking)
+			{
+				if (hero->getActionState() != State::DEAD)
+				{
+					hero->removeLostBlood(0.1f);
+					hero->idle();
+				}
+			}
+		}
+	}
+
 	/**
 	 * Callbacks
 	 */

@@ -207,7 +207,7 @@ public:
 			{
 				skillSPC3Array = (CCArray *)(tmpAction->objectAtIndex(1));
 				setspcAttackValue3(tmpValue);
-u				skillSPC3Array->retain();
+				skillSPC3Array->retain();
 			}
 			break;
 		}
@@ -510,110 +510,35 @@ u				skillSPC3Array->retain();
 			if (_master)
 				_master->removeMon(this);
 
-			if (isCharacter("NarakaPath"))
-			{
-				_master->_skillChangeBuffValue = 0;
-
-				if (_master->isPlayer())
-				{
-					getGameLayer()->getHudLayer()->skill5Button->unLock();
-				}
-			}
-			else if (isCharacter("Akamaru",
-								 "Karasu",
-								 "Parents"))
-			{
-				_master->setActionResume();
-			}
-			else if (isCharacter("Sanshouuo"))
-			{
-				if (_master->isPlayer())
-				{
-					getGameLayer()->getHudLayer()->skill4Button->unLock();
-				}
-			}
-			else if (isCharacter("MaskFuton",
-								 "MaskRaiton",
-								 "MaskKaton"))
-			{
-				if (_master->hearts > 0)
-				{
-					if (_master->isPlayer())
-					{
-						getGameLayer()->getHudLayer()->skill4Button->unLock();
-					}
-				}
-			}
-			else if (isCharacter("Saso"))
-			{
-				if (_master->isPlayer())
-				{
-					getGameLayer()->getHudLayer()->skill5Button->unLock();
-				}
-			}
-
 			removeFromParent();
 		}
-		else
+		else if (isNotGuardian())
 		{
-			if (isCharacter("Kankuro"))
+			if (rebornLabelTime == 3)
 			{
-				if (isPlayer())
-				{
-					getGameLayer()->getHudLayer()->skill4Button->unLock();
-					getGameLayer()->getHudLayer()->skill5Button->unLock();
-				}
+				scheduleOnce(schedule_selector(Hero::reborn), 3.0f);
 			}
-			else if (isCharacter("Shikamaru", "Choji"))
+			else
 			{
-				for (auto hero : getGameLayer()->_CharacterArray)
-				{
-					if (hero->_isSticking)
-					{
-						if (hero->getActionState() != State::DEAD)
-						{
-							hero->removeLostBlood(0.1f);
-							hero->idle();
-						}
-					}
-				}
+				rebornLabelTime = getRebornTime();
+				scheduleOnce(schedule_selector(Hero::reborn), getRebornTime());
 			}
-			else if (isCharacter("Hidan"))
+			if (!rebornSprite)
 			{
-				if (isPlayer())
-				{
-					getGameLayer()->getHudLayer()->skill1Button->unLock();
-				}
-			}
+				rebornSprite = CCSprite::create();
+				CCSprite *skullSpirte = CCSprite::createWithSpriteFrameName("skull.png");
+				skullSpirte->setPosition(ccp(0, 0));
+				rebornSprite->addChild(skullSpirte);
 
-			if (isNotGuardian())
-			{
-				if (rebornLabelTime == 3)
-				{
-					scheduleOnce(schedule_selector(Hero::reborn), 3.0f);
-				}
-				else
-				{
-					rebornLabelTime = getRebornTime();
-					scheduleOnce(schedule_selector(Hero::reborn), getRebornTime());
-				}
-				if (!rebornSprite)
-				{
-					rebornSprite = CCSprite::create();
-					CCSprite *skullSpirte = CCSprite::createWithSpriteFrameName("skull.png");
-					skullSpirte->setPosition(ccp(0, 0));
-					rebornSprite->addChild(skullSpirte);
+				rebornLabel = CCLabelBMFont::create(to_cstr(rebornLabelTime), "Fonts/1.fnt");
+				rebornLabel->setScale(0.3f);
+				rebornLabel->setPosition(ccp(skullSpirte->getContentSize().width, 0));
+				rebornSprite->addChild(rebornLabel);
 
-					rebornLabel = CCLabelBMFont::create(to_cstr(rebornLabelTime), "Fonts/1.fnt");
-					rebornLabel->setScale(0.3f);
-					rebornLabel->setPosition(ccp(skullSpirte->getContentSize().width, 0));
-					rebornSprite->addChild(rebornLabel);
-
-					rebornSprite->setPosition(ccp(getContentSize().width / 2, getContentSize().height / 2));
-					addChild(rebornSprite);
-				}
-				schedule(schedule_selector(Hero::countDown), 1);
+				rebornSprite->setPosition(ccp(getContentSize().width / 2, getContentSize().height / 2));
+				addChild(rebornSprite);
 			}
+			schedule(schedule_selector(Hero::countDown), 1);
 		}
 	}
 
@@ -692,45 +617,6 @@ u				skillSPC3Array->retain();
 		_fn4;
 
 protected:
-	/** UI Utils */
-
-	inline void lockSkill4Button()
-	{
-		if (isPlayer())
-			getGameLayer()->getHudLayer()->skill4Button->setLock();
-	}
-	inline void unlockSkill4Button()
-	{
-		if (isPlayer())
-			getGameLayer()->getHudLayer()->skill4Button->unLock();
-	}
-	inline void lockSkill5Button()
-	{
-		if (isPlayer())
-			getGameLayer()->getHudLayer()->skill5Button->setLock();
-	}
-	inline void unlockSkill5Button()
-	{
-		if (isPlayer())
-			getGameLayer()->getHudLayer()->skill5Button->unLock();
-	}
-	inline void lockOugisButtons()
-	{
-		if (isPlayer())
-		{
-			getGameLayer()->getHudLayer()->skill4Button->setLock();
-			getGameLayer()->getHudLayer()->skill5Button->setLock();
-		}
-	}
-	inline void unlockOugisButtons()
-	{
-		if (isPlayer())
-		{
-			getGameLayer()->getHudLayer()->skill4Button->unLock();
-			getGameLayer()->getHudLayer()->skill5Button->unLock();
-		}
-	}
-
 	void checkRefCount(float dt)
 	{
 		CCLOG("[Ref Check] %s has %d references", getCharacter()->getCString(), retainCount());

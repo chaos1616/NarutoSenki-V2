@@ -73,25 +73,26 @@ void GameOver::listResult()
 	else
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/battle_over.ogg");
 
-	auto path = CCString::createWithFormat("%s_half.png", getGameLayer()->currentPlayer->getCharacter()->getCString());
+	auto currPlayer = getGameLayer()->currentPlayer;
+	auto path = CCString::createWithFormat("%s_half.png", currPlayer->getCharacter()->getCString());
 	CCSprite *half = CCSprite::createWithSpriteFrameName(path->getCString());
 
-	if (getGameLayer()->currentPlayer->isCharacter("Konan",
-												   "Karin",
-												   "Suigetsu",
-												   "Hidan",
-												   "Tobirama",
-												   "Tsunade",
-												   "Kankuro",
-												   "SageJiraiya",
-												   "Minato",
-												   "Tobi") ||
-		getGameLayer()->currentPlayer->isCharacter("Lee",
-												   "RockLee",
-												   "Hinata",
-												   "Asuma",
-												   "Chiyo",
-												   "Kisame"))
+	if (currPlayer->isCharacter("Konan") ||
+		currPlayer->isCharacter("Karin") ||
+		currPlayer->isCharacter("Suigetsu") ||
+		currPlayer->isCharacter("Hidan") ||
+		currPlayer->isCharacter("Tobirama") ||
+		currPlayer->isCharacter("Tsunade") ||
+		currPlayer->isCharacter("Kankuro") ||
+		currPlayer->isCharacter("SageJiraiya") ||
+		currPlayer->isCharacter("Minato") ||
+		currPlayer->isCharacter("Tobi") ||
+		currPlayer->isCharacter("Lee") ||
+		currPlayer->isCharacter("RockLee") ||
+		currPlayer->isCharacter("Hinata") ||
+		currPlayer->isCharacter("Asuma") ||
+		currPlayer->isCharacter("Chiyo") ||
+		currPlayer->isCharacter("Kisame"))
 	{
 		half->setFlipX(true);
 	}
@@ -122,7 +123,7 @@ void GameOver::listResult()
 
 	float _totalSecond = getGameLayer()->_minute * 60 + getGameLayer()->_second;
 	float resultScore = 0;
-	int killDead = to_int(getGameLayer()->currentPlayer->getKillNum()->getCString()) - getGameLayer()->currentPlayer->_deadNum;
+	int killDead = to_int(currPlayer->getKillNum()->getCString()) - currPlayer->_deadNum;
 
 	if (_totalSecond != to_int(getGameLayer()->getTotalTM()->getCString()))
 	{
@@ -246,7 +247,7 @@ void GameOver::listResult()
 
 	if (_totalSecond > 900 && getGameLayer()->_isSurrender)
 	{
-		if (is_same(getGameLayer()->currentPlayer->getGroup()->getCString(), Konoha))
+		if (is_same(currPlayer->getGroup()->getCString(), Konoha))
 		{
 			if (konohaKill > akatsukiKill)
 				_isWin = true;
@@ -267,7 +268,7 @@ void GameOver::listResult()
 			return;
 		}
 
-		int realKillNum = to_int(getGameLayer()->currentPlayer->getKillNum()->getCString());
+		int realKillNum = to_int(currPlayer->getKillNum()->getCString());
 
 		string tempReward = getGameLayer()->_isHardCoreGame ? "FDDD" : "ONNN";
 		KTools::decode(tempReward);
@@ -357,7 +358,7 @@ void GameOver::listResult()
 
 		if (_isWin && getGameLayer()->_isHardCoreGame)
 		{
-			finnalScore = resultScore + float(getGameLayer()->currentPlayer->_flogNum) / 100;
+			finnalScore = resultScore + float(currPlayer->_flogNum) / 100;
 			// CCString *recordString = CCString::createWithFormat("%0.2fPts", finnalScore);
 
 			// auto recordScore = CCLabelBMFont::create(recordString->getCString(), "Fonts/1.fnt");
@@ -372,20 +373,20 @@ void GameOver::listResult()
 			// upMenu->setPosition(ccp(winSize.width / 2 + result_bg->getContentSize().width / 2 - 14, winSize.height / 2 + result_bg->getContentSize().height / 2 - 62));
 			// addChild(upMenu, 7);
 
-			// detailRecord = CCString::createWithFormat("%02d:%02d,%s,%d,%d", _minute, getGameLayer()->_second, getGameLayer()->currentPlayer->getKillNum()->getCString(), getGameLayer()->currentPlayer->_deadNum, getGameLayer()->currentPlayer->_flogNum)->getCString();
+			// detailRecord = CCString::createWithFormat("%02d:%02d,%s,%d,%d", _minute, getGameLayer()->_second, currPlayer->getKillNum()->getCString(), currPlayer->_deadNum, currPlayer->_flogNum)->getCString();
 		}
 		if (Cheats < MaxCheats)
 		{
-			resultChar = getGameLayer()->currentPlayer->getCharacter()->getCString();
-			if (getGameLayer()->currentPlayer->isCharacter("SageNaruto"))
+			resultChar = currPlayer->getCharacter()->getCString();
+			if (currPlayer->isCharacter("SageNaruto"))
 				resultChar = "Naruto";
-			else if (getGameLayer()->currentPlayer->isCharacter("RikudoNaruto"))
+			else if (currPlayer->isCharacter("RikudoNaruto"))
 				resultChar = "Naruto";
-			else if (getGameLayer()->currentPlayer->isCharacter("SageJiraiya"))
+			else if (currPlayer->isCharacter("SageJiraiya"))
 				resultChar = "Jiraiya";
-			else if (getGameLayer()->currentPlayer->isCharacter("ImmortalSasuke"))
+			else if (currPlayer->isCharacter("ImmortalSasuke"))
 				resultChar = "Sasuke";
-			else if (getGameLayer()->currentPlayer->isCharacter("RockLee"))
+			else if (currPlayer->isCharacter("RockLee"))
 				resultChar = "Lee";
 
 			if (_isWin)
@@ -403,10 +404,10 @@ void GameOver::listResult()
 
 				if (getGameLayer()->_isRandomChar && resultScore >= 120)
 				{
-					if (getGameLayer()->currentPlayer->_isControlled)
+					if (currPlayer->_isControlled)
 					{
-						getGameLayer()->currentPlayer->_isControlled = false;
-						getGameLayer()->currentPlayer->changeGroup();
+						currPlayer->_isControlled = false;
+						currPlayer->changeGroup();
 					}
 
 					for (auto hero : getGameLayer()->_CharacterArray)
@@ -426,7 +427,7 @@ void GameOver::listResult()
 							hero->changeGroup();
 						}
 
-						if (is_same(hero->getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()))
+						if (is_same(hero->getGroup()->getCString(), currPlayer->getGroup()->getCString()))
 						{
 							int winNum = KTools::readWinNumFromSQL(hero->getCharacter()->getCString());
 							if (resultScore >= 140)

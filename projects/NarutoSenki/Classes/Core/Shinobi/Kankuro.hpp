@@ -168,6 +168,13 @@ class Kankuro : public Hero
 		_skillChangeBuffValue = 0;
 	}
 
+	void dealloc() override
+	{
+		Hero::dealloc();
+
+		unlockOugisButtons();
+	}
+
 	Hero *createClone(int cloneTime) override
 	{
 		Hero *clone = nullptr;

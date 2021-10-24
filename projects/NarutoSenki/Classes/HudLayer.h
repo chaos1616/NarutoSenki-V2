@@ -1,7 +1,6 @@
 #pragma once
 #include "ActionButton.h"
 #include "JoyStick.h"
-#include "GameLayer.h"
 
 #define DESKTOP_UI_SCALE 0.8f
 #define DESKTOP_UI_MASK_SCALE 0.8f + 0.04f

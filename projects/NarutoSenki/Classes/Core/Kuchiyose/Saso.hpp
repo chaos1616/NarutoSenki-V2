@@ -99,4 +99,11 @@ class Saso : public Hero
 				idle();
 		}
 	}
+
+	void dealloc() override
+	{
+		Hero::dealloc();
+
+		_master->unlockSkill4Button();
+	}
 };

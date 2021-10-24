@@ -119,6 +119,14 @@ class NarakaPath : public Hero
 		stepOn();
 	}
 
+	void dealloc() override
+	{
+		Hero::dealloc();
+
+		_master->_skillChangeBuffValue = 0;
+		_master->unlockSkill5Button();
+	}
+
 	Hero *createClone(int cloneTime) override
 	{
 		Hero *clone = nullptr;

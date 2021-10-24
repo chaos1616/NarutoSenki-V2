@@ -1,6 +1,5 @@
 #pragma once
 #include "Hero.hpp"
-#include "Core/Tower/Tower.hpp"
 
 class Guardian : public Hero
 {

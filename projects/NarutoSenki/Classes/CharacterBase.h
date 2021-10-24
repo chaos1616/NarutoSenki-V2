@@ -2,6 +2,7 @@
 #include "Data/UnitData.h"
 #include "Effect.h"
 #include "GameLayer.h"
+#include "HudLayer.h"
 #include "MyUtils/KTools.h"
 
 enum class State {
@@ -465,8 +466,6 @@ protected:
 	void				removeDamageDisplay();
 
 public:
-	// UI
-	inline void 		updateHpBar();
 	// character extensions
 	inline uint32_t		getCkrValue() { return to_uint(_ckr->getCString()); }
 	inline void			setCkrValue(uint32_t var) { setCKR(to_ccstring(var)); }
@@ -519,30 +518,6 @@ public:
 		auto n = _character->getCString();
 		return is_same(n, c1) || is_same(n, c2) || is_same(n, c3) || is_same(n, c4);
 	}
-	inline bool			isCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5) {
-		auto n = _character->getCString();
-		return is_same(n, c1) || is_same(n, c2) || is_same(n, c3) || is_same(n, c4) || is_same(n, c5);
-	}
-	inline bool			isCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6) {
-		auto n = _character->getCString();
-		return is_same(n, c1) || is_same(n, c2) || is_same(n, c3) || is_same(n, c4) || is_same(n, c5) || is_same(n, c6);
-	}
-	inline bool			isCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6, const char *c7) {
-		auto n = _character->getCString();
-		return is_same(n, c1) || is_same(n, c2) || is_same(n, c3) || is_same(n, c4) || is_same(n, c5) || is_same(n, c6) || is_same(n, c7);
-	}
-	inline bool			isCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6, const char *c7, const char *c8) {
-		auto n = _character->getCString();
-		return is_same(n, c1) || is_same(n, c2) || is_same(n, c3) || is_same(n, c4) || is_same(n, c5) || is_same(n, c6) || is_same(n, c7) || is_same(n, c8);
-	}
-	inline bool			isCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6, const char *c7, const char *c8, const char *c9) {
-		auto n = _character->getCString();
-		return is_same(n, c1) || is_same(n, c2) || is_same(n, c3) || is_same(n, c4) || is_same(n, c5) || is_same(n, c6) || is_same(n, c7) || is_same(n, c8) || is_same(n, c9);
-	}
-	inline bool			isCharacter(const char *c1, const char *c2, const char *c3, const char *c4, const char *c5, const char *c6, const char *c7, const char *c8, const char *c9, const char *c10) {
-		auto n = _character->getCString();
-		return is_same(n, c1) || is_same(n, c2) || is_same(n, c3) || is_same(n, c4) || is_same(n, c5) || is_same(n, c6) || is_same(n, c7) || is_same(n, c8) || is_same(n, c9) || is_same(n, c10);
-	}
 	inline bool			isNotCharacter(const string &c) { return _character->m_sString != c; }
 	inline bool			isNotCharacter(const char *c) { return !is_same(_character->getCString(), c); }
 	inline bool			isNotCharacter(const char *c1, const char *c2) { return !isCharacter(c1, c2); }
@@ -581,6 +556,36 @@ public:
 	inline void			removeMon(CharacterBase *mo) {
 		if (hasMonsterArrayAny())
 			std::erase(_monsterArray, mo);
+	}
+	// UI
+	inline void 		updateHpBar();
+	inline void			lockSkill4Button() {
+		if (isPlayer())
+			getGameLayer()->getHudLayer()->skill4Button->setLock();
+	}
+	inline void			unlockSkill4Button() {
+		if (isPlayer())
+			getGameLayer()->getHudLayer()->skill4Button->unLock();
+	}
+	inline void			lockSkill5Button() {
+		if (isPlayer())
+			getGameLayer()->getHudLayer()->skill5Button->setLock();
+	}
+	inline void			unlockSkill5Button() {
+		if (isPlayer())
+			getGameLayer()->getHudLayer()->skill5Button->unLock();
+	}
+	inline void			lockOugisButtons() {
+		if (isPlayer()) {
+			getGameLayer()->getHudLayer()->skill4Button->setLock();
+			getGameLayer()->getHudLayer()->skill5Button->setLock();
+		}
+	}
+	inline void			unlockOugisButtons() {
+		if (isPlayer()) {
+			getGameLayer()->getHudLayer()->skill4Button->unLock();
+			getGameLayer()->getHudLayer()->skill5Button->unLock();
+		}
 	}
 	// Utilities
 	void				increaseAllCkrs(uint32_t value, bool enableLv2 = true, bool enableLv4 = true);

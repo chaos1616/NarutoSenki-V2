@@ -1,7 +1,6 @@
 #pragma once
 #include "CharacterBase.h"
 #include "Core/Warrior/Flog.hpp"
-#include "GameLayer.h"
 #include "HPBar.h"
 #include "HudLayer.h"
 
