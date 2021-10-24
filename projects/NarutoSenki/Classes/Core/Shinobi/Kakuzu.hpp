@@ -10,7 +10,7 @@ class Kakuzu : public Hero
 
 		if (_heartEffect)
 		{
-			auto frame = getSrpiteFrame(CCString::createWithFormat("Heart_Effect_%02d", hearts));
+			auto frame = getSrpiteFrame("Heart_Effect_{:02d}", hearts);
 			_heartEffect->setDisplayFrame(frame);
 		}
 
@@ -289,7 +289,7 @@ class Kakuzu : public Hero
 			hearts -= 1;
 			if (_heartEffect)
 			{
-				auto frame = getSrpiteFrame(CCString::createWithFormat("Heart_Effect_%02d", hearts));
+				auto frame = getSrpiteFrame("Heart_Effect_{:02d}", hearts);
 				_heartEffect->setDisplayFrame(frame);
 			}
 

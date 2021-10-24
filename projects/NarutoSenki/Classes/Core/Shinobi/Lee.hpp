@@ -78,7 +78,7 @@ class Lee : public Hero
 			}
 			else
 			{
-				auto frame = getSrpiteFrame(CCString::createWithFormat("Bamen_Effect_%02d", htLv - 1));
+				auto frame = getSrpiteFrame("Bamen_Effect_{:02d}", htLv - 1);
 				_heartEffect->setDisplayFrame(frame);
 			}
 		}
@@ -119,7 +119,7 @@ class Lee : public Hero
 		if (htLv < kMax_Lee_HachimonTonkouLevel)
 		{
 			htLv++;
-			auto frame = getSrpiteFrame(CCString::createWithFormat("Bamen_Effect_%02d", htLv - 1));
+			auto frame = getSrpiteFrame("Bamen_Effect_{:02d}", htLv - 1);
 			_heartEffect->setDisplayFrame(frame);
 		}
 		else

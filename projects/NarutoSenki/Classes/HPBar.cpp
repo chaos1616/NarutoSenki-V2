@@ -314,7 +314,7 @@ void HPBar::loseHP(float percent)
 
 					if (_delegate->_heartEffect)
 					{
-						auto frame = getSrpiteFrame(CCString::createWithFormat("Heart_Effect_%02d", _delegate->hearts));
+						auto frame = getSrpiteFrame("Heart_Effect_{:02d}", _delegate->hearts);
 						_delegate->_heartEffect->setDisplayFrame(frame);
 					}
 
@@ -372,7 +372,7 @@ void HPBar::loseHP(float percent)
 
 					if (currentSlayer->_heartEffect)
 					{
-						auto frame = getSrpiteFrame(CCString::createWithFormat("Heart_Effect_%02d", currentSlayer->hearts));
+						auto frame = getSrpiteFrame("Heart_Effect_{:02d}", currentSlayer->hearts);
 						currentSlayer->_heartEffect->setDisplayFrame(frame);
 					}
 

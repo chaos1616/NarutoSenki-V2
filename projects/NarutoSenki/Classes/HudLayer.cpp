@@ -1221,7 +1221,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		CCArray *animeFrames = CCArray::create();
 		for (int i = 1; i <= 8; i++)
 		{
-			auto frame = getSrpiteFrame(CCString::createWithFormat("CutLine_%02d.png", i));
+			auto frame = getSrpiteFrame("CutLine_{:02d}.png", i);
 			animeFrames->addObject(frame);
 		}
 

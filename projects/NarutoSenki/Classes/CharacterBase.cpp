@@ -665,7 +665,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 									if (attacker->_heartEffect)
 									{
-										auto frame = getSrpiteFrame(CCString::createWithFormat("Heart_Effect_%02d", attacker->hearts));
+										auto frame = getSrpiteFrame("Heart_Effect_{:02d}", attacker->hearts);
 										attacker->_heartEffect->setDisplayFrame(frame);
 									}
 								}
