@@ -3,26 +3,46 @@
 
 typedef std::function<void()> AIHandler;
 
-//TODO: 合并 HeroElement Hero
-class Hero : public HeroElement
+class Hero : public CharacterBase
 {
+	friend class CommandSystem;
+
 private:
+	CCSprite *rebornSprite = nullptr;
+	CCLabelBMFont *rebornLabel = nullptr;
 	// Hero *proxy = nullptr;
 
 public:
-	void doAI()
+	Hero()
 	{
-		CharacterBase::doAI();
-		// Initial default AI handler
-		aiHandler = std::bind(&Hero::perform, this);
 	}
 
-	/** Perform default AI logic (Hero::perform) */
-	virtual void setAI(float dt)
+	~Hero()
 	{
-		// Not check nullable reference
-		aiHandler();
-		// proxy->perform(this);
+		CC_SAFE_DELETE(skillSPC1Array);
+		CC_SAFE_RELEASE(skillSPC2Array);
+		CC_SAFE_RELEASE(skillSPC3Array);
+		CC_SAFE_RELEASE(skillSPC4Array);
+		CC_SAFE_RELEASE(skillSPC5Array);
+		CC_SAFE_RELEASE(nattackArray);
+		CC_SAFE_RELEASE(walkArray);
+		CC_SAFE_RELEASE(knockDownArray);
+		CC_SAFE_RELEASE(skill1Array);
+		CC_SAFE_RELEASE(skill2Array);
+		CC_SAFE_RELEASE(skill3Array);
+		CC_SAFE_RELEASE(skill4Array);
+		CC_SAFE_RELEASE(skill5Array);
+		CC_SAFE_RELEASE(idleArray);
+	}
+
+	bool init()
+	{
+		RETURN_FALSE_IF(!CharacterBase::init());
+
+		setAnchorPoint(ccp(0.5, 0));
+		scheduleUpdate();
+
+		return true;
 	}
 
 	virtual void setID(CCString *character, CCString *role, CCString *group)
@@ -69,34 +89,34 @@ public:
 			setCkr2Value(0);
 		}
 
-		//init WalkFrame
+		// init WalkFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(1));
 		walkArray = (CCArray *)(tmpAction->objectAtIndex(1));
 		walkArray->retain();
 
-		//init HurtFrame
+		// init HurtFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(2));
 		hurtArray = (CCArray *)(tmpAction->objectAtIndex(1));
 		hurtArray->retain();
 
-		//init AirHurtFrame
+		// init AirHurtFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(3));
 		airHurtArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		//init KnockDownFrame
+		// init KnockDownFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(4));
 		knockDownArray = (CCArray *)(tmpAction->objectAtIndex(1));
 		knockDownArray->retain();
 
-		//init FloatFrame
+		// init FloatFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(5));
 		floatArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		//init DeadFrame
+		// init DeadFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
 		deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		//init nAttack data & Frame Array
+		// init nAttack data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 		CCString *tmpValue;
@@ -107,7 +127,7 @@ public:
 		nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
 		nattackArray->retain();
 
-		//init skill1 data & Frame Array
+		// init skill1 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(8));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 
@@ -116,7 +136,7 @@ public:
 
 		skill1Array = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		//init skill2 data & Frame Array
+		// init skill2 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(9));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 		readData(tmpData, _sattackType2, tmpValue, _sattackRangeX2, _sattackRangeY2, _sattackcooldown2, _sattackCombatPoint2);
@@ -135,28 +155,28 @@ public:
 			_sattack1isDouble = true;
 		}
 
-		//init skill3 data & Frame Array
+		// init skill3 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(10));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 		readData(tmpData, _sattackType3, tmpValue, _sattackRangeX3, _sattackRangeY3, _sattackcooldown3, _sattackCombatPoint3);
 		setsAttackValue3(tmpValue);
 		skill3Array = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		//init skill4 data & Frame Array
+		// init skill4 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(11));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 		readData(tmpData, _sattackType4, tmpValue, _sattackRangeX4, _sattackRangeY4, _sattackcooldown4, _sattackCombatPoint4);
 		setsAttackValue4(tmpValue);
 		skill4Array = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		//init skill5 data & Frame Array
+		// init skill5 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(12));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 		readData(tmpData, _sattackType5, tmpValue, _sattackRangeX5, _sattackRangeY5, _sattackcooldown5, _sattackCombatPoint5);
 		setsAttackValue5(tmpValue);
 		skill5Array = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		//initial specal animations
+		// initial specal animations
 		while (1)
 		{
 			CC_BREAK_IF(animationArray->count() <= 17);
@@ -187,7 +207,7 @@ public:
 			{
 				skillSPC3Array = (CCArray *)(tmpAction->objectAtIndex(1));
 				setspcAttackValue3(tmpValue);
-				skillSPC3Array->retain();
+u				skillSPC3Array->retain();
 			}
 			break;
 		}
@@ -256,6 +276,362 @@ public:
 		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", nullptr);
 	}
 
+	void initAction()
+	{
+		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
+		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
+		setHurtAction(createAnimation(hurtArray, 10.0f, false, false));
+
+		setAirHurtAction(createAnimation(airHurtArray, 10.0f, false, false));
+		setKnockDownAction(createAnimation(knockDownArray, 10.0f, false, true));
+		setDeadAction(createAnimation(deadArray, 10.0f, false, false));
+		setFloatAction(createAnimation(floatArray, 10.0f, false, false));
+
+		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+		setSkill1Action(createAnimation(skill1Array, 10.0f, false, true));
+		setSkill2Action(createAnimation(skill2Array, 10.0f, false, true));
+		setSkill3Action(createAnimation(skill3Array, 10.0f, false, true));
+		setSkill4Action(createAnimation(skill4Array, 10.0f, false, true));
+		setSkill5Action(createAnimation(skill5Array, 10.0f, false, true));
+	}
+
+	void setShadows()
+	{
+		if (!_shadow)
+		{
+			_shadow = CCSprite::createWithSpriteFrameName("shadows");
+			_shadow->setAnchorPoint(ccp(0.5, 0.5));
+			_shadow->setPosition(getPosition());
+			getGameLayer()->shadowBatch->addChild(_shadow);
+		}
+	}
+
+	void setHPbar()
+	{
+		if (getGameLayer()->playerGroup != getGroup()->getCString())
+		{
+			_hpBar = HPBar::create("hp_bar_r.png");
+		}
+		else if (isCom() || isClone() || isKugutsu() || isSummon())
+		{
+			_hpBar = HPBar::create("hp_bar_b.png");
+		}
+		else if (isPlayer())
+		{
+			_hpBar = HPBar::create("hp_bar.png");
+		}
+		_hpBar->setPositionY(getHeight());
+		_hpBar->setDelegate(this);
+		addChild(_hpBar);
+		changeHPbar();
+	}
+
+	virtual void changeHPbar()
+	{
+		if (_exp >= 500 && _level == 1)
+		{
+			_level = 2;
+			uint32_t newValue = getCkrValue() + 15000;
+			setCkrValue(newValue);
+			_isCanOugis1 = true;
+			if (isPlayer())
+			{
+				getGameLayer()->setCKRLose(false);
+				getGameLayer()->removeOugisMark(1);
+			}
+			uint32_t tempMaxHP = getMaxHPValue();
+			tempMaxHP += 500;
+			setMaxHPValue(tempMaxHP);
+			setnAttackValue(to_ccstring(getNAttackValue() + 9));
+			_rebornTime += 1;
+		}
+		else if (_exp >= 1000 && _level == 2)
+		{
+			_level = 3;
+			uint32_t tempMaxHP = getMaxHPValue();
+			tempMaxHP += 1000;
+			setMaxHPValue(tempMaxHP);
+			setnAttackValue(to_ccstring(getNAttackValue() + 18));
+			_rebornTime += 2;
+		}
+		else if (_exp >= 1500 && _level == 3)
+		{
+			_level = 4;
+			uint32_t newValue = getCkr2Value() + 25000;
+			setCkr2Value(newValue);
+			_isCanOugis2 = true;
+			if (isPlayer())
+			{
+				getGameLayer()->setCKRLose(true);
+				getGameLayer()->removeOugisMark(2);
+			}
+			uint32_t tempMaxHP = getMaxHPValue();
+			tempMaxHP += 2000;
+			setMaxHPValue(tempMaxHP);
+			setnAttackValue(to_ccstring(getNAttackValue() + 27));
+			_rebornTime += 3;
+		}
+		else if (_exp >= 2000 && _level == 4)
+		{
+			_level = 5;
+			uint32_t tempMaxHP = getMaxHPValue();
+			tempMaxHP += 2500;
+			setMaxHPValue(tempMaxHP);
+			setnAttackValue(to_ccstring(getNAttackValue() + 36));
+			_rebornTime += 4;
+		}
+		else if (_exp >= 2500 && _level == 5)
+		{
+			_level = 6;
+			uint32_t tempMaxHP = getMaxHPValue();
+			tempMaxHP += 3000;
+			setMaxHPValue(tempMaxHP);
+			setnAttackValue(to_ccstring(getNAttackValue() + 45));
+			_rebornTime += 5;
+		}
+
+		if (_hpBar)
+		{
+			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("hp_bottom%d.png", int(_level))->getCString());
+			_hpBar->getHPBottom()->setDisplayFrame(frame);
+		}
+	}
+
+	virtual void reborn(float dt)
+	{
+		if (!enableReborn)
+		{
+			// TODO: Spectating Mode
+			// if (isPlayer())
+			// getGameLayer()->getHudLayer()->enableSpectatingMode();
+			return;
+		}
+
+		CharacterBase::reborn(dt);
+		// If the character has changed, then cleanup and return
+		if (changeCharId > -1)
+		{
+			if (rebornSprite)
+			{
+				rebornSprite->removeFromParent();
+				rebornSprite = nullptr;
+			}
+			checkRefCount(0);
+			return;
+		}
+
+		setPosition(getSpawnPoint());
+
+		if (getPosition().equals(getSpawnPoint()))
+		{
+			CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", nullptr);
+			setOpacity(255);
+			setHPValue(getMaxHPValue(), false);
+			setHPbar();
+			_actionState = State::HURT;
+
+			if (getLV() < 4)
+			{
+				if (isKonohaGroup())
+					setEXP(getEXP() + getGameLayer()->kEXPBound);
+				else
+					setEXP(getEXP() + getGameLayer()->aEXPBound);
+
+				changeHPbar();
+
+				if (isPlayer())
+				{
+					getGameLayer()->getHudLayer()->setEXPLose();
+				}
+			}
+
+			if (isKonohaGroup())
+			{
+				if (_isFlipped)
+				{
+					setFlipX(false);
+					_isFlipped = false;
+				}
+			}
+			else
+			{
+				if (!_isFlipped)
+				{
+					setFlipX(true);
+					_isFlipped = true;
+				}
+			}
+			idle();
+			if (rebornSprite)
+			{
+				unschedule(schedule_selector(Hero::countDown));
+				rebornSprite->removeFromParent();
+				rebornSprite = nullptr;
+			}
+			if (isNotPlayer())
+			{
+				doAI();
+			}
+			else
+			{
+				if (_isAI)
+				{
+					doAI();
+				}
+				getGameLayer()->getHudLayer()->status_hpbar->setOpacity(255);
+				getGameLayer()->setHPLose(getHpPercent());
+			}
+			scheduleUpdate();
+		}
+		getGameLayer()->reorderChild(this, -getPositionY());
+	}
+
+	virtual void dealloc()
+	{
+		CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(this);
+		stopAllActions();
+		_actionState = State::DEAD;
+
+		if (isNotCharacter("Minato"))
+		{
+			if (hasMonsterArrayAny())
+			{
+				for (auto mo : _monsterArray)
+					mo->dealloc();
+			}
+		}
+
+		if (isClone() || isKugutsu() || isSummon())
+		{
+			unschedule(schedule_selector(CharacterBase::setAI));
+
+			std::erase(getGameLayer()->_CharacterArray, this);
+
+			if (_master)
+				_master->removeMon(this);
+
+			if (isCharacter("NarakaPath"))
+			{
+				_master->_skillChangeBuffValue = 0;
+
+				if (_master->isPlayer())
+				{
+					getGameLayer()->getHudLayer()->skill5Button->unLock();
+				}
+			}
+			else if (isCharacter("Akamaru",
+								 "Karasu",
+								 "Parents"))
+			{
+				_master->setActionResume();
+			}
+			else if (isCharacter("Sanshouuo"))
+			{
+				if (_master->isPlayer())
+				{
+					getGameLayer()->getHudLayer()->skill4Button->unLock();
+				}
+			}
+			else if (isCharacter("MaskFuton",
+								 "MaskRaiton",
+								 "MaskKaton"))
+			{
+				if (_master->hearts > 0)
+				{
+					if (_master->isPlayer())
+					{
+						getGameLayer()->getHudLayer()->skill4Button->unLock();
+					}
+				}
+			}
+			else if (isCharacter("Saso"))
+			{
+				if (_master->isPlayer())
+				{
+					getGameLayer()->getHudLayer()->skill5Button->unLock();
+				}
+			}
+
+			removeFromParent();
+		}
+		else
+		{
+			if (isCharacter("Kankuro"))
+			{
+				if (isPlayer())
+				{
+					getGameLayer()->getHudLayer()->skill4Button->unLock();
+					getGameLayer()->getHudLayer()->skill5Button->unLock();
+				}
+			}
+			else if (isCharacter("Shikamaru", "Choji"))
+			{
+				for (auto hero : getGameLayer()->_CharacterArray)
+				{
+					if (hero->_isSticking)
+					{
+						if (hero->getActionState() != State::DEAD)
+						{
+							hero->removeLostBlood(0.1f);
+							hero->idle();
+						}
+					}
+				}
+			}
+			else if (isCharacter("Hidan"))
+			{
+				if (isPlayer())
+				{
+					getGameLayer()->getHudLayer()->skill1Button->unLock();
+				}
+			}
+
+			if (isNotGuardian())
+			{
+				if (rebornLabelTime == 3)
+				{
+					scheduleOnce(schedule_selector(Hero::reborn), 3.0f);
+				}
+				else
+				{
+					rebornLabelTime = getRebornTime();
+					scheduleOnce(schedule_selector(Hero::reborn), getRebornTime());
+				}
+				if (!rebornSprite)
+				{
+					rebornSprite = CCSprite::create();
+					CCSprite *skullSpirte = CCSprite::createWithSpriteFrameName("skull.png");
+					skullSpirte->setPosition(ccp(0, 0));
+					rebornSprite->addChild(skullSpirte);
+
+					rebornLabel = CCLabelBMFont::create(to_cstr(rebornLabelTime), "Fonts/1.fnt");
+					rebornLabel->setScale(0.3f);
+					rebornLabel->setPosition(ccp(skullSpirte->getContentSize().width, 0));
+					rebornSprite->addChild(rebornLabel);
+
+					rebornSprite->setPosition(ccp(getContentSize().width / 2, getContentSize().height / 2));
+					addChild(rebornSprite);
+				}
+				schedule(schedule_selector(Hero::countDown), 1);
+			}
+		}
+	}
+
+	void doAI()
+	{
+		CharacterBase::doAI();
+		// Initial default AI handler
+		aiHandler = std::bind(&Hero::perform, this);
+	}
+
+	/** Perform default AI logic (Hero::perform) */
+	virtual void setAI(float dt)
+	{
+		// Not check nullable reference
+		aiHandler();
+		// proxy->perform(this);
+	}
+
 	/** Provide default AI logic */
 	virtual void perform() = 0;
 
@@ -270,7 +646,6 @@ public:
 	virtual bool isEnableSkill04() { return true; }
 	virtual bool isEnableSkill05() { return true; }
 
-	/** Utilities functions */
 	template <typename THero>
 	typename std::enable_if<std::is_base_of<Hero, THero>::value, THero *>::type
 	// typename enable_if<!is_same<Hero, THero>::value && is_base_of<Hero, THero>::value, THero *>::type
@@ -284,9 +659,9 @@ public:
 		}
 		else
 		{
-			CCLOG("Initial Hero %s error", typeof(THero));
+			CCLOGERROR("Initial Hero %s error", typeof(THero));
 			delete hero;
-			hero = nullptr;
+			return nullptr;
 		}
 		return hero;
 	}
@@ -316,37 +691,56 @@ public:
 	match_char_exp3(_name, _fn, _name2, _fn2, _name3, _fn3) else if (isCharacter(_name4)) \
 		_fn4;
 
-/** UI Macros */
-#define lockSkill4Button() \
-	if (isPlayer())        \
-		getGameLayer()->getHudLayer()->skill4Button->setLock();
-
-#define unlockSkill4Button() \
-	if (isPlayer())          \
-		getGameLayer()->getHudLayer()->skill4Button->unLock();
-
-#define lockSkill5Button() \
-	if (isPlayer())        \
-		getGameLayer()->getHudLayer()->skill5Button->setLock();
-
-#define unlockSkill5Button() \
-	if (isPlayer())          \
-		getGameLayer()->getHudLayer()->skill5Button->unLock();
-
-#define lockOugisButtons()                                      \
-	if (isPlayer())                                             \
-	{                                                           \
-		getGameLayer()->getHudLayer()->skill4Button->setLock(); \
-		getGameLayer()->getHudLayer()->skill5Button->setLock(); \
-	}
-
-#define unlockOugisButtons()                                   \
-	if (isPlayer())                                            \
-	{                                                          \
-		getGameLayer()->getHudLayer()->skill4Button->unLock(); \
-		getGameLayer()->getHudLayer()->skill5Button->unLock(); \
-	}
-
 protected:
+	/** UI Utils */
+
+	inline void lockSkill4Button()
+	{
+		if (isPlayer())
+			getGameLayer()->getHudLayer()->skill4Button->setLock();
+	}
+	inline void unlockSkill4Button()
+	{
+		if (isPlayer())
+			getGameLayer()->getHudLayer()->skill4Button->unLock();
+	}
+	inline void lockSkill5Button()
+	{
+		if (isPlayer())
+			getGameLayer()->getHudLayer()->skill5Button->setLock();
+	}
+	inline void unlockSkill5Button()
+	{
+		if (isPlayer())
+			getGameLayer()->getHudLayer()->skill5Button->unLock();
+	}
+	inline void lockOugisButtons()
+	{
+		if (isPlayer())
+		{
+			getGameLayer()->getHudLayer()->skill4Button->setLock();
+			getGameLayer()->getHudLayer()->skill5Button->setLock();
+		}
+	}
+	inline void unlockOugisButtons()
+	{
+		if (isPlayer())
+		{
+			getGameLayer()->getHudLayer()->skill4Button->unLock();
+			getGameLayer()->getHudLayer()->skill5Button->unLock();
+		}
+	}
+
+	void checkRefCount(float dt)
+	{
+		CCLOG("[Ref Check] %s has %d references", getCharacter()->getCString(), retainCount());
+	}
+
+	void countDown(float dt)
+	{
+		rebornLabelTime -= 1;
+		rebornLabel->setString(to_cstr(rebornLabelTime));
+	}
+
 	AIHandler aiHandler = nullptr;
 };

@@ -22,7 +22,7 @@ class Kakuzu : public Hero
 
 	void changeHPbar() override
 	{
-		HeroElement::changeHPbar();
+		Hero::changeHPbar();
 
 		if (isNotPlayer())
 			return;

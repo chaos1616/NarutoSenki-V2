@@ -86,7 +86,7 @@ class Lee : public Hero
 
 	void changeHPbar() override
 	{
-		HeroElement::changeHPbar();
+		Hero::changeHPbar();
 
 		if (isNotPlayer())
 			return;

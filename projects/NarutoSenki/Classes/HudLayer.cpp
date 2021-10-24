@@ -1,4 +1,4 @@
-#include "Core/Tower/Tower.hpp"
+#include "Core/Hero.hpp"
 #include "HudLayer.h"
 #include "MyUtils/CCShake.h"
 

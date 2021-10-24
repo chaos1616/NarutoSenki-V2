@@ -1,6 +1,5 @@
 #pragma once
 #include "ActionButton.h"
-#include "Core/Hero.hpp"
 #include "JoyStick.h"
 #include "GameLayer.h"
 
