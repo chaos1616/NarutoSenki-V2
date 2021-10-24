@@ -3598,8 +3598,7 @@ void CharacterBase::setTransform()
 		removeBuffEffect("all");
 	}
 
-	auto tempAttackValue = getNAttackValueStr();
-	setnAttackValue(tempAttackValue);
+	setnAttackValue(to_ccstring(getNAttackValue()));
 
 	setMaxHPValue(getMaxHPValue(), false);
 	setHPValue(getHPValue());

@@ -493,16 +493,6 @@ public:
 	inline int			getSpcAttackValue2() { return to_int(_spcattackValue2->getCString()); }
 	inline int			getSpcAttackValue3() { return to_int(_spcattackValue3->getCString()); }
 	inline int			getTempAttackValue1() { return to_int(_tempAttackValue1->getCString()); }
-	inline CCString*	getNAttackValueStr() { return _nattackValue; }
-	inline CCString*	getSAttackValue1Str() { return _sattackValue1; }
-	inline CCString*	getSAttackValue2Str() { return _sattackValue2; }
-	inline CCString*	getSAttackValue3Str() { return _sattackValue3; }
-	inline CCString*	getSAttackValue4Str() { return _sattackValue4; }
-	inline CCString*	getSAttackValue5Str() { return _sattackValue5; }
-	inline CCString*	getSpcAttackValue1Str() { return _spcattackValue1; }
-	inline CCString*	getSpcAttackValue2Str() { return _spcattackValue2; }
-	inline CCString*	getSpcAttackValue3Str() { return _spcattackValue3; }
-	inline CCString*	getTempAttackValue1Str() { return _tempAttackValue1; }
 	inline bool			hasTempAttackValue1() { return _tempAttackValue1 != nullptr; }
 	inline bool			isCharacter(const string &c) { return _character->m_sString == c; }
 	inline bool			isCharacter(const char *c) { return is_same(_character->getCString(), c); }

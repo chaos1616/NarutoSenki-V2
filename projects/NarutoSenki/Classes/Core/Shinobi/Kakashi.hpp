@@ -124,7 +124,7 @@ class Kakashi : public Hero
 		setSkill2Action(createAnimation(skillSPC2Array, 10.0f, false, true));
 		setIdleAction(createAnimation(skillSPC3Array, 5.0f, true, false));
 		settempAttackValue1(to_ccstring(getSAttackValue1()));
-		setsAttackValue1(getSpcAttackValue1Str());
+		setsAttackValue1(to_ccstring(getSpcAttackValue1()));
 
 		for (auto hero : getGameLayer()->_CharacterArray)
 		{

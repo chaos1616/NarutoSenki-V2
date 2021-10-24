@@ -404,7 +404,7 @@ class Naruto : public Hero
 	{
 		auto clone = create<SageNarutoClone>(getCharacter(), CCString::create(kRoleClone), getGroup());
 		clone->setSkill1Action(clone->createAnimation(clone->skillSPC1Array, 10.0f, false, true));
-		clone->setsAttackValue1(getSAttackValue1Str());
+		clone->setsAttackValue1(to_ccstring(getSAttackValue1()));
 		clone->setSAttackType1(_spcattackType1);
 		clone->_sattackcooldown1 = _spcattackcooldown1;
 		return clone;
