@@ -53,8 +53,8 @@ public:
 		auto charName = character->getCString();
 
 		CCArray *animationArray = CCArray::create();
-		const char *filePath = CCString::createWithFormat("Element/%s/%s.xml", charName, charName)->getCString();
-		KTools::readXMLToArray(filePath, animationArray);
+		auto filePath = format("Element/{}/{}.xml", charName, charName);
+		KTools::readXMLToArray(filePath.c_str(), animationArray);
 
 		// init
 		CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));

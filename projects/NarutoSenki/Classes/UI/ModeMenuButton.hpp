@@ -12,9 +12,9 @@ public:
 	GameMode mode;
 	bool useMask2;
 
-	bool init(const char *szImage)
+	bool init(const string &szImage)
 	{
-		RETURN_FALSE_IF(!CCSprite::initWithFile(szImage));
+		RETURN_FALSE_IF(!CCSprite::initWithFile(szImage.c_str()));
 		// initWithSpriteFrameName(szImage);
 		setAnchorPoint(ccp(0.5, 0.5));
 
@@ -75,7 +75,7 @@ public:
 		}
 	}
 
-	static ModeMenuButton *create(const char *szImage)
+	static ModeMenuButton *create(const string &szImage)
 	{
 		ModeMenuButton *mb = new ModeMenuButton();
 		if (mb && mb->init(szImage))

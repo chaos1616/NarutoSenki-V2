@@ -360,7 +360,7 @@ void GameLayer::addFlog(float dt)
 
 void GameLayer::initTower()
 {
-	addSprites(CCString::createWithFormat("Element/Tower/Tower%d.plist", mapId)->getCString());
+	addSprites(format("Element/Tower/Tower{}.plist", mapId).c_str());
 
 	CCTMXObjectGroup *metaGroup = currentMap->objectGroupNamed("meta");
 	CCArray *metaArray = metaGroup->getObjects();
@@ -761,7 +761,7 @@ void GameLayer::onLeft()
 	}
 
 	LoadLayer::unloadAllCharsIMG(_CharacterArray);
-	removeSprites(CCString::createWithFormat("Element/Tower/Tower%d.plist", mapId)->getCString());
+	removeSprites(format("Element/Tower/Tower{}.plist", mapId).c_str());
 
 	if (_isHardCoreGame)
 	{
@@ -802,17 +802,17 @@ void GameLayer::checkBackgroundMusic(float dt)
 				int id = (mapId - 1) > 4 ? 4 : (mapId - 1);
 				if (_playNum == 0)
 				{
-					SimpleAudioEngine::sharedEngine()->playBackgroundMusic(CCString::createWithFormat("Audio/Music/Battle%d.ogg", 2 + id * 3)->getCString(), false);
+					SimpleAudioEngine::sharedEngine()->playBackgroundMusic(format("Audio/Music/Battle{}.ogg", 2 + id * 3).c_str(), false);
 					_playNum++;
 				}
 				else if (_playNum == 1)
 				{
-					SimpleAudioEngine::sharedEngine()->playBackgroundMusic(CCString::createWithFormat("Audio/Music/Battle%d.ogg", 3 + id * 3)->getCString(), false);
+					SimpleAudioEngine::sharedEngine()->playBackgroundMusic(format("Audio/Music/Battle{}.ogg", 3 + id * 3).c_str(), false);
 					_playNum++;
 				}
 				else if (_playNum == 2)
 				{
-					SimpleAudioEngine::sharedEngine()->playBackgroundMusic(CCString::createWithFormat("Audio/Music/Battle%d.ogg", 1 + id * 3)->getCString(), false);
+					SimpleAudioEngine::sharedEngine()->playBackgroundMusic(format("Audio/Music/Battle{}.ogg", 1 + id * 3).c_str(), false);
 					_playNum = 0;
 				}
 			}
@@ -844,7 +844,7 @@ void GameLayer::setOugis(CCNode *sender)
 
 		if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 		{
-			SimpleAudioEngine::sharedEngine()->playEffect(CCString::createWithFormat("Audio/Ougis/%s_ougis.ogg", Sender->getCharacter()->getCString())->getCString());
+			SimpleAudioEngine::sharedEngine()->playEffect(format("Audio/Ougis/{}_ougis.ogg", Sender->getCharacter()->getCString()).c_str());
 		}
 
 		_hudLayer->setOugis(Sender->getCharacter(), Sender->getGroup());
@@ -890,7 +890,7 @@ int GameLayer::getMapCount()
 	int index = 1;
 	int mapCount = 0;
 	auto fileUtils = CCFileUtils::sharedFileUtils();
-	while (fileUtils->isFileExist(CCString::createWithFormat("Tiles/%d.tmx", index++)->getCString()))
+	while (fileUtils->isFileExist(format("Tiles/{}.tmx", index++).c_str()))
 		mapCount++;
 	CCLOG("===== Found %d maps =====", mapCount);
 	return mapCount;

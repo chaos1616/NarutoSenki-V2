@@ -1491,8 +1491,7 @@ void CharacterBase::setCoinDisplay(int num)
 	coinSprite->setPosition(ccp(14, 0));
 	coinDisplay->addChild(coinSprite);
 
-	CCString *label = CCString::createWithFormat("+%d", num);
-	auto rewardLabel = CCLabelBMFont::create(label->getCString(), "Fonts/yellow.fnt");
+	auto rewardLabel = CCLabelBMFont::create(format("+{}", num).c_str(), "Fonts/yellow.fnt");
 	rewardLabel->setPosition(ccp(0, 0));
 	rewardLabel->setScale(0.3f);
 	coinDisplay->addChild(rewardLabel);
@@ -1517,7 +1516,7 @@ void CharacterBase::setDamgeDisplay(int value, const char *type)
 {
 	if (_damageArray.size() < 6)
 	{
-		auto damageFont = CCLabelBMFont::create(to_cstr(value), CCString::createWithFormat("Fonts/%s.fnt", type)->getCString());
+		auto damageFont = CCLabelBMFont::create(to_cstr(value), format("Fonts/{}.fnt", type).c_str());
 		damageFont->setAnchorPoint(ccp(0.5, 0.5));
 
 		if (isFlog())
@@ -2926,11 +2925,11 @@ void CharacterBase::setClone(int cloneTime)
 		{
 			clone->_hpBar->setPositionY(120);
 		}
-		clone->setnAttackValue(CCString::createWithFormat("1060"));
+		clone->setnAttackValue(CCString::create("1060"));
 	}
 	else if (isCharacter("Kakashi"))
 	{
-		clone->setnAttackValue(CCString::createWithFormat("1060"));
+		clone->setnAttackValue(CCString::create("1060"));
 	}
 
 	if (hasArmorBroken)

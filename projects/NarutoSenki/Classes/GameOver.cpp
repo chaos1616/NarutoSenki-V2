@@ -73,8 +73,8 @@ void GameOver::listResult()
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/battle_over.ogg");
 
 	auto currPlayer = getGameLayer()->currentPlayer;
-	auto path = CCString::createWithFormat("%s_half.png", currPlayer->getCharacter()->getCString());
-	auto half = CCSprite::createWithSpriteFrameName(path->getCString());
+	auto path = format("{}_half.png", currPlayer->getCharacter()->getCString());
+	auto half = CCSprite::createWithSpriteFrameName(path.c_str());
 
 	if (currPlayer->isCharacter("Konan") ||
 		currPlayer->isCharacter("Karin") ||
@@ -182,8 +182,8 @@ void GameOver::listResult()
 			hero->changeGroup();
 		}
 
-		auto path = CCString::createWithFormat(("%s_small.png"), hero->getCharacter()->getCString());
-		auto avator_small = CCSprite::createWithSpriteFrameName(path->getCString());
+		auto path = format(("{}_small.png"), hero->getCharacter()->getCString());
+		auto avator_small = CCSprite::createWithSpriteFrameName(path.c_str());
 		avator_small->setAnchorPoint(ccp(0, 0));
 
 		int realKillNum = to_int(hero->getKillNum()->getCString());

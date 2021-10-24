@@ -20,13 +20,8 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	setGroup(group);
 
 	CCArray *animationArray = CCArray::create();
-	const char *filePath;
-
-	filePath = CCString::createWithFormat("Element/Monster/%s.xml", getCharacter()->getCString())->getCString();
-
-	// string key =KTools::getKeycode(filePath);
-
-	KTools::readXMLToArray(filePath, animationArray);
+	auto filePath = format("Element/Monster/{}.xml", getCharacter()->getCString());
+	KTools::readXMLToArray(filePath.c_str(), animationArray);
 
 	// init Attribute; & indleFrame
 

@@ -30,5 +30,5 @@ using namespace std;
 #define to_ccstring(var) CCString::create(std::to_string(var))
 
 // Tile maps (Made with Tiled)
-#define GetMapPath(mapId) CCString::createWithFormat("Tiles/%d.tmx", mapId)->getCString()
-#define GetMapBgPath(mapId) CCString::createWithFormat("Tiles/map_bg%d.png", mapId)->getCString()
+#define GetMapPath(mapId) format("Tiles/{}.tmx", mapId).c_str()
+#define GetMapBgPath(mapId) format("Tiles/map_bg{}.png", mapId).c_str()

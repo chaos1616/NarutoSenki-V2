@@ -122,7 +122,7 @@ void LoadLayer::preloadIMG()
 	{
 		setRand();
 		int num = rand() % 3 + 1;
-		CCSprite *tips = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("tip%d.png", num)->getCString());
+		CCSprite *tips = CCSprite::createWithSpriteFrameName(format("tip{}.png", num).c_str());
 		tips->setPosition(ccp(winSize.width / 2, winSize.height / 2));
 		addChild(tips);
 	}
@@ -152,16 +152,16 @@ void LoadLayer::perloadCharIMG(const char *player)
 
 	CCTexture2D::PVRImagesHavePremultipliedAlpha(true);
 
-	auto path = CCString::createWithFormat("Element/Skills/%s_Skill.plist", player)->getCString();
-	if (CCFileUtils::sharedFileUtils()->isFileExist(path))
-		addSprites(path);
+	auto path = format("Element/Skills/{}_Skill.plist", player);
+	if (CCFileUtils::sharedFileUtils()->isFileExist(path.c_str()))
+		addSprites(path.c_str());
 	// else
 	// CCLOG("Not found file %s", path);
 
 	KTools::prepareFileOGG(player);
 
-	path = CCString::createWithFormat("Element/%s/%s.plist", player, player)->getCString();
-	addSprites(path);
+	path = format("Element/{}/{}.plist", player, player);
+	addSprites(path.c_str());
 	// Add extra sprites
 	if (is_same(player, "Jiraiya"))
 	{
@@ -237,8 +237,8 @@ void LoadLayer::unloadCharIMG(CharacterBase *c)
 	}
 
 	auto charName = c->getCharacter()->getCString();
-	auto path = CCString::createWithFormat("Element/%s/%s.plist", charName, charName)->getCString();
-	removeSprites(path);
+	auto path = format("Element/{}/{}.plist", charName, charName);
+	removeSprites(path.c_str());
 
 	if (c->isPlayerOrCom())
 	{
@@ -315,7 +315,7 @@ void LoadLayer::unloadAllCharsIMG(const vector<Hero *> &players)
 
 void LoadLayer::setLoadingAnimation(const char *player, int index)
 {
-	CCSprite *loadingAvator = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_Walk_01", player)->getCString());
+	auto loadingAvator = CCSprite::createWithSpriteFrameName(format("{}_Walk_01", player).c_str());
 	loadingAvator->setFlipX(true);
 	loadingAvator->setPosition(ccp(winSize.width - 100 + index * 16, 30));
 	loadingAvator->setAnchorPoint(ccp(0, 0));

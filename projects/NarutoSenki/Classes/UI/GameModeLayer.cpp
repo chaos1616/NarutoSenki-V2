@@ -46,7 +46,7 @@ bool GameModeLayer::init()
 	const float posY = (winSize.height / 2) + 30;
 	for (int i = 0; i < 3; i++)
 	{
-		auto mode_btn = ModeMenuButton::create(CCString::createWithFormat("GameMode/%d.png", i + 1)->getCString());
+		auto mode_btn = ModeMenuButton::create(format("GameMode/{}.png", i + 1));
 		mode_btn->mode = (GameMode)i;
 		mode_btn->setDelegate(this);
 		mode_btn->setPositionX(offset);
@@ -56,7 +56,7 @@ bool GameModeLayer::init()
 	}
 	for (int i = 3; i < 6; i++)
 	{
-		auto mode_btn = ModeMenuButton::create(CCString::createWithFormat("GameMode/%d.png", i + 1)->getCString());
+		auto mode_btn = ModeMenuButton::create(format("GameMode/{}.png", i + 1));
 		mode_btn->mode = (GameMode)i;
 		mode_btn->setDelegate(this);
 		mode_btn->setPositionX(offset + 10 + (i - 2) * (80 + 5));
@@ -71,7 +71,7 @@ bool GameModeLayer::init()
 	}
 	for (int i = 6; i < GameMode::_Internal_Max_Length; i++)
 	{
-		auto mode_btn = ModeMenuButton::create(CCString::createWithFormat("GameMode/%d.png", i + 1)->getCString());
+		auto mode_btn = ModeMenuButton::create(format("GameMode/{}.png", i + 1));
 		mode_btn->mode = (GameMode)i;
 		mode_btn->setDelegate(this);
 		mode_btn->setPositionX(offset + 20 + (80 + 5) * 4);

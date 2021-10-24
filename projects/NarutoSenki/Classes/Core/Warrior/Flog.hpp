@@ -28,11 +28,8 @@ public:
 		setGroup(group);
 
 		CCArray *animationArray = CCArray::create();
-		const char *filePath;
-
-		filePath = CCString::createWithFormat("Element/Flog/%s.xml", getCharacter()->getCString())->getCString();
-
-		KTools::readXMLToArray(filePath, animationArray);
+		auto filePath = format("Element/Flog/{}.xml", getCharacter()->getCString());
+		KTools::readXMLToArray(filePath.c_str(), animationArray);
 
 		CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
 		CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
@@ -59,31 +56,31 @@ public:
 			setCkr2Value(0);
 		}
 
-		//init WalkFrame
+		// init WalkFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(1));
 		walkArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		//init HurtFrame
+		// init HurtFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(2));
 		hurtArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		//init AirHurtFrame
+		// init AirHurtFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(3));
 		airHurtArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		//init KnockDownFrame
+		// init KnockDownFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(4));
 		knockDownArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		//init FloatFrame
+		// init FloatFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(5));
 		floatArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		//init DeadFrame
+		// init DeadFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
 		deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		//init nAttack data & Frame Array
+		// init nAttack data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 		uint32_t tmpCD;
@@ -127,14 +124,15 @@ public:
 protected:
 	void dealloc()
 	{
-		unschedule(schedule_selector(CharacterBase::setAI));
 		setActionState(State::DEAD);
+		unscheduleAllSelectors();
 		stopAllActions();
 
 		if (isKonohaGroup())
 			std::erase(getGameLayer()->_KonohaFlogArray, this);
 		else
 			std::erase(getGameLayer()->_AkatsukiFlogArray, this);
+
 		removeFromParent();
 	}
 

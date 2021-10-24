@@ -95,8 +95,7 @@ private:
 			   auto call = CallFunc::create(std::bind(&CharacterBase::disableShadow, thiz, thiz));
 			   auto seq = newSequence(tempAction, call);
 
-			   CCSprite *tempChar = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_Extern_01", thiz->getCharacter()->getCString())->getCString());
-
+			   auto tempChar = CCSprite::createWithSpriteFrameName(format("{}_Extern_01", thiz->getCharacter()->getCString()).c_str());
 			   tempChar->setAnchorPoint(ccp(0.5f, 0));
 			   tempChar->setPosition(thiz->getPosition());
 			   getGameLayer()->addChild(tempChar, -thiz->_originY);
