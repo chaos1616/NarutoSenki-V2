@@ -108,12 +108,6 @@ CC_DLL unsigned short* cc_utf8_to_utf16(const char* utf8, int* outUTF16Character
  **/
 CC_DLL char* cc_utf16_to_utf8(const unsigned short* utf16, int* outUTF8CharacterCount = NULL);
 
-namespace StringUtils {
-
-std::string CC_DLL format(const char* format, ...) CC_FORMAT_PRINTF(1, 2);
-
-}
-
 NS_CC_END
 
 #endif /* defined(__cocos2dx__ccUTF8__) */

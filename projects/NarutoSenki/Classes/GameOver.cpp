@@ -52,7 +52,6 @@ bool GameOver::init(CCRenderTexture *snapshoot)
 	addChild(result_title, 3);
 
 	result_bg = CCSprite::createWithSpriteFrameName("gameover_bg.png");
-	result_bg->setAnchorPoint(ccp(0.5f, 0.5f));
 	result_bg->setScale(0.5f);
 	result_bg->setPosition(ccp(winSize.width / 2, winSize.height / 2 - 6));
 	addChild(result_bg, 4);

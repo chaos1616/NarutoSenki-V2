@@ -187,7 +187,6 @@ void HudLayer::playGameOpeningAnimation()
 	auto tempAction = CCAnimate::create(tempAnimation);
 
 	openingSprite = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("gameStart_001.png")->getCString());
-	openingSprite->setAnchorPoint(ccp(0.5f, 0.5f));
 	openingSprite->setPosition(ccp(winSize.width / 2 + 32, winSize.height / 2));
 	addChild(openingSprite, 5000);
 	openingSprite->runAction(tempAction);

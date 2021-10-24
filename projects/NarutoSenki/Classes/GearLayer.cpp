@@ -50,14 +50,12 @@ void GearButton::setBtnType(gearType gearType, GearButtonType btnType, bool isBu
 	if (_btnType == GearButtonType::Buy)
 	{
 		CCSprite *gearIcon = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("gear_%02d.png", _gearType)->getCString());
-		gearIcon->setAnchorPoint(ccp(0.5f, 0.5f));
 		gearIcon->setPosition(ccp(20, 30));
 		addChild(gearIcon);
 	}
 	else
 	{
 		CCSprite *gearIcon = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("gear_%02d.png", _gearType)->getCString());
-		gearIcon->setAnchorPoint(ccp(0.5f, 0.5f));
 		gearIcon->setScale(0.75f);
 		addChild(gearIcon);
 	}
@@ -66,7 +64,6 @@ void GearButton::setBtnType(gearType gearType, GearButtonType btnType, bool isBu
 	{
 		_isBuyed = true;
 		soIcon = CCSprite::createWithSpriteFrameName("gear_so.png");
-		soIcon->setAnchorPoint(ccp(0.5f, 0.5f));
 		soIcon->setPosition(ccp(getContentSize().width / 2, getContentSize().height / 2));
 		addChild(soIcon);
 	}
@@ -254,7 +251,6 @@ bool GearLayer::init(CCRenderTexture *snapshoot)
 	CCLayer *gears_layer = CCLayer::create();
 
 	gears_bg = CCSprite::createWithSpriteFrameName("gears_bg.png");
-	gears_bg->setAnchorPoint(ccp(0.5f, 0.5f));
 	gears_bg->setPosition(ccp(winSize.width / 2, winSize.height / 2 - 12));
 	gears_layer->addChild(gears_bg, 1);
 

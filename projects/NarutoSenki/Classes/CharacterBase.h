@@ -229,7 +229,7 @@ public:
 	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_tempAttackValue1,tempAttackValue1);
 
 
-	PROP(const char*,_effectType,EffectType);
+	PROP_REF(string,_effectType,EffectType);
 	bool			_hurtFromLeft;
 	bool			_hurtFromRight;
 
@@ -400,18 +400,17 @@ public:
 	void				stopMove(float dt);
 	void				stopJump(int stopTime);
 	void				setCharFlip();
-	void				setAttackBox(const string &data);
+	void				setAttackBox(const string &effectType);
 	inline void			setDamage(CharacterBase* attacker);
-	void				setDamage(CharacterBase *attacker, const char* effectType, int attackValue, bool isFlipped);
+	void				setDamage(CharacterBase *attacker, const string &effectType, int attackValue, bool isFlipped);
 	void				setDamgeDisplay(int value, const char* type);
 
 	void				setSkillEffect(const string &type);
 	// void				setItemEffect(const string &type);
-	void				setDamgeEffect(const char* type);
+	void				setDamgeEffect(const string &type);
 	void				setMonAttack(int skillNum);
 	void				setTransform();
 	void				setOugis();
-
 
 	virtual Hero*		createClone(int cloneTime);
 	void				setClone(int cloneTime);
@@ -421,17 +420,16 @@ public:
 	void				setBulletGroup(float dt);
 	void				setTrap(const string &trapName);
 
-
 	void				setBuff(int buffValue);
 	void				setCommand(const string &cmd);
-	void				setBuffEffect(const char* type);
-	void				removeBuffEffect(const char* type);
-public:
+	void				setBuffEffect(const string &type);
+	void				removeBuffEffect(const string &type);
+
 	void				disableBuff(float dt);
 	void				healBuff(float dt);
-protected:
 	void				dehealBuff(float dt);
 
+protected:
 	void				removeClone(float dt);
 	void				removeSelf(float dt);
 	void				setJump(bool jumpDirection);

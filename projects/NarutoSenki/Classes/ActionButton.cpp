@@ -251,7 +251,6 @@ void ActionButton::beganAnimation(bool isLock)
 void ActionButton::setGearType(int tmpGearType)
 {
 	CCSprite *gearIcon = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("gear_%02d.png", gearType(tmpGearType))->getCString());
-	gearIcon->setAnchorPoint(ccp(0.5f, 0.5f));
 	gearIcon->setScale(0.85f);
 	gearIcon->setPosition(ccp(18, 18));
 	addChild(gearIcon);
@@ -357,7 +356,6 @@ void ActionButton::setProgressMark()
 	clipper->setPosition(getPosition());
 	clipper->addChild(proressmarkSprite);
 
-	proressmarkSprite->setAnchorPoint(ccp(0.5f, 0.5f));
 	proressmarkSprite->setPosition(ccp(proressmarkSprite->getContentSize().width / 2, proressmarkSprite->getContentSize().height / 2));
 	//50,120,180
 
@@ -365,7 +363,6 @@ void ActionButton::setProgressMark()
 
 	proressblinkSprite = CCSprite::createWithSpriteFrameName("icon_bg3.png");
 	proressblinkSprite->setPosition(getPosition());
-	proressblinkSprite->setAnchorPoint(ccp(0.5f, 0.5f));
 	proressblinkSprite->setPosition(ccp(proressmarkSprite->getContentSize().width / 2, proressmarkSprite->getContentSize().height / 2));
 
 	auto fd = CCFadeOut::create(0.2f);

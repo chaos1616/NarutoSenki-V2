@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
-            <key>Hiraishin2Effect_01</key>
+            <key>Hiraishin2_Effect_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{168,328},{75,57}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{79,89}</string>
             </dict>
-            <key>Hiraishin2Effect_02</key>
+            <key>Hiraishin2_Effect_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{387,376},{67,63}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{79,89}</string>
             </dict>
-            <key>Hiraishin2Effect_03</key>
+            <key>Hiraishin2_Effect_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{100,414},{61,59}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{79,89}</string>
             </dict>
-            <key>HiraishinEffect_01</key>
+            <key>Hiraishin_Effect_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{287,301},{75,57}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{79,89}</string>
             </dict>
-            <key>HiraishinEffect_02</key>
+            <key>Hiraishin_Effect_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{387,311},{67,63}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{79,89}</string>
             </dict>
-            <key>HiraishinEffect_03</key>
+            <key>Hiraishin_Effect_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{450,525},{61,59}}</string>

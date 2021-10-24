@@ -62,7 +62,6 @@ bool CCStrokeLabel::init()
 		texture->setAliasTexParameters();
 		m_sprite = CCSprite::createWithTexture(rt->getSprite()->getTexture());
 		setContentSize(m_sprite->getContentSize());
-		m_sprite->setAnchorPoint(ccp(0.5f, 0.5f));
 		m_sprite->setPosition(ccp(0, 0));
 		((CCSprite *)m_sprite)->setFlipY(true);
 		addChild(m_sprite);

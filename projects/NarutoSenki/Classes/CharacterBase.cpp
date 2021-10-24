@@ -104,8 +104,6 @@ CharacterBase::CharacterBase()
 	_knockLength = 0;
 	_knockDirection = false;
 
-	_effectType = nullptr;
-
 	_originY = 0;
 
 	_nattackValue = nullptr;
@@ -436,18 +434,18 @@ void CharacterBase::acceptAttack(CCObject *object)
 		{
 			bool isHit = false;
 			if (attacker->_attackType == "nAttack" &&
-				!is_same(attacker->_effectType, "f_hit") &&
-				!is_same(attacker->_effectType, "c_hit") &&
-				!is_same(attacker->_effectType, "o_hit") &&
-				!is_same(attacker->_effectType, "b_hit") &&
-				!is_same(attacker->_effectType, "bc_hit"))
+				attacker->_effectType != "f_hit" &&
+				attacker->_effectType != "c_hit" &&
+				attacker->_effectType != "o_hit" &&
+				attacker->_effectType != "b_hit" &&
+				attacker->_effectType != "bc_hit")
 			{
 				if (setHitBox().intersectsRect(attacker->setHalfBox()))
 				{
 					isHit = true;
 				}
 			}
-			else if (is_same(attacker->_effectType, "n_hit"))
+			else if (attacker->_effectType == "n_hit")
 			{
 				bool isHitX = false;
 				float distanceX = ccpSub(attacker->getPosition(), getPosition()).x;
@@ -594,7 +592,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 				if (abs(currentPosY - attackerPosY) <= attacker->_attackRangeY)
 				{
-					const char *hitType = attacker->_effectType;
+					auto hitType = attacker->_effectType;
 
 					// hit or not !
 					attacker->_isHitOne = true;
@@ -605,36 +603,36 @@ void CharacterBase::acceptAttack(CCObject *object)
 					// flog hurt
 					if (isFlog())
 					{
-						if (is_same(hitType, "o_hit"))
+						if (hitType == "o_hit")
 						{
 							setKnockLength(48);
 							setKnockDirection(attacker->_isFlipped);
 							hurt();
 						}
-						else if (is_same(hitType, "ac_hit"))
+						else if (hitType == "ac_hit")
 						{
 							airHurt();
 						}
-						else if (is_same(hitType, "f_hit") || is_same(hitType, "bf_hit"))
+						else if (hitType == "f_hit" || hitType == "bf_hit")
 						{
 							autoFlip(attacker);
 							floatUP(64, true);
 						}
-						else if (is_same(hitType, "f2_hit"))
+						else if (hitType == "f2_hit")
 						{
 							autoFlip(attacker);
 							floatUP(128, true);
 						}
-						else if (is_same(hitType, "b_hit"))
+						else if (hitType == "b_hit")
 						{
 							autoFlip(attacker);
 							floatUP(16, false);
 						}
-						else if (is_same(hitType, "ab_hit"))
+						else if (hitType == "ab_hit")
 						{
 							absorb(attacker->getPosition(), true);
 						}
-						else if (is_same(hitType, "s_hit"))
+						else if (hitType == "s_hit")
 						{
 							absorb(attacker->getPosition(), false);
 						}
@@ -642,7 +640,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 					// hero hurt
 					else if (isPlayerOrCom() || isClone())
 					{
-						if (is_same(hitType, "l_hit"))
+						if (hitType == "l_hit")
 						{
 							if (!_isArmored)
 							{
@@ -650,8 +648,8 @@ void CharacterBase::acceptAttack(CCObject *object)
 							}
 							hurt();
 						}
-						else if (is_same(hitType, "c_hit") ||
-								 is_same(hitType, "bc_hit"))
+						else if (hitType == "c_hit" ||
+								 hitType == "bc_hit")
 						{
 							if (!_isArmored)
 							{
@@ -698,7 +696,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 							hurt();
 						}
-						else if (is_same(hitType, "ts_hit"))
+						else if (hitType == "ts_hit")
 						{
 							if (!_isArmored)
 							{
@@ -726,7 +724,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 								}
 							}
 						}
-						else if (is_same(hitType, "sl_hit"))
+						else if (hitType == "sl_hit")
 						{
 							if (!_isArmored)
 							{
@@ -739,7 +737,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 								schedule(schedule_selector(CharacterBase::disableDebuff), 3);
 							}
 						}
-						else if (is_same(hitType, "ac_hit"))
+						else if (hitType == "ac_hit")
 						{
 							if (_actionState == State::FLOAT || _actionState == State::AIRHURT)
 							{
@@ -754,7 +752,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 								hurt();
 							}
 						}
-						else if (is_same(hitType, "o_hit"))
+						else if (hitType == "o_hit")
 						{
 							if (_actionState != State::OATTACK ||
 								(_actionState == State::OATTACK &&
@@ -769,7 +767,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 								hardHurt(500, true, false, false, false);
 							}
 						}
-						else if (is_same(hitType, "o2_hit"))
+						else if (hitType == "o2_hit")
 						{
 							if (!_isArmored)
 							{
@@ -778,7 +776,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 							setKnockDirection(attacker->_isFlipped);
 							hardHurt(1000, true, false, false, true);
 						}
-						else if (is_same(hitType, "ob_hit"))
+						else if (hitType == "ob_hit")
 						{
 							if (!_isArmored)
 							{
@@ -799,7 +797,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 							}
 							scheduleOnce(schedule_selector(CharacterBase::disableBuff), 5);
 						}
-						else if (is_same(hitType, "ct_hit"))
+						else if (hitType == "ct_hit")
 						{
 							if (_actionState != State::OATTACK ||
 								(_actionState == State::OATTACK &&
@@ -934,7 +932,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 								}
 							}
 						}
-						else if (is_same(hitType, "f_hit") || is_same(hitType, "bf_hit"))
+						else if (hitType == "f_hit" || hitType == "bf_hit")
 						{
 							autoFlip(attacker);
 							if (_actionState != State::OATTACK ||
@@ -945,7 +943,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 								floatUP(64, true);
 							}
 						}
-						else if (is_same(hitType, "f2_hit"))
+						else if (hitType == "f2_hit")
 						{
 							autoFlip(attacker);
 							if (_actionState != State::OATTACK ||
@@ -956,7 +954,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 								floatUP(128, true);
 							}
 						}
-						else if (is_same(hitType, "b_hit"))
+						else if (hitType == "b_hit")
 						{
 							autoFlip(attacker);
 
@@ -968,11 +966,11 @@ void CharacterBase::acceptAttack(CCObject *object)
 								floatUP(16, false);
 							}
 						}
-						else if (is_same(hitType, "ab_hit"))
+						else if (hitType == "ab_hit")
 						{
 							absorb(attacker->getPosition(), true);
 						}
-						else if (is_same(hitType, "s_hit"))
+						else if (hitType == "s_hit")
 						{
 							absorb(attacker->getPosition(), false);
 						}
@@ -1278,7 +1276,7 @@ void CharacterBase::setDamage(CharacterBase *attacker)
 	setDamage(attacker, attacker->_effectType, attacker->_attackValue, _isFlipped);
 }
 
-void CharacterBase::setDamage(CharacterBase *attacker, const char *effectType, int attackValue, bool isFlipped)
+void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType, int attackValue, bool isFlipped)
 {
 	if (isTower())
 	{
@@ -1473,7 +1471,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const char *effectType, i
 		// create damage effect
 		if (isFlog() && attacker->isNotFlog())
 		{
-			if (is_same(effectType, "a_hit"))
+			if (effectType == "a_hit")
 			{
 				setDamgeEffect("a_hit");
 			}
@@ -1556,7 +1554,7 @@ void CharacterBase::removeDamageDisplay()
 	}
 }
 
-void CharacterBase::setDamgeEffect(const char *type)
+void CharacterBase::setDamgeEffect(const string &type)
 {
 	if (isPlayer() || abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange)
 	{
@@ -1583,7 +1581,7 @@ void CharacterBase::setSkillEffect(const string &type)
 	if (isPlayer() ||
 		abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange)
 	{
-		Effect *ef = Effect::create(type.c_str(), this);
+		Effect *ef = Effect::create(type, this);
 		if (type == "Bagua" ||
 			type == "Kujiyose")
 		{
@@ -1991,7 +1989,7 @@ void CharacterBase::setDSound(const string &file)
 
 void CharacterBase::setAttackBox(const string &effectType)
 {
-	_effectType = effectType.c_str();
+	_effectType = effectType;
 
 	if (_actionState == State::HURT)
 	{
@@ -2190,7 +2188,7 @@ void CharacterBase::setBuff(int buffValue)
 	{
 		_skillUPBuffValue = buffValue;
 		scheduleOnce(schedule_selector(CharacterBase::disableBuff), buffStayTime);
-		setBuffEffect(_attackType.c_str());
+		setBuffEffect(_attackType);
 
 		setsAttackValue1(to_ccstring(getSAttackValue1() + _skillUPBuffValue));
 		setsAttackValue2(to_ccstring(getSAttackValue2() + _skillUPBuffValue));
@@ -2302,7 +2300,7 @@ void CharacterBase::setBuff(int buffValue)
 		_skillChangeBuffValue = buffValue;
 		scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
 		scheduleOnce(schedule_selector(CharacterBase::disableBuff), buffStayTime);
-		setBuffEffect(_attackType.c_str());
+		setBuffEffect(_attackType);
 
 		changeAction();
 	}
@@ -2349,7 +2347,7 @@ void CharacterBase::setBuff(int buffValue)
 		getGameLayer()->getHudLayer()->setBuffDisplay(_attackType.c_str(), buffStayTime);
 }
 
-void CharacterBase::setBuffEffect(const char *type)
+void CharacterBase::setBuffEffect(const string &type)
 {
 	if (_skillBuffEffect)
 	{
@@ -2363,56 +2361,56 @@ void CharacterBase::setBuffEffect(const char *type)
 		_healBuffEffect = nullptr;
 	}
 
-	if (is_same(type, "hBuff"))
+	if (type == "hBuff")
 	{
 		_healBuffEffect = Effect::create(type, this);
 		addChild(_healBuffEffect);
 	}
-	else if (is_same(type, "hsBuff"))
+	else if (type == "hsBuff")
 	{
 		_skillBuffEffect = Effect::create(type, this);
 		_skillBuffEffect->setPositionY(14);
 		addChild(_skillBuffEffect);
 	}
-	else if (is_same(type, "tBuff") ||
-			 is_same(type, "dcBuff") ||
-			 is_same(type, "jdBuff") ||
-			 is_same(type, "bmBuff"))
+	else if (type == "tBuff" ||
+			 type == "dcBuff" ||
+			 type == "jdBuff" ||
+			 type == "bmBuff")
 	{
 		_skillBuffEffect = Effect::create(type, this);
 		addChild(_skillBuffEffect);
 	}
-	else if (is_same(type, "dhBuff"))
+	else if (type == "dhBuff")
 	{
 		_dehealBuffEffect = Effect::create(type, this);
 		addChild(_dehealBuffEffect);
 	}
-	else if (is_same(type, "sBuff"))
+	else if (type == "sBuff")
 	{
 		_skillBuffEffect = Effect::create(type, this);
 		addChild(_skillBuffEffect);
 	}
 }
 
-void CharacterBase::removeBuffEffect(const char *type)
+void CharacterBase::removeBuffEffect(const string &type)
 {
-	if (is_same(type, "hBuff") && _healBuffEffect)
+	if (type == "hBuff" && _healBuffEffect)
 	{
 		_healBuffEffect->removeFromParent();
 		_healBuffEffect = nullptr;
 	}
-	else if (is_same(type, "sBuff") && _skillBuffEffect)
+	else if (type == "sBuff" && _skillBuffEffect)
 	{
 		_skillBuffEffect->removeFromParent();
 		_skillBuffEffect = nullptr;
 	}
-	else if (is_same(type, "dhBuff") && _dehealBuffEffect)
+	else if (type == "dhBuff" && _dehealBuffEffect)
 	{
 		_dehealBuffEffect->removeFromParent();
 		_dehealBuffEffect = nullptr;
 	}
 
-	else if (is_same(type, "all"))
+	else if (type == "all")
 	{
 		if (_healBuffEffect)
 		{
