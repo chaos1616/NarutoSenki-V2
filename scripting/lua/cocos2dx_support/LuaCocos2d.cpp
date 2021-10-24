@@ -67761,7 +67761,7 @@ static int tolua_Cocos2d_KTools_readFromSQLite00(lua_State* tolua_S)
   const char* column = ((const char*)  tolua_tostring(tolua_S,3,NULL));
   const char* value = ((const char*)  tolua_tostring(tolua_S,4,NULL));
   {
-   std::string tolua_ret = (std::string)  KTools::readFromSQLite(table,column,value);
+   string tolua_ret = (string)  KTools::readFromSQLite(table,column,value);
    tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
   }
  }
@@ -67790,7 +67790,7 @@ static int tolua_Cocos2d_KTools_encode00(lua_State* tolua_S)
  else
 #endif
  {
-  std::string str = ((std::string)  tolua_tocppstring(tolua_S,2,0));
+  string str = ((string)  tolua_tocppstring(tolua_S,2,0));
   int randomKey = ((int)  tolua_tonumber(tolua_S,3,0));
   {
    KTools::encode(str,randomKey);
@@ -67821,7 +67821,7 @@ static int tolua_Cocos2d_KTools_decode00(lua_State* tolua_S)
  else
 #endif
  {
-  std::string str = ((std::string)  tolua_tocppstring(tolua_S,2,0));
+  string str = ((string)  tolua_tocppstring(tolua_S,2,0));
   {
    KTools::decode(str);
    tolua_pushcppstring(tolua_S,(const char*)str);
@@ -67831,36 +67831,6 @@ static int tolua_Cocos2d_KTools_decode00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'decode'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getKeycode of class  KTools */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_KTools_getKeycode00
-static int tolua_Cocos2d_KTools_getKeycode00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"KTools",0,&tolua_err) ||
-     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  std::string path = ((std::string)  tolua_tocppstring(tolua_S,2,0));
-  {
-   std::string tolua_ret = (std::string)  KTools::getKeycode(path);
-   tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getKeycode'.",&tolua_err);
  return 0;
 #endif
 }
@@ -67889,7 +67859,7 @@ static int tolua_Cocos2d_KTools_readSQLite00(lua_State* tolua_S)
   const char* value = ((const char*)  tolua_tostring(tolua_S,4,0));
   const char* targetColumn = ((const char*)  tolua_tostring(tolua_S,5,0));
   {
-   std::string tolua_ret = (std::string)  KTools::readSQLite(table,column,value,targetColumn);
+   string tolua_ret = (string)  KTools::readSQLite(table,column,value,targetColumn);
    tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
   }
  }
@@ -68045,9 +68015,9 @@ static int tolua_Cocos2d_KTools_encodeData00(lua_State* tolua_S)
  else
 #endif
  {
-  std::string data = ((std::string)  tolua_tocppstring(tolua_S,2,0));
+  string data = ((string)  tolua_tocppstring(tolua_S,2,0));
   {
-   std::string tolua_ret = (std::string)  KTools::encodeData(data);
+   string tolua_ret = (string)  KTools::encodeData(data);
    tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
   }
  }
@@ -72090,7 +72060,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"readFromSQLite",tolua_Cocos2d_KTools_readFromSQLite00);
    tolua_function(tolua_S,"encode",tolua_Cocos2d_KTools_encode00);
    tolua_function(tolua_S,"decode",tolua_Cocos2d_KTools_decode00);
-   tolua_function(tolua_S,"getKeycode",tolua_Cocos2d_KTools_getKeycode00);
    tolua_function(tolua_S,"readSQLite",tolua_Cocos2d_KTools_readSQLite00);
    tolua_function(tolua_S,"saveSQLite",tolua_Cocos2d_KTools_saveSQLite00);
    tolua_function(tolua_S,"readWinNumFromSQL",tolua_Cocos2d_KTools_readWinNumFromSQL00);

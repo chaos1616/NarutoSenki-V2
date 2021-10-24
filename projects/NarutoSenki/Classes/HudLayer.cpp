@@ -153,7 +153,7 @@ void HudLayer::JoyStickUpdate(CCPoint direction)
 
 void HudLayer::initGearButton(const char *charName)
 {
-	gearMenuSprite = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_avator.png", charName)->getCString()), nullptr, nullptr, this, menu_selector(HudLayer::gearButtonClick));
+	gearMenuSprite = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName(format("{}_avator.png", charName).c_str()), nullptr, nullptr, this, menu_selector(HudLayer::gearButtonClick));
 	if (gearMenuSprite == nullptr)
 	{
 		CCLOGERROR("Not found %s avator sprite", charName);
@@ -184,7 +184,7 @@ void HudLayer::playGameOpeningAnimation()
 	auto tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
 	auto tempAction = CCAnimate::create(tempAnimation);
 
-	openingSprite = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("gameStart_001.png")->getCString());
+	openingSprite = CCSprite::createWithSpriteFrameName("gameStart_001.png");
 	openingSprite->setPosition(ccp(winSize.width / 2 + 32, winSize.height / 2));
 	addChild(openingSprite, 5000);
 	openingSprite->runAction(tempAction);
@@ -298,7 +298,7 @@ void HudLayer::initHeroInterface()
 	addChild(hpLabel, 5000);
 
 	int exp = currentPlayer->getEXP() - ((currentPlayer->getLV() - 1) * 500) / 500;
-	expLabel = CCLabelBMFont::create(CCString::createWithFormat("%i%%", exp)->getCString(), "Fonts/1.fnt");
+	expLabel = CCLabelBMFont::create(format("{}%", exp).c_str(), "Fonts/1.fnt");
 	expLabel->setScale(0.35f);
 	expLabel->setPosition(ccp(94, winHeight - 54));
 	expLabel->setAnchorPoint(ccp(0.5f, 0));
@@ -685,7 +685,7 @@ void HudLayer::setEXPLose()
 	}
 	else
 	{
-		expLabel->setString(CCString::createWithFormat("%d%%", int(Percent))->getCString());
+		expLabel->setString(format("{}%", (int)Percent).c_str());
 	}
 }
 
@@ -848,7 +848,7 @@ void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 	float scale = 0.40f;
 #endif
 
-	CCSprite *buffSprite = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_%s.png", getGameLayer()->currentPlayer->getCharacter()->getCString(), buffName)->getCString());
+	auto buffSprite = CCSprite::createWithSpriteFrameName(format("{}_{}.png", getGameLayer()->currentPlayer->getCharacter()->getCString(), buffName).c_str());
 	if (buffSprite == nullptr)
 		return;
 	buffSprite->setAnchorPoint(ccp(0, 0));
@@ -1049,12 +1049,12 @@ CCSprite *HudLayer::createReport(const char *name1, const char *name2, float &le
 {
 	CCSprite *reportSprite = CCSprite::create();
 
-	CCSprite *slain_p = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_rp.png", name1)->getCString());
+	CCSprite *slain_p = CCSprite::createWithSpriteFrameName(format("{}_rp.png", name1).c_str());
 	slain_p->setAnchorPoint(ccp(0, 0.5f));
 	slain_p->setPosition(ccp(0, 0));
 	reportSprite->addChild(slain_p);
 
-	CCSprite *slain_pf = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_rpf.png", name1)->getCString());
+	CCSprite *slain_pf = CCSprite::createWithSpriteFrameName(format("{}_rpf.png", name1).c_str());
 	slain_pf->setPosition(ccp(slain_p->getContentSize().width, 0));
 	slain_pf->setAnchorPoint(ccp(0, 0.5f));
 	reportSprite->addChild(slain_pf);
@@ -1074,14 +1074,14 @@ CCSprite *HudLayer::createReport(const char *name1, const char *name2, float &le
 	slain->setAnchorPoint(ccp(0, 0.5f));
 	slain->setPosition(ccp(slain_pf->getPositionX() + slain_pf->getContentSize().width, 0));
 
-	CCSprite *death_pf = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_rpf.png", name2)->getCString());
+	CCSprite *death_pf = CCSprite::createWithSpriteFrameName(format("{}_rpf.png", name2).c_str());
 	death_pf->setAnchorPoint(ccp(0, 0.5f));
 	death_pf->setPosition(ccp(slain->getPositionX() + slain->getContentSize().width, 0));
 	reportSprite->addChild(death_pf);
 	CCSprite *death_p;
 	if (strcmp(name2, kRoleTower) != 0)
 	{
-		death_p = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_rp.png", name2)->getCString());
+		death_p = CCSprite::createWithSpriteFrameName(format("{}_rp.png", name2).c_str());
 		death_p->setAnchorPoint(ccp(0, 0.5f));
 		death_p->setPosition(ccp(death_pf->getPositionX() + death_pf->getContentSize().width, 0));
 		reportSprite->addChild(death_p);
@@ -1264,7 +1264,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 
 		ougisLayer->addChild(CutLineUP);
 
-		CCSprite *CutIn = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_CutIn.png", character->getCString())->getCString());
+		CCSprite *CutIn = CCSprite::createWithSpriteFrameName(format("{}_CutIn.png", character->getCString()).c_str());
 		if (is_same(group->getCString(), Konoha))
 		{
 			CutIn->setAnchorPoint(ccp(0, 0));

@@ -4,20 +4,13 @@
 #include "../../../cocos2dx/platform/android/jni/JniHelper.h"
 #endif
 
-string KTools::getKeycode(string path)
-{
-	string strKey = CMD5Checksum::GetMD5(path);
-	string strKeyCode = CCString::createWithFormat("%s,%s", strKey.substr(16, 5).c_str(), strKey.substr(6, 5).c_str())->getCString();
-	return strKeyCode;
-}
-
 bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 {
 	unsigned long nSize;
 	auto data = (const char *)CCFileUtils::sharedFileUtils()->getFileData(filePath, "r", &nSize);
 	if (data == nullptr)
 	{
-		CCMessageBox(CCString::createWithFormat("Data %s is null", filePath)->getCString(), "Read XML Error");
+		CCMessageBox(format("Data {} is null", filePath).c_str(), "Read XML Error");
 		return false;
 	}
 	tinyxml2::XMLDocument doc;
@@ -25,7 +18,7 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 	delete data;
 	if (err)
 	{
-		CCMessageBox(CCString::createWithFormat("XML Error: %s", tinyxml2::XMLDocument::ErrorIDToName(err))->getCString(), "Parse XML Error");
+		CCMessageBox(format("XML Error: {}", tinyxml2::XMLDocument::ErrorIDToName(err)).c_str(), "Parse XML Error");
 		return false;
 	}
 
