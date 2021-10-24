@@ -464,9 +464,6 @@ protected:
 
 	void				removeDamageDisplay();
 
-	void				onEnter();
-	void				onExit();
-
 public:
 	// UI
 	inline void 		updateHpBar();

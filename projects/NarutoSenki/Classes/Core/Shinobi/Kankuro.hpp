@@ -179,18 +179,12 @@ class Kankuro : public Hero
 		else if (cloneTime == 1)
 		{
 			clone = create<Sanshouuo>(CCString::create("Sanshouuo"), CCString::create(kRoleKugutsu), getGroup());
-			if (isPlayer())
-			{
-				getGameLayer()->getHudLayer()->skill4Button->setLock();
-			}
+			lockSkill4Button();
 		}
 		else if (cloneTime == 2)
 		{
 			clone = create<Saso>(CCString::create("Saso"), CCString::create(kRoleKugutsu), getGroup());
-			if (isPlayer())
-			{
-				getGameLayer()->getHudLayer()->skill5Button->setLock();
-			}
+			lockSkill5Button();
 		}
 
 		clone->_isArmored = true;

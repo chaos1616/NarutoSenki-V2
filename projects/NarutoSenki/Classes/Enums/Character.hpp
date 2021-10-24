@@ -129,6 +129,8 @@ namespace CharacterEnum
 	mk_const(Pain);
 	mk_const(AnimalPath);
 	mk_const(AsuraPath);
+	// mk_const(HumanPath);
+	// mk_const(PertaPath);
 	mk_const(NarakaPath);
 
 	mk_const(Sai);

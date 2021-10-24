@@ -14,9 +14,9 @@ class Kakuzu : public Hero
 			_heartEffect->setDisplayFrame(frame);
 		}
 
-		if (isPlayer() && getLV() >= 2)
+		if (getLV() >= 2)
 		{
-			getGameLayer()->getHudLayer()->skill4Button->unLock();
+			unlockSkill4Button();
 		}
 	}
 
@@ -295,10 +295,7 @@ class Kakuzu : public Hero
 
 			if (hearts < 1 || countMon >= 2)
 			{
-				if (isPlayer())
-				{
-					getGameLayer()->getHudLayer()->skill4Button->setLock();
-				}
+				lockSkill4Button();
 			}
 		}
 
@@ -308,6 +305,8 @@ class Kakuzu : public Hero
 	/**
 	 * Callbacks
 	 */
+
+	bool isEnableSkill04() override { return hearts > 1; }
 
 	bool onHit(CharacterBase *attacker) override
 	{

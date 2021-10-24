@@ -265,16 +265,6 @@ void CharacterBase::readData(CCArray *tmpData, CCString *&attackType, CCString *
 	}
 }
 
-void CharacterBase::onEnter()
-{
-	CCSprite::onEnter();
-}
-
-void CharacterBase::onExit()
-{
-	CCSprite::onExit();
-}
-
 void CharacterBase::update(float dt)
 {
 	if (_healBuffEffect)

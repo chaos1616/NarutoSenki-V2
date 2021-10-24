@@ -187,7 +187,7 @@ void HeroElement::dealloc()
 	if (isClone() || isKugutsu() || isSummon())
 	{
 		unschedule(schedule_selector(CharacterBase::setAI));
-		CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "acceptAttack");
+		CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(this);
 
 		std::erase(getGameLayer()->_CharacterArray, this);
 

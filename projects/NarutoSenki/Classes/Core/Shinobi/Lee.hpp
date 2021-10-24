@@ -66,10 +66,7 @@ class Lee : public Hero
 			}
 			else if (htLv == 1)
 			{
-				if (isPlayer())
-				{
-					getGameLayer()->getHudLayer()->skill4Button->setLock();
-				}
+				lockSkill4Button();
 				setnAttackValue(to_ccstring(getNAttackValue() - 30));
 			}
 			htLv--;
@@ -134,10 +131,7 @@ class Lee : public Hero
 		{
 			setnAttackValue(to_ccstring(getNAttackValue() + 30));
 
-			if (isPlayer())
-			{
-				getGameLayer()->getHudLayer()->skill4Button->unLock();
-			}
+			unlockSkill4Button();
 		}
 		else if (htLv == 2)
 		{

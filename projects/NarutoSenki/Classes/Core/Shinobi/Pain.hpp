@@ -374,20 +374,14 @@ class Pain : public Hero
 		// 	clone = create<NarakaPath>(CCString::create("NarakaPath"), CCString::create(kRoleClone), getGroup());
 		// 	clone->_isArmored = true;
 
-		// 	if (isPlayer())
-		// 	{
-		// 		getGameLayer()->getHudLayer()->skill5Button->setLock();
-		// 	}
+		// 	lockSkill5Button();
 		// }
 		if (isCharacter(kNagato)) // Old Nagato skill
 		{
 			clone = create<NarakaPath>(CCString::create("NarakaPath"), CCString::create(kRoleClone), getGroup());
 			clone->_isArmored = true;
 
-			if (isPlayer())
-			{
-				getGameLayer()->getHudLayer()->skill5Button->setLock();
-			}
+			lockSkill5Button();
 
 			_skillChangeBuffValue = 100;
 		}
