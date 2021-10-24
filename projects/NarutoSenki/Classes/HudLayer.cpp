@@ -51,7 +51,7 @@ void MiniIcon::updateMap(CCObject *sender)
 
 void MiniIcon::updateState()
 {
-	auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("tower_icon3.png");
+	auto frame = getSrpiteFrame("tower_icon3.png");
 	setDisplayFrame(frame);
 }
 
@@ -174,11 +174,9 @@ void HudLayer::playGameOpeningAnimation()
 	auto tempArray = CCArray::create();
 
 	int i = 1;
-
 	while (i < ComCount)
 	{
-		auto path = CCString::createWithFormat("gameStart_00%d.png", i);
-		auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path->getCString());
+		auto frame = getSrpiteFrame("gameStart_00{}.png", i);
 		tempArray->addObject(frame);
 		i += 1;
 	}
@@ -1223,7 +1221,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		CCArray *animeFrames = CCArray::create();
 		for (int i = 1; i <= 8; i++)
 		{
-			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("CutLine_%02d.png", i)->getCString());
+			auto frame = getSrpiteFrame(CCString::createWithFormat("CutLine_%02d.png", i));
 			animeFrames->addObject(frame);
 		}
 

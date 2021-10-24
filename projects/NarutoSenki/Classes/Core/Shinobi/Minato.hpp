@@ -230,7 +230,7 @@ class Minato : public Hero
 
 			if (isPlayer())
 			{
-				auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("Minato_skill1_1.png");
+				auto frame = getSrpiteFrame("Minato_skill1_1.png");
 				getGameLayer()->getHudLayer()->skill1Button->setDisplayFrame(frame);
 				if (getGameLayer()->getHudLayer()->skill1Button->_clickNum < 2)
 				{

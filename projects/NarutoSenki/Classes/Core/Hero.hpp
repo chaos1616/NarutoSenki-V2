@@ -392,7 +392,7 @@ public:
 
 		if (_hpBar)
 		{
-			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("hp_bottom%d.png", int(_level))->getCString());
+			auto frame = getSrpiteFrame("hp_bottom{}.png", _level);
 			_hpBar->getHPBottom()->setDisplayFrame(frame);
 		}
 	}

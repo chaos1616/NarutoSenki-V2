@@ -238,7 +238,7 @@ CCFiniteTimeAction *Effect::createEffectAnimation(const string &file, int frameC
 	for (int i = 1; i < frameCount; i++)
 	{
 		auto str = CCString::createWithFormat("%s%02d", file.c_str(), i);
-		auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(str->getCString());
+		auto frame = getSrpiteFrame(str);
 		animeFrames->addObject(frame);
 
 		// NOTE: For cocos2d-x 2.x using SpriteBatchNode,

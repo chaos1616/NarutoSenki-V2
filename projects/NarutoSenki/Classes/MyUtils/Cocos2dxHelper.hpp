@@ -2,7 +2,10 @@
 #include "cocos2d.h"
 #include "../../../scripting/lua/cocos2dx_support/CCLuaEngine.h"
 
+#include <format>
+
 using namespace cocos2d;
+using namespace std;
 
 #define nameof(varType) #varType
 #define typeof(varType) typeid(varType).name()
@@ -51,12 +54,18 @@ using namespace cocos2d;
 #define FULL_SCREEN_SPRITE(__SPRITE__) \
 	__SPRITE__->setScaleX(winSize.width / __SPRITE__->getContentSize().width);
 
-static inline CCSpriteFrame *getSrpiteFrame(std::string name)
+static inline CCSpriteFrame *getSrpiteFrame(const string &name)
 {
 	return CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name.c_str());
 }
 
-static inline CCSpriteFrame *getSrpiteFrame(const char *name)
+static inline CCSpriteFrame *getSrpiteFrame(CCString *name)
 {
-	return CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name);
+	return CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name->getCString());
+}
+
+template <class... _Types>
+static inline CCSpriteFrame *getSrpiteFrame(const string_view _Fmt, const _Types &..._Args)
+{
+	return getSrpiteFrame(format(_Fmt, _Args...));
 }

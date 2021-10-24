@@ -327,7 +327,7 @@ void LoadLayer::setLoadingAnimation(const char *player, int index)
 	for (int i = 1; i < frameCount; i++)
 	{
 		auto str = CCString::createWithFormat("%s_Walk_%02d", player, i);
-		auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(str->getCString());
+		auto frame = getSrpiteFrame(str);
 		animeFrames->addObject(frame);
 	}
 

@@ -30,7 +30,7 @@ bool HPBar::init(const char *szImage)
 
 void HPBar::changeBar(const char *szImage)
 {
-	auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(szImage);
+	auto frame = getSrpiteFrame(szImage);
 	hpBar->setDisplayFrame(frame);
 }
 
@@ -314,7 +314,7 @@ void HPBar::loseHP(float percent)
 
 					if (_delegate->_heartEffect)
 					{
-						auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d", _delegate->hearts)->getCString());
+						auto frame = getSrpiteFrame(CCString::createWithFormat("Heart_Effect_%02d", _delegate->hearts));
 						_delegate->_heartEffect->setDisplayFrame(frame);
 					}
 
@@ -372,7 +372,7 @@ void HPBar::loseHP(float percent)
 
 					if (currentSlayer->_heartEffect)
 					{
-						auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(CCString::createWithFormat("Heart_Effect_%02d", currentSlayer->hearts)->getCString());
+						auto frame = getSrpiteFrame(CCString::createWithFormat("Heart_Effect_%02d", currentSlayer->hearts));
 						currentSlayer->_heartEffect->setDisplayFrame(frame);
 					}
 

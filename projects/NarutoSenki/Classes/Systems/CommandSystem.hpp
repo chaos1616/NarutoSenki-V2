@@ -1,6 +1,7 @@
 #pragma once
 #include "Core/Hero.hpp"
 #include "Enums/Enums.hpp"
+
 #include <unordered_map>
 
 namespace Command
@@ -83,8 +84,7 @@ private:
 			   {
 				   while (i < 11)
 				   {
-					   auto path = CCString::createWithFormat("Tenten_Extern_0%d", i);
-					   auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path->getCString());
+					   auto frame = getSrpiteFrame("Tenten_Extern_0{}", i);
 					   tempArray->addObject(frame);
 					   i += 1;
 				   }

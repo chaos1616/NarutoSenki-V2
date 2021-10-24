@@ -1,8 +1,6 @@
 $#include "Defines.h"
 
 $#include "Core/Provider.hpp"
-$#include "CharacterBase.h" 
-$#include "Element.h"
 
 $#include "GameScene.h"
 
@@ -17,10 +15,6 @@ $#include "LoadLayer.h"
 $#include "PauseLayer.h"
 $#include "SelectLayer.h"
 $#include "StartMenu.h"
-
-$#include "ActionButton.h"
-$#include "Effect.h"
-$#include "HPBar.h"
 
 $pfile "game/CharacterBase.pkg"
 
@@ -39,25 +33,6 @@ public:
 	static StartMenu* create();
 
 	void setCheats(int cheats);
-};
-
-/* Effect.h */
-class Effect : public CCSprite {
-public:
-	static Effect* create(const char *szImage, CharacterBase *attacker);
-};
-
-/* HPBar.h */
-class HPBar : public CCSprite {
-public:
-	static HPBar *create(const char *szImage);
-
-	CharacterBase * getDelegate();
-	bool init(const char *szImage);
-	void changeBar(const char *szImage);
-	void loseHP(float percent);
-	CCSprite* getHPBottom();
-	CCSprite* getHPBAR();
 };
 
 /* LoadLayer.h */

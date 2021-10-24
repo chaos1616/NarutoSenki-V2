@@ -137,7 +137,7 @@ void MenuButton::ccTouchEnded(CCTouch *touch, CCEvent *event)
 			break;
 		case MenuButtonType::HardCore:
 			SimpleAudioEngine::sharedEngine()->playEffect(SELECT_SOUND);
-			auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("menu05_text.png");
+			auto frame = getSrpiteFrame("menu05_text.png");
 			_startMenu->menuText->setDisplayFrame(frame);
 			_startMenu->onHardLayerCallBack();
 			break;
@@ -337,8 +337,7 @@ bool StartMenu::init()
 	auto list = CCArray::create();
 	while (i < 5)
 	{
-		auto path = CCString::createWithFormat("avator%d.png", i);
-		auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(path->getCString());
+		auto frame = getSrpiteFrame("avator{}.png", i);
 		tempArray->addObject(frame);
 		auto tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
 		auto tempAction = CCAnimate::create(tempAnimation);
@@ -640,7 +639,8 @@ void StartMenu::scrollMenu(int posY)
 			}
 		}
 	}
-	string src = "";
+
+	string src;
 	for (auto menu : _menuArray)
 	{
 		if (menu->_isTop)
@@ -665,7 +665,7 @@ void StartMenu::scrollMenu(int posY)
 		}
 	}
 
-	auto frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(src.c_str());
+	auto frame = getSrpiteFrame(src);
 	menuText->setDisplayFrame(frame);
 }
 
