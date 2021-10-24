@@ -14,15 +14,17 @@ public:
 	void setHPbar();
 	void setShadows();
 	virtual void changeHPbar();
-	void checkRefCount(float dt);
 
 	CCSprite *rebornSprite;
 	CCLabelBMFont *rebornLabel;
-	void reborn(float dt);
-	void dealloc();
+
+	virtual void reborn(float dt);
+	virtual void dealloc();
 
 protected:
 	void countDown(float dt);
+
+	void checkRefCount(float dt);
 };
 
 class Monster : public CharacterBase

@@ -165,6 +165,7 @@ void HeroElement::checkRefCount(float dt)
 
 void HeroElement::dealloc()
 {
+	CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(this);
 	stopAllActions();
 	_actionState = State::DEAD;
 
@@ -173,13 +174,7 @@ void HeroElement::dealloc()
 		if (hasMonsterArrayAny())
 		{
 			for (auto mo : _monsterArray)
-			{
-				std::erase(getGameLayer()->_CharacterArray, mo);
-
-				CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(mo);
-				mo->setActionState(State::DEAD);
-				mo->removeFromParent();
-			}
+				mo->dealloc();
 			_monsterArray.clear();
 		}
 	}
@@ -187,7 +182,6 @@ void HeroElement::dealloc()
 	if (isClone() || isKugutsu() || isSummon())
 	{
 		unschedule(schedule_selector(CharacterBase::setAI));
-		CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(this);
 
 		std::erase(getGameLayer()->_CharacterArray, this);
 

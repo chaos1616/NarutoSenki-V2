@@ -87,7 +87,7 @@ class Sakura : public Hero
 						changeSide(sp);
 						attack(SKILL2);
 					}
-					else if (_isCanSkill3 && !_skillChangeBuffValue && getHpPercent() > 0.5)
+					else if (_isCanSkill3 && !_skillChangeBuffValue && getHpPercent() > 0.5f)
 					{
 						changeSide(sp);
 						attack(SKILL3);

@@ -77,7 +77,7 @@ class Kiba : public Hero
 						return;
 					}
 
-					if (_isCanSkill3 && !_powerUPBuffValue && !_isArmored && getHpPercent() > 0.5)
+					if (_isCanSkill3 && !_powerUPBuffValue && !_isArmored && getHpPercent() > 0.5f)
 					{
 						changeSide(sp);
 						attack(SKILL3);

@@ -4520,18 +4520,19 @@ void CharacterBase::dead()
 
 	if (isNotClone() && isNotSummon())
 	{
-		auto fadeOut = CCFadeOut::create(0.5);
 		auto call = CallFunc::create(std::bind(&CharacterBase::dealloc, this));
-		auto seqArray = CCArray::create();
-		seqArray->addObject(_deadAction);
 
 		if (isFlog())
 		{
-			seqArray->addObject(fadeOut);
+			auto fadeOut = CCFadeOut::create(0.5f);
+			auto seq = newSequence(_deadAction, fadeOut, call);
+			runAction(seq);
 		}
-		seqArray->addObject(call);
-		auto seq = CCSequence::create(seqArray);
-		runAction(seq);
+		else
+		{
+			auto seq = newSequence(_deadAction, call);
+			runAction(seq);
+		}
 	}
 	else
 	{
@@ -4547,7 +4548,7 @@ void CharacterBase::checkActionFinish(float dt)
 	{
 		unschedule(schedule_selector(CharacterBase::checkActionFinish));
 		stopAllActions();
-		auto fadeOut = CCFadeOut::create(0.5);
+		auto fadeOut = CCFadeOut::create(0.5f);
 		auto call = CallFunc::create(std::bind(&CharacterBase::dealloc, this));
 		auto seqArray = CCArray::create();
 		if (_deadAction)
