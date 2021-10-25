@@ -247,40 +247,8 @@ class Hidan : public Hero
 	void setActionResume() override
 	{
 		unschedule(schedule_selector(Hidan::resumeAction));
-		_isArmored = false;
-		_isTaunt = false;
-		_isOnlySkillLocked = false;
-		unlockOugisButtons();
 
-		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-
-		if (hasMonsterArrayAny())
-		{
-			for (auto mo : _monsterArray)
-			{
-				std::erase(getGameLayer()->_CharacterArray, mo);
-
-				CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(mo);
-				mo->setActionState(State::DEAD);
-				mo->removeFromParent();
-			}
-			_monsterArray.clear();
-		}
-
-		if (isPlayer())
-		{
-			getGameLayer()->getHudLayer()->skill1Button->unLock();
-		}
-
-		if (_actionState != State::DEAD)
-		{
-			_actionState = State::WALK;
-			idle();
-		}
-
-		_skillChangeBuffValue = 0;
+		resumeAction(0);
 	}
 
 	void dealloc() override
