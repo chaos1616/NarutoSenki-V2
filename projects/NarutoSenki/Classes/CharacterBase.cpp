@@ -1000,58 +1000,58 @@ CCFiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, float fp
 
 		CCDICT_FOREACH(dic, ele)
 		{
-			auto key = CCString::create(ele->getStrKey())->getCString();
-			auto keyValue = dic->valueForKey(key)->getCString();
-			if (is_same(key, "f"))
+			const string key(ele->getStrKey());
+			const string keyValue(dic->valueForKey(key)->m_sString);
+			if (key == "f")
 			{
 				auto frame = getSrpiteFrame(keyValue);
 				animeFrames->addObject(frame);
 			}
 			else
 			{
-				tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, float(1.0 / fps));
+				tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, 1.0f / fps);
 				tempAction = CCAnimate::create(tempAnimation);
 
 				seqArray->addObject(tempAction);
-				if (is_same(key, "setAttackBox"))
+				if (key == "setAttackBox")
 				{
-					auto call = CallFunc::create(std::bind(&CharacterBase::setAttackBox, this, string(keyValue)));
+					auto call = CallFunc::create(std::bind(&CharacterBase::setAttackBox, this, keyValue));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setSound"))
+				else if (key == "setSound")
 				{
-					auto call = CallFunc::create(std::bind(&CharacterBase::setSound, this, string(keyValue)));
+					auto call = CallFunc::create(std::bind(&CharacterBase::setSound, this, keyValue));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setDSound"))
+				else if (key == "setDSound")
 				{
-					auto call = CallFunc::create(std::bind(&CharacterBase::setDSound, this, string(keyValue)));
+					auto call = CallFunc::create(std::bind(&CharacterBase::setDSound, this, keyValue));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setDelay"))
+				else if (key == "setDelay")
 				{
 					float delayTime = dic->valueForKey(key)->intValue();
 					auto delay = CCDelayTime::create(delayTime / 100.0f);
 					seqArray->addObject(delay);
 				}
-				else if (is_same(key, "setMove"))
+				else if (key == "setMove")
 				{
 					int moveLength = dic->valueForKey(key)->intValue();
 					auto call = CallFunc::create(std::bind(&CharacterBase::setMove, this, moveLength));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setSkillEffect"))
+				else if (key == "setSkillEffect")
 				{
-					auto call = CallFunc::create(std::bind(&CharacterBase::setSkillEffect, this, string(keyValue)));
+					auto call = CallFunc::create(std::bind(&CharacterBase::setSkillEffect, this, keyValue));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setJump"))
+				else if (key == "setJump")
 				{
 					bool jumpDirection = dic->valueForKey(key)->boolValue();
 					auto call = CallFunc::create(std::bind(&CharacterBase::setJump, this, jumpDirection));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setCharge"))
+				else if (key == "setCharge")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::getCollider, this));
 					seqArray->addObject(call);
@@ -1059,24 +1059,24 @@ CCFiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, float fp
 					call = CallFunc::create(std::bind(&CharacterBase::setCharge, this, moveLength));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setChargeB"))
+				else if (key == "setChargeB")
 				{
 					int moveLength = dic->valueForKey(key)->intValue();
 					auto call = CallFunc::create(std::bind(&CharacterBase::setChargeB, this, moveLength));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setClone"))
+				else if (key == "setClone")
 				{
 					int cloneTime = dic->valueForKey(key)->intValue();
 					auto call = CallFunc::create(std::bind(&CharacterBase::setClone, this, cloneTime));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setMon"))
+				else if (key == "setMon")
 				{
-					auto call = CallFunc::create(std::bind(&CharacterBase::setMon, this, string(keyValue)));
+					auto call = CallFunc::create(std::bind(&CharacterBase::setMon, this, keyValue));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setFont"))
+				else if (key == "setFont")
 				{
 					// const char *split = ",";
 					// char *p;
@@ -1093,71 +1093,71 @@ CCFiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, float fp
 					// auto call = CallFunc::create(std::bind(&CharacterBase::setFontEffect, this, valueVector));
 					// seqArray->addObject(call);
 				}
-				else if (is_same(key, "setBuff"))
+				else if (key == "setBuff")
 				{
 					int buffValue = dic->valueForKey(key)->intValue();
 					auto call = CallFunc::create(std::bind(&CharacterBase::setBuff, this, buffValue));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setCommand"))
+				else if (key == "setCommand")
 				{
-					auto call = CallFunc::create(std::bind(&CharacterBase::setCommand, this, string(keyValue)));
+					auto call = CallFunc::create(std::bind(&CharacterBase::setCommand, this, keyValue));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setDetonation"))
+				else if (key == "setDetonation")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::dealloc, this));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setBullet"))
+				else if (key == "setBullet")
 				{
-					auto call = CallFunc::create(std::bind(&CharacterBase::setBullet, this, string(keyValue)));
+					auto call = CallFunc::create(std::bind(&CharacterBase::setBullet, this, keyValue));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setMonAttack"))
+				else if (key == "setMonAttack")
 				{
 					int skillNum = dic->valueForKey(key)->intValue();
 					auto call = CallFunc::create(std::bind(&CharacterBase::setMonAttack, this, skillNum));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setTrap"))
+				else if (key == "setTrap")
 				{
-					auto call = CallFunc::create(std::bind(&CharacterBase::setTrap, this, string(keyValue)));
+					auto call = CallFunc::create(std::bind(&CharacterBase::setTrap, this, keyValue));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setActionResume"))
+				else if (key == "setActionResume")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::setActionResume, this));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setActionResume2"))
+				else if (key == "setActionResume2")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::setActionResume2, this));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setShadow"))
+				else if (key == "setShadow")
 				{
 					auto frame = (CCSpriteFrame *)(animeFrames->objectAtIndex(animeFrames->count() - 1));
 					auto call = CallFunc::create(std::bind(&CharacterBase::setShadow, this, frame));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setTransform"))
+				else if (key == "setTransform")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::setTransform, this));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setOugis"))
+				else if (key == "setOugis")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::setOugis, this));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "stopJump"))
+				else if (key == "stopJump")
 				{
 					int stopTime = dic->valueForKey(key)->intValue();
 					auto call = CallFunc::create(std::bind(&CharacterBase::stopJump, this, stopTime));
 					seqArray->addObject(call);
 				}
-				else if (is_same(key, "setFlipped"))
+				else if (key == "setFlipped")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::setCharFlip, this));
 					seqArray->addObject(call);
@@ -1169,7 +1169,7 @@ CCFiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, float fp
 	}
 	if (animeFrames->count() > 0)
 	{
-		tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, float(1.0 / fps));
+		tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, 1.0f / fps);
 		tempAction = CCAnimate::create(tempAnimation);
 		seqArray->addObject(tempAction);
 	}
@@ -2952,7 +2952,7 @@ void CharacterBase::setClone(int cloneTime)
 
 	if (cloneTime > 0)
 	{
-		clone->scheduleOnce(schedule_selector(Hero::removeClone), float(cloneTime));
+		clone->scheduleOnce(schedule_selector(Hero::removeClone), cloneTime);
 	}
 }
 

@@ -375,7 +375,7 @@ void GearLayer::updateGearList()
 	_screwLayer->totalRow = 3;
 	for (int i = 0; i < _screwLayer->gearNum; i++)
 	{
-		int row = int(floor(float(i) / 3));
+		int row = int(floor(i / 3.0f));
 		int column = abs(3 * row - i);
 
 		GearButton *btn;

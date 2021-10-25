@@ -330,7 +330,7 @@ void LoadLayer::setLoadingAnimation(const char *player, int index)
 		animeFrames->addObject(frame);
 	}
 
-	auto tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, float(1.0 / 10.0));
+	auto tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, 1.0f / 10.0f);
 	auto tempAction = CCAnimate::create(tempAnimation);
 	auto animAction = CCRepeatForever::create(tempAction);
 

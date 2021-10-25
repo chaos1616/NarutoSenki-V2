@@ -133,17 +133,17 @@ void GameOver::listResult()
 
 	if (getGameLayer()->_isHardCoreGame)
 	{
-		if (_totalSecond > 900.0)
-			resultScore = float((killDead / float(_totalSecond / 60)) / 3) * 100;
+		if (_totalSecond > 900.0f)
+			resultScore = ((killDead / (_totalSecond / 60)) / 3) * 100;
 		else
-			resultScore = float((killDead - ((_totalSecond / 60 - 15) * 3)) / 45) * 100;
+			resultScore = ((killDead - ((_totalSecond / 60 - 15) * 3)) / 45) * 100;
 	}
 	else
 	{
-		if (_totalSecond > 600.0)
-			resultScore = float((killDead / float(_totalSecond / 60)) / 4) * 100;
+		if (_totalSecond > 600.0f)
+			resultScore = ((killDead / (_totalSecond / 60)) / 4) * 100;
 		else
-			resultScore = float((killDead - ((_totalSecond / 60 - 10) * 4)) / 40) * 100;
+			resultScore = ((killDead - ((_totalSecond / 60 - 10) * 4)) / 40) * 100;
 	}
 
 	if (_totalSecond < 2 * 30 + 5 && _isWin)
