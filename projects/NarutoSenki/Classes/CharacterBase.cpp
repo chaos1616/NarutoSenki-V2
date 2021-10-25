@@ -3986,22 +3986,19 @@ void CharacterBase::walk(CCPoint direction)
 						"ImmortalSasuke",
 						"Chiyo"))
 		{
-			if (hasMonsterArrayAny())
+			for (auto mo : _monsterArray)
 			{
-				for (auto mo : _monsterArray)
+				if (mo->isCharacter("ItachiSusano") ||
+					mo->isCharacter("SasukeSusano"))
 				{
-					if (mo->isCharacter("ItachiSusano") ||
-						mo->isCharacter("SasukeSusano"))
+					mo->setFlipX(_isFlipped);
+				}
+				else if (mo->isCharacter("Parents"))
+				{
+					if (mo->_actionState == State::IDLE)
 					{
 						mo->setFlipX(_isFlipped);
-					}
-					else if (mo->isCharacter("Parents"))
-					{
-						if (mo->_actionState == State::IDLE)
-						{
-							mo->setFlipX(_isFlipped);
-							mo->_isFlipped = _isFlipped;
-						}
+						mo->_isFlipped = _isFlipped;
 					}
 				}
 			}
@@ -5091,14 +5088,11 @@ void CharacterBase::changeSide(CCPoint sp)
 
 	if (isCharacter("Itachi", "ImmortalSasuke"))
 	{
-		if (hasMonsterArrayAny())
+		for (auto mo : _monsterArray)
 		{
-			for (auto mo : _monsterArray)
-			{
-				if (mo->isCharacter("ItachiSusano", "SasukeSusano"))
-					mo->_isFlipped = _isFlipped;
-				mo->setFlipX(_isFlipped);
-			}
+			if (mo->isCharacter("ItachiSusano", "SasukeSusano"))
+				mo->_isFlipped = _isFlipped;
+			mo->setFlipX(_isFlipped);
 		}
 	}
 }

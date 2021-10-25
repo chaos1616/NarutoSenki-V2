@@ -494,11 +494,8 @@ public:
 
 		if (isNotCharacter("Minato"))
 		{
-			if (hasMonsterArrayAny())
-			{
-				for (auto mo : _monsterArray)
-					mo->dealloc();
-			}
+			for (auto mo : _monsterArray)
+				mo->dealloc();
 		}
 
 		if (isClone() || isKugutsu() || isSummon())
