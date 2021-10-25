@@ -232,14 +232,15 @@ class Kakuzu : public Hero
 	void resumeAction(float dt) override
 	{
 		removeBuffEffect("sBuff");
+
+		CharacterBase::resumeAction(dt);
 	}
 
 	void setActionResume() override
 	{
 		unschedule(schedule_selector(Kakuzu::resumeAction));
-		removeBuffEffect("sBuff");
 
-		_skillChangeBuffValue = 0;
+		resumeAction(0);
 	}
 
 	Hero *createClone(int cloneTime) override

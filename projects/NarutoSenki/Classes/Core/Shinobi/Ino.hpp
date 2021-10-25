@@ -201,6 +201,7 @@ class Ino : public Hero
 		}
 
 		_isArmored = false;
+		CharacterBase::resumeAction(dt);
 	}
 
 	void setActionResume() override
