@@ -27,7 +27,9 @@
 #include <cmath>
 #include <sstream>
 #include <iomanip>
-// #include "base/ccUtils.h"
+#if CC_TARGET_PLATFORM == CC_PLATFORM_LINUX
+#include <climits>
+#endif
 
 NS_CC_BEGIN
 
