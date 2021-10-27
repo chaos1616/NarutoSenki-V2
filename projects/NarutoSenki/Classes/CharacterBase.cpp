@@ -665,7 +665,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 
 									if (attacker->_heartEffect)
 									{
-										auto frame = getSrpiteFrame("Heart_Effect_{:02d}", attacker->hearts);
+										auto frame = getSpriteFrame("Heart_Effect_{:02d}", attacker->hearts);
 										attacker->_heartEffect->setDisplayFrame(frame);
 									}
 								}
@@ -1004,7 +1004,7 @@ CCFiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, float fp
 			const string keyValue(dic->valueForKey(key)->m_sString);
 			if (key == "f")
 			{
-				auto frame = getSrpiteFrame(keyValue);
+				auto frame = getSpriteFrame(keyValue);
 				animeFrames->addObject(frame);
 			}
 			else
@@ -4162,12 +4162,12 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 			else
 				path += "_Hurt_02";
 
-			auto frame = getSrpiteFrame(path);
+			auto frame = getSpriteFrame(path);
 			if (frame == nullptr)
 			{ // Try use xxx_AirHurt_01 instead of xxx_AirHurt_02
 				path = getCharacter()->getCString();
 				path += "_AirHurt_01";
-				frame = getSrpiteFrame(path);
+				frame = getSpriteFrame(path);
 
 				if (frame == nullptr)
 					CCMessageBox(path.c_str(), "Not found hard hurt frame");

@@ -392,7 +392,7 @@ public:
 
 		if (_hpBar)
 		{
-			auto frame = getSrpiteFrame("hp_bottom{}.png", _level);
+			auto frame = getSpriteFrame("hp_bottom{}.png", _level);
 			_hpBar->getHPBottom()->setDisplayFrame(frame);
 		}
 	}

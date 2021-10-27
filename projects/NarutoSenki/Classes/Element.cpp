@@ -152,7 +152,7 @@ void Monster::changeHPbar()
 
 	if (_hpBar)
 	{
-		auto frame = getSrpiteFrame("hp_bottom{}.png", _level);
+		auto frame = getSpriteFrame("hp_bottom{}.png", _level);
 		_hpBar->getHPBottom()->setDisplayFrame(frame);
 	}
 }
@@ -320,7 +320,7 @@ void Monster::dealloc()
 
 		if (_master->isPlayer())
 		{
-			auto frame = getSrpiteFrame("Minato_skill1.png");
+			auto frame = getSpriteFrame("Minato_skill1.png");
 			getGameLayer()->getHudLayer()->skill1Button->setDisplayFrame(frame);
 			getGameLayer()->getHudLayer()->skill1Button->_clickNum++;
 			getGameLayer()->clearDoubleClick();

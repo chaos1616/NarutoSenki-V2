@@ -31,7 +31,7 @@ extern bool _isFullScreen;
 static GLFWwindow *_window = nullptr;
 #endif
 
-static inline GameLayer *getGameLayer()
+inline GameLayer *getGameLayer()
 {
 	return _gLayer;
 }

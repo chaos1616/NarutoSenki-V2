@@ -326,7 +326,7 @@ void LoadLayer::setLoadingAnimation(const char *player, int index)
 	int frameCount = is_same(player, "Konan") ? 1 : 7;
 	for (int i = 1; i < frameCount; i++)
 	{
-		auto frame = getSrpiteFrame("{}_Walk_{:02d}", player, i);
+		auto frame = getSpriteFrame("{}_Walk_{:02d}", player, i);
 		animeFrames->addObject(frame);
 	}
 

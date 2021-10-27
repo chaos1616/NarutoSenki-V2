@@ -47,7 +47,7 @@ public:
 		}
 		else
 		{
-			CCLOGERROR("Not found command handler `%s`", cmd);
+			CCLOGERROR("Not found command handler `%s`", cmd.c_str());
 		}
 	}
 
@@ -84,7 +84,7 @@ private:
 			   {
 				   while (i < 11)
 				   {
-					   auto frame = getSrpiteFrame("Tenten_Extern_0{}", i);
+					   auto frame = getSpriteFrame("Tenten_Extern_0{}", i);
 					   tempArray->addObject(frame);
 					   i += 1;
 				   }

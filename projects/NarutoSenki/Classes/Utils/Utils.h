@@ -3,3 +3,9 @@
 #include "Utils/CallFunctions.hpp"
 
 #include "Utils/CCActionExtensions.hpp"
+
+#include "Utils/Cocos2dxHelper.hpp"
+
+#include "Utils/Keyboard.h"
+
+#include "Utils/Macros.h"

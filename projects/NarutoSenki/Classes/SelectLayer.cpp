@@ -1,6 +1,5 @@
 #include <time.h>
 #include "StartMenu.h"
-#include "MyUtils/Cocos2dxHelper.hpp"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include <jni.h>

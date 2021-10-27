@@ -86,11 +86,11 @@ void GearButton::click()
 		_delegate->currentGear = _gearType;
 	}
 
-	auto frame = getSrpiteFrame("gearDetail_{:02d}.png", (int)_gearType);
+	auto frame = getSpriteFrame("gearDetail_{:02d}.png", (int)_gearType);
 	_delegate->gearDetail->setDisplayFrame(frame);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
-	auto icon = getSrpiteFrame("gear_{:02d}.png", (int)_gearType);
+	auto icon = getSpriteFrame("gear_{:02d}.png", (int)_gearType);
 	_delegate->gearBigIcon->setDisplayFrame(icon);
 #endif
 }
@@ -398,7 +398,7 @@ void GearLayer::updateGearList()
 		if (currentGear == None && !isBuyed)
 		{
 			currentGear = GearType(i);
-			auto frame = getSrpiteFrame("gearDetail_{:02d}.png", i);
+			auto frame = getSpriteFrame("gearDetail_{:02d}.png", i);
 			gearDetail->setDisplayFrame(frame);
 		}
 

@@ -160,9 +160,9 @@ class Kakashi : public Hero
 
 		if (isPlayer())
 		{
-			auto frame = getSrpiteFrame("Kakashi_skill1_1.png");
+			auto frame = getSpriteFrame("Kakashi_skill1_1.png");
 			getGameLayer()->getHudLayer()->skill1Button->setDisplayFrame(frame);
-			frame = getSrpiteFrame("Kakashi_skill2_1.png");
+			frame = getSpriteFrame("Kakashi_skill2_1.png");
 			getGameLayer()->getHudLayer()->skill2Button->setDisplayFrame(frame);
 		}
 	}
@@ -177,9 +177,9 @@ class Kakashi : public Hero
 
 		if (isPlayer())
 		{
-			auto frame = getSrpiteFrame("Kakashi_skill1.png");
+			auto frame = getSpriteFrame("Kakashi_skill1.png");
 			getGameLayer()->getHudLayer()->skill1Button->setDisplayFrame(frame);
-			frame = getSrpiteFrame("Kakashi_skill2.png");
+			frame = getSpriteFrame("Kakashi_skill2.png");
 			getGameLayer()->getHudLayer()->skill2Button->setDisplayFrame(frame);
 		}
 		CharacterBase::resumeAction(dt);
