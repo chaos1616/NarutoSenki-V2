@@ -37,7 +37,7 @@
 			<e type="setMove">32</e>
 			<f>Nagato_Hurt_01</f>
 			<f>Nagato_Hurt_02</f>
-			<e type="setSound">Audio/Nagato/Nagato_hurt.ogg</e>
+			<!-- <e type="setSound">Audio/Nagato/Nagato_hurt.ogg</e> -->
 		</frame>
 	</action>
 
@@ -73,7 +73,7 @@
 		<frame>
 			<f>Nagato_KnockDown_01</f>
 			<f>Nagato_KnockDown_02</f>
-			<e type="setSound">Audio/Nagato/Nagato_dead.ogg</e>
+			<!-- <e type="setSound">Audio/Nagato/Nagato_dead.ogg</e> -->
 		</frame>
 	</action>
 

@@ -19,20 +19,24 @@ public:
 
 	~Hero()
 	{
+		CC_SAFE_RELEASE(idleArray);
+		CC_SAFE_RELEASE(walkArray);
+		CC_SAFE_RELEASE(deadArray);
+		CC_SAFE_RELEASE(hurtArray);
+		CC_SAFE_RELEASE(airHurtArray);
+		CC_SAFE_RELEASE(floatArray);
+		CC_SAFE_RELEASE(knockDownArray);
+		CC_SAFE_RELEASE(nattackArray);
 		CC_SAFE_DELETE(skillSPC1Array);
 		CC_SAFE_RELEASE(skillSPC2Array);
 		CC_SAFE_RELEASE(skillSPC3Array);
 		CC_SAFE_RELEASE(skillSPC4Array);
 		CC_SAFE_RELEASE(skillSPC5Array);
-		CC_SAFE_RELEASE(nattackArray);
-		CC_SAFE_RELEASE(walkArray);
-		CC_SAFE_RELEASE(knockDownArray);
 		CC_SAFE_RELEASE(skill1Array);
 		CC_SAFE_RELEASE(skill2Array);
 		CC_SAFE_RELEASE(skill3Array);
 		CC_SAFE_RELEASE(skill4Array);
 		CC_SAFE_RELEASE(skill5Array);
-		CC_SAFE_RELEASE(idleArray);
 	}
 
 	bool init()
@@ -492,7 +496,16 @@ public:
 		if (isNotCharacter("Minato"))
 		{
 			for (auto mo : _monsterArray)
-				mo->dealloc();
+			{
+				CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(mo);
+				if ((Hero *)mo != nullptr)
+					std::erase(getGameLayer()->_CharacterArray, (Hero *)mo);
+				mo->stopAllActions();
+				mo->unscheduleAllSelectors();
+				mo->setActionState(State::DEAD);
+				mo->removeFromParent();
+			}
+			_monsterArray.clear();
 		}
 
 		if (isClone() || isKugutsu() || isSummon())

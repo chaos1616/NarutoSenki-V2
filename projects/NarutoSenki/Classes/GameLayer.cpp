@@ -774,9 +774,17 @@ void GameLayer::onLeft()
 	KTools::prepareFileOGG("Effect", true);
 	KTools::prepareFileOGG("Ougis", true);
 
+	for (auto unit : _CharacterArray)
+		unit->removeFromParent();
 	_CharacterArray.clear();
+	for (auto unit : _TowerArray)
+		unit->removeFromParent();
 	_TowerArray.clear();
+	for (auto unit : _KonohaFlogArray)
+		unit->removeFromParent();
 	_KonohaFlogArray.clear();
+	for (auto unit : _AkatsukiFlogArray)
+		unit->removeFromParent();
 	_AkatsukiFlogArray.clear();
 
 	removeSprites("UI.plist");

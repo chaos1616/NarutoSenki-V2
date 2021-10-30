@@ -573,6 +573,21 @@ public:
 		if (hasMonsterArrayAny())
 			std::erase(_monsterArray, mo);
 	}
+	inline void			removeAllMonAndCleanup(const string &name) {
+		if (hasMonsterArrayAny()) {
+			vector<CharacterBase *> removeList;
+			for (auto mo : _monsterArray)
+			{
+				if (mo->isCharacter("HiraishinMark"))
+					removeList.push_back(mo);
+			}
+			for (auto mo : removeList)
+			{
+				std::erase(_monsterArray, mo);
+				mo->removeFromParent();
+			}
+		}
+	}
 	// Utilities
 	void				increaseAllCkrs(uint32_t value, bool enableLv2 = true, bool enableLv4 = true);
 	inline void			increaseHpAndUpdateUI(uint32_t value);

@@ -3,6 +3,18 @@
 #include "HudLayer.h"
 #include "LoadLayer.h"
 
+Monster::Monster()
+{
+}
+
+Monster::~Monster()
+{
+	CC_SAFE_RELEASE(idleArray);
+	CC_SAFE_RELEASE(walkArray);
+	CC_SAFE_RELEASE(deadArray);
+	CC_SAFE_RELEASE(nattackArray);
+}
+
 bool Monster::init()
 {
 	RETURN_FALSE_IF(!CharacterBase::init());
@@ -28,6 +40,7 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
 	CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 	idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
+	idleArray->retain();
 
 	CCString *tmpName;
 	CCString *tmpHpMax;
@@ -52,10 +65,12 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	// init WalkFrame
 	tmpAction = (CCArray *)(animationArray->objectAtIndex(1));
 	walkArray = (CCArray *)(tmpAction->objectAtIndex(1));
+	walkArray->retain();
 
 	// init DeadFrame
 	tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
 	deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
+	deadArray->retain();
 
 	// init nAttack data & Frame Array
 	tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
@@ -65,6 +80,7 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	readData(tmpData, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
 	setnAttackValue(tmpValue);
 	nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
+	nattackArray->retain();
 
 	setCoin(50);
 
@@ -301,9 +317,9 @@ void Monster::setAI(float dt)
 
 void Monster::dealloc()
 {
+	stopAllActions();
 	unschedule(schedule_selector(CharacterBase::setAI));
 	setActionState(State::DEAD);
-	stopAllActions();
 
 	if (isCharacter("FutonSRK", "FutonSRK2"))
 	{
@@ -326,14 +342,7 @@ void Monster::dealloc()
 			getGameLayer()->clearDoubleClick();
 		}
 
-		for (auto mo : _master->getMonsterArray())
-		{
-			if (mo->isCharacter("HiraishinMark"))
-			{
-				_master->removeMon(mo);
-				mo->removeFromParent();
-			}
-		}
+		_master->removeAllMonAndCleanup("HiraishinMark");
 
 		return;
 	}
