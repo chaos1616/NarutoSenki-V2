@@ -103,6 +103,7 @@ public:
 		// init AirHurtFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(3));
 		airHurtArray = (CCArray *)(tmpAction->objectAtIndex(1));
+		airHurtArray->retain();
 
 		// init KnockDownFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(4));
