@@ -112,10 +112,12 @@ public:
 		// init FloatFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(5));
 		floatArray = (CCArray *)(tmpAction->objectAtIndex(1));
+		floatArray->retain();
 
 		// init DeadFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
 		deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
+		deadArray->retain();
 
 		// init nAttack data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
@@ -136,6 +138,7 @@ public:
 		setsAttackValue1(tmpValue);
 
 		skill1Array = (CCArray *)(tmpAction->objectAtIndex(1));
+		skill1Array->retain();
 
 		// init skill2 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(9));
@@ -143,16 +146,13 @@ public:
 		readData(tmpData, _sattackType2, tmpValue, _sattackRangeX2, _sattackRangeY2, _sattackcooldown2, _sattackCombatPoint2);
 		setsAttackValue2(tmpValue);
 		skill2Array = (CCArray *)(tmpAction->objectAtIndex(1));
+		skill2Array->retain();
 
 		if (is_same(charName, "Kakashi"))
 		{
-			skill1Array->retain();
-			skill2Array->retain();
 		}
 		else if (is_same(charName, "Minato"))
 		{
-			skill1Array->retain();
-			skill2Array->retain();
 			_sattack1isDouble = true;
 		}
 
@@ -162,6 +162,7 @@ public:
 		readData(tmpData, _sattackType3, tmpValue, _sattackRangeX3, _sattackRangeY3, _sattackcooldown3, _sattackCombatPoint3);
 		setsAttackValue3(tmpValue);
 		skill3Array = (CCArray *)(tmpAction->objectAtIndex(1));
+		skill3Array->retain();
 
 		// init skill4 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(11));
@@ -169,6 +170,7 @@ public:
 		readData(tmpData, _sattackType4, tmpValue, _sattackRangeX4, _sattackRangeY4, _sattackcooldown4, _sattackCombatPoint4);
 		setsAttackValue4(tmpValue);
 		skill4Array = (CCArray *)(tmpAction->objectAtIndex(1));
+		skill4Array->retain();
 
 		// init skill5 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(12));
@@ -176,6 +178,7 @@ public:
 		readData(tmpData, _sattackType5, tmpValue, _sattackRangeX5, _sattackRangeY5, _sattackcooldown5, _sattackCombatPoint5);
 		setsAttackValue5(tmpValue);
 		skill5Array = (CCArray *)(tmpAction->objectAtIndex(1));
+		skill5Array->retain();
 
 		// initial specal animations
 		while (1)

@@ -4,6 +4,11 @@
 
 class Flog : public CharacterBase
 {
+#if COCOS2D_DEBUG
+private:
+	string targetName;
+#endif
+
 public:
 	float _mainPosY = 0;
 	float _randomPosX = 0;
@@ -169,6 +174,10 @@ protected:
 						}
 					}
 				}
+#if COCOS2D_DEBUG
+				if (_mainTarget)
+					targetName = _mainTarget->getCharacter()->getCString();
+#endif
 			}
 
 			CCPoint moveDirection;

@@ -5,6 +5,7 @@
 #include "GameMode/GameModeImpl.h"
 #include "MyUtils/CCShake.h"
 #include "Systems/CommandSystem.hpp"
+#include "Utils/Debug/UnitDebug.hpp"
 
 CharacterBase::CharacterBase()
 {
@@ -1361,6 +1362,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 		}
 	}
 
+	Debug::PrintDamgeInfo(this, currentAttacker, realValue);
 	setHPValue(getHPValue() < realValue ? 0 : getHPValue() - realValue);
 
 	if (isClone() && _master && !_master->_isControlled)
@@ -2628,16 +2630,17 @@ void CharacterBase::dehealBuff(float dt)
 		getGameLayer()->setHPLose(getHpPercent());
 }
 
-// NOTE: Only for Shikamaru's KageHand
+// FIXME: Only for Shikamaru's KageHand
 void CharacterBase::lostBlood(float dt)
 {
-	for (auto hero : getGameLayer()->_CharacterArray)
-	{
-		if (hero->isCharacter("Shikamaru"))
-			_slayer = hero;
-	}
+	// for (auto hero : getGameLayer()->_CharacterArray)
+	// {
+	// 	if (hero->isCharacter("Shikamaru"))
+	// 		_slayer = hero;
+	// }
 
-	// if (getHPValue() <= lostBloodValue)
+	if (_slayer->_master)
+		_slayer = _slayer->_master;
 	setDamage(_slayer, "c_hit", lostBloodValue, false);
 
 	if (isPlayer())
