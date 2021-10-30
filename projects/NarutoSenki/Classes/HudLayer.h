@@ -98,7 +98,7 @@ public:
 	void attackButtonRelease();
 	void pauseButtonClick(CCObject *sender);
 	void gearButtonClick(CCObject *sender);
-	void setReport(const char *name1, const char *name2, CCString *killNum);
+	void setReport(const char *name1, const char *name2, uint32_t killNum);
 	void setReportCache();
 	void setBuffDisplay(const char *buffName, float buffStayTime);
 	void clearSPCReport();

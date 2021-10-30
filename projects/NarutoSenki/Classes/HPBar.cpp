@@ -388,8 +388,8 @@ void HPBar::loseHP(float percent)
 
 			if (currentSlayer->isNotFlog())
 			{
-				int realKillNum = to_int(currentSlayer->getKillNum()->getCString()) + 1;
-				currentSlayer->setKillNum(to_ccstring(realKillNum));
+				uint32_t realKillNum = currentSlayer->getKillNum() + 1;
+				currentSlayer->setKillNum(realKillNum);
 				getGameLayer()->setReport(currentSlayer->getCharacter()->getCString(), _delegate->getCharacter()->getCString(), currentSlayer->getKillNum());
 
 				auto currentTeam = getGameLayer()->playerGroup;

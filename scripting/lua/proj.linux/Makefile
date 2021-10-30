@@ -6,6 +6,7 @@ INCLUDES += -I.. \
 	-I../luajit/include \
 	-I../../../CocosDenshion/include \
 	-I../../../extensions \
+	-I../../../external \
 	-I../../../projects/NarutoSenki/Classes \
 	-I../../../projects/NarutoSenki/Classes/Core \
 
@@ -29,9 +30,11 @@ SOURCES = ../tolua/tolua_event.c \
 
 include ../../../cocos2dx/proj.linux/cocos2dx.mk
 
-TARGET := $(LIB_DIR)/$(TARGET)
-SHAREDLIBS += -lextension
+CXXFLAGS += -std=c++20
 
+TARGET := $(LIB_DIR)/$(TARGET)
+
+SHAREDLIBS += -lcocos2d -lcocosdenshion
 STATICLIBS += $(LIB_DIR)/libextension.a
 
 all: $(TARGET)

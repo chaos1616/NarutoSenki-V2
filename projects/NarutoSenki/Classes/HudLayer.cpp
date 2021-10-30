@@ -725,7 +725,7 @@ bool HudLayer::offCoin(const char *value)
 	}
 }
 
-void HudLayer::setReport(const char *name1, const char *name2, CCString *killNum)
+void HudLayer::setReport(const char *name1, const char *name2, uint32_t killNum)
 {
 	bool isDisplay = _reportListArray.empty();
 
@@ -748,7 +748,7 @@ void HudLayer::setReport(const char *name1, const char *name2, CCString *killNum
 		// .char1Id = charId,
 		.name2 = name2,
 		.num = 1,
-		.kills = killNum->uintValue(),
+		.kills = killNum,
 		.isDisplay = isDisplay,
 	});
 }

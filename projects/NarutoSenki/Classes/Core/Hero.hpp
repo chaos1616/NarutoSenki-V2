@@ -78,10 +78,7 @@ public:
 		setWalkSpeed(tmpSpeed);
 		_originSpeed = tmpSpeed;
 
-		if (getKillNum() == nullptr)
-		{
-			setKillNum(to_ccstring(0));
-		}
+		setKillNum(0);
 
 		if (!getCKR() && !getCKR2())
 		{

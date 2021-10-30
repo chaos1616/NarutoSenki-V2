@@ -28,7 +28,7 @@ public:
 		setGroup(group);
 
 		CCArray *animationArray = CCArray::create();
-		auto filePath = format("Element/Flog/{}.xml", getCharacter()->getCString());
+		auto filePath = format("Element/Flog/{}.xml", getCharacter()->m_sString);
 		KTools::readXMLToArray(filePath.c_str(), animationArray);
 
 		CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
@@ -48,7 +48,7 @@ public:
 		setHeight(tmpHeight);
 		setWalkSpeed(tmpSpeed);
 
-		setKillNum(to_ccstring(0));
+		setKillNum(0);
 
 		if (!getCKR() && !getCKR2())
 		{

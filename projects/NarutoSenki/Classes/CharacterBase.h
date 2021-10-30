@@ -41,8 +41,8 @@ public:
 
 	uint32_t			_deadNum;
 	uint32_t			_flogNum;
-	CC_SYNTHESIZE_RETAIN(CCString*,_killNum,KillNum);
-	PROP_UInt32(_coin,Coin);
+	PROP_UInt32(_killNum, KillNum);
+	PROP_UInt32(_coin, Coin);
 
 
 	CharacterBase*		_slayer;
@@ -268,8 +268,7 @@ public:
 	void				updateHpBarPosition(float dt);
 	void				acceptAttack(CCObject* object);
 
-
-	inline float		getHpPercent();
+	float				getHpPercent();
 
 	bool				checkHasMovement();
 
@@ -318,7 +317,6 @@ public:
 	void				enableSkill2(float dt);
 	void				enableSkill3(float dt);
 	void				enableItem1(float dt);
-
 
 	void				enableGear00(float dt);
 	void				enableGear03(float dt);
@@ -464,6 +462,36 @@ protected:
 	void				removeDamageDisplay();
 
 public:
+	// UI
+	void 				updateHpBar();
+	inline void			lockSkill4Button() {
+		if (isPlayer())
+			getGameLayer()->getHudLayer()->skill4Button->setLock();
+	}
+	inline void			unlockSkill4Button() {
+		if (isPlayer())
+			getGameLayer()->getHudLayer()->skill4Button->unLock();
+	}
+	inline void			lockSkill5Button() {
+		if (isPlayer())
+			getGameLayer()->getHudLayer()->skill5Button->setLock();
+	}
+	inline void			unlockSkill5Button() {
+		if (isPlayer())
+			getGameLayer()->getHudLayer()->skill5Button->unLock();
+	}
+	inline void			lockOugisButtons() {
+		if (isPlayer()) {
+			getGameLayer()->getHudLayer()->skill4Button->setLock();
+			getGameLayer()->getHudLayer()->skill5Button->setLock();
+		}
+	}
+	inline void			unlockOugisButtons() {
+		if (isPlayer()) {
+			getGameLayer()->getHudLayer()->skill4Button->unLock();
+			getGameLayer()->getHudLayer()->skill5Button->unLock();
+		}
+	}
 	// character extensions
 	inline uint32_t		getCkrValue() { return to_uint(_ckr->getCString()); }
 	inline void			setCkrValue(uint32_t var) { setCKR(to_ccstring(var)); }
@@ -544,36 +572,6 @@ public:
 	inline void			removeMon(CharacterBase *mo) {
 		if (hasMonsterArrayAny())
 			std::erase(_monsterArray, mo);
-	}
-	// UI
-	inline void 		updateHpBar();
-	inline void			lockSkill4Button() {
-		if (isPlayer())
-			getGameLayer()->getHudLayer()->skill4Button->setLock();
-	}
-	inline void			unlockSkill4Button() {
-		if (isPlayer())
-			getGameLayer()->getHudLayer()->skill4Button->unLock();
-	}
-	inline void			lockSkill5Button() {
-		if (isPlayer())
-			getGameLayer()->getHudLayer()->skill5Button->setLock();
-	}
-	inline void			unlockSkill5Button() {
-		if (isPlayer())
-			getGameLayer()->getHudLayer()->skill5Button->unLock();
-	}
-	inline void			lockOugisButtons() {
-		if (isPlayer()) {
-			getGameLayer()->getHudLayer()->skill4Button->setLock();
-			getGameLayer()->getHudLayer()->skill5Button->setLock();
-		}
-	}
-	inline void			unlockOugisButtons() {
-		if (isPlayer()) {
-			getGameLayer()->getHudLayer()->skill4Button->unLock();
-			getGameLayer()->getHudLayer()->skill5Button->unLock();
-		}
 	}
 	// Utilities
 	void				increaseAllCkrs(uint32_t value, bool enableLv2 = true, bool enableLv4 = true);

@@ -37,6 +37,7 @@ LOCAL_SRC_FILES := narutosenki/main.cpp \
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../Classes \
 					$(LOCAL_PATH)/../../../Classes/Core \
+					$(COCOS_ROOT)/external \
 					$(COCOS_ROOT)/external/sqlite3/src \
 
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos2dx_static

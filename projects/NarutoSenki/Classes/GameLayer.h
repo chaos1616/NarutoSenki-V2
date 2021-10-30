@@ -73,8 +73,8 @@ public:
 	void checkBackgroundMusic(float dt);
 
 	CC_SYNTHESIZE(HudLayer *, _hudLayer, HudLayer);
-	inline void onHUDInitialized(const OnHUDInitializedCallback &callback);
-	inline bool isHUDInit();
+	void onHUDInitialized(const OnHUDInitializedCallback &callback);
+	bool isHUDInit();
 	void setTowerState(int charNO);
 
 	CC_SYNTHESIZE_RETAIN(CCString *, totalKills, TotalKills);
@@ -119,7 +119,7 @@ public:
 	void setHPLose(float percent);
 	void setCKRLose(bool isCRK2);
 
-	void setReport(const char *name1, const char *name2, CCString *killNum);
+	void setReport(const char *name1, const char *name2, uint32_t killNum);
 	void clearDoubleClick();
 	void resetStatusBar();
 	void setCoin(const char *value);

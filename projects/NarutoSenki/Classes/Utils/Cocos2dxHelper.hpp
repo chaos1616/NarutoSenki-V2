@@ -4,6 +4,12 @@
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 #include <format>
+#else
+#define FMT_HEADER_ONLY
+#define FMT_CONSTEVAL
+#include "fmt/core.h"
+
+using namespace fmt;
 #endif
 
 using namespace cocos2d;
@@ -76,15 +82,12 @@ inline CCSpriteFrame *getSpriteFrame(const string_view _Fmt, const _Types &..._A
 
 #else
 
-// For not support c++ 20 std::format platform
-inline string format(const char *fmt, ...)
-{
-	return CCString::createWithFormat(fmt, va_list())->m_sString;
-}
+// Use fmt lib for not support c++ 20 std::format platform
 
-inline CCSpriteFrame *getSpriteFrame(const char *fmt, ...)
+template <class... _Types>
+inline CCSpriteFrame *getSpriteFrame(fmt::format_string<_Types...> _Fmt, _Types &&..._Args)
 {
-	return getSpriteFrame(format(fmt, va_list()));
+	return getSpriteFrame(fmt::format(_Fmt, _Args...));
 }
 
 #endif

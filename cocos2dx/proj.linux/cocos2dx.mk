@@ -70,10 +70,10 @@ STATICLIBS = $(STATICLIBS_DIR)/libfreetype.a \
     $(STATICLIBS_DIR)/libwebp.a \
     $(STATICLIBS_DIR)/libglfw3.a \
 
-SHAREDLIBS += -lglfw -lGLEW -lfontconfig -lpthread -lGL -lgthread-2.0
+SHAREDLIBS += -lGLEW -lfontconfig -lpthread -lGL -lgthread-2.0
 SHAREDLIBS += -L$(LIB_DIR) -Wl,-rpath,$(abspath $(LIB_DIR))
 
-LIBS = -lrt -lz -lm -lX11 -lfreetype -ldl
+LIBS = -lrt -lz -lm -lX11 -ldl
 
 clean:
 	rm -rf $(OBJ_DIR)

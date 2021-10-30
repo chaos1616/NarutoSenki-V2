@@ -122,7 +122,7 @@ void GameOver::listResult()
 
 	float _totalSecond = getGameLayer()->_minute * 60 + getGameLayer()->_second;
 	float resultScore = 0;
-	int killDead = to_int(currPlayer->getKillNum()->getCString()) - currPlayer->_deadNum;
+	uint32_t killDead = currPlayer->getKillNum() - currPlayer->_deadNum;
 
 	if (_totalSecond != to_int(getGameLayer()->getTotalTM()->getCString()))
 	{
@@ -154,8 +154,8 @@ void GameOver::listResult()
 	}
 
 	int i = 0;
-	int konohaKill = 0;
-	int akatsukiKill = 0;
+	uint32_t konohaKill = 0;
+	uint32_t akatsukiKill = 0;
 
 	for (auto hero : getGameLayer()->_CharacterArray)
 	{
@@ -186,7 +186,7 @@ void GameOver::listResult()
 		auto avator_small = CCSprite::createWithSpriteFrameName(path.c_str());
 		avator_small->setAnchorPoint(ccp(0, 0));
 
-		int realKillNum = to_int(hero->getKillNum()->getCString());
+		uint32_t realKillNum = hero->getKillNum();
 
 		if (hero->isKonohaGroup())
 		{
@@ -267,13 +267,13 @@ void GameOver::listResult()
 			return;
 		}
 
-		int realKillNum = to_int(currPlayer->getKillNum()->getCString());
+		uint32_t realKillNum = currPlayer->getKillNum();
 
 		string tempReward = getGameLayer()->_isHardCoreGame ? "FDDD" : "ONNN";
 		KTools::decode(tempReward);
 
-		int coins = KTools::readCoinFromSQL();
-		int rewardNum;
+		uint32_t coins = KTools::readCoinFromSQL();
+		uint32_t rewardNum;
 		if (_isWin)
 			rewardNum = realKillNum * 75 + to_int(tempReward.c_str());
 		else
@@ -290,7 +290,7 @@ void GameOver::listResult()
 		addChild(adExtra, 7);
 
 		const char *extraCoin;
-		int tempCoin;
+		uint32_t tempCoin;
 		if (_isWin)
 		{
 			string tempEtra = "idd4";
