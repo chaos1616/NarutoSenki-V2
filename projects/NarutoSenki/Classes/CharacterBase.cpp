@@ -1336,10 +1336,10 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 				realValue = attackValue - _gardValue + criticalValue;
 				float decreaseRating = 0;
 				if (hasArmor)
-					decreaseRating += 0.25;
+					decreaseRating += 0.25f;
 
 				if (isCharacter("Kakuzu") && _skillChangeBuffValue)
-					decreaseRating += 0.25;
+					decreaseRating += 0.25f;
 
 				if (isCharacter("Chiyo"))
 				{
@@ -1349,12 +1349,12 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 						{
 							CCPoint sp = ccpSub(mo->getPosition(), getPosition());
 							if (sp.x <= 48)
-								decreaseRating += 0.25;
+								decreaseRating += 0.25f;
 						}
 					}
 				}
 
-				if (realValue - realValue * decreaseRating < 0)
+				if (realValue < realValue * decreaseRating)
 					realValue = 0;
 				else
 					realValue -= realValue * decreaseRating;
@@ -1362,8 +1362,8 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 		}
 	}
 
-	Debug::PrintDamgeInfo(this, currentAttacker, realValue);
-	setHPValue(getHPValue() < realValue ? 0 : getHPValue() - realValue);
+	Debug::PrintDamgeInfo(this, currentAttacker, attackValue, realValue);
+	setHPValue(getHPValue() <= realValue ? 0 : getHPValue() - realValue);
 
 	if (isClone() && _master && !_master->_isControlled)
 	{
@@ -1381,8 +1381,8 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 
 		if (currentAttacker->isAttackGainCKR)
 		{
-			if (boundValue - boundValue * 25 / 100 > 0)
-				boundValue = boundValue - boundValue * 25 / 100;
+			if (boundValue > boundValue * 25 / 100)
+				boundValue -= boundValue * 25 / 100;
 			else
 				boundValue = 0;
 		}
@@ -1408,8 +1408,8 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 
 		if (currentAttacker->isAttackGainCKR)
 		{
-			if (boundValue - boundValue * 25 / 100 > 0)
-				boundValue = boundValue - boundValue * 25 / 100;
+			if (boundValue > boundValue * 25 / 100)
+				boundValue -= boundValue * 25 / 100;
 			else
 				boundValue = 0;
 		}
@@ -2641,6 +2641,8 @@ void CharacterBase::lostBlood(float dt)
 
 	if (_slayer->_master)
 		_slayer = _slayer->_master;
+	CC_ASSERT(_slayer->isCharacter(HeroEnum::Shikamaru));
+
 	setDamage(_slayer, "c_hit", lostBloodValue, false);
 
 	if (isPlayer())

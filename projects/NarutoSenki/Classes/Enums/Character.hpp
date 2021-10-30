@@ -97,7 +97,7 @@ namespace BuffType
 
 } // namespace BuffType
 
-namespace CharacterEnum
+namespace HeroEnum
 {
 	// Shinobi
 	mk_const(Asuma);

@@ -60,6 +60,9 @@ samples/
 # Doesn't ignore prebuilt libs
 !cocos2dx/platform/third_party/**/libs
 
+!projects/**/Classes/**
+!projects/**/lua/**
+
 # Ignore python compiled files
 *.pyc
 
