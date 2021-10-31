@@ -117,6 +117,7 @@ public:
 	float				_backY;
 	float				_diretionY;
 
+	int					lbAttackerId = -1;
 	uint32_t			lostBloodValue;
 	int					gearCKRValue;
 	uint32_t			gearRecoverValue;

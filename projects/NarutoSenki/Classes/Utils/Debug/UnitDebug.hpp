@@ -8,9 +8,9 @@ namespace Debug
 		if (attacked->isNotFlog() && attacker->isNotFlog())
 		{
 			if (damage >= attacked->getHPValue())
-				CCLOG("Unit %-10s killed %-10s -%uHP [ Atk: %u ]", attacker->getCharacter()->getCString(), attacked->getCharacter()->getCString(), damage, attackValue);
+				CCLOG("Unit %-10s killed %-10s -%uHP [ Atk: %u]", attacker->getCharacter()->getCString(), attacked->getCharacter()->getCString(), damage, attackValue);
 			else
-				CCLOG("Unit %-10s attacked %-10s -%uHP", attacker->getCharacter()->getCString(), attacked->getCharacter()->getCString(), damage);
+				CCLOG("Unit %-10s attacked %-10s -%uHP [ Atk: %u]", attacker->getCharacter()->getCString(), attacked->getCharacter()->getCString(), damage, attackValue);
 		}
 	}
 }
