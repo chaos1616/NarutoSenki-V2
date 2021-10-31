@@ -21,4 +21,3 @@ namespace UnitEx
 		RemoveFlogsMainTarget(target, getGameLayer()->_AkatsukiFlogArray);
 	}
 }
-a
