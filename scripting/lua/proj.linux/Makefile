@@ -34,8 +34,7 @@ CXXFLAGS += -std=c++20
 
 TARGET := $(LIB_DIR)/$(TARGET)
 
-SHAREDLIBS += -lcocos2d -lcocosdenshion -lluajit
-STATICLIBS += $(LIB_DIR)/libextension.a
+SHAREDLIBS += -lcocos2d -lcocosdenshion -lextension -lluajit
 
 all: $(TARGET)
 
