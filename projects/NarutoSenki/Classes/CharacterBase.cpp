@@ -2652,6 +2652,7 @@ void CharacterBase::lostBlood(float dt)
 void CharacterBase::removeLostBlood(float dt)
 {
 	lostBloodValue = 0;
+	lbAttackerId = -1;
 	unschedule(schedule_selector(CharacterBase::lostBlood));
 }
 

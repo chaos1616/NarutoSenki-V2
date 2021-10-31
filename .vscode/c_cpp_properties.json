@@ -10,7 +10,10 @@
                 "${workspaceFolder}/scripting/lua/luajit/include",
                 "${workspaceFolder}/projects/NarutoSenki/Classes/**"
             ],
-            "defines": [],
+            "defines": [
+                "DEBUG",
+                "COCOS2D_DEBUG"
+            ],
             "cppStandard": "c++20"
         },
         {
@@ -25,7 +28,9 @@
             ],
             "defines": [
                 "WIN32",
-                "_WINDOWS"
+                "_WINDOWS",
+                "DEBUG",
+                "COCOS2D_DEBUG"
             ],
             "cppStandard": "c++20"
         }
