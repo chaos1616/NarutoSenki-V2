@@ -10,7 +10,7 @@ public:
 
 	bool init()
 	{
-		RETURN_FALSE_IF(!CharacterBase::init());
+		RETURN_FALSE_IF(!CCSprite::init());
 
 		scheduleUpdate();
 
