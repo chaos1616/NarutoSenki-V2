@@ -839,6 +839,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 												{
 													attacker->stopAllActions();
 													attacker->schedule(schedule_selector(CharacterBase::getSticker), 0.1f);
+													lbAttackerId = attacker->_master->getCharNO();
 													schedule(schedule_selector(CharacterBase::lostBlood), 1.0f);
 													lostBloodValue = 400;
 													scheduleOnce(schedule_selector(CharacterBase::removeLostBlood), 6.0f);
@@ -1327,7 +1328,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 		}
 		else
 		{
-			if (attackValue - _gardValue <= 0)
+			if (attackValue <= _gardValue)
 			{
 				realValue = criticalValue;
 			}
@@ -2633,15 +2634,14 @@ void CharacterBase::dehealBuff(float dt)
 // FIXME: Only for Shikamaru's KageHand
 void CharacterBase::lostBlood(float dt)
 {
-	// for (auto hero : getGameLayer()->_CharacterArray)
-	// {
-	// 	if (hero->isCharacter("Shikamaru"))
-	// 		_slayer = hero;
-	// }
-
-	if (_slayer->_master)
-		_slayer = _slayer->_master;
-	CC_ASSERT(_slayer->isCharacter(HeroEnum::Shikamaru));
+	for (auto hero : getGameLayer()->_CharacterArray)
+	{
+		if (hero->getCharNO() == lbAttackerId && hero->isCharacter("Shikamaru"))
+		{
+			_slayer = hero;
+			lbAttackerId = -1;
+		}
+	}
 
 	setDamage(_slayer, "c_hit", lostBloodValue, false);
 
@@ -2652,6 +2652,7 @@ void CharacterBase::lostBlood(float dt)
 void CharacterBase::removeLostBlood(float dt)
 {
 	lostBloodValue = 0;
+	lbAttackerId = -1;
 	unschedule(schedule_selector(CharacterBase::lostBlood));
 }
 
