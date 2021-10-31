@@ -192,11 +192,12 @@ void Monster::setAI(float dt)
 				float distanceX = _isFlipped ? hero->getPositionX() - getPositionX() + getContentSize().width : hero->getPositionX() - getPositionX() - getContentSize().width;
 				if (abs(distanceX) < 32 && distanceY < 48)
 				{
-					if (_monsterArray.empty())
-					{
-						setMon("KageHand");
-						unschedule(schedule_selector(CharacterBase::setAI));
-					}
+					// if (_monsterArray.empty())
+					// {
+					setMon("KageHand");
+					unschedule(schedule_selector(CharacterBase::setAI));
+					// }
+					return; // Need to return because _monsterArray is always empty
 				}
 			}
 		}
@@ -323,7 +324,7 @@ void Monster::dealloc()
 
 	if (isCharacter("FutonSRK", "FutonSRK2"))
 	{
-		auto call = CallFunc::create(std::bind(&Monster::dealloc2, this));
+		auto call = CallFunc::create(std::bind(&Monster::removeFromParent, this));
 		auto seq = newSequence(getDeadAction(), call);
 		runAction(seq);
 		return;
@@ -360,8 +361,8 @@ void Monster::dealloc()
 
 	if (isCharacter("KageHand", "Kage"))
 	{
-		auto call = CallFunc::create(std::bind(&Monster::dealloc2, this));
-		auto call2 = CallFunc::create(std::bind(&Monster::setResume, this));
+		auto call = CallFunc::create(std::bind(&Monster::setResume, this));
+		auto call2 = CallFunc::create(std::bind(&Monster::removeFromParent, this));
 		auto seq = newSequence(getDeadAction(), call, call2);
 		runAction(seq);
 	}
@@ -444,9 +445,4 @@ void Monster::setResume()
 			_master->idle();
 		}
 	}
-}
-
-void Monster::dealloc2()
-{
-	removeFromParent();
 }

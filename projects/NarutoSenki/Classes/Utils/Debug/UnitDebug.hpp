@@ -7,14 +7,39 @@ DEBUG_NS_BEGIN
 
 #include "CharacterBase.h"
 
-void PrintDamgeInfo(CharacterBase *attacked, CharacterBase *attacker, int attackValue, uint32_t damage)
+void PrintDamgeInfo(CharacterBase *attacked, CharacterBase *realAttacker, CharacterBase *attacker, int attackValue, uint32_t damage, const string &effectType)
 {
-	if (attacked->isNotFlog() && attacker->isNotFlog())
+	if (attacked->isFlog() || attacker->isFlog())
+		return;
+
+	auto state = damage < attacked->getHPValue() ? "attacked" : "killed  ";
+	if (realAttacker != attacker)
 	{
-		if (damage >= attacked->getHPValue())
-			NSLOG("Unit {:<9} killed   {:<9} -{:<4}HP [ Atk: {:<4}]", attacker->getCharacter()->getCString(), attacked->getCharacter()->getCString(), damage, attackValue);
-		else
-			NSLOG("Unit {:<9} attacked {:<9} -{:<4}HP [ Atk: {:<4}]", attacker->getCharacter()->getCString(), attacked->getCharacter()->getCString(), damage, attackValue);
+		NSLOG("Unit {:<9}:{} -> {:<9}:{} {} {:<9}:{} HP: {:<4} -{:<4}HP [ Atk: {:<4}, Type: {}]",
+			  realAttacker->getCharacter()->getCString(),
+			  realAttacker->m_uID,
+			  attacker->getCharacter()->getCString(),
+			  attacker->getCharNO(),
+			  state,
+			  attacked->getCharacter()->getCString(),
+			  attacked->getCharNO(),
+			  attacked->getHPValue(),
+			  damage,
+			  attackValue,
+			  effectType);
+	}
+	else
+	{
+		NSLOG("Unit {:<9}:{} {} {:<9}:{} HP: {:<4} -{:<4}HP [ Atk: {:<4}, Type: {}]",
+			  attacker->getCharacter()->getCString(),
+			  attacker->getCharNO(),
+			  state,
+			  attacked->getCharacter()->getCString(),
+			  attacked->getCharNO(),
+			  attacked->getHPValue(),
+			  damage,
+			  attackValue,
+			  effectType);
 	}
 }
 

@@ -1363,7 +1363,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 		}
 	}
 
-	Debug::PrintDamgeInfo(this, currentAttacker, attackValue, realValue);
+	Debug::PrintDamgeInfo(this, attacker, currentAttacker, attackValue, realValue, effectType);
 	setHPValue(getHPValue() <= realValue ? 0 : getHPValue() - realValue);
 
 	if (isClone() && _master && !_master->_isControlled)
@@ -2634,6 +2634,9 @@ void CharacterBase::dehealBuff(float dt)
 // FIXME: Only for Shikamaru's KageHand
 void CharacterBase::lostBlood(float dt)
 {
+	if (lbAttackerId == -1)
+		return;
+
 	for (auto hero : getGameLayer()->_CharacterArray)
 	{
 		if (hero->getCharNO() == lbAttackerId && hero->isCharacter("Shikamaru"))
@@ -2642,6 +2645,10 @@ void CharacterBase::lostBlood(float dt)
 			lbAttackerId = -1;
 		}
 	}
+
+	CCAssert(lbAttackerId == -1, "Not found Shikamaru");
+	if (lbAttackerId != -1)
+		return;
 
 	setDamage(_slayer, "c_hit", lostBloodValue, false);
 

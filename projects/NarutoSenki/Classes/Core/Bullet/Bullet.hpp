@@ -107,7 +107,7 @@ protected:
 
 		if (isCharacter("Amaterasu"))
 		{
-			auto call = CallFunc::create(std::bind(&Bullet::dealloc2, this));
+			auto call = CallFunc::create(std::bind(&Bullet::removeFromParent, this));
 			auto seq = newSequence(getDeadAction(), call);
 			runAction(seq);
 		}
@@ -129,10 +129,5 @@ protected:
 				_master->removeMon(this);
 			removeFromParent();
 		}
-	}
-
-	void dealloc2()
-	{
-		removeFromParent();
 	}
 };

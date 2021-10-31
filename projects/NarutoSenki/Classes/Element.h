@@ -22,7 +22,6 @@ public:
 
 protected:
 	void dealloc();
-	void dealloc2();
 	void setAI(float dt);
 	void setResume();
 };
