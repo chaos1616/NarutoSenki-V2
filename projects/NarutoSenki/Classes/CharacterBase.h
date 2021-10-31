@@ -420,6 +420,8 @@ public:
 	void				setBulletGroup(float dt);
 	void				setTrap(const string &trapName);
 
+	void				removeAllClones();
+
 	void				setBuff(int buffValue);
 	void				setCommand(const string &cmd);
 	void				setBuffEffect(const string &type);
