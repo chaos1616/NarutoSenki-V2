@@ -1,5 +1,6 @@
 #pragma once
 #include "Core/Provider.hpp"
+#include "Core/Utils/UnitEx.hpp"
 #include "GameMode/IGameModeHandler.hpp"
 
 class ModeRandomDeathmatch : public IGameModeHandler
@@ -92,6 +93,8 @@ public:
 			}
 			else
 			{
+				UnitEx::RemoveAllFlogsMainTarget(c);
+
 				// If the character has changed, then cleanup
 				CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(c);
 				if (c->_shadow)

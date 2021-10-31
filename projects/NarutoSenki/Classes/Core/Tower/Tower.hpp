@@ -1,6 +1,7 @@
 #pragma once
 #include "CharacterBase.h"
 #include "Core/Warrior/Flog.hpp"
+#include "Core/Utils/UnitEx.hpp"
 #include "HPBar.h"
 #include "HudLayer.h"
 
@@ -59,7 +60,7 @@ public:
 			setCkr2Value(0);
 		}
 
-		//init DeadFrame
+		// init DeadFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
 		deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
@@ -94,25 +95,7 @@ public:
 		setActionState(State::DEAD);
 		stopAllActions();
 
-		vector<Flog *> list;
-		for (int i = 0; i < 2; i++)
-		{
-			if (i == 0)
-				list = getGameLayer()->_KonohaFlogArray;
-			else if (i == 1)
-				list = getGameLayer()->_AkatsukiFlogArray;
-
-			for (auto flog : list)
-			{
-				if (flog->_mainTarget)
-				{
-					if (flog->_mainTarget == (CharacterBase *)this)
-					{
-						flog->_mainTarget = nullptr;
-					}
-				}
-			}
-		}
+		UnitEx::RemoveAllFlogsMainTarget(this);
 
 		std::erase(getGameLayer()->_TowerArray, this);
 		getGameLayer()->setTowerState(getCharNO());
