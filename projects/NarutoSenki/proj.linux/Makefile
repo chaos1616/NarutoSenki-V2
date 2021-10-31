@@ -41,7 +41,7 @@ INCLUDES +=	 -I../ \
 	-I$(COCOS_ROOT)/CocosDenshion/include \
 	-I$(COCOS_ROOT)/extensions \
 	-I$(COCOS_ROOT)/external \
-    -I$(COCOS_ROOT)/scripting/lua/luajit/include \
+	-I$(COCOS_ROOT)/scripting/lua/luajit/include \
 	-I$(COCOS_ROOT)/scripting/lua/tolua \
 	-I$(COCOS_ROOT)/scripting/lua/cocos2dx_support \
 
