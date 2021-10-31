@@ -176,7 +176,7 @@ protected:
 				}
 #if COCOS2D_DEBUG
 				if (_mainTarget)
-					targetName = _mainTarget->getCharacter()->getCString();
+					targetName = format("{} : {}",_mainTarget->getCharacter()->m_sString, _mainTarget->getCharNO());
 #endif
 			}
 

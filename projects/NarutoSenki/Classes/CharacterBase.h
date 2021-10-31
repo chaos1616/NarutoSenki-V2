@@ -281,6 +281,7 @@ public:
 	void				oAttack(abType type);
 	bool				hurt();
 	bool				hardHurt(int delayTime, bool isHurtAction, bool isCatch, bool isStick, bool isStun);
+	// bool				hardHurt(int delayTime, bool isHurtAction, HardHurtState state);
 	void				absorb(CCPoint position, bool isImmediate);
 	void				jump(){}; // No reference
 	void				knockDown();

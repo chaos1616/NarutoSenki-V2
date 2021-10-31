@@ -219,3 +219,12 @@ inline ActionFlag operator^(ActionFlag a, ActionFlag b) { return (ActionFlag)((u
 inline ActionFlag &operator|=(ActionFlag &a, ActionFlag b) { return (ActionFlag &)((uint32_t &)a |= (uint32_t)b); }
 inline ActionFlag &operator&=(ActionFlag &a, ActionFlag b) { return (ActionFlag &)((uint32_t &)a &= (uint32_t)b); }
 inline ActionFlag &operator^=(ActionFlag &a, ActionFlag b) { return (ActionFlag &)((uint32_t &)a ^= (uint32_t)b); }
+
+enum class HardHurtState : uint8_t
+{
+	None,
+	Catch,	  // Unit caught on the ground
+	CatchAir, // Unit is caught in the air
+	Stick,
+	Stun,
+};

@@ -4168,9 +4168,8 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 		else
 		{
 			_isSticking = true;
-			auto attacker = _slayer;
 			string path = getCharacter()->getCString();
-			if (attacker->isCharacter("Kakuzu"))
+			if (isStick && isStun) // TODO: Use HardHurtState::CatchAir instead
 				path += "_AirHurt_02";
 			else
 				path += "_Hurt_02";
