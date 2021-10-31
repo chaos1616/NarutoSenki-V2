@@ -524,6 +524,9 @@ public:
 			std::erase(getGameLayer()->_CharacterArray, this);
 			UnitEx::RemoveAllFlogsMainTarget(this);
 
+			if (_shadow)
+				_shadow->removeFromParent();
+
 			if (_master)
 				_master->removeMon(this);
 
@@ -557,6 +560,7 @@ public:
 			}
 			schedule(schedule_selector(Hero::countDown), 1);
 		}
+		// Keep the guardian body
 	}
 
 	void doAI()

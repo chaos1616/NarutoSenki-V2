@@ -29,7 +29,7 @@ public:
 	void onLoadFinish(float dt);
 
 	CREATE_FUNC(LoadLayer);
-	static void perloadCharIMG(const char *player);
+	static void perloadCharIMG(const string &name);
 	static void unloadCharIMG(CharacterBase *player);
 	static void unloadAllCharsIMG(const vector<Hero *> &players);
 

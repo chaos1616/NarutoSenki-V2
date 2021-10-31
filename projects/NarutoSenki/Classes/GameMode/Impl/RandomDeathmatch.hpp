@@ -93,28 +93,36 @@ public:
 			}
 			else
 			{
-				UnitEx::RemoveAllFlogsMainTarget(c);
-
 				// If the character has changed, then cleanup
+				// Set char to Clone to skip Hero::reborn and cleanup
 				CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(c);
-				if (c->_shadow)
-					c->_shadow->removeFromParent();
 				c->stopAllActions();
-				c->unscheduleAllSelectors();
-				c->removeFromParent();
-				if (c->hasMonsterArrayAny())
+				for (auto mo : c->getMonsterArray())
 				{
-					for (auto mo : c->getMonsterArray())
+					if (auto heroMo = dynamic_cast<Hero *>(mo))
+					{
+						heroMo->dealloc();
+					}
+					else
 					{
 						CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(mo);
-						if (mo->_shadow)
-							mo->_shadow->removeFromParent();
+						mo->stopAllActions();
+						mo->unscheduleAllSelectors();
 						mo->removeFromParent();
 					}
 				}
 
+				std::erase(getGameLayer()->_CharacterArray, c);
+				UnitEx::RemoveAllFlogsMainTarget(c);
+
+				if (c->_shadow)
+					c->_shadow->removeFromParent();
+				if (c->getMaster())
+					c->getMaster()->removeMon(c);
+				c->removeFromParent();
+
 				// load new char assets
-				LoadLayer::perloadCharIMG(newCharName.c_str());
+				LoadLayer::perloadCharIMG(newCharName);
 				// Unload old character assets if not used by the other player or AI
 				auto oldCharName = c->getCharacter()->m_sString;
 				if (std::find(heroVector.begin(), heroVector.end(), oldCharName) == heroVector.end())
@@ -207,7 +215,7 @@ public:
 			{
 				newChar->doAI();
 			}
-			gameLayer->_CharacterArray.at(c->getCharNO() - 1) = newChar;
+			gameLayer->_CharacterArray.push_back(newChar);
 		}
 	}
 

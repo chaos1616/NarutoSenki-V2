@@ -142,49 +142,43 @@ void LoadLayer::preloadIMG()
 	scheduleOnce(schedule_selector(LoadLayer::onLoadFinish), 3.0f);
 }
 
-void LoadLayer::perloadCharIMG(const char *player)
+void LoadLayer::perloadCharIMG(const string &name)
 {
-	if (!player)
-	{
-		CCLOG("Perload a null character images !");
-		return;
-	}
-
 	CCTexture2D::PVRImagesHavePremultipliedAlpha(true);
 
-	auto path = format("Element/Skills/{}_Skill.plist", player);
+	auto path = format("Element/Skills/{}_Skill.plist", name);
 	if (CCFileUtils::sharedFileUtils()->isFileExist(path.c_str()))
 		addSprites(path.c_str());
 	// else
 	// CCLOG("Not found file %s", path);
 
-	KTools::prepareFileOGG(player);
+	KTools::prepareFileOGG(name.c_str());
 
-	path = format("Element/{}/{}.plist", player, player);
+	path = format("Element/{}/{}.plist", name, name);
 	addSprites(path.c_str());
 	// Add extra sprites
-	if (is_same(player, "Jiraiya"))
+	if (name == "Jiraiya")
 	{
 		addSprites(mkpath(SageJiraiya));
 		KTools::prepareFileOGG("SageJiraiya");
 	}
-	else if (is_same(player, "Kankuro"))
+	else if (name == "Kankuro")
 	{
 		addSprites(mkpath(Karasu));
 		addSprites(mkpath(Sanshouuo));
 		addSprites(mkpath(Saso));
 	}
-	else if (is_same(player, "Chiyo"))
+	else if (name == "Chiyo")
 	{
 		addSprites(mkpath(Parents));
 	}
-	else if (is_same(player, "Kakuzu"))
+	else if (name == "Kakuzu")
 	{
 		addSprites(mkpath(MaskRaiton));
 		addSprites(mkpath(MaskFuton));
 		addSprites(mkpath(MaskKaton));
 	}
-	else if (is_same(player, "Naruto"))
+	else if (name == "Naruto")
 	{
 		addSprites(mkpath(RikudoNaruto));
 		addSprites(mkpath(SageNaruto));
@@ -192,23 +186,23 @@ void LoadLayer::perloadCharIMG(const char *player)
 		KTools::prepareFileOGG("SageNaruto");
 		KTools::prepareFileOGG("RikudoNaruto");
 	}
-	else if (is_same(player, "Lee"))
+	else if (name == "Lee")
 	{
 		addSprites(mkpath(RockLee));
 	}
-	else if (is_same(player, "Tsunade"))
+	else if (name == "Tsunade")
 	{
 		addSprites(mkpath(Slug));
 	}
-	else if (is_same(player, "Kakashi"))
+	else if (name == "Kakashi")
 	{
 		addSprites(mkpath(DogWall));
 	}
-	else if (is_same(player, "Deidara"))
+	else if (name == "Deidara")
 	{
 		addSprites(mkpath(Centipede));
 	}
-	else if (is_same(player, "Pain"))
+	else if (name == "Pain")
 	{
 		addSprites(mkpath(AnimalPath));
 		addSprites(mkpath(AsuraPath));
@@ -218,12 +212,12 @@ void LoadLayer::perloadCharIMG(const char *player)
 		addSprites(mkpath(Nagato));
 		KTools::prepareFileOGG("Nagato");
 	}
-	else if (is_same(player, "Sasuke"))
+	else if (name == "Sasuke")
 	{
 		addSprites(mkpath(ImmortalSasuke));
 		KTools::prepareFileOGG("ImmortalSasuke");
 	}
-	else if (is_same(player, "Kiba"))
+	else if (name == "Kiba")
 	{
 		addSprites(mkpath(Akamaru));
 	}
