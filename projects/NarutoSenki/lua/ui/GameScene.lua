@@ -63,7 +63,7 @@ end
 function GameScene:onLogoClick()
     self.cheats = self.cheats + 1
 
-    if self.cheats == 6 then
+    if self.cheats == 7 then
         audio.stopAllSounds()
         self.logoMenu:removeFromParent()
 
@@ -79,7 +79,7 @@ function GameScene:onLogoClick()
         self.introLayer:addChild(self.logoMenu, 3)
 
         self:onFinish()
-    elseif self.cheats > 6 then
+    elseif self.cheats >= 7 then
         audio.stopAllSounds()
         audio.stopMusic(true)
         audio.playSound(ns.menu.LOGO_CLICK)
