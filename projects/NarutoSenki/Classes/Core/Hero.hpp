@@ -497,17 +497,22 @@ public:
 		stopAllActions();
 		_actionState = State::DEAD;
 
-		if (isNotCharacter("Minato"))
+		if (!_monsterArray.empty() && isNotCharacter("Minato"))
 		{
 			for (auto mo : _monsterArray)
 			{
-				CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(mo);
-				if ((Hero *)mo != nullptr)
-					std::erase(getGameLayer()->_CharacterArray, (Hero *)mo);
-				mo->stopAllActions();
-				mo->unscheduleAllSelectors();
-				mo->setActionState(State::DEAD);
-				mo->removeFromParent();
+				if (auto heroMo = dynamic_cast<Hero *>(mo))
+				{
+					heroMo->dealloc();
+				}
+				else
+				{
+					CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(mo);
+					mo->stopAllActions();
+					mo->unscheduleAllSelectors();
+					mo->setActionState(State::DEAD);
+					mo->removeFromParent();
+				}
 			}
 			_monsterArray.clear();
 		}
@@ -517,6 +522,7 @@ public:
 			unschedule(schedule_selector(CharacterBase::setAI));
 
 			std::erase(getGameLayer()->_CharacterArray, this);
+			UnitEx::RemoveAllFlogsMainTarget(this);
 
 			if (_master)
 				_master->removeMon(this);

@@ -83,4 +83,26 @@ class AsuraPath : public Hero
 
 		stepOn();
 	}
+
+	// NOTE: AsuraPath will destroy Rocket after death
+	// void dealloc() override
+	// {
+	// 	if (hasMonsterArrayAny())
+	// 	{
+	// 		vector<CharacterBase *> removeList;
+	// 		auto &monsterArray = getMonsterArray();
+	// 		for (auto mo : monsterArray)
+	// 		{
+	// 			if (mo->isCharacter("Rocket"))
+	// 			{
+	// 				mo->setMaster(nullptr);
+	// 				removeList.push_back(mo);
+	// 			}
+	// 		}
+	// 		for (auto mo : removeList)
+	// 			std::erase(monsterArray, mo);
+	// 	}
+
+	// 	Hero::dealloc();
+	// }
 };
