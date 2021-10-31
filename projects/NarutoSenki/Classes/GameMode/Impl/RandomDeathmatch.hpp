@@ -94,7 +94,6 @@ public:
 			else
 			{
 				// If the character has changed, then cleanup
-				// Set char to Clone to skip Hero::reborn and cleanup
 				CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(c);
 				c->stopAllActions();
 				for (auto mo : c->getMonsterArray())
@@ -111,6 +110,7 @@ public:
 						mo->removeFromParent();
 					}
 				}
+				// TODO: Remove all Clone
 
 				std::erase(getGameLayer()->_CharacterArray, c);
 				UnitEx::RemoveAllFlogsMainTarget(c);
