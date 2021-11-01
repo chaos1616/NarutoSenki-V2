@@ -32,17 +32,16 @@ public:
 	~CharacterBase();
 
 	virtual void		setID(CCString* character, CCString* role, CCString* group);
-	virtual	void		setHPbar();
-	virtual	void	   	changeHPbar();
-	void				updateDataByLVOnly();
-	virtual	void		setShadows();
+	virtual void		setHPbar();
+	virtual void		changeHPbar();
+	virtual void		setShadows();
 
 	VPROP(int,_charNO,CharNO);
 
 	uint32_t			_deadNum;
 	uint32_t			_flogNum;
-	PROP_UInt32(_killNum, KillNum);
-	PROP_UInt32(_coin, Coin);
+	PROP_UInt(_killNum, KillNum);
+	PROP_UInt(_coin, Coin);
 
 
 	CharacterBase*		_slayer;
@@ -89,7 +88,7 @@ public:
 	bool				_isPausing;
 
 	CCPoint				_markPoint;
-	CCPoint				_startPoint;
+	CCPoint				_startPoint; // NOTE: Only for Minano
 
 	bool				_isAI;
 	bool				_isControlled;
@@ -105,10 +104,10 @@ public:
 	bool				enableReborn = true;
 	int8_t				changeCharId = -1; // NOTE: Support for random deathmatch mode
 
-	int 				rebornLabelTime;
-	int 				battleCondiction;
+	int					rebornLabelTime;
+	int					battleCondiction;
 	// True is only has one tower, false otherwise
-	bool 				isBaseDanger;
+	bool				isBaseDanger;
 
 
 	HPBar*				_hpBar;
@@ -138,7 +137,7 @@ public:
 	bool				_isCanGear06;
 
 	VPROP(int,_walkSpeed,WalkSpeed);
-	int _originSpeed;
+	int					_originSpeed;
 
 	CC_SYNTHESIZE_RETAIN(CCString*,_maxHP,MaxHP);
 	CC_SYNTHESIZE_RETAIN(CCString*,_hp,HP);
@@ -156,6 +155,15 @@ public:
 	CC_SYNTHESIZE(CharacterBase*,_controller,Controller);
 	CC_SYNTHESIZE(CharacterBase*,_secmaster,SecMaster);
 
+	PROP_REF(string,_attackType,AttackType);
+	uint32_t		_attackValue;
+	int				_attackRangeX;
+	int				_attackRangeY;
+
+	// int totalCombatPoint;
+	int				enemyCombatPoint;
+	int				friendCombatPoint;
+
 	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_nattackValue,nAttackValue);
 	PROP_REF(string,_nattackType,nAttackType);
 	int				_nattackRangeX;
@@ -168,11 +176,6 @@ public:
 	uint32_t		_sattackcooldown1;
 	bool			_sattack1isDouble;
 	int				_sattackCombatPoint1;
-
-	uint32_t		 _attackValue;
-	PROP_REF(string,_attackType,AttackType);
-	int				_attackRangeX;
-	int				_attackRangeY;
 
 	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_sattackValue2,sAttackValue2);
 	PROP_REF(string,_sattackType2,SAttackType2);
@@ -204,10 +207,6 @@ public:
 	int				_sattackRangeY5;
 	uint32_t		_sattackcooldown5;
 	int				_sattackCombatPoint5;
-
-	// int totalCombatPoint;
-	int enemyCombatPoint;
-	int friendCombatPoint;
 
 	CC_SYNTHESIZE_RETAIN(CCString*,_spcattackValue1,spcAttackValue1);
 	PROP_REF(string,_spcattackType1,SpcAttack1Type);
@@ -260,9 +259,9 @@ public:
 	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_skill4Action, Skill4Action);
 	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_skill5Action, Skill5Action);
 
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_moveAction,MoveAction);
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_floatUPAction,FloatUPAction);
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_jumpUPAction,JumpUPAction);
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_moveAction, MoveAction);
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_floatUPAction, FloatUPAction);
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_jumpUPAction, JumpUPAction);
 
 
 	void				update(float dt);
@@ -468,6 +467,7 @@ protected:
 public:
 	// UI
 	void 				updateHpBar();
+	void				updateDataByLVOnly();
 	inline void			lockSkill4Button() {
 		if (isPlayer())
 			getGameLayer()->getHudLayer()->skill4Button->setLock();

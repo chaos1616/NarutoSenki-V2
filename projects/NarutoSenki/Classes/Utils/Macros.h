@@ -101,7 +101,7 @@ public:                                                            \
 	inline const Value &get##funName##_Value() { return varName; } \
 	inline void set##funName(uint8_t var) { varName = var; }
 
-#define PROP_UInt32(varName, funName)                              \
+#define PROP_UInt(varName, funName)                                \
 private:                                                           \
 	Value varName;                                                 \
                                                                    \
