@@ -133,13 +133,13 @@ class NarakaPath : public Hero
 
 		// TODO: How to balance the hero
 		if (cloneTime == 0)
-			clone = create<AnimalPath>(CCString::create("AnimalPath"), CCString::create(kRoleSummon), getGroup());
+			clone = createSummonHero<AnimalPath>(HeroEnum::AnimalPath);
 		else if (cloneTime == -1)
-			clone = create<AsuraPath>(CCString::create("AsuraPath"), CCString::create(kRoleSummon), getGroup());
+			clone = createSummonHero<AsuraPath>(HeroEnum::AsuraPath);
 		else if (cloneTime == -2)
-			clone = create<PertaPath>(CCString::create("PertaPath"), CCString::create(kRoleSummon), getGroup());
+			clone = createSummonHero<PertaPath>(HeroEnum::PertaPath);
 		else if (cloneTime == -3)
-			clone = create<HumanPath>(CCString::create("HumanPath"), CCString::create(kRoleSummon), getGroup());
+			clone = createSummonHero<HumanPath>(HeroEnum::HumanPath);
 
 		_monsterArray.push_back(clone);
 		clone->_isArmored = true;

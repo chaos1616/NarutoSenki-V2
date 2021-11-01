@@ -228,7 +228,7 @@ class Naruto : public Hero
 
 	inline Hero *createClone_Naruto(int cloneTime)
 	{
-		auto clone = create<NarutoClone>(getCharacter(), CCString::create(kRoleClone), getGroup());
+		auto clone = createCloneHero<NarutoClone>(getCharacter()->m_sString);
 		return clone;
 	}
 
@@ -402,7 +402,7 @@ class Naruto : public Hero
 
 	inline Hero *createClone_SageNaruto(int cloneTime)
 	{
-		auto clone = create<SageNarutoClone>(getCharacter(), CCString::create(kRoleClone), getGroup());
+		auto clone = createCloneHero<SageNarutoClone>(getCharacter()->m_sString);
 		clone->setSkill1Action(clone->createAnimation(clone->skillSPC1Array, 10.0f, false, true));
 		clone->setsAttackValue1(to_ccstring(getSAttackValue1()));
 		clone->setSAttackType1(_spcattackType1);
@@ -586,7 +586,7 @@ class Naruto : public Hero
 
 	inline Hero *createClone_RikudoNaruto(int cloneTime)
 	{
-		auto clone = create<Kurama>(CCString::create("Kurama"), CCString::create(kRoleClone), getGroup());
+		auto clone = createCloneHero<Kurama>(HeroEnum::Kurama);
 		clone->setGP(5000);
 		clone->_isArmored = true;
 		clone->setWalkSpeed(320);

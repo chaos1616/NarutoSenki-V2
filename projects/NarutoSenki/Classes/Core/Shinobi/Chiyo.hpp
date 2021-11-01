@@ -170,7 +170,7 @@ class Chiyo : public Hero
 
 	Hero *createClone(int cloneTime) override
 	{
-		auto clone = create<Parents>(CCString::create("Parents"), CCString::create(kRoleKugutsu), getGroup());
+		auto clone = createKugutsuHero<Parents>(HeroEnum::Parents);
 		clone->setPosition(ccp(getPositionX(), getPositionY() - 3));
 		clone->_isArmored = true;
 		_monsterArray.push_back(clone);

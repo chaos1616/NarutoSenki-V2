@@ -598,6 +598,22 @@ public:
 		return hero;
 	}
 
+	template <typename THero>
+	inline typename std::enable_if<std::is_base_of<Hero, THero>::value, THero *>::type
+	createHero(const string &name, const string &role) { return create<THero>(CCString::create(name), CCString::create(role), getGroup()); }
+
+	template <typename THero>
+	inline typename std::enable_if<std::is_base_of<Hero, THero>::value, THero *>::type
+	createCloneHero(const string &name) { return createHero<THero>(name, kRoleClone); }
+
+	template <typename THero>
+	inline typename std::enable_if<std::is_base_of<Hero, THero>::value, THero *>::type
+	createKugutsuHero(const string &name) { return createHero<THero>(name, kRoleKugutsu); }
+
+	template <typename THero>
+	inline typename std::enable_if<std::is_base_of<Hero, THero>::value, THero *>::type
+	createSummonHero(const string &name) { return createHero<THero>(name, kRoleSummon); }
+
 /** Macros */
 // eg.
 //

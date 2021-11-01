@@ -233,7 +233,7 @@ class Kiba : public Hero
 
 	Hero *createClone(int cloneTime) override
 	{
-		auto clone = create<Akamaru>(CCString::create("Akamaru"), CCString::create(kRoleClone), getGroup());
+		auto clone = createCloneHero<Akamaru>(HeroEnum::Akamaru);
 		clone->_isArmored = true;
 		_monsterArray.push_back(clone);
 		return clone;

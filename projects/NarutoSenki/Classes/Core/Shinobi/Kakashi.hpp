@@ -187,7 +187,7 @@ class Kakashi : public Hero
 
 	Hero *createClone(int cloneTime) override
 	{
-		auto clone = create<DogWall>(CCString::create("DogWall"), CCString::create(kRoleSummon), getGroup());
+		auto clone = createSummonHero<DogWall>(HeroEnum::DogWall);
 		clone->setPosition(ccp(getPositionX() + (_isFlipped ? -56 : 56), getPositionY()));
 		clone->setAnchorPoint(ccp(0.5f, 0.1f));
 		clone->_isArmored = true;

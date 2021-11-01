@@ -371,14 +371,14 @@ class Pain : public Hero
 		// TODO: New Pain
 		// if (isCharacter(kPain__))
 		// {
-		// 	clone = create<NarakaPath>(CCString::create("NarakaPath"), CCString::create(kRoleClone), getGroup());
+		// 	clone = createCloneHero<NarakaPath>(HeroEnum::NarakaPath);
 		// 	clone->_isArmored = true;
 
 		// 	lockSkill5Button();
 		// }
 		if (isCharacter(kNagato)) // Old Nagato skill
 		{
-			clone = create<NarakaPath>(CCString::create("NarakaPath"), CCString::create(kRoleClone), getGroup());
+			clone = createCloneHero<NarakaPath>(HeroEnum::NarakaPath);
 			clone->_isArmored = true;
 
 			lockSkill5Button();

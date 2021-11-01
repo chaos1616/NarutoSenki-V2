@@ -181,7 +181,7 @@ class Tsunade : public Hero
 
 	Hero *createClone(int cloneTime) override
 	{
-		auto clone = create<Slug>(CCString::create("Slug"), CCString::create(kRoleSummon), getGroup());
+		auto clone = createSummonHero<Slug>(HeroEnum::Slug);
 		clone->_isArmored = true;
 		return clone;
 	}
