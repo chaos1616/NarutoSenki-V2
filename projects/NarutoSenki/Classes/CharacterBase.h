@@ -563,16 +563,13 @@ public:
 	}
 	inline void			removeAllMonAndCleanup(const string &name) {
 		if (hasMonsterArrayAny()) {
-			vector<CharacterBase *> removeList;
 			for (auto mo : _monsterArray)
 			{
-				if (mo->isCharacter("HiraishinMark"))
-					removeList.push_back(mo);
-			}
-			for (auto mo : removeList)
-			{
-				std::erase(_monsterArray, mo);
-				mo->removeFromParent();
+				if (mo->isCharacter(name))
+				{
+					std::erase(_monsterArray, mo);
+					mo->removeFromParent();
+				}
 			}
 		}
 	}
