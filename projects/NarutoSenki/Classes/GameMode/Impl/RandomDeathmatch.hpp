@@ -112,6 +112,7 @@ public:
 				}
 				// TODO: Remove all Clone
 
+				c->removeAllClones();
 				std::erase(getGameLayer()->_CharacterArray, c);
 				UnitEx::RemoveAllFlogsMainTarget(c);
 

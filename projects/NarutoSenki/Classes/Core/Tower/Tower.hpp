@@ -12,7 +12,7 @@ public:
 
 	bool init()
 	{
-		RETURN_FALSE_IF(!CharacterBase::init());
+		RETURN_FALSE_IF(!CCSprite::init());
 
 		setAnchorPoint(ccp(0.5, 0.5));
 		scheduleUpdate();

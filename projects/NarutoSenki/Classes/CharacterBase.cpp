@@ -2974,6 +2974,18 @@ void CharacterBase::removeClone(float dt)
 	dead();
 }
 
+void CharacterBase::removeAllClones()
+{
+	auto &unitArray = getGameLayer()->_CharacterArray;
+	for (auto c : unitArray)
+	{
+		if (c->getMaster() == this)
+		{
+			std::erase(unitArray, c);
+		}
+	}
+}
+
 void CharacterBase::setMon(const string &monName)
 {
 	float monsterStayTime = _attackRangeY;
