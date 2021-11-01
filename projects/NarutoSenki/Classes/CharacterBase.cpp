@@ -3613,25 +3613,9 @@ void CharacterBase::setTransform()
 		removeBuffEffect("all");
 	}
 
-	setnAttackValue(to_ccstring(getNAttackValue()));
-
-	setMaxHPValue(getMaxHP(), false);
-	setHPValue(getHP());
-
-	if (_hpBar)
-	{
-		_hpBar->setPositionY(getHeight());
-	}
-
-	if (isGearCD)
-	{
-		_sattackcooldown1 -= 5;
-		_sattackcooldown2 -= 5;
-		_sattackcooldown3 -= 5;
-	}
-
-	if (isPlayer())
-		getGameLayer()->setHPLose(getHpPercent());
+	auto oldNAttackValue = getNAttackValue();
+	auto oldMaxHP = getMaxHP();
+	auto oldHP = getHP();
 
 	// NOTE: Update HudLayer logic was moved to Hero::setID
 	if (isCharacter("Naruto"))
@@ -3648,6 +3632,25 @@ void CharacterBase::setTransform()
 		setID(CCString::create("Lee"), _role, _group);
 	else if (isCharacter("Pain"))
 		setID(CCString::create("Nagato"), _role, _group);
+
+	setnAttackValue(to_ccstring(oldNAttackValue));
+	setMaxHPValue(oldMaxHP, false);
+	setHPValue(oldHP);
+
+	if (_hpBar)
+	{
+		_hpBar->setPositionY(getHeight());
+	}
+
+	if (isGearCD)
+	{
+		_sattackcooldown1 -= 5;
+		_sattackcooldown2 -= 5;
+		_sattackcooldown3 -= 5;
+	}
+
+	if (isPlayer())
+		getGameLayer()->setHPLose(getHpPercent());
 }
 
 float CharacterBase::getHpPercent()

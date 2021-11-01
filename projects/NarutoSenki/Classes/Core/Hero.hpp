@@ -80,14 +80,13 @@ public:
 			setMaxHPValue(tmpHpMax->uintValue(), false);
 			setHPValue(getMaxHP(), false);
 		}
+		setCKR(0);
+		setCKR2(0);
 		setHeight(tmpHeight);
 		setWalkSpeed(tmpSpeed);
 		_originSpeed = tmpSpeed;
 
 		setKillNum(0);
-
-		setCKR(0);
-		setCKR2(0);
 
 		// init WalkFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(1));

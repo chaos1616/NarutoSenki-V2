@@ -49,8 +49,8 @@ public:
 
 		readData(tmpData, unitName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
 
-		setHPValue(getMaxHP(), false);
 		setMaxHPValue(tmpHpMax->uintValue(), false);
+		setHPValue(getMaxHP(), false);
 		setCKR(0);
 		setCKR2(0);
 		setHeight(tmpHeight);
