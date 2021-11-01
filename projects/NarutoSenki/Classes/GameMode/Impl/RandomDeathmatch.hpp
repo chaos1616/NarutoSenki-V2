@@ -191,9 +191,7 @@ public:
 				}
 				else if (gear == gear08)
 				{
-					uint32_t tempMaxHP = newChar->getMaxHPValue();
-					tempMaxHP += 6000;
-					newChar->setMaxHPValue(tempMaxHP);
+					newChar->setMaxHPValue(newChar->getMaxHP() + 6000);
 					newChar->hasArmor = true;
 				}
 			}

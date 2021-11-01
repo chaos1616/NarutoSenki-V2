@@ -40,7 +40,7 @@ class Ino : public Hero
 			needBackToDefendTower())
 			return;
 
-		if (getMaxHPValue() - getHPValue() >= 3000 &&
+		if (getMaxHP() - getHP() >= 3000 &&
 			getCoin() >= 50 && !_isHealing && _isCanItem1 && _isArmored)
 		{
 			setItem(Item1);

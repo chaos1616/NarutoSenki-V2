@@ -12,7 +12,7 @@ void PrintDamgeInfo(CharacterBase *attacked, CharacterBase *realAttacker, Charac
 	if (attacked->isFlog() || attacker->isFlog())
 		return;
 
-	auto state = damage < attacked->getHPValue() ? "attacked" : "killed  ";
+	auto state = damage < attacked->getHP() ? "attacked" : "killed  ";
 	if (realAttacker != attacker)
 	{
 		NSLOG("Unit {:<9}:{} -> {:<9}:{} {} {:<9}:{} HP: {:<4} -{:<4}HP [ Atk: {:<4}, Type: {}]",
@@ -23,7 +23,7 @@ void PrintDamgeInfo(CharacterBase *attacked, CharacterBase *realAttacker, Charac
 			  state,
 			  attacked->getCharacter()->getCString(),
 			  attacked->getCharNO(),
-			  attacked->getHPValue(),
+			  attacked->getHP(),
 			  damage,
 			  attackValue,
 			  effectType);
@@ -36,7 +36,7 @@ void PrintDamgeInfo(CharacterBase *attacked, CharacterBase *realAttacker, Charac
 			  state,
 			  attacked->getCharacter()->getCString(),
 			  attacked->getCharNO(),
-			  attacked->getHPValue(),
+			  attacked->getHP(),
 			  damage,
 			  attackValue,
 			  effectType);

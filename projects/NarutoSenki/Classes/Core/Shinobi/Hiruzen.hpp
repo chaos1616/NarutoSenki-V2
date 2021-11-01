@@ -21,7 +21,7 @@ class Hiruzen : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored && _mainTarget->getHPValue() < 10000 && !_mainTarget->_isCanGear06)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored && _mainTarget->getHP() < 10000 && !_mainTarget->_isCanGear06)
 				{
 					if (abs(sp.x) < 32)
 					{

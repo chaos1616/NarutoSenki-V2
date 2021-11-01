@@ -106,7 +106,7 @@ private:
 		   {
 			   if (thiz->_hpBar)
 			   {
-				   thiz->setHPValue(thiz->getMaxHPValue());
+				   thiz->setHPValue(thiz->getMaxHP());
 				   thiz->_hpBar->setPositionY(thiz->getHeight());
 			   }
 		   });
@@ -269,8 +269,8 @@ private:
 					   {
 						   if (hero->_hpBar)
 						   {
-							   if (hero->getHPValue() <= 2000)
-								   hero->setDamage(thiz, "c_hit", hero->getHPValue(), false);
+							   if (hero->getHP() <= 2000)
+								   hero->setDamage(thiz, "c_hit", hero->getHP(), false);
 							   else
 								   hero->setDamage(thiz, "c_hit", 2000, false);
 
@@ -284,8 +284,8 @@ private:
 			   {
 				   if (thiz->_hpBar)
 				   {
-					   if (thiz->getHPValue() <= 2000)
-						   thiz->setDamage(thiz, "c_hit", thiz->getHPValue(), false);
+					   if (thiz->getHP() <= 2000)
+						   thiz->setDamage(thiz, "c_hit", thiz->getHP(), false);
 					   else
 						   thiz->setDamage(thiz, "c_hit", 2000, false);
 
@@ -326,10 +326,8 @@ private:
 						   hero->hearts -= 1;
 						   if (thiz->isNotSameGroupAs(hero))
 						   {
-							   uint32_t tempMaxHP = thiz->getMaxHPValue();
-							   tempMaxHP += 100;
+							   thiz->setMaxHPValue(thiz->getMaxHP() + 100);
 							   thiz->setnAttackValue(to_ccstring(thiz->getNAttackValue() + 5));
-							   thiz->setMaxHPValue(tempMaxHP);
 						   }
 
 						   if (thiz->isPlayer())

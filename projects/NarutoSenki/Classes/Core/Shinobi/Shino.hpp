@@ -110,7 +110,7 @@ class Shino : public Hero
 				}
 				else if (abs(sp.x) < 128)
 				{
-					if (getMaxHPValue() - getHPValue() >= 3000 &&
+					if (getMaxHP() - getHP() >= 3000 &&
 						getCoin() >= 50 && !_isHealing && _isCanItem1)
 					{
 						setItem(Item1);

@@ -43,18 +43,15 @@ public:
 		int tmpCombatPoint;
 
 		readData(tmpData, unitName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
+
+		setHPValue(getMaxHP(), false);
 		setMaxHPValue(tmpHpMax->uintValue(), false);
-		setHPValue(getMaxHPValue(), false);
+		setCKR(0);
+		setCKR2(0);
 		setHeight(tmpHeight);
 		setWalkSpeed(tmpSpeed);
 
 		setKillNum(0);
-
-		if (!getCKR() && !getCKR2())
-		{
-			setCkrValue(0);
-			setCkr2Value(0);
-		}
 
 		// init WalkFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(1));

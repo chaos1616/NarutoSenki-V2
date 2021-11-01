@@ -50,17 +50,13 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	int tmpCombatPoint;
 
 	readData(tmpData, unitName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
-	setMaxHPValue(tmpHpMax->uintValue(), false);
-	setHPValue(getMaxHPValue(), false);
 
+	setHPValue(getMaxHP(), false);
+	setMaxHPValue(tmpHpMax->uintValue(), false);
+	setCKR(0);
+	setCKR2(0);
 	setHeight(tmpHeight);
 	setWalkSpeed(tmpSpeed);
-
-	if (!getCKR() && !getCKR2())
-	{
-		setCkrValue(0);
-		setCkr2Value(0);
-	}
 
 	// init WalkFrame
 	tmpAction = (CCArray *)(animationArray->objectAtIndex(1));
@@ -128,41 +124,31 @@ void Monster::changeHPbar()
 	if (_exp >= 500 && _level == 1)
 	{
 		_level = 2;
-		uint32_t tempMaxHP = getMaxHPValue();
-		tempMaxHP += 1000;
-		setMaxHPValue(tempMaxHP);
+		setMaxHPValue(getMaxHP() + 1000);
 		setnAttackValue(to_ccstring(getNAttackValue() + 9));
 	}
 	else if (_exp >= 1000 && _level == 2)
 	{
 		_level = 3;
-		uint32_t tempMaxHP = getMaxHPValue();
-		tempMaxHP += 1500;
-		setMaxHPValue(tempMaxHP);
+		setMaxHPValue(getMaxHP() + 1500);
 		setnAttackValue(to_ccstring(getNAttackValue() + 18));
 	}
 	else if (_exp >= 1500 && _level == 3)
 	{
 		_level = 4;
-		uint32_t tempMaxHP = getMaxHPValue();
-		tempMaxHP += 2000;
-		setMaxHPValue(tempMaxHP);
+		setMaxHPValue(getMaxHP() + 2000);
 		setnAttackValue(to_ccstring(getNAttackValue() + 27));
 	}
 	else if (_exp >= 2000 && _level == 4)
 	{
 		_level = 5;
-		uint32_t tempMaxHP = getMaxHPValue();
-		tempMaxHP += 2500;
-		setMaxHPValue(tempMaxHP);
+		setMaxHPValue(getMaxHP() + 2500);
 		setnAttackValue(to_ccstring(getNAttackValue() + 36));
 	}
 	else if (_exp >= 2500 && _level == 5)
 	{
 		_level = 6;
-		uint32_t tempMaxHP = getMaxHPValue();
-		tempMaxHP += 3000;
-		setMaxHPValue(tempMaxHP);
+		setMaxHPValue(getMaxHP() + 3000);
 		setnAttackValue(to_ccstring(getNAttackValue() + 48));
 	}
 

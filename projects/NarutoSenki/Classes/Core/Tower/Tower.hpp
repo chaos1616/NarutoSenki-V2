@@ -48,17 +48,13 @@ public:
 		int tmpCombatPoint;
 
 		readData(tmpData, unitName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
-		setMaxHPValue(tmpHpMax->uintValue(), false);
-		setHPValue(getMaxHPValue(), false);
 
+		setHPValue(getMaxHP(), false);
+		setMaxHPValue(tmpHpMax->uintValue(), false);
+		setCKR(0);
+		setCKR2(0);
 		setHeight(tmpHeight);
 		setWalkSpeed(tmpSpeed);
-
-		if (!getCKR() && !getCKR2())
-		{
-			setCkrValue(0);
-			setCkr2Value(0);
-		}
 
 		// init DeadFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(6));

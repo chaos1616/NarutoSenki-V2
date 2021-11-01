@@ -39,7 +39,7 @@ class Hidan : public Hero
 						{
 							for (auto hero : getGameLayer()->_CharacterArray)
 							{
-								if (hero->getGroup() != getGroup() && hero->getHPValue() < 2000 && hero->getActionState() != State::DEAD && hero->isPlayerOrCom())
+								if (hero->getGroup() != getGroup() && hero->getHP() < 2000 && hero->getActionState() != State::DEAD && hero->isPlayerOrCom())
 								{
 									attack(NAttack);
 									return;

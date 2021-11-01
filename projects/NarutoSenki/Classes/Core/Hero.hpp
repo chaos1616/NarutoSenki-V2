@@ -78,7 +78,7 @@ public:
 		if (!getCharacter()) // Set hp when character is not awaken
 		{
 			setMaxHPValue(tmpHpMax->uintValue(), false);
-			setHPValue(getMaxHPValue(), false);
+			setHPValue(getMaxHP(), false);
 		}
 		setHeight(tmpHeight);
 		setWalkSpeed(tmpSpeed);
@@ -86,11 +86,8 @@ public:
 
 		setKillNum(0);
 
-		if (!getCKR() && !getCKR2())
-		{
-			setCkrValue(0);
-			setCkr2Value(0);
-		}
+		setCKR(0);
+		setCKR2(0);
 
 		// init WalkFrame
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(1));
@@ -338,61 +335,49 @@ public:
 		if (_exp >= 500 && _level == 1)
 		{
 			_level = 2;
-			uint32_t newValue = getCkrValue() + 15000;
-			setCkrValue(newValue);
+			setCKR(getCKR() + 15000);
 			_isCanOugis1 = true;
 			if (isPlayer())
 			{
 				getGameLayer()->setCKRLose(false);
 				getGameLayer()->removeOugisMark(1);
 			}
-			uint32_t tempMaxHP = getMaxHPValue();
-			tempMaxHP += 500;
-			setMaxHPValue(tempMaxHP);
+			setMaxHPValue(getMaxHP() + 500);
 			setnAttackValue(to_ccstring(getNAttackValue() + 9));
 			_rebornTime += 1;
 		}
 		else if (_exp >= 1000 && _level == 2)
 		{
 			_level = 3;
-			uint32_t tempMaxHP = getMaxHPValue();
-			tempMaxHP += 1000;
-			setMaxHPValue(tempMaxHP);
+			setMaxHPValue(getMaxHP() + 1000);
 			setnAttackValue(to_ccstring(getNAttackValue() + 18));
 			_rebornTime += 2;
 		}
 		else if (_exp >= 1500 && _level == 3)
 		{
 			_level = 4;
-			uint32_t newValue = getCkr2Value() + 25000;
-			setCkr2Value(newValue);
+			setCKR2(getCKR2() + 25000);
 			_isCanOugis2 = true;
 			if (isPlayer())
 			{
 				getGameLayer()->setCKRLose(true);
 				getGameLayer()->removeOugisMark(2);
 			}
-			uint32_t tempMaxHP = getMaxHPValue();
-			tempMaxHP += 2000;
-			setMaxHPValue(tempMaxHP);
+			setMaxHPValue(getMaxHP() + 2000);
 			setnAttackValue(to_ccstring(getNAttackValue() + 27));
 			_rebornTime += 3;
 		}
 		else if (_exp >= 2000 && _level == 4)
 		{
 			_level = 5;
-			uint32_t tempMaxHP = getMaxHPValue();
-			tempMaxHP += 2500;
-			setMaxHPValue(tempMaxHP);
+			setMaxHPValue(getMaxHP() + 2500);
 			setnAttackValue(to_ccstring(getNAttackValue() + 36));
 			_rebornTime += 4;
 		}
 		else if (_exp >= 2500 && _level == 5)
 		{
 			_level = 6;
-			uint32_t tempMaxHP = getMaxHPValue();
-			tempMaxHP += 3000;
-			setMaxHPValue(tempMaxHP);
+			setMaxHPValue(getMaxHP() + 3000);
 			setnAttackValue(to_ccstring(getNAttackValue() + 45));
 			_rebornTime += 5;
 		}
@@ -433,7 +418,7 @@ public:
 		{
 			CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", nullptr);
 			setOpacity(255);
-			setHPValue(getMaxHPValue(), false);
+			setHPValue(getMaxHP(), false);
 			setHPbar();
 			_actionState = State::HURT;
 

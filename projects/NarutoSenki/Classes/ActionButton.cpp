@@ -423,9 +423,10 @@ void ActionButton::updateProgressMark()
 {
 	// NOTE: Using uint32_t will get wrong results.
 	// uint32_t ckr = 100;
-	// float result = -1 * ckr; //=> 4294967196
-	int ckr = getGameLayer()->currentPlayer->getCkrValue();
-	int ckr2 = getGameLayer()->currentPlayer->getCkr2Value();
+	// float result = -1    * ckr; //=> 4294967196
+	// float result = -1.0f * ckr; //=> -100
+	int ckr = getGameLayer()->currentPlayer->getCKR();
+	int ckr2 = getGameLayer()->currentPlayer->getCKR2();
 
 	if (getABType() == OUGIS1)
 	{
@@ -435,7 +436,7 @@ void ActionButton::updateProgressMark()
 				proressblinkSprite->setRotation(0);
 
 			if (proressmarkSprite)
-				proressmarkSprite->setRotation(-1 * ((ckr / 15000) * 50));
+				proressmarkSprite->setRotation(-1.0f * ((ckr / 15000.0f) * 50));
 
 			if (proressblinkMask)
 				proressblinkMask->setVisible(false);
@@ -446,7 +447,7 @@ void ActionButton::updateProgressMark()
 				proressblinkSprite->setRotation(-50);
 
 			if (proressmarkSprite)
-				proressmarkSprite->setRotation(-1 * (((ckr - 15000) / 15000) * 70 + 50));
+				proressmarkSprite->setRotation(-1.0f * (((ckr - 15000) / 15000.0f) * 70 + 50));
 
 			if (proressblinkMask && !_isLock)
 			{
@@ -472,7 +473,7 @@ void ActionButton::updateProgressMark()
 				proressblinkSprite->setRotation(-120);
 
 			if (proressmarkSprite)
-				proressmarkSprite->setRotation(-1 * (((ckr - 30000) / 15000) * 60 + 120));
+				proressmarkSprite->setRotation(-1.0f * (((ckr - 30000) / 15000.0f) * 60 + 120));
 		}
 		else
 		{
@@ -491,7 +492,7 @@ void ActionButton::updateProgressMark()
 				proressblinkSprite->setRotation(0);
 
 			if (proressmarkSprite)
-				proressmarkSprite->setRotation(-1 * ((ckr2 / 25000) * 85));
+				proressmarkSprite->setRotation(-1.0f * ((ckr2 / 25000.0f) * 85));
 
 			if (proressblinkMask)
 				proressblinkMask->setVisible(false);
@@ -502,7 +503,7 @@ void ActionButton::updateProgressMark()
 				proressblinkSprite->setRotation(-85);
 
 			if (proressmarkSprite)
-				proressmarkSprite->setRotation(-1 * (((ckr2 - 25000) / 25000) * 90 + 90));
+				proressmarkSprite->setRotation(-1.0f * (((ckr2 - 25000) / 25000.0f) * 90 + 90));
 
 			if (proressblinkMask && !_isLock)
 			{
@@ -582,8 +583,8 @@ void ActionButton::unLock()
 		markSprite->setPercentage(0);
 	}
 
-	uint32_t ckr = getGameLayer()->currentPlayer->getCkrValue();
-	uint32_t ckr2 = getGameLayer()->currentPlayer->getCkr2Value();
+	uint32_t ckr = getGameLayer()->currentPlayer->getCKR();
+	uint32_t ckr2 = getGameLayer()->currentPlayer->getCKR2();
 
 	if (getABType() == OUGIS1)
 	{

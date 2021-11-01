@@ -404,7 +404,7 @@ void GameLayer::initTower()
 			{
 				tower->setMaxHPValue(50000, false);
 			}
-			tower->setHPValue(tower->getMaxHPValue(), false);
+			tower->setHPValue(tower->getMaxHP(), false);
 		}
 		tower->setHPbar();
 		tower->_hpBar->setVisible(false);

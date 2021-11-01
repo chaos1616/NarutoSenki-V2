@@ -75,7 +75,7 @@ CharacterBase::CharacterBase()
 	_isCanGear06 = false;
 
 	enemyCombatPoint = 0;
-	// totalCombatPoint=0;
+	// totalCombatPoint = 0;
 	friendCombatPoint = 0;
 
 	isBaseDanger = false;
@@ -137,10 +137,6 @@ CharacterBase::CharacterBase()
 	_dehealBuffValue = 0;
 	_powerUPBuffValue = 0;
 	_hpBar = nullptr;
-	_maxHP = nullptr;
-	_hp = nullptr;
-	_ckr = nullptr;
-	_ckr2 = nullptr;
 
 	_gardValue = 0;
 	_exp = 0;
@@ -186,7 +182,7 @@ void CharacterBase::changeHPbar()
 
 void CharacterBase::updateDataByLVOnly()
 {
-	uint32_t tempMaxHP = getMaxHPValue();
+	uint32_t maxHP = getMaxHP();
 	int attackValue = getNAttackValue();
 	if (_level >= 2)
 	{
@@ -196,13 +192,13 @@ void CharacterBase::updateDataByLVOnly()
 			getGameLayer()->setCKRLose(false);
 			getGameLayer()->removeOugisMark(1);
 		}
-		tempMaxHP += 500;
+		maxHP += 500;
 		attackValue += 9;
 		_rebornTime += 1;
 	}
 	if (_level >= 3)
 	{
-		tempMaxHP += 1000;
+		maxHP += 1000;
 		attackValue += 18;
 		_rebornTime += 2;
 	}
@@ -214,23 +210,23 @@ void CharacterBase::updateDataByLVOnly()
 			getGameLayer()->setCKRLose(true);
 			getGameLayer()->removeOugisMark(2);
 		}
-		tempMaxHP += 2000;
+		maxHP += 2000;
 		attackValue += 27;
 		_rebornTime += 3;
 	}
 	if (_level >= 5)
 	{
-		tempMaxHP += 2500;
+		maxHP += 2500;
 		attackValue += 36;
 		_rebornTime += 4;
 	}
 	if (_level >= 6)
 	{
-		tempMaxHP += 3000;
+		maxHP += 3000;
 		attackValue += 45;
 		_rebornTime += 5;
 	}
-	setMaxHPValue(tempMaxHP, false);
+	setMaxHPValue(maxHP, false);
 	setnAttackValue(to_ccstring(attackValue));
 }
 
@@ -1363,7 +1359,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 	}
 
 	Debug::PrintDamgeInfo(this, attacker, currentAttacker, attackValue, realValue, effectType);
-	setHPValue(getHPValue() <= realValue ? 0 : getHPValue() - realValue);
+	setHPValue(getHP() <= realValue ? 0 : getHP() - realValue);
 
 	if (isClone() && _master && !_master->_isControlled)
 	{
@@ -1714,9 +1710,7 @@ bool CharacterBase::setGear(GearType type)
 			getGameLayer()->getHudLayer()->item1Button->_isColdChanged = true;
 			break;
 		case gear08:
-			uint32_t tempMaxHP = getMaxHPValue();
-			tempMaxHP += 6000;
-			setMaxHPValue(tempMaxHP);
+			setMaxHPValue(getMaxHP() + 6000);
 			hasArmor = true;
 			break;
 		}
@@ -1912,7 +1906,7 @@ void CharacterBase::setRestore2(float dt)
 			isZone = true;
 
 		if (isZone)
-			setHPValue(getHPValue() > 1000 ? getHPValue() - 1000 : 100);
+			setHPValue(getHP() > 1000 ? getHP() - 1000 : 100);
 
 		if (_actionState == State::IDLE && getHpPercent() < 1)
 		{
@@ -2621,7 +2615,7 @@ void CharacterBase::dehealBuff(float dt)
 			_slayer = hero;
 	}
 
-	if (getHPValue() <= _dehealBuffValue)
+	if (getHP() <= _dehealBuffValue)
 		setDamage(_slayer, "c_hit", _dehealBuffValue, false);
 	else
 		setDamage(_slayer, "c_hit", _dehealBuffValue, false);
@@ -2916,14 +2910,14 @@ void CharacterBase::setClone(int cloneTime)
 	if (isCharacter("SageNaruto", "Naruto") ||
 		(isCharacter("RikudoNaruto") && cloneTime == 10))
 	{
-		clone->setHPValue(getHPValue(), false);
+		clone->setHPValue(getHP(), false);
 	}
 	else
 	{
-		clone->setHPValue(getMaxHPValue(), false);
+		clone->setHPValue(getMaxHP(), false);
 	}
 
-	clone->setMaxHPValue(getMaxHPValue(), false);
+	clone->setMaxHPValue(getMaxHP(), false);
 	clone->_exp = _exp;
 	clone->setnAttackValue(to_ccstring(getNAttackValue()));
 	clone->_gardValue = _gardValue;
@@ -3621,8 +3615,8 @@ void CharacterBase::setTransform()
 
 	setnAttackValue(to_ccstring(getNAttackValue()));
 
-	setMaxHPValue(getMaxHPValue(), false);
-	setHPValue(getHPValue());
+	setMaxHPValue(getMaxHP(), false);
+	setHPValue(getHP());
 
 	if (_hpBar)
 	{
@@ -3658,8 +3652,8 @@ void CharacterBase::setTransform()
 
 float CharacterBase::getHpPercent()
 {
-	float p = _hp->floatValue() / _maxHP->floatValue();
-	return p;
+	float percent = 1.0f * getHP() / getMaxHP();
+	return percent;
 }
 
 void CharacterBase::attack(abType type)
@@ -3721,15 +3715,15 @@ void CharacterBase::attack(abType type)
 	case OUGIS1:
 		if (isNotPlayer() || _isAI)
 		{
-			uint32_t ckr = getCkrValue();
+			uint32_t ckr = getCKR();
 			if (ckr >= 15000)
 			{
 				ckr -= 15000;
-				setCkrValue(ckr);
+				setCKR(ckr);
 			}
 			else
 			{
-				setCkrValue(0);
+				setCKR(0);
 			}
 			if (ckr < 15000)
 			{
@@ -3746,15 +3740,15 @@ void CharacterBase::attack(abType type)
 	case OUGIS2:
 		if (isNotPlayer() || _isAI)
 		{
-			uint32_t ckr2 = getCkr2Value();
+			uint32_t ckr2 = getCKR2();
 			if (ckr2 >= 25000)
 			{
 				ckr2 -= 25000;
-				setCkr2Value(ckr2);
+				setCKR2(ckr2);
 			}
 			else
 			{
-				setCkr2Value(0);
+				setCKR2(0);
 			}
 			if (ckr2 < 25000)
 			{
@@ -4755,9 +4749,9 @@ CharacterBase::findEnemy2By(const vector<T *> &list)
 					{
 						if (target->isNotGuardian())
 						{
-							friendCombatPoint += baseSkillCombatPoint + target->getHPValue() +
-												 (target->getCkrValue() / 15000) * target->_sattackCombatPoint4 +
-												 (target->getCkr2Value() / 25000) * target->_sattackCombatPoint5;
+							friendCombatPoint += baseSkillCombatPoint + target->getHP() +
+												 (target->getCKR() / 15000) * target->_sattackCombatPoint4 +
+												 (target->getCKR2() / 25000) * target->_sattackCombatPoint5;
 						}
 					}
 				}
@@ -4765,9 +4759,9 @@ CharacterBase::findEnemy2By(const vector<T *> &list)
 				{
 					if (target->isNotGuardian())
 					{
-						enemyCombatPoint += baseSkillCombatPoint + target->getHPValue() +
-											(target->getCkrValue() / 15000) * target->_sattackCombatPoint4 +
-											(target->getCkr2Value() / 25000) * target->_sattackCombatPoint5;
+						enemyCombatPoint += baseSkillCombatPoint + target->getHP() +
+											(target->getCKR() / 15000) * target->_sattackCombatPoint4 +
+											(target->getCKR2() / 25000) * target->_sattackCombatPoint5;
 					}
 
 					if (!target->_isInvincible && (target->getPositionX() >= getGameLayer()->currentMap->getTileSize().width * 3 && target->getPositionX() <= (getGameLayer()->currentMap->getMapSize().width - 3) * getGameLayer()->currentMap->getTileSize().width))
@@ -5052,27 +5046,27 @@ bool CharacterBase::checkRetri()
 			{
 				if (!_isHealing)
 				{
-					if (getMaxHPValue() - getHPValue() >= 3000 + gearRecoverValue && getGearArray().size() > 1)
+					if (getMaxHP() - getHP() >= 3000 + gearRecoverValue && getGearArray().size() > 1)
 						setItem(Item1);
-					else if (getHPValue() < 5000 && getGearArray().size() > 0)
+					else if (getHP() < 5000 && getGearArray().size() > 0)
 						setItem(Item1);
-					else if (getHPValue() < 1500)
+					else if (getHP() < 1500)
 						setItem(Item1);
 				}
 			}
 			else
 			{
-				if (getMaxHPValue() - getHPValue() >= 3000 + gearRecoverValue && !_isHealing && getGearArray().size() > 0)
+				if (getMaxHP() - getHP() >= 3000 + gearRecoverValue && !_isHealing && getGearArray().size() > 0)
 					setItem(Item1);
-				else if (getHPValue() < 3000)
+				else if (getHP() < 3000)
 					setItem(Item1);
 			}
 		}
 		else
 		{
-			if (getHPValue() < 1500 && isKonohaGroup())
+			if (getHP() < 1500 && isKonohaGroup())
 				setItem(Item1);
-			if (getHPValue() < 500 && isAkatsukiGroup())
+			if (getHP() < 500 && isAkatsukiGroup())
 				setItem(Item1);
 		}
 	}
@@ -5091,7 +5085,7 @@ bool CharacterBase::checkRetri()
 		}
 	}
 
-	if (getHPValue() < 1500 && !_isControlled)
+	if (getHP() < 1500 && !_isControlled)
 		return true;
 	return false;
 }
@@ -5220,8 +5214,8 @@ void CharacterBase::increaseAllCkrs(uint32_t value, bool enableLv2, bool enableL
 {
 	if (_level >= 2 && enableLv2)
 	{
-		uint32_t ckr = MIN(getCkrValue() + value, 45000);
-		setCkrValue(ckr);
+		uint32_t ckr = MIN(getCKR() + value, 45000);
+		setCKR(ckr);
 
 		if (ckr >= 15000)
 			_isCanOugis1 = true;
@@ -5232,8 +5226,8 @@ void CharacterBase::increaseAllCkrs(uint32_t value, bool enableLv2, bool enableL
 
 	if (_level >= 4 && enableLv4)
 	{
-		uint32_t ckr2 = MIN(getCkr2Value() + value, 50000);
-		setCkr2Value(ckr2);
+		uint32_t ckr2 = MIN(getCKR2() + value, 50000);
+		setCKR2(ckr2);
 
 		if (ckr2 >= 25000)
 			_isCanOugis2 = true;
@@ -5245,7 +5239,7 @@ void CharacterBase::increaseAllCkrs(uint32_t value, bool enableLv2, bool enableL
 
 void CharacterBase::increaseHpAndUpdateUI(uint32_t value)
 {
-	setHPValue(MIN(getHPValue() + value, getMaxHPValue()));
+	setHPValue(MIN(getHP() + value, getMaxHP()));
 }
 
 void CharacterBase::updateHpBar()

@@ -108,13 +108,13 @@ void HPBar::loseHP(float percent)
 
 			if (currentSlayer->isPlayer())
 			{
-				if (_delegate->getMaxHPValue() == 10000)
+				if (_delegate->getMaxHP() == 10000)
 				{
 					_delegate->setCoinDisplay(30);
 					getGameLayer()->setCoin("30");
 					getGameLayer()->getHudLayer()->setEXPLose();
 				}
-				else if (_delegate->getMaxHPValue() == 5000)
+				else if (_delegate->getMaxHP() == 5000)
 				{
 					_delegate->setCoinDisplay(20);
 					getGameLayer()->setCoin("20");
@@ -129,9 +129,9 @@ void HPBar::loseHP(float percent)
 			}
 
 			currentSlayer->_flogNum += 1;
-			if (_delegate->getMaxHPValue() == 10000)
+			if (_delegate->getMaxHP() == 10000)
 				currentSlayer->addCoin(30);
-			else if (_delegate->getMaxHPValue() == 5000)
+			else if (_delegate->getMaxHP() == 5000)
 				currentSlayer->addCoin(20);
 			else
 				currentSlayer->addCoin(10);
@@ -186,7 +186,7 @@ void HPBar::loseHP(float percent)
 				{
 					if (getGameLayer()->_isHardCoreGame)
 					{
-						if (_delegate->getMaxHPValue() > 40000)
+						if (_delegate->getMaxHP() > 40000)
 						{
 							getGameLayer()->setCoin("1000");
 							_delegate->setCoinDisplay(1000);
@@ -208,7 +208,7 @@ void HPBar::loseHP(float percent)
 
 				if (getGameLayer()->_isHardCoreGame)
 				{
-					if (_delegate->getMaxHPValue() > 40000)
+					if (_delegate->getMaxHP() > 40000)
 						currentSlayer->addCoin(1000);
 					else
 						currentSlayer->addCoin(500);
@@ -234,7 +234,7 @@ void HPBar::loseHP(float percent)
 					{
 						if (getGameLayer()->_isHardCoreGame)
 						{
-							if (_delegate->getMaxHPValue() > 40000)
+							if (_delegate->getMaxHP() > 40000)
 							{
 								getGameLayer()->setCoin("850");
 								_delegate->setCoinDisplay(850);
@@ -256,7 +256,7 @@ void HPBar::loseHP(float percent)
 
 					if (getGameLayer()->_isHardCoreGame)
 					{
-						if (_delegate->getMaxHPValue() > 40000)
+						if (_delegate->getMaxHP() > 40000)
 							otherSlayer->addCoin(850);
 						else
 							otherSlayer->addCoin(350);
@@ -273,7 +273,7 @@ void HPBar::loseHP(float percent)
 			if (_delegate->isCharacter("Kakuzu") && getGameLayer()->_isOugis2Game)
 			{
 				bool reieveAble = false;
-				if (_delegate->getCkr2Value() >= 25000 && _delegate->hearts > 0)
+				if (_delegate->getCKR2() >= 25000 && _delegate->hearts > 0)
 				{
 					if (_delegate->isPlayer())
 						reieveAble = true;

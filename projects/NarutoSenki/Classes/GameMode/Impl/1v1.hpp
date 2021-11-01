@@ -55,8 +55,7 @@ public:
 						hero->setEXP(2500);
 						for (int i = 1; i < 6; i++)
 							hero->changeHPbar();
-						hero->setHP(hero->getMaxHP());
-						hero->updateHpBar();
+						hero->setHPValue(hero->getMaxHP());
 						hero->increaseAllCkrs(25000);
 						hero->setRebornTime(10);
 						getGameLayer()->getHudLayer()->setEXPLose();
@@ -67,8 +66,6 @@ public:
 								getGameLayer()->getHudLayer()->skill4Button->setLock();
 							if (!hero->isEnableSkill05())
 								getGameLayer()->getHudLayer()->skill5Button->setLock();
-
-							getGameLayer()->setCoin("2950"); // Default hero has 50 coins
 						}
 					}
 				});

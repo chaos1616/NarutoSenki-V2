@@ -139,10 +139,10 @@ public:
 	VPROP(int,_walkSpeed,WalkSpeed);
 	int					_originSpeed;
 
-	CC_SYNTHESIZE_RETAIN(CCString*,_maxHP,MaxHP);
-	CC_SYNTHESIZE_RETAIN(CCString*,_hp,HP);
-	CC_SYNTHESIZE_RETAIN(CCString*,_ckr,CKR);
-	CC_SYNTHESIZE_RETAIN(CCString*,_ckr2,CKR2);
+	PROP_UInt(_hp,HP);
+	PROP_UInt(_maxHP,MaxHP);
+	PROP_UInt(_ckr,CKR);
+	PROP_UInt(_ckr2,CKR2);
 	VPROP(float,_gardValue,GP);
 	VPROP(float,_exp,EXP);
 	VPROP(uint32_t,_level,LV);
@@ -487,19 +487,13 @@ public:
 		}
 	}
 	// character extensions
-	inline uint32_t		getCkrValue() { return to_uint(_ckr->getCString()); }
-	inline void			setCkrValue(uint32_t var) { setCKR(to_ccstring(var)); }
-	inline uint32_t		getCkr2Value() { return to_uint(_ckr2->getCString()); }
-	inline void			setCkr2Value(uint32_t var) { setCKR2(to_ccstring(var)); }
-	inline uint32_t		getHPValue() { return to_uint(_hp->getCString()); }
 	inline void			setHPValue(uint32_t var, bool isUpdateHpBar = true) {
-		setHP(to_ccstring(var));
+		setHP(var);
 		if (isUpdateHpBar)
 			updateHpBar();
 	}
-	inline uint32_t		getMaxHPValue() { return to_uint(_maxHP->getCString()); }
 	inline void			setMaxHPValue(uint32_t var, bool isUpdateHpBar = true) {
-		setMaxHP(to_ccstring(var));
+		setMaxHP(var);
 		if (isUpdateHpBar)
 			updateHpBar();
 	}

@@ -290,7 +290,7 @@ void HudLayer::initHeroInterface()
 	auto currentPlayer = getGameLayer()->currentPlayer;
 	initGearButton(currentPlayer->getCharacter()->getCString());
 
-	hpLabel = CCLabelBMFont::create(currentPlayer->getHP()->getCString(), "Fonts/1.fnt");
+	hpLabel = CCLabelBMFont::create(currentPlayer->getHP_Value().asString().c_str(), "Fonts/1.fnt");
 	hpLabel->setScale(0.35f);
 	hpLabel->setPosition(ccp(0, winHeight - 54));
 	hpLabel->setAnchorPoint(ccp(0, 0));
@@ -311,7 +311,7 @@ void HudLayer::initHeroInterface()
 	gameClock->setPosition(ccp(mScaleX * 25, 0));
 	addChild(gameClock, 5000);
 
-	coinLabel = CCLabelBMFont::create("50", "Fonts/arial.fnt");
+	coinLabel = CCLabelBMFont::create(currentPlayer->getCoin_Value().asString().c_str(), "Fonts/arial.fnt");
 	coinLabel->setAnchorPoint(ccp(0, 0));
 	coinLabel->setPosition(ccp(121, winHeight - 61));
 
@@ -620,7 +620,7 @@ void HudLayer::setHPLose(float percent)
 	CCRotateTo *ra = CCRotateTo::create(0.2f, -((1 - percent) * 180), -((1 - percent) * 180));
 	status_hpbar->runAction(ra);
 
-	uint32_t hp = getGameLayer()->currentPlayer->getHPValue();
+	uint32_t hp = getGameLayer()->currentPlayer->getHP();
 	hpLabel->setString(to_cstr(hp));
 }
 
@@ -703,8 +703,7 @@ void HudLayer::setTowerState(int charNO)
 void HudLayer::setCoin(const char *value)
 {
 	auto cl = coinLabel->getString();
-	int tempCoin = to_int(cl);
-	tempCoin += to_int(value);
+	int tempCoin = to_int(cl) + to_int(value);
 	coinLabel->setString(to_cstr(tempCoin));
 }
 
@@ -1136,12 +1135,12 @@ bool HudLayer::getOugisEnable(bool isCKR2)
 {
 	if (!isCKR2)
 	{
-		uint32_t ckr = getGameLayer()->currentPlayer->getCkrValue();
+		uint32_t ckr = getGameLayer()->currentPlayer->getCKR();
 		return ckr >= 15000;
 	}
 	else
 	{
-		uint32_t ckr2 = getGameLayer()->currentPlayer->getCkr2Value();
+		uint32_t ckr2 = getGameLayer()->currentPlayer->getCKR2();
 		return ckr2 >= 25000;
 	}
 }
@@ -1150,18 +1149,18 @@ void HudLayer::costCKR(uint32_t value, bool isCKR2)
 {
 	if (!isCKR2)
 	{
-		uint32_t ckr = getGameLayer()->currentPlayer->getCkrValue();
+		uint32_t ckr = getGameLayer()->currentPlayer->getCKR();
 		ckr = ckr >= value ? ckr - value : 0;
 
-		getGameLayer()->currentPlayer->setCkrValue(ckr);
+		getGameLayer()->currentPlayer->setCKR(ckr);
 		setCKRLose(false);
 	}
 	else
 	{
-		uint32_t ckr2 = getGameLayer()->currentPlayer->getCkr2Value();
+		uint32_t ckr2 = getGameLayer()->currentPlayer->getCKR2();
 		ckr2 = ckr2 >= value ? ckr2 - value : 0;
 
-		getGameLayer()->currentPlayer->setCkr2Value(ckr2);
+		getGameLayer()->currentPlayer->setCKR2(ckr2);
 		setCKRLose(true);
 	}
 }

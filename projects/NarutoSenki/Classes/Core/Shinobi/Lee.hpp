@@ -171,7 +171,7 @@ class Lee : public Hero
 	{
 		CharacterBase::setRestore2(dt);
 
-		uint32_t hp = getHPValue();
+		uint32_t hp = getHP();
 
 		// TODO: Make Maito Gai
 		// if (htLv >= 8)
