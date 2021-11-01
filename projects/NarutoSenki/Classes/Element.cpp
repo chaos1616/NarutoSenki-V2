@@ -42,14 +42,14 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
 	idleArray->retain();
 
-	CCString *tmpName;
+	string unitName;
 	CCString *tmpHpMax;
 	int tmpWidth;
 	int tmpHeight;
 	uint32_t tmpSpeed;
 	int tmpCombatPoint;
 
-	readData(tmpData, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
+	readData(tmpData, unitName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
 	setMaxHPValue(tmpHpMax->uintValue(), false);
 	setHPValue(getMaxHPValue(), false);
 

@@ -34,6 +34,7 @@ public:
 		// init nAttack data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
+
 		uint32_t tmpCD;
 		int tmpCombatPoint;
 		CCString *tmpValue;

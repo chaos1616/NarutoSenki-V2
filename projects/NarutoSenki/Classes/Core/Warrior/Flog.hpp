@@ -35,14 +35,14 @@ public:
 		CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 		idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		CCString *tmpName;
+		string unitName;
 		CCString *tmpHpMax;
 		int tmpWidth;
 		int tmpHeight;
 		uint32_t tmpSpeed;
 		int tmpCombatPoint;
 
-		readData(tmpData, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
+		readData(tmpData, unitName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
 		setMaxHPValue(tmpHpMax->uintValue(), false);
 		setHPValue(getMaxHPValue(), false);
 		setHeight(tmpHeight);

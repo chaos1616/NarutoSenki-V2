@@ -234,8 +234,7 @@ void CharacterBase::updateDataByLVOnly()
 	setnAttackValue(to_ccstring(attackValue));
 }
 
-// TODO: Move to setData(HeroMetadata data)
-void CharacterBase::readData(CCArray *tmpData, CCString *&attackType, CCString *&attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint)
+void CharacterBase::readData(CCArray *tmpData, string &attackType, CCString *&attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint)
 {
 	CCDictionary *tmpDict;
 
@@ -245,7 +244,7 @@ void CharacterBase::readData(CCArray *tmpData, CCString *&attackType, CCString *
 		switch (i)
 		{
 		case 0:
-			attackType = CCString::create(tmpDict->valueForKey("attackType")->getCString());
+			attackType = tmpDict->valueForKey("attackType")->m_sString;
 			break;
 		case 1:
 			attackValue = CCString::create(tmpDict->valueForKey("attackValue")->getCString());

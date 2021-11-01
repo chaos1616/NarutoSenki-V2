@@ -375,18 +375,8 @@ public:
 	virtual void		setAI(float dt);
 	virtual void		setRestore2(float dt);
 
-	// TODO: Upgrade cocos2d-x to V4
-	inline void			readData(CCArray* tmpData, string &attackType, CCString* &attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint)
-	{
-		CCString *tmpType = nullptr;
-		readData(tmpData, tmpType, attackValue, attackRangeX, attackRangeY, cooldown, combatPoint);
-		if (tmpType)
-		{
-			attackType = tmpType->m_sString;
-			CC_SAFE_RELEASE(tmpType);
-		}
-	}
-	void				readData(CCArray* tmpData, CCString* &attackType, CCString* &attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint);
+
+	void				readData(CCArray* tmpData, string &attackType, CCString* &attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint);
 	CCFiniteTimeAction*	createAnimation(CCArray* ationArray, float fps, bool isRepeat, bool isReturn);
 
 	void				setSound(const string &file);

@@ -66,13 +66,15 @@ public:
 		idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
 		idleArray->retain();
 
-		CCString *tmpName;
+		string unitName;
 		CCString *tmpHpMax;
 		int tmpWidth;
 		int tmpHeight;
 		uint32_t tmpSpeed;
 		int tmpCombatPoint;
-		readData(tmpData, tmpName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
+
+		readData(tmpData, unitName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
+
 		if (!getCharacter()) // Set hp when character is not awaken
 		{
 			setMaxHPValue(tmpHpMax->uintValue(), false);
