@@ -523,7 +523,7 @@ class Sasuke : public Hero
 
 			if (_actionState != State::DEAD)
 			{
-				setActionState(State::WALK);
+				_actionState = State::WALK;
 				idle();
 			}
 		}
