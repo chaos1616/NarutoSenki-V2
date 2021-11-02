@@ -47,7 +47,7 @@ public:
 
 	CC_SYNTHESIZE_RETAIN(CCString *, _cooldown, CD);
 	PROP(bool, _isDoubleSkill, DoubleSkill);
-	CC_SYNTHESIZE_RETAIN(CCString *, _timeCout, TimeCout);
+	CC_SYNTHESIZE_RETAIN(CCString *, _timeCount, TimeCount);
 
 	void setLock();
 	void unLock();

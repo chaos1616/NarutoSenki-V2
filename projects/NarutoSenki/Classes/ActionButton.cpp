@@ -11,7 +11,7 @@ ActionButton::ActionButton()
 	_clickNum = 0;
 	cdLabel = nullptr;
 	_isMarkVisable = true;
-	_timeCout = nullptr;
+	_timeCount = nullptr;
 	_isLock = false;
 	_cooldown = nullptr;
 	_isColdChanged = false;
@@ -27,7 +27,7 @@ ActionButton::ActionButton()
 
 ActionButton::~ActionButton()
 {
-	CC_SAFE_RELEASE(_timeCout);
+	CC_SAFE_RELEASE(_timeCount);
 	CC_SAFE_RELEASE(_cooldown);
 }
 
@@ -118,7 +118,7 @@ bool ActionButton::isCanClick()
 		if (_isDoubleSkill)
 		{
 			// double click solution
-			if (_clickNum == 0 && _delegate->getSkillFinish() && !_timeCout && !_delegate->ougisLayer)
+			if (_clickNum == 0 && _delegate->getSkillFinish() && !_timeCount && !_delegate->ougisLayer)
 			{
 				return true;
 			}
@@ -132,7 +132,7 @@ bool ActionButton::isCanClick()
 			// isSkillFinish consider the AttackAction is done or not to prevent the skill invalid release
 			if (_abType == Item1)
 			{
-				if (!_delegate->ougisLayer && !_timeCout && !_isLock && getGameLayer()->currentPlayer->getActionState() != State::DEAD)
+				if (!_delegate->ougisLayer && !_timeCount && !_isLock && getGameLayer()->currentPlayer->getActionState() != State::DEAD)
 				{
 					if (_delegate->offCoin(_cost))
 					{
@@ -150,7 +150,7 @@ bool ActionButton::isCanClick()
 			}
 			else if (_abType == GearItem)
 			{
-				if (!_delegate->ougisLayer && !_timeCout && !_isLock)
+				if (!_delegate->ougisLayer && !_timeCount && !_isLock)
 				{
 					if (_gearType == gear06 && getGameLayer()->currentPlayer->getActionState() != State::DEAD)
 					{
@@ -185,7 +185,7 @@ bool ActionButton::isCanClick()
 			}
 			else
 			{
-				if (!_timeCout && _delegate->getSkillFinish() && !_isLock && !_delegate->ougisLayer)
+				if (!_timeCount && _delegate->getSkillFinish() && !_isLock && !_delegate->ougisLayer)
 				{
 					return true;
 				}
@@ -218,7 +218,7 @@ void ActionButton::beganAnimation(bool isLock)
 			createFreezeAnimation();
 		}
 
-		setTimeCout(getCD());
+		setTimeCount(getCD());
 		if (cdLabel)
 		{
 			cdLabel->removeFromParent();
@@ -267,19 +267,19 @@ void ActionButton::updateCDLabel(float dt)
 {
 	if (!_delegate->ougisLayer)
 	{
-		if (to_int(getTimeCout()->getCString()) > 1000)
+		if (to_int(getTimeCount()->getCString()) > 1000)
 		{
-			int tempCout = to_int(getTimeCout()->getCString()) - 1000;
-			setTimeCout(to_ccstring(tempCout));
+			int tempCount = to_int(getTimeCount()->getCString()) - 1000;
+			setTimeCount(to_ccstring(tempCount));
 			if (cdLabel)
 			{
-				cdLabel->setString(to_cstr(tempCout / 1000));
+				cdLabel->setString(to_cstr(tempCount / 1000));
 			}
 		}
 		else
 		{
 			unschedule(schedule_selector(ActionButton::updateCDLabel));
-			setTimeCout(nullptr);
+			setTimeCount(nullptr);
 			if (cdLabel)
 			{
 				cdLabel->removeFromParent();
@@ -547,7 +547,7 @@ void ActionButton::reset()
 	if (!_delegate->ougisLayer)
 	{
 		unschedule(schedule_selector(ActionButton::updateCDLabel));
-		setTimeCout(nullptr);
+		setTimeCount(nullptr);
 		if (cdLabel)
 		{
 			cdLabel->removeFromParent();
