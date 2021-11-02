@@ -54,13 +54,13 @@ class Guardian : public Hero
 				{
 					changeSide(sp);
 					attack(SKILL1);
-					scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcooldown1);
+					scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sAttackCD1);
 				}
 				else if (_isCanSkill2 && _skillChangeBuffValue)
 				{
 					changeSide(sp);
 					attack(SKILL2);
-					scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sattackcooldown2);
+					scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sAttackCD2);
 				}
 				else
 				{
@@ -89,11 +89,11 @@ class Guardian : public Hero
 
 	void changeAction() override
 	{
-		setnAttackValue(to_ccstring(getNAttackValue() + 700));
-		_nattackRangeX = 0;
-		_nattackRangeY = 48;
-		_originNAttackType = _nattackType;
-		_nattackType = _spcattackType2;
+		setNAttackValue(getNAttackValue() + 700);
+		_nAttackRangeX = 0;
+		_nAttackRangeY = 48;
+		_originNAttackType = _nAttackType;
+		_nAttackType = _spcAttackType2;
 
 		_isArmored = true;
 		hasArmorBroken = true;

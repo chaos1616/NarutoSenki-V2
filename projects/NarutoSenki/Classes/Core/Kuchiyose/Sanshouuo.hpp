@@ -87,7 +87,7 @@ class Sanshouuo : public Hero
 					{
 						changeSide(sp);
 						attack(SKILL1);
-						scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcooldown1);
+						scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sAttackCD1);
 					}
 					else
 					{

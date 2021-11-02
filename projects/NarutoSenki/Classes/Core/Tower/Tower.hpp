@@ -41,16 +41,16 @@ public:
 		idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
 		string unitName;
-		CCString *tmpHpMax;
+		uint32_t maxHP;
 		int tmpWidth;
 		int tmpHeight;
 		uint32_t tmpSpeed;
 		int tmpCombatPoint;
 
-		readData(tmpData, unitName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
+		readData(tmpData, unitName, maxHP, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
 
-		setMaxHPValue(tmpHpMax->uintValue(), false);
-		setHPValue(getMaxHP(), false);
+		setMaxHPValue(maxHP, false);
+		setHPValue(maxHP, false);
 		setCKR(0);
 		setCKR2(0);
 		setHeight(tmpHeight);

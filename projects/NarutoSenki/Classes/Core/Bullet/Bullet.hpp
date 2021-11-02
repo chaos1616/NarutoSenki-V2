@@ -35,12 +35,12 @@ public:
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 
+		uint32_t tmpValue;
 		uint32_t tmpCD;
 		int tmpCombatPoint;
-		CCString *tmpValue;
 
-		readData(tmpData, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
-		setnAttackValue(tmpValue);
+		readData(tmpData, _nAttackType, tmpValue, _nAttackRangeX, _nAttackRangeY, tmpCD, tmpCombatPoint);
+		setNAttackValue(tmpValue);
 		nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
 		if (isCharacter("Amaterasu"))

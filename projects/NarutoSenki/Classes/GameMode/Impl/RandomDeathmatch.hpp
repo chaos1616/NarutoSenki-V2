@@ -165,16 +165,16 @@ public:
 				else if (gear == gear04)
 				{
 					if (newChar->getTempAttackValue1())
-						newChar->settempAttackValue1(to_ccstring(newChar->getTempAttackValue1() + 160));
-					newChar->setnAttackValue(to_ccstring(newChar->getNAttackValue() + 160));
+						newChar->setTempAttackValue1(newChar->getTempAttackValue1() + 160);
+					newChar->setNAttackValue(newChar->getNAttackValue() + 160);
 					newChar->hasArmorBroken = true;
 				}
 				else if (gear == gear05)
 				{
 					newChar->isGearCD = true;
-					newChar->_sattackcooldown1 -= 5;
-					newChar->_sattackcooldown2 -= 5;
-					newChar->_sattackcooldown3 -= 5;
+					newChar->_sAttackCD1 -= 5;
+					newChar->_sAttackCD2 -= 5;
+					newChar->_sAttackCD3 -= 5;
 				}
 				else if (gear == gear06)
 				{

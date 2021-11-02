@@ -179,10 +179,10 @@ class Konan : public Hero
 		_isAllAttackLocked = true;
 		_isArmored = true;
 
-		_attackType = _spcattackType2;
+		_attackType = _spcAttackType2;
 		_attackValue = getSpcAttackValue2();
-		_attackRangeX = _spcattackRangeX2;
-		_attackRangeY = _spcattackRangeY2;
+		_attackRangeX = _spcAttackRangeX2;
+		_attackRangeY = _spcAttackRangeY2;
 
 		setWalkSpeed(320);
 		_originSpeed = 320;
@@ -200,9 +200,8 @@ class Konan : public Hero
 	{
 		_isAllAttackLocked = false;
 		_isArmored = false;
-		_originSpeed = 224;
-
 		setWalkSpeed(224);
+		_originSpeed = 224;
 
 		unlockOugisButtons();
 

@@ -175,7 +175,7 @@ class Kiba : public Hero
 			}
 
 			_powerUPBuffValue = 360;
-			setnAttackValue(to_ccstring(getNAttackValue() + _powerUPBuffValue));
+			setNAttackValue(getNAttackValue() + _powerUPBuffValue);
 			setNAttackAction(createAnimation(skillSPC4Array, 10.0f, false, true));
 		}
 	}
@@ -184,7 +184,7 @@ class Kiba : public Hero
 	{
 		if (_powerUPBuffValue)
 		{
-			setnAttackValue(to_ccstring(getNAttackValue() - _powerUPBuffValue));
+			setNAttackValue(getNAttackValue() - _powerUPBuffValue);
 			setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
 			_powerUPBuffValue = 0;
 		}
@@ -202,7 +202,7 @@ class Kiba : public Hero
 		if (_powerUPBuffValue)
 		{
 			unschedule(schedule_selector(Kiba::resumeAction));
-			setnAttackValue(to_ccstring(getNAttackValue() - _powerUPBuffValue));
+			setNAttackValue(getNAttackValue() - _powerUPBuffValue);
 			_powerUPBuffValue = 0;
 		}
 		_isArmored = true;

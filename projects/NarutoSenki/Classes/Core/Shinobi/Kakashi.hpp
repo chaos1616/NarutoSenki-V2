@@ -123,8 +123,8 @@ class Kakashi : public Hero
 		setSkill1Action(createAnimation(skillSPC1Array, 10.0f, false, true));
 		setSkill2Action(createAnimation(skillSPC2Array, 10.0f, false, true));
 		setIdleAction(createAnimation(skillSPC3Array, 5.0f, true, false));
-		settempAttackValue1(to_ccstring(getSAttackValue1()));
-		setsAttackValue1(to_ccstring(getSpcAttackValue1()));
+		setTempAttackValue1(getSAttackValue1());
+		setSAttackValue1(getSpcAttackValue1());
 
 		for (auto hero : getGameLayer()->_CharacterArray)
 		{
@@ -173,7 +173,7 @@ class Kakashi : public Hero
 		setSkill1Action(createAnimation(skill1Array, 10.0f, false, true));
 		setSkill2Action(createAnimation(skill2Array, 10.0f, false, true));
 
-		setsAttackValue1(to_ccstring(getTempAttackValue1()));
+		setSAttackValue1(getTempAttackValue1());
 
 		if (isPlayer())
 		{

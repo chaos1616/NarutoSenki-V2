@@ -148,11 +148,11 @@ class Itachi : public Hero
 
 		_isOnlySkillLocked = true;
 
-		settempAttackValue1(to_ccstring(getNAttackValue()));
-		setnAttackValue(to_ccstring(560));
+		setTempAttackValue1(getNAttackValue());
+		setNAttackValue(560);
 
-		_nattackRangeX = 128;
-		_nattackRangeY = 64;
+		_nAttackRangeX = 128;
+		_nAttackRangeY = 64;
 
 		_gardValue += 5000;
 		_isArmored = true;
@@ -174,11 +174,11 @@ class Itachi : public Hero
 		_originSpeed = 224;
 		if (hasTempAttackValue1())
 		{
-			setnAttackValue(to_ccstring(getTempAttackValue1()));
-			settempAttackValue1(nullptr);
+			setNAttackValue(getTempAttackValue1());
+			setTempAttackValue1(0);
 		}
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
+		_nAttackRangeX = 16;
+		_nAttackRangeY = 48;
 		_gardValue -= 5000;
 		_isArmored = false;
 
@@ -217,15 +217,14 @@ class Itachi : public Hero
 			unlockOugisButtons();
 
 			setWalkSpeed(224);
-
 			_originSpeed = 224;
 			if (hasTempAttackValue1())
 			{
-				setnAttackValue(to_ccstring(getTempAttackValue1()));
-				settempAttackValue1(nullptr);
+				setNAttackValue(getTempAttackValue1());
+				setTempAttackValue1(0);
 			}
-			_nattackRangeX = 16;
-			_nattackRangeY = 48;
+			_nAttackRangeX = 16;
+			_nAttackRangeY = 48;
 			_gardValue -= 5000;
 			_isArmored = false;
 

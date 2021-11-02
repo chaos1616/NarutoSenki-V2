@@ -91,20 +91,20 @@ class NarakaPath : public Hero
 					if (_isCanSkill1 && !isHaveKugutsu1)
 					{
 						attack(SKILL1);
-						scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcooldown1);
+						scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sAttackCD1);
 					}
 					else if (_isCanSkill2 && !isHaveKugutsu2)
 					{
 						changeSide(sp);
 						attack(SKILL2);
-						scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sattackcooldown2);
+						scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sAttackCD2);
 					}
 					else if (_isCanSkill3 && !isHaveKugutsu4)
 					{
 
 						this->changeSide(sp);
 						this->attack(SKILL3);
-						this->scheduleOnce(schedule_selector(CharacterBase::enableSkill3), _sattackcooldown3);
+						this->scheduleOnce(schedule_selector(CharacterBase::enableSkill3), _sAttackCD3);
 					}
 					else
 					{

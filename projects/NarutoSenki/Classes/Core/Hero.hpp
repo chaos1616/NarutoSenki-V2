@@ -67,18 +67,18 @@ public:
 		idleArray->retain();
 
 		string unitName;
-		CCString *tmpHpMax;
+		uint32_t maxHP;
 		int tmpWidth;
 		int tmpHeight;
 		uint32_t tmpSpeed;
 		int tmpCombatPoint;
 
-		readData(tmpData, unitName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
+		readData(tmpData, unitName, maxHP, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
 
 		if (!getCharacter()) // Set hp when character is not awaken
 		{
-			setMaxHPValue(tmpHpMax->uintValue(), false);
-			setHPValue(getMaxHP(), false);
+			setMaxHPValue(maxHP, false);
+			setHPValue(maxHP, false);
 		}
 		setCKR(0);
 		setCKR2(0);
@@ -121,10 +121,11 @@ public:
 		// init nAttack data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-		CCString *tmpValue;
+
+		uint32_t tmpValue;
 		uint32_t tmpCD;
-		readData(tmpData, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
-		setnAttackValue(tmpValue);
+		readData(tmpData, _nAttackType, tmpValue, _nAttackRangeX, _nAttackRangeY, tmpCD, tmpCombatPoint);
+		setNAttackValue(tmpValue);
 
 		nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
 		nattackArray->retain();
@@ -133,8 +134,8 @@ public:
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(8));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 
-		readData(tmpData, _sattackType1, tmpValue, _sattackRangeX1, _sattackRangeY1, _sattackcooldown1, _sattackCombatPoint1);
-		setsAttackValue1(tmpValue);
+		readData(tmpData, _sAttackType1, tmpValue, _sAttackRangeX1, _sAttackRangeY1, _sAttackCD1, _sAttackCombatPoint1);
+		setSAttackValue1(tmpValue);
 
 		skill1Array = (CCArray *)(tmpAction->objectAtIndex(1));
 		skill1Array->retain();
@@ -142,8 +143,8 @@ public:
 		// init skill2 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(9));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-		readData(tmpData, _sattackType2, tmpValue, _sattackRangeX2, _sattackRangeY2, _sattackcooldown2, _sattackCombatPoint2);
-		setsAttackValue2(tmpValue);
+		readData(tmpData, _sAttackType2, tmpValue, _sAttackRangeX2, _sAttackRangeY2, _sAttackCD2, _sAttackCombatPoint2);
+		setSAttackValue2(tmpValue);
 		skill2Array = (CCArray *)(tmpAction->objectAtIndex(1));
 		skill2Array->retain();
 
@@ -152,30 +153,30 @@ public:
 		}
 		else if (is_same(charName, "Minato"))
 		{
-			_sattack1isDouble = true;
+			_sAttack1isDouble = true;
 		}
 
 		// init skill3 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(10));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-		readData(tmpData, _sattackType3, tmpValue, _sattackRangeX3, _sattackRangeY3, _sattackcooldown3, _sattackCombatPoint3);
-		setsAttackValue3(tmpValue);
+		readData(tmpData, _sAttackType3, tmpValue, _sAttackRangeX3, _sAttackRangeY3, _sAttackCD3, _sAttackCombatPoint3);
+		setSAttackValue3(tmpValue);
 		skill3Array = (CCArray *)(tmpAction->objectAtIndex(1));
 		skill3Array->retain();
 
 		// init skill4 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(11));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-		readData(tmpData, _sattackType4, tmpValue, _sattackRangeX4, _sattackRangeY4, _sattackcooldown4, _sattackCombatPoint4);
-		setsAttackValue4(tmpValue);
+		readData(tmpData, _sAttackType4, tmpValue, _sAttackRangeX4, _sAttackRangeY4, _sAttackCD4, _sAttackCombatPoint4);
+		setSAttackValue4(tmpValue);
 		skill4Array = (CCArray *)(tmpAction->objectAtIndex(1));
 		skill4Array->retain();
 
 		// init skill5 data & Frame Array
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(12));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-		readData(tmpData, _sattackType5, tmpValue, _sattackRangeX5, _sattackRangeY5, _sattackcooldown5, _sattackCombatPoint5);
-		setsAttackValue5(tmpValue);
+		readData(tmpData, _sAttackType5, tmpValue, _sAttackRangeX5, _sAttackRangeY5, _sAttackCD5, _sAttackCombatPoint5);
+		setSAttackValue5(tmpValue);
 		skill5Array = (CCArray *)(tmpAction->objectAtIndex(1));
 		skill5Array->retain();
 
@@ -185,31 +186,33 @@ public:
 			CC_BREAK_IF(animationArray->count() <= 17);
 			tmpAction = (CCArray *)(animationArray->objectAtIndex(17));
 			tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-			readData(tmpData, _spcattackType1, tmpValue, _spcattackRangeX1, _spcattackRangeY1, _spcattackcooldown1, tmpCombatPoint);
-			if (!_spcattackType1.empty())
+			readData(tmpData, _spcAttackType1, tmpValue, _spcAttackRangeX1, _spcAttackRangeY1, _spcAttackCD1, tmpCombatPoint);
+			if (!_spcAttackType1.empty())
 			{
 				skillSPC1Array = (CCArray *)(tmpAction->objectAtIndex(1));
-				setspcAttackValue1(tmpValue);
+				setSpcAttackValue1(tmpValue);
 				skillSPC1Array->retain();
 			}
+
 			CC_BREAK_IF(animationArray->count() <= 18);
 			tmpAction = (CCArray *)(animationArray->objectAtIndex(18));
 			tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-			readData(tmpData, _spcattackType2, tmpValue, _spcattackRangeX2, _spcattackRangeY2, _spcattackcooldown2, tmpCombatPoint);
-			if (!_spcattackType2.empty())
+			readData(tmpData, _spcAttackType2, tmpValue, _spcAttackRangeX2, _spcAttackRangeY2, _spcAttackCD2, tmpCombatPoint);
+			if (!_spcAttackType2.empty())
 			{
 				skillSPC2Array = (CCArray *)(tmpAction->objectAtIndex(1));
-				setspcAttackValue2(tmpValue);
+				setSpcAttackValue2(tmpValue);
 				skillSPC2Array->retain();
 			}
+
 			CC_BREAK_IF(animationArray->count() <= 19);
 			tmpAction = (CCArray *)(animationArray->objectAtIndex(19));
 			tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-			readData(tmpData, _spcattackType3, tmpValue, _spcattackRangeX3, _spcattackRangeY3, _spcattackcooldown3, tmpCombatPoint);
-			if (!_spcattackType3.empty())
+			readData(tmpData, _spcAttackType3, tmpValue, _spcAttackRangeX3, _spcAttackRangeY3, _spcAttackCD3, tmpCombatPoint);
+			if (!_spcAttackType3.empty())
 			{
 				skillSPC3Array = (CCArray *)(tmpAction->objectAtIndex(1));
-				setspcAttackValue3(tmpValue);
+				setSpcAttackValue3(tmpValue);
 				skillSPC3Array->retain();
 			}
 			break;
@@ -252,23 +255,20 @@ public:
 			_isArmored = false;
 		}
 
-		if (getLV() == 1 && !getCoin())
+		// Heroes have 50 coins by default
+		if (getLV() == 1 && getCoin() == 0)
 		{
 			setCoin(50);
 		}
 
-		if (getCharacter())
+		if (getCharacter() && isPlayer())
 		{
-			// update player UI
-			if (isPlayer())
-			{
-				auto oldCharName = getCharacter()->getCString();
-				bool isUpdateUI = strcmp(oldCharName, charName) != 0;
-				setCharacter(character);
+			auto oldCharName = getCharacter()->getCString();
+			bool isUpdateUI = strcmp(oldCharName, charName) != 0;
+			setCharacter(character);
 
-				if (isUpdateUI)
-					getGameLayer()->updateHudSkillButtons();
-			}
+			if (isUpdateUI)
+				getGameLayer()->updateHudSkillButtons();
 		}
 		else
 		{
@@ -342,14 +342,14 @@ public:
 				getGameLayer()->removeOugisMark(1);
 			}
 			setMaxHPValue(getMaxHP() + 500);
-			setnAttackValue(to_ccstring(getNAttackValue() + 9));
+			setNAttackValue(getNAttackValue() + 9);
 			_rebornTime += 1;
 		}
 		else if (_exp >= 1000 && _level == 2)
 		{
 			_level = 3;
 			setMaxHPValue(getMaxHP() + 1000);
-			setnAttackValue(to_ccstring(getNAttackValue() + 18));
+			setNAttackValue(getNAttackValue() + 18);
 			_rebornTime += 2;
 		}
 		else if (_exp >= 1500 && _level == 3)
@@ -363,21 +363,21 @@ public:
 				getGameLayer()->removeOugisMark(2);
 			}
 			setMaxHPValue(getMaxHP() + 2000);
-			setnAttackValue(to_ccstring(getNAttackValue() + 27));
+			setNAttackValue(getNAttackValue() + 27);
 			_rebornTime += 3;
 		}
 		else if (_exp >= 2000 && _level == 4)
 		{
 			_level = 5;
 			setMaxHPValue(getMaxHP() + 2500);
-			setnAttackValue(to_ccstring(getNAttackValue() + 36));
+			setNAttackValue(getNAttackValue() + 36);
 			_rebornTime += 4;
 		}
 		else if (_exp >= 2500 && _level == 5)
 		{
 			_level = 6;
 			setMaxHPValue(getMaxHP() + 3000);
-			setnAttackValue(to_ccstring(getNAttackValue() + 45));
+			setNAttackValue(getNAttackValue() + 45);
 			_rebornTime += 5;
 		}
 

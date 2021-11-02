@@ -164,69 +164,69 @@ public:
 	int				enemyCombatPoint;
 	int				friendCombatPoint;
 
-	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_nattackValue,nAttackValue);
-	PROP_REF(string,_nattackType,nAttackType);
-	int				_nattackRangeX;
-	int				_nattackRangeY;
+	PROP_UInt(_nAttackValue,NAttackValue);
+	PROP_REF(string,_nAttackType,NAttackType);
+	int				_nAttackRangeX;
+	int				_nAttackRangeY;
 
-	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_sattackValue1,sAttackValue1);
-	PROP_REF(string,_sattackType1,SAttackType1);
-	int				_sattackRangeX1;
-	int				_sattackRangeY1;
-	uint32_t		_sattackcooldown1;
-	bool			_sattack1isDouble;
-	int				_sattackCombatPoint1;
+	PROP_UInt(_sAttackValue1,SAttackValue1);
+	PROP_REF(string,_sAttackType1,SAttackType1);
+	int				_sAttackRangeX1;
+	int				_sAttackRangeY1;
+	uint32_t		_sAttackCD1;
+	bool			_sAttack1isDouble;
+	int				_sAttackCombatPoint1;
 
-	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_sattackValue2,sAttackValue2);
-	PROP_REF(string,_sattackType2,SAttackType2);
-	int				_sattackRangeX2;
-	int				_sattackRangeY2;
-	uint32_t		_sattackcooldown2;
-	bool			_sattack2isDouble;
-	int				_sattackCombatPoint2;
+	PROP_UInt(_sAttackValue2,SAttackValue2);
+	PROP_REF(string,_sAttackType2,SAttackType2);
+	int				_sAttackRangeX2;
+	int				_sAttackRangeY2;
+	uint32_t		_sAttackCD2;
+	bool			_sAttack2isDouble;
+	int				_sAttackCombatPoint2;
 
-	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_sattackValue3,sAttackValue3);
-	PROP_REF(string,_sattackType3,SAttackType3);
-	int				_sattackRangeX3;
-	int				_sattackRangeY3;
-	uint32_t		_sattackcooldown3;
-	bool			_sattack3isDouble;
-	int				_sattackCombatPoint3;
+	PROP_UInt(_sAttackValue3,SAttackValue3);
+	PROP_REF(string,_sAttackType3,SAttackType3);
+	int				_sAttackRangeX3;
+	int				_sAttackRangeY3;
+	uint32_t		_sAttackCD3;
+	bool			_sAttack3isDouble;
+	int				_sAttackCombatPoint3;
 
-	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_sattackValue4,sAttackValue4);
-	PROP_REF(string,_sattackType4,SAttackType4);
-	int				_sattackRangeX4;
-	int				_sattackRangeY4;
-	uint32_t		_sattackcooldown4;
-	bool			_sattack4isDouble;
-	int				_sattackCombatPoint4;
+	PROP_UInt(_sAttackValue4,SAttackValue4);
+	PROP_REF(string,_sAttackType4,SAttackType4);
+	int				_sAttackRangeX4;
+	int				_sAttackRangeY4;
+	uint32_t		_sAttackCD4;
+	bool			_sAttack4isDouble;
+	int				_sAttackCombatPoint4;
 
-	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_sattackValue5,sAttackValue5);
-	PROP_REF(string,_sattackType5,SAttackType5);
-	int				_sattackRangeX5;
-	int				_sattackRangeY5;
-	uint32_t		_sattackcooldown5;
-	int				_sattackCombatPoint5;
+	PROP_UInt(_sAttackValue5,SAttackValue5);
+	PROP_REF(string,_sAttackType5,SAttackType5);
+	int				_sAttackRangeX5;
+	int				_sAttackRangeY5;
+	uint32_t		_sAttackCD5;
+	int				_sAttackCombatPoint5;
 
-	CC_SYNTHESIZE_RETAIN(CCString*,_spcattackValue1,spcAttackValue1);
-	PROP_REF(string,_spcattackType1,SpcAttack1Type);
-	int				_spcattackRangeX1;
-	int				_spcattackRangeY1;
-	uint32_t		_spcattackcooldown1;
+	PROP_UInt(_spcAttackValue1,SpcAttackValue1);
+	PROP_REF(string,_spcAttackType1,SpcAttack1Type);
+	int				_spcAttackRangeX1;
+	int				_spcAttackRangeY1;
+	uint32_t		_spcAttackCD1;
 
-	CC_SYNTHESIZE_RETAIN(CCString*,_spcattackValue2,spcAttackValue2);
-	PROP_REF(string,_spcattackType2,SpcAttack2Type);
-	int				_spcattackRangeX2;
-	int				_spcattackRangeY2;
-	uint32_t		_spcattackcooldown2;
+	PROP_UInt(_spcAttackValue2,SpcAttackValue2);
+	PROP_REF(string,_spcAttackType2,SpcAttack2Type);
+	int				_spcAttackRangeX2;
+	int				_spcAttackRangeY2;
+	uint32_t		_spcAttackCD2;
 
-	CC_SYNTHESIZE_RETAIN(CCString*,_spcattackValue3,spcAttackValue3);
-	PROP_REF(string,_spcattackType3,SpcAttack3Type);
-	int				_spcattackRangeX3;
-	int				_spcattackRangeY3;
-	uint32_t		_spcattackcooldown3;
+	PROP_UInt(_spcAttackValue3,SpcAttackValue3);
+	PROP_REF(string,_spcAttackType3,SpcAttack3Type);
+	int				_spcAttackRangeX3;
+	int				_spcAttackRangeY3;
+	uint32_t		_spcAttackCD3;
 
-	CC_SYNTHESIZE_RETAIN_SET_ONLY(CCString*,_tempAttackValue1,tempAttackValue1);
+	PROP_UInt(_tempAttackValue1,TempAttackValue1);
 
 
 	PROP_REF(string,_effectType,EffectType);
@@ -245,7 +245,7 @@ public:
 
 	// actions
 	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_idleAction, IdleAction);
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_nattackAction, NAttackAction);
+	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_nAttackAction, NAttackAction);
 	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_walkAction, WalkAction);
 	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_hurtAction, HurtAction);
 	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_knockDownAction, KnockDownAction);
@@ -376,7 +376,7 @@ public:
 	virtual void		setRestore2(float dt);
 
 
-	void				readData(CCArray* tmpData, string &attackType, CCString* &attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint);
+	void				readData(CCArray* tmpData, string &attackType, uint32_t &attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint);
 	CCFiniteTimeAction*	createAnimation(CCArray* ationArray, float fps, bool isRepeat, bool isReturn);
 
 	void				setSound(const string &file);
@@ -497,17 +497,7 @@ public:
 		if (isUpdateHpBar)
 			updateHpBar();
 	}
-	inline int			getNAttackValue() { return to_int(_nattackValue->getCString()); }
-	inline int			getSAttackValue1() { return to_int(_sattackValue1->getCString()); }
-	inline int			getSAttackValue2() { return to_int(_sattackValue2->getCString()); }
-	inline int			getSAttackValue3() { return to_int(_sattackValue3->getCString()); }
-	inline int			getSAttackValue4() { return to_int(_sattackValue4->getCString()); }
-	inline int			getSAttackValue5() { return to_int(_sattackValue5->getCString()); }
-	inline int			getSpcAttackValue1() { return to_int(_spcattackValue1->getCString()); }
-	inline int			getSpcAttackValue2() { return to_int(_spcattackValue2->getCString()); }
-	inline int			getSpcAttackValue3() { return to_int(_spcattackValue3->getCString()); }
-	inline int			getTempAttackValue1() { return to_int(_tempAttackValue1->getCString()); }
-	inline bool			hasTempAttackValue1() { return _tempAttackValue1 != nullptr; }
+	inline bool			hasTempAttackValue1() { return getTempAttackValue1() > 0; }
 	inline bool			isCharacter(const string &c) { return _character->m_sString == c; }
 	inline bool			isCharacter(const char *c) { return is_same(_character->getCString(), c); }
 	inline bool			isCharacter(const char *c1, const char *c2) {

@@ -137,12 +137,12 @@ class Tsunade : public Hero
 
 	void changeAction() override
 	{
-		setnAttackValue(to_ccstring(getNAttackValue() + 250));
+		setNAttackValue(getNAttackValue() + 250);
 		_isOnlySkillLocked = true;
-		_nattackRangeX = 32;
-		_nattackRangeY = 48;
-		_originNAttackType = _nattackType;
-		_nattackType = _spcattackType3;
+		_nAttackRangeX = 32;
+		_nAttackRangeY = 48;
+		_originNAttackType = _nAttackType;
+		_nAttackType = _spcAttackType3;
 
 		_isArmored = true;
 		_healBuffValue = 3000;
@@ -157,10 +157,10 @@ class Tsunade : public Hero
 
 	void resumeAction(float dt) override
 	{
-		setnAttackValue(to_ccstring(getNAttackValue() - 250));
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
-		_nattackType = _originNAttackType;
+		setNAttackValue(getNAttackValue() - 250);
+		_nAttackRangeX = 16;
+		_nAttackRangeY = 48;
+		_nAttackType = _originNAttackType;
 
 		_isOnlySkillLocked = false;
 

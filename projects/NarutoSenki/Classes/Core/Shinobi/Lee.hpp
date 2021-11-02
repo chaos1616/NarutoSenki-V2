@@ -36,14 +36,14 @@ class Lee : public Hero
 				setWalkSpeed(224);
 				_originSpeed = 224;
 				setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-				setsAttackValue3(to_ccstring(getSAttackValue3() - 100));
-				setsAttackValue2(to_ccstring(getSAttackValue2() - 100));
-				setnAttackValue(to_ccstring(getNAttackValue() - 60));
+				setNAttackValue(getNAttackValue() - 60);
+				setSAttackValue2(getSAttackValue2() - 100);
+				setSAttackValue3(getSAttackValue3() - 100);
 			}
 			else if (htLv == 4)
 			{
-				setsAttackValue3(to_ccstring(getSAttackValue3() - 100));
-				setsAttackValue2(to_ccstring(getSAttackValue2() - 100));
+				setSAttackValue2(getSAttackValue2() - 100);
+				setSAttackValue3(getSAttackValue3() - 100);
 			}
 			else if (htLv == 3)
 			{
@@ -62,12 +62,12 @@ class Lee : public Hero
 			}
 			else if (htLv == 2)
 			{
-				setsAttackValue2(to_ccstring(getSAttackValue2() - 100));
+				setSAttackValue2(getSAttackValue2() - 100);
 			}
 			else if (htLv == 1)
 			{
 				lockSkill4Button();
-				setnAttackValue(to_ccstring(getNAttackValue() - 30));
+				setNAttackValue(getNAttackValue() - 30);
 			}
 			htLv--;
 
@@ -129,13 +129,13 @@ class Lee : public Hero
 
 		if (htLv == 1)
 		{
-			setnAttackValue(to_ccstring(getNAttackValue() + 30));
+			setNAttackValue(getNAttackValue() + 30);
 
 			unlockSkill4Button();
 		}
 		else if (htLv == 2)
 		{
-			setsAttackValue2(to_ccstring(getSAttackValue2() + 100));
+			setSAttackValue2(getSAttackValue2() + 100);
 		}
 		else if (htLv == 3)
 		{
@@ -153,17 +153,17 @@ class Lee : public Hero
 		}
 		else if (htLv == 4)
 		{
-			setsAttackValue2(to_ccstring(getSAttackValue2() + 100));
-			setsAttackValue3(to_ccstring(getSAttackValue3() + 100));
+			setSAttackValue2(getSAttackValue2() + 100);
+			setSAttackValue3(getSAttackValue3() + 100);
 		}
 		else if (htLv == 5)
 		{
 			setWalkAction(createAnimation(skillSPC1Array, 10.0f, true, false));
 			setWalkSpeed(320);
 			_originSpeed = 320;
-			setsAttackValue2(to_ccstring(getSAttackValue2() + 100));
-			setsAttackValue3(to_ccstring(getSAttackValue3() + 100));
-			setnAttackValue(to_ccstring(getNAttackValue() + 60));
+			setNAttackValue(getNAttackValue() + 60);
+			setSAttackValue2(getSAttackValue2() + 100);
+			setSAttackValue3(getSAttackValue3() + 100);
 		}
 	}
 

@@ -327,7 +327,7 @@ private:
 						   if (thiz->isNotSameGroupAs(hero))
 						   {
 							   thiz->setMaxHPValue(thiz->getMaxHP() + 100);
-							   thiz->setnAttackValue(to_ccstring(thiz->getNAttackValue() + 5));
+							   thiz->setNAttackValue(thiz->getNAttackValue() + 5);
 						   }
 
 						   if (thiz->isPlayer())

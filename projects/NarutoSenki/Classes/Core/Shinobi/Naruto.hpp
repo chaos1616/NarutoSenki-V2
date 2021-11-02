@@ -177,13 +177,13 @@ class Naruto : public Hero
 
 		_isOnlySkillLocked = true;
 
-		settempAttackValue1(to_ccstring(getNAttackValue()));
-		setnAttackValue(to_ccstring(960));
+		setTempAttackValue1(getNAttackValue());
+		setNAttackValue(960);
 
-		_nattackRangeX = _spcattackRangeX3;
-		_nattackRangeY = _spcattackRangeY3;
-		_originNAttackType = _nattackType;
-		_nattackType = _spcattackType3;
+		_nAttackRangeX = _spcAttackRangeX3;
+		_nAttackRangeY = _spcAttackRangeY3;
+		_originNAttackType = _nAttackType;
+		_nAttackType = _spcAttackType3;
 
 		_gardValue += 5000;
 		_isArmored = true;
@@ -205,14 +205,14 @@ class Naruto : public Hero
 		_originSpeed = 224;
 		if (hasTempAttackValue1())
 		{
-			setnAttackValue(to_ccstring(getTempAttackValue1()));
-			settempAttackValue1(nullptr);
+			setNAttackValue(getTempAttackValue1());
+			setTempAttackValue1(0);
 		}
 		hasArmorBroken = false;
 
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
-		_nattackType = _originNAttackType;
+		_nAttackRangeX = 16;
+		_nAttackRangeY = 48;
+		_nAttackType = _originNAttackType;
 		_gardValue -= 5000;
 		_isArmored = false;
 
@@ -394,8 +394,8 @@ class Naruto : public Hero
 		}
 		else if (hasTempAttackValue1())
 		{
-			setnAttackValue(to_ccstring(getTempAttackValue1()));
-			settempAttackValue1(nullptr);
+			setNAttackValue(getTempAttackValue1());
+			setTempAttackValue1(0);
 		}
 		CharacterBase::resumeAction(dt);
 	}
@@ -404,9 +404,9 @@ class Naruto : public Hero
 	{
 		auto clone = createCloneHero<SageNarutoClone>(getCharacter()->m_sString);
 		clone->setSkill1Action(clone->createAnimation(clone->skillSPC1Array, 10.0f, false, true));
-		clone->setsAttackValue1(to_ccstring(getSAttackValue1()));
-		clone->setSAttackType1(_spcattackType1);
-		clone->_sattackcooldown1 = _spcattackcooldown1;
+		clone->setSAttackValue1(getSAttackValue1());
+		clone->setSAttackType1(_spcAttackType1);
+		clone->_sAttackCD1 = _spcAttackCD1;
 		return clone;
 	}
 
@@ -543,8 +543,8 @@ class Naruto : public Hero
 
 		if (isCharacter(kRikudoNaruto))
 		{
-			settempAttackValue1(to_ccstring(getNAttackValue()));
-			setnAttackValue(to_ccstring(560));
+			setTempAttackValue1(getNAttackValue());
+			setNAttackValue(560);
 		}
 
 		setWalkSpeed(320);
@@ -578,8 +578,8 @@ class Naruto : public Hero
 
 		if (hasTempAttackValue1())
 		{
-			setnAttackValue(to_ccstring(getTempAttackValue1()));
-			settempAttackValue1(nullptr);
+			setNAttackValue(getTempAttackValue1());
+			setTempAttackValue1(0);
 		}
 		CharacterBase::resumeAction(dt);
 	}

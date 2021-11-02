@@ -146,12 +146,12 @@ class Choji : public Hero
 		setIdleAction(createAnimation(skillSPC4Array, 5.0f, true, false));
 		setWalkAction(createAnimation(skillSPC2Array, 5.0f, true, false));
 
-		_originNAttackType = _nattackType;
-		_nattackType = _spcattackType3;
+		_originNAttackType = _nAttackType;
+		_nAttackType = _spcAttackType3;
 
-		setnAttackValue(to_ccstring(getNAttackValue() + 460));
-		_nattackRangeX = 32;
-		_nattackRangeY = 48;
+		setNAttackValue(getNAttackValue() + 460);
+		_nAttackRangeX = 32;
+		_nAttackRangeY = 48;
 		_isOnlySkillLocked = true;
 
 		lockOugisButtons();
@@ -165,10 +165,10 @@ class Choji : public Hero
 
 	void resumeAction(float dt) override
 	{
-		setnAttackValue(to_ccstring(getNAttackValue() - 460));
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
-		_nattackType = _originNAttackType;
+		setNAttackValue(getNAttackValue() - 460);
+		_nAttackRangeX = 16;
+		_nAttackRangeY = 48;
+		_nAttackType = _originNAttackType;
 
 		_isOnlySkillLocked = false;
 		_isArmored = false;
@@ -197,9 +197,9 @@ class Choji : public Hero
 	{
 		unschedule(schedule_selector(Choji::resumeAction));
 
-		setnAttackValue(to_ccstring(getNAttackValue() - 460));
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
+		setNAttackValue(getNAttackValue() - 460);
+		_nAttackRangeX = 16;
+		_nAttackRangeY = 48;
 
 		_isOnlySkillLocked = false;
 		_isArmored = false;

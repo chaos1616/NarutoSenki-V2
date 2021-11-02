@@ -105,13 +105,13 @@ class Parents : public Hero
 
 	void changeAction() override
 	{
-		settempAttackValue1(to_ccstring(getNAttackValue()));
-		setnAttackValue(to_ccstring(2460));
+		setTempAttackValue1(getNAttackValue());
+		setNAttackValue(2460);
 
 		_isOnlySkillLocked = true;
 
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
+		_nAttackRangeX = 16;
+		_nAttackRangeY = 48;
 
 		setWalkAction(createAnimation(skillSPC1Array, 10.0f, true, false));
 		setNAttackAction(createAnimation(skillSPC2Array, 10.0f, false, true));
@@ -130,13 +130,13 @@ class Parents : public Hero
 
 		if (hasTempAttackValue1())
 		{
-			setnAttackValue(to_ccstring(getTempAttackValue1()));
-			settempAttackValue1(nullptr);
+			setNAttackValue(getTempAttackValue1());
+			setTempAttackValue1(0);
 		}
 		_isOnlySkillLocked = false;
 
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
+		_nAttackRangeX = 16;
+		_nAttackRangeY = 48;
 
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
@@ -144,7 +144,6 @@ class Parents : public Hero
 		_skillChangeBuffValue = 0;
 
 		setWalkSpeed(224);
-
 		_originSpeed = 224;
 
 		if (_master->isPlayer())

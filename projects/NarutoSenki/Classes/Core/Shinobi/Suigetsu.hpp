@@ -147,13 +147,13 @@ class Suigetsu : public Hero
 
 	void changeAction() override
 	{
-		settempAttackValue1(to_ccstring(getNAttackValue()));
-		setnAttackValue(to_ccstring(1960));
+		setTempAttackValue1(getNAttackValue());
+		setNAttackValue(1960);
 
 		_isOnlySkillLocked = true;
 
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
+		_nAttackRangeX = 16;
+		_nAttackRangeY = 48;
 
 		_isArmored = true;
 
@@ -169,14 +169,14 @@ class Suigetsu : public Hero
 		_isArmored = false;
 		if (hasTempAttackValue1())
 		{
-			setnAttackValue(to_ccstring(getTempAttackValue1()));
-			settempAttackValue1(nullptr);
+			setNAttackValue(getTempAttackValue1());
+			setTempAttackValue1(0);
 		}
 		_isOnlySkillLocked = false;
 		unlockOugisButtons();
 
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
+		_nAttackRangeX = 16;
+		_nAttackRangeY = 48;
 
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));

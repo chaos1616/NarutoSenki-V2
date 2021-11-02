@@ -155,13 +155,13 @@ class Kisame : public Hero
 
 	void changeAction() override
 	{
-		settempAttackValue1(to_ccstring(getNAttackValue()));
-		setnAttackValue(to_ccstring(660));
+		setTempAttackValue1(getNAttackValue());
+		setNAttackValue(660);
 
 		_isOnlySkillLocked = true;
 
-		_nattackRangeX = 32;
-		_nattackRangeY = 48;
+		_nAttackRangeX = 32;
+		_nAttackRangeY = 48;
 
 		setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
 		setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
@@ -180,14 +180,14 @@ class Kisame : public Hero
 
 		if (hasTempAttackValue1())
 		{
-			setnAttackValue(to_ccstring(getTempAttackValue1()));
-			settempAttackValue1(nullptr);
+			setNAttackValue(getTempAttackValue1());
+			setTempAttackValue1(0);
 		}
 		_isOnlySkillLocked = false;
 		unlockOugisButtons();
 
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
+		_nAttackRangeX = 16;
+		_nAttackRangeY = 48;
 
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
@@ -196,7 +196,6 @@ class Kisame : public Hero
 		_skillChangeBuffValue = 0;
 
 		setWalkSpeed(224);
-
 		_originSpeed = 224;
 	}
 };

@@ -43,16 +43,16 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	idleArray->retain();
 
 	string unitName;
-	CCString *tmpHpMax;
+	uint32_t maxHP;
 	int tmpWidth;
 	int tmpHeight;
 	uint32_t tmpSpeed;
 	int tmpCombatPoint;
 
-	readData(tmpData, unitName, tmpHpMax, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
+	readData(tmpData, unitName, maxHP, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
 
-	setMaxHPValue(tmpHpMax->uintValue(), false);
-	setHPValue(getMaxHP(), false);
+	setMaxHPValue(maxHP, false);
+	setHPValue(maxHP, false);
 	setCKR(0);
 	setCKR2(0);
 	setHeight(tmpHeight);
@@ -71,10 +71,11 @@ void Monster::setID(CCString *character, CCString *role, CCString *group)
 	// init nAttack data & Frame Array
 	tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
 	tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
+
+	uint32_t tmpValue;
 	uint32_t tmpCD;
-	CCString *tmpValue;
-	readData(tmpData, _nattackType, tmpValue, _nattackRangeX, _nattackRangeY, tmpCD, tmpCombatPoint);
-	setnAttackValue(tmpValue);
+	readData(tmpData, _nAttackType, tmpValue, _nAttackRangeX, _nAttackRangeY, tmpCD, tmpCombatPoint);
+	setNAttackValue(tmpValue);
 	nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
 	nattackArray->retain();
 
@@ -125,31 +126,31 @@ void Monster::changeHPbar()
 	{
 		_level = 2;
 		setMaxHPValue(getMaxHP() + 1000);
-		setnAttackValue(to_ccstring(getNAttackValue() + 9));
+		setNAttackValue(getNAttackValue() + 9);
 	}
 	else if (_exp >= 1000 && _level == 2)
 	{
 		_level = 3;
 		setMaxHPValue(getMaxHP() + 1500);
-		setnAttackValue(to_ccstring(getNAttackValue() + 18));
+		setNAttackValue(getNAttackValue() + 18);
 	}
 	else if (_exp >= 1500 && _level == 3)
 	{
 		_level = 4;
 		setMaxHPValue(getMaxHP() + 2000);
-		setnAttackValue(to_ccstring(getNAttackValue() + 27));
+		setNAttackValue(getNAttackValue() + 27);
 	}
 	else if (_exp >= 2000 && _level == 4)
 	{
 		_level = 5;
 		setMaxHPValue(getMaxHP() + 2500);
-		setnAttackValue(to_ccstring(getNAttackValue() + 36));
+		setNAttackValue(getNAttackValue() + 36);
 	}
 	else if (_exp >= 2500 && _level == 5)
 	{
 		_level = 6;
 		setMaxHPValue(getMaxHP() + 3000);
-		setnAttackValue(to_ccstring(getNAttackValue() + 48));
+		setNAttackValue(getNAttackValue() + 48);
 	}
 
 	if (_hpBar)
@@ -319,7 +320,7 @@ void Monster::dealloc()
 	{
 		_master->_isCanSkill1 = false;
 		_master->setActionResume();
-		_master->scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcooldown1);
+		_master->scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sAttackCD1);
 
 		if (_master->isPlayer())
 		{

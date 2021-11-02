@@ -240,10 +240,10 @@ class Minato : public Hero
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
-			setnAttackValue(to_ccstring(getNAttackValue() + 200));
+			setNAttackValue(getNAttackValue() + 200);
 
-			_nattackRangeX = 16;
-			_nattackRangeY = 48;
+			_nAttackRangeX = 16;
+			_nAttackRangeY = 48;
 
 			setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
 		}
@@ -251,9 +251,9 @@ class Minato : public Hero
 
 	void resumeAction(float dt) override
 	{
-		setnAttackValue(to_ccstring(getNAttackValue() - 200));
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
+		setNAttackValue(getNAttackValue() - 200);
+		_nAttackRangeX = 16;
+		_nAttackRangeY = 48;
 		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
 
 		_markPoint = ccp(0, 0);

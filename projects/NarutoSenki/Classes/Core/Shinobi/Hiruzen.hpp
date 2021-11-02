@@ -166,10 +166,10 @@ class Hiruzen : public Hero
 	void changeAction() override
 	{
 		_isArmored = true;
-		_nattackRangeX = 16;
-		_nattackRangeY = 48;
-		settempAttackValue1(to_ccstring(getNAttackValue()));
-		setnAttackValue(to_ccstring(560));
+		_nAttackRangeX = 16;
+		_nAttackRangeY = 48;
+		setTempAttackValue1(getNAttackValue());
+		setNAttackValue(560);
 
 		_isOnlySkillLocked = true;
 
@@ -186,8 +186,8 @@ class Hiruzen : public Hero
 		_isOnlySkillLocked = false;
 		if (hasTempAttackValue1())
 		{
-			setnAttackValue(to_ccstring(getTempAttackValue1()));
-			settempAttackValue1(nullptr);
+			setNAttackValue(getTempAttackValue1());
+			setTempAttackValue1(0);
 		}
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));

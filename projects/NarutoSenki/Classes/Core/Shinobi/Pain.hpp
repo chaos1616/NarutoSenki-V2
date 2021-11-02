@@ -318,10 +318,10 @@ class Pain : public Hero
 		// 		setSkill1Action(createAnimation(skillSPC1Array, 10.0f, false, true));
 		// 		setSkill2Action(createAnimation(skillSPC2Array, 10.0f, false, true));
 		// 		setSkill3Action(createAnimation(skillSPC3Array, 10.0f, false, true));
-		// 		settempAttackValue1(to_ccstring(to_int(_sattackValue1->getCString())));
-		// 		setsAttackValue1(_spcattackValue1);
-		// 		setsAttackValue2(_spcattackValue2);
-		// 		setsAttackValue3(_spcattackValue3);
+		// 		setTempAttackValue1(getSAttackValue1());
+		// 		setSAttackValue1(_spcAttackValue1);
+		// 		setSAttackValue2(_spcAttackValue2);
+		// 		setSAttackValue3(_spcAttackValue3);
 
 		// 		if (isPlayer())
 		// 		{

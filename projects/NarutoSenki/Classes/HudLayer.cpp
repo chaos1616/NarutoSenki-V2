@@ -1357,14 +1357,14 @@ void HudLayer::updateSkillButtons()
 	auto cache = CCSpriteFrameCache::sharedSpriteFrameCache();
 	CCSpriteFrame *frame;
 
-#define updateButtonInfo(index)                                                           \
-	frame = cache->spriteFrameByName((charName + "_skill" #index ".png").c_str());        \
-	if (skill##index##Button)                                                             \
-	{                                                                                     \
-		if (frame != nullptr)                                                             \
-			skill##index##Button->setDisplayFrame(frame);                                 \
-		skill##index##Button->setCD(to_ccstring(player->_sattackcooldown##index * 1000)); \
-		skill##index##Button->_isColdChanged = true;                                      \
+#define updateButtonInfo(index)                                                     \
+	frame = cache->spriteFrameByName((charName + "_skill" #index ".png").c_str());  \
+	if (skill##index##Button)                                                       \
+	{                                                                               \
+		if (frame != nullptr)                                                       \
+			skill##index##Button->setDisplayFrame(frame);                           \
+		skill##index##Button->setCD(to_ccstring(player->_sAttackCD##index * 1000)); \
+		skill##index##Button->_isColdChanged = true;                                \
 	}
 
 #define updateOugiButtonInfo(index)                                                \
@@ -1393,12 +1393,12 @@ void HudLayer::updateSpecialSkillButtons()
 		return;
 	}
 
-	skill1Button->setDoubleSkill(currentPlayer->_sattack1isDouble);
-	skill2Button->setDoubleSkill(currentPlayer->_sattack2isDouble);
-	skill3Button->setDoubleSkill(currentPlayer->_sattack3isDouble);
-	skill1Button->setCD(to_ccstring(currentPlayer->_sattackcooldown1 * 1000));
-	skill2Button->setCD(to_ccstring(currentPlayer->_sattackcooldown2 * 1000));
-	skill3Button->setCD(to_ccstring(currentPlayer->_sattackcooldown3 * 1000));
+	skill1Button->setDoubleSkill(currentPlayer->_sAttack1isDouble);
+	skill2Button->setDoubleSkill(currentPlayer->_sAttack2isDouble);
+	skill3Button->setDoubleSkill(currentPlayer->_sAttack3isDouble);
+	skill1Button->setCD(to_ccstring(currentPlayer->_sAttackCD1 * 1000));
+	skill2Button->setCD(to_ccstring(currentPlayer->_sAttackCD2 * 1000));
+	skill3Button->setCD(to_ccstring(currentPlayer->_sAttackCD3 * 1000));
 	skill1Button->_isColdChanged = true;
 	skill2Button->_isColdChanged = true;
 	skill3Button->_isColdChanged = true;

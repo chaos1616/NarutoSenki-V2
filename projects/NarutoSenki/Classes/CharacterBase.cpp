@@ -12,7 +12,7 @@ CharacterBase::CharacterBase()
 	_actionState = State::WALK;
 
 	_idleAction = nullptr;
-	_nattackAction = nullptr;
+	_nAttackAction = nullptr;
 	_walkAction = nullptr;
 	_hurtAction = nullptr;
 	_airHurtAction = nullptr;
@@ -44,10 +44,10 @@ CharacterBase::CharacterBase()
 
 	_isAllAttackLocked = false;
 	_isOnlySkillLocked = false;
-	_sattack1isDouble = false;
-	_sattack2isDouble = false;
-	_sattack3isDouble = false;
-	_sattack4isDouble = false;
+	_sAttack1isDouble = false;
+	_sAttack2isDouble = false;
+	_sAttack3isDouble = false;
+	_sAttack4isDouble = false;
 
 	_moveAction = nullptr;
 	_jumpUPAction = nullptr;
@@ -80,11 +80,11 @@ CharacterBase::CharacterBase()
 
 	isBaseDanger = false;
 
-	_sattackCombatPoint1 = 0;
-	_sattackCombatPoint2 = 0;
-	_sattackCombatPoint3 = 0;
-	_sattackCombatPoint4 = 0;
-	_sattackCombatPoint5 = 0;
+	_sAttackCombatPoint1 = 0;
+	_sAttackCombatPoint2 = 0;
+	_sAttackCombatPoint3 = 0;
+	_sAttackCombatPoint4 = 0;
+	_sAttackCombatPoint5 = 0;
 
 	_role = nullptr;
 	_group = nullptr;
@@ -107,15 +107,6 @@ CharacterBase::CharacterBase()
 
 	_originY = 0;
 
-	_nattackValue = nullptr;
-	_sattackValue1 = nullptr;
-	_sattackValue2 = nullptr;
-	_sattackValue3 = nullptr;
-	_sattackValue4 = nullptr;
-	_sattackValue5 = nullptr;
-	_spcattackValue1 = nullptr;
-	_spcattackValue2 = nullptr;
-	_spcattackValue3 = nullptr;
 	_tempAttackValue1 = nullptr;
 
 	_healBuffEffect = nullptr;
@@ -183,7 +174,7 @@ void CharacterBase::changeHPbar()
 void CharacterBase::updateDataByLVOnly()
 {
 	uint32_t maxHP = getMaxHP();
-	int attackValue = getNAttackValue();
+	uint32_t nAtkValue = getNAttackValue();
 	if (_level >= 2)
 	{
 		_isCanOugis1 = true;
@@ -193,13 +184,13 @@ void CharacterBase::updateDataByLVOnly()
 			getGameLayer()->removeOugisMark(1);
 		}
 		maxHP += 500;
-		attackValue += 9;
+		nAtkValue += 9;
 		_rebornTime += 1;
 	}
 	if (_level >= 3)
 	{
 		maxHP += 1000;
-		attackValue += 18;
+		nAtkValue += 18;
 		_rebornTime += 2;
 	}
 	if (_level >= 4)
@@ -211,26 +202,26 @@ void CharacterBase::updateDataByLVOnly()
 			getGameLayer()->removeOugisMark(2);
 		}
 		maxHP += 2000;
-		attackValue += 27;
+		nAtkValue += 27;
 		_rebornTime += 3;
 	}
 	if (_level >= 5)
 	{
 		maxHP += 2500;
-		attackValue += 36;
+		nAtkValue += 36;
 		_rebornTime += 4;
 	}
 	if (_level >= 6)
 	{
 		maxHP += 3000;
-		attackValue += 45;
+		nAtkValue += 45;
 		_rebornTime += 5;
 	}
 	setMaxHPValue(maxHP, false);
-	setnAttackValue(to_ccstring(attackValue));
+	setNAttackValue(nAtkValue);
 }
 
-void CharacterBase::readData(CCArray *tmpData, string &attackType, CCString *&attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint)
+void CharacterBase::readData(CCArray *tmpData, string &attackType, uint32_t &attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint)
 {
 	CCDictionary *tmpDict;
 
@@ -243,7 +234,7 @@ void CharacterBase::readData(CCArray *tmpData, string &attackType, CCString *&at
 			attackType = tmpDict->valueForKey("attackType")->m_sString;
 			break;
 		case 1:
-			attackValue = CCString::create(tmpDict->valueForKey("attackValue")->getCString());
+			attackValue = tmpDict->valueForKey("attackValue")->uintValue();
 			break;
 		case 2:
 			attackRangeX = tmpDict->valueForKey("attackRangeX")->intValue();
@@ -1679,22 +1670,22 @@ bool CharacterBase::setGear(GearType type)
 		case gear04:
 			if (hasTempAttackValue1())
 			{
-				settempAttackValue1(to_ccstring(getTempAttackValue1() + 160));
+				setTempAttackValue1(getTempAttackValue1() + 160);
 			}
-			setnAttackValue(to_ccstring(getNAttackValue() + 160));
+			setNAttackValue(getNAttackValue() + 160);
 			hasArmorBroken = true;
 			break;
 		case gear05:
 			isGearCD = true;
-			_sattackcooldown1 -= 5;
-			_sattackcooldown2 -= 5;
-			_sattackcooldown3 -= 5;
+			_sAttackCD1 -= 5;
+			_sAttackCD2 -= 5;
+			_sAttackCD3 -= 5;
 
 			if (isPlayer())
 			{
-				getGameLayer()->getHudLayer()->skill1Button->setCD(to_ccstring(_sattackcooldown1 * 1000));
-				getGameLayer()->getHudLayer()->skill2Button->setCD(to_ccstring(_sattackcooldown2 * 1000));
-				getGameLayer()->getHudLayer()->skill3Button->setCD(to_ccstring(_sattackcooldown3 * 1000));
+				getGameLayer()->getHudLayer()->skill1Button->setCD(to_ccstring(_sAttackCD1 * 1000));
+				getGameLayer()->getHudLayer()->skill2Button->setCD(to_ccstring(_sAttackCD2 * 1000));
+				getGameLayer()->getHudLayer()->skill3Button->setCD(to_ccstring(_sAttackCD3 * 1000));
 
 				getGameLayer()->getHudLayer()->skill1Button->_isColdChanged = true;
 				getGameLayer()->getHudLayer()->skill2Button->_isColdChanged = true;
@@ -1999,10 +1990,10 @@ void CharacterBase::setAttackBox(const string &effectType)
 				getGameLayer()->setHPLose(getHpPercent());
 			}
 
-			_attackType = _spcattackType1;
+			_attackType = _spcAttackType1;
 			_attackValue = getSpcAttackValue1();
-			_attackRangeX = _spcattackRangeX1;
-			_attackRangeY = _spcattackRangeY1;
+			_attackRangeX = _spcAttackRangeX1;
+			_attackRangeY = _spcAttackRangeY1;
 		}
 		// else if (isCharacter("Nagato"))
 		// {
@@ -2185,9 +2176,9 @@ void CharacterBase::setBuff(int buffValue)
 		scheduleOnce(schedule_selector(CharacterBase::disableBuff), buffStayTime);
 		setBuffEffect(_attackType);
 
-		setsAttackValue1(to_ccstring(getSAttackValue1() + _skillUPBuffValue));
-		setsAttackValue2(to_ccstring(getSAttackValue2() + _skillUPBuffValue));
-		setsAttackValue3(to_ccstring(getSAttackValue3() + _skillUPBuffValue));
+		setSAttackValue1(getSAttackValue1() + _skillUPBuffValue);
+		setSAttackValue2(getSAttackValue2() + _skillUPBuffValue);
+		setSAttackValue3(getSAttackValue3() + _skillUPBuffValue);
 
 		if (_attackType == "hsBuff")
 		{
@@ -2438,9 +2429,9 @@ void CharacterBase::disableBuff(float dt)
 {
 	if (_skillUPBuffValue)
 	{
-		setsAttackValue1(to_ccstring(getSAttackValue1() - _skillUPBuffValue));
-		setsAttackValue2(to_ccstring(getSAttackValue2() - _skillUPBuffValue));
-		setsAttackValue3(to_ccstring(getSAttackValue3() - _skillUPBuffValue));
+		setSAttackValue1(getSAttackValue1() - _skillUPBuffValue);
+		setSAttackValue2(getSAttackValue2() - _skillUPBuffValue);
+		setSAttackValue3(getSAttackValue3() - _skillUPBuffValue);
 		_skillUPBuffValue = 0;
 
 		if (isCharacter("Neji"))
@@ -2666,8 +2657,8 @@ void CharacterBase::changeAction2()
 	{
 		_attackValue = getSpcAttackValue2();
 		setAttackType(getSpcAttack2Type());
-		_attackRangeX = _spcattackRangeX2;
-		_attackRangeY = _spcattackRangeY2;
+		_attackRangeX = _spcAttackRangeX2;
+		_attackRangeY = _spcAttackRangeY2;
 
 		setSkill2Action(createAnimation(skillSPC2Array, 10.0f, false, true));
 	}
@@ -2794,7 +2785,7 @@ void CharacterBase::setBullet(const string &bulletName)
 		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -76 : 76),
 								getPositionY() + getHeight() / 2));
 		if (_skillUPBuffValue)
-			bullet->setnAttackValue(to_ccstring(bullet->getNAttackValue() + _skillUPBuffValue));
+			bullet->setNAttackValue(bullet->getNAttackValue() + _skillUPBuffValue);
 
 		bullet->scheduleOnce(schedule_selector(Bullet::setAttack), 0.5f);
 		scheduleOnce(schedule_selector(CharacterBase::setBulletGroup), 0.2f);
@@ -2873,7 +2864,7 @@ void CharacterBase::setBulletGroup(float dt)
 		bullet->idle();
 		if (_skillUPBuffValue)
 		{
-			bullet->setnAttackValue(to_ccstring(bullet->getNAttackValue() + _skillUPBuffValue));
+			bullet->setNAttackValue(bullet->getNAttackValue() + _skillUPBuffValue);
 		}
 
 		bullet->scheduleOnce(schedule_selector(Bullet::setAttack), 0.5f);
@@ -2919,7 +2910,7 @@ void CharacterBase::setClone(int cloneTime)
 
 	clone->setMaxHPValue(getMaxHP(), false);
 	clone->_exp = _exp;
-	clone->setnAttackValue(to_ccstring(getNAttackValue()));
+	clone->setNAttackValue(getNAttackValue());
 	clone->_gardValue = _gardValue;
 	clone->_level = _level;
 	clone->setHPbar();
@@ -2931,11 +2922,11 @@ void CharacterBase::setClone(int cloneTime)
 		{
 			clone->_hpBar->setPositionY(120);
 		}
-		clone->setnAttackValue(CCString::create("1060"));
+		clone->setNAttackValue(1060);
 	}
 	else if (isCharacter("Kakashi"))
 	{
-		clone->setnAttackValue(CCString::create("1060"));
+		clone->setNAttackValue(1060);
 	}
 
 	if (hasArmorBroken)
@@ -3633,7 +3624,7 @@ void CharacterBase::setTransform()
 	else if (isCharacter("Pain"))
 		setID(CCString::create("Nagato"), _role, _group);
 
-	setnAttackValue(to_ccstring(oldNAttackValue));
+	setNAttackValue(oldNAttackValue);
 	setMaxHPValue(oldMaxHP, false);
 	setHPValue(oldHP);
 
@@ -3644,9 +3635,9 @@ void CharacterBase::setTransform()
 
 	if (isGearCD)
 	{
-		_sattackcooldown1 -= 5;
-		_sattackcooldown2 -= 5;
-		_sattackcooldown3 -= 5;
+		_sAttackCD1 -= 5;
+		_sAttackCD2 -= 5;
+		_sAttackCD3 -= 5;
 	}
 
 	if (isPlayer())
@@ -3671,9 +3662,9 @@ void CharacterBase::attack(abType type)
 	{
 	case NAttack:
 		_attackValue = getNAttackValue();
-		_attackType = _nattackType;
-		_attackRangeX = _nattackRangeX;
-		_attackRangeY = _nattackRangeY;
+		_attackType = _nAttackType;
+		_attackRangeX = _nAttackRangeX;
+		_attackRangeY = _nAttackRangeY;
 		nAttack();
 		break;
 	case SKILL1:
@@ -3684,9 +3675,9 @@ void CharacterBase::attack(abType type)
 		}
 
 		_attackValue = getSAttackValue1();
-		_attackType = _sattackType1;
-		_attackRangeX = _sattackRangeX1;
-		_attackRangeY = _sattackRangeY1;
+		_attackType = _sAttackType1;
+		_attackRangeX = _sAttackRangeX1;
+		_attackRangeY = _sAttackRangeY1;
 		sAttack(SKILL1);
 		break;
 	case SKILL2:
@@ -3697,9 +3688,9 @@ void CharacterBase::attack(abType type)
 		}
 
 		_attackValue = getSAttackValue2();
-		_attackType = _sattackType2;
-		_attackRangeX = _sattackRangeX2;
-		_attackRangeY = _sattackRangeY2;
+		_attackType = _sAttackType2;
+		_attackRangeX = _sAttackRangeX2;
+		_attackRangeY = _sAttackRangeY2;
 		sAttack(SKILL2);
 		break;
 	case SKILL3:
@@ -3710,9 +3701,9 @@ void CharacterBase::attack(abType type)
 		}
 
 		_attackValue = getSAttackValue3();
-		_attackType = _sattackType3;
-		_attackRangeX = _sattackRangeX3;
-		_attackRangeY = _sattackRangeY3;
+		_attackType = _sAttackType3;
+		_attackRangeX = _sAttackRangeX3;
+		_attackRangeY = _sAttackRangeY3;
 		sAttack(SKILL3);
 		break;
 	case OUGIS1:
@@ -3735,9 +3726,9 @@ void CharacterBase::attack(abType type)
 		}
 
 		_attackValue = getSAttackValue4();
-		_attackType = _sattackType4;
-		_attackRangeX = _sattackRangeX4;
-		_attackRangeY = _sattackRangeY4;
+		_attackType = _sAttackType4;
+		_attackRangeX = _sAttackRangeX4;
+		_attackRangeY = _sAttackRangeY4;
 		oAttack(OUGIS1);
 		break;
 	case OUGIS2:
@@ -3760,9 +3751,9 @@ void CharacterBase::attack(abType type)
 		}
 
 		_attackValue = getSAttackValue5();
-		_attackType = _sattackType5;
-		_attackRangeX = _sattackRangeX5;
-		_attackRangeY = _sattackRangeY5;
+		_attackType = _sAttackType5;
+		_attackRangeX = _sAttackRangeX5;
+		_attackRangeY = _sAttackRangeY5;
 		oAttack(OUGIS2);
 		break;
 	default:
@@ -3785,7 +3776,7 @@ void CharacterBase::nAttack()
 				stopAllActions();
 			}
 			_actionState = State::NATTACK;
-			runAction(_nattackAction);
+			runAction(_nAttackAction);
 		}
 	}
 }
@@ -3828,7 +3819,7 @@ void CharacterBase::sAttack(abType type)
 			}
 			_isCanSkill1 = false;
 
-			scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sattackcooldown1);
+			scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sAttackCD1);
 			break;
 		case SKILL2:
 			if (_isCanSkill2)
@@ -3843,7 +3834,7 @@ void CharacterBase::sAttack(abType type)
 
 			_isCanSkill2 = false;
 
-			scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sattackcooldown2);
+			scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sAttackCD2);
 
 			break;
 		case SKILL3:
@@ -3858,7 +3849,7 @@ void CharacterBase::sAttack(abType type)
 			}
 			_isCanSkill3 = false;
 
-			scheduleOnce(schedule_selector(CharacterBase::enableSkill3), _sattackcooldown3);
+			scheduleOnce(schedule_selector(CharacterBase::enableSkill3), _sAttackCD3);
 			break;
 		default:
 			break;
@@ -4740,11 +4731,11 @@ CharacterBase::findEnemy2By(const vector<T *> &list)
 				int baseSkillCombatPoint = 0;
 
 				if (target->_isCanSkill1)
-					baseSkillCombatPoint += _sattackCombatPoint1;
+					baseSkillCombatPoint += _sAttackCombatPoint1;
 				if (target->_isCanSkill2)
-					baseSkillCombatPoint += _sattackCombatPoint2;
+					baseSkillCombatPoint += _sAttackCombatPoint2;
 				if (target->_isCanSkill2)
-					baseSkillCombatPoint += _sattackCombatPoint3;
+					baseSkillCombatPoint += _sAttackCombatPoint3;
 
 				if (is_same(_group->getCString(), target->_group->getCString()))
 				{
@@ -4753,8 +4744,8 @@ CharacterBase::findEnemy2By(const vector<T *> &list)
 						if (target->isNotGuardian())
 						{
 							friendCombatPoint += baseSkillCombatPoint + target->getHP() +
-												 (target->getCKR() / 15000) * target->_sattackCombatPoint4 +
-												 (target->getCKR2() / 25000) * target->_sattackCombatPoint5;
+												 (target->getCKR() / 15000) * target->_sAttackCombatPoint4 +
+												 (target->getCKR2() / 25000) * target->_sAttackCombatPoint5;
 						}
 					}
 				}
@@ -4763,8 +4754,8 @@ CharacterBase::findEnemy2By(const vector<T *> &list)
 					if (target->isNotGuardian())
 					{
 						enemyCombatPoint += baseSkillCombatPoint + target->getHP() +
-											(target->getCKR() / 15000) * target->_sattackCombatPoint4 +
-											(target->getCKR2() / 25000) * target->_sattackCombatPoint5;
+											(target->getCKR() / 15000) * target->_sAttackCombatPoint4 +
+											(target->getCKR2() / 25000) * target->_sAttackCombatPoint5;
 					}
 
 					if (!target->_isInvincible && (target->getPositionX() >= getGameLayer()->currentMap->getTileSize().width * 3 && target->getPositionX() <= (getGameLayer()->currentMap->getMapSize().width - 3) * getGameLayer()->currentMap->getTileSize().width))

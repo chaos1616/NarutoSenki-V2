@@ -217,9 +217,8 @@ class Deidara : public Hero
 		{
 			_isArmored = false;
 			_isAllAttackLocked = false;
-			_originSpeed = 224;
-
 			setWalkSpeed(224);
+			_originSpeed = 224;
 
 			unlockOugisButtons();
 
@@ -256,9 +255,8 @@ class Deidara : public Hero
 		{
 			_isArmored = false;
 			_isAllAttackLocked = false;
-			_originSpeed = 224;
-
 			setWalkSpeed(224);
+			_originSpeed = 224;
 
 			unlockOugisButtons();
 

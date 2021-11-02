@@ -215,13 +215,13 @@ class Sasuke : public Hero
 			_originSpeed = 320;
 
 			_isOnlySkillLocked = true;
-			settempAttackValue1(to_ccstring(getNAttackValue()));
-			setnAttackValue(to_ccstring(560));
+			setTempAttackValue1(getNAttackValue());
+			setNAttackValue(560);
 
-			_nattackRangeX = _spcattackRangeX3;
-			_nattackRangeY = _spcattackRangeY3;
-			_originNAttackType = _nattackType;
-			_nattackType = _spcattackType3;
+			_nAttackRangeX = _spcAttackRangeX3;
+			_nAttackRangeY = _spcAttackRangeY3;
+			_originNAttackType = _nAttackType;
+			_nAttackType = _spcAttackType3;
 
 			_gardValue += 5000;
 			_isArmored = true;
@@ -248,16 +248,15 @@ class Sasuke : public Hero
 			unlockOugisButtons();
 
 			setWalkSpeed(224);
-
 			_originSpeed = 224;
 			if (hasTempAttackValue1())
 			{
-				setnAttackValue(to_ccstring(getTempAttackValue1()));
-				settempAttackValue1(nullptr);
+				setNAttackValue(getTempAttackValue1());
+				setTempAttackValue1(0);
 			}
-			_nattackRangeX = 16;
-			_nattackRangeY = 48;
-			_nattackType = _originNAttackType;
+			_nAttackRangeX = 16;
+			_nAttackRangeY = 48;
+			_nAttackType = _originNAttackType;
 			_gardValue -= 5000;
 			_isArmored = false;
 
@@ -466,11 +465,11 @@ class Sasuke : public Hero
 			setWalkSpeed(112);
 			_originSpeed = 112;
 
-			settempAttackValue1(to_ccstring(getNAttackValue()));
-			setnAttackValue(to_ccstring(1160));
+			setTempAttackValue1(getNAttackValue());
+			setNAttackValue(1160);
 
-			_nattackRangeX = 156;
-			_nattackRangeY = 64;
+			_nAttackRangeX = 156;
+			_nAttackRangeY = 64;
 
 			_gardValue += 5000;
 			_isArmored = true;
@@ -498,18 +497,17 @@ class Sasuke : public Hero
 			unlockOugisButtons();
 
 			setWalkSpeed(224);
-
 			_originSpeed = 224;
 			if (hasTempAttackValue1())
 			{
-				setnAttackValue(to_ccstring(getTempAttackValue1()));
-				settempAttackValue1(nullptr);
+				setNAttackValue(getTempAttackValue1());
+				setTempAttackValue1(0);
 			}
 			_gardValue -= 5000;
 			_isArmored = false;
 
-			_nattackRangeX = 16;
-			_nattackRangeY = 48;
+			_nAttackRangeX = 16;
+			_nAttackRangeY = 48;
 
 			if (hasMonsterArrayAny())
 			{
@@ -551,18 +549,17 @@ class Sasuke : public Hero
 			unlockOugisButtons();
 
 			setWalkSpeed(224);
-
 			_originSpeed = 224;
 			if (hasTempAttackValue1())
 			{
-				setnAttackValue(to_ccstring(getTempAttackValue1()));
-				settempAttackValue1(nullptr);
+				setNAttackValue(getTempAttackValue1());
+				setTempAttackValue1(0);
 			}
 			_gardValue -= 5000;
 			_isArmored = false;
 
-			_nattackRangeX = 16;
-			_nattackRangeY = 48;
+			_nAttackRangeX = 16;
+			_nAttackRangeY = 48;
 
 			_skillChangeBuffValue = 0;
 		}
