@@ -90,11 +90,11 @@ class Mask : public Hero
 
 	void dealloc() override
 	{
-		Hero::dealloc();
-
 		if (_master->hearts > 0)
 		{
 			_master->unlockSkill4Button();
 		}
+
+		Hero::dealloc();
 	}
 };

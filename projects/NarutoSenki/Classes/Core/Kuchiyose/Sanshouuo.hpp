@@ -126,8 +126,8 @@ class Sanshouuo : public Hero
 
 	void dealloc() override
 	{
-		Hero::dealloc();
-
 		_master->unlockSkill4Button();
+
+		Hero::dealloc();
 	}
 };

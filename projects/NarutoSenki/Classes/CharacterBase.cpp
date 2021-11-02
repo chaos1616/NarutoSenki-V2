@@ -4814,8 +4814,8 @@ CharacterBase::findTargetEnemyBy(const vector<T *> &list, bool isTowerDected)
 		{
 			// float gardZone
 			findSome = getGameLayer()->playerGroup == Konoha
-						   ? target->getPositionX() <= 14 * 32
-						   : target->getPositionX() >= 81 * 32;
+						   ? target->getPositionX() >= 81 * 32
+						   : target->getPositionX() <= 14 * 32;
 
 			if (findSome)
 			{

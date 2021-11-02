@@ -223,6 +223,7 @@ class Choji : public Hero
 	{
 		Hero::dealloc();
 
+		// TODO: Only remove the blood loss buff caused by this hero's attack
 		for (auto hero : getGameLayer()->_CharacterArray)
 		{
 			if (hero->_isSticking)

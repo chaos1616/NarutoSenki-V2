@@ -133,8 +133,8 @@ class Akamaru : public Hero
 
 	void dealloc() override
 	{
-		Hero::dealloc();
-
 		_master->setActionResume();
+
+		Hero::dealloc();
 	}
 };

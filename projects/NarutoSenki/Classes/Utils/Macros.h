@@ -83,15 +83,6 @@ public:                                                            \
 	inline const Value &get##funName##_Value() { return varName; } \
 	inline void set##funName(int var) { varName = var; }
 
-#define PROP_Int(varName, funName)                                 \
-private:                                                           \
-	Value varName;                                                 \
-                                                                   \
-public:                                                            \
-	inline int get##funName() { return varName.asInt(); }          \
-	inline const Value &get##funName##_Value() { return varName; } \
-	inline void set##funName(int var) { varName = var; }
-
 #define PROP_UInt8(varName, funName)                               \
 private:                                                           \
 	Value varName;                                                 \
@@ -101,13 +92,22 @@ public:                                                            \
 	inline const Value &get##funName##_Value() { return varName; } \
 	inline void set##funName(uint8_t var) { varName = var; }
 
-#define PROP_UInt(varName, funName)                                \
+#define PROP_Int(varName, funName)                                 \
 private:                                                           \
 	Value varName;                                                 \
                                                                    \
 public:                                                            \
-	inline uint32_t get##funName() { return varName.asInt(); }     \
+	inline int get##funName() { return varName.asInt(); }          \
 	inline const Value &get##funName##_Value() { return varName; } \
+	inline void set##funName(int var) { varName = var; }
+
+#define PROP_UInt(varName, funName)                                    \
+private:                                                               \
+	Value varName;                                                     \
+                                                                       \
+public:                                                                \
+	inline uint32_t get##funName() { return varName.asUnsignedInt(); } \
+	inline const Value &get##funName##_Value() { return varName; }     \
 	inline void set##funName(uint32_t var) { varName = var; }
 
 #define PROP_Float(varName, funName)                               \

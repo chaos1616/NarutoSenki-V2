@@ -121,10 +121,10 @@ class NarakaPath : public Hero
 
 	void dealloc() override
 	{
-		Hero::dealloc();
-
 		_master->_skillChangeBuffValue = 0;
 		_master->unlockSkill5Button();
+
+		Hero::dealloc();
 	}
 
 	Hero *createClone(int cloneTime) override
