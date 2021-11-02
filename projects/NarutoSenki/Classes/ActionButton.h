@@ -45,9 +45,9 @@ public:
 	PROP(abType, _abType, ABType);
 	GearType _gearType;
 
-	CC_SYNTHESIZE_RETAIN(CCString *, _cooldown, CD);
+	PROP_UInt(_cooldown, CD);
 	PROP(bool, _isDoubleSkill, DoubleSkill);
-	CC_SYNTHESIZE_RETAIN(CCString *, _timeCount, TimeCount);
+	PROP_UInt(_timeCount, TimeCount);
 
 	void setLock();
 	void unLock();

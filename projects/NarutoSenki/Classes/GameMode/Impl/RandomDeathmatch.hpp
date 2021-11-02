@@ -185,7 +185,7 @@ public:
 					newChar->gearRecoverValue = 3000;
 					if (isPlayer)
 					{
-						hudLayer->item1Button->setCD(to_ccstring(3000));
+						hudLayer->item1Button->setCD(3000);
 						hudLayer->item1Button->_isColdChanged = true;
 					}
 				}

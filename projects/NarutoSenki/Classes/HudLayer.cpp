@@ -354,11 +354,11 @@ void HudLayer::initHeroInterface()
 	item1Button = ActionButton::create("item1.png");
 	if (getGameLayer()->_isHardCoreGame)
 	{
-		item1Button->setCD(to_ccstring(5000));
+		item1Button->setCD(5000);
 	}
 	else
 	{
-		item1Button->setCD(to_ccstring(3000));
+		item1Button->setCD(3000);
 	}
 
 	item1Button->setDelegate(this);
@@ -368,7 +368,7 @@ void HudLayer::initHeroInterface()
 
 	// init Item
 	item2Button = ActionButton::create("item2.png");
-	item2Button->setCD(to_ccstring(15000));
+	item2Button->setCD(15000);
 	item2Button->setDelegate(this);
 	item2Button->setABType(GearItem);
 	item2Button->_gearType = None;
@@ -377,7 +377,7 @@ void HudLayer::initHeroInterface()
 	item2Button->setVisible(false);
 
 	item3Button = ActionButton::create("item3.png");
-	item3Button->setCD(to_ccstring(15000));
+	item3Button->setCD(15000);
 	item3Button->setDelegate(this);
 	item3Button->setABType(GearItem);
 	item3Button->_gearType = None;
@@ -386,7 +386,7 @@ void HudLayer::initHeroInterface()
 	item3Button->setVisible(false);
 
 	item4Button = ActionButton::create("item4.png");
-	item4Button->setCD(to_ccstring(15000));
+	item4Button->setCD(15000);
 	item4Button->setDelegate(this);
 	item4Button->setABType(GearItem);
 	item4Button->_gearType = None;
@@ -546,7 +546,7 @@ void HudLayer::updateGears()
 		gear1Button = ActionButton::create("gearbg.png");
 		gear1Button->setPosition(ccp(0, winSize.height - 92));
 		gear1Button->setDelegate(this);
-		gear1Button->setCD(to_ccstring(15000));
+		gear1Button->setCD(15000);
 		gear1Button->setABType(GearBtn);
 
 		gear1Button->setMarkSprite("gear_freeze.png");
@@ -556,7 +556,7 @@ void HudLayer::updateGears()
 		gear2Button = ActionButton::create("gearbg.png");
 		gear2Button->setPosition(ccp(35, winSize.height - 112));
 		gear2Button->setDelegate(this);
-		gear2Button->setCD(to_ccstring(15000));
+		gear2Button->setCD(15000);
 		gear2Button->_gearType = None;
 		gear2Button->setABType(GearBtn);
 		gear2Button->setMarkSprite("gear_freeze.png");
@@ -565,7 +565,7 @@ void HudLayer::updateGears()
 
 		gear3Button = ActionButton::create("gearbg.png");
 		gear3Button->setPosition(ccp(70, winSize.height - 92));
-		gear3Button->setCD(to_ccstring(15000));
+		gear3Button->setCD(15000);
 		gear3Button->setDelegate(this);
 		gear3Button->_gearType = None;
 
@@ -1357,14 +1357,14 @@ void HudLayer::updateSkillButtons()
 	auto cache = CCSpriteFrameCache::sharedSpriteFrameCache();
 	CCSpriteFrame *frame;
 
-#define updateButtonInfo(index)                                                     \
-	frame = cache->spriteFrameByName((charName + "_skill" #index ".png").c_str());  \
-	if (skill##index##Button)                                                       \
-	{                                                                               \
-		if (frame != nullptr)                                                       \
-			skill##index##Button->setDisplayFrame(frame);                           \
-		skill##index##Button->setCD(to_ccstring(player->_sAttackCD##index * 1000)); \
-		skill##index##Button->_isColdChanged = true;                                \
+#define updateButtonInfo(index)                                                    \
+	frame = cache->spriteFrameByName((charName + "_skill" #index ".png").c_str()); \
+	if (skill##index##Button)                                                      \
+	{                                                                              \
+		if (frame != nullptr)                                                      \
+			skill##index##Button->setDisplayFrame(frame);                          \
+		skill##index##Button->setCD(player->_sAttackCD##index * 1000);             \
+		skill##index##Button->_isColdChanged = true;                               \
 	}
 
 #define updateOugiButtonInfo(index)                                                \
@@ -1396,9 +1396,9 @@ void HudLayer::updateSpecialSkillButtons()
 	skill1Button->setDoubleSkill(currentPlayer->_sAttack1isDouble);
 	skill2Button->setDoubleSkill(currentPlayer->_sAttack2isDouble);
 	skill3Button->setDoubleSkill(currentPlayer->_sAttack3isDouble);
-	skill1Button->setCD(to_ccstring(currentPlayer->_sAttackCD1 * 1000));
-	skill2Button->setCD(to_ccstring(currentPlayer->_sAttackCD2 * 1000));
-	skill3Button->setCD(to_ccstring(currentPlayer->_sAttackCD3 * 1000));
+	skill1Button->setCD(currentPlayer->_sAttackCD1 * 1000);
+	skill2Button->setCD(currentPlayer->_sAttackCD2 * 1000);
+	skill3Button->setCD(currentPlayer->_sAttackCD3 * 1000);
 	skill1Button->_isColdChanged = true;
 	skill2Button->_isColdChanged = true;
 	skill3Button->_isColdChanged = true;

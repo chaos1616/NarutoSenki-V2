@@ -1683,9 +1683,9 @@ bool CharacterBase::setGear(GearType type)
 
 			if (isPlayer())
 			{
-				getGameLayer()->getHudLayer()->skill1Button->setCD(to_ccstring(_sAttackCD1 * 1000));
-				getGameLayer()->getHudLayer()->skill2Button->setCD(to_ccstring(_sAttackCD2 * 1000));
-				getGameLayer()->getHudLayer()->skill3Button->setCD(to_ccstring(_sAttackCD3 * 1000));
+				getGameLayer()->getHudLayer()->skill1Button->setCD(_sAttackCD1 * 1000);
+				getGameLayer()->getHudLayer()->skill2Button->setCD(_sAttackCD2 * 1000);
+				getGameLayer()->getHudLayer()->skill3Button->setCD(_sAttackCD3 * 1000);
 
 				getGameLayer()->getHudLayer()->skill1Button->_isColdChanged = true;
 				getGameLayer()->getHudLayer()->skill2Button->_isColdChanged = true;
@@ -1697,7 +1697,7 @@ bool CharacterBase::setGear(GearType type)
 			break;
 		case gear07:
 			gearRecoverValue = 3000;
-			getGameLayer()->getHudLayer()->item1Button->setCD(to_ccstring(3000));
+			getGameLayer()->getHudLayer()->item1Button->setCD(3000);
 			getGameLayer()->getHudLayer()->item1Button->_isColdChanged = true;
 			break;
 		case gear08:

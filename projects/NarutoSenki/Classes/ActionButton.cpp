@@ -11,9 +11,7 @@ ActionButton::ActionButton()
 	_clickNum = 0;
 	cdLabel = nullptr;
 	_isMarkVisable = true;
-	_timeCount = nullptr;
 	_isLock = false;
-	_cooldown = nullptr;
 	_isColdChanged = false;
 	_gearType = None;
 
@@ -27,8 +25,6 @@ ActionButton::ActionButton()
 
 ActionButton::~ActionButton()
 {
-	CC_SAFE_RELEASE(_timeCount);
-	CC_SAFE_RELEASE(_cooldown);
 }
 
 bool ActionButton::init(const char *szImage)
@@ -118,7 +114,7 @@ bool ActionButton::isCanClick()
 		if (_isDoubleSkill)
 		{
 			// double click solution
-			if (_clickNum == 0 && _delegate->getSkillFinish() && !_timeCount && !_delegate->ougisLayer)
+			if (_clickNum == 0 && _delegate->getSkillFinish() && getTimeCount() == 0 && !_delegate->ougisLayer)
 			{
 				return true;
 			}
@@ -132,7 +128,7 @@ bool ActionButton::isCanClick()
 			// isSkillFinish consider the AttackAction is done or not to prevent the skill invalid release
 			if (_abType == Item1)
 			{
-				if (!_delegate->ougisLayer && !_timeCount && !_isLock && getGameLayer()->currentPlayer->getActionState() != State::DEAD)
+				if (!_delegate->ougisLayer && getTimeCount() == 0 && !_isLock && getGameLayer()->currentPlayer->getActionState() != State::DEAD)
 				{
 					if (_delegate->offCoin(_cost))
 					{
@@ -150,7 +146,7 @@ bool ActionButton::isCanClick()
 			}
 			else if (_abType == GearItem)
 			{
-				if (!_delegate->ougisLayer && !_timeCount && !_isLock)
+				if (!_delegate->ougisLayer && getTimeCount() == 0 && !_isLock)
 				{
 					if (_gearType == gear06 && getGameLayer()->currentPlayer->getActionState() != State::DEAD)
 					{
@@ -185,7 +181,7 @@ bool ActionButton::isCanClick()
 			}
 			else
 			{
-				if (!_timeCount && _delegate->getSkillFinish() && !_isLock && !_delegate->ougisLayer)
+				if (getTimeCount() == 0 && _delegate->getSkillFinish() && !_isLock && !_delegate->ougisLayer)
 				{
 					return true;
 				}
@@ -207,7 +203,7 @@ void ActionButton::beganAnimation(bool isLock)
 	CCTime::gettimeofdayCocos2d(&timeVal, 0);
 	_clickTime = timeVal.tv_sec + timeVal.tv_usec / 1000;
 
-	if (markSprite && getABType() != OUGIS1 && getABType() != OUGIS2)
+	if (markSprite && _abType != OUGIS1 && _abType != OUGIS2)
 	{
 		if (!_freezeAction || _isColdChanged)
 		{
@@ -224,9 +220,9 @@ void ActionButton::beganAnimation(bool isLock)
 			cdLabel->removeFromParent();
 			unschedule(schedule_selector(ActionButton::updateCDLabel));
 		}
-		if (getABType() != Item1)
+		if (_abType != Item1)
 		{
-			cdLabel = CCLabelBMFont::create(to_cstr(getCD()->intValue() / 1000), "Fonts/1.fnt");
+			cdLabel = CCLabelBMFont::create(to_cstr(getCD() / 1000), "Fonts/1.fnt");
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 			cdLabel->setScale(0.3f);
@@ -267,10 +263,10 @@ void ActionButton::updateCDLabel(float dt)
 {
 	if (!_delegate->ougisLayer)
 	{
-		if (to_int(getTimeCount()->getCString()) > 1000)
+		if (getTimeCount() > 1000)
 		{
-			int tempCount = to_int(getTimeCount()->getCString()) - 1000;
-			setTimeCount(to_ccstring(tempCount));
+			int tempCount = getTimeCount() - 1000;
+			setTimeCount(tempCount);
 			if (cdLabel)
 			{
 				cdLabel->setString(to_cstr(tempCount / 1000));
@@ -279,7 +275,7 @@ void ActionButton::updateCDLabel(float dt)
 		else
 		{
 			unschedule(schedule_selector(ActionButton::updateCDLabel));
-			setTimeCount(nullptr);
+			setTimeCount(0);
 			if (cdLabel)
 			{
 				cdLabel->removeFromParent();
@@ -304,7 +300,7 @@ void ActionButton::setMarkSprite(const char *mark)
 #endif
 	_delegate->addChild(markSprite, 500);
 
-	if (getABType() == GearBtn)
+	if (_abType == GearBtn)
 	{
 		if (getGameLayer()->_enableGear)
 		{
@@ -321,7 +317,7 @@ void ActionButton::setOugisMark()
 	ougismarkSprite->setPosition(getPosition());
 	ougismarkSprite->setAnchorPoint(ccp(0, 0));
 	_delegate->addChild(ougismarkSprite, 500);
-	if (getABType() == OUGIS1)
+	if (_abType == OUGIS1)
 	{
 		lockLabel1 = CCLabelBMFont::create("LV2", "Fonts/1.fnt");
 	}
@@ -373,7 +369,7 @@ void ActionButton::setProgressMark()
 	clipper->setScale(0.8f);
 #endif
 
-	if (getABType() == OUGIS1)
+	if (_abType == OUGIS1)
 	{
 		progressPointSprite = CCSprite::createWithSpriteFrameName("icon_bg4.png");
 		proressmarkSprite->setRotation(-50);
@@ -405,7 +401,7 @@ void ActionButton::setProgressMark()
 
 	_delegate->addChild(proressblinkMask, 200);
 
-	if (getABType() == OUGIS2)
+	if (_abType == OUGIS2)
 	{
 		if (_delegate->skill4Button)
 		{
@@ -428,7 +424,7 @@ void ActionButton::updateProgressMark()
 	int ckr = getGameLayer()->currentPlayer->getCKR();
 	int ckr2 = getGameLayer()->currentPlayer->getCKR2();
 
-	if (getABType() == OUGIS1)
+	if (_abType == OUGIS1)
 	{
 		if (ckr < 15000)
 		{
@@ -547,7 +543,7 @@ void ActionButton::reset()
 	if (!_delegate->ougisLayer)
 	{
 		unschedule(schedule_selector(ActionButton::updateCDLabel));
-		setTimeCount(nullptr);
+		setTimeCount(0);
 		if (cdLabel)
 		{
 			cdLabel->removeFromParent();
@@ -586,7 +582,7 @@ void ActionButton::unLock()
 	uint32_t ckr = getGameLayer()->currentPlayer->getCKR();
 	uint32_t ckr2 = getGameLayer()->currentPlayer->getCKR2();
 
-	if (getABType() == OUGIS1)
+	if (_abType == OUGIS1)
 	{
 		if (ckr >= 15000)
 		{
@@ -596,7 +592,7 @@ void ActionButton::unLock()
 			}
 		}
 	}
-	else if (getABType() == OUGIS2)
+	else if (_abType == OUGIS2)
 	{
 		if (ckr2 >= 25000)
 		{
@@ -614,7 +610,7 @@ void ActionButton::createFreezeAnimation()
 {
 	auto to = CCProgressTo::create(0, 99.999f);
 
-	int delay = _cooldown->intValue() / 1000;
+	int delay = getCD() / 1000;
 	auto to1 = CCProgressTo::create(delay, 0);
 
 	CCAction *freezeAction;
