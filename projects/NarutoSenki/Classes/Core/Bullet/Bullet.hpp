@@ -17,15 +17,15 @@ public:
 		return true;
 	}
 
-	void setID(CCString *character, CCString *role, CCString *group)
+	void setID(const string &name, const string &role, const string &group)
 	{
-		setCharacter(character);
+		setName(name);
 		setRole(role);
 		setGroup(group);
 
 		CCArray *animationArray = CCArray::create();
-		auto filePath = format("Element/Bullet/{}.xml", getCharacter()->m_sString);
-		KTools::readXMLToArray(filePath.c_str(), animationArray);
+		auto filePath = format("Element/Bullet/{}.xml", getName());
+		KTools::readXMLToArray(filePath, animationArray);
 
 		CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
 		CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
@@ -43,7 +43,7 @@ public:
 		setNAttackValue(tmpValue);
 		nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		if (isCharacter("Amaterasu"))
+		if (getName() == ProjectileEnum::Amaterasu)
 		{
 			// init DeadFrame
 			tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
@@ -59,7 +59,7 @@ public:
 	{
 		setIdleAction(createAnimation(idleArray, 5.0, true, false));
 		setNAttackAction(createAnimation(nattackArray, 10.0, true, false));
-		if (isCharacter("Amaterasu", "SusanoTama"))
+		if (getName() == ProjectileEnum::Amaterasu || getName() == ProjectileEnum::SusanoTama)
 		{
 			setDeadAction(createAnimation(deadArray, 10.0f, false, false));
 		}
@@ -106,7 +106,7 @@ protected:
 	{
 		stopAllActions();
 
-		if (isCharacter("Amaterasu"))
+		if (getName() == ProjectileEnum::Amaterasu)
 		{
 			auto call = CallFunc::create(std::bind(&Bullet::removeFromParent, this));
 			auto seq = newSequence(getDeadAction(), call);
@@ -114,7 +114,7 @@ protected:
 		}
 		else
 		{
-			if (isCharacter("HiraishinKunai"))
+			if (getName() == ProjectileEnum::HiraishinKunai)
 			{
 				if (_master->getActionState() == State::SATTACK)
 				{

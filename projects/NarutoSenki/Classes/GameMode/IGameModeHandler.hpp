@@ -100,7 +100,7 @@ protected:
 public:
 	const uint8_t kMaxCharCount = 4;
 	const int kDefaultMap = 1;
-	const char *kDefaultGroup = Konoha;
+	const char *kDefaultGroup = Group::Konoha;
 
 	virtual void init() = 0;
 
@@ -179,12 +179,12 @@ protected:
 
 	inline void addKonohaHero(const vector<string> &heros, const char *name, const char *role, uint32_t lv = 1)
 	{
-		addHero(name, role, Konoha, lv);
+		addHero(name, role, Group::Konoha, lv);
 	}
 
 	inline void addAkatsukiHero(const vector<string> &heros, const char *name, const char *role, uint32_t lv = 1)
 	{
-		addHero(name, role, Akatsuki, lv);
+		addHero(name, role, Group::Akatsuki, lv);
 	}
 
 	inline void initHeros(uint32_t playerCount, uint32_t enemyCount)
@@ -203,8 +203,8 @@ protected:
 		setRand();
 		int team = random(2);
 		// TODO: Support custom player group
-		// playerGroup = playerGroup == nullptr ? (team > 0 ? Konoha : Akatsuki) : playerGroup;
-		playerGroup = team > 0 ? Akatsuki : Konoha;
+		// playerGroup = playerGroup == nullptr ? (team > 0 ? Group::Konoha : Group::Akatsuki) : playerGroup;
+		playerGroup = team > 0 ? Group::Akatsuki : Group::Konoha;
 		this->gd.playerGroup = playerGroup;
 		this->playerGroup = playerGroup;
 		uint8_t totalCount = playerCount + enemyCount;
@@ -293,7 +293,7 @@ protected:
 					realHeroVector.erase(std::find(realHeroVector.begin(), realHeroVector.end(), hero));
 				}
 
-				heroDataVector.push_back({hero, kRoleCom, team > 0 ? Akatsuki : Konoha});
+				heroDataVector.push_back({hero, kRoleCom, team > 0 ? Group::Akatsuki : Group::Konoha});
 				heroVector.push_back(hero);
 			}
 			else
@@ -305,7 +305,7 @@ protected:
 					index = realHeroVector.size() - 1;
 
 				hero = realHeroVector.at(index);
-				heroDataVector.push_back({hero, kRoleCom, team > 0 ? Konoha : Akatsuki});
+				heroDataVector.push_back({hero, kRoleCom, team > 0 ? Group::Konoha : Group::Akatsuki});
 				heroVector.push_back(hero);
 				realHeroVector.erase(std::find(realHeroVector.begin(), realHeroVector.end(), hero));
 			}
@@ -376,14 +376,14 @@ protected:
 	static inline const char *getRandomGroup()
 	{
 		setRand();
-		return random(2) == 0 ? Konoha : Akatsuki;
+		return random(2) == 0 ? Group::Konoha : Group::Akatsuki;
 	}
 
 	static inline void getRandomGroups(const char *&groupA, const char *&groupB)
 	{
 		setRand();
 		int team = random(2) == 0;
-		groupA = team == 0 ? Konoha : Akatsuki;
-		groupB = team == 0 ? Akatsuki : Konoha;
+		groupA = team == 0 ? Group::Konoha : Group::Akatsuki;
+		groupB = team == 0 ? Group::Akatsuki : Group::Konoha;
 	}
 };

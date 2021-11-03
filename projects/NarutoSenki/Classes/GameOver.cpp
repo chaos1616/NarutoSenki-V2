@@ -73,25 +73,25 @@ void GameOver::listResult()
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/battle_over.ogg");
 
 	auto currPlayer = getGameLayer()->currentPlayer;
-	auto path = format("{}_half.png", currPlayer->getCharacter()->getCString());
+	auto path = format("{}_half.png", currPlayer->getName());
 	auto half = CCSprite::createWithSpriteFrameName(path.c_str());
 
-	if (currPlayer->isCharacter("Konan") ||
-		currPlayer->isCharacter("Karin") ||
-		currPlayer->isCharacter("Suigetsu") ||
-		currPlayer->isCharacter("Hidan") ||
-		currPlayer->isCharacter("Tobirama") ||
-		currPlayer->isCharacter("Tsunade") ||
-		currPlayer->isCharacter("Kankuro") ||
-		currPlayer->isCharacter("SageJiraiya") ||
-		currPlayer->isCharacter("Minato") ||
-		currPlayer->isCharacter("Tobi") ||
-		currPlayer->isCharacter("Lee") ||
-		currPlayer->isCharacter("RockLee") ||
-		currPlayer->isCharacter("Hinata") ||
-		currPlayer->isCharacter("Asuma") ||
-		currPlayer->isCharacter("Chiyo") ||
-		currPlayer->isCharacter("Kisame"))
+	if (currPlayer->getName() == HeroEnum::Konan ||
+		currPlayer->getName() == HeroEnum::Karin ||
+		currPlayer->getName() == HeroEnum::Suigetsu ||
+		currPlayer->getName() == HeroEnum::Hidan ||
+		currPlayer->getName() == HeroEnum::Tobirama ||
+		currPlayer->getName() == HeroEnum::Tsunade ||
+		currPlayer->getName() == HeroEnum::Kankuro ||
+		currPlayer->getName() == HeroEnum::SageJiraiya ||
+		currPlayer->getName() == HeroEnum::Minato ||
+		currPlayer->getName() == HeroEnum::Tobi ||
+		currPlayer->getName() == HeroEnum::Lee ||
+		currPlayer->getName() == HeroEnum::RockLee ||
+		currPlayer->getName() == HeroEnum::Hinata ||
+		currPlayer->getName() == HeroEnum::Asuma ||
+		currPlayer->getName() == HeroEnum::Chiyo ||
+		currPlayer->getName() == HeroEnum::Kisame)
 	{
 		half->setFlipX(true);
 	}
@@ -120,11 +120,12 @@ void GameOver::listResult()
 	gameClock->setScale(0.48f);
 	addChild(gameClock, 7);
 
-	float _totalSecond = getGameLayer()->_minute * 60 + getGameLayer()->_second;
+	uint32_t _totalSecond = getGameLayer()->_minute * 60 + getGameLayer()->_second;
 	float resultScore = 0;
 	uint32_t killDead = currPlayer->getKillNum() - currPlayer->_deadNum;
 
-	if (_totalSecond != to_int(getGameLayer()->getTotalTM()->getCString()))
+	// Verify that the game time is valid
+	if (_totalSecond != getGameLayer()->getTotalTime())
 	{
 		SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
 		CCDirector::sharedDirector()->end();
@@ -133,17 +134,17 @@ void GameOver::listResult()
 
 	if (getGameLayer()->_isHardCoreGame)
 	{
-		if (_totalSecond > 900.0f)
-			resultScore = ((killDead / (_totalSecond / 60)) / 3) * 100;
+		if (_totalSecond > 900)
+			resultScore = ((killDead / (_totalSecond / 60.0f)) / 3) * 100;
 		else
-			resultScore = ((killDead - ((_totalSecond / 60 - 15) * 3)) / 45) * 100;
+			resultScore = ((killDead - ((_totalSecond / 60.0f - 15) * 3)) / 45) * 100;
 	}
 	else
 	{
-		if (_totalSecond > 600.0f)
-			resultScore = ((killDead / (_totalSecond / 60)) / 4) * 100;
+		if (_totalSecond > 600)
+			resultScore = ((killDead / (_totalSecond / 60.0f)) / 4) * 100;
 		else
-			resultScore = ((killDead - ((_totalSecond / 60 - 10) * 4)) / 40) * 100;
+			resultScore = ((killDead - ((_totalSecond / 60.0f - 10) * 4)) / 40) * 100;
 	}
 
 	if (_totalSecond < 2 * 30 + 5 && _isWin)
@@ -182,7 +183,7 @@ void GameOver::listResult()
 			hero->changeGroup();
 		}
 
-		auto path = format(("{}_small.png"), hero->getCharacter()->getCString());
+		auto path = format("{}_small.png", hero->getName());
 		auto avator_small = CCSprite::createWithSpriteFrameName(path.c_str());
 		avator_small->setAnchorPoint(ccp(0, 0));
 
@@ -246,7 +247,7 @@ void GameOver::listResult()
 
 	if (_totalSecond > 900 && getGameLayer()->_isSurrender)
 	{
-		if (is_same(currPlayer->getGroup()->getCString(), Konoha))
+		if (currPlayer->getGroup() == Group::Konoha)
 		{
 			if (konohaKill > akatsukiKill)
 				_isWin = true;
@@ -260,7 +261,8 @@ void GameOver::listResult()
 
 	if (Cheats < MaxCheats)
 	{
-		if (akatsukiKill + konohaKill != to_int(getGameLayer()->getTotalKills()->getCString()))
+		// Verify that the game total kills is valid
+		if ((akatsukiKill + konohaKill) != getGameLayer()->getTotalKills())
 		{
 			SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
 			CCDirector::sharedDirector()->end();
@@ -375,17 +377,19 @@ void GameOver::listResult()
 		}
 		if (Cheats < MaxCheats)
 		{
-			resultChar = currPlayer->getCharacter()->getCString();
-			if (currPlayer->isCharacter("SageNaruto"))
-				resultChar = "Naruto";
-			else if (currPlayer->isCharacter("RikudoNaruto"))
-				resultChar = "Naruto";
-			else if (currPlayer->isCharacter("SageJiraiya"))
-				resultChar = "Jiraiya";
-			else if (currPlayer->isCharacter("ImmortalSasuke"))
-				resultChar = "Sasuke";
-			else if (currPlayer->isCharacter("RockLee"))
-				resultChar = "Lee";
+			resultChar = currPlayer->getName().c_str();
+			if (currPlayer->getName() == HeroEnum::SageNaruto)
+				resultChar = HeroEnum::Naruto;
+			else if (currPlayer->getName() == HeroEnum::RikudoNaruto)
+				resultChar = HeroEnum::Naruto;
+			else if (currPlayer->getName() == HeroEnum::SageJiraiya)
+				resultChar = HeroEnum::Jiraiya;
+			else if (currPlayer->getName() == HeroEnum::ImmortalSasuke)
+				resultChar = HeroEnum::Sasuke;
+			else if (currPlayer->getName() == HeroEnum::RockLee)
+				resultChar = HeroEnum::Lee;
+			else if (currPlayer->getName() == HeroEnum::Nagato)
+				resultChar = HeroEnum::Pain;
 
 			if (_isWin)
 			{
@@ -425,16 +429,16 @@ void GameOver::listResult()
 							hero->changeGroup();
 						}
 
-						if (is_same(hero->getGroup()->getCString(), currPlayer->getGroup()->getCString()))
+						if (hero->getGroup() == currPlayer->getGroup())
 						{
-							int winNum = KTools::readWinNumFromSQL(hero->getCharacter()->getCString());
+							int winNum = KTools::readWinNumFromSQL(hero->getName().c_str());
 							if (resultScore >= 140)
 								winNum += 2;
 							else
 								winNum += 1;
 
 							auto realWin = std::to_string(winNum);
-							KTools::saveSQLite("CharRecord", "name", hero->getCharacter()->getCString(), "column1", realWin, false);
+							KTools::saveSQLite("CharRecord", "name", hero->getName().c_str(), "column1", realWin, false);
 						}
 					}
 				}

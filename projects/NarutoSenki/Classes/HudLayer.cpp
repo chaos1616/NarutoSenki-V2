@@ -35,7 +35,7 @@ void MiniIcon::updateMap(CCObject *sender)
 {
 	auto poster = (CharacterBase *)sender;
 
-	if (getCharNO() == poster->getCharNO())
+	if (getCharId() == poster->getCharId())
 	{
 		if (poster->getActionState() == State::DEAD || poster->_isVisable == false)
 		{
@@ -151,12 +151,12 @@ void HudLayer::JoyStickUpdate(CCPoint direction)
 	getGameLayer()->JoyStickUpdate(direction);
 }
 
-void HudLayer::initGearButton(const char *charName)
+void HudLayer::initGearButton(const string &charName)
 {
 	gearMenuSprite = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName(format("{}_avator.png", charName).c_str()), nullptr, nullptr, this, menu_selector(HudLayer::gearButtonClick));
 	if (gearMenuSprite == nullptr)
 	{
-		CCLOGERROR("Not found %s avator sprite", charName);
+		CCLOGERROR("Not found %s avator sprite", charName.c_str());
 		return;
 	}
 
@@ -264,7 +264,7 @@ void HudLayer::initHeroInterface()
 	AkaLabel = CCLabelBMFont::create("0", "Fonts/red.fnt");
 	AkaLabel->setScale(0.35f);
 
-	if (getGameLayer()->playerGroup == Konoha)
+	if (getGameLayer()->playerGroup == Group::Konoha)
 	{
 		KonoLabel->setAnchorPoint(ccp(1, 1));
 		AkaLabel->setAnchorPoint(ccp(0, 1));
@@ -288,7 +288,8 @@ void HudLayer::initHeroInterface()
 	addChild(hengLabel, 5000);
 
 	auto currentPlayer = getGameLayer()->currentPlayer;
-	initGearButton(currentPlayer->getCharacter()->getCString());
+	auto currCharName = currentPlayer->getName();
+	initGearButton(currCharName);
 
 	hpLabel = CCLabelBMFont::create(currentPlayer->getHP_Value().asString().c_str(), "Fonts/1.fnt");
 	hpLabel->setScale(0.35f);
@@ -325,27 +326,27 @@ void HudLayer::initHeroInterface()
 
 	// init SKIll Button
 
-	skill1Button = ActionButton::create(CCString::createWithFormat("%s_skill1.png", currentPlayer->getCharacter()->getCString())->getCString());
+	skill1Button = ActionButton::create(currCharName + "_skill1.png");
 	skill1Button->setDelegate(this);
 	skill1Button->setABType(SKILL1);
 	uiBatch->addChild(skill1Button);
 
-	skill2Button = ActionButton::create(CCString::createWithFormat("%s_skill2.png", currentPlayer->getCharacter()->getCString())->getCString());
+	skill2Button = ActionButton::create(currCharName + "_skill2.png");
 	skill2Button->setDelegate(this);
 	skill2Button->setABType(SKILL2);
 	uiBatch->addChild(skill2Button);
 
-	skill3Button = ActionButton::create(CCString::createWithFormat("%s_skill3.png", currentPlayer->getCharacter()->getCString())->getCString());
+	skill3Button = ActionButton::create(currCharName + "_skill3.png");
 	skill3Button->setDelegate(this);
 	skill3Button->setABType(SKILL3);
 	uiBatch->addChild(skill3Button);
 
-	skill4Button = ActionButton::create(CCString::createWithFormat("%s_skill4.png", currentPlayer->getCharacter()->getCString())->getCString());
+	skill4Button = ActionButton::create(currCharName + "_skill4.png");
 	skill4Button->setDelegate(this);
 	skill4Button->setABType(OUGIS1);
 	uiBatch->addChild(skill4Button);
 
-	skill5Button = ActionButton::create(CCString::createWithFormat("%s_skill5.png", currentPlayer->getCharacter()->getCString())->getCString());
+	skill5Button = ActionButton::create(currCharName + "_skill5.png");
 	skill5Button->setDelegate(this);
 	skill5Button->setABType(OUGIS2);
 	uiBatch->addChild(skill5Button);
@@ -464,7 +465,7 @@ void HudLayer::initHeroInterface()
 	{
 		const char *path = "";
 		MiniIcon *mi;
-		if (is_same(tower->getGroup()->getCString(), currentPlayer->getGroup()->getCString()))
+		if (tower->getGroup() == currentPlayer->getGroup())
 			path = "tower_icon1.png";
 		else
 			path = "tower_icon2.png";
@@ -472,7 +473,7 @@ void HudLayer::initHeroInterface()
 		mi->_delegate = miniLayer;
 		miniLayer->addChild(mi);
 		mi->updatePosition(tower->getSpawnPoint());
-		mi->setCharNO(tower->getCharNO());
+		mi->setCharId(tower->getCharId());
 
 		_towerIconArray.push_back(mi);
 	}
@@ -495,7 +496,7 @@ void HudLayer::initHeroInterface()
 				}
 				else
 				{
-					if (is_same(player->getGroup()->getCString(), currentPlayer->getGroup()->getCString()))
+					if (player->getGroup() == currentPlayer->getGroup())
 					{
 						path = "com_icon.png";
 					}
@@ -510,7 +511,7 @@ void HudLayer::initHeroInterface()
 			mi->_delegate = miniLayer;
 			miniLayer->addChild(mi);
 			mi->updatePosition(player->getSpawnPoint());
-			mi->setCharNO(player->getCharNO());
+			mi->setCharId(player->getCharId());
 		}
 	}
 
@@ -534,7 +535,7 @@ void HudLayer::addMapIcon()
 			mi->_delegate = miniLayer;
 			miniLayer->addChild(mi);
 			mi->updatePosition(player->getSpawnPoint());
-			mi->setCharNO(player->getCharNO());
+			mi->setCharId(player->getCharId());
 		}
 	}
 }
@@ -689,11 +690,11 @@ void HudLayer::setEXPLose()
 	}
 }
 
-void HudLayer::setTowerState(int charNO)
+void HudLayer::setTowerState(int charId)
 {
 	for (auto mi : _towerIconArray)
 	{
-		if (mi->getCharNO() == charNO)
+		if (mi->getCharId() == charId)
 		{
 			mi->updateState();
 		}
@@ -724,7 +725,7 @@ bool HudLayer::offCoin(const char *value)
 	}
 }
 
-void HudLayer::setReport(const char *name1, const char *name2, uint32_t killNum)
+void HudLayer::setReport(const string &name1, const string &name2, uint32_t killNum)
 {
 	bool isDisplay = _reportListArray.empty();
 
@@ -762,7 +763,7 @@ void HudLayer::setReportCache()
 			continue;
 
 		float length;
-		reportSprite = createReport(data.name1.c_str(), data.name2.c_str(), length);
+		reportSprite = createReport(data.name1, data.name2, length);
 		reportSprite->setPosition(ccp(winSize.width / 2 - length / 2, winSize.height - 80));
 		addChild(reportSprite, 500);
 
@@ -847,7 +848,7 @@ void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 	float scale = 0.40f;
 #endif
 
-	auto buffSprite = CCSprite::createWithSpriteFrameName(format("{}_{}.png", getGameLayer()->currentPlayer->getCharacter()->getCString(), buffName).c_str());
+	auto buffSprite = CCSprite::createWithSpriteFrameName(format("{}_{}.png", getGameLayer()->currentPlayer->getName(), buffName).c_str());
 	if (buffSprite == nullptr)
 		return;
 	buffSprite->setAnchorPoint(ccp(0, 0));
@@ -1044,7 +1045,7 @@ CCSprite *HudLayer::createSPCReport(uint32_t killNum, int num)
 	return reportSPCSprite;
 }
 
-CCSprite *HudLayer::createReport(const char *name1, const char *name2, float &length)
+CCSprite *HudLayer::createReport(const string &name1, const string &name2, float &length)
 {
 	CCSprite *reportSprite = CCSprite::create();
 
@@ -1059,10 +1060,9 @@ CCSprite *HudLayer::createReport(const char *name1, const char *name2, float &le
 	reportSprite->addChild(slain_pf);
 
 	CCSprite *slain;
-	if (strcmp(name2, kRoleTower) != 0)
+	if (name2 != kRoleTower)
 	{
 		slain = CCSprite::createWithSpriteFrameName("slain.png");
-
 		reportSprite->addChild(slain);
 	}
 	else
@@ -1078,7 +1078,7 @@ CCSprite *HudLayer::createReport(const char *name1, const char *name2, float &le
 	death_pf->setPosition(ccp(slain->getPositionX() + slain->getContentSize().width, 0));
 	reportSprite->addChild(death_pf);
 	CCSprite *death_p;
-	if (strcmp(name2, kRoleTower) != 0)
+	if (name2 != kRoleTower)
 	{
 		death_p = CCSprite::createWithSpriteFrameName(format("{}_rp.png", name2).c_str());
 		death_p->setAnchorPoint(ccp(0, 0.5f));
@@ -1086,7 +1086,7 @@ CCSprite *HudLayer::createReport(const char *name1, const char *name2, float &le
 		reportSprite->addChild(death_p);
 	}
 
-	if (strcmp(name2, kRoleTower) != 0)
+	if (name2 != kRoleTower)
 	{
 		length = slain_p->getContentSize().width + slain_pf->getContentSize().width + slain->getContentSize().width + death_pf->getContentSize().width + death_p->getContentSize().width;
 	}
@@ -1165,7 +1165,7 @@ void HudLayer::costCKR(uint32_t value, bool isCKR2)
 	}
 }
 
-void HudLayer::setOugis(CCString *character, CCString *group)
+void HudLayer::setOugis(const string &name, const string &group)
 {
 	if (!ougisLayer)
 	{
@@ -1184,7 +1184,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		CCSprite *CutBg;
 		const char *cutPath1;
 		const char *cutPath2;
-		if (getGameLayer()->playerGroup == Konoha)
+		if (getGameLayer()->playerGroup == Group::Konoha)
 		{
 			cutPath1 = "CutBg.png";
 			cutPath2 = "CutBg2.png";
@@ -1195,7 +1195,8 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 			cutPath2 = "CutBg.png";
 		}
 
-		if (is_same(group->getCString(), Konoha))
+		bool isKonohaGroup = group == Group::Konoha;
+		if (isKonohaGroup)
 		{
 			startPosY = 0;
 			startPosX = -48;
@@ -1228,7 +1229,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		auto tempAction = CCAnimate::create(tempAnimation);
 
 		CCSprite *CutLine = CCSprite::createWithSpriteFrameName("CutLine_01.png");
-		if (is_same(group->getCString(), Konoha))
+		if (isKonohaGroup)
 		{
 			CutLine->setAnchorPoint(ccp(0, 0));
 			CutLine->setPosition(ccp(-48, 0));
@@ -1247,7 +1248,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		ougisLayer->addChild(CutLine);
 
 		CCSprite *CutLineUP = CCSprite::createWithSpriteFrameName("CutLineUP.png");
-		if (is_same(group->getCString(), Konoha))
+		if (isKonohaGroup)
 		{
 			CutLineUP->setAnchorPoint(ccp(0, 0));
 			CutLineUP->setPosition(ccp(-48, 2));
@@ -1263,8 +1264,8 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 
 		ougisLayer->addChild(CutLineUP);
 
-		CCSprite *CutIn = CCSprite::createWithSpriteFrameName(format("{}_CutIn.png", character->getCString()).c_str());
-		if (is_same(group->getCString(), Konoha))
+		CCSprite *CutIn = CCSprite::createWithSpriteFrameName(format("{}_CutIn.png", name).c_str());
+		if (isKonohaGroup)
 		{
 			CutIn->setAnchorPoint(ccp(0, 0));
 			CutIn->setPosition(ccp(-200, 10));
@@ -1279,7 +1280,7 @@ void HudLayer::setOugis(CCString *character, CCString *group)
 		ougisLayer->addChild(CutIn);
 
 		CCSprite *CutLineDown = CCSprite::createWithSpriteFrameName("CutLineDown.png");
-		if (is_same(group->getCString(), Konoha))
+		if (isKonohaGroup)
 		{
 			CutLineDown->setAnchorPoint(ccp(0, 0));
 			CutLineDown->setPosition(ccp(-48, 0));
@@ -1345,7 +1346,7 @@ void HudLayer::updateSkillButtons()
 	auto player = getGameLayer()->currentPlayer;
 	if (!player)
 		return;
-	string charName = player->getCharacter()->getCString();
+	auto charName = player->getName();
 	if (charName.length() == 0)
 		return;
 

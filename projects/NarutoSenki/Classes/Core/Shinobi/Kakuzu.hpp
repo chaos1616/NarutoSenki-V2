@@ -252,17 +252,17 @@ class Kakuzu : public Hero
 
 		for (auto mo : _monsterArray)
 		{
-			if (mo->isCharacter("MaskRaiton"))
+			if (mo->getName() == KugutsuEnum::MaskRaiton)
 			{
 				countMon++;
 				isRaiton = true;
 			}
-			if (mo->isCharacter("MaskFuton"))
+			if (mo->getName() == KugutsuEnum::MaskFuton)
 			{
 				countMon++;
 				isFuton = true;
 			}
-			if (mo->isCharacter("MaskKaton"))
+			if (mo->getName() == KugutsuEnum::MaskKaton)
 			{
 				countMon++;
 				isKaton = true;
@@ -274,15 +274,15 @@ class Kakuzu : public Hero
 		{
 			if (!isRaiton)
 			{
-				clone = createKugutsuHero<Mask>("MaskRaiton");
+				clone = createKugutsuHero<Mask>(KugutsuEnum::MaskRaiton);
 			}
 			else if (!isFuton)
 			{
-				clone = createKugutsuHero<Mask>("MaskFuton");
+				clone = createKugutsuHero<Mask>(KugutsuEnum::MaskFuton);
 			}
 			else if (!isKaton)
 			{
-				clone = createKugutsuHero<Mask>("MaskKaton");
+				clone = createKugutsuHero<Mask>(KugutsuEnum::MaskKaton);
 			}
 			clone->_isArmored = true;
 			_monsterArray.push_back(clone);

@@ -21,15 +21,15 @@ public:
 		return true;
 	}
 
-	void setID(CCString *character, CCString *role, CCString *group)
+	void setID(const string &name, const string &role, const string &group)
 	{
-		setCharacter(character);
+		setName(name);
 		setRole(role);
 		setGroup(group);
 
 		CCArray *animationArray = CCArray::create();
-		auto filePath = format("Element/Flog/{}.xml", getCharacter()->m_sString);
-		KTools::readXMLToArray(filePath.c_str(), animationArray);
+		auto filePath = format("Element/Flog/{}.xml", getName());
+		KTools::readXMLToArray(filePath, animationArray);
 
 		CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
 		CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
@@ -110,7 +110,7 @@ public:
 
 	void setHPbar()
 	{
-		if (strcmp(getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()) != 0)
+		if (getGroup() != getGameLayer()->currentPlayer->getGroup())
 			_hpBar = HPBar::create("flog_bar_r.png");
 		else
 			_hpBar = HPBar::create("flog_bar.png");
@@ -149,7 +149,7 @@ protected:
 			if (_mainTarget)
 			{
 				if (_mainTarget->getActionState() != State::DEAD && !_mainTarget->_isInvincible && _mainTarget->_isVisable &&
-					strcmp(_mainTarget->getGroup()->getCString(), getGroup()->getCString()) != 0)
+					_mainTarget->getGroup() != getGroup())
 				{
 					hasTarget = true;
 				}

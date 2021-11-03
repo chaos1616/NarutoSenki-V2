@@ -87,7 +87,7 @@ void LoadLayer::preloadIMG()
 	int i = 0;
 	for (const auto &data : herosDataVector)
 	{
-		auto name = data.character;
+		auto name = data.name;
 		if (std::find(loadVector.begin(), loadVector.end(), name) == loadVector.end())
 		{
 			perloadCharIMG(name.c_str());
@@ -152,7 +152,7 @@ void LoadLayer::perloadCharIMG(const string &name)
 	// else
 	// CCLOG("Not found file %s", path);
 
-	KTools::prepareFileOGG(name.c_str());
+	KTools::prepareFileOGG(name);
 
 	path = format("Element/{}/{}.plist", name, name);
 	addSprites(path.c_str());
@@ -230,7 +230,7 @@ void LoadLayer::unloadCharIMG(CharacterBase *c)
 		return;
 	}
 
-	auto charName = c->getCharacter()->getCString();
+	auto charName = c->getName();
 	auto path = format("Element/{}/{}.plist", charName, charName);
 	removeSprites(path.c_str());
 
@@ -239,43 +239,43 @@ void LoadLayer::unloadCharIMG(CharacterBase *c)
 		KTools::prepareFileOGG(charName, true);
 	}
 
-	if (is_same(charName, "Jiraiya"))
+	if (charName == "Jiraiya")
 	{
 		removeSprites(mkpath(SageJiraiya));
 		KTools::prepareFileOGG("SageJiraiya", true);
 	}
-	else if (is_same(charName, "Kankuro"))
+	else if (charName == "Kankuro")
 	{
 		removeSprites(mkpath(Karasu));
 		removeSprites(mkpath(Sanshouuo));
 	}
-	else if (is_same(charName, "Kakuzu"))
+	else if (charName == "Kakuzu")
 	{
 		removeSprites(mkpath(MaskFuton));
 		removeSprites(mkpath(MaskRaiton));
 		removeSprites(mkpath(MaskKaton));
 	}
-	else if (is_same(charName, "Naruto"))
+	else if (charName == "Naruto")
 	{
 		removeSprites(mkpath(SageNaruto));
 		removeSprites(mkpath(RikudoNaruto));
 		KTools::prepareFileOGG("SageNaruto", true);
 		KTools::prepareFileOGG("RikudoNaruto", true);
 	}
-	else if (is_same(charName, "RockLee"))
+	else if (charName == "RockLee")
 	{
 		removeSprites(mkpath(Lee));
 	}
-	else if (is_same(charName, "Lee"))
+	else if (charName == "Lee")
 	{
 		removeSprites(mkpath(RockLee));
 	}
-	else if (is_same(charName, "Sasuke"))
+	else if (charName == "Sasuke")
 	{
 		KTools::prepareFileOGG("ImmortalSasuke", true);
 		removeSprites(mkpath(ImmortalSasuke));
 	}
-	else if (is_same(charName, "Pain"))
+	else if (charName == "Pain")
 	{
 		KTools::prepareFileOGG("Nagato", true);
 		removeSprites(mkpath(AnimalPath));
@@ -285,7 +285,7 @@ void LoadLayer::unloadCharIMG(CharacterBase *c)
 		// addSprites(mkpath(PertaPath));
 		removeSprites(mkpath(Nagato));
 	}
-	else if (is_same(charName, "Nagato"))
+	else if (charName == "Nagato")
 	{
 		removeSprites(mkpath(AnimalPath));
 		removeSprites(mkpath(AsuraPath));
@@ -298,7 +298,7 @@ void LoadLayer::unloadAllCharsIMG(const vector<Hero *> &players)
 	vector<string> unloadVector(players.size());
 	for (auto player : players)
 	{
-		auto name = player->getCharacter()->getCString();
+		auto name = player->getName();
 		if (std::find(unloadVector.begin(), unloadVector.end(), name) == unloadVector.end())
 		{
 			unloadCharIMG(player);
@@ -358,8 +358,8 @@ void LoadLayer::onLoadFinish(float dt)
 
 	_gameLayer = GameLayer::create();
 	_gameLayer->setHudLayer(_hudLayer);
-	_gameLayer->setTotalKills(CCString::create("0"));
-	_gameLayer->setTotalTM(CCString::create("0"));
+	_gameLayer->setTotalKills(0);
+	_gameLayer->setTotalTime(0);
 	_gameLayer->initHeros();
 
 	_bgLayer = BGLayer::create();

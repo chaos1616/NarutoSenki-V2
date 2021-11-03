@@ -93,7 +93,7 @@ class AsuraPath : public Hero
 	// 		auto &monsterArray = getMonsterArray();
 	// 		for (auto mo : monsterArray)
 	// 		{
-	// 			if (mo->isCharacter("Rocket"))
+	// 			if (mo->getName() == "Rocket")
 	// 			{
 	// 				mo->setMaster(nullptr);
 	// 				removeList.push_back(mo);

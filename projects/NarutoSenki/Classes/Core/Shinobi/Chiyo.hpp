@@ -5,9 +5,9 @@
 
 class Chiyo : public Hero
 {
-	void setID(CCString *character, CCString *role, CCString *group) override
+	void setID(const string &name, const string &role, const string &group) override
 	{
-		Hero::setID(character, role, group);
+		Hero::setID(name, role, group);
 
 		getGameLayer()->onHUDInitialized(BIND(Chiyo::tryLockSkillButton));
 	}
@@ -30,7 +30,7 @@ class Chiyo : public Hero
 		{
 			for (auto mo : _monsterArray)
 			{
-				if (mo->isCharacter("Parents"))
+				if (mo->getName() == KugutsuEnum::Parents)
 				{
 					isFound1 = true;
 				}
@@ -49,10 +49,10 @@ class Chiyo : public Hero
 					int countNum = 0;
 					for (auto hero : getGameLayer()->_CharacterArray)
 					{
-						if (isSameGroupAs(hero) &&
+						if (getGroup() == hero->getGroup() &&
 							hero->isPlayerOrCom() &&
 							hero->getActionState() != State::DEAD &&
-							hero->isNotCharacter("Chiyo"))
+							hero->getName() != HeroEnum::Chiyo)
 						{
 							CCPoint sp = ccpSub(hero->getPosition(), getPosition());
 							if (sp.x <= kAttackRange)
@@ -170,7 +170,7 @@ class Chiyo : public Hero
 
 	Hero *createClone(int cloneTime) override
 	{
-		auto clone = createKugutsuHero<Parents>(HeroEnum::Parents);
+		auto clone = createKugutsuHero<Parents>(KugutsuEnum::Parents);
 		clone->setPosition(ccp(getPositionX(), getPositionY() - 3));
 		clone->_isArmored = true;
 		_monsterArray.push_back(clone);

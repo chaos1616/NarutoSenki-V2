@@ -128,7 +128,7 @@ class Kakashi : public Hero
 
 		for (auto hero : getGameLayer()->_CharacterArray)
 		{
-			if (isNotSameGroupAs(hero) &&
+			if (getGroup() != hero->getGroup() &&
 				hero->isPlayerOrCom() &&
 				hero->getActionState() != State::HURT &&
 				hero->getActionState() != State::DEAD)
@@ -138,8 +138,8 @@ class Kakashi : public Hero
 				{
 					if (!hero->_isVisable)
 					{
-						if (hero->isCharacter("Konan") ||
-							hero->isCharacter("Deidara"))
+						if (hero->getName() == HeroEnum::Konan ||
+							hero->getName() == HeroEnum::Deidara)
 						{
 							hero->unschedule(schedule_selector(CharacterBase::disableBuff));
 						}
@@ -187,7 +187,7 @@ class Kakashi : public Hero
 
 	Hero *createClone(int cloneTime) override
 	{
-		auto clone = createSummonHero<DogWall>(HeroEnum::DogWall);
+		auto clone = createSummonHero<DogWall>(SummonEnum::DogWall);
 		clone->setPosition(ccp(getPositionX() + (_isFlipped ? -56 : 56), getPositionY()));
 		clone->setAnchorPoint(ccp(0.5f, 0.1f));
 		clone->_isArmored = true;

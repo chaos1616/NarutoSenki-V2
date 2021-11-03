@@ -27,11 +27,11 @@ ActionButton::~ActionButton()
 {
 }
 
-bool ActionButton::init(const char *szImage)
+bool ActionButton::init(const string &szImage)
 {
 	RETURN_FALSE_IF(!CCSprite::init());
 
-	initWithSpriteFrameName(szImage);
+	initWithSpriteFrameName(szImage.c_str());
 	setAnchorPoint(ccp(0, 0));
 
 	return true;
@@ -653,7 +653,7 @@ void ActionButton::clearOugisMark()
 	}
 }
 
-ActionButton *ActionButton::create(const char *szImage)
+ActionButton *ActionButton::create(const string &szImage)
 {
 	ActionButton *ab = new ActionButton();
 	if (ab && ab->init(szImage))

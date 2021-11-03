@@ -62,17 +62,17 @@ public:                                                              \
 	inline virtual const varType &get##funName() { return varName; } \
 	inline virtual void set##funName(const varType &var) { varName = var; }
 
-// cocos2d::Value Type Property
+// std::string Type Property
 
-#define PROP_String(varName, funName)                                \
-private:                                                             \
-	Value varName;                                                   \
-                                                                     \
-public:                                                              \
-	inline std::string get##funName() { return varName.asString(); } \
-	inline const Value &get##funName##_Value() { return varName; }   \
-	inline void set##funName(const char *var) { varName = var; }     \
+#define PROP_String(varName, funName)                            \
+private:                                                         \
+	std::string varName;                                         \
+                                                                 \
+public:                                                          \
+	inline const std::string &get##funName() { return varName; } \
 	inline void set##funName(const std::string &var) { varName = var; }
+
+// cocos2d::Value Type Property
 
 #define PROP_Bool(varName, funName)                                \
 private:                                                           \

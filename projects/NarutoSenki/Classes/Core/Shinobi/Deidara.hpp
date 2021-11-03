@@ -275,7 +275,7 @@ class Deidara : public Hero
 
 	Hero *createClone(int cloneTime) override
 	{
-		auto clone = createSummonHero<Centipede>(HeroEnum::Centipede);
+		auto clone = createSummonHero<Centipede>(SummonEnum::Centipede);
 		clone->_isArmored = true;
 		return clone;
 	}

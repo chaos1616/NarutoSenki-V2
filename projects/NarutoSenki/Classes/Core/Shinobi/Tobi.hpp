@@ -154,15 +154,15 @@ class Tobi : public Hero
 
 		for (auto hero : getGameLayer()->_CharacterArray)
 		{
-			if (isNotSameGroupAs(hero) && hero->isPlayerOrCom() && hero->getActionState() != State::HURT && hero->getActionState() != State::DEAD)
+			if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->getActionState() != State::HURT && hero->getActionState() != State::DEAD)
 			{
 				float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
 				if (distanceX < kAttackRange)
 				{
 					if (!hero->_isVisable)
 					{
-						if (hero->isCharacter("Konan") ||
-							hero->isCharacter("Deidara"))
+						if (hero->getName() == HeroEnum::Konan ||
+							hero->getName() == HeroEnum::Deidara)
 						{
 							hero->unschedule(schedule_selector(CharacterBase::disableBuff));
 						}

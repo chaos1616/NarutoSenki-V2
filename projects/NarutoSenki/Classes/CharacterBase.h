@@ -31,12 +31,15 @@ public:
 	CharacterBase();
 	~CharacterBase();
 
-	virtual void		setID(CCString* character, CCString* role, CCString* group);
+	virtual void		setID(const string &name, const string &role, const string &group);
 	virtual void		setHPbar();
 	virtual void		changeHPbar();
 	virtual void		setShadows();
 
-	VPROP(int,_charNO,CharNO);
+	PROP_String(_name, Name);
+	PROP_String(_role, Role);
+	PROP_String(_group, Group);
+	VPROP(int, _charId, CharId);
 
 	uint32_t			_deadNum;
 	uint32_t			_flogNum;
@@ -94,10 +97,6 @@ public:
 	bool				_isControlled;
 
 	CC_SYNTHESIZE_RETAIN(CCLabelTTF*,cpLabel,CPLabel);
-	//attributes
-	CC_SYNTHESIZE_RETAIN(CCString*,_role,Role);
-	CC_SYNTHESIZE_RETAIN(CCString*,_group,Group);
-	CC_SYNTHESIZE_RETAIN(CCString*,_character,Character);
 	PROP_Vector(vector<GearType>,_gearArray,GearArray);
 
 	bool				enableDead	 = true;
@@ -433,9 +432,9 @@ protected:
 	void				setRestore(float dt);
 
 
-	bool				findEnemy(const char* type, int searchRange, bool masterRange = false);
-	bool				findEnemy2(const char* type);
-	bool				findTargetEnemy(const char* type, bool isTowerDected);
+	bool				findEnemy(const string &type, int searchRange, bool masterRange = false);
+	bool				findEnemy2(const string &type);
+	bool				findTargetEnemy(const string &type, bool isTowerDected);
 	template <typename T>
 	typename std::enable_if<std::is_base_of<CharacterBase, T>::value, bool>::type findEnemyBy(const vector<T *> &list, int searchRange, bool masterRange = false);
 	template <typename T>
@@ -455,6 +454,7 @@ protected:
 	void				removeDamageDisplay();
 
 public:
+	inline bool			hasTempAttackValue1() { return getTempAttackValue1() > 0; }
 	// UI
 	void 				updateHpBar();
 	void				updateDataByLVOnly();
@@ -497,54 +497,31 @@ public:
 		if (isUpdateHpBar)
 			updateHpBar();
 	}
-	inline bool			hasTempAttackValue1() { return getTempAttackValue1() > 0; }
-	inline bool			isCharacter(const string &c) { return _character->m_sString == c; }
-	inline bool			isCharacter(const char *c) { return is_same(_character->getCString(), c); }
-	inline bool			isCharacter(const char *c1, const char *c2) {
-		auto n = _character->getCString();
-		return is_same(n, c1) || is_same(n, c2);
-	}
-	inline bool			isCharacter(const char *c1, const char *c2, const char *c3) {
-		auto n = _character->getCString();
-		return is_same(n, c1) || is_same(n, c2) || is_same(n, c3);
-	}
-	inline bool			isCharacter(const char *c1, const char *c2, const char *c3, const char *c4) {
-		auto n = _character->getCString();
-		return is_same(n, c1) || is_same(n, c2) || is_same(n, c3) || is_same(n, c4);
-	}
-	inline bool			isNotCharacter(const string &c) { return _character->m_sString != c; }
-	inline bool			isNotCharacter(const char *c) { return !is_same(_character->getCString(), c); }
-	inline bool			isNotCharacter(const char *c1, const char *c2) { return !isCharacter(c1, c2); }
-	inline bool			isNotCharacter(const char *c1, const char *c2, const char *c3) { return !isCharacter(c1, c2, c3); }
-	inline bool			isNotCharacter(const char *c1, const char *c2, const char *c3, const char *c4) { return !isCharacter(c1, c2, c3, c4); }
-	inline bool			isGuardian() { return isCharacter(kGuardian_Han, kGuardian_Roshi); }
+	inline bool			isGuardian() { return _name == kGuardian_Han || _name == kGuardian_Roshi; }
 	inline bool			isNotGuardian() { return !isGuardian(); }
 	// role extensions
-	inline bool			isPlayer() { return is_same(_role->getCString(), kRolePlayer); }
-	inline bool			isCom() { return is_same(_role->getCString(), kRoleCom); }
-	inline bool			isClone() { return is_same(_role->getCString(), kRoleClone); }
-	inline bool			isFlog() { return is_same(_role->getCString(), kRoleFlog); }
-	inline bool			isKugutsu() { return is_same(_role->getCString(), kRoleKugutsu); }
-	inline bool			isMon() { return is_same(_role->getCString(), kRoleMon); }
-	inline bool			isSummon() { return is_same(_role->getCString(), kRoleSummon); }
-	inline bool			isTower() { return is_same(_role->getCString(), kRoleTower); }
-	inline bool			isBullet() { return is_same(_role->getCString(), kRoleBullet); }
+	inline bool			isPlayer() { return _role == kRolePlayer; }
+	inline bool			isCom() { return _role == kRoleCom; }
+	inline bool			isClone() { return _role == kRoleClone; }
+	inline bool			isFlog() { return _role == kRoleFlog; }
+	inline bool			isKugutsu() { return _role == kRoleKugutsu; }
+	inline bool			isMon() { return _role == kRoleMon; }
+	inline bool			isSummon() { return _role == kRoleSummon; }
+	inline bool			isTower() { return _role == kRoleTower; }
+	inline bool			isBullet() { return _role == kRoleBullet; }
 	inline bool			isPlayerOrCom() { return isPlayer() || isCom(); }
-	inline bool			isNotPlayer() { return !is_same(_role->getCString(), kRolePlayer); }
-	inline bool			isNotCom() { return !is_same(_role->getCString(), kRoleCom); }
-	inline bool			isNotClone() { return !is_same(_role->getCString(), kRoleClone); }
-	inline bool			isNotFlog() { return !is_same(_role->getCString(), kRoleFlog); }
-	inline bool			isNotKugutsu() { return !is_same(_role->getCString(), kRoleKugutsu); }
-	inline bool			isNotMon() { return !is_same(_role->getCString(), kRoleMon); }
-	inline bool			isNotSummon() { return !is_same(_role->getCString(), kRoleSummon); }
-	inline bool			isNotTower() { return !is_same(_role->getCString(), kRoleTower); }
-	inline bool			isNotBullet() { return !is_same(_role->getCString(), kRoleBullet); }
+	inline bool			isNotPlayer() { return _role != kRolePlayer; }
+	inline bool			isNotCom() { return _role != kRoleCom; }
+	inline bool			isNotClone() { return _role != kRoleClone; }
+	inline bool			isNotFlog() { return _role != kRoleFlog; }
+	inline bool			isNotKugutsu() { return _role != kRoleKugutsu; }
+	inline bool			isNotMon() { return _role != kRoleMon; }
+	inline bool			isNotSummon() { return _role != kRoleSummon; }
+	inline bool			isNotTower() { return _role != kRoleTower; }
+	inline bool			isNotBullet() { return _role != kRoleBullet; }
 	// group extensions
-	inline bool			isGroup(const char *group) { return is_same(_group->getCString(), group); }
-	inline bool			isSameGroupAs(CharacterBase *c) { return isGroup(c->getGroup()->getCString()); }
-	inline bool			isNotSameGroupAs(CharacterBase *c) { return !isSameGroupAs(c); }
-	inline bool			isKonohaGroup() { return is_same(_group->getCString(), Konoha); }
-	inline bool			isAkatsukiGroup() { return is_same(_group->getCString(), Akatsuki); }
+	inline bool			isKonohaGroup() { return _group == Group::Konoha; }
+	inline bool			isAkatsukiGroup() { return _group == Group::Akatsuki; }
 	// monster extensions
 	inline bool			hasMonsterArrayAny() { return !_monsterArray.empty(); }
 	inline void			removeMon(CharacterBase *mo) {
@@ -555,7 +532,7 @@ public:
 		if (hasMonsterArrayAny()) {
 			for (auto mo : _monsterArray)
 			{
-				if (mo->isCharacter(name))
+				if (mo->getName() == name)
 				{
 					std::erase(_monsterArray, mo);
 					mo->removeFromParent();

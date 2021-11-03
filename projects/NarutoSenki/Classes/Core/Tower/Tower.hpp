@@ -20,16 +20,16 @@ public:
 		return true;
 	}
 
-	void setID(CCString *character, CCString *role, CCString *group)
+	void setID(const string &name, const string &role, const string &group)
 	{
-		setCharacter(character);
+		setName(name);
 		setRole(role);
 		setGroup(group);
 
 		CCArray *animationArray = CCArray::create();
 		const char *filePath;
 
-		if (isCharacter("KonohaCenter", "AkatsukiCenter"))
+		if (getName() == TowerEnum::KonohaCenter || getName() == TowerEnum::AkatsukiCenter)
 			filePath = "Element/Tower/CenterDate.xml";
 		else
 			filePath = "Element/Tower/TowerDate.xml";
@@ -75,7 +75,7 @@ public:
 
 	void setHPbar()
 	{
-		if (strcmp(getGroup()->getCString(), getGameLayer()->currentPlayer->getGroup()->getCString()) != 0)
+		if (getGroup() != getGameLayer()->currentPlayer->getGroup())
 			_hpBar = HPBar::create("hp_bar_r.png");
 		else
 			_hpBar = HPBar::create("hp_bar.png");
@@ -94,7 +94,7 @@ public:
 		UnitEx::RemoveAllFlogsMainTarget(this);
 
 		std::erase(getGameLayer()->_TowerArray, this);
-		getGameLayer()->setTowerState(getCharNO());
+		getGameLayer()->setTowerState(getCharId());
 		getGameLayer()->checkTower();
 		removeFromParent();
 	}

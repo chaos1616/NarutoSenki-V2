@@ -9,38 +9,34 @@
 
 class Naruto : public Hero
 {
-#define kNaruto______ "Naruto"
-#define kSageNaruto__ "SageNaruto"
-#define kRikudoNaruto "RikudoNaruto"
-
-	void setID(CCString *character, CCString *role, CCString *group) override
+	void setID(const string &name, const string &role, const string &group) override
 	{
-		Hero::setID(character, role, group);
+		Hero::setID(name, role, group);
 
-		match_char_exp3(kNaruto______, setAIHandler(Naruto::perform),
-						kSageNaruto__, setAIHandler(Naruto::perform_SageNaruto),
-						kRikudoNaruto, setAIHandler(Naruto::perform_RikudoNaruto));
+		match_char_exp3(HeroEnum::Naruto, setAIHandler(Naruto::perform),
+						HeroEnum::SageNaruto, setAIHandler(Naruto::perform_SageNaruto),
+						HeroEnum::RikudoNaruto, setAIHandler(Naruto::perform_RikudoNaruto));
 	}
 
 	void changeAction() override
 	{
-		match_char_exp3(kNaruto______, changeAction_Naruto(),
-						kSageNaruto__, changeAction_SageNaruto(),
-						kRikudoNaruto, changeAction_RikudoNaruto());
+		match_char_exp3(HeroEnum::Naruto, changeAction_Naruto(),
+						HeroEnum::SageNaruto, changeAction_SageNaruto(),
+						HeroEnum::RikudoNaruto, changeAction_RikudoNaruto());
 	}
 
 	void resumeAction(float dt) override
 	{
-		match_char_exp3(kNaruto______, resumeAction_Naruto(dt),
-						kSageNaruto__, resumeAction_SageNaruto(dt),
-						kRikudoNaruto, resumeAction_RikudoNaruto(dt));
+		match_char_exp3(HeroEnum::Naruto, resumeAction_Naruto(dt),
+						HeroEnum::SageNaruto, resumeAction_SageNaruto(dt),
+						HeroEnum::RikudoNaruto, resumeAction_RikudoNaruto(dt));
 	}
 
 	Hero *createClone(int cloneTime) override
 	{
-		match_char_exp3(kNaruto______, return createClone_Naruto(cloneTime),
-						kSageNaruto__, return createClone_SageNaruto(cloneTime),
-						kRikudoNaruto, return createClone_RikudoNaruto(cloneTime));
+		match_char_exp3(HeroEnum::Naruto, return createClone_Naruto(cloneTime),
+						HeroEnum::SageNaruto, return createClone_SageNaruto(cloneTime),
+						HeroEnum::RikudoNaruto, return createClone_RikudoNaruto(cloneTime));
 		return nullptr;
 	}
 
@@ -228,7 +224,7 @@ class Naruto : public Hero
 
 	inline Hero *createClone_Naruto(int cloneTime)
 	{
-		auto clone = createCloneHero<NarutoClone>(getCharacter()->m_sString);
+		auto clone = createCloneHero<NarutoClone>(getName());
 		return clone;
 	}
 
@@ -402,7 +398,7 @@ class Naruto : public Hero
 
 	inline Hero *createClone_SageNaruto(int cloneTime)
 	{
-		auto clone = createCloneHero<SageNarutoClone>(getCharacter()->m_sString);
+		auto clone = createCloneHero<SageNarutoClone>(getName());
 		clone->setSkill1Action(clone->createAnimation(clone->skillSPC1Array, 10.0f, false, true));
 		clone->setSAttackValue1(getSAttackValue1());
 		clone->setSAttackType1(_spcAttackType1);
@@ -541,7 +537,7 @@ class Naruto : public Hero
 		setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
 		setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
 
-		if (isCharacter(kRikudoNaruto))
+		if (getName() == HeroEnum::RikudoNaruto)
 		{
 			setTempAttackValue1(getNAttackValue());
 			setNAttackValue(560);
@@ -586,7 +582,7 @@ class Naruto : public Hero
 
 	inline Hero *createClone_RikudoNaruto(int cloneTime)
 	{
-		auto clone = createCloneHero<Kurama>(HeroEnum::Kurama);
+		auto clone = createCloneHero<Kurama>(SummonEnum::Kurama);
 		clone->setGP(5000);
 		clone->_isArmored = true;
 		clone->setWalkSpeed(320);

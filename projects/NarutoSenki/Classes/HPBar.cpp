@@ -38,9 +38,10 @@ void HPBar::loseHP(float percent)
 {
 	if (getGameLayer()->_isHardCoreGame)
 	{
-		auto gardTower = getGameLayer()->playerGroup == Konoha ? "AkatsukiCenter" : "KonohaCenter";
-
-		if (is_same(_delegate->getCharacter()->getCString(), gardTower))
+		auto gardTower = getGameLayer()->playerGroup == Group::Konoha
+							 ? TowerEnum::AkatsukiCenter
+							 : TowerEnum::KonohaCenter;
+		if (_delegate->getName() == gardTower)
 		{
 			if (not getGameLayer()->_hasSpawnedGuardian && percent <= 0.8)
 			{
@@ -50,10 +51,10 @@ void HPBar::loseHP(float percent)
 
 		if (getGameLayer()->_hasSpawnedGuardian)
 		{
-			auto _slayer = (CharacterBase *)_delegate->_slayer;
+			auto _slayer = _delegate->_slayer;
 			if (_slayer)
 			{
-				if (is_same(_delegate->getCharacter()->getCString(), gardTower))
+				if (_delegate->getName() == gardTower)
 					_slayer->isHurtingTower = true;
 				else
 					_slayer->isHurtingTower = false;
@@ -69,7 +70,8 @@ void HPBar::loseHP(float percent)
 		if (_delegate->isFlog())
 		{
 			if (_slayer->getSecMaster() &&
-				_slayer->isNotCharacter("KageHand", "KageHands"))
+				_slayer->getName() != SkillEnum::KageHand &&
+				_slayer->getName() != SkillEnum::KageHands)
 			{
 				if (_slayer->getSecMaster()->getController())
 					currentSlayer = _slayer->getSecMaster()->getController();
@@ -93,8 +95,8 @@ void HPBar::loseHP(float percent)
 
 			if (currentSlayer->getLV() != 6)
 			{
-				if (currentSlayer->isCharacter("Naruto") ||
-					currentSlayer->isCharacter("SageNaruto"))
+				if (currentSlayer->getName() == HeroEnum::Naruto ||
+					currentSlayer->getName() == HeroEnum::SageNaruto)
 				{
 					currentSlayer->setEXP(currentSlayer->getEXP() + 12);
 					currentSlayer->changeHPbar();
@@ -139,9 +141,9 @@ void HPBar::loseHP(float percent)
 		else if (_delegate->isTower())
 		{
 			if (_slayer->getSecMaster() &&
-				_slayer->isNotCharacter("KageHand",
-										"KageHands",
-										"SmallSlug"))
+				_slayer->getName() != SkillEnum::KageHand &&
+				_slayer->getName() != SkillEnum::KageHands &&
+				_slayer->getName() != SummonEnum::SmallSlug)
 			{
 				if (_slayer->getSecMaster()->getController())
 					currentSlayer = _slayer->getSecMaster()->getController();
@@ -165,12 +167,12 @@ void HPBar::loseHP(float percent)
 
 			if ((currentSlayer->isNotFlog()))
 			{
-				getGameLayer()->setReport(currentSlayer->getCharacter()->getCString(), kRoleTower, currentSlayer->getKillNum());
+				getGameLayer()->setReport(currentSlayer->getName(), kRoleTower, currentSlayer->getKillNum());
 
 				if (currentSlayer->getLV() != 6)
 				{
-					if (currentSlayer->isCharacter("Naruto") ||
-						currentSlayer->isCharacter("SageNaruto"))
+					if (currentSlayer->getName() == HeroEnum::Naruto ||
+						currentSlayer->getName() == HeroEnum::SageNaruto)
 					{
 						currentSlayer->setEXP(currentSlayer->getEXP() + 625);
 						currentSlayer->changeHPbar();
@@ -221,8 +223,8 @@ void HPBar::loseHP(float percent)
 
 			for (auto otherSlayer : getGameLayer()->_CharacterArray)
 			{
-				if (is_same(currentSlayer->getGroup()->getCString(), otherSlayer->getGroup()->getCString()) &&
-					strcmp(currentSlayer->getCharacter()->getCString(), otherSlayer->getCharacter()->getCString()) != 0)
+				if (currentSlayer->getGroup() == otherSlayer->getGroup() &&
+					currentSlayer->getName() != otherSlayer->getName())
 				{
 					if (otherSlayer->getLV() != 6)
 					{
@@ -270,7 +272,7 @@ void HPBar::loseHP(float percent)
 		}
 		else if (_delegate->isPlayerOrCom())
 		{
-			if (_delegate->isCharacter("Kakuzu") && getGameLayer()->_isOugis2Game)
+			if (_delegate->getName() == HeroEnum::Kakuzu && getGameLayer()->_isOugis2Game)
 			{
 				bool reieveAble = false;
 				if (_delegate->getCKR2() >= 25000 && _delegate->hearts > 0)
@@ -339,10 +341,10 @@ void HPBar::loseHP(float percent)
 				currentSlayer = _delegate->getController();
 			}
 			else if (_slayer->getSecMaster() &&
-					 _slayer->isNotCharacter("KageHand",
-											 "KageHands",
-											 "SmallSlug",
-											 "FakeItachi"))
+					 _slayer->getName() != SkillEnum::KageHand &&
+					 _slayer->getName() != SkillEnum::KageHands &&
+					 _slayer->getName() != SummonEnum::SmallSlug &&
+					 _slayer->getName() != SkillEnum::FakeItachi)
 			{
 				if (_slayer->getSecMaster()->getController())
 					currentSlayer = _slayer->getSecMaster()->getController();
@@ -364,7 +366,7 @@ void HPBar::loseHP(float percent)
 					currentSlayer = _slayer;
 			}
 
-			if (currentSlayer->isCharacter("Kakuzu"))
+			if (currentSlayer->getName() == HeroEnum::Kakuzu)
 			{
 				if (currentSlayer->hearts <= 4)
 				{
@@ -390,10 +392,10 @@ void HPBar::loseHP(float percent)
 			{
 				uint32_t realKillNum = currentSlayer->getKillNum() + 1;
 				currentSlayer->setKillNum(realKillNum);
-				getGameLayer()->setReport(currentSlayer->getCharacter()->getCString(), _delegate->getCharacter()->getCString(), currentSlayer->getKillNum());
+				getGameLayer()->setReport(currentSlayer->getName(), _delegate->getName(), currentSlayer->getKillNum());
 
 				auto currentTeam = getGameLayer()->playerGroup;
-				if (currentTeam == currentSlayer->getGroup()->getCString())
+				if (currentTeam == currentSlayer->getGroup())
 				{
 					int teamKills = to_int(getGameLayer()->getHudLayer()->KonoLabel->getString()) + 1;
 					getGameLayer()->getHudLayer()->KonoLabel->setString(to_cstr(teamKills));
@@ -406,14 +408,14 @@ void HPBar::loseHP(float percent)
 
 				if (currentSlayer->isNotGuardian())
 				{
-					int newValue = to_int(getGameLayer()->getTotalKills()->getCString()) + 1;
-					getGameLayer()->setTotalKills(to_ccstring(newValue));
+					uint32_t newTime = getGameLayer()->getTotalKills() + 1;
+					getGameLayer()->setTotalKills(newTime);
 				}
 
 				if (currentSlayer->getLV() != 6)
 				{
-					if (currentSlayer->isCharacter("Naruto") ||
-						currentSlayer->isCharacter("SageNaruto"))
+					if (currentSlayer->getName() == HeroEnum::Naruto ||
+						currentSlayer->getName() == HeroEnum::SageNaruto)
 					{
 						currentSlayer->setEXP(currentSlayer->getEXP() + 125);
 						currentSlayer->changeHPbar();
@@ -467,8 +469,8 @@ void HPBar::loseHP(float percent)
 
 			for (auto otherSlayer : getGameLayer()->_CharacterArray)
 			{
-				if (is_same(currentSlayer->getGroup()->getCString(), otherSlayer->getGroup()->getCString()) &&
-					strcmp(currentSlayer->getCharacter()->getCString(), otherSlayer->getCharacter()->getCString()) != 0)
+				if (currentSlayer->getGroup() == otherSlayer->getGroup() &&
+					currentSlayer->getName() != otherSlayer->getName())
 				{
 					if (otherSlayer->getLV() != 6)
 					{

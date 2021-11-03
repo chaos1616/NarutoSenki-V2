@@ -181,7 +181,7 @@ class Tsunade : public Hero
 
 	Hero *createClone(int cloneTime) override
 	{
-		auto clone = createSummonHero<Slug>(HeroEnum::Slug);
+		auto clone = createSummonHero<Slug>(SummonEnum::Slug);
 		clone->_isArmored = true;
 		return clone;
 	}

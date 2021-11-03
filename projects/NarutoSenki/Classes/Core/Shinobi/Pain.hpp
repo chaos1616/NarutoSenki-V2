@@ -4,15 +4,12 @@
 
 class Pain : public Hero
 {
-#define kPain__ "Pain"
-#define kNagato "Nagato"
-
-	void setID(CCString *character, CCString *role, CCString *group) override
+	void setID(const string &name, const string &role, const string &group) override
 	{
-		Hero::setID(character, role, group);
+		Hero::setID(name, role, group);
 
-		match_char_exp(kPain__, setAIHandler(Pain::perform),
-					   kNagato, setAIHandler(Pain::perform_Nagato));
+		match_char_exp(HeroEnum::Pain, setAIHandler(Pain::perform),
+					   HeroEnum::Nagato, setAIHandler(Pain::perform_Nagato));
 	}
 
 	void perform() override
@@ -175,7 +172,7 @@ class Pain : public Hero
 					int countNum = 0;
 					for (auto hero : getGameLayer()->_CharacterArray)
 					{
-						if (isSameGroupAs(hero) == 0 &&
+						if (getGroup() == hero->getGroup() == 0 &&
 							hero->isPlayerOrCom() &&
 							hero->getActionState() == State::DEAD)
 						{
@@ -311,7 +308,7 @@ class Pain : public Hero
 	void changeAction() override
 	{
 		// TODO: New Pain
-		// if (isCharacter("Nagato"))
+		// if (getName() == HeroEnum::Nagato)
 		// {
 		// 	if (_skillChangeBuffValue == 17)
 		// 	{
@@ -340,7 +337,7 @@ class Pain : public Hero
 	void setActionResume() override
 	{
 		// TODO: New Pain
-		// if (isCharacter("Nagato"))
+		// if (getName() == HeroEnum::Nagato)
 		// {
 		// 	if (_skillChangeBuffValue == 17)
 		// 	{
@@ -369,14 +366,14 @@ class Pain : public Hero
 		Hero *clone = nullptr;
 
 		// TODO: New Pain
-		// if (isCharacter(kPain__))
+		// if (getName() == HeroEnum::Pain)
 		// {
 		// 	clone = createCloneHero<NarakaPath>(HeroEnum::NarakaPath);
 		// 	clone->_isArmored = true;
 
 		// 	lockSkill5Button();
 		// }
-		if (isCharacter(kNagato)) // Old Nagato skill
+		if (getName() == HeroEnum::Nagato) // Old Nagato skill
 		{
 			clone = createCloneHero<NarakaPath>(HeroEnum::NarakaPath);
 			clone->_isArmored = true;

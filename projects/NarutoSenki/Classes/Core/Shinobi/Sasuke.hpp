@@ -3,33 +3,30 @@
 
 class Sasuke : public Hero
 {
-#define kSasuke________ "Sasuke"
-#define kImmortalSasuke "ImmortalSasuke"
-
-	void setID(CCString *character, CCString *role, CCString *group) override
+	void setID(const string &name, const string &role, const string &group) override
 	{
-		Hero::setID(character, role, group);
+		Hero::setID(name, role, group);
 
-		match_char_exp(kSasuke________, setAIHandler(Sasuke::perform),
-					   kImmortalSasuke, setAIHandler(Sasuke::perform_SasukeImmortal));
+		match_char_exp(HeroEnum::Sasuke, setAIHandler(Sasuke::perform),
+					   HeroEnum::ImmortalSasuke, setAIHandler(Sasuke::perform_SasukeImmortal));
 	}
 
 	void changeAction() override
 	{
-		match_char_exp(kSasuke________, changeAction_Sasuke(),
-					   kImmortalSasuke, changeAction_SasukeImmortal());
+		match_char_exp(HeroEnum::Sasuke, changeAction_Sasuke(),
+					   HeroEnum::ImmortalSasuke, changeAction_SasukeImmortal());
 	}
 
 	void resumeAction(float dt) override
 	{
-		match_char_exp(kSasuke________, resumeAction_Sasuke(dt),
-					   kImmortalSasuke, resumeAction_SasukeImmortal(dt));
+		match_char_exp(HeroEnum::Sasuke, resumeAction_Sasuke(dt),
+					   HeroEnum::ImmortalSasuke, resumeAction_SasukeImmortal(dt));
 	}
 
 	void setActionResume() override
 	{
-		match_char_exp(kSasuke________, setActionResume_Sasuke(),
-					   kImmortalSasuke, setActionResume_SasukeImmortal());
+		match_char_exp(HeroEnum::Sasuke, setActionResume_Sasuke(),
+					   HeroEnum::ImmortalSasuke, setActionResume_SasukeImmortal());
 	}
 
 	// Sasuke
@@ -174,7 +171,7 @@ class Sasuke : public Hero
 
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
-				if (isNotSameGroupAs(hero) &&
+				if (getGroup() != hero->getGroup() &&
 					hero->isPlayerOrCom() &&
 					hero->getActionState() != State::HURT &&
 					hero->getActionState() != State::DEAD)
@@ -184,8 +181,8 @@ class Sasuke : public Hero
 					{
 						if (!hero->_isVisable)
 						{
-							if (hero->isCharacter("Konan") ||
-								hero->isCharacter("Deidara"))
+							if (hero->getName() == HeroEnum::Konan ||
+								hero->getName() == HeroEnum::Deidara)
 							{
 								hero->unschedule(schedule_selector(CharacterBase::disableBuff));
 							}
@@ -427,7 +424,7 @@ class Sasuke : public Hero
 
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
-				if (isNotSameGroupAs(hero) &&
+				if (getGroup() != hero->getGroup() &&
 					hero->isPlayerOrCom() &&
 					hero->getActionState() != State::HURT &&
 					hero->getActionState() != State::DEAD)
@@ -437,8 +434,8 @@ class Sasuke : public Hero
 					{
 						if (!hero->_isVisable)
 						{
-							if (hero->isCharacter("Konan") ||
-								hero->isCharacter("Deidara"))
+							if (hero->getName() == HeroEnum::Konan ||
+								hero->getName() == HeroEnum::Deidara)
 							{
 								hero->unschedule(schedule_selector(CharacterBase::disableBuff));
 							}

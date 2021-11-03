@@ -48,7 +48,6 @@ public:
 
 	CCTMXTiledMap *currentMap;
 	CharacterBase *currentPlayer;
-	CCPoint spawnPoint;
 
 	uint32_t _second;
 	uint32_t _minute;
@@ -75,10 +74,10 @@ public:
 	CC_SYNTHESIZE(HudLayer *, _hudLayer, HudLayer);
 	void onHUDInitialized(const OnHUDInitializedCallback &callback);
 	bool isHUDInit();
-	void setTowerState(int charNO);
+	void setTowerState(int charId);
 
-	CC_SYNTHESIZE_RETAIN(CCString *, totalKills, TotalKills);
-	CC_SYNTHESIZE_RETAIN(CCString *, totalTM, TotalTM);
+	PROP_UInt(totalKills, TotalKills);
+	PROP_UInt(totalTime, TotalTime);
 
 	CCSpriteBatchNode *skillEffectBatch;
 	CCSpriteBatchNode *damageEffectBatch;
@@ -96,7 +95,8 @@ public:
 	void updateViewPoint(float dt);
 	void updateGameTime(float dt);
 
-	Hero *addHero(CCString *character, CCString *role, CCString *group, CCPoint spawnPoint, int charNo);
+	Hero *addHero(const HeroData &data, int charId);
+	Hero *addHero(const string &name, const string &role, const string &group, CCPoint spawnPoint, int charNo);
 	void addFlog(float dt);
 
 	void attackButtonClick(abType type);
@@ -119,7 +119,7 @@ public:
 	void setHPLose(float percent);
 	void setCKRLose(bool isCRK2);
 
-	void setReport(const char *name1, const char *name2, uint32_t killNum);
+	void setReport(const string &name1, const string &name2, uint32_t killNum);
 	void clearDoubleClick();
 	void resetStatusBar();
 	void setCoin(const char *value);
@@ -144,7 +144,10 @@ public:
 	bool _isStarted;
 	bool _isExiting;
 
-	inline const char *getGuardianGroup() { return playerGroup == Konoha ? "AkatsukiCenter" : "KonohaCenter"; }
+	inline const char *getGuardianGroup()
+	{
+		return playerGroup == Group::Konoha ? TowerEnum::AkatsukiCenter : TowerEnum::KonohaCenter;
+	}
 
 	bool _isGear;
 	bool _isPause;

@@ -48,7 +48,7 @@ public:
 
 	void onCharacterDead(CharacterBase *c)
 	{
-		CCLOG("[Character Dead] Name: %s, Role: %s, Group: %s", c->getCharacter()->getCString(), c->getRole()->getCString(), c->getGroup()->getCString());
+		CCLOG("[Character Dead] Name: %s, Role: %s, Group: %s", c->getName().c_str(), c->getRole().c_str(), c->getGroup().c_str());
 
 		if (c->isPlayerOrCom())
 		{
@@ -58,7 +58,7 @@ public:
 			{
 				c->enableReborn = false;
 				if (liveCount == 0)
-					getGameLayer()->onGameOver(!c->isGroup(playerGroup));
+					getGameLayer()->onGameOver(c->getGroup() != playerGroup);
 			}
 			else
 			{
@@ -72,7 +72,7 @@ public:
 
 	void onCharacterReborn(CharacterBase *c)
 	{
-		CCLOG("[Character Reborn] Name: %s, Role: %s, Group: %s", c->getCharacter()->getCString(), c->getRole()->getCString(), c->getGroup()->getCString());
+		CCLOG("[Character Reborn] Name: %s, Role: %s, Group: %s", c->getName().c_str(), c->getRole().c_str(), c->getGroup().c_str());
 
 		if (c->isPlayerOrCom())
 		{
@@ -84,9 +84,9 @@ public:
 			auto gameLayer = getGameLayer();
 			// initial a new random character
 			auto newCharName = heroVector.at(c->changeCharId);
-			CCLOG("[Change Character] %s from %s to %s", c->getRole()->getCString(), c->getCharacter()->getCString(), newCharName.c_str());
+			CCLOG("[Change Character] %s from %s to %s", c->getRole().c_str(), c->getName().c_str(), newCharName.c_str());
 
-			if (c->isCharacter(newCharName))
+			if (c->getName() == newCharName)
 			{
 				c->changeCharId = -1;
 				return;
@@ -125,14 +125,14 @@ public:
 				// load new char assets
 				LoadLayer::perloadCharIMG(newCharName);
 				// Unload old character assets if not used by the other player or AI
-				auto oldCharName = c->getCharacter()->m_sString;
+				auto oldCharName = c->getName();
 				if (std::find(heroVector.begin(), heroVector.end(), oldCharName) == heroVector.end())
 				{
 					LoadLayer::unloadCharIMG(c);
 				}
 			}
 			auto hudLayer = gameLayer->getHudLayer();
-			auto newChar = (Hero *)gameLayer->addHero(CCString::create(newCharName), c->getRole(), c->getGroup(), c->getSpawnPoint(), c->getCharNO());
+			auto newChar = gameLayer->addHero(newCharName, c->getRole(), c->getGroup(), c->getSpawnPoint(), c->getCharId());
 			bool isPlayer = newChar->isPlayer();
 			newChar->setCoin(c->getCoin());
 			newChar->setCKR(c->getCKR());
@@ -214,7 +214,6 @@ public:
 			{
 				newChar->doAI();
 			}
-			gameLayer->_CharacterArray.push_back(newChar);
 		}
 	}
 
@@ -224,7 +223,7 @@ private:
 		auto index = getIndexByHero(c);
 		if (index == -1)
 		{
-			CCLOGERROR("Not found hero %s from hero vector", c->getCharacter()->getCString());
+			CCLOGERROR("Not found hero %s from hero vector", c->getName().c_str());
 			return;
 		}
 		c->changeCharId = index;
@@ -235,6 +234,6 @@ private:
 
 	inline int getIndexByHero(CharacterBase *c)
 	{
-		return (int)heroVector.size() < c->getCharNO() ? -1 : c->getCharNO() - 1;
+		return (int)heroVector.size() < c->getCharId() ? -1 : c->getCharId() - 1;
 	}
 };

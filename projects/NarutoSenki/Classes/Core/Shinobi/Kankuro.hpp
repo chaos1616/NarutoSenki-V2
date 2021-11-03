@@ -6,9 +6,9 @@
 
 class Kankuro : public Hero
 {
-	void setID(CCString *character, CCString *role, CCString *group) override
+	void setID(const string &name, const string &role, const string &group) override
 	{
-		Hero::setID(character, role, group);
+		Hero::setID(name, role, group);
 
 		getGameLayer()->onHUDInitialized(BIND(Kankuro::tryLockSkillButton));
 	}
@@ -33,15 +33,15 @@ class Kankuro : public Hero
 		{
 			for (auto mo : _monsterArray)
 			{
-				if (mo->isCharacter("Saso"))
+				if (mo->getName() == KugutsuEnum::Saso)
 				{
 					isFound3 = true;
 				}
-				else if (mo->isCharacter("Sanshouuo"))
+				else if (mo->getName() == KugutsuEnum::Sanshouuo)
 				{
 					isFound2 = true;
 				}
-				else if (mo->isCharacter("Karasu"))
+				else if (mo->getName() == KugutsuEnum::Karasu)
 				{
 					isFound1 = true;
 				}
@@ -181,16 +181,16 @@ class Kankuro : public Hero
 
 		if (cloneTime == 0)
 		{
-			clone = create<Karasu>(CCString::create("Karasu"), CCString::create(kRoleKugutsu), getGroup());
+			clone = createKugutsuHero<Karasu>(KugutsuEnum::Karasu);
 		}
 		else if (cloneTime == 1)
 		{
-			clone = create<Sanshouuo>(CCString::create("Sanshouuo"), CCString::create(kRoleKugutsu), getGroup());
+			clone = createKugutsuHero<Sanshouuo>(KugutsuEnum::Sanshouuo);
 			lockSkill4Button();
 		}
 		else if (cloneTime == 2)
 		{
-			clone = create<Saso>(CCString::create("Saso"), CCString::create(kRoleKugutsu), getGroup());
+			clone = createKugutsuHero<Saso>(KugutsuEnum::Saso);
 			lockSkill5Button();
 		}
 

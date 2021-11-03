@@ -80,7 +80,7 @@ private:
 			   auto tempArray = CCArray::create();
 
 			   int i = 1;
-			   if (thiz->isCharacter("Tenten"))
+			   if (thiz->getName() == HeroEnum::Tenten)
 			   {
 				   while (i < 11)
 				   {
@@ -95,7 +95,7 @@ private:
 			   auto call = CallFunc::create(std::bind(&CharacterBase::disableShadow, thiz, thiz));
 			   auto seq = newSequence(tempAction, call);
 
-			   auto tempChar = CCSprite::createWithSpriteFrameName(format("{}_Extern_01", thiz->getCharacter()->getCString()).c_str());
+			   auto tempChar = CCSprite::createWithSpriteFrameName(format("{}_Extern_01", thiz->getName()).c_str());
 			   tempChar->setAnchorPoint(ccp(0.5f, 0));
 			   tempChar->setPosition(thiz->getPosition());
 			   getGameLayer()->addChild(tempChar, -thiz->_originY);
@@ -115,27 +115,27 @@ private:
 			   if (thiz->notFindHero(0))
 			   {
 				   if (thiz->notFindFlog(0) ||
-					   thiz->isCharacter("RikudoNaruto", "SageNaruto"))
+					   thiz->getName() == HeroEnum::RikudoNaruto || thiz->getName() == HeroEnum::SageNaruto)
 					   thiz->_mainTarget = nullptr;
 			   }
 
 			   if (thiz->_mainTarget)
 			   {
-				   if (thiz->isCharacter("Dogs") ||
-					   thiz->isCharacter("Yominuma") ||
-					   thiz->isCharacter("SandBall") ||
-					   thiz->isCharacter("Sabaku") ||
-					   thiz->isCharacter("Yataikuzu") ||
-					   thiz->isCharacter("Lee") ||
-					   thiz->isCharacter("RockLee"))
+				   if (thiz->getName() == SkillEnum::Dogs ||
+					   thiz->getName() == SkillEnum::Yominuma ||
+					   thiz->getName() == SkillEnum::SandBall ||
+					   thiz->getName() == SkillEnum::Sabaku ||
+					   thiz->getName() == SkillEnum::Yataikuzu ||
+					   thiz->getName() == HeroEnum::Lee ||
+					   thiz->getName() == HeroEnum::RockLee)
 				   {
 					   thiz->_markPoint = ccp(thiz->_mainTarget->getPositionX(), thiz->_mainTarget->_originY ? thiz->_mainTarget->_originY : thiz->_mainTarget->getPositionY());
 				   }
-				   else if (thiz->isCharacter("Tsukuyomi"))
+				   else if (thiz->getName() == SkillEnum::Tsukuyomi)
 				   {
 					   thiz->_markPoint = ccp(thiz->_mainTarget->getPositionX(), thiz->_mainTarget->_originY ? thiz->_mainTarget->_originY : thiz->_mainTarget->getPositionY() + 2);
 				   }
-				   else if (thiz->isCharacter("KageFeng"))
+				   else if (thiz->getName() == SkillEnum::KageFeng)
 				   {
 					   thiz->_markPoint = ccp(thiz->_mainTarget->getPositionX(), thiz->_mainTarget->_originY ? thiz->_mainTarget->_originY - 6 : thiz->_mainTarget->getPositionY() - 6);
 				   }
@@ -200,7 +200,7 @@ private:
 				   }
 			   }
 
-			   if (thiz->isCharacter("Sakura"))
+			   if (thiz->getName() == HeroEnum::Sakura)
 			   {
 				   float posY = thiz->getPositionY();
 				   if (!thiz->_originY)
@@ -232,7 +232,7 @@ private:
 			   thiz->setPosition(ccp(tsPosX, tsPosY));
 			   CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", thiz);
 
-			   if (thiz->isNotCharacter("Yominuma"))
+			   if (thiz->getName() != SkillEnum::Yominuma)
 			   {
 				   getGameLayer()->reorderChild(thiz, -tsPosY);
 			   }
@@ -263,7 +263,7 @@ private:
 			   {
 				   for (auto hero : getGameLayer()->_CharacterArray)
 				   {
-					   if (thiz->isNotSameGroupAs(hero) &&
+					   if (thiz->getGroup() != hero->getGroup() &&
 						   hero->isPlayerOrCom() &&
 						   hero->_actionState != State::DEAD)
 					   {
@@ -300,7 +300,7 @@ private:
 		   {
 			   for (auto hero : getGameLayer()->_CharacterArray)
 			   {
-				   if (thiz->isSameGroupAs(hero) &&
+				   if (thiz->getGroup() == hero->getGroup() &&
 					   hero->isPlayerOrCom() &&
 					   hero->_actionState == State::DEAD &&
 					   hero->rebornSprite)
@@ -318,13 +318,13 @@ private:
 					   hero->_actionState == State::DEAD &&
 					   hero->rebornSprite &&
 					   hero->isPlayerOrCom() &&
-					   hero->isNotCharacter("Kakuzu"))
+					   hero->getName() != HeroEnum::Kakuzu)
 				   {
 					   CCPoint sp = ccpSub(hero->getPosition(), thiz->getPosition());
 					   if (abs(sp.x) <= 48 && abs(sp.y) <= 48)
 					   {
 						   hero->hearts -= 1;
-						   if (thiz->isNotSameGroupAs(hero))
+						   if (thiz->getGroup() != hero->getGroup())
 						   {
 							   thiz->setMaxHPValue(thiz->getMaxHP() + 100);
 							   thiz->setNAttackValue(thiz->getNAttackValue() + 5);
@@ -358,7 +358,7 @@ private:
 			   {
 				   for (auto mo : thiz->getMonsterArray())
 				   {
-					   if (mo->isCharacter("HiraishinMark"))
+					   if (mo->getName() == "HiraishinMark")
 					   {
 						   tsPosX = mo->getPositionX();
 						   tsPosY = mo->getPositionY();

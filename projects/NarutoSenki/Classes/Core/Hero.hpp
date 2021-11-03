@@ -49,16 +49,14 @@ public:
 		return true;
 	}
 
-	virtual void setID(CCString *character, CCString *role, CCString *group)
+	virtual void setID(const string &name, const string &role, const string &group)
 	{
 		setRole(role);
 		setGroup(group);
 
-		auto charName = character->getCString();
-
 		CCArray *animationArray = CCArray::create();
-		auto filePath = format("Element/{}/{}.xml", charName, charName);
-		KTools::readXMLToArray(filePath.c_str(), animationArray);
+		auto filePath = format("Element/{}/{}.xml", name, name);
+		KTools::readXMLToArray(filePath, animationArray);
 
 		// init
 		CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
@@ -75,7 +73,7 @@ public:
 
 		readData(tmpData, unitName, maxHP, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
 
-		if (!getCharacter()) // Set hp when character is not awaken
+		if (getName().empty()) // Set hp when character is not awaken
 		{
 			setMaxHPValue(maxHP, false);
 			setHPValue(maxHP, false);
@@ -148,10 +146,10 @@ public:
 		skill2Array = (CCArray *)(tmpAction->objectAtIndex(1));
 		skill2Array->retain();
 
-		if (is_same(charName, "Kakashi"))
+		if (name == "Kakashi")
 		{
 		}
-		else if (is_same(charName, "Minato"))
+		else if (name == "Minato")
 		{
 			_sAttack1isDouble = true;
 		}
@@ -218,32 +216,32 @@ public:
 			break;
 		}
 
-		if (is_same(charName, "Itachi") ||
-			is_same(charName, "Choji") ||
-			is_same(charName, "Kiba") ||
-			is_same(charName, "Naruto") ||
-			is_same(charName, "SageNaruto") ||
-			is_same(charName, "RikudoNaruto") ||
-			is_same(charName, "Sasuke") ||
-			is_same(charName, "ImmortalSasuke"))
+		if (name == "Itachi" ||
+			name == "Choji" ||
+			name == "Kiba" ||
+			name == "Naruto" ||
+			name == "SageNaruto" ||
+			name == "RikudoNaruto" ||
+			name == "Sasuke" ||
+			name == "ImmortalSasuke")
 		{
 			tmpAction = (CCArray *)(animationArray->objectAtIndex(16));
 			skillSPC4Array = (CCArray *)(tmpAction->objectAtIndex(1));
 			skillSPC4Array->retain();
 		}
 
-		if (is_same(charName, "Sasuke") ||
-			is_same(charName, "SageNaruto"))
+		if (name == "Sasuke" ||
+			name == "SageNaruto")
 		{
 			tmpAction = (CCArray *)(animationArray->objectAtIndex(15));
 			skillSPC5Array = (CCArray *)(tmpAction->objectAtIndex(1));
 			skillSPC5Array->retain();
 		}
-		else if (is_same(charName, "Kiba"))
+		else if (name == "Kiba")
 		{
 			_isArmored = true;
 		}
-		else if (is_same(charName, "Kakuzu"))
+		else if (name == "Kakuzu")
 		{
 			_heartEffect = CCSprite::createWithSpriteFrameName("Heart_Effect_00");
 			_heartEffect->setPosition(ccp(getContentSize().width + 40, 70));
@@ -261,18 +259,18 @@ public:
 			setCoin(50);
 		}
 
-		if (getCharacter() && isPlayer())
+		if (!getName().empty() && isPlayer())
 		{
-			auto oldCharName = getCharacter()->getCString();
-			bool isUpdateUI = strcmp(oldCharName, charName) != 0;
-			setCharacter(character);
+			auto oldCharName = getName();
+			bool isUpdateUI = oldCharName != name;
+			setName(name);
 
 			if (isUpdateUI)
 				getGameLayer()->updateHudSkillButtons();
 		}
 		else
 		{
-			setCharacter(character);
+			setName(name);
 		}
 
 		initAction();
@@ -311,7 +309,7 @@ public:
 
 	void setHPbar()
 	{
-		if (getGameLayer()->playerGroup != getGroup()->getCString())
+		if (getGameLayer()->playerGroup != getGroup())
 		{
 			_hpBar = HPBar::create("hp_bar_r.png");
 		}
@@ -483,7 +481,7 @@ public:
 		stopAllActions();
 		_actionState = State::DEAD;
 
-		if (!_monsterArray.empty() && isNotCharacter("Minato"))
+		if (!_monsterArray.empty() && getName() != HeroEnum::Minato)
 		{
 			for (auto mo : _monsterArray)
 			{
@@ -581,12 +579,12 @@ public:
 	template <typename THero>
 	typename std::enable_if<std::is_base_of<Hero, THero>::value, THero *>::type
 	// typename enable_if<!is_same<Hero, THero>::value && is_base_of<Hero, THero>::value, THero *>::type
-	create(CCString *character, CCString *role, CCString *group)
+	create(const string &name, const string &role, const string &group)
 	{
 		THero *hero = new THero();
 		if (hero->init())
 		{
-			hero->setID(character, role, group);
+			hero->setID(name, role, group);
 			hero->autorelease();
 		}
 		else
@@ -600,7 +598,7 @@ public:
 
 	template <typename THero>
 	inline typename std::enable_if<std::is_base_of<Hero, THero>::value, THero *>::type
-	createHero(const string &name, const string &role) { return create<THero>(CCString::create(name), CCString::create(role), getGroup()); }
+	createHero(const string &name, const string &role) { return create<THero>(name, role, getGroup()); }
 
 	template <typename THero>
 	inline typename std::enable_if<std::is_base_of<Hero, THero>::value, THero *>::type
@@ -626,23 +624,23 @@ public:
 	/** Character Macros */
 
 #define match_char_exp(_name, _fn, _name2, _fn2) \
-	if (isCharacter(_name))                      \
+	if (getName() == _name)                      \
 		_fn;                                     \
-	else if (isCharacter(_name2))                \
+	else if (getName() == _name2)                \
 		_fn2;
 
 #define match_char_exp3(_name, _fn, _name2, _fn2, _name3, _fn3)            \
-	match_char_exp(_name, _fn, _name2, _fn2) else if (isCharacter(_name3)) \
+	match_char_exp(_name, _fn, _name2, _fn2) else if (getName() == _name3) \
 		_fn3;
 
 #define match_char_exp4(_name, _fn, _name2, _fn2, _name3, _fn3, _name4, _fn4)             \
-	match_char_exp3(_name, _fn, _name2, _fn2, _name3, _fn3) else if (isCharacter(_name4)) \
+	match_char_exp3(_name, _fn, _name2, _fn2, _name3, _fn3) else if (getName() == _name4) \
 		_fn4;
 
 protected:
 	void checkRefCount(float dt)
 	{
-		CCLOG("[Ref Check] %s has %d references", getCharacter()->getCString(), retainCount());
+		CCLOG("[Ref Check] %s has %d references", getName().c_str(), retainCount());
 	}
 
 	void countDown(float dt)

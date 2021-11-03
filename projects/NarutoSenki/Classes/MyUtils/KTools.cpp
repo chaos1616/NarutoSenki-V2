@@ -4,10 +4,10 @@
 #include "../../../cocos2dx/platform/android/jni/JniHelper.h"
 #endif
 
-bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
+bool KTools::readXMLToArray(const string &filePath, CCArray *&array)
 {
 	unsigned long nSize;
-	auto data = (const char *)CCFileUtils::sharedFileUtils()->getFileData(filePath, "r", &nSize);
+	auto data = (const char *)CCFileUtils::sharedFileUtils()->getFileData(filePath.c_str(), "r", &nSize);
 	if (data == nullptr)
 	{
 		CCMessageBox(format("Data {} is null", filePath).c_str(), "Read XML Error");
@@ -37,7 +37,7 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 		while (actionNodeEle)
 		{
 			// CCLog("+[%s]",actionNodeEle->Name());
-			if (strcmp(actionNodeEle->Name(), "frame"))
+			if (!is_same(actionNodeEle->Name(), "frame"))
 			{
 				auto dataEle = actionNodeEle->FirstChildElement();
 
@@ -61,14 +61,10 @@ bool KTools::readXMLToArray(const char *filePath, CCArray *&array)
 				while (frameEle)
 				{
 					const char *nodeKey;
-					if (strcmp(frameEle->Name(), "f"))
-					{
-						nodeKey = frameEle->FirstAttribute()->Value();
-					}
-					else
-					{
+					if (is_same(frameEle->Name(), "f"))
 						nodeKey = frameEle->Name();
-					}
+					else
+						nodeKey = frameEle->FirstAttribute()->Value();
 
 					CCString *nodeValue = CCString::create(frameEle->GetText());
 
@@ -236,7 +232,7 @@ void KTools::initColumeInDB()
 	}
 }
 
-void KTools::prepareFileOGG(const char *listName, bool unload /* =false */)
+void KTools::prepareFileOGG(const string &listName, bool unload /* =false */)
 {
 	if (!CCUserDefault::sharedUserDefault()->getBoolForKey("isPreload"))
 	{
@@ -244,11 +240,8 @@ void KTools::prepareFileOGG(const char *listName, bool unload /* =false */)
 	}
 
 	// MD5
-
-	string md5Path = "Audio/list.xml";
-
+	const string md5Path = "Audio/list.xml";
 	bool isExisted = CCFileUtils::sharedFileUtils()->isFileExist(md5Path);
-
 	if (!isExisted)
 	{
 		return;
@@ -267,7 +260,7 @@ void KTools::prepareFileOGG(const char *listName, bool unload /* =false */)
 	{
 		auto pathSrc = fileEle->FirstAttribute()->Value();
 		auto soundPath = fileEle->GetText();
-		if (is_same(pathSrc, listName))
+		if (pathSrc == listName)
 		{
 			if (!unload)
 			{
@@ -369,7 +362,7 @@ string KTools::readSQLite(const char *table, const char *column, const char *val
 			string str = result[i];
 
 			decode(str);
-			if (is_same(str.c_str(), value))
+			if (str == value)
 			{
 				target = result[i + 1];
 				decode(target);
@@ -412,7 +405,7 @@ void KTools::saveSQLite(const char *table, const char *relatedColumn, const char
 		{
 			string str = result[i];
 			decode(str);
-			if (is_same(str.c_str(), value))
+			if (str == value)
 			{
 				columnValue = result[i];
 				target = result[i + 1];

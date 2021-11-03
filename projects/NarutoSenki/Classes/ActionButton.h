@@ -23,7 +23,7 @@ public:
 
 	bool _isColdChanged;
 
-	bool init(const char *szImage);
+	bool init(const string &szImage);
 	bool isCanClick();
 	CCRect getRect();
 
@@ -55,12 +55,12 @@ public:
 	void setGearType(GearType type);
 
 	CC_SYNTHESIZE_RETAIN(CCAction *, _freezeAction, FreezeAction);
-	//CC_SYNTHESIZE_RETAIN(CCProgressTimer*,markSprite,MarkSprite);
+	// CC_SYNTHESIZE_RETAIN(CCProgressTimer*,markSprite,MarkSprite);
 	CC_SYNTHESIZE(HudLayer *, _delegate, Delegate);
 	void beganAnimation(bool isLock = false);
 	void updateCDLabel(float dt);
 
-	static ActionButton *create(const char *szImage);
+	static ActionButton *create(const string &szImage);
 
 protected:
 	void onEnter();

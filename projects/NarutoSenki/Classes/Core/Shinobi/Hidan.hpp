@@ -12,7 +12,7 @@ class Hidan : public Hero
 		{
 			for (auto mo : _monsterArray)
 			{
-				if (mo->isCharacter("CircleMark"))
+				if (mo->getName() == "CircleMark")
 				{
 					_mainTarget = mo;
 					_isFound = true;
@@ -298,7 +298,7 @@ class Hidan : public Hero
 
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
-				if (isNotSameGroupAs(hero) && hero->isPlayerOrCom() && hero->getActionState() != State::DEAD)
+				if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->getActionState() != State::DEAD)
 				{
 					hero->setDamage(this, attacker->getEffectType(), attacker->_attackValue / 2, attacker->_isFlipped);
 				}
@@ -338,7 +338,7 @@ class Hidan : public Hero
 
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
-				if (isNotSameGroupAs(hero) && hero->isPlayerOrCom() && hero->getActionState() != State::DEAD)
+				if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->getActionState() != State::DEAD)
 				{
 					hero->setDamage(this, attacker->getEffectType(), attacker->_attackValue / 2, attacker->_isFlipped);
 				}

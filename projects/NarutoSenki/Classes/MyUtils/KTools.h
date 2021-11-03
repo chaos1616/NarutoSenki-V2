@@ -9,8 +9,8 @@
 class KTools : public CCObject
 {
 public:
-	static bool readXMLToArray(const char *filePath, CCArray *&array);
-	static void prepareFileOGG(const char *listName, bool unload = false);
+	static bool readXMLToArray(const string &filePath, CCArray *&array);
+	static void prepareFileOGG(const string &listName, bool unload = false);
 
 	static void initTableInDB();
 	static void initColumeInDB();

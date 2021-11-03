@@ -22,7 +22,6 @@ using namespace std;
 
 #define is_same(__Str1, __Str2) (strcmp(__Str1, __Str2) == 0)
 #define to_cstr(var) (std::to_string(var).c_str())
-#define to_ccstring(var) CCString::create(std::to_string(var))
 
 // Tile maps (Made with Tiled)
 #define GetMapPath(mapId) format("Tiles/{}.tmx", mapId).c_str()

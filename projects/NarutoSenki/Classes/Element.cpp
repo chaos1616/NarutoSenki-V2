@@ -25,15 +25,15 @@ bool Monster::init()
 	return true;
 }
 
-void Monster::setID(CCString *character, CCString *role, CCString *group)
+void Monster::setID(const string &name, const string &role, const string &group)
 {
-	setCharacter(character);
+	setName(name);
 	setRole(role);
 	setGroup(group);
 
 	CCArray *animationArray = CCArray::create();
-	auto filePath = format("Element/Monster/{}.xml", getCharacter()->getCString());
-	KTools::readXMLToArray(filePath.c_str(), animationArray);
+	auto filePath = format("Element/Monster/{}.xml", getName());
+	KTools::readXMLToArray(filePath, animationArray);
 
 	// init Attribute; & indleFrame
 
@@ -89,11 +89,11 @@ void Monster::initAction()
 	setIdleAction(createAnimation(idleArray, 5.0, true, false));
 	setWalkAction(createAnimation(walkArray, 10.0, true, false));
 	setDeadAction(createAnimation(deadArray, 10.0f, false, false));
-	if (isCharacter("Kage") ||
-		isCharacter("KageHand") ||
-		isCharacter("FutonSRK") ||
-		isCharacter("FutonSRK2") ||
-		isCharacter("Kubi"))
+	if (getName() == SkillEnum::Kage ||
+		getName() == SkillEnum::KageHand ||
+		getName() == SkillEnum::FutonSRK ||
+		getName() == SkillEnum::FutonSRK2 ||
+		getName() == SkillEnum::Kubi)
 	{
 		setNAttackAction(createAnimation(nattackArray, 10.0, false, false));
 	}
@@ -105,7 +105,7 @@ void Monster::initAction()
 
 void Monster::setHPbar()
 {
-	if (getGameLayer()->playerGroup != getGroup()->getCString())
+	if (getGameLayer()->playerGroup != getGroup())
 	{
 		_hpBar = HPBar::create("hp_bar_r.png");
 	}
@@ -162,12 +162,12 @@ void Monster::changeHPbar()
 
 void Monster::setAI(float dt)
 {
-	auto charName = getCharacter()->getCString();
-	if (is_same(charName, "Kage"))
+	auto charName = getName();
+	if (charName == SkillEnum::Kage)
 	{
 		for (auto hero : getGameLayer()->_CharacterArray)
 		{
-			if (strcmp(getGroup()->getCString(), hero->getGroup()->getCString()) != 0 &&
+			if (getGroup() != hero->getGroup() &&
 				hero->getActionState() != State::DEAD &&
 				hero->getActionState() != State::O2ATTACK &&
 				!hero->_isInvincible &&
@@ -181,7 +181,7 @@ void Monster::setAI(float dt)
 				{
 					// if (_monsterArray.empty())
 					// {
-					setMon("KageHand");
+					setMon(SkillEnum::KageHand);
 					unschedule(schedule_selector(CharacterBase::setAI));
 					// }
 					return; // Need to return because _monsterArray is always empty
@@ -190,13 +190,13 @@ void Monster::setAI(float dt)
 		}
 		return;
 	}
-	else if (is_same(charName, "Mouse"))
+	else if (charName == SkillEnum::Mouse)
 	{
 		if (notFindHero(0))
 			_mainTarget = nullptr;
 	}
-	else if (is_same(charName, "Spider") ||
-			 is_same(charName, "ClayBird"))
+	else if (charName == SkillEnum::Spider ||
+			 charName == SkillEnum::ClayBird)
 	{
 		if (notFindHero(0))
 		{
@@ -204,8 +204,8 @@ void Monster::setAI(float dt)
 				_mainTarget = nullptr;
 		}
 	}
-	else if (is_same(charName, "FutonSRK2") ||
-			 is_same(charName, "FutonSRK"))
+	else if (charName == SkillEnum::FutonSRK2 ||
+			 charName == SkillEnum::FutonSRK)
 	{
 	}
 	else
@@ -226,8 +226,8 @@ void Monster::setAI(float dt)
 		sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
 					ccp(getPositionX(), _originY ? _originY : getPositionY()));
 
-		if (is_same(charName, "FutonSRK2") ||
-			is_same(charName, "FutonSRK"))
+		if (charName == SkillEnum::FutonSRK2 ||
+			charName == SkillEnum::FutonSRK)
 		{
 			if (abs(sp.x) > 48 || abs(sp.y) > 32)
 			{
@@ -243,7 +243,7 @@ void Monster::setAI(float dt)
 				dealloc();
 			}
 		}
-		else if (is_same(charName, "Traps"))
+		else if (charName == "Traps")
 		{
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -255,11 +255,11 @@ void Monster::setAI(float dt)
 		}
 		else if (abs(sp.x) > 32 || abs(sp.y) > 16)
 		{
-			if (!is_same(charName, "Dogs") &&
-				!is_same(charName, "Mine") &&
-				!is_same(charName, "Traps") &&
-				!is_same(charName, "Yominuma") &&
-				!is_same(charName, "Tsukuyomi"))
+			if (charName != "Dogs" &&
+				charName != "Mine" &&
+				charName != "Traps" &&
+				charName != "Yominuma" &&
+				charName != "Tsukuyomi")
 			{
 				moveDirection = ccpNormalize(sp);
 
@@ -268,7 +268,7 @@ void Monster::setAI(float dt)
 		}
 		else
 		{
-			if (is_same(charName, "Mine"))
+			if (charName == "Mine")
 			{
 				if (_mainTarget->isPlayerOrCom())
 				{
@@ -281,7 +281,7 @@ void Monster::setAI(float dt)
 				changeSide(sp);
 				attack(NAttack);
 
-				if (!is_same(charName, "SmallSlug"))
+				if (charName != SummonEnum::SmallSlug)
 				{
 					unschedule(schedule_selector(CharacterBase::setAI));
 				}
@@ -290,9 +290,9 @@ void Monster::setAI(float dt)
 	}
 	else
 	{
-		if (is_same(charName, "Rocket") ||
-			is_same(charName, "Spider") ||
-			is_same(charName, "ClayBird"))
+		if (charName == "Rocket" ||
+			charName == "Spider" ||
+			charName == "ClayBird")
 		{
 			stepOn();
 		}
@@ -309,14 +309,14 @@ void Monster::dealloc()
 	unschedule(schedule_selector(CharacterBase::setAI));
 	setActionState(State::DEAD);
 
-	if (isCharacter("FutonSRK", "FutonSRK2"))
+	if (getName() == SkillEnum::FutonSRK || getName() == SkillEnum::FutonSRK2)
 	{
 		auto call = CallFunc::create(std::bind(&Monster::removeFromParent, this));
 		auto seq = newSequence(getDeadAction(), call);
 		runAction(seq);
 		return;
 	}
-	if (isCharacter("HiraishinMark"))
+	if (getName() == SkillEnum::HiraishinMark)
 	{
 		_master->_isCanSkill1 = false;
 		_master->setActionResume();
@@ -335,7 +335,7 @@ void Monster::dealloc()
 		return;
 	}
 
-	if (isCharacter("SmallSlug"))
+	if (getName() == SummonEnum::SmallSlug)
 	{
 		if (_secmaster)
 			_secmaster->removeMon(this);
@@ -346,7 +346,7 @@ void Monster::dealloc()
 			_master->removeMon(this);
 	}
 
-	if (isCharacter("KageHand", "Kage"))
+	if (getName() == SkillEnum::KageHand || getName() == SkillEnum::Kage)
 	{
 		auto call = CallFunc::create(std::bind(&Monster::setResume, this));
 		auto call2 = CallFunc::create(std::bind(&Monster::removeFromParent, this));
@@ -427,7 +427,7 @@ void Monster::setResume()
 	}
 	else
 	{
-		if (_master && _master->isCharacter("Shikamaru"))
+		if (_master && _master->getName() == HeroEnum::Shikamaru)
 		{
 			_master->idle();
 		}

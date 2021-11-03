@@ -63,9 +63,9 @@
 #include "Kuchiyose/Slug.hpp"
 
 #define __begin__ if(0) {}
-#define is(var) else if (is_same(var, name))
-#define is_or(var1, var2) else if (is_same(var1, name) || is_same(var2, name))
-#define is_tag(tag) if (is_same(role->getCString(), tag))
+#define is(var) else if (name == var)
+#define is_or(var1, var2) else if (name == var1 || name == var2)
+#define is_role(_Role) if (role == _Role)
 
 // TODO: Impl a default AI logic
 class DefaultAI : public Hero
@@ -78,10 +78,9 @@ class DefaultAI : public Hero
 class Provider
 {
 public:
-	static Hero *create(CCString *character, CCString *role, CCString *group)
+	static Hero *create(const string &name, const string &role, const string &group)
 	{
 		Hero *ptr;
-		const char *name = character->getCString();
 
 		__begin__
 		is("Akamaru") 						ptr = new Akamaru();
@@ -114,9 +113,9 @@ public:
 		is("MaskKaton") 					ptr = new Mask();
 		is("MaskRaiton") 					ptr = new Mask();
 		is("Minato") 						ptr = new Minato();
-		is("Naruto") 						is_tag(kRoleClone) ptr = new NarutoClone();			else ptr = new Naruto();
-		is("RikudoNaruto") 					is_tag(kRoleClone) ptr = new RikudoNarutoClone();	else ptr = new Naruto();
-		is("SageNaruto") 					is_tag(kRoleClone) ptr = new SageNarutoClone();		else ptr = new Naruto();
+		is("Naruto") 						is_role(kRoleClone) ptr = new NarutoClone();		else ptr = new Naruto();
+		is("RikudoNaruto") 					is_role(kRoleClone) ptr = new RikudoNarutoClone();	else ptr = new Naruto();
+		is("SageNaruto") 					is_role(kRoleClone) ptr = new SageNarutoClone();	else ptr = new Naruto();
 		is("Neji") 							ptr = new Neji();
 		is("Orochimaru") 					ptr = new Orochimaru();
 		is_or("Pain", "Nagato") 			ptr = new Pain();
@@ -143,18 +142,18 @@ public:
 
 		if (!ptr)
 		{
-			CCLOG("Not found character [ %s ]", name);
+			CCLOG("Not found character [ %s ]", name.c_str());
 			return nullptr;
 		}
 
 		if (ptr->init())
 		{
-			ptr->setID(character, role, group);
+			ptr->setID(name, role, group);
 			ptr->autorelease();
 		}
 		else
 		{
-			CCLOG("Set character %s not found", name);
+			CCLOG("Set character %s not found", name.c_str());
 			delete ptr;
 			ptr = nullptr;
 		}
@@ -165,4 +164,4 @@ public:
 #undef __begin__
 #undef is
 #undef is_or
-#undef is_tag
+#undef is_role

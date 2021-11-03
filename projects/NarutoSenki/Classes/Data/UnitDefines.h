@@ -1,9 +1,6 @@
 #pragma once
 
-#define Konoha "Konoha"
-#define Akatsuki "Akatsuki"
-
-static const char *kHeroList[] = {
+constexpr const char *kHeroList[] = {
 	"Asuma",
 	"Chiyo",
 	"Choji",
@@ -42,4 +39,4 @@ static const char *kHeroList[] = {
 	"Tsunade",
 };
 
-static const int kHeroNum = sizeof(kHeroList) / sizeof(char *);
+constexpr int kHeroNum = sizeof(kHeroList) / sizeof(char *);

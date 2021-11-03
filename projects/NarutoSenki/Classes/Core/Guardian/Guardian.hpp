@@ -44,7 +44,7 @@ class Guardian : public Hero
 
 				for (auto targetTower : getGameLayer()->_TowerArray)
 				{
-					if (targetTower->isCharacter(gardTower) && targetTower->getHpPercent() < 0.5f)
+					if (targetTower->getName() == gardTower && targetTower->getHpPercent() < 0.5f)
 					{
 						isTurn = true;
 					}

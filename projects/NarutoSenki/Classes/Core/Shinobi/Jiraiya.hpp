@@ -3,15 +3,12 @@
 
 class Jiraiya : public Hero
 {
-#define kJiraiya____ "Jiraiya"
-#define kSageJiraiya "SageJiraiya"
-
-	void setID(CCString *character, CCString *role, CCString *group) override
+	void setID(const string &name, const string &role, const string &group) override
 	{
-		Hero::setID(character, role, group);
+		Hero::setID(name, role, group);
 
-		match_char_exp(kJiraiya____, setAIHandler(Jiraiya::perform),
-					   kSageJiraiya, setAIHandler(Jiraiya::perform_SageJiraiya));
+		match_char_exp(HeroEnum::Jiraiya, setAIHandler(Jiraiya::perform),
+					   HeroEnum::SageJiraiya, setAIHandler(Jiraiya::perform_SageJiraiya));
 	}
 
 	// Jiraiya

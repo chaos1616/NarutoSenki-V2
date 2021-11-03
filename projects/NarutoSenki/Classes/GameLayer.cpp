@@ -24,8 +24,6 @@ GameLayer::GameLayer()
 	kEXPBound = 25;
 	aEXPBound = 25;
 
-	totalKills = nullptr;
-	totalTM = nullptr;
 	_isShacking = false;
 	_isSurrender = false;
 	_hasSpawnedGuardian = false;
@@ -139,10 +137,10 @@ void GameLayer::initGard()
 	setRand();
 	int index = random(2);
 	auto guardianName = index == 0 ? kGuardian_Roshi : kGuardian_Han;
-	auto guardianGroup = playerGroup == Konoha ? Akatsuki : Konoha;
-	auto guardian = Provider::create(CCString::create(guardianName), CCString::create(kRoleCom), CCString::create(guardianGroup));
+	auto guardianGroup = playerGroup == Group::Konoha ? Group::Akatsuki : Group::Konoha;
+	auto guardian = Provider::create(guardianName, kRoleCom, guardianGroup);
 
-	if (playerGroup == Konoha)
+	if (playerGroup == Group::Konoha)
 	{
 		guardian->setPosition(ccp(2800, 80));
 		guardian->setSpawnPoint(ccp(2800, 80));
@@ -157,7 +155,7 @@ void GameLayer::initGard()
 	guardian->setLV(6);
 	guardian->setHPbar();
 	guardian->setShadows();
-	guardian->setCharNO(_CharacterArray.size() + 1);
+	guardian->setCharId(_CharacterArray.size() + 1);
 
 	guardian->idle();
 	guardian->setSkillEffect("smk");
@@ -182,7 +180,6 @@ void GameLayer::initHeros()
 
 	_isOugis2Game = true;
 
-	int i = 0;
 	CCTMXObjectGroup *group = currentMap->objectGroupNamed("object");
 	CCArray *objectArray = group->getObjects();
 
@@ -192,22 +189,21 @@ void GameLayer::initHeros()
 		auto &hero1 = herosDataVector.at(0);
 		auto &hero5 = herosDataVector.at(4);
 
-		spawnPoint = getCustomSpawnPoint(hero1);
-		auto hero = addHero(CCString::create(hero1.character), CCString::create(hero1.role), CCString::create(hero1.group), spawnPoint, 1);
-		_CharacterArray.push_back(hero);
+		hero1.setSpawnPoint(getCustomSpawnPoint(hero1));
+		addHero(hero1, 1);
 
-		spawnPoint = getCustomSpawnPoint(hero5);
-		hero = addHero(CCString::create(hero5.character), CCString::create(hero5.role), CCString::create(hero5.group), spawnPoint, 5);
-		_CharacterArray.push_back(hero);
+		hero5.setSpawnPoint(getCustomSpawnPoint(hero5));
+		addHero(hero5, 5);
 	}
 
-	for (const auto &data : herosDataVector)
+	int i = 0;
+	for (auto &data : herosDataVector)
 	{
 		if (data.isInit)
 			continue;
 
 		int mapPos = i;
-		if (data.group == Akatsuki)
+		if (data.group == Group::Akatsuki)
 		{
 			if (mapPos <= MapPosCount - 1)
 				mapPos += MapPosCount;
@@ -222,10 +218,19 @@ void GameLayer::initHeros()
 		auto mapdict = (CCDictionary *)mapObject;
 		int x = ((CCString *)mapdict->objectForKey("x"))->intValue();
 		int y = ((CCString *)mapdict->objectForKey("y"))->intValue();
-		spawnPoint = ccp(x, y);
+		data.setSpawnPoint(ccp(x, y));
 
-		auto hero = addHero(CCString::create(data.character), CCString::create(data.role), CCString::create(data.group), spawnPoint, i + 1);
-		_CharacterArray.push_back(hero);
+		if (is4V4Mode)
+		{
+			int id = i + 2;
+			if (id >= 5)
+				id++;
+			addHero(data, id);
+		}
+		else
+		{
+			addHero(data, i + 1);
+		}
 		i++;
 	}
 
@@ -235,9 +240,14 @@ void GameLayer::initHeros()
 	scheduleOnce(schedule_selector(GameLayer::playGameOpeningAnimation), 0.5f);
 }
 
-Hero *GameLayer::addHero(CCString *character, CCString *role, CCString *group, CCPoint spawnPoint, int charNo)
+Hero *GameLayer::addHero(const HeroData &data, int charId)
 {
-	auto hero = Provider::create(character, role, group);
+	return addHero(data.name, data.role, data.group, data.spawnPoint, charId);
+}
+
+Hero *GameLayer::addHero(const string &name, const string &role, const string &group, CCPoint spawnPoint, int charId)
+{
+	auto hero = Provider::create(name, role, group);
 	if (hero->isPlayer())
 	{
 		currentPlayer = hero;
@@ -246,7 +256,7 @@ Hero *GameLayer::addHero(CCString *character, CCString *role, CCString *group, C
 	hero->setSpawnPoint(spawnPoint);
 	// NOTE: Set all characters speed to zero. (Control movement before game real start)
 	hero->setWalkSpeed(0);
-	if (is_same(group->getCString(), Akatsuki))
+	if (group == Group::Akatsuki)
 	{
 		hero->_isFlipped = true;
 		hero->setFlipX(true);
@@ -254,10 +264,11 @@ Hero *GameLayer::addHero(CCString *character, CCString *role, CCString *group, C
 	hero->setHPbar();
 	hero->setShadows();
 	hero->idle();
-	hero->setCharNO(charNo);
+	hero->setCharId(charId);
 	hero->schedule(schedule_selector(CharacterBase::setRestore2), 1.0f);
 
 	addChild(hero, -hero->getPositionY());
+	_CharacterArray.push_back(hero);
 
 	getGameModeHandler()->onCharacterInit(hero);
 	return hero;
@@ -313,8 +324,8 @@ void GameLayer::initFlogs()
 
 void GameLayer::addFlog(float dt)
 {
-	CCString *KonohaFlogName = CCString::create(kName);
-	CCString *AkatsukiFlogName = CCString::create(aName);
+	auto KonohaFlogName = kName;
+	auto AkatsukiFlogName = aName;
 
 	int i;
 	Flog *flog;
@@ -322,7 +333,7 @@ void GameLayer::addFlog(float dt)
 	for (i = 0; i < NUM_FLOG; i++)
 	{
 		flog = Flog::create();
-		flog->setID(KonohaFlogName, CCString::create(kRoleFlog), CCString::create(Konoha));
+		flog->setID(KonohaFlogName, kRoleFlog, Group::Konoha);
 		if (i < NUM_FLOG / 2)
 			mainPosY = (5.5 - i / 1.5) * 32;
 		else
@@ -339,7 +350,7 @@ void GameLayer::addFlog(float dt)
 	for (i = 0; i < NUM_FLOG; i++)
 	{
 		flog = Flog::create();
-		flog->setID(AkatsukiFlogName, CCString::create(kRoleFlog), CCString::create(Akatsuki));
+		flog->setID(AkatsukiFlogName, kRoleFlog, Group::Akatsuki);
 		if (i < NUM_FLOG / 2)
 			mainPosY = (5.5 - i / 1.5) * 32;
 		else
@@ -373,18 +384,18 @@ void GameLayer::initTower()
 		int metaWidth = ((CCString *)dict->objectForKey("width"))->intValue();
 		int metaHeight = ((CCString *)dict->objectForKey("height"))->intValue();
 
-		CCString *name = (CCString *)dict->objectForKey("name");
+		auto name = ((CCString *)dict->objectForKey("name"))->m_sString;
 
 		Tower *tower = Tower::create();
 		char towerName[7] = "abcdef";
-		strncpy(towerName, name->getCString(), 6);
-		if (is_same(towerName, Konoha))
+		strncpy(towerName, name.c_str(), 6);
+		if (is_same(towerName, Group::Konoha))
 		{
-			tower->setID(name, CCString::create(kRoleTower), CCString::create(Konoha));
+			tower->setID(name, kRoleTower, Group::Konoha);
 		}
 		else
 		{
-			tower->setID(name, CCString::create(kRoleTower), CCString::create(Akatsuki));
+			tower->setID(name, kRoleTower, Group::Akatsuki);
 			tower->setFlipX(true);
 			tower->_isFlipped = true;
 		}
@@ -392,7 +403,7 @@ void GameLayer::initTower()
 		float posY = metaY + metaHeight / 2;
 		tower->setPosition(ccp(posX, posY));
 		tower->setSpawnPoint(ccp(posX, posY));
-		tower->setCharNO(i + 1);
+		tower->setCharId(i + 1);
 
 		if (i == 1 || i == 4)
 		{
@@ -442,8 +453,8 @@ void GameLayer::updateGameTime(float dt)
 	auto tempTime = format("{:02d}:{:02d}", _minute, _second);
 	_hudLayer->gameClock->setString(tempTime.c_str());
 
-	int newValue = to_int(getTotalTM()->getCString()) + 1;
-	setTotalTM(to_ccstring(newValue));
+	uint32_t newTime = getTotalTime() + 1;
+	setTotalTime(newTime);
 }
 
 void GameLayer::updateViewPoint(float dt)
@@ -477,9 +488,9 @@ void GameLayer::updateViewPoint(float dt)
 	// CCDirector::sharedDirector()->getScheduler()->setTimeScale(1.0f);
 }
 
-void GameLayer::setTowerState(int charNO)
+void GameLayer::setTowerState(int charId)
 {
-	_hudLayer->setTowerState(charNO);
+	_hudLayer->setTowerState(charId);
 }
 
 void GameLayer::updateHudSkillButtons()
@@ -497,7 +508,7 @@ void GameLayer::setCKRLose(bool isCRK2)
 	_hudLayer->setCKRLose(isCRK2);
 }
 
-void GameLayer::setReport(const char *name1, const char *name2, uint32_t killNum)
+void GameLayer::setReport(const string &name1, const string &name2, uint32_t killNum)
 {
 	_hudLayer->setReport(name1, name2, killNum);
 }
@@ -601,7 +612,7 @@ void GameLayer::checkTower()
 
 	if (konohaTowerCount == 0 || akatsukiTowerCount == 0)
 	{
-		if (playerGroup == Konoha)
+		if (playerGroup == Group::Konoha)
 			onGameOver(konohaTowerCount != 0);
 		else
 			onGameOver(akatsukiTowerCount != 0);
@@ -840,10 +851,10 @@ void GameLayer::setOugis(CCNode *sender)
 
 		if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 		{
-			SimpleAudioEngine::sharedEngine()->playEffect(format("Audio/Ougis/{}_ougis.ogg", Sender->getCharacter()->getCString()).c_str());
+			SimpleAudioEngine::sharedEngine()->playEffect(format("Audio/Ougis/{}_ougis.ogg", Sender->getName()).c_str());
 		}
 
-		_hudLayer->setOugis(Sender->getCharacter(), Sender->getGroup());
+		_hudLayer->setOugis(Sender->getName(), Sender->getGroup());
 	}
 }
 
@@ -906,7 +917,7 @@ void GameLayer::invokeAllCallbacks()
 CCPoint GameLayer::getCustomSpawnPoint(HeroData &data)
 {
 	data.isInit = true;
-	return data.group == Konoha ? ccp(432, 80) : ccp(2608, 80);
+	return data.group == Group::Konoha ? ccp(432, 80) : ccp(2608, 80);
 }
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)

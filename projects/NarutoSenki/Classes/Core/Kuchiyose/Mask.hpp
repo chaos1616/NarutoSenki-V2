@@ -5,7 +5,7 @@ class Mask : public Hero
 {
 	void perform() override
 	{
-		if (isCharacter("MaskRaiton"))
+		if (getName() == KugutsuEnum::MaskRaiton)
 		{
 			if (notFindFlog(0))
 			{

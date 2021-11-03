@@ -170,7 +170,7 @@ class Shikamaru : public Hero
 		{
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
-				if (isNotSameGroupAs(hero) && hero->isPlayerOrCom() && hero->getActionState() != State::DEAD && hero->_isVisable && !hero->_isSticking)
+				if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->getActionState() != State::DEAD && hero->_isVisable && !hero->_isSticking)
 				{
 					float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
 					float atkRangeX = kAttackRange;
@@ -178,7 +178,7 @@ class Shikamaru : public Hero
 					{
 						auto trap = Monster::create();
 						trap->setMaster(this);
-						trap->setID(CCString::create(trapType), CCString::create(kRoleMon), getGroup());
+						trap->setID(trapType, kRoleMon, getGroup());
 						trap->setPosition(ccp(hero->getPositionX(), hero->getPositionY()));
 						trap->idle();
 						trap->attack(NAttack);

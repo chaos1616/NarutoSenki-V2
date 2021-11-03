@@ -13,7 +13,7 @@ public:
 
 	bool init(const char *szImage, bool isNotification);
 
-	PROP(int, _charNO, CharNO);
+	PROP(int, _charId, CharId);
 
 	void updateMap(CCObject *sender);
 	void updateState();
@@ -98,7 +98,7 @@ public:
 	void attackButtonRelease();
 	void pauseButtonClick(CCObject *sender);
 	void gearButtonClick(CCObject *sender);
-	void setReport(const char *name1, const char *name2, uint32_t killNum);
+	void setReport(const string &name1, const string &name2, uint32_t killNum);
 	void setReportCache();
 	void setBuffDisplay(const char *buffName, float buffStayTime);
 	void clearSPCReport();
@@ -108,7 +108,7 @@ public:
 	void updateBuffDisplay2(float dt);
 	void stopSPCReport();
 	void updateSPCReprot(float dt);
-	void setTowerState(int charNO);
+	void setTowerState(int charId);
 	void playGameOpeningAnimation();
 
 	CCLabelBMFont *bcdLabel1;
@@ -118,14 +118,14 @@ public:
 	void JoyStickUpdate(CCPoint direction);
 	CCSprite *openingSprite;
 
-	CCSprite *createReport(const char *name1, const char *name2, float &length);
+	CCSprite *createReport(const string &name1, const string &name2, float &length);
 	CCSprite *createSPCReport(uint32_t killNum, int num);
 
 	bool getSkillFinish();
 	bool getOugisEnable(bool isCKR2);
 
 	CCLayer *ougisLayer;
-	void setOugis(CCString *character, CCString *group);
+	void setOugis(const string &name, const string &group);
 	void removeOugis();
 
 	bool _isAllButtonLocked;
@@ -139,7 +139,7 @@ public:
 	bool init();
 
 	void updateGears();
-	void initGearButton(const char *charName);
+	void initGearButton(const string &charName);
 
 	void initSkillButtons();
 	void setSkillButtons(bool isVisable);

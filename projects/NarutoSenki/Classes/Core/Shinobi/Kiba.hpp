@@ -4,9 +4,9 @@
 
 class Kiba : public Hero
 {
-	void setID(CCString *character, CCString *role, CCString *group) override
+	void setID(const string &name, const string &role, const string &group) override
 	{
-		Hero::setID(character, role, group);
+		Hero::setID(name, role, group);
 
 		getGameLayer()->onHUDInitialized(BIND(Kiba::tryLockSkillButton));
 	}
@@ -168,7 +168,7 @@ class Kiba : public Hero
 		{
 			for (auto mo : _monsterArray)
 			{
-				if (mo->isCharacter("Akamaru"))
+				if (mo->getName() == SummonEnum::Akamaru)
 				{
 					mo->attack(SKILL2);
 				}
@@ -233,7 +233,7 @@ class Kiba : public Hero
 
 	Hero *createClone(int cloneTime) override
 	{
-		auto clone = createCloneHero<Akamaru>(HeroEnum::Akamaru);
+		auto clone = createCloneHero<Akamaru>(SummonEnum::Akamaru);
 		clone->_isArmored = true;
 		_monsterArray.push_back(clone);
 		return clone;

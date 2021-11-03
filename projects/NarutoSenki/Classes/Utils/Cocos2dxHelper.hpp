@@ -67,11 +67,6 @@ inline CCSpriteFrame *getSpriteFrame(const string &name)
 	return CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name.c_str());
 }
 
-inline CCSpriteFrame *getSpriteFrame(CCString *name)
-{
-	return CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name->getCString());
-}
-
 #if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 
 template <class... _Types>

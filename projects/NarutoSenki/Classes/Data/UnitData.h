@@ -2,22 +2,27 @@
 #include <Defines.h>
 
 // Tile size
-static const int kTileSize = 32;
-static const int kOneHalfTileSize = kTileSize * 1.5f;
+constexpr int kTileSize = 32;
+constexpr int kOneHalfTileSize = kTileSize * 1.5f;
 
 // It was half window width before
-static const int kAttackRange = kTileSize * 9;
+constexpr int kAttackRange = kTileSize * 9;
 
 struct HeroData
 {
-public:
-	string character;
+	string name;
 	string role;
 	string group;
 
 	CCPoint spawnPoint;
 
 	bool isInit = false;
+
+	inline void setSpawnPoint(CCPoint &&sp)
+	{
+		spawnPoint.x = sp.x;
+		spawnPoint.y = sp.y;
+	}
 };
 
 enum class UnitKind

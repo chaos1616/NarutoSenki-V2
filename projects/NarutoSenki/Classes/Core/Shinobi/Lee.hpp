@@ -3,20 +3,17 @@
 
 class Lee : public Hero
 {
-#define kLee____ "Lee"
-#define kRockLee "RockLee"
-
 	static const uint8_t kMax_Lee_HachimonTonkouLevel = 5;
 
 	// Hachimon tonkou level
 	uint8_t htLv = 0;
 
-	void setID(CCString *character, CCString *role, CCString *group) override
+	void setID(const string &name, const string &role, const string &group) override
 	{
-		Hero::setID(character, role, group);
+		Hero::setID(name, role, group);
 
-		match_char_exp(kLee____, setAIHandler(Lee::perform),
-					   kRockLee, setAIHandler(Lee::perform_RockLee));
+		match_char_exp(HeroEnum::Lee, setAIHandler(Lee::perform),
+					   HeroEnum::RockLee, setAIHandler(Lee::perform_RockLee));
 
 		// NOTE: Because Lee can transform to RockLee
 		if (getGameLayer()->isHUDInit())
@@ -91,7 +88,7 @@ class Lee : public Hero
 		if (isNotPlayer())
 			return;
 
-		if (isCharacter(kLee____))
+		if (getName() == HeroEnum::Lee)
 		{
 			// NOTE: See `Kakuzu::changeHPbar()`
 			if (_exp >= 500 && _level == 1 + 1)
