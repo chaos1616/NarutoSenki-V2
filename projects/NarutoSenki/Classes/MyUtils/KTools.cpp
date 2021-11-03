@@ -279,7 +279,6 @@ void KTools::prepareFileOGG(const string &listName, bool unload /* =false */)
 sqlite3 *KTools::prepareTableInDB()
 {
 	sqlite3 *pDB = nullptr;
-	char *errorMsg = nullptr;
 
 	string path = CCFileUtils::sharedFileUtils()->getWritablePath() + "sql.db";
 	int result = sqlite3_open(path.c_str(), &pDB);

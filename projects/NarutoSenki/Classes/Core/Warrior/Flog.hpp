@@ -28,7 +28,7 @@ public:
 		setGroup(group);
 
 		CCArray *animationArray = CCArray::create();
-		auto filePath = format("Element/Flog/{}.xml", getName());
+		auto filePath = format("Element/Flog/{}.xml", name);
 		KTools::readXMLToArray(filePath, animationArray);
 
 		CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));

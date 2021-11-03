@@ -181,6 +181,16 @@ public:
 		// initial specal animations
 		while (1)
 		{
+			CC_BREAK_IF(animationArray->count() <= 15);
+			tmpAction = (CCArray *)(animationArray->objectAtIndex(15));
+			skillSPC5Array = (CCArray *)(tmpAction->objectAtIndex(1));
+			skillSPC5Array->retain();
+
+			CC_BREAK_IF(animationArray->count() <= 16);
+			tmpAction = (CCArray *)(animationArray->objectAtIndex(16));
+			skillSPC4Array = (CCArray *)(tmpAction->objectAtIndex(1));
+			skillSPC4Array->retain();
+
 			CC_BREAK_IF(animationArray->count() <= 17);
 			tmpAction = (CCArray *)(animationArray->objectAtIndex(17));
 			tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
@@ -216,41 +226,16 @@ public:
 			break;
 		}
 
-		if (name == "Itachi" ||
-			name == "Choji" ||
-			name == "Kiba" ||
-			name == "Naruto" ||
-			name == "SageNaruto" ||
-			name == "RikudoNaruto" ||
-			name == "Sasuke" ||
-			name == "ImmortalSasuke")
-		{
-			tmpAction = (CCArray *)(animationArray->objectAtIndex(16));
-			skillSPC4Array = (CCArray *)(tmpAction->objectAtIndex(1));
-			skillSPC4Array->retain();
-		}
-
-		if (name == "Sasuke" ||
-			name == "SageNaruto")
-		{
-			tmpAction = (CCArray *)(animationArray->objectAtIndex(15));
-			skillSPC5Array = (CCArray *)(tmpAction->objectAtIndex(1));
-			skillSPC5Array->retain();
-		}
-		else if (name == "Kiba")
+		_isArmored = false;
+		if (name == HeroEnum::Kiba)
 		{
 			_isArmored = true;
 		}
-		else if (name == "Kakuzu")
+		else if (name == HeroEnum::Kakuzu)
 		{
 			_heartEffect = CCSprite::createWithSpriteFrameName("Heart_Effect_00");
 			_heartEffect->setPosition(ccp(getContentSize().width + 40, 70));
 			addChild(_heartEffect);
-		}
-		else
-		{
-			// reset value
-			_isArmored = false;
 		}
 
 		// Heroes have 50 coins by default

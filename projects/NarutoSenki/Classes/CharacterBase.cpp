@@ -3231,7 +3231,7 @@ void CharacterBase::setMon(const string &monName)
 	{
 		_monsterArray.push_back(monster);
 	}
-	else if (monName == "HiraishinMark")
+	else if (monName == SkillEnum::HiraishinMark)
 	{
 		_monsterArray.push_back(monster);
 		_isCanSkill1 = true;

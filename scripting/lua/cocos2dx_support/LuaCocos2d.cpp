@@ -67591,37 +67591,6 @@ static int tolua_Cocos2d_SelectLayer_onGameStart00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: prepareFileOGG of class  KTools */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_KTools_prepareFileOGG00
-static int tolua_Cocos2d_KTools_prepareFileOGG00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"KTools",0,&tolua_err) ||
-     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
-     !tolua_isboolean(tolua_S,3,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  const char* listName = ((const char*)  tolua_tostring(tolua_S,2,0));
-  bool unload = ((bool)  tolua_toboolean(tolua_S,3,false));
-  {
-   KTools::prepareFileOGG(listName,unload);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'prepareFileOGG'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: initTableInDB of class  KTools */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_KTools_initTableInDB00
 static int tolua_Cocos2d_KTools_initTableInDB00(lua_State* tolua_S)
@@ -72050,9 +72019,8 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"setSelectList",tolua_Cocos2d_SelectLayer_setSelectList00);
    tolua_function(tolua_S,"onGameStart",tolua_Cocos2d_SelectLayer_onGameStart00);
   tolua_endmodule(tolua_S);
-  tolua_cclass(tolua_S,"KTools","KTools","CCObject",NULL);
+  tolua_cclass(tolua_S,"KTools","KTools","",NULL);
   tolua_beginmodule(tolua_S,"KTools");
-   tolua_function(tolua_S,"prepareFileOGG",tolua_Cocos2d_KTools_prepareFileOGG00);
    tolua_function(tolua_S,"initTableInDB",tolua_Cocos2d_KTools_initTableInDB00);
    tolua_function(tolua_S,"initColumeInDB",tolua_Cocos2d_KTools_initColumeInDB00);
    tolua_function(tolua_S,"prepareTableInDB",tolua_Cocos2d_KTools_prepareTableInDB00);

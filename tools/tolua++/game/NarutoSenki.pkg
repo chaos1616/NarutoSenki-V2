@@ -75,10 +75,8 @@ public:
 };
 
 /* KTools.h */
-class KTools : public CCObject {
+class KTools {
 public:
-	static void prepareFileOGG(const char *listName, bool unload = false);
-
 	static void initTableInDB();
 	static void initColumeInDB();
 

@@ -32,7 +32,7 @@ void Monster::setID(const string &name, const string &role, const string &group)
 	setGroup(group);
 
 	CCArray *animationArray = CCArray::create();
-	auto filePath = format("Element/Monster/{}.xml", getName());
+	auto filePath = format("Element/Monster/{}.xml", name);
 	KTools::readXMLToArray(filePath, animationArray);
 
 	// init Attribute; & indleFrame
@@ -330,7 +330,7 @@ void Monster::dealloc()
 			getGameLayer()->clearDoubleClick();
 		}
 
-		_master->removeAllMonAndCleanup("HiraishinMark");
+		_master->removeAllMonAndCleanup(SkillEnum::HiraishinMark);
 
 		return;
 	}

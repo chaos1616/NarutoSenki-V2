@@ -172,7 +172,7 @@ class Pain : public Hero
 					int countNum = 0;
 					for (auto hero : getGameLayer()->_CharacterArray)
 					{
-						if (getGroup() == hero->getGroup() == 0 &&
+						if (getGroup() == hero->getGroup() &&
 							hero->isPlayerOrCom() &&
 							hero->getActionState() == State::DEAD)
 						{

@@ -6,7 +6,7 @@
 #include "sqlite3.h"
 #endif
 
-class KTools : public CCObject
+class KTools
 {
 public:
 	static bool readXMLToArray(const string &filePath, CCArray *&array);

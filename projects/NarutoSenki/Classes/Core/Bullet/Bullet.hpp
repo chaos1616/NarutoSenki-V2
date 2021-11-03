@@ -24,7 +24,7 @@ public:
 		setGroup(group);
 
 		CCArray *animationArray = CCArray::create();
-		auto filePath = format("Element/Bullet/{}.xml", getName());
+		auto filePath = format("Element/Bullet/{}.xml", name);
 		KTools::readXMLToArray(filePath, animationArray);
 
 		CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));

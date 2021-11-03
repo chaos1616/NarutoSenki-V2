@@ -358,7 +358,7 @@ private:
 			   {
 				   for (auto mo : thiz->getMonsterArray())
 				   {
-					   if (mo->getName() == "HiraishinMark")
+					   if (mo->getName() == SkillEnum::HiraishinMark)
 					   {
 						   tsPosX = mo->getPositionX();
 						   tsPosY = mo->getPositionY();

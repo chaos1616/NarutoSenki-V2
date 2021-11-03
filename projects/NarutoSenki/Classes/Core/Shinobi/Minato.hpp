@@ -20,7 +20,7 @@ class Minato : public Hero
 				{
 					for (auto mo : _monsterArray)
 					{
-						if (mo->getName() == "HiraishinMark")
+						if (mo->getName() == SkillEnum::HiraishinMark)
 						{
 							if (isKonohaGroup() && mo->getPositionX() < getPositionX())
 							{
@@ -60,7 +60,7 @@ class Minato : public Hero
 				{
 					for (auto mo : _monsterArray)
 					{
-						if (mo->getName() == "HiraishinMark")
+						if (mo->getName() == SkillEnum::HiraishinMark)
 						{
 							isMark = true;
 						}
@@ -194,7 +194,7 @@ class Minato : public Hero
 				{
 					for (auto mo : _monsterArray)
 					{
-						if (mo->getName() == "HiraishinMark")
+						if (mo->getName() == SkillEnum::HiraishinMark)
 						{
 							if (isKonohaGroup() && mo->getPositionX() > getPositionX())
 							{
