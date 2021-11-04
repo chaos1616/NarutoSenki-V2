@@ -11,6 +11,7 @@
                 "${workspaceFolder}/projects/NarutoSenki/Classes/**"
             ],
             "defines": [
+                "__linux__",
                 "DEBUG",
                 "COCOS2D_DEBUG"
             ],
