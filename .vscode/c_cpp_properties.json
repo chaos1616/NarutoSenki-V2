@@ -3,10 +3,16 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/cocos2dx/**",
+                "${workspaceFolder}/cocos2dx",
+                "${workspaceFolder}/cocos2dx/cocoa",
+                "${workspaceFolder}/cocos2dx/include",
+                "${workspaceFolder}/cocos2dx/kazmath/include",
+                "${workspaceFolder}/cocos2dx/platform",
+                "${workspaceFolder}/cocos2dx/platform/linux",
                 "${workspaceFolder}/CocosDenshion/**",
                 "${workspaceFolder}/extensions/**",
                 "${workspaceFolder}/external/**",
+                "${workspaceFolder}/scripting/lua/cocos2dx_support",
                 "${workspaceFolder}/scripting/lua/luajit/include",
                 "${workspaceFolder}/projects/NarutoSenki/Classes/**"
             ],
@@ -20,10 +26,16 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/cocos2dx/**",
+                "${workspaceFolder}/cocos2dx",
+                "${workspaceFolder}/cocos2dx/cocoa",
+                "${workspaceFolder}/cocos2dx/include",
+                "${workspaceFolder}/cocos2dx/kazmath/include",
+                "${workspaceFolder}/cocos2dx/platform",
+                "${workspaceFolder}/cocos2dx/platform/win32",
                 "${workspaceFolder}/CocosDenshion/**",
                 "${workspaceFolder}/extensions/**",
                 "${workspaceFolder}/external/**",
+                "${workspaceFolder}/scripting/lua/cocos2dx_support",
                 "${workspaceFolder}/scripting/lua/luajit/include",
                 "${workspaceFolder}/projects/NarutoSenki/Classes/**"
             ],
