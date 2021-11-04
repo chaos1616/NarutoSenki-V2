@@ -222,7 +222,7 @@ void ActionButton::beganAnimation(bool isLock)
 		}
 		if (_abType != Item1)
 		{
-			cdLabel = CCLabelBMFont::create(to_cstr(getCD() / 1000), "Fonts/1.fnt");
+			cdLabel = CCLabelBMFont::create(to_cstr(getCD() / 1000), Fonts::Default);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 			cdLabel->setScale(0.3f);
@@ -319,11 +319,11 @@ void ActionButton::setOugisMark()
 	_delegate->addChild(ougismarkSprite, 500);
 	if (_abType == OUGIS1)
 	{
-		lockLabel1 = CCLabelBMFont::create("LV2", "Fonts/1.fnt");
+		lockLabel1 = CCLabelBMFont::create("LV2", Fonts::Default);
 	}
 	else
 	{
-		lockLabel1 = CCLabelBMFont::create("LV4", "Fonts/1.fnt");
+		lockLabel1 = CCLabelBMFont::create("LV4", Fonts::Default);
 	}
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)

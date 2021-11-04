@@ -319,7 +319,7 @@ bool StartMenu::init()
 		menu->setPositionX(105);
 		addChild(menu, 2);
 	}
-	auto versionLabel = CCLabelBMFont::create(VERSION_CODE, "Fonts/1.fnt");
+	auto versionLabel = CCLabelBMFont::create(VERSION_CODE, Fonts::Default);
 	versionLabel->setScale(0.3f);
 	versionLabel->setPosition(winSize.width - 25, 10);
 	addChild(versionLabel, 5);

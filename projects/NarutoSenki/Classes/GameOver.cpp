@@ -114,7 +114,7 @@ void GameOver::listResult()
 	addChild(timeBG, 6);
 
 	auto tempTime = format("{:02d}:{:02d}:{:02d}", _hour, _minute, getGameLayer()->_second);
-	auto gameClock = CCLabelBMFont::create(tempTime.c_str(), "Fonts/1.fnt");
+	auto gameClock = CCLabelBMFont::create(tempTime.c_str(), Fonts::Default);
 	gameClock->setAnchorPoint(ccp(0.5f, 0));
 	gameClock->setPosition(ccp(timeBG->getPositionX() + timeBG->getContentSize().width / 2, timeBG->getPositionY() + 3));
 	gameClock->setScale(0.48f);
@@ -198,13 +198,13 @@ void GameOver::listResult()
 			akatsukiKill += realKillNum;
 		}
 
-		auto killNum = CCLabelBMFont::create(to_cstr(realKillNum), "Fonts/1.fnt");
+		auto killNum = CCLabelBMFont::create(to_cstr(realKillNum), Fonts::Default);
 		killNum->setScale(0.3f);
 
-		auto deadNum = CCLabelBMFont::create(to_cstr(hero->_deadNum), "Fonts/1.fnt");
+		auto deadNum = CCLabelBMFont::create(to_cstr(hero->_deadNum), Fonts::Default);
 		deadNum->setScale(0.3f);
 
-		auto flogNum = CCLabelBMFont::create(to_cstr(hero->_flogNum), "Fonts/1.fnt");
+		auto flogNum = CCLabelBMFont::create(to_cstr(hero->_flogNum), Fonts::Default);
 		flogNum->setScale(0.3f);
 
 		float posX = winSize.width / 2 - result_bg->getContentSize().width / 2 + 2;
@@ -308,14 +308,14 @@ void GameOver::listResult()
 
 		KTools::saveToSQLite("GameRecord", "coin", std::to_string(tempCoin).c_str(), false);
 
-		auto extraLabel = CCLabelBMFont::create(extraCoin, "Fonts/yellow.fnt");
+		auto extraLabel = CCLabelBMFont::create(extraCoin, Fonts::Yellow);
 		extraLabel->setScale(0.5f);
 		extraLabel->setAnchorPoint(ccp(0.5f, 0));
 		extraLabel->setPosition(ccp(coinBG->getPositionX() + 68, coinBG->getPositionY() + 3));
 		addChild(extraLabel, 7);
 
 		auto rewardCoin = to_cstr(rewardNum);
-		auto rewardLabel = CCLabelBMFont::create(rewardCoin, "Fonts/yellow.fnt");
+		auto rewardLabel = CCLabelBMFont::create(rewardCoin, Fonts::Yellow);
 		rewardLabel->setAnchorPoint(ccp(0.5f, 0));
 		rewardLabel->setPosition(ccp(coinBG->getPositionX() + 28, coinBG->getPositionY() + 3));
 		rewardLabel->setScale(0.55f);
@@ -361,7 +361,7 @@ void GameOver::listResult()
 		{
 			// finnalScore = resultScore + float(currPlayer->_flogNum) / 100;
 			// auto recordString = format("{0.2f}Pts", finnalScore);
-			// auto recordScore = CCLabelBMFont::create(recordString.c_str(), "Fonts/1.fnt");
+			// auto recordScore = CCLabelBMFont::create(recordString.c_str(), Fonts::Default);
 			// recordScore->setAnchorPoint(ccp(1, 0.5f));
 			// recordScore->setPosition(ccp(recordSprite->getPositionX() + recordSprite->getContentSize().width, recordSprite->getPositionY() - 7));
 			// recordScore->setScale(0.35f);
@@ -467,8 +467,8 @@ void GameOver::listResult()
 		}
 	}
 
-	// auto version = CCLabelBMFont::create(Cheats < MaxCheats ? GAMEOVER_VER : GAMEOVER_VER, "Fonts/1.fnt");
-	auto version = CCLabelBMFont::create(GAMEOVER_VER, "Fonts/1.fnt");
+	// auto version = CCLabelBMFont::create(Cheats < MaxCheats ? GAMEOVER_VER : GAMEOVER_VER, Fonts::Default);
+	auto version = CCLabelBMFont::create(GAMEOVER_VER, Fonts::Default);
 	version->setPosition(ccp(winSize.width / 2 + 94, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 6));
 	version->setScale(0.3f);
 	addChild(version, 5);

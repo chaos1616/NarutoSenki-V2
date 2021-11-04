@@ -519,7 +519,7 @@ public:
 				skullSpirte->setPosition(ccp(0, 0));
 				rebornSprite->addChild(skullSpirte);
 
-				rebornLabel = CCLabelBMFont::create(to_cstr(rebornLabelTime), "Fonts/1.fnt");
+				rebornLabel = CCLabelBMFont::create(to_cstr(rebornLabelTime), Fonts::Default);
 				rebornLabel->setScale(0.3f);
 				rebornLabel->setPosition(ccp(skullSpirte->getContentSize().width, 0));
 				rebornSprite->addChild(rebornLabel);

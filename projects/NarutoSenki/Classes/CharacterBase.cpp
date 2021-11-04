@@ -1445,11 +1445,11 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 		if (_isDisplay)
 		{
 			if (criticalValue <= 20)
-				setDamgeDisplay(realValue, "white");
+				setDamgeDisplay(realValue, Fonts::White);
 			else if (criticalValue <= 40)
-				setDamgeDisplay(realValue, "yellow");
+				setDamgeDisplay(realValue, Fonts::Yellow);
 			else
-				setDamgeDisplay(realValue, "red");
+				setDamgeDisplay(realValue, Fonts::Red);
 		}
 
 		// create damage effect
@@ -1475,7 +1475,7 @@ void CharacterBase::setCoinDisplay(int num)
 	coinSprite->setPosition(ccp(14, 0));
 	coinDisplay->addChild(coinSprite);
 
-	auto rewardLabel = CCLabelBMFont::create(format("+{}", num).c_str(), "Fonts/yellow.fnt");
+	auto rewardLabel = CCLabelBMFont::create(format("+{}", num).c_str(), Fonts::Yellow);
 	rewardLabel->setPosition(ccp(0, 0));
 	rewardLabel->setScale(0.3f);
 	coinDisplay->addChild(rewardLabel);
@@ -1496,11 +1496,11 @@ void CharacterBase::removeCoinDisplay(CCSprite *coinDisplay)
 	coinDisplay->removeFromParent();
 }
 
-void CharacterBase::setDamgeDisplay(int value, const char *type)
+void CharacterBase::setDamgeDisplay(int value, const char *font)
 {
 	if (_damageArray.size() < 6)
 	{
-		auto damageFont = CCLabelBMFont::create(to_cstr(value), format("Fonts/{}.fnt", type).c_str());
+		auto damageFont = CCLabelBMFont::create(to_cstr(value), font);
 		damageFont->setAnchorPoint(ccp(0.5, 0.5));
 
 		if (isFlog())

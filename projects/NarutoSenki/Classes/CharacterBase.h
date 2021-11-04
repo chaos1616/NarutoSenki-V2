@@ -391,7 +391,7 @@ public:
 	void				setAttackBox(const string &effectType);
 	inline void			setDamage(CharacterBase* attacker);
 	void				setDamage(CharacterBase *attacker, const string &effectType, int attackValue, bool isFlipped);
-	void				setDamgeDisplay(int value, const char* type);
+	void				setDamgeDisplay(int value, const char* font);
 
 	void				setSkillEffect(const string &type);
 	// void				setItemEffect(const string &type);

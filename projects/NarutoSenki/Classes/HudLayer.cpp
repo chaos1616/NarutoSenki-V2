@@ -241,7 +241,7 @@ void HudLayer::initHeroInterface()
 	killIcon->setPosition(ccp(winWidth - 114, winHeight - 46));
 	addChild(killIcon, 5000);
 
-	killLabel = CCLabelBMFont::create("0", "Fonts/1.fnt");
+	killLabel = CCLabelBMFont::create("0", Fonts::Default);
 	killLabel->setScale(0.26f);
 	killLabel->setAnchorPoint(ccp(0, 1));
 	killLabel->setPosition(ccp(killIcon->getPositionX() + killIcon->getContentSize().width / 2 + 5, winHeight - 56));
@@ -252,16 +252,16 @@ void HudLayer::initHeroInterface()
 	deadIcon->setPosition(ccp(winWidth - 114 + 26, winHeight - 47));
 	addChild(deadIcon, 5000);
 
-	deadLabel = CCLabelBMFont::create("0", "Fonts/1.fnt");
+	deadLabel = CCLabelBMFont::create("0", Fonts::Default);
 	deadLabel->setScale(0.26f);
 	deadLabel->setAnchorPoint(ccp(0, 1));
 	deadLabel->setPosition(ccp(deadIcon->getPositionX() + deadIcon->getContentSize().width / 2 + 5, winHeight - 56));
 	addChild(deadLabel, 5001);
 
-	KonoLabel = CCLabelBMFont::create("0", "Fonts/blue.fnt");
+	KonoLabel = CCLabelBMFont::create("0", Fonts::Blue);
 	KonoLabel->setScale(0.35f);
 
-	AkaLabel = CCLabelBMFont::create("0", "Fonts/red.fnt");
+	AkaLabel = CCLabelBMFont::create("0", Fonts::Red);
 	AkaLabel->setScale(0.35f);
 
 	if (getGameLayer()->playerGroup == Group::Konoha)
@@ -281,7 +281,7 @@ void HudLayer::initHeroInterface()
 
 	addChild(KonoLabel, 5000);
 	addChild(AkaLabel, 5000);
-	auto hengLabel = CCLabelBMFont::create(":", "Fonts/1.fnt");
+	auto hengLabel = CCLabelBMFont::create(":", Fonts::Default);
 	hengLabel->setScale(0.5f);
 	hengLabel->setAnchorPoint(ccp(0.5f, 1));
 	hengLabel->setPosition(ccp(winWidth - 37, KonoLabel->getPositionY() + 2));
@@ -291,7 +291,7 @@ void HudLayer::initHeroInterface()
 	auto currCharName = currentPlayer->getName();
 	initGearButton(currCharName);
 
-	hpLabel = CCLabelBMFont::create(currentPlayer->getHP_Value().asString().c_str(), "Fonts/1.fnt");
+	hpLabel = CCLabelBMFont::create(currentPlayer->getHP_Value().asString().c_str(), Fonts::Default);
 	hpLabel->setScale(0.35f);
 	hpLabel->setPosition(ccp(0, winHeight - 54));
 	hpLabel->setAnchorPoint(ccp(0, 0));
@@ -299,20 +299,20 @@ void HudLayer::initHeroInterface()
 	addChild(hpLabel, 5000);
 
 	int exp = currentPlayer->getEXP() - ((currentPlayer->getLV() - 1) * 500) / 500;
-	expLabel = CCLabelBMFont::create(format("{}%", exp).c_str(), "Fonts/1.fnt");
+	expLabel = CCLabelBMFont::create(format("{}%", exp).c_str(), Fonts::Default);
 	expLabel->setScale(0.35f);
 	expLabel->setPosition(ccp(94, winHeight - 54));
 	expLabel->setAnchorPoint(ccp(0.5f, 0));
 
 	addChild(expLabel, 5000);
 
-	gameClock = CCLabelBMFont::create("00:00", "Fonts/1.fnt");
+	gameClock = CCLabelBMFont::create("00:00", Fonts::Default);
 	gameClock->setAnchorPoint(ccp(0.5f, 0));
 	gameClock->setScale(0.4f);
 	gameClock->setPosition(ccp(mScaleX * 25, 0));
 	addChild(gameClock, 5000);
 
-	coinLabel = CCLabelBMFont::create(currentPlayer->getCoin_Value().asString().c_str(), "Fonts/arial.fnt");
+	coinLabel = CCLabelBMFont::create(currentPlayer->getCoin_Value().asString().c_str(), Fonts::Arial);
 	coinLabel->setAnchorPoint(ccp(0, 0));
 	coinLabel->setPosition(ccp(121, winHeight - 61));
 
@@ -857,7 +857,7 @@ void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 	{
 		if (_buffCount == 0)
 		{
-			bcdLabel1 = CCLabelBMFont::create(to_cstr(buffStayTime), "Fonts/1.fnt");
+			bcdLabel1 = CCLabelBMFont::create(to_cstr(buffStayTime), Fonts::Default);
 			bcdLabel1->setScale(scale);
 			bcdLabel1->setPosition(ccp(5, 5));
 			bcdLabel1->setAnchorPoint(ccp(0.5, 0.5));
@@ -866,7 +866,7 @@ void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 		}
 		else
 		{
-			bcdLabel2 = CCLabelBMFont::create(to_cstr(buffStayTime), "Fonts/1.fnt");
+			bcdLabel2 = CCLabelBMFont::create(to_cstr(buffStayTime), Fonts::Default);
 			bcdLabel2->setScale(scale);
 			bcdLabel2->setPosition(ccp(5, 5));
 			bcdLabel2->setAnchorPoint(ccp(0.5, 0.5));

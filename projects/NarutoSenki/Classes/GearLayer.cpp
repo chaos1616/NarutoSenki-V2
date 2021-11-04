@@ -254,7 +254,7 @@ bool GearLayer::init(CCRenderTexture *snapshoot)
 	gears_bg->setPosition(ccp(winSize.width / 2, winSize.height / 2 - 12));
 	gears_layer->addChild(gears_bg, 1);
 
-	coinLabel = CCLabelBMFont::create("0", "Fonts/arial.fnt");
+	coinLabel = CCLabelBMFont::create("0", Fonts::Arial);
 	coinLabel->setAnchorPoint(ccp(0, 0));
 	coinLabel->setPosition(ccp(gears_bg->getPositionX() + 2, 58));
 	gears_layer->addChild(coinLabel, 2);

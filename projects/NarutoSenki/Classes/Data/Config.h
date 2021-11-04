@@ -1,4 +1,5 @@
 #pragma once
+#include "Data/Fonts.h"
 
 #define FONT_TYPE "Microsoft YaHei"
 
