@@ -49,7 +49,6 @@ class StartMenu : public CCLayer
 {
 public:
 	StartMenu();
-	~StartMenu();
 
 	bool init();
 

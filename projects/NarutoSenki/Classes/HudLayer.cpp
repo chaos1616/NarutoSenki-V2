@@ -106,10 +106,6 @@ HudLayer::HudLayer()
 	bcdLabel2 = nullptr;
 }
 
-HudLayer::~HudLayer()
-{
-}
-
 void HudLayer::onEnter()
 {
 	if (getGameLayer()->_isExiting)

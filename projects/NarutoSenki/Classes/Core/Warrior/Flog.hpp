@@ -95,9 +95,9 @@ public:
 
 	void initAction()
 	{
-		setIdleAction(createAnimation(idleArray, 5.0, true, false));
-		setWalkAction(createAnimation(walkArray, 10.0, true, false));
-		setHurtAction(createAnimation(hurtArray, 10.0, false, true));
+		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
+		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
+		setHurtAction(createAnimation(hurtArray, 10.0f, false, true));
 
 		setAirHurtAction(createAnimation(airHurtArray, 10.0f, false, false));
 		setKnockDownAction(createAnimation(knockDownArray, 10.0f, false, true));
@@ -105,7 +105,7 @@ public:
 
 		setFloatAction(createAnimation(floatArray, 10.0f, false, false));
 
-		setNAttackAction(createAnimation(nattackArray, 10.0, false, true));
+		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
 	}
 
 	void setHPbar()

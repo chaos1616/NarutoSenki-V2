@@ -4,13 +4,10 @@
 class CCScrewLayer : public CCLayer
 {
 public:
-	CCScrewLayer();
-	~CCScrewLayer();
-
 	float prePosY;
-	float minY;
-	int totalRow;
-	int line_height;
+	float minY = 154;
+	int totalRow = 100;
+	int line_height = 26;
 	// PROP_Vector(vector<CCScrewItem *>, itemArray, ItemArray);
 
 	CREATE_FUNC(CCScrewLayer);
@@ -27,9 +24,6 @@ protected:
 class CCScrewItem : public CCSprite, public CCTouchDelegate
 {
 public:
-	CCScrewItem();
-	~CCScrewItem();
-
 	CCMenu *linemenu;
 	CCSprite *lockItem;
 	CC_SYNTHESIZE(CCScrewLayer *, _delegate, Delegate);

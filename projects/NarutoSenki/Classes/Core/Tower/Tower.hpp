@@ -70,7 +70,7 @@ public:
 	void initAction()
 	{
 		setDeadAction(createAnimation(deadArray, 10.0f, false, false));
-		setIdleAction(createAnimation(idleArray, 5.0, true, false));
+		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 	}
 
 	void setHPbar()

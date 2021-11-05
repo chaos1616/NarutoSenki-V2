@@ -86,8 +86,8 @@ void Monster::setID(const string &name, const string &role, const string &group)
 
 void Monster::initAction()
 {
-	setIdleAction(createAnimation(idleArray, 5.0, true, false));
-	setWalkAction(createAnimation(walkArray, 10.0, true, false));
+	setIdleAction(createAnimation(idleArray, 5.0f, true, false));
+	setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 	setDeadAction(createAnimation(deadArray, 10.0f, false, false));
 	if (getName() == SkillEnum::Kage ||
 		getName() == SkillEnum::KageHand ||
@@ -95,11 +95,11 @@ void Monster::initAction()
 		getName() == SkillEnum::FutonSRK2 ||
 		getName() == SkillEnum::Kubi)
 	{
-		setNAttackAction(createAnimation(nattackArray, 10.0, false, false));
+		setNAttackAction(createAnimation(nattackArray, 10.0f, false, false));
 	}
 	else
 	{
-		setNAttackAction(createAnimation(nattackArray, 10.0, false, true));
+		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
 	}
 }
 

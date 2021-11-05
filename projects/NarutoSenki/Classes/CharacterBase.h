@@ -29,7 +29,6 @@ friend class CommandSystem;
 
 public:
 	CharacterBase();
-	~CharacterBase();
 
 	virtual void		setID(const string &name, const string &role, const string &group);
 	virtual void		setHPbar();

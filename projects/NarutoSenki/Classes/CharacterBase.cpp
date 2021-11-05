@@ -146,10 +146,6 @@ CharacterBase::CharacterBase()
 	_affectedByTower = false;
 }
 
-CharacterBase::~CharacterBase()
-{
-}
-
 void CharacterBase::setID(const string &name, const string &role, const string &group)
 {
 }
@@ -2877,7 +2873,7 @@ Hero *CharacterBase::createClone(int cloneTime)
 void CharacterBase::setClone(int cloneTime)
 {
 	Hero *clone = createClone(cloneTime);
-	if (!clone)
+	if (clone == nullptr)
 	{
 		CCLOG("Current character %s can not create clone", getName().c_str());
 		return;
@@ -4814,7 +4810,6 @@ CharacterBase::findTargetEnemyBy(const vector<T *> &list, bool isTowerDected)
 			findSome = getGameLayer()->playerGroup == Group::Konoha
 						   ? target->getPositionX() >= 81 * 32
 						   : target->getPositionX() <= 14 * 32;
-
 			if (findSome)
 			{
 				if (target->isHurtingTower)

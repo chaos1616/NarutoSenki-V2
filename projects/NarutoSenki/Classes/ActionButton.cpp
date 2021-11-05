@@ -23,10 +23,6 @@ ActionButton::ActionButton()
 	gearSign = nullptr;
 }
 
-ActionButton::~ActionButton()
-{
-}
-
 bool ActionButton::init(const string &szImage)
 {
 	RETURN_FALSE_IF(!CCSprite::init());

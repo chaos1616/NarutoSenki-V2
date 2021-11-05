@@ -57,8 +57,8 @@ public:
 
 	void initAction()
 	{
-		setIdleAction(createAnimation(idleArray, 5.0, true, false));
-		setNAttackAction(createAnimation(nattackArray, 10.0, true, false));
+		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
+		setNAttackAction(createAnimation(nattackArray, 10.0f, true, false));
 		if (getName() == ProjectileEnum::Amaterasu || getName() == ProjectileEnum::SusanoTama)
 		{
 			setDeadAction(createAnimation(deadArray, 10.0f, false, false));

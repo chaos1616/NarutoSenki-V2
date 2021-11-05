@@ -40,7 +40,6 @@ class HudLayer : public CCLayer
 {
 public:
 	HudLayer();
-	~HudLayer();
 
 	CCSprite *status_bar;
 	CCSprite *status_hpbar;

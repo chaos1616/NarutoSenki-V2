@@ -1,16 +1,5 @@
 #include "CCScrewLayer.h"
 
-CCScrewLayer::CCScrewLayer()
-{
-	totalRow = 100;
-	minY = 154;
-	line_height = 26;
-}
-
-CCScrewLayer::~CCScrewLayer()
-{
-}
-
 void CCScrewLayer::onEnter()
 {
 	CCLayer::onEnter();

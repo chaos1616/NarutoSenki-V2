@@ -14,10 +14,6 @@ LoadLayer::LoadLayer()
 	_enableGear = true;
 }
 
-LoadLayer::~LoadLayer()
-{
-}
-
 bool LoadLayer::init()
 {
 	if (!CCLayer::init())

@@ -207,10 +207,6 @@ StartMenu::StartMenu()
 	login_btn = nullptr;
 }
 
-StartMenu::~StartMenu()
-{
-}
-
 bool StartMenu::init()
 {
 	RETURN_FALSE_IF(!CCLayer::init());

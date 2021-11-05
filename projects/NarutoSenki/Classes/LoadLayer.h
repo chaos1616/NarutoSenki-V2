@@ -10,7 +10,6 @@ class LoadLayer : public CCLayer
 {
 public:
 	LoadLayer();
-	~LoadLayer();
 
 	bool init();
 
