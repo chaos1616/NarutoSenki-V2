@@ -149,7 +149,7 @@ class Karin : public Hero
 				auto trap = Bullet::create();
 				trap->setAnchorPoint(ccp(0.5f, 0));
 				trap->setMaster(this);
-				trap->setID(trapType, kRoleMon, getGroup());
+				trap->setID(trapType, Role::Mon, getGroup());
 
 				if (i == 0)
 					trap->setPosition(ccp(getPositionX() + (_isFlipped ? -24 : 24), getPositionY() - 24));

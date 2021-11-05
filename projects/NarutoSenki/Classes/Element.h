@@ -11,7 +11,7 @@ public:
 
 	bool init();
 	void initAction();
-	void setID(const string &name, const string &role, const string &group);
+	void setID(const string &name, Role role, Group group);
 	void setHPbar();
 	void changeHPbar();
 	void setDirectMove(int length, float delay, bool isReverse);

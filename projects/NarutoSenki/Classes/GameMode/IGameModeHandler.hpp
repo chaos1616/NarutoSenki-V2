@@ -51,10 +51,8 @@ struct GameData
 
 	bool use4v4SpawnLayout = false;
 
-	string playerGroup;
+	Group playerGroup;
 };
-
-extern const GameData kDefaultGameData;
 
 class IGameModeHandler
 {
@@ -83,7 +81,7 @@ private:
 	{
 		onGameOver();
 
-		gd = kDefaultGameData;
+		gd = {};
 		clearHeroArray();
 		resetCheats();
 	}
@@ -95,12 +93,12 @@ protected:
 	int oldCheats = -1;
 	vector<string> heroVector;
 	// player
-	const char *playerGroup = nullptr;
+	Group playerGroup;
 
 public:
 	const uint8_t kMaxCharCount = 4;
 	const int kDefaultMap = 1;
-	const char *kDefaultGroup = Group::Konoha;
+	const Group kDefaultGroup = Group::Konoha;
 
 	virtual void init() = 0;
 
@@ -165,35 +163,35 @@ protected:
 	}
 
 	// init hero
-	inline void addHero(const char *name, const char *role, const char *group, uint32_t lv = 1)
+	inline void addHero(const char *name, Role role, Group group, uint32_t lv = 1)
 	{
 		heroDataVector.push_back({name, role, group});
 		heroVector.push_back(name);
 	}
 
-	inline void addHeros(int count, const char *name, const char *role, const char *group, uint32_t lv = 1)
+	inline void addHeros(int count, const char *name, Role role, Group group, uint32_t lv = 1)
 	{
 		for (int i = 0; i < count; i++)
 			addHero(name, role, group, lv);
 	}
 
-	inline void addKonohaHero(const vector<string> &heros, const char *name, const char *role, uint32_t lv = 1)
+	inline void addKonohaHero(const vector<string> &heros, const char *name, Role role, uint32_t lv = 1)
 	{
 		addHero(name, role, Group::Konoha, lv);
 	}
 
-	inline void addAkatsukiHero(const vector<string> &heros, const char *name, const char *role, uint32_t lv = 1)
+	inline void addAkatsukiHero(const vector<string> &heros, const char *name, Role role, uint32_t lv = 1)
 	{
 		addHero(name, role, Group::Akatsuki, lv);
 	}
 
 	inline void initHeros(uint32_t playerCount, uint32_t enemyCount)
 	{
-		initHeros(playerCount, enemyCount, nullptr, nullptr);
+		initHeros(playerCount, enemyCount, nullptr, kDefaultGroup);
 	}
 
 	void initHeros(uint8_t playerCount, uint8_t enemyCount,
-				   const char *playerSelect, const char *playerGroup,
+				   const char *playerSelect, Group playerGroup,
 				   const char *com1Select = nullptr, const char *com2Select = nullptr, const char *com3Select = nullptr)
 	{
 		clearHeroArray();
@@ -245,7 +243,7 @@ protected:
 		}
 
 		// push player
-		heroDataVector.push_back({tmpChar, kRolePlayer, playerGroup});
+		heroDataVector.push_back({tmpChar, Role::Player, playerGroup});
 		heroVector.push_back(tmpChar);
 
 		// init com heros
@@ -293,7 +291,7 @@ protected:
 					realHeroVector.erase(std::find(realHeroVector.begin(), realHeroVector.end(), hero));
 				}
 
-				heroDataVector.push_back({hero, kRoleCom, team > 0 ? Group::Akatsuki : Group::Konoha});
+				heroDataVector.push_back({hero, Role::Com, team > 0 ? Group::Akatsuki : Group::Konoha});
 				heroVector.push_back(hero);
 			}
 			else
@@ -305,14 +303,14 @@ protected:
 					index = realHeroVector.size() - 1;
 
 				hero = realHeroVector.at(index);
-				heroDataVector.push_back({hero, kRoleCom, team > 0 ? Group::Konoha : Group::Akatsuki});
+				heroDataVector.push_back({hero, Role::Com, team > 0 ? Group::Konoha : Group::Akatsuki});
 				heroVector.push_back(hero);
 				realHeroVector.erase(std::find(realHeroVector.begin(), realHeroVector.end(), hero));
 			}
 		}
 	}
 
-	inline void setPlayerTeamByGroup(const char *group)
+	inline void setPlayerTeamByGroup(Group group)
 	{
 		gd.playerGroup = group;
 	}
@@ -373,13 +371,13 @@ protected:
 		return selectLayer->_playerSelect ? selectLayer->_playerSelect : getRandomHeroExceptAll(excepts, defaultChar);
 	}
 
-	static inline const char *getRandomGroup()
+	static inline Group getRandomGroup()
 	{
 		setRand();
 		return random(2) == 0 ? Group::Konoha : Group::Akatsuki;
 	}
 
-	static inline void getRandomGroups(const char *&groupA, const char *&groupB)
+	static inline void getRandomGroups(Group &groupA, Group &groupB)
 	{
 		setRand();
 		int team = random(2) == 0;

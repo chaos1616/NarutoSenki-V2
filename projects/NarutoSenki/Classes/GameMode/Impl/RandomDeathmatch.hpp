@@ -48,7 +48,7 @@ public:
 
 	void onCharacterDead(CharacterBase *c)
 	{
-		CCLOG("[Character Dead] Name: %s, Role: %s, Group: %s", c->getName().c_str(), c->getRole().c_str(), c->getGroup().c_str());
+		// CCLOG("[Character Dead] Name: %s, Role: %s, Group: %s", c->getName().c_str(), c->getRole(), c->getGroup());
 
 		if (c->isPlayerOrCom())
 		{
@@ -72,7 +72,7 @@ public:
 
 	void onCharacterReborn(CharacterBase *c)
 	{
-		CCLOG("[Character Reborn] Name: %s, Role: %s, Group: %s", c->getName().c_str(), c->getRole().c_str(), c->getGroup().c_str());
+		// CCLOG("[Character Reborn] Name: %s, Role: %s, Group: %s", c->getName().c_str(), c->getRole(), c->getGroup());
 
 		if (c->isPlayerOrCom())
 		{
@@ -84,7 +84,7 @@ public:
 			auto gameLayer = getGameLayer();
 			// initial a new random character
 			auto newCharName = heroVector.at(c->changeCharId);
-			CCLOG("[Change Character] %s from %s to %s", c->getRole().c_str(), c->getName().c_str(), newCharName.c_str());
+			// CCLOG("[Change Character] %s from %s to %s", c->getRole(), c->getName().c_str(), newCharName.c_str());
 
 			if (c->getName() == newCharName)
 			{

@@ -11,8 +11,8 @@ constexpr int kAttackRange = kTileSize * 9;
 struct HeroData
 {
 	string name;
-	string role;
-	string group;
+	Role role;
+	Group group;
 
 	CCPoint spawnPoint;
 

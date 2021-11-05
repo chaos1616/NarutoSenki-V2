@@ -146,7 +146,7 @@ CharacterBase::CharacterBase()
 	_affectedByTower = false;
 }
 
-void CharacterBase::setID(const string &name, const string &role, const string &group)
+void CharacterBase::setID(const string &name, Role role, Group group)
 {
 }
 
@@ -2744,7 +2744,7 @@ void CharacterBase::stopJump(int stopTime)
 void CharacterBase::setBullet(const string &bulletName)
 {
 	Bullet *bullet = Bullet::create();
-	bullet->setID(bulletName, kRoleBullet, _group);
+	bullet->setID(bulletName, Role::Bullet, _group);
 	bullet->idle();
 	bullet->_master = _master ? _master : this;
 
@@ -2832,7 +2832,7 @@ void CharacterBase::setBulletGroup(float dt)
 		Bullet *bullet = Bullet::create();
 		float rangeX = 0;
 
-		bullet->setID("HugeSRK", kRoleBullet, _group);
+		bullet->setID("HugeSRK", Role::Bullet, _group);
 		rangeX = 76;
 
 		bullet->_master = this;
@@ -2968,7 +2968,7 @@ void CharacterBase::setMon(const string &monName)
 	float monsterStayTime = _attackRangeY;
 
 	auto monster = Monster::create();
-	monster->setID(monName, kRoleMon, _group);
+	monster->setID(monName, Role::Mon, _group);
 
 	if (_master)
 	{
@@ -3370,11 +3370,11 @@ void CharacterBase::setMonPer(float dt)
 
 	if (getName() == HeroEnum::Deidara)
 	{
-		monster->setID("Spider", kRoleMon, _group);
+		monster->setID("Spider", Role::Mon, _group);
 	}
 	else if (getName() == HeroEnum::Sai)
 	{
-		monster->setID("Mouse", kRoleMon, _group);
+		monster->setID("Mouse", Role::Mon, _group);
 		setSound("Audio/Sai/ink_mouse.ogg");
 	}
 
@@ -3433,7 +3433,7 @@ void CharacterBase::setTrap(const string &trapName)
 				{
 					Bullet *trap = Bullet::create();
 					trap->_master = this;
-					trap->setID(trapName, kRoleMon, _group);
+					trap->setID(trapName, Role::Mon, _group);
 					trap->setAnchorPoint(ccp(0.5, 0));
 					trap->setPosition(ccp(targetPoint.x, targetPoint.y + 32));
 					trap->idle();
@@ -3447,7 +3447,7 @@ void CharacterBase::setTrap(const string &trapName)
 					{
 						Bullet *trap = Bullet::create();
 						trap->_master = this;
-						trap->setID(trapName, kRoleMon, _group);
+						trap->setID(trapName, Role::Mon, _group);
 						trap->setAnchorPoint(ccp(0.5, 0));
 						trap->setPosition(ccp(targetPoint.x + (i - 1) * 60, targetPoint.y));
 						trap->idle();
@@ -3460,7 +3460,7 @@ void CharacterBase::setTrap(const string &trapName)
 				{
 					Bullet *trap = Bullet::create();
 					trap->_master = this;
-					trap->setID(trapName, kRoleMon, _group);
+					trap->setID(trapName, Role::Mon, _group);
 					trap->setAnchorPoint(ccp(0.5, 0));
 					trap->setPosition(ccp(targetPoint.x, targetPoint.y - 32));
 					trap->idle();
@@ -3480,7 +3480,7 @@ void CharacterBase::setTrap(const string &trapName)
 					{
 						Bullet *trap = Bullet::create();
 						trap->_master = this;
-						trap->setID(trapName, kRoleMon, _group);
+						trap->setID(trapName, Role::Mon, _group);
 						trap->setPosition(ccp(getPositionX() + (_isFlipped ? -112 : 112), getPositionY() + (48 - i * 24)));
 						trap->idle();
 						trap->attack(NAttack);
@@ -3494,7 +3494,7 @@ void CharacterBase::setTrap(const string &trapName)
 					{
 						Bullet *trap = Bullet::create();
 						trap->_master = this;
-						trap->setID(trapName, kRoleMon, _group);
+						trap->setID(trapName, Role::Mon, _group);
 						trap->setPosition(ccp(getPositionX() + (_isFlipped ? -80 : 80), getPositionY() + (32 - i * 24)));
 						trap->idle();
 						trap->attack(NAttack);
@@ -3506,7 +3506,7 @@ void CharacterBase::setTrap(const string &trapName)
 				{
 					Bullet *trap = Bullet::create();
 					trap->_master = this;
-					trap->setID(trapName, kRoleMon, _group);
+					trap->setID(trapName, Role::Mon, _group);
 					trap->setPosition(ccp(getPositionX() + (_isFlipped ? -48 : 48), getPositionY() + 22));
 					trap->idle();
 					trap->attack(NAttack);
@@ -4582,20 +4582,20 @@ void CharacterBase::doAI()
 	schedule(schedule_selector(CharacterBase::setAI), 0.1f);
 }
 
-bool CharacterBase::findEnemy(const string &type, int searchRange, bool masterRange)
+bool CharacterBase::findEnemy(Role role, int searchRange, bool masterRange)
 {
-	if (type == kRoleHero)
+	if (role == Role::Hero)
 	{
 		return findEnemyBy(getGameLayer()->_CharacterArray, searchRange, masterRange);
 	}
-	else if (type == kRoleFlog)
+	else if (role == Role::Flog)
 	{
 		if (isAkatsukiGroup())
 			return findEnemyBy(getGameLayer()->_KonohaFlogArray, searchRange, masterRange);
 		else
 			return findEnemyBy(getGameLayer()->_AkatsukiFlogArray, searchRange, masterRange);
 	}
-	else if (type == kRoleTower)
+	else if (role == Role::Tower)
 	{
 		return findEnemyBy(getGameLayer()->_TowerArray, searchRange, masterRange);
 	}
@@ -4673,20 +4673,20 @@ CharacterBase::findEnemyBy(const vector<T *> &list, int searchRange, bool master
 }
 
 // NOTE: Use half the window width as the search range
-bool CharacterBase::findEnemy2(const string &type)
+bool CharacterBase::findEnemy2(Role role)
 {
-	if (type == kRoleHero)
+	if (role == Role::Hero)
 	{
 		return findEnemy2By(getGameLayer()->_CharacterArray);
 	}
-	else if (type == kRoleFlog)
+	else if (role == Role::Flog)
 	{
 		if (isAkatsukiGroup())
 			return findEnemy2By(getGameLayer()->_KonohaFlogArray);
 		else
 			return findEnemy2By(getGameLayer()->_AkatsukiFlogArray);
 	}
-	else if (type == kRoleTower)
+	else if (role == Role::Tower)
 	{
 		return findEnemy2By(getGameLayer()->_TowerArray);
 	}
@@ -4774,13 +4774,13 @@ CharacterBase::findEnemy2By(const vector<T *> &list)
 	return findSome;
 }
 
-bool CharacterBase::findTargetEnemy(const string &type, bool isTowerDected)
+bool CharacterBase::findTargetEnemy(Role role, bool isTowerDected)
 {
-	if (type == kRoleHero)
+	if (role == Role::Hero)
 	{
 		return findTargetEnemyBy(getGameLayer()->_CharacterArray, isTowerDected);
 	}
-	else if (type == kRoleFlog)
+	else if (role == Role::Flog)
 	{
 		if (isAkatsukiGroup())
 			return findTargetEnemyBy(getGameLayer()->_KonohaFlogArray, isTowerDected);

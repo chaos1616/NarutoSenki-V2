@@ -78,7 +78,7 @@ class DefaultAI : public Hero
 class Provider
 {
 public:
-	static Hero *create(const string &name, const string &role, const string &group)
+	static Hero *create(const string &name, Role role, Group group)
 	{
 		Hero *ptr;
 
@@ -113,9 +113,9 @@ public:
 		is("MaskKaton") 					ptr = new Mask();
 		is("MaskRaiton") 					ptr = new Mask();
 		is("Minato") 						ptr = new Minato();
-		is("Naruto") 						is_role(kRoleClone) ptr = new NarutoClone();		else ptr = new Naruto();
-		is("RikudoNaruto") 					is_role(kRoleClone) ptr = new RikudoNarutoClone();	else ptr = new Naruto();
-		is("SageNaruto") 					is_role(kRoleClone) ptr = new SageNarutoClone();	else ptr = new Naruto();
+		is("Naruto") 						is_role(Role::Clone) ptr = new NarutoClone();		else ptr = new Naruto();
+		is("RikudoNaruto") 					is_role(Role::Clone) ptr = new RikudoNarutoClone();	else ptr = new Naruto();
+		is("SageNaruto") 					is_role(Role::Clone) ptr = new SageNarutoClone();	else ptr = new Naruto();
 		is("Neji") 							ptr = new Neji();
 		is("Orochimaru") 					ptr = new Orochimaru();
 		is_or("Pain", "Nagato") 			ptr = new Pain();

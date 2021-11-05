@@ -49,7 +49,7 @@ public:
 		return true;
 	}
 
-	virtual void setID(const string &name, const string &role, const string &group)
+	virtual void setID(const string &name, Role role, Group group)
 	{
 		setRole(role);
 		setGroup(group);
@@ -564,7 +564,7 @@ public:
 	template <typename THero>
 	typename std::enable_if<std::is_base_of<Hero, THero>::value, THero *>::type
 	// typename enable_if<!is_same<Hero, THero>::value && is_base_of<Hero, THero>::value, THero *>::type
-	create(const string &name, const string &role, const string &group)
+	create(const string &name, Role role, Group group)
 	{
 		THero *hero = new THero();
 		if (hero->init())
@@ -583,19 +583,19 @@ public:
 
 	template <typename THero>
 	inline typename std::enable_if<std::is_base_of<Hero, THero>::value, THero *>::type
-	createHero(const string &name, const string &role) { return create<THero>(name, role, getGroup()); }
+	createHero(const string &name, Role role) { return create<THero>(name, role, getGroup()); }
 
 	template <typename THero>
 	inline typename std::enable_if<std::is_base_of<Hero, THero>::value, THero *>::type
-	createCloneHero(const string &name) { return createHero<THero>(name, kRoleClone); }
+	createCloneHero(const string &name) { return createHero<THero>(name, Role::Clone); }
 
 	template <typename THero>
 	inline typename std::enable_if<std::is_base_of<Hero, THero>::value, THero *>::type
-	createKugutsuHero(const string &name) { return createHero<THero>(name, kRoleKugutsu); }
+	createKugutsuHero(const string &name) { return createHero<THero>(name, Role::Kugutsu); }
 
 	template <typename THero>
 	inline typename std::enable_if<std::is_base_of<Hero, THero>::value, THero *>::type
-	createSummonHero(const string &name) { return createHero<THero>(name, kRoleSummon); }
+	createSummonHero(const string &name) { return createHero<THero>(name, Role::Summon); }
 
 /** Macros */
 // eg.

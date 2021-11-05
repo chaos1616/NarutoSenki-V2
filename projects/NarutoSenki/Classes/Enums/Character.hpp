@@ -7,12 +7,6 @@
 #include "Enums/SummonEnum.h"
 #include "Enums/TowerEnum.h"
 
-#define cName(varName, varType) "Element/" varType "/" #varName ".plist"
-
-// Types
-#define kFlog "Flog"
-#define kGuardian "Guardian"
-
 // Roles
 #define kRoleCom "Com"
 #define kRolePlayer "Player"
@@ -29,13 +23,36 @@
 // 口寄せ	Summon
 #define kRoleSummon "Summon"
 
+enum class Role : uint8_t
+{
+	// Hero of Com
+	Com,
+	// Hero of Player
+	Player,
+	// Com & Player
+	Hero,
+	Flog,
+	Tower,
+	// Projectile
+	Bullet,
+	// 分身
+	Clone,
+	// 傀儡
+	Kugutsu,
+	Mon,
+	// 口寄せ
+	Summon,
+};
+
+#define cName(varName, varType) "Element/" varType "/" #varName ".plist"
+
 // Flogs
-#define kFlog_Kotetsu cName(KotetsuFlog, kFlog)
-#define kFlog_Izumo cName(IzumoFlog, kFlog)
-#define kFlog_Kakashi cName(KakashiFlog, kFlog)
-#define kFlog_FemalePain cName(FemalePainFlog, kFlog)
-#define kFlog_Pain cName(PainFlog, kFlog)
-#define kFlog_Obito cName(ObitoFlog, kFlog)
+#define kFlog_Kotetsu cName(KotetsuFlog, kRoleFlog)
+#define kFlog_Izumo cName(IzumoFlog, kRoleFlog)
+#define kFlog_Kakashi cName(KakashiFlog, kRoleFlog)
+#define kFlog_FemalePain cName(FemalePainFlog, kRoleFlog)
+#define kFlog_Pain cName(PainFlog, kRoleFlog)
+#define kFlog_Obito cName(ObitoFlog, kRoleFlog)
 // Guardians
 #define kGuardian_Roshi "Roshi"
 #define kGuardian_Han "Han"
@@ -92,11 +109,14 @@ namespace FlogEnum
 	mk_const(ObitoFlog);	  // LV 3
 } // namespace FlogEnum
 
-namespace Group
+#define kGroupKonoha "Konoha"
+#define kGroupAkatsuki "Akatsuki"
+
+enum class Group : uint8_t
 {
-	mk_const(Konoha);
-	mk_const(Akatsuki);
-} // namespace Group
+	Konoha,
+	Akatsuki,
+};
 
 enum class ActionFlag : uint32_t
 {

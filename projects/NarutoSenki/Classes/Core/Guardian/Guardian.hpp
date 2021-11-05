@@ -5,13 +5,13 @@ class Guardian : public Hero
 {
 	void perform() override
 	{
-		if (!findTargetEnemy(kRoleHero, true))
+		if (!findTargetEnemy(Role::Hero, true))
 		{
-			if (!findTargetEnemy(kRoleFlog, true))
+			if (!findTargetEnemy(Role::Flog, true))
 			{
-				if (!findTargetEnemy(kRoleFlog, false))
+				if (!findTargetEnemy(Role::Flog, false))
 				{
-					if (!findTargetEnemy(kRoleHero, false))
+					if (!findTargetEnemy(Role::Hero, false))
 					{
 						_mainTarget = nullptr;
 					}

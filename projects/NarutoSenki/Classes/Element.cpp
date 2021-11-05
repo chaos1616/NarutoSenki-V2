@@ -25,7 +25,7 @@ bool Monster::init()
 	return true;
 }
 
-void Monster::setID(const string &name, const string &role, const string &group)
+void Monster::setID(const string &name, Role role, Group group)
 {
 	setName(name);
 	setRole(role);

@@ -17,7 +17,7 @@ public:
 		return true;
 	}
 
-	void setID(const string &name, const string &role, const string &group)
+	void setID(const string &name, Role role, Group group)
 	{
 		setName(name);
 		setRole(role);

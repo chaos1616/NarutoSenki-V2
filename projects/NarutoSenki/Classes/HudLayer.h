@@ -26,10 +26,9 @@ public:
 
 struct ReportData
 {
-public:
-	string name1;
+	string slayer;
+	string dead;
 	int char1Id = 0;
-	string name2;
 	uint32_t num = 0;
 	uint32_t kills = 0;
 
@@ -97,7 +96,7 @@ public:
 	void attackButtonRelease();
 	void pauseButtonClick(CCObject *sender);
 	void gearButtonClick(CCObject *sender);
-	void setReport(const string &name1, const string &name2, uint32_t killNum);
+	void setReport(const string &slayer, const string &dead, uint32_t killNum);
 	void setReportCache();
 	void setBuffDisplay(const char *buffName, float buffStayTime);
 	void clearSPCReport();
@@ -117,14 +116,14 @@ public:
 	void JoyStickUpdate(CCPoint direction);
 	CCSprite *openingSprite;
 
-	CCSprite *createReport(const string &name1, const string &name2, float &length);
+	CCSprite *createReport(const string &slayer, const string &dead, float &length);
 	CCSprite *createSPCReport(uint32_t killNum, int num);
 
 	bool getSkillFinish();
 	bool getOugisEnable(bool isCKR2);
 
 	CCLayer *ougisLayer;
-	void setOugis(const string &name, const string &group);
+	void setOugis(const string &name, Group group);
 	void removeOugis();
 
 	bool _isAllButtonLocked;

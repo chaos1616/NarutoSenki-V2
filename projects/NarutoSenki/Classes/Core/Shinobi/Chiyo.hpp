@@ -5,7 +5,7 @@
 
 class Chiyo : public Hero
 {
-	void setID(const string &name, const string &role, const string &group) override
+	void setID(const string &name, Role role, Group group) override
 	{
 		Hero::setID(name, role, group);
 

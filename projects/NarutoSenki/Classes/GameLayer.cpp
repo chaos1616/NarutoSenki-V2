@@ -138,7 +138,7 @@ void GameLayer::initGard()
 	int index = random(2);
 	auto guardianName = index == 0 ? kGuardian_Roshi : kGuardian_Han;
 	auto guardianGroup = playerGroup == Group::Konoha ? Group::Akatsuki : Group::Konoha;
-	auto guardian = Provider::create(guardianName, kRoleCom, guardianGroup);
+	auto guardian = Provider::create(guardianName, Role::Com, guardianGroup);
 
 	if (playerGroup == Group::Konoha)
 	{
@@ -245,7 +245,7 @@ Hero *GameLayer::addHero(const HeroData &data, int charId)
 	return addHero(data.name, data.role, data.group, data.spawnPoint, charId);
 }
 
-Hero *GameLayer::addHero(const string &name, const string &role, const string &group, CCPoint spawnPoint, int charId)
+Hero *GameLayer::addHero(const string &name, Role role, Group group, CCPoint spawnPoint, int charId)
 {
 	auto hero = Provider::create(name, role, group);
 	if (hero->isPlayer())
@@ -333,7 +333,7 @@ void GameLayer::addFlog(float dt)
 	for (i = 0; i < NUM_FLOG; i++)
 	{
 		flog = Flog::create();
-		flog->setID(KonohaFlogName, kRoleFlog, Group::Konoha);
+		flog->setID(KonohaFlogName, Role::Flog, Group::Konoha);
 		if (i < NUM_FLOG / 2)
 			mainPosY = (5.5 - i / 1.5) * 32;
 		else
@@ -350,7 +350,7 @@ void GameLayer::addFlog(float dt)
 	for (i = 0; i < NUM_FLOG; i++)
 	{
 		flog = Flog::create();
-		flog->setID(AkatsukiFlogName, kRoleFlog, Group::Akatsuki);
+		flog->setID(AkatsukiFlogName, Role::Flog, Group::Akatsuki);
 		if (i < NUM_FLOG / 2)
 			mainPosY = (5.5 - i / 1.5) * 32;
 		else
@@ -389,13 +389,13 @@ void GameLayer::initTower()
 		Tower *tower = Tower::create();
 		char towerName[7] = "abcdef";
 		strncpy(towerName, name.c_str(), 6);
-		if (is_same(towerName, Group::Konoha))
+		if (is_same(towerName, kGroupKonoha))
 		{
-			tower->setID(name, kRoleTower, Group::Konoha);
+			tower->setID(name, Role::Tower, Group::Konoha);
 		}
 		else
 		{
-			tower->setID(name, kRoleTower, Group::Akatsuki);
+			tower->setID(name, Role::Tower, Group::Akatsuki);
 			tower->setFlipX(true);
 			tower->_isFlipped = true;
 		}
@@ -508,9 +508,9 @@ void GameLayer::setCKRLose(bool isCRK2)
 	_hudLayer->setCKRLose(isCRK2);
 }
 
-void GameLayer::setReport(const string &name1, const string &name2, uint32_t killNum)
+void GameLayer::setReport(const string &slayer, const string &dead, uint32_t killNum)
 {
-	_hudLayer->setReport(name1, name2, killNum);
+	_hudLayer->setReport(slayer, dead, killNum);
 }
 
 void GameLayer::resetStatusBar()

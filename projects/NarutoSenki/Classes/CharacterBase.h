@@ -30,14 +30,14 @@ friend class CommandSystem;
 public:
 	CharacterBase();
 
-	virtual void		setID(const string &name, const string &role, const string &group);
+	virtual void		setID(const string &name, Role role, Group group);
 	virtual void		setHPbar();
 	virtual void		changeHPbar();
 	virtual void		setShadows();
 
 	PROP_String(_name, Name);
-	PROP_String(_role, Role);
-	PROP_String(_group, Group);
+	PPROP(Role, _role, Role);
+	PPROP(Group, _group, Group);
 	VPROP(int, _charId, CharId);
 
 	uint32_t			_deadNum;
@@ -431,9 +431,9 @@ protected:
 	void				setRestore(float dt);
 
 
-	bool				findEnemy(const string &type, int searchRange, bool masterRange = false);
-	bool				findEnemy2(const string &type);
-	bool				findTargetEnemy(const string &type, bool isTowerDected);
+	bool				findEnemy(Role role, int searchRange, bool masterRange = false);
+	bool				findEnemy2(Role role);
+	bool				findTargetEnemy(Role role, bool isTowerDected);
 	template <typename T>
 	typename std::enable_if<std::is_base_of<CharacterBase, T>::value, bool>::type findEnemyBy(const vector<T *> &list, int searchRange, bool masterRange = false);
 	template <typename T>
@@ -499,25 +499,25 @@ public:
 	inline bool			isGuardian() { return _name == kGuardian_Han || _name == kGuardian_Roshi; }
 	inline bool			isNotGuardian() { return !isGuardian(); }
 	// role extensions
-	inline bool			isPlayer() { return _role == kRolePlayer; }
-	inline bool			isCom() { return _role == kRoleCom; }
-	inline bool			isClone() { return _role == kRoleClone; }
-	inline bool			isFlog() { return _role == kRoleFlog; }
-	inline bool			isKugutsu() { return _role == kRoleKugutsu; }
-	inline bool			isMon() { return _role == kRoleMon; }
-	inline bool			isSummon() { return _role == kRoleSummon; }
-	inline bool			isTower() { return _role == kRoleTower; }
-	inline bool			isBullet() { return _role == kRoleBullet; }
+	inline bool			isCom() { return _role == Role::Com; }
+	inline bool			isPlayer() { return _role == Role::Player; }
 	inline bool			isPlayerOrCom() { return isPlayer() || isCom(); }
-	inline bool			isNotPlayer() { return _role != kRolePlayer; }
-	inline bool			isNotCom() { return _role != kRoleCom; }
-	inline bool			isNotClone() { return _role != kRoleClone; }
-	inline bool			isNotFlog() { return _role != kRoleFlog; }
-	inline bool			isNotKugutsu() { return _role != kRoleKugutsu; }
-	inline bool			isNotMon() { return _role != kRoleMon; }
-	inline bool			isNotSummon() { return _role != kRoleSummon; }
-	inline bool			isNotTower() { return _role != kRoleTower; }
-	inline bool			isNotBullet() { return _role != kRoleBullet; }
+	inline bool			isFlog() { return _role == Role::Flog; }
+	inline bool			isTower() { return _role == Role::Tower; }
+	inline bool			isBullet() { return _role == Role::Bullet; }
+	inline bool			isClone() { return _role == Role::Clone; }
+	inline bool			isKugutsu() { return _role == Role::Kugutsu; }
+	inline bool			isMon() { return _role == Role::Mon; }
+	inline bool			isSummon() { return _role == Role::Summon; }
+	inline bool			isNotCom() { return _role != Role::Com; }
+	inline bool			isNotPlayer() { return _role != Role::Player; }
+	inline bool			isNotFlog() { return _role != Role::Flog; }
+	inline bool			isNotTower() { return _role != Role::Tower; }
+	inline bool			isNotBullet() { return _role != Role::Bullet; }
+	inline bool			isNotClone() { return _role != Role::Clone; }
+	inline bool			isNotKugutsu() { return _role != Role::Kugutsu; }
+	inline bool			isNotMon() { return _role != Role::Mon; }
+	inline bool			isNotSummon() { return _role != Role::Summon; }
 	// group extensions
 	inline bool			isKonohaGroup() { return _group == Group::Konoha; }
 	inline bool			isAkatsukiGroup() { return _group == Group::Akatsuki; }
@@ -544,18 +544,18 @@ public:
 	inline void			increaseHpAndUpdateUI(uint32_t value);
 protected:
 	// find enemy extensions
-	inline bool 		findHero(int searchRange, bool masterRange = false) { return findEnemy(kRoleHero, searchRange, masterRange); }
-	inline bool 		findFlog(int searchRange, bool masterRange = false) { return findEnemy(kRoleFlog, searchRange, masterRange); }
-	inline bool 		findTower(int searchRange, bool masterRange = false) { return findEnemy(kRoleTower, searchRange, masterRange); }
-	inline bool 		notFindHero(int searchRange, bool masterRange = false) { return !findEnemy(kRoleHero, searchRange, masterRange); }
-	inline bool 		notFindFlog(int searchRange, bool masterRange = false) { return !findEnemy(kRoleFlog, searchRange, masterRange); }
-	inline bool 		notFindTower(int searchRange, bool masterRange = false) { return !findEnemy(kRoleTower, searchRange, masterRange); }
-	inline bool 		findHeroHalf() { return findEnemy2(kRoleHero); }
-	inline bool 		findFlogHalf() { return findEnemy2(kRoleFlog); }
-	inline bool 		findTowerHalf() { return findEnemy2(kRoleTower); }
-	inline bool 		notFindHeroHalf() { return !findEnemy2(kRoleHero); }
-	inline bool 		notFindFlogHalf() { return !findEnemy2(kRoleFlog); }
-	inline bool 		notFindTowerHalf() { return !findEnemy2(kRoleTower); }
+	inline bool 		findHero(int searchRange, bool masterRange = false) { return findEnemy(Role::Hero, searchRange, masterRange); }
+	inline bool 		findFlog(int searchRange, bool masterRange = false) { return findEnemy(Role::Flog, searchRange, masterRange); }
+	inline bool 		findTower(int searchRange, bool masterRange = false) { return findEnemy(Role::Tower, searchRange, masterRange); }
+	inline bool 		notFindHero(int searchRange, bool masterRange = false) { return !findEnemy(Role::Hero, searchRange, masterRange); }
+	inline bool 		notFindFlog(int searchRange, bool masterRange = false) { return !findEnemy(Role::Flog, searchRange, masterRange); }
+	inline bool 		notFindTower(int searchRange, bool masterRange = false) { return !findEnemy(Role::Tower, searchRange, masterRange); }
+	inline bool 		findHeroHalf() { return findEnemy2(Role::Hero); }
+	inline bool 		findFlogHalf() { return findEnemy2(Role::Flog); }
+	inline bool 		findTowerHalf() { return findEnemy2(Role::Tower); }
+	inline bool 		notFindHeroHalf() { return !findEnemy2(Role::Hero); }
+	inline bool 		notFindFlogHalf() { return !findEnemy2(Role::Flog); }
+	inline bool 		notFindTowerHalf() { return !findEnemy2(Role::Tower); }
 	// AI extensions
 	void				tryBuyGear(GearType gear1, GearType gear2, GearType gear3) {
 		if (getCoin() >= 500 && getGearArray().size() < 3 && !_isControlled && getGameLayer()->_enableGear)

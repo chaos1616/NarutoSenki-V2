@@ -96,7 +96,7 @@ public:
 	void updateGameTime(float dt);
 
 	Hero *addHero(const HeroData &data, int charId);
-	Hero *addHero(const string &name, const string &role, const string &group, CCPoint spawnPoint, int charNo);
+	Hero *addHero(const string &name, Role role, Group group, CCPoint spawnPoint, int charNo);
 	void addFlog(float dt);
 
 	void attackButtonClick(abType type);
@@ -119,7 +119,7 @@ public:
 	void setHPLose(float percent);
 	void setCKRLose(bool isCRK2);
 
-	void setReport(const string &name1, const string &name2, uint32_t killNum);
+	void setReport(const string &slayer, const string &dead, uint32_t killNum);
 	void clearDoubleClick();
 	void resetStatusBar();
 	void setCoin(const char *value);
@@ -140,7 +140,7 @@ public:
 	bool _isHardCoreGame;
 	bool _isRandomChar;
 
-	string playerGroup;
+	Group playerGroup;
 	bool _isStarted;
 	bool _isExiting;
 

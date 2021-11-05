@@ -178,7 +178,7 @@ class Shikamaru : public Hero
 					{
 						auto trap = Monster::create();
 						trap->setMaster(this);
-						trap->setID(trapType, kRoleMon, getGroup());
+						trap->setID(trapType, Role::Mon, getGroup());
 						trap->setPosition(ccp(hero->getPositionX(), hero->getPositionY()));
 						trap->idle();
 						trap->attack(NAttack);

@@ -721,14 +721,14 @@ bool HudLayer::offCoin(const char *value)
 	}
 }
 
-void HudLayer::setReport(const string &name1, const string &name2, uint32_t killNum)
+void HudLayer::setReport(const string &slayer, const string &dead, uint32_t killNum)
 {
 	bool isDisplay = _reportListArray.empty();
 
 	if (isDisplay)
 	{
 		float length;
-		reportSprite = createReport(name1, name2, length);
+		reportSprite = createReport(slayer, dead, length);
 		reportSprite->setPosition(ccp(winSize.width / 2 - length / 2, winSize.height - 80));
 		addChild(reportSprite, 500);
 
@@ -740,9 +740,9 @@ void HudLayer::setReport(const string &name1, const string &name2, uint32_t kill
 	}
 
 	_reportListArray.push_back({
-		.name1 = name1,
+		.slayer = slayer,
 		// .char1Id = charId,
-		.name2 = name2,
+		.dead = dead,
 		.num = 1,
 		.kills = killNum,
 		.isDisplay = isDisplay,
@@ -759,7 +759,7 @@ void HudLayer::setReportCache()
 			continue;
 
 		float length;
-		reportSprite = createReport(data.name1, data.name2, length);
+		reportSprite = createReport(data.slayer, data.dead, length);
 		reportSprite->setPosition(ccp(winSize.width / 2 - length / 2, winSize.height - 80));
 		addChild(reportSprite, 500);
 
@@ -767,17 +767,16 @@ void HudLayer::setReportCache()
 		auto delay = CCDelayTime::create(2.0f);
 		auto call = CallFunc::create(std::bind(&HudLayer::setReportCache, this));
 		auto seq = newSequence(su, su->reverse(), delay, call);
-
 		reportSprite->runAction(seq);
 
-		if (data.name2 != kRoleTower)
+		if (data.dead != kRoleTower)
 		{
 			int num2 = 0;
 			for (auto &data2 : _reportListArray)
 			{
-				if (data2.name1 == data.name1 &&
+				if (data2.slayer == data.slayer &&
+					data2.dead != kRoleTower &&
 					// data2.charId == data.charId &&
-					data2.name2 != kRoleTower &&
 					data2.isDisplay)
 				{
 					num2 += 1;
@@ -809,7 +808,6 @@ void HudLayer::setReportCache()
 					reportSPCSprite->stopAllActions();
 					reportSPCSprite->removeFromParent();
 				}
-
 				reportSPCSprite = createSPCReport(data.kills, num2);
 				reportSPCSprite->setScale(2.0);
 				reportSPCSprite->setPosition(ccp(winSize.width / 2, winSize.height - 105));
@@ -1041,22 +1039,22 @@ CCSprite *HudLayer::createSPCReport(uint32_t killNum, int num)
 	return reportSPCSprite;
 }
 
-CCSprite *HudLayer::createReport(const string &name1, const string &name2, float &length)
+CCSprite *HudLayer::createReport(const string &slayer, const string &dead, float &length)
 {
 	CCSprite *reportSprite = CCSprite::create();
 
-	CCSprite *slain_p = CCSprite::createWithSpriteFrameName(format("{}_rp.png", name1).c_str());
+	CCSprite *slain_p = CCSprite::createWithSpriteFrameName(format("{}_rp.png", slayer).c_str());
 	slain_p->setAnchorPoint(ccp(0, 0.5f));
 	slain_p->setPosition(ccp(0, 0));
 	reportSprite->addChild(slain_p);
 
-	CCSprite *slain_pf = CCSprite::createWithSpriteFrameName(format("{}_rpf.png", name1).c_str());
+	CCSprite *slain_pf = CCSprite::createWithSpriteFrameName(format("{}_rpf.png", slayer).c_str());
 	slain_pf->setPosition(ccp(slain_p->getContentSize().width, 0));
 	slain_pf->setAnchorPoint(ccp(0, 0.5f));
 	reportSprite->addChild(slain_pf);
 
 	CCSprite *slain;
-	if (name2 != kRoleTower)
+	if (dead != kRoleTower)
 	{
 		slain = CCSprite::createWithSpriteFrameName("slain.png");
 		reportSprite->addChild(slain);
@@ -1069,20 +1067,20 @@ CCSprite *HudLayer::createReport(const string &name1, const string &name2, float
 	slain->setAnchorPoint(ccp(0, 0.5f));
 	slain->setPosition(ccp(slain_pf->getPositionX() + slain_pf->getContentSize().width, 0));
 
-	CCSprite *death_pf = CCSprite::createWithSpriteFrameName(format("{}_rpf.png", name2).c_str());
+	CCSprite *death_pf = CCSprite::createWithSpriteFrameName(format("{}_rpf.png", dead).c_str());
 	death_pf->setAnchorPoint(ccp(0, 0.5f));
 	death_pf->setPosition(ccp(slain->getPositionX() + slain->getContentSize().width, 0));
 	reportSprite->addChild(death_pf);
 	CCSprite *death_p;
-	if (name2 != kRoleTower)
+	if (dead != kRoleTower)
 	{
-		death_p = CCSprite::createWithSpriteFrameName(format("{}_rp.png", name2).c_str());
+		death_p = CCSprite::createWithSpriteFrameName(format("{}_rp.png", dead).c_str());
 		death_p->setAnchorPoint(ccp(0, 0.5f));
 		death_p->setPosition(ccp(death_pf->getPositionX() + death_pf->getContentSize().width, 0));
 		reportSprite->addChild(death_p);
 	}
 
-	if (name2 != kRoleTower)
+	if (dead != kRoleTower)
 	{
 		length = slain_p->getContentSize().width + slain_pf->getContentSize().width + slain->getContentSize().width + death_pf->getContentSize().width + death_p->getContentSize().width;
 	}
@@ -1161,7 +1159,7 @@ void HudLayer::costCKR(uint32_t value, bool isCKR2)
 	}
 }
 
-void HudLayer::setOugis(const string &name, const string &group)
+void HudLayer::setOugis(const string &name, Group group)
 {
 	if (!ougisLayer)
 	{

@@ -2,7 +2,7 @@
 #include "UI/GameModeLayer.h"
 #include "UI/ModeMenuButton.hpp"
 
-const GameData kDefaultGameData;
+extern const GameData kDefaultGameData;
 
 // const GameModeData &GameModeData::from(const char *path)
 // {

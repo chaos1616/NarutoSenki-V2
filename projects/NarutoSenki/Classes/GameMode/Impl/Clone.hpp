@@ -25,24 +25,24 @@ public:
 
 	void onInitHeros()
 	{
-		const char *playerGroup;
-		const char *enemyGroup;
+		Group playerGroup;
+		Group enemyGroup;
 		getRandomGroups(playerGroup, enemyGroup);
 		setPlayerTeamByGroup(playerGroup);
 
 		auto playerHero = getSelectedOrRandomHero();
 		auto enemyHero = getRandomHeroExcept(playerHero);
 
-		addHero(playerHero, kRolePlayer, playerGroup);
+		addHero(playerHero, Role::Player, playerGroup);
 		if (Cheats >= MaxCheats)
 		{
-			addHeros(3, playerHero, kRoleCom, playerGroup);
-			addHeros(4, enemyHero, kRoleCom, enemyGroup);
+			addHeros(3, playerHero, Role::Com, playerGroup);
+			addHeros(4, enemyHero, Role::Com, enemyGroup);
 		}
 		else
 		{
-			addHeros(kGenerateCount - 1, playerHero, kRoleCom, playerGroup);
-			addHeros(kGenerateCount, enemyHero, kRoleCom, enemyGroup);
+			addHeros(kGenerateCount - 1, playerHero, Role::Com, playerGroup);
+			addHeros(kGenerateCount, enemyHero, Role::Com, enemyGroup);
 		}
 	}
 
