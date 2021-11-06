@@ -39,8 +39,8 @@ class Chiyo : public Hero
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (isFreeActionState())
 			{
@@ -54,7 +54,7 @@ class Chiyo : public Hero
 							hero->getActionState() != State::DEAD &&
 							hero->getName() != HeroEnum::Chiyo)
 						{
-							CCPoint sp = ccpSub(hero->getPosition(), getPosition());
+							Vec2 sp = ccpSub(hero->getPosition(), getPosition());
 							if (sp.x <= kAttackRange)
 								countNum++;
 						}
@@ -118,8 +118,8 @@ class Chiyo : public Hero
 
 		if (_mainTarget)
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -171,7 +171,7 @@ class Chiyo : public Hero
 	Hero *createClone(int cloneTime) override
 	{
 		auto clone = createKugutsuHero<Parents>(KugutsuEnum::Parents);
-		clone->setPosition(ccp(getPositionX(), getPositionY() - 3));
+		clone->setPosition(Vec2(getPositionX(), getPositionY() - 3));
 		clone->_isArmored = true;
 		_monsterArray.push_back(clone);
 		return clone;

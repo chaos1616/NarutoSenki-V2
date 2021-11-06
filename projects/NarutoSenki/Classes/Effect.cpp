@@ -4,7 +4,7 @@
 
 bool Effect::init(const string &name, CharacterBase *attacker)
 {
-	RETURN_FALSE_IF(!CCSprite::init());
+	RETURN_FALSE_IF(!Sprite::init());
 
 	at = attacker;
 
@@ -14,11 +14,11 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 		auto effectAction = createEffectAnimation("red_damge_", 4, 14, false);
 		runAction(effectAction);
 
-		setAnchorPoint(ccp(0.5f, 0));
+		setAnchorPoint(Vec2(0.5f, 0));
 		setScale(0.6f);
 		float randomY = rand() % 16;
 		float randomX = rand() % 4;
-		setPosition(ccp(at->getPositionX() + randomX, at->getPositionY() + randomY));
+		setPosition(Vec2(at->getPositionX() + randomX, at->getPositionY() + randomY));
 	}
 	else if (name == "l_hit" ||
 			 name == "f_hit" ||
@@ -37,30 +37,30 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 		runAction(effectAction);
 
 		setScale(0.8f);
-		setAnchorPoint(ccp(0.5f, 0));
-		setPosition(ccp(at->getPositionX(), at->getPositionY()));
+		setAnchorPoint(Vec2(0.5f, 0));
+		setPosition(Vec2(at->getPositionX(), at->getPositionY()));
 	}
 	else if (name == "bl_hit" ||
 			 name == "bc_hit" ||
 			 name == "bf_hit" ||
 			 name == "sl_hit")
 	{
-		// setAnchorPoint(ccp(0.5f,0));
+		// setAnchorPoint(Vec2(0.5f,0));
 		auto effectAction = createEffectAnimation("blue_damge_", 4, 14, false);
 		runAction(effectAction);
 
 		setScale(0.6f);
 		int randomInt = rand() % 30 + 10;
 		setRotation(randomInt);
-		setPosition(ccp(at->getPositionX(), at->getPositionY() + at->getContentSize().height / 2));
+		setPosition(Vec2(at->getPositionX(), at->getPositionY() + at->getContentSize().height / 2));
 	}
 	else if (name == "a_hit")
 	{
 		auto effectAction = createEffectAnimation("bottom_damage_", 6, 20, false);
 		runAction(effectAction);
 
-		setAnchorPoint(ccp(0.5f, 0));
-		setPosition(ccp(at->getPositionX() + 16, at->getPositionY()));
+		setAnchorPoint(Vec2(0.5f, 0));
+		setPosition(Vec2(at->getPositionX() + 16, at->getPositionY()));
 	}
 	else if (name == "Kagura")
 	{
@@ -84,35 +84,35 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 	{
 		auto effectAction = createEffectAnimation("smk_", 5, 10, false);
 		runAction(effectAction);
-		setAnchorPoint(ccp(0.5f, 0));
+		setAnchorPoint(Vec2(0.5f, 0));
 		setPosition(at->getPosition());
 
-		if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
+		if (UserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 			SimpleAudioEngine::sharedEngine()->playEffect("Audio/Effect/poof.ogg");
 	}
 	else if (name == "tishen")
 	{
 		auto effectAction = createEffectAnimation("tishen_", 6, 10, false);
 		runAction(effectAction);
-		setAnchorPoint(ccp(0.5f, 0));
+		setAnchorPoint(Vec2(0.5f, 0));
 		setPosition(at->getPosition());
 	}
 	else if (name == "stun")
 	{
 		auto effectAction = createEffectAnimation("stun_", 5, 5, false);
 		runAction(effectAction);
-		setAnchorPoint(ccp(0.5f, 0));
-		setPosition(ccp(at->getPositionX(), at->getPositionY() + at->getContentSize().height - 2));
+		setAnchorPoint(Vec2(0.5f, 0));
+		setPosition(Vec2(at->getPositionX(), at->getPositionY() + at->getContentSize().height - 2));
 	}
 	else if (name == "DarkFlame")
 	{
 		auto effectAction = createEffectAnimation("DarkFlame_Effect_", 5, 10, true);
 		runAction(effectAction);
 
-		setAnchorPoint(ccp(0.5f, 0));
-		setPosition(ccp(at->getPositionX(), at->getPositionY()));
+		setAnchorPoint(Vec2(0.5f, 0));
+		setPosition(Vec2(at->getPositionX(), at->getPositionY()));
 
-		auto delay = CCDelayTime::create(2.8f);
+		auto delay = DelayTime::create(2.8f);
 		auto call = CallFunc::create(std::bind(&Effect::removeEffect, this));
 		auto seq = newSequence(delay, call);
 		runAction(seq);
@@ -121,15 +121,15 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 	{
 		auto effectAction = createEffectAnimation("Bagua_", 24, 10, false);
 		runAction(effectAction);
-		setAnchorPoint(ccp(0.5f, 0));
-		setPosition(ccp(at->getPositionX() + 2, at->getPositionY() - 52));
+		setAnchorPoint(Vec2(0.5f, 0));
+		setPosition(Vec2(at->getPositionX() + 2, at->getPositionY() - 52));
 	}
 	else if (name == "Kujiyose")
 	{
 		initWithSpriteFrameName(name.c_str());
-		setAnchorPoint(ccp(0.5f, 0));
-		setPosition(ccp(at->getPositionX(), at->getPositionY() - getContentSize().height / 2));
-		auto delay = CCDelayTime::create(0.3f);
+		setAnchorPoint(Vec2(0.5f, 0));
+		setPosition(Vec2(at->getPositionX(), at->getPositionY() - getContentSize().height / 2));
+		auto delay = DelayTime::create(0.3f);
 		auto call = CallFunc::create(std::bind(&Effect::removeEffect, this));
 		auto seq = newSequence(delay, call);
 		runAction(seq);
@@ -137,10 +137,10 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 	else if (name == "kazi")
 	{
 		initWithSpriteFrameName(name.c_str());
-		setAnchorPoint(ccp(0.5f, 0));
-		setPosition(ccp(at->getPositionX() + (at->_isFlipped ? -32 : 32),
+		setAnchorPoint(Vec2(0.5f, 0));
+		setPosition(Vec2(at->getPositionX() + (at->_isFlipped ? -32 : 32),
 						at->getPositionY() + at->getContentSize().height / 2));
-		auto su = CCScaleBy::create(0.1f, 1.2f);
+		auto su = ScaleBy::create(0.1f, 1.2f);
 		auto call = CallFunc::create(std::bind(&Effect::removeEffect, this));
 		auto seq = newSequence(su, su->reverse(), call);
 		runAction(seq);
@@ -151,10 +151,10 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 			 name == "sharingan4")
 	{
 		initWithSpriteFrameName(name.c_str());
-		setPosition(ccp(at->getPositionX() + (at->_isFlipped ? -32 : 32),
+		setPosition(Vec2(at->getPositionX() + (at->_isFlipped ? -32 : 32),
 						at->getPositionY() + at->getContentSize().height));
-		auto rt = CCRotateBy::create(0.3f, 180, 180);
-		auto su = CCScaleBy::create(0.2f, 1.6f);
+		auto rt = RotateBy::create(0.3f, 180, 180);
+		auto su = ScaleBy::create(0.2f, 1.6f);
 		auto call = CallFunc::create(std::bind(&Effect::removeEffect, this));
 		auto seq = newSequence(rt, su, call);
 		runAction(seq);
@@ -164,58 +164,58 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 	{
 		auto effectAction = createEffectAnimation(name + "_Effect_", 4, 10, false);
 		runAction(effectAction);
-		setAnchorPoint(ccp(0.5f, 0));
+		setAnchorPoint(Vec2(0.5f, 0));
 		setPosition(at->getPosition());
 	}
 	else if (name == "hBuff")
 	{
 		auto effectAction = createEffectAnimation(name + "_Effect_", 4, 5, true);
 		runAction(effectAction);
-		setAnchorPoint(ccp(0.5f, 0));
+		setAnchorPoint(Vec2(0.5f, 0));
 	}
 	else if (name == "sBuff")
 	{
 		auto effectAction = createEffectAnimation(name + "_Effect_", 10, 10, true);
 		runAction(effectAction);
-		setAnchorPoint(ccp(0.5f, 0));
+		setAnchorPoint(Vec2(0.5f, 0));
 	}
 	else if (name == "hsBuff" ||
 			 name == "tBuff")
 	{
 		auto effectAction = createEffectAnimation(name + "_Effect_", 13, 10, true);
 		runAction(effectAction);
-		setAnchorPoint(ccp(0.5f, 0));
+		setAnchorPoint(Vec2(0.5f, 0));
 	}
 	else if (name == "dcBuff")
 	{
 		auto effectAction = createEffectAnimation(name + "_Effect_", 11, 10, true);
 		runAction(effectAction);
-		setAnchorPoint(ccp(0.5f, 0));
+		setAnchorPoint(Vec2(0.5f, 0));
 	}
 	else if (name == "jdBuff" ||
 			 name == "bmBuff")
 	{
 		auto effectAction = createEffectAnimation(name + "_Effect_", 9, 10, true);
 		runAction(effectAction);
-		setAnchorPoint(ccp(0.5f, 0));
+		setAnchorPoint(Vec2(0.5f, 0));
 	}
 	else if (name == "dhBuff")
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			auto ef = CCSprite::createWithSpriteFrameName("FireEffect_01");
-			ef->setAnchorPoint(ccp(0.5f, 0));
+			auto ef = Sprite::createWithSpriteFrameName("FireEffect_01");
+			ef->setAnchorPoint(Vec2(0.5f, 0));
 			if (i == 0)
 			{
-				ef->setPosition(ccp(10, 0));
+				ef->setPosition(Vec2(10, 0));
 			}
 			else if (i == 1)
 			{
-				ef->setPosition(ccp(-10, 18));
+				ef->setPosition(Vec2(-10, 18));
 			}
 			else
 			{
-				ef->setPosition(ccp(10, 34));
+				ef->setPosition(Vec2(10, 34));
 			}
 			auto effectAction = createEffectAnimation("FireEffect_", 5, 10, true);
 			ef->runAction(effectAction);
@@ -231,7 +231,7 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 	return true;
 }
 
-CCFiniteTimeAction *Effect::createEffectAnimation(const string &file, int frameCount, float fps, bool isRepeat)
+FiniteTimeAction *Effect::createEffectAnimation(const string &file, int frameCount, float fps, bool isRepeat)
 {
 	CCArray *animeFrames = CCArray::create();
 
@@ -247,12 +247,12 @@ CCFiniteTimeAction *Effect::createEffectAnimation(const string &file, int frameC
 			initWithSpriteFrame(frame);
 	}
 
-	auto animation = CCAnimation::createWithSpriteFrames(animeFrames, 1.0 / fps);
-	auto animAction = CCAnimate::create(animation);
+	auto animation = Animation::createWithSpriteFrames(animeFrames, 1.0 / fps);
+	auto animAction = Animate::create(animation);
 
 	if (isRepeat)
 	{
-		return CCRepeatForever::create(animAction);
+		return RepeatForever::create(animAction);
 	}
 	else
 	{
@@ -261,9 +261,9 @@ CCFiniteTimeAction *Effect::createEffectAnimation(const string &file, int frameC
 	}
 }
 
-CCFiniteTimeAction *Effect::createFontAnimation()
+FiniteTimeAction *Effect::createFontAnimation()
 {
-	auto delay = CCDelayTime::create(0.3f);
+	auto delay = DelayTime::create(0.3f);
 	auto call = CallFunc::create(std::bind(&Effect::removeFontEffect, this));
 	auto seq = newSequence(delay, call);
 	return seq;

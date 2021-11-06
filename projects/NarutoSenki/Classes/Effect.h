@@ -3,7 +3,7 @@
 
 class CharacterBase;
 
-class Effect : public CCSprite
+class Effect : public Sprite
 {
 public:
 	bool init(const string &szImage, CharacterBase *attacker);
@@ -11,8 +11,8 @@ public:
 	static Effect *create(const string &szImage, CharacterBase *attacker);
 
 private:
-	CCFiniteTimeAction *createEffectAnimation(const string &file, int frameCount, float fps, bool isRepeat);
-	CCFiniteTimeAction *createFontAnimation();
+	FiniteTimeAction *createEffectAnimation(const string &file, int frameCount, float fps, bool isRepeat);
+	FiniteTimeAction *createFontAnimation();
 	void removeEffect();
 	void removeFontEffect();
 

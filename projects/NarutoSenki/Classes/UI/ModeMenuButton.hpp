@@ -1,10 +1,10 @@
 #pragma once
 #include "UI/GameModeLayer.h"
 
-class ModeMenuButton : public CCSprite, public CCTouchDelegate
+class ModeMenuButton : public Sprite, public CCTouchDelegate
 {
 private:
-	CCSprite *lockMask;
+	Sprite *lockMask;
 
 public:
 	CC_SYNTHESIZE(GameModeLayer *, _gameModeLayer, Delegate);
@@ -14,37 +14,37 @@ public:
 
 	bool init(const string &szImage)
 	{
-		RETURN_FALSE_IF(!CCSprite::initWithFile(szImage.c_str()));
+		RETURN_FALSE_IF(!Sprite::initWithFile(szImage.c_str()));
 		// initWithSpriteFrameName(szImage);
-		setAnchorPoint(ccp(0.5, 0.5));
+		setAnchorPoint(Vec2(0.5, 0.5));
 
 		return true;
 	}
 
 	void onEnter()
 	{
-		CCSprite::onEnter();
-		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 10, true);
+		Sprite::onEnter();
+		Director::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 10, true);
 	}
 
 	void onExit()
 	{
-		CCSprite::onExit();
-		CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+		Sprite::onExit();
+		Director::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
 	}
 
-	CCRect getRect()
+	Rect getRect()
 	{
-		CCSize size = getContentSize();
-		return CCRect(0, 0, size.width, size.height);
+		Size size = getContentSize();
+		return Rect(0, 0, size.width, size.height);
 	}
 
-	bool ccTouchBegan(CCTouch *touch, CCEvent *event)
+	bool ccTouchBegan(Touch *touch, Event *event)
 	{
 		return getRect().containsPoint(convertTouchToNodeSpace(touch));
 	}
 
-	void ccTouchEnded(CCTouch *touch, CCEvent *event)
+	void ccTouchEnded(Touch *touch, Event *event)
 	{
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
 		_gameModeLayer->selectMode(mode);
@@ -60,7 +60,7 @@ public:
 		if (lockMask == nullptr)
 		{
 			auto maskPath = useMask2 ? "GameMode/chain_mask2.png" : "GameMode/chain_mask.png";
-			lockMask = CCSprite::create(maskPath);
+			lockMask = Sprite::create(maskPath);
 			lockMask->setPosition(getPosition());
 			_gameModeLayer->addChild(lockMask, 1000);
 		}

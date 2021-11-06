@@ -18,7 +18,7 @@ enum class MenuButtonType
 
 class StartMenu;
 
-class MenuButton : public CCSprite, public CCTouchDelegate
+class MenuButton : public Sprite, public CCTouchDelegate
 {
 public:
 	bool _isTop;
@@ -28,7 +28,7 @@ public:
 	CC_SYNTHESIZE(StartMenu *, _startMenu, Delegate);
 
 	bool init(const char *szImage);
-	CCRect getRect();
+	Rect getRect();
 	void setBtnType(MenuButtonType type);
 	MenuButtonType getBtnType();
 	void playSound();
@@ -38,14 +38,14 @@ public:
 protected:
 	void onEnter();
 	void onExit();
-	bool ccTouchBegan(CCTouch *touch, CCEvent *event);
-	void ccTouchMoved(CCTouch *touch, CCEvent *event);
-	void ccTouchEnded(CCTouch *touch, CCEvent *event);
+	bool ccTouchBegan(Touch *touch, Event *event);
+	void ccTouchMoved(Touch *touch, Event *event);
+	void ccTouchEnded(Touch *touch, Event *event);
 
-	inline bool containsTouchLocation(CCTouch *touch);
+	inline bool containsTouchLocation(Touch *touch);
 };
 
-class StartMenu : public CCLayer
+class StartMenu : public Layer
 {
 public:
 	StartMenu();
@@ -53,8 +53,8 @@ public:
 	bool init();
 
 	void onTrainingCallBack();
-	void onHardCoreOn(CCObject *sender);
-	void onHardCoreOff(CCObject *sender);
+	void onHardCoreOn(Ref *sender);
+	void onHardCoreOff(Ref *sender);
 	void onHardLayerCallBack();
 
 	void enterCustomMode();
@@ -64,21 +64,21 @@ public:
 	void onCreditsCallBack();
 	void onExitCallBack();
 
-	void onNewsBtn(CCObject *sender);
-	void onLoginBtn(CCObject *sender);
+	void onNewsBtn(Ref *sender);
+	void onLoginBtn(Ref *sender);
 
 	void scrollMenu(int posY);
-	CCSprite *menuText;
+	Sprite *menuText;
 
-	CCLayer *hardCoreLayer;
+	Layer *hardCoreLayer;
 
 	bool isClockwise;
 	bool isDrag;
 
-	CCMenuItem *login_btn;
+	MenuItem *login_btn;
 	void setNotice();
 
-	CCLayer *notice_layer;
+	Layer *notice_layer;
 	void update(float dt);
 	CCLabelTTF *noticeLabel;
 

@@ -16,8 +16,8 @@ class Neji : public Hero
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if ((isFreeActionState()) && (abs(sp.x) < 128 || _isCanGear00))
 			{
@@ -116,8 +116,8 @@ class Neji : public Hero
 
 		if (_mainTarget)
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{

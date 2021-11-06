@@ -13,9 +13,9 @@ public:
 
 	bool init()
 	{
-		RETURN_FALSE_IF(!CCSprite::init());
+		RETURN_FALSE_IF(!Sprite::init());
 
-		setAnchorPoint(ccp(0.5, 0));
+		setAnchorPoint(Vec2(0.5, 0));
 		scheduleUpdate();
 
 		return true;
@@ -169,11 +169,11 @@ protected:
 				}
 			}
 
-			CCPoint moveDirection;
+			Vec2 moveDirection;
 
 			if (_mainTarget)
 			{
-				CCPoint sp = getDistanceToTargetAndIgnoreOriginY();
+				Vec2 sp = getDistanceToTargetAndIgnoreOriginY();
 				if (abs(sp.x) > _randomPosX || abs(sp.y) > _randomPosY)
 				{
 					if (abs(sp.x) > 64 && _mainTarget->isNotFlog() && _mainTarget->isNotTower())
@@ -200,16 +200,16 @@ protected:
 			if (abs(getPositionY() - _mainPosY) > 8)
 			{
 				if (isKonohaGroup())
-					moveDirection = ccpNormalize(ccp(1, getPositionY() > _mainPosY ? -1 : 1));
+					moveDirection = ccpNormalize(Vec2(1, getPositionY() > _mainPosY ? -1 : 1));
 				else
-					moveDirection = ccpNormalize(ccp(-1, getPositionY() > _mainPosY ? -1 : 1));
+					moveDirection = ccpNormalize(Vec2(-1, getPositionY() > _mainPosY ? -1 : 1));
 			}
 			else
 			{
 				if (isKonohaGroup())
-					moveDirection = ccpNormalize(ccp(1, 0));
+					moveDirection = ccpNormalize(Vec2(1, 0));
 				else
-					moveDirection = ccpNormalize(ccp(-1, 0));
+					moveDirection = ccpNormalize(Vec2(-1, 0));
 			}
 			walk(moveDirection);
 		}

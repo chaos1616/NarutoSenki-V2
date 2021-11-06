@@ -8,7 +8,7 @@ class Hero : public CharacterBase
 	friend class CommandSystem;
 
 private:
-	CCSprite *rebornSprite = nullptr;
+	Sprite *rebornSprite = nullptr;
 	CCLabelBMFont *rebornLabel = nullptr;
 	// Hero *proxy = nullptr;
 
@@ -41,9 +41,9 @@ public:
 
 	bool init()
 	{
-		RETURN_FALSE_IF(!CCSprite::init());
+		RETURN_FALSE_IF(!Sprite::init());
 
-		setAnchorPoint(ccp(0.5, 0));
+		setAnchorPoint(Vec2(0.5, 0));
 		scheduleUpdate();
 
 		return true;
@@ -233,8 +233,8 @@ public:
 		}
 		else if (name == HeroEnum::Kakuzu)
 		{
-			_heartEffect = CCSprite::createWithSpriteFrameName("Heart_Effect_00");
-			_heartEffect->setPosition(ccp(getContentSize().width + 40, 70));
+			_heartEffect = Sprite::createWithSpriteFrameName("Heart_Effect_00");
+			_heartEffect->setPosition(Vec2(getContentSize().width + 40, 70));
 			addChild(_heartEffect);
 		}
 
@@ -285,8 +285,8 @@ public:
 	{
 		if (!_shadow)
 		{
-			_shadow = CCSprite::createWithSpriteFrameName("shadows");
-			_shadow->setAnchorPoint(ccp(0.5, 0.5));
+			_shadow = Sprite::createWithSpriteFrameName("shadows");
+			_shadow->setAnchorPoint(Vec2(0.5, 0.5));
 			_shadow->setPosition(getPosition());
 			getGameLayer()->shadowBatch->addChild(_shadow);
 		}
@@ -514,17 +514,17 @@ public:
 			}
 			if (!rebornSprite)
 			{
-				rebornSprite = CCSprite::create();
-				CCSprite *skullSpirte = CCSprite::createWithSpriteFrameName("skull.png");
-				skullSpirte->setPosition(ccp(0, 0));
+				rebornSprite = Sprite::create();
+				Sprite *skullSpirte = Sprite::createWithSpriteFrameName("skull.png");
+				skullSpirte->setPosition(Vec2(0, 0));
 				rebornSprite->addChild(skullSpirte);
 
 				rebornLabel = CCLabelBMFont::create(to_cstr(rebornLabelTime), Fonts::Default);
 				rebornLabel->setScale(0.3f);
-				rebornLabel->setPosition(ccp(skullSpirte->getContentSize().width, 0));
+				rebornLabel->setPosition(Vec2(skullSpirte->getContentSize().width, 0));
 				rebornSprite->addChild(rebornLabel);
 
-				rebornSprite->setPosition(ccp(getContentSize().width / 2, getContentSize().height / 2));
+				rebornSprite->setPosition(Vec2(getContentSize().width / 2, getContentSize().height / 2));
 				addChild(rebornSprite);
 			}
 			schedule(schedule_selector(Hero::countDown), 1);

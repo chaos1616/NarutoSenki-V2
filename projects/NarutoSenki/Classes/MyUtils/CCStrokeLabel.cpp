@@ -1,6 +1,6 @@
 #include "CCStrokeLabel.h"
 
-CCStrokeLabel *CCStrokeLabel::create(cocos2d::CCLabelTTF *labelTTF, cocos2d::ccColor3B fullColor, cocos2d::ccColor3B StrokeColor, float strokeSize)
+CCStrokeLabel *CCStrokeLabel::create(CCLabelTTF *labelTTF, Color3B fullColor, Color3B StrokeColor, float strokeSize)
 {
 	CCStrokeLabel *tmp = new CCStrokeLabel;
 	tmp->autorelease();
@@ -21,12 +21,12 @@ bool CCStrokeLabel::init()
 		// float fontSize = m_fontSize - 2 * strokeSize;
 		// 	m_label = CCLabelTTF::labelWithString(
 		// 		m_str.c_str(), m_font.c_str(), m_fontSize);
-		CCSize textureSize = m_label->getContentSize();
+		Size textureSize = m_label->getContentSize();
 		textureSize.width += 2 * strokeSize;
 		textureSize.height += 2 * strokeSize;
 		// call to clear error
 		glGetError();
-		CCRenderTexture *rt = CCRenderTexture::create(
+		RenderTexture *rt = RenderTexture::create(
 			textureSize.width, textureSize.height);
 		if (!rt)
 		{
@@ -41,29 +41,29 @@ bool CCStrokeLabel::init()
 		ccBlendFunc func = {GL_SRC_ALPHA, GL_ONE};
 		m_label->setBlendFunc(func);
 
-		m_label->setAnchorPoint(ccp(0.5, 0.5));
+		m_label->setAnchorPoint(Vec2(0.5, 0.5));
 
 		rt->begin();
 		for (int i = 0; i < 360; i += 15)
 		{
 			float r = CC_DEGREES_TO_RADIANS(i);
-			m_label->setPosition(ccp(
+			m_label->setPosition(Vec2(
 				textureSize.width * 0.5f + sin(r) * strokeSize,
 				textureSize.height * 0.5f + cos(r) * strokeSize));
 			m_label->visit();
 		}
 		m_label->setColor(m_StrokeColor);
 		m_label->setBlendFunc(originalBlend);
-		m_label->setPosition(ccp(textureSize.width * 0.5f, textureSize.height * 0.5f));
+		m_label->setPosition(Vec2(textureSize.width * 0.5f, textureSize.height * 0.5f));
 		m_label->visit();
 		rt->end();
 
-		CCTexture2D *texture = rt->getSprite()->getTexture();
+		Texture2D *texture = rt->getSprite()->getTexture();
 		texture->setAliasTexParameters();
-		m_sprite = CCSprite::createWithTexture(rt->getSprite()->getTexture());
+		m_sprite = Sprite::createWithTexture(rt->getSprite()->getTexture());
 		setContentSize(m_sprite->getContentSize());
-		m_sprite->setPosition(ccp(0, 0));
-		((CCSprite *)m_sprite)->setFlipY(true);
+		m_sprite->setPosition(Vec2(0, 0));
+		m_sprite->setFlipY(true);
 		addChild(m_sprite);
 	} while (0);
 

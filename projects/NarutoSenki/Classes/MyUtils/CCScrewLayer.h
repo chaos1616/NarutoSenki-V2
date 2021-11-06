@@ -1,7 +1,7 @@
 #pragma once
 #include "Defines.h"
 
-class CCScrewLayer : public CCLayer
+class CCScrewLayer : public Layer
 {
 public:
 	float prePosY;
@@ -13,19 +13,19 @@ public:
 	CREATE_FUNC(CCScrewLayer);
 
 protected:
-	bool ccTouchBegan(CCTouch *touch, CCEvent *event);
-	void ccTouchMoved(CCTouch *touch, CCEvent *event);
-	void ccTouchEnded(CCTouch *touch, CCEvent *event);
+	bool ccTouchBegan(Touch *touch, Event *event);
+	void ccTouchMoved(Touch *touch, Event *event);
+	void ccTouchEnded(Touch *touch, Event *event);
 
 	void onEnter();
 	void onExit();
 };
 
-class CCScrewItem : public CCSprite, public CCTouchDelegate
+class CCScrewItem : public Sprite, public CCTouchDelegate
 {
 public:
-	CCMenu *linemenu;
-	CCSprite *lockItem;
+	Menu *linemenu;
+	Sprite *lockItem;
 	CC_SYNTHESIZE(CCScrewLayer *, _delegate, Delegate);
 
 	CREATE_FUNC(CCScrewItem);
@@ -33,9 +33,9 @@ public:
 protected:
 	void onEnter();
 	void onExit();
-	bool ccTouchBegan(CCTouch *touch, CCEvent *event);
-	void ccTouchEnded(CCTouch *touch, CCEvent *event);
-	CCRect getRect2();
+	bool ccTouchBegan(Touch *touch, Event *event);
+	void ccTouchEnded(Touch *touch, Event *event);
+	Rect getRect2();
 
-	inline bool containsTouchLocation(CCTouch *touch);
+	inline bool containsTouchLocation(Touch *touch);
 };

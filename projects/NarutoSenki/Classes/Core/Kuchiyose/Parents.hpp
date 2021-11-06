@@ -16,7 +16,7 @@ class Parents : public Hero
 			}
 		}
 
-		CCPoint moveDirection;
+		Vec2 moveDirection;
 
 		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > 9 && !_skillChangeBuffValue)
 		{
@@ -30,8 +30,8 @@ class Parents : public Hero
 
 		if (_mainTarget)
 		{
-			CCPoint sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
-								ccp(getPositionX(), _originY ? _originY : getPositionY()));
+			Vec2 sp = ccpSub(Vec2(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
+								Vec2(getPositionX(), _originY ? _originY : getPositionY()));
 
 			if (_mainTarget->isFlog() || _mainTarget->isTower())
 			{

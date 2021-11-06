@@ -8,7 +8,7 @@
 bool KTools::readXMLToArray(const string &filePath, CCArray *&array)
 {
 	unsigned long nSize;
-	auto data = (const char *)CCFileUtils::sharedFileUtils()->getFileData(filePath.c_str(), "r", &nSize);
+	auto data = (const char *)FileUtils::sharedFileUtils()->getFileData(filePath.c_str(), "r", &nSize);
 	if (data == nullptr)
 	{
 		CCMessageBox(format("Data {} is null", filePath).c_str(), "Read XML Error");
@@ -125,7 +125,7 @@ void KTools::initTableInDB()
 {
 	sqlite3 *pDB = nullptr;
 	char *errorMsg = nullptr;
-	string path = CCFileUtils::sharedFileUtils()->getWritablePath() + "sql.db";
+	string path = FileUtils::sharedFileUtils()->getWritablePath() + "sql.db";
 	int result = sqlite3_open(path.c_str(), &pDB);
 	if (result != SQLITE_OK)
 	{
@@ -206,7 +206,7 @@ void KTools::initColumeInDB()
 {
 	sqlite3 *pDB = nullptr;
 	char *errorMsg = nullptr;
-	string path = CCFileUtils::sharedFileUtils()->getWritablePath() + "sql.db";
+	string path = FileUtils::sharedFileUtils()->getWritablePath() + "sql.db";
 	int result = sqlite3_open(path.c_str(), &pDB);
 	if (result != SQLITE_OK)
 	{
@@ -235,21 +235,21 @@ void KTools::initColumeInDB()
 
 void KTools::prepareFileOGG(const string &listName, bool unload /* =false */)
 {
-	if (!CCUserDefault::sharedUserDefault()->getBoolForKey("isPreload"))
+	if (!UserDefault::sharedUserDefault()->getBoolForKey("isPreload"))
 	{
 		return;
 	}
 
 	// MD5
 	const string md5Path = "Audio/list.xml";
-	bool isExisted = CCFileUtils::sharedFileUtils()->isFileExist(md5Path);
+	bool isExisted = FileUtils::sharedFileUtils()->isFileExist(md5Path);
 	if (!isExisted)
 	{
 		return;
 	}
 
 	unsigned long nSize;
-	const char *pXmlBuffer = (const char *)CCFileUtils::sharedFileUtils()->getFileData(md5Path.c_str(), "r", &nSize);
+	const char *pXmlBuffer = (const char *)FileUtils::sharedFileUtils()->getFileData(md5Path.c_str(), "r", &nSize);
 	tinyxml2::XMLDocument doc;
 	doc.Parse(pXmlBuffer);
 	delete pXmlBuffer;
@@ -281,7 +281,7 @@ sqlite3 *KTools::prepareTableInDB()
 {
 	sqlite3 *pDB = nullptr;
 
-	string path = CCFileUtils::sharedFileUtils()->getWritablePath() + "sql.db";
+	string path = FileUtils::sharedFileUtils()->getWritablePath() + "sql.db";
 	int result = sqlite3_open(path.c_str(), &pDB);
 
 	if (result != SQLITE_OK)
@@ -490,21 +490,21 @@ string KTools::encodeData(string data)
 
 bool CCTips::init(const char *tips)
 {
-	RETURN_FALSE_IF(!CCSprite::init());
+	RETURN_FALSE_IF(!Sprite::init());
 
-	setAnchorPoint(ccp(0.5, 0.5));
+	setAnchorPoint(Vec2(0.5, 0.5));
 	auto strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
 	const char *reply = ((CCString *)strings->objectForKey(tips))->m_sString.c_str();
 
 	CCLabelTTF *tipLabel = CCLabelTTF::create(reply, FONT_TYPE, 12);
 	addChild(tipLabel, 5000);
-	setPosition(ccp(winSize.width / 2, 50));
+	setPosition(Vec2(winSize.width / 2, 50));
 	auto call = CallFunc::create(std::bind(&CCTips::onDestroy, this));
 
-	auto mv = CCMoveBy::create(0.2f, ccp(0, 12));
-	auto fadeOut = CCFadeOut::create(0.2f);
-	auto delay = CCDelayTime::create(2.0f);
-	auto sp = CCSpawn::create(fadeOut, mv, nullptr);
+	auto mv = MoveBy::create(0.2f, Vec2(0, 12));
+	auto fadeOut = FadeOut::create(0.2f);
+	auto delay = DelayTime::create(2.0f);
+	auto sp = Spawn::create(fadeOut, mv, nullptr);
 	auto seq = newSequence(sp, delay, call);
 	runAction(seq);
 

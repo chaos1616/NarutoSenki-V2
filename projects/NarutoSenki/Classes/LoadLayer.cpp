@@ -16,46 +16,46 @@ LoadLayer::LoadLayer()
 
 bool LoadLayer::init()
 {
-	if (!CCLayer::init())
+	if (!Layer::init())
 		return false;
 
 	// produce the menu_bar
-	CCSprite *menu_bar_b = CCSprite::create("menu_bar2.png");
-	menu_bar_b->setAnchorPoint(ccp(0, 0));
+	Sprite *menu_bar_b = Sprite::create("menu_bar2.png");
+	menu_bar_b->setAnchorPoint(Vec2(0, 0));
 	FULL_SCREEN_SPRITE(menu_bar_b);
 	addChild(menu_bar_b, 2);
 
-	CCSprite *menu_bar_t = CCSprite::create("menu_bar3.png");
-	menu_bar_t->setAnchorPoint(ccp(0, 0));
-	menu_bar_t->setPosition(ccp(0, winSize.height - menu_bar_t->getContentSize().height));
+	Sprite *menu_bar_t = Sprite::create("menu_bar3.png");
+	menu_bar_t->setAnchorPoint(Vec2(0, 0));
+	menu_bar_t->setPosition(Vec2(0, winSize.height - menu_bar_t->getContentSize().height));
 	FULL_SCREEN_SPRITE(menu_bar_t);
 	addChild(menu_bar_t, 2);
 
-	CCSprite *loading_title = CCSprite::createWithSpriteFrameName("loading_title.png");
-	loading_title->setAnchorPoint(ccp(0, 0));
-	loading_title->setPosition(ccp(2, winSize.height - loading_title->getContentSize().height - 2));
+	Sprite *loading_title = Sprite::createWithSpriteFrameName("loading_title.png");
+	loading_title->setAnchorPoint(Vec2(0, 0));
+	loading_title->setPosition(Vec2(2, winSize.height - loading_title->getContentSize().height - 2));
 	addChild(loading_title, 3);
 
 	// produce the cloud
-	CCSprite *cloud_left = CCSprite::createWithSpriteFrameName("cloud.png");
-	cloud_left->setPosition(ccp(0, 15));
+	Sprite *cloud_left = Sprite::createWithSpriteFrameName("cloud.png");
+	cloud_left->setPosition(Vec2(0, 15));
 	cloud_left->setFlipX(true);
 	cloud_left->setFlipY(true);
-	cloud_left->setAnchorPoint(ccp(0, 0));
+	cloud_left->setAnchorPoint(Vec2(0, 0));
 	addChild(cloud_left, 1);
 
-	auto cmv1 = CCMoveBy::create(1, ccp(-15, 0));
-	auto cseq1 = CCRepeatForever::create(newSequence(cmv1, cmv1->reverse()));
+	auto cmv1 = MoveBy::create(1, Vec2(-15, 0));
+	auto cseq1 = RepeatForever::create(newSequence(cmv1, cmv1->reverse()));
 	cloud_left->runAction(cseq1);
 
-	CCSprite *cloud_right = CCSprite::createWithSpriteFrameName("cloud.png");
-	cloud_right->setPosition(ccp(winSize.width - cloud_right->getContentSize().width,
+	Sprite *cloud_right = Sprite::createWithSpriteFrameName("cloud.png");
+	cloud_right->setPosition(Vec2(winSize.width - cloud_right->getContentSize().width,
 								 winSize.height - (cloud_right->getContentSize().height + 15)));
-	cloud_right->setAnchorPoint(ccp(0, 0));
+	cloud_right->setAnchorPoint(Vec2(0, 0));
 	addChild(cloud_right, 1);
 
-	auto cmv2 = CCMoveBy::create(1, ccp(15, 0));
-	auto cseq2 = CCRepeatForever::create(newSequence(cmv2, cmv2->reverse()));
+	auto cmv2 = MoveBy::create(1, Vec2(15, 0));
+	auto cseq2 = RepeatForever::create(newSequence(cmv2, cmv2->reverse()));
 	cloud_right->runAction(cseq2);
 
 	const auto &gd = getGameModeHandler()->getGameData();
@@ -118,8 +118,8 @@ void LoadLayer::preloadIMG()
 	{
 		setRand();
 		int num = rand() % 3 + 1;
-		CCSprite *tips = CCSprite::createWithSpriteFrameName(format("tip{}.png", num).c_str());
-		tips->setPosition(ccp(winSize.width / 2, winSize.height / 2));
+		Sprite *tips = Sprite::createWithSpriteFrameName(format("tip{}.png", num).c_str());
+		tips->setPosition(Vec2(winSize.width / 2, winSize.height / 2));
 		addChild(tips);
 	}
 	catch (...)
@@ -127,10 +127,10 @@ void LoadLayer::preloadIMG()
 		CCLOG("error");
 	}
 
-	CCSprite *loading = CCSprite::createWithSpriteFrameName("loading_font.png");
-	loading->setPosition(ccp(winSize.width - 120, 45));
-	auto fade = CCFadeOut::create(1.0f);
-	auto fadeseq = CCRepeatForever::create(newSequence(fade, fade->reverse()));
+	Sprite *loading = Sprite::createWithSpriteFrameName("loading_font.png");
+	loading->setPosition(Vec2(winSize.width - 120, 45));
+	auto fade = FadeOut::create(1.0f);
+	auto fadeseq = RepeatForever::create(newSequence(fade, fade->reverse()));
 	addChild(loading);
 	loading->runAction(fadeseq);
 
@@ -140,10 +140,10 @@ void LoadLayer::preloadIMG()
 
 void LoadLayer::perloadCharIMG(const string &name)
 {
-	CCTexture2D::PVRImagesHavePremultipliedAlpha(true);
+	Texture2D::PVRImagesHavePremultipliedAlpha(true);
 
 	auto path = format("Element/Skills/{}_Skill.plist", name);
-	if (CCFileUtils::sharedFileUtils()->isFileExist(path.c_str()))
+	if (FileUtils::sharedFileUtils()->isFileExist(path.c_str()))
 		addSprites(path.c_str());
 	// else
 	// CCLOG("Not found file %s", path);
@@ -305,10 +305,10 @@ void LoadLayer::unloadAllCharsIMG(const vector<Hero *> &players)
 
 void LoadLayer::setLoadingAnimation(const char *player, int index)
 {
-	auto loadingAvator = CCSprite::createWithSpriteFrameName(format("{}_Walk_01", player).c_str());
+	auto loadingAvator = Sprite::createWithSpriteFrameName(format("{}_Walk_01", player).c_str());
 	loadingAvator->setFlipX(true);
-	loadingAvator->setPosition(ccp(winSize.width - 100 + index * 16, 30));
-	loadingAvator->setAnchorPoint(ccp(0, 0));
+	loadingAvator->setPosition(Vec2(winSize.width - 100 + index * 16, 30));
+	loadingAvator->setAnchorPoint(Vec2(0, 0));
 
 	CCArray *animeFrames = CCArray::create();
 
@@ -320,9 +320,9 @@ void LoadLayer::setLoadingAnimation(const char *player, int index)
 		animeFrames->addObject(frame);
 	}
 
-	auto tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, 1.0f / 10.0f);
-	auto tempAction = CCAnimate::create(tempAnimation);
-	auto animAction = CCRepeatForever::create(tempAction);
+	auto tempAnimation = Animation::createWithSpriteFrames(animeFrames, 1.0f / 10.0f);
+	auto tempAction = Animate::create(tempAnimation);
+	auto animAction = RepeatForever::create(tempAction);
 
 	addChild(loadingAvator);
 	loadingAvator->runAction(animAction);
@@ -336,11 +336,11 @@ void LoadLayer::playBGM(float dt)
 void LoadLayer::preloadAudio()
 {
 	auto bg_src = _enableGear ? "blue_bg.png" : "red_bg.png";
-	CCSprite *bgSprite = CCSprite::create(bg_src);
+	Sprite *bgSprite = Sprite::create(bg_src);
 
 	FULL_SCREEN_SPRITE(bgSprite);
-	bgSprite->setAnchorPoint(ccp(0, 0));
-	bgSprite->setPosition(ccp(0, 0));
+	bgSprite->setAnchorPoint(Vec2(0, 0));
+	bgSprite->setPosition(Vec2(0, 0));
 	addChild(bgSprite, -5);
 
 	preloadIMG();
@@ -348,7 +348,7 @@ void LoadLayer::preloadAudio()
 
 void LoadLayer::onLoadFinish(float dt)
 {
-	CCScene *gameScene = CCScene::create();
+	Scene *gameScene = Scene::create();
 
 	_hudLayer = HudLayer::create();
 
@@ -368,5 +368,5 @@ void LoadLayer::onLoadFinish(float dt)
 	gameScene->addChild(_bgLayer, BgTag);
 	gameScene->addChild(_hudLayer, HudTag);
 
-	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f, gameScene));
+	Director::sharedDirector()->replaceScene(TransitionFade::create(0.5f, gameScene));
 }

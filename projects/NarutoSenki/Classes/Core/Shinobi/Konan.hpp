@@ -16,8 +16,8 @@ class Konan : public Hero
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (isFreeActionState())
 			{
@@ -129,8 +129,8 @@ class Konan : public Hero
 
 		if (_mainTarget)
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if ((abs(sp.x) > 8 || abs(sp.y) > 8) && _isArmored)
 			{

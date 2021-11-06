@@ -52,7 +52,7 @@ class Kakuzu : public Hero
 			{
 				float distance;
 				float curDistance = 0;
-				CCPoint sp;
+				Vec2 sp;
 
 				for (auto target : getGameLayer()->_CharacterArray)
 				{
@@ -84,10 +84,10 @@ class Kakuzu : public Hero
 
 				if (_mainTarget)
 				{
-					CCPoint moveDirection;
+					Vec2 moveDirection;
 					if (_mainTarget->_originY)
 					{
-						sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
+						sp = ccpSub(Vec2(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
 					}
 					else
 					{
@@ -128,8 +128,8 @@ class Kakuzu : public Hero
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (isFreeActionState())
 			{
@@ -194,8 +194,8 @@ class Kakuzu : public Hero
 
 		if (_mainTarget)
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{

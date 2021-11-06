@@ -50,8 +50,8 @@ class Minato : public Hero
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (isFreeActionState())
 			{
@@ -153,8 +153,8 @@ class Minato : public Hero
 
 		if (_mainTarget)
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -256,8 +256,8 @@ class Minato : public Hero
 		_nAttackRangeY = 48;
 		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
 
-		_markPoint = ccp(0, 0);
-		_startPoint = ccp(0, 0);
+		_markPoint = Vec2(0, 0);
+		_startPoint = Vec2(0, 0);
 		CharacterBase::resumeAction(dt);
 	}
 

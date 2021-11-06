@@ -134,8 +134,8 @@ CharacterBase::CharacterBase()
 
 	_rebornTime = 5;
 
-	_markPoint = ccp(0, 0);
-	_startPoint = ccp(0, 0);
+	_markPoint = Vec2(0, 0);
+	_startPoint = Vec2(0, 0);
 
 	rebornLabelTime = 0;
 
@@ -263,18 +263,18 @@ void CharacterBase::update(float dt)
 
 	if (_healItemEffect)
 	{
-		_healItemEffect->setPosition(ccp(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
+		_healItemEffect->setPosition(Vec2(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
 										 _height));
 	}
 
 	if (_speedItemEffect)
 	{
-		_speedItemEffect->setPosition(ccp(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
+		_speedItemEffect->setPosition(Vec2(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
 										  _height));
 	}
 
 	/*if(_kaguraEffect){
-		_kaguraEffect->setPosition(ccp(getPositionX(),getPositionY()+getContentSize().height/2));
+		_kaguraEffect->setPosition(Vec2(getPositionX(),getPositionY()+getContentSize().height/2));
 	}*/
 
 	if (_dehealBuffEffect)
@@ -284,7 +284,7 @@ void CharacterBase::update(float dt)
 
 	if (_shadow)
 	{
-		_shadow->setPosition(ccp(getPositionX(), _originY ? _originY : getPositionY()));
+		_shadow->setPosition(Vec2(getPositionX(), _originY ? _originY : getPositionY()));
 	}
 
 	if (!_isControlled && _actionState != State::DEAD)
@@ -332,7 +332,7 @@ void CharacterBase::update(float dt)
 					int metaHeight = 128;
 					int metaX = tower->getPositionX() - metaWidth / 2;
 					int metaY = tower->getPositionY() - metaHeight / 2;
-					CCRect rect = CCRectMake(metaX, metaY + 32, metaWidth, metaHeight - 64);
+					Rect rect = CCRectMake(metaX, metaY + 32, metaWidth, metaHeight - 64);
 
 					if (rect.containsPoint(_desiredPosition))
 					{
@@ -341,11 +341,11 @@ void CharacterBase::update(float dt)
 						float anchorYpoint = metaY + metaHeight / 2;
 						if (getPositionY() > anchorYpoint)
 						{
-							_velocity = ccp(0, 1 * _walkSpeed * kSpeedBase);
+							_velocity = Vec2(0, 1 * _walkSpeed * kSpeedBase);
 						}
 						else
 						{
-							_velocity = ccp(0, -1 * _walkSpeed * kSpeedBase);
+							_velocity = Vec2(0, -1 * _walkSpeed * kSpeedBase);
 						}
 						_desiredPosition = ccpAdd(getPosition(), ccpMult(_velocity, dt));
 					}
@@ -366,7 +366,7 @@ void CharacterBase::update(float dt)
 		// floor height		: 5.5
 		float poxY = MIN(getGameLayer()->currentMap->getTileSize().height * 5.5, MAX(0, _desiredPosition.y));
 
-		setPosition(ccp(posX, poxY));
+		setPosition(Vec2(posX, poxY));
 		getGameLayer()->reorderChild(this, -getPositionY());
 		if (isPlayerOrCom())
 		{
@@ -389,7 +389,7 @@ void CharacterBase::updateHpBarPosition(float dt)
 	}
 }
 
-void CharacterBase::acceptAttack(CCObject *object)
+void CharacterBase::acceptAttack(Ref *object)
 {
 	auto attacker = (CharacterBase *)object;
 	bool isCannotMiss = false;
@@ -458,7 +458,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 				{
 					_isHitOne = true;
 					auto call = CallFunc::create(std::bind(&CharacterBase::disableShack, this));
-					auto delay = CCDelayTime::create(0.5f);
+					auto delay = DelayTime::create(0.5f);
 					auto seq = newSequence(CCShake::createWithStrength(0.1f, 2, 0), delay, call);
 					runAction(seq);
 				}
@@ -688,12 +688,12 @@ void CharacterBase::acceptAttack(CCObject *object)
 								{
 									if (attacker->getName() == SkillEnum::FakeMinato)
 									{
-										setPosition(ccp(attacker->_master->_isFlipped ? attacker->_master->getPositionX() - 64 : attacker->_master->getPositionX() + 64,
+										setPosition(Vec2(attacker->_master->_isFlipped ? attacker->_master->getPositionX() - 64 : attacker->_master->getPositionX() + 64,
 														attacker->_master->getPositionY() + 2));
 									}
 									else
 									{
-										setPosition(ccp(attacker->_master->_isFlipped ? attacker->_master->getPositionX() - 48 : attacker->_master->getPositionX() + 48,
+										setPosition(Vec2(attacker->_master->_isFlipped ? attacker->_master->getPositionX() - 48 : attacker->_master->getPositionX() + 48,
 														attacker->_master->getPositionY()));
 									}
 
@@ -831,7 +831,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 											if (underAttack)
 											{
 												attacker->_isCatchOne = true;
-												setPosition(ccp(attacker->getPositionX(), attacker->getPositionY() + 1));
+												setPosition(Vec2(attacker->getPositionX(), attacker->getPositionY() + 1));
 												getGameLayer()->reorderChild(this, -getPositionY());
 											}
 										}
@@ -851,7 +851,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 											if (underAttack)
 											{
 												attacker->_isCatchOne = true;
-												setPosition(ccp(attacker->getPositionX() + 2, attacker->getPositionY() - 2));
+												setPosition(Vec2(attacker->getPositionX() + 2, attacker->getPositionY() - 2));
 												getGameLayer()->reorderChild(this, -getPositionY());
 											}
 										}
@@ -865,7 +865,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 											if (underAttack)
 											{
 												attacker->_isCatchOne = true;
-												setPosition(ccp(getPositionX() + (_isFlipped ? -30 : 30), getPositionY() - 10));
+												setPosition(Vec2(getPositionX() + (_isFlipped ? -30 : 30), getPositionY() - 10));
 												getGameLayer()->reorderChild(this, -getPositionY());
 											}
 										}
@@ -894,7 +894,7 @@ void CharacterBase::acceptAttack(CCObject *object)
 											if (underAttack)
 											{
 												attacker->_isCatchOne = true;
-												setPosition(ccp(attacker->getPositionX() + (attacker->_isFlipped ? -28 : 28), attacker->getPositionY() - 1));
+												setPosition(Vec2(attacker->getPositionX() + (attacker->_isFlipped ? -28 : 28), attacker->getPositionY() - 1));
 												setFlipX(attacker->_isFlipped ? false : true);
 												getGameLayer()->reorderChild(this, -getPositionY());
 											}
@@ -963,14 +963,14 @@ void CharacterBase::acceptAttack(CCObject *object)
 	}
 }
 
-CCFiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool isRepeat, bool isReturn)
+FiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool isRepeat, bool isReturn)
 {
-	CCObject *tObject;
+	Ref *tObject;
 	CCArray *animeFrames = CCArray::create();
 	auto seqArray = CCArray::create();
-	CCAnimation *tempAnimation;
-	CCAction *tempAction;
-	CCFiniteTimeAction *seq;
+	Animation *tempAnimation;
+	Action *tempAction;
+	FiniteTimeAction *seq;
 
 	CCARRAY_FOREACH(ationArray, tObject)
 	{
@@ -988,8 +988,8 @@ CCFiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, float fp
 			}
 			else
 			{
-				tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, 1.0f / fps);
-				tempAction = CCAnimate::create(tempAnimation);
+				tempAnimation = Animation::createWithSpriteFrames(animeFrames, 1.0f / fps);
+				tempAction = Animate::create(tempAnimation);
 
 				seqArray->addObject(tempAction);
 				if (key == "setAttackBox")
@@ -1010,7 +1010,7 @@ CCFiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, float fp
 				else if (key == "setDelay")
 				{
 					float delayTime = dic->valueForKey(key)->intValue();
-					auto delay = CCDelayTime::create(delayTime / 100.0f);
+					auto delay = DelayTime::create(delayTime / 100.0f);
 					seqArray->addObject(delay);
 				}
 				else if (key == "setMove")
@@ -1116,7 +1116,7 @@ CCFiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, float fp
 				}
 				else if (key == "setShadow")
 				{
-					auto frame = (CCSpriteFrame *)(animeFrames->objectAtIndex(animeFrames->count() - 1));
+					auto frame = (SpriteFrame *)(animeFrames->objectAtIndex(animeFrames->count() - 1));
 					auto call = CallFunc::create(std::bind(&CharacterBase::setShadow, this, frame));
 					seqArray->addObject(call);
 				}
@@ -1148,14 +1148,14 @@ CCFiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, float fp
 	}
 	if (animeFrames->count() > 0)
 	{
-		tempAnimation = CCAnimation::createWithSpriteFrames(animeFrames, 1.0f / fps);
-		tempAction = CCAnimate::create(tempAnimation);
+		tempAnimation = Animation::createWithSpriteFrames(animeFrames, 1.0f / fps);
+		tempAction = Animate::create(tempAnimation);
 		seqArray->addObject(tempAction);
 	}
 
 	if (isRepeat)
 	{
-		seq = CCRepeatForever::create(CCSequence::create(seqArray));
+		seq = RepeatForever::create(Sequence::create(seqArray));
 	}
 	else
 	{
@@ -1165,7 +1165,7 @@ CCFiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, float fp
 			seqArray->addObject(call);
 		}
 
-		seq = CCSequence::create(seqArray);
+		seq = Sequence::create(seqArray);
 	}
 
 	return seq;
@@ -1176,7 +1176,7 @@ void CharacterBase::setCharFlip()
 	if (_isFlipped)
 	{
 		setFlipX(false);
-		_isFlipped = false; // TODO: Upgrade to V4 then use CCSprite::_isFlippedX instead
+		_isFlipped = false; // TODO: Upgrade to V4 then use Sprite::_isFlippedX instead
 	}
 	else
 	{
@@ -1185,9 +1185,9 @@ void CharacterBase::setCharFlip()
 	}
 }
 
-void CharacterBase::setShadow(CCSpriteFrame *frame)
+void CharacterBase::setShadow(SpriteFrame *frame)
 {
-	auto charN = CCSprite::createWithSpriteFrame(frame);
+	auto charN = Sprite::createWithSpriteFrame(frame);
 	charN->setVisible(false);
 	if (isKonohaGroup())
 	{
@@ -1199,26 +1199,26 @@ void CharacterBase::setShadow(CCSpriteFrame *frame)
 	}
 
 	charN->setOpacity(180);
-	charN->setAnchorPoint(ccp(0.5, 0));
+	charN->setAnchorPoint(Vec2(0.5, 0));
 	charN->setFlipX(_isFlipped);
 	charN->setPosition(getPosition());
-	auto delay = CCDelayTime::create(0.1f);
+	auto delay = DelayTime::create(0.1f);
 	auto call = CallFunc::create(std::bind(&CharacterBase::enableShadow, this, charN));
 	auto seq = newSequence(delay, call);
 	charN->runAction(seq);
 	getGameLayer()->addChild(charN, -getPositionY() - 1);
 }
 
-void CharacterBase::enableShadow(CCSprite *charN)
+void CharacterBase::enableShadow(Sprite *charN)
 {
 	charN->setVisible(true);
-	auto delay = CCDelayTime::create(0.1f);
+	auto delay = DelayTime::create(0.1f);
 	auto call = CallFunc::create(std::bind(&CharacterBase::disableShadow, this, charN));
 	auto seq = newSequence(delay, call);
 	charN->runAction(seq);
 }
 
-void CharacterBase::disableShadow(CCSprite *charN)
+void CharacterBase::disableShadow(Sprite *charN)
 {
 	charN->stopAllActions();
 	charN->removeFromParent();
@@ -1229,18 +1229,18 @@ void CharacterBase::setOugis()
 	getGameLayer()->setOugis(this);
 }
 
-CCRect CharacterBase::setHalfBox()
+Rect CharacterBase::setHalfBox()
 {
-	CCRect halfbox = CCRectMake(_isFlipped ? getPositionX() - getContentSize().width / 2 : getPositionX(),
+	Rect halfbox = CCRectMake(_isFlipped ? getPositionX() - getContentSize().width / 2 : getPositionX(),
 								getPositionY() + getContentSize().height / 2,
 								getContentSize().width / 2,
 								getContentSize().height / 2);
 	return halfbox;
 }
 
-CCRect CharacterBase::setHitBox()
+Rect CharacterBase::setHitBox()
 {
-	CCRect hitbox = boundingBox();
+	Rect hitbox = boundingBox();
 	return hitbox;
 }
 
@@ -1325,7 +1325,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 					{
 						if (mo->getName() == KugutsuEnum::Parents && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK)
 						{
-							CCPoint sp = ccpSub(mo->getPosition(), getPosition());
+							Vec2 sp = ccpSub(mo->getPosition(), getPosition());
 							if (sp.x <= 48)
 								decreaseRating += 0.25f;
 						}
@@ -1465,29 +1465,29 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 
 void CharacterBase::setCoinDisplay(int num)
 {
-	CCSprite *coinDisplay = CCSprite::create();
+	Sprite *coinDisplay = Sprite::create();
 
-	CCSprite *coinSprite = CCSprite::createWithSpriteFrameName("coin");
-	coinSprite->setPosition(ccp(14, 0));
+	Sprite *coinSprite = Sprite::createWithSpriteFrameName("coin");
+	coinSprite->setPosition(Vec2(14, 0));
 	coinDisplay->addChild(coinSprite);
 
 	auto rewardLabel = CCLabelBMFont::create(format("+{}", num).c_str(), Fonts::Yellow);
-	rewardLabel->setPosition(ccp(0, 0));
+	rewardLabel->setPosition(Vec2(0, 0));
 	rewardLabel->setScale(0.3f);
 	coinDisplay->addChild(rewardLabel);
 
-	coinDisplay->setPosition(ccp(getPositionX(), getPositionY() + getContentSize().height / 2));
+	coinDisplay->setPosition(Vec2(getPositionX(), getPositionY() + getContentSize().height / 2));
 	getGameLayer()->addChild(coinDisplay, 5000);
 
-	auto mv = CCMoveBy::create(0.5f, ccp(0, 12));
-	auto fadeOut = CCFadeOut::create(0.8f);
+	auto mv = MoveBy::create(0.5f, Vec2(0, 12));
+	auto fadeOut = FadeOut::create(0.8f);
 	auto call = CallFunc::create(std::bind(&CharacterBase::removeCoinDisplay, this, coinDisplay));
-	auto sp = CCSpawn::create(fadeOut, mv, nullptr);
+	auto sp = Spawn::create(fadeOut, mv, nullptr);
 	auto seq = newSequence(sp, call);
 	coinDisplay->runAction(seq);
 }
 
-void CharacterBase::removeCoinDisplay(CCSprite *coinDisplay)
+void CharacterBase::removeCoinDisplay(Sprite *coinDisplay)
 {
 	coinDisplay->removeFromParent();
 }
@@ -1497,27 +1497,27 @@ void CharacterBase::setDamgeDisplay(int value, const char *font)
 	if (_damageArray.size() < 6)
 	{
 		auto damageFont = CCLabelBMFont::create(to_cstr(value), font);
-		damageFont->setAnchorPoint(ccp(0.5, 0.5));
+		damageFont->setAnchorPoint(Vec2(0.5, 0.5));
 
 		if (isFlog())
 		{
 			damageFont->setScale(0.6f);
-			damageFont->setPosition(ccp(getPositionX() + rand() % 16, getPositionY() + getHeight() + rand() % 4));
+			damageFont->setPosition(Vec2(getPositionX() + rand() % 16, getPositionY() + getHeight() + rand() % 4));
 		}
 		else
 		{
 			damageFont->setScale(0.8f);
-			damageFont->setPosition(ccp(getPositionX() + rand() % 16, getPositionY() + getHeight() + rand() % 16));
+			damageFont->setPosition(Vec2(getPositionX() + rand() % 16, getPositionY() + getHeight() + rand() % 16));
 		}
 
 		getGameLayer()->addChild(damageFont, currentNumberTag);
 		_damageArray.push_back(damageFont);
 
-		auto sd = CCScaleBy::create(0.2f, 0.5f);
+		auto sd = ScaleBy::create(0.2f, 0.5f);
 		auto call = CallFunc::create(std::bind(&CharacterBase::removeDamageDisplay, this));
-		auto mv = CCMoveBy::create(0.4f, ccp(0, 12));
-		auto fadeOut = CCFadeOut::create(0.4f);
-		auto sp = CCSpawn::create(fadeOut, mv, nullptr);
+		auto mv = MoveBy::create(0.4f, Vec2(0, 12));
+		auto fadeOut = FadeOut::create(0.4f);
+		auto sp = Spawn::create(fadeOut, mv, nullptr);
 		auto seq = newSequence(sd, sp, call);
 		damageFont->runAction(seq);
 	}
@@ -1620,7 +1620,7 @@ void CharacterBase::setItem(abType type)
 		if (!_isHealing && !_healItemEffect)
 		{
 			_healItemEffect = Effect::create("hp_restore", this);
-			_healItemEffect->setPosition(ccp(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
+			_healItemEffect->setPosition(Vec2(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
 											 _height));
 			addChild(_healItemEffect);
 			//_isHealing=true;
@@ -1873,7 +1873,7 @@ void CharacterBase::setRestore(float dt)
 		increaseHpAndUpdateUI(800);
 
 		_healItemEffect = Effect::create("hp_restore", this);
-		_healItemEffect->setPosition(ccp(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
+		_healItemEffect->setPosition(Vec2(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
 										 _height));
 		addChild(_healItemEffect);
 	}
@@ -1916,7 +1916,7 @@ void CharacterBase::disableEffect()
 
 void CharacterBase::setSound(const string &file)
 {
-	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
+	if (UserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 	{
 		bool _isPlayable = false;
 		if (isPlayer() ||
@@ -1942,7 +1942,7 @@ void CharacterBase::setSound(const string &file)
 
 void CharacterBase::setDSound(const string &file)
 {
-	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
+	if (UserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 	{
 		bool _isPlayable = false;
 		if (isPlayer() ||
@@ -2017,7 +2017,7 @@ void CharacterBase::setAttackBox(const string &effectType)
 		if ((_actionState == State::OATTACK || _actionState == State::O2ATTACK) && _isHitOne == true && !getGameLayer()->_isShacking)
 		{
 			getGameLayer()->_isShacking = true;
-			CCScene *f = CCDirector::sharedDirector()->getRunningScene();
+			Scene *f = Director::sharedDirector()->getRunningScene();
 			auto call = CallFunc::create(std::bind(&CharacterBase::disableShack, this));
 			f->runAction(newSequence(CCShake::create(0.05f, 12), call));
 		}
@@ -2070,18 +2070,18 @@ void CharacterBase::setMove(int moveLength)
 	if (getPositionX() > getGameLayer()->currentMap->getTileSize().width &&
 		getPositionX() < (getGameLayer()->currentMap->getMapSize().width - 1) * getGameLayer()->currentMap->getTileSize().width)
 	{
-		CCActionInterval *mv;
+		ActionInterval *mv;
 		if (_actionState == State::HURT)
 		{
 			if (!_knockDirection)
-				mv = CCMoveBy::create(0.1f, ccp(_hurtFromRight ? -moveLength : moveLength, 0));
+				mv = MoveBy::create(0.1f, Vec2(_hurtFromRight ? -moveLength : moveLength, 0));
 			else
-				mv = CCMoveBy::create(0.1f, ccp(_knockDirection ? -moveLength : moveLength, 0));
+				mv = MoveBy::create(0.1f, Vec2(_knockDirection ? -moveLength : moveLength, 0));
 			runAction(mv);
 		}
 		else
 		{
-			mv = CCMoveBy::create(0.1f, ccp(_isFlipped ? -moveLength : moveLength, 0));
+			mv = MoveBy::create(0.1f, Vec2(_isFlipped ? -moveLength : moveLength, 0));
 			runAction(mv);
 		}
 	}
@@ -2102,11 +2102,11 @@ void CharacterBase::setJump(bool jumpDirection)
 
 		if (jumpDirection) // Jump forward
 		{
-			_jumpUPAction = CCJumpTo::create(0.8f, ccp(posX + (_isFlipped ? -64 : 64), posY), 64, 1);
+			_jumpUPAction = JumpTo::create(0.8f, Vec2(posX + (_isFlipped ? -64 : 64), posY), 64, 1);
 		}
 		else // Jump back
 		{
-			_jumpUPAction = CCJumpTo::create(0.8f, ccp(posX + (_isFlipped ? 64 : -64), posY), 64, 1);
+			_jumpUPAction = JumpTo::create(0.8f, Vec2(posX + (_isFlipped ? 64 : -64), posY), 64, 1);
 		}
 
 		runAction(_jumpUPAction);
@@ -2122,7 +2122,7 @@ void CharacterBase::setCharge(int moveLength)
 	}
 	else
 	{
-		_moveAction = CCMoveBy::create(0.1f, ccp(_isFlipped ? -moveLength * kSpeedBase : moveLength * kSpeedBase, 0));
+		_moveAction = MoveBy::create(0.1f, Vec2(_isFlipped ? -moveLength * kSpeedBase : moveLength * kSpeedBase, 0));
 		runAction(_moveAction);
 	}
 }
@@ -2140,7 +2140,7 @@ void CharacterBase::setChargeB(int moveLength)
 		float delay = (_actionState == State::OATTACK || _actionState == State::O2ATTACK)
 						  ? 0.4f
 						  : 0.1f;
-		_moveAction = CCMoveBy::create(delay, ccp(_isFlipped ? -moveLength * kSpeedBase : moveLength * kSpeedBase, 0));
+		_moveAction = MoveBy::create(delay, Vec2(_isFlipped ? -moveLength * kSpeedBase : moveLength * kSpeedBase, 0));
 		runAction(_moveAction);
 	}
 }
@@ -2514,7 +2514,7 @@ void CharacterBase::healBuff(float dt)
 						{
 							tmpEffect->setOpacity(150);
 						}
-						tmpEffect->setPosition(ccp(hero->getContentSize().width / 2, hero->getContentSize().height / 2));
+						tmpEffect->setPosition(Vec2(hero->getContentSize().width / 2, hero->getContentSize().height / 2));
 						hero->addChild(tmpEffect);
 					}
 				}
@@ -2529,7 +2529,7 @@ void CharacterBase::healBuff(float dt)
 				hero->isPlayerOrCom() &&
 				hero->getName() != HeroEnum::Chiyo)
 			{
-				CCPoint sp = ccpSub(hero->getPosition(), getPosition());
+				Vec2 sp = ccpSub(hero->getPosition(), getPosition());
 				if (abs(sp.x) <= kAttackRange)
 				{
 					hero->increaseAllCkrs(_healBuffValue);
@@ -2541,7 +2541,7 @@ void CharacterBase::healBuff(float dt)
 						{
 							tmpEffect->setOpacity(150);
 						}
-						tmpEffect->setPosition(ccp(hero->getContentSize().width / 2, hero->getContentSize().height / 2 + 6));
+						tmpEffect->setPosition(Vec2(hero->getContentSize().width / 2, hero->getContentSize().height / 2 + 6));
 						hero->addChild(tmpEffect);
 					}
 				}
@@ -2759,7 +2759,7 @@ void CharacterBase::setBullet(const string &bulletName)
 	if (bulletName == "PaperSrk")
 	{
 		bullet->setScale(0.8f);
-		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32),
+		bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -32 : 32),
 								getPositionY() + 52));
 		bullet->attack(NAttack);
 		bullet->setMove(192, 2.0f, false);
@@ -2767,7 +2767,7 @@ void CharacterBase::setBullet(const string &bulletName)
 	else if (bulletName == "PaperSpear")
 	{
 		bullet->setScale(0.8f);
-		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -68 : 68),
+		bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -68 : 68),
 								getPositionY() + 42));
 		bullet->attack(NAttack);
 		bullet->setMove(192, 2.0f, false);
@@ -2775,7 +2775,7 @@ void CharacterBase::setBullet(const string &bulletName)
 	else if (bulletName == "HugeSRK")
 	{
 		bullet->setScale(0.8f);
-		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -76 : 76),
+		bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -76 : 76),
 								getPositionY() + getHeight() / 2));
 		if (_skillUPBuffValue)
 			bullet->setNAttackValue(bullet->getNAttackValue() + _skillUPBuffValue);
@@ -2788,7 +2788,7 @@ void CharacterBase::setBullet(const string &bulletName)
 			 bulletName == "TentenSRK")
 	{
 		bullet->setScale(0.8f);
-		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32),
+		bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -32 : 32),
 								getPositionY() + getHeight() / 2));
 
 		bullet->setEaseIn(224, 2.0f);
@@ -2800,13 +2800,13 @@ void CharacterBase::setBullet(const string &bulletName)
 		if (bulletName == ProjectileEnum::HiraishinKunai)
 		{
 			bullet->setScale(0.8f);
-			bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -42 : 42),
+			bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -42 : 42),
 									getPositionY() + getHeight() / 2));
 		}
 		else
 		{
-			bullet->setAnchorPoint(ccp(0.5f, 0));
-			bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -42 : 42),
+			bullet->setAnchorPoint(Vec2(0.5f, 0));
+			bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -42 : 42),
 									getPositionY()));
 		}
 
@@ -2817,7 +2817,7 @@ void CharacterBase::setBullet(const string &bulletName)
 	}
 	else
 	{
-		bullet->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32),
+		bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -32 : 32),
 								getPositionY() + getContentSize().height / 2));
 
 		bullet->attack(NAttack);
@@ -2845,12 +2845,12 @@ void CharacterBase::setBulletGroup(float dt)
 		}
 		if (i == 0)
 		{
-			CCPoint location = ccp(getPositionX() + (_isFlipped ? -rangeX : rangeX), getPositionY() + (getHeight() / 2 + 23));
+			Vec2 location = Vec2(getPositionX() + (_isFlipped ? -rangeX : rangeX), getPositionY() + (getHeight() / 2 + 23));
 			bullet->setPosition(location);
 		}
 		else
 		{
-			CCPoint location = ccp(getPositionX() + (_isFlipped ? -rangeX : rangeX), getPositionY() + (getHeight() / 2 - 23));
+			Vec2 location = Vec2(getPositionX() + (_isFlipped ? -rangeX : rangeX), getPositionY() + (getHeight() / 2 - 23));
 			bullet->setPosition(location);
 		}
 		getGameLayer()->addChild(bullet, currentSkillTag);
@@ -2889,7 +2889,7 @@ void CharacterBase::setClone(int cloneTime)
 		clone->setMaster(this);
 	}
 
-	clone->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32), getPositionY() - 1));
+	clone->setPosition(Vec2(getPositionX() + (_isFlipped ? -32 : 32), getPositionY() - 1));
 
 	if ((getName() == HeroEnum::SageNaruto || getName() == HeroEnum::Naruto) ||
 		(getName() == HeroEnum::RikudoNaruto && cloneTime == 10))
@@ -2989,7 +2989,7 @@ void CharacterBase::setMon(const string &monName)
 	}
 
 	monster->idle();
-	monster->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32), _originY ? _originY : getPositionY()));
+	monster->setPosition(Vec2(getPositionX() + (_isFlipped ? -32 : 32), _originY ? _originY : getPositionY()));
 	monster->setFlipX(_isFlipped);
 	monster->_isFlipped = _isFlipped;
 
@@ -3002,55 +3002,55 @@ void CharacterBase::setMon(const string &monName)
 		monName == "Stream" ||
 		monName == "FakeMinato")
 	{
-		monster->setPosition(ccp(getPositionX(), _originY ? _originY : getPositionY()));
+		monster->setPosition(Vec2(getPositionX(), _originY ? _originY : getPositionY()));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (monName == "LeeBom")
 	{
-		// monster->setAnchorPoint(ccp(0.5,0.5f));
-		monster->setPosition(ccp(getPositionX(), getPositionY()));
+		// monster->setAnchorPoint(Vec2(0.5,0.5f));
+		monster->setPosition(Vec2(getPositionX(), getPositionY()));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (monName == "FakeItachi")
 	{
-		monster->setPosition(ccp(getPositionX(), _originY ? _originY : getPositionY() - 4));
+		monster->setPosition(Vec2(getPositionX(), _originY ? _originY : getPositionY() - 4));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (monName == "Tenmu")
 	{
-		monster->setPosition(ccp(getPositionX(), _originY));
-		monster->setAnchorPoint(ccp(0.5, -0.1f));
+		monster->setPosition(Vec2(getPositionX(), _originY));
+		monster->setAnchorPoint(Vec2(0.5, -0.1f));
 		monster->attack(NAttack);
 	}
 	else if (monName == "Kaiten")
 	{
-		monster->setPosition(ccp(getPositionX(), getPositionY()));
-		monster->setAnchorPoint(ccp(0.5, 0.25f));
+		monster->setPosition(Vec2(getPositionX(), getPositionY()));
+		monster->setAnchorPoint(Vec2(0.5, 0.25f));
 		monster->attack(NAttack);
 	}
 	else if (monName == "Crash" ||
 			 monName == "Crash2")
 	{
-		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32), _originY ? _originY : getPositionY()));
-		monster->setAnchorPoint(ccp(0.5, 0.25f));
+		monster->setPosition(Vec2(getPositionX() + (_isFlipped ? -32 : 32), _originY ? _originY : getPositionY()));
+		monster->setAnchorPoint(Vec2(0.5, 0.25f));
 		monster->attack(NAttack);
 	}
 	else if (monName == "SansyoRed")
 	{
-		monster->setPosition(ccp(_isFlipped ? getPositionX() - 240 : getPositionX() + 240, getPositionY() - 32));
+		monster->setPosition(Vec2(_isFlipped ? getPositionX() - 240 : getPositionX() + 240, getPositionY() - 32));
 		monster->attack(NAttack);
 	}
 	else if (monName == "SansyoGreen")
 	{
-		monster->setPosition(ccp(_isFlipped ? getPositionX() - 144 : getPositionX() + 144, getPositionY() - 32 + 1));
+		monster->setPosition(Vec2(_isFlipped ? getPositionX() - 144 : getPositionX() + 144, getPositionY() - 32 + 1));
 		monster->attack(NAttack);
 	}
 	else if (monName == "SansyoBlue")
 	{
-		monster->setPosition(ccp(_isFlipped ? getPositionX() - 48 : getPositionX() + 48, getPositionY() - 32 + 2));
+		monster->setPosition(Vec2(_isFlipped ? getPositionX() - 48 : getPositionX() + 48, getPositionY() - 32 + 2));
 		monster->attack(NAttack);
 	}
 	else if (monName == SummonEnum::SmallSlug)
@@ -3076,13 +3076,13 @@ void CharacterBase::setMon(const string &monName)
 	else if (monName == "PaperRain" ||
 			 monName == "Steam")
 	{
-		monster->setPosition(ccp(_isFlipped ? getPositionX() - 16 : getPositionX() + 16, _originY));
+		monster->setPosition(Vec2(_isFlipped ? getPositionX() - 16 : getPositionX() + 16, _originY));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (monName == "FireRain")
 	{
-		monster->setPosition(ccp(_isFlipped ? getPositionX() - 75 : getPositionX() + 75, _originY - 1));
+		monster->setPosition(Vec2(_isFlipped ? getPositionX() - 75 : getPositionX() + 75, _originY - 1));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
@@ -3097,7 +3097,7 @@ void CharacterBase::setMon(const string &monName)
 	}
 	else if (monName == "ThunderWave")
 	{
-		monster->setPosition(ccp(getPositionX(), getPositionY() - 1));
+		monster->setPosition(Vec2(getPositionX(), getPositionY() - 1));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
@@ -3105,7 +3105,7 @@ void CharacterBase::setMon(const string &monName)
 			 monName == "JibakuEX" ||
 			 monName == "Shenwei")
 	{
-		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -96 : 96), getPositionY()));
+		monster->setPosition(Vec2(getPositionX() + (_isFlipped ? -96 : 96), getPositionY()));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
@@ -3113,19 +3113,19 @@ void CharacterBase::setMon(const string &monName)
 	{
 		monster->setFlipX(_isFlipped);
 		monster->hasArmorBroken = true;
-		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -(16 + getContentSize().width) : (16 + getContentSize().width)), getPositionY() - 32));
+		monster->setPosition(Vec2(getPositionX() + (_isFlipped ? -(16 + getContentSize().width) : (16 + getContentSize().width)), getPositionY() - 32));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (monName == "Qilin")
 	{
-		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -4 : 4), getPositionY() - 6));
+		monster->setPosition(Vec2(getPositionX() + (_isFlipped ? -4 : 4), getPositionY() - 6));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (monName == "Laser")
 	{
-		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -100 : 100), getPositionY()));
+		monster->setPosition(Vec2(getPositionX() + (_isFlipped ? -100 : 100), getPositionY()));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
@@ -3161,13 +3161,13 @@ void CharacterBase::setMon(const string &monName)
 			 monName == "Tsukuyomi" ||
 			 monName == "Shark")
 	{
-		monster->setPosition(ccp(getPositionX() + (_isFlipped == true ? -48 : 48), getPositionY() - 4));
+		monster->setPosition(Vec2(getPositionX() + (_isFlipped == true ? -48 : 48), getPositionY() - 4));
 		monster->attack(NAttack);
 	}
 	else if (monName == "Suijin" ||
 			 monName == "BugPillar")
 	{
-		monster->setPosition(ccp(getPositionX() + (_isFlipped == true ? -64 : 64), getPositionY() + 1));
+		monster->setPosition(Vec2(getPositionX() + (_isFlipped == true ? -64 : 64), getPositionY() + 1));
 		monster->attack(NAttack);
 	}
 	else if (monName == "Mine")
@@ -3183,14 +3183,14 @@ void CharacterBase::setMon(const string &monName)
 	else if (monName == "Kage")
 	{
 		_isCatchOne = true;
-		monster->setPosition(ccp(getPositionX() + (_isFlipped ? -getContentSize().width / 2 + 4 : getContentSize().width / 2 - 4), getPositionY()));
+		monster->setPosition(Vec2(getPositionX() + (_isFlipped ? -getContentSize().width / 2 + 4 : getContentSize().width / 2 - 4), getPositionY()));
 		if (_isFlipped)
 		{
-			monster->setAnchorPoint(ccp(1, 0));
+			monster->setAnchorPoint(Vec2(1, 0));
 		}
 		else
 		{
-			monster->setAnchorPoint(ccp(0, 0));
+			monster->setAnchorPoint(Vec2(0, 0));
 		}
 
 		stopAllActions();
@@ -3200,7 +3200,7 @@ void CharacterBase::setMon(const string &monName)
 	}
 	else if (monName == "KageHand")
 	{
-		CCPoint dir = ccp(_isFlipped ? getPositionX() - getContentSize().width : getPositionX() + getContentSize().width, getPositionY());
+		Vec2 dir = Vec2(_isFlipped ? getPositionX() - getContentSize().width : getPositionX() + getContentSize().width, getPositionY());
 		monster->setPosition(dir);
 		stopAllActions();
 
@@ -3212,13 +3212,13 @@ void CharacterBase::setMon(const string &monName)
 	{
 		if (_master)
 			_master->_monsterArray.push_back(monster);
-		monster->setPosition(ccp(getPositionX(), getPositionY()));
-		monster->setAnchorPoint(ccp(0.5f, 0.15f));
+		monster->setPosition(Vec2(getPositionX(), getPositionY()));
+		monster->setAnchorPoint(Vec2(0.5f, 0.15f));
 		monster->attack(NAttack);
 	}
 	else if (monName == "QuanRen")
 	{
-		monster->setPosition(ccp(_isFlipped ? getPositionX() - 64 : getPositionX() + 64, _originY));
+		monster->setPosition(Vec2(_isFlipped ? getPositionX() - 64 : getPositionX() + 64, _originY));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
@@ -3234,8 +3234,8 @@ void CharacterBase::setMon(const string &monName)
 	}
 	else if (monName == "CircleMark")
 	{
-		monster->setPosition(ccp(getPositionX(), getPositionY()));
-		monster->setAnchorPoint(ccp(0.5f, 0.5f));
+		monster->setPosition(Vec2(getPositionX(), getPositionY()));
+		monster->setAnchorPoint(Vec2(0.5f, 0.5f));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 
@@ -3246,7 +3246,7 @@ void CharacterBase::setMon(const string &monName)
 	}
 	else if (monName == "InkDragon")
 	{
-		monster->setPosition(ccp(_isFlipped ? getPositionX() - 128 : getPositionX() + 128, getPositionY()));
+		monster->setPosition(Vec2(_isFlipped ? getPositionX() - 128 : getPositionX() + 128, getPositionY()));
 		monster->attack(NAttack);
 		monster->setDirectMove(156, 2.0f, false);
 	}
@@ -3258,11 +3258,11 @@ void CharacterBase::setMon(const string &monName)
 	else if (monName == "FutonSRK2" ||
 			 monName == "FutonSRK")
 	{
-		monster->setPosition(ccp(getPositionX() + (_isFlipped == true ? -48 : 48), getPositionY()));
+		monster->setPosition(Vec2(getPositionX() + (_isFlipped == true ? -48 : 48), getPositionY()));
 
 		monster->attack(NAttack);
 		bool isFollow = false;
-		CCPoint moveDirection;
+		Vec2 moveDirection;
 		if (_mainTarget)
 		{
 			if (_mainTarget->getPositionX() > getPositionX() && !_isFlipped)
@@ -3284,11 +3284,11 @@ void CharacterBase::setMon(const string &monName)
 		{
 			if (_isFlipped)
 			{
-				moveDirection = ccpNormalize(ccp(-1, 0));
+				moveDirection = ccpNormalize(Vec2(-1, 0));
 			}
 			else
 			{
-				moveDirection = ccpNormalize(ccp(1, 0));
+				moveDirection = ccpNormalize(Vec2(1, 0));
 			}
 			monster->setActionState(State::WALK);
 			monster->walk(moveDirection);
@@ -3314,15 +3314,15 @@ void CharacterBase::setMon(const string &monName)
 	else if (monName == "Hasan")
 	{
 		monster->attack(NAttack);
-		monster->setAnchorPoint(ccp(0.5f, 0.28f));
-		monster->setPosition(ccp(getPositionX() + (_isFlipped == true ? -24 : 24), getPositionY()));
+		monster->setAnchorPoint(Vec2(0.5f, 0.28f));
+		monster->setPosition(Vec2(getPositionX() + (_isFlipped == true ? -24 : 24), getPositionY()));
 		monster->setEaseIn(224, 1.0f);
 	}
 	else if (monName == "Wave")
 	{
 		monster->attack(NAttack);
-		monster->setAnchorPoint(ccp(0.5f, 0.1f));
-		monster->setPosition(ccp(getPositionX() + (_isFlipped == true ? -24 : 24), getPositionY()));
+		monster->setAnchorPoint(Vec2(0.5f, 0.1f));
+		monster->setPosition(Vec2(getPositionX() + (_isFlipped == true ? -24 : 24), getPositionY()));
 		monster->setEaseIn(224, 1.0f);
 	}
 	else if (monName == "InkBird" ||
@@ -3342,15 +3342,15 @@ void CharacterBase::setMon(const string &monName)
 	if (monName == "ItachiSusano")
 	{
 		monster->setFlipX(_isFlipped);
-		monster->setAnchorPoint(ccp(0.5f, 0));
-		monster->setPosition(ccp(146 / 2 - 10, -40));
+		monster->setAnchorPoint(Vec2(0.5f, 0));
+		monster->setPosition(Vec2(146 / 2 - 10, -40));
 		addChild(monster, -1000);
 	}
 	else if (monName == "SasukeSusano")
 	{
 		monster->setFlipX(_isFlipped);
-		monster->setAnchorPoint(ccp(0.5f, 0));
-		monster->setPosition(ccp(141 / 2, -6));
+		monster->setAnchorPoint(Vec2(0.5f, 0));
+		monster->setPosition(Vec2(141 / 2, -6));
 		addChild(monster, -1000);
 	}
 	else if (monName == "CircleMark" ||
@@ -3381,7 +3381,7 @@ void CharacterBase::setMonPer(float dt)
 	monster->setMaster(this);
 
 	monster->idle();
-	monster->setPosition(ccp(getPositionX() + (_isFlipped ? -32 : 32), _originY ? _originY : getPositionY()));
+	monster->setPosition(Vec2(getPositionX() + (_isFlipped ? -32 : 32), _originY ? _originY : getPositionY()));
 	monster->setFlipX(_isFlipped);
 	monster->_isFlipped = _isFlipped;
 
@@ -3425,7 +3425,7 @@ void CharacterBase::setTrap(const string &trapName)
 
 		if (getName() == HeroEnum::ImmortalSasuke)
 		{
-			CCPoint targetPoint = _mainTarget ? _mainTarget->getPosition() : getPosition();
+			Vec2 targetPoint = _mainTarget ? _mainTarget->getPosition() : getPosition();
 
 			for (int z = 0; z < 3; z++)
 			{
@@ -3434,8 +3434,8 @@ void CharacterBase::setTrap(const string &trapName)
 					Bullet *trap = Bullet::create();
 					trap->_master = this;
 					trap->setID(trapName, Role::Mon, _group);
-					trap->setAnchorPoint(ccp(0.5, 0));
-					trap->setPosition(ccp(targetPoint.x, targetPoint.y + 32));
+					trap->setAnchorPoint(Vec2(0.5, 0));
+					trap->setPosition(Vec2(targetPoint.x, targetPoint.y + 32));
 					trap->idle();
 					trap->attack(NAttack);
 					trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 4.0f);
@@ -3448,8 +3448,8 @@ void CharacterBase::setTrap(const string &trapName)
 						Bullet *trap = Bullet::create();
 						trap->_master = this;
 						trap->setID(trapName, Role::Mon, _group);
-						trap->setAnchorPoint(ccp(0.5, 0));
-						trap->setPosition(ccp(targetPoint.x + (i - 1) * 60, targetPoint.y));
+						trap->setAnchorPoint(Vec2(0.5, 0));
+						trap->setPosition(Vec2(targetPoint.x + (i - 1) * 60, targetPoint.y));
 						trap->idle();
 						trap->attack(NAttack);
 						trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 4.0f);
@@ -3461,8 +3461,8 @@ void CharacterBase::setTrap(const string &trapName)
 					Bullet *trap = Bullet::create();
 					trap->_master = this;
 					trap->setID(trapName, Role::Mon, _group);
-					trap->setAnchorPoint(ccp(0.5, 0));
-					trap->setPosition(ccp(targetPoint.x, targetPoint.y - 32));
+					trap->setAnchorPoint(Vec2(0.5, 0));
+					trap->setPosition(Vec2(targetPoint.x, targetPoint.y - 32));
 					trap->idle();
 					trap->attack(NAttack);
 					trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 4.0f);
@@ -3481,7 +3481,7 @@ void CharacterBase::setTrap(const string &trapName)
 						Bullet *trap = Bullet::create();
 						trap->_master = this;
 						trap->setID(trapName, Role::Mon, _group);
-						trap->setPosition(ccp(getPositionX() + (_isFlipped ? -112 : 112), getPositionY() + (48 - i * 24)));
+						trap->setPosition(Vec2(getPositionX() + (_isFlipped ? -112 : 112), getPositionY() + (48 - i * 24)));
 						trap->idle();
 						trap->attack(NAttack);
 						trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 2.5f);
@@ -3495,7 +3495,7 @@ void CharacterBase::setTrap(const string &trapName)
 						Bullet *trap = Bullet::create();
 						trap->_master = this;
 						trap->setID(trapName, Role::Mon, _group);
-						trap->setPosition(ccp(getPositionX() + (_isFlipped ? -80 : 80), getPositionY() + (32 - i * 24)));
+						trap->setPosition(Vec2(getPositionX() + (_isFlipped ? -80 : 80), getPositionY() + (32 - i * 24)));
 						trap->idle();
 						trap->attack(NAttack);
 						trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 2.5f);
@@ -3507,7 +3507,7 @@ void CharacterBase::setTrap(const string &trapName)
 					Bullet *trap = Bullet::create();
 					trap->_master = this;
 					trap->setID(trapName, Role::Mon, _group);
-					trap->setPosition(ccp(getPositionX() + (_isFlipped ? -48 : 48), getPositionY() + 22));
+					trap->setPosition(Vec2(getPositionX() + (_isFlipped ? -48 : 48), getPositionY() + 22));
 					trap->idle();
 					trap->attack(NAttack);
 					trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 2.5f);
@@ -3951,7 +3951,7 @@ void CharacterBase::idle()
 	}
 }
 
-void CharacterBase::walk(CCPoint direction)
+void CharacterBase::walk(Vec2 direction)
 {
 	if (_actionState == State::IDLE || _actionState == State::WALK || (_actionState == State::NATTACK && isNotPlayer()))
 	{
@@ -4010,7 +4010,7 @@ void CharacterBase::walk(CCPoint direction)
 			}
 		}
 
-		_velocity = ccp(direction.x * _walkSpeed * kSpeedBase, direction.y * _walkSpeed * kSpeedBase);
+		_velocity = Vec2(direction.x * _walkSpeed * kSpeedBase, direction.y * _walkSpeed * kSpeedBase);
 	}
 }
 
@@ -4035,7 +4035,7 @@ bool CharacterBase::hurt()
 				hero->_actionState != State::DEAD &&
 				hero->_buffStartTime)
 			{
-				CCPoint sp = ccpSub(hero->getPosition(), getPosition());
+				Vec2 sp = ccpSub(hero->getPosition(), getPosition());
 				if (abs(sp.x) <= kAttackRange)
 				{
 					return false;
@@ -4048,7 +4048,7 @@ bool CharacterBase::hurt()
 			{
 				if (mo->getName() == KugutsuEnum::Parents && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK && mo->_actionState != State::DEAD)
 				{
-					CCPoint sp = ccpSub(mo->getPosition(), getPosition());
+					Vec2 sp = ccpSub(mo->getPosition(), getPosition());
 					if (sp.x <= 48)
 					{
 						return false;
@@ -4103,7 +4103,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 				hero->_actionState != State::DEAD &&
 				hero->_buffStartTime)
 			{
-				CCPoint sp = ccpSub(hero->getPosition(), getPosition());
+				Vec2 sp = ccpSub(hero->getPosition(), getPosition());
 				if (abs(sp.x) <= kAttackRange)
 				{
 					return false;
@@ -4117,7 +4117,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 			{
 				if (mo->getName() == KugutsuEnum::Parents && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK && mo->_actionState != State::DEAD)
 				{
-					CCPoint sp = ccpSub(mo->getPosition(), getPosition());
+					Vec2 sp = ccpSub(mo->getPosition(), getPosition());
 					if (sp.x <= 48)
 					{
 						if (mo->_isCanSkill3)
@@ -4179,8 +4179,8 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 
 			auto tempArray = CCArray::create();
 			tempArray->addObject(frame);
-			auto tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
-			auto tempAction = CCAnimate::create(tempAnimation);
+			auto tempAnimation = Animation::createWithSpriteFrames(tempArray, 0.1f);
+			auto tempAction = Animate::create(tempAnimation);
 			list->addObject(tempAction);
 		}
 
@@ -4190,13 +4190,13 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 			list->addObject(call);
 		}
 
-		auto delay = CCDelayTime::create(delayTime / 1000.0f);
+		auto delay = DelayTime::create(delayTime / 1000.0f);
 		list->addObject(delay);
 
 		auto call = CallFunc::create(std::bind(&CharacterBase::idle, this));
 		list->addObject(call);
 
-		auto seq = CCSequence::create(list);
+		auto seq = Sequence::create(list);
 		runAction(seq);
 
 		return true;
@@ -4231,7 +4231,7 @@ void CharacterBase::resumePauseStuff(float dt)
 	getActionManager()->resumeTarget(this);
 }
 
-void CharacterBase::absorb(CCPoint position, bool isImmediate)
+void CharacterBase::absorb(Vec2 position, bool isImmediate)
 {
 	if (_actionState == State::IDLE ||
 		_actionState == State::WALK ||
@@ -4250,22 +4250,22 @@ void CharacterBase::absorb(CCPoint position, bool isImmediate)
 		if (isImmediate)
 		{
 			stopAllActions();
-			auto mv = CCMoveTo::create(0.2f, position);
+			auto mv = MoveTo::create(0.2f, position);
 			list->addObject(_hurtAction);
 			runAction(mv);
 		}
 		else
 		{
-			CCPoint direction = ccpSub(getPosition(), position);
+			Vec2 direction = ccpSub(getPosition(), position);
 			position.x = direction.x > 0 ? getPositionX() - 16 : getPositionX() + 16;
 			position.y = direction.y > 0 ? getPositionY() - 8 : getPositionY() + 8;
-			auto mv = CCMoveTo::create(0.2f, position);
+			auto mv = MoveTo::create(0.2f, position);
 			list->addObject(mv);
 		}
 
 		auto call = CallFunc::create(std::bind(&CharacterBase::idle, this));
 		list->addObject(call);
-		auto seq = CCSequence::create(list);
+		auto seq = Sequence::create(list);
 		runAction(seq);
 	}
 }
@@ -4294,7 +4294,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 				hero->_actionState != State::DEAD &&
 				hero->_buffStartTime)
 			{
-				CCPoint sp = ccpSub(hero->getPosition(), getPosition());
+				Vec2 sp = ccpSub(hero->getPosition(), getPosition());
 				if (abs(sp.x) <= kAttackRange)
 				{
 					return;
@@ -4308,7 +4308,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 			{
 				if (mo->getName() == KugutsuEnum::Parents && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK && mo->_actionState != State::DEAD)
 				{
-					CCPoint sp = ccpSub(mo->getPosition(), getPosition());
+					Vec2 sp = ccpSub(mo->getPosition(), getPosition());
 					if (sp.x <= 48)
 					{
 						if (mo->_isCanSkill3)
@@ -4331,14 +4331,14 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 		float posX = getPositionX();
 		float posY = getPositionY();
 		_originY = posY;
-		CCActionInterval *_floatAwayAction;
+		ActionInterval *_floatAwayAction;
 
 		if (floatHeight == 64)
-			_floatAwayAction = CCJumpTo::create(0.8f, ccp(posX + (_isFlipped ? 64 : -64), posY), 64, 1);
+			_floatAwayAction = JumpTo::create(0.8f, Vec2(posX + (_isFlipped ? 64 : -64), posY), 64, 1);
 		else if (floatHeight == 128)
-			_floatAwayAction = CCJumpTo::create(1.0f, ccp(posX + (_isFlipped ? 128 : -128), posY), 64, 1);
+			_floatAwayAction = JumpTo::create(1.0f, Vec2(posX + (_isFlipped ? 128 : -128), posY), 64, 1);
 		else
-			_floatAwayAction = CCJumpTo::create(0.3f, ccp(posX + (_isFlipped ? 8 : -8), posY), 16, 1);
+			_floatAwayAction = JumpTo::create(0.3f, Vec2(posX + (_isFlipped ? 8 : -8), posY), 16, 1);
 
 		auto call = CallFunc::create(std::bind(&CharacterBase::knockDown, this));
 		_floatUPAction = newSequence(_floatAwayAction, call);
@@ -4368,8 +4368,8 @@ void CharacterBase::dead()
 	_isCatchOne = false;
 	_isSticking = false;
 	_isInvincible = false;
-	_startPoint = ccp(0, 0);
-	_markPoint = ccp(0, 0);
+	_startPoint = Vec2(0, 0);
+	_markPoint = Vec2(0, 0);
 
 	_sticker = nullptr;
 
@@ -4522,7 +4522,7 @@ void CharacterBase::dead()
 
 		if (isFlog())
 		{
-			auto fadeOut = CCFadeOut::create(0.5f);
+			auto fadeOut = FadeOut::create(0.5f);
 			auto seq = newSequence(_deadAction, fadeOut, call);
 			runAction(seq);
 		}
@@ -4546,7 +4546,7 @@ void CharacterBase::checkActionFinish(float dt)
 	{
 		unschedule(schedule_selector(CharacterBase::checkActionFinish));
 		stopAllActions();
-		auto fadeOut = CCFadeOut::create(0.5f);
+		auto fadeOut = FadeOut::create(0.5f);
 		auto call = CallFunc::create(std::bind(&CharacterBase::dealloc, this));
 		auto seqArray = CCArray::create();
 		if (_deadAction)
@@ -4558,7 +4558,7 @@ void CharacterBase::checkActionFinish(float dt)
 			seqArray->addObject(fadeOut);
 		}
 		seqArray->addObject(call);
-		auto seq = CCSequence::create(seqArray);
+		auto seq = Sequence::create(seqArray);
 		runAction(seq);
 	}
 }
@@ -4610,7 +4610,7 @@ CharacterBase::findEnemyBy(const vector<T *> &list, int searchRange, bool master
 {
 	float distance;
 	float curDistance = 0;
-	CCPoint sp;
+	Vec2 sp;
 	bool findSome = false;
 
 	for (auto target : list)
@@ -4701,7 +4701,7 @@ CharacterBase::findEnemy2By(const vector<T *> &list)
 {
 	float distance;
 	float curDistance = 0;
-	CCPoint sp;
+	Vec2 sp;
 	bool findSome = false;
 
 	enemyCombatPoint = 0;
@@ -4796,7 +4796,7 @@ typename std::enable_if<std::is_base_of<CharacterBase, T>::value, bool>::type
 CharacterBase::findTargetEnemyBy(const vector<T *> &list, bool isTowerDected)
 {
 	float curDistance = 0;
-	CCPoint sp;
+	Vec2 sp;
 	bool findSome = false;
 
 	for (auto target : list)
@@ -4900,12 +4900,12 @@ bool CharacterBase::checkBase()
 // [For AI] 血量充足后，使AI前进
 void CharacterBase::stepOn()
 {
-	CCPoint moveDirection;
+	Vec2 moveDirection;
 
 	if (isKonohaGroup())
-		moveDirection = ccpNormalize(ccp(1, 0));
+		moveDirection = ccpNormalize(Vec2(1, 0));
 	else
-		moveDirection = ccpNormalize(ccp(-1, 0));
+		moveDirection = ccpNormalize(Vec2(-1, 0));
 
 	walk(moveDirection);
 }
@@ -4915,12 +4915,12 @@ bool CharacterBase::stepBack()
 {
 	if (_isControlled)
 		return false;
-	CCPoint moveDirection;
+	Vec2 moveDirection;
 
 	if (isKonohaGroup())
-		moveDirection = ccpNormalize(ccp(-1, 0));
+		moveDirection = ccpNormalize(Vec2(-1, 0));
 	else
-		moveDirection = ccpNormalize(ccp(1, 0));
+		moveDirection = ccpNormalize(Vec2(1, 0));
 
 	if (getPositionX() >= getGameLayer()->currentMap->getTileSize().width * 2 &&
 		getPositionX() <= (getGameLayer()->currentMap->getMapSize().width - 2) * getGameLayer()->currentMap->getTileSize().width)
@@ -4940,7 +4940,7 @@ bool CharacterBase::stepBack2()
 	if (_isControlled)
 		return false;
 
-	CCPoint moveDirection;
+	Vec2 moveDirection;
 	setRand();
 	int randomDirection = random(10);
 
@@ -5005,13 +5005,13 @@ bool CharacterBase::stepBack2()
 
 	if (isKonohaGroup() && getPositionX() >= getGameLayer()->currentMap->getTileSize().width * 2)
 	{
-		moveDirection = ccp(-1, _diretionY);
+		moveDirection = Vec2(-1, _diretionY);
 		walk(moveDirection);
 		return true;
 	}
 	else if (isAkatsukiGroup() && getPositionX() <= (getGameLayer()->currentMap->getMapSize().width - 2) * getGameLayer()->currentMap->getTileSize().width)
 	{
-		moveDirection = ccp(1, _diretionY);
+		moveDirection = Vec2(1, _diretionY);
 		walk(moveDirection);
 		return true;
 	}
@@ -5076,7 +5076,7 @@ bool CharacterBase::checkRetri()
 	return false;
 }
 
-void CharacterBase::changeSide(CCPoint sp)
+void CharacterBase::changeSide(Vec2 sp)
 {
 	if (sp.x > 0)
 	{

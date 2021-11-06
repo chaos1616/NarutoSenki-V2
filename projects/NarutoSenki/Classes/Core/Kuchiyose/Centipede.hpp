@@ -13,8 +13,8 @@ class Centipede : public Hero
 
 		if (_mainTarget)
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTargetAndIgnoreOriginY();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTargetAndIgnoreOriginY();
 
 			if (_mainTarget->isTower() ||
 				_mainTarget->isFlog())

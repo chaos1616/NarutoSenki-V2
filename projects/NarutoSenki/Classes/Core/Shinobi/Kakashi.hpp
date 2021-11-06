@@ -18,8 +18,8 @@ class Kakashi : public Hero
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (isFreeActionState())
 			{
@@ -83,8 +83,8 @@ class Kakashi : public Hero
 
 		if (_mainTarget)
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -188,8 +188,8 @@ class Kakashi : public Hero
 	Hero *createClone(int cloneTime) override
 	{
 		auto clone = createSummonHero<DogWall>(SummonEnum::DogWall);
-		clone->setPosition(ccp(getPositionX() + (_isFlipped ? -56 : 56), getPositionY()));
-		clone->setAnchorPoint(ccp(0.5f, 0.1f));
+		clone->setPosition(Vec2(getPositionX() + (_isFlipped ? -56 : 56), getPositionY()));
+		clone->setAnchorPoint(Vec2(0.5f, 0.1f));
 		clone->_isArmored = true;
 		return clone;
 	}

@@ -1,9 +1,7 @@
 #pragma once
-#include "cocos2d.h"
+#include "Defines.h"
 
-using namespace cocos2d;
-
-class CCShake : public CCActionInterval
+class CCShake : public ActionInterval
 {
 	// Code by Francois Guibert
 	// Contact: www.frozax.com - http://twitter.com/frozax - www.facebook.com/frozax
@@ -18,7 +16,7 @@ public:
 	static CCShake *createWithStrength(float d, float strength_x, float strength_y);
 
 protected:
-	void startWithTarget(CCNode *pTarget);
+	void startWithTarget(Node *pTarget);
 	void update(float time);
 	void stop();
 

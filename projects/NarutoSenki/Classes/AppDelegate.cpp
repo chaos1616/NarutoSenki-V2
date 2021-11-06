@@ -2,7 +2,6 @@
 #include "CCLuaEngine.h"
 #include "script_support/CCScriptSupport.h"
 
-#include "Defines.h"
 #include "Systems/Initializer.hpp"
 
 AppDelegate::AppDelegate()
@@ -17,31 +16,31 @@ AppDelegate::~AppDelegate()
 bool AppDelegate::applicationDidFinishLaunching()
 {
 	// 1. initialize lua
-	CCLuaEngine *pEngine = CCLuaEngine::defaultEngine();
+	auto pEngine = LuaEngine::defaultEngine();
 	CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);
 
-	CCLuaStack *pStack = pEngine->getLuaStack();
+	auto pStack = pEngine->getLuaStack();
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 	pEngine->addSearchPath("../lua");
-	CCFileUtils::sharedFileUtils()->addSearchPath("../lua");
+	FileUtils::sharedFileUtils()->addSearchPath("../lua");
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	// pStack->setXXTEAKeyAndSign("2dxLua", strlen("2dxLua"), "XXTEA", strlen("XXTEA"));
 	pEngine->addSearchPath("lua");
-	CCFileUtils::sharedFileUtils()->addSearchPath("lua");
-	CCLOG("------ Android writable path -> %s", CCFileUtils::sharedFileUtils()->getWritablePath().c_str());
+	FileUtils::sharedFileUtils()->addSearchPath("lua");
+	CCLOG("------ Android writable path -> %s", FileUtils::sharedFileUtils()->getWritablePath().c_str());
 #endif
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	pEngine->addSearchPath("../../lua");
-	CCFileUtils::sharedFileUtils()->addSearchPath("../../");
-	CCFileUtils::sharedFileUtils()->addSearchPath("../../Resources");
+	FileUtils::sharedFileUtils()->addSearchPath("../../");
+	FileUtils::sharedFileUtils()->addSearchPath("../../Resources");
 #endif
 #ifdef USE_WIN32_CONSOLE
 	CCLOG("---------------------------");
 	CCLOG("------ DEBUG CONSOLE ------");
 	CCLOG("---------------------------\n");
 
-	auto cwd = CCFileUtils::sharedFileUtils()->getWritablePath();
+	auto cwd = FileUtils::sharedFileUtils()->getWritablePath();
 	string end = "Debug.win32\\";
 	// If found use visual studio debug
 	// otherwise use visual studio code
@@ -55,20 +54,20 @@ bool AppDelegate::applicationDidFinishLaunching()
 		CCLOG("Res path: %s", resPath.c_str());
 		CCLOG("Root path: %s", root.c_str());
 		pEngine->addSearchPath(luaPath.c_str());
-		CCFileUtils::sharedFileUtils()->addSearchPath(luaPath.c_str());
-		CCFileUtils::sharedFileUtils()->addSearchPath(resPath.c_str());
-		CCFileUtils::sharedFileUtils()->addSearchPath(root.c_str());
+		FileUtils::sharedFileUtils()->addSearchPath(luaPath.c_str());
+		FileUtils::sharedFileUtils()->addSearchPath(resPath.c_str());
+		FileUtils::sharedFileUtils()->addSearchPath(root.c_str());
 	}
 	CCLOG("Current work path: %s", cwd.c_str());
 	CCLOG("---------------------------\n");
 
 #endif
 
-	CCEGLView *eglView = CCEGLView::sharedOpenGLView();
+	auto eglView = GLView::sharedOpenGLView();
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 	// get window settings
-	pEngine->executeScriptFile(CCFileUtils::sharedFileUtils()->fullPathForFilename("window.lua").c_str());
+	pEngine->executeScriptFile(FileUtils::sharedFileUtils()->fullPathForFilename("window.lua").c_str());
 
 	// 2. initialize window
 	bool isFullscreen = false;
@@ -115,7 +114,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 #endif
 
 	// initialize director
-	CCDirector *pDirector = CCDirector::sharedDirector();
+	Director *pDirector = Director::sharedDirector();
 
 	pDirector->setOpenGLView(eglView);
 	// eglView->setDesignResolutionSize(480, 320, kResolutionFixedHeight);
@@ -129,7 +128,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	Internal::initAllSystems();
 
 	// 3. execute main lua script
-	string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("main.lua");
+	string path = FileUtils::sharedFileUtils()->fullPathForFilename("main.lua");
 	pEngine->executeScriptFile(path.c_str());
 
 	return true;
@@ -137,14 +136,14 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 void AppDelegate::applicationDidEnterBackground()
 {
-	CCDirector::sharedDirector()->stopAnimation();
+	Director::sharedDirector()->stopAnimation();
 
 	SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 }
 
 void AppDelegate::applicationWillEnterForeground()
 {
-	CCDirector::sharedDirector()->startAnimation();
+	Director::sharedDirector()->startAnimation();
 
 	SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }

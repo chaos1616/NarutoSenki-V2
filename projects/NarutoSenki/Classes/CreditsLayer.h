@@ -1,7 +1,7 @@
 #pragma once
 #include "Defines.h"
 
-class CreditsLayer : public CCLayer
+class CreditsLayer : public Layer
 {
 public:
 	bool init();

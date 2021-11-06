@@ -33,7 +33,7 @@ public:
 	static string encodeData(string data);
 };
 
-class CCTips : public CCSprite
+class CCTips : public Sprite
 {
 public:
 	bool init(const char *tips);

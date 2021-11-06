@@ -10,23 +10,23 @@ enum class GearButtonType
 	Sell
 };
 
-class GearLayer : public CCLayer
+class GearLayer : public Layer
 {
 public:
 	GearLayer();
 	~GearLayer();
 
-	bool init(CCRenderTexture *snapshoot);
+	bool init(RenderTexture *snapshoot);
 
-	CCLayer *gears_layer = nullptr;
-	CCLayer *currentGear_layer = nullptr;
+	Layer *gears_layer = nullptr;
+	Layer *currentGear_layer = nullptr;
 	CCLabelBMFont *coinLabel = nullptr;
 
-	CCSprite *gearDetail = nullptr;
+	Sprite *gearDetail = nullptr;
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	CCSprite *gearBigIcon;
+	Sprite *gearBigIcon;
 #endif
-	CCSprite *gears_bg = nullptr;
+	Sprite *gears_bg = nullptr;
 
 	ScrewLayer *_screwLayer = nullptr;
 	GearType currentGear = None;
@@ -34,14 +34,14 @@ public:
 	void updateGearList();
 	void confirmPurchase();
 
-	static GearLayer *create(CCRenderTexture *snapshoot);
+	static GearLayer *create(RenderTexture *snapshoot);
 
 private:
-	void onResume(CCObject *sender);
-	void onGearBuy(CCObject *sender);
+	void onResume(Ref *sender);
+	void onGearBuy(Ref *sender);
 };
 
-class GearButton : public CCSprite, public CCTouchDelegate
+class GearButton : public Sprite, public CCTouchDelegate
 {
 public:
 	bool init(const char *szImage);
@@ -49,10 +49,10 @@ public:
 	bool _isBuyed;
 	GearType _gearType;
 	GearButtonType _btnType;
-	CCSprite *soIcon;
+	Sprite *soIcon;
 	CC_SYNTHESIZE(GearLayer *, _delegate, Delegate);
 
-	CCRect getRect();
+	Rect getRect();
 	void setBtnType(GearType type, GearButtonType btnType, bool isBuyed);
 	GearType getBtnType();
 	void playSound();
@@ -63,14 +63,14 @@ public:
 protected:
 	void onEnter();
 	void onExit();
-	bool ccTouchBegan(CCTouch *touch, CCEvent *event);
-	void ccTouchMoved(CCTouch *touch, CCEvent *event);
-	void ccTouchEnded(CCTouch *touch, CCEvent *event);
+	bool ccTouchBegan(Touch *touch, Event *event);
+	void ccTouchMoved(Touch *touch, Event *event);
+	void ccTouchEnded(Touch *touch, Event *event);
 
-	inline bool containsTouchLocation(CCTouch *touch);
+	inline bool containsTouchLocation(Touch *touch);
 };
 
-class ScrewLayer : public CCLayer
+class ScrewLayer : public Layer
 {
 public:
 	bool init();
@@ -78,16 +78,16 @@ public:
 	float prePosY;
 	int totalRow;
 	int gearNum;
-	CCSprite *screwBar;
+	Sprite *screwBar;
 	PROP_Vector(vector<GearButton *>, _gearBtnArray, GearBtnArray);
 	CC_SYNTHESIZE(GearLayer *, _delegate, Delegate);
 
 	CREATE_FUNC(ScrewLayer);
 
 protected:
-	bool ccTouchBegan(CCTouch *touch, CCEvent *event);
-	void ccTouchMoved(CCTouch *touch, CCEvent *event);
-	void ccTouchEnded(CCTouch *touch, CCEvent *event);
+	bool ccTouchBegan(Touch *touch, Event *event);
+	void ccTouchMoved(Touch *touch, Event *event);
+	void ccTouchEnded(Touch *touch, Event *event);
 
 	void onEnter();
 	void onExit();

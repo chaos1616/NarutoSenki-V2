@@ -4,36 +4,36 @@
 #include "../../../cocos2dx/platform/android/jni/JniHelper.h"
 #endif
 
-class GameOver : public CCLayer
+class GameOver : public Layer
 {
 public:
 	GameOver();
 	~GameOver();
 
-	bool init(CCRenderTexture *snapshoot);
+	bool init(RenderTexture *snapshoot);
 
 	PROP(bool, _isWin, Win);
 
-	CCLayer *exitLayer;
-	CCLayer *cheatLayer;
-	CCSprite *result_bg;
+	Layer *exitLayer;
+	Layer *cheatLayer;
+	Sprite *result_bg;
 
 	bool isPosting;
-	CCSprite *refreshBtn;
-	CCMenuItem *upload_btn;
+	Sprite *refreshBtn;
+	MenuItem *upload_btn;
 
 	// CC_SYNTHESIZE_RETAIN(CCString*,detailRecord,DetialRecord);
 	string detailRecord;
 	float finnalScore;
 
-	static GameOver *create(CCRenderTexture *snapshoot);
+	static GameOver *create(RenderTexture *snapshoot);
 
 private:
 	const char *resultChar;
 
-	void onBackToMenu(CCObject *sender);
+	void onBackToMenu(Ref *sender);
 	void listResult();
-	void onCancel(CCObject *sender);
-	void onLeft(CCObject *sender);
-	void onUPloadBtn(CCObject *sender);
+	void onCancel(Ref *sender);
+	void onLeft(Ref *sender);
+	void onUPloadBtn(Ref *sender);
 };

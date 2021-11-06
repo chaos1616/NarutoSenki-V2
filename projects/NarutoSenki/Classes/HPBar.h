@@ -1,7 +1,7 @@
 #pragma once
 #include "CharacterBase.h"
 
-class HPBar : public CCSprite
+class HPBar : public Sprite
 {
 public:
 	bool init(const char *szImage);
@@ -10,8 +10,8 @@ public:
 	void loseHP(float percent);
 
 	CC_SYNTHESIZE(CharacterBase *, _delegate, Delegate);
-	CC_SYNTHESIZE_RETAIN(CCSprite *, hpBottom, HPBottom);
-	CC_SYNTHESIZE_RETAIN(CCSprite *, hpBar, HPBAR);
+	CC_SYNTHESIZE_RETAIN(Sprite *, hpBottom, HPBottom);
+	CC_SYNTHESIZE_RETAIN(Sprite *, hpBar, HPBAR);
 
 	static HPBar *create(const char *szImage);
 };

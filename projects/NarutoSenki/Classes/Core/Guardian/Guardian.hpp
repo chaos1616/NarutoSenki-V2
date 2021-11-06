@@ -21,8 +21,8 @@ class Guardian : public Hero
 
 		if (_mainTarget)
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTargetAndIgnoreOriginY();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTargetAndIgnoreOriginY();
 
 			if (abs(sp.x) > 128 || abs(sp.y) > 16)
 			{
@@ -73,8 +73,8 @@ class Guardian : public Hero
 		}
 		else
 		{
-			CCPoint moveDirection;
-			CCPoint sp = ccpSub(getSpawnPoint(), getPosition());
+			Vec2 moveDirection;
+			Vec2 sp = ccpSub(getSpawnPoint(), getPosition());
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{

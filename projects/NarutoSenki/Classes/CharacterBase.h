@@ -23,7 +23,7 @@ enum class State {
 class HPBar;
 class Hero;
 
-class CharacterBase : public CCSprite
+class CharacterBase : public Sprite
 {
 friend class CommandSystem;
 
@@ -66,11 +66,11 @@ public:
 	uint32_t			_skillChangeBuffValue;
 
 
-	CCSprite*			_heartEffect;
+	Sprite*			_heartEffect;
 	Effect*				_healBuffEffect;
 	Effect*				_powerBuffEffect;
 	Effect*				_skillBuffEffect;
-	CCSprite*			_dehealBuffEffect;
+	Sprite*			_dehealBuffEffect;
 	Effect*				_healItemEffect;
 	Effect*				_speedItemEffect;
 	float				_buffStartTime;
@@ -89,8 +89,8 @@ public:
 	bool				_isSticking;
 	bool				_isPausing;
 
-	CCPoint				_markPoint;
-	CCPoint				_startPoint; // NOTE: Only for Minano
+	Vec2				_markPoint;
+	Vec2				_startPoint; // NOTE: Only for Minano
 
 	bool				_isAI;
 	bool				_isControlled;
@@ -109,7 +109,7 @@ public:
 
 
 	HPBar*				_hpBar;
-	CCSprite*			_shadow;
+	Sprite*			_shadow;
 	float				_originY;
 	float				_backY;
 	float				_diretionY;
@@ -146,7 +146,7 @@ public:
 	VPROP(uint32_t,_level,LV);
 	VPROP(int,_height,Height);
 	VPROP(int,_rebornTime,RebornTime);
-	VPROP(CCPoint,_spawnPoint,SpawnPoint);
+	VPROP(Vec2,_spawnPoint,SpawnPoint);
 
 
 	CC_SYNTHESIZE(CharacterBase*,_master,Master);
@@ -236,42 +236,42 @@ public:
 	PROP_Vector(vector<CharacterBase *>,_monsterArray,MonsterArray);
 
 	// movement
-	PROP(CCPoint,_velocity, Velocity);
-	PROP(CCPoint,_desiredPosition, DesiredPosition);
+	PROP(Vec2,_velocity, Velocity);
+	PROP(Vec2,_desiredPosition, DesiredPosition);
 
 	VPROP(State,_actionState, ActionState);
 
 	// actions
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_idleAction, IdleAction);
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_nAttackAction, NAttackAction);
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_walkAction, WalkAction);
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_hurtAction, HurtAction);
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_knockDownAction, KnockDownAction);
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_airHurtAction, AirHurtAction);
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_floatAction, FloatAction);
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_deadAction, DeadAction); 
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_idleAction, IdleAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_nAttackAction, NAttackAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_walkAction, WalkAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_hurtAction, HurtAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_knockDownAction, KnockDownAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_airHurtAction, AirHurtAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_floatAction, FloatAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_deadAction, DeadAction); 
 
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_skill1Action, Skill1Action);
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_skill2Action, Skill2Action);
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_skill3Action, Skill3Action);
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_skill4Action, Skill4Action);
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_skill5Action, Skill5Action);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_skill1Action, Skill1Action);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_skill2Action, Skill2Action);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_skill3Action, Skill3Action);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_skill4Action, Skill4Action);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_skill5Action, Skill5Action);
 
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_moveAction, MoveAction);
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_floatUPAction, FloatUPAction);
-	CC_SYNTHESIZE_RETAIN(CCFiniteTimeAction*,_jumpUPAction, JumpUPAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_moveAction, MoveAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_floatUPAction, FloatUPAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_jumpUPAction, JumpUPAction);
 
 
 	void				update(float dt);
 	void				updateHpBarPosition(float dt);
-	void				acceptAttack(CCObject* object);
+	void				acceptAttack(Ref* object);
 
 	float				getHpPercent();
 
 	bool				checkHasMovement();
 
 	void				idle();
-	void				walk(CCPoint direction);
+	void				walk(Vec2 direction);
 	void				attack(abType type);
 	void				sAttack(abType type);
 	void				nAttack();
@@ -279,7 +279,7 @@ public:
 	bool				hurt();
 	bool				hardHurt(int delayTime, bool isHurtAction, bool isCatch, bool isStick, bool isStun);
 	// bool				hardHurt(int delayTime, bool isHurtAction, HardHurtState state);
-	void				absorb(CCPoint position, bool isImmediate);
+	void				absorb(Vec2 position, bool isImmediate);
 	void				jump(){}; // No reference
 	void				knockDown();
 	virtual void		dead();
@@ -301,9 +301,9 @@ public:
 	void				setActionResume2();
 	void				reCatched(float dt);
 
-	void				setShadow(CCSpriteFrame *frame);
-	void				enableShadow(CCSprite *charN);
-	void				disableShadow(CCSprite *charN);
+	void				setShadow(SpriteFrame *frame);
+	void				enableShadow(Sprite *charN);
+	void				disableShadow(Sprite *charN);
 
 	void				setItem(abType type);
 	void				disableEffect();
@@ -329,7 +329,7 @@ public:
 	void				useGear(GearType type);
 
 	void				setCoinDisplay(int num);
-	void				removeCoinDisplay(CCSprite *coinDisplay);
+	void				removeCoinDisplay(Sprite *coinDisplay);
 	void				addCoin(uint32_t num);
 	void				minusCoin(uint32_t num);
 
@@ -375,7 +375,7 @@ public:
 
 
 	void				readData(CCArray* tmpData, string &attackType, uint32_t &attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint);
-	CCFiniteTimeAction*	createAnimation(CCArray* ationArray, float fps, bool isRepeat, bool isReturn);
+	FiniteTimeAction*	createAnimation(CCArray* ationArray, float fps, bool isRepeat, bool isReturn);
 
 	void				setSound(const string &file);
 	void				setDSound(const string &file);
@@ -423,8 +423,8 @@ protected:
 	void				removeSelf(float dt);
 	void				setJump(bool jumpDirection);
 
-	CCRect				setHalfBox();
-	CCRect				setHitBox();
+	Rect				setHalfBox();
+	Rect				setHitBox();
 
 	void				checkActionFinish(float dt);
 
@@ -446,7 +446,7 @@ protected:
 	bool				stepBack2();
 	bool				checkRetri();
 	void				stepOn();
-	void				changeSide(CCPoint sp);
+	void				changeSide(Vec2 sp);
 
 	inline void			autoFlip(CharacterBase* attacker);
 
@@ -654,15 +654,15 @@ protected:
 			stepOn();
 		}
 	}
-	inline CCPoint 		getDirByMoveTo(CharacterBase *target) {
+	inline Vec2 		getDirByMoveTo(CharacterBase *target) {
 		return ccpNormalize(ccpSub(target->getPosition(), getPosition()));
 	}
-	inline CCPoint 		getDistanceToTarget() {
+	inline Vec2 		getDistanceToTarget() {
 		return _mainTarget->_originY
-			? ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition())
+			? ccpSub(Vec2(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition())
 			: ccpSub(_mainTarget->getPosition(), getPosition());
 	}
-	inline CCPoint 		getDistanceToTargetAndIgnoreOriginY() {
+	inline Vec2 		getDistanceToTargetAndIgnoreOriginY() {
 		return ccpSub(_mainTarget->getPosition(), getPosition());
 	}
 public:

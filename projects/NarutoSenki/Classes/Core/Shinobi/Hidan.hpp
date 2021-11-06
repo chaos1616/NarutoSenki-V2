@@ -16,12 +16,12 @@ class Hidan : public Hero
 				{
 					_mainTarget = mo;
 					_isFound = true;
-					CCPoint moveDirection;
-					CCPoint sp;
+					Vec2 moveDirection;
+					Vec2 sp;
 
 					if (_mainTarget->_originY)
 					{
-						sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
+						sp = ccpSub(Vec2(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
 					}
 					else
 					{
@@ -67,8 +67,8 @@ class Hidan : public Hero
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (isFreeActionState())
 			{
@@ -157,8 +157,8 @@ class Hidan : public Hero
 
 		if (_mainTarget && _mainTarget->isNotMon() && !_isArmored)
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{

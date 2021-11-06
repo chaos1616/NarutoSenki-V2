@@ -16,8 +16,8 @@ class Shikamaru : public Hero
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (isFreeActionState())
 			{
@@ -112,8 +112,8 @@ class Shikamaru : public Hero
 
 		if (_mainTarget)
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -179,7 +179,7 @@ class Shikamaru : public Hero
 						auto trap = Monster::create();
 						trap->setMaster(this);
 						trap->setID(trapType, Role::Mon, getGroup());
-						trap->setPosition(ccp(hero->getPositionX(), hero->getPositionY()));
+						trap->setPosition(Vec2(hero->getPositionX(), hero->getPositionY()));
 						trap->idle();
 						trap->attack(NAttack);
 						getGameLayer()->addChild(trap, -trap->getPositionY());

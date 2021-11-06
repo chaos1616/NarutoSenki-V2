@@ -1,76 +1,76 @@
 #include "PauseLayer.h"
 #include "GameLayer.h"
 
-bool PauseLayer::init(CCRenderTexture *snapshoot)
+bool PauseLayer::init(RenderTexture *snapshoot)
 {
-	if (!CCLayer::init())
+	if (!Layer::init())
 		return false;
 
 	SimpleAudioEngine::sharedEngine()->stopAllEffects();
 	SimpleAudioEngine::sharedEngine()->pauseAllEffects();
 	SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 
-	CCTexture2D *bgTexture = snapshoot->getSprite()->getTexture();
-	CCSprite *bg = CCSprite::createWithTexture(bgTexture);
-	bg->setAnchorPoint(ccp(0, 0));
+	Texture2D *bgTexture = snapshoot->getSprite()->getTexture();
+	Sprite *bg = Sprite::createWithTexture(bgTexture);
+	bg->setAnchorPoint(Vec2(0, 0));
 	bg->setFlipY(true);
 	addChild(bg, 0);
 
-	CCLayer *blend = CCLayerColor::create(ccc4(0, 0, 0, 150), winSize.width, winSize.height);
+	Layer *blend = LayerColor::create(ccc4(0, 0, 0, 150), winSize.width, winSize.height);
 	addChild(blend, 1);
 
 	//produce the menu_bar
-	CCSprite *menu_bar_b = CCSprite::create("menu_bar2.png");
-	menu_bar_b->setAnchorPoint(ccp(0, 0));
+	Sprite *menu_bar_b = Sprite::create("menu_bar2.png");
+	menu_bar_b->setAnchorPoint(Vec2(0, 0));
 	FULL_SCREEN_SPRITE(menu_bar_b);
 	addChild(menu_bar_b, 2);
 
-	CCSprite *menu_bar_t = CCSprite::create("menu_bar3.png");
-	menu_bar_t->setAnchorPoint(ccp(0, 0));
-	menu_bar_t->setPosition(ccp(0, winSize.height - menu_bar_t->getContentSize().height));
+	Sprite *menu_bar_t = Sprite::create("menu_bar3.png");
+	menu_bar_t->setAnchorPoint(Vec2(0, 0));
+	menu_bar_t->setPosition(Vec2(0, winSize.height - menu_bar_t->getContentSize().height));
 	FULL_SCREEN_SPRITE(menu_bar_t);
 	addChild(menu_bar_t, 2);
 
-	CCSprite *pause_title = CCSprite::createWithSpriteFrameName("pause_title.png");
-	pause_title->setAnchorPoint(ccp(0, 0));
-	pause_title->setPosition(ccp(2, winSize.height - pause_title->getContentSize().height - 2));
+	Sprite *pause_title = Sprite::createWithSpriteFrameName("pause_title.png");
+	pause_title->setAnchorPoint(Vec2(0, 0));
+	pause_title->setPosition(Vec2(2, winSize.height - pause_title->getContentSize().height - 2));
 	addChild(pause_title, 3);
 
-	CCMenuItem *resume_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("resume.png"), nullptr, nullptr, this, menu_selector(PauseLayer::onResume));
-	CCMenuItem *btm_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("btm.png"), nullptr, nullptr, this, menu_selector(PauseLayer::onBackToMenu));
+	MenuItem *resume_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("resume.png"), nullptr, nullptr, this, menu_selector(PauseLayer::onResume));
+	MenuItem *btm_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("btm.png"), nullptr, nullptr, this, menu_selector(PauseLayer::onBackToMenu));
 
-	pauseMenu = CCMenu::create(resume_btn, btm_btn, nullptr);
+	pauseMenu = Menu::create(resume_btn, btm_btn, nullptr);
 	pauseMenu->alignItemsVerticallyWithPadding(26);
-	pauseMenu->setPosition(ccp(winSize.width / 2, winSize.height / 2 + 30));
+	pauseMenu->setPosition(Vec2(winSize.width / 2, winSize.height / 2 + 30));
 	addChild(pauseMenu, 3);
 
-	CCSprite *surrender_text = CCSprite::createWithSpriteFrameName("surrender_tips.png");
-	surrender_text->setPosition(ccp(winSize.width / 2, winSize.height / 2 - 23));
+	Sprite *surrender_text = Sprite::createWithSpriteFrameName("surrender_tips.png");
+	surrender_text->setPosition(Vec2(winSize.width / 2, winSize.height / 2 - 23));
 	addChild(surrender_text, 4);
 
-	bgm_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("bgm_on.png"), CCSprite::createWithSpriteFrameName("bgm_off.png"), nullptr, this, menu_selector(PauseLayer::onBGM));
-	voice_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("voice_on.png"), CCSprite::createWithSpriteFrameName("voice_off.png"), nullptr, this, menu_selector(PauseLayer::onVoice));
-	soundMenu = CCMenu::create(bgm_btn, voice_btn, nullptr);
+	bgm_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("bgm_on.png"), Sprite::createWithSpriteFrameName("bgm_off.png"), nullptr, this, menu_selector(PauseLayer::onBGM));
+	voice_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("voice_on.png"), Sprite::createWithSpriteFrameName("voice_off.png"), nullptr, this, menu_selector(PauseLayer::onVoice));
+	soundMenu = Menu::create(bgm_btn, voice_btn, nullptr);
 	soundMenu->alignItemsHorizontallyWithPadding(25);
-	soundMenu->setPosition(ccp(pauseMenu->getPositionX(), pauseMenu->getPositionY() - 80));
+	soundMenu->setPosition(Vec2(pauseMenu->getPositionX(), pauseMenu->getPositionY() - 80));
 	addChild(soundMenu, 4);
 
-	pre_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("preload_on.png"), CCSprite::createWithSpriteFrameName("preload_off.png"), nullptr, this, menu_selector(PauseLayer::onPreload));
-	preMenu = CCMenu::create(pre_btn, nullptr);
+	pre_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("preload_on.png"), Sprite::createWithSpriteFrameName("preload_off.png"), nullptr, this, menu_selector(PauseLayer::onPreload));
+	preMenu = Menu::create(pre_btn, nullptr);
 	preMenu->alignItemsHorizontallyWithPadding(25);
-	preMenu->setPosition(ccp(pauseMenu->getPositionX(), preMenu->getPositionY() - 84));
+	preMenu->setPosition(Vec2(pauseMenu->getPositionX(), preMenu->getPositionY() - 84));
 	addChild(preMenu, 4);
 
-	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isBGM") == false)
+	if (UserDefault::sharedUserDefault()->getBoolForKey("isBGM") == false)
 	{
 		bgm_btn->selected();
 	}
-	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice") == false)
+	if (UserDefault::sharedUserDefault()->getBoolForKey("isVoice") == false)
 	{
 		voice_btn->selected();
 	}
 
-	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isPreload") == false)
+	if (UserDefault::sharedUserDefault()->getBoolForKey("isPreload") == false)
 	{
 		pre_btn->selected();
 	}
@@ -78,85 +78,85 @@ bool PauseLayer::init(CCRenderTexture *snapshoot)
 	return true;
 }
 
-void PauseLayer::onBGM(CCObject *sender)
+void PauseLayer::onBGM(Ref *sender)
 {
-	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isBGM") == true)
+	if (UserDefault::sharedUserDefault()->getBoolForKey("isBGM") == true)
 	{
-		CCUserDefault::sharedUserDefault()->setBoolForKey("isBGM", false);
+		UserDefault::sharedUserDefault()->setBoolForKey("isBGM", false);
 		bgm_btn->selected();
 	}
 	else
 	{
-		CCUserDefault::sharedUserDefault()->setBoolForKey("isBGM", true);
+		UserDefault::sharedUserDefault()->setBoolForKey("isBGM", true);
 		bgm_btn->unselected();
 	}
 }
 
-void PauseLayer::onVoice(CCObject *sender)
+void PauseLayer::onVoice(Ref *sender)
 {
-	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice") == true)
+	if (UserDefault::sharedUserDefault()->getBoolForKey("isVoice") == true)
 	{
-		CCUserDefault::sharedUserDefault()->setBoolForKey("isVoice", false);
+		UserDefault::sharedUserDefault()->setBoolForKey("isVoice", false);
 		voice_btn->selected();
 	}
 	else
 	{
-		CCUserDefault::sharedUserDefault()->setBoolForKey("isVoice", true);
+		UserDefault::sharedUserDefault()->setBoolForKey("isVoice", true);
 		voice_btn->unselected();
 	}
 }
 
-void PauseLayer::onPreload(CCObject *sender)
+void PauseLayer::onPreload(Ref *sender)
 {
-	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isPreload") == true)
+	if (UserDefault::sharedUserDefault()->getBoolForKey("isPreload") == true)
 	{
-		CCUserDefault::sharedUserDefault()->setBoolForKey("isPreload", false);
+		UserDefault::sharedUserDefault()->setBoolForKey("isPreload", false);
 		pre_btn->selected();
 	}
 	else
 	{
-		CCUserDefault::sharedUserDefault()->setBoolForKey("isPreload", true);
+		UserDefault::sharedUserDefault()->setBoolForKey("isPreload", true);
 		pre_btn->unselected();
 	}
 }
 
-void PauseLayer::onResume(CCObject *sender)
+void PauseLayer::onResume(Ref *sender)
 {
-	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isBGM"))
+	if (UserDefault::sharedUserDefault()->getBoolForKey("isBGM"))
 	{
 		SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 	}
-	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
+	if (UserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 	{
 		SimpleAudioEngine::sharedEngine()->resumeAllEffects();
 	}
 
-	CCDirector::sharedDirector()->popScene();
+	Director::sharedDirector()->popScene();
 	getGameLayer()->_isPause = false;
 }
 
-void PauseLayer::onBackToMenu(CCObject *sender)
+void PauseLayer::onBackToMenu(Ref *sender)
 {
 	pauseMenu->setVisible(false);
 	soundMenu->setVisible(false);
 	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/select.ogg");
-	exitLayer = CCLayer::create();
+	exitLayer = Layer::create();
 
-	CCSprite *exit_bg = CCSprite::createWithSpriteFrameName("confirm_bg.png");
-	exit_bg->setPosition(ccp(winSize.width / 2, winSize.height / 2));
+	Sprite *exit_bg = Sprite::createWithSpriteFrameName("confirm_bg.png");
+	exit_bg->setPosition(Vec2(winSize.width / 2, winSize.height / 2));
 
-	CCSprite *comfirm_title = CCSprite::createWithSpriteFrameName("confirm_title.png");
-	comfirm_title->setPosition(ccp(winSize.width / 2, winSize.height / 2 + 38));
+	Sprite *comfirm_title = Sprite::createWithSpriteFrameName("confirm_title.png");
+	comfirm_title->setPosition(Vec2(winSize.width / 2, winSize.height / 2 + 38));
 
-	CCSprite *surrender_text = CCSprite::createWithSpriteFrameName("surrender_text.png");
-	surrender_text->setPosition(ccp(winSize.width / 2, winSize.height / 2 + 8));
+	Sprite *surrender_text = Sprite::createWithSpriteFrameName("surrender_text.png");
+	surrender_text->setPosition(Vec2(winSize.width / 2, winSize.height / 2 + 8));
 
-	CCMenuItem *yes_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("yes_btn1.png"), CCSprite::createWithSpriteFrameName("yes_btn2.png"), this, menu_selector(PauseLayer::onLeft));
-	CCMenuItem *no_btn = CCMenuItemSprite::create(CCSprite::createWithSpriteFrameName("no_btn1.png"), CCSprite::createWithSpriteFrameName("no_btn2.png"), this, menu_selector(PauseLayer::onCancel));
+	MenuItem *yes_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("yes_btn1.png"), Sprite::createWithSpriteFrameName("yes_btn2.png"), this, menu_selector(PauseLayer::onLeft));
+	MenuItem *no_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("no_btn1.png"), Sprite::createWithSpriteFrameName("no_btn2.png"), this, menu_selector(PauseLayer::onCancel));
 
-	CCMenu *confirm_menu = CCMenu::create(yes_btn, no_btn, nullptr);
+	Menu *confirm_menu = Menu::create(yes_btn, no_btn, nullptr);
 	confirm_menu->alignItemsHorizontallyWithPadding(24);
-	confirm_menu->setPosition(ccp(winSize.width / 2, winSize.height / 2 - 30));
+	confirm_menu->setPosition(Vec2(winSize.width / 2, winSize.height / 2 - 30));
 
 	exitLayer->addChild(exit_bg, 1);
 	exitLayer->addChild(confirm_menu, 2);
@@ -165,16 +165,16 @@ void PauseLayer::onBackToMenu(CCObject *sender)
 	addChild(exitLayer, 500);
 }
 
-void PauseLayer::onLeft(CCObject *sender)
+void PauseLayer::onLeft(Ref *sender)
 {
 	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
 	getGameLayer()->_isSurrender = true;
-	CCDirector::sharedDirector()->popScene();
+	Director::sharedDirector()->popScene();
 
 	getGameLayer()->_isPause = false;
 }
 
-void PauseLayer::onCancel(CCObject *sender)
+void PauseLayer::onCancel(Ref *sender)
 {
 	pauseMenu->setVisible(true);
 	soundMenu->setVisible(true);
@@ -182,7 +182,7 @@ void PauseLayer::onCancel(CCObject *sender)
 	exitLayer->removeFromParent();
 }
 
-PauseLayer *PauseLayer::create(CCRenderTexture *snapshoot)
+PauseLayer *PauseLayer::create(RenderTexture *snapshoot)
 {
 	PauseLayer *pl = new PauseLayer();
 	if (pl && pl->init(snapshoot))

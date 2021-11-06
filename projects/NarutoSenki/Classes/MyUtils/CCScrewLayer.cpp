@@ -2,26 +2,26 @@
 
 void CCScrewLayer::onEnter()
 {
-	CCLayer::onEnter();
-	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 1, true);
+	Layer::onEnter();
+	Director::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 1, true);
 }
 
 void CCScrewLayer::onExit()
 {
-	CCLayer::onExit();
-	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+	Layer::onExit();
+	Director::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
 }
 
-bool CCScrewLayer::ccTouchBegan(CCTouch *touch, CCEvent *event)
+bool CCScrewLayer::ccTouchBegan(Touch *touch, Event *event)
 {
 	prePosY = 0;
 	return true;
 }
 
-void CCScrewLayer::ccTouchMoved(CCTouch *touch, CCEvent *event)
+void CCScrewLayer::ccTouchMoved(Touch *touch, Event *event)
 {
 	// touch area
-	CCPoint curPoint = touch->getLocation();
+	Vec2 curPoint = touch->getLocation();
 	if (prePosY == 0)
 	{
 		prePosY = curPoint.y;
@@ -38,7 +38,7 @@ void CCScrewLayer::ccTouchMoved(CCTouch *touch, CCEvent *event)
 	}
 }
 
-void CCScrewLayer::ccTouchEnded(CCTouch *touch, CCEvent *event)
+void CCScrewLayer::ccTouchEnded(Touch *touch, Event *event)
 {
 	prePosY = 0;
 
@@ -59,28 +59,28 @@ init CCScrewItem ;
 
 void CCScrewItem::onEnter()
 {
-	CCSprite::onEnter();
-	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+	Sprite::onEnter();
+	Director::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 }
 
 void CCScrewItem::onExit()
 {
-	CCSprite::onExit();
-	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+	Sprite::onExit();
+	Director::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
 }
 
-CCRect CCScrewItem::getRect2()
+Rect CCScrewItem::getRect2()
 {
-	CCSize size = getContentSize();
-	return CCRect(0, 0, size.width, size.height);
+	Size size = getContentSize();
+	return Rect(0, 0, size.width, size.height);
 }
 
-bool CCScrewItem::containsTouchLocation(CCTouch *touch)
+bool CCScrewItem::containsTouchLocation(Touch *touch)
 {
 	return getRect2().containsPoint(convertTouchToNodeSpace(touch));
 }
 
-bool CCScrewItem::ccTouchBegan(CCTouch *touch, CCEvent *event)
+bool CCScrewItem::ccTouchBegan(Touch *touch, Event *event)
 {
 	// touch area
 	if (!containsTouchLocation(touch))
@@ -89,7 +89,7 @@ bool CCScrewItem::ccTouchBegan(CCTouch *touch, CCEvent *event)
 	return true;
 }
 
-void CCScrewItem::ccTouchEnded(CCTouch *touch, CCEvent *event)
+void CCScrewItem::ccTouchEnded(Touch *touch, Event *event)
 {
 	linemenu->setVisible(true);
 }

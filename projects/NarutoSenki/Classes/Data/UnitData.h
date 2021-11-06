@@ -14,11 +14,11 @@ struct HeroData
 	Role role;
 	Group group;
 
-	CCPoint spawnPoint;
+	Vec2 spawnPoint;
 
 	bool isInit = false;
 
-	inline void setSpawnPoint(CCPoint &&sp)
+	inline void setSpawnPoint(Vec2 &&sp)
 	{
 		spawnPoint.x = sp.x;
 		spawnPoint.y = sp.y;

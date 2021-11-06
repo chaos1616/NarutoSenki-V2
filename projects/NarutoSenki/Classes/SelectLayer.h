@@ -1,7 +1,7 @@
 #pragma once
 #include "LoadLayer.h"
 
-class SelectLayer : public CCLayer
+class SelectLayer : public Layer
 {
 public:
 	~SelectLayer();

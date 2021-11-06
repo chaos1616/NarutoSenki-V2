@@ -16,7 +16,7 @@ using namespace cocos2d;
 using namespace CocosDenshion;
 using namespace std;
 
-#define winSize CCDirector::sharedDirector()->getWinSize()
+#define winSize Director::sharedDirector()->getWinSize()
 #define random(x) (rand() % x)
 #define setRand() srand((uint32_t)time(0))
 

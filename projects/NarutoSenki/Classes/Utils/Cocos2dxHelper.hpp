@@ -1,6 +1,7 @@
 #pragma once
 #include "cocos2d.h"
 #include "../../../scripting/lua/cocos2dx_support/CCLuaEngine.h"
+#include "Utils/CCDeprecated.h"
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 #include <format>
@@ -29,11 +30,11 @@ using namespace std;
 	if (var)                \
 		return true;
 
-#define addSprites(filePath) CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(filePath)
-#define removeSprites(filePath) CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile(filePath)
+#define addSprites(filePath) SpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(filePath)
+#define removeSprites(filePath) SpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile(filePath)
 
-#define get_luastack CCLuaEngine::defaultEngine()->getLuaStack()
-#define lua_getL auto L = CCLuaEngine::defaultEngine()->getLuaStack()->getLuaState();
+#define get_luastack LuaEngine::defaultEngine()->getLuaStack()
+#define lua_getL auto L = LuaEngine::defaultEngine()->getLuaStack()->getLuaState();
 
 #define lua_call_func(func_name) \
 	lua_getL;                    \
@@ -62,15 +63,15 @@ using namespace std;
 #define FULL_SCREEN_SPRITE(__SPRITE__) \
 	__SPRITE__->setScaleX(winSize.width / __SPRITE__->getContentSize().width);
 
-inline CCSpriteFrame *getSpriteFrame(const string &name)
+inline SpriteFrame *getSpriteFrame(const string &name)
 {
-	return CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name.c_str());
+	return SpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name.c_str());
 }
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 
 template <class... _Types>
-inline CCSpriteFrame *getSpriteFrame(const string_view _Fmt, const _Types &..._Args)
+inline SpriteFrame *getSpriteFrame(const string_view _Fmt, const _Types &..._Args)
 {
 	return getSpriteFrame(format(_Fmt, _Args...));
 }
@@ -80,7 +81,7 @@ inline CCSpriteFrame *getSpriteFrame(const string_view _Fmt, const _Types &..._A
 // Use fmt lib for not support c++ 20 std::format platform
 
 template <class... _Types>
-inline CCSpriteFrame *getSpriteFrame(fmt::format_string<_Types...> _Fmt, _Types &&..._Args)
+inline SpriteFrame *getSpriteFrame(fmt::format_string<_Types...> _Fmt, _Types &&..._Args)
 {
 	return getSpriteFrame(fmt::format(_Fmt, _Args...));
 }

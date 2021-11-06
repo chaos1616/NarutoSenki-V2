@@ -3,15 +3,15 @@
 
 bool JoyStick::init()
 {
-	RETURN_FALSE_IF(!CCSprite::init());
+	RETURN_FALSE_IF(!Sprite::init());
 
 	initWithSpriteFrameName("JoyStickBg.png");
-	setAnchorPoint(ccp(0, 0));
+	setAnchorPoint(Vec2(0, 0));
 
-	_joyStickControl = CCSprite::createWithSpriteFrameName("JoyStick.png");
-	_joyStickControl->setAnchorPoint(ccp(0, 0));
+	_joyStickControl = Sprite::createWithSpriteFrameName("JoyStick.png");
+	_joyStickControl->setAnchorPoint(Vec2(0, 0));
 
-	_defaultPotion = ccp(getContentSize().width / 2 - _joyStickControl->getContentSize().width / 2,
+	_defaultPotion = Vec2(getContentSize().width / 2 - _joyStickControl->getContentSize().width / 2,
 						 getContentSize().height / 2 - _joyStickControl->getContentSize().height / 2);
 
 	_joyStickControl->setPosition(_defaultPotion);
@@ -22,19 +22,19 @@ bool JoyStick::init()
 
 void JoyStick::onEnter()
 {
-	CCSprite::onEnter();
-	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+	Sprite::onEnter();
+	Director::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 }
 
 void JoyStick::onExit()
 {
-	CCSprite::onExit();
-	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+	Sprite::onExit();
+	Director::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
 }
 
-bool JoyStick::ccTouchBegan(CCTouch *touch, CCEvent *event)
+bool JoyStick::ccTouchBegan(Touch *touch, Event *event)
 {
-	CCPoint curPoint = touch->getLocation();
+	Vec2 curPoint = touch->getLocation();
 	if (curPoint.x > winSize.width / 2 || curPoint.y > winSize.height / 2)
 	{
 		return false;
@@ -43,7 +43,7 @@ bool JoyStick::ccTouchBegan(CCTouch *touch, CCEvent *event)
 	return true;
 }
 
-void JoyStick::ccTouchMoved(CCTouch *touch, CCEvent *event)
+void JoyStick::ccTouchMoved(Touch *touch, Event *event)
 {
 	if (!_delegate->_isAllButtonLocked)
 	{
@@ -51,7 +51,7 @@ void JoyStick::ccTouchMoved(CCTouch *touch, CCEvent *event)
 	}
 }
 
-void JoyStick::ccTouchEnded(CCTouch *touch, CCEvent *event)
+void JoyStick::ccTouchEnded(Touch *touch, Event *event)
 {
 	if (!_delegate->_isAllButtonLocked)
 	{
@@ -60,13 +60,13 @@ void JoyStick::ccTouchEnded(CCTouch *touch, CCEvent *event)
 	}
 }
 
-void JoyStick::updateDirectionForTouchLocation(CCTouch *touch)
+void JoyStick::updateDirectionForTouchLocation(Touch *touch)
 {
-	CCPoint startPoint = ccp(32 + getContentSize().width / 2,
+	Vec2 startPoint = Vec2(32 + getContentSize().width / 2,
 							 32 + getContentSize().height / 2);
-	CCPoint curPoint = touch->getLocation();
+	Vec2 curPoint = touch->getLocation();
 	//����
-	CCPoint sp = ccpSub(curPoint, startPoint);
+	Vec2 sp = ccpSub(curPoint, startPoint);
 	//����
 	float radians = ccpToAngle(sp);
 	//�Ƕ�
@@ -76,49 +76,49 @@ void JoyStick::updateDirectionForTouchLocation(CCTouch *touch)
 	if (degrees <= 22.5 && degrees >= -22.5)
 	{
 		// right
-		_direction = ccp(1.0, 0.0);
+		_direction = Vec2(1.0, 0.0);
 	}
 	else if (degrees > 22.5 && degrees < 67.5)
 	{
 		// bottom right
-		_direction = ccp(1.0, -1.0);
+		_direction = Vec2(1.0, -1.0);
 	}
 	else if (degrees >= 67.5 && degrees <= 112.5)
 	{
 		// bottom
-		_direction = ccp(0.0, -1.0);
+		_direction = Vec2(0.0, -1.0);
 	}
 	else if (degrees > 112.5 && degrees < 157.5)
 	{
 		// bottom left
-		_direction = ccp(-1.0, -1.0);
+		_direction = Vec2(-1.0, -1.0);
 	}
 	else if (degrees >= 157.5 || degrees <= -157.5)
 	{
 		// left
-		_direction = ccp(-1.0, 0.0);
+		_direction = Vec2(-1.0, 0.0);
 	}
 	else if (degrees < -22.5 && degrees > -67.5)
 	{
 		// top right
-		_direction = ccp(1.0, 1.0);
+		_direction = Vec2(1.0, 1.0);
 	}
 	else if (degrees <= -67.5 && degrees >= -112.5)
 	{
 		// top
-		_direction = ccp(0.0, 1.0);
+		_direction = Vec2(0.0, 1.0);
 	}
 	else if (degrees < -112.5 && degrees > -157.5)
 	{
 		// top left
-		_direction = ccp(-1.0, 1.0);
+		_direction = Vec2(-1.0, 1.0);
 	};
 
 	updateJoyStick(distance, _direction);
 	_delegate->JoyStickUpdate(_direction);
 }
 
-void JoyStick::updateJoyStick(float distance, CCPoint direction)
+void JoyStick::updateJoyStick(float distance, Vec2 direction)
 {
 	if (distance < 27.5)
 	{

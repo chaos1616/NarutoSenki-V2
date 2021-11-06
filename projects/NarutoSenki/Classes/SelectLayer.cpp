@@ -28,7 +28,7 @@ void SelectLayer::onGameStart()
 	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
 	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
 
-	CCScene *loadScene = CCScene::create();
+	Scene *loadScene = Scene::create();
 	LoadLayer *loadLayer = LoadLayer::create();
 
 	auto gameModeHandler = getGameModeHandler();
@@ -37,18 +37,18 @@ void SelectLayer::onGameStart()
 	loadLayer->preloadAudio();
 	loadScene->addChild(loadLayer);
 
-	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.25f, loadScene));
+	Director::sharedDirector()->replaceScene(TransitionFade::create(1.25f, loadScene));
 }
 
 void SelectLayer::onExitTransitionDidStart()
 {
-	CCLayer::onExitTransitionDidStart();
+	Layer::onExitTransitionDidStart();
 	setKeypadEnabled(false);
 }
 
 void SelectLayer::onEnterTransitionDidFinish()
 {
-	CCLayer::onEnterTransitionDidFinish();
+	Layer::onEnterTransitionDidFinish();
 	setKeypadEnabled(true);
 }
 

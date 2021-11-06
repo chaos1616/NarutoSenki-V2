@@ -3,12 +3,12 @@
 
 class HudLayer;
 
-class JoyStick : public CCSprite, public CCTouchDelegate
+class JoyStick : public Sprite, public CCTouchDelegate
 {
 public:
-	CCPoint _direction;
-	CCSprite *_joyStickControl;
-	CCPoint _defaultPotion;
+	Vec2 _direction;
+	Sprite *_joyStickControl;
+	Vec2 _defaultPotion;
 
 	bool init();
 	void onEnter();
@@ -22,10 +22,10 @@ public:
 	CREATE_FUNC(JoyStick);
 
 protected:
-	bool ccTouchBegan(CCTouch *touch, CCEvent *event);
-	void ccTouchMoved(CCTouch *touch, CCEvent *event);
-	void ccTouchEnded(CCTouch *touch, CCEvent *event);
+	bool ccTouchBegan(Touch *touch, Event *event);
+	void ccTouchMoved(Touch *touch, Event *event);
+	void ccTouchEnded(Touch *touch, Event *event);
 
-	void updateDirectionForTouchLocation(CCTouch *touch);
-	void updateJoyStick(float distance, CCPoint direction);
+	void updateDirectionForTouchLocation(Touch *touch);
+	void updateJoyStick(float distance, Vec2 direction);
 };

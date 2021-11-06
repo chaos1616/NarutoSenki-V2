@@ -36,7 +36,7 @@ inline GameLayer *getGameLayer()
 	return _gLayer;
 }
 
-class GameLayer : public CCLayer
+class GameLayer : public Layer
 {
 	using OnHUDInitializedCallback = std::function<void()>;
 
@@ -46,7 +46,7 @@ public:
 	GameLayer();
 	~GameLayer();
 
-	CCTMXTiledMap *currentMap;
+	TMXTiledMap *currentMap;
 	CharacterBase *currentPlayer;
 
 	uint32_t _second;
@@ -79,10 +79,10 @@ public:
 	PROP_UInt(totalKills, TotalKills);
 	PROP_UInt(totalTime, TotalTime);
 
-	CCSpriteBatchNode *skillEffectBatch;
-	CCSpriteBatchNode *damageEffectBatch;
-	CCSpriteBatchNode *bulletBatch;
-	CCSpriteBatchNode *shadowBatch;
+	SpriteBatchNode *skillEffectBatch;
+	SpriteBatchNode *damageEffectBatch;
+	SpriteBatchNode *bulletBatch;
+	SpriteBatchNode *shadowBatch;
 
 	bool init();
 	void initTileMap();
@@ -96,7 +96,7 @@ public:
 	void updateGameTime(float dt);
 
 	Hero *addHero(const HeroData &data, int charId);
-	Hero *addHero(const string &name, Role role, Group group, CCPoint spawnPoint, int charNo);
+	Hero *addHero(const string &name, Role role, Group group, Vec2 spawnPoint, int charNo);
 	void addFlog(float dt);
 
 	void attackButtonClick(abType type);
@@ -104,7 +104,7 @@ public:
 	void attackButtonRelease();
 
 	void JoyStickRelease();
-	void JoyStickUpdate(CCPoint direction);
+	void JoyStickUpdate(Vec2 direction);
 
 	PROP(bool, _isSkillFinish, SkillFinish);
 	void checkTower();
@@ -124,12 +124,12 @@ public:
 	void resetStatusBar();
 	void setCoin(const char *value);
 	void removeOugisMark(int type);
-	void setOugis(CCNode *sender);
+	void setOugis(Node *sender);
 	void removeOugis();
 
-	CCNode *ougisChar;
+	Node *ougisChar;
 	CharacterBase *controlChar;
-	CCLayer *blend;
+	Layer *blend;
 
 	void onLeft();
 
@@ -175,7 +175,7 @@ private:
 
 	void invokeAllCallbacks();
 
-	inline CCPoint getCustomSpawnPoint(HeroData &data);
+	inline Vec2 getCustomSpawnPoint(HeroData &data);
 
 	bool isHUDInitialized = false;
 	bool is4V4Mode = false;

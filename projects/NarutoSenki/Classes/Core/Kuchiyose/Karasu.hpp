@@ -13,7 +13,7 @@ class Karasu : public Hero
 
 		if (_mainTarget)
 		{
-			CCPoint moveDirection;
+			Vec2 moveDirection;
 			if (abs(ccpSub(_master->getPosition(), getPosition()).x) > kAttackRange - 48)
 			{
 				if (isFreeActionState())
@@ -23,7 +23,7 @@ class Karasu : public Hero
 					return;
 				}
 			}
-			CCPoint sp = getDistanceToTarget();
+			Vec2 sp = getDistanceToTarget();
 
 			if (_mainTarget->isFlog())
 			{
@@ -97,7 +97,7 @@ class Karasu : public Hero
 
 		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > kAttackRange - 64)
 		{
-			CCPoint moveDirection = getDirByMoveTo(_master);
+			Vec2 moveDirection = getDirByMoveTo(_master);
 			walk(moveDirection);
 			return;
 		}

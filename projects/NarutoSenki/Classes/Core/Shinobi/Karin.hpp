@@ -17,8 +17,8 @@ class Karin : public Hero
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (isFreeActionState())
 			{
@@ -101,8 +101,8 @@ class Karin : public Hero
 
 		if (_mainTarget)
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -147,16 +147,16 @@ class Karin : public Hero
 			for (int i = 0; i < 3; i++)
 			{
 				auto trap = Bullet::create();
-				trap->setAnchorPoint(ccp(0.5f, 0));
+				trap->setAnchorPoint(Vec2(0.5f, 0));
 				trap->setMaster(this);
 				trap->setID(trapType, Role::Mon, getGroup());
 
 				if (i == 0)
-					trap->setPosition(ccp(getPositionX() + (_isFlipped ? -24 : 24), getPositionY() - 24));
+					trap->setPosition(Vec2(getPositionX() + (_isFlipped ? -24 : 24), getPositionY() - 24));
 				else if (i == 1)
-					trap->setPosition(ccp(getPositionX() + (_isFlipped ? 24 : -24), getPositionY() - 24));
+					trap->setPosition(Vec2(getPositionX() + (_isFlipped ? 24 : -24), getPositionY() - 24));
 				else if (i == 2)
-					trap->setPosition(ccp(getPositionX(), getPositionY() + 24));
+					trap->setPosition(Vec2(getPositionX(), getPositionY() + 24));
 
 				trap->attack(NAttack);
 				getGameLayer()->addChild(trap, -trap->getPositionY());

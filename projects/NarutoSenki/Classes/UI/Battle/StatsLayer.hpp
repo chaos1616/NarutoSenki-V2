@@ -2,7 +2,7 @@
 #include "GameLayer.h"
 
 // TODO: Create a states panel in battle
-class StatsLayer : public CCLayer
+class StatsLayer : public Layer
 {
 public:
 	void update()
@@ -16,5 +16,5 @@ private:
 	{
 	}
 
-	CCSprite *bg;
+	Sprite *bg;
 };

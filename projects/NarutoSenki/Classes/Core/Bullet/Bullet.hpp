@@ -10,7 +10,7 @@ public:
 
 	bool init()
 	{
-		RETURN_FALSE_IF(!CCSprite::init());
+		RETURN_FALSE_IF(!Sprite::init());
 
 		scheduleUpdate();
 
@@ -67,11 +67,11 @@ public:
 
 	void setMove(int length, float delay, bool isReverse)
 	{
-		CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length, getPositionY());
-		CCPoint direction2 = getPosition();
-		auto mv = CCMoveTo::create(delay, direction);
+		Vec2 direction = Vec2(_isFlipped ? getPosition().x - length : getPosition().x + length, getPositionY());
+		Vec2 direction2 = getPosition();
+		auto mv = MoveTo::create(delay, direction);
 		auto call = CallFunc::create(std::bind(&Bullet::dealloc, this));
-		CCAction *moveAction;
+		Action *moveAction;
 
 		if (!isReverse)
 		{
@@ -79,7 +79,7 @@ public:
 		}
 		else
 		{
-			auto mv2 = CCMoveTo::create(delay, direction2);
+			auto mv2 = MoveTo::create(delay, direction2);
 			moveAction = newSequence(mv, mv2, call);
 		}
 
@@ -88,9 +88,9 @@ public:
 
 	void setEaseIn(int length, float delay)
 	{
-		CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length, getPositionY());
-		auto mv = CCMoveTo::create(1.0f, direction);
-		auto eo = CCEaseIn::create(mv, delay);
+		Vec2 direction = Vec2(_isFlipped ? getPosition().x - length : getPosition().x + length, getPositionY());
+		auto mv = MoveTo::create(1.0f, direction);
+		auto eo = EaseIn::create(mv, delay);
 		auto call = CallFunc::create(std::bind(&Bullet::dealloc, this));
 		auto moveAction = newSequence(eo, call);
 		runAction(moveAction);
@@ -119,7 +119,7 @@ protected:
 				if (_master->getActionState() == State::SATTACK)
 				{
 					_master->setActionState(State::NATTACK);
-					_master->_markPoint = ccp(getPositionX(), _originY);
+					_master->_markPoint = Vec2(getPositionX(), _originY);
 					_master->changeAction2();
 					_master->_isCanSkill2 = true;
 					_master->sAttack(SKILL2);

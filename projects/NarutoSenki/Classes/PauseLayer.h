@@ -1,29 +1,27 @@
 #pragma once
-#include "cocos2d.h"
+#include "Defines.h"
 
-using namespace cocos2d;
-
-class PauseLayer : public CCLayer
+class PauseLayer : public Layer
 {
 public:
-	bool init(CCRenderTexture *snapshoot);
+	bool init(RenderTexture *snapshoot);
 
-	CCMenu *pauseMenu = nullptr;
-	CCMenu *soundMenu = nullptr;
-	CCMenu *preMenu = nullptr;
-	CCLayer *exitLayer = nullptr;
-	CCMenuItem *bgm_btn = nullptr;
-	CCMenuItem *voice_btn = nullptr;
-	CCMenuItem *pre_btn = nullptr;
+	Menu *pauseMenu = nullptr;
+	Menu *soundMenu = nullptr;
+	Menu *preMenu = nullptr;
+	Layer *exitLayer = nullptr;
+	MenuItem *bgm_btn = nullptr;
+	MenuItem *voice_btn = nullptr;
+	MenuItem *pre_btn = nullptr;
 
-	static PauseLayer *create(CCRenderTexture *snapshoot);
+	static PauseLayer *create(RenderTexture *snapshoot);
 
 private:
-	void onResume(CCObject *sender);
-	void onBackToMenu(CCObject *sender);
-	void onLeft(CCObject *sender);
-	void onCancel(CCObject *sender);
-	void onBGM(CCObject *sender);
-	void onPreload(CCObject *sender);
-	void onVoice(CCObject *sender);
+	void onResume(Ref *sender);
+	void onBackToMenu(Ref *sender);
+	void onLeft(Ref *sender);
+	void onCancel(Ref *sender);
+	void onBGM(Ref *sender);
+	void onPreload(Ref *sender);
+	void onVoice(Ref *sender);
 };

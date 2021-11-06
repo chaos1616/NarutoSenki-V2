@@ -13,7 +13,7 @@ class Sanshouuo : public Hero
 
 		if (_mainTarget)
 		{
-			CCPoint moveDirection;
+			Vec2 moveDirection;
 			if (abs(ccpSub(_master->getPosition(), getPosition()).x) > kAttackRange - 64)
 			{
 				if (isFreeActionState())
@@ -24,8 +24,8 @@ class Sanshouuo : public Hero
 				}
 			}
 
-			CCPoint sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
-								ccp(getPositionX(), _originY ? _originY : getPositionY()));
+			Vec2 sp = ccpSub(Vec2(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
+								Vec2(getPositionX(), _originY ? _originY : getPositionY()));
 
 			if (_mainTarget->isFlog())
 			{
@@ -101,7 +101,7 @@ class Sanshouuo : public Hero
 
 		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > kAttackRange - 64)
 		{
-			CCPoint moveDirection = getDirByMoveTo(_master);
+			Vec2 moveDirection = getDirByMoveTo(_master);
 			walk(moveDirection);
 			return;
 		}

@@ -18,8 +18,8 @@ class RikudoNarutoClone : public Hero
 
 		if (_mainTarget)
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (_mainTarget->isTower() ||
 				_mainTarget->isFlog())

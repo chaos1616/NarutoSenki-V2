@@ -1,7 +1,7 @@
 #include "StartMenu.h"
 #include "MyUtils/KTools.h"
 
-class GameScene : public CCScene
+class GameScene : public Scene
 {
 public:
 	bool init();

@@ -6,7 +6,7 @@
 class CharacterBase;
 class Hero;
 
-class LoadLayer : public CCLayer
+class LoadLayer : public Layer
 {
 public:
 	LoadLayer();

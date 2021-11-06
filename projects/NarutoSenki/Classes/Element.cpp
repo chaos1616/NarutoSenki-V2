@@ -17,9 +17,9 @@ Monster::~Monster()
 
 bool Monster::init()
 {
-	RETURN_FALSE_IF(!CCSprite::init());
+	RETURN_FALSE_IF(!Sprite::init());
 
-	setAnchorPoint(ccp(0.5, 0));
+	setAnchorPoint(Vec2(0.5, 0));
 	scheduleUpdate();
 
 	return true;
@@ -174,7 +174,7 @@ void Monster::setAI(float dt)
 				!hero->_isArmored &&
 				hero->_isVisable)
 			{
-				CCPoint sp = ccpSub(hero->getPosition(), getPosition());
+				Vec2 sp = ccpSub(hero->getPosition(), getPosition());
 				float distanceY = hero->_originY ? abs(getPositionY() - hero->_originY) : abs(sp.y);
 				float distanceX = _isFlipped ? hero->getPositionX() - getPositionX() + getContentSize().width : hero->getPositionX() - getPositionX() - getContentSize().width;
 				if (abs(distanceX) < 32 && distanceY < 48)
@@ -217,14 +217,14 @@ void Monster::setAI(float dt)
 		}
 	}
 
-	CCPoint moveDirection;
+	Vec2 moveDirection;
 
 	if (_mainTarget)
 	{
-		CCPoint sp;
+		Vec2 sp;
 
-		sp = ccpSub(ccp(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
-					ccp(getPositionX(), _originY ? _originY : getPositionY()));
+		sp = ccpSub(Vec2(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
+					Vec2(getPositionX(), _originY ? _originY : getPositionY()));
 
 		if (charName == SkillEnum::FutonSRK2 ||
 			charName == SkillEnum::FutonSRK)
@@ -361,11 +361,11 @@ void Monster::dealloc()
 
 void Monster::setDirectMove(int length, float delay, bool isReverse)
 {
-	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length, getPositionY());
-	CCPoint direction2 = getPosition();
-	auto mv = CCMoveTo::create(delay, direction);
+	Vec2 direction = Vec2(_isFlipped ? getPosition().x - length : getPosition().x + length, getPositionY());
+	Vec2 direction2 = getPosition();
+	auto mv = MoveTo::create(delay, direction);
 	auto call = CallFunc::create(std::bind(&Monster::dealloc, this));
-	CCAction *moveAction;
+	Action *moveAction;
 
 	if (!isReverse)
 	{
@@ -373,7 +373,7 @@ void Monster::setDirectMove(int length, float delay, bool isReverse)
 	}
 	else
 	{
-		auto mv2 = CCMoveTo::create(delay, direction2);
+		auto mv2 = MoveTo::create(delay, direction2);
 		moveAction = newSequence(mv, mv2, call);
 	}
 
@@ -382,10 +382,10 @@ void Monster::setDirectMove(int length, float delay, bool isReverse)
 
 void Monster::setEaseIn(int length, float delay)
 {
-	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
+	Vec2 direction = Vec2(_isFlipped ? getPosition().x - length : getPosition().x + length,
 							getPositionY());
-	auto mv = CCMoveTo::create(1.0f, direction);
-	auto eo = CCEaseIn::create(mv, delay);
+	auto mv = MoveTo::create(1.0f, direction);
+	auto eo = EaseIn::create(mv, delay);
 
 	auto call = CallFunc::create(std::bind(&Monster::dealloc, this));
 	auto seq = newSequence(eo, call);
@@ -394,26 +394,26 @@ void Monster::setEaseIn(int length, float delay)
 
 void Monster::setDirectMoveBy(int length, float delay)
 {
-	CCPoint direction = ccp(_isFlipped ? getPosition().x - length : getPosition().x + length,
+	Vec2 direction = Vec2(_isFlipped ? getPosition().x - length : getPosition().x + length,
 							getPositionY());
 
 	if (_mainTarget)
 	{
-		auto mv = CCMoveBy::create(0.1f, ccp(_mainTarget->getPositionX() > getPositionX() ? 16 : -16, _mainTarget->getPositionY() > getPositionY() ? 16 : -16));
+		auto mv = MoveBy::create(0.1f, Vec2(_mainTarget->getPositionX() > getPositionX() ? 16 : -16, _mainTarget->getPositionY() > getPositionY() ? 16 : -16));
 
-		runAction(CCRepeatForever::create(mv));
+		runAction(RepeatForever::create(mv));
 
 		_mainTarget = nullptr;
 		_master->_mainTarget = nullptr;
 	}
 	else
 	{
-		auto mv = CCMoveBy::create(0.1f, ccp(_isFlipped ? -16 : 16, 0));
+		auto mv = MoveBy::create(0.1f, Vec2(_isFlipped ? -16 : 16, 0));
 
-		runAction(CCRepeatForever::create(mv));
+		runAction(RepeatForever::create(mv));
 	}
 
-	auto delayTime = CCDelayTime::create(delay);
+	auto delayTime = DelayTime::create(delay);
 	auto call = CallFunc::create(std::bind(&Monster::dealloc, this));
 	auto seq = newSequence(delayTime, call);
 	runAction(seq);

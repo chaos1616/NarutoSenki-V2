@@ -48,7 +48,7 @@ GameLayer::GameLayer()
 	_lastPressedMovementKey = -100;
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 	_lastPressedMovementKey = -100;
-	_window = CCEGLView::sharedOpenGLView()->m_window;
+	_window = GLView::sharedOpenGLView()->m_window;
 #endif
 }
 
@@ -60,7 +60,7 @@ GameLayer::~GameLayer()
 
 bool GameLayer::init()
 {
-	CCTexture2D::setDefaultAlphaPixelFormat(kCCTexture2DPixelFormat_RGBA8888);
+	Texture2D::setDefaultAlphaPixelFormat(kCCTexture2DPixelFormat_RGBA8888);
 	setTouchEnabled(true);
 
 	_gLayer = this;
@@ -71,7 +71,7 @@ bool GameLayer::init()
 	is4V4Mode = gd.use4v4SpawnLayout;
 	playerGroup = gd.playerGroup;
 
-	return CCLayer::init();
+	return Layer::init();
 }
 
 void GameLayer::onEnter()
@@ -90,7 +90,7 @@ void GameLayer::onEnter()
 		}
 	}
 
-	CCLayer::onEnter();
+	Layer::onEnter();
 
 	if (_isSurrender)
 	{
@@ -100,7 +100,7 @@ void GameLayer::onEnter()
 
 void GameLayer::onExit()
 {
-	CCLayer::onExit();
+	Layer::onExit();
 
 	if (_isExiting)
 	{
@@ -128,7 +128,7 @@ void GameLayer::initTileMap()
 		return;
 	}
 	mapId = random(mapCount) + 1;
-	currentMap = CCTMXTiledMap::create(GetMapPath(mapId));
+	currentMap = TMXTiledMap::create(GetMapPath(mapId));
 	addChild(currentMap, currentMapTag);
 }
 
@@ -142,13 +142,13 @@ void GameLayer::initGard()
 
 	if (playerGroup == Group::Konoha)
 	{
-		guardian->setPosition(ccp(2800, 80));
-		guardian->setSpawnPoint(ccp(2800, 80));
+		guardian->setPosition(Vec2(2800, 80));
+		guardian->setSpawnPoint(Vec2(2800, 80));
 	}
 	else
 	{
-		guardian->setPosition(ccp(272, 80));
-		guardian->setSpawnPoint(ccp(272, 80));
+		guardian->setPosition(Vec2(272, 80));
+		guardian->setSpawnPoint(Vec2(272, 80));
 	}
 
 	addChild(guardian, -guardian->getPositionY());
@@ -180,7 +180,7 @@ void GameLayer::initHeros()
 
 	_isOugis2Game = true;
 
-	CCTMXObjectGroup *group = currentMap->objectGroupNamed("object");
+	TMXObjectGroup *group = currentMap->objectGroupNamed("object");
 	CCArray *objectArray = group->getObjects();
 
 	// 4v4 spawn layout
@@ -214,11 +214,11 @@ void GameLayer::initHeros()
 				mapPos -= MapPosCount;
 		}
 
-		CCObject *mapObject = objectArray->objectAtIndex(mapPos);
+		Ref *mapObject = objectArray->objectAtIndex(mapPos);
 		auto mapdict = (CCDictionary *)mapObject;
 		int x = ((CCString *)mapdict->objectForKey("x"))->intValue();
 		int y = ((CCString *)mapdict->objectForKey("y"))->intValue();
-		data.setSpawnPoint(ccp(x, y));
+		data.setSpawnPoint(Vec2(x, y));
 
 		if (is4V4Mode)
 		{
@@ -245,7 +245,7 @@ Hero *GameLayer::addHero(const HeroData &data, int charId)
 	return addHero(data.name, data.role, data.group, data.spawnPoint, charId);
 }
 
-Hero *GameLayer::addHero(const string &name, Role role, Group group, CCPoint spawnPoint, int charId)
+Hero *GameLayer::addHero(const string &name, Role role, Group group, Vec2 spawnPoint, int charId)
 {
 	auto hero = Provider::create(name, role, group);
 	if (hero->isPlayer())
@@ -339,7 +339,7 @@ void GameLayer::addFlog(float dt)
 		else
 			mainPosY = (3.5 - i / 1.5) * 32;
 		flog->_mainPosY = mainPosY;
-		flog->setPosition(ccp(13 * 32, flog->_mainPosY));
+		flog->setPosition(Vec2(13 * 32, flog->_mainPosY));
 		flog->setHPbar();
 		flog->idle();
 		flog->doAI();
@@ -356,7 +356,7 @@ void GameLayer::addFlog(float dt)
 		else
 			mainPosY = (3.5 - i / 1.5) * 32;
 		flog->_mainPosY = mainPosY;
-		flog->setPosition(ccp(83 * 32, flog->_mainPosY));
+		flog->setPosition(Vec2(83 * 32, flog->_mainPosY));
 		flog->setHPbar();
 		flog->idle();
 		flog->doAI();
@@ -369,9 +369,9 @@ void GameLayer::initTower()
 {
 	addSprites(format("Element/Tower/Tower{}.plist", mapId).c_str());
 
-	CCTMXObjectGroup *metaGroup = currentMap->objectGroupNamed("meta");
+	TMXObjectGroup *metaGroup = currentMap->objectGroupNamed("meta");
 	CCArray *metaArray = metaGroup->getObjects();
-	CCObject *pObject;
+	Ref *pObject;
 	int i = 0;
 
 	CCARRAY_FOREACH(metaArray, pObject)
@@ -401,8 +401,8 @@ void GameLayer::initTower()
 		}
 		float posX = metaX + metaWidth / 2;
 		float posY = metaY + metaHeight / 2;
-		tower->setPosition(ccp(posX, posY));
-		tower->setSpawnPoint(ccp(posX, posY));
+		tower->setPosition(Vec2(posX, posY));
+		tower->setSpawnPoint(Vec2(posX, posY));
 		tower->setCharId(i + 1);
 
 		if (i == 1 || i == 4)
@@ -430,15 +430,15 @@ void GameLayer::initTower()
 void GameLayer::initEffects()
 {
 	addSprites("Effects/SkillEffect.plist");
-	skillEffectBatch = CCSpriteBatchNode::create("Effects/SkillEffect.png");
+	skillEffectBatch = SpriteBatchNode::create("Effects/SkillEffect.png");
 	addChild(skillEffectBatch, currentSkillTag);
 
 	addSprites("Effects/DamageEffect.plist");
-	damageEffectBatch = CCSpriteBatchNode::create("Effects/DamageEffect.png");
+	damageEffectBatch = SpriteBatchNode::create("Effects/DamageEffect.png");
 	addChild(damageEffectBatch, currentDamageTag);
 
 	addSprites("Effects/Shadows.plist");
-	shadowBatch = CCSpriteBatchNode::create("Effects/Shadows.png");
+	shadowBatch = SpriteBatchNode::create("Effects/Shadows.png");
 	addChild(shadowBatch, currentShadowTag);
 }
 
@@ -461,7 +461,7 @@ void GameLayer::updateViewPoint(float dt)
 {
 	if (!currentPlayer)
 		return;
-	CCPoint playerPoint;
+	Vec2 playerPoint;
 	if (ougisChar)
 	{
 		playerPoint = ougisChar->getPosition();
@@ -480,12 +480,12 @@ void GameLayer::updateViewPoint(float dt)
 	x = MIN(x, (currentMap->getMapSize().width * currentMap->getTileSize().width) - winSize.width / 2);
 	y = MIN(y, (currentMap->getMapSize().height * currentMap->getTileSize().height) - winSize.height / 2);
 
-	CCPoint actualPoint = ccp(x, y);
-	CCPoint centerPoint = ccp(winSize.width / 2, y);
-	CCPoint viewPoint = ccpSub(centerPoint, actualPoint);
+	Vec2 actualPoint = Vec2(x, y);
+	Vec2 centerPoint = Vec2(winSize.width / 2, y);
+	Vec2 viewPoint = ccpSub(centerPoint, actualPoint);
 
 	setPosition(viewPoint);
-	// CCDirector::sharedDirector()->getScheduler()->setTimeScale(1.0f);
+	// Director::sharedDirector()->getScheduler()->setTimeScale(1.0f);
 }
 
 void GameLayer::setTowerState(int charId)
@@ -637,7 +637,7 @@ void GameLayer::JoyStickRelease()
 	}
 }
 
-void GameLayer::JoyStickUpdate(CCPoint direction)
+void GameLayer::JoyStickUpdate(Vec2 direction)
 {
 	if (!ougisChar)
 	{
@@ -679,9 +679,9 @@ void GameLayer::onPause()
 		return;
 
 	_isPause = true;
-	CCRenderTexture *snapshoot = CCRenderTexture::create(winSize.width, winSize.height);
-	CCScene *f = CCDirector::sharedDirector()->getRunningScene();
-	CCObject *pObject = f->getChildren()->objectAtIndex(0);
+	RenderTexture *snapshoot = RenderTexture::create(winSize.width, winSize.height);
+	Scene *f = Director::sharedDirector()->getRunningScene();
+	Ref *pObject = f->getChildren()->objectAtIndex(0);
 	BGLayer *bg = (BGLayer *)pObject;
 	snapshoot->begin();
 	bg->visit();
@@ -689,10 +689,10 @@ void GameLayer::onPause()
 	visit();
 	snapshoot->end();
 
-	CCScene *pscene = CCScene::create();
+	Scene *pscene = Scene::create();
 	PauseLayer *layer = PauseLayer::create(snapshoot);
 	pscene->addChild(layer);
-	CCDirector::sharedDirector()->pushScene(pscene);
+	Director::sharedDirector()->pushScene(pscene);
 }
 
 void GameLayer::onGear()
@@ -703,9 +703,9 @@ void GameLayer::onGear()
 		return;
 	_isGear = true;
 
-	CCRenderTexture *snapshoot = CCRenderTexture::create(winSize.width, winSize.height);
-	CCScene *f = CCDirector::sharedDirector()->getRunningScene();
-	CCObject *pObject = f->getChildren()->objectAtIndex(0);
+	RenderTexture *snapshoot = RenderTexture::create(winSize.width, winSize.height);
+	Scene *f = Director::sharedDirector()->getRunningScene();
+	Ref *pObject = f->getChildren()->objectAtIndex(0);
 	BGLayer *bg = (BGLayer *)pObject;
 	snapshoot->begin();
 	bg->visit();
@@ -713,12 +713,12 @@ void GameLayer::onGear()
 	visit();
 	snapshoot->end();
 
-	CCScene *pscene = CCScene::create();
+	Scene *pscene = Scene::create();
 	GearLayer *layer = GearLayer::create(snapshoot);
 	_gearLayer = layer;
 	layer->updatePlayerGear();
 	pscene->addChild(layer);
-	CCDirector::sharedDirector()->pushScene(pscene);
+	Director::sharedDirector()->pushScene(pscene);
 }
 
 void GameLayer::onGameOver(bool isWin)
@@ -728,17 +728,17 @@ void GameLayer::onGameOver(bool isWin)
 	if (_isPause)
 	{
 		_isPause = false;
-		CCDirector::sharedDirector()->popScene();
+		Director::sharedDirector()->popScene();
 	}
 	if (_isGear)
 	{
 		_isGear = false;
-		CCDirector::sharedDirector()->popScene();
+		Director::sharedDirector()->popScene();
 	}
 
-	CCRenderTexture *snapshoot = CCRenderTexture::create(winSize.width, winSize.height);
-	CCScene *f = CCDirector::sharedDirector()->getRunningScene();
-	CCObject *pObject = f->getChildren()->objectAtIndex(0);
+	RenderTexture *snapshoot = RenderTexture::create(winSize.width, winSize.height);
+	Scene *f = Director::sharedDirector()->getRunningScene();
+	Ref *pObject = f->getChildren()->objectAtIndex(0);
 	BGLayer *bg = (BGLayer *)pObject;
 	snapshoot->begin();
 	bg->visit();
@@ -747,11 +747,11 @@ void GameLayer::onGameOver(bool isWin)
 
 	getGameModeHandler()->Internal_GameOver();
 
-	CCScene *pscene = CCScene::create();
+	Scene *pscene = Scene::create();
 	GameOver *layer = GameOver::create(snapshoot);
 	layer->setWin(isWin);
 	pscene->addChild(layer);
-	CCDirector::sharedDirector()->pushScene(pscene);
+	Director::sharedDirector()->pushScene(pscene);
 }
 
 void GameLayer::onLeft()
@@ -759,10 +759,10 @@ void GameLayer::onLeft()
 	CCNotificationCenter::sharedNotificationCenter()->purgeNotificationCenter();
 
 	CCArray *childArray = getChildren();
-	CCObject *pObject;
+	Ref *pObject;
 	CCARRAY_FOREACH(childArray, pObject)
 	{
-		auto ac = (CCNode *)pObject;
+		auto ac = (Node *)pObject;
 		ac->unscheduleUpdate();
 		ac->unscheduleAllSelectors();
 	}
@@ -796,7 +796,7 @@ void GameLayer::onLeft()
 
 void GameLayer::checkBackgroundMusic(float dt)
 {
-	if (CCUserDefault::sharedUserDefault()->getBoolForKey("isBGM"))
+	if (UserDefault::sharedUserDefault()->getBoolForKey("isBGM"))
 	{
 		if (!SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
 		{
@@ -827,29 +827,29 @@ void GameLayer::checkBackgroundMusic(float dt)
 	}
 }
 
-void GameLayer::setOugis(CCNode *sender)
+void GameLayer::setOugis(Node *sender)
 {
 	if (!_hudLayer->ougisLayer)
 	{
 		CCArray *childArray = getChildren();
 		ougisChar = sender;
 		auto Sender = (CharacterBase *)sender;
-		CCObject *pObject;
+		Ref *pObject;
 		CCARRAY_FOREACH(childArray, pObject)
 		{
-			CCNode *object = (CCNode *)pObject;
+			Node *object = (Node *)pObject;
 			object->pauseSchedulerAndActions();
 		}
 		pauseSchedulerAndActions();
 
 		updateViewPoint(0.01f);
 
-		blend = CCLayerColor::create(ccc4(0, 0, 0, 200), winSize.width, winSize.height);
-		blend->setPosition(ccp(-getPositionX(), 0));
+		blend = LayerColor::create(ccc4(0, 0, 0, 200), winSize.width, winSize.height);
+		blend->setPosition(Vec2(-getPositionX(), 0));
 		addChild(blend, 1000);
 		sender->setZOrder(2000);
 
-		if (CCUserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
+		if (UserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 		{
 			SimpleAudioEngine::sharedEngine()->playEffect(format("Audio/Ougis/{}_ougis.ogg", Sender->getName()).c_str());
 		}
@@ -862,10 +862,10 @@ void GameLayer::removeOugis()
 {
 	ougisChar->setZOrder(-ougisChar->getPositionY());
 	CCArray *childArray = getChildren();
-	CCObject *pObject;
+	Ref *pObject;
 	CCARRAY_FOREACH(childArray, pObject)
 	{
-		CCNode *object = (CCNode *)pObject;
+		Node *object = (Node *)pObject;
 		object->resumeSchedulerAndActions();
 	}
 	resumeSchedulerAndActions();
@@ -877,7 +877,7 @@ void GameLayer::removeOugis()
 void GameLayer::setKeyEventHandler()
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	CCDirector::sharedDirector()->getOpenGLView()->setAccelerometerKeyHook((cocos2d::CCEGLView::LPFN_ACCELEROMETER_KEYHOOK)(&GameLayer::LPFN_ACCELEROMETER_KEYHOOK));
+	Director::sharedDirector()->getOpenGLView()->setAccelerometerKeyHook((cocos2d::EGLView::LPFN_ACCELEROMETER_KEYHOOK)(&GameLayer::LPFN_ACCELEROMETER_KEYHOOK));
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 	glfwSetKeyCallback(_window, keyEventHandle);
 #endif
@@ -886,7 +886,7 @@ void GameLayer::setKeyEventHandler()
 void GameLayer::removeKeyEventHandler()
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	CCDirector::sharedDirector()->getOpenGLView()->setAccelerometerKeyHook(nullptr);
+	Director::sharedDirector()->getOpenGLView()->setAccelerometerKeyHook(nullptr);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 	glfwSetKeyCallback(_window, nullptr);
 #endif
@@ -896,7 +896,7 @@ int GameLayer::getMapCount()
 {
 	int index = 1;
 	int mapCount = 0;
-	auto fileUtils = CCFileUtils::sharedFileUtils();
+	auto fileUtils = FileUtils::sharedFileUtils();
 	while (fileUtils->isFileExist(format("Tiles/{}.tmx", index++).c_str()))
 		mapCount++;
 	CCLOG("===== Found %d maps =====", mapCount);
@@ -914,10 +914,10 @@ void GameLayer::invokeAllCallbacks()
 	}
 }
 
-CCPoint GameLayer::getCustomSpawnPoint(HeroData &data)
+Vec2 GameLayer::getCustomSpawnPoint(HeroData &data)
 {
 	data.isInit = true;
-	return data.group == Group::Konoha ? ccp(432, 80) : ccp(2608, 80);
+	return data.group == Group::Konoha ? Vec2(432, 80) : Vec2(2608, 80);
 }
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
@@ -969,7 +969,7 @@ CCPoint GameLayer::getCustomSpawnPoint(HeroData &data)
 		if (horizontal != 0 || vertical != 0)                                       \
 		{                                                                           \
 			if (!_gLayer->ougisChar)                                                \
-				_gLayer->currentPlayer->walk(ccp(horizontal, vertical));            \
+				_gLayer->currentPlayer->walk(Vec2(horizontal, vertical));            \
 		}                                                                           \
 		else if (_gLayer->currentPlayer->getActionState() == State::WALK)           \
 		{                                                                           \
@@ -1114,12 +1114,12 @@ void GameLayer::keyEventHandle(GLFWwindow *window, int key, int scancode, int ke
 		{
 			if (_gLayer->_isPause)
 			{
-				CCDirector::sharedDirector()->popScene();
+				Director::sharedDirector()->popScene();
 				_gLayer->_isPause = false;
 			}
 			else if (_gLayer->_isGear)
 			{
-				CCDirector::sharedDirector()->popScene();
+				Director::sharedDirector()->popScene();
 				_gLayer->_isGear = false;
 			}
 			else
@@ -1154,7 +1154,7 @@ void GameLayer::keyEventHandle(GLFWwindow *window, int key, int scancode, int ke
 		// 	else
 		// 	{
 		// 		glfwSetWindowMonitor(_window, nullptr, 0, 0, videoMode->width, videoMode->height, videoMode->refreshRate);
-		// 		CCDirector::sharedDirector()->getOpenGLView()->updateFrameSize(videoMode->width,videoMode->height);
+		// 		Director::sharedDirector()->getOpenGLView()->updateFrameSize(videoMode->width,videoMode->height);
 		// 	}
 		// 	_isFullScreen = !_isFullScreen;
 		// }

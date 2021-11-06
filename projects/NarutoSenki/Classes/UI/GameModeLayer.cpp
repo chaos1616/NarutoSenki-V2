@@ -12,29 +12,29 @@ extern const GameData kDefaultGameData;
 
 bool GameModeLayer::init()
 {
-	CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+	Vec2 origin = Director::sharedDirector()->getVisibleOrigin();
 
-	auto bgSprite = CCSprite::create("red_bg.png");
+	auto bgSprite = Sprite::create("red_bg.png");
 	FULL_SCREEN_SPRITE(bgSprite);
-	bgSprite->setAnchorPoint(ccp(0, 0));
-	bgSprite->setPosition(ccp(0, 0));
+	bgSprite->setAnchorPoint(Vec2(0, 0));
+	bgSprite->setPosition(Vec2(0, 0));
 	addChild(bgSprite, -100);
 
 	// menu bars
-	auto menu_bar_b = CCSprite::create("menu_bar2.png");
-	menu_bar_b->setAnchorPoint(ccp(0, 0));
+	auto menu_bar_b = Sprite::create("menu_bar2.png");
+	menu_bar_b->setAnchorPoint(Vec2(0, 0));
 	FULL_SCREEN_SPRITE(menu_bar_b);
 	addChild(menu_bar_b, 2);
 
-	auto menu_bar_t = CCSprite::create("menu_bar3.png");
-	menu_bar_t->setAnchorPoint(ccp(0, 0));
-	menu_bar_t->setPosition(ccp(0, winSize.height - menu_bar_t->getContentSize().height));
+	auto menu_bar_t = Sprite::create("menu_bar3.png");
+	menu_bar_t->setAnchorPoint(Vec2(0, 0));
+	menu_bar_t->setPosition(Vec2(0, winSize.height - menu_bar_t->getContentSize().height));
 	FULL_SCREEN_SPRITE(menu_bar_t);
 	addChild(menu_bar_t, 2);
 
-	auto modemenu_title = CCSprite::createWithSpriteFrameName("startmenu_title.png");
-	modemenu_title->setAnchorPoint(ccp(0, 0));
-	modemenu_title->setPosition(ccp(2, winSize.height - modemenu_title->getContentSize().height - 2));
+	auto modemenu_title = Sprite::createWithSpriteFrameName("startmenu_title.png");
+	modemenu_title->setAnchorPoint(Vec2(0, 0));
+	modemenu_title->setPosition(Vec2(2, winSize.height - modemenu_title->getContentSize().height - 2));
 	addChild(modemenu_title, 3);
 
 	initModeData();
@@ -64,9 +64,9 @@ bool GameModeLayer::init()
 		menuButtons[i] = mode_btn;
 		addChild(mode_btn);
 		// init animation
-		// auto delay = CCDelayTime::create(i * 0.3f);
-		// auto move = CCMoveTo::create(0.5f, ccp((i - 1) * (width + padding) + offset, posY + 30));
-		// auto action = CCSequence::createWithTwoActions(delay, move);
+		// auto delay = DelayTime::create(i * 0.3f);
+		// auto move = MoveTo::create(0.5f, Vec2((i - 1) * (width + padding) + offset, posY + 30));
+		// auto action = Sequence::createWithTwoActions(delay, move);
 		// mode_btn->runAction(action);
 	}
 	for (int i = 6; i < GameMode::_Internal_Max_Length; i++)
@@ -90,28 +90,28 @@ bool GameModeLayer::init()
 	}
 
 	menuLabel = CCLabelTTF::create();
-	menuLabel->setAnchorPoint(ccp(0, 0));
-	menuLabel->setPosition(ccp(10, 2));
+	menuLabel->setAnchorPoint(Vec2(0, 0));
+	menuLabel->setPosition(Vec2(10, 2));
 	addChild(menuLabel, 5);
 
 	// init return button
-	auto return_img = CCMenuItemSprite::create(CCSprite::create("UI/return_btn.png"), nullptr, nullptr, this, menu_selector(GameModeLayer::backToMenu));
-	CCMenu *return_btn = CCMenu::create(return_img, nullptr);
-	return_btn->setAnchorPoint(ccp(1, 0.5f));
+	auto return_img = MenuItemSprite::create(Sprite::create("UI/return_btn.png"), nullptr, nullptr, this, menu_selector(GameModeLayer::backToMenu));
+	Menu *return_btn = Menu::create(return_img, nullptr);
+	return_btn->setAnchorPoint(Vec2(1, 0.5f));
 	return_btn->setPosition(winSize.width - 38, 65);
 	addChild(return_btn, 5);
 
-	return CCLayer::init();
+	return Layer::init();
 }
 
-void GameModeLayer::backToMenu(CCObject *sender)
+void GameModeLayer::backToMenu(Ref *sender)
 {
 	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/cancel.ogg");
 
-	auto menuScene = CCScene::create();
+	auto menuScene = Scene::create();
 	auto menuLayer = StartMenu::create();
 	menuScene->addChild(menuLayer);
-	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.0f, menuScene));
+	Director::sharedDirector()->replaceScene(TransitionFade::create(1.0f, menuScene));
 }
 
 void GameModeLayer::initModeData()

@@ -2,8 +2,8 @@
 
 void BGLayer::initBg(int mapId)
 {
-	bgMap = CCSprite::create(GetMapBgPath(mapId));
-	bgMap->setAnchorPoint(ccp(0, 0));
-	bgMap->setPosition(ccp(0, 192));
+	bgMap = Sprite::create(GetMapBgPath(mapId));
+	bgMap->setAnchorPoint(Vec2(0, 0));
+	bgMap->setPosition(Vec2(0, 192));
 	addChild(bgMap);
 }

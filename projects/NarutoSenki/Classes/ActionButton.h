@@ -3,28 +3,28 @@
 
 class HudLayer;
 
-class ActionButton : public CCSprite, public CCTouchDelegate
+class ActionButton : public Sprite, public CCTouchDelegate
 {
 public:
 	ActionButton();
 
 	int _clickNum;
 	float _clickTime;
-	CCProgressTimer *markSprite;
-	CCSprite *ougismarkSprite;
-	CCSprite *proressmarkSprite;
-	CCSprite *proressblinkSprite;
-	CCSprite *progressPointSprite;
-	CCSprite *proressblinkMask;
+	ProgressTimer *markSprite;
+	Sprite *ougismarkSprite;
+	Sprite *proressmarkSprite;
+	Sprite *proressblinkSprite;
+	Sprite *progressPointSprite;
+	Sprite *proressblinkMask;
 	const char *_cost;
-	CCClippingNode *clipper;
+	ClippingNode *clipper;
 	bool _isLock;
 
 	bool _isColdChanged;
 
 	bool init(const string &szImage);
 	bool isCanClick();
-	CCRect getRect();
+	Rect getRect();
 
 	void click();
 	void setMarkSprite(const char *mark);
@@ -33,7 +33,7 @@ public:
 	void updateProgressMark();
 	void reset();
 
-	CCSprite *gearSign;
+	Sprite *gearSign;
 	CCLabelBMFont *cdLabel;
 
 	CCLabelBMFont *lockLabel1;
@@ -53,8 +53,8 @@ public:
 	void clearOugisMark();
 	void setGearType(GearType type);
 
-	CC_SYNTHESIZE_RETAIN(CCAction *, _freezeAction, FreezeAction);
-	// CC_SYNTHESIZE_RETAIN(CCProgressTimer*,markSprite,MarkSprite);
+	CC_SYNTHESIZE_RETAIN(Action *, _freezeAction, FreezeAction);
+	// CC_SYNTHESIZE_RETAIN(ProgressTimer*,markSprite,MarkSprite);
 	CC_SYNTHESIZE(HudLayer *, _delegate, Delegate);
 	void beganAnimation(bool isLock = false);
 	void updateCDLabel(float dt);
@@ -64,11 +64,11 @@ public:
 protected:
 	void onEnter();
 	void onExit();
-	bool ccTouchBegan(CCTouch *touch, CCEvent *event);
-	void ccTouchEnded(CCTouch *touch, CCEvent *event);
+	bool ccTouchBegan(Touch *touch, Event *event);
+	void ccTouchEnded(Touch *touch, Event *event);
 
 	void createFreezeAnimation();
 	void clearClick();
 
-	bool containsTouchLocation(CCTouch *touch);
+	bool containsTouchLocation(Touch *touch);
 };

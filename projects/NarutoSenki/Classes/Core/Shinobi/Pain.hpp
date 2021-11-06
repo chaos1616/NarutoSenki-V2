@@ -26,8 +26,8 @@ class Pain : public Hero
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (isFreeActionState())
 			{
@@ -113,8 +113,8 @@ class Pain : public Hero
 
 		if (_mainTarget)
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -162,8 +162,8 @@ class Pain : public Hero
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (isFreeActionState())
 			{
@@ -176,7 +176,7 @@ class Pain : public Hero
 							hero->isPlayerOrCom() &&
 							hero->getActionState() == State::DEAD)
 						{
-							CCPoint sp = ccpSub(hero->getPosition(), getPosition());
+							Vec2 sp = ccpSub(hero->getPosition(), getPosition());
 							if (abs(sp.x) == winSize.width || abs(sp.y) == winSize.height)
 							{
 								countNum++;
@@ -270,8 +270,8 @@ class Pain : public Hero
 
 		if (_mainTarget)
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -322,7 +322,7 @@ class Pain : public Hero
 
 		// 		if (isPlayer())
 		// 		{
-		// 			auto cache = CCSpriteFrameCache::sharedSpriteFrameCache();
+		// 			auto cache = SpriteFrameCache::sharedSpriteFrameCache();
 		// 			auto frame = cache->spriteFrameByName("Nagato_skill1_1.png");
 		// 			getGameLayer()->getHudLayer()->skill1Button->setDisplayFrame(frame);
 		// 			frame = cache->spriteFrameByName("Nagato_skill2_1.png");
@@ -347,7 +347,7 @@ class Pain : public Hero
 
 		// 		if (isPlayer())
 		// 		{
-		// 			auto cache = CCSpriteFrameCache::sharedSpriteFrameCache();
+		// 			auto cache = SpriteFrameCache::sharedSpriteFrameCache();
 		// 			auto frame = cache->spriteFrameByName("Nagato_skill1.png");
 		// 			getGameLayer()->getHudLayer()->skill1Button->setDisplayFrame(frame);
 		// 			frame = cache->spriteFrameByName("Nagato_skill2.png");

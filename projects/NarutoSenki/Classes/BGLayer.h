@@ -1,10 +1,10 @@
 #pragma once
 #include "GameLayer.h"
 
-class BGLayer : public CCLayer
+class BGLayer : public Layer
 {
 public:
-	CCSprite *bgMap;
+	Sprite *bgMap;
 
 	void initBg(int mapId);
 

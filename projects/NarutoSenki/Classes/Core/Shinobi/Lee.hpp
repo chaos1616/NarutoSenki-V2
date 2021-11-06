@@ -108,8 +108,8 @@ class Lee : public Hero
 	{
 		if (htLv == 0 && !_heartEffect)
 		{
-			_heartEffect = CCSprite::createWithSpriteFrameName("Bamen_Effect_00");
-			_heartEffect->setPosition(ccp(getContentSize().width + 40, 60));
+			_heartEffect = Sprite::createWithSpriteFrameName("Bamen_Effect_00");
+			_heartEffect->setPosition(Vec2(getContentSize().width + 40, 60));
 			addChild(_heartEffect);
 		}
 
@@ -205,8 +205,8 @@ class Lee : public Hero
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if ((isFreeActionState()) && abs(sp.x) < 128)
 			{
@@ -258,8 +258,8 @@ class Lee : public Hero
 
 		if (_mainTarget)
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
@@ -304,8 +304,8 @@ class Lee : public Hero
 
 		if (_mainTarget && _mainTarget->isNotFlog())
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (isFreeActionState())
 			{
@@ -368,8 +368,8 @@ class Lee : public Hero
 
 		if (_mainTarget)
 		{
-			CCPoint moveDirection;
-			CCPoint sp = getDistanceToTarget();
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{

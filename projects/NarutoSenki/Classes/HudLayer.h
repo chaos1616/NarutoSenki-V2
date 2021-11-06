@@ -5,7 +5,7 @@
 #define DESKTOP_UI_SCALE 0.8f
 #define DESKTOP_UI_MASK_SCALE 0.8f + 0.04f
 
-class MiniIcon : public CCSprite
+class MiniIcon : public Sprite
 {
 public:
 	MiniIcon();
@@ -15,13 +15,13 @@ public:
 
 	PROP(int, _charId, CharId);
 
-	void updateMap(CCObject *sender);
+	void updateMap(Ref *sender);
 	void updateState();
-	void updatePosition(CCPoint location);
+	void updatePosition(Vec2 location);
 
 	static MiniIcon *create(const char *szImage, bool isNotification);
 
-	CCLayer *_delegate = nullptr;
+	Layer *_delegate = nullptr;
 };
 
 struct ReportData
@@ -35,15 +35,15 @@ struct ReportData
 	bool isDisplay = false;
 };
 
-class HudLayer : public CCLayer
+class HudLayer : public Layer
 {
 public:
 	HudLayer();
 
-	CCSprite *status_bar;
-	CCSprite *status_hpbar;
-	CCSprite *status_hpMark;
-	CCProgressTimer *status_expbar;
+	Sprite *status_bar;
+	Sprite *status_hpbar;
+	Sprite *status_hpMark;
+	ProgressTimer *status_expbar;
 
 	ActionButton *nAttackButton;
 	ActionButton *skill1Button;
@@ -57,12 +57,12 @@ public:
 	CC_SYNTHESIZE_RETAIN(ActionButton *, item3Button, Item3Button);
 	CC_SYNTHESIZE_RETAIN(ActionButton *, item4Button, Item4Button);
 
-	CCMenuItemSprite *gearMenuSprite;
+	MenuItemSprite *gearMenuSprite;
 	ActionButton *gear1Button;
 	ActionButton *gear2Button;
 	ActionButton *gear3Button;
-	CCSprite *reportSprite;
-	CCSprite *reportSPCSprite;
+	Sprite *reportSprite;
+	Sprite *reportSPCSprite;
 
 	int _buffCount = 0;
 
@@ -77,14 +77,14 @@ public:
 	CCLabelBMFont *AkaLabel;
 
 	CCLabelBMFont *gameClock;
-	CCMenu *pauseNenu;
-	CCMenu *gearMenu;
+	Menu *pauseNenu;
+	Menu *gearMenu;
 
-	CCLayer *miniLayer;
+	Layer *miniLayer;
 	JoyStick *_joyStick;
 
-	CCTexture2D *texUI;
-	CCSpriteBatchNode *uiBatch;
+	Texture2D *texUI;
+	SpriteBatchNode *uiBatch;
 
 	void setHPLose(float percent);
 	void setCKRLose(bool isCRK2);
@@ -94,13 +94,13 @@ public:
 	void attackButtonClick(abType type);
 	void gearButtonClick(GearType type);
 	void attackButtonRelease();
-	void pauseButtonClick(CCObject *sender);
-	void gearButtonClick(CCObject *sender);
+	void pauseButtonClick(Ref *sender);
+	void gearButtonClick(Ref *sender);
 	void setReport(const string &slayer, const string &dead, uint32_t killNum);
 	void setReportCache();
 	void setBuffDisplay(const char *buffName, float buffStayTime);
 	void clearSPCReport();
-	void clearBuffDisplay(CCSprite *bs);
+	void clearBuffDisplay(Sprite *bs);
 
 	void updateBuffDisplay(float dt);
 	void updateBuffDisplay2(float dt);
@@ -113,16 +113,16 @@ public:
 	CCLabelBMFont *bcdLabel2;
 
 	void JoyStickRelease();
-	void JoyStickUpdate(CCPoint direction);
-	CCSprite *openingSprite;
+	void JoyStickUpdate(Vec2 direction);
+	Sprite *openingSprite;
 
-	CCSprite *createReport(const string &slayer, const string &dead, float &length);
-	CCSprite *createSPCReport(uint32_t killNum, int num);
+	Sprite *createReport(const string &slayer, const string &dead, float &length);
+	Sprite *createSPCReport(uint32_t killNum, int num);
 
 	bool getSkillFinish();
 	bool getOugisEnable(bool isCKR2);
 
-	CCLayer *ougisLayer;
+	Layer *ougisLayer;
 	void setOugis(const string &name, Group group);
 	void removeOugis();
 

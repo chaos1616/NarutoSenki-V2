@@ -3,26 +3,26 @@
 
 bool HPBar::init(const char *szImage)
 {
-	RETURN_FALSE_IF(!CCSprite::init());
+	RETURN_FALSE_IF(!Sprite::init());
 
 	char fileName[3] = "xx";
 	strncpy(fileName, szImage, 2);
 
-	hpBar = CCSprite::createWithSpriteFrameName(szImage);
-	hpBar->setAnchorPoint(ccp(0, 0));
+	hpBar = Sprite::createWithSpriteFrameName(szImage);
+	hpBar->setAnchorPoint(Vec2(0, 0));
 	addChild(hpBar, 1);
 
 	if (is_same(fileName, "hp"))
 	{
-		hpBottom = CCSprite::createWithSpriteFrameName("hp_bottom.png");
-		hpBar->setPosition(ccp(15, 1));
+		hpBottom = Sprite::createWithSpriteFrameName("hp_bottom.png");
+		hpBar->setPosition(Vec2(15, 1));
 	}
 	else
 	{
-		hpBottom = CCSprite::createWithSpriteFrameName("flog_bar_buttom.png");
-		hpBar->setPosition(ccp(1, 1));
+		hpBottom = Sprite::createWithSpriteFrameName("flog_bar_buttom.png");
+		hpBar->setPosition(Vec2(1, 1));
 	}
-	hpBottom->setAnchorPoint(ccp(0, 0));
+	hpBottom->setAnchorPoint(Vec2(0, 0));
 	addChild(hpBottom, -1);
 
 	return true;
@@ -519,7 +519,7 @@ void HPBar::loseHP(float percent)
 	}
 	else
 	{
-		auto s = CCScaleTo::create(0.2f, percent, 1);
+		auto s = ScaleTo::create(0.2f, percent, 1);
 		hpBar->runAction(s);
 
 		if (_delegate->isPlayer())

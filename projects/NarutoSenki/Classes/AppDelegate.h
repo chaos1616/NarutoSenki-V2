@@ -1,7 +1,7 @@
 #pragma once
-#include "cocos2d.h"
+#include "Defines.h"
 
-class AppDelegate : private cocos2d::CCApplication
+class AppDelegate : private CCApplication
 {
 public:
 	AppDelegate();

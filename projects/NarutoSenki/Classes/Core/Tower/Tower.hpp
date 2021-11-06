@@ -12,9 +12,9 @@ public:
 
 	bool init()
 	{
-		RETURN_FALSE_IF(!CCSprite::init());
+		RETURN_FALSE_IF(!Sprite::init());
 
-		setAnchorPoint(ccp(0.5, 0.5));
+		setAnchorPoint(Vec2(0.5, 0.5));
 		scheduleUpdate();
 
 		return true;
@@ -79,7 +79,7 @@ public:
 			_hpBar = HPBar::create("hp_bar_r.png");
 		else
 			_hpBar = HPBar::create("hp_bar.png");
-		_hpBar->getHPBAR()->setPosition(ccp(1, 1));
+		_hpBar->getHPBAR()->setPosition(Vec2(1, 1));
 		_hpBar->setPositionY(getHeight());
 		_hpBar->setDelegate(this);
 		addChild(_hpBar);

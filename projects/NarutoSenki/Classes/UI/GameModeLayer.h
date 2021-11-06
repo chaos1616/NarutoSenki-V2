@@ -3,13 +3,13 @@
 
 class ModeMenuButton;
 
-class GameModeLayer : public CCLayer
+class GameModeLayer : public Layer
 {
 public:
 	static const int kMenuCount = 5;
 
 	bool init();
-	void backToMenu(CCObject *sender);
+	void backToMenu(Ref *sender);
 
 	void initModeData();
 	bool pushMode(const GameModeData &data);

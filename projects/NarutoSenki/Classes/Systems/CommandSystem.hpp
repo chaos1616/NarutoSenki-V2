@@ -90,13 +90,13 @@ private:
 				   }
 			   }
 
-			   auto tempAnimation = CCAnimation::createWithSpriteFrames(tempArray, 0.1f);
-			   auto tempAction = CCAnimate::create(tempAnimation);
+			   auto tempAnimation = Animation::createWithSpriteFrames(tempArray, 0.1f);
+			   auto tempAction = Animate::create(tempAnimation);
 			   auto call = CallFunc::create(std::bind(&CharacterBase::disableShadow, thiz, thiz));
 			   auto seq = newSequence(tempAction, call);
 
-			   auto tempChar = CCSprite::createWithSpriteFrameName(format("{}_Extern_01", thiz->getName()).c_str());
-			   tempChar->setAnchorPoint(ccp(0.5f, 0));
+			   auto tempChar = Sprite::createWithSpriteFrameName(format("{}_Extern_01", thiz->getName()).c_str());
+			   tempChar->setAnchorPoint(Vec2(0.5f, 0));
 			   tempChar->setPosition(thiz->getPosition());
 			   getGameLayer()->addChild(tempChar, -thiz->_originY);
 
@@ -129,19 +129,19 @@ private:
 					   thiz->getName() == HeroEnum::Lee ||
 					   thiz->getName() == HeroEnum::RockLee)
 				   {
-					   thiz->_markPoint = ccp(thiz->_mainTarget->getPositionX(), thiz->_mainTarget->_originY ? thiz->_mainTarget->_originY : thiz->_mainTarget->getPositionY());
+					   thiz->_markPoint = Vec2(thiz->_mainTarget->getPositionX(), thiz->_mainTarget->_originY ? thiz->_mainTarget->_originY : thiz->_mainTarget->getPositionY());
 				   }
 				   else if (thiz->getName() == SkillEnum::Tsukuyomi)
 				   {
-					   thiz->_markPoint = ccp(thiz->_mainTarget->getPositionX(), thiz->_mainTarget->_originY ? thiz->_mainTarget->_originY : thiz->_mainTarget->getPositionY() + 2);
+					   thiz->_markPoint = Vec2(thiz->_mainTarget->getPositionX(), thiz->_mainTarget->_originY ? thiz->_mainTarget->_originY : thiz->_mainTarget->getPositionY() + 2);
 				   }
 				   else if (thiz->getName() == SkillEnum::KageFeng)
 				   {
-					   thiz->_markPoint = ccp(thiz->_mainTarget->getPositionX(), thiz->_mainTarget->_originY ? thiz->_mainTarget->_originY - 6 : thiz->_mainTarget->getPositionY() - 6);
+					   thiz->_markPoint = Vec2(thiz->_mainTarget->getPositionX(), thiz->_mainTarget->_originY ? thiz->_mainTarget->_originY - 6 : thiz->_mainTarget->getPositionY() - 6);
 				   }
 				   else
 				   {
-					   thiz->_markPoint = ccp(thiz->_mainTarget->_isFlipped ? thiz->_mainTarget->getPositionX() + 32 : thiz->_mainTarget->getPositionX() - 32,
+					   thiz->_markPoint = Vec2(thiz->_mainTarget->_isFlipped ? thiz->_mainTarget->getPositionX() + 32 : thiz->_mainTarget->getPositionX() - 32,
 											  thiz->_mainTarget->_originY ? thiz->_mainTarget->_originY : thiz->_mainTarget->getPositionY());
 				   }
 			   }
@@ -209,27 +209,27 @@ private:
 						   posY = 0.1f;
 					   thiz->_originY = posY;
 				   }
-				   thiz->setPosition(ccp(thiz->getPositionX(), thiz->getPositionY() + 64));
+				   thiz->setPosition(Vec2(thiz->getPositionX(), thiz->getPositionY() + 64));
 				   return;
 			   }
 			   else
 			   {
 				   if (thiz->_markPoint.x != 0)
 				   {
-					   thiz->_startPoint = ccp(tsPosX, tsPosY);
+					   thiz->_startPoint = Vec2(tsPosX, tsPosY);
 					   tsPosX = thiz->_markPoint.x;
 					   tsPosY = thiz->_markPoint.y;
-					   thiz->_markPoint = ccp(0, 0);
+					   thiz->_markPoint = Vec2(0, 0);
 				   }
 				   else if (thiz->_startPoint.x != 0)
 				   {
 					   tsPosX = thiz->_startPoint.x;
 					   tsPosY = thiz->_startPoint.y;
-					   thiz->_startPoint = ccp(0, 0);
+					   thiz->_startPoint = Vec2(0, 0);
 				   }
 			   }
 
-			   thiz->setPosition(ccp(tsPosX, tsPosY));
+			   thiz->setPosition(Vec2(tsPosX, tsPosY));
 			   CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", thiz);
 
 			   if (thiz->getName() != SkillEnum::Yominuma)
@@ -239,7 +239,7 @@ private:
 		   });
 		on(Command::reTransport, [](CharacterBase *thiz)
 		   {
-			   thiz->setPosition(ccp(thiz->getPositionX(), thiz->_originY));
+			   thiz->setPosition(Vec2(thiz->getPositionX(), thiz->_originY));
 			   thiz->_originY = 0;
 		   });
 		// For special characters
@@ -320,7 +320,7 @@ private:
 					   hero->isPlayerOrCom() &&
 					   hero->getName() != HeroEnum::Kakuzu)
 				   {
-					   CCPoint sp = ccpSub(hero->getPosition(), thiz->getPosition());
+					   Vec2 sp = ccpSub(hero->getPosition(), thiz->getPosition());
 					   if (abs(sp.x) <= 48 && abs(sp.y) <= 48)
 					   {
 						   hero->hearts -= 1;
@@ -367,7 +367,7 @@ private:
 				   }
 			   }
 
-			   thiz->setPosition(ccp(tsPosX, tsPosY));
+			   thiz->setPosition(Vec2(tsPosX, tsPosY));
 			   CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", thiz);
 
 			   getGameLayer()->reorderChild(thiz, -tsPosY);

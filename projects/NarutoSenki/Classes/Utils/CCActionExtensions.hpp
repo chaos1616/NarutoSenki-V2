@@ -1,25 +1,30 @@
 #pragma once
 #include "cocos2d.h"
+#include "Utils/CCDeprecated.h"
 
 using namespace cocos2d;
 
-inline CCSequence *newSequence(CCFiniteTimeAction *pAction1, CCFiniteTimeAction *pAction2)
+inline Sequence *newSequence(FiniteTimeAction *pAction1, FiniteTimeAction *pAction2)
 {
-	return CCSequence::createWithTwoActions(pAction1, pAction2);
+	return Sequence::createWithTwoActions(pAction1, pAction2);
 }
-inline CCSequence *newSequence(CCFiniteTimeAction *pAction1, CCFiniteTimeAction *pAction2, CCFiniteTimeAction *pAction3)
+
+inline Sequence *newSequence(FiniteTimeAction *pAction1, FiniteTimeAction *pAction2, FiniteTimeAction *pAction3)
 {
-	return CCSequence::create(pAction1, pAction2, pAction3, nullptr);
+	return Sequence::create(pAction1, pAction2, pAction3, nullptr);
 }
-inline CCSequence *newSequence(CCFiniteTimeAction *pAction1, CCFiniteTimeAction *pAction2, CCFiniteTimeAction *pAction3, CCFiniteTimeAction *pAction4)
+
+inline Sequence *newSequence(FiniteTimeAction *pAction1, FiniteTimeAction *pAction2, FiniteTimeAction *pAction3, FiniteTimeAction *pAction4)
 {
-	return CCSequence::create(pAction1, pAction2, pAction3, pAction4, nullptr);
+	return Sequence::create(pAction1, pAction2, pAction3, pAction4, nullptr);
 }
-inline CCSequence *newSequence(CCFiniteTimeAction *pAction1, CCFiniteTimeAction *pAction2, CCFiniteTimeAction *pAction3, CCFiniteTimeAction *pAction4, CCFiniteTimeAction *pAction5)
+
+inline Sequence *newSequence(FiniteTimeAction *pAction1, FiniteTimeAction *pAction2, FiniteTimeAction *pAction3, FiniteTimeAction *pAction4, FiniteTimeAction *pAction5)
 {
-	return CCSequence::create(pAction1, pAction2, pAction3, pAction4, pAction5, nullptr);
+	return Sequence::create(pAction1, pAction2, pAction3, pAction4, pAction5, nullptr);
 }
-inline CCSequence *newSequence(CCFiniteTimeAction *pAction1, CCFiniteTimeAction *pAction2, CCFiniteTimeAction *pAction3, CCFiniteTimeAction *pAction4, CCFiniteTimeAction *pAction5, CCFiniteTimeAction *pAction6)
+
+inline Sequence *newSequence(FiniteTimeAction *pAction1, FiniteTimeAction *pAction2, FiniteTimeAction *pAction3, FiniteTimeAction *pAction4, FiniteTimeAction *pAction5, FiniteTimeAction *pAction6)
 {
-	return CCSequence::create(pAction1, pAction2, pAction3, pAction4, pAction5, pAction6, nullptr);
+	return Sequence::create(pAction1, pAction2, pAction3, pAction4, pAction5, pAction6, nullptr);
 }
