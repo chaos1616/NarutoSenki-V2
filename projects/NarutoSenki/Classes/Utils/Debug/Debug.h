@@ -57,7 +57,7 @@ DEBUG_NS_BEGIN
 #if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 
 template <class... _Types>
-inline void NSLOG(const string_view _Fmt, const _Types &..._Args)
+static inline void NSLOG(const string_view _Fmt, const _Types &..._Args)
 {
 	puts(format(_Fmt, _Args...).c_str());
 }
@@ -67,7 +67,7 @@ inline void NSLOG(const string_view _Fmt, const _Types &..._Args)
 // Use fmt lib for not support c++ 20 std::format platform
 
 template <class... _Types>
-inline void NSLOG(fmt::format_string<_Types...> _Fmt, _Types &&..._Args)
+static inline void NSLOG(fmt::format_string<_Types...> _Fmt, _Types &&..._Args)
 {
 	puts(fmt::format(_Fmt, _Args...).c_str());
 }

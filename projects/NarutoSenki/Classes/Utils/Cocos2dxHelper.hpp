@@ -63,7 +63,7 @@ using namespace std;
 #define FULL_SCREEN_SPRITE(__SPRITE__) \
 	__SPRITE__->setScaleX(winSize.width / __SPRITE__->getContentSize().width);
 
-inline SpriteFrame *getSpriteFrame(const string &name)
+static inline SpriteFrame *getSpriteFrame(const string &name)
 {
 	return SpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name.c_str());
 }
@@ -71,7 +71,7 @@ inline SpriteFrame *getSpriteFrame(const string &name)
 #if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 
 template <class... _Types>
-inline SpriteFrame *getSpriteFrame(const string_view _Fmt, const _Types &..._Args)
+static inline SpriteFrame *getSpriteFrame(const string_view _Fmt, const _Types &..._Args)
 {
 	return getSpriteFrame(format(_Fmt, _Args...));
 }
@@ -81,7 +81,7 @@ inline SpriteFrame *getSpriteFrame(const string_view _Fmt, const _Types &..._Arg
 // Use fmt lib for not support c++ 20 std::format platform
 
 template <class... _Types>
-inline SpriteFrame *getSpriteFrame(fmt::format_string<_Types...> _Fmt, _Types &&..._Args)
+static inline SpriteFrame *getSpriteFrame(fmt::format_string<_Types...> _Fmt, _Types &&..._Args)
 {
 	return getSpriteFrame(fmt::format(_Fmt, _Args...));
 }
