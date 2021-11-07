@@ -501,7 +501,7 @@ public:
 			updateHpBar();
 	}
 	inline void			resetDefenseValue(int def) {
-		if (_defense >= def)
+		if (_defense > 0 && _defense > def)
 			_defense -= def;
 		else
 			_defense = 0;
