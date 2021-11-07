@@ -141,7 +141,7 @@ public:
 	PROP_UInt(_maxHP,MaxHP);
 	PROP_UInt(_ckr,CKR);
 	PROP_UInt(_ckr2,CKR2);
-	VPROP(float,_gardValue,GP);
+	VPROP(float,_defense,DEF);
 	VPROP(float,_exp,EXP);
 	VPROP(uint32_t,_level,LV);
 	VPROP(int,_height,Height);
@@ -499,6 +499,12 @@ public:
 		setMaxHP(var);
 		if (isUpdateHpBar)
 			updateHpBar();
+	}
+	inline void			resetDefenseValue(int def) {
+		if (_defense >= def)
+			_defense -= def;
+		else
+			_defense = 0;
 	}
 	inline bool			isGuardian() { return _name == kGuardian_Han || _name == kGuardian_Roshi; }
 	inline bool			isNotGuardian() { return !isGuardian(); }

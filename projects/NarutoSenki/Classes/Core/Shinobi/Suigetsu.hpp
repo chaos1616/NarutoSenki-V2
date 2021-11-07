@@ -21,7 +21,7 @@ class Suigetsu : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
@@ -38,7 +38,7 @@ class Suigetsu : public Hero
 					attack(OUGIS2);
 					return;
 				}
-				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
+				else if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000 && !_isArmored)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
@@ -55,7 +55,7 @@ class Suigetsu : public Hero
 					attack(OUGIS1);
 					return;
 				}
-				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isArmored && !_skillChangeBuffValue)
+				else if (_isCanSkill3 && _mainTarget->getDEF() < 5000 && !_isArmored && !_skillChangeBuffValue)
 				{
 					changeSide(sp);
 					attack(SKILL3);
@@ -84,12 +84,12 @@ class Suigetsu : public Hero
 						return;
 					}
 
-					if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isArmored)
+					if (_isCanSkill2 && _mainTarget->getDEF() < 5000 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(SKILL2);
 					}
-					else if (_isCanSkill1 && _mainTarget->getGP() < 5000 && !_isArmored)
+					else if (_isCanSkill1 && _mainTarget->getDEF() < 5000 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(SKILL1);
@@ -127,7 +127,7 @@ class Suigetsu : public Hero
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isArmored && _mainTarget->isFlog() && isBaseDanger)
+				else if (_isCanSkill2 && _mainTarget->getDEF() < 5000 && !_isArmored && _mainTarget->isFlog() && isBaseDanger)
 				{
 					changeSide(sp);
 					attack(SKILL2);

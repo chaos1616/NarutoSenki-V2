@@ -27,7 +27,7 @@ class Konan : public Hero
 					attack(SKILL1);
 					return;
 				}
-				else if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_isArmored)
+				else if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_isArmored)
 				{
 					if ((abs(sp.x) > 48 || abs(sp.y) > 16))
 					{
@@ -40,7 +40,7 @@ class Konan : public Hero
 					attack(OUGIS2);
 					return;
 				}
-				else if (_mainTarget->getGP() < 5000 && !_isVisable && !_isArmored && (_isCanSkill3 || _isCanSkill2) &&
+				else if (_mainTarget->getDEF() < 5000 && !_isVisable && !_isArmored && (_isCanSkill3 || _isCanSkill2) &&
 						 _mainTarget->getActionState() != State::KNOCKDOWN)
 				{
 					if ((abs(sp.x) > 128 || abs(sp.y) > 16))
@@ -96,12 +96,12 @@ class Konan : public Hero
 						return;
 					}
 
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(OUGIS1);
 					}
-					else if (_isCanSkill2 && !_isArmored && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill2 && !_isArmored && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL2);

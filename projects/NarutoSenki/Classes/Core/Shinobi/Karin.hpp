@@ -22,7 +22,7 @@ class Karin : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
 					if (abs(sp.x) > 96 || abs(sp.y) > 16)
 					{
@@ -40,7 +40,7 @@ class Karin : public Hero
 					attack(OUGIS1);
 					return;
 				}
-				else if (_isCanSkill3 && _mainTarget->getGP() < 5000)
+				else if (_isCanSkill3 && _mainTarget->getDEF() < 5000)
 				{
 					if ((abs(sp.x) > 128 || abs(sp.y) > 16))
 					{

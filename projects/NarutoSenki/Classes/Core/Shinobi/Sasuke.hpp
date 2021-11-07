@@ -85,7 +85,7 @@ class Sasuke : public Hero
 						return;
 					}
 
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000 && !_isArmored)
 					{
 						if (abs(sp.x) > 32 || abs(sp.y) > 32)
 						{
@@ -96,12 +96,12 @@ class Sasuke : public Hero
 						changeSide(sp);
 						attack(OUGIS1);
 					}
-					else if (_isCanSkill2 && !_isArmored && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill2 && !_isArmored && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL2);
 					}
-					else if (_isCanSkill1 && !_isArmored && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill1 && !_isArmored && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL1);
@@ -220,7 +220,7 @@ class Sasuke : public Hero
 			_originNAttackType = _nAttackType;
 			_nAttackType = _spcAttackType3;
 
-			_gardValue += 5000;
+			_defense += 5000;
 			_isArmored = true;
 
 			lockOugisButtons();
@@ -254,7 +254,7 @@ class Sasuke : public Hero
 			_nAttackRangeX = 16;
 			_nAttackRangeY = 48;
 			_nAttackType = _originNAttackType;
-			_gardValue -= 5000;
+			resetDefenseValue(5000);
 			_isArmored = false;
 
 			if (_actionState != State::DEAD)
@@ -300,7 +300,7 @@ class Sasuke : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
+				if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(OUGIS1);
@@ -354,12 +354,12 @@ class Sasuke : public Hero
 						return;
 					}
 
-					if (_isCanSkill2 && !_isArmored && _mainTarget->getGP() < 5000)
+					if (_isCanSkill2 && !_isArmored && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL2);
 					}
-					else if (_isCanSkill1 && !_isArmored && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill1 && !_isArmored && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL1);
@@ -468,7 +468,7 @@ class Sasuke : public Hero
 			_nAttackRangeX = 156;
 			_nAttackRangeY = 64;
 
-			_gardValue += 5000;
+			_defense += 5000;
 			_isArmored = true;
 			_isOnlySkillLocked = true;
 
@@ -500,7 +500,7 @@ class Sasuke : public Hero
 				setNAttackValue(getTempAttackValue1());
 				setTempAttackValue1(0);
 			}
-			_gardValue -= 5000;
+			resetDefenseValue(5000);
 			_isArmored = false;
 
 			_nAttackRangeX = 16;
@@ -552,7 +552,7 @@ class Sasuke : public Hero
 				setNAttackValue(getTempAttackValue1());
 				setTempAttackValue1(0);
 			}
-			_gardValue -= 5000;
+			resetDefenseValue(5000);
 			_isArmored = false;
 
 			_nAttackRangeX = 16;

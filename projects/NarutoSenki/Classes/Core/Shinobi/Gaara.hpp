@@ -22,25 +22,25 @@ class Gaara : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored && _mainTarget->getGP() < 5000)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored && _mainTarget->getDEF() < 5000)
 				{
 					changeSide(sp);
 					attack(OUGIS2);
 					return;
 				}
-				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
+				else if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(OUGIS1);
 					return;
 				}
-				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isArmored)
+				else if (_isCanSkill3 && _mainTarget->getDEF() < 5000 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL3);
 					return;
 				}
-				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isArmored)
+				else if (_isCanSkill2 && _mainTarget->getDEF() < 5000 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL2);
@@ -121,7 +121,7 @@ class Gaara : public Hero
 
 		_isOnlySkillLocked = true;
 
-		_gardValue += 5000;
+		_defense += 5000;
 		_isArmored = true;
 
 		lockOugisButtons();
@@ -141,7 +141,7 @@ class Gaara : public Hero
 		_isOnlySkillLocked = false;
 
 		unlockOugisButtons();
-		_gardValue -= 5000;
+		resetDefenseValue(5000);
 		_isArmored = false;
 
 		if (_actionState != State::DEAD)
@@ -170,7 +170,7 @@ class Gaara : public Hero
 		_isOnlySkillLocked = false;
 
 		unlockOugisButtons();
-		_gardValue -= 5000;
+		resetDefenseValue(5000);
 		_isArmored = false;
 		_skillChangeBuffValue = 0;
 

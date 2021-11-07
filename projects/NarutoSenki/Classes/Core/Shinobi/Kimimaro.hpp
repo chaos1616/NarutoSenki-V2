@@ -22,7 +22,7 @@ class Kimimaro : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
@@ -34,7 +34,7 @@ class Kimimaro : public Hero
 					attack(OUGIS2);
 					return;
 				}
-				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000)
+				else if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000)
 				{
 
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
@@ -47,7 +47,7 @@ class Kimimaro : public Hero
 					attack(OUGIS1);
 					return;
 				}
-				else if (_isCanSkill2 && _mainTarget->getGP() < 5000)
+				else if (_isCanSkill2 && _mainTarget->getDEF() < 5000)
 				{
 					if ((abs(sp.x) > 128 || abs(sp.y) > 16))
 					{
@@ -64,7 +64,7 @@ class Kimimaro : public Hero
 					attack(SKILL2);
 					return;
 				}
-				else if (_isCanSkill1 && _mainTarget->getGP() < 5000)
+				else if (_isCanSkill1 && _mainTarget->getDEF() < 5000)
 				{
 					if ((abs(sp.x) > 128 || abs(sp.y) > 16))
 					{
@@ -80,7 +80,7 @@ class Kimimaro : public Hero
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				else if (_isCanSkill3 && _mainTarget->getGP() < 5000)
+				else if (_isCanSkill3 && _mainTarget->getDEF() < 5000)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{

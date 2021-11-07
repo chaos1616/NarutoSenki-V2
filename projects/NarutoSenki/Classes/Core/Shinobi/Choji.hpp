@@ -28,7 +28,7 @@ class Choji : public Hero
 					attack(SKILL1);
 					return;
 				}
-				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isArmored)
+				else if (_isCanSkill3 && _mainTarget->getDEF() < 5000 && !_isArmored)
 				{
 					if (abs(sp.x) > 96 || abs(sp.y) > 16)
 					{
@@ -57,17 +57,17 @@ class Choji : public Hero
 						return;
 					}
 
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(OUGIS1);
 					}
-					else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isArmored && _skillUPBuffValue)
+					else if (_isCanSkill2 && _mainTarget->getDEF() < 5000 && !_isArmored && _skillUPBuffValue)
 					{
 						changeSide(sp);
 						attack(SKILL2);
 					}
-					else if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isArmored)
+					else if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(OUGIS2);
@@ -155,7 +155,7 @@ class Choji : public Hero
 		_isOnlySkillLocked = true;
 
 		lockOugisButtons();
-		_gardValue += 5000;
+		_defense += 5000;
 
 		if (_hpBar)
 		{
@@ -172,7 +172,7 @@ class Choji : public Hero
 
 		_isOnlySkillLocked = false;
 		_isArmored = false;
-		_gardValue -= 5000;
+		resetDefenseValue(5000);
 
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
@@ -203,7 +203,7 @@ class Choji : public Hero
 
 		_isOnlySkillLocked = false;
 		_isArmored = false;
-		_gardValue -= 5000;
+		resetDefenseValue(5000);
 
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));

@@ -22,13 +22,13 @@ class Asuma : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000)
+				if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000)
 				{
 					changeSide(sp);
 					attack(OUGIS1);
 					return;
 				}
-				else if (_isCanSkill3 && _mainTarget->getGP() < 5000)
+				else if (_isCanSkill3 && _mainTarget->getDEF() < 5000)
 				{
 					if ((abs(sp.x) > 96 || abs(sp.y) > 32))
 					{
@@ -40,7 +40,7 @@ class Asuma : public Hero
 					attack(SKILL3);
 					return;
 				}
-				else if (_isCanSkill2 && _mainTarget->getGP() < 5000)
+				else if (_isCanSkill2 && _mainTarget->getDEF() < 5000)
 				{
 					if ((abs(sp.x) > 96 || abs(sp.y) > 32))
 					{
@@ -75,12 +75,12 @@ class Asuma : public Hero
 						return;
 					}
 
-					if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored)
+					if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored)
 					{
 						changeSide(sp);
 						attack(OUGIS2);
 					}
-					else if (_isCanSkill1 && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill1 && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL1);

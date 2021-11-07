@@ -36,7 +36,7 @@ class Itachi : public Hero
 
 					return;
 				}
-				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_isArmored)
+				else if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_isArmored)
 				{
 					changeSide(sp);
 					attack(OUGIS1);
@@ -66,17 +66,17 @@ class Itachi : public Hero
 						return;
 					}
 
-					if (_isCanSkill3 && !_isArmored && _mainTarget->getGP() < 5000)
+					if (_isCanSkill3 && !_isArmored && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL3);
 					}
-					else if (_isCanSkill2 && !_isArmored && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill2 && !_isArmored && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL2);
 					}
-					else if (_isCanSkill1 && !_isArmored && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill1 && !_isArmored && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL1);
@@ -154,7 +154,7 @@ class Itachi : public Hero
 		_nAttackRangeX = 128;
 		_nAttackRangeY = 64;
 
-		_gardValue += 5000;
+		_defense += 5000;
 		_isArmored = true;
 
 		lockOugisButtons();
@@ -179,7 +179,7 @@ class Itachi : public Hero
 		}
 		_nAttackRangeX = 16;
 		_nAttackRangeY = 48;
-		_gardValue -= 5000;
+		resetDefenseValue(5000);
 		_isArmored = false;
 
 		if (_actionState != State::DEAD)
@@ -225,7 +225,7 @@ class Itachi : public Hero
 			}
 			_nAttackRangeX = 16;
 			_nAttackRangeY = 48;
-			_gardValue -= 5000;
+			resetDefenseValue(5000);
 			_isArmored = false;
 
 			_skillChangeBuffValue = 0;

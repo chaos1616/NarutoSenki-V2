@@ -22,7 +22,7 @@ class Tsunade : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getGP() < 5000 && !_isArmored)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000 && !_isArmored)
 				{
 					if (abs(sp.x) > 64 || abs(sp.y) > 16)
 					{
@@ -37,7 +37,7 @@ class Tsunade : public Hero
 					}
 					return;
 				}
-				else if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_isArmored)
+				else if (_isCanSkill3 && _mainTarget->getDEF() < 5000 && !_isArmored)
 				{
 					changeSide(sp);
 					attack(SKILL3);
@@ -69,7 +69,7 @@ class Tsunade : public Hero
 					{
 						useGear(gear03);
 					}
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(OUGIS1);

@@ -59,7 +59,7 @@ class Akamaru : public Hero
 				{
 					if (isFreeActionState())
 					{
-						if (_master->_isCanSkill2 && _mainTarget->getGP() < 5000 &&
+						if (_master->_isCanSkill2 && _mainTarget->getDEF() < 5000 &&
 							(_master->_isControlled || _master->_isAI == true) &&
 							_master->isFreeActionState())
 						{

@@ -90,7 +90,7 @@ class Hidan : public Hero
 					attack(OUGIS2);
 					return;
 				}
-				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_isArmored)
+				else if (_isCanSkill2 && _mainTarget->getDEF() < 5000 && !_isArmored)
 				{
 					if (abs(sp.x) > 56 || abs(sp.y) > 32)
 					{
@@ -119,7 +119,7 @@ class Hidan : public Hero
 						walk(moveDirection);
 						return;
 					}
-					if (_isCanOugis1 && !_isArmored && !_isControlled && _mainTarget->getGP() < 5000)
+					if (_isCanOugis1 && !_isArmored && !_isControlled && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(OUGIS1);

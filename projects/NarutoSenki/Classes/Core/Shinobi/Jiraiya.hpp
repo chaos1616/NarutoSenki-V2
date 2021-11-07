@@ -38,7 +38,7 @@ class Jiraiya : public Hero
 					attack(OUGIS2);
 					return;
 				}
-				else if (_isCanSkill2 && _mainTarget->getGP() < 5000)
+				else if (_isCanSkill2 && _mainTarget->getDEF() < 5000)
 				{
 					changeSide(sp);
 					attack(SKILL2);
@@ -61,17 +61,17 @@ class Jiraiya : public Hero
 						return;
 					}
 
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(OUGIS1);
 					}
-					else if (_isCanSkill3 && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill3 && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL3);
 					}
-					else if (_isCanSkill1 && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill1 && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL1);
@@ -148,7 +148,7 @@ class Jiraiya : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanSkill2 && _mainTarget->getGP() < 5000)
+				if (_isCanSkill2 && _mainTarget->getDEF() < 5000)
 				{
 					changeSide(sp);
 					attack(SKILL2);
@@ -177,23 +177,23 @@ class Jiraiya : public Hero
 						return;
 					}
 
-					if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getGP() < 5000)
+					if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(OUGIS2);
 						return;
 					}
-					else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000)
+					else if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(OUGIS1);
 					}
-					else if (_isCanSkill3 && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill3 && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL3);
 					}
-					else if (_isCanSkill1 && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill1 && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL1);

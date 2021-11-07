@@ -69,7 +69,7 @@ class Ino : public Hero
 
 					return;
 				}
-				else if (_mainTarget->getGP() < 5000 && (_isCanSkill3 || _isCanSkill2))
+				else if (_mainTarget->getDEF() < 5000 && (_isCanSkill3 || _isCanSkill2))
 				{
 					if (abs(sp.x) > 96 || abs(sp.y) > 16)
 					{
@@ -108,7 +108,7 @@ class Ino : public Hero
 						return;
 					}
 
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(OUGIS1);

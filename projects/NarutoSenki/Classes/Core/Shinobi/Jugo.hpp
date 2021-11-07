@@ -22,7 +22,7 @@ class Jugo : public Hero
 
 			if (isFreeActionState())
 			{
-				if (_isCanSkill3 && _mainTarget->getGP() < 5000 && !_skillChangeBuffValue)
+				if (_isCanSkill3 && _mainTarget->getDEF() < 5000 && !_skillChangeBuffValue)
 				{
 					changeSide(sp);
 					attack(SKILL3);
@@ -45,7 +45,7 @@ class Jugo : public Hero
 						return;
 					}
 
-					if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_skillChangeBuffValue && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
+					if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_skillChangeBuffValue && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 					{
 						if (abs(sp.x) > 32 || abs(sp.y) > 32)
 						{
@@ -56,7 +56,7 @@ class Jugo : public Hero
 						changeSide(sp);
 						attack(OUGIS2);
 					}
-					else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_skillChangeBuffValue)
+					else if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000 && !_skillChangeBuffValue)
 					{
 						if (abs(sp.x) > 32 || abs(sp.y) > 32)
 						{
@@ -68,13 +68,13 @@ class Jugo : public Hero
 						changeSide(sp);
 						attack(OUGIS1);
 					}
-					else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_skillChangeBuffValue)
+					else if (_isCanSkill2 && _mainTarget->getDEF() < 5000 && !_skillChangeBuffValue)
 					{
 						changeSide(sp);
 						attack(SKILL2);
 						return;
 					}
-					else if (_isCanSkill1 && _mainTarget->getGP() < 5000 && !_skillChangeBuffValue)
+					else if (_isCanSkill1 && _mainTarget->getDEF() < 5000 && !_skillChangeBuffValue)
 					{
 						changeSide(sp);
 						attack(SKILL1);

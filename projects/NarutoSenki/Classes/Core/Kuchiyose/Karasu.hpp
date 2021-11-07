@@ -71,7 +71,7 @@ class Karasu : public Hero
 				{
 					if (_master->isFreeActionState())
 					{
-						if (_master->_isCanSkill2 && _mainTarget->getGP() < 5000 && (_master->_isControlled || _master->_isAI == true))
+						if (_master->_isCanSkill2 && _mainTarget->getDEF() < 5000 && (_master->_isControlled || _master->_isAI == true))
 						{
 							changeSide(sp);
 

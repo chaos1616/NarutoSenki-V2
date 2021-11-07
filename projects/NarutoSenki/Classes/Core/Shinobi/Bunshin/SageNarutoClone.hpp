@@ -61,7 +61,7 @@ class SageNarutoClone : public Hero
 						return;
 					}
 
-					if (_isCanSkill1 && _mainTarget->getGP() < 5000)
+					if (_isCanSkill1 && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL1);

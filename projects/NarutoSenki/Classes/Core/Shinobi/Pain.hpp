@@ -42,7 +42,7 @@ class Pain : public Hero
 					changeSide(sp);
 					attack(SKILL1);
 				}
-				if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000)
+				if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000)
 				{
 					if ((abs(sp.x) > 196 || abs(sp.y) > 64))
 					{
@@ -54,7 +54,7 @@ class Pain : public Hero
 					attack(OUGIS1);
 					return;
 				}
-				else if ((_isCanSkill2 || _isCanSkill3) && _mainTarget->getGP() < 5000 && _skillUPBuffValue)
+				else if ((_isCanSkill2 || _isCanSkill3) && _mainTarget->getDEF() < 5000 && _skillUPBuffValue)
 				{
 					if ((abs(sp.x) > 128 || abs(sp.y) > 32))
 					{
@@ -197,7 +197,7 @@ class Pain : public Hero
 					attack(OUGIS2);
 					return;
 				}
-				if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000)
+				if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000)
 				{
 					if ((abs(sp.x) > 196 || abs(sp.y) > 64))
 					{
@@ -209,7 +209,7 @@ class Pain : public Hero
 					attack(OUGIS1);
 					return;
 				}
-				else if (_isCanSkill2 && _mainTarget->getGP() < 5000)
+				else if (_isCanSkill2 && _mainTarget->getDEF() < 5000)
 				{
 					if ((abs(sp.x) > 128 || abs(sp.y) > 64))
 					{
@@ -221,7 +221,7 @@ class Pain : public Hero
 					attack(SKILL2);
 					return;
 				}
-				else if (_isCanSkill3 && _mainTarget->getGP() < 5000)
+				else if (_isCanSkill3 && _mainTarget->getDEF() < 5000)
 				{
 					if ((abs(sp.x) > 128 || abs(sp.y) > 64))
 					{

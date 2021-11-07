@@ -232,7 +232,7 @@ class Lee : public Hero
 						walk(moveDirection);
 						return;
 					}
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && htLv >= 1)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && htLv >= 1)
 					{
 						changeSide(sp);
 						attack(OUGIS1);
@@ -315,7 +315,7 @@ class Lee : public Hero
 					attack(SKILL1);
 					return;
 				}
-				else if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && htLv >= 3)
+				else if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && htLv >= 3)
 				{
 					changeSide(sp);
 					attack(OUGIS2);
@@ -337,7 +337,7 @@ class Lee : public Hero
 						return;
 					}
 
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && htLv >= 1)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && htLv >= 1)
 					{
 						changeSide(sp);
 						attack(OUGIS1);

@@ -92,7 +92,7 @@ class Naruto : public Hero
 						return;
 					}
 
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(OUGIS1);
@@ -101,12 +101,12 @@ class Naruto : public Hero
 					{
 						useGear(gear03);
 					}
-					else if (_isCanSkill3 && !_isArmored && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill3 && !_isArmored && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL3);
 					}
-					else if (_isCanSkill1 && !_isArmored && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill1 && !_isArmored && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL1);
@@ -179,7 +179,7 @@ class Naruto : public Hero
 		_originNAttackType = _nAttackType;
 		_nAttackType = _spcAttackType3;
 
-		_gardValue += 5000;
+		_defense += 5000;
 		_isArmored = true;
 
 		lockOugisButtons();
@@ -207,7 +207,7 @@ class Naruto : public Hero
 		_nAttackRangeX = 16;
 		_nAttackRangeY = 48;
 		_nAttackType = _originNAttackType;
-		_gardValue -= 5000;
+		resetDefenseValue(5000);
 		_isArmored = false;
 
 		if (_actionState != State::DEAD)
@@ -258,7 +258,7 @@ class Naruto : public Hero
 					attack(SKILL2);
 					return;
 				}
-				else if (_isCanSkill3 && !_isArmored && _mainTarget->getGP() < 5000)
+				else if (_isCanSkill3 && !_isArmored && _mainTarget->getDEF() < 5000)
 				{
 					changeSide(sp);
 					attack(SKILL3);
@@ -285,7 +285,7 @@ class Naruto : public Hero
 						stepBack();
 						return;
 					}
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(OUGIS1);
@@ -294,7 +294,7 @@ class Naruto : public Hero
 					{
 						useGear(gear03);
 					}
-					else if (_isCanSkill1 && !_isArmored && _mainTarget->getGP() < 5000)
+					else if (_isCanSkill1 && !_isArmored && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL1);
@@ -347,7 +347,7 @@ class Naruto : public Hero
 
 	inline void changeAction_SageNaruto()
 	{
-		_gardValue += 5000;
+		_defense += 5000;
 		_isArmored = true;
 		hasArmorBroken = true;
 		_isOnlySkillLocked = true;
@@ -375,7 +375,7 @@ class Naruto : public Hero
 		setWalkSpeed(224);
 		_originSpeed = 224;
 
-		_gardValue -= 5000;
+		resetDefenseValue(5000);
 		_isArmored = false;
 		hasArmorBroken = false;
 
@@ -436,13 +436,13 @@ class Naruto : public Hero
 					attack(SKILL2);
 					return;
 				}
-				else if (_isCanSkill3 && !_isArmored && _mainTarget->getGP() < 5000)
+				else if (_isCanSkill3 && !_isArmored && _mainTarget->getDEF() < 5000)
 				{
 					changeSide(sp);
 					attack(SKILL3);
 					return;
 				}
-				else if (_isCanSkill1 && !_isArmored && _mainTarget->getGP() < 5000)
+				else if (_isCanSkill1 && !_isArmored && _mainTarget->getDEF() < 5000)
 				{
 					changeSide(sp);
 					attack(SKILL1);
@@ -468,7 +468,7 @@ class Naruto : public Hero
 						walk(moveDirection);
 						return;
 					}
-					if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_isArmored)
+					if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000 && !_isArmored)
 					{
 						changeSide(sp);
 						attack(OUGIS1);
@@ -526,7 +526,7 @@ class Naruto : public Hero
 
 	inline void changeAction_RikudoNaruto()
 	{
-		_gardValue += 5000;
+		_defense += 5000;
 		_isArmored = true;
 		hasArmorBroken = true;
 		_isOnlySkillLocked = true;
@@ -560,7 +560,7 @@ class Naruto : public Hero
 		setWalkSpeed(224);
 		_originSpeed = 224;
 
-		_gardValue -= 5000;
+		resetDefenseValue(5000);
 		_isArmored = false;
 		hasArmorBroken = false;
 
@@ -581,7 +581,7 @@ class Naruto : public Hero
 	inline Hero *createClone_RikudoNaruto(int cloneTime)
 	{
 		auto clone = createCloneHero<Kurama>(SummonEnum::Kurama);
-		clone->setGP(5000);
+		clone->setDEF(5000);
 		clone->_isArmored = true;
 		clone->setWalkSpeed(320);
 		clone->_originSpeed = 320;

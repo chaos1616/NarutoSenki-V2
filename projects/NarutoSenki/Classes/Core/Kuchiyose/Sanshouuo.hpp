@@ -83,7 +83,7 @@ class Sanshouuo : public Hero
 				}
 				else if (isFreeActionState())
 				{
-					if (_isCanSkill1 && _mainTarget->getGP() < 5000)
+					if (_isCanSkill1 && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(SKILL1);

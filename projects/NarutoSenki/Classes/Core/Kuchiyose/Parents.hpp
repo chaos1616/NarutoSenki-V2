@@ -54,7 +54,7 @@ class Parents : public Hero
 				{
 					if (_master->isFreeActionState())
 					{
-						if (_master->_isCanSkill3 && _mainTarget->getGP() < 5000 && (_master->_isControlled || _master->_isAI == true) && !_skillChangeBuffValue)
+						if (_master->_isCanSkill3 && _mainTarget->getDEF() < 5000 && (_master->_isControlled || _master->_isAI == true) && !_skillChangeBuffValue)
 						{
 							changeSide(sp);
 
@@ -71,7 +71,7 @@ class Parents : public Hero
 						}
 						else
 						{
-							if (_master->_isCanSkill2 && _mainTarget->getGP() < 5000 && (_master->_isControlled || _master->_isAI == true) && !_skillChangeBuffValue)
+							if (_master->_isCanSkill2 && _mainTarget->getDEF() < 5000 && (_master->_isControlled || _master->_isAI == true) && !_skillChangeBuffValue)
 							{
 								changeSide(sp);
 								_master->attack(SKILL2);

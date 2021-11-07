@@ -35,8 +35,6 @@ void Monster::setID(const string &name, Role role, Group group)
 	auto filePath = format("Element/Monster/{}.xml", name);
 	KTools::readXMLToArray(filePath, animationArray);
 
-	// init Attribute; & indleFrame
-
 	CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
 	CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 	idleArray = (CCArray *)(tmpAction->objectAtIndex(1));

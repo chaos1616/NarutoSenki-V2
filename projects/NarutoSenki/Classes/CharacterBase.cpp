@@ -124,7 +124,7 @@ CharacterBase::CharacterBase()
 	_powerUPBuffValue = 0;
 	_hpBar = nullptr;
 
-	_gardValue = 0;
+	_defense = 0;
 	_exp = 0;
 	_level = 1;
 
@@ -1308,13 +1308,13 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 		}
 		else
 		{
-			if (attackValue <= _gardValue)
+			if (attackValue <= _defense)
 			{
 				realValue = criticalValue;
 			}
 			else
 			{
-				realValue = attackValue - _gardValue + criticalValue;
+				realValue = attackValue - _defense + criticalValue;
 				float decreaseRating = 0;
 				if (hasArmor)
 					decreaseRating += 0.25f;
@@ -2909,7 +2909,7 @@ void CharacterBase::setClone(int cloneTime)
 	clone->setMaxHPValue(getMaxHP(), false);
 	clone->_exp = _exp;
 	clone->setNAttackValue(getNAttackValue());
-	clone->_gardValue = _gardValue;
+	clone->_defense = _defense;
 	clone->_level = _level;
 	clone->setHPbar();
 	clone->_hpBar->getHPBAR()->setScaleX(clone->getHpPercent());

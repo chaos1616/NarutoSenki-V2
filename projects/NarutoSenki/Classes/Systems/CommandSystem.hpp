@@ -92,14 +92,14 @@ private:
 
 			   auto tempAnimation = Animation::createWithSpriteFrames(spriteFrames, 0.1f);
 			   auto tempAction = Animate::create(tempAnimation);
-			   auto call = CallFunc::create(std::bind(&CharacterBase::disableShadow, thiz, thiz));
-			   auto seq = newSequence(tempAction, call);
 
 			   auto tempChar = Sprite::createWithSpriteFrameName(format("{}_Extern_01", thiz->getName()).c_str());
 			   tempChar->setAnchorPoint(Vec2(0.5f, 0));
 			   tempChar->setPosition(thiz->getPosition());
 			   getGameLayer()->addChild(tempChar, -thiz->_originY);
 
+			   auto call = CallFunc::create(std::bind(&CharacterBase::disableShadow, thiz, tempChar));
+			   auto seq = newSequence(tempAction, call);
 			   tempChar->runAction(seq);
 		   });
 		on(Command::addHP, [](CharacterBase *thiz)

@@ -271,7 +271,7 @@ void GameOver::listResult()
 
 		uint32_t realKillNum = currPlayer->getKillNum();
 
-		string tempReward = getGameLayer()->_isHardCoreGame ? "FDDD" : "ONNN";
+		string tempReward = getGameLayer()->_isHardCoreGame ? "FDDD\24" : "ONNN\24";
 		KTools::decode(tempReward);
 
 		uint32_t coins = KTools::readCoinFromSQL();

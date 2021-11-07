@@ -34,7 +34,7 @@ class Orochimaru : public Hero
 					attack(OUGIS2);
 					return;
 				}
-				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000)
+				else if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
@@ -46,7 +46,7 @@ class Orochimaru : public Hero
 					attack(OUGIS1);
 					return;
 				}
-				else if (_isCanSkill2 && _mainTarget->getGP() < 5000)
+				else if (_isCanSkill2 && _mainTarget->getDEF() < 5000)
 				{
 					if ((abs(sp.x) > 96 || abs(sp.y) > 32))
 					{
@@ -58,7 +58,7 @@ class Orochimaru : public Hero
 					attack(SKILL2);
 					return;
 				}
-				else if (_isCanSkill3 && _mainTarget->getGP() < 5000)
+				else if (_isCanSkill3 && _mainTarget->getDEF() < 5000)
 				{
 					if ((abs(sp.x) > 96 || abs(sp.y) > 32))
 					{
@@ -71,7 +71,7 @@ class Orochimaru : public Hero
 					return;
 				}
 
-				if (_isCanSkill1 && _mainTarget->getGP() < 5000)
+				if (_isCanSkill1 && _mainTarget->getDEF() < 5000)
 				{
 					if (abs(sp.x) > 96 || abs(sp.y) > 16)
 					{
@@ -105,7 +105,7 @@ class Orochimaru : public Hero
 						return;
 					}
 
-					if (_isCanOugis1 && !_isControlled && getHpPercent() < 0.9 && _mainTarget->getGP() < 5000)
+					if (_isCanOugis1 && !_isControlled && getHpPercent() < 0.9 && _mainTarget->getDEF() < 5000)
 					{
 						changeSide(sp);
 						attack(OUGIS1);

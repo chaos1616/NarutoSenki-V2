@@ -58,10 +58,11 @@ public:
 						hero->setHPValue(hero->getMaxHP());
 						hero->increaseAllCkrs(25000);
 						hero->setRebornTime(10);
-						getGameLayer()->getHudLayer()->setEXPLose();
 
 						if (hero->isPlayer())
 						{
+							getGameLayer()->getHudLayer()->setEXPLose();
+							getGameLayer()->getHudLayer()->coinLabel->setString(to_cstr(hero->getCoin()));
 							if (!hero->isEnableSkill04())
 								getGameLayer()->getHudLayer()->skill4Button->setLock();
 							if (!hero->isEnableSkill05())

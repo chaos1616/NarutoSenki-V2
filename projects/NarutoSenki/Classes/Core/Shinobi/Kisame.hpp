@@ -21,7 +21,7 @@ class Kisame : public Hero
 
 			if ((isFreeActionState()) && (abs(sp.x) < 128 || _isCanGear00))
 			{
-				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getGP() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_skillChangeBuffValue)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_skillChangeBuffValue)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
@@ -38,7 +38,7 @@ class Kisame : public Hero
 					attack(OUGIS2);
 					return;
 				}
-				else if (_isCanOugis1 && !_isControlled && _mainTarget->getGP() < 5000 && !_skillChangeBuffValue)
+				else if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000 && !_skillChangeBuffValue)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
@@ -75,7 +75,7 @@ class Kisame : public Hero
 					attack(SKILL3);
 					return;
 				}
-				else if (_isCanSkill2 && _mainTarget->getGP() < 5000 && !_skillChangeBuffValue)
+				else if (_isCanSkill2 && _mainTarget->getDEF() < 5000 && !_skillChangeBuffValue)
 				{
 					if (abs(sp.x) > 96 || abs(sp.y) > 32)
 					{
@@ -97,7 +97,7 @@ class Kisame : public Hero
 						return;
 					}
 
-					if (_isCanSkill1 && _mainTarget->getGP() < 5000 && !_skillChangeBuffValue)
+					if (_isCanSkill1 && _mainTarget->getDEF() < 5000 && !_skillChangeBuffValue)
 					{
 						changeSide(sp);
 						attack(SKILL1);
