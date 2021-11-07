@@ -877,7 +877,7 @@ void GameLayer::removeOugis()
 void GameLayer::setKeyEventHandler()
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	Director::sharedDirector()->getOpenGLView()->setAccelerometerKeyHook((cocos2d::EGLView::LPFN_ACCELEROMETER_KEYHOOK)(&GameLayer::LPFN_ACCELEROMETER_KEYHOOK));
+	Director::sharedDirector()->getOpenGLView()->setAccelerometerKeyHook((GLView::LPFN_ACCELEROMETER_KEYHOOK)(&GameLayer::LPFN_ACCELEROMETER_KEYHOOK));
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 	glfwSetKeyCallback(_window, keyEventHandle);
 #endif

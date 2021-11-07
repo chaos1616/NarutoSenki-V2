@@ -27,6 +27,11 @@ THE SOFTWARE.
 #ifndef __CCVECTOR_H__
 #define __CCVECTOR_H__
 
+#if defined(_MSC_VER)
+#include <BaseTsd.h>
+typedef SSIZE_T ssize_t;
+#endif
+
 #include "ccMacros.h"
 #include <vector>
 #include <functional>
