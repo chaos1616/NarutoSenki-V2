@@ -965,12 +965,15 @@ void CharacterBase::acceptAttack(Ref *object)
 
 FiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool isRepeat, bool isReturn)
 {
-	Ref *tObject;
-	CCArray *animeFrames = CCArray::create();
-	auto seqArray = CCArray::create();
+	if (ationArray == nullptr || ationArray->count() == 0)
+		return nullptr;
+
+	Vector<SpriteFrame *> spriteFrames;
+	Vector<FiniteTimeAction *> list;
 	Animation *tempAnimation;
-	Action *tempAction;
+	FiniteTimeAction *tempAction;
 	FiniteTimeAction *seq;
+	Ref *tObject;
 
 	CCARRAY_FOREACH(ationArray, tObject)
 	{
@@ -984,76 +987,76 @@ FiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, float fps,
 			if (key == "f")
 			{
 				auto frame = getSpriteFrame(keyValue);
-				animeFrames->addObject(frame);
+				spriteFrames.pushBack(frame);
 			}
 			else
 			{
-				tempAnimation = Animation::createWithSpriteFrames(animeFrames, 1.0f / fps);
+				tempAnimation = Animation::createWithSpriteFrames(spriteFrames, 1.0f / fps);
 				tempAction = Animate::create(tempAnimation);
 
-				seqArray->addObject(tempAction);
+				list.pushBack(tempAction);
 				if (key == "setAttackBox")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::setAttackBox, this, keyValue));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setSound")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::setSound, this, keyValue));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setDSound")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::setDSound, this, keyValue));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setDelay")
 				{
 					float delayTime = dic->valueForKey(key)->intValue();
 					auto delay = DelayTime::create(delayTime / 100.0f);
-					seqArray->addObject(delay);
+					list.pushBack(delay);
 				}
 				else if (key == "setMove")
 				{
 					int moveLength = dic->valueForKey(key)->intValue();
 					auto call = CallFunc::create(std::bind(&CharacterBase::setMove, this, moveLength));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setSkillEffect")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::setSkillEffect, this, keyValue));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setJump")
 				{
 					bool jumpDirection = dic->valueForKey(key)->boolValue();
 					auto call = CallFunc::create(std::bind(&CharacterBase::setJump, this, jumpDirection));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setCharge")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::getCollider, this));
-					seqArray->addObject(call);
+					list.pushBack(call);
 					int moveLength = dic->valueForKey(key)->intValue();
 					call = CallFunc::create(std::bind(&CharacterBase::setCharge, this, moveLength));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setChargeB")
 				{
 					int moveLength = dic->valueForKey(key)->intValue();
 					auto call = CallFunc::create(std::bind(&CharacterBase::setChargeB, this, moveLength));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setClone")
 				{
 					int cloneTime = dic->valueForKey(key)->intValue();
 					auto call = CallFunc::create(std::bind(&CharacterBase::setClone, this, cloneTime));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setMon")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::setMon, this, keyValue));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setFont")
 				{
@@ -1070,102 +1073,102 @@ FiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, float fps,
 					// }
 
 					// auto call = CallFunc::create(std::bind(&CharacterBase::setFontEffect, this, valueVector));
-					// seqArray->addObject(call);
+					// list.pushBack(call);
 				}
 				else if (key == "setBuff")
 				{
 					int buffValue = dic->valueForKey(key)->intValue();
 					auto call = CallFunc::create(std::bind(&CharacterBase::setBuff, this, buffValue));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setCommand")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::setCommand, this, keyValue));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setDetonation")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::dealloc, this));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setBullet")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::setBullet, this, keyValue));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setMonAttack")
 				{
 					int skillNum = dic->valueForKey(key)->intValue();
 					auto call = CallFunc::create(std::bind(&CharacterBase::setMonAttack, this, skillNum));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setTrap")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::setTrap, this, keyValue));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setActionResume")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::setActionResume, this));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setActionResume2")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::setActionResume2, this));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setShadow")
 				{
-					auto frame = (SpriteFrame *)(animeFrames->objectAtIndex(animeFrames->count() - 1));
+					auto frame = spriteFrames.at(spriteFrames.size() - 1);
 					auto call = CallFunc::create(std::bind(&CharacterBase::setShadow, this, frame));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setTransform")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::setTransform, this));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setOugis")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::setOugis, this));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "stopJump")
 				{
 					int stopTime = dic->valueForKey(key)->intValue();
 					auto call = CallFunc::create(std::bind(&CharacterBase::stopJump, this, stopTime));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 				else if (key == "setFlipped")
 				{
 					auto call = CallFunc::create(std::bind(&CharacterBase::setCharFlip, this));
-					seqArray->addObject(call);
+					list.pushBack(call);
 				}
 
-				animeFrames->removeAllObjects();
+				spriteFrames.clear();
 			}
 		}
 	}
-	if (animeFrames->count() > 0)
+	if (!spriteFrames.empty())
 	{
-		tempAnimation = Animation::createWithSpriteFrames(animeFrames, 1.0f / fps);
+		tempAnimation = Animation::createWithSpriteFrames(spriteFrames, 1.0f / fps);
 		tempAction = Animate::create(tempAnimation);
-		seqArray->addObject(tempAction);
+		list.pushBack(tempAction);
 	}
 
 	if (isRepeat)
 	{
-		seq = RepeatForever::create(Sequence::create(seqArray));
+		seq = RepeatForever::create(Sequence::create(list));
 	}
 	else
 	{
 		if (isReturn)
 		{
 			auto call = CallFunc::create(std::bind(&CharacterBase::idle, this));
-			seqArray->addObject(call);
+			list.pushBack(call);
 		}
 
-		seq = Sequence::create(seqArray);
+		seq = Sequence::create(list);
 	}
 
 	return seq;
@@ -4150,11 +4153,11 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 
 		_actionState = State::HURT;
 		stopAllActions();
-		auto list = CCArray::create();
 
+		Vector<FiniteTimeAction *> list;
 		if (isHurtAction)
 		{
-			list->addObject(_hurtAction);
+			list.pushBack(_hurtAction);
 		}
 		else
 		{
@@ -4175,24 +4178,24 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 					CCMessageBox(path.c_str(), "Not found hard hurt frame");
 			}
 
-			auto tempArray = CCArray::create();
-			tempArray->addObject(frame);
-			auto tempAnimation = Animation::createWithSpriteFrames(tempArray, 0.1f);
+			Vector<SpriteFrame *> spriteFrames;
+			spriteFrames.pushBack(frame);
+			auto tempAnimation = Animation::createWithSpriteFrames(spriteFrames, 0.1f);
 			auto tempAction = Animate::create(tempAnimation);
-			list->addObject(tempAction);
+			list.pushBack(tempAction);
 		}
 
 		if (isStun)
 		{
 			auto call = CallFunc::create(std::bind(&CharacterBase::setSkillEffect, this, "stun"));
-			list->addObject(call);
+			list.pushBack(call);
 		}
 
 		auto delay = DelayTime::create(delayTime / 1000.0f);
-		list->addObject(delay);
+		list.pushBack(delay);
 
 		auto call = CallFunc::create(std::bind(&CharacterBase::idle, this));
-		list->addObject(call);
+		list.pushBack(call);
 
 		auto seq = Sequence::create(list);
 		runAction(seq);
@@ -4244,12 +4247,12 @@ void CharacterBase::absorb(Vec2 position, bool isImmediate)
 		}
 		_actionState = State::HURT;
 
-		auto list = CCArray::create();
+		Vector<FiniteTimeAction *> list;
 		if (isImmediate)
 		{
 			stopAllActions();
 			auto mv = MoveTo::create(0.2f, position);
-			list->addObject(_hurtAction);
+			list.pushBack(_hurtAction);
 			runAction(mv);
 		}
 		else
@@ -4258,11 +4261,11 @@ void CharacterBase::absorb(Vec2 position, bool isImmediate)
 			position.x = direction.x > 0 ? getPositionX() - 16 : getPositionX() + 16;
 			position.y = direction.y > 0 ? getPositionY() - 8 : getPositionY() + 8;
 			auto mv = MoveTo::create(0.2f, position);
-			list->addObject(mv);
+			list.pushBack(mv);
 		}
 
 		auto call = CallFunc::create(std::bind(&CharacterBase::idle, this));
-		list->addObject(call);
+		list.pushBack(call);
 		auto seq = Sequence::create(list);
 		runAction(seq);
 	}
@@ -4544,19 +4547,20 @@ void CharacterBase::checkActionFinish(float dt)
 	{
 		unschedule(schedule_selector(CharacterBase::checkActionFinish));
 		stopAllActions();
+
+		Vector<FiniteTimeAction *> list;
 		auto fadeOut = FadeOut::create(0.5f);
 		auto call = CallFunc::create(std::bind(&CharacterBase::dealloc, this));
-		auto seqArray = CCArray::create();
 		if (_deadAction)
 		{
-			seqArray->addObject(_deadAction);
+			list.pushBack(_deadAction);
 		}
 		if (isFlog())
 		{
-			seqArray->addObject(fadeOut);
+			list.pushBack(fadeOut);
 		}
-		seqArray->addObject(call);
-		auto seq = Sequence::create(seqArray);
+		list.pushBack(call);
+		auto seq = Sequence::create(list);
 		runAction(seq);
 	}
 }

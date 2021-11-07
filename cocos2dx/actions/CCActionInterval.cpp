@@ -266,6 +266,39 @@ CCSequence* CCSequence::create(CCArray* arrayOfActions)
     return pRet;
 }
 
+CCSequence* CCSequence::create(const Vector<CCFiniteTimeAction*>& arrayOfActions)
+{
+    CCSequence* seq = new (std::nothrow) CCSequence;
+    
+    if (seq && seq->init(arrayOfActions))
+    {
+        seq->autorelease();
+        return seq;
+    }
+    
+    delete seq;
+    return nullptr;
+}
+
+bool CCSequence::init(const Vector<CCFiniteTimeAction*>& arrayOfActions)
+{
+    auto count = arrayOfActions.size();
+    if (count == 0)
+        return false;
+
+    if (count == 1)
+        return initWithTwoActions(arrayOfActions.at(0), ExtraAction::create());
+
+    // else size > 1
+    auto prev = arrayOfActions.at(0);
+    for (int i = 1; i < count-1; ++i)
+    {
+        prev = createWithTwoActions(prev, arrayOfActions.at(i));
+    }
+
+    return initWithTwoActions(prev, arrayOfActions.at(count-1));
+}
+
 bool CCSequence::initWithTwoActions(CCFiniteTimeAction *pActionOne, CCFiniteTimeAction *pActionTwo)
 {
     CCAssert(pActionOne != NULL, "");

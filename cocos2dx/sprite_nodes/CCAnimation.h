@@ -27,6 +27,7 @@ THE SOFTWARE.
 #define __CC_ANIMATION_H__
 
 #include "platform/CCPlatformConfig.h"
+#include "base/CCVector.h"
 #include "cocoa/CCObject.h"
 #include "cocoa/CCArray.h"
 #include "cocoa/CCDictionary.h"
@@ -117,6 +118,7 @@ public:
      @js create
     */
     static CCAnimation* createWithSpriteFrames(CCArray* arrayOfSpriteFrameNames, float delay = 0.0f);
+    static CCAnimation* createWithSpriteFrames(const Vector<CCSpriteFrame*>& arrayOfSpriteFrameNames, float delay = 0.0f, unsigned int loops = 1);
 
     /* Creates an animation with an array of CCAnimationFrame, the delay per units in seconds and and how many times it should be executed.
      @since v2.0
@@ -153,6 +155,7 @@ public:
      @lua NA
     */
     bool initWithSpriteFrames(CCArray *pFrames, float delay = 0.0f);
+    bool initWithSpriteFrames(const Vector<CCSpriteFrame*>& arrayOfSpriteFrameNames, float delay = 0.0f, unsigned int loops = 1);
 
     /** Initializes a CCAnimation with CCAnimationFrame
      @since v2.0

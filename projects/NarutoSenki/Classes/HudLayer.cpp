@@ -167,17 +167,16 @@ void HudLayer::initGearButton(const string &charName)
 
 void HudLayer::playGameOpeningAnimation()
 {
-	auto tempArray = CCArray::create();
-
+	Vector<SpriteFrame *> spriteFrames;
 	int i = 1;
 	while (i < ComCount)
 	{
 		auto frame = getSpriteFrame("gameStart_00{}.png", i);
-		tempArray->addObject(frame);
+		spriteFrames.pushBack(frame);
 		i += 1;
 	}
 
-	auto tempAnimation = Animation::createWithSpriteFrames(tempArray, 0.1f);
+	auto tempAnimation = Animation::createWithSpriteFrames(spriteFrames, 0.1f);
 	auto tempAction = Animate::create(tempAnimation);
 
 	openingSprite = Sprite::createWithSpriteFrameName("gameStart_001.png");
@@ -1212,14 +1211,14 @@ void HudLayer::setOugis(const string &name, Group group)
 		CutBg->runAction(MoveTo::create(0.3f, Vec2(endPosX, startPosY)));
 		ougisLayer->addChild(CutBg);
 
-		CCArray *animeFrames = CCArray::create();
+		Vector<SpriteFrame *> spriteFrames;
 		for (int i = 1; i <= 8; i++)
 		{
 			auto frame = getSpriteFrame("CutLine_{:02d}.png", i);
-			animeFrames->addObject(frame);
+			spriteFrames.pushBack(frame);
 		}
 
-		auto tempAnimation = Animation::createWithSpriteFrames(animeFrames, 0.1f);
+		auto tempAnimation = Animation::createWithSpriteFrames(spriteFrames, 0.1f);
 		auto tempAction = Animate::create(tempAnimation);
 
 		Sprite *CutLine = Sprite::createWithSpriteFrameName("CutLine_01.png");

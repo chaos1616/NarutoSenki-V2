@@ -326,29 +326,26 @@ bool StartMenu::init()
 	avator->setPosition(Vec2(winSize.width - avator->getContentSize().width, 19));
 	addChild(avator, 1);
 
-	auto tempArray = CCArray::create();
-
-	int i = 1;
-
-	auto list = CCArray::create();
-	while (i < 5)
+	Vector<SpriteFrame *> frames;
+	Vector<FiniteTimeAction *> list;
+	int i = 0;
+	while (++i < 5)
 	{
 		auto frame = getSpriteFrame("avator{}.png", i);
-		tempArray->addObject(frame);
-		auto tempAnimation = Animation::createWithSpriteFrames(tempArray, 0.1f);
+		frames.pushBack(frame);
+		auto tempAnimation = Animation::createWithSpriteFrames(frames, 0.1f);
 		auto tempAction = Animate::create(tempAnimation);
-		list->addObject(tempAction);
+		list.pushBack(tempAction);
 		auto fadeIn = FadeIn::create(0.8f);
 		auto delay = DelayTime::create(1.0f);
 		auto fadeOut = FadeOut::create(0.5f);
-		list->addObject(fadeIn);
-		list->addObject(delay);
-		list->addObject(fadeOut);
-		i += 1;
+		list.pushBack(fadeIn);
+		list.pushBack(delay);
+		list.pushBack(fadeOut);
 	}
 
 	avator->runAction(RepeatForever::create(Sequence::create(list)));
-	MenuItem *news_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("news_btn.png"), nullptr, nullptr, this, menu_selector(StartMenu::onNewsBtn));
+	MenuItem *news_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("news_btn.png"), nullptr, this, menu_selector(StartMenu::onNewsBtn));
 	Menu *menu = Menu::create(news_btn, nullptr);
 	news_btn->setAnchorPoint(Vec2(0, 0.5f));
 	menu->setPosition(15, winSize.height - 50);
@@ -356,7 +353,7 @@ bool StartMenu::init()
 
 	setNotice();
 
-	login_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("login_btn.png"), nullptr, nullptr, this, menu_selector(StartMenu::onLoginBtn));
+	login_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("login_btn.png"), nullptr, this, menu_selector(StartMenu::onLoginBtn));
 	Menu *menu2 = Menu::create(login_btn, nullptr);
 	login_btn->setAnchorPoint(Vec2(1, 0.5f));
 	menu2->setPosition(winSize.width - 15, winSize.height - 50);
@@ -423,7 +420,6 @@ void StartMenu::setNotice()
 		notice_bg->setPosition(Vec2(15, 228));
 		notice_layer->addChild(notice_bg);
 
-		// FIXME: ClippingNode not working on android 11.0
 		ClippingNode *clipper = ClippingNode::create();
 		Node *stencil = Sprite::createWithSpriteFrameName("notice_mask.png");
 		stencil->setAnchorPoint(Vec2(0, 0));

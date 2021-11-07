@@ -11,7 +11,7 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 	if (name == "n_hit" ||
 		name == "b_hit")
 	{
-		auto effectAction = createEffectAnimation("red_damge_", 4, 14, false);
+		auto effectAction = createEffectAnimation("red_damge_", 3, 14, false);
 		runAction(effectAction);
 
 		setAnchorPoint(Vec2(0.5f, 0));
@@ -33,7 +33,7 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 			 name == "ts_hit" ||
 			 name == "s_hit")
 	{
-		auto effectAction = createEffectAnimation("red_damge_", 4, 14, false);
+		auto effectAction = createEffectAnimation("red_damge_", 3, 14, false);
 		runAction(effectAction);
 
 		setScale(0.8f);
@@ -46,7 +46,7 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 			 name == "sl_hit")
 	{
 		// setAnchorPoint(Vec2(0.5f,0));
-		auto effectAction = createEffectAnimation("blue_damge_", 4, 14, false);
+		auto effectAction = createEffectAnimation("blue_damge_", 3, 14, false);
 		runAction(effectAction);
 
 		setScale(0.6f);
@@ -56,7 +56,7 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 	}
 	else if (name == "a_hit")
 	{
-		auto effectAction = createEffectAnimation("bottom_damage_", 6, 20, false);
+		auto effectAction = createEffectAnimation("bottom_damage_", 5, 20, false);
 		runAction(effectAction);
 
 		setAnchorPoint(Vec2(0.5f, 0));
@@ -64,25 +64,25 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 	}
 	else if (name == "Kagura")
 	{
-		auto effectAction = createEffectAnimation("Kagura_", 9, 10, false);
+		auto effectAction = createEffectAnimation("Kagura_", 8, 10, false);
 		runAction(effectAction);
 	}
 	else if (name == "Hupo")
 	{
-		auto effectAction = createEffectAnimation("Hupo_", 7, 10, false);
+		auto effectAction = createEffectAnimation("Hupo_", 6, 10, false);
 		runAction(effectAction);
 	}
 	else if (name == "hp_restore" ||
 			 name == "speedUp")
 	{
-		auto effectAction = createEffectAnimation(name + "_", 5, 5, false);
+		auto effectAction = createEffectAnimation(name + "_", 4, 5, false);
 		auto call = CallFunc::create(std::bind(&CharacterBase::disableEffect, at));
 		auto seq = newSequence(effectAction, call);
 		runAction(seq);
 	}
 	else if (name == "smk")
 	{
-		auto effectAction = createEffectAnimation("smk_", 5, 10, false);
+		auto effectAction = createEffectAnimation("smk_", 4, 10, false);
 		runAction(effectAction);
 		setAnchorPoint(Vec2(0.5f, 0));
 		setPosition(at->getPosition());
@@ -99,14 +99,14 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 	}
 	else if (name == "stun")
 	{
-		auto effectAction = createEffectAnimation("stun_", 5, 5, false);
+		auto effectAction = createEffectAnimation("stun_", 4, 5, false);
 		runAction(effectAction);
 		setAnchorPoint(Vec2(0.5f, 0));
 		setPosition(Vec2(at->getPositionX(), at->getPositionY() + at->getContentSize().height - 2));
 	}
 	else if (name == "DarkFlame")
 	{
-		auto effectAction = createEffectAnimation("DarkFlame_Effect_", 5, 10, true);
+		auto effectAction = createEffectAnimation("DarkFlame_Effect_", 4, 10, true);
 		runAction(effectAction);
 
 		setAnchorPoint(Vec2(0.5f, 0));
@@ -119,7 +119,7 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 	}
 	else if (name == "Bagua")
 	{
-		auto effectAction = createEffectAnimation("Bagua_", 24, 10, false);
+		auto effectAction = createEffectAnimation("Bagua_", 23, 10, false);
 		runAction(effectAction);
 		setAnchorPoint(Vec2(0.5f, 0));
 		setPosition(Vec2(at->getPositionX() + 2, at->getPositionY() - 52));
@@ -162,14 +162,14 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 	else if (name == "Hiraishin" ||
 			 name == "Hiraishin2")
 	{
-		auto effectAction = createEffectAnimation(name + "_Effect_", 4, 10, false);
+		auto effectAction = createEffectAnimation(name + "_Effect_", 3, 10, false);
 		runAction(effectAction);
 		setAnchorPoint(Vec2(0.5f, 0));
 		setPosition(at->getPosition());
 	}
 	else if (name == "hBuff")
 	{
-		auto effectAction = createEffectAnimation(name + "_Effect_", 4, 5, true);
+		auto effectAction = createEffectAnimation(name + "_Effect_", 3, 5, true);
 		runAction(effectAction);
 		setAnchorPoint(Vec2(0.5f, 0));
 	}
@@ -182,20 +182,20 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 	else if (name == "hsBuff" ||
 			 name == "tBuff")
 	{
-		auto effectAction = createEffectAnimation(name + "_Effect_", 13, 10, true);
+		auto effectAction = createEffectAnimation(name + "_Effect_", 12, 10, true);
 		runAction(effectAction);
 		setAnchorPoint(Vec2(0.5f, 0));
 	}
 	else if (name == "dcBuff")
 	{
-		auto effectAction = createEffectAnimation(name + "_Effect_", 11, 10, true);
+		auto effectAction = createEffectAnimation(name + "_Effect_", 10, 10, true);
 		runAction(effectAction);
 		setAnchorPoint(Vec2(0.5f, 0));
 	}
 	else if (name == "jdBuff" ||
 			 name == "bmBuff")
 	{
-		auto effectAction = createEffectAnimation(name + "_Effect_", 9, 10, true);
+		auto effectAction = createEffectAnimation(name + "_Effect_", 8, 10, true);
 		runAction(effectAction);
 		setAnchorPoint(Vec2(0.5f, 0));
 	}
@@ -217,7 +217,7 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 			{
 				ef->setPosition(Vec2(10, 34));
 			}
-			auto effectAction = createEffectAnimation("FireEffect_", 5, 10, true);
+			auto effectAction = createEffectAnimation("FireEffect_", 4, 10, true);
 			ef->runAction(effectAction);
 			addChild(ef);
 		}
@@ -231,14 +231,14 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 	return true;
 }
 
-FiniteTimeAction *Effect::createEffectAnimation(const string &file, int frameCount, float fps, bool isRepeat)
+FiniteTimeAction *Effect::createEffectAnimation(const string &file, size_t frameCount, float fps, bool isRepeat)
 {
-	CCArray *animeFrames = CCArray::create();
+	Vector<SpriteFrame *> spriteFrames(frameCount);
 
-	for (int i = 1; i < frameCount; i++)
+	for (size_t i = 1; i < frameCount + 1; i++)
 	{
-		auto frame = getSpriteFrame("{}{:02d}", file.c_str(), i);
-		animeFrames->addObject(frame);
+		auto frame = getSpriteFrame("{}{:02d}", file, i);
+		spriteFrames.pushBack(frame);
 
 		// NOTE: For cocos2d-x 2.x using SpriteBatchNode,
 		// the sprite must be initialized before SpriteBatchNode::addChild
@@ -247,7 +247,7 @@ FiniteTimeAction *Effect::createEffectAnimation(const string &file, int frameCou
 			initWithSpriteFrame(frame);
 	}
 
-	auto animation = Animation::createWithSpriteFrames(animeFrames, 1.0 / fps);
+	auto animation = Animation::createWithSpriteFrames(spriteFrames, 1.0 / fps);
 	auto animAction = Animate::create(animation);
 
 	if (isRepeat)

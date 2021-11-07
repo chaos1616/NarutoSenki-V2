@@ -99,6 +99,15 @@ CCAnimation* CCAnimation::createWithSpriteFrames(CCArray *frames, float delay/* 
     return pAnimation;
 }
 
+CCAnimation* CCAnimation::createWithSpriteFrames(const Vector<CCSpriteFrame*>& frames, float delay/* = 0.0f*/, unsigned int loops/* = 1*/)
+{
+    CCAnimation *animation = new (std::nothrow) CCAnimation();
+    animation->initWithSpriteFrames(frames, delay, loops);
+    animation->autorelease();
+
+    return animation;
+}
+
 CCAnimation* CCAnimation::create(CCArray* arrayOfAnimationFrameNames, float delayPerUnit, unsigned int loops)
 {
     CCAnimation *pAnimation = new CCAnimation();
@@ -134,6 +143,26 @@ bool CCAnimation::initWithSpriteFrames(CCArray *pFrames, float delay/* = 0.0f*/)
 
             m_fTotalDelayUnits++;
         }
+    }
+
+    return true;
+}
+
+bool CCAnimation::initWithSpriteFrames(const Vector<CCSpriteFrame*>& frames, float delay/* = 0.0f*/, unsigned int loops/* = 1*/)
+{
+    m_uLoops = 1;
+    m_fDelayPerUnit = delay;
+    CCArray* pTmpFrames = CCArray::create();
+    setFrames(pTmpFrames);
+
+    for (auto& frame : frames)
+    {
+        CCAnimationFrame *animFrame = new CCAnimationFrame();
+        animFrame->initWithSpriteFrame(frame, 1, NULL);
+        m_pFrames->addObject(animFrame);
+        animFrame->release();
+
+        m_fTotalDelayUnits++;
     }
 
     return true;

@@ -310,14 +310,13 @@ void LoadLayer::setLoadingAnimation(const char *player, int index)
 	loadingAvator->setPosition(Vec2(winSize.width - 100 + index * 16, 30));
 	loadingAvator->setAnchorPoint(Vec2(0, 0));
 
-	CCArray *animeFrames = CCArray::create();
-
 	// FIXME: Use the other way get animation frame count
-	int frameCount = is_same(player, "Konan") ? 1 : 7;
+	ssize_t frameCount = is_same(player, "Konan") ? 1 : 7;
+	Vector<SpriteFrame *> animeFrames(frameCount);
 	for (int i = 1; i < frameCount; i++)
 	{
 		auto frame = getSpriteFrame("{}_Walk_{:02d}", player, i);
-		animeFrames->addObject(frame);
+		animeFrames.pushBack(frame);
 	}
 
 	auto tempAnimation = Animation::createWithSpriteFrames(animeFrames, 1.0f / 10.0f);

@@ -8,6 +8,9 @@ public:
 	float _mainPosY = 0;
 	float _randomPosX = 0;
 	float _randomPosY = 0;
+#if COCOS2D_DEBUG
+	string _targetName;
+#endif
 
 	CREATE_FUNC(Flog);
 
@@ -168,6 +171,10 @@ protected:
 					}
 				}
 			}
+#if COCOS2D_DEBUG
+			if (_mainTarget)
+				_targetName = _mainTarget->getName();
+#endif
 
 			Vec2 moveDirection;
 

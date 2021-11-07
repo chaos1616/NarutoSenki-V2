@@ -27,6 +27,7 @@ THE SOFTWARE.
 #ifndef __ACTION_CCINTERVAL_ACTION_H__
 #define __ACTION_CCINTERVAL_ACTION_H__
 
+#include "base/CCVector.h"
 #include "base_nodes/CCNode.h"
 #include "CCAction.h"
 #include "CCProtocols.h"
@@ -109,6 +110,7 @@ public:
      * @lua NA
      */
     bool initWithTwoActions(CCFiniteTimeAction *pActionOne, CCFiniteTimeAction *pActionTwo);
+    bool init(const Vector<CCFiniteTimeAction*>& arrayOfActions);
     /**
      *  @js NA
      *  @lua NA
@@ -138,6 +140,7 @@ public:
      * @js NA
      */
     static CCSequence* create(CCArray *arrayOfActions);
+    static CCSequence* create(const Vector<CCFiniteTimeAction*>& arrayOfActions);
     /** helper constructor to create an array of sequence-able actions 
      * @js NA
      * @lua NA

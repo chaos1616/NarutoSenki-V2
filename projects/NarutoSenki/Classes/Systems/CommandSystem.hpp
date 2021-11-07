@@ -77,20 +77,20 @@ private:
 	{
 		on(Command::addExtern, [](CharacterBase *thiz)
 		   {
-			   auto tempArray = CCArray::create();
-
+			   Vector<SpriteFrame *> spriteFrames;
 			   int i = 1;
+	
 			   if (thiz->getName() == HeroEnum::Tenten)
 			   {
 				   while (i < 11)
 				   {
 					   auto frame = getSpriteFrame("Tenten_Extern_0{}", i);
-					   tempArray->addObject(frame);
+					   spriteFrames.pushBack(frame);
 					   i += 1;
 				   }
 			   }
 
-			   auto tempAnimation = Animation::createWithSpriteFrames(tempArray, 0.1f);
+			   auto tempAnimation = Animation::createWithSpriteFrames(spriteFrames, 0.1f);
 			   auto tempAction = Animate::create(tempAnimation);
 			   auto call = CallFunc::create(std::bind(&CharacterBase::disableShadow, thiz, thiz));
 			   auto seq = newSequence(tempAction, call);
