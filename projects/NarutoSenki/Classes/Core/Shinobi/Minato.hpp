@@ -76,7 +76,7 @@ class Minato : public Hero
 				{
 					if (abs(sp.x) > 64 || abs(sp.y) > 16)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -89,7 +89,7 @@ class Minato : public Hero
 				{
 					if (abs(sp.x) > 64 || abs(sp.y) > 16)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -101,7 +101,7 @@ class Minato : public Hero
 				{
 					if (abs(sp.y) > 16)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -127,13 +127,13 @@ class Minato : public Hero
 				{
 					if (abs(sp.x) > 352 || abs(sp.y) > 128)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
 					else if ((abs(sp.x) > 32 || abs(sp.y) > 32) && getNAttackValue() < 260)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -158,7 +158,7 @@ class Minato : public Hero
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 				return;
 			}

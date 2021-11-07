@@ -90,7 +90,7 @@ class Kankuro : public Hero
 				{
 					if (abs(sp.x) > 32 || abs(sp.y) > 32)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -115,7 +115,7 @@ class Kankuro : public Hero
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 				return;
 			}

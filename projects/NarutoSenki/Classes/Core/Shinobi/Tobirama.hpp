@@ -37,7 +37,7 @@ class Tobirama : public Hero
 				{
 					if ((abs(sp.x) > 64 || abs(sp.y) > 16))
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -57,7 +57,7 @@ class Tobirama : public Hero
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -93,7 +93,7 @@ class Tobirama : public Hero
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 				return;
 			}

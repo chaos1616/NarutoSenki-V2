@@ -74,13 +74,13 @@ class Sasuke : public Hero
 				{
 					if (abs(sp.x) > 96 || abs(sp.y) > 32)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
 					else if ((abs(sp.x) > 32 || abs(sp.y) > 32) && !_isCanSkill1 && !_isCanSkill2)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -89,7 +89,7 @@ class Sasuke : public Hero
 					{
 						if (abs(sp.x) > 32 || abs(sp.y) > 32)
 						{
-							moveDirection = ccpNormalize(sp);
+							moveDirection = sp.getNormalized();
 							walk(moveDirection);
 							return;
 						}
@@ -127,7 +127,7 @@ class Sasuke : public Hero
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 				return;
 			}
@@ -176,7 +176,7 @@ class Sasuke : public Hero
 					hero->getActionState() != State::HURT &&
 					hero->getActionState() != State::DEAD)
 				{
-					float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
+					float distanceX = (hero->getPosition() - getPosition()).x;
 					if (distanceX < kAttackRange)
 					{
 						if (!hero->_isVisable)
@@ -310,7 +310,7 @@ class Sasuke : public Hero
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -337,19 +337,19 @@ class Sasuke : public Hero
 				{
 					if (abs(sp.x) > 196 || abs(sp.y) > 64)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
 					else if ((abs(sp.x) > 96 || abs(sp.y) > 32) && !_isArmored)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
 					else if ((abs(sp.x) > 32 || abs(sp.y) > 32) && !_isCanSkill1 && !_isCanSkill2)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -385,7 +385,7 @@ class Sasuke : public Hero
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 				return;
 			}
@@ -429,7 +429,7 @@ class Sasuke : public Hero
 					hero->getActionState() != State::HURT &&
 					hero->getActionState() != State::DEAD)
 				{
-					float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
+					float distanceX = (hero->getPosition() - getPosition()).x;
 					if (distanceX < kAttackRange)
 					{
 						if (!hero->_isVisable)

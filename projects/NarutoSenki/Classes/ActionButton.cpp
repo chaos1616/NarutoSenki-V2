@@ -235,7 +235,6 @@ void ActionButton::beganAnimation(bool isLock)
 		schedule(schedule_selector(ActionButton::updateCDLabel), 1.0f);
 
 		markSprite->stopAllActions();
-
 		markSprite->runAction(_freezeAction);
 	}
 }

@@ -26,8 +26,7 @@ bool CCStrokeLabel::init()
 		textureSize.height += 2 * strokeSize;
 		// call to clear error
 		glGetError();
-		RenderTexture *rt = RenderTexture::create(
-			textureSize.width, textureSize.height);
+		RenderTexture *rt = RenderTexture::create(textureSize.width, textureSize.height);
 		if (!rt)
 		{
 			// ERROR_MSG("create render texture failed !!!!");

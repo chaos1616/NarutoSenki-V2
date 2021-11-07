@@ -53,7 +53,7 @@ class Chiyo : public Hero
 							hero->getActionState() != State::DEAD &&
 							hero->getName() != HeroEnum::Chiyo)
 						{
-							Vec2 sp = ccpSub(hero->getPosition(), getPosition());
+							Vec2 sp = hero->getPosition() - getPosition();
 							if (sp.x <= kAttackRange)
 								countNum++;
 						}
@@ -68,7 +68,7 @@ class Chiyo : public Hero
 				{
 					if (abs(sp.x) > 96 || abs(sp.y) > 32)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -97,7 +97,7 @@ class Chiyo : public Hero
 				{
 					if (abs(sp.x) > 32 || abs(sp.y) > 32)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -122,7 +122,7 @@ class Chiyo : public Hero
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 				return;
 			}

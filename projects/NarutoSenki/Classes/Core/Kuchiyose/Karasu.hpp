@@ -14,7 +14,7 @@ class Karasu : public Hero
 		if (_mainTarget)
 		{
 			Vec2 moveDirection;
-			if (abs(ccpSub(_master->getPosition(), getPosition()).x) > kAttackRange - 48)
+			if (abs((_master->getPosition() - getPosition()).x) > kAttackRange - 48)
 			{
 				if (isFreeActionState())
 				{
@@ -36,7 +36,7 @@ class Karasu : public Hero
 						_master->getActionState() == State::OATTACK ||
 						_master->getActionState() == State::O2ATTACK)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -62,7 +62,7 @@ class Karasu : public Hero
 						_master->getActionState() == State::OATTACK ||
 						_master->getActionState() == State::O2ATTACK)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -95,7 +95,7 @@ class Karasu : public Hero
 			}
 		}
 
-		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > kAttackRange - 64)
+		if (abs((_master->getPosition() - getPosition()).x) > kAttackRange - 64)
 		{
 			Vec2 moveDirection = getDirByMoveTo(_master);
 			walk(moveDirection);

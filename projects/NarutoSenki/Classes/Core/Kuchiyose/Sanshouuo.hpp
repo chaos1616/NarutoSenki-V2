@@ -14,7 +14,7 @@ class Sanshouuo : public Hero
 		if (_mainTarget)
 		{
 			Vec2 moveDirection;
-			if (abs(ccpSub(_master->getPosition(), getPosition()).x) > kAttackRange - 64)
+			if (abs((_master->getPosition() - getPosition()).x) > kAttackRange - 64)
 			{
 				if (isFreeActionState())
 				{
@@ -24,8 +24,8 @@ class Sanshouuo : public Hero
 				}
 			}
 
-			Vec2 sp = ccpSub(Vec2(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
-								Vec2(getPositionX(), _originY ? _originY : getPositionY()));
+			Vec2 sp = Vec2(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()) -
+					  Vec2(getPositionX(), _originY ? _originY : getPositionY());
 
 			if (_mainTarget->isFlog())
 			{
@@ -38,7 +38,7 @@ class Sanshouuo : public Hero
 						_master->getActionState() == State::OATTACK ||
 						_master->getActionState() == State::O2ATTACK)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 					}
 				}
@@ -63,7 +63,7 @@ class Sanshouuo : public Hero
 						_master->getActionState() == State::OATTACK ||
 						_master->getActionState() == State::O2ATTACK)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -76,7 +76,7 @@ class Sanshouuo : public Hero
 						_master->getActionState() == State::OATTACK ||
 						_master->getActionState() == State::O2ATTACK)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -99,7 +99,7 @@ class Sanshouuo : public Hero
 			}
 		}
 
-		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > kAttackRange - 64)
+		if (abs((_master->getPosition() - getPosition()).x) > kAttackRange - 64)
 		{
 			Vec2 moveDirection = getDirByMoveTo(_master);
 			walk(moveDirection);

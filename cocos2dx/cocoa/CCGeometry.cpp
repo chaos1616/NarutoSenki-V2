@@ -104,8 +104,8 @@ bool CCPoint::fuzzyEquals(const CCPoint& b, float var) const
 
 float CCPoint::getAngle(const CCPoint& other) const
 {
-    CCPoint a2 = normalize();
-    CCPoint b2 = other.normalize();
+    CCPoint a2 = getNormalized();
+    CCPoint b2 = other.getNormalized();
     float angle = atan2f(a2.cross(b2), a2.dot(b2));
     if( fabs(angle) < FLT_EPSILON ) return 0.f;
     return angle;

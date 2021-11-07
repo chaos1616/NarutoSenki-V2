@@ -47,7 +47,7 @@ ccpDistance(const CCPoint& v1, const CCPoint& v2)
 CCPoint
 ccpNormalize(const CCPoint& v)
 {
-    return v.normalize();
+    return v.getNormalized();
 }
 
 CCPoint

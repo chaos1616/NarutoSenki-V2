@@ -46,7 +46,7 @@ class Pain : public Hero
 				{
 					if ((abs(sp.x) > 196 || abs(sp.y) > 64))
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -58,7 +58,7 @@ class Pain : public Hero
 				{
 					if ((abs(sp.x) > 128 || abs(sp.y) > 32))
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -93,7 +93,7 @@ class Pain : public Hero
 				{
 					if (abs(sp.x) > 32 || abs(sp.y) > 32)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -118,7 +118,7 @@ class Pain : public Hero
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 				return;
 			}
@@ -176,7 +176,7 @@ class Pain : public Hero
 							hero->isPlayerOrCom() &&
 							hero->getActionState() == State::DEAD)
 						{
-							Vec2 sp = ccpSub(hero->getPosition(), getPosition());
+							Vec2 sp = hero->getPosition() - getPosition();
 							if (abs(sp.x) == winSize.width || abs(sp.y) == winSize.height)
 							{
 								countNum++;
@@ -201,7 +201,7 @@ class Pain : public Hero
 				{
 					if ((abs(sp.x) > 196 || abs(sp.y) > 64))
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -213,7 +213,7 @@ class Pain : public Hero
 				{
 					if ((abs(sp.x) > 128 || abs(sp.y) > 64))
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -225,7 +225,7 @@ class Pain : public Hero
 				{
 					if ((abs(sp.x) > 128 || abs(sp.y) > 64))
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -250,7 +250,7 @@ class Pain : public Hero
 				{
 					if (abs(sp.x) > 32 || abs(sp.y) > 32)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -275,7 +275,7 @@ class Pain : public Hero
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 				return;
 			}

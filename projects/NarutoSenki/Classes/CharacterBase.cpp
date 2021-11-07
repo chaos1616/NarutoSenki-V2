@@ -319,7 +319,7 @@ void CharacterBase::update(float dt)
 
 	if (_actionState == State::WALK)
 	{
-		_desiredPosition = ccpAdd(getPosition(), ccpMult(_velocity, dt));
+		_desiredPosition = getPosition() + (_velocity * dt);
 
 		if (isPlayer() && !_isAI && !_isInvincible && !_isArmored)
 		{
@@ -347,7 +347,7 @@ void CharacterBase::update(float dt)
 						{
 							_velocity = Vec2(0, -1 * _walkSpeed * kSpeedBase);
 						}
-						_desiredPosition = ccpAdd(getPosition(), ccpMult(_velocity, dt));
+						_desiredPosition = getPosition() + (_velocity * dt);
 					}
 				}
 			}
@@ -426,7 +426,7 @@ void CharacterBase::acceptAttack(Ref *object)
 			else if (attacker->_effectType == "n_hit")
 			{
 				bool isHitX = false;
-				float distanceX = ccpSub(attacker->getPosition(), getPosition()).x;
+				float distanceX = (attacker->getPosition() - getPosition()).x;
 
 				float atkRangeX = attacker->_attackRangeX + attacker->getContentSize().width / 2 + getContentSize().width / 2;
 
@@ -529,7 +529,7 @@ void CharacterBase::acceptAttack(Ref *object)
 		{
 			bool isHitX = false;
 
-			float distanceX = ccpSub(attacker->getPosition(), getPosition()).x;
+			float distanceX = (attacker->getPosition() - getPosition()).x;
 
 			float atkRangeX = attacker->_attackRangeX + attacker->getContentSize().width / 2 + getContentSize().width / 2;
 
@@ -1325,7 +1325,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 					{
 						if (mo->getName() == KugutsuEnum::Parents && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK)
 						{
-							Vec2 sp = ccpSub(mo->getPosition(), getPosition());
+							Vec2 sp = mo->getPosition() - getPosition();
 							if (sp.x <= 48)
 								decreaseRating += 0.25f;
 						}
@@ -1423,7 +1423,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 	}
 
 	if (isPlayer() || (isNotTower() &&
-					   abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange))
+					   abs((getPosition() - getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange))
 	{
 		// create damage value display
 		bool _isDisplay = false;
@@ -1535,7 +1535,7 @@ void CharacterBase::removeDamageDisplay()
 
 void CharacterBase::setDamgeEffect(const string &type)
 {
-	if (isPlayer() || abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange)
+	if (isPlayer() || abs((getPosition() - getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange)
 	{
 		if (damageEffectCount < 2)
 		{
@@ -1558,7 +1558,7 @@ void CharacterBase::setDamgeEffect(const string &type)
 void CharacterBase::setSkillEffect(const string &type)
 {
 	if (isPlayer() ||
-		abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange)
+		abs((getPosition() - getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange)
 	{
 		Effect *ef = Effect::create(type, this);
 		if (type == "Bagua" ||
@@ -1920,13 +1920,13 @@ void CharacterBase::setSound(const string &file)
 	{
 		bool _isPlayable = false;
 		if (isPlayer() ||
-			abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange)
+			abs((getPosition() - getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange)
 		{
 			_isPlayable = true;
 		}
 		if (getGameLayer()->controlChar)
 		{
-			if (abs(ccpSub(getPosition(), getGameLayer()->controlChar->getPosition()).x) < kAttackRange)
+			if (abs((getPosition() - getGameLayer()->controlChar->getPosition()).x) < kAttackRange)
 			{
 				_isPlayable = true;
 			}
@@ -1946,13 +1946,13 @@ void CharacterBase::setDSound(const string &file)
 	{
 		bool _isPlayable = false;
 		if (isPlayer() ||
-			abs(ccpSub(getPosition(), getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange)
+			abs((getPosition() - getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange)
 		{
 			_isPlayable = true;
 		}
 		if (getGameLayer()->controlChar)
 		{
-			if (abs(ccpSub(getPosition(), getGameLayer()->controlChar->getPosition()).x) < kAttackRange)
+			if (abs((getPosition() - getGameLayer()->controlChar->getPosition()).x) < kAttackRange)
 			{
 				_isPlayable = true;
 			}
@@ -2179,7 +2179,7 @@ void CharacterBase::setBuff(int buffValue)
 			{
 				if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->_actionState != State::HURT && hero->_actionState != State::DEAD)
 				{
-					float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
+					float distanceX = (hero->getPosition() - getPosition()).x;
 					if (distanceX < kAttackRange)
 					{
 						if (!hero->_isVisable)
@@ -2497,7 +2497,7 @@ void CharacterBase::healBuff(float dt)
 		{
 			if (getGroup() == hero->getGroup() && hero->isPlayerOrCom() && hero->_actionState != State::DEAD)
 			{
-				float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
+				float distanceX = (hero->getPosition() - getPosition()).x;
 				float atkRangeX = 128 + getContentSize().width / 2;
 				if (abs(distanceX) <= atkRangeX &&
 					abs(hero->getPositionY() - getPositionY()) <= 128)
@@ -2529,7 +2529,7 @@ void CharacterBase::healBuff(float dt)
 				hero->isPlayerOrCom() &&
 				hero->getName() != HeroEnum::Chiyo)
 			{
-				Vec2 sp = ccpSub(hero->getPosition(), getPosition());
+				Vec2 sp = hero->getPosition() - getPosition();
 				if (abs(sp.x) <= kAttackRange)
 				{
 					hero->increaseAllCkrs(_healBuffValue);
@@ -2557,7 +2557,7 @@ void CharacterBase::healBuff(float dt)
 		{
 			if (getGroup() == flog->getGroup() && flog->_actionState != State::DEAD)
 			{
-				float distanceX = ccpSub(flog->getPosition(), getPosition()).x;
+				float distanceX = (flog->getPosition() - getPosition()).x;
 				float atkRangeX = 128 + getContentSize().width / 2;
 				if (abs(distanceX) <= atkRangeX &&
 					abs(flog->getPositionY() - getPositionY()) <= 128)
@@ -2719,7 +2719,7 @@ void CharacterBase::stopMove(float dt)
 	{
 		if (getGroup() != hero->getGroup() && hero->_isVisable && hero->_actionState != State::DEAD && hero->_actionState != State::JUMP && !hero->_isInvincible)
 		{
-			float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
+			float distanceX = (hero->getPosition() - getPosition()).x;
 			float atkRangeX = _attackRangeX + getContentSize().width / 2;
 			if (abs(distanceX) <= atkRangeX &&
 				abs(hero->getPositionY() - getPositionY()) <= _attackRangeY)
@@ -3283,13 +3283,9 @@ void CharacterBase::setMon(const string &monName)
 		else
 		{
 			if (_isFlipped)
-			{
-				moveDirection = ccpNormalize(Vec2(-1, 0));
-			}
+				moveDirection = Vec2(-1, 0).getNormalized();
 			else
-			{
-				moveDirection = ccpNormalize(Vec2(1, 0));
-			}
+				moveDirection = Vec2(1, 0).getNormalized();
 			monster->setActionState(State::WALK);
 			monster->walk(moveDirection);
 		}
@@ -3399,7 +3395,7 @@ void CharacterBase::setTrap(const string &trapName)
 		{
 			if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->_actionState != State::HURT && hero->_actionState != State::DEAD)
 			{
-				float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
+				float distanceX = (hero->getPosition() - getPosition()).x;
 				if (distanceX < kAttackRange)
 				{
 					if (!hero->_isVisable)
@@ -4035,7 +4031,7 @@ bool CharacterBase::hurt()
 				hero->_actionState != State::DEAD &&
 				hero->_buffStartTime)
 			{
-				Vec2 sp = ccpSub(hero->getPosition(), getPosition());
+				Vec2 sp = hero->getPosition() - getPosition();
 				if (abs(sp.x) <= kAttackRange)
 				{
 					return false;
@@ -4048,7 +4044,7 @@ bool CharacterBase::hurt()
 			{
 				if (mo->getName() == KugutsuEnum::Parents && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK && mo->_actionState != State::DEAD)
 				{
-					Vec2 sp = ccpSub(mo->getPosition(), getPosition());
+					Vec2 sp = mo->getPosition() - getPosition();
 					if (sp.x <= 48)
 					{
 						return false;
@@ -4103,7 +4099,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 				hero->_actionState != State::DEAD &&
 				hero->_buffStartTime)
 			{
-				Vec2 sp = ccpSub(hero->getPosition(), getPosition());
+				Vec2 sp = hero->getPosition() - getPosition();
 				if (abs(sp.x) <= kAttackRange)
 				{
 					return false;
@@ -4117,7 +4113,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 			{
 				if (mo->getName() == KugutsuEnum::Parents && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK && mo->_actionState != State::DEAD)
 				{
-					Vec2 sp = ccpSub(mo->getPosition(), getPosition());
+					Vec2 sp = mo->getPosition() - getPosition();
 					if (sp.x <= 48)
 					{
 						if (mo->_isCanSkill3)
@@ -4256,7 +4252,7 @@ void CharacterBase::absorb(Vec2 position, bool isImmediate)
 		}
 		else
 		{
-			Vec2 direction = ccpSub(getPosition(), position);
+			Vec2 direction = getPosition() - position;
 			position.x = direction.x > 0 ? getPositionX() - 16 : getPositionX() + 16;
 			position.y = direction.y > 0 ? getPositionY() - 8 : getPositionY() + 8;
 			auto mv = MoveTo::create(0.2f, position);
@@ -4294,7 +4290,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 				hero->_actionState != State::DEAD &&
 				hero->_buffStartTime)
 			{
-				Vec2 sp = ccpSub(hero->getPosition(), getPosition());
+				Vec2 sp = hero->getPosition() - getPosition();
 				if (abs(sp.x) <= kAttackRange)
 				{
 					return;
@@ -4308,7 +4304,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 			{
 				if (mo->getName() == KugutsuEnum::Parents && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK && mo->_actionState != State::DEAD)
 				{
-					Vec2 sp = ccpSub(mo->getPosition(), getPosition());
+					Vec2 sp = mo->getPosition() - getPosition();
 					if (sp.x <= 48)
 					{
 						if (mo->_isCanSkill3)
@@ -4638,13 +4634,13 @@ CharacterBase::findEnemyBy(const vector<T *> &list, int searchRange, bool master
 		{
 			if (masterRange && _master)
 			{
-				distance = ccpDistance(target->getPosition(), _master->getPosition());
-				sp = ccpSub(target->getPosition(), _master->getPosition());
+				sp = target->getPosition() - _master->getPosition();
+				distance = sp.getLength();
 			}
 			else
 			{
-				distance = ccpDistance(target->getPosition(), getPosition());
-				sp = ccpSub(target->getPosition(), getPosition());
+				sp = target->getPosition() - getPosition();
+				distance = sp.getLength();
 			}
 
 			if (abs(sp.x) < (searchRange ? searchRange : kAttackRange))
@@ -4716,8 +4712,8 @@ CharacterBase::findEnemy2By(const vector<T *> &list)
 			continue;
 		}
 
-		distance = ccpDistance(target->getPosition(), getPosition());
-		sp = ccpSub(target->getPosition(), getPosition());
+		sp = target->getPosition() - getPosition();
+		distance = sp.getLength();
 		if (abs(sp.x) < kAttackRange)
 		{
 			if (target->isNotClone() && target->isNotSummon())
@@ -4903,9 +4899,9 @@ void CharacterBase::stepOn()
 	Vec2 moveDirection;
 
 	if (isKonohaGroup())
-		moveDirection = ccpNormalize(Vec2(1, 0));
+		moveDirection = Vec2(1, 0).getNormalized();
 	else
-		moveDirection = ccpNormalize(Vec2(-1, 0));
+		moveDirection = Vec2(-1, 0).getNormalized();
 
 	walk(moveDirection);
 }
@@ -4918,9 +4914,9 @@ bool CharacterBase::stepBack()
 	Vec2 moveDirection;
 
 	if (isKonohaGroup())
-		moveDirection = ccpNormalize(Vec2(-1, 0));
+		moveDirection = Vec2(-1, 0).getNormalized();
 	else
-		moveDirection = ccpNormalize(Vec2(1, 0));
+		moveDirection = Vec2(1, 0).getNormalized();
 
 	if (getPositionX() >= getGameLayer()->currentMap->getTileSize().width * 2 &&
 		getPositionX() <= (getGameLayer()->currentMap->getMapSize().width - 2) * getGameLayer()->currentMap->getTileSize().width)

@@ -29,7 +29,7 @@ class Hinata : public Hero
 						{
 							useGear(gear00);
 						}
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -46,7 +46,7 @@ class Hinata : public Hero
 						{
 							useGear(gear00);
 						}
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -68,7 +68,7 @@ class Hinata : public Hero
 						{
 							useGear(gear00);
 						}
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -98,7 +98,7 @@ class Hinata : public Hero
 				{
 					if (abs(sp.x) > 32 || abs(sp.y) > 32)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -123,7 +123,7 @@ class Hinata : public Hero
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 				return;
 			}

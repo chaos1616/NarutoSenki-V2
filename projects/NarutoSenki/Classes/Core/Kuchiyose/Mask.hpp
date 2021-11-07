@@ -41,7 +41,7 @@ class Mask : public Hero
 			{
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
-					moveDirection = ccpNormalize(sp);
+					moveDirection = sp.getNormalized();
 					walk(moveDirection);
 				}
 				else
@@ -58,13 +58,13 @@ class Mask : public Hero
 			{
 				if (abs(sp.x) > 96 || abs(sp.y) > 16)
 				{
-					moveDirection = ccpNormalize(sp);
+					moveDirection = sp.getNormalized();
 					walk(moveDirection);
 					return;
 				}
 				else if ((abs(sp.x) > 48 || abs(sp.y) > 16) && !_isCanSkill1)
 				{
-					moveDirection = ccpNormalize(sp);
+					moveDirection = sp.getNormalized();
 					walk(moveDirection);
 					return;
 				}

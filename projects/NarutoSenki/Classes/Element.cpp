@@ -174,7 +174,7 @@ void Monster::setAI(float dt)
 				!hero->_isArmored &&
 				hero->_isVisable)
 			{
-				Vec2 sp = ccpSub(hero->getPosition(), getPosition());
+				Vec2 sp = hero->getPosition() - getPosition();
 				float distanceY = hero->_originY ? abs(getPositionY() - hero->_originY) : abs(sp.y);
 				float distanceX = _isFlipped ? hero->getPositionX() - getPositionX() + getContentSize().width : hero->getPositionX() - getPositionX() - getContentSize().width;
 				if (abs(distanceX) < 32 && distanceY < 48)
@@ -221,10 +221,8 @@ void Monster::setAI(float dt)
 
 	if (_mainTarget)
 	{
-		Vec2 sp;
-
-		sp = ccpSub(Vec2(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()),
-					Vec2(getPositionX(), _originY ? _originY : getPositionY()));
+		Vec2 sp = Vec2(_mainTarget->getPositionX(), _mainTarget->_originY ? _mainTarget->_originY : _mainTarget->getPositionY()) -
+				  Vec2(getPositionX(), _originY ? _originY : getPositionY());
 
 		if (charName == SkillEnum::FutonSRK2 ||
 			charName == SkillEnum::FutonSRK)
@@ -232,7 +230,7 @@ void Monster::setAI(float dt)
 			if (abs(sp.x) > 48 || abs(sp.y) > 32)
 			{
 				setActionState(State::WALK);
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 				return;
 			}
@@ -261,7 +259,7 @@ void Monster::setAI(float dt)
 				charName != "Yominuma" &&
 				charName != "Tsukuyomi")
 			{
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 
 				walk(moveDirection);
 			}

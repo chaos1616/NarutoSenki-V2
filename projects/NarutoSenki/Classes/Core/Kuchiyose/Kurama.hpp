@@ -23,7 +23,7 @@ class Kurama : public Hero
 
 			if (abs(sp.x) > 156 || abs(sp.y) > 48)
 			{
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 			}
 			else

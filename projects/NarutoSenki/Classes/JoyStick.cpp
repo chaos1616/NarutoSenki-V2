@@ -65,13 +65,10 @@ void JoyStick::updateDirectionForTouchLocation(Touch *touch)
 	Vec2 startPoint = Vec2(32 + getContentSize().width / 2,
 						   32 + getContentSize().height / 2);
 	Vec2 curPoint = touch->getLocation();
-	//����
-	Vec2 sp = ccpSub(curPoint, startPoint);
-	//����
-	float radians = ccpToAngle(sp);
-	//�Ƕ�
+	Vec2 sp = curPoint - startPoint;
+	float distance = sp.getLength();
+	float radians = sp.getAngle();
 	float degrees = -1 * CC_RADIANS_TO_DEGREES(radians);
-	float distance = ccpDistance(curPoint, startPoint);
 
 	if (degrees <= 22.5 && degrees >= -22.5)
 	{
@@ -122,12 +119,12 @@ void JoyStick::updateJoyStick(float distance, Vec2 direction)
 {
 	if (distance < 27.5)
 	{
-		_joyStickControl->setPosition(ccpAdd(_defaultPotion, (ccpMult(direction, distance))));
+		_joyStickControl->setPosition(_defaultPotion + (direction * distance));
 	} /*else if (distance > 96) {
-		_joyStickControl->setPosition(ccpAdd(_defaultPotion,ccpMult(direction,53)));
+		_joyStickControl->setPosition(_defaultPotion + (direction * 53));
 	} */
 	else
 	{
-		_joyStickControl->setPosition(ccpAdd(_defaultPotion, (ccpMult(direction, 26.5))));
+		_joyStickControl->setPosition(_defaultPotion + (direction * 26.5f));
 	}
 }

@@ -25,7 +25,7 @@ class Tobi : public Hero
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -58,7 +58,7 @@ class Tobi : public Hero
 				{
 					if (abs(sp.x) > 64 || abs(sp.y) > 32)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -82,7 +82,7 @@ class Tobi : public Hero
 					{
 						if (abs(sp.x) > 32 || abs(sp.y) > 32)
 						{
-							moveDirection = ccpNormalize(sp);
+							moveDirection = sp.getNormalized();
 							walk(moveDirection);
 							return;
 						}
@@ -111,7 +111,7 @@ class Tobi : public Hero
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 				return;
 			}
@@ -156,7 +156,7 @@ class Tobi : public Hero
 		{
 			if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->getActionState() != State::HURT && hero->getActionState() != State::DEAD)
 			{
-				float distanceX = ccpSub(hero->getPosition(), getPosition()).x;
+				float distanceX = (hero->getPosition() - getPosition()).x;
 				if (distanceX < kAttackRange)
 				{
 					if (!hero->_isVisable)

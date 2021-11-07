@@ -26,7 +26,7 @@ class AnimalPath : public Hero
 			{
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
-					moveDirection = ccpNormalize(sp);
+					moveDirection = sp.getNormalized();
 					walk(moveDirection);
 				}
 				else
@@ -51,13 +51,13 @@ class AnimalPath : public Hero
 			{
 				if (abs(sp.x) > 256 || abs(sp.y) > 32)
 				{
-					moveDirection = ccpNormalize(sp);
+					moveDirection = sp.getNormalized();
 					walk(moveDirection);
 					return;
 				}
 				else if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
-					moveDirection = ccpNormalize(sp);
+					moveDirection = sp.getNormalized();
 					walk(moveDirection);
 					return;
 				}

@@ -29,7 +29,7 @@ class Kisame : public Hero
 						{
 							useGear(gear00);
 						}
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -46,7 +46,7 @@ class Kisame : public Hero
 						{
 							useGear(gear00);
 						}
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -67,7 +67,7 @@ class Kisame : public Hero
 				{
 					if (abs(sp.x) > 96 || abs(sp.y) > 32)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -79,7 +79,7 @@ class Kisame : public Hero
 				{
 					if (abs(sp.x) > 96 || abs(sp.y) > 32)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -92,7 +92,7 @@ class Kisame : public Hero
 				{
 					if (abs(sp.x) > 64 || abs(sp.y) > 32)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -123,7 +123,7 @@ class Kisame : public Hero
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 				return;
 			}

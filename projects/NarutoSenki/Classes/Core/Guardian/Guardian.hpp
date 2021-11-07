@@ -26,13 +26,13 @@ class Guardian : public Hero
 
 			if (abs(sp.x) > 128 || abs(sp.y) > 16)
 			{
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 				return;
 			}
 			else if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 				return;
 			}
@@ -74,11 +74,11 @@ class Guardian : public Hero
 		else
 		{
 			Vec2 moveDirection;
-			Vec2 sp = ccpSub(getSpawnPoint(), getPosition());
+			Vec2 sp = getSpawnPoint() - getPosition();
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 				return;
 			}

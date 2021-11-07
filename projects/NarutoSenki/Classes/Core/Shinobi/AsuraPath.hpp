@@ -26,7 +26,7 @@ class AsuraPath : public Hero
 			{
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
-					moveDirection = ccpNormalize(sp);
+					moveDirection = sp.getNormalized();
 					walk(moveDirection);
 				}
 				else
@@ -43,13 +43,13 @@ class AsuraPath : public Hero
 			{
 				if (abs(sp.x) > 256 || abs(sp.y) > 32)
 				{
-					moveDirection = ccpNormalize(sp);
+					moveDirection = sp.getNormalized();
 					walk(moveDirection);
 					return;
 				}
 				else if ((abs(sp.x) > 32 || abs(sp.y) > 32) && !_isCanSkill1)
 				{
-					moveDirection = ccpNormalize(sp);
+					moveDirection = sp.getNormalized();
 					walk(moveDirection);
 					return;
 				}

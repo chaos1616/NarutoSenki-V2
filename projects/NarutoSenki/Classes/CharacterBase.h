@@ -634,7 +634,7 @@ protected:
 		auto sp = getDistanceToTarget();
 		if (abs(sp.x) > x || abs(sp.y) > y)
 		{
-			auto moveDirection = ccpNormalize(sp);
+			auto moveDirection = sp.getNormalized();
 			walk(moveDirection);
 			return true;
 		}
@@ -655,15 +655,15 @@ protected:
 		}
 	}
 	inline Vec2			getDirByMoveTo(CharacterBase *target) {
-		return ccpNormalize(ccpSub(target->getPosition(), getPosition()));
+		return (target->getPosition() - getPosition()).getNormalized();
 	}
 	inline Vec2			getDistanceToTarget() {
 		return _mainTarget->_originY
-			? ccpSub(Vec2(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition())
-			: ccpSub(_mainTarget->getPosition(), getPosition());
+			? Vec2(_mainTarget->getPositionX(), _mainTarget->_originY) - getPosition()
+			: _mainTarget->getPosition() - getPosition();
 	}
 	inline Vec2			getDistanceToTargetAndIgnoreOriginY() {
-		return ccpSub(_mainTarget->getPosition(), getPosition());
+		return _mainTarget->getPosition() - getPosition();
 	}
 public:
 	// actoin state extensions

@@ -21,15 +21,15 @@ class Hidan : public Hero
 
 					if (_mainTarget->_originY)
 					{
-						sp = ccpSub(Vec2(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
+						sp = Vec2(_mainTarget->getPositionX(), _mainTarget->_originY) - getPosition();
 					}
 					else
 					{
-						sp = ccpSub(_mainTarget->getPosition(), getPosition());
+						sp = _mainTarget->getPosition() - getPosition();
 					}
 					if ((abs(sp.x) > 8 || abs(sp.y) > 8))
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -76,7 +76,7 @@ class Hidan : public Hero
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -94,7 +94,7 @@ class Hidan : public Hero
 				{
 					if (abs(sp.x) > 56 || abs(sp.y) > 32)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -115,7 +115,7 @@ class Hidan : public Hero
 				{
 					if ((abs(sp.x) > 48 || abs(sp.y) > 32) && !_isArmored)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -162,7 +162,7 @@ class Hidan : public Hero
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 				return;
 			}
@@ -273,8 +273,8 @@ class Hidan : public Hero
 		{
 			for (auto mo : _monsterArray)
 			{
-				float distanceX = ccpSub(mo->getPosition(), getPosition()).x;
-				float distanceY = ccpSub(mo->getPosition(), getPosition()).y;
+				float distanceX = (mo->getPosition() - getPosition()).x;
+				float distanceY = (mo->getPosition() - getPosition()).y;
 				if (abs(distanceX) < 40 && abs(distanceY) < 15)
 				{
 					_isCounter = true;
@@ -320,8 +320,8 @@ class Hidan : public Hero
 		{
 			for (auto mo : _monsterArray)
 			{
-				float distanceX = ccpSub(mo->getPosition(), getPosition()).x;
-				float distanceY = ccpSub(mo->getPosition(), getPosition()).y;
+				float distanceX = (mo->getPosition() - getPosition()).x;
+				float distanceY = (mo->getPosition() - getPosition()).y;
 				if (abs(distanceX) < 40 && abs(distanceY) < 15)
 				{
 					_isCounter = true;

@@ -482,7 +482,7 @@ void GameLayer::updateViewPoint(float dt)
 
 	Vec2 actualPoint = Vec2(x, y);
 	Vec2 centerPoint = Vec2(winSize.width / 2, y);
-	Vec2 viewPoint = ccpSub(centerPoint, actualPoint);
+	Vec2 viewPoint = centerPoint - actualPoint;
 
 	setPosition(viewPoint);
 	// Director::sharedDirector()->getScheduler()->setTimeScale(1.0f);

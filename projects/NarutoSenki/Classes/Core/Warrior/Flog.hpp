@@ -182,7 +182,7 @@ protected:
 						return;
 					}
 
-					moveDirection = ccpNormalize(sp);
+					moveDirection = sp.getNormalized();
 					walk(moveDirection);
 				}
 				else
@@ -200,16 +200,16 @@ protected:
 			if (abs(getPositionY() - _mainPosY) > 8)
 			{
 				if (isKonohaGroup())
-					moveDirection = ccpNormalize(Vec2(1, getPositionY() > _mainPosY ? -1 : 1));
+					moveDirection = Vec2(1, getPositionY() > _mainPosY ? -1 : 1).getNormalized();
 				else
-					moveDirection = ccpNormalize(Vec2(-1, getPositionY() > _mainPosY ? -1 : 1));
+					moveDirection = Vec2(-1, getPositionY() > _mainPosY ? -1 : 1).getNormalized();
 			}
 			else
 			{
 				if (isKonohaGroup())
-					moveDirection = ccpNormalize(Vec2(1, 0));
+					moveDirection = Vec2(1, 0).getNormalized();
 				else
-					moveDirection = ccpNormalize(Vec2(-1, 0));
+					moveDirection = Vec2(-1, 0).getNormalized();
 			}
 			walk(moveDirection);
 		}

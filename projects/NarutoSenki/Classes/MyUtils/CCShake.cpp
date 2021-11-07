@@ -56,7 +56,7 @@ void CCShake::update(float dt)
 	float randy = fgRangeRand(-m_strength_y, m_strength_y) * dt;
 
 	// move the target to a shaked position
-	m_pTarget->setPosition(ccpAdd(Vec2(m_initial_x, m_initial_y), Vec2(randx, randy)));
+	m_pTarget->setPosition(Vec2(m_initial_x, m_initial_y) + Vec2(randx, randy));
 }
 
 void CCShake::startWithTarget(Node *pTarget)

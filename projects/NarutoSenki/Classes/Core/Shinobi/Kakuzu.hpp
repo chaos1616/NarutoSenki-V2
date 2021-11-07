@@ -59,8 +59,8 @@ class Kakuzu : public Hero
 					if (target->isPlayerOrCom() &&
 						target->getActionState() == State::DEAD)
 					{
-						distance = ccpDistance(target->getPosition(), getPosition());
-						sp = ccpSub(target->getPosition(), getPosition());
+						sp = target->getPosition() - getPosition();
+						distance = sp.getLength();
 
 						if (abs(sp.x) < (kAttackRange))
 						{
@@ -87,16 +87,16 @@ class Kakuzu : public Hero
 					Vec2 moveDirection;
 					if (_mainTarget->_originY)
 					{
-						sp = ccpSub(Vec2(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition());
+						sp = Vec2(_mainTarget->getPositionX(), _mainTarget->_originY) - getPosition();
 					}
 					else
 					{
-						sp = ccpSub(_mainTarget->getPosition(), getPosition());
+						sp = _mainTarget->getPosition() - getPosition();
 					}
 
 					if (abs(sp.x) > 32 || abs(sp.y) > 32)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -148,7 +148,7 @@ class Kakuzu : public Hero
 				{
 					if (abs(sp.x) > 96 || abs(sp.y) > 32)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -174,7 +174,7 @@ class Kakuzu : public Hero
 				{
 					if (abs(sp.x) > 32 || abs(sp.y) > 32)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -199,7 +199,7 @@ class Kakuzu : public Hero
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 				return;
 			}

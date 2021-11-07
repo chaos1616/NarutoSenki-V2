@@ -26,7 +26,7 @@ class Itachi : public Hero
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -55,13 +55,13 @@ class Itachi : public Hero
 				{
 					if (abs(sp.x) > 196 || abs(sp.y) > 64)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
 					else if ((abs(sp.x) > 56 || abs(sp.y) > 32) && !_isArmored)
 					{
-						moveDirection = ccpNormalize(sp);
+						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
@@ -102,7 +102,7 @@ class Itachi : public Hero
 
 			if (abs(sp.x) > 32 || abs(sp.y) > 32)
 			{
-				moveDirection = ccpNormalize(sp);
+				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 				return;
 			}

@@ -142,7 +142,7 @@ private:
 				   else
 				   {
 					   thiz->_markPoint = Vec2(thiz->_mainTarget->_isFlipped ? thiz->_mainTarget->getPositionX() + 32 : thiz->_mainTarget->getPositionX() - 32,
-											  thiz->_mainTarget->_originY ? thiz->_mainTarget->_originY : thiz->_mainTarget->getPositionY());
+											   thiz->_mainTarget->_originY ? thiz->_mainTarget->_originY : thiz->_mainTarget->getPositionY());
 				   }
 			   }
 		   });
@@ -250,8 +250,8 @@ private:
 			   {
 				   for (auto mo : thiz->getMonsterArray())
 				   {
-					   float distanceX = ccpSub(mo->getPosition(), thiz->getPosition()).x;
-					   float distanceY = ccpSub(mo->getPosition(), thiz->getPosition()).y;
+					   float distanceX = (mo->getPosition() - thiz->getPosition()).x;
+					   float distanceY = (mo->getPosition() - thiz->getPosition()).y;
 					   if (abs(distanceX) < 40 && abs(distanceY) < 15)
 					   {
 						   _isCounter = true;
@@ -320,7 +320,7 @@ private:
 					   hero->isPlayerOrCom() &&
 					   hero->getName() != HeroEnum::Kakuzu)
 				   {
-					   Vec2 sp = ccpSub(hero->getPosition(), thiz->getPosition());
+					   Vec2 sp = hero->getPosition() - thiz->getPosition();
 					   if (abs(sp.x) <= 48 && abs(sp.y) <= 48)
 					   {
 						   hero->hearts -= 1;

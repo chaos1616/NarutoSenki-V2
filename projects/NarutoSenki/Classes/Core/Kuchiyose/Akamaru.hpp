@@ -18,7 +18,7 @@ class Akamaru : public Hero
 
 		Vec2 moveDirection;
 
-		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > kAttackRange - 48)
+		if (abs((_master->getPosition() - getPosition()).x) > kAttackRange - 48)
 		{
 			if (isFreeActionState())
 			{
@@ -36,7 +36,7 @@ class Akamaru : public Hero
 			{
 				if (abs(sp.x) > 48 || abs(sp.y) > 32)
 				{
-					moveDirection = ccpNormalize(sp);
+					moveDirection = sp.getNormalized();
 					walk(moveDirection);
 				}
 				else
@@ -52,7 +52,7 @@ class Akamaru : public Hero
 			{
 				if (abs(sp.x) > 48 || abs(sp.y) > 32)
 				{
-					moveDirection = ccpNormalize(sp);
+					moveDirection = sp.getNormalized();
 					walk(moveDirection);
 				}
 				else
@@ -85,7 +85,7 @@ class Akamaru : public Hero
 			return;
 		}
 
-		if (abs(ccpSub(_master->getPosition(), getPosition()).x) > kAttackRange - 64)
+		if (abs((_master->getPosition() - getPosition()).x) > kAttackRange - 64)
 		{
 			Vec2 moveDirection = getDirByMoveTo(_master);
 			walk(moveDirection);
