@@ -54,6 +54,7 @@ THE SOFTWARE.
 
 // base_nodes
 #include "base/CCValue.h"
+#include "base/CCVector.h"
 #include "base_nodes/CCNode.h"
 #include "base_nodes/CCAtlasNode.h"
 

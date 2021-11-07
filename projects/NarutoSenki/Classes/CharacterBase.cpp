@@ -1340,7 +1340,9 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 		}
 	}
 
+#if COCOS2D_DEBUG
 	Debug::PrintDamgeInfo(this, attacker, currentAttacker, attackValue, realValue, effectType);
+#endif
 	setHPValue(getHP() <= realValue ? 0 : getHP() - realValue);
 
 	if (isClone() && _master && !_master->_isControlled)
