@@ -1428,7 +1428,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 	}
 
 	if (isPlayer() || (isNotTower() &&
-					   abs((getPosition() - getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange))
+					   abs((getPosition() - getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2))
 	{
 		// create damage value display
 		bool _isDisplay = false;
@@ -1540,7 +1540,7 @@ void CharacterBase::removeDamageDisplay()
 
 void CharacterBase::setDamgeEffect(const string &type)
 {
-	if (isPlayer() || abs((getPosition() - getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange)
+	if (isPlayer() || abs((getPosition() - getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2)
 	{
 		if (damageEffectCount < 2)
 		{
@@ -1563,7 +1563,7 @@ void CharacterBase::setDamgeEffect(const string &type)
 void CharacterBase::setSkillEffect(const string &type)
 {
 	if (isPlayer() ||
-		abs((getPosition() - getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange)
+		abs((getPosition() - getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2)
 	{
 		Effect *ef = Effect::create(type, this);
 		if (type == "Bagua" ||
@@ -1925,13 +1925,13 @@ void CharacterBase::setSound(const string &file)
 	{
 		bool _isPlayable = false;
 		if (isPlayer() ||
-			abs((getPosition() - getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange)
+			abs((getPosition() - getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2)
 		{
 			_isPlayable = true;
 		}
 		if (getGameLayer()->controlChar)
 		{
-			if (abs((getPosition() - getGameLayer()->controlChar->getPosition()).x) < kAttackRange)
+			if (abs((getPosition() - getGameLayer()->controlChar->getPosition()).x) < winSize.width / 2)
 			{
 				_isPlayable = true;
 			}
@@ -1951,13 +1951,13 @@ void CharacterBase::setDSound(const string &file)
 	{
 		bool _isPlayable = false;
 		if (isPlayer() ||
-			abs((getPosition() - getGameLayer()->currentPlayer->getPosition()).x) < kAttackRange)
+			abs((getPosition() - getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2)
 		{
 			_isPlayable = true;
 		}
 		if (getGameLayer()->controlChar)
 		{
-			if (abs((getPosition() - getGameLayer()->controlChar->getPosition()).x) < kAttackRange)
+			if (abs((getPosition() - getGameLayer()->controlChar->getPosition()).x) < winSize.width / 2)
 			{
 				_isPlayable = true;
 			}
