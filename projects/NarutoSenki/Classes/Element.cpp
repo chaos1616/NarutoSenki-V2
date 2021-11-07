@@ -383,7 +383,7 @@ void Monster::setDirectMove(int length, float delay, bool isReverse)
 void Monster::setEaseIn(int length, float delay)
 {
 	Vec2 direction = Vec2(_isFlipped ? getPosition().x - length : getPosition().x + length,
-							getPositionY());
+						  getPositionY());
 	auto mv = MoveTo::create(1.0f, direction);
 	auto eo = EaseIn::create(mv, delay);
 
@@ -395,7 +395,7 @@ void Monster::setEaseIn(int length, float delay)
 void Monster::setDirectMoveBy(int length, float delay)
 {
 	Vec2 direction = Vec2(_isFlipped ? getPosition().x - length : getPosition().x + length,
-							getPositionY());
+						  getPositionY());
 
 	if (_mainTarget)
 	{

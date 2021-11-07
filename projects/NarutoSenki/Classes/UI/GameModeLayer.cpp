@@ -117,7 +117,7 @@ void GameModeLayer::backToMenu(Ref *sender)
 void GameModeLayer::initModeData()
 {
 	// init mode text data
-	auto lang = CCApplication::sharedApplication()->getCurrentLanguage();
+	auto lang = Application::sharedApplication()->getCurrentLanguage();
 	if (lang == LanguageType::kLanguageChinese)
 	{
 		modes[GameMode::OneVsOne] = {"1 VS 1", ""};

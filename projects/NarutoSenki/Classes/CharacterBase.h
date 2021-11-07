@@ -66,11 +66,11 @@ public:
 	uint32_t			_skillChangeBuffValue;
 
 
-	Sprite*			_heartEffect;
+	Sprite*				_heartEffect;
 	Effect*				_healBuffEffect;
 	Effect*				_powerBuffEffect;
 	Effect*				_skillBuffEffect;
-	Sprite*			_dehealBuffEffect;
+	Sprite*				_dehealBuffEffect;
 	Effect*				_healItemEffect;
 	Effect*				_speedItemEffect;
 	float				_buffStartTime;
@@ -100,7 +100,7 @@ public:
 
 	bool				enableDead	 = true;
 	bool				enableReborn = true;
-	int8_t				changeCharId = -1; // NOTE: Support for random deathmatch mode
+	int					changeCharId = -1; // NOTE: Support for random deathmatch mode
 
 	int					rebornLabelTime;
 	int					battleCondiction;
@@ -109,7 +109,7 @@ public:
 
 
 	HPBar*				_hpBar;
-	Sprite*			_shadow;
+	Sprite*				_shadow;
 	float				_originY;
 	float				_backY;
 	float				_diretionY;
@@ -544,18 +544,18 @@ public:
 	inline void			increaseHpAndUpdateUI(uint32_t value);
 protected:
 	// find enemy extensions
-	inline bool 		findHero(int searchRange, bool masterRange = false) { return findEnemy(Role::Hero, searchRange, masterRange); }
-	inline bool 		findFlog(int searchRange, bool masterRange = false) { return findEnemy(Role::Flog, searchRange, masterRange); }
-	inline bool 		findTower(int searchRange, bool masterRange = false) { return findEnemy(Role::Tower, searchRange, masterRange); }
-	inline bool 		notFindHero(int searchRange, bool masterRange = false) { return !findEnemy(Role::Hero, searchRange, masterRange); }
-	inline bool 		notFindFlog(int searchRange, bool masterRange = false) { return !findEnemy(Role::Flog, searchRange, masterRange); }
-	inline bool 		notFindTower(int searchRange, bool masterRange = false) { return !findEnemy(Role::Tower, searchRange, masterRange); }
-	inline bool 		findHeroHalf() { return findEnemy2(Role::Hero); }
-	inline bool 		findFlogHalf() { return findEnemy2(Role::Flog); }
-	inline bool 		findTowerHalf() { return findEnemy2(Role::Tower); }
-	inline bool 		notFindHeroHalf() { return !findEnemy2(Role::Hero); }
-	inline bool 		notFindFlogHalf() { return !findEnemy2(Role::Flog); }
-	inline bool 		notFindTowerHalf() { return !findEnemy2(Role::Tower); }
+	inline bool			findHero(int searchRange, bool masterRange = false) { return findEnemy(Role::Hero, searchRange, masterRange); }
+	inline bool			findFlog(int searchRange, bool masterRange = false) { return findEnemy(Role::Flog, searchRange, masterRange); }
+	inline bool			findTower(int searchRange, bool masterRange = false) { return findEnemy(Role::Tower, searchRange, masterRange); }
+	inline bool			notFindHero(int searchRange, bool masterRange = false) { return !findEnemy(Role::Hero, searchRange, masterRange); }
+	inline bool			notFindFlog(int searchRange, bool masterRange = false) { return !findEnemy(Role::Flog, searchRange, masterRange); }
+	inline bool			notFindTower(int searchRange, bool masterRange = false) { return !findEnemy(Role::Tower, searchRange, masterRange); }
+	inline bool			findHeroHalf() { return findEnemy2(Role::Hero); }
+	inline bool			findFlogHalf() { return findEnemy2(Role::Flog); }
+	inline bool			findTowerHalf() { return findEnemy2(Role::Tower); }
+	inline bool			notFindHeroHalf() { return !findEnemy2(Role::Hero); }
+	inline bool			notFindFlogHalf() { return !findEnemy2(Role::Flog); }
+	inline bool			notFindTowerHalf() { return !findEnemy2(Role::Tower); }
 	// AI extensions
 	void				tryBuyGear(GearType gear1, GearType gear2, GearType gear3) {
 		if (getCoin() >= 500 && getGearArray().size() < 3 && !_isControlled && getGameLayer()->_enableGear)
@@ -654,22 +654,22 @@ protected:
 			stepOn();
 		}
 	}
-	inline Vec2 		getDirByMoveTo(CharacterBase *target) {
+	inline Vec2			getDirByMoveTo(CharacterBase *target) {
 		return ccpNormalize(ccpSub(target->getPosition(), getPosition()));
 	}
-	inline Vec2 		getDistanceToTarget() {
+	inline Vec2			getDistanceToTarget() {
 		return _mainTarget->_originY
 			? ccpSub(Vec2(_mainTarget->getPositionX(), _mainTarget->_originY), getPosition())
 			: ccpSub(_mainTarget->getPosition(), getPosition());
 	}
-	inline Vec2 		getDistanceToTargetAndIgnoreOriginY() {
+	inline Vec2			getDistanceToTargetAndIgnoreOriginY() {
 		return ccpSub(_mainTarget->getPosition(), getPosition());
 	}
 public:
 	// actoin state extensions
 
 	// Action is State::IDLE or State::WALK or State::NATTACK
-	inline bool 		isFreeActionState() {
+	inline bool			isFreeActionState() {
 		return _actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK;
 	}
 

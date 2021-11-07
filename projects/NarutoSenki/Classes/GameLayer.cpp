@@ -969,7 +969,7 @@ Vec2 GameLayer::getCustomSpawnPoint(HeroData &data)
 		if (horizontal != 0 || vertical != 0)                                       \
 		{                                                                           \
 			if (!_gLayer->ougisChar)                                                \
-				_gLayer->currentPlayer->walk(Vec2(horizontal, vertical));            \
+				_gLayer->currentPlayer->walk(Vec2(horizontal, vertical));           \
 		}                                                                           \
 		else if (_gLayer->currentPlayer->getActionState() == State::WALK)           \
 		{                                                                           \

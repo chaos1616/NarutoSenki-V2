@@ -169,7 +169,7 @@ void KTools::initTableInDB()
 
 	if (!isExisted_)
 	{
-		for (int i = 0; i < kHeroNum; i++)
+		for (size_t i = 0; i < kHeroNum; i++)
 		{
 			string name = kHeroList[i];
 			int key = rand() % 50 + 40;

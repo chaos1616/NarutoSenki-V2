@@ -50,7 +50,7 @@ bool LoadLayer::init()
 
 	Sprite *cloud_right = Sprite::createWithSpriteFrameName("cloud.png");
 	cloud_right->setPosition(Vec2(winSize.width - cloud_right->getContentSize().width,
-								 winSize.height - (cloud_right->getContentSize().height + 15)));
+								  winSize.height - (cloud_right->getContentSize().height + 15)));
 	cloud_right->setAnchorPoint(Vec2(0, 0));
 	addChild(cloud_right, 1);
 

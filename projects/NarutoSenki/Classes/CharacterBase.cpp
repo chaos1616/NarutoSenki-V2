@@ -264,13 +264,13 @@ void CharacterBase::update(float dt)
 	if (_healItemEffect)
 	{
 		_healItemEffect->setPosition(Vec2(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
-										 _height));
+										  _height));
 	}
 
 	if (_speedItemEffect)
 	{
 		_speedItemEffect->setPosition(Vec2(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
-										  _height));
+										   _height));
 	}
 
 	/*if(_kaguraEffect){
@@ -332,7 +332,7 @@ void CharacterBase::update(float dt)
 					int metaHeight = 128;
 					int metaX = tower->getPositionX() - metaWidth / 2;
 					int metaY = tower->getPositionY() - metaHeight / 2;
-					Rect rect = CCRectMake(metaX, metaY + 32, metaWidth, metaHeight - 64);
+					Rect rect = Rect(metaX, metaY + 32, metaWidth, metaHeight - 64);
 
 					if (rect.containsPoint(_desiredPosition))
 					{
@@ -689,12 +689,12 @@ void CharacterBase::acceptAttack(Ref *object)
 									if (attacker->getName() == SkillEnum::FakeMinato)
 									{
 										setPosition(Vec2(attacker->_master->_isFlipped ? attacker->_master->getPositionX() - 64 : attacker->_master->getPositionX() + 64,
-														attacker->_master->getPositionY() + 2));
+														 attacker->_master->getPositionY() + 2));
 									}
 									else
 									{
 										setPosition(Vec2(attacker->_master->_isFlipped ? attacker->_master->getPositionX() - 48 : attacker->_master->getPositionX() + 48,
-														attacker->_master->getPositionY()));
+														 attacker->_master->getPositionY()));
 									}
 
 									CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", this);
@@ -1231,10 +1231,10 @@ void CharacterBase::setOugis()
 
 Rect CharacterBase::setHalfBox()
 {
-	Rect halfbox = CCRectMake(_isFlipped ? getPositionX() - getContentSize().width / 2 : getPositionX(),
-								getPositionY() + getContentSize().height / 2,
-								getContentSize().width / 2,
-								getContentSize().height / 2);
+	Rect halfbox = Rect(_isFlipped ? getPositionX() - getContentSize().width / 2 : getPositionX(),
+						getPositionY() + getContentSize().height / 2,
+						getContentSize().width / 2,
+						getContentSize().height / 2);
 	return halfbox;
 }
 
@@ -1621,7 +1621,7 @@ void CharacterBase::setItem(abType type)
 		{
 			_healItemEffect = Effect::create("hp_restore", this);
 			_healItemEffect->setPosition(Vec2(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
-											 _height));
+											  _height));
 			addChild(_healItemEffect);
 			//_isHealing=true;
 		}
@@ -1874,7 +1874,7 @@ void CharacterBase::setRestore(float dt)
 
 		_healItemEffect = Effect::create("hp_restore", this);
 		_healItemEffect->setPosition(Vec2(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
-										 _height));
+										  _height));
 		addChild(_healItemEffect);
 	}
 }
@@ -2760,7 +2760,7 @@ void CharacterBase::setBullet(const string &bulletName)
 	{
 		bullet->setScale(0.8f);
 		bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -32 : 32),
-								getPositionY() + 52));
+								 getPositionY() + 52));
 		bullet->attack(NAttack);
 		bullet->setMove(192, 2.0f, false);
 	}
@@ -2768,7 +2768,7 @@ void CharacterBase::setBullet(const string &bulletName)
 	{
 		bullet->setScale(0.8f);
 		bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -68 : 68),
-								getPositionY() + 42));
+								 getPositionY() + 42));
 		bullet->attack(NAttack);
 		bullet->setMove(192, 2.0f, false);
 	}
@@ -2776,7 +2776,7 @@ void CharacterBase::setBullet(const string &bulletName)
 	{
 		bullet->setScale(0.8f);
 		bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -76 : 76),
-								getPositionY() + getHeight() / 2));
+								 getPositionY() + getHeight() / 2));
 		if (_skillUPBuffValue)
 			bullet->setNAttackValue(bullet->getNAttackValue() + _skillUPBuffValue);
 
@@ -2789,7 +2789,7 @@ void CharacterBase::setBullet(const string &bulletName)
 	{
 		bullet->setScale(0.8f);
 		bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -32 : 32),
-								getPositionY() + getHeight() / 2));
+								 getPositionY() + getHeight() / 2));
 
 		bullet->setEaseIn(224, 2.0f);
 		bullet->attack(NAttack);
@@ -2801,13 +2801,13 @@ void CharacterBase::setBullet(const string &bulletName)
 		{
 			bullet->setScale(0.8f);
 			bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -42 : 42),
-									getPositionY() + getHeight() / 2));
+									 getPositionY() + getHeight() / 2));
 		}
 		else
 		{
 			bullet->setAnchorPoint(Vec2(0.5f, 0));
 			bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -42 : 42),
-									getPositionY()));
+									 getPositionY()));
 		}
 
 		bullet->_originY = getPositionY();
@@ -2818,7 +2818,7 @@ void CharacterBase::setBullet(const string &bulletName)
 	else
 	{
 		bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -32 : 32),
-								getPositionY() + getContentSize().height / 2));
+								 getPositionY() + getContentSize().height / 2));
 
 		bullet->attack(NAttack);
 		bullet->setMove(192, 2.0f, false);

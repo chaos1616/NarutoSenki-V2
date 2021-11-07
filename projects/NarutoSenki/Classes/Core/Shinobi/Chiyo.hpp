@@ -1,6 +1,5 @@
 #pragma once
 #include "Hero.hpp"
-
 #include "Kuchiyose/Parents.hpp"
 
 class Chiyo : public Hero

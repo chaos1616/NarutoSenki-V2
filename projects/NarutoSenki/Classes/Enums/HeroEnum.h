@@ -24,6 +24,7 @@ namespace HeroEnum
 	mk_const(Kankuro);
 	mk_const(Karin);
 	mk_const(Kiba);
+	mk_const(Kimimaro);
 	mk_const(Kisame);
 	mk_const(Konan);
 	// Lee

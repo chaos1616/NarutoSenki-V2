@@ -1,10 +1,8 @@
 #pragma once
 #include "Hero.hpp"
-
 #include "Shinobi/Bunshin/NarutoClone.hpp"
 #include "Shinobi/Bunshin/SageNarutoClone.hpp"
 #include "Shinobi/Bunshin/RikudoNarutoClone.hpp"
-
 #include "Kuchiyose/Kurama.hpp"
 
 class Naruto : public Hero

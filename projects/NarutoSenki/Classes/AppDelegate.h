@@ -1,7 +1,7 @@
 #pragma once
 #include "Defines.h"
 
-class AppDelegate : private CCApplication
+class AppDelegate : private Application
 {
 public:
 	AppDelegate();

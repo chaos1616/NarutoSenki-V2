@@ -139,7 +139,7 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 		initWithSpriteFrameName(name.c_str());
 		setAnchorPoint(Vec2(0.5f, 0));
 		setPosition(Vec2(at->getPositionX() + (at->_isFlipped ? -32 : 32),
-						at->getPositionY() + at->getContentSize().height / 2));
+						 at->getPositionY() + at->getContentSize().height / 2));
 		auto su = ScaleBy::create(0.1f, 1.2f);
 		auto call = CallFunc::create(std::bind(&Effect::removeEffect, this));
 		auto seq = newSequence(su, su->reverse(), call);
@@ -152,7 +152,7 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 	{
 		initWithSpriteFrameName(name.c_str());
 		setPosition(Vec2(at->getPositionX() + (at->_isFlipped ? -32 : 32),
-						at->getPositionY() + at->getContentSize().height));
+						 at->getPositionY() + at->getContentSize().height));
 		auto rt = RotateBy::create(0.3f, 180, 180);
 		auto su = ScaleBy::create(0.2f, 1.6f);
 		auto call = CallFunc::create(std::bind(&Effect::removeEffect, this));

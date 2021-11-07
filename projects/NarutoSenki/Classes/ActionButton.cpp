@@ -223,11 +223,11 @@ void ActionButton::beganAnimation(bool isLock)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 			cdLabel->setScale(0.3f);
 			cdLabel->setPosition(Vec2(getPositionX() + getContentSize().width * getScale() / 2,
-									 getPositionY() + getContentSize().height * getScale() / 2));
+									  getPositionY() + getContentSize().height * getScale() / 2));
 #else
 			cdLabel->setScale(0.4f);
 			cdLabel->setPosition(Vec2(getPositionX() + getContentSize().width / 2,
-									 getPositionY() + getContentSize().height / 2));
+									  getPositionY() + getContentSize().height / 2));
 #endif
 
 			_delegate->addChild(cdLabel, 200);
@@ -327,11 +327,11 @@ void ActionButton::setOugisMark()
 
 	lockLabel1->setScale(0.3f);
 	lockLabel1->setPosition(Vec2(getPositionX() + getContentSize().width * getScale() / 2,
-								getPositionY() + getContentSize().height * getScale() / 2));
+								 getPositionY() + getContentSize().height * getScale() / 2));
 #else
 	lockLabel1->setScale(0.4f);
 	lockLabel1->setPosition(Vec2(getPositionX() + getContentSize().width / 2,
-								getPositionY() + getContentSize().height / 2));
+								 getPositionY() + getContentSize().height / 2));
 #endif
 	_delegate->addChild(lockLabel1, 200);
 }

@@ -289,7 +289,7 @@ bool GearLayer::init(RenderTexture *snapshoot)
 #endif
 
 	MenuItem *buy_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("gearBuy_btn.png"),
-												   Sprite::createWithSpriteFrameName("gearBuy_btn2.png"), this, menu_selector(GearLayer::onGearBuy));
+											   Sprite::createWithSpriteFrameName("gearBuy_btn2.png"), this, menu_selector(GearLayer::onGearBuy));
 	Menu *gearMenu = Menu::create(buy_btn, nullptr);
 	gearMenu->setPosition(Vec2(gears_bg->getPositionX() + 78, 65));
 	addChild(gearMenu, 600);
@@ -298,7 +298,7 @@ bool GearLayer::init(RenderTexture *snapshoot)
 	addChild(clipper, 600);
 
 	MenuItem *btm_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("close_btn1.png"),
-												   Sprite::createWithSpriteFrameName("close_btn2.png"), this, menu_selector(GearLayer::onResume));
+											   Sprite::createWithSpriteFrameName("close_btn2.png"), this, menu_selector(GearLayer::onResume));
 	Menu *overMenu = Menu::create(btm_btn, nullptr);
 	overMenu->setPosition(Vec2(winSize.width / 2 + gears_bg->getContentSize().width / 2 - 12, winSize.height / 2 + gears_bg->getContentSize().height / 2 - 20));
 	addChild(overMenu, 600);

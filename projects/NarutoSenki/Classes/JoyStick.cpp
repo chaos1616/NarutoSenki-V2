@@ -12,7 +12,7 @@ bool JoyStick::init()
 	_joyStickControl->setAnchorPoint(Vec2(0, 0));
 
 	_defaultPotion = Vec2(getContentSize().width / 2 - _joyStickControl->getContentSize().width / 2,
-						 getContentSize().height / 2 - _joyStickControl->getContentSize().height / 2);
+						  getContentSize().height / 2 - _joyStickControl->getContentSize().height / 2);
 
 	_joyStickControl->setPosition(_defaultPotion);
 	addChild(_joyStickControl);
@@ -63,7 +63,7 @@ void JoyStick::ccTouchEnded(Touch *touch, Event *event)
 void JoyStick::updateDirectionForTouchLocation(Touch *touch)
 {
 	Vec2 startPoint = Vec2(32 + getContentSize().width / 2,
-							 32 + getContentSize().height / 2);
+						   32 + getContentSize().height / 2);
 	Vec2 curPoint = touch->getLocation();
 	//����
 	Vec2 sp = ccpSub(curPoint, startPoint);

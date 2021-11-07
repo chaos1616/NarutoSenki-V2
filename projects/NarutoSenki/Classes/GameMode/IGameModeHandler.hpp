@@ -248,7 +248,7 @@ protected:
 
 		// init com heros
 		vector<string> realHeroVector;
-		for (int i = 0; i < kHeroNum; i++)
+		for (size_t i = 0; i < kHeroNum; i++)
 		{
 			if (is_same(selectLayer->_playerSelect, kHeroList[i]))
 				continue;
