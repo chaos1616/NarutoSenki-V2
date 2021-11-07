@@ -4809,11 +4809,12 @@ CharacterBase::findTargetEnemyBy(const vector<T *> &list, bool isTowerDected)
 			target->_isVisable && !target->_isInvincible)
 		{
 			// float gardZone
-			findSome = getGameLayer()->playerGroup == Group::Konoha
-						   ? target->getPositionX() >= 81 * 32
-						   : target->getPositionX() <= 14 * 32;
-			if (findSome)
+			bool found = getGameLayer()->playerGroup == Group::Konoha
+							 ? target->getPositionX() >= 81 * 32
+							 : target->getPositionX() <= 14 * 32;
+			if (found)
 			{
+				findSome = true;
 				if (target->isHurtingTower)
 				{
 					if (target->getName() == HeroEnum::Choji ||
