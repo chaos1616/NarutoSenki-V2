@@ -457,87 +457,87 @@ protected:
 	void				removeDamageDisplay();
 
 public:
-	inline bool			hasTempAttackValue1() { return getTempAttackValue1() > 0; }
+	bool hasTempAttackValue1() { return getTempAttackValue1() > 0; }
 	// UI
-	void 				updateHpBar();
-	void				updateDataByLVOnly();
-	inline void			lockSkill4Button() {
+	void updateHpBar();
+	void updateDataByLVOnly();
+	void lockSkill4Button() {
 		if (isPlayer())
 			getGameLayer()->getHudLayer()->skill4Button->setLock();
 	}
-	inline void			unlockSkill4Button() {
+	void unlockSkill4Button() {
 		if (isPlayer())
 			getGameLayer()->getHudLayer()->skill4Button->unLock();
 	}
-	inline void			lockSkill5Button() {
+	void lockSkill5Button() {
 		if (isPlayer())
 			getGameLayer()->getHudLayer()->skill5Button->setLock();
 	}
-	inline void			unlockSkill5Button() {
+	void unlockSkill5Button() {
 		if (isPlayer())
 			getGameLayer()->getHudLayer()->skill5Button->unLock();
 	}
-	inline void			lockOugisButtons() {
+	void lockOugisButtons() {
 		if (isPlayer()) {
 			getGameLayer()->getHudLayer()->skill4Button->setLock();
 			getGameLayer()->getHudLayer()->skill5Button->setLock();
 		}
 	}
-	inline void			unlockOugisButtons() {
+	void unlockOugisButtons() {
 		if (isPlayer()) {
 			getGameLayer()->getHudLayer()->skill4Button->unLock();
 			getGameLayer()->getHudLayer()->skill5Button->unLock();
 		}
 	}
 	// character extensions
-	inline void			setHPValue(uint32_t var, bool isUpdateHpBar = true) {
+	void setHPValue(uint32_t var, bool isUpdateHpBar = true) {
 		setHP(var);
 		if (isUpdateHpBar)
 			updateHpBar();
 	}
-	inline void			setMaxHPValue(uint32_t var, bool isUpdateHpBar = true) {
+	void setMaxHPValue(uint32_t var, bool isUpdateHpBar = true) {
 		setMaxHP(var);
 		if (isUpdateHpBar)
 			updateHpBar();
 	}
-	inline void			resetDefenseValue(int def) {
+	void resetDefenseValue(int def) {
 		if (_defense > 0 && _defense > def)
 			_defense -= def;
 		else
 			_defense = 0;
 	}
-	inline bool			isGuardian() { return _name == kGuardian_Han || _name == kGuardian_Roshi; }
-	inline bool			isNotGuardian() { return !isGuardian(); }
+	bool isGuardian() { return _name == kGuardian_Han || _name == kGuardian_Roshi; }
+	bool isNotGuardian() { return !isGuardian(); }
 	// role extensions
-	inline bool			isCom() { return _role == Role::Com; }
-	inline bool			isPlayer() { return _role == Role::Player; }
-	inline bool			isPlayerOrCom() { return isPlayer() || isCom(); }
-	inline bool			isFlog() { return _role == Role::Flog; }
-	inline bool			isTower() { return _role == Role::Tower; }
-	inline bool			isBullet() { return _role == Role::Bullet; }
-	inline bool			isClone() { return _role == Role::Clone; }
-	inline bool			isKugutsu() { return _role == Role::Kugutsu; }
-	inline bool			isMon() { return _role == Role::Mon; }
-	inline bool			isSummon() { return _role == Role::Summon; }
-	inline bool			isNotCom() { return _role != Role::Com; }
-	inline bool			isNotPlayer() { return _role != Role::Player; }
-	inline bool			isNotFlog() { return _role != Role::Flog; }
-	inline bool			isNotTower() { return _role != Role::Tower; }
-	inline bool			isNotBullet() { return _role != Role::Bullet; }
-	inline bool			isNotClone() { return _role != Role::Clone; }
-	inline bool			isNotKugutsu() { return _role != Role::Kugutsu; }
-	inline bool			isNotMon() { return _role != Role::Mon; }
-	inline bool			isNotSummon() { return _role != Role::Summon; }
+	bool isCom() { return _role == Role::Com; }
+	bool isPlayer() { return _role == Role::Player; }
+	bool isPlayerOrCom() { return isPlayer() || isCom(); }
+	bool isFlog() { return _role == Role::Flog; }
+	bool isTower() { return _role == Role::Tower; }
+	bool isBullet() { return _role == Role::Bullet; }
+	bool isClone() { return _role == Role::Clone; }
+	bool isKugutsu() { return _role == Role::Kugutsu; }
+	bool isMon() { return _role == Role::Mon; }
+	bool isSummon() { return _role == Role::Summon; }
+	bool isNotCom() { return _role != Role::Com; }
+	bool isNotPlayer() { return _role != Role::Player; }
+	bool isNotFlog() { return _role != Role::Flog; }
+	bool isNotTower() { return _role != Role::Tower; }
+	bool isNotBullet() { return _role != Role::Bullet; }
+	bool isNotClone() { return _role != Role::Clone; }
+	bool isNotKugutsu() { return _role != Role::Kugutsu; }
+	bool isNotMon() { return _role != Role::Mon; }
+	bool isNotSummon() { return _role != Role::Summon; }
 	// group extensions
-	inline bool			isKonohaGroup() { return _group == Group::Konoha; }
-	inline bool			isAkatsukiGroup() { return _group == Group::Akatsuki; }
+	bool isKonohaGroup() { return _group == Group::Konoha; }
+	bool isAkatsukiGroup() { return _group == Group::Akatsuki; }
 	// monster extensions
-	inline bool			hasMonsterArrayAny() { return !_monsterArray.empty(); }
-	inline void			removeMon(CharacterBase *mo) {
+	bool hasMonsterArrayAny() { return !_monsterArray.empty(); }
+	void removeMon(CharacterBase *mo) {
 		if (hasMonsterArrayAny())
 			std::erase(_monsterArray, mo);
 	}
-	inline void			removeAllMonAndCleanup(const string &name) {
+	void removeAllMonAndCleanup(const string &name) {
 		if (hasMonsterArrayAny()) {
 			for (auto mo : _monsterArray)
 			{
@@ -550,24 +550,24 @@ public:
 		}
 	}
 	// Utilities
-	void				increaseAllCkrs(uint32_t value, bool enableLv2 = true, bool enableLv4 = true);
-	inline void			increaseHpAndUpdateUI(uint32_t value);
+	void increaseAllCkrs(uint32_t value, bool enableLv2 = true, bool enableLv4 = true);
+	void increaseHpAndUpdateUI(uint32_t value);
 protected:
 	// find enemy extensions
-	inline bool			findHero(int searchRange, bool masterRange = false) { return findEnemy(Role::Hero, searchRange, masterRange); }
-	inline bool			findFlog(int searchRange, bool masterRange = false) { return findEnemy(Role::Flog, searchRange, masterRange); }
-	inline bool			findTower(int searchRange, bool masterRange = false) { return findEnemy(Role::Tower, searchRange, masterRange); }
-	inline bool			notFindHero(int searchRange, bool masterRange = false) { return !findEnemy(Role::Hero, searchRange, masterRange); }
-	inline bool			notFindFlog(int searchRange, bool masterRange = false) { return !findEnemy(Role::Flog, searchRange, masterRange); }
-	inline bool			notFindTower(int searchRange, bool masterRange = false) { return !findEnemy(Role::Tower, searchRange, masterRange); }
-	inline bool			findHeroHalf() { return findEnemy2(Role::Hero); }
-	inline bool			findFlogHalf() { return findEnemy2(Role::Flog); }
-	inline bool			findTowerHalf() { return findEnemy2(Role::Tower); }
-	inline bool			notFindHeroHalf() { return !findEnemy2(Role::Hero); }
-	inline bool			notFindFlogHalf() { return !findEnemy2(Role::Flog); }
-	inline bool			notFindTowerHalf() { return !findEnemy2(Role::Tower); }
+	bool findHero(int searchRange, bool masterRange = false) { return findEnemy(Role::Hero, searchRange, masterRange); }
+	bool findFlog(int searchRange, bool masterRange = false) { return findEnemy(Role::Flog, searchRange, masterRange); }
+	bool findTower(int searchRange, bool masterRange = false) { return findEnemy(Role::Tower, searchRange, masterRange); }
+	bool notFindHero(int searchRange, bool masterRange = false) { return !findEnemy(Role::Hero, searchRange, masterRange); }
+	bool notFindFlog(int searchRange, bool masterRange = false) { return !findEnemy(Role::Flog, searchRange, masterRange); }
+	bool notFindTower(int searchRange, bool masterRange = false) { return !findEnemy(Role::Tower, searchRange, masterRange); }
+	bool findHeroHalf() { return findEnemy2(Role::Hero); }
+	bool findFlogHalf() { return findEnemy2(Role::Flog); }
+	bool findTowerHalf() { return findEnemy2(Role::Tower); }
+	bool notFindHeroHalf() { return !findEnemy2(Role::Hero); }
+	bool notFindFlogHalf() { return !findEnemy2(Role::Flog); }
+	bool notFindTowerHalf() { return !findEnemy2(Role::Tower); }
 	// AI extensions
-	void				tryBuyGear(GearType gear1, GearType gear2, GearType gear3) {
+	void tryBuyGear(GearType gear1, GearType gear2, GearType gear3) {
 		if (getCoin() >= 500 && getGearArray().size() < 3 && !_isControlled && getGameLayer()->_enableGear)
 		{
 			if (getGearArray().size() == 0)
@@ -578,7 +578,7 @@ protected:
 				setGear(gear3);
 		}
 	}
-	inline void			tryUseGear6() {
+	void tryUseGear6() {
 		if (_isCanGear06)
 		{
 			if ((_actionState == State::FLOAT ||
@@ -591,7 +591,7 @@ protected:
 			}
 		}
 	}
-	bool				needBackToTowerToRestoreHP(bool isNeedBack = true) {
+	bool needBackToTowerToRestoreHP(bool isNeedBack = true) {
 		if (checkRetri() && isNeedBack)
 		{
 			if (_mainTarget)
@@ -614,7 +614,7 @@ protected:
 		}
 		return false;
 	}
-	bool				needBackToDefendTower(bool isNeedBack = true) {
+	bool needBackToDefendTower(bool isNeedBack = true) {
 		if (isBaseDanger && checkBase() && !_isControlled && isNeedBack)
 		{
 			bool needBack = false;
@@ -640,7 +640,7 @@ protected:
 		}
 		return false;
 	}
-	inline bool			checkMove(float x = 32, float y = 32) {
+	bool checkMove(float x = 32, float y = 32) {
 		auto sp = getDistanceToTarget();
 		if (abs(sp.x) > x || abs(sp.y) > y)
 		{
@@ -650,7 +650,7 @@ protected:
 		}
 		return false;
 	}
-	inline void			checkHealingState() {
+	void checkHealingState() {
 		if (_isHealing && getHpPercent() < 1)
 		{
 			if (isFreeActionState())
@@ -664,22 +664,22 @@ protected:
 			stepOn();
 		}
 	}
-	inline Vec2			getDirByMoveTo(CharacterBase *target) {
+	Vec2 getDirByMoveTo(CharacterBase *target) {
 		return (target->getPosition() - getPosition()).getNormalized();
 	}
-	inline Vec2			getDistanceToTarget() {
+	Vec2 getDistanceToTarget() {
 		return _mainTarget->_originY
 			? Vec2(_mainTarget->getPositionX(), _mainTarget->_originY) - getPosition()
 			: _mainTarget->getPosition() - getPosition();
 	}
-	inline Vec2			getDistanceToTargetAndIgnoreOriginY() {
+	Vec2 getDistanceToTargetAndIgnoreOriginY() {
 		return _mainTarget->getPosition() - getPosition();
 	}
 public:
 	// actoin state extensions
 
 	// Action is State::IDLE or State::WALK or State::NATTACK
-	inline bool			isFreeActionState() {
+	bool isFreeActionState() {
 		return _actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK;
 	}
 
@@ -696,5 +696,5 @@ protected:
 	virtual void onSetTrap(const string &trapType) { }
 
 private:
-	bool			_affectedByTower;
+	bool	_affectedByTower;
 };

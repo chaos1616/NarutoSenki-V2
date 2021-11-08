@@ -1,6 +1,5 @@
 #pragma once
 #include "cocos2d.h"
-// #include "cocos-ext.h"
 #include "SimpleAudioEngine.h"
 
 #include "Data/Config.h"
@@ -12,7 +11,6 @@
 #include "Utils/Utils.h"
 
 using namespace cocos2d;
-// using namespace cocos2d::extension;
 using namespace CocosDenshion;
 using namespace std;
 
