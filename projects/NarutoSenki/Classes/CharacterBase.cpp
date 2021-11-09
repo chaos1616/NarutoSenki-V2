@@ -1635,9 +1635,9 @@ void CharacterBase::setItem(abType type)
 
 bool CharacterBase::setGear(GearType type)
 {
-	uint32_t gearCost = 0;
+	uint32_t gearCost;
 	// The cost of [ 00 03 06 ] is 500
-	if (type % 3 == 0)
+	if (static_cast<uint32_t>(type) % 3 == 0)
 		gearCost = 500;
 	else
 		gearCost = 1000;
@@ -1653,19 +1653,19 @@ bool CharacterBase::setGear(GearType type)
 
 		switch (type)
 		{
-		case gear00:
+		case GearType::Gear00:
 			_isCanGear00 = true;
 			break;
-		case gear01:
+		case GearType::Gear01:
 			gearCKRValue = 25;
 			break;
-		case gear02:
+		case GearType::Gear02:
 			isAttackGainCKR = true;
 			break;
-		case gear03:
+		case GearType::Gear03:
 			_isCanGear03 = true;
 			break;
-		case gear04:
+		case GearType::Gear04:
 			if (hasTempAttackValue1())
 			{
 				setTempAttackValue1(getTempAttackValue1() + 160);
@@ -1673,7 +1673,7 @@ bool CharacterBase::setGear(GearType type)
 			setNAttackValue(getNAttackValue() + 160);
 			hasArmorBroken = true;
 			break;
-		case gear05:
+		case GearType::Gear05:
 			isGearCD = true;
 			_sAttackCD1 -= 5;
 			_sAttackCD2 -= 5;
@@ -1690,15 +1690,15 @@ bool CharacterBase::setGear(GearType type)
 				getGameLayer()->getHudLayer()->skill3Button->_isColdChanged = true;
 			}
 			break;
-		case gear06:
+		case GearType::Gear06:
 			_isCanGear06 = true;
 			break;
-		case gear07:
+		case GearType::Gear07:
 			gearRecoverValue = 3000;
 			getGameLayer()->getHudLayer()->item1Button->setCD(3000);
 			getGameLayer()->getHudLayer()->item1Button->_isColdChanged = true;
 			break;
-		case gear08:
+		case GearType::Gear08:
 			setMaxHPValue(getMaxHP() + 6000);
 			hasArmor = true;
 			break;
@@ -1717,7 +1717,7 @@ void CharacterBase::useGear(GearType type)
 	if (_isControlled)
 		return;
 
-	if (type == gear00)
+	if (type == GearType::Gear00)
 	{
 		if (_actionState == State::NATTACK ||
 			_actionState == State::WALK ||
@@ -1750,13 +1750,13 @@ void CharacterBase::useGear(GearType type)
 			}
 		}
 	}
-	else if (type == gear03)
+	else if (type == GearType::Gear03)
 	{
 		_isCanGear03 = false;
 		setMon("Traps");
 		scheduleOnce(schedule_selector(CharacterBase::enableGear03), 15.0f);
 	}
-	else if (type == gear06)
+	else if (type == GearType::Gear06)
 	{
 		_isCanGear06 = false;
 		scheduleOnce(schedule_selector(CharacterBase::enableGear06), 15.0f);

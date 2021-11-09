@@ -9,7 +9,7 @@ class Tsunade : public Hero
 		_mainTarget = nullptr;
 		findHeroHalf();
 
-		tryBuyGear(gear03, gear02, gear04);
+		tryBuyGear(GearType::Gear03, GearType::Gear02, GearType::Gear04);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())
@@ -67,7 +67,7 @@ class Tsunade : public Hero
 					}
 					if (_isCanGear03)
 					{
-						useGear(gear03);
+						useGear(GearType::Gear03);
 					}
 					if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000 && !_isArmored)
 					{
@@ -115,7 +115,7 @@ class Tsunade : public Hero
 			{
 				if (_isCanGear03)
 				{
-					useGear(gear03);
+					useGear(GearType::Gear03);
 				}
 				if (_mainTarget->isFlog() && _isCanSkill1 && !_isArmored && isBaseDanger)
 				{

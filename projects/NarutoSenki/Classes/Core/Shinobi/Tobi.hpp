@@ -8,7 +8,7 @@ class Tobi : public Hero
 		_mainTarget = nullptr;
 		findHeroHalf();
 
-		tryBuyGear(gear03, gear02, gear05);
+		tryBuyGear(GearType::Gear03, GearType::Gear02, GearType::Gear05);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())
@@ -89,7 +89,7 @@ class Tobi : public Hero
 
 						if (_isCanGear03)
 						{
-							useGear(gear03);
+							useGear(GearType::Gear03);
 						}
 
 						changeSide(sp);
@@ -132,7 +132,7 @@ class Tobi : public Hero
 				{
 					if (_isCanGear03)
 					{
-						useGear(gear03);
+						useGear(GearType::Gear03);
 					}
 					changeSide(sp);
 					attack(NAttack);

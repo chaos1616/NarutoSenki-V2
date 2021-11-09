@@ -16,7 +16,7 @@ class Kiba : public Hero
 		_mainTarget = nullptr;
 		findHeroHalf();
 
-		tryBuyGear(gear00, gear04, gear08);
+		tryBuyGear(GearType::Gear00, GearType::Gear04, GearType::Gear08);
 
 		if (needBackToTowerToRestoreHP())
 			return;
@@ -33,9 +33,8 @@ class Kiba : public Hero
 					if (abs(sp.x) > 32 || abs(sp.y) > 32)
 					{
 						if (_isCanGear00)
-						{
-							useGear(gear00);
-						}
+							useGear(GearType::Gear00);
+
 						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
@@ -69,9 +68,8 @@ class Kiba : public Hero
 					if (abs(sp.x) > 32 || abs(sp.y) > 32)
 					{
 						if (_isCanGear00)
-						{
-							useGear(gear00);
-						}
+							useGear(GearType::Gear00);
+
 						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;

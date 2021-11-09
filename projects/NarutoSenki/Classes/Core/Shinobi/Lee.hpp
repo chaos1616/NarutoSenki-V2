@@ -197,7 +197,7 @@ class Lee : public Hero
 		findHeroHalf();
 
 		tryUseGear6();
-		tryBuyGear(gear06, gear07, gear02);
+		tryBuyGear(GearType::Gear06, GearType::Gear07, GearType::Gear02);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())
@@ -296,7 +296,7 @@ class Lee : public Hero
 		findHeroHalf();
 
 		tryUseGear6();
-		tryBuyGear(gear06, gear07, gear02);
+		tryBuyGear(GearType::Gear06, GearType::Gear07, GearType::Gear02);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())

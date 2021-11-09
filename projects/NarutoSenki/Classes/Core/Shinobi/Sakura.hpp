@@ -8,7 +8,7 @@ class Sakura : public Hero
 		_mainTarget = nullptr;
 		findHeroHalf();
 
-		tryBuyGear(gear00, gear04, gear08);
+		tryBuyGear(GearType::Gear00, GearType::Gear04, GearType::Gear08);
 
 		if (needBackToTowerToRestoreHP())
 			return;
@@ -25,9 +25,8 @@ class Sakura : public Hero
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
 						if (_isCanGear00)
-						{
-							useGear(gear00);
-						}
+							useGear(GearType::Gear00);
+
 						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
@@ -42,9 +41,8 @@ class Sakura : public Hero
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
 						if (_isCanGear00)
-						{
-							useGear(gear00);
-						}
+							useGear(GearType::Gear00);
+
 						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;

@@ -8,7 +8,7 @@ class Shikamaru : public Hero
 		_mainTarget = nullptr;
 		findHeroHalf();
 
-		tryBuyGear(gear00, gear07, gear08);
+		tryBuyGear(GearType::Gear00, GearType::Gear07, GearType::Gear08);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())
@@ -38,9 +38,8 @@ class Shikamaru : public Hero
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
 						if (_isCanGear00)
-						{
-							useGear(gear00);
-						}
+							useGear(GearType::Gear00);
+
 						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
@@ -69,9 +68,7 @@ class Shikamaru : public Hero
 					if (abs(sp.x) > 156 || abs(sp.y) > 32)
 					{
 						if (_isCanGear00)
-						{
-							useGear(gear00);
-						}
+							useGear(GearType::Gear00);
 
 						moveDirection = sp.getNormalized();
 						walk(moveDirection);

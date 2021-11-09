@@ -19,7 +19,7 @@ class Jiraiya : public Hero
 		findHeroHalf();
 
 		tryUseGear6();
-		tryBuyGear(gear06, gear01, gear02);
+		tryBuyGear(GearType::Gear06, GearType::Gear01, GearType::Gear02);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())
@@ -135,7 +135,7 @@ class Jiraiya : public Hero
 		findHeroHalf();
 
 		tryUseGear6();
-		tryBuyGear(gear06, gear01, gear02);
+		tryBuyGear(GearType::Gear06, GearType::Gear01, GearType::Gear02);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())

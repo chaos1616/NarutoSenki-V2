@@ -8,7 +8,7 @@ class Kisame : public Hero
 		_mainTarget = nullptr;
 		findHeroHalf();
 
-		tryBuyGear(gear00, gear01, gear05);
+		tryBuyGear(GearType::Gear00, GearType::Gear01, GearType::Gear05);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())
@@ -26,9 +26,8 @@ class Kisame : public Hero
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
 						if (_isCanGear00)
-						{
-							useGear(gear00);
-						}
+							useGear(GearType::Gear00);
+
 						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
@@ -43,9 +42,8 @@ class Kisame : public Hero
 					if (abs(sp.x) > 48 || abs(sp.y) > 32)
 					{
 						if (_isCanGear00)
-						{
-							useGear(gear00);
-						}
+							useGear(GearType::Gear00);
+
 						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;

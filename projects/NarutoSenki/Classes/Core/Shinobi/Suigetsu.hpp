@@ -8,7 +8,7 @@ class Suigetsu : public Hero
 		_mainTarget = nullptr;
 		findHeroHalf();
 
-		tryBuyGear(gear00, gear05, gear01);
+		tryBuyGear(GearType::Gear00, GearType::Gear05, GearType::Gear01);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())
@@ -26,9 +26,8 @@ class Suigetsu : public Hero
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
 						if (_isCanGear00)
-						{
-							useGear(gear00);
-						}
+							useGear(GearType::Gear00);
+
 						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
@@ -43,9 +42,8 @@ class Suigetsu : public Hero
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
 						if (_isCanGear00)
-						{
-							useGear(gear00);
-						}
+							useGear(GearType::Gear00);
+
 						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;

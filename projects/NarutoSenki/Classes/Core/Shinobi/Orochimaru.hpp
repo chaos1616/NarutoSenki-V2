@@ -9,7 +9,7 @@ class Orochimaru : public Hero
 		findHeroHalf();
 
 		tryUseGear6();
-		tryBuyGear(gear06, gear08, gear01);
+		tryBuyGear(GearType::Gear06, GearType::Gear08, GearType::Gear01);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())

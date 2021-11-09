@@ -9,7 +9,7 @@ class Karin : public Hero
 		findHeroHalf();
 
 		tryUseGear6();
-		tryBuyGear(gear06, gear01, gear07);
+		tryBuyGear(GearType::Gear06, GearType::Gear01, GearType::Gear07);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())

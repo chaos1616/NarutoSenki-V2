@@ -9,7 +9,7 @@ class Kimimaro : public Hero
 		findHeroHalf();
 
 		tryUseGear6();
-		tryBuyGear(gear06, gear05, gear07);
+		tryBuyGear(GearType::Gear06, GearType::Gear05, GearType::Gear07);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())

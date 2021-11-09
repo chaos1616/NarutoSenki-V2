@@ -391,7 +391,7 @@ void GearLayer::updateGearList()
 		bool isBuyed = false;
 		for (auto gear : getGameLayer()->currentPlayer->getGearArray())
 		{
-			if (gear == i)
+			if (static_cast<uint32_t>(gear) == i)
 				isBuyed = true;
 		}
 

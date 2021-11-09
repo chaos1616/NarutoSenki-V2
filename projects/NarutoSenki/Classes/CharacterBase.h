@@ -121,7 +121,7 @@ public:
 
 	// 忍び：Kakuzu ability
 	uint32_t			hearts;
-	// gear02 ability
+	// Gear02 ability
 	bool				isAttackGainCKR;
 	// 口寄せ：Bikyu ability
 	// 忍び：Guardian & Naruto-Rikutou & Naruto-Sage ability
@@ -587,7 +587,7 @@ protected:
 				 _actionState == State::KNOCKDOWN) &&
 				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
-				useGear(gear06);
+				useGear(GearType::Gear06);
 			}
 		}
 	}
@@ -599,14 +599,14 @@ protected:
 				if (stepBack2())
 				{
 					if (_isCanGear00 && !_isArmored)
-						useGear(gear00);
+						useGear(GearType::Gear00);
 					return true;
 				}
 			}
 			else
 			{
 				if (_isCanGear00)
-					useGear(gear00);
+					useGear(GearType::Gear00);
 
 				if (stepBack())
 					return true;
@@ -632,7 +632,7 @@ protected:
 			if (needBack)
 			{
 				if (_isCanGear00)
-					useGear(gear00);
+					useGear(GearType::Gear00);
 
 				if (stepBack2())
 					return true;
@@ -659,7 +659,7 @@ protected:
 		else
 		{
 			if (_isCanGear00 && !_isArmored)
-				useGear(gear00);
+				useGear(GearType::Gear00);
 
 			stepOn();
 		}

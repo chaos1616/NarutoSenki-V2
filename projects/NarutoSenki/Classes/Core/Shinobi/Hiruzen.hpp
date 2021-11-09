@@ -8,7 +8,7 @@ class Hiruzen : public Hero
 		_mainTarget = nullptr;
 		findHeroHalf();
 
-		tryBuyGear(gear00, gear02, gear08);
+		tryBuyGear(GearType::Gear00, GearType::Gear02, GearType::Gear08);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())
@@ -31,9 +31,8 @@ class Hiruzen : public Hero
 					else if (abs(sp.x) > 96 || abs(sp.y) > 32)
 					{
 						if (_isCanGear00)
-						{
-							useGear(gear00);
-						}
+							useGear(GearType::Gear00);
+
 						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
@@ -48,9 +47,8 @@ class Hiruzen : public Hero
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
 						if (_isCanGear00)
-						{
-							useGear(gear00);
-						}
+							useGear(GearType::Gear00);
+
 						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;

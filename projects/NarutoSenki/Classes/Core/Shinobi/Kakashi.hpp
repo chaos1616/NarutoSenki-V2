@@ -10,7 +10,7 @@ class Kakashi : public Hero
 		findHeroHalf();
 
 		tryUseGear6();
-		tryBuyGear(gear06, gear05, gear02);
+		tryBuyGear(GearType::Gear06, GearType::Gear05, GearType::Gear02);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())

@@ -610,19 +610,19 @@ void HudLayer::updateGears()
 			gear3Button->setGearType(gear);
 		}
 
-		if (gear == 6 && getItem2Button()->_gearType == GearType::None)
+		if (gear == GearType::Gear06 && getItem2Button()->_gearType == GearType::None)
 		{
 			getItem2Button()->_gearType = gear;
 			getItem2Button()->setVisible(true);
 			getItem2Button()->_isLock = false;
 		}
-		else if (gear == 0 && getItem3Button()->_gearType == GearType::None)
+		else if (gear == GearType::Gear00 && getItem3Button()->_gearType == GearType::None)
 		{
 			getItem3Button()->_gearType = gear;
 			getItem3Button()->_isLock = false;
 			getItem3Button()->setVisible(true);
 		}
-		else if (gear == 3 && getItem4Button()->_gearType == GearType::None)
+		else if (gear == GearType::Gear03 && getItem4Button()->_gearType == GearType::None)
 		{
 			getItem4Button()->setVisible(true);
 			getItem4Button()->_gearType = gear;

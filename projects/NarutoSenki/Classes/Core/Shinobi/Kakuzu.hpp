@@ -113,7 +113,7 @@ class Kakuzu : public Hero
 
 		findHeroHalf();
 
-		tryBuyGear(gear03, gear08, gear04);
+		tryBuyGear(GearType::Gear03, GearType::Gear08, GearType::Gear04);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())
@@ -155,7 +155,7 @@ class Kakuzu : public Hero
 
 					if (_isCanGear03)
 					{
-						useGear(gear03);
+						useGear(GearType::Gear03);
 					}
 
 					changeSide(sp);

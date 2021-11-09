@@ -45,7 +45,7 @@ class Naruto : public Hero
 		_mainTarget = nullptr;
 		findHeroHalf();
 
-		tryBuyGear(gear03, gear07, gear02);
+		tryBuyGear(GearType::Gear03, GearType::Gear07, GearType::Gear02);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())
@@ -99,7 +99,7 @@ class Naruto : public Hero
 					}
 					else if (_isCanGear03)
 					{
-						useGear(gear03);
+						useGear(GearType::Gear03);
 					}
 					else if (_isCanSkill3 && !_isArmored && _mainTarget->getDEF() < 5000)
 					{
@@ -233,7 +233,7 @@ class Naruto : public Hero
 		_mainTarget = nullptr;
 		findHeroHalf();
 
-		tryBuyGear(gear03, gear07, gear02);
+		tryBuyGear(GearType::Gear03, GearType::Gear07, GearType::Gear02);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())
@@ -292,7 +292,7 @@ class Naruto : public Hero
 					}
 					else if (_isCanGear03)
 					{
-						useGear(gear03);
+						useGear(GearType::Gear03);
 					}
 					else if (_isCanSkill1 && !_isArmored && _mainTarget->getDEF() < 5000)
 					{
@@ -411,7 +411,7 @@ class Naruto : public Hero
 		_mainTarget = nullptr;
 		findHeroHalf();
 
-		tryBuyGear(gear03, gear07, gear02);
+		tryBuyGear(GearType::Gear03, GearType::Gear07, GearType::Gear02);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())
@@ -450,7 +450,7 @@ class Naruto : public Hero
 				}
 				else if (_isCanGear03)
 				{
-					useGear(gear03);
+					useGear(GearType::Gear03);
 				}
 				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealing && !_isArmored && !_isControlled)
 				{

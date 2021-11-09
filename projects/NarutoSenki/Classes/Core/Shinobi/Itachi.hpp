@@ -9,7 +9,7 @@ class Itachi : public Hero
 		findHeroHalf();
 
 		tryUseGear6();
-		tryBuyGear(gear06, gear02, gear05);
+		tryBuyGear(GearType::Gear06, GearType::Gear02, GearType::Gear05);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())

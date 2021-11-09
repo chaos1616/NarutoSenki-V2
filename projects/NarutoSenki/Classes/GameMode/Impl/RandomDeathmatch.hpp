@@ -146,41 +146,41 @@ public:
 			newChar->updateDataByLVOnly();
 			for (auto gear : c->getGearArray())
 			{
-				if (gear == gear00)
+				if (gear == GearType::Gear00)
 				{
 					newChar->_isCanGear00 = true;
 				}
-				else if (gear == gear01)
+				else if (gear == GearType::Gear01)
 				{
 					newChar->gearCKRValue = 25;
 				}
-				else if (gear == gear02)
+				else if (gear == GearType::Gear02)
 				{
 					newChar->isAttackGainCKR = true;
 				}
-				else if (gear == gear03)
+				else if (gear == GearType::Gear03)
 				{
 					newChar->_isCanGear03 = true;
 				}
-				else if (gear == gear04)
+				else if (gear == GearType::Gear04)
 				{
 					if (newChar->getTempAttackValue1())
 						newChar->setTempAttackValue1(newChar->getTempAttackValue1() + 160);
 					newChar->setNAttackValue(newChar->getNAttackValue() + 160);
 					newChar->hasArmorBroken = true;
 				}
-				else if (gear == gear05)
+				else if (gear == GearType::Gear05)
 				{
 					newChar->isGearCD = true;
 					newChar->_sAttackCD1 -= 5;
 					newChar->_sAttackCD2 -= 5;
 					newChar->_sAttackCD3 -= 5;
 				}
-				else if (gear == gear06)
+				else if (gear == GearType::Gear06)
 				{
 					newChar->_isCanGear06 = true;
 				}
-				else if (gear == gear07)
+				else if (gear == GearType::Gear07)
 				{
 					newChar->gearRecoverValue = 3000;
 					if (isPlayer)
@@ -189,7 +189,7 @@ public:
 						hudLayer->item1Button->_isColdChanged = true;
 					}
 				}
-				else if (gear == gear08)
+				else if (gear == GearType::Gear08)
 				{
 					newChar->setMaxHPValue(newChar->getMaxHP() + 6000);
 					newChar->hasArmor = true;

@@ -19,7 +19,7 @@ class Kankuro : public Hero
 		findHeroHalf();
 
 		tryUseGear6();
-		tryBuyGear(gear06, gear04, gear08);
+		tryBuyGear(GearType::Gear06, GearType::Gear04, GearType::Gear08);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())

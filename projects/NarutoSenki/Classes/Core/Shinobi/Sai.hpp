@@ -9,7 +9,7 @@ class Sai : public Hero
 		findHeroHalf();
 
 		tryUseGear6();
-		tryBuyGear(gear06, gear05, gear01);
+		tryBuyGear(GearType::Gear06, GearType::Gear05, GearType::Gear01);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())

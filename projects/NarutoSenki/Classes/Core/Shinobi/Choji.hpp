@@ -9,7 +9,7 @@ class Choji : public Hero
 		findHeroHalf();
 
 		tryUseGear6();
-		tryBuyGear(gear06, gear01, gear04);
+		tryBuyGear(GearType::Gear06, GearType::Gear01, GearType::Gear04);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())

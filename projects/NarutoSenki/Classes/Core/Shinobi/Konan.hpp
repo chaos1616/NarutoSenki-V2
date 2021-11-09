@@ -8,7 +8,7 @@ class Konan : public Hero
 		_mainTarget = nullptr;
 		findHeroHalf();
 
-		tryBuyGear(gear03, gear05, gear02);
+		tryBuyGear(GearType::Gear03, GearType::Gear05, GearType::Gear02);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())
@@ -110,7 +110,7 @@ class Konan : public Hero
 					{
 						if (_isCanGear03)
 						{
-							useGear(gear03);
+							useGear(GearType::Gear03);
 						}
 						if (!_isArmored)
 						{
@@ -149,7 +149,7 @@ class Konan : public Hero
 			{
 				if (_isCanGear03)
 				{
-					useGear(gear03);
+					useGear(GearType::Gear03);
 				}
 				if (_isCanOugis1 && !_isControlled && !_isArmored && _mainTarget->isFlog() && isBaseDanger)
 				{

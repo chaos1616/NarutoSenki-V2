@@ -17,7 +17,7 @@ class Chiyo : public Hero
 		findHeroHalf();
 
 		tryUseGear6();
-		tryBuyGear(gear06, gear07, gear04);
+		tryBuyGear(GearType::Gear06, GearType::Gear07, GearType::Gear04);
 
 		if (needBackToTowerToRestoreHP() ||
 			needBackToDefendTower())

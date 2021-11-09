@@ -71,17 +71,17 @@ enum abType : uint8_t
 };
 
 // declare GearButton
-enum GearType : uint8_t
+enum class GearType : uint8_t
 {
-	gear00,
-	gear01,
-	gear02,
-	gear03,
-	gear04,
-	gear05,
-	gear06,
-	gear07,
-	gear08,
+	Gear00,
+	Gear01,
+	Gear02,
+	Gear03,
+	Gear04,
+	Gear05,
+	Gear06,
+	Gear07,
+	Gear08,
 	None
 };
 

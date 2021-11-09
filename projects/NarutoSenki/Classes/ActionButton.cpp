@@ -149,15 +149,15 @@ bool ActionButton::isCanClick()
 			{
 				if (!_delegate->ougisLayer && getTimeCount() == 0 && !_isLock)
 				{
-					if (_gearType == gear06 && getGameLayer()->currentPlayer->getActionState() != State::DEAD)
+					if (_gearType == GearType::Gear06 && getGameLayer()->currentPlayer->getActionState() != State::DEAD)
 					{
 						return true;
 					}
-					else if (_gearType == gear00 && _delegate->getSkillFinish())
+					else if (_gearType == GearType::Gear00 && _delegate->getSkillFinish())
 					{
 						return true;
 					}
-					else if (_gearType == gear03)
+					else if (_gearType == GearType::Gear03)
 					{
 						return true;
 					}
