@@ -25,7 +25,7 @@ public:
 	bool _isBottom;
 	float prePosY;
 	MenuButtonType _type;
-	CC_SYNTHESIZE(StartMenu *, _startMenu, Delegate);
+	PROP(StartMenu *, _startMenu, Delegate);
 
 	bool init(const char *szImage);
 	Rect getRect();

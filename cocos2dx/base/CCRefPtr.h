@@ -167,13 +167,13 @@ public:
     
     T & operator * () const
     {
-        CCASSERT(_ptr, "Attempt to dereference a null pointer!");
+        CCAssert(_ptr, "Attempt to dereference a null pointer!");
         return *_ptr;
     }
     
     T * operator->() const
     {
-        CCASSERT(_ptr, "Attempt to dereference a null pointer!");
+        CCAssert(_ptr, "Attempt to dereference a null pointer!");
         return _ptr;
     }
     
@@ -267,7 +267,7 @@ private:
     T * _ptr;
 
     // NOTE: We can ensure T is derived from cocos2d::CCObject at compile time here.
-    static_assert(std::is_base_of<CCObject, typename std::remove_const<T>::type>::value, "T must be derived from CCObject");
+    static_assert(std::is_convertible<T*, CCObject*>::value, "T must be derived from CCObject");
 };
 
 template <class T> inline

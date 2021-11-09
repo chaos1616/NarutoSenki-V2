@@ -35,7 +35,7 @@ public:
 	virtual void		changeHPbar();
 	virtual void		setShadows();
 
-	PROP_String(_name, Name);
+	PPROP(string, _name, Name);
 	PPROP(Role, _role, Role);
 	PPROP(Group, _group, Group);
 	VPROP(int, _charId, CharId);
@@ -48,9 +48,9 @@ public:
 	PROP_UInt(_coin, Coin);
 
 
-	CharacterBase*		_slayer;
-	CharacterBase*		_sticker;
-	CharacterBase*		_mainTarget;
+	CharacterBase*			_slayer;
+	CharacterBase*			_sticker;
+	RefPtr<CharacterBase>	_mainTarget;
 
 	bool				isHurtingTower;
 
@@ -151,9 +151,9 @@ public:
 	VPROP(Vec2,_spawnPoint,SpawnPoint);
 
 
-	CC_SYNTHESIZE(CharacterBase*,_master,Master);
-	CC_SYNTHESIZE(CharacterBase*,_controller,Controller);
-	CC_SYNTHESIZE(CharacterBase*,_secmaster,SecMaster);
+	VPROP(CharacterBase*, _master, Master);
+	VPROP(CharacterBase*, _controller, Controller);
+	VPROP(CharacterBase*, _secmaster, SecMaster);
 
 	PROP_REF(string,_attackType,AttackType);
 	uint32_t		_attackValue;
@@ -235,31 +235,31 @@ public:
 
 	vector<CCLabelBMFont *>	_damageArray;
 	uint32_t				damageEffectCount;
-	PROP_Vector(vector<CharacterBase *>,_monsterArray,MonsterArray);
+	PROP_Vector(vector<CharacterBase *>, _monsterArray, MonsterArray);
 
 	// movement
 	PROP(Vec2,_velocity, Velocity);
 	PROP(Vec2,_desiredPosition, DesiredPosition);
 
 	// actions
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_idleAction, IdleAction);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_nAttackAction, NAttackAction);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_walkAction, WalkAction);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_hurtAction, HurtAction);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_knockDownAction, KnockDownAction);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_airHurtAction, AirHurtAction);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_floatAction, FloatAction);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_deadAction, DeadAction); 
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _idleAction, IdleAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _nAttackAction, NAttackAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _walkAction, WalkAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _hurtAction, HurtAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _knockDownAction, KnockDownAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _airHurtAction, AirHurtAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _floatAction, FloatAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _deadAction, DeadAction); 
 
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_skill1Action, Skill1Action);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_skill2Action, Skill2Action);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_skill3Action, Skill3Action);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_skill4Action, Skill4Action);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_skill5Action, Skill5Action);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _skill1Action, Skill1Action);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _skill2Action, Skill2Action);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _skill3Action, Skill3Action);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _skill4Action, Skill4Action);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _skill5Action, Skill5Action);
 
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_moveAction, MoveAction);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_floatUPAction, FloatUPAction);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_jumpUPAction, JumpUPAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _moveAction, MoveAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _floatUPAction, FloatUPAction);
+	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _jumpUPAction, JumpUPAction);
 
 
 	void				update(float dt);

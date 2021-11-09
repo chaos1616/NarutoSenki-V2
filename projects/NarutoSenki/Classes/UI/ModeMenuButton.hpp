@@ -4,10 +4,10 @@
 class ModeMenuButton : public Sprite, public CCTouchDelegate
 {
 private:
-	Sprite *lockMask;
+	Sprite *lockMask = nullptr;
 
 public:
-	CC_SYNTHESIZE(GameModeLayer *, _gameModeLayer, Delegate);
+	PROP(GameModeLayer *, _gameModeLayer, Delegate);
 
 	GameMode mode;
 	bool useMask2;

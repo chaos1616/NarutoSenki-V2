@@ -64,12 +64,13 @@ public:                                                              \
 
 // std::string Type Property
 
-#define PROP_String(varName, funName)                            \
-private:                                                         \
-	std::string varName;                                         \
-                                                                 \
-public:                                                          \
-	inline const std::string &get##funName() { return varName; } \
+#define PROP_String(varName, funName)                                \
+private:                                                             \
+	Value varName;                                                   \
+                                                                     \
+public:                                                              \
+	inline std::string get##funName() { return varName.asString(); } \
+	inline const Value &get##funName##_Value() { return varName; }   \
 	inline void set##funName(const std::string &var) { varName = var; }
 
 // cocos2d::Value Type Property
@@ -127,20 +128,3 @@ public:                                                            \
 	inline double get##funName() { return varName.asDouble(); }    \
 	inline const Value &get##funName##_Value() { return varName; } \
 	inline void set##funName(double var) { varName = var; }
-
-// Cocos Extensions
-
-#define CC_SYNTHESIZE_RETAIN_SET_ONLY(varType, varName, funName) \
-private:                                                         \
-	varType varName;                                             \
-                                                                 \
-public:                                                          \
-	inline virtual void set##funName(varType var)                \
-	{                                                            \
-		if (varName != var)                                      \
-		{                                                        \
-			CC_SAFE_RETAIN(var);                                 \
-			CC_SAFE_RELEASE(varName);                            \
-			varName = var;                                       \
-		}                                                        \
-	}

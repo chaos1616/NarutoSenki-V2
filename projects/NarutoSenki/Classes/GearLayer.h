@@ -50,7 +50,7 @@ public:
 	GearType _gearType;
 	GearButtonType _btnType;
 	Sprite *soIcon;
-	CC_SYNTHESIZE(GearLayer *, _delegate, Delegate);
+	PROP(GearLayer *, _delegate, Delegate);
 
 	Rect getRect();
 	void setBtnType(GearType type, GearButtonType btnType, bool isBuyed);
@@ -80,7 +80,7 @@ public:
 	int gearNum;
 	Sprite *screwBar;
 	PROP_Vector(vector<GearButton *>, _gearBtnArray, GearBtnArray);
-	CC_SYNTHESIZE(GearLayer *, _delegate, Delegate);
+	PROP(GearLayer *, _delegate, Delegate);
 
 	CREATE_FUNC(ScrewLayer);
 

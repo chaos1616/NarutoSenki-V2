@@ -71,7 +71,7 @@ public:
 	int _playNum;
 	void checkBackgroundMusic(float dt);
 
-	CC_SYNTHESIZE(HudLayer *, _hudLayer, HudLayer);
+	PROP(HudLayer *, _hudLayer, HudLayer);
 	void onHUDInitialized(const OnHUDInitializedCallback &callback);
 	bool isHUDInit();
 	void setTowerState(int charId);

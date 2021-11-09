@@ -8,4 +8,5 @@
 
 #include "Utils/Keyboard.h"
 
-#include "Utils/Macros.h"
+#include "Utils/Macros/Property.h"
+#include "Utils/Macros/SafePtrProperty.h"

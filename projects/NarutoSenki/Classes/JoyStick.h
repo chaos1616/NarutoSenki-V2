@@ -17,7 +17,7 @@ public:
 	void keyUpdate(float direction);
 	void keyEnded(float direction);
 
-	CC_SYNTHESIZE(HudLayer *, _delegate, Delegate);
+	PROP(HudLayer *, _delegate, Delegate);
 
 	CREATE_FUNC(JoyStick);
 

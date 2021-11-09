@@ -26,7 +26,7 @@ class CCScrewItem : public Sprite, public CCTouchDelegate
 public:
 	Menu *linemenu;
 	Sprite *lockItem;
-	CC_SYNTHESIZE(CCScrewLayer *, _delegate, Delegate);
+	PROP(CCScrewLayer *, _delegate, Delegate);
 
 	CREATE_FUNC(CCScrewItem);
 

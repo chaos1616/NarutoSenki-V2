@@ -55,7 +55,7 @@ public:
 
 	CC_SYNTHESIZE_RETAIN(Action *, _freezeAction, FreezeAction);
 	// CC_SYNTHESIZE_RETAIN(ProgressTimer*,markSprite,MarkSprite);
-	CC_SYNTHESIZE(HudLayer *, _delegate, Delegate);
+	PROP(HudLayer *, _delegate, Delegate);
 	void beganAnimation(bool isLock = false);
 	void updateCDLabel(float dt);
 

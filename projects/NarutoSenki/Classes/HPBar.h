@@ -9,7 +9,7 @@ public:
 	void changeBar(const char *szImage);
 	void loseHP(float percent);
 
-	CC_SYNTHESIZE(CharacterBase *, _delegate, Delegate);
+	PROP(CharacterBase *, _delegate, Delegate);
 	CC_SYNTHESIZE_RETAIN(Sprite *, hpBottom, HPBottom);
 	CC_SYNTHESIZE_RETAIN(Sprite *, hpBar, HPBAR);
 
