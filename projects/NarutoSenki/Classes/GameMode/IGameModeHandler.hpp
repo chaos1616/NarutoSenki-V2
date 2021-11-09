@@ -247,7 +247,7 @@ protected:
 		heroVector.push_back(tmpChar);
 
 		// init com heros
-		vector<string> realHeroVector(kHeroNum);
+		vector<string> realHeroVector;
 		for (size_t i = 0; i < kHeroNum; i++)
 		{
 			if (is_same(selectLayer->_playerSelect, kHeroList[i]))

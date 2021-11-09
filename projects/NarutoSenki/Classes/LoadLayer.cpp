@@ -114,18 +114,11 @@ void LoadLayer::preloadIMG()
 	KTools::prepareFileOGG("Effect");
 	KTools::prepareFileOGG("Ougis");
 
-	try
-	{
-		setRand();
-		int num = rand() % 3 + 1;
-		Sprite *tips = Sprite::createWithSpriteFrameName(format("tip{}.png", num).c_str());
-		tips->setPosition(Vec2(winSize.width / 2, winSize.height / 2));
-		addChild(tips);
-	}
-	catch (...)
-	{
-		CCLOG("error");
-	}
+	setRand();
+	int num = rand() % 3 + 1;
+	Sprite *tips = Sprite::createWithSpriteFrameName(format("tip{}.png", num).c_str());
+	tips->setPosition(Vec2(winSize.width / 2, winSize.height / 2));
+	addChild(tips);
 
 	Sprite *loading = Sprite::createWithSpriteFrameName("loading_font.png");
 	loading->setPosition(Vec2(winSize.width - 120, 45));
