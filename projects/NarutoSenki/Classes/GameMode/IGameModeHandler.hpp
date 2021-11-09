@@ -247,7 +247,7 @@ protected:
 		heroVector.push_back(tmpChar);
 
 		// init com heros
-		vector<string> realHeroVector;
+		vector<string> realHeroVector(kHeroNum);
 		for (size_t i = 0; i < kHeroNum; i++)
 		{
 			if (is_same(selectLayer->_playerSelect, kHeroList[i]))
@@ -263,7 +263,7 @@ protected:
 		}
 
 		string hero;
-		for (int i = 0; i < kComCount; i++)
+		for (int i = 0; i < comCount; i++)
 		{
 			if (i < comOfPlayerGroupCount)
 			{

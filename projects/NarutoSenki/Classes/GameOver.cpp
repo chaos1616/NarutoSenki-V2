@@ -144,7 +144,7 @@ void GameOver::listResult()
 			resultScore = ((killDead - ((_totalSecond / 60.0f - 10) * 4)) / 40) * 100;
 	}
 
-	if (_totalSecond < 2 * 30 + 5 && _isWin)
+	if (_totalSecond < 1 * 60 + 5 && _isWin)
 	{
 		SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
 		Director::sharedDirector()->end();
