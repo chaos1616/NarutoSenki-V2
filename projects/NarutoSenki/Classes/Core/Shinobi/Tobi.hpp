@@ -19,9 +19,9 @@ class Tobi : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
-				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
@@ -116,7 +116,7 @@ class Tobi : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill2 && _mainTarget->isFlog() && isBaseDanger)
 				{
@@ -154,7 +154,7 @@ class Tobi : public Hero
 
 		for (auto hero : getGameLayer()->_CharacterArray)
 		{
-			if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->getActionState() != State::HURT && hero->getActionState() != State::DEAD)
+			if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->getState() != State::HURT && hero->getState() != State::DEAD)
 			{
 				float distanceX = (hero->getPosition() - getPosition()).x;
 				if (distanceX < kAttackRange)
@@ -192,7 +192,7 @@ class Tobi : public Hero
 		setWalkSpeed(224);
 		_originSpeed = 224;
 
-		if (_actionState == State::WALK)
+		if (_state == State::WALK)
 			idle();
 		CharacterBase::resumeAction(dt);
 	}
@@ -218,9 +218,9 @@ class Tobi : public Hero
 	bool onAcceptAttack(CharacterBase *attacker) override
 	{
 		if (_skillChangeBuffValue &&
-			(_actionState == State::IDLE ||
-			 _actionState == State::WALK ||
-			 _actionState == State::NATTACK))
+			(_state == State::IDLE ||
+			 _state == State::WALK ||
+			 _state == State::NATTACK))
 		{
 			if (getOpacity() == 255)
 			{

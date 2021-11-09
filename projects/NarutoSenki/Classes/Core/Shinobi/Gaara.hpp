@@ -20,7 +20,7 @@ class Gaara : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored && _mainTarget->getDEF() < 5000)
 				{
@@ -93,7 +93,7 @@ class Gaara : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_mainTarget->isFlog() && _isCanSkill1 && !_isArmored)
 				{
@@ -144,9 +144,9 @@ class Gaara : public Hero
 		resetDefenseValue(5000);
 		_isArmored = false;
 
-		if (_actionState != State::DEAD)
+		if (_state != State::DEAD)
 		{
-			_actionState = State::WALK;
+			_state = State::WALK;
 			idle();
 		}
 

@@ -114,7 +114,7 @@ public:
 
 				c->removeAllClones();
 				std::erase(getGameLayer()->_CharacterArray, c);
-				UnitEx::RemoveAllFlogsMainTarget(c);
+				getGameLayer()->clearAllFlogsMainTarget(c);
 
 				if (c->_shadow)
 					c->_shadow->removeFromParent();

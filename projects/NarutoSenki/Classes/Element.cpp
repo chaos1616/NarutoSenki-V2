@@ -166,8 +166,8 @@ void Monster::setAI(float dt)
 		for (auto hero : getGameLayer()->_CharacterArray)
 		{
 			if (getGroup() != hero->getGroup() &&
-				hero->getActionState() != State::DEAD &&
-				hero->getActionState() != State::O2ATTACK &&
+				hero->getState() != State::DEAD &&
+				hero->getState() != State::O2ATTACK &&
 				!hero->_isInvincible &&
 				!hero->_isArmored &&
 				hero->_isVisable)
@@ -227,7 +227,7 @@ void Monster::setAI(float dt)
 		{
 			if (abs(sp.x) > 48 || abs(sp.y) > 32)
 			{
-				setActionState(State::WALK);
+				setState(State::WALK);
 				moveDirection = sp.getNormalized();
 				walk(moveDirection);
 				return;
@@ -303,7 +303,7 @@ void Monster::dealloc()
 {
 	stopAllActions();
 	unschedule(schedule_selector(CharacterBase::setAI));
-	setActionState(State::DEAD);
+	setState(State::DEAD);
 
 	if (getName() == SkillEnum::FutonSRK || getName() == SkillEnum::FutonSRK2)
 	{

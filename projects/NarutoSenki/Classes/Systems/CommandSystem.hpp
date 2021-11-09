@@ -265,7 +265,7 @@ private:
 				   {
 					   if (thiz->getGroup() != hero->getGroup() &&
 						   hero->isPlayerOrCom() &&
-						   hero->_actionState != State::DEAD)
+						   hero->_state != State::DEAD)
 					   {
 						   if (hero->_hpBar)
 						   {
@@ -302,7 +302,7 @@ private:
 			   {
 				   if (thiz->getGroup() == hero->getGroup() &&
 					   hero->isPlayerOrCom() &&
-					   hero->_actionState == State::DEAD &&
+					   hero->_state == State::DEAD &&
 					   hero->rebornSprite)
 				   {
 					   hero->unschedule(schedule_selector(Hero::reborn));
@@ -315,7 +315,7 @@ private:
 			   for (auto hero : getGameLayer()->_CharacterArray)
 			   {
 				   if (hero->hearts > 0 &&
-					   hero->_actionState == State::DEAD &&
+					   hero->_state == State::DEAD &&
 					   hero->rebornSprite &&
 					   hero->isPlayerOrCom() &&
 					   hero->getName() != HeroEnum::Kakuzu)
@@ -354,7 +354,7 @@ private:
 			   int tsPosX = thiz->getPositionX();
 			   int tsPosY = thiz->getPositionY();
 
-			   if (thiz->_actionState != State::NATTACK && thiz->hasMonsterArrayAny())
+			   if (thiz->_state != State::NATTACK && thiz->hasMonsterArrayAny())
 			   {
 				   for (auto mo : thiz->getMonsterArray())
 				   {

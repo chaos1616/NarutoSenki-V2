@@ -19,7 +19,7 @@ class Shikamaru : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && !_mainTarget->_isSticking)
 				{
@@ -119,7 +119,7 @@ class Shikamaru : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill2 && _mainTarget->isFlog() && isBaseDanger)
 				{
@@ -148,7 +148,7 @@ class Shikamaru : public Hero
 		{
 			if (hero->_isSticking)
 			{
-				if (hero->getActionState() != State::DEAD)
+				if (hero->getState() != State::DEAD)
 				{
 					hero->removeLostBlood(0.1f);
 					hero->idle();
@@ -167,7 +167,7 @@ class Shikamaru : public Hero
 		{
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
-				if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->getActionState() != State::DEAD && hero->_isVisable && !hero->_isSticking)
+				if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->getState() != State::DEAD && hero->_isVisable && !hero->_isSticking)
 				{
 					float distanceX = (hero->getPosition() - getPosition()).x;
 					float atkRangeX = kAttackRange;

@@ -63,7 +63,6 @@ bool ActionButton::containsTouchLocation(Touch *touch)
 
 bool ActionButton::ccTouchBegan(Touch *touch, Event *event)
 {
-	// touch area
 	if (!containsTouchLocation(touch) || _delegate->_isAllButtonLocked)
 	{
 		return false;
@@ -129,7 +128,7 @@ bool ActionButton::isCanClick()
 			// isSkillFinish consider the AttackAction is done or not to prevent the skill invalid release
 			if (_abType == Item1)
 			{
-				if (!_delegate->ougisLayer && getTimeCount() == 0 && !_isLock && getGameLayer()->currentPlayer->getActionState() != State::DEAD)
+				if (!_delegate->ougisLayer && getTimeCount() == 0 && !_isLock && getGameLayer()->currentPlayer->getState() != State::DEAD)
 				{
 					if (_delegate->offCoin(_cost))
 					{
@@ -149,7 +148,7 @@ bool ActionButton::isCanClick()
 			{
 				if (!_delegate->ougisLayer && getTimeCount() == 0 && !_isLock)
 				{
-					if (_gearType == GearType::Gear06 && getGameLayer()->currentPlayer->getActionState() != State::DEAD)
+					if (_gearType == GearType::Gear06 && getGameLayer()->currentPlayer->getState() != State::DEAD)
 					{
 						return true;
 					}

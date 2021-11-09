@@ -20,7 +20,7 @@ class Tsunade : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000 && !_isArmored)
 				{
@@ -111,7 +111,7 @@ class Tsunade : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanGear03)
 				{
@@ -171,9 +171,9 @@ class Tsunade : public Hero
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 
-		if (_actionState != State::DEAD)
+		if (_state != State::DEAD)
 		{
-			_actionState = State::WALK;
+			_state = State::WALK;
 			idle();
 		}
 		CharacterBase::resumeAction(dt);

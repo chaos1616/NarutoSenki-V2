@@ -28,7 +28,7 @@ class Kurama : public Hero
 			}
 			else
 			{
-				if (isFreeActionState())
+				if (isFreeState())
 				{
 					changeSide(sp);
 					attack(NAttack);

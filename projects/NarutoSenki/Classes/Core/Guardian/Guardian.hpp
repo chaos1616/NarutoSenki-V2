@@ -37,7 +37,7 @@ class Guardian : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				bool isTurn = false;
 				auto gardTower = getGameLayer()->getGuardianGroup();

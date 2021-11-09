@@ -16,7 +16,7 @@ class Sanshouuo : public Hero
 			Vec2 moveDirection;
 			if (abs((_master->getPosition() - getPosition()).x) > kAttackRange - 64)
 			{
-				if (isFreeActionState())
+				if (isFreeState())
 				{
 					moveDirection = getDirByMoveTo(_master);
 					walk(moveDirection);
@@ -31,12 +31,12 @@ class Sanshouuo : public Hero
 			{
 				if (abs(sp.x) > 32 || abs(sp.y) > 32)
 				{
-					if (_master->getActionState() == State::IDLE ||
-						_master->getActionState() == State::WALK ||
-						_master->getActionState() == State::NATTACK ||
-						_master->getActionState() == State::SATTACK ||
-						_master->getActionState() == State::OATTACK ||
-						_master->getActionState() == State::O2ATTACK)
+					if (_master->getState() == State::IDLE ||
+						_master->getState() == State::WALK ||
+						_master->getState() == State::NATTACK ||
+						_master->getState() == State::SATTACK ||
+						_master->getState() == State::OATTACK ||
+						_master->getState() == State::O2ATTACK)
 					{
 						moveDirection = sp.getNormalized();
 						walk(moveDirection);
@@ -44,7 +44,7 @@ class Sanshouuo : public Hero
 				}
 				else
 				{
-					if (isFreeActionState())
+					if (isFreeState())
 					{
 						changeSide(sp);
 						attack(NAttack);
@@ -56,12 +56,12 @@ class Sanshouuo : public Hero
 			{
 				if (abs(sp.x) > 96 || abs(sp.y) > 32)
 				{
-					if (_master->getActionState() == State::IDLE ||
-						_master->getActionState() == State::WALK ||
-						_master->getActionState() == State::NATTACK ||
-						_master->getActionState() == State::SATTACK ||
-						_master->getActionState() == State::OATTACK ||
-						_master->getActionState() == State::O2ATTACK)
+					if (_master->getState() == State::IDLE ||
+						_master->getState() == State::WALK ||
+						_master->getState() == State::NATTACK ||
+						_master->getState() == State::SATTACK ||
+						_master->getState() == State::OATTACK ||
+						_master->getState() == State::O2ATTACK)
 					{
 						moveDirection = sp.getNormalized();
 						walk(moveDirection);
@@ -70,18 +70,18 @@ class Sanshouuo : public Hero
 				}
 				else if ((abs(sp.x) > 32 || abs(sp.y) > 32) && !_isCanSkill1)
 				{
-					if (_master->getActionState() == State::WALK ||
-						_master->getActionState() == State::NATTACK ||
-						_master->getActionState() == State::SATTACK ||
-						_master->getActionState() == State::OATTACK ||
-						_master->getActionState() == State::O2ATTACK)
+					if (_master->getState() == State::WALK ||
+						_master->getState() == State::NATTACK ||
+						_master->getState() == State::SATTACK ||
+						_master->getState() == State::OATTACK ||
+						_master->getState() == State::O2ATTACK)
 					{
 						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
 				}
-				else if (isFreeActionState())
+				else if (isFreeState())
 				{
 					if (_isCanSkill1 && _mainTarget->getDEF() < 5000)
 					{
@@ -107,16 +107,16 @@ class Sanshouuo : public Hero
 		}
 		else
 		{
-			if (_master->getActionState() == State::WALK ||
-				_master->getActionState() == State::NATTACK ||
-				_master->getActionState() == State::SATTACK ||
-				_master->getActionState() == State::OATTACK)
+			if (_master->getState() == State::WALK ||
+				_master->getState() == State::NATTACK ||
+				_master->getState() == State::SATTACK ||
+				_master->getState() == State::OATTACK)
 			{
 				stepOn();
 			}
 			else
 			{
-				if (_actionState == State::WALK || _actionState == State::NATTACK)
+				if (_state == State::WALK || _state == State::NATTACK)
 				{
 					idle();
 				}

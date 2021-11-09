@@ -29,7 +29,7 @@ class Pain : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game)
 				{
@@ -123,7 +123,7 @@ class Pain : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill2 && _mainTarget->isFlog() && isBaseDanger)
 				{
@@ -165,7 +165,7 @@ class Pain : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill1 && !_buffStartTime)
 				{
@@ -174,7 +174,7 @@ class Pain : public Hero
 					{
 						if (getGroup() == hero->getGroup() &&
 							hero->isPlayerOrCom() &&
-							hero->getActionState() == State::DEAD)
+							hero->getState() == State::DEAD)
 						{
 							Vec2 sp = hero->getPosition() - getPosition();
 							if (abs(sp.x) == winSize.width || abs(sp.y) == winSize.height)
@@ -280,7 +280,7 @@ class Pain : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill2 && _mainTarget->isNotFlog() && isBaseDanger)
 				{

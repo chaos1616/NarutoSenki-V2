@@ -46,7 +46,7 @@ class Kakuzu : public Hero
 	{
 		_mainTarget = nullptr;
 
-		if (isFreeActionState())
+		if (isFreeState())
 		{
 			if (getHpPercent() > 0.3f && !_isControlled && _isCanSkill1)
 			{
@@ -57,7 +57,7 @@ class Kakuzu : public Hero
 				for (auto target : getGameLayer()->_CharacterArray)
 				{
 					if (target->isPlayerOrCom() &&
-						target->getActionState() == State::DEAD)
+						target->getState() == State::DEAD)
 					{
 						sp = target->getPosition() - getPosition();
 						distance = sp.getLength();
@@ -131,7 +131,7 @@ class Kakuzu : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill3)
 				{
@@ -204,7 +204,7 @@ class Kakuzu : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis1 && !_isControlled && !isSummonAble)
 				{
@@ -315,7 +315,7 @@ class Kakuzu : public Hero
 		{
 			if (!attacker->getMaster())
 			{
-				if (attacker->getActionState() != State::DEAD)
+				if (attacker->getState() != State::DEAD)
 				{
 					attacker->setDamage(this, attacker->getEffectType(), attacker->_attackValue / 2, attacker->_isFlipped);
 				}

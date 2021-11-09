@@ -26,9 +26,9 @@ class Kiba : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
-				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_powerUPBuffValue && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_powerUPBuffValue && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
 					if (abs(sp.x) > 32 || abs(sp.y) > 32)
 					{
@@ -116,7 +116,7 @@ class Kiba : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill1 && _isArmored)
 				{
@@ -187,9 +187,9 @@ class Kiba : public Hero
 			_powerUPBuffValue = 0;
 		}
 
-		if (isFreeActionState())
+		if (isFreeState())
 		{
-			_actionState = State::WALK;
+			_state = State::WALK;
 			idle();
 		}
 		CharacterBase::resumeAction(dt);
@@ -220,9 +220,9 @@ class Kiba : public Hero
 			_hpBar->setPositionY(getHeight());
 		}
 
-		if (isFreeActionState())
+		if (isFreeState())
 		{
-			_actionState = State::WALK;
+			_state = State::WALK;
 			idle();
 		}
 

@@ -20,7 +20,7 @@ class Choji : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill1 && !_isArmored)
 				{
@@ -109,7 +109,7 @@ class Choji : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill2 && !_isArmored && _mainTarget->isFlog())
 				{
@@ -178,9 +178,9 @@ class Choji : public Hero
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
 
-		if (_actionState != State::DEAD)
+		if (_state != State::DEAD)
 		{
-			_actionState = State::WALK;
+			_state = State::WALK;
 			idle();
 		}
 
@@ -228,7 +228,7 @@ class Choji : public Hero
 		{
 			if (hero->_isSticking)
 			{
-				if (hero->getActionState() != State::DEAD)
+				if (hero->getState() != State::DEAD)
 				{
 					hero->removeLostBlood(0.1f);
 					hero->idle();

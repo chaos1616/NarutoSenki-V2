@@ -88,10 +88,10 @@ public:
 	void dealloc()
 	{
 		unschedule(schedule_selector(CharacterBase::setAI));
-		setActionState(State::DEAD);
+		setState(State::DEAD);
 		stopAllActions();
 
-		UnitEx::RemoveAllFlogsMainTarget(this);
+		getGameLayer()->clearAllFlogsMainTarget(this);
 
 		std::erase(getGameLayer()->_TowerArray, this);
 		getGameLayer()->setTowerState(getCharId());

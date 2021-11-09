@@ -14,7 +14,7 @@ class Saso : public Hero
 		Vec2 moveDirection;
 		if (abs((_master->getPosition() - getPosition()).x) > 64)
 		{
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				moveDirection = getDirByMoveTo(_master);
 				walk(moveDirection);
@@ -31,12 +31,12 @@ class Saso : public Hero
 			{
 				if (abs(sp.x) > 48 || abs(sp.y) > 16)
 				{
-					if (_master->getActionState() == State::IDLE ||
-						_master->getActionState() == State::WALK ||
-						_master->getActionState() == State::NATTACK ||
-						_master->getActionState() == State::SATTACK ||
-						_master->getActionState() == State::OATTACK ||
-						_master->getActionState() == State::O2ATTACK)
+					if (_master->getState() == State::IDLE ||
+						_master->getState() == State::WALK ||
+						_master->getState() == State::NATTACK ||
+						_master->getState() == State::SATTACK ||
+						_master->getState() == State::OATTACK ||
+						_master->getState() == State::O2ATTACK)
 					{
 						moveDirection = sp.getNormalized();
 						walk(moveDirection);
@@ -44,7 +44,7 @@ class Saso : public Hero
 				}
 				else
 				{
-					if (isFreeActionState())
+					if (isFreeState())
 					{
 						changeSide(sp);
 						attack(NAttack);
@@ -56,19 +56,19 @@ class Saso : public Hero
 			{
 				if ((abs(sp.x) > 48 || abs(sp.y) > 16))
 				{
-					if (_master->getActionState() == State::IDLE ||
-						_master->getActionState() == State::WALK ||
-						_master->getActionState() == State::NATTACK ||
-						_master->getActionState() == State::SATTACK ||
-						_master->getActionState() == State::OATTACK ||
-						_master->getActionState() == State::O2ATTACK)
+					if (_master->getState() == State::IDLE ||
+						_master->getState() == State::WALK ||
+						_master->getState() == State::NATTACK ||
+						_master->getState() == State::SATTACK ||
+						_master->getState() == State::OATTACK ||
+						_master->getState() == State::O2ATTACK)
 					{
 						moveDirection = sp.getNormalized();
 						walk(moveDirection);
 						return;
 					}
 				}
-				else if (isFreeActionState())
+				else if (isFreeState())
 				{
 					if (_isCanSkill1 && _mainTarget->getDEF() < 5000)
 					{
@@ -94,8 +94,8 @@ class Saso : public Hero
 		}
 		else
 		{
-			if (_actionState == State::WALK ||
-				_actionState == State::NATTACK)
+			if (_state == State::WALK ||
+				_state == State::NATTACK)
 				idle();
 		}
 	}

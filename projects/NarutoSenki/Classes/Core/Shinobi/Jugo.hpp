@@ -20,7 +20,7 @@ class Jugo : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill3 && _mainTarget->getDEF() < 5000 && !_skillChangeBuffValue)
 				{
@@ -45,7 +45,7 @@ class Jugo : public Hero
 						return;
 					}
 
-					if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_skillChangeBuffValue && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
+					if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_skillChangeBuffValue && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 					{
 						if (abs(sp.x) > 32 || abs(sp.y) > 32)
 						{
@@ -114,7 +114,7 @@ class Jugo : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_mainTarget->isFlog() && _isCanSkill1 && !_skillChangeBuffValue)
 				{

@@ -31,7 +31,7 @@ class SageNarutoClone : public Hero
 				}
 				else
 				{
-					if (isFreeActionState())
+					if (isFreeState())
 					{
 						changeSide(sp);
 						attack(NAttack);
@@ -53,7 +53,7 @@ class SageNarutoClone : public Hero
 					walk(moveDirection);
 					return;
 				}
-				else if (isFreeActionState())
+				else if (isFreeState())
 				{
 					if (_isCanSkill1 && abs(sp.x) < 32)
 					{

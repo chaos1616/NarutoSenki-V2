@@ -283,13 +283,13 @@ void HPBar::loseHP(float percent)
 						reieveAble = true;
 				}
 
-				if (reieveAble && _delegate->getActionState() != State::O2ATTACK && !_delegate->_isInvincible && _delegate->getActionState() != State::DEAD)
+				if (reieveAble && _delegate->getState() != State::O2ATTACK && !_delegate->_isInvincible && _delegate->getState() != State::DEAD)
 				{
 					if (_delegate->_isSticking)
 						_delegate->_isSticking = false;
 
-					if (_delegate->getActionState() == State::FLOAT ||
-						_delegate->getActionState() == State::AIRHURT)
+					if (_delegate->getState() == State::FLOAT ||
+						_delegate->getState() == State::AIRHURT)
 					{
 						setPositionY(_delegate->_originY);
 						_delegate->_originY = 0;
@@ -299,7 +299,7 @@ void HPBar::loseHP(float percent)
 					if (_delegate->isPlayer())
 					{
 						getGameLayer()->getHudLayer()->skill5Button->unLock();
-						_delegate->setActionState(State::IDLE);
+						_delegate->setState(State::IDLE);
 						getGameLayer()->setSkillFinish(true);
 						getGameLayer()->getHudLayer()->skill5Button->click();
 						getGameLayer()->getHudLayer()->skill5Button->setLock();
@@ -308,7 +308,7 @@ void HPBar::loseHP(float percent)
 					{
 						if (_delegate->_isCanOugis2)
 						{
-							_delegate->setActionState(State::IDLE);
+							_delegate->setState(State::IDLE);
 							_delegate->attack(OUGIS2);
 						}
 					}
@@ -329,7 +329,7 @@ void HPBar::loseHP(float percent)
 					return;
 				}
 
-				if (_delegate->getActionState() == State::O2ATTACK)
+				if (_delegate->getState() == State::O2ATTACK)
 				{
 					return;
 				}

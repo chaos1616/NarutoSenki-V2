@@ -53,7 +53,7 @@ class Kankuro : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill3)
 				{
@@ -120,7 +120,7 @@ class Kankuro : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis1 && !_isControlled && !isFound2)
 				{

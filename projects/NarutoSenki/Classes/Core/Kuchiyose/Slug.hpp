@@ -26,7 +26,7 @@ class Slug : public Hero
 				}
 				else
 				{
-					if (isFreeActionState())
+					if (isFreeState())
 					{
 						if (_isCanSkill1)
 						{

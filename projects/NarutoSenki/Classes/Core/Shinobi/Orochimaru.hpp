@@ -20,7 +20,7 @@ class Orochimaru : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game)
 				{
@@ -137,7 +137,7 @@ class Orochimaru : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill2 && _mainTarget->isFlog() && isBaseDanger)
 				{

@@ -125,7 +125,7 @@ public:
 protected:
 	void dealloc()
 	{
-		setActionState(State::DEAD);
+		setState(State::DEAD);
 		unscheduleAllSelectors();
 		stopAllActions();
 
@@ -139,7 +139,7 @@ protected:
 
 	void setAI(float dt)
 	{
-		if (isFreeActionState())
+		if (isFreeState())
 		{
 			if (!_randomPosY)
 			{
@@ -151,7 +151,7 @@ protected:
 
 			if (_mainTarget)
 			{
-				if (_mainTarget->getActionState() != State::DEAD && !_mainTarget->_isInvincible && _mainTarget->_isVisable &&
+				if (_mainTarget->getState() != State::DEAD && !_mainTarget->_isInvincible && _mainTarget->_isVisable &&
 					_mainTarget->getGroup() != getGroup())
 				{
 					hasTarget = true;
@@ -194,7 +194,7 @@ protected:
 				}
 				else
 				{
-					if (_actionState != State::NATTACK)
+					if (_state != State::NATTACK)
 					{
 						changeSide(sp);
 						attack(NAttack);

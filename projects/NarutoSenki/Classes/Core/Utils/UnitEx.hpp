@@ -3,21 +3,17 @@
 
 namespace UnitEx
 {
-	inline void RemoveFlogsMainTarget(CharacterBase *target, const vector<Flog *> &list)
+	template <typename T>
+	typename std::enable_if<std::is_base_of<CharacterBase, T>::value, void>::type
+	clearMainTarget(CharacterBase *target, const vector<T *> &list)
 	{
-		for (auto flog : list)
+		for (auto unit : list)
 		{
-			if (flog->_mainTarget)
+			if (unit->_mainTarget)
 			{
-				if (flog->_mainTarget == target)
-					flog->_mainTarget = nullptr;
+				if (unit->_mainTarget == target)
+					unit->_mainTarget = nullptr;
 			}
 		}
-	}
-
-	inline void RemoveAllFlogsMainTarget(CharacterBase *target)
-	{
-		RemoveFlogsMainTarget(target, getGameLayer()->_KonohaFlogArray);
-		RemoveFlogsMainTarget(target, getGameLayer()->_AkatsukiFlogArray);
 	}
 }

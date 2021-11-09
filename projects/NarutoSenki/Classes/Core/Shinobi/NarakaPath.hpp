@@ -35,7 +35,7 @@ class NarakaPath : public Hero
 				}
 				else
 				{
-					if (isFreeActionState())
+					if (isFreeState())
 					{
 						changeSide(sp);
 						attack(NAttack);
@@ -57,7 +57,7 @@ class NarakaPath : public Hero
 					walk(moveDirection);
 					return;
 				}
-				else if (isFreeActionState())
+				else if (isFreeState())
 				{
 					bool isHaveKugutsu1 = false;
 					bool isHaveKugutsu2 = false;

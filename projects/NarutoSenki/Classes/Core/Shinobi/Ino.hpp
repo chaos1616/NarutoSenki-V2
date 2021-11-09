@@ -51,7 +51,7 @@ class Ino : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game)
 				{
@@ -144,7 +144,7 @@ class Ino : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_mainTarget->isFlog() && _isCanSkill1)
 				{
@@ -191,7 +191,7 @@ class Ino : public Hero
 					getGameLayer()->controlChar = nullptr;
 					// getGameLayer()->getHudLayer()->updateSkillButtons();
 				}
-				if (_actionState != State::DEAD)
+				if (_state != State::DEAD)
 				{
 					idle();
 				}

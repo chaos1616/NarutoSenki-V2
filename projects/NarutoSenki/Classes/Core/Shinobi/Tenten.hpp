@@ -19,7 +19,7 @@ class Tenten : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill1)
 				{
@@ -120,7 +120,7 @@ class Tenten : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_mainTarget->isFlog() && _isCanSkill1)
 				{

@@ -48,7 +48,7 @@ class Sasuke : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored)
 				{
@@ -132,7 +132,7 @@ class Sasuke : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill1 && !_isArmored && _mainTarget->isFlog())
 				{
@@ -173,8 +173,8 @@ class Sasuke : public Hero
 			{
 				if (getGroup() != hero->getGroup() &&
 					hero->isPlayerOrCom() &&
-					hero->getActionState() != State::HURT &&
-					hero->getActionState() != State::DEAD)
+					hero->getState() != State::HURT &&
+					hero->getState() != State::DEAD)
 				{
 					float distanceX = (hero->getPosition() - getPosition()).x;
 					if (distanceX < kAttackRange)
@@ -257,9 +257,9 @@ class Sasuke : public Hero
 			resetDefenseValue(5000);
 			_isArmored = false;
 
-			if (_actionState != State::DEAD)
+			if (_state != State::DEAD)
 			{
-				_actionState = State::WALK;
+				_state = State::WALK;
 				knockDown();
 			}
 
@@ -298,7 +298,7 @@ class Sasuke : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000 && !_isArmored)
 				{
@@ -390,7 +390,7 @@ class Sasuke : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill1 && !_isArmored && _mainTarget->isFlog())
 				{
@@ -426,8 +426,8 @@ class Sasuke : public Hero
 			{
 				if (getGroup() != hero->getGroup() &&
 					hero->isPlayerOrCom() &&
-					hero->getActionState() != State::HURT &&
-					hero->getActionState() != State::DEAD)
+					hero->getState() != State::HURT &&
+					hero->getState() != State::DEAD)
 				{
 					float distanceX = (hero->getPosition() - getPosition()).x;
 					if (distanceX < kAttackRange)
@@ -516,9 +516,9 @@ class Sasuke : public Hero
 				_monsterArray.clear();
 			}
 
-			if (_actionState != State::DEAD)
+			if (_state != State::DEAD)
 			{
-				_actionState = State::WALK;
+				_state = State::WALK;
 				idle();
 			}
 		}

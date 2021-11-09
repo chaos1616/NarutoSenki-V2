@@ -41,7 +41,7 @@ class Chiyo : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis1 && !_isControlled && !_buffStartTime)
 				{
@@ -50,7 +50,7 @@ class Chiyo : public Hero
 					{
 						if (getGroup() == hero->getGroup() &&
 							hero->isPlayerOrCom() &&
-							hero->getActionState() != State::DEAD &&
+							hero->getState() != State::DEAD &&
 							hero->getName() != HeroEnum::Chiyo)
 						{
 							Vec2 sp = hero->getPosition() - getPosition();
@@ -64,7 +64,7 @@ class Chiyo : public Hero
 						return;
 					}
 				}
-				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
 					if (abs(sp.x) > 96 || abs(sp.y) > 32)
 					{
@@ -127,7 +127,7 @@ class Chiyo : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill1 && !isFound1)
 				{

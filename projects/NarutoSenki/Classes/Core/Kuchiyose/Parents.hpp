@@ -20,7 +20,7 @@ class Parents : public Hero
 
 		if (abs((_master->getPosition() - getPosition()).x) > 9 && !_skillChangeBuffValue)
 		{
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				moveDirection = getDirByMoveTo(_master);
 				walk(moveDirection);
@@ -40,7 +40,7 @@ class Parents : public Hero
 				}
 				else
 				{
-					if ((isFreeActionState()) && !_skillChangeBuffValue)
+					if ((isFreeState()) && !_skillChangeBuffValue)
 					{
 						changeSide(sp);
 						attack(NAttack);
@@ -50,9 +50,9 @@ class Parents : public Hero
 			}
 			else
 			{
-				if (isFreeActionState())
+				if (isFreeState())
 				{
-					if (_master->isFreeActionState())
+					if (_master->isFreeState())
 					{
 						if (_master->_isCanSkill3 && _mainTarget->getDEF() < 5000 && (_master->_isControlled || _master->_isAI == true) && !_skillChangeBuffValue)
 						{
@@ -62,7 +62,7 @@ class Parents : public Hero
 						}
 						else if (abs(sp.x) > 48 || abs(sp.y) > 32)
 						{
-							if (_skillChangeBuffValue && _actionState != State::NATTACK)
+							if (_skillChangeBuffValue && _state != State::NATTACK)
 							{
 								moveDirection = sp.getNormalized();
 								walk(moveDirection);
@@ -91,7 +91,7 @@ class Parents : public Hero
 
 		if (abs((_master->getPosition() - getPosition()).x) > 9)
 		{
-			if (_actionState == State::IDLE || _actionState == State::WALK)
+			if (_state == State::IDLE || _state == State::WALK)
 			{
 				moveDirection = getDirByMoveTo(_master);
 				walk(moveDirection);
@@ -99,7 +99,7 @@ class Parents : public Hero
 			}
 		}
 
-		if (_actionState == State::WALK)
+		if (_state == State::WALK)
 			idle();
 	}
 

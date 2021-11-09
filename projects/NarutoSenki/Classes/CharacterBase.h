@@ -40,6 +40,8 @@ public:
 	PPROP(Group, _group, Group);
 	VPROP(int, _charId, CharId);
 
+	VPROP(State, _state, State);
+
 	uint32_t			_deadNum;
 	uint32_t			_flogNum;
 	PROP_UInt(_killNum, KillNum);
@@ -238,8 +240,6 @@ public:
 	// movement
 	PROP(Vec2,_velocity, Velocity);
 	PROP(Vec2,_desiredPosition, DesiredPosition);
-
-	VPROP(State,_actionState, ActionState);
 
 	// actions
 	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*,_idleAction, IdleAction);
@@ -581,10 +581,10 @@ protected:
 	void tryUseGear6() {
 		if (_isCanGear06)
 		{
-			if ((_actionState == State::FLOAT ||
-				 _actionState == State::AIRHURT ||
-				 _actionState == State::HURT ||
-				 _actionState == State::KNOCKDOWN) &&
+			if ((_state == State::FLOAT ||
+				 _state == State::AIRHURT ||
+				 _state == State::HURT ||
+				 _state == State::KNOCKDOWN) &&
 				getHpPercent() < 0.5 && !_isArmored && !_isInvincible)
 			{
 				useGear(GearType::Gear06);
@@ -653,7 +653,7 @@ protected:
 	void checkHealingState() {
 		if (_isHealing && getHpPercent() < 1)
 		{
-			if (isFreeActionState())
+			if (isFreeState())
 				idle();
 		}
 		else
@@ -679,8 +679,8 @@ public:
 	// actoin state extensions
 
 	// Action is State::IDLE or State::WALK or State::NATTACK
-	bool isFreeActionState() {
-		return _actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK;
+	bool isFreeState() {
+		return _state == State::IDLE || _state == State::WALK || _state == State::NATTACK;
 	}
 
 /**

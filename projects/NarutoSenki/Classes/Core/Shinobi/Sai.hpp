@@ -20,9 +20,9 @@ class Sai : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
-				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
+				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getState() != State::KNOCKDOWN && !_mainTarget->_isSticking)
 				{
 					if (abs(sp.x) > 48 || abs(sp.y) > 16)
 					{
@@ -132,7 +132,7 @@ class Sai : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_mainTarget->isFlog() && _isCanSkill1 && !_isArmored)
 				{
@@ -202,9 +202,9 @@ class Sai : public Hero
 			setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 			setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 
-			if (_actionState != State::DEAD)
+			if (_state != State::DEAD)
 			{
-				_actionState = State::WALK;
+				_state = State::WALK;
 				idle();
 			}
 			if (_hpBar)

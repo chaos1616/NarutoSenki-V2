@@ -20,7 +20,7 @@ class Itachi : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored)
 				{
@@ -36,7 +36,7 @@ class Itachi : public Hero
 
 					return;
 				}
-				else if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_isArmored)
+				else if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_isArmored)
 				{
 					changeSide(sp);
 					attack(OUGIS1);
@@ -107,7 +107,7 @@ class Itachi : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill3 && !_isArmored && _mainTarget->isFlog() && isBaseDanger)
 				{
@@ -182,9 +182,9 @@ class Itachi : public Hero
 		resetDefenseValue(5000);
 		_isArmored = false;
 
-		if (_actionState != State::DEAD)
+		if (_state != State::DEAD)
 		{
-			_actionState = State::WALK;
+			_state = State::WALK;
 			knockDown();
 		}
 

@@ -37,7 +37,7 @@ void MiniIcon::updateMap(Ref *sender)
 
 	if (getCharId() == poster->getCharId())
 	{
-		if (poster->getActionState() == State::DEAD || poster->_isVisable == false)
+		if (poster->getState() == State::DEAD || poster->_isVisable == false)
 		{
 			setVisible(false);
 		}

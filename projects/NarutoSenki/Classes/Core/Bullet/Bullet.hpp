@@ -116,9 +116,9 @@ protected:
 		{
 			if (getName() == ProjectileEnum::HiraishinKunai)
 			{
-				if (_master->getActionState() == State::SATTACK)
+				if (_master->getState() == State::SATTACK)
 				{
-					_master->setActionState(State::NATTACK);
+					_master->setState(State::NATTACK);
 					_master->_markPoint = Vec2(getPositionX(), _originY);
 					_master->changeAction2();
 					_master->_isCanSkill2 = true;

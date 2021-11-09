@@ -9,7 +9,7 @@
 
 CharacterBase::CharacterBase()
 {
-	_actionState = State::WALK;
+	_state = State::WALK;
 
 	_idleAction = nullptr;
 	_nAttackAction = nullptr;
@@ -287,7 +287,7 @@ void CharacterBase::update(float dt)
 		_shadow->setPosition(Vec2(getPositionX(), _originY ? _originY : getPositionY()));
 	}
 
-	if (!_isControlled && _actionState != State::DEAD)
+	if (!_isControlled && _state != State::DEAD)
 	{
 		if (isPlayerOrCom())
 		{
@@ -317,7 +317,7 @@ void CharacterBase::update(float dt)
 		}
 	}
 
-	if (_actionState == State::WALK)
+	if (_state == State::WALK)
 	{
 		_desiredPosition = getPosition() + (_velocity * dt);
 
@@ -397,7 +397,7 @@ void CharacterBase::acceptAttack(Ref *object)
 	if (!onAcceptAttack(attacker))
 		return;
 
-	if (attacker->getName() == HeroEnum::Hiruzen && attacker->_actionState == State::O2ATTACK)
+	if (attacker->getName() == HeroEnum::Hiruzen && attacker->_state == State::O2ATTACK)
 	{
 		isCannotMiss = true; // TODO: Add this as a parameter of CharacterBase::acceptAttack
 	}
@@ -405,7 +405,7 @@ void CharacterBase::acceptAttack(Ref *object)
 	if (getGroup() != attacker->getGroup() &&
 		_isVisable &&
 		(!_isInvincible || isCannotMiss) &&
-		_actionState != State::DEAD)
+		_state != State::DEAD)
 	{
 		// Tower
 		if (isTower())
@@ -478,7 +478,7 @@ void CharacterBase::acceptAttack(Ref *object)
 				if (attacker->getName() == ProjectileEnum::HiraishinKunai ||
 					attacker->getName() == ProjectileEnum::Shintenshin)
 				{
-					if (isPlayerOrCom() && isNotGuardian() && _actionState != State::DEAD)
+					if (isPlayerOrCom() && isNotGuardian() && _state != State::DEAD)
 					{
 						attacker->stopAllActions();
 						attacker->dealloc();
@@ -491,7 +491,7 @@ void CharacterBase::acceptAttack(Ref *object)
 								_isControlled = true;
 								_controller = attacker->_master;
 
-								if (attacker->_master->_actionState == State::O2ATTACK)
+								if (attacker->_master->_state == State::O2ATTACK)
 								{
 									attacker->_master->stopAllActions();
 									attacker->_master->runAction(createAnimation(attacker->_master->skillSPC1Array, 10.0f, false, false));
@@ -558,12 +558,12 @@ void CharacterBase::acceptAttack(Ref *object)
 			{
 				float attackerPosY;
 				float currentPosY;
-				if (attacker->_actionState == State::JUMP)
+				if (attacker->_state == State::JUMP)
 					attackerPosY = attacker->_originY;
 				else
 					attackerPosY = attacker->getPositionY();
 
-				if (_actionState == State::FLOAT || _actionState == State::JUMP || _actionState == State::AIRHURT)
+				if (_state == State::FLOAT || _state == State::JUMP || _state == State::AIRHURT)
 					currentPosY = _originY;
 				else
 					currentPosY = getPositionY();
@@ -717,7 +717,7 @@ void CharacterBase::acceptAttack(Ref *object)
 						}
 						else if (hitType == "ac_hit")
 						{
-							if (_actionState == State::FLOAT || _actionState == State::AIRHURT)
+							if (_state == State::FLOAT || _state == State::AIRHURT)
 							{
 								airHurt();
 							}
@@ -732,10 +732,10 @@ void CharacterBase::acceptAttack(Ref *object)
 						}
 						else if (hitType == "o_hit")
 						{
-							if (_actionState != State::OATTACK ||
-								(_actionState == State::OATTACK &&
-								 (attacker->_actionState == State::O2ATTACK ||
-								  attacker->_actionState == State::OATTACK)))
+							if (_state != State::OATTACK ||
+								(_state == State::OATTACK &&
+								 (attacker->_state == State::O2ATTACK ||
+								  attacker->_state == State::OATTACK)))
 							{
 								if (!_isArmored)
 								{
@@ -777,10 +777,10 @@ void CharacterBase::acceptAttack(Ref *object)
 						}
 						else if (hitType == "ct_hit")
 						{
-							if (_actionState != State::OATTACK ||
-								(_actionState == State::OATTACK &&
-								 (attacker->_actionState == State::O2ATTACK ||
-								  attacker->_actionState == State::OATTACK)))
+							if (_state != State::OATTACK ||
+								(_state == State::OATTACK &&
+								 (attacker->_state == State::O2ATTACK ||
+								  attacker->_state == State::OATTACK)))
 							{
 								if (attacker->_isCatchOne == false ||
 									attacker->getName() == SkillEnum::Shenwei)
@@ -914,10 +914,10 @@ void CharacterBase::acceptAttack(Ref *object)
 						else if (hitType == "f_hit" || hitType == "bf_hit")
 						{
 							autoFlip(attacker);
-							if (_actionState != State::OATTACK ||
-								(_actionState == State::OATTACK &&
-								 (attacker->_actionState == State::O2ATTACK ||
-								  attacker->_actionState == State::OATTACK)))
+							if (_state != State::OATTACK ||
+								(_state == State::OATTACK &&
+								 (attacker->_state == State::O2ATTACK ||
+								  attacker->_state == State::OATTACK)))
 							{
 								floatUP(64, true);
 							}
@@ -925,10 +925,10 @@ void CharacterBase::acceptAttack(Ref *object)
 						else if (hitType == "f2_hit")
 						{
 							autoFlip(attacker);
-							if (_actionState != State::OATTACK ||
-								(_actionState == State::OATTACK &&
-								 (attacker->_actionState == State::O2ATTACK ||
-								  attacker->_actionState == State::OATTACK)))
+							if (_state != State::OATTACK ||
+								(_state == State::OATTACK &&
+								 (attacker->_state == State::O2ATTACK ||
+								  attacker->_state == State::OATTACK)))
 							{
 								floatUP(128, true);
 							}
@@ -937,10 +937,10 @@ void CharacterBase::acceptAttack(Ref *object)
 						{
 							autoFlip(attacker);
 
-							if (_actionState != State::OATTACK ||
-								(_actionState == State::OATTACK &&
-								 (attacker->_actionState == State::O2ATTACK ||
-								  attacker->_actionState == State::OATTACK)))
+							if (_state != State::OATTACK ||
+								(_state == State::OATTACK &&
+								 (attacker->_state == State::O2ATTACK ||
+								  attacker->_state == State::OATTACK)))
 							{
 								floatUP(16, false);
 							}
@@ -1291,7 +1291,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 	else
 	{
 		bool isCannotMiss = false; // is this attack has 100 percent accuracy
-		if (attacker->getName() == HeroEnum::Hiruzen && attacker->_actionState == State::O2ATTACK)
+		if (attacker->getName() == HeroEnum::Hiruzen && attacker->_state == State::O2ATTACK)
 		{
 			isCannotMiss = true;
 		}
@@ -1301,7 +1301,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 			realValue = attackValue + criticalValue;
 		}
 		else if ((attacker->_master ||
-				  attacker->_actionState == State::NATTACK) &&
+				  attacker->_state == State::NATTACK) &&
 				 attacker->hasArmorBroken)
 		{
 			realValue = attackValue + criticalValue;
@@ -1326,7 +1326,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 				{
 					for (auto mo : _monsterArray)
 					{
-						if (mo->getName() == KugutsuEnum::Parents && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK)
+						if (mo->getName() == KugutsuEnum::Parents && !mo->_skillChangeBuffValue && mo->_state != State::SATTACK)
 						{
 							Vec2 sp = mo->getPosition() - getPosition();
 							if (sp.x <= 48)
@@ -1719,9 +1719,9 @@ void CharacterBase::useGear(GearType type)
 
 	if (type == GearType::Gear00)
 	{
-		if (_actionState == State::NATTACK ||
-			_actionState == State::WALK ||
-			_actionState == State::IDLE)
+		if (_state == State::NATTACK ||
+			_state == State::WALK ||
+			_state == State::IDLE)
 		{
 			if (getWalkSpeed() == 224)
 			{
@@ -1763,19 +1763,19 @@ void CharacterBase::useGear(GearType type)
 
 		if (!_isInvincible && !_isArmored)
 		{
-			if (_actionState == State::IDLE ||
-				_actionState == State::WALK ||
-				_actionState == State::FLOAT ||
-				_actionState == State::AIRHURT ||
-				_actionState == State::HURT ||
-				_actionState == State::KNOCKDOWN)
+			if (_state == State::IDLE ||
+				_state == State::WALK ||
+				_state == State::FLOAT ||
+				_state == State::AIRHURT ||
+				_state == State::HURT ||
+				_state == State::KNOCKDOWN)
 			{
 				if (_isSticking)
 				{
 					_isSticking = false;
 				}
-				if (_actionState == State::FLOAT ||
-					_actionState == State::AIRHURT)
+				if (_state == State::FLOAT ||
+					_state == State::AIRHURT)
 				{
 					setPositionY(_originY);
 					_originY = 0;
@@ -1806,7 +1806,7 @@ void CharacterBase::useGear(GearType type)
 
 void CharacterBase::disableGear1(float dt)
 {
-	if (!_isVisable && _actionState != State::HURT)
+	if (!_isVisable && _state != State::HURT)
 	{
 		setOpacity(255);
 		setVisible(true);
@@ -1897,7 +1897,7 @@ void CharacterBase::setRestore2(float dt)
 		if (isZone)
 			setHPValue(getHP() > 1000 ? getHP() - 1000 : 100);
 
-		if (_actionState == State::IDLE && getHpPercent() < 1)
+		if (_state == State::IDLE && getHpPercent() < 1)
 		{
 			increaseHpAndUpdateUI(300);
 		}
@@ -1975,7 +1975,7 @@ void CharacterBase::setAttackBox(const string &effectType)
 {
 	_effectType = effectType;
 
-	if (_actionState == State::HURT)
+	if (_state == State::HURT)
 	{
 		if (getName() == HeroEnum::Sasuke ||
 			getName() == HeroEnum::ImmortalSasuke ||
@@ -2019,14 +2019,14 @@ void CharacterBase::setAttackBox(const string &effectType)
 
 	if (isPlayer())
 	{
-		if ((_actionState == State::OATTACK || _actionState == State::O2ATTACK) && _isHitOne == true && !getGameLayer()->_isShacking)
+		if ((_state == State::OATTACK || _state == State::O2ATTACK) && _isHitOne == true && !getGameLayer()->_isShacking)
 		{
 			getGameLayer()->_isShacking = true;
 			Scene *f = Director::sharedDirector()->getRunningScene();
 			auto call = CallFunc::create(std::bind(&CharacterBase::disableShack, this));
 			f->runAction(newSequence(CCShake::create(0.05f, 12), call));
 		}
-		if (getGameLayer()->_isAttackButtonRelease && _actionState == State::NATTACK && !_isOnlySkillLocked && !_isAI)
+		if (getGameLayer()->_isAttackButtonRelease && _state == State::NATTACK && !_isOnlySkillLocked && !_isAI)
 		{
 			idle();
 			return;
@@ -2076,7 +2076,7 @@ void CharacterBase::setMove(int moveLength)
 		getPositionX() < (getGameLayer()->currentMap->getMapSize().width - 1) * getGameLayer()->currentMap->getTileSize().width)
 	{
 		ActionInterval *mv;
-		if (_actionState == State::HURT)
+		if (_state == State::HURT)
 		{
 			if (!_knockDirection)
 				mv = MoveBy::create(0.1f, Vec2(_hurtFromRight ? -moveLength : moveLength, 0));
@@ -2094,12 +2094,12 @@ void CharacterBase::setMove(int moveLength)
 
 void CharacterBase::setJump(bool jumpDirection)
 {
-	if (_actionState != State::FLOAT &&
-		_actionState != State::AIRHURT &&
-		_actionState != State::HURT &&
-		_actionState != State::DEAD)
+	if (_state != State::FLOAT &&
+		_state != State::AIRHURT &&
+		_state != State::HURT &&
+		_state != State::DEAD)
 	{
-		_actionState = State::JUMP;
+		_state = State::JUMP;
 
 		float posX = getPositionX();
 		float posY = getPositionY();
@@ -2142,7 +2142,7 @@ void CharacterBase::setChargeB(int moveLength)
 	}
 	else
 	{
-		float delay = (_actionState == State::OATTACK || _actionState == State::O2ATTACK)
+		float delay = (_state == State::OATTACK || _state == State::O2ATTACK)
 						  ? 0.4f
 						  : 0.1f;
 		_moveAction = MoveBy::create(delay, Vec2(_isFlipped ? -moveLength * kSpeedBase : moveLength * kSpeedBase, 0));
@@ -2182,7 +2182,7 @@ void CharacterBase::setBuff(int buffValue)
 		{
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
-				if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->_actionState != State::HURT && hero->_actionState != State::DEAD)
+				if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->_state != State::HURT && hero->_state != State::DEAD)
 				{
 					float distanceX = (hero->getPosition() - getPosition()).x;
 					if (distanceX < kAttackRange)
@@ -2442,7 +2442,7 @@ void CharacterBase::disableBuff(float dt)
 	{
 		removeBuffEffect("sBuff");
 	}
-	else if (!_isVisable && _actionState != State::HURT)
+	else if (!_isVisable && _state != State::HURT)
 	{
 		setOpacity(255);
 		setVisible(true);
@@ -2500,7 +2500,7 @@ void CharacterBase::healBuff(float dt)
 	{
 		for (auto hero : getGameLayer()->_CharacterArray)
 		{
-			if (getGroup() == hero->getGroup() && hero->isPlayerOrCom() && hero->_actionState != State::DEAD)
+			if (getGroup() == hero->getGroup() && hero->isPlayerOrCom() && hero->_state != State::DEAD)
 			{
 				float distanceX = (hero->getPosition() - getPosition()).x;
 				float atkRangeX = 128 + getContentSize().width / 2;
@@ -2560,7 +2560,7 @@ void CharacterBase::healBuff(float dt)
 						: getGameLayer()->_KonohaFlogArray;
 		for (auto flog : list)
 		{
-			if (getGroup() == flog->getGroup() && flog->_actionState != State::DEAD)
+			if (getGroup() == flog->getGroup() && flog->_state != State::DEAD)
 			{
 				float distanceX = (flog->getPosition() - getPosition()).x;
 				float atkRangeX = 128 + getContentSize().width / 2;
@@ -2722,7 +2722,7 @@ void CharacterBase::stopMove(float dt)
 
 	for (auto hero : getGameLayer()->_CharacterArray)
 	{
-		if (getGroup() != hero->getGroup() && hero->_isVisable && hero->_actionState != State::DEAD && hero->_actionState != State::JUMP && !hero->_isInvincible)
+		if (getGroup() != hero->getGroup() && hero->_isVisable && hero->_state != State::DEAD && hero->_state != State::JUMP && !hero->_isInvincible)
 		{
 			float distanceX = (hero->getPosition() - getPosition()).x;
 			float atkRangeX = _attackRangeX + getContentSize().width / 2;
@@ -2739,7 +2739,7 @@ void CharacterBase::stopMove(float dt)
 
 void CharacterBase::stopJump(int stopTime)
 {
-	if (_actionState == State::JUMP)
+	if (_state == State::JUMP)
 	{
 		getActionManager()->pauseTarget(this);
 		scheduleOnce(schedule_selector(CharacterBase::resumePauseStuff), stopTime / 100.0f);
@@ -3291,7 +3291,7 @@ void CharacterBase::setMon(const string &monName)
 				moveDirection = Vec2(-1, 0).getNormalized();
 			else
 				moveDirection = Vec2(1, 0).getNormalized();
-			monster->setActionState(State::WALK);
+			monster->setState(State::WALK);
 			monster->walk(moveDirection);
 		}
 	}
@@ -3398,7 +3398,7 @@ void CharacterBase::setTrap(const string &trapName)
 	{
 		for (auto hero : getGameLayer()->_CharacterArray)
 		{
-			if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->_actionState != State::HURT && hero->_actionState != State::DEAD)
+			if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->_state != State::HURT && hero->_state != State::DEAD)
 			{
 				float distanceX = (hero->getPosition() - getPosition()).x;
 				if (distanceX < kAttackRange)
@@ -3569,7 +3569,7 @@ void CharacterBase::setMonAttack(int skillNum)
 			else if (getName() == HeroEnum::Itachi ||
 					 getName() == HeroEnum::ImmortalSasuke)
 			{
-				if (_actionState == State::NATTACK)
+				if (_state == State::NATTACK)
 				{
 					mo->attack(NAttack);
 				}
@@ -3758,7 +3758,7 @@ void CharacterBase::attack(ABType type)
 
 void CharacterBase::nAttack()
 {
-	if (_actionState == State::IDLE || _actionState == State::WALK)
+	if (_state == State::IDLE || _state == State::WALK)
 	{
 		if (!_isAllAttackLocked || _isOnlySkillLocked)
 		{
@@ -3770,7 +3770,7 @@ void CharacterBase::nAttack()
 			{
 				stopAllActions();
 			}
-			_actionState = State::NATTACK;
+			_state = State::NATTACK;
 			runAction(_nAttackAction);
 		}
 	}
@@ -3778,7 +3778,7 @@ void CharacterBase::nAttack()
 
 void CharacterBase::sAttack(ABType type)
 {
-	if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+	if (_state == State::IDLE || _state == State::WALK || _state == State::NATTACK)
 	{
 		if (!_isVisable)
 		{
@@ -3805,7 +3805,7 @@ void CharacterBase::sAttack(ABType type)
 		case SKILL1:
 			if (_isCanSkill1)
 			{
-				_actionState = State::SATTACK;
+				_state = State::SATTACK;
 				if (isPlayer())
 				{
 					getGameLayer()->setSkillFinish(false);
@@ -3819,7 +3819,7 @@ void CharacterBase::sAttack(ABType type)
 		case SKILL2:
 			if (_isCanSkill2)
 			{
-				_actionState = State::SATTACK;
+				_state = State::SATTACK;
 				if (isPlayer())
 				{
 					getGameLayer()->setSkillFinish(false);
@@ -3835,7 +3835,7 @@ void CharacterBase::sAttack(ABType type)
 		case SKILL3:
 			if (_isCanSkill3)
 			{
-				_actionState = State::SATTACK;
+				_state = State::SATTACK;
 				if (isPlayer())
 				{
 					getGameLayer()->setSkillFinish(false);
@@ -3854,7 +3854,7 @@ void CharacterBase::sAttack(ABType type)
 
 void CharacterBase::oAttack(ABType type)
 {
-	if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
+	if (_state == State::IDLE || _state == State::WALK || _state == State::NATTACK)
 	{
 		if (isPlayer())
 		{
@@ -3882,11 +3882,11 @@ void CharacterBase::oAttack(ABType type)
 		switch (type)
 		{
 		case OUGIS1:
-			_actionState = State::OATTACK;
+			_state = State::OATTACK;
 			runAction(_skill4Action);
 			break;
 		case OUGIS2:
-			_actionState = State::O2ATTACK;
+			_state = State::O2ATTACK;
 			runAction(_skill5Action);
 			break;
 		default:
@@ -3907,9 +3907,9 @@ bool CharacterBase::checkHasMovement()
 
 void CharacterBase::idle()
 {
-	if (_actionState != State::IDLE && _actionState != State::DEAD)
+	if (_state != State::IDLE && _state != State::DEAD)
 	{
-		_actionState = State::IDLE;
+		_state = State::IDLE;
 		stopAllActions();
 		_backY = 0;
 		_hurtFromLeft = false;
@@ -3954,11 +3954,11 @@ void CharacterBase::idle()
 
 void CharacterBase::walk(Vec2 direction)
 {
-	if (_actionState == State::IDLE || _actionState == State::WALK || (_actionState == State::NATTACK && isNotPlayer()))
+	if (_state == State::IDLE || _state == State::WALK || (_state == State::NATTACK && isNotPlayer()))
 	{
 		isHurtingTower = false;
 
-		if (_actionState == State::NATTACK &&
+		if (_state == State::NATTACK &&
 			_isOnlySkillLocked &&
 			(getName() == HeroEnum::Suigetsu ||
 			 getName() == HeroEnum::Jugo ||
@@ -3970,13 +3970,13 @@ void CharacterBase::walk(Vec2 direction)
 				return;
 			}
 		}
-		else if (_actionState == State::IDLE || _actionState == State::NATTACK)
+		else if (_state == State::IDLE || _state == State::NATTACK)
 		{
 			stopAllActions();
 			runAction(_walkAction);
 		}
 
-		_actionState = State::WALK;
+		_state = State::WALK;
 
 		// NOTE: FIXED when direction.x is zero but still set to flipped
 		if (direction.x != 0)
@@ -4002,7 +4002,7 @@ void CharacterBase::walk(Vec2 direction)
 				}
 				else if (mo->getName() == KugutsuEnum::Parents)
 				{
-					if (mo->_actionState == State::IDLE)
+					if (mo->_state == State::IDLE)
 					{
 						mo->setFlipX(_isFlipped);
 						mo->_isFlipped = _isFlipped;
@@ -4017,14 +4017,14 @@ void CharacterBase::walk(Vec2 direction)
 
 bool CharacterBase::hurt()
 {
-	if (_actionState != State::SATTACK &&
-		_actionState != State::JUMP &&
-		_actionState != State::OATTACK &&
-		_actionState != State::O2ATTACK &&
-		_actionState != State::FLOAT &&
-		_actionState != State::DEAD &&
-		_actionState != State::KNOCKDOWN &&
-		_actionState != State::AIRHURT &&
+	if (_state != State::SATTACK &&
+		_state != State::JUMP &&
+		_state != State::OATTACK &&
+		_state != State::O2ATTACK &&
+		_state != State::FLOAT &&
+		_state != State::DEAD &&
+		_state != State::KNOCKDOWN &&
+		_state != State::AIRHURT &&
 		!_isSticking &&
 		!_isCatchOne &&
 		!_isArmored)
@@ -4033,7 +4033,7 @@ bool CharacterBase::hurt()
 		{
 			if (getGroup() == hero->getGroup() &&
 				hero->getName() == HeroEnum::Chiyo &&
-				hero->_actionState != State::DEAD &&
+				hero->_state != State::DEAD &&
 				hero->_buffStartTime)
 			{
 				Vec2 sp = hero->getPosition() - getPosition();
@@ -4047,7 +4047,7 @@ bool CharacterBase::hurt()
 		{
 			for (auto mo : _monsterArray)
 			{
-				if (mo->getName() == KugutsuEnum::Parents && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK && mo->_actionState != State::DEAD)
+				if (mo->getName() == KugutsuEnum::Parents && !mo->_skillChangeBuffValue && mo->_state != State::SATTACK && mo->_state != State::DEAD)
 				{
 					Vec2 sp = mo->getPosition() - getPosition();
 					if (sp.x <= 48)
@@ -4063,7 +4063,7 @@ bool CharacterBase::hurt()
 			getGameLayer()->setSkillFinish(false);
 		}
 
-		_actionState = State::HURT;
+		_state = State::HURT;
 		stopAllActions();
 		if (_hurtAction)
 		{
@@ -4078,19 +4078,19 @@ bool CharacterBase::hurt()
 
 bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, bool isStick, bool isStun)
 {
-	if ((_actionState != State::JUMP || isStick) &&
-		_actionState != State::O2ATTACK &&
-		(_actionState != State::FLOAT || isStick) &&
-		_actionState != State::DEAD &&
-		(_actionState != State::KNOCKDOWN || isStick) &&
-		_actionState != State::AIRHURT &&
+	if ((_state != State::JUMP || isStick) &&
+		_state != State::O2ATTACK &&
+		(_state != State::FLOAT || isStick) &&
+		_state != State::DEAD &&
+		(_state != State::KNOCKDOWN || isStick) &&
+		_state != State::AIRHURT &&
 		!_isSticking &&
 		!_isCatchOne &&
 		!_isArmored)
 	{
-		if (_actionState == State::FLOAT ||
-			_actionState == State::AIRHURT ||
-			_actionState == State::JUMP)
+		if (_state == State::FLOAT ||
+			_state == State::AIRHURT ||
+			_state == State::JUMP)
 		{
 			setPositionY(_originY);
 			_originY = 0;
@@ -4101,7 +4101,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 		{
 			if (getGroup() == hero->getGroup() &&
 				hero->getName() == HeroEnum::Chiyo &&
-				hero->_actionState != State::DEAD &&
+				hero->_state != State::DEAD &&
 				hero->_buffStartTime)
 			{
 				Vec2 sp = hero->getPosition() - getPosition();
@@ -4116,7 +4116,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 		{
 			for (auto mo : _monsterArray)
 			{
-				if (mo->getName() == KugutsuEnum::Parents && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK && mo->_actionState != State::DEAD)
+				if (mo->getName() == KugutsuEnum::Parents && !mo->_skillChangeBuffValue && mo->_state != State::SATTACK && mo->_state != State::DEAD)
 				{
 					Vec2 sp = mo->getPosition() - getPosition();
 					if (sp.x <= 48)
@@ -4151,7 +4151,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 			}
 		}
 
-		_actionState = State::HURT;
+		_state = State::HURT;
 		stopAllActions();
 
 		Vector<FiniteTimeAction *> list;
@@ -4208,19 +4208,19 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 
 void CharacterBase::airHurt()
 {
-	if (_actionState == State::FLOAT || _actionState == State::AIRHURT)
+	if (_state == State::FLOAT || _state == State::AIRHURT)
 	{
 		if (isPlayer())
 		{
 			getGameLayer()->setSkillFinish(false);
 		}
 
-		if (_actionState == State::AIRHURT)
+		if (_state == State::AIRHURT)
 		{
 			getActionManager()->removeAction(_airHurtAction);
 			unschedule(schedule_selector(CharacterBase::resumePauseStuff));
 		}
-		_actionState = State::AIRHURT;
+		_state = State::AIRHURT;
 		runAction(_airHurtAction);
 		getActionManager()->pauseTarget(this);
 		scheduleOnce(schedule_selector(CharacterBase::resumePauseStuff), 0.2f);
@@ -4234,9 +4234,9 @@ void CharacterBase::resumePauseStuff(float dt)
 
 void CharacterBase::absorb(Vec2 position, bool isImmediate)
 {
-	if (_actionState == State::IDLE ||
-		_actionState == State::WALK ||
-		_actionState == State::NATTACK)
+	if (_state == State::IDLE ||
+		_state == State::WALK ||
+		_state == State::NATTACK)
 	{
 		if (_isArmored || _isSticking)
 			return;
@@ -4245,7 +4245,7 @@ void CharacterBase::absorb(Vec2 position, bool isImmediate)
 		{
 			getGameLayer()->setSkillFinish(false);
 		}
-		_actionState = State::HURT;
+		_state = State::HURT;
 
 		Vector<FiniteTimeAction *> list;
 		if (isImmediate)
@@ -4273,17 +4273,17 @@ void CharacterBase::absorb(Vec2 position, bool isImmediate)
 
 void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 {
-	if (_actionState == State::SATTACK && !isCancelSkill)
+	if (_state == State::SATTACK && !isCancelSkill)
 	{
 		return;
 	}
 
-	if (_actionState != State::JUMP &&
-		_actionState != State::FLOAT &&
-		_actionState != State::O2ATTACK &&
-		_actionState != State::OATTACK &&
-		_actionState != State::AIRHURT &&
-		_actionState != State::DEAD &&
+	if (_state != State::JUMP &&
+		_state != State::FLOAT &&
+		_state != State::O2ATTACK &&
+		_state != State::OATTACK &&
+		_state != State::AIRHURT &&
+		_state != State::DEAD &&
 		!_isSticking &&
 		!_isCatchOne &&
 		!_isArmored)
@@ -4292,7 +4292,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 		{
 			if (getGroup() == hero->getGroup() &&
 				hero->getName() == HeroEnum::Chiyo &&
-				hero->_actionState != State::DEAD &&
+				hero->_state != State::DEAD &&
 				hero->_buffStartTime)
 			{
 				Vec2 sp = hero->getPosition() - getPosition();
@@ -4307,7 +4307,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 		{
 			for (auto mo : _monsterArray)
 			{
-				if (mo->getName() == KugutsuEnum::Parents && !mo->_skillChangeBuffValue && mo->_actionState != State::SATTACK && mo->_actionState != State::DEAD)
+				if (mo->getName() == KugutsuEnum::Parents && !mo->_skillChangeBuffValue && mo->_state != State::SATTACK && mo->_state != State::DEAD)
 				{
 					Vec2 sp = mo->getPosition() - getPosition();
 					if (sp.x <= 48)
@@ -4326,7 +4326,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 		{
 			getGameLayer()->setSkillFinish(false);
 		}
-		_actionState = State::FLOAT;
+		_state = State::FLOAT;
 		stopAllActions();
 
 		float posX = getPositionX();
@@ -4351,9 +4351,9 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 
 void CharacterBase::knockDown()
 {
-	if (_actionState != State::KNOCKDOWN && _actionState != State::DEAD)
+	if (_state != State::KNOCKDOWN && _state != State::DEAD)
 	{
-		_actionState = State::KNOCKDOWN;
+		_state = State::KNOCKDOWN;
 		stopAllActions();
 
 		runAction(_knockDownAction);
@@ -4405,7 +4405,7 @@ void CharacterBase::dead()
 			getGameLayer()->getHudLayer()->_isAllButtonLocked = false;
 		}
 
-		if (_controller->_actionState != State::DEAD)
+		if (_controller->_state != State::DEAD)
 		{
 			_controller->unschedule(schedule_selector(CharacterBase::resumeAction));
 			_controller->idle();
@@ -4495,14 +4495,14 @@ void CharacterBase::dead()
 		hearts += 1;
 	}
 
-	if (_actionState == State::FLOAT || _actionState == State::AIRHURT)
+	if (_state == State::FLOAT || _state == State::AIRHURT)
 	{
-		_actionState = State::DEAD;
+		_state = State::DEAD;
 		unschedule(schedule_selector(CharacterBase::removeClone));
 		schedule(schedule_selector(CharacterBase::checkActionFinish), 0.0f);
 		return;
 	}
-	else if (_actionState == State::JUMP)
+	else if (_state == State::JUMP)
 	{
 		setPositionY(_originY);
 		_originY = 0;
@@ -4510,7 +4510,7 @@ void CharacterBase::dead()
 	}
 
 	stopAllActions();
-	_actionState = State::DEAD;
+	_state = State::DEAD;
 
 	if (isPlayerOrCom())
 	{
@@ -4617,7 +4617,7 @@ CharacterBase::findEnemyBy(const vector<T *> &list, int searchRange, bool master
 
 	for (auto target : list)
 	{
-		if (target->_actionState == State::DEAD ||
+		if (target->_state == State::DEAD ||
 			target->_isVisable == false ||
 			target->_isInvincible ||
 			target->isKugutsu())
@@ -4625,8 +4625,8 @@ CharacterBase::findEnemyBy(const vector<T *> &list, int searchRange, bool master
 			continue;
 		}
 
-		if ((_actionState == State::OATTACK || _actionState == State::O2ATTACK) ||
-			(_master && (_master->_actionState == State::OATTACK || _actionState == State::O2ATTACK)))
+		if ((_state == State::OATTACK || _state == State::O2ATTACK) ||
+			(_master && (_master->_state == State::OATTACK || _state == State::O2ATTACK)))
 		{
 			if (target->isClone() ||
 				target->isSummon() ||
@@ -4711,7 +4711,7 @@ CharacterBase::findEnemy2By(const vector<T *> &list)
 
 	for (auto target : list)
 	{
-		if (target->_actionState == State::DEAD ||
+		if (target->_state == State::DEAD ||
 			target->_isVisable == false ||
 			target->isKugutsu())
 		{
@@ -4805,7 +4805,7 @@ CharacterBase::findTargetEnemyBy(const vector<T *> &list, bool isTowerDected)
 	{
 		if (getGroup() != target->getGroup() &&
 			target->isNotKugutsu() &&
-			target->_actionState != State::DEAD &&
+			target->_state != State::DEAD &&
 			target->_isVisable && !target->_isInvincible)
 		{
 			// float gardZone
@@ -4844,7 +4844,7 @@ bool CharacterBase::checkBase()
 {
 	for (auto target : getGameLayer()->_CharacterArray)
 	{
-		if (target->_actionState == State::DEAD)
+		if (target->_state == State::DEAD)
 			continue;
 
 		if (_group != target->_group)
@@ -4873,7 +4873,7 @@ bool CharacterBase::checkBase()
 						  : getGameLayer()->_AkatsukiFlogArray;
 	for (auto target : flogArray)
 	{
-		if (target->_actionState == State::DEAD)
+		if (target->_state == State::DEAD)
 			continue;
 
 		if (_group != target->_group)

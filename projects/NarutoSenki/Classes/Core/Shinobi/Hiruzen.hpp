@@ -19,7 +19,7 @@ class Hiruzen : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored && _mainTarget->getHP() < 10000 && !_mainTarget->_isCanGear06)
 				{
@@ -136,7 +136,7 @@ class Hiruzen : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_mainTarget->isFlog() && _isCanSkill1 && !_isArmored)
 				{

@@ -33,7 +33,7 @@ class Minato : public Hero
 						}
 					}
 				}
-				if (isFreeActionState())
+				if (isFreeState())
 				{
 					if (isMark)
 					{
@@ -53,7 +53,7 @@ class Minato : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				bool isMark = false;
 				if (hasMonsterArrayAny())
@@ -163,7 +163,7 @@ class Minato : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill3 && _mainTarget->isFlog())
 				{
@@ -182,7 +182,7 @@ class Minato : public Hero
 
 		if (_isHealing && getHpPercent() < 1)
 		{
-			if (isFreeActionState())
+			if (isFreeState())
 				idle();
 		}
 		else
@@ -208,7 +208,7 @@ class Minato : public Hero
 					}
 				}
 
-				if (isFreeActionState())
+				if (isFreeState())
 				{
 					if (isMark)
 					{

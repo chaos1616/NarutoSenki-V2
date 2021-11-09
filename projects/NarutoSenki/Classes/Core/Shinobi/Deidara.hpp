@@ -19,7 +19,7 @@ class Deidara : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000 && !_isArmored)
 				{
@@ -145,7 +145,7 @@ class Deidara : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_mainTarget->isTower() &&
 					_isCanOugis2 &&
@@ -223,9 +223,9 @@ class Deidara : public Hero
 			setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 			setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 
-			if (_actionState != State::DEAD)
+			if (_state != State::DEAD)
 			{
-				_actionState = State::WALK;
+				_state = State::WALK;
 				idle();
 			}
 			if (_hpBar)

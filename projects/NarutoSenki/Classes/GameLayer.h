@@ -144,7 +144,7 @@ public:
 	bool _isStarted;
 	bool _isExiting;
 
-	inline const char *getGuardianGroup()
+	const char *getGuardianGroup()
 	{
 		return playerGroup == Group::Konoha ? TowerEnum::AkatsukiCenter : TowerEnum::KonohaCenter;
 	}
@@ -152,6 +152,9 @@ public:
 	bool _isGear;
 	bool _isPause;
 	GearLayer *_gearLayer;
+
+	inline void clearAllFlogsMainTarget(CharacterBase *target);
+	inline void clearAllUnitsMainTarget(CharacterBase *target);
 
 	CREATE_FUNC(GameLayer);
 	static bool checkHasAnyMovement();

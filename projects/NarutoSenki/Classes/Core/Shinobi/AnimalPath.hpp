@@ -31,7 +31,7 @@ class AnimalPath : public Hero
 				}
 				else
 				{
-					if (isFreeActionState())
+					if (isFreeState())
 					{
 						if (_isCanSkill1 && _mainTarget->isNotTower())
 						{
@@ -61,7 +61,7 @@ class AnimalPath : public Hero
 					walk(moveDirection);
 					return;
 				}
-				else if (isFreeActionState())
+				else if (isFreeState())
 				{
 					if (_isCanSkill1)
 					{

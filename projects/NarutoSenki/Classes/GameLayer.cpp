@@ -84,7 +84,7 @@ void GameLayer::onEnter()
 
 	if (currentPlayer && !ougisChar)
 	{
-		if (currentPlayer->getActionState() == State::WALK)
+		if (currentPlayer->getState() == State::WALK)
 		{
 			currentPlayer->idle();
 		}
@@ -631,7 +631,7 @@ void GameLayer::clearDoubleClick()
 
 void GameLayer::JoyStickRelease()
 {
-	if (currentPlayer->getActionState() == State::WALK)
+	if (currentPlayer->getState() == State::WALK)
 	{
 		currentPlayer->idle();
 	}
@@ -865,7 +865,7 @@ void GameLayer::removeOugis()
 	Ref *pObject;
 	CCARRAY_FOREACH(childArray, pObject)
 	{
-		Node *object = (Node *)pObject;
+		auto object = (Node *)pObject;
 		object->resumeSchedulerAndActions();
 	}
 	resumeSchedulerAndActions();
@@ -920,6 +920,18 @@ Vec2 GameLayer::getCustomSpawnPoint(HeroData &data)
 	return data.group == Group::Konoha ? Vec2(432, 80) : Vec2(2608, 80);
 }
 
+void GameLayer::clearAllFlogsMainTarget(CharacterBase *target)
+{
+	UnitEx::clearMainTarget(target, _KonohaFlogArray);
+	UnitEx::clearMainTarget(target, _AkatsukiFlogArray);
+}
+
+void GameLayer::clearAllUnitsMainTarget(CharacterBase *target)
+{
+	clearAllFlogsMainTarget(target);
+	UnitEx::clearMainTarget(target, _AkatsukiFlogArray);
+}
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
@@ -971,7 +983,7 @@ Vec2 GameLayer::getCustomSpawnPoint(HeroData &data)
 			if (!_gLayer->ougisChar)                                                \
 				_gLayer->currentPlayer->walk(Vec2(horizontal, vertical));           \
 		}                                                                           \
-		else if (_gLayer->currentPlayer->getActionState() == State::WALK)           \
+		else if (_gLayer->currentPlayer->getState() == State::WALK)                 \
 		{                                                                           \
 			_gLayer->_lastPressedMovementKey = -100;                                \
 			_gLayer->currentPlayer->idle();                                         \

@@ -28,7 +28,7 @@ class NarutoClone : public Hero
 			}
 			else
 			{
-				if (isFreeActionState())
+				if (isFreeState())
 				{
 					changeSide(sp);
 					attack(NAttack);

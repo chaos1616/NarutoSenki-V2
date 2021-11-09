@@ -402,7 +402,7 @@ public:
 			setOpacity(255);
 			setHPValue(getMaxHP(), false);
 			setHPbar();
-			_actionState = State::HURT;
+			_state = State::HURT;
 
 			if (getLV() < 4)
 			{
@@ -464,7 +464,7 @@ public:
 	{
 		CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(this);
 		stopAllActions();
-		_actionState = State::DEAD;
+		_state = State::DEAD;
 
 		if (!_monsterArray.empty() && getName() != HeroEnum::Minato)
 		{
@@ -479,7 +479,7 @@ public:
 					CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(mo);
 					mo->stopAllActions();
 					mo->unscheduleAllSelectors();
-					mo->setActionState(State::DEAD);
+					mo->setState(State::DEAD);
 					mo->removeFromParent();
 				}
 			}
@@ -491,7 +491,7 @@ public:
 			unschedule(schedule_selector(CharacterBase::setAI));
 
 			std::erase(getGameLayer()->_CharacterArray, this);
-			UnitEx::RemoveAllFlogsMainTarget(this);
+			getGameLayer()->clearAllFlogsMainTarget(this);
 
 			if (_shadow)
 				_shadow->removeFromParent();

@@ -20,14 +20,14 @@ class Tobirama : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000)
 				{
 					changeSide(sp);
 					attack(OUGIS2);
 				}
-				else if (_isCanSkill1 && !_mainTarget->_isArmored && _mainTarget->isFreeActionState())
+				else if (_isCanSkill1 && !_mainTarget->_isArmored && _mainTarget->isFreeState())
 				{
 					changeSide(sp);
 					attack(SKILL1);
@@ -98,7 +98,7 @@ class Tobirama : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill3 && _mainTarget->isFlog() && isBaseDanger)
 				{

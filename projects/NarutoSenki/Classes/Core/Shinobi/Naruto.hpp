@@ -56,7 +56,7 @@ class Naruto : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored)
 				{
@@ -138,7 +138,7 @@ class Naruto : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill2 && !_isArmored)
 				{
@@ -210,9 +210,9 @@ class Naruto : public Hero
 		resetDefenseValue(5000);
 		_isArmored = false;
 
-		if (_actionState != State::DEAD)
+		if (_state != State::DEAD)
 		{
-			_actionState = State::WALK;
+			_state = State::WALK;
 			knockDown();
 		}
 
@@ -244,7 +244,7 @@ class Naruto : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored)
 				{
@@ -325,7 +325,7 @@ class Naruto : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill2 && !_isArmored)
 				{
@@ -379,9 +379,9 @@ class Naruto : public Hero
 		_isArmored = false;
 		hasArmorBroken = false;
 
-		if (_actionState != State::DEAD)
+		if (_state != State::DEAD)
 		{
-			_actionState = State::WALK;
+			_state = State::WALK;
 			setKnockDownAction(createAnimation(skillSPC5Array, 10.0f, false, true));
 			knockDown();
 			setKnockDownAction(createAnimation(knockDownArray, 10.0f, false, true));
@@ -422,7 +422,7 @@ class Naruto : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored)
 				{
@@ -499,7 +499,7 @@ class Naruto : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill1 && !_isArmored && _mainTarget->isFlog())
 				{
@@ -564,9 +564,9 @@ class Naruto : public Hero
 		_isArmored = false;
 		hasArmorBroken = false;
 
-		if (_actionState != State::DEAD)
+		if (_state != State::DEAD)
 		{
-			_actionState = State::WALK;
+			_state = State::WALK;
 			idle();
 		}
 

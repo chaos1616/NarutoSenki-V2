@@ -20,7 +20,7 @@ class Asuma : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis1 && !_isControlled && _mainTarget->getDEF() < 5000)
 				{
@@ -111,7 +111,7 @@ class Asuma : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill2 && _mainTarget->isFlog() && isBaseDanger)
 				{

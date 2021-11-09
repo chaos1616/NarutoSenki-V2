@@ -19,7 +19,7 @@ class Konan : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill1 && !_isArmored)
 				{
@@ -27,7 +27,7 @@ class Konan : public Hero
 					attack(SKILL1);
 					return;
 				}
-				else if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getActionState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_isArmored)
+				else if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_isArmored)
 				{
 					if ((abs(sp.x) > 48 || abs(sp.y) > 16))
 					{
@@ -41,7 +41,7 @@ class Konan : public Hero
 					return;
 				}
 				else if (_mainTarget->getDEF() < 5000 && !_isVisable && !_isArmored && (_isCanSkill3 || _isCanSkill2) &&
-						 _mainTarget->getActionState() != State::KNOCKDOWN)
+						 _mainTarget->getState() != State::KNOCKDOWN)
 				{
 					if ((abs(sp.x) > 128 || abs(sp.y) > 16))
 					{
@@ -145,7 +145,7 @@ class Konan : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanGear03)
 				{
@@ -208,9 +208,9 @@ class Konan : public Hero
 		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
 		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
 
-		if (_actionState != State::DEAD)
+		if (_state != State::DEAD)
 		{
-			_actionState = State::WALK;
+			_state = State::WALK;
 			idle();
 		}
 

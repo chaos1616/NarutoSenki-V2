@@ -20,7 +20,7 @@ class Akamaru : public Hero
 
 		if (abs((_master->getPosition() - getPosition()).x) > kAttackRange - 48)
 		{
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				moveDirection = getDirByMoveTo(_master);
 				walk(moveDirection);
@@ -41,7 +41,7 @@ class Akamaru : public Hero
 				}
 				else
 				{
-					if (isFreeActionState())
+					if (isFreeState())
 					{
 						changeSide(sp);
 						attack(NAttack);
@@ -57,11 +57,11 @@ class Akamaru : public Hero
 				}
 				else
 				{
-					if (isFreeActionState())
+					if (isFreeState())
 					{
 						if (_master->_isCanSkill2 && _mainTarget->getDEF() < 5000 &&
 							(_master->_isControlled || _master->_isAI == true) &&
-							_master->isFreeActionState())
+							_master->isFreeState())
 						{
 							changeSide(sp);
 							if (_master->isNotPlayer())
@@ -105,9 +105,9 @@ class Akamaru : public Hero
 		setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
 		setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
 
-		if (_actionState == State::NATTACK)
+		if (_state == State::NATTACK)
 		{
-			_actionState = State::WALK;
+			_state = State::WALK;
 			idle();
 		}
 	}
@@ -122,9 +122,9 @@ class Akamaru : public Hero
 			setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
 			_powerUPBuffValue = 0;
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
-				_actionState = State::WALK;
+				_state = State::WALK;
 				idle();
 			}
 		}

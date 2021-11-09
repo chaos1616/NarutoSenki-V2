@@ -39,7 +39,7 @@ class Hidan : public Hero
 						{
 							for (auto hero : getGameLayer()->_CharacterArray)
 							{
-								if (hero->getGroup() != getGroup() && hero->getHP() < 2000 && hero->getActionState() != State::DEAD && hero->isPlayerOrCom())
+								if (hero->getGroup() != getGroup() && hero->getHP() < 2000 && hero->getState() != State::DEAD && hero->isPlayerOrCom())
 								{
 									attack(NAttack);
 									return;
@@ -70,7 +70,7 @@ class Hidan : public Hero
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && !_isArmored)
 				{
@@ -167,7 +167,7 @@ class Hidan : public Hero
 				return;
 			}
 
-			if (isFreeActionState())
+			if (isFreeState())
 			{
 				if (_isCanSkill3 && _mainTarget->isFlog() && isBaseDanger && !_isArmored)
 				{
@@ -191,7 +191,7 @@ class Hidan : public Hero
 
 		if (!_isArmored)
 			checkHealingState();
-		else if (isFreeActionState())
+		else if (isFreeState())
 			idle();
 	}
 
@@ -225,7 +225,7 @@ class Hidan : public Hero
 				std::erase(getGameLayer()->_CharacterArray, mo);
 
 				CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(mo);
-				mo->setActionState(State::DEAD);
+				mo->setState(State::DEAD);
 				mo->removeFromParent();
 			}
 			_monsterArray.clear();
@@ -236,9 +236,9 @@ class Hidan : public Hero
 			getGameLayer()->getHudLayer()->skill1Button->unLock();
 		}
 
-		if (_actionState != State::DEAD)
+		if (_state != State::DEAD)
 		{
-			_actionState = State::WALK;
+			_state = State::WALK;
 			idle();
 		}
 		CharacterBase::resumeAction(dt);
@@ -284,13 +284,13 @@ class Hidan : public Hero
 
 		if (_isCounter && attacker->isNotGuardian())
 		{
-			if (attacker->getMaster() && attacker->getMaster()->getActionState() != State::DEAD)
+			if (attacker->getMaster() && attacker->getMaster()->getState() != State::DEAD)
 			{
 				attacker->getMaster()->setDamage(this, attacker->getEffectType(), attacker->_attackValue, attacker->_isFlipped);
 			}
 			else if (!attacker->getMaster())
 			{
-				if (attacker->getActionState() != State::DEAD)
+				if (attacker->getState() != State::DEAD)
 				{
 					attacker->setDamage(this, attacker->getEffectType(), attacker->_attackValue, attacker->_isFlipped);
 				}
@@ -298,7 +298,7 @@ class Hidan : public Hero
 
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
-				if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->getActionState() != State::DEAD)
+				if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->getState() != State::DEAD)
 				{
 					hero->setDamage(this, attacker->getEffectType(), attacker->_attackValue / 2, attacker->_isFlipped);
 				}
@@ -331,14 +331,14 @@ class Hidan : public Hero
 
 		if (_isCounter)
 		{
-			if (attacker->getMaster() && attacker->getMaster()->getActionState() != State::DEAD)
+			if (attacker->getMaster() && attacker->getMaster()->getState() != State::DEAD)
 			{
 				attacker->getMaster()->setDamage(this, attacker->getEffectType(), attacker->_attackValue, attacker->_isFlipped);
 			}
 
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
-				if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->getActionState() != State::DEAD)
+				if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->getState() != State::DEAD)
 				{
 					hero->setDamage(this, attacker->getEffectType(), attacker->_attackValue / 2, attacker->_isFlipped);
 				}
