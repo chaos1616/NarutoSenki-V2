@@ -36,9 +36,8 @@ enum class UnitKind
 
 struct ActionData
 {
-	using FrameVector = vector<pair<const char *, const char *>>;
+	using FrameVector = vector<pair<string, string>>;
 
-public:
 	string name;
 	bool hasData;
 
@@ -54,7 +53,6 @@ public:
 
 struct UnitMetadata
 {
-public:
 	UnitKind kind;
 
 	string name;
@@ -64,13 +62,4 @@ public:
 	u16 speed;
 
 	vector<ActionData> actions;
-
-	static UnitMetadata &Parse(const string &filePath)
-	{
-		UnitMetadata metadata;
-
-		return metadata;
-	}
-
-private:
 };

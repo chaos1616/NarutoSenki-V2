@@ -33,6 +33,7 @@ typedef SSIZE_T ssize_t;
 #endif
 
 #include "ccMacros.h"
+#include "cocoa/CCObject.h"
 #include <vector>
 #include <functional>
 #include <algorithm> // for std::find

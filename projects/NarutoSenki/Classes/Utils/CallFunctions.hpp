@@ -17,7 +17,7 @@ public:
 		}
 
 		CC_SAFE_DELETE(pRet);
-		return NULL;
+		return nullptr;
 	}
 
 	bool initWithTarget(const std::function<void()> &func)
@@ -28,8 +28,8 @@ public:
 
 	CCObject *copyWithZone(CCZone *zone)
 	{
-		CCZone *pNewZone = NULL;
-		CallFunc *pRet = NULL;
+		CCZone *pNewZone = nullptr;
+		CallFunc *pRet = nullptr;
 
 		if (zone && zone->m_pCopyObject)
 		{
