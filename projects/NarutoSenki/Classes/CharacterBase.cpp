@@ -141,8 +141,6 @@ CharacterBase::CharacterBase()
 
 	_isAI = false;
 
-	cpLabel = nullptr;
-
 	_affectedByTower = false;
 }
 

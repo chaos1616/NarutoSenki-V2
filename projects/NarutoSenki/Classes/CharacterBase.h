@@ -77,8 +77,8 @@ public:
 	Effect*				_speedItemEffect;
 	float				_buffStartTime;
 	float				_debuffStartTime;
-	VPROP(int,_knockLength, KnockLength);
-	VPROP(bool,_knockDirection, KnockDirection);
+	VPROP(int, _knockLength, KnockLength);
+	VPROP(bool, _knockDirection, KnockDirection);
 
 	bool				_isAllAttackLocked;
 	bool				_isOnlySkillLocked;
@@ -97,7 +97,6 @@ public:
 	bool				_isAI;
 	bool				_isControlled;
 
-	PPROP_PTR(CCLabelTTF, cpLabel, CPLabel);
 	PROP_Vector(vector<GearType>, _gearArray, GearArray);
 
 	bool				enableDead	 = true;
@@ -139,16 +138,16 @@ public:
 	VPROP(int,_walkSpeed,WalkSpeed);
 	int					_originSpeed;
 
-	PROP_UInt(_hp,HP);
-	PROP_UInt(_maxHP,MaxHP);
-	PROP_UInt(_ckr,CKR);
-	PROP_UInt(_ckr2,CKR2);
-	VPROP(float,_defense,DEF);
-	VPROP(float,_exp,EXP);
-	VPROP(uint32_t,_level,LV);
-	VPROP(int,_height,Height);
-	VPROP(int,_rebornTime,RebornTime);
-	VPROP(Vec2,_spawnPoint,SpawnPoint);
+	PROP_UInt(_hp, HP);
+	PROP_UInt(_maxHP, MaxHP);
+	PROP_UInt(_ckr, CKR);
+	PROP_UInt(_ckr2, CKR2);
+	VPROP(float, _defense, DEF);
+	VPROP(float, _exp, EXP);
+	VPROP(uint32_t, _level, LV);
+	VPROP(int, _height, Height);
+	VPROP(int, _rebornTime, RebornTime);
+	VPROP(Vec2, _spawnPoint, SpawnPoint);
 
 
 	VPROP(CharacterBase*, _master, Master);
@@ -229,7 +228,7 @@ public:
 	PROP_UInt(_tempAttackValue1,TempAttackValue1);
 
 
-	PROP_REF(string,_effectType,EffectType);
+	PROP_REF(string, _effectType, EffectType);
 	bool			_hurtFromLeft;
 	bool			_hurtFromRight;
 
@@ -238,8 +237,8 @@ public:
 	PROP_Vector(vector<CharacterBase *>, _monsterArray, MonsterArray);
 
 	// movement
-	PROP(Vec2,_velocity, Velocity);
-	PROP(Vec2,_desiredPosition, DesiredPosition);
+	PROP(Vec2, _velocity, Velocity);
+	PROP(Vec2, _desiredPosition, DesiredPosition);
 
 	// actions
 	PPROP_PTR(FiniteTimeAction, _idleAction, IdleAction);
@@ -280,7 +279,7 @@ public:
 	bool				hardHurt(int delayTime, bool isHurtAction, bool isCatch, bool isStick, bool isStun);
 	// bool				hardHurt(int delayTime, bool isHurtAction, HardHurtState state);
 	void				absorb(Vec2 position, bool isImmediate);
-	void				jump(){}; // No reference
+	void				jump() {}; // No reference
 	void				knockDown();
 	virtual void		dead();
 	void				floatUP(float floatHeight, bool isCancelSkill);
