@@ -15,9 +15,9 @@ public:
 
 	int loadNum;
 
-	CC_SYNTHESIZE_RETAIN(GameLayer *, _gameLayer, GameLayer);
-	CC_SYNTHESIZE_RETAIN(BGLayer *, _bgLayer, BGLayer);
-	CC_SYNTHESIZE_RETAIN(HudLayer *, _hudLayer, HudLayer);
+	PROP_PTR(GameLayer, _gameLayer, GameLayer);
+	PROP_PTR(BGLayer, _bgLayer, BGLayer);
+	PROP_PTR(HudLayer, _hudLayer, HudLayer);
 
 	bool _isHardCoreMode;
 	bool _enableGear;

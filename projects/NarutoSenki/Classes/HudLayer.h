@@ -53,9 +53,9 @@ public:
 	ActionButton *skill5Button;
 
 	ActionButton *item1Button;
-	CC_SYNTHESIZE_RETAIN(ActionButton *, item2Button, Item2Button);
-	CC_SYNTHESIZE_RETAIN(ActionButton *, item3Button, Item3Button);
-	CC_SYNTHESIZE_RETAIN(ActionButton *, item4Button, Item4Button);
+	PROP_PTR(ActionButton, item2Button, Item2Button);
+	PROP_PTR(ActionButton, item3Button, Item3Button);
+	PROP_PTR(ActionButton, item4Button, Item4Button);
 
 	MenuItemSprite *gearMenuSprite;
 	ActionButton *gear1Button;

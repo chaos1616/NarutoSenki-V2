@@ -97,8 +97,8 @@ public:
 	bool				_isAI;
 	bool				_isControlled;
 
-	CC_SYNTHESIZE_RETAIN(CCLabelTTF*,cpLabel,CPLabel);
-	PROP_Vector(vector<GearType>,_gearArray,GearArray);
+	PPROP_PTR(CCLabelTTF, cpLabel, CPLabel);
+	PROP_Vector(vector<GearType>, _gearArray, GearArray);
 
 	bool				enableDead	 = true;
 	bool				enableReborn = true;
@@ -242,24 +242,24 @@ public:
 	PROP(Vec2,_desiredPosition, DesiredPosition);
 
 	// actions
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _idleAction, IdleAction);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _nAttackAction, NAttackAction);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _walkAction, WalkAction);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _hurtAction, HurtAction);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _knockDownAction, KnockDownAction);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _airHurtAction, AirHurtAction);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _floatAction, FloatAction);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _deadAction, DeadAction); 
+	PPROP_PTR(FiniteTimeAction, _idleAction, IdleAction);
+	PPROP_PTR(FiniteTimeAction, _nAttackAction, NAttackAction);
+	PPROP_PTR(FiniteTimeAction, _walkAction, WalkAction);
+	PPROP_PTR(FiniteTimeAction, _hurtAction, HurtAction);
+	PPROP_PTR(FiniteTimeAction, _knockDownAction, KnockDownAction);
+	PPROP_PTR(FiniteTimeAction, _airHurtAction, AirHurtAction);
+	PPROP_PTR(FiniteTimeAction, _floatAction, FloatAction);
+	PPROP_PTR(FiniteTimeAction, _deadAction, DeadAction); 
 
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _skill1Action, Skill1Action);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _skill2Action, Skill2Action);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _skill3Action, Skill3Action);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _skill4Action, Skill4Action);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _skill5Action, Skill5Action);
+	PPROP_PTR(FiniteTimeAction, _skill1Action, Skill1Action);
+	PPROP_PTR(FiniteTimeAction, _skill2Action, Skill2Action);
+	PPROP_PTR(FiniteTimeAction, _skill3Action, Skill3Action);
+	PPROP_PTR(FiniteTimeAction, _skill4Action, Skill4Action);
+	PPROP_PTR(FiniteTimeAction, _skill5Action, Skill5Action);
 
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _moveAction, MoveAction);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _floatUPAction, FloatUPAction);
-	CC_SYNTHESIZE_RETAIN(FiniteTimeAction*, _jumpUPAction, JumpUPAction);
+	PPROP_PTR(FiniteTimeAction, _moveAction, MoveAction);
+	PPROP_PTR(FiniteTimeAction, _floatUPAction, FloatUPAction);
+	PPROP_PTR(FiniteTimeAction, _jumpUPAction, JumpUPAction);
 
 
 	void				update(float dt);

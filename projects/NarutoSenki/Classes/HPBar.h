@@ -10,8 +10,8 @@ public:
 	void loseHP(float percent);
 
 	PROP(CharacterBase *, _delegate, Delegate);
-	CC_SYNTHESIZE_RETAIN(Sprite *, hpBottom, HPBottom);
-	CC_SYNTHESIZE_RETAIN(Sprite *, hpBar, HPBAR);
+	PROP_PTR(Sprite, hpBottom, HPBottom);
+	PROP_PTR(Sprite, hpBar, HPBAR);
 
 	static HPBar *create(const char *szImage);
 };

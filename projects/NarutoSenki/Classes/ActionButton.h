@@ -53,8 +53,7 @@ public:
 	void clearOugisMark();
 	void setGearType(GearType type);
 
-	CC_SYNTHESIZE_RETAIN(Action *, _freezeAction, FreezeAction);
-	// CC_SYNTHESIZE_RETAIN(ProgressTimer*,markSprite,MarkSprite);
+	PROP_PTR(Action, _freezeAction, FreezeAction);
 	PROP(HudLayer *, _delegate, Delegate);
 	void beganAnimation(bool isLock = false);
 	void updateCDLabel(float dt);

@@ -27,7 +27,7 @@ public:
 		CC_SAFE_RELEASE(floatArray);
 		CC_SAFE_RELEASE(knockDownArray);
 		CC_SAFE_RELEASE(nattackArray);
-		CC_SAFE_DELETE(skillSPC1Array);
+		CC_SAFE_RELEASE(skillSPC1Array);
 		CC_SAFE_RELEASE(skillSPC2Array);
 		CC_SAFE_RELEASE(skillSPC3Array);
 		CC_SAFE_RELEASE(skillSPC4Array);
