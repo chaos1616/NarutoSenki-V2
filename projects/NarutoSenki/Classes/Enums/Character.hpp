@@ -57,12 +57,13 @@ enum class Role : uint8_t
 #define kGuardian_Roshi "Roshi"
 #define kGuardian_Han "Han"
 
-enum abType : uint8_t
+// Attack button type
+enum ABType : uint8_t
 {
 	NAttack,
-	Item1,
-	GearItem,
-	GearBtn,
+	Item1,	  // Item1: Ramen
+	GearItem, // Item skill
+	GearBtn,  // Gear skill
 	SKILL1,
 	SKILL2,
 	SKILL3,

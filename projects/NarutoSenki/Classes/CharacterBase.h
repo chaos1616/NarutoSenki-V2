@@ -272,10 +272,10 @@ public:
 
 	void				idle();
 	void				walk(Vec2 direction);
-	void				attack(abType type);
-	void				sAttack(abType type);
+	void				attack(ABType type);
+	void				sAttack(ABType type);
 	void				nAttack();
-	void				oAttack(abType type);
+	void				oAttack(ABType type);
 	bool				hurt();
 	bool				hardHurt(int delayTime, bool isHurtAction, bool isCatch, bool isStick, bool isStun);
 	// bool				hardHurt(int delayTime, bool isHurtAction, HardHurtState state);
@@ -306,7 +306,7 @@ public:
 	void				enableShadow(Sprite *charN);
 	void				disableShadow(Sprite *charN);
 
-	void				setItem(abType type);
+	void				setItem(ABType type);
 	void				disableEffect();
 	void				disableHpBar(float dt);
 

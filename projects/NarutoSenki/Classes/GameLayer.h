@@ -99,7 +99,7 @@ public:
 	Hero *addHero(const string &name, Role role, Group group, Vec2 spawnPoint, int charNo);
 	void addFlog(float dt);
 
-	void attackButtonClick(abType type);
+	void attackButtonClick(ABType type);
 	void gearButtonClick(GearType type);
 	void attackButtonRelease();
 

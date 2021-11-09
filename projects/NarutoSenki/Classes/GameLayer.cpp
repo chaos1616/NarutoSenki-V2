@@ -646,7 +646,7 @@ void GameLayer::JoyStickUpdate(Vec2 direction)
 	}
 }
 
-void GameLayer::attackButtonClick(abType type)
+void GameLayer::attackButtonClick(ABType type)
 {
 	if (type == NAttack)
 	{

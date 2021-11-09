@@ -91,7 +91,7 @@ public:
 	void setEXPLose();
 
 	void initHeroInterface();
-	void attackButtonClick(abType type);
+	void attackButtonClick(ABType type);
 	void gearButtonClick(GearType type);
 	void attackButtonRelease();
 	void pauseButtonClick(Ref *sender);

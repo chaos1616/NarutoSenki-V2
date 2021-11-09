@@ -1582,7 +1582,7 @@ void CharacterBase::setSkillEffect(const string &type)
 	}
 }
 
-void CharacterBase::setItem(abType type)
+void CharacterBase::setItem(ABType type)
 {
 	if (_isControlled)
 		return;
@@ -3645,7 +3645,7 @@ float CharacterBase::getHpPercent()
 	return percent;
 }
 
-void CharacterBase::attack(abType type)
+void CharacterBase::attack(ABType type)
 {
 	if (isPlayer() && type == NAttack)
 	{
@@ -3776,7 +3776,7 @@ void CharacterBase::nAttack()
 	}
 }
 
-void CharacterBase::sAttack(abType type)
+void CharacterBase::sAttack(ABType type)
 {
 	if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 	{
@@ -3852,7 +3852,7 @@ void CharacterBase::sAttack(abType type)
 	}
 }
 
-void CharacterBase::oAttack(abType type)
+void CharacterBase::oAttack(ABType type)
 {
 	if (_actionState == State::IDLE || _actionState == State::WALK || _actionState == State::NATTACK)
 	{

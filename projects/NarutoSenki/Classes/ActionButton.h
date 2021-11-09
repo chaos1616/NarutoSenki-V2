@@ -41,7 +41,7 @@ public:
 
 	bool _isMarkVisable;
 
-	PROP(abType, _abType, ABType);
+	PROP(ABType, _abType, ABType);
 	GearType _gearType;
 
 	PROP_UInt(_cooldown, CD);

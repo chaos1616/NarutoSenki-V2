@@ -1113,7 +1113,7 @@ Sprite *HudLayer::createReport(const string &slayer, const string &dead, float &
 	return reportSprite;
 }
 
-void HudLayer::attackButtonClick(abType type)
+void HudLayer::attackButtonClick(ABType type)
 {
 	getGameLayer()->attackButtonClick(type);
 }
