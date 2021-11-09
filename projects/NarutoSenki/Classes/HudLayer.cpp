@@ -81,6 +81,28 @@ MiniIcon *MiniIcon::create(const char *szImage, bool isNotification)
 
 HudLayer::HudLayer()
 {
+	status_bar = nullptr;
+	status_hpbar = nullptr;
+	status_hpMark = nullptr;
+	status_expbar = nullptr;
+	nAttackButton = nullptr;
+	skill1Button = nullptr;
+	skill2Button = nullptr;
+	skill3Button = nullptr;
+	gearMenuSprite = nullptr;
+	reportSprite = nullptr;
+	hpLabel = nullptr;
+	expLabel = nullptr;
+	coinLabel = nullptr;
+	killLabel = nullptr;
+	deadLabel = nullptr;
+	KonoLabel = nullptr;
+	AkaLabel = nullptr;
+	gameClock = nullptr;
+	pauseNenu = nullptr;
+	texUI = nullptr;
+	uiBatch = nullptr;
+	miniLayer = nullptr;
 	_joyStick = nullptr;
 
 	reportSPCSprite = nullptr;
@@ -169,7 +191,7 @@ void HudLayer::playGameOpeningAnimation()
 {
 	Vector<SpriteFrame *> spriteFrames;
 	int i = 1;
-	while (i < ComCount)
+	while (i < kComCount)
 	{
 		auto frame = getSpriteFrame("gameStart_00{}.png", i);
 		spriteFrames.pushBack(frame);
@@ -367,7 +389,7 @@ void HudLayer::initHeroInterface()
 	item2Button->setCD(15000);
 	item2Button->setDelegate(this);
 	item2Button->setABType(GearItem);
-	item2Button->_gearType = None;
+	item2Button->_gearType = GearType::None;
 	item2Button->_isLock = true;
 	uiBatch->addChild(item2Button);
 	item2Button->setVisible(false);
@@ -376,7 +398,7 @@ void HudLayer::initHeroInterface()
 	item3Button->setCD(15000);
 	item3Button->setDelegate(this);
 	item3Button->setABType(GearItem);
-	item3Button->_gearType = None;
+	item3Button->_gearType = GearType::None;
 	item3Button->_isLock = true;
 	uiBatch->addChild(item3Button);
 	item3Button->setVisible(false);
@@ -385,7 +407,7 @@ void HudLayer::initHeroInterface()
 	item4Button->setCD(15000);
 	item4Button->setDelegate(this);
 	item4Button->setABType(GearItem);
-	item4Button->_gearType = None;
+	item4Button->_gearType = GearType::None;
 	item4Button->_isLock = true;
 	uiBatch->addChild(item4Button);
 	item4Button->setVisible(false);
@@ -546,14 +568,14 @@ void HudLayer::updateGears()
 		gear1Button->setABType(GearBtn);
 
 		gear1Button->setMarkSprite("gear_freeze.png");
-		gear1Button->_gearType = None;
+		gear1Button->_gearType = GearType::None;
 		addChild(gear1Button, 200);
 
 		gear2Button = ActionButton::create("gearbg.png");
 		gear2Button->setPosition(Vec2(35, winSize.height - 112));
 		gear2Button->setDelegate(this);
 		gear2Button->setCD(15000);
-		gear2Button->_gearType = None;
+		gear2Button->_gearType = GearType::None;
 		gear2Button->setABType(GearBtn);
 		gear2Button->setMarkSprite("gear_freeze.png");
 
@@ -563,7 +585,7 @@ void HudLayer::updateGears()
 		gear3Button->setPosition(Vec2(70, winSize.height - 92));
 		gear3Button->setCD(15000);
 		gear3Button->setDelegate(this);
-		gear3Button->_gearType = None;
+		gear3Button->_gearType = GearType::None;
 
 		gear3Button->setABType(GearBtn);
 		gear3Button->setMarkSprite("gear_freeze.png");
@@ -588,19 +610,19 @@ void HudLayer::updateGears()
 			gear3Button->setGearType(gear);
 		}
 
-		if (gear == 6 && getItem2Button()->_gearType == None)
+		if (gear == 6 && getItem2Button()->_gearType == GearType::None)
 		{
 			getItem2Button()->_gearType = gear;
 			getItem2Button()->setVisible(true);
 			getItem2Button()->_isLock = false;
 		}
-		else if (gear == 0 && getItem3Button()->_gearType == None)
+		else if (gear == 0 && getItem3Button()->_gearType == GearType::None)
 		{
 			getItem3Button()->_gearType = gear;
 			getItem3Button()->_isLock = false;
 			getItem3Button()->setVisible(true);
 		}
-		else if (gear == 3 && getItem4Button()->_gearType == None)
+		else if (gear == 3 && getItem4Button()->_gearType == GearType::None)
 		{
 			getItem4Button()->setVisible(true);
 			getItem4Button()->_gearType = gear;
@@ -994,7 +1016,7 @@ Sprite *HudLayer::createSPCReport(uint32_t killNum, int num)
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill2_3.ogg");
 		}
-		else if (killNum >= 30)
+		else
 		{
 			reportSPCSprite = Sprite::createWithSpriteFrameName("Godlike_rpf.png");
 			if (isBrocast)

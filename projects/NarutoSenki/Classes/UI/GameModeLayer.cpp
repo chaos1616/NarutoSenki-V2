@@ -12,8 +12,6 @@ extern const GameData kDefaultGameData;
 
 bool GameModeLayer::init()
 {
-	Vec2 origin = Director::sharedDirector()->getVisibleOrigin();
-
 	auto bgSprite = Sprite::create("red_bg.png");
 	FULL_SCREEN_SPRITE(bgSprite);
 	bgSprite->setAnchorPoint(Vec2(0, 0));
@@ -40,8 +38,8 @@ bool GameModeLayer::init()
 	initModeData();
 
 	// init menus
-	const int padding = -10;
-	const int width = 100;
+	// const int padding = -10;
+	// const int width = 100;
 	const int offset = (winSize.width - 460) / 2 + 100 / 2;
 	const float posY = (winSize.height / 2) + 30;
 	for (int i = 0; i < 3; i++)
@@ -69,7 +67,7 @@ bool GameModeLayer::init()
 		// auto action = Sequence::createWithTwoActions(delay, move);
 		// mode_btn->runAction(action);
 	}
-	for (int i = 6; i < GameMode::_Internal_Max_Length; i++)
+	for (int i = 6; i < GameMode::__Internal_Max_Length; i++)
 	{
 		auto mode_btn = ModeMenuButton::create(format("GameMode/{}.png", i + 1));
 		mode_btn->mode = (GameMode)i;
@@ -129,17 +127,6 @@ void GameModeLayer::initModeData()
 		modes[GameMode::Deathmatch] = {"死亡竞赛 (3 VS 3)", ""};
 		modes[GameMode::RandomDeathmatch] = {"随机死亡竞赛 (3 VS 3)", ""};
 	}
-	else if (lang == LanguageType::kLanguageJapanese)
-	{
-		modes[GameMode::OneVsOne] = {"1 VS 1", ""};
-		modes[GameMode::Classic] = {"3 VS 3", "Classic Mode"};
-		modes[GameMode::FourVsFour] = {"4 VS 4", ""};
-		modes[GameMode::HardCore_4Vs4] = {"HardCore (4 VS 4)", "Disabled gear"};
-		modes[GameMode::Boss] = {"Boss (3 VS 3)", ""};
-		modes[GameMode::Clone] = {"Clone (3 VS 3)", ""};
-		modes[GameMode::Deathmatch] = {"Deathmatch (3 VS 3)", ""};
-		modes[GameMode::RandomDeathmatch] = {"Random Deathmatch (3 VS 3)", ""};
-	}
 	else // English
 	{
 		modes[GameMode::OneVsOne] = {"1 VS 1", ""};
@@ -158,7 +145,7 @@ void GameModeLayer::initModeData()
 	modes[GameMode::Deathmatch].useMask2 = true;
 
 	// init mode handlers
-	for (size_t i = 0; i < GameMode::_Internal_Max_Length; i++)
+	for (size_t i = 0; i < GameMode::__Internal_Max_Length; i++)
 	{
 		auto &data = modes.at(i);
 		if (data.isLocked)
@@ -195,13 +182,13 @@ void GameModeLayer::selectMode(GameMode mode)
 
 		s_GameMode = mode;
 		bool enableCustomSelect = false;
-		if (Cheats < MaxCheats && (mode == GameMode::FourVsFour || mode == GameMode::HardCore_4Vs4))
+		if (Cheats < kMaxCheats && (mode == GameMode::FourVsFour || mode == GameMode::HardCore_4Vs4))
 		{
 			enableCustomSelect = false;
 		}
 		else if (mode != GameMode::RandomDeathmatch && mode != GameMode::Clone)
 		{
-			enableCustomSelect = Cheats >= MaxCheats;
+			enableCustomSelect = Cheats >= kMaxCheats;
 		}
 
 		// call lua global function StartMenu.enterSelectLayer

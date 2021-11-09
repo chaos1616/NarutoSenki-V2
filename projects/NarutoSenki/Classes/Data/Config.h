@@ -1,7 +1,7 @@
 #pragma once
 #include "Data/Fonts.h"
 
-#define FONT_TYPE "Microsoft YaHei"
+#define FONT_NAME "Microsoft YaHei"
 
 // Game
 
@@ -11,27 +11,26 @@
 #define kSpeedBase 480 / 1280
 
 extern int Cheats;
-#define MaxCheats 7
+#define kMaxCheats 7
 
-#define NUM_FLOG 6
-#define ComCount 5
-#define KonohaCount 2
+#define kFlogCount 6
+#define kComCount 5
 #define MapPosCount 3
 
 // UI
 
-// layer's tag
-#define BgTag 1
-#define GlTag 2
-#define HudTag 3
+// Layer order
+#define kBgOrder 0
+#define kGameLayerOrder 1
+#define kHudLayerOrder 2
 
-// game layer tag
-#define currentMapTag -5000
-#define currentShadowTag -4000
-#define currentCutTag 1000
-#define currentcharacterTag 2
-#define currentBulletTag 3
-#define currentDamageTag 100
-#define currentNumberTag 200
-#define currentSkillTag 300
-#define currentFontTag 400
+// Game layer children order
+#define kMapOrder -5000
+#define kShadowOrder -4000
+#define kCutOrder 1000
+#define kcharacterOrder 2
+#define kBulletOrder 3
+#define kDamageEffectOrder 100
+#define kNumberOrder 200
+#define kSkillEffectOrder 300
+#define kFontOrder 400

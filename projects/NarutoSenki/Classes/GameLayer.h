@@ -124,10 +124,10 @@ public:
 	void resetStatusBar();
 	void setCoin(const char *value);
 	void removeOugisMark(int type);
-	void setOugis(Node *sender);
+	void setOugis(CharacterBase *sender);
 	void removeOugis();
 
-	Node *ougisChar;
+	CharacterBase *ougisChar;
 	CharacterBase *controlChar;
 	Layer *blend;
 

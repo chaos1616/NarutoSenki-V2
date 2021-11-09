@@ -14,7 +14,7 @@
 #include "GameMode/Impl/RandomDeathmatch.hpp"
 
 extern GameMode s_GameMode;
-extern IGameModeHandler *s_ModeHandlers[GameMode::_Internal_Max_Length];
+extern IGameModeHandler *s_ModeHandlers[GameMode::__Internal_Max_Length];
 
 inline GameMode getGameMode()
 {

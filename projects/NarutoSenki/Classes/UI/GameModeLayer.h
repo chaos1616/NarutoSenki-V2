@@ -21,8 +21,9 @@ public:
 private:
 	inline bool setSelect(GameMode mode);
 
-	CCLabelTTF *menuLabel;
+	CCLabelTTF *menuLabel = nullptr;
 
-	vector<ModeMenuButton *> menuButtons = vector<ModeMenuButton *>(GameMode::_Internal_Max_Length);
-	vector<GameModeData> modes = vector<GameModeData>(GameMode::_Internal_Max_Length);
+#undef max
+	vector<ModeMenuButton *> menuButtons = vector<ModeMenuButton *>(static_cast<size_t>(GameMode::__Internal_Max_Length));
+	vector<GameModeData> modes = vector<GameModeData>(static_cast<size_t>(GameMode::__Internal_Max_Length));
 };

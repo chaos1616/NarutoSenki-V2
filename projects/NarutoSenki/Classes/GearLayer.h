@@ -29,7 +29,7 @@ public:
 	Sprite *gears_bg = nullptr;
 
 	ScrewLayer *_screwLayer = nullptr;
-	GearType currentGear = None;
+	GearType currentGear = GearType::None;
 	void updatePlayerGear();
 	void updateGearList();
 	void confirmPurchase();

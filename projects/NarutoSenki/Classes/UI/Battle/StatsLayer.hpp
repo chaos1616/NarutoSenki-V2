@@ -12,8 +12,11 @@ public:
 	CREATE_FUNC(StatsLayer);
 
 private:
-	void init()
+	bool init()
 	{
+		RETURN_FALSE_IF(!Layer::init());
+
+		return true;
 	}
 
 	Sprite *bg;

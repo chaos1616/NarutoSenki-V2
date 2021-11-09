@@ -363,9 +363,9 @@ void LoadLayer::onLoadFinish(float dt)
 	_hudLayer->initHeroInterface();
 	_gameLayer->invokeAllCallbacks();
 
-	gameScene->addChild(_gameLayer, GlTag);
-	gameScene->addChild(_bgLayer, BgTag);
-	gameScene->addChild(_hudLayer, HudTag);
+	gameScene->addChild(_bgLayer, kBgOrder);
+	gameScene->addChild(_gameLayer, kGameLayerOrder);
+	gameScene->addChild(_hudLayer, kHudLayerOrder);
 
 	Director::sharedDirector()->replaceScene(TransitionFade::create(0.5f, gameScene));
 }

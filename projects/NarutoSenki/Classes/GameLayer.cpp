@@ -129,7 +129,7 @@ void GameLayer::initTileMap()
 	}
 	mapId = random(mapCount) + 1;
 	currentMap = TMXTiledMap::create(GetMapPath(mapId));
-	addChild(currentMap, currentMapTag);
+	addChild(currentMap, kMapOrder);
 }
 
 void GameLayer::initGard()
@@ -330,11 +330,11 @@ void GameLayer::addFlog(float dt)
 	int i;
 	Flog *flog;
 	float mainPosY;
-	for (i = 0; i < NUM_FLOG; i++)
+	for (i = 0; i < kFlogCount; i++)
 	{
 		flog = Flog::create();
 		flog->setID(KonohaFlogName, Role::Flog, Group::Konoha);
-		if (i < NUM_FLOG / 2)
+		if (i < kFlogCount / 2)
 			mainPosY = (5.5 - i / 1.5) * 32;
 		else
 			mainPosY = (3.5 - i / 1.5) * 32;
@@ -347,11 +347,11 @@ void GameLayer::addFlog(float dt)
 		addChild(flog, -int(flog->getPositionY()));
 	}
 
-	for (i = 0; i < NUM_FLOG; i++)
+	for (i = 0; i < kFlogCount; i++)
 	{
 		flog = Flog::create();
 		flog->setID(AkatsukiFlogName, Role::Flog, Group::Akatsuki);
-		if (i < NUM_FLOG / 2)
+		if (i < kFlogCount / 2)
 			mainPosY = (5.5 - i / 1.5) * 32;
 		else
 			mainPosY = (3.5 - i / 1.5) * 32;
@@ -431,15 +431,15 @@ void GameLayer::initEffects()
 {
 	addSprites("Effects/SkillEffect.plist");
 	skillEffectBatch = SpriteBatchNode::create("Effects/SkillEffect.png");
-	addChild(skillEffectBatch, currentSkillTag);
+	addChild(skillEffectBatch, kSkillEffectOrder);
 
 	addSprites("Effects/DamageEffect.plist");
 	damageEffectBatch = SpriteBatchNode::create("Effects/DamageEffect.png");
-	addChild(damageEffectBatch, currentDamageTag);
+	addChild(damageEffectBatch, kDamageEffectOrder);
 
 	addSprites("Effects/Shadows.plist");
 	shadowBatch = SpriteBatchNode::create("Effects/Shadows.png");
-	addChild(shadowBatch, currentShadowTag);
+	addChild(shadowBatch, kShadowOrder);
 }
 
 void GameLayer::updateGameTime(float dt)
@@ -827,17 +827,17 @@ void GameLayer::checkBackgroundMusic(float dt)
 	}
 }
 
-void GameLayer::setOugis(Node *sender)
+void GameLayer::setOugis(CharacterBase *sender)
 {
 	if (!_hudLayer->ougisLayer)
 	{
-		CCArray *childArray = getChildren();
 		ougisChar = sender;
-		auto Sender = (CharacterBase *)sender;
+
+		CCArray *childArray = getChildren();
 		Ref *pObject;
 		CCARRAY_FOREACH(childArray, pObject)
 		{
-			Node *object = (Node *)pObject;
+			auto object = (Node *)pObject;
 			object->pauseSchedulerAndActions();
 		}
 		pauseSchedulerAndActions();
@@ -851,10 +851,10 @@ void GameLayer::setOugis(Node *sender)
 
 		if (UserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 		{
-			SimpleAudioEngine::sharedEngine()->playEffect(format("Audio/Ougis/{}_ougis.ogg", Sender->getName()).c_str());
+			SimpleAudioEngine::sharedEngine()->playEffect(format("Audio/Ougis/{}_ougis.ogg", ougisChar->getName()).c_str());
 		}
 
-		_hudLayer->setOugis(Sender->getName(), Sender->getGroup());
+		_hudLayer->setOugis(ougisChar->getName(), ougisChar->getGroup());
 	}
 }
 

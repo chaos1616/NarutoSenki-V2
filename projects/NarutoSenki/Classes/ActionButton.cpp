@@ -7,13 +7,18 @@ ActionButton::ActionButton()
 	_isDoubleSkill = false;
 	_freezeAction = nullptr;
 	markSprite = nullptr;
+	ougismarkSprite = nullptr;
 	_clickTime = 0;
 	_clickNum = 0;
-	cdLabel = nullptr;
 	_isMarkVisable = true;
 	_isLock = false;
 	_isColdChanged = false;
-	_gearType = None;
+	clipper = nullptr;
+	_cost = nullptr;
+	_gearType = GearType::None;
+	cdLabel = nullptr;
+	lockLabel1 = nullptr;
+	lockLabel2 = nullptr;
 
 	proressblinkSprite = nullptr;
 	proressmarkSprite = nullptr;
@@ -101,9 +106,9 @@ bool ActionButton::isCanClick()
 {
 	// recorde current time sec format;
 
-	cc_timeval timeVal;
-	CCTime::gettimeofdayCocos2d(&timeVal, 0);
-	float curTime = timeVal.tv_sec + timeVal.tv_usec / 1000;
+	// cc_timeval timeVal;
+	// CCTime::gettimeofdayCocos2d(&timeVal, 0);
+	// float currTime = timeVal.tv_sec + timeVal.tv_usec / 1000;
 
 	if (_abType != NAttack)
 	{
@@ -403,8 +408,8 @@ void ActionButton::setProgressMark()
 			if (_delegate->skill4Button->proressblinkMask && !_delegate->skill4Button->_isLock)
 			{
 				_delegate->skill4Button->proressblinkMask->stopAllActions();
-				auto fd2 = FadeOut::create(0.5f);
-				_delegate->skill4Button->proressblinkMask->runAction(RepeatForever::create(fd2));
+				auto fd3 = FadeOut::create(0.5f);
+				_delegate->skill4Button->proressblinkMask->runAction(RepeatForever::create(fd3));
 			}
 		}
 	}
@@ -444,8 +449,8 @@ void ActionButton::updateProgressMark()
 			{
 				proressblinkMask->setVisible(true);
 				proressblinkMask->stopAllActions();
-				auto fd2 = FadeOut::create(0.5f);
-				proressblinkMask->runAction(RepeatForever::create(fd2));
+				auto fd = FadeOut::create(0.5f);
+				proressblinkMask->runAction(RepeatForever::create(fd));
 
 				if (_delegate->skill5Button)
 				{
@@ -500,8 +505,8 @@ void ActionButton::updateProgressMark()
 			{
 				proressblinkMask->setVisible(true);
 				proressblinkMask->stopAllActions();
-				auto fd2 = FadeOut::create(0.5f);
-				proressblinkMask->runAction(RepeatForever::create(fd2));
+				auto fd = FadeOut::create(0.5f);
+				proressblinkMask->runAction(RepeatForever::create(fd));
 
 				if (_delegate->skill4Button)
 				{

@@ -78,10 +78,10 @@ private:
 		on(Command::addExtern, [](CharacterBase *thiz)
 		   {
 			   Vector<SpriteFrame *> spriteFrames;
-			   int i = 1;
-	
+
 			   if (thiz->getName() == HeroEnum::Tenten)
 			   {
+				   int i = 1;
 				   while (i < 11)
 				   {
 					   auto frame = getSpriteFrame("Tenten_Extern_0{}", i);

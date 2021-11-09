@@ -496,7 +496,7 @@ bool CCTips::init(const char *tips)
 	auto strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
 	const char *reply = ((CCString *)strings->objectForKey(tips))->m_sString.c_str();
 
-	CCLabelTTF *tipLabel = CCLabelTTF::create(reply, FONT_TYPE, 12);
+	CCLabelTTF *tipLabel = CCLabelTTF::create(reply, FONT_NAME, 12);
 	addChild(tipLabel, 5000);
 	setPosition(Vec2(winSize.width / 2, 50));
 	auto call = CallFunc::create(std::bind(&CCTips::onDestroy, this));

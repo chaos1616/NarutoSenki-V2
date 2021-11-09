@@ -12,8 +12,8 @@ public:
 	static CCStrokeLabel *create(CCLabelTTF *labelTTF, Color3B fullColor, Color3B StrokeColor, float strokeSize);
 
 private:
-	Sprite *m_sprite;
-	CCLabelTTF *m_label;
+	Sprite *m_sprite = nullptr;
+	CCLabelTTF *m_label = nullptr;
 	Color3B m_fullColor;
 	Color3B m_StrokeColor;
 	float m_strokeSize;

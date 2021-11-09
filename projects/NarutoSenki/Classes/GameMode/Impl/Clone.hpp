@@ -18,7 +18,7 @@ public:
 	{
 		CCLOG("Enter Clone mode.");
 
-		if (Cheats >= MaxCheats)
+		if (Cheats >= kMaxCheats)
 			gd.use4v4SpawnLayout = true;
 		gd.isHardCore = true;
 	}
@@ -34,7 +34,7 @@ public:
 		auto enemyHero = getRandomHeroExcept(playerHero);
 
 		addHero(playerHero, Role::Player, playerGroup);
-		if (Cheats >= MaxCheats)
+		if (Cheats >= kMaxCheats)
 		{
 			addHeros(3, playerHero, Role::Com, playerGroup);
 			addHeros(4, enemyHero, Role::Com, enemyGroup);

@@ -16,5 +16,5 @@ private:
 	void removeEffect();
 	void removeFontEffect();
 
-	CharacterBase *at;
+	CharacterBase *at = nullptr;
 };

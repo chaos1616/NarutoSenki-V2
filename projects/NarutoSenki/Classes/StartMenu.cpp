@@ -1,7 +1,7 @@
 #include "StartMenu.h"
 
 GameMode s_GameMode = GameMode::Classic;
-IGameModeHandler *s_ModeHandlers[GameMode::_Internal_Max_Length] = {
+IGameModeHandler *s_ModeHandlers[GameMode::__Internal_Max_Length] = {
 	new Mode1v1(),
 	new Mode3v3(),
 	new Mode4v4(),
@@ -198,12 +198,10 @@ StartMenu::StartMenu()
 {
 	isClockwise = false;
 	isDrag = false;
+	menuText = nullptr;
 	hardCoreLayer = nullptr;
-
 	notice_layer = nullptr;
-
 	noticeLabel = nullptr;
-
 	login_btn = nullptr;
 }
 
@@ -384,7 +382,7 @@ void StartMenu::onExit()
 
 void StartMenu::onLoginBtn(Ref *sender)
 {
-	CCTips *tip = CCTips::create("ServerMainten");
+	auto tip = CCTips::create("ServerMainten");
 	addChild(tip, 5000);
 	return;
 }
@@ -392,14 +390,9 @@ void StartMenu::onLoginBtn(Ref *sender)
 void StartMenu::update(float dt)
 {
 	if (!noticeLabel)
-	{
 		return;
-	}
 
-	float currentX = noticeLabel->getPositionX();
-	// float contentX = getContentSize().width;
 	float lableX = noticeLabel->getContentSize().width;
-
 	if (noticeLabel->getPositionX() >= -lableX)
 	{
 		noticeLabel->setPositionX(noticeLabel->getPositionX() - 0.6f);
@@ -428,7 +421,7 @@ void StartMenu::setNotice()
 		auto strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
 		auto reply = ((CCString *)strings->objectForKey("Notice"))->m_sString.c_str();
 
-		noticeLabel = CCLabelTTF::create(reply, FONT_TYPE, 12);
+		noticeLabel = CCLabelTTF::create(reply, FONT_NAME, 12);
 		noticeLabel->setAnchorPoint(Vec2(0, 0));
 		clipper->addChild(noticeLabel);
 		noticeLabel->retain();

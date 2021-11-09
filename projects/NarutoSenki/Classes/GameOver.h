@@ -14,22 +14,20 @@ public:
 
 	PROP(bool, _isWin, Win);
 
-	Layer *exitLayer;
-	Layer *cheatLayer;
-	Sprite *result_bg;
+	Layer *exitLayer = nullptr;
+	Layer *cheatLayer = nullptr;
+	Sprite *result_bg = nullptr;
 
-	bool isPosting;
-	Sprite *refreshBtn;
-	MenuItem *upload_btn;
+	Sprite *refreshBtn = nullptr;
+	MenuItem *upload_btn = nullptr;
 
-	// CC_SYNTHESIZE_RETAIN(CCString*,detailRecord,DetialRecord);
 	string detailRecord;
 	float finnalScore;
 
 	static GameOver *create(RenderTexture *snapshoot);
 
 private:
-	const char *resultChar;
+	const char *resultChar = nullptr;
 
 	void onBackToMenu(Ref *sender);
 	void listResult();

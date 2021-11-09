@@ -1359,7 +1359,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 			boundValue = realValue * 35 / 100;
 
 		// 4v4
-		if (Cheats >= MaxCheats)
+		if (Cheats >= kMaxCheats)
 			boundValue = boundValue / 2;
 
 		if (currentAttacker->isAttackGainCKR)
@@ -1386,7 +1386,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 		boundValue += realValue * gearCKRValue / 100;
 
 		// 4v4
-		if (Cheats >= MaxCheats)
+		if (Cheats >= kMaxCheats)
 			boundValue = boundValue / 2;
 
 		if (currentAttacker->isAttackGainCKR)
@@ -1515,7 +1515,7 @@ void CharacterBase::setDamgeDisplay(int value, const char *font)
 			damageFont->setPosition(Vec2(getPositionX() + rand() % 16, getPositionY() + getHeight() + rand() % 16));
 		}
 
-		getGameLayer()->addChild(damageFont, currentNumberTag);
+		getGameLayer()->addChild(damageFont, kNumberOrder);
 		_damageArray.push_back(damageFont);
 
 		auto sd = ScaleBy::create(0.2f, 0.5f);
@@ -2858,7 +2858,7 @@ void CharacterBase::setBulletGroup(float dt)
 			Vec2 location = Vec2(getPositionX() + (_isFlipped ? -rangeX : rangeX), getPositionY() + (getHeight() / 2 - 23));
 			bullet->setPosition(location);
 		}
-		getGameLayer()->addChild(bullet, currentSkillTag);
+		getGameLayer()->addChild(bullet, kSkillEffectOrder);
 		bullet->idle();
 		if (_skillUPBuffValue)
 		{

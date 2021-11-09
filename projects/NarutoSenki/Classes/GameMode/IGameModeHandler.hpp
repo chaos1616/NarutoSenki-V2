@@ -6,7 +6,7 @@
 
 class IGameModeHandler;
 
-enum GameMode
+enum GameMode : uint32_t
 {
 	// 1 VS 1 // TODO: As a test mode
 	OneVsOne,
@@ -25,7 +25,7 @@ enum GameMode
 	// 3 VS 3
 	RandomDeathmatch,
 
-	_Internal_Max_Length
+	__Internal_Max_Length
 }; // namespace GameMode
 
 struct GameModeData
@@ -263,7 +263,7 @@ protected:
 		}
 
 		string hero;
-		for (int i = 0; i < comCount; i++)
+		for (int i = 0; i < kComCount; i++)
 		{
 			if (i < comOfPlayerGroupCount)
 			{

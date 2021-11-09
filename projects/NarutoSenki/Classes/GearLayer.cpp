@@ -371,11 +371,11 @@ void GearLayer::updateGearList()
 		gearBtns.clear();
 	}
 
-	currentGear = None;
+	currentGear = GearType::None;
 	_screwLayer->totalRow = 3;
-	for (int i = 0; i < _screwLayer->gearNum; i++)
+	for (uint8_t i = 0; i < _screwLayer->gearNum; i++)
 	{
-		int row = int(floor(i / 3.0f));
+		int row = floor(i / 3.0f);
 		int column = abs(3 * row - i);
 
 		GearButton *btn;
@@ -395,7 +395,7 @@ void GearLayer::updateGearList()
 				isBuyed = true;
 		}
 
-		if (currentGear == None && !isBuyed)
+		if (currentGear == GearType::None && !isBuyed)
 		{
 			currentGear = GearType(i);
 			auto frame = getSpriteFrame("gearDetail_{:02d}.png", i);

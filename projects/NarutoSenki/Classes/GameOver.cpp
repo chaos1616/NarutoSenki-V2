@@ -5,10 +5,8 @@
 
 GameOver::GameOver()
 {
-	exitLayer = nullptr;
-	cheatLayer = nullptr;
-	isPosting = false;
-	refreshBtn = nullptr;
+	_isWin = false;
+	finnalScore = 0;
 }
 
 GameOver::~GameOver()
@@ -73,8 +71,7 @@ void GameOver::listResult()
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/battle_over.ogg");
 
 	auto currPlayer = getGameLayer()->currentPlayer;
-	auto path = format("{}_half.png", currPlayer->getName());
-	auto half = Sprite::createWithSpriteFrameName(path.c_str());
+	auto half = Sprite::createWithSpriteFrameName(format("{}_half.png", currPlayer->getName()).c_str());
 
 	if (currPlayer->getName() == HeroEnum::Konan ||
 		currPlayer->getName() == HeroEnum::Karin ||
@@ -169,7 +166,7 @@ void GameOver::listResult()
 		}
 
 		// 4v4
-		if (Cheats >= MaxCheats)
+		if (Cheats >= kMaxCheats)
 		{
 			if (hero->isNotPlayer())
 			{
@@ -183,8 +180,7 @@ void GameOver::listResult()
 			hero->changeGroup();
 		}
 
-		auto path = format("{}_small.png", hero->getName());
-		auto avator_small = Sprite::createWithSpriteFrameName(path.c_str());
+		auto avator_small = Sprite::createWithSpriteFrameName(format("{}_small.png", hero->getName()).c_str());
 		avator_small->setAnchorPoint(Vec2(0, 0));
 
 		uint32_t realKillNum = hero->getKillNum();
@@ -226,14 +222,14 @@ void GameOver::listResult()
 
 		if (hero->getGearArray().size() > 0)
 		{
-			int i = 0;
+			int j = 0;
 			for (auto gear : hero->getGearArray())
 			{
 				auto gearIcon = Sprite::createWithSpriteFrameName(format("gear_{:02d}.png", (int)gear).c_str());
-				gearIcon->setPosition(Vec2(flogNum->getPositionX() + 22 + i * 19, flogNum->getPositionY() - 1));
+				gearIcon->setPosition(Vec2(flogNum->getPositionX() + 22 + j * 19, flogNum->getPositionY() - 1));
 				gearIcon->setScale(0.5f);
 				addChild(gearIcon, 7);
-				i++;
+				j++;
 			}
 		}
 
@@ -259,7 +255,7 @@ void GameOver::listResult()
 		}
 	}
 
-	if (Cheats < MaxCheats)
+	if (Cheats < kMaxCheats)
 	{
 		// Verify that the game total kills is valid
 		if ((akatsukiKill + konohaKill) != getGameLayer()->getTotalKills())
@@ -322,15 +318,16 @@ void GameOver::listResult()
 		addChild(rewardLabel, 7);
 	}
 
-	const char *imgSrc;
+	const char *imgSrc = nullptr;
+	bool isEnableSROrBetter = getGameLayer()->_isHardCoreGame && getGameLayer()->_isRandomChar && !getGameLayer()->_enableGear;
 
 	if (_isWin)
 	{
-		if (resultScore >= 140 && getGameLayer()->_isHardCoreGame && getGameLayer()->_isRandomChar && !getGameLayer()->_enableGear)
+		if (resultScore >= 140 && isEnableSROrBetter)
 			imgSrc = "result_SSSR.png";
-		else if (resultScore >= 120 && getGameLayer()->_isHardCoreGame && getGameLayer()->_isRandomChar && !getGameLayer()->_enableGear)
+		else if (resultScore >= 120 && isEnableSROrBetter)
 			imgSrc = "result_SSR.png";
-		else if (resultScore >= 100 && getGameLayer()->_isHardCoreGame && getGameLayer()->_isRandomChar && !getGameLayer()->_enableGear)
+		else if (resultScore >= 100 && isEnableSROrBetter)
 			imgSrc = "result_SR.png";
 		else if (resultScore >= 140)
 			imgSrc = "result_SSS.png";
@@ -375,7 +372,7 @@ void GameOver::listResult()
 
 			// detailRecord = format("{:02d}:{:02d},{},{},{}", _minute, getGameLayer()->_second, currPlayer->getKillNum(), currPlayer->_deadNum, currPlayer->_flogNum);
 		}
-		if (Cheats < MaxCheats)
+		if (Cheats < kMaxCheats)
 		{
 			resultChar = currPlayer->getName().c_str();
 			if (currPlayer->getName() == HeroEnum::SageNaruto)
@@ -431,14 +428,14 @@ void GameOver::listResult()
 
 						if (hero->getGroup() == currPlayer->getGroup())
 						{
-							int winNum = KTools::readWinNumFromSQL(hero->getName().c_str());
+							int winNum2 = KTools::readWinNumFromSQL(hero->getName().c_str());
 							if (resultScore >= 140)
-								winNum += 2;
+								winNum2 += 2;
 							else
-								winNum += 1;
+								winNum2 += 1;
 
-							auto realWin = std::to_string(winNum);
-							KTools::saveSQLite("CharRecord", "name", hero->getName().c_str(), "column1", realWin, false);
+							auto realWin2 = std::to_string(winNum2);
+							KTools::saveSQLite("CharRecord", "name", hero->getName().c_str(), "column1", realWin2, false);
 						}
 					}
 				}
@@ -467,7 +464,7 @@ void GameOver::listResult()
 		}
 	}
 
-	// auto version = CCLabelBMFont::create(Cheats < MaxCheats ? GAMEOVER_VER : GAMEOVER_VER, Fonts::Default);
+	// auto version = CCLabelBMFont::create(Cheats < kMaxCheats ? GAMEOVER_VER : GAMEOVER_VER, Fonts::Default);
 	auto version = CCLabelBMFont::create(GAMEOVER_VER, Fonts::Default);
 	version->setPosition(Vec2(winSize.width / 2 + 94, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 6));
 	version->setScale(0.3f);
