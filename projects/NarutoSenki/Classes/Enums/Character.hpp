@@ -7,6 +7,8 @@
 #include "Enums/SummonEnum.h"
 #include "Enums/TowerEnum.h"
 
+#include "Utils/Hash.h"
+
 // Roles
 #define kRoleCom "Com"
 #define kRolePlayer "Player"
@@ -172,6 +174,48 @@ enum class ActionFlag : uint32_t
 	// Spc29 = 1ULL << 41ULL,
 	// Spc30 = 1ULL << 42ULL,
 };
+
+namespace ActionConstant
+{
+	using namespace HashUtils;
+
+	constexpr uint32_t kActionFlagHash[] = {
+		hash32("Dead"),
+		hash32("Idle"),
+		hash32("Walk"),
+		hash32("Hurt"),
+		hash32("AirHurt"),
+		hash32("Knockdown"),
+		hash32("Float"),
+		hash32("NAttack"),
+		hash32("Skill01"),
+		hash32("Skill02"),
+		hash32("Skill03"),
+		hash32("Skill04"),
+		hash32("Skill05"),
+		hash32("Spc01"),
+		hash32("Spc02"),
+		hash32("Spc03"),
+		hash32("Spc04"),
+		hash32("Spc05"),
+		hash32("Spc06"),
+		hash32("Spc07"),
+		hash32("Spc08"),
+		hash32("Spc09"),
+		hash32("Spc10"),
+		hash32("Spc11"),
+		hash32("Spc12"),
+		hash32("Spc13"),
+		hash32("Spc14"),
+		hash32("Spc15"),
+		hash32("Spc16"),
+		hash32("Spc17"),
+		hash32("Spc18"),
+		hash32("Spc19"),
+	};
+
+	constexpr size_t kActionFlagHashSize = sizeof(kActionFlagHash) / sizeof(ActionFlag);
+}
 
 enum class HardHurtState : uint8_t
 {
