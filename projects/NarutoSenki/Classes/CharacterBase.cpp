@@ -141,6 +141,8 @@ CharacterBase::CharacterBase()
 
 	_isAI = false;
 
+	_actionFlag = ActionFlag::None;
+
 	_affectedByTower = false;
 }
 

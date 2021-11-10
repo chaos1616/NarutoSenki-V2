@@ -34,36 +34,6 @@ enum class UnitKind
 	Summon, // Old name: Monster
 };
 
-struct ActionData
-{
-	using FrameVector = vector<pair<string, string>>;
-
-	string name;
-	bool hasData;
-
-	string attackType;
-	u16 attackValue;
-	u16 attackRangeX;
-	u16 attackRangeY;
-	u16 cooldown;
-	u32 combatPoint;
-
-	FrameVector frames;
-};
-
-struct UnitMetadata
-{
-	UnitKind kind;
-
-	string name;
-	u32 hp;
-	u16 width;
-	u16 height;
-	u16 speed;
-
-	vector<ActionData> actions;
-};
-
 // Unit Action Constant
 
 namespace ActionConstant
