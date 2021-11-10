@@ -113,8 +113,8 @@ class Parents : public Hero
 		_nAttackRangeX = 16;
 		_nAttackRangeY = 48;
 
-		setWalkAction(createAnimation(skillSPC1Array, 10.0f, true, false));
-		setNAttackAction(createAnimation(skillSPC2Array, 10.0f, false, true));
+		setWalkAction(createAnimation(skillSPC1Array, 10, true, false));
+		setNAttackAction(createAnimation(skillSPC2Array, 10, false, true));
 
 		if (_master->isPlayer())
 		{
@@ -138,8 +138,8 @@ class Parents : public Hero
 		_nAttackRangeX = 16;
 		_nAttackRangeY = 48;
 
-		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+		setWalkAction(createAnimation(walkArray, 10, true, false));
+		setNAttackAction(createAnimation(nattackArray, 10, false, true));
 
 		_skillChangeBuffValue = 0;
 

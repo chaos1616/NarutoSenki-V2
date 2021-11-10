@@ -1,5 +1,5 @@
 #pragma once
-#include <Defines.h>
+#include "Defines.h"
 
 // Tile size
 constexpr int kTileSize = 32;
@@ -63,3 +63,30 @@ struct UnitMetadata
 
 	vector<ActionData> actions;
 };
+
+// Unit Action Constant
+
+namespace ActionConstant
+{
+	enum class AnimationType : uint8_t
+	{
+		Regular,
+		Idle,
+		Walk,
+		Knockdown,
+		Skill,
+	};
+
+	struct AnimationInfo
+	{
+		uint16_t fps;
+		bool isRepeat;
+		bool isReturnToIdle;
+	};
+
+	constexpr AnimationInfo Regular = {10, false, false};
+	constexpr AnimationInfo Idle = {5, true, false};
+	constexpr AnimationInfo Walk = {10, true, false};
+	constexpr AnimationInfo Knockdown = {10, false, true};
+	constexpr AnimationInfo Skill = {10, false, true};
+} // namespace ActionConstant

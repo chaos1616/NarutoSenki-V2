@@ -492,7 +492,7 @@ void CharacterBase::acceptAttack(Ref *object)
 								if (attacker->_master->_state == State::O2ATTACK)
 								{
 									attacker->_master->stopAllActions();
-									attacker->_master->runAction(createAnimation(attacker->_master->skillSPC1Array, 10.0f, false, false));
+									attacker->_master->runAction(createAnimation(attacker->_master->skillSPC1Array, 10, false, false));
 									attacker->_master->scheduleOnce(schedule_selector(CharacterBase::resumeAction), 15);
 									attacker->_master->_isArmored = true;
 									attacker->_master->_isInvincible = false;
@@ -961,7 +961,7 @@ void CharacterBase::acceptAttack(Ref *object)
 	}
 }
 
-FiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, float fps, bool isRepeat, bool isReturn)
+FiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, uint16_t fps, bool isRepeat, bool isReturnToIdle)
 {
 	if (ationArray == nullptr || ationArray->count() == 0)
 		return nullptr;
@@ -1160,7 +1160,7 @@ FiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, float fps,
 	}
 	else
 	{
-		if (isReturn)
+		if (isReturnToIdle)
 		{
 			auto call = CallFunc::create(std::bind(&CharacterBase::idle, this));
 			list.pushBack(call);
@@ -2226,7 +2226,7 @@ void CharacterBase::setBuff(int buffValue)
 			else if (_skillChangeBuffValue == 18)
 			{
 				unschedule(schedule_selector(CharacterBase::resumeAction));
-				setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+				setNAttackAction(createAnimation(nattackArray, 10, false, true));
 				scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
 			}
 		}
@@ -2245,7 +2245,7 @@ void CharacterBase::setBuff(int buffValue)
 			unschedule(schedule_selector(CharacterBase::disableBuff));
 
 			_isTaunt = false;
-			setHurtAction(createAnimation(hurtArray, 10.0f, false, true));
+			setHurtAction(createAnimation(hurtArray, 10, false, true));
 			disableBuff(0);
 
 			scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
@@ -2656,13 +2656,13 @@ void CharacterBase::changeAction2()
 		_attackRangeX = _spcAttackRangeX2;
 		_attackRangeY = _spcAttackRangeY2;
 
-		setSkill2Action(createAnimation(skillSPC2Array, 10.0f, false, true));
+		setSkill2Action(createAnimation(skillSPC2Array, 10, false, true));
 	}
 	else if (getName() == HeroEnum::Nagato)
 	{
 		if (_skillChangeBuffValue == 18)
 		{
-			setHurtAction(createAnimation(skillSPC4Array, 10.0f, false, true));
+			setHurtAction(createAnimation(skillSPC4Array, 10, false, true));
 		}
 	}
 }
@@ -2690,14 +2690,14 @@ void CharacterBase::setActionResume2()
 {
 	if (getName() == HeroEnum::Minato)
 	{
-		setSkill2Action(createAnimation(skill2Array, 10.0f, false, true));
+		setSkill2Action(createAnimation(skill2Array, 10, false, true));
 	}
 	else if (getName() == HeroEnum::Nagato)
 	{
 		if (_skillChangeBuffValue == 18)
 		{
 			hearts -= 1;
-			setHurtAction(createAnimation(hurtArray, 10.0f, false, true));
+			setHurtAction(createAnimation(hurtArray, 10, false, true));
 		}
 		_skillChangeBuffValue = 0;
 	}

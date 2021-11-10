@@ -22,6 +22,7 @@ public:
 
 	void setID(const string &name, Role role, Group group)
 	{
+		clearActionData();
 		setName(name);
 		setRole(role);
 		setGroup(group);
@@ -69,8 +70,8 @@ public:
 
 	void initAction()
 	{
-		setDeadAction(createAnimation(deadArray, 10.0f, false, false));
-		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
+		setDeadAction(createAnimation(deadArray, 10, false, false));
+		setIdleAction(createAnimation(idleArray, 5, true, false));
 	}
 
 	void setHPbar()

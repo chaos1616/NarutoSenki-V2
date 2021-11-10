@@ -167,7 +167,7 @@ class Sasuke : public Hero
 		if (_skillChangeBuffValue == 17)
 		{
 			_isTaunt = true;
-			setHurtAction(createAnimation(skillSPC5Array, 10.0f, false, true));
+			setHurtAction(createAnimation(skillSPC5Array, 10, false, true));
 
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
@@ -203,10 +203,10 @@ class Sasuke : public Hero
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
-			setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
-			setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
-			setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
-			setKnockDownAction(createAnimation(skillSPC4Array, 10.0f, false, true));
+			setIdleAction(createAnimation(skillSPC1Array, 5, true, false));
+			setWalkAction(createAnimation(skillSPC2Array, 10, true, false));
+			setNAttackAction(createAnimation(skillSPC3Array, 10, false, true));
+			setKnockDownAction(createAnimation(skillSPC4Array, 10, false, true));
 
 			setWalkSpeed(320);
 			_originSpeed = 320;
@@ -232,13 +232,13 @@ class Sasuke : public Hero
 		if (_isTaunt)
 		{
 			_isTaunt = false;
-			setHurtAction(createAnimation(hurtArray, 10.0f, false, true));
+			setHurtAction(createAnimation(hurtArray, 10, false, true));
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
-			setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-			setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-			setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+			setIdleAction(createAnimation(idleArray, 5, true, false));
+			setWalkAction(createAnimation(walkArray, 10, true, false));
+			setNAttackAction(createAnimation(nattackArray, 10, false, true));
 
 			_isOnlySkillLocked = false;
 
@@ -263,7 +263,7 @@ class Sasuke : public Hero
 				knockDown();
 			}
 
-			setKnockDownAction(createAnimation(knockDownArray, 10.0f, false, true));
+			setKnockDownAction(createAnimation(knockDownArray, 10, false, true));
 		}
 		CharacterBase::resumeAction(dt);
 	}
@@ -274,7 +274,7 @@ class Sasuke : public Hero
 		{
 			unschedule(schedule_selector(Sasuke::resumeAction_Sasuke));
 			_isTaunt = false;
-			setHurtAction(createAnimation(hurtArray, 10.0f, false, true));
+			setHurtAction(createAnimation(hurtArray, 10, false, true));
 			_skillChangeBuffValue = 0;
 		}
 	}
@@ -420,7 +420,7 @@ class Sasuke : public Hero
 		if (_skillChangeBuffValue == 17)
 		{
 			_isTaunt = true;
-			setHurtAction(createAnimation(skillSPC1Array, 10.0f, false, true));
+			setHurtAction(createAnimation(skillSPC1Array, 10, false, true));
 
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
@@ -456,9 +456,9 @@ class Sasuke : public Hero
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
-			setIdleAction(createAnimation(skillSPC4Array, 5.0f, true, false));
-			setWalkAction(createAnimation(skillSPC3Array, 10.0f, true, false));
-			setNAttackAction(createAnimation(skillSPC2Array, 10.0f, false, true));
+			setIdleAction(createAnimation(skillSPC4Array, 5, true, false));
+			setWalkAction(createAnimation(skillSPC3Array, 10, true, false));
+			setNAttackAction(createAnimation(skillSPC2Array, 10, false, true));
 			setWalkSpeed(112);
 			_originSpeed = 112;
 
@@ -481,13 +481,13 @@ class Sasuke : public Hero
 		if (_isTaunt)
 		{
 			_isTaunt = false;
-			setHurtAction(createAnimation(hurtArray, 10.0f, false, true));
+			setHurtAction(createAnimation(hurtArray, 10, false, true));
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
-			setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-			setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-			setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+			setIdleAction(createAnimation(idleArray, 5, true, false));
+			setWalkAction(createAnimation(walkArray, 10, true, false));
+			setNAttackAction(createAnimation(nattackArray, 10, false, true));
 
 			_isOnlySkillLocked = false;
 
@@ -531,16 +531,16 @@ class Sasuke : public Hero
 		{
 			unschedule(schedule_selector(Sasuke::resumeAction_SasukeImmortal));
 			_isTaunt = false;
-			setHurtAction(createAnimation(hurtArray, 10.0f, false, true));
+			setHurtAction(createAnimation(hurtArray, 10, false, true));
 			_skillChangeBuffValue = 0;
 		}
 		else if (_skillChangeBuffValue && _skillChangeBuffValue == 18)
 		{
 			unschedule(schedule_selector(Sasuke::resumeAction_SasukeImmortal));
 
-			setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-			setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-			setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+			setIdleAction(createAnimation(idleArray, 5, true, false));
+			setWalkAction(createAnimation(walkArray, 10, true, false));
+			setNAttackAction(createAnimation(nattackArray, 10, false, true));
 
 			_isOnlySkillLocked = false;
 			unlockOugisButtons();

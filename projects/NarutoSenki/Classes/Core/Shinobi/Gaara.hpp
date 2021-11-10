@@ -115,9 +115,9 @@ class Gaara : public Hero
 
 	void changeAction() override
 	{
-		setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
-		setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
-		setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
+		setIdleAction(createAnimation(skillSPC1Array, 5, true, false));
+		setWalkAction(createAnimation(skillSPC2Array, 10, true, false));
+		setNAttackAction(createAnimation(skillSPC3Array, 10, false, true));
 
 		_isOnlySkillLocked = true;
 
@@ -134,9 +134,9 @@ class Gaara : public Hero
 
 	void resumeAction(float dt) override
 	{
-		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+		setIdleAction(createAnimation(idleArray, 5, true, false));
+		setWalkAction(createAnimation(walkArray, 10, true, false));
+		setNAttackAction(createAnimation(nattackArray, 10, false, true));
 
 		_isOnlySkillLocked = false;
 
@@ -163,9 +163,9 @@ class Gaara : public Hero
 			return;
 
 		unschedule(schedule_selector(Gaara::resumeAction));
-		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+		setIdleAction(createAnimation(idleArray, 5, true, false));
+		setWalkAction(createAnimation(walkArray, 10, true, false));
+		setNAttackAction(createAnimation(nattackArray, 10, false, true));
 
 		_isOnlySkillLocked = false;
 

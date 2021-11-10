@@ -182,7 +182,7 @@ class Deidara : public Hero
 	{
 		if (_skillChangeBuffValue == 17)
 		{
-			setNAttackAction(createAnimation(skillSPC1Array, 10.0f, false, true));
+			setNAttackAction(createAnimation(skillSPC1Array, 10, false, true));
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
@@ -194,8 +194,8 @@ class Deidara : public Hero
 
 			lockOugisButtons();
 
-			setIdleAction(createAnimation(skillSPC2Array, 5.0f, true, false));
-			setWalkAction(createAnimation(skillSPC3Array, 5.0f, true, false));
+			setIdleAction(createAnimation(skillSPC2Array, 5, true, false));
+			setWalkAction(createAnimation(skillSPC3Array, 5, true, false));
 
 			if (_hpBar)
 			{
@@ -209,7 +209,7 @@ class Deidara : public Hero
 	{
 		if (_skillChangeBuffValue == 17)
 		{
-			setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+			setNAttackAction(createAnimation(nattackArray, 10, false, true));
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
@@ -220,8 +220,8 @@ class Deidara : public Hero
 
 			unlockOugisButtons();
 
-			setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-			setWalkAction(createAnimation(walkArray, 10.0f, true, false));
+			setIdleAction(createAnimation(idleArray, 5, true, false));
+			setWalkAction(createAnimation(walkArray, 10, true, false));
 
 			if (_state != State::DEAD)
 			{
@@ -247,7 +247,7 @@ class Deidara : public Hero
 
 		if (_skillChangeBuffValue == 17)
 		{
-			setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+			setNAttackAction(createAnimation(nattackArray, 10, false, true));
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
@@ -258,8 +258,8 @@ class Deidara : public Hero
 
 			unlockOugisButtons();
 
-			setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-			setWalkAction(createAnimation(walkArray, 10.0f, true, false));
+			setIdleAction(createAnimation(idleArray, 5, true, false));
+			setWalkAction(createAnimation(walkArray, 10, true, false));
 
 			if (_hpBar)
 			{

@@ -153,9 +153,9 @@ class Kiba : public Hero
 				getGameLayer()->getHudLayer()->skill3Button->unLock();
 			}
 
-			setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
-			setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
-			setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
+			setIdleAction(createAnimation(skillSPC1Array, 5, true, false));
+			setWalkAction(createAnimation(skillSPC2Array, 10, true, false));
+			setNAttackAction(createAnimation(skillSPC3Array, 10, false, true));
 			if (_hpBar)
 			{
 				_hpBar->setPositionY(65);
@@ -174,7 +174,7 @@ class Kiba : public Hero
 
 			_powerUPBuffValue = 360;
 			setNAttackValue(getNAttackValue() + _powerUPBuffValue);
-			setNAttackAction(createAnimation(skillSPC4Array, 10.0f, false, true));
+			setNAttackAction(createAnimation(skillSPC4Array, 10, false, true));
 		}
 	}
 
@@ -183,7 +183,7 @@ class Kiba : public Hero
 		if (_powerUPBuffValue)
 		{
 			setNAttackValue(getNAttackValue() - _powerUPBuffValue);
-			setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
+			setNAttackAction(createAnimation(skillSPC3Array, 10, false, true));
 			_powerUPBuffValue = 0;
 		}
 
@@ -204,9 +204,9 @@ class Kiba : public Hero
 			_powerUPBuffValue = 0;
 		}
 		_isArmored = true;
-		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+		setIdleAction(createAnimation(idleArray, 5, true, false));
+		setWalkAction(createAnimation(walkArray, 10, true, false));
+		setNAttackAction(createAnimation(nattackArray, 10, false, true));
 
 		if (isPlayer())
 		{

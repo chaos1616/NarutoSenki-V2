@@ -142,9 +142,9 @@ class Choji : public Hero
 	void changeAction() override
 	{
 		_isArmored = true;
-		setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
-		setIdleAction(createAnimation(skillSPC4Array, 5.0f, true, false));
-		setWalkAction(createAnimation(skillSPC2Array, 5.0f, true, false));
+		setNAttackAction(createAnimation(skillSPC3Array, 10, false, true));
+		setIdleAction(createAnimation(skillSPC4Array, 5, true, false));
+		setWalkAction(createAnimation(skillSPC2Array, 5, true, false));
 
 		_originNAttackType = _nAttackType;
 		_nAttackType = _spcAttackType3;
@@ -174,9 +174,9 @@ class Choji : public Hero
 		_isArmored = false;
 		resetDefenseValue(5000);
 
-		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+		setWalkAction(createAnimation(walkArray, 10, true, false));
+		setIdleAction(createAnimation(idleArray, 5, true, false));
+		setNAttackAction(createAnimation(nattackArray, 10, false, true));
 
 		if (_state != State::DEAD)
 		{
@@ -205,9 +205,9 @@ class Choji : public Hero
 		_isArmored = false;
 		resetDefenseValue(5000);
 
-		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+		setWalkAction(createAnimation(walkArray, 10, true, false));
+		setIdleAction(createAnimation(idleArray, 5, true, false));
+		setNAttackAction(createAnimation(nattackArray, 10, false, true));
 
 		unlockOugisButtons();
 

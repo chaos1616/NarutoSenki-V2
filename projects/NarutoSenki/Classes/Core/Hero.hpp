@@ -51,6 +51,7 @@ public:
 
 	virtual void setID(const string &name, Role role, Group group)
 	{
+		clearActionData();
 		setRole(role);
 		setGroup(group);
 
@@ -264,21 +265,21 @@ public:
 
 	void initAction()
 	{
-		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-		setHurtAction(createAnimation(hurtArray, 10.0f, false, false));
+		setIdleAction(createAnimation(idleArray, 5, true, false));
+		setWalkAction(createAnimation(walkArray, 10, true, false));
+		setHurtAction(createAnimation(hurtArray, 10, false, false));
 
-		setAirHurtAction(createAnimation(airHurtArray, 10.0f, false, false));
-		setKnockDownAction(createAnimation(knockDownArray, 10.0f, false, true));
-		setDeadAction(createAnimation(deadArray, 10.0f, false, false));
-		setFloatAction(createAnimation(floatArray, 10.0f, false, false));
+		setAirHurtAction(createAnimation(airHurtArray, 10, false, false));
+		setKnockDownAction(createAnimation(knockDownArray, 10, false, true));
+		setDeadAction(createAnimation(deadArray, 10, false, false));
+		setFloatAction(createAnimation(floatArray, 10, false, false));
 
-		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-		setSkill1Action(createAnimation(skill1Array, 10.0f, false, true));
-		setSkill2Action(createAnimation(skill2Array, 10.0f, false, true));
-		setSkill3Action(createAnimation(skill3Array, 10.0f, false, true));
-		setSkill4Action(createAnimation(skill4Array, 10.0f, false, true));
-		setSkill5Action(createAnimation(skill5Array, 10.0f, false, true));
+		setNAttackAction(createAnimation(nattackArray, 10, false, true));
+		setSkill1Action(createAnimation(skill1Array, 10, false, true));
+		setSkill2Action(createAnimation(skill2Array, 10, false, true));
+		setSkill3Action(createAnimation(skill3Array, 10, false, true));
+		setSkill4Action(createAnimation(skill4Array, 10, false, true));
+		setSkill5Action(createAnimation(skill5Array, 10, false, true));
 	}
 
 	void setShadows()

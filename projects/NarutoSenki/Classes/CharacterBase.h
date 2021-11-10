@@ -5,7 +5,8 @@
 #include "HudLayer.h"
 #include "MyUtils/KTools.h"
 
-enum class State {
+enum class State : uint16_t
+{
 	DEAD,
 	IDLE,
 	WALK,
@@ -26,6 +27,8 @@ class Hero;
 class CharacterBase : public Sprite
 {
 friend class CommandSystem;
+
+using ActionMap = unordered_map<ActionFlag, FiniteTimeAction *>;
 
 public:
 	CharacterBase();
@@ -142,7 +145,7 @@ public:
 	PROP_UInt(_maxHP, MaxHP);
 	PROP_UInt(_ckr, CKR);
 	PROP_UInt(_ckr2, CKR2);
-	VPROP(float, _defense, DEF);
+	VPROP(int, _defense, DEF);
 	VPROP(float, _exp, EXP);
 	VPROP(uint32_t, _level, LV);
 	VPROP(int, _height, Height);
@@ -375,7 +378,12 @@ public:
 
 
 	void				readData(CCArray* tmpData, string &attackType, uint32_t &attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint);
-	FiniteTimeAction*	createAnimation(CCArray* ationArray, float fps, bool isRepeat, bool isReturn);
+	FiniteTimeAction*	createAnimation(CCArray* ationArray, uint16_t fps, bool isRepeat, bool isReturnToIdle);
+	FiniteTimeAction*	createAnimation(CCArray* arr, const ActionConstant::AnimationInfo &info) { return createAnimation(arr, info.fps, info.isRepeat, info.isReturnToIdle); }
+	FiniteTimeAction*	createAnimIdle(CCArray* arr) { return createAnimation(arr, ActionConstant::Idle); }
+	FiniteTimeAction*	createAnimKnockdown(CCArray* arr) { return createAnimation(arr, ActionConstant::Knockdown); }
+	FiniteTimeAction*	createAnimRegular(CCArray* arr) { return createAnimation(arr, ActionConstant::Regular); }
+	FiniteTimeAction*	createAnimSkill(CCArray* arr) { return createAnimation(arr, ActionConstant::Skill); }
 
 	void				setSound(const string &file);
 	void				setDSound(const string &file);
@@ -548,6 +556,16 @@ public:
 			}
 		}
 	}
+	// State extensions
+
+	// State is IDLE, WALK or NATTACK
+	bool isFreeState() {
+		return _state == State::IDLE || _state == State::WALK || _state == State::NATTACK;
+	}
+	// Action extensions
+	bool hasAction(ActionFlag action) {
+		return (_actionFlag & action) != ActionFlag::None;
+	}
 	// Utilities
 	void increaseAllCkrs(uint32_t value, bool enableLv2 = true, bool enableLv4 = true);
 	void increaseHpAndUpdateUI(uint32_t value);
@@ -674,13 +692,6 @@ protected:
 	Vec2 getDistanceToTargetAndIgnoreOriginY() {
 		return _mainTarget->getPosition() - getPosition();
 	}
-public:
-	// actoin state extensions
-
-	// Action is State::IDLE or State::WALK or State::NATTACK
-	bool isFreeState() {
-		return _state == State::IDLE || _state == State::WALK || _state == State::NATTACK;
-	}
 
 /**
  * Callbacks
@@ -694,6 +705,14 @@ protected:
 
 	virtual void onSetTrap(const string &trapType) { }
 
+	void clearActionData() {
+		_actionFlag = ActionFlag::None;
+		_actionMap.clear();
+	}
+
 private:
-	bool	_affectedByTower;
+	ActionFlag	_actionFlag;
+	ActionMap	_actionMap;
+
+	bool _affectedByTower;
 };

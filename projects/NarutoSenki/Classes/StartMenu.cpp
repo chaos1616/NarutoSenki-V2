@@ -424,7 +424,6 @@ void StartMenu::setNotice()
 		noticeLabel = CCLabelTTF::create(reply, FONT_NAME, 12);
 		noticeLabel->setAnchorPoint(Vec2(0, 0));
 		clipper->addChild(noticeLabel);
-		noticeLabel->retain();
 		clipper->setPosition(Vec2(35, 228));
 
 		notice_layer->addChild(clipper);

@@ -187,8 +187,8 @@ class Konan : public Hero
 		setWalkSpeed(320);
 		_originSpeed = 320;
 
-		setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
-		setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
+		setIdleAction(createAnimation(skillSPC1Array, 5, true, false));
+		setWalkAction(createAnimation(skillSPC2Array, 10, true, false));
 		if (_hpBar)
 		{
 			_hpBar->setPositionY(90);
@@ -205,8 +205,8 @@ class Konan : public Hero
 
 		unlockOugisButtons();
 
-		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
+		setIdleAction(createAnimation(idleArray, 5, true, false));
+		setWalkAction(createAnimation(walkArray, 10, true, false));
 
 		if (_state != State::DEAD)
 		{

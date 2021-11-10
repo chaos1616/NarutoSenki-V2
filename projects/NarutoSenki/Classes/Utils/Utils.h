@@ -6,6 +6,8 @@
 
 #include "Utils/Cocos2dxHelper.hpp"
 
+#include "Utils/EnumClass.h"
+
 #include "Utils/Keyboard.h"
 
 #include "Utils/Macros/Property.h"

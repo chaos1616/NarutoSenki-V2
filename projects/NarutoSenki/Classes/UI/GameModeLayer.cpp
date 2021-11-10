@@ -67,7 +67,7 @@ bool GameModeLayer::init()
 		// auto action = Sequence::createWithTwoActions(delay, move);
 		// mode_btn->runAction(action);
 	}
-	for (int i = 6; i < GameMode::__Internal_Max_Length; i++)
+	for (size_t i = 6; i < GameMode::__Internal_Max_Length; i++)
 	{
 		auto mode_btn = ModeMenuButton::create(format("GameMode/{}.png", i + 1));
 		mode_btn->mode = (GameMode)i;

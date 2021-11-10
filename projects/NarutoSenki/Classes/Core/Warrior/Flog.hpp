@@ -26,6 +26,7 @@ public:
 
 	void setID(const string &name, Role role, Group group)
 	{
+		clearActionData();
 		setName(name);
 		setRole(role);
 		setGroup(group);
@@ -98,17 +99,17 @@ public:
 
 	void initAction()
 	{
-		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-		setHurtAction(createAnimation(hurtArray, 10.0f, false, true));
+		setIdleAction(createAnimation(idleArray, 5, true, false));
+		setWalkAction(createAnimation(walkArray, 10, true, false));
+		setHurtAction(createAnimation(hurtArray, 10, false, true));
 
-		setAirHurtAction(createAnimation(airHurtArray, 10.0f, false, false));
-		setKnockDownAction(createAnimation(knockDownArray, 10.0f, false, true));
-		setDeadAction(createAnimation(deadArray, 10.0f, false, false));
+		setAirHurtAction(createAnimation(airHurtArray, 10, false, false));
+		setKnockDownAction(createAnimation(knockDownArray, 10, false, true));
+		setDeadAction(createAnimation(deadArray, 10, false, false));
 
-		setFloatAction(createAnimation(floatArray, 10.0f, false, false));
+		setFloatAction(createAnimation(floatArray, 10, false, false));
 
-		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+		setNAttackAction(createAnimation(nattackArray, 10, false, true));
 	}
 
 	void setHPbar()

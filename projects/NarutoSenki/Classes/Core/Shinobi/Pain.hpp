@@ -312,9 +312,9 @@ class Pain : public Hero
 		// {
 		// 	if (_skillChangeBuffValue == 17)
 		// 	{
-		// 		setSkill1Action(createAnimation(skillSPC1Array, 10.0f, false, true));
-		// 		setSkill2Action(createAnimation(skillSPC2Array, 10.0f, false, true));
-		// 		setSkill3Action(createAnimation(skillSPC3Array, 10.0f, false, true));
+		// 		setSkill1Action(createAnimation(skillSPC1Array, 10, false, true));
+		// 		setSkill2Action(createAnimation(skillSPC2Array, 10, false, true));
+		// 		setSkill3Action(createAnimation(skillSPC3Array, 10, false, true));
 		// 		setTempAttackValue1(getSAttackValue1());
 		// 		setSAttackValue1(_spcAttackValue1);
 		// 		setSAttackValue2(_spcAttackValue2);
@@ -341,9 +341,9 @@ class Pain : public Hero
 		// {
 		// 	if (_skillChangeBuffValue == 17)
 		// 	{
-		// 		this->setSkill1Action(createAnimation(skill1Array, 10.0f, false, true));
-		// 		this->setSkill2Action(createAnimation(skill2Array, 10.0f, false, true));
-		// 		this->setSkill3Action(createAnimation(skill3Array, 10.0f, false, true));
+		// 		this->setSkill1Action(createAnimation(skill1Array, 10, false, true));
+		// 		this->setSkill2Action(createAnimation(skill2Array, 10, false, true));
+		// 		this->setSkill3Action(createAnimation(skill3Array, 10, false, true));
 
 		// 		if (isPlayer())
 		// 		{

@@ -121,38 +121,57 @@ enum class Group : uint8_t
 
 enum class ActionFlag : uint32_t
 {
-	Dead = 1 << 0,
-	Idle = 1 << 1,
-	Walk = 1 << 2,
-	Hurt = 1 << 3,
-	Airhurt = 1 << 4,
-	Knockdown = 1 << 5,
-	Float = 1 << 6,
-	NAttack = 1 << 7,
-	Skill01 = 1 << 8,
-	Skill02 = 1 << 9,
-	Skill03 = 1 << 10,
-	Skill04 = 1 << 11,
-	Skill05 = 1 << 12,
-	SkillSpc01 = 1 << 13,
-	SkillSpc02 = 1 << 14,
-	SkillSpc03 = 1 << 15,
-	SkillSpc04 = 1 << 16,
-	SkillSpc05 = 1 << 17,
-	SkillSpc11 = 1 << 18,
-	SkillSpc12 = 1 << 19,
-	SkillSpc13 = 1 << 20,
-	SkillSpc14 = 1 << 21,
-	SkillSpc15 = 1 << 22,
+	None = 0UL,
+	// Basic
+	Dead = 1UL << 0UL,
+	Idle = 1UL << 1UL,
+	Walk = 1UL << 2UL,
+	Hurt = 1UL << 3UL,
+	AirHurt = 1UL << 4UL,
+	Knockdown = 1UL << 5UL,
+	Float = 1UL << 6UL,
+	NAttack = 1UL << 7UL,
+	Skill01 = 1UL << 8UL,
+	Skill02 = 1UL << 9UL,
+	Skill03 = 1UL << 10UL,
+	Skill04 = 1UL << 11UL,
+	Skill05 = 1UL << 12UL,
+	// Custom Actions
+	Spc01 = 1UL << 13UL,
+	Spc02 = 1UL << 14UL,
+	Spc03 = 1UL << 15UL,
+	Spc04 = 1UL << 16UL,
+	Spc05 = 1UL << 17UL,
+	Spc06 = 1UL << 18UL,
+	Spc07 = 1UL << 19UL,
+	Spc08 = 1UL << 20UL,
+	Spc09 = 1UL << 21UL,
+	Spc10 = 1UL << 22UL,
+	Spc11 = 1UL << 23UL,
+	Spc12 = 1UL << 24UL,
+	Spc13 = 1UL << 25UL,
+	Spc14 = 1UL << 26UL,
+	Spc15 = 1UL << 27UL,
+	Spc16 = 1UL << 28UL,
+	Spc17 = 1UL << 29UL,
+	Spc18 = 1UL << 30UL,
+	Spc19 = 1UL << 31UL,
+	// NOTE: More should be changed to uint64_t
+	// uint32_t::max = (1 << 32) - 1 (max count is 31)
+	// uint64_t::max = (1 << 64) - 1 (max count is 63)
+	//
+	// Spc20 = 1ULL << 32ULL,
+	// Spc21 = 1ULL << 33ULL,
+	// Spc22 = 1ULL << 34ULL,
+	// Spc23 = 1ULL << 35ULL,
+	// Spc24 = 1ULL << 36ULL,
+	// Spc25 = 1ULL << 37ULL,
+	// Spc26 = 1ULL << 38ULL,
+	// Spc27 = 1ULL << 39ULL,
+	// Spc28 = 1ULL << 40ULL,
+	// Spc29 = 1ULL << 41ULL,
+	// Spc30 = 1ULL << 42ULL,
 };
-
-inline ActionFlag operator~(ActionFlag a) { return (ActionFlag) ~(uint32_t)a; }
-inline ActionFlag operator|(ActionFlag a, ActionFlag b) { return (ActionFlag)((uint32_t)a | (uint32_t)b); }
-inline ActionFlag operator&(ActionFlag a, ActionFlag b) { return (ActionFlag)((uint32_t)a & (uint32_t)b); }
-inline ActionFlag operator^(ActionFlag a, ActionFlag b) { return (ActionFlag)((uint32_t)a ^ (uint32_t)b); }
-inline ActionFlag &operator|=(ActionFlag &a, ActionFlag b) { return (ActionFlag &)((uint32_t &)a |= (uint32_t)b); }
-inline ActionFlag &operator&=(ActionFlag &a, ActionFlag b) { return (ActionFlag &)((uint32_t &)a &= (uint32_t)b); }
-inline ActionFlag &operator^=(ActionFlag &a, ActionFlag b) { return (ActionFlag &)((uint32_t &)a ^= (uint32_t)b); }
 
 enum class HardHurtState : uint8_t
 {

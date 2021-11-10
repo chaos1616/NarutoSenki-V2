@@ -1,5 +1,7 @@
 #pragma once
 
+// cocos2d::Value Property
+
 #define PROP_String(varName, funName)                                \
 private:                                                             \
 	Value varName;                                                   \
@@ -8,8 +10,6 @@ public:                                                              \
 	inline std::string get##funName() { return varName.asString(); } \
 	inline const Value &get##funName##_Value() { return varName; }   \
 	inline void set##funName(const std::string &var) { varName = var; }
-
-// cocos2d::Value Type Property
 
 #define PROP_Bool(varName, funName)                                \
 private:                                                           \

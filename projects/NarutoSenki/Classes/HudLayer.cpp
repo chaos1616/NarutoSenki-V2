@@ -896,7 +896,6 @@ void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 	buffSprite->runAction(seq);
 	buffSprite->setTag(0);
 
-	buffSprite->retain();
 	addChild(buffSprite, 500);
 	_buffCount++;
 }

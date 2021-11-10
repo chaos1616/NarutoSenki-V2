@@ -27,6 +27,7 @@ bool Monster::init()
 
 void Monster::setID(const string &name, Role role, Group group)
 {
+	clearActionData();
 	setName(name);
 	setRole(role);
 	setGroup(group);
@@ -84,20 +85,20 @@ void Monster::setID(const string &name, Role role, Group group)
 
 void Monster::initAction()
 {
-	setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-	setWalkAction(createAnimation(walkArray, 10.0f, true, false));
-	setDeadAction(createAnimation(deadArray, 10.0f, false, false));
+	setIdleAction(createAnimation(idleArray, 5, true, false));
+	setWalkAction(createAnimation(walkArray, 10, true, false));
+	setDeadAction(createAnimation(deadArray, 10, false, false));
 	if (getName() == SkillEnum::Kage ||
 		getName() == SkillEnum::KageHand ||
 		getName() == SkillEnum::FutonSRK ||
 		getName() == SkillEnum::FutonSRK2 ||
 		getName() == SkillEnum::Kubi)
 	{
-		setNAttackAction(createAnimation(nattackArray, 10.0f, false, false));
+		setNAttackAction(createAnimation(nattackArray, 10, false, false));
 	}
 	else
 	{
-		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
+		setNAttackAction(createAnimation(nattackArray, 10, false, true));
 	}
 }
 

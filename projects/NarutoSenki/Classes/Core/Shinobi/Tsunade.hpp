@@ -148,9 +148,9 @@ class Tsunade : public Hero
 		_healBuffValue = 3000;
 		schedule(schedule_selector(CharacterBase::healBuff), 1);
 
-		setIdleAction(createAnimation(skillSPC1Array, 5.0f, true, false));
-		setWalkAction(createAnimation(skillSPC2Array, 10.0f, true, false));
-		setNAttackAction(createAnimation(skillSPC3Array, 10.0f, false, true));
+		setIdleAction(createAnimation(skillSPC1Array, 5, true, false));
+		setWalkAction(createAnimation(skillSPC2Array, 10, true, false));
+		setNAttackAction(createAnimation(skillSPC3Array, 10, false, true));
 
 		lockOugisButtons();
 	}
@@ -167,9 +167,9 @@ class Tsunade : public Hero
 		unlockOugisButtons();
 		_isArmored = false;
 
-		setNAttackAction(createAnimation(nattackArray, 10.0f, false, true));
-		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		setWalkAction(createAnimation(walkArray, 10.0f, true, false));
+		setNAttackAction(createAnimation(nattackArray, 10, false, true));
+		setIdleAction(createAnimation(idleArray, 5, true, false));
+		setWalkAction(createAnimation(walkArray, 10, true, false));
 
 		if (_state != State::DEAD)
 		{

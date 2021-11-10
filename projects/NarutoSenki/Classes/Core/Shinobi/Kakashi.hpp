@@ -120,9 +120,9 @@ class Kakashi : public Hero
 
 	void changeAction() override
 	{
-		setSkill1Action(createAnimation(skillSPC1Array, 10.0f, false, true));
-		setSkill2Action(createAnimation(skillSPC2Array, 10.0f, false, true));
-		setIdleAction(createAnimation(skillSPC3Array, 5.0f, true, false));
+		setSkill1Action(createAnimation(skillSPC1Array, 10, false, true));
+		setSkill2Action(createAnimation(skillSPC2Array, 10, false, true));
+		setIdleAction(createAnimation(skillSPC3Array, 5, true, false));
 		setTempAttackValue1(getSAttackValue1());
 		setSAttackValue1(getSpcAttackValue1());
 
@@ -169,9 +169,9 @@ class Kakashi : public Hero
 
 	void resumeAction(float dt) override
 	{
-		setIdleAction(createAnimation(idleArray, 5.0f, true, false));
-		setSkill1Action(createAnimation(skill1Array, 10.0f, false, true));
-		setSkill2Action(createAnimation(skill2Array, 10.0f, false, true));
+		setIdleAction(createAnimation(idleArray, 5, true, false));
+		setSkill1Action(createAnimation(skill1Array, 10, false, true));
+		setSkill2Action(createAnimation(skill2Array, 10, false, true));
 
 		setSAttackValue1(getTempAttackValue1());
 
