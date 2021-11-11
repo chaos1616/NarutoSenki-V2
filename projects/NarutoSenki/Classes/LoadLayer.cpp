@@ -1,9 +1,6 @@
 #include "LoadLayer.h"
 #include "GameMode/GameModeImpl.h"
 
-// Character File Name Generator
-#define mkpath(varName) "Element/" #varName "/" #varName ".plist"
-
 LoadLayer::LoadLayer()
 {
 	loadNum = 0;
@@ -97,10 +94,10 @@ void LoadLayer::preloadIMG()
 
 	if (_isHardCoreMode)
 	{
-		addSprites("Element/Roshi/Roshi.plist");
-		addSprites("Element/Han/Han.plist");
-		KTools::prepareFileOGG(kGuardian_Han);
-		KTools::prepareFileOGG(kGuardian_Roshi);
+		addSprites(kGuardian_Han);
+		addSprites(kGuardian_Roshi);
+		KTools::prepareFileOGG(GuardianEnum::Han);
+		KTools::prepareFileOGG(GuardianEnum::Roshi);
 	}
 	addSprites(kFlog_Kotetsu);
 	addSprites(kFlog_FemalePain);
@@ -135,80 +132,80 @@ void LoadLayer::perloadCharIMG(const string &name)
 {
 	Texture2D::PVRImagesHavePremultipliedAlpha(true);
 
-	auto path = format("Element/Skills/{}_Skill.plist", name);
+	auto path = format("Unit/Ninja/{}/{}_Skill.plist", name, name);
 	if (FileUtils::sharedFileUtils()->isFileExist(path.c_str()))
-		addSprites(path.c_str());
+		addSprites(path);
 	// else
 	// CCLOG("Not found file %s", path);
 
 	KTools::prepareFileOGG(name);
 
-	path = format("Element/{}/{}.plist", name, name);
-	addSprites(path.c_str());
+	path = format("Unit/Ninja/{}/{}.plist", name, name);
+	addSprites(path);
 	// Add extra sprites
-	if (name == "Jiraiya")
+	if (name == HeroEnum::Jiraiya)
 	{
-		addSprites(mkpath(SageJiraiya));
-		KTools::prepareFileOGG("SageJiraiya");
+		addSprites(mk_ninja_plist("SageJiraiya"));
+		KTools::prepareFileOGG(HeroEnum::SageJiraiya);
 	}
-	else if (name == "Kankuro")
+	else if (name == HeroEnum::Kankuro)
 	{
-		addSprites(mkpath(Karasu));
-		addSprites(mkpath(Sanshouuo));
-		addSprites(mkpath(Saso));
+		addSprites(mk_kugutsu_plist("Karasu"));
+		addSprites(mk_kugutsu_plist("Sanshouuo"));
+		addSprites(mk_kugutsu_plist("Saso"));
 	}
-	else if (name == "Chiyo")
+	else if (name == HeroEnum::Chiyo)
 	{
-		addSprites(mkpath(Parents));
+		addSprites(mk_kugutsu_plist("Parents"));
 	}
-	else if (name == "Kakuzu")
+	else if (name == HeroEnum::Kakuzu)
 	{
-		addSprites(mkpath(MaskRaiton));
-		addSprites(mkpath(MaskFuton));
-		addSprites(mkpath(MaskKaton));
+		addSprites(mk_kugutsu_plist("MaskRaiton"));
+		addSprites(mk_kugutsu_plist("MaskFuton"));
+		addSprites(mk_kugutsu_plist("MaskKaton"));
 	}
-	else if (name == "Naruto")
+	else if (name == HeroEnum::Naruto)
 	{
-		addSprites(mkpath(RikudoNaruto));
-		addSprites(mkpath(SageNaruto));
-		addSprites(mkpath(Kurama));
-		KTools::prepareFileOGG("SageNaruto");
-		KTools::prepareFileOGG("RikudoNaruto");
+		addSprites(mk_ninja_plist("RikudoNaruto"));
+		addSprites(mk_ninja_plist("SageNaruto"));
+		addSprites(mk_kuchiyose_plist("Kurama"));
+		KTools::prepareFileOGG(HeroEnum::SageNaruto);
+		KTools::prepareFileOGG(HeroEnum::RikudoNaruto);
 	}
-	else if (name == "Lee")
+	else if (name == HeroEnum::Lee)
 	{
-		addSprites(mkpath(RockLee));
+		addSprites(mk_ninja_plist("RockLee"));
 	}
-	else if (name == "Tsunade")
+	else if (name == HeroEnum::Tsunade)
 	{
-		addSprites(mkpath(Slug));
+		addSprites(mk_kuchiyose_plist("Slug"));
 	}
-	else if (name == "Kakashi")
+	else if (name == HeroEnum::Kakashi)
 	{
-		addSprites(mkpath(DogWall));
+		addSprites(mk_kuchiyose_plist("DogWall"));
 	}
-	else if (name == "Deidara")
+	else if (name == HeroEnum::Deidara)
 	{
-		addSprites(mkpath(Centipede));
+		addSprites(mk_kuchiyose_plist("Centipede"));
 	}
-	else if (name == "Pain")
+	else if (name == HeroEnum::Pain)
 	{
-		addSprites(mkpath(AnimalPath));
-		addSprites(mkpath(AsuraPath));
-		addSprites(mkpath(NarakaPath));
-		// addSprites(mkpath(HumanPath));
-		// addSprites(mkpath(PertaPath));
-		addSprites(mkpath(Nagato));
-		KTools::prepareFileOGG("Nagato");
+		addSprites(mk_ninja_plist("AnimalPath"));
+		addSprites(mk_ninja_plist("AsuraPath"));
+		addSprites(mk_ninja_plist("NarakaPath"));
+		// addSprites(mk_ninja_plist("HumanPath"));
+		// addSprites(mk_ninja_plist("PertaPath"));
+		addSprites(mk_ninja_plist("Nagato"));
+		KTools::prepareFileOGG(HeroEnum::Nagato);
 	}
-	else if (name == "Sasuke")
+	else if (name == HeroEnum::Sasuke)
 	{
-		addSprites(mkpath(ImmortalSasuke));
-		KTools::prepareFileOGG("ImmortalSasuke");
+		addSprites(mk_ninja_plist("ImmortalSasuke"));
+		KTools::prepareFileOGG(HeroEnum::ImmortalSasuke);
 	}
-	else if (name == "Kiba")
+	else if (name == HeroEnum::Kiba)
 	{
-		addSprites(mkpath(Akamaru));
+		addSprites(mk_kuchiyose_plist("Akamaru"));
 	}
 }
 
@@ -219,66 +216,67 @@ void LoadLayer::unloadCharIMG(CharacterBase *c)
 		return;
 	}
 
-	auto charName = c->getName();
-	auto path = format("Element/{}/{}.plist", charName, charName);
-	removeSprites(path.c_str());
+	auto name = c->getName();
+	auto path = format("Unit/Ninja/{}/{}.plist", name, name);
+	removeSprites(path);
 
 	if (c->isPlayerOrCom())
 	{
-		KTools::prepareFileOGG(charName, true);
+		KTools::prepareFileOGG(name, true);
 	}
 
-	if (charName == "Jiraiya")
+	if (name == HeroEnum::Jiraiya)
 	{
-		removeSprites(mkpath(SageJiraiya));
-		KTools::prepareFileOGG("SageJiraiya", true);
+		removeSprites(mk_ninja_plist("SageJiraiya"));
+		KTools::prepareFileOGG(HeroEnum::SageJiraiya, true);
 	}
-	else if (charName == "Kankuro")
+	else if (name == HeroEnum::Kankuro)
 	{
-		removeSprites(mkpath(Karasu));
-		removeSprites(mkpath(Sanshouuo));
+		removeSprites(mk_kugutsu_plist("Karasu"));
+		removeSprites(mk_kugutsu_plist("Sanshouuo"));
+		removeSprites(mk_kugutsu_plist("Saso"));
 	}
-	else if (charName == "Kakuzu")
+	else if (name == HeroEnum::Kakuzu)
 	{
-		removeSprites(mkpath(MaskFuton));
-		removeSprites(mkpath(MaskRaiton));
-		removeSprites(mkpath(MaskKaton));
+		removeSprites(mk_kugutsu_plist("MaskFuton"));
+		removeSprites(mk_kugutsu_plist("MaskRaiton"));
+		removeSprites(mk_kugutsu_plist("MaskKaton"));
 	}
-	else if (charName == "Naruto")
+	else if (name == HeroEnum::Naruto)
 	{
-		removeSprites(mkpath(SageNaruto));
-		removeSprites(mkpath(RikudoNaruto));
-		KTools::prepareFileOGG("SageNaruto", true);
-		KTools::prepareFileOGG("RikudoNaruto", true);
+		removeSprites(mk_ninja_plist("SageNaruto"));
+		removeSprites(mk_ninja_plist("RikudoNaruto"));
+		KTools::prepareFileOGG(HeroEnum::SageNaruto, true);
+		KTools::prepareFileOGG(HeroEnum::RikudoNaruto, true);
 	}
-	else if (charName == "RockLee")
+	else if (name == HeroEnum::RockLee)
 	{
-		removeSprites(mkpath(Lee));
+		removeSprites(mk_ninja_plist("Lee"));
 	}
-	else if (charName == "Lee")
+	else if (name == HeroEnum::Lee)
 	{
-		removeSprites(mkpath(RockLee));
+		removeSprites(mk_ninja_plist("RockLee"));
 	}
-	else if (charName == "Sasuke")
+	else if (name == HeroEnum::Sasuke)
 	{
-		KTools::prepareFileOGG("ImmortalSasuke", true);
-		removeSprites(mkpath(ImmortalSasuke));
+		KTools::prepareFileOGG(HeroEnum::ImmortalSasuke, true);
+		removeSprites(mk_ninja_plist("ImmortalSasuke"));
 	}
-	else if (charName == "Pain")
+	else if (name == HeroEnum::Pain)
 	{
-		KTools::prepareFileOGG("Nagato", true);
-		removeSprites(mkpath(AnimalPath));
-		removeSprites(mkpath(AsuraPath));
-		removeSprites(mkpath(NarakaPath));
-		// addSprites(mkpath(HumanPath));
-		// addSprites(mkpath(PertaPath));
-		removeSprites(mkpath(Nagato));
+		KTools::prepareFileOGG(HeroEnum::Nagato, true);
+		removeSprites(mk_ninja_plist("AnimalPath"));
+		removeSprites(mk_ninja_plist("AsuraPath"));
+		removeSprites(mk_ninja_plist("NarakaPath"));
+		// addSprites(mk_ninja_plist("HumanPath"));
+		// addSprites(mk_ninja_plist("PertaPath"));
+		removeSprites(mk_ninja_plist("Nagato"));
 	}
-	else if (charName == "Nagato")
+	else if (name == HeroEnum::Nagato)
 	{
-		removeSprites(mkpath(AnimalPath));
-		removeSprites(mkpath(AsuraPath));
-		removeSprites(mkpath(NarakaPath));
+		removeSprites(mk_ninja_plist("AnimalPath"));
+		removeSprites(mk_ninja_plist("AsuraPath"));
+		removeSprites(mk_ninja_plist("NarakaPath"));
 	}
 }
 
@@ -304,7 +302,7 @@ void LoadLayer::setLoadingAnimation(const char *player, int index)
 	loadingAvator->setAnchorPoint(Vec2(0, 0));
 
 	// FIXME: Use the other way get animation frame count
-	ssize_t frameCount = is_same(player, "Konan") ? 1 : 7;
+	ssize_t frameCount = is_same(player, HeroEnum::Konan) ? 1 : 7;
 	Vector<SpriteFrame *> animeFrames(frameCount);
 	for (int i = 1; i < frameCount; i++)
 	{

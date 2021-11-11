@@ -514,7 +514,7 @@ public:
 		else
 			_defense = 0;
 	}
-	bool isGuardian() { return _name == kGuardian_Han || _name == kGuardian_Roshi; }
+	bool isGuardian() { return _name == GuardianEnum::Han || _name == GuardianEnum::Roshi; }
 	bool isNotGuardian() { return !isGuardian(); }
 	// role extensions
 	bool isCom() { return _role == Role::Com; }

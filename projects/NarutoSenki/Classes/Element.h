@@ -30,4 +30,4 @@ protected:
 
 #include "Core/Warrior/Flog.hpp"
 
-#include "Core/Bullet/Bullet.hpp"
+#include "Core/Projectile/Bullet.hpp"

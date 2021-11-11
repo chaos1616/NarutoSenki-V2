@@ -30,9 +30,6 @@ using namespace std;
 	if (var)                \
 		return true;
 
-#define addSprites(filePath) SpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(filePath)
-#define removeSprites(filePath) SpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile(filePath)
-
 #define get_luastack LuaEngine::defaultEngine()->getLuaStack()
 #define lua_getL auto L = LuaEngine::defaultEngine()->getLuaStack()->getLuaState();
 
@@ -57,11 +54,21 @@ using namespace std;
 	pStack->executeFunctionByHandler(handler, 0);
 
 /**
- * Sprite extension
+ * Sprite helpers
  */
 
 #define FULL_SCREEN_SPRITE(__SPRITE__) \
 	__SPRITE__->setScaleX(winSize.width / __SPRITE__->getContentSize().width);
+
+static inline void addSprites(const string &plistName)
+{
+	SpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(plistName.c_str());
+}
+
+static inline void removeSprites(const string &plistName)
+{
+	SpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile(plistName.c_str());
+}
 
 static inline SpriteFrame *getSpriteFrame(const string &name)
 {

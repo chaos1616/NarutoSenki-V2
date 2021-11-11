@@ -31,9 +31,9 @@ public:
 		const char *filePath;
 
 		if (getName() == TowerEnum::KonohaCenter || getName() == TowerEnum::AkatsukiCenter)
-			filePath = "Element/Tower/CenterDate.xml";
+			filePath = "Unit/Tower/CenterData.xml";
 		else
-			filePath = "Element/Tower/TowerDate.xml";
+			filePath = "Unit/Tower/TowerData.xml";
 
 		KTools::readXMLToArray(filePath, animationArray);
 

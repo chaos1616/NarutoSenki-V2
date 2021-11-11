@@ -55,9 +55,27 @@ public:
 		setRole(role);
 		setGroup(group);
 
+		auto fileUtils = FileUtils::sharedFileUtils();
+		string fpath = fileUtils->fullPathForFilename(format("Unit/Ninja/{}/{}.xml", name, name).c_str());
+		if (!fileUtils->isFileExist(fpath))
+		{
+			fpath = fileUtils->fullPathForFilename(format("Unit/Kuchiyose/{}/{}.xml", name, name).c_str());
+			if (!fileUtils->isFileExist(fpath))
+			{
+				fpath = fileUtils->fullPathForFilename(format("Unit/Kugutsu/{}/{}.xml", name, name).c_str());
+				if (!fileUtils->isFileExist(fpath))
+				{
+					fpath = fileUtils->fullPathForFilename(format("Unit/Guardian/{}/{}.xml", name, name).c_str());
+					if (!fileUtils->isFileExist(fpath))
+					{
+						CCLOGERROR("Not found file %s", fpath.c_str());
+						return;
+					}
+				}
+			}
+		}
 		CCArray *animationArray = CCArray::create();
-		auto filePath = format("Element/{}/{}.xml", name, name);
-		KTools::readXMLToArray(filePath, animationArray);
+		KTools::readXMLToArray(fpath, animationArray);
 
 		// init
 		CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));

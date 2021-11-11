@@ -493,7 +493,7 @@ bool CCTips::init(const char *tips)
 	RETURN_FALSE_IF(!Sprite::init());
 
 	setAnchorPoint(Vec2(0.5, 0.5));
-	auto strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
+	auto strings = CCDictionary::createWithContentsOfFile("Config/strings.xml");
 	const char *reply = ((CCString *)strings->objectForKey(tips))->m_sString.c_str();
 
 	CCLabelTTF *tipLabel = CCLabelTTF::create(reply, FONT_NAME, 12);

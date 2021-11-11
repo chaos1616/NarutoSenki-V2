@@ -136,7 +136,7 @@ void GameLayer::initGard()
 {
 	setRand();
 	int index = random(2);
-	auto guardianName = index == 0 ? kGuardian_Roshi : kGuardian_Han;
+	auto guardianName = index == 0 ? GuardianEnum::Roshi : GuardianEnum::Han;
 	auto guardianGroup = playerGroup == Group::Konoha ? Group::Akatsuki : Group::Konoha;
 	auto guardian = Provider::create(guardianName, Role::Com, guardianGroup);
 
@@ -173,7 +173,7 @@ void GameLayer::initHeros()
 	initTileMap();
 	initEffects();
 
-	addSprites("Element/hpBar/hpBar.plist");
+	addSprites("UI/hpBar/hpBar.plist");
 
 	auto handler = getGameModeHandler();
 	auto herosDataVector = handler->getHerosArray();
@@ -316,7 +316,7 @@ void GameLayer::onGameStart(float dt)
 
 void GameLayer::initFlogs()
 {
-	addSprites("Element/hpBar/flogBar.plist");
+	addSprites("UI/hpBar/flogBar.plist");
 
 	kName = FlogEnum::KotetsuFlog;
 	aName = FlogEnum::FemalePainFlog;
@@ -367,7 +367,7 @@ void GameLayer::addFlog(float dt)
 
 void GameLayer::initTower()
 {
-	addSprites(format("Element/Tower/Tower{}.plist", mapId).c_str());
+	addSprites(format("Unit/Tower/Tower{}.plist", mapId));
 
 	TMXObjectGroup *metaGroup = currentMap->objectGroupNamed("meta");
 	CCArray *metaArray = metaGroup->getObjects();
@@ -768,14 +768,14 @@ void GameLayer::onLeft()
 	}
 
 	LoadLayer::unloadAllCharsIMG(_CharacterArray);
-	removeSprites(format("Element/Tower/Tower{}.plist", mapId).c_str());
+	removeSprites(format("Unit/Tower/Tower{}.plist", mapId));
 
 	if (_isHardCoreGame)
 	{
-		removeSprites("Element/Roshi/Roshi.plist");
-		removeSprites("Element/Han/Han.plist");
-		KTools::prepareFileOGG(kGuardian_Roshi, true);
-		KTools::prepareFileOGG(kGuardian_Han, true);
+		removeSprites(kGuardian_Han);
+		removeSprites(kGuardian_Roshi);
+		KTools::prepareFileOGG(GuardianEnum::Han, true);
+		KTools::prepareFileOGG(GuardianEnum::Roshi, true);
 	}
 
 	KTools::prepareFileOGG("Effect", true);
@@ -897,7 +897,7 @@ int GameLayer::getMapCount()
 	int index = 1;
 	int mapCount = 0;
 	auto fileUtils = FileUtils::sharedFileUtils();
-	while (fileUtils->isFileExist(format("Tiles/{}.tmx", index++).c_str()))
+	while (fileUtils->isFileExist(format("Maps/{}.tmx", index++).c_str()))
 		mapCount++;
 	CCLOG("===== Found %d maps =====", mapCount);
 	return mapCount;

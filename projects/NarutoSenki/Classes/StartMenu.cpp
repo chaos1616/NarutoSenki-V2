@@ -418,7 +418,7 @@ void StartMenu::setNotice()
 		stencil->setAnchorPoint(Vec2(0, 0));
 		clipper->setStencil(stencil);
 
-		auto strings = CCDictionary::createWithContentsOfFile("Element/strings.xml");
+		auto strings = CCDictionary::createWithContentsOfFile("Config/strings.xml");
 		auto reply = ((CCString *)strings->objectForKey("Notice"))->m_sString.c_str();
 
 		noticeLabel = CCLabelTTF::create(reply, FONT_NAME, 12);

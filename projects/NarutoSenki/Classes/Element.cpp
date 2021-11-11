@@ -33,7 +33,7 @@ void Monster::setID(const string &name, Role role, Group group)
 	setGroup(group);
 
 	CCArray *animationArray = CCArray::create();
-	auto filePath = format("Element/Monster/{}.xml", name);
+	auto filePath = format("Unit/Mon/{}.xml", name);
 	KTools::readXMLToArray(filePath, animationArray);
 
 	CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));

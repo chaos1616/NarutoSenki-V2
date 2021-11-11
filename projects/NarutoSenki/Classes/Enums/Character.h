@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 #include "Data/Config.h"
 #include "Enums/HeroEnum.h"
 #include "Enums/HitType.h"
@@ -8,6 +7,7 @@
 #include "Enums/SkillEnum.h"
 #include "Enums/SummonEnum.h"
 #include "Enums/TowerEnum.h"
+#include "Utils/Cocos2dxHelper.hpp"
 #include "Utils/Hash.h"
 
 // Roles
@@ -25,6 +25,13 @@
 #define kRoleMon "Mon"
 // 口寄せ	Summon
 #define kRoleSummon "Summon"
+
+#define kGroupKonoha "Konoha"
+#define kGroupAkatsuki "Akatsuki"
+
+// Tile maps (Made with Tiled)
+#define GetMapPath(mapId) format("Maps/{}.tmx", mapId).c_str()
+#define GetMapBgPath(mapId) format("Maps/map_bg{}.png", mapId).c_str()
 
 enum class Role : uint8_t
 {
@@ -47,18 +54,11 @@ enum class Role : uint8_t
 	Summon,
 };
 
-#define cName(varName, varType) "Element/" varType "/" #varName ".plist"
-
-// Flogs
-#define kFlog_Kotetsu cName(KotetsuFlog, kRoleFlog)
-#define kFlog_Izumo cName(IzumoFlog, kRoleFlog)
-#define kFlog_Kakashi cName(KakashiFlog, kRoleFlog)
-#define kFlog_FemalePain cName(FemalePainFlog, kRoleFlog)
-#define kFlog_Pain cName(PainFlog, kRoleFlog)
-#define kFlog_Obito cName(ObitoFlog, kRoleFlog)
-// Guardians
-#define kGuardian_Roshi "Roshi"
-#define kGuardian_Han "Han"
+enum class Group : uint8_t
+{
+	Konoha,
+	Akatsuki,
+};
 
 // Attack button type
 enum ABType : uint8_t
@@ -113,14 +113,30 @@ namespace FlogEnum
 	mk_const(ObitoFlog);	  // LV 3
 } // namespace FlogEnum
 
-#define kGroupKonoha "Konoha"
-#define kGroupAkatsuki "Akatsuki"
-
-enum class Group : uint8_t
+namespace GuardianEnum
 {
-	Konoha,
-	Akatsuki,
-};
+	mk_const(Han);
+	mk_const(Roshi);
+} // namespace GuardianEnum
+
+#define make_path(name, type, ext) "Unit/" type "/" name ext
+// Unit path rules
+#define mk_ninja_plist(name) make_path(name "/" name, "Ninja", ".plist")
+#define mk_flog_plist(name) make_path(name, "Flog", ".plist")
+#define mk_guardian_plist(name) make_path(name "/" name, "Guardian", ".plist")
+#define mk_kugutsu_plist(name) make_path(name "/" name, "Kugutsu", ".plist")
+#define mk_kuchiyose_plist(name) make_path(name "/" name, "Kuchiyose", ".plist")
+
+// Flogs
+constexpr auto kFlog_Kotetsu = mk_flog_plist("KotetsuFlog");
+constexpr auto kFlog_Izumo = mk_flog_plist("IzumoFlog");
+constexpr auto kFlog_Kakashi = mk_flog_plist("KakashiFlog");
+constexpr auto kFlog_FemalePain = mk_flog_plist("FemalePainFlog");
+constexpr auto kFlog_Pain = mk_flog_plist("PainFlog");
+constexpr auto kFlog_Obito = mk_flog_plist("ObitoFlog");
+// Guardians
+constexpr auto kGuardian_Han = mk_guardian_plist("Han");
+constexpr auto kGuardian_Roshi = mk_guardian_plist("Roshi");
 
 enum class ActionFlag : uint32_t
 {

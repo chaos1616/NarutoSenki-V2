@@ -2748,7 +2748,7 @@ void CharacterBase::stopJump(int stopTime)
 
 void CharacterBase::setBullet(const string &bulletName)
 {
-	Bullet *bullet = Bullet::create();
+	auto bullet = Bullet::create();
 	bullet->setID(bulletName, Role::Bullet, _group);
 	bullet->idle();
 	bullet->_master = _master ? _master : this;
@@ -2834,7 +2834,7 @@ void CharacterBase::setBulletGroup(float dt)
 {
 	for (int i = 0; i < 2; i++)
 	{
-		Bullet *bullet = Bullet::create();
+		auto bullet = Bullet::create();
 		float rangeX = 0;
 
 		bullet->setID("HugeSRK", Role::Bullet, _group);
@@ -3432,7 +3432,7 @@ void CharacterBase::setTrap(const string &trapName)
 			{
 				if (z == 0)
 				{
-					Bullet *trap = Bullet::create();
+					auto trap = Bullet::create();
 					trap->_master = this;
 					trap->setID(trapName, Role::Mon, _group);
 					trap->setAnchorPoint(Vec2(0.5, 0));
@@ -3446,7 +3446,7 @@ void CharacterBase::setTrap(const string &trapName)
 				{
 					for (int i = 0; i < 3; i++)
 					{
-						Bullet *trap = Bullet::create();
+						auto trap = Bullet::create();
 						trap->_master = this;
 						trap->setID(trapName, Role::Mon, _group);
 						trap->setAnchorPoint(Vec2(0.5, 0));
@@ -3459,7 +3459,7 @@ void CharacterBase::setTrap(const string &trapName)
 				}
 				else if (z == 2)
 				{
-					Bullet *trap = Bullet::create();
+					auto trap = Bullet::create();
 					trap->_master = this;
 					trap->setID(trapName, Role::Mon, _group);
 					trap->setAnchorPoint(Vec2(0.5, 0));
@@ -3479,7 +3479,7 @@ void CharacterBase::setTrap(const string &trapName)
 				{
 					for (int i = 0; i < 3; i++)
 					{
-						Bullet *trap = Bullet::create();
+						auto trap = Bullet::create();
 						trap->_master = this;
 						trap->setID(trapName, Role::Mon, _group);
 						trap->setPosition(Vec2(getPositionX() + (_isFlipped ? -112 : 112), getPositionY() + (48 - i * 24)));
@@ -3493,7 +3493,7 @@ void CharacterBase::setTrap(const string &trapName)
 				{
 					for (int i = 0; i < 2; i++)
 					{
-						Bullet *trap = Bullet::create();
+						auto trap = Bullet::create();
 						trap->_master = this;
 						trap->setID(trapName, Role::Mon, _group);
 						trap->setPosition(Vec2(getPositionX() + (_isFlipped ? -80 : 80), getPositionY() + (32 - i * 24)));
@@ -3505,7 +3505,7 @@ void CharacterBase::setTrap(const string &trapName)
 				}
 				else
 				{
-					Bullet *trap = Bullet::create();
+					auto trap = Bullet::create();
 					trap->_master = this;
 					trap->setID(trapName, Role::Mon, _group);
 					trap->setPosition(Vec2(getPositionX() + (_isFlipped ? -48 : 48), getPositionY() + 22));

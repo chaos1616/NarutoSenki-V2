@@ -88,6 +88,7 @@ static void ParseAction(const toml::value &v, UnitMetadata &metadata)
 		if (!frame.empty())
 		{
 			auto &frameVector = data.frames;
+			frameVector.resize(frame.size());
 			for (const auto &f : frame)
 			{
 				auto found = f.find_first_of('=', 1);
@@ -112,6 +113,11 @@ DETAIL_NS_END
 static inline UnitMetadata fromToml(const string &fname)
 {
 	const auto path = FileUtils::sharedFileUtils()->fullPathForFilename(fname.c_str());
+	if (!FileUtils::sharedFileUtils()->isFileExist(path))
+	{
+		CCLOGERROR("[ERROR] UnitParser::fromToml not found file %s", path.c_str());
+		return {};
+	}
 	const auto data = toml::parse(path);
 
 	UnitMetadata metadata;
