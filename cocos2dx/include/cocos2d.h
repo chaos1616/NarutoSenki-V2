@@ -53,9 +53,10 @@ THE SOFTWARE.
 #include "actions/CCActionCatmullRom.h"
 
 // base_nodes
+#include "base/CCMap.h"
+#include "base/CCRefPtr.h"
 #include "base/CCValue.h"
 #include "base/CCVector.h"
-#include "base/CCRefPtr.h"
 #include "base_nodes/CCNode.h"
 #include "base_nodes/CCAtlasNode.h"
 

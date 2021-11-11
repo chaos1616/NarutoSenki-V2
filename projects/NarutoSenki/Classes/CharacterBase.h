@@ -29,7 +29,7 @@ class CharacterBase : public Sprite
 {
 friend class CommandSystem;
 
-using ActionMap = unordered_map<ActionFlag, FiniteTimeAction *>;
+using ActionMap = Map<ActionFlag, FiniteTimeAction *>;
 
 public:
 	CharacterBase();
