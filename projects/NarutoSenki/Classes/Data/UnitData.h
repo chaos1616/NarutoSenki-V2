@@ -36,27 +36,28 @@ enum class UnitKind
 
 // Unit Action Constant
 
-namespace ActionConstant
+ACTION_CONSTANT_NS_BEGIN
+
+enum class AnimationType : uint8_t
 {
-	enum class AnimationType : uint8_t
-	{
-		Regular,
-		Idle,
-		Walk,
-		Knockdown,
-		Skill,
-	};
+	Regular,
+	Idle,
+	Walk,
+	Knockdown,
+	Skill,
+};
 
-	struct AnimationInfo
-	{
-		uint16_t fps;
-		bool isRepeat;
-		bool isReturnToIdle;
-	};
+struct AnimationInfo
+{
+	uint16_t fps;
+	bool isRepeat;
+	bool isReturnToIdle;
+};
 
-	constexpr AnimationInfo Regular = {10, false, false};
-	constexpr AnimationInfo Idle = {5, true, false};
-	constexpr AnimationInfo Walk = {10, true, false};
-	constexpr AnimationInfo Knockdown = {10, false, true};
-	constexpr AnimationInfo Skill = {10, false, true};
-} // namespace ActionConstant
+constexpr AnimationInfo Regular = {10, false, false};
+constexpr AnimationInfo Idle = {5, true, false};
+constexpr AnimationInfo Walk = {10, true, false};
+constexpr AnimationInfo Knockdown = {10, false, true};
+constexpr AnimationInfo Skill = {10, false, true};
+
+ACTION_CONSTANT_NS_END

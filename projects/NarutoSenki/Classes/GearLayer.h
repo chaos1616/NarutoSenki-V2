@@ -4,7 +4,7 @@
 class GameLayer;
 class ScrewLayer;
 
-enum class GearButtonType
+enum class GearButtonType : uint8_t
 {
 	Buy,
 	Sell

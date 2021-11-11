@@ -40,4 +40,4 @@ constexpr const char *kHeroList[] = {
 	HeroEnum::Tsunade,
 };
 
-constexpr size_t kHeroNum = sizeof(kHeroList) / sizeof(char *);
+constexpr size_t kHeroNum =  std::size(kHeroList);

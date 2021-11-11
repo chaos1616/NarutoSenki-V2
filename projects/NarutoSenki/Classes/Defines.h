@@ -2,12 +2,11 @@
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"
 
-#include "Data/Config.h"
 #include "Data/Types.h"
 #include "Data/UnitDefines.h"
 #include "Data/Version.h"
 #include "Enums/Audio.hpp"
-#include "Enums/Character.hpp"
+#include "Enums/Character.h"
 #include "Utils/Utils.h"
 
 using namespace cocos2d;

@@ -34,3 +34,13 @@ extern int Cheats;
 #define kNumberOrder 200
 #define kSkillEffectOrder 300
 #define kFontOrder 400
+
+#define DETAIL_NS_BEGIN \
+	namespace detail    \
+	{
+#define DETAIL_NS_END }
+
+#define ACTION_CONSTANT_NS_BEGIN \
+	namespace ActionConstant     \
+	{
+#define ACTION_CONSTANT_NS_END }
