@@ -78,8 +78,6 @@ void Monster::setID(const string &name, Role role, Group group)
 	nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
 	nattackArray->retain();
 
-	setCoin(50);
-
 	initAction();
 }
 
@@ -88,6 +86,7 @@ void Monster::initAction()
 	setIdleAction(createAnimation(idleArray, 5, true, false));
 	setWalkAction(createAnimation(walkArray, 10, true, false));
 	setDeadAction(createAnimation(deadArray, 10, false, false));
+
 	if (getName() == SkillEnum::Kage ||
 		getName() == SkillEnum::KageHand ||
 		getName() == SkillEnum::FutonSRK ||

@@ -61,17 +61,14 @@ public:
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
 		deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		setCoin(50);
-
 		initAction();
-
 		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", nullptr);
 	}
 
 	void initAction()
 	{
-		setDeadAction(createAnimation(deadArray, 10, false, false));
 		setIdleAction(createAnimation(idleArray, 5, true, false));
+		setDeadAction(createAnimation(deadArray, 10, false, false));
 	}
 
 	void setHPbar()

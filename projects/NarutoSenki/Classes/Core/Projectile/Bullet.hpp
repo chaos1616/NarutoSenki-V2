@@ -51,15 +51,15 @@ public:
 			deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
 		}
 
-		setCoin(50);
-
 		initAction();
 	}
 
 	void initAction()
 	{
 		setIdleAction(createAnimation(idleArray, 5, true, false));
+
 		setNAttackAction(createAnimation(nattackArray, 10, true, false));
+
 		if (getName() == ProjectileEnum::Amaterasu || getName() == ProjectileEnum::SusanoTama)
 		{
 			setDeadAction(createAnimation(deadArray, 10, false, false));

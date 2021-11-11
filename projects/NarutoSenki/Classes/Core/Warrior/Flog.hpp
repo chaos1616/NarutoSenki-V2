@@ -91,8 +91,6 @@ public:
 		setNAttackValue(tmpValue);
 		nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
 
-		setCoin(50);
-
 		initAction();
 		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", nullptr);
 	}
@@ -106,7 +104,6 @@ public:
 		setAirHurtAction(createAnimation(airHurtArray, 10, false, false));
 		setKnockDownAction(createAnimation(knockDownArray, 10, false, true));
 		setDeadAction(createAnimation(deadArray, 10, false, false));
-
 		setFloatAction(createAnimation(floatArray, 10, false, false));
 
 		setNAttackAction(createAnimation(nattackArray, 10, false, true));

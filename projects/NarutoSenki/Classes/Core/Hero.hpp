@@ -258,7 +258,7 @@ public:
 		}
 
 		// Heroes have 50 coins by default
-		if (getLV() == 1 && getCoin() == 0)
+		if (getLV() == 1 && getCoin() == 0) // TODO: Move to game layer
 		{
 			setCoin(50);
 		}
