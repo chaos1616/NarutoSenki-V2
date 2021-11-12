@@ -96,19 +96,17 @@ static const std::string nullstr;
 static void ParseCoreData(const toml::value &v, UnitMetadata &metadata)
 {
 	const auto &tab = v.as_table();
+	const auto end = tab.end();
 
 	tomlex::try_set(tab, "name", metadata.name);
 	tomlex::try_set(tab, "hp", metadata.hp);
 	// parse hp bar properties
-	const auto &hpBar = toml::find_or<toml::table>(v, "hpBar", {});
-	if (!hpBar.empty())
+	if (auto hpBarIter = tab.find("hpBar"); hpBarIter != end)
 	{
 		metadata.enableHPBar = true;
-		for (const auto &[key, value] : hpBar)
-		{
-			if (key == "y")
-				metadata.hpBarY = value.as_integer();
-		}
+		const auto &hpBar = hpBarIter->second.as_table();
+		// tomlex::try_set_or<i16>(hpBar, "x", metadata.hpBarX, 0);
+		tomlex::try_set_or<i16>(hpBar, "y", metadata.hpBarY, 0);
 	}
 	else
 	{
@@ -140,14 +138,13 @@ static void ParseAction(const toml::value &v, UnitMetadata &metadata)
 		tomlex::try_set_or<u16>(tab, "cd", data.cooldown, 0);
 		tomlex::try_set_or<u16>(tab, "combatPoint", data.combatPoint, 0);
 		// parse animation data
-		auto animIter = tab.find("anim");
 		const auto &defaultInfo = ActionConstant::getAnimDataByActionFlag(data.flag);
-		if (animIter != end)
+		if (auto animIter = tab.find("anim"); animIter != end)
 		{
-			const auto &anim = animIter->second;
-			data.info.fps = toml::find_or<uint8_t>(anim, "fps", static_cast<uint8_t>(defaultInfo.fps));
-			data.info.isLoop = toml::find_or<bool>(anim, "loop", defaultInfo.isLoop);
-			data.info.isReturnToIdle = toml::find_or<bool>(anim, "returnIdle", defaultInfo.isReturnToIdle);
+			const auto &anim = animIter->second.as_table();
+			tomlex::try_set_or<uint8_t>(anim, "fps", data.info.fps, defaultInfo.fps);
+			tomlex::try_set_or<bool>(anim, "loop", data.info.isLoop, defaultInfo.isLoop);
+			tomlex::try_set_or<bool>(anim, "returnIdle", data.info.isReturnToIdle, defaultInfo.isReturnToIdle);
 		}
 		else
 		{
