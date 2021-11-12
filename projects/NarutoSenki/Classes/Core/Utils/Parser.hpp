@@ -1,7 +1,7 @@
 #pragma once
 #include "Defines.h"
 #include "Data/UnitData.h"
-#include "toml.hpp"
+#include "Utils/TomlHelper.hpp"
 
 #define PARSER_NS_BEGIN  \
 	namespace UnitParser \
@@ -33,9 +33,13 @@ struct UnitMetadata
 {
 	string name;
 	u32 hp;
-	u16 width;
-	u16 height;
+	// u16 width;
+	// u16 height;
 	u16 speed;
+
+	bool enableHPBar;
+	// i16 hpBarX;
+	i16 hpBarY;
 
 	vector<ActionData> actions;
 
@@ -91,11 +95,26 @@ static const std::string nullstr;
 
 static void ParseCoreData(const toml::value &v, UnitMetadata &metadata)
 {
-	metadata.name = toml::find<string>(v, "name");
-	metadata.hp = toml::find<uint32_t>(v, "hp");
-	metadata.width = toml::find_or<uint16_t>(v, "width", 0);
-	metadata.height = toml::find_or<uint16_t>(v, "height", 0);
-	metadata.speed = toml::find_or<uint16_t>(v, "speed", 224);
+	const auto &tab = v.as_table();
+
+	tomlex::try_set(tab, "name", metadata.name);
+	tomlex::try_set(tab, "hp", metadata.hp);
+	// parse hp bar properties
+	const auto &hpBar = toml::find_or<toml::table>(v, "hpBar", {});
+	if (!hpBar.empty())
+	{
+		metadata.enableHPBar = true;
+		for (const auto &[key, value] : hpBar)
+		{
+			if (key == "y")
+				metadata.hpBarY = value.as_integer();
+		}
+	}
+	else
+	{
+		metadata.enableHPBar = false;
+	}
+	tomlex::try_set_or<u16>(tab, "speed", metadata.speed, kDefaultSpeed);
 }
 
 static void ParseAction(const toml::value &v, UnitMetadata &metadata)
@@ -104,22 +123,28 @@ static void ParseAction(const toml::value &v, UnitMetadata &metadata)
 	{
 		if (key.empty() || !value.is_table() || value.size() == 0)
 			continue;
+		auto flag = ActionConstant::string2ActionFlag(key);
+		if (flag == ActionFlag::None)
+			continue;
 		// parse data
-		ActionData data = {
-			.flag = ActionConstant::string2ActionFlag(key),
-			.type = toml::find_or<string>(value, "type", ""),
-			.value = toml::find_or<uint16_t>(value, "value", 0),
-			.rangeX = toml::find_or<uint16_t>(value, "rangeX", 0),
-			.rangeY = toml::find_or<uint16_t>(value, "rangeY", 0),
-			.cooldown = toml::find_or<uint16_t>(value, "cd", 0),
-			.combatPoint = toml::find_or<uint16_t>(value, "combatPoint", 0),
-		};
+		const auto &tab = value.as_table();
+		const auto end = tab.end();
 
+		ActionData data = {
+			.flag = flag,
+		};
+		tomlex::try_set(tab, "type", data.type);
+		tomlex::try_set_or<u16>(tab, "value", data.value, 0);
+		tomlex::try_set_or<u16>(tab, "rangeX", data.rangeX, 0);
+		tomlex::try_set_or<u16>(tab, "rangeY", data.rangeY, 0);
+		tomlex::try_set_or<u16>(tab, "cd", data.cooldown, 0);
+		tomlex::try_set_or<u16>(tab, "combatPoint", data.combatPoint, 0);
 		// parse animation data
-		const auto &anim = toml::find(value, "anim");
+		auto animIter = tab.find("anim");
 		const auto &defaultInfo = ActionConstant::getAnimDataByActionFlag(data.flag);
-		if (anim.is_table() && !anim.as_table().empty())
+		if (animIter != end)
 		{
+			const auto &anim = animIter->second;
 			data.info.fps = toml::find_or<uint8_t>(anim, "fps", static_cast<uint8_t>(defaultInfo.fps));
 			data.info.isLoop = toml::find_or<bool>(anim, "loop", defaultInfo.isLoop);
 			data.info.isReturnToIdle = toml::find_or<bool>(anim, "returnIdle", defaultInfo.isReturnToIdle);
@@ -135,18 +160,19 @@ static void ParseAction(const toml::value &v, UnitMetadata &metadata)
 		{
 			auto &frameVector = data.frames;
 			frameVector.resize(frame.size());
+			size_t i = 0;
 			for (const auto &f : frame)
 			{
 				auto found = f.find_first_of('=', 1);
 				if (found != string::npos) // parse event
 				{
-					auto eventName = f.substr(0, found);
-					auto eventValue = f.substr(found + 1);
-					frameVector.push_back(make_pair(eventName, f));
+					auto eventName = tomlex::trim(f.substr(0, found));
+					auto eventValue = tomlex::trim(f.substr(found + 1, f.length() - found - 1));
+					frameVector[i++] = make_pair(eventName, f);
 				}
 				else
 				{
-					frameVector.push_back(make_pair(nullstr, f));
+					frameVector[i++] = make_pair(nullstr, f);
 				}
 			}
 		}

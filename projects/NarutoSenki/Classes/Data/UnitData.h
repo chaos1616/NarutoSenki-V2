@@ -6,6 +6,7 @@ constexpr int kTileSize = 32;
 constexpr int kOneHalfTileSize = kTileSize * 1.5f;
 
 // It was half window width before
+constexpr uint16_t kDefaultSpeed = 224;
 constexpr int kAttackRange = kTileSize * 9;
 
 struct HeroData
