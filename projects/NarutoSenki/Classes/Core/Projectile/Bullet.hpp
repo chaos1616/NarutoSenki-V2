@@ -58,12 +58,10 @@ public:
 	{
 		setIdleAction(createAnimation(idleArray, 5, true, false));
 
-		setNAttackAction(createAnimation(nattackArray, 10, true, false));
-
-		if (getName() == ProjectileEnum::Amaterasu || getName() == ProjectileEnum::SusanoTama)
-		{
+		if (deadArray)
 			setDeadAction(createAnimation(deadArray, 10, false, false));
-		}
+
+		setNAttackAction(createAnimation(nattackArray, 10, true, false));
 	}
 
 	void setMove(int length, float delay, bool isReverse)

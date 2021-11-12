@@ -963,7 +963,7 @@ void CharacterBase::acceptAttack(Ref *object)
 	}
 }
 
-FiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, uint16_t fps, bool isRepeat, bool isReturnToIdle)
+FiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, uint8_t fps, bool isLoop, bool isReturnToIdle)
 {
 	if (ationArray == nullptr || ationArray->count() == 0)
 		return nullptr;
@@ -1156,7 +1156,7 @@ FiniteTimeAction *CharacterBase::createAnimation(CCArray *ationArray, uint16_t f
 		list.pushBack(tempAction);
 	}
 
-	if (isRepeat)
+	if (isLoop)
 	{
 		seq = RepeatForever::create(Sequence::create(list));
 	}

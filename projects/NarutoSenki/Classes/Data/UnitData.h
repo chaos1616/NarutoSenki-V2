@@ -49,8 +49,8 @@ enum class AnimationType : uint8_t
 
 struct AnimationInfo
 {
-	uint16_t fps;
-	bool isRepeat;
+	uint8_t fps;
+	bool isLoop;
 	bool isReturnToIdle;
 };
 
@@ -59,5 +59,25 @@ constexpr AnimationInfo Idle = {5, true, false};
 constexpr AnimationInfo Walk = {10, true, false};
 constexpr AnimationInfo Knockdown = {10, false, true};
 constexpr AnimationInfo Skill = {10, false, true};
+
+static inline const AnimationInfo &getAnimDataByActionFlag(ActionFlag flag) noexcept
+{
+	switch (flag)
+	{
+	case ActionFlag::Idle:
+		return Idle;
+	case ActionFlag::Walk:
+		return Walk;
+	case ActionFlag::Knockdown:
+		return Knockdown;
+	case ActionFlag::Dead:
+	case ActionFlag::Hurt:
+	case ActionFlag::AirHurt:
+	case ActionFlag::Float:
+		return Regular;
+	default: // Skill
+		return Regular;
+	}
+}
 
 ACTION_CONSTANT_NS_END

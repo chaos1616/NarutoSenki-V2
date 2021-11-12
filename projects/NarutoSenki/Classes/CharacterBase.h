@@ -379,8 +379,8 @@ public:
 
 
 	void				readData(CCArray* tmpData, string &attackType, uint32_t &attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint);
-	FiniteTimeAction*	createAnimation(CCArray* ationArray, uint16_t fps, bool isRepeat, bool isReturnToIdle);
-	FiniteTimeAction*	createAnimation(CCArray* arr, const ActionConstant::AnimationInfo &info) { return createAnimation(arr, info.fps, info.isRepeat, info.isReturnToIdle); }
+	FiniteTimeAction*	createAnimation(CCArray* ationArray, uint8_t fps, bool isLoop, bool isReturnToIdle);
+	FiniteTimeAction*	createAnimation(CCArray* arr, const ActionConstant::AnimationInfo &info) { return createAnimation(arr, info.fps, info.isLoop, info.isReturnToIdle); }
 	FiniteTimeAction*	createAnimIdle(CCArray* arr) { return createAnimation(arr, ActionConstant::Idle); }
 	FiniteTimeAction*	createAnimKnockdown(CCArray* arr) { return createAnimation(arr, ActionConstant::Knockdown); }
 	FiniteTimeAction*	createAnimRegular(CCArray* arr) { return createAnimation(arr, ActionConstant::Regular); }

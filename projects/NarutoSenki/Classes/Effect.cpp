@@ -231,7 +231,7 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 	return true;
 }
 
-FiniteTimeAction *Effect::createEffectAnimation(const string &file, size_t frameCount, float fps, bool isRepeat)
+FiniteTimeAction *Effect::createEffectAnimation(const string &file, size_t frameCount, uint8_t fps, bool isLoop)
 {
 	Vector<SpriteFrame *> spriteFrames(frameCount);
 
@@ -250,7 +250,7 @@ FiniteTimeAction *Effect::createEffectAnimation(const string &file, size_t frame
 	auto animation = Animation::createWithSpriteFrames(spriteFrames, 1.0 / fps);
 	auto animAction = Animate::create(animation);
 
-	if (isRepeat)
+	if (isLoop)
 	{
 		return RepeatForever::create(animAction);
 	}

@@ -1,5 +1,6 @@
 #pragma once
 #include "Defines.h"
+#include "Data/UnitData.h"
 #include "toml.hpp"
 
 #define PARSER_NS_BEGIN  \
@@ -24,6 +25,7 @@ struct ActionData
 	u16 cooldown;
 	u16 combatPoint;
 
+	ActionConstant::AnimationInfo info;
 	FrameVector frames;
 };
 
@@ -44,6 +46,36 @@ struct UnitMetadata
 			if (actionData.flag == flag)
 			{
 				action = actionData;
+				return true;
+			}
+		}
+		return false;
+	}
+};
+
+class ParserCache
+{
+private:
+	static inline vector<UnitMetadata> _cache;
+
+public:
+	static inline void clear() noexcept
+	{
+		vector<UnitMetadata>().swap(_cache);
+	}
+
+	static inline void set(const UnitMetadata &data)
+	{
+		_cache.push_back(data);
+	}
+
+	static inline bool get(const string &name, UnitMetadata &metadata) noexcept
+	{
+		for (const auto &data : _cache)
+		{
+			if (data.name == name)
+			{
+				metadata = data;
 				return true;
 			}
 		}
@@ -83,7 +115,21 @@ static void ParseAction(const toml::value &v, UnitMetadata &metadata)
 			.combatPoint = toml::find_or<uint16_t>(value, "combatPoint", 0),
 		};
 
-		// parse frame
+		// parse animation data
+		const auto &anim = toml::find(value, "anim");
+		const auto &defaultInfo = ActionConstant::getAnimDataByActionFlag(data.flag);
+		if (anim.is_table() && !anim.as_table().empty())
+		{
+			data.info.fps = toml::find_or<uint8_t>(anim, "fps", static_cast<uint8_t>(defaultInfo.fps));
+			data.info.isLoop = toml::find_or<bool>(anim, "loop", defaultInfo.isLoop);
+			data.info.isReturnToIdle = toml::find_or<bool>(anim, "returnIdle", defaultInfo.isReturnToIdle);
+		}
+		else
+		{
+			data.info = defaultInfo;
+		}
+
+		// parse frame data
 		auto frame = toml::find<vector<string>>(value, "frame");
 		if (!frame.empty())
 		{
@@ -110,7 +156,12 @@ static void ParseAction(const toml::value &v, UnitMetadata &metadata)
 
 DETAIL_NS_END
 
-static inline UnitMetadata fromToml(const string &fname)
+static inline bool fromCache(const string &unitName, UnitMetadata &metadata)
+{
+	return ParserCache::get(unitName, metadata);
+}
+
+static inline UnitMetadata fromToml(const string &fname, bool cache = false)
 {
 	const auto path = FileUtils::sharedFileUtils()->fullPathForFilename(fname.c_str());
 	if (!FileUtils::sharedFileUtils()->isFileExist(path))
@@ -123,6 +174,8 @@ static inline UnitMetadata fromToml(const string &fname)
 	UnitMetadata metadata;
 	detail::ParseCoreData(data, metadata);
 	detail::ParseAction(data, metadata);
+	if (cache)
+		ParserCache::set(metadata);
 	return metadata;
 }
 
