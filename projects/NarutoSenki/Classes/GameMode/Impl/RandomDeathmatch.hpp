@@ -76,7 +76,7 @@ public:
 
 		if (c->isPlayerOrCom())
 		{
-			uint8_t liveCount = c->isKonohaGroup() ? konohaLiveCount++ : akatsukiLiveCount++;
+			// uint8_t liveCount = c->isKonohaGroup() ? konohaLiveCount++ : akatsukiLiveCount++;
 		}
 
 		if (c->changeCharId > -1)

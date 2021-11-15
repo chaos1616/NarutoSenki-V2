@@ -1,5 +1,5 @@
 #pragma once
-#include "Enums/Enums.hpp"
+#include "Enums/Enums.h"
 
 // FIXME: Remove this namespace
 namespace SkillEnum

@@ -419,7 +419,7 @@ CCSpriteFrame *CCSpriteFrameCache::spriteFrameByName(const std::string &pszName)
             frame = (CCSpriteFrame *)m_pSpriteFrames->objectForKey(key->getCString());
             if (!frame)
             {
-                CCLOG("cocos2d: CCSpriteFrameCache: Frame '%s' not found", pszName);
+                CCLOG("cocos2d: CCSpriteFrameCache: Frame '%s' not found", pszName.c_str());
             }
         }
     }

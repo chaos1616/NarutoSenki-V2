@@ -852,7 +852,7 @@ void HudLayer::setReportCache()
 	_reportListArray.clear();
 }
 
-void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
+void HudLayer::setBuffDisplay(const string &buffName, float buffStayTime)
 {
 	// TODO: Display buff sprite
 	return;

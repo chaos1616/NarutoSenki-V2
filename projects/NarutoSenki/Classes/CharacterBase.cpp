@@ -1467,7 +1467,7 @@ void CharacterBase::setBuff(int buffValue)
 	}
 
 	if (isPlayer())
-		getGameLayer()->getHudLayer()->setBuffDisplay(_attackType.c_str(), buffStayTime);
+		getGameLayer()->getHudLayer()->setBuffDisplay(_attackType, buffStayTime);
 }
 
 void CharacterBase::setBuffEffect(const string &type)
@@ -2108,7 +2108,8 @@ void CharacterBase::removeAllClones()
 
 void CharacterBase::setMon(const string &monName)
 {
-	float monsterStayTime = _attackRangeY; // FIXME: Use  in mon master config
+	// FIXME: Use in mon master config
+	// float monsterStayTime = _attackRangeY;
 
 	auto monster = Monster::create();
 	monster->setID(monName, Role::Mon, _group);

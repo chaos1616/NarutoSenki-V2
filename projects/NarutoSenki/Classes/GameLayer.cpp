@@ -7,6 +7,9 @@
 #include "Core/Provider.hpp"
 #include "GameMode/GameModeImpl.h"
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+static GLFWwindow *_window;
+#endif
 GameLayer *_gLayer = nullptr;
 bool _isFullScreen = false;
 
@@ -929,7 +932,7 @@ void GameLayer::clearAllFlogsMainTarget(CharacterBase *target)
 void GameLayer::clearAllUnitsMainTarget(CharacterBase *target)
 {
 	clearAllFlogsMainTarget(target);
-	UnitEx::clearMainTarget(target, _AkatsukiFlogArray);
+	UnitEx::clearMainTarget(target, _CharacterArray);
 }
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)

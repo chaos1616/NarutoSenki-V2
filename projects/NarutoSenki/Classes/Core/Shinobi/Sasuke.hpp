@@ -538,7 +538,7 @@ class Sasuke : public Hero
 			setActionTo<ActionFlag::Hurt, ActionFlag::Hurt>();
 			_skillChangeBuffValue = 0;
 		}
-		else if (_skillChangeBuffValue && _skillChangeBuffValue == 18)
+		else if (_skillChangeBuffValue == 18)
 		{
 			unschedule(schedule_selector(Sasuke::resumeAction));
 

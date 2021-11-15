@@ -5,7 +5,7 @@
 #include "Data/Types.h"
 #include "Data/UnitDefines.h"
 #include "Data/Version.h"
-#include "Enums/Audio.hpp"
+#include "Enums/Audio.h"
 #include "Enums/Character.h"
 #include "Utils/Utils.h"
 

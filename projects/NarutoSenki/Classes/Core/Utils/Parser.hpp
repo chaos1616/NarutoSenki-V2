@@ -156,7 +156,7 @@ static void ParseAction(toml::value &v, UnitMetadata &metadata)
 				if (baseAnimType != ActionFlag::None)
 					flag = baseAnimType;
 				else
-					CCLOGERROR("Does not support override `%s` animation", data.type);
+					CCLOGERROR("Does not support override `%s` animation", data.type.c_str());
 			}
 			const auto &defaultInfo = ActionConstant::getAnimDataByActionFlag(flag);
 			tomlex::try_set_or<uint8_t>(anim, "fps", data.info.fps, defaultInfo.fps);

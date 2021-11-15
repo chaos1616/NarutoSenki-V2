@@ -307,6 +307,8 @@ void CharacterBase::genActionBy(const UnitMetadata &data)
 		case ActionFlag::Spc03:
 			SET_SPC_SKILL_ACTION_DATA_FN(3, action);
 			break;
+		default:
+			break;
 		}
 	}
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "Core/Hero.hpp"
-#include "Enums/Enums.hpp"
+#include "Enums/Enums.h"
 
 #include <unordered_map>
 

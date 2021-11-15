@@ -98,7 +98,7 @@ public:
 	void gearButtonClick(Ref *sender);
 	void setReport(const string &slayer, const string &dead, uint32_t killNum);
 	void setReportCache();
-	void setBuffDisplay(const char *buffName, float buffStayTime);
+	void setBuffDisplay(const string &buffName, float buffStayTime);
 	void clearSPCReport();
 	void clearBuffDisplay(Sprite *bs);
 

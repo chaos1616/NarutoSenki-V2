@@ -27,9 +27,6 @@ class HudLayer;
 
 extern GameLayer *_gLayer;
 extern bool _isFullScreen;
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-static GLFWwindow *_window = nullptr;
-#endif
 
 inline GameLayer *getGameLayer()
 {
@@ -153,8 +150,8 @@ public:
 	bool _isPause;
 	GearLayer *_gearLayer;
 
-	inline void clearAllFlogsMainTarget(CharacterBase *target);
-	inline void clearAllUnitsMainTarget(CharacterBase *target);
+	void clearAllFlogsMainTarget(CharacterBase *target);
+	void clearAllUnitsMainTarget(CharacterBase *target);
 
 	CREATE_FUNC(GameLayer);
 	static bool checkHasAnyMovement();

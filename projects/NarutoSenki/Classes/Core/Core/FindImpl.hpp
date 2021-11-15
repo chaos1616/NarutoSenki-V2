@@ -217,7 +217,6 @@ template <typename T>
 typename std::enable_if_t<std::is_base_of_v<CharacterBase, T>, bool>
 CharacterBase::findTargetEnemyBy(const vector<T *> &list, bool isTowerDected)
 {
-	float curDistance = 0;
 	Vec2 sp;
 	bool findSome = false;
 
