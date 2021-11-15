@@ -70,9 +70,14 @@ static inline void removeSprites(const string &plistName)
 	SpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile(plistName.c_str());
 }
 
+static inline Sprite *newSprite(const string &spriteName)
+{
+	return Sprite::createWithSpriteFrameName(spriteName);
+}
+
 static inline SpriteFrame *getSpriteFrame(const string &name)
 {
-	return SpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name.c_str());
+	return SpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name);
 }
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32

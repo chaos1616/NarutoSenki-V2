@@ -627,7 +627,7 @@ void CharacterBase::setCoinDisplay(int num)
 {
 	Sprite *coinDisplay = Sprite::create();
 
-	Sprite *coinSprite = Sprite::createWithSpriteFrameName("coin");
+	Sprite *coinSprite = newSprite("coin");
 	coinSprite->setPosition(Vec2(14, 0));
 	coinDisplay->addChild(coinSprite);
 

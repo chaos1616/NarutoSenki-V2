@@ -49,13 +49,13 @@ void GearButton::setBtnType(GearType type, GearButtonType btnType, bool isBuyed)
 
 	if (_btnType == GearButtonType::Buy)
 	{
-		Sprite *gearIcon = Sprite::createWithSpriteFrameName(format("gear_{:02d}.png", (int)_gearType).c_str());
+		Sprite *gearIcon = newSprite(format("gear_{:02d}.png", (int)_gearType));
 		gearIcon->setPosition(Vec2(20, 30));
 		addChild(gearIcon);
 	}
 	else
 	{
-		Sprite *gearIcon = Sprite::createWithSpriteFrameName(format("gear_{:02d}.png", (int)_gearType).c_str());
+		Sprite *gearIcon = newSprite(format("gear_{:02d}.png", (int)_gearType));
 		gearIcon->setScale(0.75f);
 		addChild(gearIcon);
 	}
@@ -63,7 +63,7 @@ void GearButton::setBtnType(GearType type, GearButtonType btnType, bool isBuyed)
 	if (isBuyed)
 	{
 		_isBuyed = true;
-		soIcon = Sprite::createWithSpriteFrameName("gear_so.png");
+		soIcon = newSprite("gear_so.png");
 		soIcon->setPosition(Vec2(getContentSize().width / 2, getContentSize().height / 2));
 		addChild(soIcon);
 	}
@@ -250,7 +250,7 @@ bool GearLayer::init(RenderTexture *snapshoot)
 
 	Layer *gears_layer = Layer::create();
 
-	gears_bg = Sprite::createWithSpriteFrameName("gears_bg.png");
+	gears_bg = newSprite("gears_bg.png");
 	gears_bg->setPosition(Vec2(winSize.width / 2, winSize.height / 2 - 12));
 	gears_layer->addChild(gears_bg, 1);
 
@@ -262,7 +262,7 @@ bool GearLayer::init(RenderTexture *snapshoot)
 	addChild(gears_layer, 10);
 
 	ClippingNode *clipper = ClippingNode::create();
-	Node *stencil = Sprite::createWithSpriteFrameName("screwMask.png");
+	Node *stencil = newSprite("screwMask.png");
 	stencil->setAnchorPoint(Vec2(0, 0));
 	clipper->setStencil(stencil);
 
@@ -271,25 +271,25 @@ bool GearLayer::init(RenderTexture *snapshoot)
 	_screwLayer->setPositionY(76);
 	_screwLayer->gearNum = 9;
 
-	_screwLayer->screwBar = Sprite::createWithSpriteFrameName("screwBar.png");
+	_screwLayer->screwBar = newSprite("screwBar.png");
 	_screwLayer->screwBar->setAnchorPoint(Vec2(0.5f, 0));
 	_screwLayer->screwBar->setPosition(Vec2(gears_bg->getPositionX() + 25, 126));
 	addChild(_screwLayer->screwBar, 600);
 
-	gearDetail = Sprite::createWithSpriteFrameName("gearDetail_00.png");
+	gearDetail = newSprite("gearDetail_00.png");
 	gearDetail->setAnchorPoint(Vec2(0.5f, 1));
 	gearDetail->setPosition(Vec2(gears_bg->getPositionX() + gears_bg->getContentSize().width / 2 - 54, 210));
 	addChild(gearDetail, 600);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	gearBigIcon = Sprite::createWithSpriteFrameName("gear_00.png");
+	gearBigIcon = newSprite("gear_00.png");
 	gearBigIcon->setAnchorPoint(Vec2(0.5f, 0));
 	gearBigIcon->setPosition(Vec2(gears_bg->getPositionX() + gears_bg->getContentSize().width / 2 - 54, 90));
 	addChild(gearBigIcon, 600);
 #endif
 
-	MenuItem *buy_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("gearBuy_btn.png"),
-											   Sprite::createWithSpriteFrameName("gearBuy_btn2.png"), this, menu_selector(GearLayer::onGearBuy));
+	MenuItem *buy_btn = MenuItemSprite::create(newSprite("gearBuy_btn.png"),
+											   newSprite("gearBuy_btn2.png"), this, menu_selector(GearLayer::onGearBuy));
 	Menu *gearMenu = Menu::create(buy_btn, nullptr);
 	gearMenu->setPosition(Vec2(gears_bg->getPositionX() + 78, 65));
 	addChild(gearMenu, 600);
@@ -297,8 +297,8 @@ bool GearLayer::init(RenderTexture *snapshoot)
 	clipper->addChild(_screwLayer);
 	addChild(clipper, 600);
 
-	MenuItem *btm_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("close_btn1.png"),
-											   Sprite::createWithSpriteFrameName("close_btn2.png"), this, menu_selector(GearLayer::onResume));
+	MenuItem *btm_btn = MenuItemSprite::create(newSprite("close_btn1.png"),
+											   newSprite("close_btn2.png"), this, menu_selector(GearLayer::onResume));
 	Menu *overMenu = Menu::create(btm_btn, nullptr);
 	overMenu->setPosition(Vec2(winSize.width / 2 + gears_bg->getContentSize().width / 2 - 12, winSize.height / 2 + gears_bg->getContentSize().height / 2 - 20));
 	addChild(overMenu, 600);

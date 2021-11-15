@@ -44,12 +44,12 @@ bool GameOver::init(RenderTexture *snapshoot)
 	FULL_SCREEN_SPRITE(menu_bar_t);
 	addChild(menu_bar_t, 2);
 
-	auto result_title = Sprite::createWithSpriteFrameName("result_title.png");
+	auto result_title = newSprite("result_title.png");
 	result_title->setAnchorPoint(Vec2(0, 0));
 	result_title->setPosition(Vec2(2, winSize.height - result_title->getContentSize().height - 2));
 	addChild(result_title, 3);
 
-	result_bg = Sprite::createWithSpriteFrameName("gameover_bg.png");
+	result_bg = newSprite("gameover_bg.png");
 	result_bg->setScale(0.5f);
 	result_bg->setPosition(Vec2(winSize.width / 2, winSize.height / 2 - 6));
 	addChild(result_bg, 4);
@@ -71,7 +71,7 @@ void GameOver::listResult()
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/battle_over.ogg");
 
 	auto currPlayer = getGameLayer()->currentPlayer;
-	auto half = Sprite::createWithSpriteFrameName(format("{}_half.png", currPlayer->getName()).c_str());
+	auto half = newSprite(format("{}_half.png", currPlayer->getName()));
 
 	if (currPlayer->getName() == HeroEnum::Konan ||
 		currPlayer->getName() == HeroEnum::Karin ||
@@ -97,7 +97,7 @@ void GameOver::listResult()
 	half->setPosition(Vec2(winSize.width / 2 + result_bg->getContentSize().width / 2 - half->getContentSize().width, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 9));
 	addChild(half, 5);
 
-	auto list_bg = Sprite::createWithSpriteFrameName("list_bg.png");
+	auto list_bg = newSprite("list_bg.png");
 	list_bg->setAnchorPoint(Vec2(0, 0));
 	list_bg->setPosition(Vec2(winSize.width / 2 - result_bg->getContentSize().width / 2 + 2, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 26));
 	addChild(list_bg, 5);
@@ -105,7 +105,7 @@ void GameOver::listResult()
 	int _hour = getGameLayer()->_minute / 60;
 	int _minute = getGameLayer()->_minute % 60;
 
-	auto timeBG = Sprite::createWithSpriteFrameName("time_bg.png");
+	auto timeBG = newSprite("time_bg.png");
 	timeBG->setAnchorPoint(Vec2(0, 0));
 	timeBG->setPosition(Vec2(winSize.width / 2 + result_bg->getContentSize().width / 2 - 11 - timeBG->getContentSize().width, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 46));
 	addChild(timeBG, 6);
@@ -180,7 +180,7 @@ void GameOver::listResult()
 			hero->changeGroup();
 		}
 
-		auto avator_small = Sprite::createWithSpriteFrameName(format("{}_small.png", hero->getName()).c_str());
+		auto avator_small = newSprite(format("{}_small.png", hero->getName()));
 		avator_small->setAnchorPoint(Vec2(0, 0));
 
 		uint32_t realKillNum = hero->getKillNum();
@@ -225,7 +225,7 @@ void GameOver::listResult()
 			int j = 0;
 			for (auto gear : hero->getGearArray())
 			{
-				auto gearIcon = Sprite::createWithSpriteFrameName(format("gear_{:02d}.png", (int)gear).c_str());
+				auto gearIcon = newSprite(format("gear_{:02d}.png", (int)gear));
 				gearIcon->setPosition(Vec2(flogNum->getPositionX() + 22 + j * 19, flogNum->getPositionY() - 1));
 				gearIcon->setScale(0.5f);
 				addChild(gearIcon, 7);
@@ -277,12 +277,12 @@ void GameOver::listResult()
 		else
 			rewardNum = realKillNum * 50;
 
-		auto coinBG = Sprite::createWithSpriteFrameName("coin_bg.png");
+		auto coinBG = newSprite("coin_bg.png");
 		coinBG->setAnchorPoint(Vec2(0, 0));
 		coinBG->setPosition(Vec2(winSize.width / 2 + result_bg->getContentSize().width / 2 - coinBG->getContentSize().width - 11, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 12));
 		addChild(coinBG, 6);
 
-		auto adExtra = Sprite::createWithSpriteFrameName("adExtra.png");
+		auto adExtra = newSprite("adExtra.png");
 		adExtra->setAnchorPoint(Vec2(0.5f, 0));
 		adExtra->setPosition(Vec2(coinBG->getPositionX() + 70, coinBG->getPositionY() + 22));
 		addChild(adExtra, 7);
@@ -349,7 +349,7 @@ void GameOver::listResult()
 
 	if (imgSrc)
 	{
-		auto recordSprite = Sprite::createWithSpriteFrameName(imgSrc);
+		auto recordSprite = newSprite(imgSrc);
 		recordSprite->setAnchorPoint(Vec2(0, 0));
 		recordSprite->setPosition(Vec2(winSize.width / 2 + result_bg->getContentSize().width / 2 - recordSprite->getContentSize().width - 12, result_bg->getPositionY() - result_bg->getContentSize().height / 2 + 88));
 		addChild(recordSprite, 7);
@@ -364,7 +364,7 @@ void GameOver::listResult()
 			// recordScore->setScale(0.35f);
 			// addChild(recordScore, 10);
 
-			// upload_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("upload_btn.png"), Sprite::createWithSpriteFrameName("upload_btn.png"), nullptr, this, menu_selector(GameOver::onUPloadBtn));
+			// upload_btn = MenuItemSprite::create(newSprite("upload_btn.png"), newSprite("upload_btn.png"), nullptr, this, menu_selector(GameOver::onUPloadBtn));
 			// Menu *upMenu = Menu::create(upload_btn, nullptr);
 			// upload_btn->setAnchorPoint(Vec2(1.0, 0));
 			// upMenu->setPosition(Vec2(winSize.width / 2 + result_bg->getContentSize().width / 2 - 14, winSize.height / 2 + result_bg->getContentSize().height / 2 - 62));
@@ -470,7 +470,7 @@ void GameOver::listResult()
 	version->setScale(0.3f);
 	addChild(version, 5);
 
-	MenuItem *btm_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("close_btn1.png"), Sprite::createWithSpriteFrameName("close_btn2.png"), nullptr, this, menu_selector(GameOver::onBackToMenu));
+	MenuItem *btm_btn = MenuItemSprite::create(newSprite("close_btn1.png"), newSprite("close_btn2.png"), nullptr, this, menu_selector(GameOver::onBackToMenu));
 	Menu *overMenu = Menu::create(btm_btn, nullptr);
 	overMenu->setPosition(Vec2(winSize.width / 2 + result_bg->getContentSize().width / 2 - 12, winSize.height / 2 + result_bg->getContentSize().height / 2 - 18));
 	addChild(overMenu, 7);
@@ -493,17 +493,17 @@ void GameOver::onBackToMenu(Ref *sender)
 		SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/select.ogg");
 		exitLayer = Layer::create();
 
-		auto exit_bg = Sprite::createWithSpriteFrameName("confirm_bg.png");
+		auto exit_bg = newSprite("confirm_bg.png");
 		exit_bg->setPosition(Vec2(winSize.width / 2, winSize.height / 2));
 
-		auto comfirm_title = Sprite::createWithSpriteFrameName("confirm_title.png");
+		auto comfirm_title = newSprite("confirm_title.png");
 		comfirm_title->setPosition(Vec2(winSize.width / 2, winSize.height / 2 + 38));
 
-		auto btm_text = Sprite::createWithSpriteFrameName("btm_text.png");
+		auto btm_text = newSprite("btm_text.png");
 		btm_text->setPosition(Vec2(winSize.width / 2, winSize.height / 2 + 8));
 
-		MenuItem *yes_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("yes_btn1.png"), Sprite::createWithSpriteFrameName("yes_btn2.png"), this, menu_selector(GameOver::onLeft));
-		MenuItem *no_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("no_btn1.png"), Sprite::createWithSpriteFrameName("no_btn2.png"), this, menu_selector(GameOver::onCancel));
+		MenuItem *yes_btn = MenuItemSprite::create(newSprite("yes_btn1.png"), newSprite("yes_btn2.png"), this, menu_selector(GameOver::onLeft));
+		MenuItem *no_btn = MenuItemSprite::create(newSprite("no_btn1.png"), newSprite("no_btn2.png"), this, menu_selector(GameOver::onCancel));
 
 		Menu *confirm_menu = Menu::create(yes_btn, no_btn, nullptr);
 		confirm_menu->alignItemsHorizontallyWithPadding(24);

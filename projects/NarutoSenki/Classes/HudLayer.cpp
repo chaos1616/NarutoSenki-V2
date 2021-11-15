@@ -171,7 +171,7 @@ void HudLayer::JoyStickUpdate(Vec2 direction)
 
 void HudLayer::initGearButton(const string &charName)
 {
-	gearMenuSprite = MenuItemSprite::create(Sprite::createWithSpriteFrameName(format("{}_avator.png", charName).c_str()), nullptr, nullptr, this, menu_selector(HudLayer::gearButtonClick));
+	gearMenuSprite = MenuItemSprite::create(newSprite(charName + "_avator.png"), nullptr, nullptr, this, menu_selector(HudLayer::gearButtonClick));
 	if (gearMenuSprite == nullptr)
 	{
 		CCLOGERROR("Not found %s avator sprite", charName.c_str());
@@ -201,7 +201,7 @@ void HudLayer::playGameOpeningAnimation()
 	auto tempAnimation = Animation::createWithSpriteFrames(spriteFrames, 0.1f);
 	auto tempAction = Animate::create(tempAnimation);
 
-	openingSprite = Sprite::createWithSpriteFrameName("gameStart_001.png");
+	openingSprite = newSprite("gameStart_001.png");
 	openingSprite->setPosition(Vec2(winSize.width / 2 + 32, winSize.height / 2));
 	addChild(openingSprite, 5000);
 	openingSprite->runAction(tempAction);
@@ -226,34 +226,34 @@ void HudLayer::initHeroInterface()
 #endif
 
 	// produce status bar
-	status_bar = Sprite::createWithSpriteFrameName("status_bar_bg.png");
+	status_bar = newSprite("status_bar_bg.png");
 	status_bar->setAnchorPoint(Vec2(0, 0));
 	status_bar->setPosition(Vec2(0, winHeight - status_bar->getContentSize().height));
 	uiBatch->addChild(status_bar);
 
-	status_hpbar = Sprite::createWithSpriteFrameName("status_hpbar.png");
+	status_hpbar = newSprite("status_hpbar.png");
 	status_hpbar->setPosition(Vec2(53, winHeight - 54));
 	addChild(status_hpbar, 40);
 
-	status_hpMark = Sprite::createWithSpriteFrameName("status_hpMark.png");
+	status_hpMark = newSprite("status_hpMark.png");
 	status_hpMark->setAnchorPoint(Vec2(0, 0));
 	status_hpMark->setPosition(Vec2(54, winHeight - 105));
 	addChild(status_hpMark, 45);
 
-	Sprite *tmpSprite = Sprite::createWithSpriteFrameName("status_ckrbar.png");
+	Sprite *tmpSprite = newSprite("status_ckrbar.png");
 	status_expbar = ProgressTimer::create(tmpSprite);
 	status_expbar->setType(kCCProgressTimerTypeRadial);
 	status_expbar->setPercentage(0);
 	status_expbar->setReverseDirection(true);
 	status_expbar->setPosition(Vec2(54, winHeight - 54));
 	addChild(status_expbar, 50);
-	MenuItem *menu_button = MenuItemSprite::create(Sprite::createWithSpriteFrameName("minimap_bg.png"), nullptr, nullptr, this, menu_selector(HudLayer::pauseButtonClick));
+	MenuItem *menu_button = MenuItemSprite::create(newSprite("minimap_bg.png"), nullptr, nullptr, this, menu_selector(HudLayer::pauseButtonClick));
 	menu_button->setAnchorPoint(Vec2(1, 1));
 	pauseNenu = Menu::create(menu_button, nullptr);
 	pauseNenu->setPosition(Vec2(winWidth, winHeight));
 	addChild(pauseNenu);
 
-	Sprite *killIcon = Sprite::createWithSpriteFrameName("kill_icon.png");
+	Sprite *killIcon = newSprite("kill_icon.png");
 	killIcon->setAnchorPoint(Vec2(0, 1));
 	killIcon->setPosition(Vec2(winWidth - 114, winHeight - 46));
 	addChild(killIcon, 5000);
@@ -264,7 +264,7 @@ void HudLayer::initHeroInterface()
 	killLabel->setPosition(Vec2(killIcon->getPositionX() + killIcon->getContentSize().width / 2 + 5, winHeight - 56));
 	addChild(killLabel, 5001);
 
-	Sprite *deadIcon = Sprite::createWithSpriteFrameName("dead_icon.png");
+	Sprite *deadIcon = newSprite("dead_icon.png");
 	deadIcon->setAnchorPoint(Vec2(0, 1));
 	deadIcon->setPosition(Vec2(winWidth - 114 + 26, winHeight - 47));
 	addChild(deadIcon, 5000);
@@ -863,7 +863,7 @@ void HudLayer::setBuffDisplay(const char *buffName, float buffStayTime)
 	float scale = 0.40f;
 #endif
 
-	auto buffSprite = Sprite::createWithSpriteFrameName(format("{}_{}.png", getGameLayer()->currentPlayer->getName(), buffName).c_str());
+	auto buffSprite = newSprite(format("{}_{}.png", getGameLayer()->currentPlayer->getName(), buffName));
 	if (buffSprite == nullptr)
 		return;
 	buffSprite->setAnchorPoint(Vec2(0, 0));
@@ -999,25 +999,25 @@ Sprite *HudLayer::createSPCReport(uint32_t killNum, int num)
 	{
 		if (killNum < 10)
 		{
-			reportSPCSprite = Sprite::createWithSpriteFrameName("DoubleKill_rpf.png");
+			reportSPCSprite = newSprite("DoubleKill_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill2_1.ogg");
 		}
 		else if (killNum < 20)
 		{
-			reportSPCSprite = Sprite::createWithSpriteFrameName("KillingSpree_rpf.png");
+			reportSPCSprite = newSprite("KillingSpree_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill2_2.ogg");
 		}
 		else if (killNum < 30)
 		{
-			reportSPCSprite = Sprite::createWithSpriteFrameName("Unstoppable_rpf.png");
+			reportSPCSprite = newSprite("Unstoppable_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill2_3.ogg");
 		}
 		else
 		{
-			reportSPCSprite = Sprite::createWithSpriteFrameName("Godlike_rpf.png");
+			reportSPCSprite = newSprite("Godlike_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill2_4.ogg");
 		}
@@ -1026,32 +1026,32 @@ Sprite *HudLayer::createSPCReport(uint32_t killNum, int num)
 	{
 		if (killNum < 10)
 		{
-			reportSPCSprite = Sprite::createWithSpriteFrameName("TripeKill_rpf.png");
+			reportSPCSprite = newSprite("TripeKill_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill3_1.ogg");
 		}
 		else if (killNum < 20)
 		{
-			reportSPCSprite = Sprite::createWithSpriteFrameName("Domination_rpf.png");
+			reportSPCSprite = newSprite("Domination_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill3_2.ogg");
 		}
 		else if (killNum < 30)
 		{
-			reportSPCSprite = Sprite::createWithSpriteFrameName("Rampage_rpf.png");
+			reportSPCSprite = newSprite("Rampage_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill3_3.ogg");
 		}
 		else if (killNum >= 30)
 		{
-			reportSPCSprite = Sprite::createWithSpriteFrameName("Holyshit_rpf.png");
+			reportSPCSprite = newSprite("Holyshit_rpf.png");
 			if (isBrocast)
 				SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill3_4.ogg");
 		}
 	}
 	else
 	{
-		reportSPCSprite = Sprite::createWithSpriteFrameName("MonsterKill_rpf.png");
+		reportSPCSprite = newSprite("MonsterKill_rpf.png");
 		if (isBrocast)
 			SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/kill4.ogg");
 	}
@@ -1063,12 +1063,12 @@ Sprite *HudLayer::createReport(const string &slayer, const string &dead, float &
 {
 	Sprite *reportSprite = Sprite::create();
 
-	Sprite *slain_p = Sprite::createWithSpriteFrameName(format("{}_rp.png", slayer).c_str());
+	Sprite *slain_p = newSprite(slayer + "_rp.png");
 	slain_p->setAnchorPoint(Vec2(0, 0.5f));
 	slain_p->setPosition(Vec2(0, 0));
 	reportSprite->addChild(slain_p);
 
-	Sprite *slain_pf = Sprite::createWithSpriteFrameName(format("{}_rpf.png", slayer).c_str());
+	Sprite *slain_pf = newSprite(slayer + "_rpf.png");
 	slain_pf->setPosition(Vec2(slain_p->getContentSize().width, 0));
 	slain_pf->setAnchorPoint(Vec2(0, 0.5f));
 	reportSprite->addChild(slain_pf);
@@ -1076,25 +1076,25 @@ Sprite *HudLayer::createReport(const string &slayer, const string &dead, float &
 	Sprite *slain;
 	if (dead != kRoleTower)
 	{
-		slain = Sprite::createWithSpriteFrameName("slain.png");
+		slain = newSprite("slain.png");
 		reportSprite->addChild(slain);
 	}
 	else
 	{
-		slain = Sprite::createWithSpriteFrameName("destroy.png");
+		slain = newSprite("destroy.png");
 		reportSprite->addChild(slain);
 	}
 	slain->setAnchorPoint(Vec2(0, 0.5f));
 	slain->setPosition(Vec2(slain_pf->getPositionX() + slain_pf->getContentSize().width, 0));
 
-	Sprite *death_pf = Sprite::createWithSpriteFrameName(format("{}_rpf.png", dead).c_str());
+	Sprite *death_pf = newSprite(dead + "_rpf.png");
 	death_pf->setAnchorPoint(Vec2(0, 0.5f));
 	death_pf->setPosition(Vec2(slain->getPositionX() + slain->getContentSize().width, 0));
 	reportSprite->addChild(death_pf);
 	Sprite *death_p;
 	if (dead != kRoleTower)
 	{
-		death_p = Sprite::createWithSpriteFrameName(format("{}_rp.png", dead).c_str());
+		death_p = newSprite(dead + "_rp.png");
 		death_p->setAnchorPoint(Vec2(0, 0.5f));
 		death_p->setPosition(Vec2(death_pf->getPositionX() + death_pf->getContentSize().width, 0));
 		reportSprite->addChild(death_p);
@@ -1215,7 +1215,7 @@ void HudLayer::setOugis(const string &name, Group group)
 			startPosY = 0;
 			startPosX = -48;
 			endPosX = 0;
-			CutBg = Sprite::createWithSpriteFrameName(cutPath1);
+			CutBg = newSprite(cutPath1);
 			CutBg->setAnchorPoint(Vec2(0, 0));
 		}
 		else
@@ -1223,7 +1223,7 @@ void HudLayer::setOugis(const string &name, Group group)
 			startPosY = winSize.height / 2;
 			startPosX = winSize.width + 48;
 			endPosX = winSize.width;
-			CutBg = Sprite::createWithSpriteFrameName(cutPath2);
+			CutBg = newSprite(cutPath2);
 			CutBg->setFlipX(true);
 			CutBg->setAnchorPoint(Vec2(1, 0.5f));
 		}
@@ -1242,7 +1242,7 @@ void HudLayer::setOugis(const string &name, Group group)
 		auto tempAnimation = Animation::createWithSpriteFrames(spriteFrames, 0.1f);
 		auto tempAction = Animate::create(tempAnimation);
 
-		Sprite *CutLine = Sprite::createWithSpriteFrameName("CutLine_01.png");
+		Sprite *CutLine = newSprite("CutLine_01.png");
 		if (isKonohaGroup)
 		{
 			CutLine->setAnchorPoint(Vec2(0, 0));
@@ -1261,7 +1261,7 @@ void HudLayer::setOugis(const string &name, Group group)
 
 		ougisLayer->addChild(CutLine);
 
-		Sprite *CutLineUP = Sprite::createWithSpriteFrameName("CutLineUP.png");
+		Sprite *CutLineUP = newSprite("CutLineUP.png");
 		if (isKonohaGroup)
 		{
 			CutLineUP->setAnchorPoint(Vec2(0, 0));
@@ -1278,7 +1278,7 @@ void HudLayer::setOugis(const string &name, Group group)
 
 		ougisLayer->addChild(CutLineUP);
 
-		Sprite *CutIn = Sprite::createWithSpriteFrameName(format("{}_CutIn.png", name).c_str());
+		Sprite *CutIn = newSprite(name + "_CutIn.png");
 		if (isKonohaGroup)
 		{
 			CutIn->setAnchorPoint(Vec2(0, 0));
@@ -1293,7 +1293,7 @@ void HudLayer::setOugis(const string &name, Group group)
 		}
 		ougisLayer->addChild(CutIn);
 
-		Sprite *CutLineDown = Sprite::createWithSpriteFrameName("CutLineDown.png");
+		Sprite *CutLineDown = newSprite("CutLineDown.png");
 		if (isKonohaGroup)
 		{
 			CutLineDown->setAnchorPoint(Vec2(0, 0));
@@ -1365,30 +1365,30 @@ void HudLayer::updateSkillButtons()
 		return;
 
 	// update avator
-	auto avator = Sprite::createWithSpriteFrameName((charName + "_avator.png").c_str());
+	auto avator = newSprite(charName + "_avator.png");
 	if (avator)
 		gearMenuSprite->setNormalImage(avator);
 
 	auto cache = SpriteFrameCache::sharedSpriteFrameCache();
 	SpriteFrame *frame;
 
-#define updateButtonInfo(index)                                                    \
-	frame = cache->spriteFrameByName((charName + "_skill" #index ".png").c_str()); \
-	if (skill##index##Button)                                                      \
-	{                                                                              \
-		if (frame != nullptr)                                                      \
-			skill##index##Button->setDisplayFrame(frame);                          \
-		skill##index##Button->setCD(player->_sAttackCD##index * 1000);             \
-		skill##index##Button->_isColdChanged = true;                               \
+#define updateButtonInfo(index)                                          \
+	frame = cache->spriteFrameByName(charName + "_skill" #index ".png"); \
+	if (skill##index##Button)                                            \
+	{                                                                    \
+		if (frame != nullptr)                                            \
+			skill##index##Button->setDisplayFrame(frame);                \
+		skill##index##Button->setCD(player->_sAttackCD##index * 1000);   \
+		skill##index##Button->_isColdChanged = true;                     \
 	}
 
-#define updateOugiButtonInfo(index)                                                \
-	frame = cache->spriteFrameByName((charName + "_skill" #index ".png").c_str()); \
-	if (skill##index##Button)                                                      \
-	{                                                                              \
-		if (frame != nullptr)                                                      \
-			skill##index##Button->setDisplayFrame(frame);                          \
-		skill##index##Button->_isColdChanged = true;                               \
+#define updateOugiButtonInfo(index)                                      \
+	frame = cache->spriteFrameByName(charName + "_skill" #index ".png"); \
+	if (skill##index##Button)                                            \
+	{                                                                    \
+		if (frame != nullptr)                                            \
+			skill##index##Button->setDisplayFrame(frame);                \
+		skill##index##Button->_isColdChanged = true;                     \
 	}
 
 	updateButtonInfo(1);

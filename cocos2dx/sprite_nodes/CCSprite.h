@@ -106,6 +106,16 @@ public:
      */
     static CCSprite* create(const char *pszFileName);
     
+	static CCSprite *create(const std::string &fileName)
+	{
+		return create(fileName.c_str());
+	}
+
+	static CCSprite *createWithSpriteFrameName(const std::string &frameName)
+	{
+		return createWithSpriteFrameName(frameName.c_str());
+	}
+
     /**
      * Creates a sprite with an image filename and a rect.
      *

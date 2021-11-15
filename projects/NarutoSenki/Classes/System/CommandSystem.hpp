@@ -121,7 +121,7 @@ private:
 			   auto tempAnimation = Animation::createWithSpriteFrames(spriteFrames, 0.1f);
 			   auto tempAction = Animate::create(tempAnimation);
 
-			   auto tempChar = Sprite::createWithSpriteFrameName(format("{}_Extern_01", thiz->getName()).c_str());
+			   auto tempChar = newSprite(thiz->getName() + "_Extern_01");
 			   tempChar->setAnchorPoint(Vec2(0.5f, 0));
 			   tempChar->setPosition(thiz->getPosition());
 			   getGameLayer()->addChild(tempChar, -thiz->_originY);

@@ -108,7 +108,7 @@ class Lee : public Hero
 	{
 		if (htLv == 0 && !_heartEffect)
 		{
-			_heartEffect = Sprite::createWithSpriteFrameName("Bamen_Effect_00");
+			_heartEffect = newSprite("Bamen_Effect_00");
 			_heartEffect->setPosition(Vec2(getContentSize().width + 40, 60));
 			addChild(_heartEffect);
 		}

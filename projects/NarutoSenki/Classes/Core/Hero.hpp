@@ -78,7 +78,7 @@ public:
 		}
 		else if (name == HeroEnum::Kakuzu)
 		{
-			_heartEffect = Sprite::createWithSpriteFrameName("Heart_Effect_00");
+			_heartEffect = newSprite("Heart_Effect_00");
 			_heartEffect->setPosition(Vec2(getContentSize().width + 40, 70));
 			addChild(_heartEffect);
 		}
@@ -110,7 +110,7 @@ public:
 	{
 		if (!_shadow)
 		{
-			_shadow = Sprite::createWithSpriteFrameName("shadows");
+			_shadow = newSprite("shadows");
 			_shadow->setAnchorPoint(Vec2(0.5, 0.5));
 			_shadow->setPosition(getPosition());
 			getGameLayer()->shadowBatch->addChild(_shadow);
@@ -340,7 +340,7 @@ public:
 			if (!rebornSprite)
 			{
 				rebornSprite = Sprite::create();
-				Sprite *skullSpirte = Sprite::createWithSpriteFrameName("skull.png");
+				Sprite *skullSpirte = newSprite("skull.png");
 				skullSpirte->setPosition(Vec2(0, 0));
 				rebornSprite->addChild(skullSpirte);
 

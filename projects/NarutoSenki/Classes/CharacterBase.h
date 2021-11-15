@@ -374,7 +374,7 @@ public:
 	void				resetAction(ActionFlag flags) { return setAction(flags); }
 	// Set action `from` to `to`
 	template <ActionFlag from, ActionFlag to>
-	inline constexpr	void setActionTo() {
+	constexpr void		setActionTo() {
 		if constexpr (from == ActionFlag::Dead)				setDeadAction(_actionMap.at(to));
 		else if constexpr (from == ActionFlag::Idle)		setIdleAction(_actionMap.at(to));
 		else if constexpr (from == ActionFlag::Walk)		setWalkAction(_actionMap.at(to));
@@ -388,7 +388,6 @@ public:
 		else if constexpr (from == ActionFlag::Skill03)		setSkill3Action(_actionMap.at(to));
 		else if constexpr (from == ActionFlag::Skill04)		setSkill4Action(_actionMap.at(to));
 		else if constexpr (from == ActionFlag::Skill05)		setSkill5Action(_actionMap.at(to));
-		// else logerr("Does not support set action from `{}` to `{}`", from, to);
 	}
 
 	void				setSound(const string &file);

@@ -8,7 +8,7 @@ bool JoyStick::init()
 	initWithSpriteFrameName("JoyStickBg.png");
 	setAnchorPoint(Vec2(0, 0));
 
-	_joyStickControl = Sprite::createWithSpriteFrameName("JoyStick.png");
+	_joyStickControl = newSprite("JoyStick.png");
 	_joyStickControl->setAnchorPoint(Vec2(0, 0));
 
 	_defaultPotion = Vec2(getContentSize().width / 2 - _joyStickControl->getContentSize().width / 2,

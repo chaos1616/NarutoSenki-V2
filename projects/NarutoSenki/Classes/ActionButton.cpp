@@ -245,7 +245,7 @@ void ActionButton::beganAnimation(bool isLock)
 
 void ActionButton::setGearType(GearType type)
 {
-	auto gearIcon = Sprite::createWithSpriteFrameName(format("gear_{:02d}.png", (int)type).c_str());
+	auto gearIcon = newSprite(format("gear_{:02d}.png", (int)type));
 	gearIcon->setScale(0.85f);
 	gearIcon->setPosition(Vec2(18, 18));
 	addChild(gearIcon);
@@ -286,7 +286,7 @@ void ActionButton::updateCDLabel(float dt)
 
 void ActionButton::setMarkSprite(const char *mark)
 {
-	auto tmpSprite = Sprite::createWithSpriteFrameName(mark);
+	auto tmpSprite = newSprite(mark);
 	markSprite = ProgressTimer::create(tmpSprite);
 	markSprite->setType(kCCProgressTimerTypeRadial);
 
@@ -303,7 +303,7 @@ void ActionButton::setMarkSprite(const char *mark)
 	{
 		if (getGameLayer()->_enableGear)
 		{
-			gearSign = Sprite::createWithSpriteFrameName("gearsign.png");
+			gearSign = newSprite("gearsign.png");
 			gearSign->setPosition(Vec2(getPositionX() + 17, getPositionY() + 17));
 			_delegate->addChild(gearSign, 500);
 		}
@@ -312,7 +312,7 @@ void ActionButton::setMarkSprite(const char *mark)
 
 void ActionButton::setOugisMark()
 {
-	ougismarkSprite = Sprite::createWithSpriteFrameName("skill_freeze.png");
+	ougismarkSprite = newSprite("skill_freeze.png");
 	ougismarkSprite->setPosition(getPosition());
 	ougismarkSprite->setAnchorPoint(Vec2(0, 0));
 	_delegate->addChild(ougismarkSprite, 500);
@@ -342,11 +342,11 @@ void ActionButton::setOugisMark()
 void ActionButton::setProgressMark()
 {
 	clipper = ClippingNode::create();
-	auto stencil = Sprite::createWithSpriteFrameName("icon_bg1.png");
+	auto stencil = newSprite("icon_bg1.png");
 	stencil->setAnchorPoint(Vec2(0, 0));
 	clipper->setStencil(stencil);
 
-	proressmarkSprite = Sprite::createWithSpriteFrameName("icon_bg2.png");
+	proressmarkSprite = newSprite("icon_bg2.png");
 
 	clipper->setPosition(getPosition());
 	clipper->addChild(proressmarkSprite);
@@ -356,7 +356,7 @@ void ActionButton::setProgressMark()
 
 	_delegate->addChild(clipper, -50);
 
-	proressblinkSprite = Sprite::createWithSpriteFrameName("icon_bg3.png");
+	proressblinkSprite = newSprite("icon_bg3.png");
 	proressblinkSprite->setPosition(getPosition());
 	proressblinkSprite->setPosition(Vec2(proressmarkSprite->getContentSize().width / 2, proressmarkSprite->getContentSize().height / 2));
 
@@ -370,14 +370,14 @@ void ActionButton::setProgressMark()
 
 	if (_abType == OUGIS1)
 	{
-		progressPointSprite = Sprite::createWithSpriteFrameName("icon_bg4.png");
+		progressPointSprite = newSprite("icon_bg4.png");
 		proressmarkSprite->setRotation(-50);
 		proressblinkSprite->setRotation(-50);
 		progressPointSprite->setPosition(getPosition());
 	}
 	else
 	{
-		progressPointSprite = Sprite::createWithSpriteFrameName("icon_bg5.png");
+		progressPointSprite = newSprite("icon_bg5.png");
 		proressmarkSprite->setRotation(-85);
 		proressblinkSprite->setRotation(-85);
 		progressPointSprite->setPosition(Vec2(getPositionX() + 1, getPositionY()));
@@ -390,7 +390,7 @@ void ActionButton::setProgressMark()
 	_delegate->addChild(progressPointSprite, -25);
 
 	auto fd2 = FadeOut::create(0.5f);
-	proressblinkMask = Sprite::createWithSpriteFrameName("icon_bg6.png");
+	proressblinkMask = newSprite("icon_bg6.png");
 	proressblinkMask->setPosition(getPosition());
 	proressblinkMask->setAnchorPoint(Vec2(0, 0));
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)

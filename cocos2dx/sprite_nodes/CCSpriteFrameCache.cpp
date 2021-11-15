@@ -407,7 +407,7 @@ void CCSpriteFrameCache::removeSpriteFramesFromTexture(CCTexture2D *texture)
     m_pSpriteFrames->removeObjectsForKeys(keysToRemove);
 }
 
-CCSpriteFrame *CCSpriteFrameCache::spriteFrameByName(const char *pszName)
+CCSpriteFrame *CCSpriteFrameCache::spriteFrameByName(const std::string &pszName)
 {
     CCSpriteFrame *frame = (CCSpriteFrame *)m_pSpriteFrames->objectForKey(pszName);
     if (!frame)

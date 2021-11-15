@@ -223,18 +223,18 @@ bool StartMenu::init()
 	// addChild(bgSprite, -5);
 
 	// produce groud
-	Sprite *gold_left = Sprite::createWithSpriteFrameName("gold_left.png");
+	Sprite *gold_left = newSprite("gold_left.png");
 	gold_left->setAnchorPoint(Vec2(0, 0));
 	gold_left->setPosition(Vec2(0, 20));
 	addChild(gold_left, 1);
 
-	Sprite *gold_right = Sprite::createWithSpriteFrameName("gold_right.png");
+	Sprite *gold_right = newSprite("gold_right.png");
 	gold_right->setAnchorPoint(Vec2(0, 1));
 	gold_right->setPosition(Vec2(winSize.width - gold_right->getContentSize().width - 20, winSize.height - 20));
 	addChild(gold_right, 1);
 
 	// produce the cloud
-	Sprite *cloud_left = Sprite::createWithSpriteFrameName("cloud.png");
+	Sprite *cloud_left = newSprite("cloud.png");
 	cloud_left->setPosition(Vec2(0, 15));
 	cloud_left->setFlipX(true);
 	cloud_left->setFlipY(true);
@@ -245,7 +245,7 @@ bool StartMenu::init()
 	auto cseq1 = RepeatForever::create(newSequence(cmv1, cmv1->reverse()));
 	cloud_left->runAction(cseq1);
 
-	Sprite *cloud_right = Sprite::createWithSpriteFrameName("cloud.png");
+	Sprite *cloud_right = newSprite("cloud.png");
 	cloud_right->setPosition(Vec2(winSize.width - cloud_right->getContentSize().width,
 								  winSize.height - (cloud_right->getContentSize().height + 15)));
 	cloud_right->setAnchorPoint(Vec2(0, 0));
@@ -267,7 +267,7 @@ bool StartMenu::init()
 	FULL_SCREEN_SPRITE(menu_bar_t);
 	addChild(menu_bar_t, 2);
 
-	Sprite *startmenu_title = Sprite::createWithSpriteFrameName("startmenu_title.png");
+	Sprite *startmenu_title = newSprite("startmenu_title.png");
 	startmenu_title->setAnchorPoint(Vec2(0, 0));
 	startmenu_title->setPosition(Vec2(2, winSize.height - startmenu_title->getContentSize().height - 2));
 	addChild(startmenu_title, 3);
@@ -303,7 +303,7 @@ bool StartMenu::init()
 	exit_btn->setPositionY(_pos01);
 	_menuArray.push_back(exit_btn);
 
-	menuText = Sprite::createWithSpriteFrameName("menu02_text.png");
+	menuText = newSprite("menu02_text.png");
 	menuText->setAnchorPoint(Vec2(0, 0));
 	menuText->setPosition(Vec2(10, 2));
 	addChild(menuText, 5);
@@ -318,7 +318,7 @@ bool StartMenu::init()
 	versionLabel->setPosition(winSize.width - 25, 10);
 	addChild(versionLabel, 5);
 
-	Sprite *avator = Sprite::createWithSpriteFrameName("avator1.png");
+	Sprite *avator = newSprite("avator1.png");
 	avator->setAnchorPoint(Vec2(0, 0));
 	avator->setOpacity(0);
 	avator->setPosition(Vec2(winSize.width - avator->getContentSize().width, 19));
@@ -343,7 +343,7 @@ bool StartMenu::init()
 	}
 
 	avator->runAction(RepeatForever::create(Sequence::create(list)));
-	MenuItem *news_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("news_btn.png"), nullptr, this, menu_selector(StartMenu::onNewsBtn));
+	MenuItem *news_btn = MenuItemSprite::create(newSprite("news_btn.png"), nullptr, this, menu_selector(StartMenu::onNewsBtn));
 	Menu *menu = Menu::create(news_btn, nullptr);
 	news_btn->setAnchorPoint(Vec2(0, 0.5f));
 	menu->setPosition(15, winSize.height - 50);
@@ -351,7 +351,7 @@ bool StartMenu::init()
 
 	setNotice();
 
-	login_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("login_btn.png"), nullptr, this, menu_selector(StartMenu::onLoginBtn));
+	login_btn = MenuItemSprite::create(newSprite("login_btn.png"), nullptr, this, menu_selector(StartMenu::onLoginBtn));
 	Menu *menu2 = Menu::create(login_btn, nullptr);
 	login_btn->setAnchorPoint(Vec2(1, 0.5f));
 	menu2->setPosition(winSize.width - 15, winSize.height - 50);
@@ -408,13 +408,13 @@ void StartMenu::setNotice()
 	if (!notice_layer)
 	{
 		notice_layer = Layer::create();
-		Sprite *notice_bg = Sprite::createWithSpriteFrameName("notice_bg.png");
+		Sprite *notice_bg = newSprite("notice_bg.png");
 		notice_bg->setAnchorPoint(Vec2(0, 0));
 		notice_bg->setPosition(Vec2(15, 228));
 		notice_layer->addChild(notice_bg);
 
 		ClippingNode *clipper = ClippingNode::create();
-		Node *stencil = Sprite::createWithSpriteFrameName("notice_mask.png");
+		Node *stencil = newSprite("notice_mask.png");
 		stencil->setAnchorPoint(Vec2(0, 0));
 		clipper->setStencil(stencil);
 
@@ -484,17 +484,17 @@ void StartMenu::onHardLayerCallBack()
 		{
 			hardCoreLayer = Layer::create();
 
-			Sprite *confirm_bg = Sprite::createWithSpriteFrameName("confirm_bg.png");
+			Sprite *confirm_bg = newSprite("confirm_bg.png");
 			confirm_bg->setPosition(Vec2(winSize.width / 2, winSize.height / 2));
 
-			Sprite *hardcore_title = Sprite::createWithSpriteFrameName("hardcore_title.png");
+			Sprite *hardcore_title = newSprite("hardcore_title.png");
 			hardcore_title->setPosition(Vec2(winSize.width / 2, winSize.height / 2 + 38));
 
-			Sprite *hardcore_text = Sprite::createWithSpriteFrameName("hardcore_text.png");
+			Sprite *hardcore_text = newSprite("hardcore_text.png");
 			hardcore_text->setPosition(Vec2(winSize.width / 2, winSize.height / 2 + 8));
 
-			MenuItem *yes_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("yes_btn1.png"), Sprite::createWithSpriteFrameName("yes_btn2.png"), this, menu_selector(StartMenu::onHardCoreOn));
-			MenuItem *no_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("no_btn1.png"), Sprite::createWithSpriteFrameName("no_btn2.png"), this, menu_selector(StartMenu::onHardCoreOff));
+			MenuItem *yes_btn = MenuItemSprite::create(newSprite("yes_btn1.png"), newSprite("yes_btn2.png"), this, menu_selector(StartMenu::onHardCoreOn));
+			MenuItem *no_btn = MenuItemSprite::create(newSprite("no_btn1.png"), newSprite("no_btn2.png"), this, menu_selector(StartMenu::onHardCoreOff));
 
 			Menu *confirm_menu = Menu::create(yes_btn, no_btn, nullptr);
 			confirm_menu->alignItemsHorizontallyWithPadding(24);

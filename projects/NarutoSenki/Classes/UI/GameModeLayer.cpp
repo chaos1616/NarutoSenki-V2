@@ -30,7 +30,7 @@ bool GameModeLayer::init()
 	FULL_SCREEN_SPRITE(menu_bar_t);
 	addChild(menu_bar_t, 2);
 
-	auto modemenu_title = Sprite::createWithSpriteFrameName("startmenu_title.png");
+	auto modemenu_title = newSprite("startmenu_title.png");
 	modemenu_title->setAnchorPoint(Vec2(0, 0));
 	modemenu_title->setPosition(Vec2(2, winSize.height - modemenu_title->getContentSize().height - 2));
 	addChild(modemenu_title, 3);

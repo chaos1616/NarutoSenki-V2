@@ -28,13 +28,13 @@ bool LoadLayer::init()
 	FULL_SCREEN_SPRITE(menu_bar_t);
 	addChild(menu_bar_t, 2);
 
-	Sprite *loading_title = Sprite::createWithSpriteFrameName("loading_title.png");
+	Sprite *loading_title = newSprite("loading_title.png");
 	loading_title->setAnchorPoint(Vec2(0, 0));
 	loading_title->setPosition(Vec2(2, winSize.height - loading_title->getContentSize().height - 2));
 	addChild(loading_title, 3);
 
 	// produce the cloud
-	Sprite *cloud_left = Sprite::createWithSpriteFrameName("cloud.png");
+	Sprite *cloud_left = newSprite("cloud.png");
 	cloud_left->setPosition(Vec2(0, 15));
 	cloud_left->setFlipX(true);
 	cloud_left->setFlipY(true);
@@ -45,7 +45,7 @@ bool LoadLayer::init()
 	auto cseq1 = RepeatForever::create(newSequence(cmv1, cmv1->reverse()));
 	cloud_left->runAction(cseq1);
 
-	Sprite *cloud_right = Sprite::createWithSpriteFrameName("cloud.png");
+	Sprite *cloud_right = newSprite("cloud.png");
 	cloud_right->setPosition(Vec2(winSize.width - cloud_right->getContentSize().width,
 								  winSize.height - (cloud_right->getContentSize().height + 15)));
 	cloud_right->setAnchorPoint(Vec2(0, 0));
@@ -113,11 +113,11 @@ void LoadLayer::preloadIMG()
 
 	setRand();
 	int num = rand() % 3 + 1;
-	Sprite *tips = Sprite::createWithSpriteFrameName(format("tip{}.png", num).c_str());
+	Sprite *tips = newSprite(format("tip{}.png", num));
 	tips->setPosition(Vec2(winSize.width / 2, winSize.height / 2));
 	addChild(tips);
 
-	Sprite *loading = Sprite::createWithSpriteFrameName("loading_font.png");
+	Sprite *loading = newSprite("loading_font.png");
 	loading->setPosition(Vec2(winSize.width - 120, 45));
 	auto fade = FadeOut::create(1.0f);
 	auto fadeseq = RepeatForever::create(newSequence(fade, fade->reverse()));
@@ -296,7 +296,7 @@ void LoadLayer::unloadAllCharsIMG(const vector<Hero *> &players)
 
 void LoadLayer::setLoadingAnimation(const char *player, int index)
 {
-	auto loadingAvator = Sprite::createWithSpriteFrameName(format("{}_Walk_01", player).c_str());
+	auto loadingAvator = newSprite(format("{}_Walk_01", player));
 	loadingAvator->setFlipX(true);
 	loadingAvator->setPosition(Vec2(winSize.width - 100 + index * 16, 30));
 	loadingAvator->setAnchorPoint(Vec2(0, 0));

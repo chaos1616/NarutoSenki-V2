@@ -203,7 +203,7 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			auto ef = Sprite::createWithSpriteFrameName("FireEffect_01");
+			auto ef = newSprite("FireEffect_01");
 			ef->setAnchorPoint(Vec2(0.5f, 0));
 			if (i == 0)
 			{

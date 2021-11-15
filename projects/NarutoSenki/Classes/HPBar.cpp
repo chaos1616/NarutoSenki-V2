@@ -8,18 +8,18 @@ bool HPBar::init(const char *szImage)
 	char fileName[3] = "xx";
 	strncpy(fileName, szImage, 2);
 
-	hpBar = Sprite::createWithSpriteFrameName(szImage);
+	hpBar = newSprite(szImage);
 	hpBar->setAnchorPoint(Vec2(0, 0));
 	addChild(hpBar, 1);
 
 	if (is_same(fileName, "hp"))
 	{
-		hpBottom = Sprite::createWithSpriteFrameName("hp_bottom.png");
+		hpBottom = newSprite("hp_bottom.png");
 		hpBar->setPosition(Vec2(15, 1));
 	}
 	else
 	{
-		hpBottom = Sprite::createWithSpriteFrameName("flog_bar_buttom.png");
+		hpBottom = newSprite("flog_bar_buttom.png");
 		hpBar->setPosition(Vec2(1, 1));
 	}
 	hpBottom->setAnchorPoint(Vec2(0, 0));

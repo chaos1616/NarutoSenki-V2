@@ -31,31 +31,31 @@ bool PauseLayer::init(RenderTexture *snapshoot)
 	FULL_SCREEN_SPRITE(menu_bar_t);
 	addChild(menu_bar_t, 2);
 
-	Sprite *pause_title = Sprite::createWithSpriteFrameName("pause_title.png");
+	Sprite *pause_title = newSprite("pause_title.png");
 	pause_title->setAnchorPoint(Vec2(0, 0));
 	pause_title->setPosition(Vec2(2, winSize.height - pause_title->getContentSize().height - 2));
 	addChild(pause_title, 3);
 
-	MenuItem *resume_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("resume.png"), nullptr, nullptr, this, menu_selector(PauseLayer::onResume));
-	MenuItem *btm_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("btm.png"), nullptr, nullptr, this, menu_selector(PauseLayer::onBackToMenu));
+	MenuItem *resume_btn = MenuItemSprite::create(newSprite("resume.png"), nullptr, nullptr, this, menu_selector(PauseLayer::onResume));
+	MenuItem *btm_btn = MenuItemSprite::create(newSprite("btm.png"), nullptr, nullptr, this, menu_selector(PauseLayer::onBackToMenu));
 
 	pauseMenu = Menu::create(resume_btn, btm_btn, nullptr);
 	pauseMenu->alignItemsVerticallyWithPadding(26);
 	pauseMenu->setPosition(Vec2(winSize.width / 2, winSize.height / 2 + 30));
 	addChild(pauseMenu, 3);
 
-	Sprite *surrender_text = Sprite::createWithSpriteFrameName("surrender_tips.png");
+	Sprite *surrender_text = newSprite("surrender_tips.png");
 	surrender_text->setPosition(Vec2(winSize.width / 2, winSize.height / 2 - 23));
 	addChild(surrender_text, 4);
 
-	bgm_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("bgm_on.png"), Sprite::createWithSpriteFrameName("bgm_off.png"), nullptr, this, menu_selector(PauseLayer::onBGM));
-	voice_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("voice_on.png"), Sprite::createWithSpriteFrameName("voice_off.png"), nullptr, this, menu_selector(PauseLayer::onVoice));
+	bgm_btn = MenuItemSprite::create(newSprite("bgm_on.png"), newSprite("bgm_off.png"), nullptr, this, menu_selector(PauseLayer::onBGM));
+	voice_btn = MenuItemSprite::create(newSprite("voice_on.png"), newSprite("voice_off.png"), nullptr, this, menu_selector(PauseLayer::onVoice));
 	soundMenu = Menu::create(bgm_btn, voice_btn, nullptr);
 	soundMenu->alignItemsHorizontallyWithPadding(25);
 	soundMenu->setPosition(Vec2(pauseMenu->getPositionX(), pauseMenu->getPositionY() - 80));
 	addChild(soundMenu, 4);
 
-	pre_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("preload_on.png"), Sprite::createWithSpriteFrameName("preload_off.png"), nullptr, this, menu_selector(PauseLayer::onPreload));
+	pre_btn = MenuItemSprite::create(newSprite("preload_on.png"), newSprite("preload_off.png"), nullptr, this, menu_selector(PauseLayer::onPreload));
 	preMenu = Menu::create(pre_btn, nullptr);
 	preMenu->alignItemsHorizontallyWithPadding(25);
 	preMenu->setPosition(Vec2(pauseMenu->getPositionX(), preMenu->getPositionY() - 84));
@@ -142,17 +142,17 @@ void PauseLayer::onBackToMenu(Ref *sender)
 	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/select.ogg");
 	exitLayer = Layer::create();
 
-	Sprite *exit_bg = Sprite::createWithSpriteFrameName("confirm_bg.png");
+	Sprite *exit_bg = newSprite("confirm_bg.png");
 	exit_bg->setPosition(Vec2(winSize.width / 2, winSize.height / 2));
 
-	Sprite *comfirm_title = Sprite::createWithSpriteFrameName("confirm_title.png");
+	Sprite *comfirm_title = newSprite("confirm_title.png");
 	comfirm_title->setPosition(Vec2(winSize.width / 2, winSize.height / 2 + 38));
 
-	Sprite *surrender_text = Sprite::createWithSpriteFrameName("surrender_text.png");
+	Sprite *surrender_text = newSprite("surrender_text.png");
 	surrender_text->setPosition(Vec2(winSize.width / 2, winSize.height / 2 + 8));
 
-	MenuItem *yes_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("yes_btn1.png"), Sprite::createWithSpriteFrameName("yes_btn2.png"), this, menu_selector(PauseLayer::onLeft));
-	MenuItem *no_btn = MenuItemSprite::create(Sprite::createWithSpriteFrameName("no_btn1.png"), Sprite::createWithSpriteFrameName("no_btn2.png"), this, menu_selector(PauseLayer::onCancel));
+	MenuItem *yes_btn = MenuItemSprite::create(newSprite("yes_btn1.png"), newSprite("yes_btn2.png"), this, menu_selector(PauseLayer::onLeft));
+	MenuItem *no_btn = MenuItemSprite::create(newSprite("no_btn1.png"), newSprite("no_btn2.png"), this, menu_selector(PauseLayer::onCancel));
 
 	Menu *confirm_menu = Menu::create(yes_btn, no_btn, nullptr);
 	confirm_menu->alignItemsHorizontallyWithPadding(24);
