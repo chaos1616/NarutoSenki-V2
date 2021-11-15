@@ -1,0 +1,34 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'SandWave'
+
+[Idle]
+frame = [
+    'SandWave_Move_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 560
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'SandWave_Move_001',
+    'SandWave_Move_002',
+    'setHit = s_hit',
+    'setDelay = 10',
+    'SandWave_Move_003',
+    'SandWave_Move_004',
+    'SandWave_Move_005',
+    'setHit = s_hit',
+    'setDelay = 10',
+    'SandWave_Move_006',
+    'setDelay = 10',
+    'setDestroy = 0',
+]

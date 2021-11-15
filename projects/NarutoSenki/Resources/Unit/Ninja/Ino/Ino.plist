@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{39,76}</string>
             </dict>
-            <key>Ino_KnockDown_001</key>
+            <key>Ino_Knockdown_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{670,541},{71,35}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{71,35}</string>
             </dict>
-            <key>Ino_KnockDown_002</key>
+            <key>Ino_Knockdown_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{891,462},{78,30}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{78,30}</string>
             </dict>
-            <key>Ino_KnockDown_003</key>
+            <key>Ino_Knockdown_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{251,345},{67,36}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{67,36}</string>
             </dict>
-            <key>Ino_KnockDown_004</key>
+            <key>Ino_Knockdown_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{751,398},{57,45}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{57,45}</string>
             </dict>
-            <key>Ino_KnockDown_005</key>
+            <key>Ino_Knockdown_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{746,445},{33,57}}</string>

@@ -1,0 +1,268 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Hidan'
+hp = 6000
+hpBar.y = 80
+speed = 224
+
+[Idle]
+frame = [
+    'Hidan_Idle_001',
+    'Hidan_Idle_002',
+    'Hidan_Idle_003',
+    'Hidan_Idle_004',
+]
+
+[Walk]
+frame = [
+    'Hidan_Walk_01',
+    'Hidan_Walk_02',
+    'Hidan_Walk_03',
+    'Hidan_Walk_04',
+    'Hidan_Walk_05',
+    'Hidan_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Hidan_Hurt_01',
+    'Hidan_Hurt_02',
+]
+
+[AirHurt]
+frame = [
+    'Hidan_AirHurt_001',
+]
+
+[Knockdown]
+frame = [
+    'Hidan_Knockdown_001',
+    'setDelay = 10',
+    'Hidan_Knockdown_002',
+    'setDelay = 60',
+    'Hidan_Knockdown_003',
+    'Hidan_Knockdown_004',
+    'Hidan_Knockdown_005',
+]
+
+[Float]
+frame = [
+    'Hidan_Float_001',
+    'setDelay = 10',
+    'Hidan_Float_002',
+    'setDelay = 10',
+    'Hidan_Float_003',
+]
+
+[Dead]
+frame = [
+    'Hidan_Knockdown_001',
+    'Hidan_Knockdown_002',
+    'setSound = Audio/Hidan/Hidan_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Hidan_NAttack_001',
+    'Hidan_NAttack_002',
+    'Hidan_NAttack_003',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/combo1.ogg',
+    'Hidan_NAttack_004',
+    'Hidan_NAttack_005',
+    'Hidan_NAttack_006',
+    'setMove = 8',
+    'Hidan_NAttack_007',
+    'setHit = n_hit',
+    'setDelay = 10',
+    'Hidan_NAttack_008',
+    'Hidan_NAttack_009',
+    'setSound = Audio/Effect/kong.ogg',
+    'Hidan_NAttack_010',
+    'Hidan_NAttack_011',
+    'setSound = Audio/Hidan/Hidan_combo.ogg',
+    'setMove = 16',
+    'Hidan_NAttack_012',
+    'setHit = l_hit',
+    'setSound = Audio/Effect/kong.ogg',
+    'setDelay = 10',
+]
+
+[Skill01]
+type = 'Summon'
+cd = 10
+
+frame = [
+    'setSound = Audio/Hidan/Hidan_skill1.ogg',
+    'setCmd = setInvincible',
+    'Hidan_Skill01_001',
+    'setDelay = 10',
+    'Hidan_Skill01_002',
+    'setMon = CircleMark',
+    'Hidan_Skill01_003',
+    'Hidan_Skill01_004',
+    'Hidan_Skill01_005',
+    'setDelay = 10',
+    'setCmd = reInvincible',
+]
+
+[Skill02]
+type = 'cAttack'
+value = 1460
+rangeX = 0
+rangeY = 48
+cd = 15
+combatPoint = 1460
+
+frame = [
+    'setSound = Audio/Hidan/Hidan_skill2.ogg',
+    'Hidan_Skill02_001',
+    'Hidan_Skill02_002',
+    'Hidan_Skill02_003',
+    'Hidan_Skill02_004',
+    'setHit = o_hit',
+    'setDSound = Audio/Effect/blade_damage2.ogg',
+    'Hidan_Skill02_005',
+]
+
+[Skill03]
+type = 'aAttack'
+value = 360
+rangeX = 0
+rangeY = 48
+cd = 25
+combatPoint = 2160
+
+frame = [
+    'setSound = Audio/Hidan/Hidan_skill3.ogg',
+    'Hidan_Skill03_001',
+    'setHit = s_hit',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'Hidan_Skill03_002',
+    'Hidan_Skill03_003',
+    'setHit = s_hit',
+    'Hidan_Skill03_004',
+    'Hidan_Skill03_001',
+    'setHit = s_hit',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'Hidan_Skill03_002',
+    'Hidan_Skill03_003',
+    'setHit = s_hit',
+    'Hidan_Skill03_004',
+    'Hidan_Skill03_001',
+    'setHit = s_hit',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'Hidan_Skill03_002',
+    'Hidan_Skill03_003',
+    'setHit = s_hit',
+    'Hidan_Skill03_004',
+]
+
+[Skill04]
+type = 'cAttack'
+value = 760
+rangeX = 0
+rangeY = 48
+combatPoint = 3800
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Hidan_Skill04_001',
+    'Hidan_Skill04_002',
+    'setShadow = 10',
+    'setMove = 32',
+    'Hidan_Skill04_003',
+    'setSound = Audio/Hidan/Hidan_skill4.ogg',
+    'setMon = Wave',
+    'Hidan_Skill04_004',
+    'setShadow = 10',
+    'Hidan_Skill04_005',
+    'Hidan_Skill04_006',
+    'setShadow = 10',
+    'Hidan_Skill04_007',
+    'Hidan_Skill04_008',
+    'Hidan_Skill04_009',
+    'Hidan_Skill04_010',
+    'setHit = ab_hit',
+    'setSound = Audio/Hidan/Hidan_skill4_1.ogg',
+    'Hidan_Skill04_011',
+    'setHit = ab_hit',
+    'Hidan_Skill04_012',
+    'Hidan_Skill04_013',
+    'setHit = b_hit',
+    'setDSound = Audio/Effect/blade_damage2.ogg',
+    'Hidan_Skill04_014',
+    'Hidan_Skill04_015',
+]
+
+[Skill05]
+type = 'cBuff'
+rangeX = 0
+rangeY = 15
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Hidan_Skill05_001',
+    'setCmd = setInvincible',
+    'Hidan_Skill05_002',
+    'Hidan_Skill05_003',
+    'Hidan_Skill05_004',
+    'Hidan_Skill05_005',
+    'Hidan_Skill05_006',
+    'setOugis = 10',
+    'Hidan_Skill05_007',
+    'setBuff = 18',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+value = 660
+rangeX = 16
+rangeY = 32
+cd = 10
+anim = {base = 'Idle'}
+frame = [
+    'Hidan_Skill10_001',
+    'setDelay = 10',
+    'Hidan_Skill10_002',
+    'setDelay = 10',
+]
+
+[Spc02]
+cd = 15
+anim = {base = 'Walk'}
+frame = [
+    'Hidan_Run_01',
+    'setShadow = 10',
+    'Hidan_Run_02',
+    'Hidan_Run_03',
+    'setShadow = 10',
+    'Hidan_Run_04',
+    'Hidan_Run_05',
+    'setShadow = 10',
+    'Hidan_Run_06',
+]
+
+[Spc03]
+type = 'nAttack'
+anim = {base = 'NAttack'}
+frame = [
+    'Hidan_Skill12_001',
+    'Hidan_Skill12_002',
+    'Hidan_Skill12_003',
+    'Hidan_Skill12_004',
+    'Hidan_Skill12_005',
+    'Hidan_Skill12_006',
+    'setCmd = setCounter',
+]

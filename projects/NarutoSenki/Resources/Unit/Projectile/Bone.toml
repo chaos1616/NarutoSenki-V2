@@ -1,0 +1,30 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Bone'
+
+[Idle]
+frame = [
+    'Bone_Move_01',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 260
+rangeX = 32
+rangeY = 0
+anim = {loop = true}
+frame = [
+    'Bone_Move_01',
+    'setHit = bl_hit',
+    'Bone_Move_02',
+    'setHit = bl_hit',
+    'Bone_Move_03',
+    'setHit = bl_hit',
+    'Bone_Move_04',
+    'setHit = bl_hit',
+]

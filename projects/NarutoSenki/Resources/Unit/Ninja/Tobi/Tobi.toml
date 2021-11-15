@@ -1,0 +1,283 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Tobi'
+hp = 5500
+hpBar.y = 80
+speed = 224
+
+[Idle]
+frame = [
+    'Tobi_Idle_001',
+    'Tobi_Idle_002',
+    'Tobi_Idle_003',
+    'Tobi_Idle_004',
+]
+
+[Walk]
+frame = [
+    'Tobi_Walk_01',
+    'Tobi_Walk_02',
+    'Tobi_Walk_03',
+    'Tobi_Walk_04',
+    'Tobi_Walk_05',
+    'Tobi_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Tobi_Hurt_01',
+    'Tobi_Hurt_02',
+]
+
+[AirHurt]
+frame = [
+    'Tobi_AirHurt_001',
+]
+
+[Knockdown]
+frame = [
+    'Tobi_Float_003',
+    'setDelay = 10',
+    'Tobi_Knockdown_001',
+    'setDelay = 60',
+    'Tobi_Knockdown_002',
+    'Tobi_Knockdown_003',
+    'Tobi_Knockdown_004',
+]
+
+[Float]
+frame = [
+    'Tobi_Float_001',
+    'setDelay = 10',
+    'Tobi_Float_002',
+    'setDelay = 10',
+    'Tobi_Float_003',
+]
+
+[Dead]
+frame = [
+    'Tobi_Float_003',
+    'Tobi_Knockdown_001',
+    'setSound = Audio/Tobi/Tobi_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 80
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Tobi_NAttack_001',
+    'Tobi_NAttack_002',
+    'Tobi_NAttack_003',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/combo1.ogg',
+    'Tobi_NAttack_004',
+    'Tobi_NAttack_005',
+    'Tobi_NAttack_006',
+    'setMove = 8',
+    'Tobi_NAttack_007',
+    'setSound = Audio/Effect/kong.ogg',
+    'setHit = n_hit',
+    'setDelay = 10',
+    'Tobi_NAttack_008',
+    'Tobi_NAttack_009',
+    'Tobi_NAttack_010',
+    'Tobi_NAttack_011',
+    'setSound = Audio/Tobi/Tobi_combo.ogg',
+    'Tobi_NAttack_012',
+    'setMove = 16',
+    'setHit = l_hit',
+    'setSound = Audio/Effect/combo3.ogg',
+    'Tobi_NAttack_013',
+    'setDelay = 20',
+]
+
+[Skill01]
+type = 'aAttack'
+value = 460
+rangeX = 16
+rangeY = 48
+cd = 10
+combatPoint = 1380
+
+frame = [
+    'Tobi_Skill02_001',
+    'Tobi_Skill02_002',
+    'setSound = Audio/Tobi/Tobi_skill1.ogg',
+    'setChargeB = 96',
+    'setHit = c_hit',
+    'Tobi_Skill02_003',
+    'Tobi_Skill02_004',
+    'setHit = ab_hit',
+    'setChargeB = 96',
+    'Tobi_Skill02_002',
+    'Tobi_Skill02_003',
+    'setHit = c_hit',
+    'setChargeB = 96',
+    'Tobi_Skill02_004',
+    'Tobi_Skill02_005',
+    'setDelay = 20',
+]
+
+[Skill02]
+type = 'Summon'
+cd = 15
+combatPoint = 1920
+
+frame = [
+    'Tobi_Skill01_001',
+    'setSound = Audio/Tobi/Tobi_skill2.ogg',
+    'setMon = TamaBomb',
+    'Tobi_Skill01_002',
+    'Tobi_Skill01_003',
+    'setDelay = 30',
+    'Tobi_Skill01_004',
+    'setMon = TamaBomb',
+    'Tobi_Skill01_005',
+    'Tobi_Skill01_006',
+    'setDelay = 10',
+    'Tobi_Skill01_007',
+    'setSound = Audio/Tobi/Tobi_skill2_1.ogg',
+    'Tobi_Skill01_008',
+    'setDelay = 40',
+]
+
+[Skill03]
+type = 'cBuff'
+rangeX = 0
+rangeY = 6
+cd = 20
+
+frame = [
+    'Tobi_Skill03_001',
+    'Tobi_Skill03_002',
+    'setSound = Audio/Tobi/Tobi_skill3.ogg',
+    'Tobi_Skill03_003',
+    'Tobi_Skill03_004',
+    'Tobi_Skill03_005',
+    'Tobi_Skill03_006',
+    'setSkillEffect = sharingan2',
+    'Tobi_Skill03_007',
+    'setSound = Audio/Effect/srg2.ogg',
+    'setDelay = 40',
+    'setBuff = 17',
+]
+
+[Skill04]
+type = 'cAttack'
+value = 960
+rangeX = 32
+rangeY = 48
+combatPoint = 3480
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Tobi_Skill04_001',
+    'setSound = Audio/Tobi/Tobi_skill4.ogg',
+    'Tobi_Skill04_002',
+    'setCmd = findTarget',
+    'setCmd = setTransport',
+    'Tobi_Skill04_003',
+    'Tobi_Skill04_004',
+    'setHit = ct_hit',
+    'setDelay = 20',
+    'setMon = Shenwei2',
+    'setDelay = 50',
+]
+
+[Skill05]
+type = 'cAttack'
+value = 460
+rangeX = 0
+rangeY = 48
+combatPoint = 9220
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Tobi_Skill05_001',
+    'Tobi_Skill05_002',
+    'setOugis = 10',
+    'Tobi_Skill05_003',
+    'Tobi_Skill05_004',
+    'Tobi_Skill05_005',
+    'setCmd = setInvincible',
+    'Tobi_Skill05_006',
+    'Tobi_Skill05_007',
+    'Tobi_Skill05_008',
+    'setSound = Audio/Tobi/Tobi_skill5_1.ogg',
+    'setHit = o_hit',
+    'Tobi_Skill05_009',
+    'setSound = Audio/Effect/goukakyu.ogg',
+    'Tobi_Skill05_010',
+    'setHit = c_hit',
+    'Tobi_Skill05_011',
+    'Tobi_Skill05_012',
+    'setHit = f_hit',
+    'Tobi_Skill05_013',
+    'Tobi_Skill05_015',
+    'setShadow = 10',
+    'Tobi_Skill05_016',
+    'setShadow = 10',
+    'setJump = true',
+    'Tobi_Skill05_017',
+    'setShadow = 10',
+    'Tobi_Skill05_018',
+    'setShadow = 10',
+    'Tobi_Skill05_019',
+    'setShadow = 10',
+    'setMon = FireRain',
+    'Tobi_Skill05_019',
+    'setShadow = 10',
+    'setSound = Audio/Effect/goukakyu.ogg',
+    'Tobi_Skill05_019',
+    'setShadow = 10',
+    'Tobi_Skill05_019',
+    'setShadow = 10',
+    'Tobi_Skill05_020',
+    'Tobi_Skill05_021',
+    'Tobi_Skill05_022',
+    'Tobi_Skill05_023',
+    'Tobi_Skill05_024',
+    'Tobi_Skill05_025',
+    'setDelay = 10',
+    'Tobi_Skill05_026',
+    'Tobi_Skill05_027',
+    'setSound = Audio/Effect/goukakyu.ogg',
+    'setHit = b_hit',
+    'Tobi_Skill05_028',
+    'Tobi_Skill05_029',
+    'setHit = c_hit',
+    'Tobi_Skill05_030',
+    'setHit = c_hit',
+    'Tobi_Skill05_031',
+    'Tobi_Skill05_033',
+    'setSound = Audio/Tobi/Tobi_skill5_2.ogg',
+    'setSkillEffect = sharingan3',
+    'setDelay = 10',
+    'Tobi_Skill05_034',
+    'setDelay = 10',
+    'setMon = Shenwei',
+    'Tobi_Skill05_035',
+    'setDelay = 50',
+    'Tobi_Skill05_036',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+
+frame = [
+    'Tobi_Skill10_01',
+    'Tobi_Skill10_02',
+    'Tobi_Skill10_03',
+    'Tobi_Skill10_04',
+    'Tobi_Skill10_05',
+    'Tobi_Skill10_06',
+]

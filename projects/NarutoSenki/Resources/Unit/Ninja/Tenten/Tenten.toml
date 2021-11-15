@@ -1,0 +1,274 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Tenten'
+hp = 5000
+hpBar.y = 71
+speed = 224
+
+[Idle]
+frame = [
+    'Tenten_Idle_01',
+    'Tenten_Idle_02',
+    'Tenten_Idle_03',
+    'Tenten_Idle_04',
+]
+
+[Walk]
+frame = [
+    'Tenten_Walk_01',
+    'Tenten_Walk_02',
+    'Tenten_Walk_03',
+    'Tenten_Walk_04',
+    'Tenten_Walk_05',
+    'Tenten_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Tenten_Hurt_01',
+    'Tenten_Hurt_02',
+    'setSound = Audio/Tenten/tenten_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Tenten_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Tenten_Knockdown_01',
+    'setDelay = 10',
+    'Tenten_Knockdown_02',
+    'setDelay = 60',
+    'Tenten_Knockdown_03',
+    'Tenten_Knockdown_04',
+    'Tenten_Knockdown_05',
+]
+
+[Float]
+frame = [
+    'Tenten_Float_01',
+    'setDelay = 10',
+    'Tenten_Float_02',
+    'setDelay = 10',
+    'Tenten_Float_03',
+]
+
+[Dead]
+frame = [
+    'Tenten_Knockdown_01',
+    'Tenten_Knockdown_02',
+    'setSound = Audio/Tenten/tenten_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Tenten_NAttack_01',
+    'Tenten_NAttack_02',
+    'setSound = Audio/Effect/combo1.ogg',
+    'Tenten_NAttack_03',
+    'setHit = n_hit',
+    'Tenten_NAttack_04',
+    'Tenten_NAttack_05',
+    'setMove = 8',
+    'Tenten_NAttack_06',
+    'setDelay = 10',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'Tenten_NAttack_07',
+    'Tenten_NAttack_08',
+    'setSound = Audio/Tenten/tenten_combo.ogg',
+    'Tenten_NAttack_09',
+    'Tenten_NAttack_10',
+    'setSound = Audio/Effect/kong.ogg',
+    'setHit = bl_hit',
+    'setMove = 16',
+    'Tenten_NAttack_11',
+    'Tenten_NAttack_12',
+    'Tenten_NAttack_13',
+    'Tenten_NAttack_14',
+]
+
+[Skill01]
+type = 'Summon'
+rangeX = 0
+rangeY = 10
+cd = 10
+combatPoint = 1260
+
+frame = [
+    'setSound = Audio/Tenten/tenten_skill1.ogg',
+    'Tenten_Skill01_02',
+    'Tenten_Skill01_04',
+    'setMon = Mine',
+    'setDelay = 10',
+    'Tenten_Skill01_05',
+]
+
+[Skill02]
+type = 'Bullet'
+cd = 15
+combatPoint = 2080
+
+frame = [
+    'Tenten_Skill02_01',
+    'setDelay = 10',
+    'Tenten_Skill02_02',
+    'setSound = Audio/Tenten/tenten_skill2.ogg',
+    'setBullet = FlyKnife',
+    'Tenten_Skill02_03',
+    'Tenten_Skill02_05',
+    'Tenten_Skill02_06',
+    'setMove = 8',
+    'Tenten_Skill02_07',
+    'setSound = Audio/Tenten/tenten_skill2_1.ogg',
+    'setBullet = FlyKnife',
+    'setDelay = 10',
+]
+
+[Skill03]
+type = 'cBuff'
+rangeX = 0
+rangeY = 8
+cd = 25
+combatPoint = 5600
+
+frame = [
+    'Tenten_Skill03_01',
+    'setSound = Audio/Tenten/tenten_skill3.ogg',
+    'Tenten_Skill03_02',
+    'setDelay = 10',
+    'Tenten_Skill03_03',
+    'setDelay = 10',
+    'setBuff = 17',
+]
+
+[Skill04]
+type = 'aAttack'
+value = 400
+rangeX = 0
+rangeY = 48
+combatPoint = 3200
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setSound = Audio/Tenten/tenten_skill4.ogg',
+    'Tenten_Skill04_07',
+    'setShadow = 10',
+    'Tenten_Skill04_08',
+    'setChargeB = 96',
+    'Tenten_Skill04_09',
+    'setShadow = 10',
+    'setHit = o_hit',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'Tenten_Skill04_10',
+    'setChargeB = 96',
+    'Tenten_Skill04_11',
+    'setShadow = 10',
+    'setHit = o_hit',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'Tenten_Skill04_12',
+    'setChargeB = 96',
+    'Tenten_Skill04_13',
+    'setShadow = 10',
+    'setHit = c_hit',
+    'Tenten_Skill04_14',
+    'Tenten_Skill04_15',
+    'setShadow = 10',
+    'setHit = bf_hit',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'Tenten_Skill04_10',
+    'Tenten_Skill04_11',
+    'setShadow = 10',
+    'setJump = true',
+    'Tenten_Skill04_12',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'Tenten_Skill04_13',
+    'setShadow = 10',
+    'Tenten_Skill04_14',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'Tenten_Skill04_15',
+    'setShadow = 10',
+    'setSound = Audio/Tenten/tenten_skill4_1.ogg',
+    'Tenten_Skill04_16',
+    'Tenten_Skill04_17',
+    'setHit = c_hit',
+    'Tenten_Skill04_18',
+    'Tenten_Skill04_19',
+    'setDSound = Audio/Effect/damage_o2.ogg',
+    'Tenten_Skill04_20',
+    'setHit = b_hit',
+    'Tenten_Skill04_21',
+]
+
+[Skill05]
+type = 'cAttack'
+value = 1060
+rangeX = 0
+rangeY = 48
+combatPoint = 8760
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Tenten_Skill05_10',
+    'setCmd = setInvincible',
+    'Tenten_Skill06_001',
+    'Tenten_Skill06_002',
+    'Tenten_Skill06_001',
+    'Tenten_Skill06_002',
+    'Tenten_Skill06_001',
+    'Tenten_Skill06_002',
+    'setOugis = 10',
+    'Tenten_Skill06_002',
+    'Tenten_Skill06_003',
+    'Tenten_Skill06_004',
+    'setHit = ab_hit',
+    'Tenten_Skill06_005',
+    'Tenten_Skill06_006',
+    'setHit = o2_hit',
+    'Tenten_Skill05_01',
+    'setDelay = 10',
+    'setJump = true',
+    'setSound = Audio/Tenten/Tenten_skill5_2.ogg',
+    'Tenten_Skill05_02',
+    'setShadow = 10',
+    'setDelay = 10',
+    'Tenten_Skill05_03',
+    'setShadow = 10',
+    'Tenten_Skill05_04',
+    'setSound = Audio/Tenten/Tenten_skill5_3.ogg',
+    'stopJump = 90',
+    'setCmd = addExtern',
+    'setMon = Shoryu',
+    'Tenten_Skill05_05',
+    'Tenten_Skill05_06',
+    'setDelay = 10',
+    'Tenten_Skill05_07',
+    'setDelay = 10',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+type = 'Bullet'
+anim = {base = 'NAttack'}
+frame = [
+    'Tenten_Skill10_01',
+    'Tenten_Skill10_02',
+    'Tenten_Skill10_03',
+    'Tenten_Skill10_04',
+    'setBullet = TentenSRK',
+]

@@ -1,0 +1,55 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'FakeItachi'
+
+[Idle]
+frame = [
+    'FakeItachi_Move_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 260
+rangeX = 32
+rangeY = 48
+
+frame = [
+    'FakeItachi_Move_001',
+    'setSkillEffect = DarkFlame',
+    'setDelay = 10',
+    'FakeItachi_Move_002',
+    'setHit = a_hit',
+    'FakeItachi_Move_003',
+    'FakeItachi_Move_004',
+    'setDelay = 10',
+    'setHit = a_hit',
+    'setDelay = 20',
+    'FakeItachi_Move_004',
+    'setHit = a_hit',
+    'setDelay = 20',
+    'FakeItachi_Move_004',
+    'setHit = a_hit',
+    'setDelay = 20',
+    'FakeItachi_Move_004',
+    'setHit = a_hit',
+    'setDelay = 20',
+    'FakeItachi_Move_004',
+    'setHit = a_hit',
+    'setDelay = 20',
+    'FakeItachi_Move_004',
+    'setHit = a_hit',
+    'setDelay = 20',
+    'FakeItachi_Move_004',
+    'setHit = a_hit',
+    'setDelay = 20',
+    'FakeItachi_Move_004',
+    'setHit = a_hit',
+    'setDelay = 20',
+    'FakeItachi_Move_002',
+    'setDestroy = 0',
+]

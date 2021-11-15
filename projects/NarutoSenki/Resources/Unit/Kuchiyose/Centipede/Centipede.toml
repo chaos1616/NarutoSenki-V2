@@ -1,0 +1,62 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Centipede'
+hp = 6000
+hpBar.y = 76
+speed = 224
+
+[Idle]
+frame = [
+    'Centipede_Idle_01',
+    'Centipede_Idle_02',
+    'Centipede_Idle_03',
+]
+
+[Walk]
+frame = [
+    'Centipede_Walk_01',
+    'Centipede_Walk_02',
+    'Centipede_Walk_03',
+    'Centipede_Walk_04',
+]
+
+[Hurt]
+frame = [
+    'Centipede_Walk_01',
+]
+
+[AirHurt]
+frame = [
+    'Centipede_Walk_01',
+]
+
+[Knockdown]
+frame = [
+    'Centipede_Walk_01',
+]
+
+[Dead]
+frame = [
+    'Centipede_Walk_01',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 160
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Centipede_NAttack_01',
+    'Centipede_NAttack_02',
+    'Centipede_NAttack_03',
+    'Centipede_NAttack_04',
+    'Centipede_NAttack_05',
+    'setHit = n_hit',
+    'Centipede_NAttack_06',
+]

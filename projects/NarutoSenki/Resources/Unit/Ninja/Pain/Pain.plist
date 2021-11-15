@@ -211,7 +211,7 @@
                 <key>sourceSize</key>
                 <string>{34,83}</string>
             </dict>
-            <key>Pain_KnockDown_01</key>
+            <key>Pain_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{87,296},{81,40}}</string>
@@ -224,7 +224,7 @@
                 <key>sourceSize</key>
                 <string>{81,74}</string>
             </dict>
-            <key>Pain_KnockDown_02</key>
+            <key>Pain_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{180,106},{85,36}}</string>
@@ -237,7 +237,7 @@
                 <key>sourceSize</key>
                 <string>{85,74}</string>
             </dict>
-            <key>Pain_KnockDown_03</key>
+            <key>Pain_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{296,489},{62,46}}</string>
@@ -250,7 +250,7 @@
                 <key>sourceSize</key>
                 <string>{62,74}</string>
             </dict>
-            <key>Pain_KnockDown_04</key>
+            <key>Pain_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{414,487},{53,54}}</string>
@@ -263,7 +263,7 @@
                 <key>sourceSize</key>
                 <string>{53,74}</string>
             </dict>
-            <key>Pain_KnockDown_05</key>
+            <key>Pain_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,495},{39,68}}</string>

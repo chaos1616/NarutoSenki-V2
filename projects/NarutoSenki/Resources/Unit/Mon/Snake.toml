@@ -1,0 +1,34 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Snake'
+speed = 320
+
+[Idle]
+frame = [
+    'Snake_Walk_01',
+]
+
+[Walk]
+frame = [
+    'Snake_Walk_01',
+    'Snake_Walk_02',
+    'Snake_Walk_03',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 260
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'ink_boom01',
+    'setHit = c_hit',
+    'ink_boom02',
+    'setDestroy = 0',
+]

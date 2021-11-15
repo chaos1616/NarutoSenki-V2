@@ -1,0 +1,29 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Tsukuyomi'
+
+[Idle]
+frame = [
+    'Tsukuyomi_Move_000',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 660
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'setCmd = findTarget',
+    'setCmd = setTransport',
+    'Tsukuyomi_Move_000',
+    'setHit = ct_hit',
+    'setMon = FakeItachi',
+    'setDelay = 290',
+    'setDestroy = 0',
+]

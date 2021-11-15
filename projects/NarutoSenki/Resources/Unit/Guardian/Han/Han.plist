@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{51,72}</string>
             </dict>
-            <key>Han_KnockDown_001</key>
+            <key>Han_Knockdown_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,744},{73,41}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{73,41}</string>
             </dict>
-            <key>Han_KnockDown_002</key>
+            <key>Han_Knockdown_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{157,680},{81,39}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{81,39}</string>
             </dict>
-            <key>Han_KnockDown_003</key>
+            <key>Han_Knockdown_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{481,531},{78,24}}</string>

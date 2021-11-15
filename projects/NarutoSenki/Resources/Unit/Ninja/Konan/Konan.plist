@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{29,77}</string>
             </dict>
-            <key>Konan_KnockDown_01</key>
+            <key>Konan_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{386,873},{56,42}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{56,82}</string>
             </dict>
-            <key>Konan_KnockDown_02</key>
+            <key>Konan_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{193,828},{77,30}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{77,82}</string>
             </dict>
-            <key>Konan_KnockDown_03</key>
+            <key>Konan_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,607},{82,26}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{82,82}</string>
             </dict>
-            <key>Konan_KnockDown_04</key>
+            <key>Konan_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{385,719},{56,58}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{56,82}</string>
             </dict>
-            <key>Konan_KnockDown_05</key>
+            <key>Konan_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{385,779},{33,76}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{33,82}</string>
             </dict>
-            <key>Konan_KnockDown_06</key>
+            <key>Konan_Knockdown_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,934},{24,78}}</string>

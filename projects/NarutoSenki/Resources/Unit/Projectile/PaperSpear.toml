@@ -1,0 +1,24 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'PaperSpear'
+
+[Idle]
+frame = [
+    'PaperSpear_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 260
+anim = {loop = true}
+frame = [
+    'PaperSpear_Move_01',
+    'setHit = bl_hit',
+    'PaperSpear_Move_02',
+    'setHit = bl_hit',
+]

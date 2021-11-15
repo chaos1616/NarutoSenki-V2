@@ -1,0 +1,87 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'MaskKaton'
+hp = 20000
+hpBar.y = 80
+speed = 224
+
+[Idle]
+frame = [
+    'MaskKaton_Idle_001',
+]
+
+[Walk]
+frame = [
+    'MaskKaton_Walk_001',
+    'setDelay = 10',
+    'MaskKaton_Walk_002',
+    'setDelay = 10',
+    'MaskKaton_Walk_003',
+    'setDelay = 10',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'MaskKaton_Idle_001',
+]
+
+[AirHurt]
+frame = [
+    'MaskKaton_Idle_001',
+]
+
+[Knockdown]
+frame = [
+    'MaskKaton_Idle_001',
+]
+
+[Float]
+frame = [
+    'MaskKaton_Idle_001',
+]
+
+[Dead]
+frame = [
+    'MaskKaton_Idle_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 100
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'MaskKaton_Walk_001',
+    'setDelay = 10',
+    'MaskKaton_Walk_002',
+    'setHit = a_hit',
+    'setDelay = 10',
+    'MaskKaton_Walk_003',
+    'setDelay = 10',
+]
+
+[Skill01]
+type = 'cAttack'
+value = 1160
+rangeX = 0
+rangeY = 48
+cd = 10
+
+frame = [
+    'MaskKaton_Move_001',
+    'MaskKaton_Move_002',
+    'setSound = Audio/Effect/goukakyu.ogg',
+    'MaskKaton_Move_003',
+    'setHit = a_hit',
+    'MaskKaton_Move_004',
+    'MaskKaton_Move_005',
+    'setHit = a_hit',
+    'MaskKaton_Move_006',
+]

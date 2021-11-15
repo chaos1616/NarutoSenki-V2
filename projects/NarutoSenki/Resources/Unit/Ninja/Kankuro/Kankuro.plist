@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{52,72}</string>
             </dict>
-            <key>Kankuro_KnockDown_01</key>
+            <key>Kankuro_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{176,126},{84,27}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{84,27}</string>
             </dict>
-            <key>Kankuro_KnockDown_02</key>
+            <key>Kankuro_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{89,126},{85,23}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{85,23}</string>
             </dict>
-            <key>Kankuro_KnockDown_03</key>
+            <key>Kankuro_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,398},{72,35}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{72,35}</string>
             </dict>
-            <key>Kankuro_KnockDown_04</key>
+            <key>Kankuro_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{454,373},{49,48}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{49,48}</string>
             </dict>
-            <key>Kankuro_KnockDown_05</key>
+            <key>Kankuro_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{278,373},{34,58}}</string>

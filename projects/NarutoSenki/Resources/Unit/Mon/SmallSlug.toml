@@ -1,0 +1,40 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'SmallSlug'
+hp = 2000
+speed = 112
+
+[Idle]
+frame = [
+    'SmallSlug_Move_01',
+]
+
+[Walk]
+frame = [
+    'SmallSlug_Move_01',
+    'setDelay = 10',
+    'SmallSlug_Move_02',
+    'setDelay = 10',
+    'SmallSlug_Move_03',
+    'setDelay = 10',
+]
+
+[NAttack]
+type = 'aAttack'
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'SmallSlug_Move_01',
+    'setDelay = 10',
+    'SmallSlug_Move_02',
+    'setDelay = 10',
+    'SmallSlug_Move_03',
+    'setHit = a_hit',
+    'setDelay = 10',
+]

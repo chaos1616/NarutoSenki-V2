@@ -1,0 +1,35 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'BoneBullet'
+
+[Idle]
+frame = [
+    'BoneBullet_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 660
+rangeX = 48
+rangeY = 48
+
+frame = [
+    'BoneBullet_Move_01',
+    'setHit = c_hit',
+    'BoneBullet_Move_02',
+    'setHit = c_hit',
+    'BoneBullet_Move_03',
+    'setHit = c_hit',
+    'BoneBullet_Move_04',
+    'setHit = c_hit',
+    'BoneBullet_Move_05',
+    'setHit = c_hit',
+    'BoneBullet_Move_06',
+    'setHit = c_hit',
+    'setDestroy = 0',
+]

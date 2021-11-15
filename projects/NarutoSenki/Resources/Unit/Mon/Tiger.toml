@@ -1,0 +1,42 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Tiger'
+speed = 320
+
+[Idle]
+frame = [
+    'Tiger_Idle_001',
+    'Tiger_Idle_002',
+    'setDelay = 10',
+    'Tiger_Idle_003',
+    'setDelay = 10',
+]
+
+[Walk]
+frame = [
+    'Tiger_Move_001',
+    'Tiger_Move_002',
+    'Tiger_Move_003',
+    'Tiger_Move_004',
+    'Tiger_Move_005',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 1560
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'Tiger_Attack_001',
+    'ink_boom01',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/stick_damage.ogg',
+    'ink_boom02',
+    'setDestroy = 0',
+]

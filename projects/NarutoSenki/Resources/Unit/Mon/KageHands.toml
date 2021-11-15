@@ -1,0 +1,71 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'KageHands'
+
+[Idle]
+frame = [
+    'KageHands_Move_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 160
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'KageHands_Move_001',
+    'KageHands_Move_002',
+    'KageHands_Move_003',
+    'setHit = s_hit',
+    'KageHands_Move_004',
+    'KageHands_Move_005',
+    'setHit = s_hit',
+    'KageHands_Move_006',
+    'KageHands_Move_007',
+    'setHit = s_hit',
+    'KageHands_Move_004',
+    'KageHands_Move_005',
+    'setHit = s_hit',
+    'KageHands_Move_006',
+    'KageHands_Move_007',
+    'setHit = s_hit',
+    'KageHands_Move_004',
+    'KageHands_Move_005',
+    'setHit = s_hit',
+    'KageHands_Move_006',
+    'KageHands_Move_007',
+    'setHit = s_hit',
+    'KageHands_Move_004',
+    'KageHands_Move_005',
+    'setHit = s_hit',
+    'KageHands_Move_006',
+    'KageHands_Move_007',
+    'setHit = s_hit',
+    'KageHands_Move_004',
+    'KageHands_Move_005',
+    'setHit = s_hit',
+    'KageHands_Move_006',
+    'KageHands_Move_007',
+    'setHit = s_hit',
+    'KageHands_Move_004',
+    'KageHands_Move_005',
+    'setHit = s_hit',
+    'KageHands_Move_006',
+    'KageHands_Move_007',
+    'setHit = s_hit',
+    'KageHands_Move_004',
+    'KageHands_Move_005',
+    'setHit = s_hit',
+    'KageHands_Move_006',
+    'KageHands_Move_007',
+    'setHit = s_hit',
+    'KageHands_Move_003',
+    'KageHands_Move_002',
+    'setDestroy = 0',
+]

@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{50,75}</string>
             </dict>
-            <key>Roshi_KnockDown_001</key>
+            <key>Roshi_Knockdown_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{466,83},{62,38}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{62,38}</string>
             </dict>
-            <key>Roshi_KnockDown_002</key>
+            <key>Roshi_Knockdown_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{150,444},{67,37}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{67,37}</string>
             </dict>
-            <key>Roshi_KnockDown_003</key>
+            <key>Roshi_Knockdown_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{152,128},{79,28}}</string>

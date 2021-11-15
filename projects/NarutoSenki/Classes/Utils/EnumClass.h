@@ -7,54 +7,62 @@ template <typename T>
 inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, T>
 operator~(T a) noexcept
 {
-	using _MyBase = std::underlying_type_t<T>;
-	return static_cast<T>(~static_cast<_MyBase>(a));
+	using _Base = std::underlying_type_t<T>;
+	return static_cast<T>(~static_cast<_Base>(a));
 }
 
 template <typename T>
 inline constexpr std::enable_if_t<std::is_integral_v<std::underlying_type_t<T>>, T>
 operator|(T a, T b) noexcept
 {
-	using _MyBase = std::underlying_type_t<T>;
-	return static_cast<T>(static_cast<_MyBase>(a) | static_cast<_MyBase>(b));
+	using _Base = std::underlying_type_t<T>;
+	return static_cast<T>(static_cast<_Base>(a) | static_cast<_Base>(b));
 }
 
 template <typename T>
 inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, T>
 operator&(T a, T b) noexcept
 {
-	using _MyBase = std::underlying_type_t<T>;
-	return static_cast<T>(static_cast<_MyBase>(a) & static_cast<_MyBase>(b));
+	using _Base = std::underlying_type_t<T>;
+	return static_cast<T>(static_cast<_Base>(a) & static_cast<_Base>(b));
 }
 
 template <typename T>
 inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, T>
 operator^(T a, T b) noexcept
 {
-	using _MyBase = std::underlying_type_t<T>;
-	return static_cast<T>(static_cast<_MyBase>(a) ^ static_cast<_MyBase>(b));
+	using _Base = std::underlying_type_t<T>;
+	return static_cast<T>(static_cast<_Base>(a) ^ static_cast<_Base>(b));
 }
 
 template <typename T>
 inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, T &>
 operator|=(T &a, T b) noexcept
 {
-	using _MyBase = std::underlying_type_t<T>;
-	return reinterpret_cast<T &>(reinterpret_cast<_MyBase &>(a) |= static_cast<_MyBase>(b));
+	using _Base = std::underlying_type_t<T>;
+	return reinterpret_cast<T &>(reinterpret_cast<_Base &>(a) |= static_cast<_Base>(b));
 }
 
 template <typename T>
 inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, T &>
 operator&=(T &a, T b) noexcept
 {
-	using _MyBase = std::underlying_type_t<T>;
-	return reinterpret_cast<T &>(reinterpret_cast<_MyBase &>(a) &= static_cast<_MyBase>(b));
+	using _Base = std::underlying_type_t<T>;
+	return reinterpret_cast<T &>(reinterpret_cast<_Base &>(a) &= static_cast<_Base>(b));
 }
 
 template <typename T>
 inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, T &>
 operator^=(T &a, T b) noexcept
 {
-	using _MyBase = std::underlying_type_t<T>;
-	return reinterpret_cast<T &>(reinterpret_cast<_MyBase &>(a) ^= static_cast<_MyBase>(b));
+	using _Base = std::underlying_type_t<T>;
+	return reinterpret_cast<T &>(reinterpret_cast<_Base &>(a) ^= static_cast<_Base>(b));
+}
+
+template <typename T>
+inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, bool>
+hasFlag(T a, T b) noexcept
+{
+	using _Base = std::underlying_type_t<T>;
+	return static_cast<_Base>(a & b) != static_cast<_Base>(0);
 }

@@ -1,0 +1,32 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Tuji'
+
+[Idle]
+frame = [
+    'Tuji_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 560
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'Tuji_Move_01',
+    'setHit = b_hit',
+    'setDelay = 10',
+    'Tuji_Move_02',
+    'setHit = b_hit',
+    'setDelay = 10',
+    'Tuji_Move_03',
+    'setHit = b_hit',
+    'setDelay = 10',
+    'setDestroy = 0',
+]

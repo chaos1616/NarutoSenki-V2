@@ -6,12 +6,9 @@
 class Monster : public CharacterBase
 {
 public:
-	Monster();
-	~Monster();
-
 	bool init();
 	void initAction();
-	void setID(const string &name, Role role, Group group);
+	void setID(const string &name, Role role, Group group) override;
 	void setHPbar();
 	void changeHPbar();
 	void setDirectMove(int length, float delay, bool isReverse);

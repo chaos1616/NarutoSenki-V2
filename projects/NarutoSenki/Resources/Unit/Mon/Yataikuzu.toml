@@ -1,0 +1,31 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Yataikuzu'
+
+[Idle]
+frame = [
+    'Yataikuzu_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 1460
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'setCmd = findTarget',
+    'setCmd = setTransport',
+    'Yataikuzu_Move_01',
+    'Yataikuzu_Move_02',
+    'Yataikuzu_Move_03',
+    'Yataikuzu_Move_04',
+    'setHit = c_hit',
+    'Yataikuzu_Move_05',
+    'setDestroy = 0',
+]

@@ -1,0 +1,40 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'DeidaraBom'
+
+[Idle]
+frame = [
+    'DeidaraBom_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 2260
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'DeidaraBom_Move_01',
+    'DeidaraBom_Move_02',
+    'DeidaraBom_Move_03',
+    'DeidaraBom_Move_04',
+    'setSound = Audio/Effect/bom.ogg',
+    'setHit = n_hit',
+    'DeidaraBom_Move_05',
+    'DeidaraBom_Move_06',
+    'setHit = n_hit',
+    'DeidaraBom_Move_07',
+    'DeidaraBom_Move_08',
+    'setHit = n_hit',
+    'DeidaraBom_Move_09',
+    'DeidaraBom_Move_10',
+    'setHit = n_hit',
+    'DeidaraBom_Move_11',
+    'DeidaraBom_Move_12',
+    'setDestroy = 0',
+]

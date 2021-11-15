@@ -1,0 +1,56 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'FackMinato'
+
+[Idle]
+frame = [
+    'FackMinato_Move_001',
+]
+
+[NAttack]
+type = 'cAttack'
+value = 760
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'FackMinato_Move_001',
+    'setSound = Audio/Effect/poof.ogg',
+    'FackMinato_Move_002',
+    'FackMinato_Move_003',
+    'setHit = o_hit',
+    'FackMinato_Move_004',
+    'FackMinato_Move_005',
+    'setSound = Audio/Effect/hiraishin_effect.ogg',
+    'setHit = c_hit',
+    'FackMinato_Move_006',
+    'FackMinato_Move_007',
+    'setHit =  -->o_hit',
+    'FackMinato_Move_008',
+    'FackMinato_Move_009',
+    'setSound = Audio/Effect/hiraishin_effect.ogg',
+    'setHit = c_hit',
+    'FackMinato_Move_010',
+    'FackMinato_Move_011',
+    'setHit =  -->o_hit',
+    'FackMinato_Move_012',
+    'FackMinato_Move_013',
+    'setSound = Audio/Effect/hiraishin_effect.ogg',
+    'setHit = c_hit',
+    'FackMinato_Move_014',
+    'FackMinato_Move_015',
+    'setHit =  -->o_hit',
+    'FackMinato_Move_016',
+    'FackMinato_Move_017',
+    'setSound = Audio/Effect/hiraishin_effect.ogg',
+    'setHit = ts_hit',
+    'FackMinato_Move_018',
+    'FackMinato_Move_019',
+    'setDestroy = 0',
+    'FackMinato_Move_020',
+]

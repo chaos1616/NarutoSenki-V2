@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{40,82}</string>
             </dict>
-            <key>Kakuzu_KnockDown_001</key>
+            <key>Kakuzu_Knockdown_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{260,100},{81,39}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{81,39}</string>
             </dict>
-            <key>Kakuzu_KnockDown_002</key>
+            <key>Kakuzu_Knockdown_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,212},{82,35}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{82,35}</string>
             </dict>
-            <key>Kakuzu_KnockDown_003</key>
+            <key>Kakuzu_Knockdown_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{136,503},{61,45}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{61,45}</string>
             </dict>
-            <key>Kakuzu_KnockDown_004</key>
+            <key>Kakuzu_Knockdown_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{278,515},{48,52}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{48,52}</string>
             </dict>
-            <key>Kakuzu_KnockDown_005</key>
+            <key>Kakuzu_Knockdown_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{321,360},{52,68}}</string>

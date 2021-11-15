@@ -17,51 +17,18 @@ public:
 		return true;
 	}
 
-	void setID(const string &name, Role role, Group group)
+	void setID(const string &name, Role role, Group group) override
 	{
 		clearActionData();
 		setName(name);
 		setRole(role);
 		setGroup(group);
 
-		CCArray *animationArray = CCArray::create();
-		auto filePath = format("Unit/Projectile/{}.xml", name);
-		KTools::readXMLToArray(filePath, animationArray);
-
-		CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
-		CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-		idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-		// init nAttack data & Frame Array
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
-		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-
-		uint32_t tmpValue;
-		uint32_t tmpCD;
-		int tmpCombatPoint;
-
-		readData(tmpData, _nAttackType, tmpValue, _nAttackRangeX, _nAttackRangeY, tmpCD, tmpCombatPoint);
-		setNAttackValue(tmpValue);
-		nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-		if (getName() == ProjectileEnum::Amaterasu)
-		{
-			// init DeadFrame
-			tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
-			deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
-		}
-
-		initAction();
-	}
-
-	void initAction()
-	{
-		setIdleAction(createAnimation(idleArray, 5, true, false));
-
-		if (deadArray)
-			setDeadAction(createAnimation(deadArray, 10, false, false));
-
-		setNAttackAction(createAnimation(nattackArray, 10, true, false));
+		auto fpath = format("Unit/Projectile/{}.toml", name);
+		auto metadata = UnitParser::fromToml(fpath);
+		genActionBy(metadata);
+		// init action
+		setAction(ActionFlag::Idle | ActionFlag::Dead | ActionFlag::NAttack);
 	}
 
 	void setMove(int length, float delay, bool isReverse)

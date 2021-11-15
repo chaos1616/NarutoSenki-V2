@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{42,75}</string>
             </dict>
-            <key>ImmortalSasuke_KnockDown_01</key>
+            <key>ImmortalSasuke_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{78,497},{72,49}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{72,53}</string>
             </dict>
-            <key>ImmortalSasuke_KnockDown_02</key>
+            <key>ImmortalSasuke_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{152,357},{75,41}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{75,41}</string>
             </dict>
-            <key>ImmortalSasuke_KnockDown_03</key>
+            <key>ImmortalSasuke_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{916,408},{77,22}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{77,22}</string>
             </dict>
-            <key>ImmortalSasuke_KnockDown_04</key>
+            <key>ImmortalSasuke_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{438,470},{38,47}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{38,51}</string>
             </dict>
-            <key>ImmortalSasuke_KnockDown_05</key>
+            <key>ImmortalSasuke_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{255,225},{79,39}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{81,51}</string>
             </dict>
-            <key>ImmortalSasuke_KnockDown_06</key>
+            <key>ImmortalSasuke_Knockdown_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{229,410},{74,64}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{74,66}</string>
             </dict>
-            <key>ImmortalSasuke_KnockDown_07</key>
+            <key>ImmortalSasuke_Knockdown_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{80,433},{62,70}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{62,72}</string>
             </dict>
-            <key>ImmortalSasuke_KnockDown_08</key>
+            <key>ImmortalSasuke_Knockdown_08</key>
             <dict>
                 <key>frame</key>
                 <string>{{631,374},{51,66}}</string>

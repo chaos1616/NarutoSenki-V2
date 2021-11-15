@@ -1,0 +1,80 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'ObitoFlog'
+hp = 10000
+hpBar.y = 40
+speed = 160
+
+[Idle]
+frame = [
+    'ObitoFlog_Idle_01',
+    'ObitoFlog_Walk_01',
+]
+
+[Walk]
+frame = [
+    'ObitoFlog_Walk_01',
+    'ObitoFlog_Walk_02',
+    'setDelay = 10',
+    'ObitoFlog_Walk_03',
+    'setDelay = 10',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'ObitoFlog_Knockdown_01',
+]
+
+[AirHurt]
+frame = [
+    'ObitoFlog_Knockdown_01',
+]
+
+[Knockdown]
+frame = [
+    'ObitoFlog_Knockdown_01',
+    'ObitoFlog_Knockdown_02',
+    'ObitoFlog_Knockdown_03',
+    'setDelay = 10',
+    'ObitoFlog_Knockdown_04',
+    'setDelay = 60',
+    'ObitoFlog_Idle_01',
+]
+
+[Float]
+frame = [
+    'ObitoFlog_Float_01',
+    'setDelay = 10',
+    'ObitoFlog_Knockdown_02',
+    'setDelay = 20',
+]
+
+[Dead]
+frame = [
+    'ObitoFlog_Knockdown_01',
+    'ObitoFlog_Knockdown_02',
+    'ObitoFlog_Knockdown_03',
+    'ObitoFlog_Knockdown_04',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 8
+rangeY = 8
+frame = [
+    'ObitoFlog_NAttack_01',
+    'setDelay = 10',
+    'ObitoFlog_NAttack_02',
+    'setDelay = 10',
+    'ObitoFlog_NAttack_03',
+    'ObitoFlog_NAttack_04',
+    'setHit = n_hit',
+    'setDelay = 10',
+]

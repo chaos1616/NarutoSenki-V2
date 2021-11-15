@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{31,79}</string>
             </dict>
-            <key>Kimimaro_KnockDown_01</key>
+            <key>Kimimaro_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{210,712},{76,26}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{76,26}</string>
             </dict>
-            <key>Kimimaro_KnockDown_02</key>
+            <key>Kimimaro_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{213,542},{78,28}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{78,28}</string>
             </dict>
-            <key>Kimimaro_KnockDown_03</key>
+            <key>Kimimaro_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{109,917},{51,50}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{51,50}</string>
             </dict>
-            <key>Kimimaro_KnockDown_04</key>
+            <key>Kimimaro_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,913},{51,59}}</string>

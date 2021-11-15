@@ -1,0 +1,306 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Tsunade'
+hp = 6000
+hpBar.y = 75
+speed = 224
+
+[Idle]
+frame = [
+    'Tsunade_Idle_001',
+    'Tsunade_Idle_002',
+    'Tsunade_Idle_003',
+    'Tsunade_Idle_004',
+]
+
+[Walk]
+frame = [
+    'Tsunade_Walk_01',
+    'Tsunade_Walk_02',
+    'Tsunade_Walk_03',
+    'Tsunade_Walk_04',
+    'Tsunade_Walk_05',
+    'Tsunade_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Tsunade_Hurt_01',
+    'Tsunade_Hurt_02',
+    'setSound = Audio/Tsunade/Tsunade_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Tsunade_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Tsunade_Knockdown_01',
+    'setDelay = 10',
+    'Tsunade_Knockdown_02',
+    'Tsunade_Knockdown_03',
+    'setDelay = 60',
+    'Tsunade_Knockdown_04',
+    'Tsunade_Knockdown_05',
+    'Tsunade_Knockdown_06',
+]
+
+[Float]
+frame = [
+    'Tsunade_Float_01',
+    'Tsunade_Float_02',
+    'Tsunade_Float_03',
+]
+
+[Dead]
+frame = [
+    'Tsunade_Knockdown_01',
+    'Tsunade_Knockdown_02',
+    'Tsunade_Knockdown_03',
+    'setSound = Audio/Tsunade/Tsunade_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 120
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Tsunade_NAttack_001',
+    'Tsunade_NAttack_002',
+    'setDelay = 10',
+    'Tsunade_NAttack_003',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Tsunade_NAttack_004',
+    'Tsunade_NAttack_005',
+    'setMove = 8',
+    'Tsunade_NAttack_006',
+    'Tsunade_NAttack_007',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'Tsunade_NAttack_008',
+    'Tsunade_NAttack_009',
+    'setSound = Audio/Tsunade/Tsunade_combo.ogg',
+    'setMove = 16',
+    'Tsunade_NAttack_010',
+    'setDelay = 10',
+    'Tsunade_NAttack_011',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setHit = l_hit',
+]
+
+[Skill01]
+type = 'aAttack'
+value = 260
+rangeX = 0
+rangeY = 48
+cd = 10
+combatPoint = 1560
+
+frame = [
+    'Tsunade_Skill02_01',
+    'setSound = Audio/Tsunade/Tsunade_skill2.ogg',
+    'Tsunade_Skill02_02',
+    'setSound = Audio/Effect/break_sound.ogg',
+    'setHit = a_hit',
+    'Tsunade_Skill02_03',
+    'Tsunade_Skill02_04',
+    'setHit = a_hit',
+    'Tsunade_Skill02_06',
+    'Tsunade_Skill02_07',
+    'setHit = a_hit',
+    'Tsunade_Skill02_08',
+    'setSound = Audio/Tsunade/Tsunade_skill2_1.ogg',
+    'Tsunade_Skill02_09',
+    'setHit = a_hit',
+    'setSound = Audio/Effect/break_sound.ogg',
+    'Tsunade_Skill02_10',
+    'Tsunade_Skill02_11',
+    'setHit = a_hit',
+    'Tsunade_Skill02_12',
+    'Tsunade_Skill02_14',
+    'setHit = a_hit',
+    'Tsunade_Skill02_15',
+]
+
+[Skill02]
+type = 'aAttack'
+value = 660
+rangeX = 0
+rangeY = 48
+cd = 15
+combatPoint = 1980
+
+frame = [
+    'Tsunade_Skill01_01',
+    'setSound = Audio/Tsunade/Tsunade_skill1.ogg',
+    'setCharge = 280',
+    'Tsunade_Skill01_02',
+    'Tsunade_Skill01_03',
+    'Tsunade_Skill01_04',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_o.ogg',
+    'Tsunade_Skill01_05',
+    'Tsunade_Skill01_06',
+    'setHit = c_hit',
+    'Tsunade_Skill01_07',
+    'Tsunade_Skill01_08',
+    'Tsunade_Skill01_09',
+    'setHit = sl_hit',
+    'setSound = Audio/Effect/damage_haken.ogg',
+    'Tsunade_Skill01_10',
+    'Tsunade_Skill01_11',
+]
+
+[Skill03]
+type = 'Summon'
+cd = 25
+
+frame = [
+    'Tsunade_Skill03_01',
+    'setSound = Audio/Tsunade/Tsunade_skill3.ogg',
+    'Tsunade_Skill03_02',
+    'Tsunade_Skill03_03',
+    'Tsunade_Skill03_04',
+    'Tsunade_Skill03_05',
+    'setClone = 15',
+]
+
+[Skill04]
+type = 'aAttack'
+value = 560
+rangeX = 0
+rangeY = 48
+combatPoint = 3360
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Tsunade_Skill04_01',
+    'setSound = Audio/Tsunade/Tsunade_skill4_1.ogg',
+    'Tsunade_Skill04_02',
+    'setCharge = 280',
+    'setDelay = 10',
+    'Tsunade_Skill04_03',
+    'setShadow = 10',
+    'setHit = o_hit',
+    'setDSound = Audio/Effect/damage_o.ogg',
+    'Tsunade_Skill04_04',
+    'Tsunade_Skill04_06',
+    'setShadow = 10',
+    'Tsunade_Skill04_07',
+    'setMove = 32',
+    'Tsunade_Skill04_08',
+    'setShadow = 10',
+    'setSound = Audio/Tsunade/Tsunade_skill4_2.ogg',
+    'setHit = f_hit',
+    'setDSound = Audio/Effect/damage_o2.ogg',
+    'Tsunade_Skill04_09',
+    'Tsunade_Skill04_10',
+    'setShadow = 10',
+    'setHit = ac_hit',
+    'Tsunade_Skill04_11',
+    'Tsunade_Skill04_12',
+    'setShadow = 10',
+    'setDelay = 10',
+    'setJump = true',
+    'Tsunade_Skill04_13',
+    'setShadow = 10',
+    'setDelay = 20',
+    'Tsunade_Skill04_14',
+    'setShadow = 10',
+    'Tsunade_Skill04_15',
+    'Tsunade_Skill04_16',
+    'setShadow = 10',
+    'Tsunade_Skill04_17',
+    'Tsunade_Skill04_18',
+    'setSound = Audio/Tsunade/Tsunade_skill4_3.ogg',
+    'setMon = Tuji',
+    'setSound = Audio/Effect/break_sound2.ogg',
+    'setDelay = 10',
+]
+
+[Skill05]
+type = 'cBuff'
+rangeX = 0
+rangeY = 12
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Tsunade_Skill05_01',
+    'setCmd = setInvincible',
+    'Tsunade_Skill05_02',
+    'setOugis = 10',
+    'Tsunade_Skill05_04',
+    'Tsunade_Skill05_05',
+    'Tsunade_Skill05_06',
+    'setSound = Audio/Tsunade/Tsunade_skill5.ogg',
+    'Tsunade_Skill05_07',
+    'Tsunade_Skill05_08',
+    'Tsunade_Skill05_09',
+    'Tsunade_Skill05_11',
+    'setBuff = 18',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+anim = {base = 'Idle'}
+frame = [
+    'Tsunade_Skill10_01',
+    'setDelay = 10',
+    'Tsunade_Skill10_02',
+    'setDelay = 10',
+    'Tsunade_Skill10_03',
+    'setDelay = 10',
+]
+
+[Spc02]
+anim = {base = 'Walk'}
+frame = [
+    'Tsunade_Skill11_01',
+    'setShadow = 10',
+    'Tsunade_Skill11_02',
+    'Tsunade_Skill11_03',
+    'setShadow = 10',
+    'Tsunade_Skill11_04',
+    'Tsunade_Skill11_05',
+    'setShadow = 10',
+    'Tsunade_Skill11_06',
+]
+
+[Spc03]
+type = 'aAttack'
+rangeX = 16
+rangeY = 48
+cd = 10000
+anim = {base = 'NAttack'}
+frame = [
+    'Tsunade_Skill12_01',
+    'Tsunade_Skill12_02',
+    'Tsunade_Skill12_03',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = c_hit',
+    'Tsunade_Skill12_04',
+    'setMove = 8',
+    'Tsunade_Skill12_05',
+    'Tsunade_Skill12_06',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = c_hit',
+    'Tsunade_Skill12_07',
+    'Tsunade_Skill12_08',
+    'setMove = 16',
+    'setSound = Audio/Tsunade/Tsunade_skill11.ogg',
+    'Tsunade_Skill12_09',
+    'Tsunade_Skill12_10',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setHit = c_hit',
+]

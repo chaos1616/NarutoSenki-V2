@@ -1,0 +1,205 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Kakuzu'
+hp = 5000
+hpBar.y = 80
+speed = 224
+
+[Idle]
+frame = [
+    'Kakuzu_Idle_001',
+    'Kakuzu_Idle_002',
+    'Kakuzu_Idle_003',
+    'Kakuzu_Idle_004',
+]
+
+[Walk]
+frame = [
+    'Kakuzu_Walk_01',
+    'Kakuzu_Walk_02',
+    'Kakuzu_Walk_03',
+    'Kakuzu_Walk_04',
+    'Kakuzu_Walk_05',
+    'Kakuzu_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Kakuzu_Hurt_01',
+    'Kakuzu_Hurt_02',
+]
+
+[AirHurt]
+frame = [
+    'Kakuzu_AirHurt_001',
+]
+
+[Knockdown]
+frame = [
+    'Kakuzu_Knockdown_001',
+    'setDelay = 10',
+    'Kakuzu_Knockdown_002',
+    'setDelay = 60',
+    'Kakuzu_Knockdown_003',
+    'Kakuzu_Knockdown_004',
+    'Kakuzu_Knockdown_005',
+]
+
+[Float]
+frame = [
+    'Kakuzu_Float_001',
+    'setDelay = 10',
+    'Kakuzu_Float_002',
+    'setDelay = 10',
+    'Kakuzu_Float_003',
+]
+
+[Dead]
+frame = [
+    'Kakuzu_Knockdown_001',
+    'Kakuzu_Knockdown_002',
+    'setSound = Audio/Kakuzu/Kakuzu_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 80
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Kakuzu_NAttack_001',
+    'Kakuzu_NAttack_002',
+    'Kakuzu_NAttack_003',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/combo1.ogg',
+    'Kakuzu_NAttack_004',
+    'Kakuzu_NAttack_005',
+    'setMove = 8',
+    'Kakuzu_NAttack_006',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setDelay = 10',
+    'Kakuzu_NAttack_007',
+    'Kakuzu_NAttack_008',
+    'Kakuzu_NAttack_009',
+    'setSound = Audio/Kakuzu/Kakuzu_combo.ogg',
+    'setMove = 16',
+    'Kakuzu_NAttack_012',
+    'Kakuzu_NAttack_010',
+    'setHit = l_hit',
+    'Kakuzu_NAttack_011',
+    'setSound = Audio/Effect/kong.ogg',
+    'setDelay = 10',
+]
+
+[Skill01]
+type = 'aAttack'
+cd = 10
+
+frame = [
+    'Kakuzu_Skill01_001',
+    'setSound = Audio/Kakuzu/Kakuzu_skill1.ogg',
+    'Kakuzu_Skill01_002',
+    'setCmd = setTrade',
+    'setDelay = 20',
+    'Kakuzu_Skill01_001',
+    'Kakuzu_Skill01_003',
+    'Kakuzu_Skill01_004',
+    'Kakuzu_Skill01_005',
+]
+
+[Skill02]
+type = 'cAttack'
+value = 460
+rangeX = 0
+rangeY = 48
+cd = 15
+combatPoint = 1840
+
+frame = [
+    'Kakuzu_Skill03_001',
+    'setSound = Audio/Kakuzu/Kakuzu_skill2.ogg',
+    'Kakuzu_Skill03_002',
+    'setHit = o_hit',
+    'Kakuzu_Skill03_003',
+    'Kakuzu_Skill03_004',
+    'setHit = ab_hit',
+    'Kakuzu_Skill03_005',
+    'Kakuzu_Skill03_006',
+    'setHit = ct_hit',
+    'Kakuzu_Skill03_007',
+    'setDelay = 10',
+    'Kakuzu_Skill03_008',
+    'Kakuzu_Skill03_009',
+    'setDelay = 10',
+    'Kakuzu_Skill03_010',
+    'setSound = Audio/Kakuzu/Kakuzu_skill2_1.ogg',
+    'setHit = bc_hit',
+    'Kakuzu_Skill03_011',
+    'setDelay = 10',
+    'Kakuzu_Skill03_012',
+    'setDelay = 30',
+]
+
+[Skill03]
+type = 'cBuff'
+rangeX = 0
+rangeY = 15
+cd = 20
+
+frame = [
+    'setSound = Audio/Kakuzu/Kakuzu_skill3.ogg',
+    'Kakuzu_Skill02_001',
+    'Kakuzu_Skill02_002',
+    'setDelay = 10',
+    'Kakuzu_Skill02_003',
+    'setDelay = 10',
+    'Kakuzu_Skill02_004',
+    'setBuff = 17',
+    'setDelay = 20',
+]
+
+[Skill04]
+type = 'Summon'
+
+frame = [
+    'setCmd = setInvincible',
+    'setSound = Audio/Effect/ougis.ogg',
+    'Kakuzu_Skill04_001',
+    'setSound = Audio/Kakuzu/Kakuzu_skill4.ogg',
+    'Kakuzu_Skill04_002',
+    'Kakuzu_Skill04_003',
+    'setClone = 0',
+    'setCmd = reInvincible',
+]
+
+[Skill05]
+type = 'cBuff'
+rangeX = 0
+rangeY = 15
+
+frame = [
+    'setCmd = setInvincible',
+    'setSound = Audio/Effect/ougis.ogg',
+    'Kakuzu_Knockdown_001',
+    'setDelay = 10',
+    'Kakuzu_Knockdown_002',
+    'setDelay = 50',
+    'Kakuzu_Knockdown_003',
+    'setDelay = 10',
+    'Kakuzu_Knockdown_004',
+    'setOugis = 10',
+    'Kakuzu_Knockdown_005',
+    'setCmd = addHP',
+    'Kakuzu_Skill05_001',
+    'setDelay = 10',
+    'Kakuzu_Skill05_002',
+    'setCmd = reInvincible',
+]

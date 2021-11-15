@@ -1,0 +1,55 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'FutonSRK2'
+hp = 320
+speed = 960
+
+[Idle]
+frame = [
+    'FutonSRK2_Move_03',
+]
+
+[Walk]
+frame = [
+    'FutonSRK2_Move_03',
+]
+
+[Dead]
+frame = [
+    'FutonSRK2_Dead_01',
+    'setSound = Audio/Effect/futon_effect.ogg',
+    'setHit = ab_hit',
+    'FutonSRK2_Dead_02',
+    'FutonSRK2_Dead_03',
+    'setHit = b_hit',
+    'FutonSRK2_Dead_04',
+    'FutonSRK2_Dead_05',
+    'setHit = b_hit',
+    'FutonSRK2_Dead_06',
+    'FutonSRK2_Dead_07',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 860
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'FutonSRK2_Move_01',
+    'setHit = c_hit',
+    'FutonSRK2_Move_02',
+    'setHit = c_hit',
+    'FutonSRK2_Move_03',
+    'setHit = c_hit',
+    'FutonSRK2_Move_01',
+    'setHit = c_hit',
+    'FutonSRK2_Move_02',
+    'setHit = c_hit',
+    'setDestroy = 0',
+]

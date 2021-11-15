@@ -1,0 +1,68 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Slug'
+hp = 5500
+hpBar.y = 76
+speed = 112
+
+[Idle]
+frame = [
+    'Slug_Move_01',
+]
+
+[Walk]
+frame = [
+    'Slug_Move_01',
+    'setDelay = 10',
+    'Slug_Move_02',
+    'setDelay = 10',
+    'Slug_Move_03',
+    'setDelay = 10',
+]
+
+[Dead]
+frame = [
+    'Slug_Move_01',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 32
+rangeY = 16
+
+frame = [
+    'Slug_Move_01',
+    'setDelay = 10',
+    'Slug_Move_02',
+    'setDelay = 10',
+    'Slug_Move_03',
+    'setHit = n_hit',
+    'setDelay = 10',
+]
+
+[Skill01]
+type = 'Summon'
+rangeX = 0
+rangeY = 15
+cd = 5
+
+frame = [
+    'Slug_Move_01',
+    'setMon = SmallSlug',
+]
+
+[Skill02]
+type = 'GroupHeal'
+value = 200
+cd = 10
+
+frame = [
+    'Slug_Move_01',
+    'setBuff = 200',
+]

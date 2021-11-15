@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{45,72}</string>
             </dict>
-            <key>RockLee_KnockDown_01</key>
+            <key>RockLee_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{360,209},{55,42}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{55,42}</string>
             </dict>
-            <key>RockLee_KnockDown_02</key>
+            <key>RockLee_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{364,139},{68,39}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{68,39}</string>
             </dict>
-            <key>RockLee_KnockDown_03</key>
+            <key>RockLee_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{405,122},{71,25}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{71,25}</string>
             </dict>
-            <key>RockLee_KnockDown_04</key>
+            <key>RockLee_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{351,304},{35,50}}</string>

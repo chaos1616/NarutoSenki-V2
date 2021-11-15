@@ -34,10 +34,10 @@ using ActionMap = Map<ActionFlag, FiniteTimeAction *>;
 public:
 	CharacterBase();
 
-	virtual void		setID(const string &name, Role role, Group group);
-	virtual void		setHPbar();
-	virtual void		changeHPbar();
-	virtual void		setShadows();
+	virtual void		setID(const string &name, Role role, Group group) = 0;
+	virtual void		setHPbar() {}
+	virtual void		changeHPbar() {}
+	virtual void		setShadows() {}
 
 	PPROP(string, _name, Name);
 	PPROP(Role, _role, Role);
@@ -149,7 +149,7 @@ public:
 	VPROP(int, _defense, DEF);
 	VPROP(float, _exp, EXP);
 	VPROP(uint32_t, _level, LV);
-	VPROP(int, _height, Height);
+	VPROP(int, _hpBarHeight, HPBarHeight);
 	VPROP(int, _rebornTime, RebornTime);
 	VPROP(Vec2, _spawnPoint, SpawnPoint);
 
@@ -245,20 +245,20 @@ public:
 	PROP(Vec2, _desiredPosition, DesiredPosition);
 
 	// actions
-	PPROP_PTR(FiniteTimeAction, _idleAction, IdleAction);
-	PPROP_PTR(FiniteTimeAction, _nAttackAction, NAttackAction);
-	PPROP_PTR(FiniteTimeAction, _walkAction, WalkAction);
-	PPROP_PTR(FiniteTimeAction, _hurtAction, HurtAction);
-	PPROP_PTR(FiniteTimeAction, _knockDownAction, KnockDownAction);
-	PPROP_PTR(FiniteTimeAction, _airHurtAction, AirHurtAction);
-	PPROP_PTR(FiniteTimeAction, _floatAction, FloatAction);
-	PPROP_PTR(FiniteTimeAction, _deadAction, DeadAction); 
+	PPROP(FiniteTimeAction*, _idleAction, IdleAction);
+	PPROP(FiniteTimeAction*, _nAttackAction, NAttackAction);
+	PPROP(FiniteTimeAction*, _walkAction, WalkAction);
+	PPROP(FiniteTimeAction*, _hurtAction, HurtAction);
+	PPROP(FiniteTimeAction*, _knockdownAction, KnockdownAction);
+	PPROP(FiniteTimeAction*, _airHurtAction, AirHurtAction);
+	PPROP(FiniteTimeAction*, _floatAction, FloatAction);
+	PPROP(FiniteTimeAction*, _deadAction, DeadAction); 
 
-	PPROP_PTR(FiniteTimeAction, _skill1Action, Skill1Action);
-	PPROP_PTR(FiniteTimeAction, _skill2Action, Skill2Action);
-	PPROP_PTR(FiniteTimeAction, _skill3Action, Skill3Action);
-	PPROP_PTR(FiniteTimeAction, _skill4Action, Skill4Action);
-	PPROP_PTR(FiniteTimeAction, _skill5Action, Skill5Action);
+	PPROP(FiniteTimeAction*, _skill1Action, Skill1Action);
+	PPROP(FiniteTimeAction*, _skill2Action, Skill2Action);
+	PPROP(FiniteTimeAction*, _skill3Action, Skill3Action);
+	PPROP(FiniteTimeAction*, _skill4Action, Skill4Action);
+	PPROP(FiniteTimeAction*, _skill5Action, Skill5Action);
 
 	PPROP_PTR(FiniteTimeAction, _moveAction, MoveAction);
 	PPROP_PTR(FiniteTimeAction, _floatUPAction, FloatUPAction);
@@ -284,7 +284,7 @@ public:
 	// bool				hardHurt(int delayTime, bool isHurtAction, HardHurtState state);
 	void				absorb(Vec2 position, bool isImmediate);
 	void				jump() {}; // No reference
-	void				knockDown();
+	void				knockdown();
 	virtual void		dead();
 	void				floatUP(float floatHeight, bool isCancelSkill);
 	void				airHurt();
@@ -297,7 +297,7 @@ public:
 	void				changeGroup();
 private:
 	template <typename T>
-	typename std::enable_if<std::is_base_of<CharacterBase, T>::value, void>::type
+	typename std::enable_if_t<std::is_base_of_v<CharacterBase, T>, void>
 	changeGroupBy(const vector<T *> &list);
 public:
 	virtual void		resumeAction(float dt);
@@ -344,30 +344,8 @@ public:
 	bool				_isCanOugis1;
 	bool				_isCanOugis2;
 
-	CCArray*			idleArray;
-	CCArray*			walkArray;
-	CCArray*			hurtArray;
-	CCArray*			airHurtArray;
-	CCArray*			knockDownArray;
-	CCArray*			floatArray;
-	CCArray*			deadArray;
-	CCArray*			nattackArray;
-	CCArray*			skill1Array;
-	CCArray*			skill2Array;
-	CCArray*			skill3Array;
-	CCArray*			skill4Array;
-	CCArray*			skill5Array;
-
-	CCArray*			skillSPC1Array;
-	CCArray*			skillSPC2Array;
-	CCArray*			skillSPC3Array;
-	CCArray*			skillSPC4Array;
-	CCArray*			skillSPC5Array;
-
-
 	virtual void		dealloc();
 	virtual void		reborn(float dt);
-
 
 	void				resumePauseStuff(float dt);
 
@@ -377,14 +355,41 @@ public:
 	virtual void		setAI(float dt);
 	virtual void		setRestore2(float dt);
 
-
-	void				readData(CCArray* tmpData, string &attackType, uint32_t &attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint);
-	FiniteTimeAction*	createAnimation(CCArray* ationArray, uint8_t fps, bool isLoop, bool isReturnToIdle);
-	FiniteTimeAction*	createAnimation(CCArray* arr, const ActionConstant::AnimationInfo &info) { return createAnimation(arr, info.fps, info.isLoop, info.isReturnToIdle); }
-	FiniteTimeAction*	createAnimIdle(CCArray* arr) { return createAnimation(arr, ActionConstant::Idle); }
-	FiniteTimeAction*	createAnimKnockdown(CCArray* arr) { return createAnimation(arr, ActionConstant::Knockdown); }
-	FiniteTimeAction*	createAnimRegular(CCArray* arr) { return createAnimation(arr, ActionConstant::Regular); }
-	FiniteTimeAction*	createAnimSkill(CCArray* arr) { return createAnimation(arr, ActionConstant::Skill); }
+	// Generate unit action by UnitMetadata
+	void				genActionBy(const UnitMetadata &data);
+	// Set all actions to default
+	//
+	// eg.
+	//
+	// setAction(ActionFlag::Idle | ActionFlag::Walk);
+	//
+	// equals
+	//
+	// setIdleAction(getAction(ActionFlag::Idle));
+	// setWalkAction(getAction(ActionFlag::Walk));
+	void				setAction(ActionFlag flags);
+	// Set all actions to default
+	//
+	// same as CharacterBase::setAction
+	void				resetAction(ActionFlag flags) { return setAction(flags); }
+	// Set action `from` to `to`
+	template <ActionFlag from, ActionFlag to>
+	inline constexpr	void setActionTo() {
+		if constexpr (from == ActionFlag::Dead)				setDeadAction(_actionMap.at(to));
+		else if constexpr (from == ActionFlag::Idle)		setIdleAction(_actionMap.at(to));
+		else if constexpr (from == ActionFlag::Walk)		setWalkAction(_actionMap.at(to));
+		else if constexpr (from == ActionFlag::Hurt)		setHurtAction(_actionMap.at(to));
+		else if constexpr (from == ActionFlag::AirHurt)		setAirHurtAction(_actionMap.at(to));
+		else if constexpr (from == ActionFlag::Knockdown)	setKnockdownAction(_actionMap.at(to));
+		else if constexpr (from == ActionFlag::Float)		setFloatAction(_actionMap.at(to));
+		else if constexpr (from == ActionFlag::NAttack)		setNAttackAction(_actionMap.at(to));
+		else if constexpr (from == ActionFlag::Skill01)		setSkill1Action(_actionMap.at(to));
+		else if constexpr (from == ActionFlag::Skill02)		setSkill2Action(_actionMap.at(to));
+		else if constexpr (from == ActionFlag::Skill03)		setSkill3Action(_actionMap.at(to));
+		else if constexpr (from == ActionFlag::Skill04)		setSkill4Action(_actionMap.at(to));
+		else if constexpr (from == ActionFlag::Skill05)		setSkill5Action(_actionMap.at(to));
+		// else logerr("Does not support set action from `{}` to `{}`", from, to);
+	}
 
 	void				setSound(const string &file);
 	void				setDSound(const string &file);
@@ -432,8 +437,8 @@ protected:
 	void				removeSelf(float dt);
 	void				setJump(bool jumpDirection);
 
-	Rect				setHalfBox();
-	Rect				setHitBox();
+	inline Rect			setHalfBox();
+	inline Rect			setHitBox();
 
 	void				checkActionFinish(float dt);
 
@@ -444,13 +449,13 @@ protected:
 	bool				findEnemy2(Role role);
 	bool				findTargetEnemy(Role role, bool isTowerDected);
 	template <typename T>
-	typename std::enable_if<std::is_base_of<CharacterBase, T>::value, bool>::type
+	typename std::enable_if_t<std::is_base_of_v<CharacterBase, T>, bool>
 	findEnemyBy(const vector<T *> &list, int searchRange, bool masterRange = false);
 	template <typename T>
-	typename std::enable_if<std::is_base_of<CharacterBase, T>::value, bool>::type
+	typename std::enable_if_t<std::is_base_of_v<CharacterBase, T>, bool>
 	findEnemy2By(const vector<T *> &list);
 	template <typename T>
-	typename std::enable_if<std::is_base_of<CharacterBase, T>::value, bool>::type
+	typename std::enable_if_t<std::is_base_of_v<CharacterBase, T>, bool>
 	findTargetEnemyBy(const vector<T *> &list, bool isTowerDected);
 	bool				checkBase();
 
@@ -709,6 +714,10 @@ protected:
 	void clearActionData() {
 		_actionFlag = ActionFlag::None;
 		_actionMap.clear();
+	}
+
+	FiniteTimeAction *getAction(ActionFlag flag) {
+		return _actionMap.at(flag);
 	}
 
 private:

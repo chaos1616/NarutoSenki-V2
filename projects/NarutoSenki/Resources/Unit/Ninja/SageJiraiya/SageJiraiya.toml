@@ -1,0 +1,288 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'SageJiraiya'
+hp = 6000
+hpBar.y = 80
+speed = 224
+
+[Idle]
+frame = [
+    'SageJiraiya_Idle_01',
+    'SageJiraiya_Idle_02',
+    'SageJiraiya_Idle_03',
+    'SageJiraiya_Idle_04',
+]
+
+[Walk]
+frame = [
+    'SageJiraiya_Walk_01',
+    'SageJiraiya_Walk_02',
+    'SageJiraiya_Walk_03',
+    'SageJiraiya_Walk_04',
+    'SageJiraiya_Walk_05',
+    'SageJiraiya_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'SageJiraiya_Hurt_01',
+    'SageJiraiya_Hurt_02',
+    'setDelay = 10',
+    'setSound = Audio/Jiraiya/jiraiya_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Jiraiya_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Jiraiya_Knockdown_01',
+    'SageJiraiya_Knockdown_02',
+    'setDelay = 10',
+    'SageJiraiya_Knockdown_03',
+    'setDelay = 60',
+    'Jiraiya_Knockdown_04',
+    'Jiraiya_Knockdown_05',
+    'Jiraiya_Knockdown_06',
+]
+
+[Float]
+frame = [
+    'SageJiraiya_Float_01',
+    'setDelay = 10',
+    'SageJiraiya_Float_02',
+    'setDelay = 10',
+    'SageJiraiya_Float_03',
+]
+
+[Dead]
+frame = [
+    'Jiraiya_Knockdown_01',
+    'Jiraiya_Knockdown_02',
+    'SageJiraiya_Knockdown_03',
+    'setSound = Audio/Jiraiya/jiraiya_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 80
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'SageJiraiya_NAttack_01',
+    'SageJiraiya_NAttack_02',
+    'setDelay = 10',
+    'SageJiraiya_NAttack_03',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'SageJiraiya_NAttack_04',
+    'SageJiraiya_NAttack_05',
+    'setMove = 8',
+    'SageJiraiya_NAttack_06',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'SageJiraiya_NAttack_07',
+    'setDelay = 10',
+    'SageJiraiya_NAttack_08',
+    'SageJiraiya_NAttack_09',
+    'setMove = 16',
+    'SageJiraiya_NAttack_11',
+    'SageJiraiya_NAttack_12',
+    'setSound = Audio/SageJiraiya/SageJiraiya_combo.ogg',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setHit = l_hit',
+    'setDelay = 10',
+]
+
+[Skill01]
+type = 'aAttack'
+value = 760
+rangeX = 0
+rangeY = 48
+cd = 10
+combatPoint = 1520
+
+frame = [
+    'SageJiraiya_Skill01_01',
+    'setSound = Audio/SageJiraiya/SageJiraiya_skill1.ogg',
+    'SageJiraiya_Skill01_02',
+    'SageJiraiya_Skill01_04',
+    'SageJiraiya_Skill01_06',
+    'setChargeB = 192',
+    'SageJiraiya_Skill01_07',
+    'setHit = c_hit',
+    'setDelay = 10',
+    'SageJiraiya_Skill01_08',
+    'setHit = c_hit',
+    'setDelay = 10',
+    'SageJiraiya_Skill01_09',
+]
+
+[Skill02]
+type = 'cAttack'
+rangeX = 0
+rangeY = 10
+cd = 15
+combatPoint = 2600
+
+frame = [
+    'SageJiraiya_Skill02_001',
+    'setSound = Audio/SageJiraiya/SageJiraiya_skill2.ogg',
+    'SageJiraiya_Skill02_002',
+    'setDelay = 10',
+    'SageJiraiya_Skill02_003',
+    'setMon = Yominuma',
+    'setDelay = 10',
+]
+
+[Skill03]
+type = 'cAttack'
+value = 460
+rangeX = 16
+rangeY = 48
+cd = 25
+combatPoint = 3220
+
+frame = [
+    'setSound = Audio/SageJiraiya/SageJiraiya_skill3.ogg',
+    'SageJiraiya_Skill03_02',
+    'setDelay = 10',
+    'SageJiraiya_Skill03_03',
+    'setDelay = 10',
+    'setHit = c_hit',
+    'SageJiraiya_Skill03_04',
+    'setDelay = 10',
+    'setHit = c_hit',
+    'SageJiraiya_Skill03_05',
+    'SageJiraiya_Skill03_06',
+    'setHit = c_hit',
+    'setSound = Audio/SageJiraiya/SageJiraiya_skill3_1.ogg',
+    'SageJiraiya_Skill03_07',
+    'SageJiraiya_Skill03_08',
+    'setHit = c_hit',
+    'SageJiraiya_Skill03_09',
+    'setSound = Audio/Effect/goukakyu.ogg',
+    'SageJiraiya_Skill03_10',
+    'setHit = c_hit',
+    'SageJiraiya_Skill03_11',
+    'SageJiraiya_Skill03_12',
+    'setHit = c_hit',
+    'SageJiraiya_Skill03_13',
+    'SageJiraiya_Skill03_14',
+    'setHit = c_hit',
+]
+
+[Skill04]
+type = 'oAttack'
+value = 660
+rangeX = 16
+rangeY = 48
+combatPoint = 3960
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'SageJiraiya_Skill04_01',
+    'setSound = Audio/SageJiraiya/SageJiraiya_skill4.ogg',
+    'SageJiraiya_Skill04_02',
+    'setCharge = 280',
+    'setDelay = 10',
+    'SageJiraiya_Skill04_03',
+    'setHit = f_hit',
+    'setDSound = Audio/Effect/damage_o2.ogg',
+    'setDelay = 10',
+    'setSound = Audio/SageJiraiya/SageJiraiya_skill4_1.ogg',
+    'SageJiraiya_Skill04_04',
+    'SageJiraiya_Skill04_05',
+    'setDelay = 10',
+    'SageJiraiya_Skill04_06',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'SageJiraiya_Skill04_07',
+    'SageJiraiya_Skill04_08',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'SageJiraiya_Skill04_09',
+    'SageJiraiya_Skill04_10',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'SageJiraiya_Skill04_11',
+    'SageJiraiya_Skill04_12',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'SageJiraiya_Skill04_13',
+    'SageJiraiya_Skill04_14',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'SageJiraiya_Skill04_15',
+    'SageJiraiya_Skill04_16',
+    'setDelay = 10',
+]
+
+[Skill05]
+type = 'oAttack'
+value = 560
+rangeX = 64
+rangeY = 48
+combatPoint = 4560
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'SageJiraiya_Skill05_01',
+    'setDelay = 10',
+    'setOugis = 10',
+    'SageJiraiya_Skill05_02',
+    'setCmd = setInvincible',
+    'setSound = Audio/SageJiraiya/SageJiraiya_skill5.ogg',
+    'setDelay = 60',
+    'SageJiraiya_Skill05_03',
+    'SageJiraiya_Skill05_04',
+    'setSound = Audio/SageJiraiya/SageJiraiya_skill5_1.ogg',
+    'SageJiraiya_Skill05_05',
+    'SageJiraiya_Skill05_06',
+    'setHit = c_hit',
+    'SageJiraiya_Skill05_07',
+    'setHit = c_hit',
+    'SageJiraiya_Skill05_08',
+    'setHit = c_hit',
+    'SageJiraiya_Skill05_09',
+    'setHit = c_hit',
+    'sSageJiraiya_Skill05_06',
+    'setHit = c_hit',
+    'SageJiraiya_Skill05_07',
+    'setHit = c_hit',
+    'SageJiraiya_Skill05_08',
+    'setHit = c_hit',
+    'SageJiraiya_Skill05_09',
+    'setHit = c_hit',
+    'SageJiraiya_Skill05_06',
+    'setHit = c_hit',
+    'SageJiraiya_Skill05_07',
+    'setHit = c_hit',
+    'SageJiraiya_Skill05_08',
+    'setHit = c_hit',
+    'SageJiraiya_Skill05_09',
+    'setHit = c_hit',
+    'SageJiraiya_Skill05_06',
+    'setHit = c_hit',
+    'SageJiraiya_Skill05_07',
+    'setHit = c_hit',
+    'SageJiraiya_Skill05_08',
+    'setHit = c_hit',
+    'SageJiraiya_Skill05_09',
+    'setHit = c_hit',
+    'SageJiraiya_Skill05_10',
+    'SageJiraiya_Skill05_11',
+    'SageJiraiya_Skill05_12',
+    'SageJiraiya_Skill05_13',
+    'SageJiraiya_Skill05_14',
+    'setCmd = reInvincible',
+]

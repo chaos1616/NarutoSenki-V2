@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{33,46}</string>
             </dict>
-            <key>KakashiFlog_KnockDown_01</key>
+            <key>KakashiFlog_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{34,164},{35,50}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{35,50}</string>
             </dict>
-            <key>KakashiFlog_KnockDown_02</key>
+            <key>KakashiFlog_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{68,45},{58,36}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{58,50}</string>
             </dict>
-            <key>KakashiFlog_KnockDown_03</key>
+            <key>KakashiFlog_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,164},{62,30}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{62,50}</string>
             </dict>
-            <key>KakashiFlog_KnockDown_04</key>
+            <key>KakashiFlog_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{65,22}}</string>

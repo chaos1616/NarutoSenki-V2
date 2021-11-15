@@ -1,0 +1,44 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'DogWall'
+hp = 8000
+hpBar.y = 96
+speed = 112
+
+[Idle]
+frame = [
+    'DogWall_Move_01',
+]
+
+[Walk]
+frame = [
+    'DogWall_Move_01',
+]
+
+[Dead]
+frame = [
+    'DogWall_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 1160
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'DogWall_Move_01',
+    'setHit = b_hit',
+    'DogWall_Move_02',
+    'DogWall_Move_03',
+    'setHit = a_hit',
+    'DogWall_Move_04',
+    'DogWall_Move_05',
+    'setHit = a_hit',
+    'setDelay = 500',
+]

@@ -1,0 +1,32 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Hasan'
+
+[Idle]
+frame = [
+    'Hasan_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 1260
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'setSound = Audio/Neji/Neji_skill5_5.ogg',
+    'Hasan_Move_01',
+    'setHit = bf_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'setDelay = 10',
+    'Hasan_Move_02',
+    'Hasan_Move_03',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'setDestroy = 0',
+]

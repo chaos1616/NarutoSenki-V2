@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{36,76}</string>
             </dict>
-            <key>Gaara_KnockDown_01</key>
+            <key>Gaara_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{269,675},{68,48}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{68,48}</string>
             </dict>
-            <key>Gaara_KnockDown_02</key>
+            <key>Gaara_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{278,543},{80,40}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{80,40}</string>
             </dict>
-            <key>Gaara_KnockDown_03</key>
+            <key>Gaara_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{144,787},{39,52}}</string>

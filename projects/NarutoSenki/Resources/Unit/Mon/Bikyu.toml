@@ -1,0 +1,27 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Bikyu'
+
+[Idle]
+frame = [
+    'Bikyu_Move_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 1460
+rangeX = 0
+rangeY = 64
+
+frame = [
+    'Bikyu_Move_001',
+    'setHit = ac_hit',
+    'Bikyu_Move_002',
+    'Bikyu_Move_003',
+    'setDestroy = 0',
+]

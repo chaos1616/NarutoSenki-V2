@@ -1,0 +1,80 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'KakashiFlog'
+hp = 10000
+hpBar.y = 40
+speed = 160
+
+[Idle]
+frame = [
+    'KakashiFlog_Idle_01',
+    'KakashiFlog_Walk_01',
+]
+
+[Walk]
+frame = [
+    'KakashiFlog_Walk_01',
+    'KakashiFlog_Walk_02',
+    'setDelay = 10',
+    'KakashiFlog_Walk_03',
+    'setDelay = 10',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'KakashiFlog_Knockdown_01',
+]
+
+[AirHurt]
+frame = [
+    'KakashiFlog_Knockdown_01',
+]
+
+[Knockdown]
+frame = [
+    'KakashiFlog_Knockdown_01',
+    'KakashiFlog_Knockdown_02',
+    'KakashiFlog_Knockdown_03',
+    'setDelay = 10',
+    'KakashiFlog_Knockdown_04',
+    'setDelay = 60',
+    'KakashiFlog_Idle_01',
+]
+
+[Float]
+frame = [
+    'KakashiFlog_Float_01',
+    'setDelay = 10',
+    'KakashiFlog_Knockdown_02',
+    'setDelay = 20',
+]
+
+[Dead]
+frame = [
+    'KakashiFlog_Knockdown_01',
+    'KakashiFlog_Knockdown_02',
+    'KakashiFlog_Knockdown_03',
+    'KakashiFlog_Knockdown_04',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 8
+rangeY = 8
+frame = [
+    'KakashiFlog_NAttack_01',
+    'setDelay = 10',
+    'KakashiFlog_NAttack_02',
+    'setDelay = 10',
+    'KakashiFlog_NAttack_03',
+    'KakashiFlog_NAttack_04',
+    'setHit = n_hit',
+    'setDelay = 10',
+]

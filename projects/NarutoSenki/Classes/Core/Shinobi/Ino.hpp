@@ -164,6 +164,45 @@ class Ino : public Hero
 		checkHealingState();
 	}
 
+	void changeAction() override
+	{
+		if (_mainTarget == nullptr)
+			return;
+
+		// Shintenshin has catch one target
+		auto target = _mainTarget;
+		target->_isControlled = true;
+		target->setController(this);
+
+		if (getState() == State::O2ATTACK)
+		{
+			auto action = getAction(ActionFlag::Spc01);
+			stopAllActions();
+			runAction(action);
+			scheduleOnce(schedule_selector(CharacterBase::resumeAction), 15);
+			_isArmored = true;
+			_isInvincible = false;
+		}
+
+		if (isPlayer())
+		{
+			target->_isAI = false;
+			target->unschedule(schedule_selector(CharacterBase::setAI));
+			// Set controlled character to player
+			getGameLayer()->controlChar = target;
+			getGameLayer()->currentPlayer = target;
+			getGameLayer()->getHudLayer()->updateSkillButtons();
+			target->idle();
+		}
+
+		if (target->isPlayer())
+		{
+			target->doAI();
+			getGameLayer()->getHudLayer()->_isAllButtonLocked = true;
+		}
+		target->changeGroup();
+	}
+
 	void resumeAction(float dt) override
 	{
 		if (!_isArmored)
@@ -208,26 +247,26 @@ class Ino : public Hero
 	{
 		unschedule(schedule_selector(Ino::resumeAction));
 
+		_isArmored = false;
+
 		for (auto hero : getGameLayer()->_CharacterArray)
 		{
 			if (hero->_isControlled)
 			{
 				hero->_isControlled = false;
-				hero->changeGroup();
 				if (hero->isPlayer())
 				{
-					hero->unschedule(schedule_selector(Ino::setAI));
 					hero->_isAI = false;
+					hero->unschedule(schedule_selector(Ino::setAI));
 					getGameLayer()->getHudLayer()->_isAllButtonLocked = false;
 				}
 				if (isPlayer())
 				{
 					getGameLayer()->controlChar = nullptr;
 				}
+				hero->changeGroup();
 				hero->setController(nullptr);
 			}
 		}
-
-		_isArmored = false;
 	}
 };

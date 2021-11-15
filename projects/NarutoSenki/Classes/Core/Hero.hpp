@@ -13,32 +13,6 @@ private:
 	// Hero *proxy = nullptr;
 
 public:
-	Hero()
-	{
-	}
-
-	~Hero()
-	{
-		CC_SAFE_RELEASE(idleArray);
-		CC_SAFE_RELEASE(walkArray);
-		CC_SAFE_RELEASE(deadArray);
-		CC_SAFE_RELEASE(hurtArray);
-		CC_SAFE_RELEASE(airHurtArray);
-		CC_SAFE_RELEASE(floatArray);
-		CC_SAFE_RELEASE(knockDownArray);
-		CC_SAFE_RELEASE(nattackArray);
-		CC_SAFE_RELEASE(skillSPC1Array);
-		CC_SAFE_RELEASE(skillSPC2Array);
-		CC_SAFE_RELEASE(skillSPC3Array);
-		CC_SAFE_RELEASE(skillSPC4Array);
-		CC_SAFE_RELEASE(skillSPC5Array);
-		CC_SAFE_RELEASE(skill1Array);
-		CC_SAFE_RELEASE(skill2Array);
-		CC_SAFE_RELEASE(skill3Array);
-		CC_SAFE_RELEASE(skill4Array);
-		CC_SAFE_RELEASE(skill5Array);
-	}
-
 	bool init()
 	{
 		RETURN_FALSE_IF(!Sprite::init());
@@ -49,23 +23,23 @@ public:
 		return true;
 	}
 
-	virtual void setID(const string &name, Role role, Group group)
+	virtual void setID(const string &name, Role role, Group group) override
 	{
 		clearActionData();
 		setRole(role);
 		setGroup(group);
 
 		auto fileUtils = FileUtils::sharedFileUtils();
-		string fpath = fileUtils->fullPathForFilename(format("Unit/Ninja/{}/{}.xml", name, name).c_str());
+		string fpath = fileUtils->fullPathForFilename(format("Unit/Ninja/{}/{}.toml", name, name).c_str());
 		if (!fileUtils->isFileExist(fpath))
 		{
-			fpath = fileUtils->fullPathForFilename(format("Unit/Kuchiyose/{}/{}.xml", name, name).c_str());
+			fpath = fileUtils->fullPathForFilename(format("Unit/Kuchiyose/{}/{}.toml", name, name).c_str());
 			if (!fileUtils->isFileExist(fpath))
 			{
-				fpath = fileUtils->fullPathForFilename(format("Unit/Kugutsu/{}/{}.xml", name, name).c_str());
+				fpath = fileUtils->fullPathForFilename(format("Unit/Kugutsu/{}/{}.toml", name, name).c_str());
 				if (!fileUtils->isFileExist(fpath))
 				{
-					fpath = fileUtils->fullPathForFilename(format("Unit/Guardian/{}/{}.xml", name, name).c_str());
+					fpath = fileUtils->fullPathForFilename(format("Unit/Guardian/{}/{}.toml", name, name).c_str());
 					if (!fileUtils->isFileExist(fpath))
 					{
 						CCLOGERROR("Not found file %s", fpath.c_str());
@@ -74,175 +48,27 @@ public:
 				}
 			}
 		}
-		CCArray *animationArray = CCArray::create();
-		KTools::readXMLToArray(fpath, animationArray);
+		auto metadata = UnitParser::fromToml(fpath);
+		genActionBy(metadata);
+		// init action
+		setAction(ActionFlag::AllBasics);
 
-		// init
-		CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
-		CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-		idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
-		idleArray->retain();
-
-		string unitName;
-		uint32_t maxHP;
-		int tmpWidth;
-		int tmpHeight;
-		uint32_t tmpSpeed;
-		int tmpCombatPoint;
-
-		readData(tmpData, unitName, maxHP, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
-
-		if (getName().empty()) // Set hp when character is not awaken
+		if (getName().empty()) // Set hp & chakar when character is not awaken
 		{
-			setMaxHPValue(maxHP, false);
-			setHPValue(maxHP, false);
+			setMaxHP(metadata.hp);
+			setHP(metadata.hp);
+			setCKR(0);
+			setCKR2(0);
 		}
-		setCKR(0);
-		setCKR2(0);
-		setHeight(tmpHeight);
-		setWalkSpeed(tmpSpeed);
-		_originSpeed = tmpSpeed;
+		setHPBarHeight(metadata.hpBarY);
+		setWalkSpeed(metadata.speed);
+		_originSpeed = metadata.speed;
 
 		setKillNum(0);
 
-		// init WalkFrame
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(1));
-		walkArray = (CCArray *)(tmpAction->objectAtIndex(1));
-		walkArray->retain();
-
-		// init HurtFrame
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(2));
-		hurtArray = (CCArray *)(tmpAction->objectAtIndex(1));
-		hurtArray->retain();
-
-		// init AirHurtFrame
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(3));
-		airHurtArray = (CCArray *)(tmpAction->objectAtIndex(1));
-		airHurtArray->retain();
-
-		// init KnockDownFrame
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(4));
-		knockDownArray = (CCArray *)(tmpAction->objectAtIndex(1));
-		knockDownArray->retain();
-
-		// init FloatFrame
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(5));
-		floatArray = (CCArray *)(tmpAction->objectAtIndex(1));
-		floatArray->retain();
-
-		// init DeadFrame
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
-		deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
-		deadArray->retain();
-
-		// init nAttack data & Frame Array
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
-		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-
-		uint32_t tmpValue;
-		uint32_t tmpCD;
-		readData(tmpData, _nAttackType, tmpValue, _nAttackRangeX, _nAttackRangeY, tmpCD, tmpCombatPoint);
-		setNAttackValue(tmpValue);
-
-		nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
-		nattackArray->retain();
-
-		// init skill1 data & Frame Array
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(8));
-		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-
-		readData(tmpData, _sAttackType1, tmpValue, _sAttackRangeX1, _sAttackRangeY1, _sAttackCD1, _sAttackCombatPoint1);
-		setSAttackValue1(tmpValue);
-
-		skill1Array = (CCArray *)(tmpAction->objectAtIndex(1));
-		skill1Array->retain();
-
-		// init skill2 data & Frame Array
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(9));
-		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-		readData(tmpData, _sAttackType2, tmpValue, _sAttackRangeX2, _sAttackRangeY2, _sAttackCD2, _sAttackCombatPoint2);
-		setSAttackValue2(tmpValue);
-		skill2Array = (CCArray *)(tmpAction->objectAtIndex(1));
-		skill2Array->retain();
-
-		if (name == "Kakashi")
-		{
-		}
-		else if (name == "Minato")
+		if (name == "Minato") // TODO: Move to Minato class
 		{
 			_sAttack1isDouble = true;
-		}
-
-		// init skill3 data & Frame Array
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(10));
-		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-		readData(tmpData, _sAttackType3, tmpValue, _sAttackRangeX3, _sAttackRangeY3, _sAttackCD3, _sAttackCombatPoint3);
-		setSAttackValue3(tmpValue);
-		skill3Array = (CCArray *)(tmpAction->objectAtIndex(1));
-		skill3Array->retain();
-
-		// init skill4 data & Frame Array
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(11));
-		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-		readData(tmpData, _sAttackType4, tmpValue, _sAttackRangeX4, _sAttackRangeY4, _sAttackCD4, _sAttackCombatPoint4);
-		setSAttackValue4(tmpValue);
-		skill4Array = (CCArray *)(tmpAction->objectAtIndex(1));
-		skill4Array->retain();
-
-		// init skill5 data & Frame Array
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(12));
-		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-		readData(tmpData, _sAttackType5, tmpValue, _sAttackRangeX5, _sAttackRangeY5, _sAttackCD5, _sAttackCombatPoint5);
-		setSAttackValue5(tmpValue);
-		skill5Array = (CCArray *)(tmpAction->objectAtIndex(1));
-		skill5Array->retain();
-
-		// initial specal animations
-		while (1)
-		{
-			CC_BREAK_IF(animationArray->count() <= 15);
-			tmpAction = (CCArray *)(animationArray->objectAtIndex(15));
-			skillSPC5Array = (CCArray *)(tmpAction->objectAtIndex(1));
-			skillSPC5Array->retain();
-
-			CC_BREAK_IF(animationArray->count() <= 16);
-			tmpAction = (CCArray *)(animationArray->objectAtIndex(16));
-			skillSPC4Array = (CCArray *)(tmpAction->objectAtIndex(1));
-			skillSPC4Array->retain();
-
-			CC_BREAK_IF(animationArray->count() <= 17);
-			tmpAction = (CCArray *)(animationArray->objectAtIndex(17));
-			tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-			readData(tmpData, _spcAttackType1, tmpValue, _spcAttackRangeX1, _spcAttackRangeY1, _spcAttackCD1, tmpCombatPoint);
-			if (!_spcAttackType1.empty())
-			{
-				skillSPC1Array = (CCArray *)(tmpAction->objectAtIndex(1));
-				setSpcAttackValue1(tmpValue);
-				skillSPC1Array->retain();
-			}
-
-			CC_BREAK_IF(animationArray->count() <= 18);
-			tmpAction = (CCArray *)(animationArray->objectAtIndex(18));
-			tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-			readData(tmpData, _spcAttackType2, tmpValue, _spcAttackRangeX2, _spcAttackRangeY2, _spcAttackCD2, tmpCombatPoint);
-			if (!_spcAttackType2.empty())
-			{
-				skillSPC2Array = (CCArray *)(tmpAction->objectAtIndex(1));
-				setSpcAttackValue2(tmpValue);
-				skillSPC2Array->retain();
-			}
-
-			CC_BREAK_IF(animationArray->count() <= 19);
-			tmpAction = (CCArray *)(animationArray->objectAtIndex(19));
-			tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-			readData(tmpData, _spcAttackType3, tmpValue, _spcAttackRangeX3, _spcAttackRangeY3, _spcAttackCD3, tmpCombatPoint);
-			if (!_spcAttackType3.empty())
-			{
-				skillSPC3Array = (CCArray *)(tmpAction->objectAtIndex(1));
-				setSpcAttackValue3(tmpValue);
-				skillSPC3Array->retain();
-			}
-			break;
 		}
 
 		_isArmored = false;
@@ -277,27 +103,7 @@ public:
 			setName(name);
 		}
 
-		initAction();
 		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", nullptr);
-	}
-
-	void initAction()
-	{
-		setIdleAction(createAnimation(idleArray, 5, true, false));
-		setWalkAction(createAnimation(walkArray, 10, true, false));
-		setHurtAction(createAnimation(hurtArray, 10, false, false));
-
-		setAirHurtAction(createAnimation(airHurtArray, 10, false, false));
-		setKnockDownAction(createAnimation(knockDownArray, 10, false, true));
-		setDeadAction(createAnimation(deadArray, 10, false, false));
-		setFloatAction(createAnimation(floatArray, 10, false, false));
-
-		setNAttackAction(createAnimation(nattackArray, 10, false, true));
-		setSkill1Action(createAnimation(skill1Array, 10, false, true));
-		setSkill2Action(createAnimation(skill2Array, 10, false, true));
-		setSkill3Action(createAnimation(skill3Array, 10, false, true));
-		setSkill4Action(createAnimation(skill4Array, 10, false, true));
-		setSkill5Action(createAnimation(skill5Array, 10, false, true));
 	}
 
 	void setShadows()
@@ -325,7 +131,7 @@ public:
 		{
 			_hpBar = HPBar::create("hp_bar.png");
 		}
-		_hpBar->setPositionY(getHeight());
+		_hpBar->setPositionY(getHPBarHeight());
 		_hpBar->setDelegate(this);
 		addChild(_hpBar);
 		changeHPbar();
@@ -581,8 +387,7 @@ public:
 	virtual bool isEnableSkill05() { return true; }
 
 	template <typename THero>
-	static typename std::enable_if<std::is_base_of<Hero, THero>::value, THero *>::type
-	// typename enable_if<!is_same<Hero, THero>::value && is_base_of<Hero, THero>::value, THero *>::type
+	static typename std::enable_if_t<std::is_base_of_v<Hero, THero>, THero *>
 	create(const string &name, Role role, Group group)
 	{
 		THero *hero = new THero();
@@ -601,19 +406,19 @@ public:
 	}
 
 	template <typename THero>
-	typename std::enable_if<std::is_base_of<Hero, THero>::value, THero *>::type
+	typename std::enable_if_t<std::is_base_of_v<Hero, THero>, THero *>
 	createHero(const string &name, Role role) { return create<THero>(name, role, getGroup()); }
 
 	template <typename THero>
-	typename std::enable_if<std::is_base_of<Hero, THero>::value, THero *>::type
+	typename std::enable_if_t<std::is_base_of_v<Hero, THero>, THero *>
 	createCloneHero(const string &name) { return createHero<THero>(name, Role::Clone); }
 
 	template <typename THero>
-	typename std::enable_if<std::is_base_of<Hero, THero>::value, THero *>::type
+	typename std::enable_if_t<std::is_base_of_v<Hero, THero>, THero *>
 	createKugutsuHero(const string &name) { return createHero<THero>(name, Role::Kugutsu); }
 
 	template <typename THero>
-	typename std::enable_if<std::is_base_of<Hero, THero>::value, THero *>::type
+	typename std::enable_if_t<std::is_base_of_v<Hero, THero>, THero *>
 	createSummonHero(const string &name) { return createHero<THero>(name, Role::Summon); }
 
 /** Macros */
@@ -627,19 +432,19 @@ public:
 
 	/** Character Macros */
 
-#define match_char_exp(_name, _fn, _name2, _fn2) \
-	if (getName() == _name)                      \
-		_fn;                                     \
-	else if (getName() == _name2)                \
-		_fn2;
+#define match_char_exp(_name, _expr, _name2, _expr2) \
+	if (getName() == _name)                          \
+		_expr;                                       \
+	else if (getName() == _name2)                    \
+		_expr2;
 
-#define match_char_exp3(_name, _fn, _name2, _fn2, _name3, _fn3)            \
-	match_char_exp(_name, _fn, _name2, _fn2) else if (getName() == _name3) \
-		_fn3;
+#define match_char_exp3(_name, _expr, _name2, _expr2, _name3, _expr3)          \
+	match_char_exp(_name, _expr, _name2, _expr2) else if (getName() == _name3) \
+		_expr3;
 
-#define match_char_exp4(_name, _fn, _name2, _fn2, _name3, _fn3, _name4, _fn4)             \
-	match_char_exp3(_name, _fn, _name2, _fn2, _name3, _fn3) else if (getName() == _name4) \
-		_fn4;
+#define match_char_exp4(_name, _expr, _name2, _expr2, _name3, _expr3, _name4, _expr4)           \
+	match_char_exp3(_name, _expr, _name2, _expr2, _name3, _expr3) else if (getName() == _name4) \
+		_expr4;
 
 protected:
 	void checkRefCount(float dt)

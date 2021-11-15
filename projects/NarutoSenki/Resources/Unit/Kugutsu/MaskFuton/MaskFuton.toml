@@ -1,0 +1,86 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'MaskFuton'
+hp = 20000
+hpBar.y = 90
+speed = 320
+
+[Idle]
+frame = [
+    'MaskFuton_Idle_001',
+]
+
+[Walk]
+frame = [
+    'MaskFuton_Walk_001',
+    'setDelay = 10',
+    'MaskFuton_Walk_002',
+    'setDelay = 10',
+    'MaskFuton_Walk_003',
+    'setDelay = 10',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'MaskFuton_Idle_001',
+]
+
+[AirHurt]
+frame = [
+    'MaskFuton_Idle_001',
+]
+
+[Knockdown]
+frame = [
+    'MaskFuton_Idle_001',
+]
+
+[Float]
+frame = [
+    'MaskFuton_Idle_001',
+]
+
+[Dead]
+frame = [
+    'MaskFuton_Idle_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 100
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'MaskFuton_Walk_001',
+    'setDelay = 10',
+    'MaskFuton_Walk_002',
+    'setHit = a_hit',
+    'setDelay = 10',
+    'MaskFuton_Walk_003',
+    'setDelay = 10',
+]
+
+[Skill01]
+type = 'cAttack'
+value = 960
+rangeX = 0
+rangeY = 48
+cd = 10
+
+frame = [
+    'MaskFuton_Move_001',
+    'MaskFuton_Move_002',
+    'MaskFuton_Move_003',
+    'setHit = o_hit',
+    'MaskFuton_Move_004',
+    'MaskFuton_Move_005',
+    'setHit = o_hit',
+    'MaskFuton_Move_006',
+]

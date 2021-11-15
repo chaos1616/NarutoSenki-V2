@@ -1,0 +1,33 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'TamaBomb'
+
+[Idle]
+frame = [
+    'TamaBomb_Move_000',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 960
+rangeX = 32
+rangeY = 48
+
+frame = [
+    'TamaBomb_Move_000',
+    'setJump = true',
+    'setDelay = 80',
+    'TamaBomb_Move_002',
+    'setSound = Audio/Effect/bom.ogg',
+    'setHit = b_hit',
+    'TamaBomb_Move_003',
+    'TamaBomb_Move_004',
+    'TamaBomb_Move_005',
+    'TamaBomb_Move_006',
+    'setDestroy = 0',
+]

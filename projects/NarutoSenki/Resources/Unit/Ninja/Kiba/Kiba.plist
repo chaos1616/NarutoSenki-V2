@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{104,80}</string>
             </dict>
-            <key>Kiba_KnockDown_001</key>
+            <key>Kiba_Knockdown_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{986,575},{58,33}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{58,33}</string>
             </dict>
-            <key>Kiba_KnockDown_002</key>
+            <key>Kiba_Knockdown_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{555,450},{68,35}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{68,35}</string>
             </dict>
-            <key>Kiba_KnockDown_003</key>
+            <key>Kiba_Knockdown_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{758,448},{75,28}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{75,28}</string>
             </dict>
-            <key>Kiba_KnockDown_004</key>
+            <key>Kiba_Knockdown_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{564,330},{37,48}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{37,48}</string>
             </dict>
-            <key>Kiba_KnockDown_005</key>
+            <key>Kiba_Knockdown_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{976,2},{62,46}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{62,46}</string>
             </dict>
-            <key>Kiba_KnockDown_006</key>
+            <key>Kiba_Knockdown_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{900,378},{41,55}}</string>

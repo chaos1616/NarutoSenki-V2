@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{37,75}</string>
             </dict>
-            <key>Tsunade_KnockDown_01</key>
+            <key>Tsunade_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{347,565},{65,33}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{65,33}</string>
             </dict>
-            <key>Tsunade_KnockDown_02</key>
+            <key>Tsunade_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,453},{70,28}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{70,28}</string>
             </dict>
-            <key>Tsunade_KnockDown_03</key>
+            <key>Tsunade_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{308,409},{72,24}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{72,24}</string>
             </dict>
-            <key>Tsunade_KnockDown_04</key>
+            <key>Tsunade_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{479,639},{30,48}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{30,48}</string>
             </dict>
-            <key>Tsunade_KnockDown_05</key>
+            <key>Tsunade_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{66,711},{61,50}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{61,50}</string>
             </dict>
-            <key>Tsunade_KnockDown_06</key>
+            <key>Tsunade_Knockdown_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{129,712},{49,57}}</string>

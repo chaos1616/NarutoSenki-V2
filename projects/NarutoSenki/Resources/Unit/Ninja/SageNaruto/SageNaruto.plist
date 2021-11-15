@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{56,74}</string>
             </dict>
-            <key>SageNaruto_KnockDown_01</key>
+            <key>SageNaruto_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{637,946},{50,57}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{50,57}</string>
             </dict>
-            <key>SageNaruto_KnockDown_02</key>
+            <key>SageNaruto_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{648,792},{69,41}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{69,57}</string>
             </dict>
-            <key>SageNaruto_KnockDown_03</key>
+            <key>SageNaruto_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{564,178},{75,29}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{75,57}</string>
             </dict>
-            <key>SageNaruto_KnockDown_04</key>
+            <key>SageNaruto_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{258,763},{43,55}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{43,65}</string>
             </dict>
-            <key>SageNaruto_KnockDown_05</key>
+            <key>SageNaruto_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{344,1138},{61,61}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{61,65}</string>
             </dict>
-            <key>SageNaruto_KnockDown_06</key>
+            <key>SageNaruto_Knockdown_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{637,886},{52,58}}</string>

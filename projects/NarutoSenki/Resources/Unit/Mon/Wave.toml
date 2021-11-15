@@ -1,0 +1,30 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Wave'
+
+[Idle]
+frame = [
+    'Wave_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 760
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'Wave_Move_01',
+    'setHit = o_hit',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'setDelay = 10',
+    'Wave_Move_02',
+    'Wave_Move_03',
+    'setHit = o_hit',
+    'setDestroy = 0',
+]

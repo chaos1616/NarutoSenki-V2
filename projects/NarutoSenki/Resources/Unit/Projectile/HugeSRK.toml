@@ -1,0 +1,26 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'HugeSRK'
+
+[Idle]
+frame = [
+    'HugeSRK_Move_002',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 360
+rangeX = 16
+rangeY = 48
+anim = {loop = true}
+frame = [
+    'HugeSRK_Move_002',
+    'setHit = bl_hit',
+    'HugeSRK_Move_003',
+    'setHit = bl_hit',
+]

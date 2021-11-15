@@ -1,0 +1,37 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Tenmu'
+
+[Idle]
+frame = [
+    'Tenmu_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 660
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'Tenmu_Move_01',
+    'setHit = ac_hit',
+    'Tenmu_Move_02',
+    'Tenmu_Move_03',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Tenmu_Move_04',
+    'Tenmu_Move_05',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Tenmu_Move_06',
+    'Tenmu_Move_07',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'setDestroy = 0',
+]

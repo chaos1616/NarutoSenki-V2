@@ -1,0 +1,278 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Kakashi'
+hp = 5500
+hpBar.y = 75
+speed = 224
+
+[Idle]
+frame = [
+    'Kakashi_Idle_01',
+]
+
+[Walk]
+frame = [
+    'Kakashi_Walk_01',
+    'Kakashi_Walk_02',
+    'Kakashi_Walk_03',
+    'Kakashi_Walk_04',
+    'Kakashi_Walk_05',
+    'Kakashi_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Kakashi_Hurt_01',
+    'Kakashi_Hurt_02',
+    'setSound = Audio/Kakashi/kakashi_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Kakashi_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Kakashi_Knockdown_01',
+    'setDelay = 10',
+    'Kakashi_Knockdown_02',
+    'setDelay = 60',
+    'Kakashi_Knockdown_03',
+    'Kakashi_Knockdown_04',
+    'Kakashi_Knockdown_05',
+    'Kakashi_Knockdown_06',
+]
+
+[Float]
+frame = [
+    'Kakashi_Float_01',
+    'setDelay = 10',
+    'Kakashi_Float_02',
+    'setDelay = 10',
+    'Kakashi_Float_03',
+]
+
+[Dead]
+frame = [
+    'Kakashi_Knockdown_01',
+    'Kakashi_Knockdown_02',
+    'setSound = Audio/Kakashi/kakashi_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Kakashi_NAttack_01',
+    'Kakashi_NAttack_02',
+    'Kakashi_NAttack_03',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Kakashi_NAttack_04',
+    'Kakashi_NAttack_05',
+    'Kakashi_NAttack_06',
+    'setMove = 8',
+    'Kakashi_NAttack_07',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'Kakashi_NAttack_08',
+    'setSound = Audio/Kakashi/kakashi_combo.ogg',
+    'Kakashi_NAttack_09',
+    'setMove = 16',
+    'Kakashi_NAttack_10',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setHit = l_hit',
+    'Kakashi_NAttack_11',
+]
+
+[Skill01]
+type = 'aAttack'
+value = 1260
+rangeX = 0
+rangeY = 48
+cd = 10
+combatPoint = 2240
+
+frame = [
+    'Kakashi_Skill01_01',
+    'Kakashi_Skill01_02',
+    'setSound = Audio/Kakashi/kakashi_skill1.ogg',
+    'Kakashi_Skill10_04',
+    'setCharge = 200',
+    'Kakashi_Skill01_04',
+    'Kakashi_Skill01_05',
+    'Kakashi_Skill01_06',
+    'setHit = f_hit',
+    'setDelay = 20',
+]
+
+[Skill02]
+type = 'Summon'
+cd = 15
+combatPoint = 2460
+
+frame = [
+    'Kakashi_Skill01_01',
+    'Kakashi_Skill01_02',
+    'setSound = Audio/Kakashi/kakashi_skill2.ogg',
+    'Kakashi_Skill04_01',
+    'Kakashi_Skill04_02',
+    'setMon = Pakkun',
+    'setDelay = 10',
+]
+
+[Skill03]
+type = 'cBuff'
+rangeX = 0
+rangeY = 30
+cd = 40
+
+frame = [
+    'setSound = Audio/Kakashi/kakashi_skill3.ogg',
+    'Kakashi_Skill03_01',
+    'Kakashi_Skill03_02',
+    'setSkillEffect = sharingan2',
+    'Kakashi_Skill03_03',
+    'setSound = Audio/Effect/srg2.ogg',
+    'setDelay = 30',
+    'setBuff = 17',
+]
+
+[Skill04]
+type = 'Summon'
+combatPoint = 3480
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setSound = Audio/Kakashi/kakashi_skill4.ogg',
+    'Kakashi_Skill02_03',
+    'Kakashi_Skill02_04',
+    'setCmd = setInvincible',
+    'setClone = 5',
+    'setDelay = 70',
+    'setCmd = reInvincible',
+]
+
+[Skill05]
+type = 'aAttack'
+value = 660
+rangeX = 32
+rangeY = 48
+combatPoint = 9440
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setSound = Audio/Kakashi/kakashi_skill5_1.ogg',
+    'Kakashi_Skill05_001',
+    'setCmd = setInvincible',
+    'setSound = Audio/Kakashi/leiqie.ogg',
+    'Kakashi_Skill05_002',
+    'setOugis = 10',
+    'Kakashi_Skill05_003',
+    'Kakashi_Skill05_004',
+    'setSound = Audio/Kakashi/kakashi_skill2_1.ogg',
+    'setCharge = 192',
+    'Kakashi_Skill05_005',
+    'setSound = Audio/Kakashi/leiqie.ogg',
+    'setHit = c_hit',
+    'Kakashi_Skill05_007',
+    'Kakashi_Skill05_006',
+    'setHit = f_hit',
+    'Kakashi_Skill05_008',
+    'Kakashi_Skill04_014',
+    'setSound = Audio/Kakashi/kakashi_skill5_4.ogg',
+    'Kakashi_Skill05_012',
+    'setChargeB = 48',
+    'Kakashi_Skill05_013',
+    'setSound = Audio/Kakashi/kakashi_skill5_3.ogg',
+    'setHit = ac_hit',
+    'Kakashi_Skill05_014',
+    'Kakashi_Skill05_015',
+    'setHit = c_hit',
+    'Kakashi_Skill05_016',
+    'Kakashi_Skill05_017',
+    'Kakashi_Skill05_018',
+    'Kakashi_Skill05_019',
+    'setHit = b_hit',
+    'Kakashi_Skill05_020',
+    'Kakashi_Skill05_021',
+    'Kakashi_Skill05_022',
+    'Kakashi_Skill05_023',
+    'setSound = Audio/Kakashi/leiqie.ogg',
+    'setMon = ThunderWave',
+    'Kakashi_Skill05_024',
+    'Kakashi_Skill05_025',
+    'Kakashi_Skill05_026',
+    'Kakashi_Skill05_027',
+    'Kakashi_Skill05_028',
+    'Kakashi_Skill02_03',
+    'Kakashi_Skill05_00',
+    'setSkillEffect = sharingan3',
+    'setSound = Audio/Kakashi/kakashi_skill5_5.ogg',
+    'setMon = Shenwei',
+    'setDelay = 130',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+type = 'aAttack'
+value = 560
+rangeX = 0
+rangeY = 48
+cd = 10
+anim = {base = 'Skill01'}
+frame = [
+    'setSound = Audio/Kakashi/leiqie2.ogg',
+    'Kakashi_Skill10_00',
+    'Kakashi_Skill10_01',
+    'Kakashi_Skill10_02',
+    'Kakashi_Skill10_03',
+    'setSound = Audio/Kakashi/kakashi_skill10.ogg',
+    'Kakashi_Skill10_04',
+    'setChargeB = 192',
+    'setSound = Audio/Kakashi/leiqie.ogg',
+    'Kakashi_Skill10_06',
+    'setHit = o_hit',
+    'Kakashi_Skill10_07',
+    'setHit = o_hit',
+    'Kakashi_Skill10_08',
+    'setHit = o_hit',
+    'Kakashi_Skill10_09',
+    'setHit = o_hit',
+]
+
+[Spc02]
+type = 'Summon'
+cd = 15
+anim = {base = 'Skill02'}
+frame = [
+    'setSound = Audio/Kakashi/kakashi_skill11.ogg',
+    'Kakashi_Skill11_01',
+    'setSkillEffect = smk',
+    'setDelay = 20',
+    'Kakashi_Skill11_02',
+    'setDelay = 10',
+    'Kakashi_Skill11_03',
+    'Kakashi_Skill11_04',
+    'Kakashi_Skill11_01',
+    'setMon = Dogs',
+]
+
+[Spc03]
+anim = {base = 'Idle'}
+frame = [
+    'Kakashi_Idle_02',
+    'Kakashi_Idle_03',
+    'Kakashi_Idle_04',
+    'Kakashi_Idle_05',
+]

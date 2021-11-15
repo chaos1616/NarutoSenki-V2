@@ -1,0 +1,43 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'SandBall'
+
+[Idle]
+frame = [
+    'SandBall_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 660
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'setCmd = findTarget',
+    'setCmd = setTransport',
+    'SandBall_Move_01',
+    'setHit = c_hit',
+    'SandBall_Move_02',
+    'SandBall_Move_03',
+    'setHit = c_hit',
+    'SandBall_Move_05',
+    'SandBall_Move_06',
+    'SandBall_Move_07',
+    'setHit = ct_hit',
+    'SandBall_Move_08',
+    'SandBall_Move_09',
+    'SandBall_Move_10',
+    'SandBall_Move_11',
+    'SandBall_Move_12',
+    'SandBall_Move_13',
+    'SandBall_Move_14',
+    'setSound = Audio/Effect/stick_damage.ogg',
+    'SandBall_Move_15',
+    'setDestroy = 0',
+]

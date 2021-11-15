@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{71,77}</string>
             </dict>
-            <key>Choji_KnockDown_01</key>
+            <key>Choji_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{704,296},{87,66}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{87,66}</string>
             </dict>
-            <key>Choji_KnockDown_02</key>
+            <key>Choji_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{375,583},{84,47}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{84,47}</string>
             </dict>
-            <key>Choji_KnockDown_03</key>
+            <key>Choji_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{266,606},{84,40}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{84,40}</string>
             </dict>
-            <key>Choji_KnockDown_04</key>
+            <key>Choji_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{540,606},{45,65}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{45,65}</string>
             </dict>
-            <key>Choji_KnockDown_05</key>
+            <key>Choji_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{702,385},{66,51}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{66,51}</string>
             </dict>
-            <key>Choji_KnockDown_06</key>
+            <key>Choji_Knockdown_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{431,662},{54,53}}</string>

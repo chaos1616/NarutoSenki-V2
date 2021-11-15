@@ -1,0 +1,37 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Shoryu'
+
+[Idle]
+frame = [
+    'Shoryu_Move_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 1660
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'Shoryu_Move_001',
+    'Shoryu_Move_002',
+    'Shoryu_Move_003',
+    'setHit = c_hit',
+    'Shoryu_Move_004',
+    'Shoryu_Move_005',
+    'setHit = c_hit',
+    'Shoryu_Move_006',
+    'Shoryu_Move_007',
+    'setHit = c_hit',
+    'Shoryu_Move_008',
+    'Shoryu_Move_009',
+    'setHit = c_hit',
+    'setDelay = 10',
+    'setDestroy = 0',
+]

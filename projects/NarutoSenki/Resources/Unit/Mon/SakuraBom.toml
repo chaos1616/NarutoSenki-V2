@@ -1,0 +1,30 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'SakuraBom'
+
+[Idle]
+frame = [
+    'SakuraBom_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 1000
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'SakuraBom_Move_01',
+    'setHit = b_hit',
+    'SakuraBom_Move_02',
+    'setHit = b_hit',
+    'SakuraBom_Move_03',
+    'setHit = b_hit',
+    'SakuraBom_Move_04',
+    'setDestroy = 0',
+]

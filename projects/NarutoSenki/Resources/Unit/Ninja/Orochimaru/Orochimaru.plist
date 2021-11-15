@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{39,68}</string>
             </dict>
-            <key>Orochimaru_KnockDown_01</key>
+            <key>Orochimaru_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,490},{71,42}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{71,42}</string>
             </dict>
-            <key>Orochimaru_KnockDown_02</key>
+            <key>Orochimaru_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{75,493},{70,41}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{70,41}</string>
             </dict>
-            <key>Orochimaru_KnockDown_03</key>
+            <key>Orochimaru_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{258,119},{83,23}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{83,23}</string>
             </dict>
-            <key>Orochimaru_KnockDown_04</key>
+            <key>Orochimaru_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{416,47},{84,23}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{84,23}</string>
             </dict>
-            <key>Orochimaru_KnockDown_05</key>
+            <key>Orochimaru_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{162,472},{55,48}}</string>

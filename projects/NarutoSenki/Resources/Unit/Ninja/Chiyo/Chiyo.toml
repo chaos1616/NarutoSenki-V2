@@ -1,0 +1,257 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Chiyo'
+hp = 6000
+hpBar.y = 65
+speed = 224
+
+[Idle]
+frame = [
+    'Chiyo_Idle_001',
+    'setDelay = 10',
+    'Chiyo_Idle_002',
+    'setDelay = 10',
+    'Chiyo_Idle_003',
+]
+
+[Walk]
+frame = [
+    'Chiyo_Walk_01',
+    'Chiyo_Walk_02',
+    'Chiyo_Walk_03',
+    'Chiyo_Walk_04',
+    'Chiyo_Walk_05',
+    'Chiyo_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Chiyo_Hurt_01',
+    'Chiyo_Hurt_02',
+]
+
+[AirHurt]
+frame = [
+    'Chiyo_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Chiyo_Knockdown_01',
+    'setDelay = 10',
+    'Chiyo_Knockdown_02',
+    'setDelay = 60',
+    'Chiyo_Knockdown_03',
+    'setDelay = 60',
+    'Chiyo_Knockdown_04',
+]
+
+[Float]
+frame = [
+    'Chiyo_Float_01',
+    'setDelay = 10',
+    'Chiyo_Float_02',
+    'setDelay = 10',
+    'Chiyo_Float_03',
+]
+
+[Dead]
+frame = [
+    'Chiyo_Knockdown_01',
+    'Chiyo_Knockdown_02',
+    'setSound = Audio/Chiyo/Chiyo_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 80
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Chiyo_NAttack_01',
+    'Chiyo_NAttack_02',
+    'setDelay = 10',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Chiyo_NAttack_03',
+    'setDelay = 10',
+    'Chiyo_NAttack_04',
+    'setMove = 8',
+    'Chiyo_NAttack_05',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'setDelay = 10',
+    'Chiyo_NAttack_06',
+    'Chiyo_NAttack_07',
+    'setMove = 16',
+    'Chiyo_NAttack_08',
+    'setSound = Audio/Chiyo/Chiyo_combo.ogg',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setHit = l_hit',
+    'setDelay = 10',
+]
+
+[Skill01]
+type = 'cBuff'
+cd = 10
+
+frame = [
+    'Chiyo_Skill01_01',
+    'setSound = Audio/Chiyo/Chiyo_skill1.ogg',
+    'Chiyo_Skill01_02',
+    'Chiyo_Skill01_03',
+    'Chiyo_Skill01_04',
+    'setClone = 0',
+    'setBuff = 17',
+]
+
+[Skill02]
+type = 'cBuff'
+rangeX = 0
+rangeY = 15
+cd = 15
+
+frame = [
+    'setSound = Audio/Chiyo/Chiyo_skill2.ogg',
+    'setMonAttack = 1',
+    'Chiyo_Skill02_01',
+    'Chiyo_Skill02_02',
+    'Chiyo_Skill02_03',
+    'Chiyo_Skill02_01',
+    'Chiyo_Skill02_02',
+]
+
+[Skill03]
+type = 'Summon'
+cd = 25
+combatPoint = 2460
+
+frame = [
+    'setSound = Audio/Chiyo/Chiyo_skill3.ogg',
+    'setMonAttack = 2',
+    'Chiyo_Skill03_01',
+    'setSound = Audio/Effect/kugutsu.ogg',
+    'Chiyo_Skill03_02',
+    'Chiyo_Skill03_03',
+    'Chiyo_Skill03_04',
+]
+
+[Skill04]
+type = 'GroupBuff'
+rangeX = 0
+rangeY = 10
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setCmd = setInvincible',
+    'Chiyo_Skill04_001',
+    'setSound = Audio/Chiyo/Chiyo_skill4.ogg',
+    'setBuff = 1000',
+    'Chiyo_Skill04_002',
+    'Chiyo_Skill04_003',
+    'Chiyo_Skill04_004',
+    'setCmd = reInvincible',
+]
+
+[Skill05]
+type = 'cAttack'
+value = 660
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Chiyo_Skill05_001',
+    'Chiyo_Skill05_002',
+    'Chiyo_Skill05_003',
+    'setSound = Audio/Effect/poof.ogg',
+    'Chiyo_Skill05_004',
+    'setOugis = 10',
+    'Chiyo_Skill05_005',
+    'setSound = Audio/Chiyo/Chiyo_skill5.ogg',
+    'Chiyo_Skill05_006',
+    'Chiyo_Skill05_007',
+    'Chiyo_Skill05_008',
+    'setCmd = setInvincible',
+    'setMon = Sanbao',
+    'Chiyo_Skill05_009',
+    'Chiyo_Skill05_010',
+    'Chiyo_Skill05_011',
+    'Chiyo_Skill05_012',
+    'Chiyo_Skill05_009',
+    'Chiyo_Skill05_010',
+    'Chiyo_Skill05_011',
+    'Chiyo_Skill05_009',
+    'Chiyo_Skill05_010',
+    'Chiyo_Skill05_011',
+    'Chiyo_Skill05_012',
+    'Chiyo_Skill05_013',
+    'Chiyo_Skill05_014',
+    'Chiyo_Skill05_015',
+    'setHit = c_hit',
+    'Chiyo_Skill05_016',
+    'Chiyo_Skill05_017',
+    'setHit = o2_hit',
+    'setDSound = Audio/Effect/damage_h.ogg',
+    'Chiyo_Skill05_018',
+    'Chiyo_Skill05_019',
+    'setSound = Audio/Effect/poof.ogg',
+    'Chiyo_Skill05_020',
+    'Chiyo_Skill05_021',
+    'setSound = Audio/Chiyo/Chiyo_skill5_1.ogg',
+    'Chiyo_Skill05_022',
+    'Chiyo_Skill05_023',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Chiyo_Skill05_024',
+    'Chiyo_Skill05_025',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Chiyo_Skill05_024',
+    'Chiyo_Skill05_025',
+    'setHit = o_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Chiyo_Skill05_026',
+    'setSound = Audio/Effect/poof.ogg',
+    'Chiyo_Skill05_027',
+    'Chiyo_Skill05_028',
+    'Chiyo_Skill05_029',
+    'setHit = f_hit',
+    'setDSound = Audio/Effect/damage_o2.ogg',
+    'Chiyo_Skill05_030',
+    'Chiyo_Skill05_031',
+    'setSound = Audio/Effect/poof.ogg',
+    'Chiyo_Skill05_032',
+    'Chiyo_Skill05_033',
+    'Chiyo_Skill05_034',
+    'Chiyo_Skill05_035',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'Chiyo_Skill05_036',
+    'Chiyo_Skill05_037',
+    'setHit = ac_hit',
+    'setSound = Audio/Effect/poof.ogg',
+    'Chiyo_Skill05_038',
+    'Chiyo_Skill05_039',
+    'Chiyo_Skill05_040',
+    'Chiyo_Skill05_041',
+    'setSound = Audio/Chiyo/Chiyo_skill5_2.ogg',
+    'Chiyo_Skill05_042',
+    'Chiyo_Skill05_043',
+    'Chiyo_Skill05_044',
+    'setHit = f_hit',
+    'setDSound = Audio/Effect/damage_h.ogg',
+    'Chiyo_Skill05_045',
+    'Chiyo_Skill05_046',
+    'Chiyo_Skill05_047',
+    'setSound = Audio/Effect/poof.ogg',
+    'Chiyo_Skill05_048',
+    'setCmd = reInvincible',
+]

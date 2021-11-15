@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{32,87}</string>
             </dict>
-            <key>Tobi_KnockDown_001</key>
+            <key>Tobi_Knockdown_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{432,571},{73,23}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{73,23}</string>
             </dict>
-            <key>Tobi_KnockDown_002</key>
+            <key>Tobi_Knockdown_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{487,684},{50,46}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{50,46}</string>
             </dict>
-            <key>Tobi_KnockDown_003</key>
+            <key>Tobi_Knockdown_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{677,649},{42,48}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{42,48}</string>
             </dict>
-            <key>Tobi_KnockDown_004</key>
+            <key>Tobi_Knockdown_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{620,657},{35,47}}</string>

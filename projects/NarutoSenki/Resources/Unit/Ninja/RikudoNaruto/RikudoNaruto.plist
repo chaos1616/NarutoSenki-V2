@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{69,70}</string>
             </dict>
-            <key>RikudoNaruto_KnockDown_001</key>
+            <key>RikudoNaruto_Knockdown_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{133,961},{60,47}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{60,47}</string>
             </dict>
-            <key>RikudoNaruto_KnockDown_002</key>
+            <key>RikudoNaruto_Knockdown_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{220,280},{78,30}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{78,30}</string>
             </dict>
-            <key>RikudoNaruto_KnockDown_003</key>
+            <key>RikudoNaruto_Knockdown_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{415,914},{41,50}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{41,50}</string>
             </dict>
-            <key>RikudoNaruto_KnockDown_004</key>
+            <key>RikudoNaruto_Knockdown_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{739,1006},{65,53}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{65,53}</string>
             </dict>
-            <key>RikudoNaruto_KnockDown_005</key>
+            <key>RikudoNaruto_Knockdown_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{235,851},{47,65}}</string>

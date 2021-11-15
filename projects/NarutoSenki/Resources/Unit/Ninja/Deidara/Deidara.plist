@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{52,77}</string>
             </dict>
-            <key>Deidara_KnockDown_01</key>
+            <key>Deidara_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{253,231},{81,35}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{81,59}</string>
             </dict>
-            <key>Deidara_KnockDown_02</key>
+            <key>Deidara_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{863,328},{80,23}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{80,59}</string>
             </dict>
-            <key>Deidara_KnockDown_03</key>
+            <key>Deidara_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{446,518},{65,49}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{65,59}</string>
             </dict>
-            <key>Deidara_KnockDown_04</key>
+            <key>Deidara_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{189,454},{49,57}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{49,59}</string>
             </dict>
-            <key>Deidara_KnockDown_05</key>
+            <key>Deidara_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{319,444},{32,57}}</string>

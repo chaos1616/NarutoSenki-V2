@@ -161,10 +161,10 @@ class Naruto : public Hero
 
 	inline void changeAction_Naruto()
 	{
-		setIdleAction(createAnimation(skillSPC1Array, 5, true, false));
-		setWalkAction(createAnimation(skillSPC2Array, 10, true, false));
-		setNAttackAction(createAnimation(skillSPC3Array, 10, false, true));
-		setKnockDownAction(createAnimation(skillSPC4Array, 10, false, true));
+		setActionTo<ActionFlag::Idle, ActionFlag::Spc01>();
+		setActionTo<ActionFlag::Walk, ActionFlag::Spc02>();
+		setActionTo<ActionFlag::NAttack, ActionFlag::Spc03>();
+		setActionTo<ActionFlag::Knockdown, ActionFlag::Spc04>();
 
 		setWalkSpeed(320);
 		_originSpeed = 320;
@@ -187,9 +187,9 @@ class Naruto : public Hero
 
 	inline void resumeAction_Naruto(float dt)
 	{
-		setIdleAction(createAnimation(idleArray, 5, true, false));
-		setWalkAction(createAnimation(walkArray, 10, true, false));
-		setNAttackAction(createAnimation(nattackArray, 10, false, true));
+		setActionTo<ActionFlag::Idle, ActionFlag::Idle>();
+		setActionTo<ActionFlag::Walk, ActionFlag::Walk>();
+		setActionTo<ActionFlag::NAttack, ActionFlag::NAttack>();
 
 		_isOnlySkillLocked = false;
 
@@ -213,10 +213,10 @@ class Naruto : public Hero
 		if (_state != State::DEAD)
 		{
 			_state = State::WALK;
-			knockDown();
+			knockdown();
 		}
 
-		setKnockDownAction(createAnimation(knockDownArray, 10, false, true));
+		setActionTo<ActionFlag::Knockdown, ActionFlag::Knockdown>();
 		CharacterBase::resumeAction(dt);
 	}
 
@@ -352,9 +352,9 @@ class Naruto : public Hero
 		hasArmorBroken = true;
 		_isOnlySkillLocked = true;
 
-		setIdleAction(createAnimation(skillSPC4Array, 5, true, false));
-		setWalkAction(createAnimation(skillSPC2Array, 10, true, false));
-		setNAttackAction(createAnimation(skillSPC3Array, 10, false, true));
+		setActionTo<ActionFlag::Idle, ActionFlag::Spc04>();
+		setActionTo<ActionFlag::Walk, ActionFlag::Spc02>();
+		setActionTo<ActionFlag::NAttack, ActionFlag::Spc03>();
 
 		setWalkSpeed(320);
 		_originSpeed = 320;
@@ -364,9 +364,9 @@ class Naruto : public Hero
 
 	inline void resumeAction_SageNaruto(float dt)
 	{
-		setIdleAction(createAnimation(idleArray, 5, true, false));
-		setWalkAction(createAnimation(walkArray, 10, true, false));
-		setNAttackAction(createAnimation(nattackArray, 10, false, true));
+		setActionTo<ActionFlag::Idle, ActionFlag::Idle>();
+		setActionTo<ActionFlag::Walk, ActionFlag::Walk>();
+		setActionTo<ActionFlag::NAttack, ActionFlag::NAttack>();
 
 		_isOnlySkillLocked = false;
 
@@ -382,9 +382,9 @@ class Naruto : public Hero
 		if (_state != State::DEAD)
 		{
 			_state = State::WALK;
-			setKnockDownAction(createAnimation(skillSPC5Array, 10, false, true));
-			knockDown();
-			setKnockDownAction(createAnimation(knockDownArray, 10, false, true));
+			setActionTo<ActionFlag::Knockdown, ActionFlag::Spc05>();
+			knockdown();
+			setActionTo<ActionFlag::Knockdown, ActionFlag::Knockdown>();
 		}
 		else if (hasTempAttackValue1())
 		{
@@ -397,7 +397,7 @@ class Naruto : public Hero
 	inline Hero *createClone_SageNaruto(int cloneTime)
 	{
 		auto clone = createCloneHero<SageNarutoClone>(getName());
-		clone->setSkill1Action(clone->createAnimation(clone->skillSPC1Array, 10, false, true));
+		clone->setActionTo<ActionFlag::Skill01, ActionFlag::Spc01>();
 		clone->setSAttackValue1(getSAttackValue1());
 		clone->setSAttackType1(_spcAttackType1);
 		clone->_sAttackCD1 = _spcAttackCD1;
@@ -531,9 +531,9 @@ class Naruto : public Hero
 		hasArmorBroken = true;
 		_isOnlySkillLocked = true;
 
-		setIdleAction(createAnimation(skillSPC4Array, 5, true, false));
-		setWalkAction(createAnimation(skillSPC2Array, 10, true, false));
-		setNAttackAction(createAnimation(skillSPC3Array, 10, false, true));
+		setActionTo<ActionFlag::Idle, ActionFlag::Spc04>();
+		setActionTo<ActionFlag::Walk, ActionFlag::Spc02>();
+		setActionTo<ActionFlag::NAttack, ActionFlag::Spc03>();
 
 		if (getName() == HeroEnum::RikudoNaruto)
 		{
@@ -549,9 +549,9 @@ class Naruto : public Hero
 
 	inline void resumeAction_RikudoNaruto(float dt)
 	{
-		setIdleAction(createAnimation(idleArray, 5, true, false));
-		setWalkAction(createAnimation(walkArray, 10, true, false));
-		setNAttackAction(createAnimation(nattackArray, 10, false, true));
+		setActionTo<ActionFlag::Idle, ActionFlag::Idle>();
+		setActionTo<ActionFlag::Walk, ActionFlag::Walk>();
+		setActionTo<ActionFlag::NAttack, ActionFlag::NAttack>();
 
 		_isOnlySkillLocked = false;
 

@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{58,64}</string>
             </dict>
-            <key>Kakashi_KnockDown_01</key>
+            <key>Kakashi_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{550,2},{86,31}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{86,53}</string>
             </dict>
-            <key>Kakashi_KnockDown_02</key>
+            <key>Kakashi_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{440,2},{88,21}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{88,53}</string>
             </dict>
-            <key>Kakashi_KnockDown_03</key>
+            <key>Kakashi_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{167,950},{71,41}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{71,53}</string>
             </dict>
-            <key>Kakashi_KnockDown_04</key>
+            <key>Kakashi_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{564,635},{49,53}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{49,53}</string>
             </dict>
-            <key>Kakashi_KnockDown_05</key>
+            <key>Kakashi_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{520,582},{51,53}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{51,53}</string>
             </dict>
-            <key>Kakashi_KnockDown_06</key>
+            <key>Kakashi_Knockdown_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,950},{72,53}}</string>

@@ -1,0 +1,41 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Kaiten'
+
+[Idle]
+frame = [
+    'Kaiten_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 760
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'Kaiten_Move_01',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Kaiten_Move_02',
+    'Kaiten_Move_03',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Kaiten_Move_04',
+    'Kaiten_Move_05',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Kaiten_Move_06',
+    'Kaiten_Move_07',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Kaiten_Move_08',
+    'Kaiten_Move_09',
+    'Kaiten_Move_10',
+    'setDestroy = 0',
+]

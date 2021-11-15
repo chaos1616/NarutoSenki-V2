@@ -1,0 +1,251 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Karin'
+hp = 5500
+hpBar.y = 74
+speed = 224
+
+[Idle]
+frame = [
+    'Karin_Idle_01',
+    'Karin_Idle_02',
+    'Karin_Idle_03',
+    'Karin_Idle_04',
+]
+
+[Walk]
+frame = [
+    'Karin_Walk_01',
+    'Karin_Walk_02',
+    'Karin_Walk_03',
+    'Karin_Walk_04',
+    'Karin_Walk_05',
+    'Karin_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Karin_Hurt_01',
+    'Karin_Hurt_02',
+    'setSound = Audio/Karin/Karin_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Karin_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Karin_Knockdown_01',
+    'setDelay = 10',
+    'Karin_Knockdown_02',
+    'setDelay = 60',
+    'Karin_Knockdown_03',
+    'Karin_Knockdown_04',
+    'Karin_Knockdown_05',
+]
+
+[Float]
+frame = [
+    'Karin_Float_01',
+    'setDelay = 10',
+    'Karin_Float_02',
+    'setDelay = 10',
+    'Karin_Float_03',
+]
+
+[Dead]
+frame = [
+    'Karin_Knockdown_01',
+    'Karin_Knockdown_02',
+    'setSound = Audio/Karin/Karin_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 80
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Karin_NAttack_01',
+    'Karin_NAttack_02',
+    'Karin_NAttack_03',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Karin_NAttack_04',
+    'Karin_NAttack_05',
+    'Karin_NAttack_06',
+    'Karin_NAttack_07',
+    'setMove = 8',
+    'Karin_NAttack_08',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'Karin_NAttack_09',
+    'Karin_NAttack_10',
+    'Karin_NAttack_11',
+    'setSound = Audio/Karin/Karin_combo.ogg',
+    'setMove = 16',
+    'Karin_NAttack_12',
+    'setHit = l_hit',
+    'setSound = Audio/Effect/combo3.ogg',
+    'Karin_NAttack_13',
+]
+
+[Skill01]
+type = 'aAttack'
+value = 560
+rangeX = 0
+rangeY = 48
+cd = 10
+combatPoint = 1120
+
+frame = [
+    'setSound = Audio/Karin/Karin_skill1.ogg',
+    'Karin_Skill01_02',
+    'setChargeB = 196',
+    'Karin_Skill01_03',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Karin_Skill01_05',
+    'Karin_Skill01_06',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Karin_Skill01_07',
+]
+
+[Skill02]
+type = 'cAttack'
+value = 760
+rangeX = 0
+rangeY = 48
+cd = 15
+combatPoint = 1520
+
+frame = [
+    'Karin_Skill02_01',
+    'setSound = Audio/Karin/Karin_skill2.ogg',
+    'Karin_Skill02_02',
+    'Karin_Skill02_04',
+    'setSound = Audio/Effect/thunder_effect.ogg',
+    'setHit = c_hit',
+    'Karin_Skill02_05',
+    'Karin_Skill02_06',
+    'setHit = c_hit',
+    'Karin_Skill02_07',
+]
+
+[Skill03]
+type = 'cAttack'
+value = 660
+rangeX = 0
+rangeY = 48
+cd = 25
+combatPoint = 2640
+
+frame = [
+    'setSound = Audio/Karin/Karin_skill3.ogg',
+    'Karin_Skill03_01',
+    'setDelay = 10',
+    'setCharge = 280',
+    'Karin_Skill03_02',
+    'Karin_Skill03_03',
+    'setHit = o_hit',
+    'setSound = Audio/Effect/damage_o.ogg',
+    'Karin_Skill03_04',
+    'Karin_Skill03_06',
+    'setCharge = 280',
+    'Karin_Skill03_07',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Karin_Skill03_08',
+    'Karin_Skill03_08_1',
+    'setHit = c_hit',
+    'Karin_Skill03_09',
+    'setMove = 8',
+    'Karin_Skill03_09_1',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Karin_Skill03_10',
+    'Karin_Skill03_14',
+]
+
+[Skill04]
+type = 'GroupHeal'
+value = 250
+rangeX = 48
+rangeY = 6
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Karin_Skill04_02',
+    'setDelay = 20',
+    'Karin_Skill04_03',
+    'setSound = Audio/Karin/Karin_skill4.ogg',
+    'Karin_Skill04_05',
+    'Karin_Skill04_06',
+    'Karin_Skill04_07',
+    'setBuff = 600',
+]
+
+[Skill05]
+type = 'cAttack'
+value = 1160
+rangeX = 0
+rangeY = 48
+combatPoint = 9080
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Karin_Skill05_01',
+    'setDelay = 10',
+    'setOugis = 10',
+    'Karin_Skill05_01',
+    'setCmd = setInvincible',
+    'Karin_Skill05_02',
+    'setHit = o_hit',
+    'setDSound = Audio/Effect/damage_o.ogg',
+    'setDelay = 10',
+    'Karin_Skill05_03',
+    'setSound = Audio/Karin/Karin_skill5_1.ogg',
+    'setHit = ab_hit',
+    'setDelay = 10',
+    'Karin_Skill05_04',
+    'setHit = ab_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'setDelay = 10',
+    'Karin_Skill05_05',
+    'Karin_Skill05_06',
+    'setSound = Audio/Karin/Karin_skill5_2.ogg',
+    'setHit = b_hit',
+    'setDSound = Audio/Effect/damage_o.ogg',
+    'Karin_Skill05_07',
+    'Karin_Skill05_08',
+    'Karin_Skill05_09',
+    'Karin_Skill05_10',
+    'Karin_Skill05_11',
+    'setHit = b_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'setDelay = 10',
+    'Karin_Skill05_12',
+    'Karin_Skill05_13',
+    'setHit = b_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'setDelay = 10',
+    'Karin_Skill05_14',
+    'setSound = Audio/Karin/Karin_skill5_3.ogg',
+    'Karin_Skill05_15',
+    'setDelay = 10',
+    'Karin_Skill05_16',
+    'setTrap = Kusuri',
+    'Karin_Skill05_17',
+    'setDelay = 50',
+    'setCmd = reInvincible',
+]

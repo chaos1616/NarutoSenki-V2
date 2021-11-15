@@ -1,0 +1,59 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Jibaku'
+
+[Idle]
+frame = [
+    'Jibaku_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 300
+rangeX = 192
+rangeY = 64
+
+frame = [
+    'Jibaku_Move_01',
+    'setHit = ab_hit',
+    'setDelay = 10',
+    'setHit = ab_hit',
+    'setDelay = 10',
+    'Jibaku_Move_02',
+    'setHit = ab_hit',
+    'setDelay = 10',
+    'setHit = ab_hit',
+    'setDelay = 10',
+    'Jibaku_Move_03',
+    'setHit = ab_hit',
+    'setDelay = 10',
+    'setHit = ab_hit',
+    'setDelay = 10',
+    'Jibaku_Move_04',
+    'setHit = ab_hit',
+    'setDelay = 10',
+    'setHit = ab_hit',
+    'setDelay = 10',
+    'Jibaku_Move_05',
+    'setHit = ab_hit',
+    'setDelay = 10',
+    'setHit = ab_hit',
+    'setDelay = 10',
+    'Jibaku_Move_06',
+    'setSound = Audio/Effect/bom.ogg',
+    'setHit = c_hit',
+    'Jibaku_Move_07',
+    'setHit = c_hit',
+    'Jibaku_Move_08',
+    'setHit = c_hit',
+    'Jibaku_Move_09',
+    'Jibaku_Move_10',
+    'Jibaku_Move_11',
+    'Jibaku_Move_12',
+    'setDestroy = 0',
+]

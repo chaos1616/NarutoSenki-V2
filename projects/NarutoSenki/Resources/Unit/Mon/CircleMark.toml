@@ -1,0 +1,26 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'CircleMark'
+
+[Idle]
+frame = [
+    'CircleMark_Move_04',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 560
+rangeX = 32
+rangeY = 48
+
+frame = [
+    'CircleMark_Move_01',
+    'CircleMark_Move_02',
+    'CircleMark_Move_03',
+    'CircleMark_Move_04',
+]

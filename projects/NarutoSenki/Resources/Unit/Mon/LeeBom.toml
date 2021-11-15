@@ -1,0 +1,28 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'LeeBom'
+
+[Idle]
+frame = [
+    'LeeBom_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 1360
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'LeeBom_Move_01',
+    'setHit = f_hit',
+    'LeeBom_Move_02',
+    'setHit = b_hit',
+    'LeeBom_Move_04',
+    'setDestroy = 0',
+]

@@ -1,0 +1,53 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'InkDragon'
+
+[Idle]
+frame = [
+    'InkDragon_Move_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 1360
+rangeX = 32
+rangeY = 96
+
+frame = [
+    'InkDragon_Move_001',
+    'setHit = o_hit',
+    'setDelay = 10',
+    'InkDragon_Move_002',
+    'setDelay = 10',
+    'InkDragon_Move_003',
+    'setHit = o_hit',
+    'setDelay = 10',
+    'InkDragon_Move_002',
+    'setDelay = 10',
+    'InkDragon_Move_001',
+    'setHit = o_hit',
+    'setDelay = 10',
+    'InkDragon_Move_002',
+    'setDelay = 10',
+    'InkDragon_Move_003',
+    'setHit = o_hit',
+    'setDelay = 10',
+    'InkDragon_Move_002',
+    'setDelay = 10',
+    'InkDragon_Move_001',
+    'setHit = o_hit',
+    'setDelay = 10',
+    'InkDragon_Move_002',
+    'setDelay = 10',
+    'InkDragon_Move_003',
+    'setHit = o_hit',
+    'setDelay = 10',
+    'InkDragon_Move_002',
+    'setDelay = 10',
+    'setDestroy = 0',
+]

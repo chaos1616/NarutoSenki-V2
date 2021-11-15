@@ -1,0 +1,280 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Asuma'
+hp = 5000
+hpBar.y = 80
+speed = 224
+
+[Idle]
+frame = [
+    'Asuma_Idle_001',
+    'Asuma_Idle_002',
+    'Asuma_Idle_003',
+    'Asuma_Idle_004',
+]
+
+[Walk]
+frame = [
+    'Asuma_Walk_01',
+    'Asuma_Walk_02',
+    'Asuma_Walk_03',
+    'Asuma_Walk_04',
+    'Asuma_Walk_05',
+    'Asuma_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Asuma_Hurt_01',
+    'Asuma_Hurt_02',
+    'setSound = Audio/Asuma/asuma_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Asuma_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Asuma_Knockdown_001',
+    'setDelay = 10',
+    'Asuma_Knockdown_002',
+    'setDelay = 60',
+    'Asuma_Knockdown_003',
+    'Asuma_Knockdown_004',
+    'Asuma_Knockdown_005',
+]
+
+[Float]
+frame = [
+    'Asuma_Float_001',
+    'setDelay = 10',
+    'Asuma_Float_002',
+    'setDelay = 10',
+    'Asuma_Float_003',
+]
+
+[Dead]
+frame = [
+    'Asuma_Knockdown_001',
+    'Asuma_Knockdown_002',
+    'setSound = Audio/Asuma/asuma_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Asuma_NAttack_001',
+    'Asuma_NAttack_002',
+    'Asuma_NAttack_003',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/combo1.ogg',
+    'Asuma_NAttack_004',
+    'setMove = 8',
+    'Asuma_NAttack_005',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/combo2.ogg',
+    'Asuma_NAttack_006',
+    'setMove = 16',
+    'setDelay = 10',
+    'Asuma_NAttack_007',
+    'setSound = Audio/Asuma/asuma_combo.ogg',
+    'Asuma_NAttack_008',
+    'setSound = Audio/Effect/kong.ogg',
+    'setHit = l_hit',
+    'Asuma_NAttack_009',
+]
+
+[Skill01]
+type = 'cAttack'
+value = 360
+rangeX = 0
+rangeY = 48
+cd = 10
+combatPoint = 1440
+
+frame = [
+    'Asuma_Skill01_001',
+    'setSound = Audio/Asuma/asuma_skill1.ogg',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Asuma_Skill01_002',
+    'Asuma_Skill01_003',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Asuma_Skill01_004',
+    'Asuma_Skill01_005',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Asuma_Skill01_006',
+    'Asuma_Skill01_007',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+]
+
+[Skill02]
+type = 'cAttack'
+value = 460
+rangeX = 0
+rangeY = 48
+cd = 15
+combatPoint = 1840
+
+frame = [
+    'setSound = Audio/Asuma/asuma_skill2_1.ogg',
+    'Asuma_Skill02_001',
+    'setCharge = 96',
+    'Asuma_Skill02_002',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'Asuma_Skill02_003',
+    'Asuma_Skill02_004',
+    'setHit = ac_hit',
+    'Asuma_Skill02_005',
+    'Asuma_Skill02_006',
+    'setSound = Audio/Asuma/asuma_skill2_2.ogg',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'Asuma_Skill02_007',
+    'Asuma_Skill02_008',
+    'setHit = ac_hit',
+]
+
+[Skill03]
+type = 'aAttack'
+value = 1960
+rangeX = 0
+rangeY = 48
+cd = 25
+combatPoint = 2060
+
+frame = [
+    'Asuma_Skill03_001',
+    'setSound = Audio/Asuma/asuma_skill3.ogg',
+    'setDelay = 10',
+    'Asuma_Skill03_002',
+    'Asuma_Skill03_003',
+    'setSound = Audio/Asuma/asuma_skill3_1.ogg',
+    'Asuma_Skill03_004',
+    'setChargeB = 280',
+    'Asuma_Skill03_005',
+    'Asuma_Skill03_006',
+    'setHit = o2_hit',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'Asuma_Skill03_007',
+    'Asuma_Skill03_008',
+    'Asuma_Skill03_009',
+]
+
+[Skill04]
+type = 'aAttack'
+value = 560
+rangeX = 0
+rangeY = 48
+combatPoint = 3360
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Asuma_Skill04_001',
+    'setSound = Audio/Asuma/asuma_skill4.ogg',
+    'Asuma_Skill04_002',
+    'Asuma_Skill04_000',
+    'setCmd = findTarget',
+    'setCmd = setTransport',
+    'Asuma_Skill04_003',
+    'Asuma_Skill04_004',
+    'setSound = Audio/Asuma/asuma_skill4_1.ogg',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/blade_damage2.ogg',
+    'Asuma_Skill04_000',
+    'setCmd = findTarget',
+    'setCmd = setTransport',
+    'Asuma_Skill04_005',
+    'Asuma_Skill04_006',
+    'setSound = Audio/Asuma/asuma_skill4_2.ogg',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/blade_damage2.ogg',
+    'Asuma_Skill04_000',
+    'setCmd = findTarget',
+    'setCmd = setTransport',
+    'Asuma_Skill04_007',
+    'Asuma_Skill04_008',
+    'setSound = Audio/Asuma/asuma_skill4_3.ogg',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/blade_damage2.ogg',
+    'Asuma_Skill04_000',
+    'setCmd = findTarget',
+    'setCmd = setTransport',
+    'Asuma_Skill04_005',
+    'Asuma_Skill04_006',
+    'setSound = Audio/Asuma/asuma_skill4_1.ogg',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/blade_damage2.ogg',
+    'Asuma_Skill04_000',
+    'setCmd = findTarget',
+    'setCmd = setTransport',
+    'Asuma_Skill04_007',
+    'Asuma_Skill04_008',
+    'setSound = Audio/Asuma/asuma_skill4_5.ogg',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/blade_damage2.ogg',
+    'Asuma_Skill04_000',
+    'setCmd = findTarget',
+    'setCmd = setTransport',
+    'Asuma_Skill04_009',
+    'setDelay = 10',
+    'Asuma_Skill04_010',
+    'setSound = Audio/Asuma/asuma_skill4_6.ogg',
+    'setHit = f_hit',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'Asuma_Skill04_011',
+    'Asuma_Skill04_012',
+]
+
+[Skill05]
+type = 'cAttack'
+value = 1060
+rangeX = 0
+rangeY = 64
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setSound = Audio/Asuma/asuma_skill5.ogg',
+    'Asuma_Skill05_001',
+    'setCmd = setInvincible',
+    'Asuma_Skill05_002',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'Asuma_Skill05_003',
+    'Asuma_Skill05_004',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'Asuma_Skill05_005',
+    'Asuma_Skill05_006',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'Asuma_Skill05_007',
+    'Asuma_Skill05_008',
+    'setHit = c_hit',
+    'Asuma_Skill05_009',
+    'setOugis = 10',
+    'Asuma_Skill05_009',
+    'Asuma_Skill05_010',
+    'setHit = ob_hit',
+    'setSound = Audio/Effect/bom.ogg',
+    'Asuma_Skill05_011',
+    'Asuma_Skill05_012',
+    'Asuma_Skill05_013',
+    'setCmd = reInvincible',
+]

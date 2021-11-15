@@ -1,0 +1,138 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Akamaru'
+hp = 8000
+hpBar.y = 70
+speed = 224
+
+[Idle]
+frame = [
+    'Akamaru_Idle_001',
+    'Akamaru_Idle_002',
+    'Akamaru_Idle_003',
+]
+
+[Walk]
+frame = [
+    'Akamaru_Walk_001',
+    'Akamaru_Walk_002',
+    'Akamaru_Walk_003',
+    'Akamaru_Walk_004',
+    'Akamaru_Walk_005',
+]
+
+[Hurt]
+frame = [
+    'Akamaru_Idle_001',
+]
+
+[AirHurt]
+frame = [
+    'Akamaru_Idle_001',
+]
+
+[Knockdown]
+frame = [
+    'Akamaru_Idle_001',
+]
+
+[Float]
+frame = [
+    'Akamaru_Idle_001',
+]
+
+[Dead]
+frame = [
+    'Akamaru_Idle_001',
+]
+
+[NAttack]
+type = 'nAttack'
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Akamaru_Move_001',
+    'setDelay = 10',
+    'Akamaru_Move_002',
+    'setDelay = 10',
+    'Akamaru_Move_003',
+    'setHit = l_hit',
+    'setDelay = 20',
+]
+
+[Skill01]
+type = 'aAttack'
+value = 460
+rangeX = 0
+rangeY = 48
+cd = 10
+
+frame = [
+    'Akamaru_Skill01_002',
+    'setChargeB = 96',
+    'setHit = c_hit',
+    'setDelay = 10',
+    'Akamaru_Skill01_003',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/blade_damage2.ogg',
+    'setDelay = 10',
+    'Akamaru_Skill01_004',
+    'setChargeB = 96',
+    'setHit = c_hit',
+    'setDelay = 10',
+    'Akamaru_Skill01_005',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/blade_damage2.ogg',
+    'setDelay = 10',
+]
+
+[Skill02]
+type = 'cBuff'
+rangeX = 0
+rangeY = 5
+cd = 25
+
+frame = [
+    'setSkillEffect = smk',
+    'setBuff = 18',
+]
+
+[Spc01]
+value = 660
+rangeX = 16
+rangeY = 32
+cd = 10
+anim = {base = 'Idle'}
+frame = [
+    'Akamaru_Skill10_01',
+    'Akamaru_Skill10_02',
+    'Akamaru_Skill10_03',
+]
+
+[Spc02]
+cd = 15
+anim = {base = 'Walk'}
+frame = [
+    'Akamaru_Skill11_01',
+    'Akamaru_Skill11_02',
+    'Akamaru_Skill11_03',
+]
+
+[Spc03]
+type = 'nAttack'
+rangeX = 16
+rangeY = 48
+anim = {base = 'NAttack'}
+frame = [
+    'Akamaru_Skill11_01',
+    'Akamaru_Skill11_02',
+    'Akamaru_Skill11_03',
+    'setHit = n_hit',
+    'setDelay = 10',
+]

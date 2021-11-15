@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{65,62}</string>
             </dict>
-            <key>Jugo_KnockDown_01</key>
+            <key>Jugo_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{610,551},{81,50}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{81,50}</string>
             </dict>
-            <key>Jugo_KnockDown_02</key>
+            <key>Jugo_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{763,80},{74,54}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{74,54}</string>
             </dict>
-            <key>Jugo_KnockDown_03</key>
+            <key>Jugo_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{479,806},{88,26}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{88,26}</string>
             </dict>
-            <key>Jugo_KnockDown_04</key>
+            <key>Jugo_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{641,899},{73,52}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{73,52}</string>
             </dict>
-            <key>Jugo_KnockDown_05</key>
+            <key>Jugo_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{622,634},{58,62}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{58,62}</string>
             </dict>
-            <key>Jugo_KnockDown_06</key>
+            <key>Jugo_Knockdown_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{635,834},{75,63}}</string>

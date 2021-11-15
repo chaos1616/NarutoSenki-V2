@@ -1,0 +1,277 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Orochimaru'
+hp = 5000
+hpBar.y = 70
+speed = 224
+
+[Idle]
+frame = [
+    'Orochimaru_Idle_01',
+    'Orochimaru_Idle_02',
+    'Orochimaru_Idle_03',
+    'Orochimaru_Idle_04',
+]
+
+[Walk]
+frame = [
+    'Orochimaru_Walk_01',
+    'Orochimaru_Walk_02',
+    'Orochimaru_Walk_03',
+    'Orochimaru_Walk_04',
+    'Orochimaru_Walk_05',
+    'Orochimaru_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Orochimaru_Hurt_01',
+    'Orochimaru_Hurt_02',
+    'setSound = Audio/Orochimaru/Orochimaru_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Orochimaru_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Orochimaru_Knockdown_01',
+    'setDelay = 10',
+    'Orochimaru_Knockdown_02',
+    'Orochimaru_Knockdown_03',
+    'setDelay = 60',
+    'Orochimaru_Knockdown_03',
+    'Orochimaru_Knockdown_04',
+    'Orochimaru_Knockdown_05',
+]
+
+[Float]
+frame = [
+    'Orochimaru_Float_01',
+    'setDelay = 10',
+    'Orochimaru_Float_02',
+    'setDelay = 10',
+    'Orochimaru_Float_03',
+]
+
+[Dead]
+frame = [
+    'Orochimaru_Knockdown_01',
+    'Orochimaru_Knockdown_02',
+    'Orochimaru_Knockdown_03',
+    'setSound = Audio/Orochimaru/Orochimaru_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 80
+rangeX = 0
+rangeY = 16
+
+frame = [
+    'Orochimaru_NAttack_01',
+    'Orochimaru_NAttack_02',
+    'Orochimaru_NAttack_03',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/combo1.ogg',
+    'Orochimaru_NAttack_04',
+    'setDelay = 10',
+    'Orochimaru_NAttack_05',
+    'setMove = 8',
+    'setDelay = 10',
+    'Orochimaru_NAttack_06',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/combo2.ogg',
+    'Orochimaru_NAttack_07',
+    'Orochimaru_NAttack_08',
+    'Orochimaru_NAttack_09',
+    'Orochimaru_NAttack_10',
+    'setMove = 16',
+    'Orochimaru_NAttack_11',
+    'setHit = l_hit',
+    'setSound = Audio/Orochimaru/Orochimaru_combo.ogg',
+    'Orochimaru_NAttack_12',
+]
+
+[Skill01]
+type = 'cAttack'
+value = 360
+rangeX = 16
+rangeY = 32
+cd = 10
+
+frame = [
+    'Orochimaru_Skill01_01',
+    'setSound = Audio/Orochimaru/Orochimaru_skill1.ogg',
+    'setDelay = 10',
+    'Orochimaru_Skill01_02',
+    'Orochimaru_Skill01_03',
+    'setMove = 16',
+    'Orochimaru_Skill01_04',
+    'setHit = bl_hit',
+    'setDelay = 10',
+    'Orochimaru_Skill01_05',
+    'setHit = bl_hit',
+    'setDelay = 10',
+    'Orochimaru_Skill01_06',
+    'setHit = bl_hit',
+    'Orochimaru_Skill01_07',
+    'Orochimaru_Skill01_08',
+    'setDelay = 10',
+]
+
+[Skill02]
+type = 'aAttack'
+value = 460
+rangeX = 32
+rangeY = 32
+cd = 15
+
+frame = [
+    'Orochimaru_Skill02_01',
+    'setSound = Audio/Orochimaru/Orochimaru_skill2.ogg',
+    'setDelay = 10',
+    'Orochimaru_Skill02_02',
+    'setChargeB = 96',
+    'setHit = c_hit',
+    'setSound = Audio/Effect/damage_l.ogg',
+    'setDelay = 10',
+    'Orochimaru_Skill02_03',
+    'setChargeB = 96',
+    'setHit = c_hit',
+    'setSound = Audio/Effect/damage_l.ogg',
+    'setDelay = 10',
+    'Orochimaru_Skill02_04',
+    'setChargeB = 96',
+    'setHit = c_hit',
+    'setSound = Audio/Effect/damage_l.ogg',
+    'setDelay = 10',
+    'Orochimaru_Skill02_05',
+    'setChargeB = 96',
+    'setHit = c_hit',
+    'setSound = Audio/Effect/damage_l.ogg',
+    'setDelay = 10',
+    'Orochimaru_Skill02_06',
+    'setDelay = 20',
+]
+
+[Skill03]
+type = 'cAttack'
+value = 460
+rangeX = 48
+rangeY = 32
+cd = 25
+
+frame = [
+    'Orochimaru_Skill03_01',
+    'setSound = Audio/Orochimaru/Orochimaru_skill3.ogg',
+    'Orochimaru_Skill03_02',
+    'setDelay = 10',
+    'Orochimaru_Skill03_03',
+    'setHit = ab_hit',
+    'setDelay = 10',
+    'Orochimaru_Skill03_04',
+    'setHit = ab_hit',
+    'setDelay = 10',
+    'Orochimaru_Skill03_05',
+    'setHit = ab_hit',
+    'setDelay = 10',
+    'Orochimaru_Skill03_05',
+    'Orochimaru_Skill03_06',
+    'setDelay = 10',
+    'Orochimaru_Skill03_07',
+    'setSound = Audio/Orochimaru/Orochimaru_skill3_1.ogg',
+    'setHit = l_hit',
+    'setDelay = 10',
+    'Orochimaru_Skill03_08',
+    'setHit = l_hit',
+    'setDelay = 10',
+    'Orochimaru_Skill03_09',
+    'setHit = l_hit',
+    'setDelay = 10',
+    'Orochimaru_Skill03_10',
+    'setDelay = 10',
+]
+
+[Skill04]
+type = 'aAttack'
+value = 560
+rangeX = 48
+rangeY = 32
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Orochimaru_Skill04_01',
+    'setSound = Audio/Orochimaru/Orochimaru_skill4.ogg',
+    'Orochimaru_Skill04_02',
+    'Orochimaru_Skill04_03',
+    'setSkillEffect = smk',
+    'Orochimaru_Skill04_04',
+    'setDelay = 10',
+    'Orochimaru_Skill04_05',
+    'setDelay = 10',
+    'Orochimaru_Skill04_06',
+    'setHit = a_hit',
+    'setDelay = 10',
+    'Orochimaru_Skill04_07',
+    'setHit = a_hit',
+    'setDelay = 10',
+    'Orochimaru_Skill04_08',
+    'setHit = a_hit',
+    'setDelay = 10',
+    'Orochimaru_Skill04_09',
+    'setHit = a_hit',
+    'setDelay = 10',
+    'Orochimaru_Skill04_10',
+    'Orochimaru_Skill04_11',
+    'setHit = f_hit',
+    'setSound = Audio/Effect/damage_l.ogg',
+    'Orochimaru_Skill04_12',
+    'Orochimaru_Skill04_13',
+    'setCmd = addHP',
+    'Orochimaru_Skill04_14',
+    'Orochimaru_Skill04_15',
+    'setDelay = 10',
+]
+
+[Skill05]
+type = 'aAttack'
+value = 560
+rangeX = 32
+rangeY = 48
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Orochimaru_Skill05_01',
+    'Orochimaru_Skill05_02',
+    'Orochimaru_Skill05_03',
+    'setCmd = setInvincible',
+    'Orochimaru_Skill05_04',
+    'setOugis = 10',
+    'Orochimaru_Skill05_05',
+    'Orochimaru_Skill05_02',
+    'Orochimaru_Skill04_01',
+    'Orochimaru_Skill04_02',
+    'Orochimaru_Skill04_03',
+    'setSound = Audio/Orochimaru/Orochimaru_skill5.ogg',
+    'setMon = SansyoBlue',
+    'setSound = Audio/Effect/poof.ogg',
+    'setDelay = 50',
+    'setMon = SansyoGreen',
+    'setSound = Audio/Effect/poof.ogg',
+    'setDelay = 50',
+    'setMon = SansyoRed',
+    'setSound = Audio/Effect/poof.ogg',
+    'setDelay = 20',
+    'Orochimaru_Skill05_06',
+    'setDelay = 50',
+    'setCmd = reInvincible',
+]

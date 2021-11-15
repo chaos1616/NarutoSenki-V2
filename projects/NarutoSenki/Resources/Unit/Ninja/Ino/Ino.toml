@@ -1,0 +1,266 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Ino'
+hp = 5000
+hpBar.y = 76
+speed = 224
+
+[Idle]
+frame = [
+    'Ino_Idle_001',
+    'Ino_Idle_002',
+    'Ino_Idle_003',
+    'Ino_Idle_004',
+]
+
+[Walk]
+frame = [
+    'Ino_Walk_01',
+    'Ino_Walk_02',
+    'Ino_Walk_03',
+    'Ino_Walk_04',
+    'Ino_Walk_05',
+    'Ino_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Ino_Hurt_01',
+    'Ino_Hurt_02',
+    'setSound = Audio/Ino/Ino_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Ino_AirHurt_001',
+]
+
+[Knockdown]
+frame = [
+    'Ino_Knockdown_001',
+    'setDelay = 10',
+    'Ino_Knockdown_002',
+    'setDelay = 60',
+    'Ino_Knockdown_003',
+    'Ino_Knockdown_004',
+    'Ino_Knockdown_005',
+]
+
+[Float]
+frame = [
+    'Ino_Float_001',
+    'setDelay = 10',
+    'Ino_Float_002',
+    'setDelay = 10',
+    'Ino_Float_003',
+]
+
+[Dead]
+frame = [
+    'Ino_Knockdown_001',
+    'Ino_Knockdown_002',
+    'setSound = Audio/Ino/Ino_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Ino_NAttack_001',
+    'Ino_NAttack_002',
+    'setDelay = 10',
+    'Ino_NAttack_003',
+    'setHit = n_hit',
+    'Ino_NAttack_004',
+    'Ino_NAttack_005',
+    'Ino_NAttack_006',
+    'setMove = 8',
+    'Ino_NAttack_008',
+    'Ino_NAttack_009',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/combo2.ogg',
+    'Ino_NAttack_010',
+    'Ino_NAttack_011',
+    'setSound = Audio/Ino/Ino_combo.ogg',
+    'setMove = 16',
+    'Ino_NAttack_012',
+    'Ino_NAttack_013',
+    'setHit = l_hit',
+    'setSound = Audio/Effect/combo3.ogg',
+    'Ino_NAttack_014',
+    'Ino_NAttack_015',
+]
+
+[Skill01]
+type = 'aAttack'
+value = 560
+rangeX = 0
+rangeY = 48
+cd = 10
+combatPoint = 1120
+
+frame = [
+    'setSound = Audio/Ino/Ino_skill1.ogg',
+    'Ino_Skill01_001',
+    'Ino_Skill01_003',
+    'Ino_Skill01_004',
+    'Ino_Skill01_006',
+    'setChargeB = 96',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'Ino_Skill01_007',
+    'Ino_Skill01_008',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'setChargeB = 96',
+    'Ino_Skill01_009',
+    'Ino_Skill01_011',
+    'Ino_Skill01_012',
+]
+
+[Skill02]
+type = 'aAttack'
+value = 760
+rangeX = 0
+rangeY = 48
+cd = 15
+combatPoint = 1520
+
+frame = [
+    'setSound = Audio/Ino/ino_skill2.ogg',
+    'Ino_Skill02_001',
+    'setJump = true',
+    'Ino_Skill02_002',
+    'Ino_Skill02_003',
+    'Ino_Skill02_004',
+    'Ino_Skill02_005',
+    'Ino_Skill02_006',
+    'setDelay = 10',
+    'Ino_Skill02_007',
+    'setSound = Audio/Ino/Ino_skill3_1.ogg',
+    'setHit = ac_hit',
+    'Ino_Skill02_008',
+    'Ino_Skill02_009',
+    'setHit = b_hit',
+    'setDSound = Audio/Effect/damage_h.ogg',
+]
+
+[Skill03]
+type = 'aAttack'
+value = 420
+rangeX = 0
+rangeY = 48
+cd = 25
+combatPoint = 2100
+
+frame = [
+    'Ino_Skill03_002',
+    'setSound = Audio/Ino/Ino_skill3.ogg',
+    'Ino_Skill03_003',
+    'setChargeB = 192',
+    'Ino_Skill03_004',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Ino_Skill03_005',
+    'Ino_Skill03_006',
+    'setHit = c_hit',
+    'Ino_Skill03_008',
+    'Ino_Skill03_010',
+    'setSound = Audio/Ino/Ino_skill3_1.ogg',
+    'setHit = f_hit',
+    'setDSound = Audio/Effect/damage_o2.ogg',
+    'setDelay = 10',
+    'Ino_Skill03_011',
+    'Ino_Skill03_012',
+    'Ino_Skill03_013',
+    'Ino_Skill03_014',
+    'Ino_Skill03_015',
+    'setJump = true',
+    'Ino_Skill03_016',
+    'setSound = Audio/Ino/Ino_skill3_2.ogg',
+    'setHit = ac_hit',
+    'Ino_Skill03_017',
+    'setDelay = 10',
+    'Ino_Skill03_017_1',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Ino_Skill03_018',
+    'Ino_Skill03_019',
+    'Ino_Skill03_020',
+    'Ino_Skill03_021',
+    'Ino_Skill03_022',
+]
+
+[Skill04]
+type = 'aAttack'
+value = 520
+rangeX = 0
+rangeY = 48
+combatPoint = 3120
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Ino_Skill04_001',
+    'setSound = Audio/Ino/Ino_skill4.ogg',
+    'setHit = c_hit',
+    'Ino_Skill04_002',
+    'Ino_Skill04_003',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'Ino_Skill04_004',
+    'Ino_Skill04_005',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'Ino_Skill04_006',
+    'Ino_Skill04_007',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'Ino_Skill04_009',
+    'Ino_Skill04_011',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'Ino_Skill04_012',
+    'Ino_Skill04_013',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+]
+
+[Skill05]
+type = 'Summon'
+combatPoint = 8000
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Ino_Skill05_001',
+    'setCmd = setInvincible',
+    'Ino_Skill05_002',
+    'Ino_Skill05_003',
+    'Ino_Skill05_004',
+    'Ino_Skill05_005',
+    'setOugis = 10',
+    'Ino_Skill05_006',
+    'setBullet = Shintenshin',
+    'setDelay = 200',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+value = 660
+rangeX = 16
+rangeY = 32
+cd = 10
+anim = {returnIdle = false}
+frame = [
+    'Ino_Skill05_007',
+    'setDelay = 10',
+    'Ino_Skill05_008',
+]

@@ -1,0 +1,53 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'PaperRain'
+
+[Idle]
+frame = [
+    'PaperRain_Move_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 460
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'PaperRain_Move_001',
+    'PaperRain_Move_002',
+    'PaperRain_Move_003',
+    'PaperRain_Move_004',
+    'setHit = b_hit',
+    'PaperRain_Move_005',
+    'setHit = b_hit',
+    'PaperRain_Move_006',
+    'setHit = b_hit',
+    'PaperRain_Move_007',
+    'setHit = b_hit',
+    'PaperRain_Move_008',
+    'setHit = b_hit',
+    'PaperRain_Move_009',
+    'setHit = b_hit',
+    'PaperRain_Move_001',
+    'PaperRain_Move_002',
+    'PaperRain_Move_003',
+    'PaperRain_Move_004',
+    'setHit = b_hit',
+    'PaperRain_Move_005',
+    'setHit = b_hit',
+    'PaperRain_Move_006',
+    'setHit = b_hit',
+    'PaperRain_Move_007',
+    'setHit = b_hit',
+    'PaperRain_Move_008',
+    'setHit = b_hit',
+    'PaperRain_Move_009',
+    'setHit = b_hit',
+    'setDestroy = 0',
+]

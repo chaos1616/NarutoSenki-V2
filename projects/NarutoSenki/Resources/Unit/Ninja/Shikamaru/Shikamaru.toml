@@ -1,0 +1,199 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Shikamaru'
+hp = 5000
+hpBar.y = 78
+speed = 224
+
+[Idle]
+frame = [
+    'Shikamaru_Idle_001',
+    'Shikamaru_Idle_002',
+    'Shikamaru_Idle_003',
+    'Shikamaru_Idle_004',
+    'Shikamaru_Idle_005',
+]
+
+[Walk]
+frame = [
+    'Shikamaru_Walk_01',
+    'Shikamaru_Walk_02',
+    'Shikamaru_Walk_03',
+    'Shikamaru_Walk_04',
+    'Shikamaru_Walk_05',
+    'Shikamaru_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Shikamaru_Hurt_01',
+    'Shikamaru_Hurt_02',
+    'Shikamaru_Hurt_03',
+    'setSound = Audio/Shikamaru/Shikamaru_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Shikamaru_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Shikamaru_Knockdown_01',
+    'setDelay = 10',
+    'Shikamaru_Knockdown_02',
+    'setDelay = 60',
+    'Shikamaru_Knockdown_03',
+    'Shikamaru_Knockdown_04',
+    'Shikamaru_Knockdown_05',
+]
+
+[Float]
+frame = [
+    'Shikamaru_Float_01',
+    'setDelay = 10',
+    'Shikamaru_Float_02',
+    'setDelay = 10',
+    'Shikamaru_Float_03',
+]
+
+[Dead]
+frame = [
+    'Shikamaru_Knockdown_01',
+    'Shikamaru_Knockdown_02',
+    'setSound = Audio/Shikamaru/Shikamaru_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Shikamaru_NAttack_01',
+    'Shikamaru_NAttack_02',
+    'Shikamaru_NAttack_03',
+    'Shikamaru_NAttack_04',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/combo1.ogg',
+    'Shikamaru_NAttack_05',
+    'Shikamaru_NAttack_06',
+    'Shikamaru_NAttack_07',
+    'setMove = 8',
+    'Shikamaru_NAttack_08',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'Shikamaru_NAttack_09',
+    'Shikamaru_NAttack_10',
+    'Shikamaru_NAttack_11',
+    'Shikamaru_NAttack_12',
+    'setMove = 16',
+    'Shikamaru_NAttack_13',
+    'setSound = Audio/Shikamaru/Shikamaru_combo.ogg',
+    'Shikamaru_NAttack_14',
+    'Shikamaru_NAttack_15',
+    'setHit = l_hit',
+    'setSound = Audio/Effect/combo3.ogg',
+    'Shikamaru_NAttack_16',
+    'Shikamaru_NAttack_17',
+    'Shikamaru_NAttack_18',
+]
+
+[Skill01]
+type = 'Command'
+rangeX = 0
+rangeY = 15
+cd = 10
+
+frame = [
+    'setSound = Audio/Shikamaru/Shikamaru_skill01.ogg',
+    'Shikamaru_Skill01_001',
+    'Shikamaru_Skill01_002',
+    'setDelay = 10',
+    'Shikamaru_Skill01_003',
+    'setDelay = 100',
+    'setCmd = setGainCKR',
+]
+
+[Skill02]
+type = 'Summon'
+cd = 15
+combatPoint = 1460
+
+frame = [
+    'setSound = Audio/Shikamaru/Shikamaru_skill02.ogg',
+    'Shikamaru_Skill02_001',
+    'setSound = Audio/Shikamaru/yingzi.ogg',
+    'Shikamaru_Skill02_002',
+    'Shikamaru_Skill02_003',
+    'setMon = KageFeng',
+    'setDelay = 20',
+    'Shikamaru_Skill02_001',
+]
+
+[Skill03]
+type = 'Summon'
+cd = 25
+
+frame = [
+    'setSound = Audio/Shikamaru/Shikamaru_skill03.ogg',
+    'Shikamaru_Skill03_01',
+    'setSound = Audio/Shikamaru/yingzi.ogg',
+    'Shikamaru_Skill03_02',
+    'setMon = Kage',
+    'setDelay = 20',
+]
+
+[Skill04]
+type = 'Summon'
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Shikamaru_Skill04_01',
+    'setSound = Audio/Shikamaru/Shikamaru_skill04.ogg',
+    'setJump = false',
+    'Shikamaru_Skill04_02',
+    'Shikamaru_Skill04_03',
+    'setDelay = 10',
+    'Shikamaru_Skill04_04',
+    'setSound = Audio/Effect/kuwu.ogg',
+    'setMon = QuanRen',
+    'Shikamaru_Skill04_05',
+    'Shikamaru_Skill04_06',
+    'setDelay = 30',
+    'Shikamaru_Skill04_07',
+]
+
+[Skill05]
+type = 'Summon'
+value = 200
+rangeX = 48
+rangeY = 48
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setCmd = setInvincible',
+    'Shikamaru_Skill05_02',
+    'Shikamaru_Skill05_03',
+    'setOugis = 10',
+    'Shikamaru_Skill05_04',
+    'Shikamaru_Skill05_05',
+    'Shikamaru_Skill03_01',
+    'Shikamaru_Skill03_02',
+    'setSound = Audio/Shikamaru/Shikamaru_skill5.ogg',
+    'setDelay = 10',
+    'setTrap = KageBom',
+    'setSound = Audio/Shikamaru/yingzi.ogg',
+    'setDelay = 300',
+    'Shikamaru_Skill05_05',
+    'Shikamaru_Skill05_06',
+    'Shikamaru_Skill05_07',
+    'setCmd = reInvincible',
+]

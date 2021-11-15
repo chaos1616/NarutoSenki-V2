@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{101,71}</string>
             </dict>
-            <key>Hidan_KnockDown_001</key>
+            <key>Hidan_Knockdown_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{330,582},{77,84}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{79,84}</string>
             </dict>
-            <key>Hidan_KnockDown_002</key>
+            <key>Hidan_Knockdown_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{347,339},{83,91}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{83,91}</string>
             </dict>
-            <key>Hidan_KnockDown_003</key>
+            <key>Hidan_Knockdown_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{245,409},{90,48}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{90,48}</string>
             </dict>
-            <key>Hidan_KnockDown_004</key>
+            <key>Hidan_Knockdown_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{94,483},{86,58}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{86,58}</string>
             </dict>
-            <key>Hidan_KnockDown_005</key>
+            <key>Hidan_Knockdown_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{770,448},{84,68}}</string>

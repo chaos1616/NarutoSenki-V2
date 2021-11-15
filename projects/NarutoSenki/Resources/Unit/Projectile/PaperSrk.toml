@@ -1,0 +1,24 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'PaperSrk'
+
+[Idle]
+frame = [
+    'PaperSrk_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 260
+anim = {loop = true}
+frame = [
+    'PaperSrk_Move_01',
+    'setHit = bl_hit',
+    'PaperSrk_Move_02',
+    'setHit = bl_hit',
+]

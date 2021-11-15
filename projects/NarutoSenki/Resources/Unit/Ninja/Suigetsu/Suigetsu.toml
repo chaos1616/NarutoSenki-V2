@@ -1,0 +1,306 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Suigetsu'
+hp = 5500
+hpBar.y = 70
+speed = 224
+
+[Idle]
+frame = [
+    'Suigetsu_Idle_01',
+    'Suigetsu_Idle_02',
+    'Suigetsu_Idle_03',
+    'Suigetsu_Idle_04',
+]
+
+[Walk]
+frame = [
+    'Suigetsu_Walk_01',
+    'Suigetsu_Walk_02',
+    'Suigetsu_Walk_03',
+    'Suigetsu_Walk_04',
+    'Suigetsu_Walk_05',
+    'Suigetsu_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Suigetsu_Hurt_01',
+    'Suigetsu_Hurt_02',
+    'Suigetsu_Hurt_03',
+    'setSound = Audio/Suigetsu/suigetsu_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Suigetsu_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Suigetsu_Knockdown_01',
+    'setDelay = 10',
+    'Suigetsu_Knockdown_02',
+    'setDelay = 60',
+    'Suigetsu_Knockdown_03',
+    'Suigetsu_Knockdown_04',
+    'Suigetsu_Knockdown_05',
+    'Suigetsu_Knockdown_06',
+]
+
+[Float]
+frame = [
+    'Suigetsu_Float_01',
+    'setDelay = 10',
+    'Suigetsu_Float_02',
+    'setDelay = 10',
+    'Suigetsu_Float_03',
+]
+
+[Dead]
+frame = [
+    'Suigetsu_Knockdown_01',
+    'Suigetsu_Knockdown_02',
+    'setSound = Audio/Suigetsu/suigetsu_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Suigetsu_NAttack_01',
+    'Suigetsu_NAttack_02',
+    'Suigetsu_NAttack_03',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/combo1.ogg',
+    'Suigetsu_NAttack_04',
+    'Suigetsu_NAttack_05',
+    'Suigetsu_NAttack_06',
+    'Suigetsu_NAttack_07',
+    'Suigetsu_NAttack_08',
+    'setMove = 8',
+    'Suigetsu_NAttack_09',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/combo2.ogg',
+    'Suigetsu_NAttack_10',
+    'Suigetsu_NAttack_11',
+    'Suigetsu_NAttack_12',
+    'setMove = 16',
+    'Suigetsu_NAttack_13',
+    'setHit = l_hit',
+    'setSound = Audio/Suigetsu/suigetsu_combo.ogg',
+    'Suigetsu_NAttack_14',
+    'Suigetsu_NAttack_15',
+]
+
+[Skill01]
+type = 'aAttack'
+value = 560
+rangeX = 0
+rangeY = 48
+cd = 10
+combatPoint = 1120
+
+frame = [
+    'setSound = Audio/Suigetsu/suigetsu_skill1.ogg',
+    'Suigetsu_Skill01_01',
+    'Suigetsu_Skill01_03',
+    'setChargeB = 192',
+    'Suigetsu_Skill01_04',
+    'setHit = bl_hit',
+    'setDSound = Audio/Effect/blade_damage2.ogg',
+    'setDelay = 10',
+    'Suigetsu_Skill01_04',
+    'setHit = bl_hit',
+    'setDSound = Audio/Effect/blade_damage2.ogg',
+    'setDelay = 10',
+]
+
+[Skill02]
+type = 'Summon'
+cd = 15
+combatPoint = 1560
+
+frame = [
+    'setSound = Audio/Suigetsu/suigetsu_skill2.ogg',
+    'Suigetsu_Skill02_002',
+    'Suigetsu_Skill02_003',
+    'Suigetsu_Skill02_004',
+    'Suigetsu_Skill02_005',
+    'setMon = Kubi',
+    'Suigetsu_Skill02_006',
+    'setDelay = 160',
+    'Suigetsu_Skill02_009',
+]
+
+[Skill03]
+type = 'cBuff'
+cd = 25
+combatPoint = 1960
+
+frame = [
+    'setSound = Audio/Suigetsu/suigetsu_skill3_1.ogg',
+    'Suigetsu_Skill03_01',
+    'Suigetsu_Skill03_02',
+    'Suigetsu_Skill03_03',
+    'Suigetsu_Skill03_04',
+    'setBuff = 17',
+]
+
+[Skill04]
+type = 'Bullet'
+combatPoint = 3000
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setSound = Audio/Suigetsu/suigetsu_skill4.ogg',
+    'Suigetsu_Skill04_01',
+    'Suigetsu_Skill04_02',
+    'Suigetsu_Skill04_03',
+    'Suigetsu_Skill04_04',
+    'setMon = WaterBullet',
+    'Suigetsu_Skill04_02',
+    'Suigetsu_Skill04_03',
+    'Suigetsu_Skill04_04',
+    'setMon = WaterBullet',
+    'Suigetsu_Skill04_02',
+    'setDelay = 30',
+    'Suigetsu_Skill04_05',
+    'setMon = WaterBom',
+    'setDelay = 20',
+]
+
+[Skill05]
+type = 'aAttack'
+value = 1060
+rangeX = 0
+rangeY = 48
+combatPoint = 8480
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Suigetsu_Skill05_02',
+    'Suigetsu_Skill05_03',
+    'setOugis = 10',
+    'Suigetsu_Skill05_07',
+    'setCmd = setInvincible',
+    'Suigetsu_Skill05_08',
+    'setMove = 32',
+    'Suigetsu_Skill05_10',
+    'setSound = Audio/Suigetsu/suigetsu_skill5_4.ogg',
+    'Suigetsu_Skill05_11',
+    'setHit = o2_hit',
+    'Suigetsu_Skill05_12',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'Suigetsu_Skill05_13',
+    'Suigetsu_Skill05_16',
+    'setChargeB = 128',
+    'Suigetsu_Skill05_17',
+    'setShadow = 10',
+    'setDelay = 10',
+    'Suigetsu_Skill05_18',
+    'setSound = Audio/Suigetsu/suigetsu_skill5_3.ogg',
+    'setHit = o_hit',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'Suigetsu_Skill05_20',
+    'Suigetsu_Skill05_22',
+    'setShadow = 10',
+    'setChargeB = 128',
+    'Suigetsu_Skill05_23',
+    'setShadow = 10',
+    'Suigetsu_Skill05_24',
+    'setShadow = 10',
+    'setHit = bf_hit',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'Suigetsu_Skill05_25',
+    'setShadow = 10',
+    'setHit = bf_hit',
+    'Suigetsu_Skill05_26',
+    'setShadow = 10',
+    'setHit = ac_hit',
+    'Suigetsu_Skill05_27',
+    'Suigetsu_Skill05_28',
+    'setChargeB = 48',
+    'Suigetsu_Skill05_30',
+    'setShadow = 10',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'Suigetsu_Skill05_32',
+    'Suigetsu_Skill05_33',
+    'setShadow = 10',
+    'Suigetsu_Skill05_34',
+    'Suigetsu_Skill05_35',
+    'setShadow = 10',
+    'setChargeB = 48',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'Suigetsu_Skill05_37',
+    'Suigetsu_Skill05_38',
+    'Suigetsu_Skill05_50',
+    'setJump = true',
+    'Suigetsu_Skill05_51',
+    'setShadow = 10',
+    'Suigetsu_Skill05_52',
+    'setShadow = 10',
+    'Suigetsu_Skill05_53',
+    'setShadow = 10',
+    'Suigetsu_Skill05_54',
+    'setShadow = 10',
+    'Suigetsu_Skill05_55',
+    'setShadow = 10',
+    'setDelay = 10',
+    'Suigetsu_Skill05_56',
+    'Suigetsu_Skill05_57',
+    'Suigetsu_Skill05_58',
+    'setSound = Audio/Suigetsu/suigetsu_skill5_5.ogg',
+    'setHit = f_hit',
+    'Suigetsu_Skill05_59',
+    'Suigetsu_Skill05_60',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+anim = {base = 'Idle'}
+frame = [
+    'Suigetsu_Skill03_06',
+]
+
+[Spc02]
+anim = {base = 'Walk'}
+frame = [
+    'Suigetsu_Skill03_06',
+    'Suigetsu_Skill03_05',
+    'Suigetsu_Skill03_04',
+    'Suigetsu_Skill03_05',
+    'Suigetsu_Skill03_06',
+]
+
+[Spc03]
+type = 'aAttack'
+rangeX = 0
+rangeY = 48
+anim = {base = 'NAttack'}
+frame = [
+    'Suigetsu_Skill03_08',
+    'setHit = f_hit',
+    'setActionResume = 20',
+    'setSound = Audio/Suigetsu/suigetsu_skill3_2.ogg',
+    'Suigetsu_Skill03_09',
+    'setJump = true',
+    'Suigetsu_Skill03_10',
+    'setDelay = 10',
+    'Suigetsu_Skill03_11',
+    'setDelay = 20',
+    'Suigetsu_Skill03_12',
+    'setDelay = 10',
+    'Suigetsu_Skill03_13',
+]

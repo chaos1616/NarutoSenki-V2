@@ -1,0 +1,242 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Jiraiya'
+hp = 6000
+hpBar.y = 80
+speed = 224
+
+[Idle]
+frame = [
+    'Jiraiya_Idle_001',
+    'Jiraiya_Idle_002',
+    'Jiraiya_Idle_003',
+    'Jiraiya_Idle_004',
+]
+
+[Walk]
+frame = [
+    'Jiraiya_Walk_01',
+    'Jiraiya_Walk_02',
+    'Jiraiya_Walk_03',
+    'Jiraiya_Walk_04',
+    'Jiraiya_Walk_05',
+    'Jiraiya_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Jiraiya_Hurt_01',
+    'Jiraiya_Hurt_02',
+    'Jiraiya_Hurt_03',
+    'setSound = Audio/Jiraiya/jiraiya_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Jiraiya_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Jiraiya_Knockdown_01',
+    'Jiraiya_Knockdown_02',
+    'setDelay = 10',
+    'Jiraiya_Knockdown_03',
+    'setDelay = 60',
+    'Jiraiya_Knockdown_04',
+    'Jiraiya_Knockdown_05',
+    'Jiraiya_Knockdown_06',
+]
+
+[Float]
+frame = [
+    'Jiraiya_Float_01',
+    'setDelay = 10',
+    'Jiraiya_Float_02',
+    'setDelay = 10',
+    'Jiraiya_Float_03',
+]
+
+[Dead]
+frame = [
+    'Jiraiya_Knockdown_01',
+    'Jiraiya_Knockdown_02',
+    'Jiraiya_Knockdown_03',
+    'setSound = Audio/Jiraiya/jiraiya_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 80
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Jiraiya_NAttack_12',
+    'Jiraiya_NAttack_13',
+    'setDelay = 10',
+    'Jiraiya_NAttack_14',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Jiraiya_NAttack_01',
+    'Jiraiya_NAttack_02',
+    'setMove = 8',
+    'setDelay = 10',
+    'Jiraiya_NAttack_03',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'Jiraiya_NAttack_04',
+    'Jiraiya_NAttack_05',
+    'Jiraiya_NAttack_06',
+    'Jiraiya_NAttack_07',
+    'setMove = 16',
+    'Jiraiya_NAttack_08',
+    'setSound = Audio/Jiraiya/jiraiya_combo.ogg',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setHit = l_hit',
+    'Jiraiya_NAttack_09',
+    'Jiraiya_NAttack_10',
+    'Jiraiya_NAttack_11',
+]
+
+[Skill01]
+type = 'aAttack'
+value = 460
+rangeX = 32
+rangeY = 48
+cd = 10
+combatPoint = 920
+
+frame = [
+    'setSound = Audio/Jiraiya/jiraiya_skill1.ogg',
+    'Jiraiya_Skill01_02',
+    'Jiraiya_Skill01_03',
+    'Jiraiya_Skill01_04',
+    'setHit = bl_hit',
+    'Jiraiya_Skill01_05',
+    'Jiraiya_Skill01_06',
+    'setHit = bl_hit',
+    'Jiraiya_Skill01_07',
+]
+
+[Skill02]
+type = 'Summon'
+rangeX = 0
+rangeY = 10
+cd = 15
+combatPoint = 1460
+
+frame = [
+    'Jiraiya_Skill02_01',
+    'setSound = Audio/Jiraiya/jiraiya_skill2.ogg',
+    'setDelay = 10',
+    'Jiraiya_Skill02_02',
+    'setDelay = 10',
+    'Jiraiya_Skill02_03',
+    'setMon = Yataikuzu',
+    'setDelay = 10',
+]
+
+[Skill03]
+type = 'cAttack'
+value = 660
+rangeX = 16
+rangeY = 48
+cd = 25
+combatPoint = 1980
+
+frame = [
+    'setSound = Audio/Jiraiya/jiraiya_skill3.ogg',
+    'Jiraiya_Skill03_001',
+    'Jiraiya_Skill03_002',
+    'setSound = Audio/Effect/goukakyu.ogg',
+    'Jiraiya_Skill03_003',
+    'setHit = c_hit',
+    'Jiraiya_Skill03_004',
+    'Jiraiya_Skill03_005',
+    'setHit = c_hit',
+    'Jiraiya_Skill03_006',
+    'Jiraiya_Skill03_007',
+    'setHit = c_hit',
+    'Jiraiya_Skill03_008',
+]
+
+[Skill04]
+type = 'cAttack'
+value = 460
+rangeX = 0
+rangeY = 48
+cd = 25
+combatPoint = 2760
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Jiraiya_Skill04_01',
+    'setSound = Audio/Jiraiya/jiraiya_skill4.ogg',
+    'setDelay = 10',
+    'Jiraiya_Skill04_02',
+    'Jiraiya_Skill04_03',
+    'Jiraiya_Skill04_04',
+    'setCharge = 280',
+    'setDelay = 10',
+    'Jiraiya_Skill04_05',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'setDelay = 10',
+    'Jiraiya_Skill04_06',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'setDelay = 10',
+    'Jiraiya_Skill04_07',
+    'setHit = c_hit',
+    'Jiraiya_Skill04_08',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'setDelay = 10',
+    'Jiraiya_Skill04_09',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'setDelay = 10',
+    'Jiraiya_Skill04_10',
+    'setHit = b_hit',
+]
+
+[Skill05]
+type = 'Transform'
+value = 1160
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Jiraiya_Skill05_02',
+    'setCmd = setInvincible',
+    'setOugis = 10',
+    'Jiraiya_Skill05_17',
+    'setDelay = 10',
+    'Jiraiya_Skill05_18',
+    'setSound = Audio/Jiraiya/jiraiya_skill5_1.ogg',
+    'setDelay = 10',
+    'Jiraiya_Skill05_19',
+    'setDelay = 10',
+    'Jiraiya_Skill05_20',
+    'setDelay = 20',
+    'Jiraiya_Skill05_21',
+    'setDelay = 20',
+    'Jiraiya_Skill05_22',
+    'setDelay = 10',
+    'setSound = Audio/Jiraiya/jiraiya_skill5_2.ogg',
+    'Jiraiya_Skill05_23',
+    'setDelay = 10',
+    'Jiraiya_Skill05_24',
+    'setDelay = 30',
+    'setSkillEffect = smk',
+    'setTransform = 40',
+    'setCmd = reInvincible',
+]

@@ -1,0 +1,32 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'SansyoBlue'
+
+[Idle]
+frame = [
+    'SansyoBlue_Move_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 4000
+rangeX = 32
+rangeY = 48
+
+frame = [
+    'SansyoBlue_Move_001',
+    'SansyoBlue_Move_002',
+    'SansyoBlue_Move_003',
+    'SansyoBlue_Move_004',
+    'setSound = Audio/Orochimaru/Orochimaru_skill5_1.ogg',
+    'SansyoBlue_Move_005',
+    'setHit = b_hit',
+    'SansyoBlue_Move_006',
+    'setDelay = 300',
+    'setDestroy = 0',
+]

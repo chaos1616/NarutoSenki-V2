@@ -1,0 +1,296 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'RikudoNaruto'
+hp = 5000
+hpBar.y = 80
+speed = 224
+
+[Idle]
+frame = [
+    'RikudoNaruto_Idle_001',
+    'RikudoNaruto_Idle_002',
+    'RikudoNaruto_Idle_003',
+    'RikudoNaruto_Idle_004',
+]
+
+[Walk]
+frame = [
+    'RikudoNaruto_Walk_01',
+    'RikudoNaruto_Walk_02',
+    'RikudoNaruto_Walk_03',
+    'RikudoNaruto_Walk_04',
+    'RikudoNaruto_Walk_05',
+    'RikudoNaruto_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'RikudoNaruto_Hurt_01',
+    'RikudoNaruto_Hurt_02',
+]
+
+[AirHurt]
+frame = [
+    'RikudoNaruto_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'RikudoNaruto_Knockdown_001',
+    'setDelay = 10',
+    'RikudoNaruto_Knockdown_002',
+    'setDelay = 60',
+    'RikudoNaruto_Knockdown_003',
+    'RikudoNaruto_Knockdown_004',
+    'RikudoNaruto_Knockdown_005',
+]
+
+[Float]
+frame = [
+    'RikudoNaruto_Float_001',
+    'setDelay = 10',
+    'RikudoNaruto_Float_002',
+    'setDelay = 10',
+    'RikudoNaruto_Float_003',
+]
+
+[Dead]
+frame = [
+    'RikudoNaruto_Knockdown_001',
+    'RikudoNaruto_Knockdown_002',
+    'setSound = Audio/RikudoNaruto/RikudoNaruto_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 80
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'RikudoNaruto_NAttack_001',
+    'RikudoNaruto_NAttack_002',
+    'RikudoNaruto_NAttack_003',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/combo1.ogg',
+    'RikudoNaruto_NAttack_004',
+    'RikudoNaruto_NAttack_005',
+    'RikudoNaruto_NAttack_006',
+    'setMove = 8',
+    'RikudoNaruto_NAttack_007',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/combo2.ogg',
+    'RikudoNaruto_NAttack_008',
+    'setSound = Audio/Naruto/naruto_combo.ogg',
+    'RikudoNaruto_NAttack_010',
+    'RikudoNaruto_NAttack_011',
+    'setMove = 16',
+    'RikudoNaruto_NAttack_012',
+    'setHit = l_hit',
+    'setSound = Audio/Effect/combo3.ogg',
+    'RikudoNaruto_NAttack_013',
+]
+
+[Skill01]
+type = 'cAttack'
+value = 660
+rangeX = 0
+rangeY = 48
+cd = 10
+combatPoint = 1980
+
+frame = [
+    'setSound = Audio/Effect/rasen.ogg',
+    'RikudoNaruto_Skill01_01',
+    'RikudoNaruto_Skill01_02',
+    'RikudoNaruto_Skill01_03',
+    'setSkillEffect = Hiraishin',
+    'setSound = Audio/Effect/hiraishin_effect.ogg',
+    'setCmd = findTarget',
+    'setCmd = setTransport',
+    'RikudoNaruto_Skill01_04',
+    'setSound = Audio/RikudoNaruto/RikudoNaruto_skill1.ogg',
+    'RikudoNaruto_Skill01_06',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'RikudoNaruto_Skill01_07',
+    'RikudoNaruto_Skill01_08',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'RikudoNaruto_Skill01_09',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+]
+
+[Skill02]
+type = 'Summon'
+cd = 15
+
+frame = [
+    'setSound = Audio/Naruto/naruto_skill2.ogg',
+    'RikudoNaruto_Skill02_001',
+    'RikudoNaruto_Skill02_002',
+    'RikudoNaruto_Skill02_003',
+    'setClone = 10',
+]
+
+[Skill03]
+type = 'Summon'
+cd = 25
+combatPoint = 3440
+
+frame = [
+    'setSound = Audio/RikudoNaruto/RikudoNaruto_skill3.ogg',
+    'RikudoNaruto_Skill03_01',
+    'RikudoNaruto_Skill03_02',
+    'RikudoNaruto_Skill03_03',
+    'RikudoNaruto_Skill03_04',
+    'setMove = 8',
+    'setCmd = findTarget',
+    'setMon = FutonSRK2',
+    'setDelay = 10',
+    'RikudoNaruto_NAttack_003',
+]
+
+[Skill04]
+type = 'aAttack'
+value = 760
+rangeX = 0
+rangeY = 48
+combatPoint = 4560
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setCmd = setInvincible',
+    'RikudoNaruto_Skill04_001',
+    'setSound = Audio/RikudoNaruto/RikudoNaruto_skill4.ogg',
+    'RikudoNaruto_Skill04_002',
+    'RikudoNaruto_Skill04_003',
+    'setHit = f_hit',
+    'setDSound = Audio/Effect/damage_o2.ogg',
+    'RikudoNaruto_Skill04_004',
+    'RikudoNaruto_Skill04_005',
+    'RikudoNaruto_Skill04_006',
+    'setSound = Audio/Effect/dash_effect.ogg',
+    'setHit = ac_hit',
+    'RikudoNaruto_Skill04_007',
+    'RikudoNaruto_Skill04_008',
+    'RikudoNaruto_Skill04_009',
+    'setSound = Audio/Effect/dash_effect.ogg',
+    'setHit = ac_hit',
+    'RikudoNaruto_Skill04_010',
+    'RikudoNaruto_Skill04_011',
+    'RikudoNaruto_Skill04_012',
+    'setSound = Audio/Effect/dash_effect.ogg',
+    'setHit = ac_hit',
+    'RikudoNaruto_Skill04_013',
+    'RikudoNaruto_Skill04_014',
+    'setHit = ac_hit',
+    'setSound = Audio/Effect/dash_effect.ogg',
+    'RikudoNaruto_Skill04_015',
+    'RikudoNaruto_Skill04_016',
+    'setHit = ac_hit',
+    'setSound = Audio/Effect/damage_rasen.ogg',
+    'setMove = 16',
+    'RikudoNaruto_Skill04_017',
+    'setSound = Audio/Effect/damage_rasen.ogg',
+    'RikudoNaruto_Skill04_018',
+    'setCmd = reInvincible',
+]
+
+[Skill05]
+type = 'cBuff'
+rangeX = 0
+rangeY = 9
+combatPoint = 10000
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'RikudoNaruto_Skill05_001',
+    'setCmd = setInvincible',
+    'RikudoNaruto_Skill05_002',
+    'RikudoNaruto_Skill05_003',
+    'setOugis = 10',
+    'RikudoNaruto_Skill05_004',
+    'setBuff = 17',
+    'setClone = 9',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+type = 'aAttack'
+value = 460
+rangeX = 0
+rangeY = 48
+cd = 10
+
+frame = [
+    'setSound = Audio/Effect/rasen.ogg',
+    'RikudoNaruto_Skill10_01',
+    'RikudoNaruto_Skill10_02',
+    'setHit = c_hit',
+    'RikudoNaruto_Skill10_03',
+    'RikudoNaruto_Skill10_04',
+    'setSound = Audio/RikudoNaruto/RikudoNaruto_skill2.ogg',
+    'setHit = f_hit',
+    'setDSound = Audio/Effect/damage_o2.ogg',
+    'RikudoNaruto_Skill10_05',
+    'RikudoNaruto_Skill10_06',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'RikudoNaruto_Skill10_07',
+    'RikudoNaruto_Skill10_08',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+]
+
+[Spc02]
+cd = 15
+anim = {base = 'Walk'}
+frame = [
+    'RikudoNaruto_Skill11_001',
+    'setShadow = 10',
+    'RikudoNaruto_Skill11_002',
+    'RikudoNaruto_Skill11_003',
+    'setShadow = 10',
+    'RikudoNaruto_Skill11_004',
+    'RikudoNaruto_Skill11_005',
+    'setShadow = 10',
+    'RikudoNaruto_Skill11_006',
+]
+
+[Spc03]
+type = 'cAttack'
+anim = {base = 'NAttack'}
+frame = [
+    'RikudoNaruto_Skill12_001',
+    'RikudoNaruto_Skill12_002',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'setMove = 8',
+    'RikudoNaruto_Skill12_003',
+    'RikudoNaruto_Skill12_004',
+    'RikudoNaruto_Skill12_005',
+    'setSound = Audio/RikudoNaruto/RikudoNaruto_skill5.ogg',
+    'setMove = 16',
+    'RikudoNaruto_Skill12_006',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'setHit = c_hit',
+    'RikudoNaruto_Skill12_007',
+    'RikudoNaruto_Skill12_008',
+]
+
+[Spc04]
+anim = {base = 'Idle'}
+frame = [
+    'RikudoNaruto_Skill09_001',
+    'RikudoNaruto_Skill09_002',
+    'RikudoNaruto_Skill09_003',
+    'RikudoNaruto_Skill09_004',
+]

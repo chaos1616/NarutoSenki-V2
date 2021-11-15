@@ -1,0 +1,43 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Suijin'
+
+[Idle]
+frame = [
+    'Suijin_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 1060
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'Suijin_Move_01',
+    'setHit = f_hit',
+    'Suijin_Move_02',
+    'Suijin_Move_03',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Suijin_Move_04',
+    'Suijin_Move_05',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Suijin_Move_06',
+    'Suijin_Move_07',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Suijin_Move_04',
+    'Suijin_Move_05',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Suijin_Move_06',
+    'Suijin_Move_07',
+    'setDestroy = 0',
+]

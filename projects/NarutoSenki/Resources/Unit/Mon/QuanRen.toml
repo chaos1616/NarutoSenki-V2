@@ -1,0 +1,30 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'QuanRen'
+
+[Idle]
+frame = [
+    'QuanRen_Move_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 1460
+rangeX = 32
+rangeY = 48
+
+frame = [
+    'QuanRen_Move_001',
+    'QuanRen_Move_002',
+    'QuanRen_Move_003',
+    'QuanRen_Move_004',
+    'setHit = ct_hit',
+    'setMon = KageHands',
+    'setDelay = 20',
+    'setDestroy = 0',
+]

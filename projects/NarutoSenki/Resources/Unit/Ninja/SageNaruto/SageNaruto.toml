@@ -1,0 +1,311 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'SageSageNaruto'
+hp = 8000
+hpBar.y = 78
+speed = 224
+
+[Idle]
+frame = [
+    'SageNaruto_Idle_001',
+    'SageNaruto_Idle_002',
+    'SageNaruto_Idle_003',
+    'SageNaruto_Idle_004',
+]
+
+[Walk]
+frame = [
+    'SageNaruto_Walk_01',
+    'SageNaruto_Walk_02',
+    'SageNaruto_Walk_03',
+    'SageNaruto_Walk_04',
+    'SageNaruto_Walk_05',
+    'SageNaruto_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'SageNaruto_Hurt_01',
+    'SageNaruto_Hurt_02',
+    'setSound = Audio/Naruto/naruto_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'SageNaruto_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'SageNaruto_Knockdown_01',
+    'SageNaruto_Knockdown_02',
+    'setDelay = 10',
+    'SageNaruto_Knockdown_03',
+    'setDelay = 60',
+    'SageNaruto_Knockdown_04',
+    'SageNaruto_Knockdown_05',
+    'SageNaruto_Knockdown_06',
+]
+
+[Float]
+frame = [
+    'SageNaruto_Float_01',
+    'setDelay = 10',
+    'SageNaruto_Float_02',
+    'setDelay = 10',
+    'SageNaruto_Float_03',
+]
+
+[Dead]
+frame = [
+    'SageNaruto_Knockdown_01',
+    'SageNaruto_Knockdown_02',
+    'SageNaruto_Knockdown_03',
+    'setSound = Audio/Naruto/naruto_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 120
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'SageNaruto_NAttack_01',
+    'SageNaruto_NAttack_02',
+    'SageNaruto_NAttack_03',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'SageNaruto_NAttack_04',
+    'SageNaruto_NAttack_05',
+    'SageNaruto_NAttack_06',
+    'SageNaruto_NAttack_07',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'SageNaruto_NAttack_08',
+    'setMove = 16',
+    'SageNaruto_NAttack_09',
+    'SageNaruto_NAttack_10',
+    'SageNaruto_NAttack_11',
+    'setSound = Audio/Naruto/naruto_combo.ogg',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setHit = l_hit',
+]
+
+[Skill01]
+type = 'cAttack'
+value = 760
+rangeX = 16
+rangeY = 48
+cd = 10
+combatPoint = 1520
+
+frame = [
+    'SageNaruto_Skill01_01',
+    'setSound = Audio/Effect/rasen.ogg',
+    'setSound = Audio/SageNaruto/xianfa.ogg',
+    'SageNaruto_Skill01_02',
+    'SageNaruto_Skill01_04',
+    'setCharge = 280',
+    'setDelay = 10',
+    'SageNaruto_Skill01_05',
+    'setSound = Audio/SageNaruto/SageNaruto_skill1.ogg',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'setDelay = 10',
+    'SageNaruto_Skill01_06',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'setDelay = 10',
+    'SageNaruto_Skill01_07',
+]
+
+[Skill02]
+type = 'Summon'
+rangeX = 0
+rangeY = 15
+cd = 15
+
+frame = [
+    'setSound = Audio/Naruto/naruto_skill2.ogg',
+    'SageNaruto_Skill02_02',
+    'SageNaruto_Skill02_03',
+    'SageNaruto_Skill02_05',
+    'SageNaruto_Skill02_07',
+    'setClone = 10',
+]
+
+[Skill03]
+type = 'Summon'
+cd = 25
+combatPoint = 2760
+
+frame = [
+    'SageNaruto_Skill03_02',
+    'setSound = Audio/SageNaruto/xianfa.ogg',
+    'SageNaruto_Skill03_03',
+    'SageNaruto_Skill03_05',
+    'setSound = Audio/SageNaruto/SageNaruto_skill3_1.ogg',
+    'SageNaruto_Skill03_06',
+    'SageNaruto_Skill03_10',
+    'setSound = Audio/SageNaruto/SageNaruto_skill3.ogg',
+    'setSkillEffect = smk',
+    'SageNaruto_Skill03_12',
+    'setCmd = findTarget',
+    'setMon = FutonSRK',
+    'SageNaruto_Skill03_13',
+    'SageNaruto_Skill03_14',
+    'setDelay = 10',
+]
+
+[Skill04]
+type = 'cAttack'
+value = 460
+rangeX = 0
+rangeY = 48
+combatPoint = 3680
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'SageNaruto_Skill04_003',
+    'SageNaruto_Skill04_004',
+    'SageNaruto_Skill04_005',
+    'SageNaruto_Skill04_006',
+    'setHit = o_hit',
+    'setDSound = Audio/Effect/damage_o.ogg',
+    'SageNaruto_Skill04_008',
+    'SageNaruto_Skill04_009',
+    'setSound = Audio/Effect/poof.ogg',
+    'SageNaruto_Skill04_010',
+    'setHit = f_hit',
+    'setDSound = Audio/Effect/damage_o.ogg',
+    'SageNaruto_Skill04_011',
+    'SageNaruto_Skill04_012',
+    'setHit = ac_hit',
+    'SageNaruto_Skill04_013',
+    'setSound = Audio/Effect/poof.ogg',
+    'SageNaruto_Skill04_014',
+    'SageNaruto_Skill04_015',
+    'setDSound = Audio/Effect/damage_o.ogg',
+    'SageNaruto_Skill04_016',
+    'SageNaruto_Skill04_017',
+    'setHit = ac_hit',
+    'SageNaruto_Skill04_018',
+    'setCmd = setInvincible',
+    'SageNaruto_Skill04_019',
+    'setSound = Audio/SageNaruto/SageNaruto_skill5.ogg',
+    'SageNaruto_Skill04_020',
+    'SageNaruto_Skill04_021',
+    'SageNaruto_Skill04_023',
+    'setHit = b_hit',
+    'SageNaruto_Skill04_024',
+    'SageNaruto_Skill04_025',
+    'setHit = b_hit',
+    'SageNaruto_Skill04_026',
+    'SageNaruto_Skill04_027',
+    'setHit = b_hit',
+    'setSound = Audio/Effect/poof.ogg',
+    'SageNaruto_Skill04_028',
+    'SageNaruto_Skill04_029',
+    'setHit = b_hit',
+    'setCmd = reInvincible',
+]
+
+[Skill05]
+type = 'cBuff'
+rangeX = 0
+rangeY = 9
+combatPoint = 10000
+
+frame = [
+    'SageNaruto_Skill05_001',
+    'SageNaruto_Skill05_002',
+    'SageNaruto_Skill05_003',
+    'SageNaruto_Skill05_004',
+    'SageNaruto_Skill05_005',
+    'setOugis = 10',
+    'SageNaruto_Skill05_006',
+    'setBuff = 17',
+]
+
+[Spc01]
+type = 'cAttack'
+value = 660
+rangeX = 0
+rangeY = 48
+cd = 10
+
+frame = [
+    'SageNaruto_Skill10_01',
+    'setSound = Audio/Effect/rasen.ogg',
+    'SageNaruto_Skill10_02',
+    'SageNaruto_Skill10_04',
+    'setCharge = 280',
+    'SageNaruto_Skill10_05',
+    'setDelay = 10',
+    'setSound = Audio/Naruto/naruto_skill1.ogg',
+    'SageNaruto_Skill10_06',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'setDelay = 10',
+    'SageNaruto_Skill10_07',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'setDelay = 10',
+    'SageNaruto_Skill10_08',
+]
+
+[Spc02]
+
+frame = [
+    'SageNaruto_Skill11_001',
+    'setShadow = 10',
+    'SageNaruto_Skill11_002',
+    'SageNaruto_Skill11_003',
+    'setShadow = 10',
+    'SageNaruto_Skill11_004',
+    'SageNaruto_Skill11_005',
+    'setShadow = 10',
+    'SageNaruto_Skill11_006',
+]
+
+[Spc03]
+type = 'Summon'
+
+frame = [
+    'SageNaruto_Skill12_001',
+    'SageNaruto_Skill12_002',
+    'SageNaruto_Skill12_004',
+    'setSound = Audio/Effect/weishoupao.ogg',
+    'SageNaruto_Skill12_006',
+    'setMon = Bikyu',
+    'setDelay = 30',
+]
+
+[Spc04]
+
+frame = [
+    'SageNaruto_Skill10_001',
+]
+
+[Spc05]
+
+frame = [
+    'setCmd = setInvincible',
+    'SageNaruto_Skill05_004',
+    'SageNaruto_Skill05_003',
+    'SageNaruto_Skill05_002',
+    'SageNaruto_Skill08_001',
+    'setSound = Audio/Naruto/naruto_skill8.ogg',
+    'SageNaruto_Skill08_002',
+    'SageNaruto_Skill08_003',
+    'SageNaruto_Skill08_004',
+    'setTransform = 40',
+    'setCmd = reInvincible',
+]

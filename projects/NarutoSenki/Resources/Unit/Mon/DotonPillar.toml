@@ -1,0 +1,32 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'DotonPillar'
+
+[Idle]
+frame = [
+    'DotonPillar_Move_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 560
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'DotonPillar_Move_001',
+    'setSound = Audio/Effect/damage_k.ogg',
+    'DotonPillar_Move_002',
+    'setHit = b_hit',
+    'DotonPillar_Move_003',
+    'DotonPillar_Move_004',
+    'setHit = b_hit',
+    'DotonPillar_Move_005',
+    'setDelay = 20',
+    'setDestroy = 0',
+]

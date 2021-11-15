@@ -1,0 +1,379 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Minato'
+hp = 5500
+hpBar.y = 80
+speed = 224
+
+[Idle]
+frame = [
+    'Minato_Idle_01',
+    'Minato_Idle_02',
+    'Minato_Idle_03',
+    'Minato_Idle_04',
+    'Minato_Idle_03',
+    'Minato_Idle_02',
+]
+
+[Walk]
+frame = [
+    'Minato_Walk_01',
+    'Minato_Walk_02',
+    'Minato_Walk_03',
+    'Minato_Walk_04',
+    'Minato_Walk_05',
+    'Minato_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Minato_Hurt_01',
+    'Minato_Hurt_02',
+]
+
+[AirHurt]
+frame = [
+    'Minato_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Minato_Knockdown_01',
+    'setDelay = 10',
+    'Minato_Knockdown_02',
+    'Minato_Knockdown_03',
+    'setDelay = 60',
+    'Minato_Knockdown_04',
+    'Minato_Knockdown_05',
+]
+
+[Float]
+frame = [
+    'Minato_Float_01',
+    'setDelay = 10',
+    'Minato_Float_02',
+    'setDelay = 10',
+    'Minato_Float_03',
+]
+
+[Dead]
+frame = [
+    'Minato_Knockdown_01',
+    'Minato_Knockdown_02',
+    'Minato_Knockdown_03',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 80
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Minato_NAttack_01',
+    'Minato_NAttack_02',
+    'Minato_NAttack_03',
+    'setMove = 8',
+    'Minato_NAttack_04',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Minato_NAttack_05',
+    'setDelay = 10',
+    'Minato_NAttack_06',
+    'Minato_NAttack_07',
+    'setSound = Audio/Effect/kuwu.ogg',
+    'setHit = bl_hit',
+    'Minato_NAttack_08',
+    'Minato_NAttack_09',
+    'Minato_NAttack_10',
+    'setMove = 16',
+    'Minato_NAttack_11',
+    'setSound = Audio/Minato/Minato_combo.ogg',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setHit = l_hit',
+    'Minato_NAttack_12',
+]
+
+[Skill01]
+type = 'cBuff'
+value = 150
+cd = 10
+combatPoint = 3900
+
+frame = [
+    'Minato_Skill01_01',
+    'setSound = Audio/Minato/Minato_skill1.ogg',
+    'Minato_Skill01_02',
+    'Minato_Skill01_03',
+    'Minato_Skill01_04',
+    'setDelay = 10',
+    'setBuff = 17',
+    'setMon = HiraishinMark',
+]
+
+[Skill02]
+type = 'Summon'
+cd = 15
+combatPoint = 2280
+
+frame = [
+    'setSound = Audio/Minato/Minato_skill2.ogg',
+    'Minato_Skill02_01',
+    'Minato_Skill02_02',
+    'setBullet = HiraishinKunai',
+    'Minato_Skill02_03',
+    'Minato_Skill02_04',
+    'Minato_Skill02_05',
+    'setSound = Audio/Effect/rasen.ogg',
+    'Minato_Skill02_06',
+    'Minato_Skill02_07',
+    'Minato_Skill02_05',
+    'Minato_Skill02_06',
+    'Minato_Skill02_07',
+    'Minato_Skill02_05',
+    'Minato_Skill02_06',
+    'Minato_Skill02_07',
+    'Minato_Skill02_05',
+    'Minato_Skill02_06',
+    'Minato_Skill02_07',
+    'Minato_Skill02_05',
+    'Minato_Skill02_06',
+    'Minato_Skill02_07',
+    'Minato_Skill02_05',
+    'Minato_Skill02_06',
+    'Minato_Skill02_07',
+    'Minato_Skill02_05',
+    'Minato_Skill02_06',
+    'Minato_Skill02_07',
+    'Minato_Skill02_05',
+    'Minato_Skill02_06',
+    'Minato_Skill02_07',
+]
+
+[Skill03]
+type = 'cBuff'
+rangeX = 0
+rangeY = 10
+cd = 25
+
+frame = [
+    'setSound = Audio/Minato/Minato_skill3.ogg',
+    'Minato_Skill05_03',
+    'Minato_Skill05_04',
+    'Minato_Skill05_05',
+    'Minato_Skill05_06',
+    'Minato_Skill05_07',
+    'Minato_Skill05_08',
+    'Minato_Skill05_09',
+    'setBuff = 18',
+]
+
+[Skill04]
+type = 'cAttack'
+value = 360
+rangeX = 0
+rangeY = 48
+combatPoint = 3600
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Minato_Skill04_001',
+    'setSound = Audio/Minato/Minato_skill4.ogg',
+    'Minato_Skill04_002',
+    'setCmd = setInvincible',
+    'Minato_Skill04_003',
+    'setHit = f_hit',
+    'setDSound = Audio/Effect/damage_o.ogg',
+    'Minato_Skill04_004',
+    'Minato_Skill04_005',
+    'setSound = Audio/Effect/hiraishin_effect.ogg',
+    'Minato_Skill04_006',
+    'Minato_Skill04_007',
+    'setHit = ac_hit',
+    'Minato_Skill04_008',
+    'setSound = Audio/Effect/hiraishin_effect.ogg',
+    'Minato_Skill04_009',
+    'Minato_Skill04_010',
+    'setHit = ac_hit',
+    'Minato_Skill04_011',
+    'setSound = Audio/Effect/hiraishin_effect.ogg',
+    'Minato_Skill04_012',
+    'Minato_Skill04_013',
+    'Minato_Skill04_014',
+    'setCharge = 320',
+    'setHit = c_hit',
+    'setDelay = 10',
+    'Minato_Skill04_015',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'setDelay = 10',
+    'Minato_Skill04_016',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'setDelay = 10',
+    'Minato_Skill04_017',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'setDelay = 10',
+    'Minato_Skill04_018',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'setDelay = 10',
+    'Minato_Skill04_019',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'setDelay = 10',
+    'Minato_Skill04_020',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'setDelay = 10',
+    'setCmd = reInvincible',
+]
+
+[Skill05]
+type = 'cAttack'
+value = 1060
+rangeX = 16
+rangeY = 48
+combatPoint = 9260
+
+frame = [
+    'setCmd = setInvincible',
+    'Minato_Skill03_001',
+    'setOugis = 10',
+    'Minato_Skill03_001',
+    'setMon = FakeMinato',
+    'setSound = Audio/Minato/Minato_skill5.ogg',
+    'setDelay = 70',
+    'Minato_Skill03_002',
+    'Minato_Skill03_003',
+    'Minato_Skill03_004',
+    'Minato_Skill03_005',
+    'Minato_Skill03_006',
+    'Minato_Skill03_007',
+    'Minato_Skill03_008',
+    'Minato_Skill03_009',
+    'Minato_Skill03_010',
+    'Minato_Skill03_011',
+    'Minato_Skill03_012',
+    'Minato_Skill03_013',
+    'setHit = c_hit',
+    'setSound = Audio/Effect/damage_rasen.ogg',
+    'Minato_Skill03_014',
+    'Minato_Skill03_015',
+    'setHit = c_hit',
+    'setSound = Audio/Effect/damage_rasen.ogg',
+    'Minato_Skill03_016',
+    'Minato_Skill03_017',
+    'setHit = b_hit',
+    'setSound = Audio/Effect/damage_h.ogg',
+    'Minato_Skill03_018',
+    'Minato_Skill03_019',
+    'Minato_Skill03_020',
+    'Minato_Skill03_021',
+    'setDelay = 30',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+type = 'Transport'
+anim = {base = 'Skill01'}
+frame = [
+    'setSkillEffect = Hiraishin',
+    'setSound = Audio/Effect/hiraishin_effect2.ogg',
+    'setCmd = setTransport2',
+    'Minato_Skill10_01',
+    'Minato_Skill10_02',
+    'Minato_Skill10_03',
+    'Minato_Skill10_04',
+    'Minato_Skill10_05',
+    'Minato_Skill10_06',
+]
+
+[Spc02]
+type = 'aAttack'
+value = 760
+rangeX = 16
+rangeY = 48
+cd = 15
+
+frame = [
+    'setCmd = setInvincible',
+    'setSkillEffect = Hiraishin',
+    'setSound = Audio/Effect/hiraishin_effect.ogg',
+    'setCmd = setTransport',
+    'Minato_Skill02_09',
+    'setSound = Audio/Minato/Minato_skill2_1.ogg',
+    'Minato_Skill02_10',
+    'Minato_Skill02_11',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Minato_Skill02_12',
+    'Minato_Skill02_13',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Minato_Skill02_14',
+    'Minato_Skill02_15',
+    'setHit = b_hit',
+    'setDSound = Audio/Effect/damage_h.ogg',
+    'Minato_Skill02_16',
+    'Minato_Skill02_17',
+    'Minato_Skill02_18',
+    'setActionResume2 = 20',
+    'setCmd = setTransport',
+    'setCmd = reInvincible',
+    'Minato_Skill02_19',
+    'Minato_Skill02_20',
+    'Minato_Skill02_21',
+    'Minato_Skill02_22',
+]
+
+[Spc03]
+type = 'aAttack'
+rangeX = 16
+rangeY = 48
+anim = {base = 'NAttack'}
+frame = [
+    'setSkillEffect = Hiraishin',
+    'setSound = Audio/Effect/hiraishin_effect.ogg',
+    'setCmd = findTarget',
+    'setCmd = setTransport',
+    'Minato_NAttack_01',
+    'Minato_NAttack_02',
+    'Minato_NAttack_03',
+    'Minato_Skill12_01',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = c_hit',
+    'setSkillEffect = Hiraishin',
+    'setSound = Audio/Effect/hiraishin_effect.ogg',
+    'setCmd = findTarget',
+    'setCmd = setTransport',
+    'Minato_Skill12_02',
+    'Minato_Skill12_03',
+    'Minato_Skill12_04',
+    'Minato_NAttack_06',
+    'Minato_NAttack_07',
+    'setSound = Audio/Effect/kuwu.ogg',
+    'setHit = c_hit',
+    'Minato_Skill12_05',
+    'setSkillEffect = Hiraishin',
+    'setSound = Audio/Effect/hiraishin_effect.ogg',
+    'setCmd = findTarget',
+    'setCmd = setTransport',
+    'Minato_Skill12_06',
+    'Minato_Skill12_07',
+    'Minato_Skill12_08',
+    'Minato_Skill12_09',
+    'setMove = 16',
+    'Minato_Skill12_10',
+    'setSound = Audio/Minato/Minato_combo.ogg',
+    'setHit = c_hit',
+    'Minato_Skill12_11',
+    'Minato_Skill12_12',
+]

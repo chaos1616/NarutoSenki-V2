@@ -1,0 +1,268 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Konan'
+hp = 5000
+hpBar.y = 77
+speed = 224
+
+[Idle]
+frame = [
+    'Konan_Idle_001',
+    'Konan_Idle_002',
+    'Konan_Idle_003',
+    'Konan_Idle_004',
+    'Konan_Idle_005',
+]
+
+[Walk]
+frame = [
+    'Konan_Walk_01',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Konan_Hurt_01',
+    'Konan_Hurt_02',
+    'setSound = Audio/Konan/konan_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Konan_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Konan_Knockdown_01',
+    'Konan_Knockdown_02',
+    'setDelay = 10',
+    'Konan_Knockdown_03',
+    'setDelay = 60',
+    'Konan_Knockdown_04',
+    'Konan_Knockdown_05',
+    'Konan_Knockdown_06',
+]
+
+[Float]
+frame = [
+    'Konan_Float_01',
+    'setDelay = 10',
+    'Konan_Float_02',
+    'setDelay = 10',
+    'Konan_Float_03',
+]
+
+[Dead]
+frame = [
+    'Konan_Knockdown_01',
+    'Konan_Knockdown_02',
+    'Konan_Knockdown_03',
+    'setSound = Audio/Konan/konan_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Konan_NAttack_01',
+    'Konan_NAttack_02',
+    'Konan_NAttack_03',
+    'Konan_NAttack_04',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Konan_NAttack_01',
+    'Konan_NAttack_05',
+    'Konan_NAttack_06',
+    'Konan_NAttack_07',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'Konan_NAttack_08',
+    'Konan_NAttack_09',
+    'Konan_NAttack_10',
+    'setMove = 16',
+    'setSound = Audio/Konan/konan_combo.ogg',
+    'Konan_NAttack_11',
+    'setHit = bl_hit',
+    'Konan_NAttack_12',
+    'setHit = bl_hit',
+    'Konan_NAttack_13',
+    'Konan_NAttack_14',
+    'Konan_NAttack_15',
+]
+
+[Skill01]
+type = 'stBuff'
+value = 260
+rangeX = 0
+rangeY = 5
+cd = 10
+
+frame = [
+    'setSound = Audio/Konan/konan_skill1.ogg',
+    'Konan_Skill01_02',
+    'Konan_Skill01_03',
+    'Konan_Skill01_04',
+    'Konan_Skill01_05',
+    'setBuff = 5',
+]
+
+[Skill02]
+type = 'Bullet'
+value = 260
+cd = 15
+combatPoint = 2600
+
+frame = [
+    'setSound = Audio/Konan/konan_skill2.ogg',
+    'Konan_Skill02_001',
+    'Konan_Skill02_002',
+    'Konan_Skill02_003',
+    'Konan_Skill02_004',
+    'setBullet = PaperSpear',
+    'Konan_Skill02_005',
+    'setDelay = 10',
+]
+
+[Skill03]
+type = 'cAttack'
+value = 260
+rangeX = 32
+rangeY = 32
+cd = 25
+combatPoint = 4600
+
+frame = [
+    'Konan_Skill03_001',
+    'setSound = Audio/Konan/konan_skill3.ogg',
+    'Konan_Skill03_002',
+    'Konan_Skill03_003',
+    'setBullet = PaperSrk',
+    'Konan_Skill03_004',
+    'Konan_Skill03_005',
+    'Konan_Skill03_006',
+    'Konan_Skill03_007',
+    'Konan_Skill03_008',
+    'setSound = Audio/Konan/konan_skill3_1.ogg',
+    'setBullet = PaperSrk',
+]
+
+[Skill04]
+type = 'cBuff'
+rangeX = 0
+rangeY = 6
+combatPoint = 5040
+
+frame = [
+    'setCmd = setInvincible',
+    'setSound = Audio/Effect/ougis.ogg',
+    'setSound = Audio/Konan/konan_skill4.ogg',
+    'Konan_Skill04_04',
+    'Konan_Skill04_05',
+    'setSkillEffect = smk',
+    'Konan_Skill04_06',
+    'setBuff = 17',
+    'setCmd = reInvincible',
+]
+
+[Skill05]
+type = 'aAttack'
+value = 360
+rangeX = 16
+rangeY = 48
+combatPoint = 8400
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Konan_Skill05_02',
+    'setSound = Audio/Konan/konan_skill5.ogg',
+    'Konan_Skill05_03',
+    'setCmd = setInvincible',
+    'Konan_Skill05_04',
+    'setHit = f2_hit',
+    'Konan_Skill05_05',
+    'setHit = f2_hit',
+    'Konan_Skill05_06',
+    'setHit = f2_hit',
+    'Konan_Skill05_07',
+    'setHit = f2_hit',
+    'Konan_Skill05_11',
+    'setShadow = 10',
+    'setChargeB = 280',
+    'Konan_Skill05_12',
+    'setShadow = 10',
+    'setSound = Audio/Effect/blade_damage.ogg',
+    'setHit = ac_hit',
+    'Konan_Skill05_13',
+    'setShadow = 10',
+    'setHit = ac_hit',
+    'setSound = Audio/Effect/blade_damage.ogg',
+    'Konan_Skill05_14',
+    'setShadow = 10',
+    'setHit = ac_hit',
+    'Konan_Skill05_15',
+    'setShadow = 10',
+    'setHit = ac_hit',
+    'Konan_Skill05_16',
+    'setShadow = 10',
+    'Konan_Skill05_17',
+    'Konan_Skill05_18',
+    'Konan_Skill05_19',
+    'setShadow = 10',
+    'setOugis = 10',
+    'Konan_Skill05_20',
+    'setShadow = 10',
+    'setJump = true',
+    'Konan_Skill05_21',
+    'setShadow = 10',
+    'Konan_Skill05_22',
+    'setShadow = 10',
+    'Konan_Skill05_23',
+    'setShadow = 10',
+    'Konan_Skill05_24',
+    'setSound = Audio/Konan/konan_skill5_1.ogg',
+    'Konan_Skill05_25',
+    'setMon = PaperRain',
+    'stopJump = 180',
+    'Konan_Skill05_26',
+    'Konan_Skill05_27',
+    'Konan_Skill05_28',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+anim = {base = 'Idle'}
+frame = [
+    'Konan_Skill10_001',
+    'Konan_Skill10_002',
+    'Konan_Skill10_003',
+    'Konan_Skill10_004',
+]
+
+[Spc02]
+type = 'aAttack'
+value = 360
+rangeX = 16
+rangeY = 48
+cd = 10
+anim = {base = 'Walk'}
+frame = [
+    'Konan_Skill11_001',
+    'setHit = s_hit',
+    'setDelay = 10',
+    'Konan_Skill11_002',
+    'setDelay = 10',
+    'Konan_Skill11_003',
+    'setHit = s_hit',
+    'setDelay = 10',
+    'Konan_Skill11_004',
+    'setDelay = 10',
+]

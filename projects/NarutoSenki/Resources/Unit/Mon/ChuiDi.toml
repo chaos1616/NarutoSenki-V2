@@ -1,0 +1,33 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'ChuiDi'
+
+[Idle]
+frame = [
+    'ChuiDi_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 1160
+rangeX = 32
+rangeY = 32
+
+frame = [
+    'ChuiDi_Move_01',
+    'setHit = b_hit',
+    'setSound = Audio/Effect/damage_k.ogg',
+    'ChuiDi_Move_02',
+    'ChuiDi_Move_03',
+    'setHit = b_hit',
+    'ChuiDi_Move_04',
+    'ChuiDi_Move_05',
+    'setHit = b_hit',
+    'ChuiDi_Move_06',
+    'setDestroy = 0',
+]

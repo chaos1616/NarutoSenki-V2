@@ -1,0 +1,35 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'BugPillar'
+
+[Idle]
+frame = [
+    'BugPillar_Move_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 460
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'BugPillar_Move_001',
+    'setSound = Audio/Shino/Shino_skill2_1.ogg',
+    'setHit = f_hit',
+    'BugPillar_Move_002',
+    'BugPillar_Move_003',
+    'setHit = ac_hit',
+    'BugPillar_Move_004',
+    'BugPillar_Move_005',
+    'setHit = ac_hit',
+    'BugPillar_Move_006',
+    'BugPillar_Move_007',
+    'setHit = ac_hit',
+    'setDestroy = 0',
+]

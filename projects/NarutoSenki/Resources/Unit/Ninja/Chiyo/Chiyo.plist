@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{51,68}</string>
             </dict>
-            <key>Chiyo_KnockDown_01</key>
+            <key>Chiyo_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{387,1073},{72,39}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{72,39}</string>
             </dict>
-            <key>Chiyo_KnockDown_02</key>
+            <key>Chiyo_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{240,322},{80,29}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{80,29}</string>
             </dict>
-            <key>Chiyo_KnockDown_03</key>
+            <key>Chiyo_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{249,1173},{57,51}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{57,51}</string>
             </dict>
-            <key>Chiyo_KnockDown_04</key>
+            <key>Chiyo_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{478,545},{48,50}}</string>

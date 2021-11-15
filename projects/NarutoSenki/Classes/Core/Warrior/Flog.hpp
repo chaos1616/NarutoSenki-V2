@@ -24,89 +24,31 @@ public:
 		return true;
 	}
 
-	void setID(const string &name, Role role, Group group)
+	void setID(const string &name, Role role, Group group) override
 	{
 		clearActionData();
 		setName(name);
 		setRole(role);
 		setGroup(group);
 
-		CCArray *animationArray = CCArray::create();
-		auto filePath = format("Unit/Flog/{}.xml", name);
-		KTools::readXMLToArray(filePath, animationArray);
+		auto fpath = format("Unit/Flog/{}.toml", name);
+		auto metadata = UnitParser::fromToml(fpath);
+		genActionBy(metadata);
+		// init action
+		setAction(ActionFlag::Idle | ActionFlag::Walk | ActionFlag::Dead |
+				  ActionFlag::Hurt | ActionFlag::AirHurt | ActionFlag::Knockdown |
+				  ActionFlag::Float | ActionFlag::NAttack);
 
-		CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
-		CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-		idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-		string unitName;
-		uint32_t maxHP;
-		int tmpWidth;
-		int tmpHeight;
-		uint32_t tmpSpeed;
-		int tmpCombatPoint;
-
-		readData(tmpData, unitName, maxHP, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
-
-		setMaxHPValue(maxHP, false);
-		setHPValue(maxHP, false);
+		setMaxHP(metadata.hp);
+		setHP(metadata.hp);
 		setCKR(0);
 		setCKR2(0);
-		setHeight(tmpHeight);
-		setWalkSpeed(tmpSpeed);
+		setHPBarHeight(metadata.hpBarY);
+		setWalkSpeed(metadata.speed);
 
 		setKillNum(0);
 
-		// init WalkFrame
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(1));
-		walkArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-		// init HurtFrame
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(2));
-		hurtArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-		// init AirHurtFrame
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(3));
-		airHurtArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-		// init KnockDownFrame
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(4));
-		knockDownArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-		// init FloatFrame
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(5));
-		floatArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-		// init DeadFrame
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
-		deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-		// init nAttack data & Frame Array
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
-		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-
-		uint32_t tmpValue;
-		uint32_t tmpCD;
-		readData(tmpData, _nAttackType, tmpValue, _nAttackRangeX, _nAttackRangeY, tmpCD, tmpCombatPoint);
-		setNAttackValue(tmpValue);
-		nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-		initAction();
 		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", nullptr);
-	}
-
-	void initAction()
-	{
-		setIdleAction(createAnimation(idleArray, 5, true, false));
-		setWalkAction(createAnimation(walkArray, 10, true, false));
-		setHurtAction(createAnimation(hurtArray, 10, false, true));
-
-		setAirHurtAction(createAnimation(airHurtArray, 10, false, false));
-		setKnockDownAction(createAnimation(knockDownArray, 10, false, true));
-		setDeadAction(createAnimation(deadArray, 10, false, false));
-		setFloatAction(createAnimation(floatArray, 10, false, false));
-
-		setNAttackAction(createAnimation(nattackArray, 10, false, true));
 	}
 
 	void setHPbar()
@@ -115,7 +57,7 @@ public:
 			_hpBar = HPBar::create("flog_bar_r.png");
 		else
 			_hpBar = HPBar::create("flog_bar.png");
-		_hpBar->setPositionY(getHeight());
+		_hpBar->setPositionY(getHPBarHeight());
 		_hpBar->setDelegate(this);
 		addChild(_hpBar);
 	}

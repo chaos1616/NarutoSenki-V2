@@ -1,0 +1,173 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Kankuro'
+hp = 5500
+hpBar.y = 75
+speed = 224
+
+[Idle]
+frame = [
+    'Kankuro_Idle_01',
+    'Kankuro_Idle_02',
+    'Kankuro_Idle_03',
+    'Kankuro_Idle_04',
+]
+
+[Walk]
+frame = [
+    'Kankuro_Walk_01',
+    'Kankuro_Walk_02',
+    'Kankuro_Walk_03',
+    'Kankuro_Walk_04',
+    'Kankuro_Walk_05',
+    'Kankuro_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Kankuro_Hurt_01',
+    'Kankuro_Hurt_02',
+    'setSound = Audio/Kankuro/kankuro_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Kankuro_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Kankuro_Knockdown_01',
+    'setDelay = 10',
+    'Kankuro_Knockdown_02',
+    'setDelay = 60',
+    'Kankuro_Knockdown_03',
+    'Kankuro_Knockdown_04',
+    'Kankuro_Knockdown_05',
+]
+
+[Float]
+frame = [
+    'Kankuro_Float_01',
+    'setDelay = 10',
+    'Kankuro_Float_02',
+    'setDelay = 10',
+    'Kankuro_Float_03',
+]
+
+[Dead]
+frame = [
+    'Kankuro_Knockdown_01',
+    'Kankuro_Knockdown_02',
+    'setSound = Audio/Kankuro/kankuro_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Kankuro_NAttack_01',
+    'Kankuro_NAttack_02',
+    'Kankuro_NAttack_03',
+    'Kankuro_NAttack_04',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Kankuro_NAttack_05',
+    'setMove = 8',
+    'Kankuro_NAttack_06',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'Kankuro_NAttack_07',
+    'Kankuro_NAttack_08',
+    'Kankuro_NAttack_09',
+    'setMove = 16',
+    'Kankuro_NAttack_10',
+    'setSound = Audio/Kankuro/kankuro_combo.ogg',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setHit = l_hit',
+]
+
+[Skill01]
+type = 'cBuff'
+cd = 10
+
+frame = [
+    'Kankuro_Skill01_01',
+    'setSound = Audio/Kankuro/kankuro_skill1.ogg',
+    'Kankuro_Skill01_03',
+    'Kankuro_Skill01_04',
+    'Kankuro_Skill01_05',
+    'setClone = 0',
+    'setBuff = 17',
+]
+
+[Skill02]
+type = 'cBuff'
+rangeX = 0
+rangeY = 15
+cd = 15
+combatPoint = 1680
+
+frame = [
+    'setMonAttack = 2',
+    'setSound = Audio/Kankuro/kankuro_skill2.ogg',
+    'Kankuro_Skill02_01',
+    'Kankuro_Skill02_02',
+    'Kankuro_Skill02_03',
+    'Kankuro_Skill02_04',
+]
+
+[Skill03]
+type = 'Summon'
+cd = 25
+combatPoint = 2060
+
+frame = [
+    'setSound = Audio/Kankuro/kankuro_skill3.ogg',
+    'Kankuro_Skill03_01',
+    'setMon = Kuroari',
+    'Kankuro_Skill03_02',
+    'Kankuro_Skill03_03',
+    'Kankuro_Skill03_04',
+]
+
+[Skill04]
+type = 'cBuff'
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Kankuro_Skill04_01',
+    'setSound = Audio/Kankuro/kankuro_skill4.ogg',
+    'setDelay = 20',
+    'Kankuro_Skill04_02',
+    'Kankuro_Skill04_03',
+    'Kankuro_Skill04_04',
+    'setDelay = 20',
+    'setClone = 1',
+]
+
+[Skill05]
+type = 'Summon'
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Kankuro_Skill05_01',
+    'setCmd = setInvincible',
+    'setDelay = 10',
+    'Kankuro_Skill05_02',
+    'setDelay = 10',
+    'setOugis = 10',
+    'Kankuro_Skill05_03',
+    'setDelay = 10',
+    'setClone = 2',
+    'setCmd = reInvincible',
+]

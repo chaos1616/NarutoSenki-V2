@@ -1,0 +1,49 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'InkBird'
+
+[Idle]
+frame = [
+    'InkBird_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 360
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'InkBird_Move_01',
+    'InkBird_Move_02',
+    'InkBird_Move_03',
+    'InkBird_Move_04',
+    'setHit = ac_hit',
+    'setSound = Audio/Sai/sai_skill4_2.ogg',
+    'InkBird_Move_05',
+    'setDSound = Audio/Effect/stick_damage.ogg',
+    'InkBird_Move_06',
+    'setHit = ac_hit',
+    'InkBird_Move_04',
+    'setDSound = Audio/Effect/stick_damage.ogg',
+    'InkBird_Move_05',
+    'setHit = ac_hit',
+    'setSound = Audio/Sai/sai_skill4_2.ogg',
+    'InkBird_Move_06',
+    'setDSound = Audio/Effect/stick_damage.ogg',
+    'InkBird_Move_04',
+    'setHit = ac_hit',
+    'InkBird_Move_05',
+    'setDSound = Audio/Effect/stick_damage.ogg',
+    'InkBird_Move_06',
+    'setSound = Audio/Sai/sai_skill4_2.ogg',
+    'setHit = ac_hit',
+    'InkBird_Move_12',
+    'InkBird_Move_13',
+    'setDestroy = 0',
+]

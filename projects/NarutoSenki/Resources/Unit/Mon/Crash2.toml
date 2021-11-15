@@ -1,0 +1,27 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Crash2'
+
+[Idle]
+frame = [
+    'Crash2_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 1260
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'Crash2_Move_03',
+    'setDelay = 10',
+    'Crash2_Move_02',
+    'Crash2_Move_01',
+    'setDestroy = 0',
+]

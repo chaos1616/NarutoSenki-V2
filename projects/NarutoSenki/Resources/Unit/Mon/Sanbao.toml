@@ -1,0 +1,44 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Sanbao'
+
+[Idle]
+frame = [
+    'Sanbao_Move_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 660
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'Sanbao_Move_001',
+    'Sanbao_Move_002',
+    'setHit = s_hit',
+    'Sanbao_Move_003',
+    'Sanbao_Move_004',
+    'setHit = ab_hit',
+    'Sanbao_Move_005',
+    'Sanbao_Move_002',
+    'setHit = s_hit',
+    'Sanbao_Move_003',
+    'Sanbao_Move_004',
+    'setHit = ab_hit',
+    'Sanbao_Move_002',
+    'Sanbao_Move_003',
+    'setHit = s_hit',
+    'Sanbao_Move_004',
+    'Sanbao_Move_005',
+    'setHit = o2_hit',
+    'Sanbao_Move_006',
+    'setSound = Audio/Effect/poof.ogg',
+    'Sanbao_Move_007',
+    'setDestroy = 0',
+]

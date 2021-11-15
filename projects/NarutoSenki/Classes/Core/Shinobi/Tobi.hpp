@@ -147,7 +147,7 @@ class Tobi : public Hero
 
 	void changeAction() override
 	{
-		setWalkAction(createAnimation(skillSPC1Array, 10, true, false));
+		setActionTo<ActionFlag::Walk, ActionFlag::Spc01>();
 
 		setWalkSpeed(320);
 		_originSpeed = 320;
@@ -184,7 +184,7 @@ class Tobi : public Hero
 
 	void resumeAction(float dt) override
 	{
-		setWalkAction(createAnimation(walkArray, 10, true, false));
+		setActionTo<ActionFlag::Walk, ActionFlag::Walk>();
 
 		if (getOpacity() != 255)
 			setOpacity(255);
@@ -200,7 +200,7 @@ class Tobi : public Hero
 	void setActionResume() override
 	{
 		unschedule(schedule_selector(Tobi::resumeAction));
-		setWalkAction(createAnimation(walkArray, 10, true, false));
+		setActionTo<ActionFlag::Walk, ActionFlag::Walk>();
 
 		if (getOpacity() != 255)
 			setOpacity(255);

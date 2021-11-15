@@ -1,0 +1,30 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'ThunderWave'
+
+[Idle]
+frame = [
+    'ThunderWave_Move_001',
+]
+
+[NAttack]
+type = 'cAttack'
+value = 760
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'ThunderWave_Move_001',
+    'setHit = b_hit',
+    'ThunderWave_Move_002',
+    'ThunderWave_Move_003',
+    'setHit = b_hit',
+    'ThunderWave_Move_004',
+    'ThunderWave_Move_005',
+    'setDestroy = 0',
+]

@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{48,68}</string>
             </dict>
-            <key>Sasuke_KnockDown_01</key>
+            <key>Sasuke_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{351,554},{72,48}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{72,48}</string>
             </dict>
-            <key>Sasuke_KnockDown_02</key>
+            <key>Sasuke_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{201,499},{75,41}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{75,41}</string>
             </dict>
-            <key>Sasuke_KnockDown_03</key>
+            <key>Sasuke_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{488,401},{76,22}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{76,22}</string>
             </dict>
-            <key>Sasuke_KnockDown_04</key>
+            <key>Sasuke_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{217,925},{60,46}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{60,46}</string>
             </dict>
-            <key>Sasuke_KnockDown_05</key>
+            <key>Sasuke_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{338,843},{49,46}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{49,46}</string>
             </dict>
-            <key>Sasuke_KnockDown_06</key>
+            <key>Sasuke_Knockdown_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{241,861},{40,60}}</string>

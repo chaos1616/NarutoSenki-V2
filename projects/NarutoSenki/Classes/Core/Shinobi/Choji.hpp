@@ -142,9 +142,9 @@ class Choji : public Hero
 	void changeAction() override
 	{
 		_isArmored = true;
-		setNAttackAction(createAnimation(skillSPC3Array, 10, false, true));
-		setIdleAction(createAnimation(skillSPC4Array, 5, true, false));
-		setWalkAction(createAnimation(skillSPC2Array, 5, true, false));
+		setActionTo<ActionFlag::NAttack, ActionFlag::Spc03>();
+		setActionTo<ActionFlag::Idle, ActionFlag::Spc04>();
+		setActionTo<ActionFlag::Walk, ActionFlag::Spc02>();
 
 		_originNAttackType = _nAttackType;
 		_nAttackType = _spcAttackType3;
@@ -174,9 +174,9 @@ class Choji : public Hero
 		_isArmored = false;
 		resetDefenseValue(5000);
 
-		setWalkAction(createAnimation(walkArray, 10, true, false));
-		setIdleAction(createAnimation(idleArray, 5, true, false));
-		setNAttackAction(createAnimation(nattackArray, 10, false, true));
+		setActionTo<ActionFlag::Walk, ActionFlag::Walk>();
+		setActionTo<ActionFlag::Idle, ActionFlag::Idle>();
+		setActionTo<ActionFlag::NAttack, ActionFlag::NAttack>();
 
 		if (_state != State::DEAD)
 		{
@@ -188,7 +188,7 @@ class Choji : public Hero
 
 		if (_hpBar)
 		{
-			_hpBar->setPositionY(getHeight());
+			_hpBar->setPositionY(getHPBarHeight());
 		}
 		CharacterBase::resumeAction(dt);
 	}
@@ -205,15 +205,15 @@ class Choji : public Hero
 		_isArmored = false;
 		resetDefenseValue(5000);
 
-		setWalkAction(createAnimation(walkArray, 10, true, false));
-		setIdleAction(createAnimation(idleArray, 5, true, false));
-		setNAttackAction(createAnimation(nattackArray, 10, false, true));
+		setActionTo<ActionFlag::Walk, ActionFlag::Walk>();
+		setActionTo<ActionFlag::Idle, ActionFlag::Idle>();
+		setActionTo<ActionFlag::NAttack, ActionFlag::NAttack>();
 
 		unlockOugisButtons();
 
 		if (_hpBar)
 		{
-			_hpBar->setPositionY(getHeight());
+			_hpBar->setPositionY(getHPBarHeight());
 		}
 
 		_skillChangeBuffValue = 0;

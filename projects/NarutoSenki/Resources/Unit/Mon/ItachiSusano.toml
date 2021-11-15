@@ -1,0 +1,31 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'ItachiSusano'
+
+[Idle]
+frame = [
+    'ItachiSusano_Move_01',
+    'ItachiSusano_Move_02',
+    'ItachiSusano_Move_03',
+    'ItachiSusano_Move_04',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 860
+rangeX = 280
+rangeY = 128
+
+frame = [
+    'ItachiSusano_Move_05',
+    'setDelay = 10',
+    'ItachiSusano_Move_06',
+    'setDelay = 10',
+    'ItachiSusano_Move_07',
+    'setDelay = 20',
+]

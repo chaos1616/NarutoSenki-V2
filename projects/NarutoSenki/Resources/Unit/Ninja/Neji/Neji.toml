@@ -1,0 +1,305 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Neji'
+hp = 5000
+hpBar.y = 75
+speed = 224
+
+[Idle]
+frame = [
+    'Neji_Idle_01',
+    'Neji_Idle_02',
+    'Neji_Idle_03',
+    'Neji_Idle_04',
+]
+
+[Walk]
+frame = [
+    'Neji_Walk_01',
+    'Neji_Walk_02',
+    'Neji_Walk_03',
+    'Neji_Walk_04',
+    'Neji_Walk_05',
+    'Neji_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Neji_Hurt_01',
+    'Neji_Hurt_02',
+    'setSound = Audio/Neji/Neji_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Neji_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Neji_Knockdown_01',
+    'Neji_Knockdown_02',
+    'setDelay = 10',
+    'Neji_Knockdown_03',
+    'setDelay = 60',
+    'Neji_Knockdown_04',
+    'Neji_Knockdown_05',
+]
+
+[Float]
+frame = [
+    'Neji_Float_01',
+    'setDelay = 10',
+    'Neji_Float_02',
+    'setDelay = 10',
+    'Neji_Float_03',
+]
+
+[Dead]
+frame = [
+    'Neji_Knockdown_01',
+    'Neji_Knockdown_02',
+    'Neji_Knockdown_03',
+    'setSound = Audio/Neji/Neji_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 80
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Neji_NAttack_01',
+    'Neji_NAttack_02',
+    'Neji_NAttack_03',
+    'Neji_NAttack_04',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Neji_NAttack_05',
+    'Neji_NAttack_06',
+    'Neji_NAttack_07',
+    'Neji_NAttack_08',
+    'setMove = 8',
+    'Neji_NAttack_09',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'Neji_NAttack_10',
+    'Neji_NAttack_11',
+    'Neji_NAttack_12',
+    'setSound = Audio/Neji/Neji_combo.ogg',
+    'Neji_NAttack_13',
+    'setMove = 16',
+    'Neji_NAttack_14',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setHit = l_hit',
+    'Neji_NAttack_15',
+]
+
+[Skill01]
+type = 'hsBuff'
+rangeX = 0
+rangeY = 10
+cd = 15
+
+frame = [
+    'setSound = Audio/Neji/Neji_skill01.ogg',
+    'Neji_Skill01_01',
+    'Neji_Skill01_02',
+    'Neji_Skill01_03',
+    'Neji_Skill01_04',
+    'setSound = Audio/Effect/baiyan.ogg',
+    'Neji_Skill01_05',
+    'Neji_Skill01_06',
+    'setBuff = 200',
+]
+
+[Skill02]
+type = 'aAttack'
+value = 760
+rangeX = 0
+rangeY = 48
+cd = 15
+combatPoint = 1520
+
+frame = [
+    'Neji_Skill02_02',
+    'setSound = Audio/Neji/Neji_skill02_1.ogg',
+    'Neji_Skill02_03',
+    'setMove = 16',
+    'Neji_Skill02_04',
+    'Neji_Skill02_05',
+    'setHit = c_hit',
+    'Neji_Skill02_06',
+    'Neji_Skill02_07',
+    'setChargeB = 128',
+    'Neji_Skill02_08',
+    'setSound = Audio/Neji/Neji_skill02_2.ogg',
+    'setHit = c_hit',
+    'Neji_Skill02_09',
+]
+
+[Skill03]
+type = 'aAttack'
+value = 260
+rangeX = 16
+rangeY = 48
+cd = 25
+combatPoint = 2340
+
+frame = [
+    'setSound = Audio/Neji/Neji_skill03.ogg',
+    'Neji_Skill03_02',
+    'Neji_Skill03_03',
+    'setSkillEffect = Bagua',
+    'setDelay = 40',
+    'Neji_Skill03_04',
+    'setMove = 16',
+    'setHit = s_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Neji_Skill03_05',
+    'Neji_Skill03_06',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Neji_Skill03_07',
+    'setMove = 8',
+    'Neji_Skill03_08',
+    'setHit = s_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Neji_Skill03_09',
+    'Neji_Skill03_10',
+    'setMove = 8',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Neji_Skill03_11',
+    'Neji_Skill03_12',
+    'setHit = s_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Neji_Skill03_04',
+    'setMove = 8',
+    'Neji_Skill03_05',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Neji_Skill03_06',
+    'Neji_Skill03_07',
+    'setMove = 8',
+    'setHit = s_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Neji_Skill03_08',
+    'Neji_Skill03_09',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Neji_Skill03_10',
+    'setMove = 8',
+    'Neji_Skill03_11',
+    'setHit = s_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Neji_Skill03_13',
+    'Neji_Skill03_14',
+]
+
+[Skill04]
+type = 'Summon'
+combatPoint = 3040
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setCmd = setInvincible',
+    'Neji_Skill04_02',
+    'Neji_Skill04_03',
+    'setMon = Kaiten',
+    'setSound = Audio/Neji/Neji_skill04.ogg',
+    'Neji_Skill04_04',
+    'setDelay = 90',
+    'Neji_Skill04_05',
+    'Neji_Skill04_06',
+    'Neji_Skill04_07',
+    'setCmd = reInvincible',
+]
+
+[Skill05]
+type = 'aAttack'
+value = 860
+rangeX = 16
+rangeY = 48
+combatPoint = 8540
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setOugis = 10',
+    'Neji_Skill05_13',
+    'setSkillEffect = Bagua',
+    'Neji_Skill05_13',
+    'setCmd = setInvincible',
+    'setDelay = 10',
+    'Neji_Skill05_001',
+    'setSound = Audio/Neji/Neji_skill5_1.ogg',
+    'Neji_Skill05_002',
+    'setShadow = 10',
+    'setChargeB = 128',
+    'setHit = f_hit',
+    'setDSound = Audio/Effect/damage_o2.ogg',
+    'Neji_Skill05_003',
+    'Neji_Skill05_004',
+    'setShadow = 10',
+    'setHit = c_hit',
+    'Neji_Skill05_005',
+    'Neji_Skill05_006',
+    'setShadow = 10',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Neji_Skill05_007',
+    'Neji_Skill05_008',
+    'Neji_Skill05_18',
+    'setMove = 16',
+    'Neji_Skill05_19',
+    'setShadow = 10',
+    'setSound = Audio/Neji/Neji_skill5_3.ogg',
+    'Neji_Skill05_20',
+    'setShadow = 10',
+    'setHit = ac_hit',
+    'Neji_Skill05_21',
+    'setShadow = 10',
+    'setDSound = Audio/Effect/damage_haken.ogg',
+    'Neji_Skill05_22',
+    'setShadow = 10',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_haken.ogg',
+    'Neji_Skill05_23',
+    'setShadow = 10',
+    'Neji_Skill05_20',
+    'setShadow = 10',
+    'setHit = ac_hit',
+    'Neji_Skill05_21',
+    'setShadow = 10',
+    'setDSound = Audio/Effect/damage_haken.ogg',
+    'Neji_Skill05_22',
+    'setShadow = 10',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_haken.ogg',
+    'Neji_Skill05_23',
+    'setShadow = 10',
+    'Neji_Skill05_34',
+    'setShadow = 10',
+    'setSound = Audio/Neji/Neji_skill04_1.ogg',
+    'Neji_Skill05_35',
+    'setShadow = 10',
+    'Neji_Skill05_36',
+    'setShadow = 10',
+    'Neji_Skill05_37',
+    'setShadow = 10',
+    'Neji_Skill05_40',
+    'setSound = Audio/Neji/Neji_skill5_4.ogg',
+    'setMon = Hasan',
+    'Neji_Skill05_41',
+    'Neji_Skill05_40',
+    'Neji_Skill05_42',
+    'Neji_Skill05_43',
+    'setCmd = reInvincible',
+]

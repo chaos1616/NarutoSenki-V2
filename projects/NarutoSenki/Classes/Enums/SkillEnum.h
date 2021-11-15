@@ -1,6 +1,7 @@
 #pragma once
 #include "Enums/Enums.hpp"
 
+// FIXME: Remove this namespace
 namespace SkillEnum
 {
 	mk_const(Bikyu);
@@ -41,7 +42,7 @@ namespace SkillEnum
 	mk_const(LeeBom);
 	mk_const(Mine);
 	mk_const(Mouse);
-	mk_const(Paku);
+	mk_const(Pakkun);
 	mk_const(PaperRain);
 	mk_const(Qilin);
 	mk_const(QuanRen);

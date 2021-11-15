@@ -1,0 +1,24 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Shintenshi'
+
+[Idle]
+frame = [
+    'Shintenshin_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 240
+rangeX = 32
+rangeY = 0
+anim = {loop = true}
+frame = [
+    'Shintenshin_Move_01',
+    'setHit = c_hit',
+]

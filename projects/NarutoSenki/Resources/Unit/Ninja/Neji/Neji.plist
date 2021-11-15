@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{51,74}</string>
             </dict>
-            <key>Neji_KnockDown_01</key>
+            <key>Neji_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{196,873},{61,38}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{61,38}</string>
             </dict>
-            <key>Neji_KnockDown_02</key>
+            <key>Neji_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{82,567},{74,30}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{74,30}</string>
             </dict>
-            <key>Neji_KnockDown_03</key>
+            <key>Neji_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{86,537},{79,28}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{79,28}</string>
             </dict>
-            <key>Neji_KnockDown_04</key>
+            <key>Neji_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{446,144},{63,42}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{63,42}</string>
             </dict>
-            <key>Neji_KnockDown_05</key>
+            <key>Neji_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{296,930},{49,53}}</string>

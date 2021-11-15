@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{51,67}</string>
             </dict>
-            <key>Sakura_KnockDown_01</key>
+            <key>Sakura_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{69,705},{63,32}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{63,60}</string>
             </dict>
-            <key>Sakura_KnockDown_02</key>
+            <key>Sakura_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{269,453},{70,34}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{70,60}</string>
             </dict>
-            <key>Sakura_KnockDown_03</key>
+            <key>Sakura_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{100,96},{72,26}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{72,60}</string>
             </dict>
-            <key>Sakura_KnockDown_04</key>
+            <key>Sakura_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{470,519},{59,34}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{59,60}</string>
             </dict>
-            <key>Sakura_KnockDown_05</key>
+            <key>Sakura_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{321,724},{56,42}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{56,60}</string>
             </dict>
-            <key>Sakura_KnockDown_06</key>
+            <key>Sakura_Knockdown_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{473,126},{37,48}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{37,60}</string>
             </dict>
-            <key>Sakura_KnockDown_07</key>
+            <key>Sakura_Knockdown_07</key>
             <dict>
                 <key>frame</key>
                 <string>{{473,176},{36,56}}</string>

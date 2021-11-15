@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{58,93}</string>
             </dict>
-            <key>Asuma_KnockDown_001</key>
+            <key>Asuma_Knockdown_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,325},{84,34}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{84,34}</string>
             </dict>
-            <key>Asuma_KnockDown_002</key>
+            <key>Asuma_Knockdown_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{879,120},{88,23}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{88,23}</string>
             </dict>
-            <key>Asuma_KnockDown_003</key>
+            <key>Asuma_Knockdown_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{304,490},{75,62}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{75,62}</string>
             </dict>
-            <key>Asuma_KnockDown_004</key>
+            <key>Asuma_Knockdown_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{558,455},{59,68}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{59,68}</string>
             </dict>
-            <key>Asuma_KnockDown_005</key>
+            <key>Asuma_Knockdown_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{388,439},{50,76}}</string>

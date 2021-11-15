@@ -1,0 +1,36 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Kuroari'
+speed = 320
+
+[Idle]
+frame = [
+    'Kuroari_Move_01',
+]
+
+[Walk]
+frame = [
+    'Kuroari_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 2060
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'Kuroari_Move_02',
+    'Kuroari_Move_03',
+    'setDelay = 10',
+    'setSound = Audio/Effect/kuroari.ogg',
+    'setHit = ct_hit',
+    'Kuroari_Move_04',
+    'setDelay = 310',
+    'setDestroy = 0',
+]

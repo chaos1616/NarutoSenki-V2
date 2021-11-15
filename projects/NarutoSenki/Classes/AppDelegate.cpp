@@ -2,7 +2,7 @@
 #include "CCLuaEngine.h"
 #include "script_support/CCScriptSupport.h"
 
-#include "Systems/Initializer.hpp"
+#include "System/Initializer.hpp"
 
 AppDelegate::AppDelegate()
 {

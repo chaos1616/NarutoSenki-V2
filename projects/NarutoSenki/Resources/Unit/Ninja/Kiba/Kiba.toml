@@ -1,0 +1,307 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Kiba'
+hp = 5000
+hpBar.y = 86
+speed = 224
+
+[Idle]
+frame = [
+    'Kiba_Idle_001',
+    'setDelay = 10',
+    'Kiba_Idle_002',
+    'setDelay = 10',
+    'Kiba_Idle_003',
+]
+
+[Walk]
+frame = [
+    'Kiba_Walk_01',
+    'Kiba_Walk_02',
+    'Kiba_Walk_03',
+    'Kiba_Walk_04',
+    'Kiba_Walk_05',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Kiba_Hurt_01',
+    'Kiba_Hurt_02',
+    'setSound = Audio/Kiba/Kiba_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Kiba_AirHurt_001',
+]
+
+[Knockdown]
+frame = [
+    'Kiba_Knockdown_001',
+    'setDelay = 10',
+    'Kiba_Knockdown_002',
+    'Kiba_Knockdown_003',
+    'setDelay = 60',
+    'Kiba_Knockdown_004',
+    'Kiba_Knockdown_005',
+    'Kiba_Knockdown_006',
+]
+
+[Float]
+frame = [
+    'Kiba_Float_001',
+    'setDelay = 10',
+    'Kiba_Float_002',
+    'setDelay = 10',
+    'Kiba_Float_003',
+]
+
+[Dead]
+frame = [
+    'Kiba_Knockdown_001',
+    'Kiba_Knockdown_002',
+    'Kiba_Knockdown_003',
+    'setSound = Audio/Kiba/Kiba_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Kiba_NAttack2_001',
+    'setMove = 16',
+    'Kiba_NAttack2_002',
+    'Kiba_NAttack2_003',
+    'setHit = n_hit',
+    'setDelay = 10',
+]
+
+[Skill01]
+type = 'cBuff'
+cd = 10
+
+frame = [
+    'setSound = Audio/Kiba/Kiba_skill1.ogg',
+    'setSkillEffect = smk',
+    'setClone = 0',
+    'setBuff = 17',
+]
+
+[Skill02]
+type = 'Command'
+cd = 15
+combatPoint = 1840
+
+frame = [
+    'setSound = Audio/Kiba/Kiba_skill2.ogg',
+    'setMonAttack = 1',
+]
+
+[Skill03]
+type = 'cBuff'
+rangeX = 0
+rangeY = 5
+cd = 25
+combatPoint = 4600
+
+frame = [
+    'setSound = Audio/Kiba/Kiba_skill3.ogg',
+    'setBuff = 18',
+]
+
+[Skill04]
+type = 'aAttack'
+value = 360
+rangeX = 0
+rangeY = 48
+combatPoint = 3240
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Kiba_Skill04_001',
+    'Kiba_Skill04_002',
+    'setCmd = findTarget',
+    'setCmd = setTransport',
+    'Kiba_Skill04_003',
+    'Kiba_Skill04_004',
+    'setSound = Audio/Kiba/Kiba_skill4_1.ogg',
+    'setHit = c_hit',
+    'Kiba_Skill04_005',
+    'Kiba_Skill04_006',
+    'setHit = c_hit',
+    'setSound = Audio/Effect/blade_damage2.ogg',
+    'Kiba_Skill04_007',
+    'Kiba_Skill04_004',
+    'setHit = c_hit',
+    'setSound = Audio/Effect/blade_damage2.ogg',
+    'Kiba_Skill04_005',
+    'Kiba_Skill04_006',
+    'setHit = c_hit',
+    'setSound = Audio/Effect/blade_damage2.ogg',
+    'Kiba_Skill04_007',
+    'Kiba_Skill04_009',
+    'setSound = Audio/Kiba/Kiba_skill4_2.ogg',
+    'setJump = true',
+    'setHit = f_hit',
+    'Kiba_Skill04_010',
+    'Kiba_Skill04_011',
+    'setHit = ac_hit',
+    'setSound = Audio/Effect/blade_damage2.ogg',
+    'Kiba_Skill04_012',
+    'Kiba_Skill04_013',
+    'setHit = c_hit',
+    'setSound = Audio/Effect/blade_damage2.ogg',
+    'Kiba_Skill04_010',
+    'Kiba_Skill04_011',
+    'setHit = ac_hit',
+    'setSound = Audio/Effect/blade_damage2.ogg',
+    'Kiba_Skill04_012',
+    'Kiba_Skill04_013',
+    'setHit = c_hit',
+    'setSound = Audio/Effect/blade_damage2.ogg',
+    'Kiba_Skill04_014',
+    'Kiba_Skill04_015',
+]
+
+[Skill05]
+type = 'aAttack'
+value = 900
+rangeX = 0
+rangeY = 48
+combatPoint = 8640
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Kiba_Skill06_001',
+    'setOugis = 10',
+    'Kiba_Skill06_002',
+    'setSound = Audio/Effect/poof.ogg',
+    'setCmd = setInvincible',
+    'Kiba_Skill05_001',
+    'Kiba_Skill05_002',
+    'Kiba_Skill05_003',
+    'Kiba_Skill05_004',
+    'Kiba_Skill05_005',
+    'Kiba_Skill05_006',
+    'Kiba_Skill05_007',
+    'Kiba_Skill05_008',
+    'setChargeB = 320',
+    'setHit = o_hit',
+    'Kiba_Skill05_009',
+    'Kiba_Skill05_010',
+    'setHit = o_hit',
+    'Kiba_Skill05_011',
+    'setSound = Audio/Kiba/Kiba_skill5.ogg',
+    'Kiba_Skill05_012',
+    'setHit = o_hit',
+    'setSound = Audio/Effect/damage_l.ogg',
+    'Kiba_Skill05_013',
+    'setChargeB = 320',
+    'Kiba_Skill05_008',
+    'setHit = o_hit',
+    'setSound = Audio/Effect/damage_l.ogg',
+    'Kiba_Skill05_009',
+    'Kiba_Skill05_010',
+    'setHit = o_hit',
+    'setSound = Audio/Effect/damage_l.ogg',
+    'Kiba_Skill05_011',
+    'Kiba_Skill05_012',
+    'setHit = o_hit',
+    'setSound = Audio/Effect/damage_l.ogg',
+    'Kiba_Skill05_013',
+    'setChargeB = 320',
+    'Kiba_Skill05_008',
+    'setHit = o_hit',
+    'setSound = Audio/Effect/damage_l.ogg',
+    'Kiba_Skill05_009',
+    'Kiba_Skill05_010',
+    'setHit = o_hit',
+    'setSound = Audio/Effect/damage_l.ogg',
+    'Kiba_Skill05_011',
+    'Kiba_Skill05_012',
+    'setHit = o_hit',
+    'Kiba_Skill05_013',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+value = 660
+rangeX = 16
+rangeY = 32
+cd = 10
+anim = {base = 'Idle'}
+frame = [
+    'Kiba_Skill10_001',
+    'Kiba_Skill10_002',
+    'Kiba_Skill10_003',
+    'Kiba_Skill10_004',
+]
+
+[Spc02]
+cd = 15
+anim = {base = 'Walk'}
+frame = [
+    'Kiba_Run_01',
+    'Kiba_Run_02',
+    'Kiba_Run_03',
+    'Kiba_Run_04',
+    'Kiba_Run_05',
+    'Kiba_Run_06',
+]
+
+[Spc03]
+type = 'nAttack'
+anim = {base = 'NAttack'}
+frame = [
+    'Kiba_NAttack_001',
+    'Kiba_NAttack_002',
+    'Kiba_NAttack_003',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/combo1.ogg',
+    'Kiba_NAttack_004',
+    'Kiba_NAttack_005',
+    'Kiba_NAttack_006',
+    'setMove = 8',
+    'Kiba_NAttack_007',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'setDelay = 10',
+    'Kiba_NAttack_008',
+    'setSound = Audio/Kiba/Kiba_combo.ogg',
+    'Kiba_NAttack_009',
+    'setMove = 16',
+    'Kiba_NAttack_010',
+    'setHit = l_hit',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setDelay = 10',
+    'Kiba_NAttack_011',
+]
+
+[Spc04]
+type = 'nAttack'
+anim = {base = 'NAttack'}
+frame = [
+    'Kiba_Skill11_001',
+    'Kiba_Skill11_002',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/blade.ogg',
+    'Kiba_Skill11_003',
+    'Kiba_Skill11_004',
+    'setHit = n_hit',
+    'Kiba_Skill11_005',
+    'setSound = Audio/Kiba/Kiba_skill11.ogg',
+    'setMove = 8',
+    'Kiba_Skill11_006',
+    'setSound = Audio/Effect/blade.ogg',
+    'setHit = n_hit',
+    'setDelay = 10',
+]

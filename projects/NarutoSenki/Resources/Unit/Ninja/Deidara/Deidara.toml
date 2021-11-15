@@ -1,0 +1,227 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Deidara'
+hp = 5000
+hpBar.y = 80
+speed = 224
+
+[Idle]
+frame = [
+    'Deidara_Idle_01',
+    'Deidara_Idle_02',
+    'Deidara_Idle_03',
+    'Deidara_Idle_04',
+]
+
+[Walk]
+frame = [
+    'Deidara_Walk_01',
+    'Deidara_Walk_02',
+    'Deidara_Walk_03',
+    'Deidara_Walk_04',
+    'Deidara_Walk_05',
+    'Deidara_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Deidara_Hurt_01',
+    'Deidara_Hurt_02',
+    'setSound = Audio/Deidara/deidara_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Deidara_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Deidara_Knockdown_01',
+    'setDelay = 10',
+    'Deidara_Knockdown_02',
+    'setDelay = 60',
+    'Deidara_Knockdown_03',
+    'Deidara_Knockdown_04',
+    'Deidara_Knockdown_05',
+]
+
+[Float]
+frame = [
+    'Deidara_Float_01',
+    'setDelay = 10',
+    'Deidara_Float_02',
+    'setDelay = 10',
+    'Deidara_Float_03',
+]
+
+[Dead]
+frame = [
+    'Deidara_Knockdown_01',
+    'Deidara_Knockdown_02',
+    'setSound = Audio/Deidara/deidara_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Deidara_NAttack_01',
+    'Deidara_NAttack_02',
+    'Deidara_NAttack_03',
+    'Deidara_NAttack_04',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Deidara_NAttack_05',
+    'setMove = 8',
+    'Deidara_NAttack_06',
+    'Deidara_NAttack_07',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'Deidara_NAttack_08',
+    'setSound = Audio/Deidara/deidara_combo.ogg',
+    'Deidara_NAttack_09',
+    'Deidara_NAttack_10',
+    'setMove = 16',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setHit = l_hit',
+    'Deidara_NAttack_11',
+    'setDelay = 20',
+]
+
+[Skill01]
+type = 'cBuff'
+rangeX = 0
+rangeY = 6
+cd = 15
+
+frame = [
+    'setSound = Audio/Deidara/deidara_skill1.ogg',
+    'Deidara_Skill01_001',
+    'setDelay = 10',
+    'Deidara_Skill01_002',
+    'setDelay = 10',
+    'Deidara_Skill01_003',
+    'setDelay = 10',
+    'setBuff = 17',
+]
+
+[Skill02]
+type = 'Summon'
+cd = 25
+
+frame = [
+    'setSound = Audio/Deidara/deidara_skill2.ogg',
+    'Deidara_Skill02_02',
+    'Deidara_Skill02_03',
+    'Deidara_Skill02_05',
+    'Deidara_Skill02_06',
+    'Deidara_Skill02_07',
+    'Deidara_Skill02_08',
+    'setDelay = 10',
+    'setClone = 15',
+]
+
+[Skill03]
+type = 'stBuff'
+rangeX = 0
+rangeY = 3
+cd = 25
+combatPoint = 2260
+
+frame = [
+    'Deidara_Skill03_00',
+    'setDelay = 20',
+    'setMon = FakeDeidara',
+    'setBuff = 3',
+]
+
+[Skill04]
+type = 'cBuff'
+rangeX = 0
+rangeY = 8
+combatPoint = 4320
+
+frame = [
+    'setSound = Audio/Deidara/deidara_skill4.ogg',
+    'setCmd = setInvincible',
+    'setSound = Audio/Effect/ougis.ogg',
+    'setSkillEffect = smk',
+    'Deidara_Skill04_01',
+    'setBuff = 18',
+    'setCmd = reInvincible',
+]
+
+[Skill05]
+type = 'Summon'
+value = 960
+combatPoint = 9840
+
+frame = [
+    'Deidara_Skill05_13',
+    'setSound = Audio/Deidara/deidara_skill5.ogg',
+    'setCmd = setInvincible',
+    'Deidara_Skill05_14',
+    'setDelay = 10',
+    'Deidara_Skill05_15',
+    'Deidara_Skill05_16',
+    'Deidara_Skill05_19',
+    'setOugis = 10',
+    'Deidara_Skill05_20',
+    'setDelay = 10',
+    'Deidara_Skill05_22',
+    'Deidara_Skill05_23',
+    'Deidara_Skill05_24',
+    'Deidara_Skill05_25',
+    'Deidara_Skill05_26',
+    'setMon = DeidaraBom',
+    'setCmd = setInvisible',
+    'setDelay = 120',
+    'Deidara_Knockdown_01',
+    'setCmd = reInvisible',
+    'setCmd = setDead',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+type = 'Summon'
+anim = {base = 'NAttack'}
+frame = [
+    'Deidara_Skill10_001',
+    'Deidara_Skill10_002',
+    'setDelay = 10',
+    'Deidara_Skill10_003',
+    'setMon = ClayBird',
+]
+
+[Spc02]
+anim = {base = 'Idle'}
+frame = [
+    'Deidara_Fly_01',
+    'Deidara_Fly_02',
+    'Deidara_Fly_03',
+    'Deidara_Fly_04',
+    'Deidara_Fly_05',
+    'Deidara_Fly_06',
+]
+
+[Spc03]
+type = 'Summon'
+anim = {base = 'Walk', fps = 5}
+frame = [
+    'Deidara_FlyMove_01',
+    'Deidara_FlyMove_02',
+    'Deidara_FlyMove_03',
+    'Deidara_FlyMove_04',
+    'Deidara_FlyMove_05',
+    'Deidara_FlyMove_06',
+]

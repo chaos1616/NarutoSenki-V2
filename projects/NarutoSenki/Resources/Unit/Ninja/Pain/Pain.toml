@@ -1,0 +1,223 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Pain'
+hp = 6000
+hpBar.y = 83
+speed = 224
+
+[Idle]
+frame = [
+    'Pain_Idle_01',
+    'Pain_Idle_02',
+    'Pain_Idle_03',
+    'Pain_Idle_04',
+    'Pain_Idle_05',
+    'Pain_Idle_06',
+    'Pain_Idle_07',
+    'Pain_Idle_08',
+]
+
+[Walk]
+frame = [
+    'Pain_Walk_01',
+    'Pain_Walk_02',
+    'Pain_Walk_03',
+    'Pain_Walk_04',
+    'Pain_Walk_05',
+    'Pain_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Pain_Hurt_01',
+    'Pain_Hurt_02',
+    'Pain_Hurt_03',
+    'setSound = Audio/Pain/pain_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Pain_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Pain_Knockdown_01',
+    'setDelay = 10',
+    'Pain_Knockdown_02',
+    'setDelay = 60',
+    'Pain_Knockdown_03',
+    'Pain_Knockdown_04',
+    'Pain_Knockdown_05',
+]
+
+[Float]
+frame = [
+    'Pain_Float_01',
+    'setDelay = 10',
+    'Pain_Float_02',
+    'setDelay = 10',
+    'Pain_Float_03',
+]
+
+[Dead]
+frame = [
+    'Pain_Knockdown_01',
+    'Pain_Knockdown_02',
+    'setSound = Audio/Pain/pain_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 100
+rangeX = 0
+rangeY = 16
+
+frame = [
+    'Pain_NAttack_01',
+    'Pain_NAttack_02',
+    'Pain_NAttack_03',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Pain_NAttack_04',
+    'Pain_NAttack_05',
+    'Pain_NAttack_06',
+    'Pain_NAttack_07',
+    'setMove = 8',
+    'Pain_NAttack_08',
+    'Pain_NAttack_09',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'Pain_NAttack_10',
+    'Pain_NAttack_11',
+    'Pain_NAttack_12',
+    'setSound = Audio/Pain/pain_combo.ogg',
+    'setMove = 16',
+    'Pain_NAttack_13',
+    'setHit = l_hit',
+    'setSound = Audio/Effect/combo3.ogg',
+    'Pain_NAttack_14',
+    'Pain_NAttack_15',
+]
+
+[Skill01]
+type = 'sBuff'
+rangeX = 0
+rangeY = 15
+cd = 25
+
+frame = [
+    'Pain_Skill01_01',
+    'setSound = Audio/Pain/pain_skill1.ogg',
+    'Pain_Skill01_02',
+    'setDelay = 10',
+    'Pain_Skill01_03',
+    'setDelay = 40',
+    'Pain_Skill01_04',
+    'setDelay = 10',
+    'setBuff = 500',
+]
+
+[Skill02]
+type = 'abAttack'
+value = 900
+rangeX = 192
+rangeY = 64
+cd = 15
+
+frame = [
+    'Pain_Skill02_01',
+    'setSound = Audio/Pain/pain_skill2.ogg',
+    'setDelay = 10',
+    'Pain_Skill02_02',
+    'setDelay = 10',
+    'Pain_Skill02_03',
+    'setHit = ab_hit',
+    'Pain_Skill02_04',
+    'Pain_Skill02_05',
+    'Pain_Skill02_06',
+]
+
+[Skill03]
+type = 'aAttack'
+value = 320
+rangeX = 160
+rangeY = 64
+cd = 25
+
+frame = [
+    'Pain_Skill03_01',
+    'setSound = Audio/Pain/pain_skill3.ogg',
+    'Pain_Skill03_02',
+    'Pain_Skill03_03',
+    'Pain_Skill03_04',
+    'setHit = n_hit',
+    'setDelay = 10',
+    'Pain_Skill03_05',
+    'setHit = n_hit',
+    'setDelay = 10',
+    'Pain_Skill03_06',
+    'setHit = n_hit',
+    'setDelay = 10',
+    'Pain_Skill03_07',
+    'setHit = n_hit',
+    'setDelay = 10',
+]
+
+[Skill04]
+type = 'oAttack'
+value = 250
+rangeX = 48
+rangeY = 48
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Pain_Skill04_01',
+    'setFont = dbtx',
+    'setDelay = 20',
+    'setSound = Audio/Pain/pain_skill4.ogg',
+    'setMon = Jibaku',
+    'setDelay = 30',
+    'Pain_Skill04_02',
+    'setFont = ka',
+    'setDelay = 10',
+    'Pain_Skill04_03',
+    'setDelay = 10',
+]
+
+[Skill05]
+type = 'oAttack'
+value = 250
+rangeX = 48
+rangeY = 48
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Pain_Skill05_01',
+    'setCmd = setInvincible',
+    'setSkillEffect = Kujiyose',
+    'setDelay = 10',
+    'Pain_Skill05_02',
+    'setOugis = 10',
+    'Pain_Skill05_03',
+    'Pain_Skill05_04',
+    'Pain_Skill05_05',
+    'Pain_Skill05_12',
+    'setDelay = 10',
+    'Pain_Skill05_06',
+    'Pain_Skill05_07',
+    'Pain_Skill05_08',
+    'Pain_Skill05_09',
+    'Pain_Skill05_10',
+    'setDelay = 10',
+    'Pain_Skill05_11',
+    'setDelay = 10',
+    'setTransform = 40',
+    'setCmd = reInvincible',
+]

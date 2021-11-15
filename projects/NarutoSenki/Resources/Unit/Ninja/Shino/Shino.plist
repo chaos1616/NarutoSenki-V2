@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{28,77}</string>
             </dict>
-            <key>Shino_KnockDown_001</key>
+            <key>Shino_Knockdown_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{313,129},{77,42}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{77,42}</string>
             </dict>
-            <key>Shino_KnockDown_002</key>
+            <key>Shino_Knockdown_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{156,720},{74,35}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{74,35}</string>
             </dict>
-            <key>Shino_KnockDown_003</key>
+            <key>Shino_Knockdown_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{302,593},{60,48}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{60,48}</string>
             </dict>
-            <key>Shino_KnockDown_004</key>
+            <key>Shino_Knockdown_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{302,655},{37,48}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{37,48}</string>
             </dict>
-            <key>Shino_KnockDown_005</key>
+            <key>Shino_Knockdown_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{190,912},{40,59}}</string>

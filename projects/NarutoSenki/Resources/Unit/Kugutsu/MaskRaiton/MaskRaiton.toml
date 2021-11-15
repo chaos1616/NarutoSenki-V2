@@ -1,0 +1,87 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'MaskRaiton'
+hp = 20000
+hpBar.y = 105
+speed = 224
+
+[Idle]
+frame = [
+    'MaskRaiton_Idle_001',
+]
+
+[Walk]
+frame = [
+    'MaskRaiton_Walk_001',
+    'setDelay = 10',
+    'MaskRaiton_Walk_002',
+    'setDelay = 10',
+    'MaskRaiton_Walk_003',
+    'setDelay = 10',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'MaskRaiton_Idle_001',
+]
+
+[AirHurt]
+frame = [
+    'MaskRaiton_Idle_001',
+]
+
+[Knockdown]
+frame = [
+    'MaskRaiton_Idle_001',
+]
+
+[Float]
+frame = [
+    'MaskRaiton_Idle_001',
+]
+
+[Dead]
+frame = [
+    'MaskRaiton_Idle_001',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 100
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'MaskRaiton_Walk_001',
+    'setDelay = 10',
+    'MaskRaiton_Walk_002',
+    'setHit = n_hit',
+    'setDelay = 10',
+    'MaskRaiton_Walk_003',
+    'setDelay = 10',
+]
+
+[Skill01]
+type = 'cAttack'
+value = 760
+rangeX = 0
+rangeY = 48
+cd = 10
+
+frame = [
+    'MaskRaiton_Move_001',
+    'MaskRaiton_Move_002',
+    'setSound = Audio/Effect/thunder_effect.ogg',
+    'MaskRaiton_Move_003',
+    'setHit = a_hit',
+    'MaskRaiton_Move_004',
+    'MaskRaiton_Move_005',
+    'setHit = a_hit',
+    'MaskRaiton_Move_006',
+]

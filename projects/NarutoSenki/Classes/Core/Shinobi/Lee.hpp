@@ -32,7 +32,7 @@ class Lee : public Hero
 			{
 				setWalkSpeed(224);
 				_originSpeed = 224;
-				setWalkAction(createAnimation(walkArray, 10, true, false));
+				setActionTo<ActionFlag::Walk, ActionFlag::Walk>();
 				setNAttackValue(getNAttackValue() - 60);
 				setSAttackValue2(getSAttackValue2() - 100);
 				setSAttackValue3(getSAttackValue3() - 100);
@@ -155,7 +155,7 @@ class Lee : public Hero
 		}
 		else if (htLv == 5)
 		{
-			setWalkAction(createAnimation(skillSPC1Array, 10, true, false));
+			setActionTo<ActionFlag::Walk, ActionFlag::Spc01>();
 			setWalkSpeed(320);
 			_originSpeed = 320;
 			setNAttackValue(getNAttackValue() + 60);
@@ -170,7 +170,7 @@ class Lee : public Hero
 
 		uint32_t hp = getHP();
 
-		// TODO: Make Maito Gai
+		// TODO: New character: Maito Gai
 		// if (htLv >= 8)
 		// {
 		// 	setHPValue(hp > 1000 ? hp - 1000 : 100);

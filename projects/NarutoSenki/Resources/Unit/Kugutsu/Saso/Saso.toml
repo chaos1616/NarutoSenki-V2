@@ -1,0 +1,106 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Saso'
+hp = 20000
+hpBar.y = 75
+speed = 224
+
+[Idle]
+frame = [
+    'Saso_Idle_01',
+]
+
+[Walk]
+frame = [
+    'Saso_Walk_01',
+    'Saso_Walk_02',
+    'Saso_Walk_03',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Saso_Hurt_01',
+]
+
+[AirHurt]
+frame = [
+    'Saso_Hurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Saso_Knockdown_01',
+    'Saso_Knockdown_02',
+    'Saso_Knockdown_03',
+]
+
+[Float]
+frame = [
+    'Saso_Hurt_01',
+]
+
+[Dead]
+frame = [
+    'Saso_Knockdown_01',
+    'Saso_Knockdown_02',
+    'Saso_Knockdown_03',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 100
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Saso_NAttack_01',
+    'setDelay = 10',
+    'Saso_NAttack_02',
+    'setHit = n_hit',
+    'setDelay = 10',
+    'Saso_NAttack_03',
+    'Saso_NAttack_04',
+    'setDelay = 10',
+    'Saso_NAttack_05',
+    'setHit = n_hit',
+    'Saso_NAttack_06',
+    'Saso_NAttack_07',
+    'setDelay = 10',
+    'Saso_NAttack_08',
+    'setDelay = 10',
+    'Saso_NAttack_09',
+    'Saso_NAttack_10',
+    'setHit = n_hit',
+    'Saso_NAttack_11',
+]
+
+[Skill01]
+type = 'cAttack'
+value = 760
+rangeX = 16
+rangeY = 48
+cd = 10
+
+frame = [
+    'Saso_Skill02_01',
+    'setSound = Audio/Kankuro/kankuro_skill5_1.ogg',
+    'Saso_Skill02_02',
+    'setHit = o_hit',
+    'setSound = Audio/Effect/goukakyu.ogg',
+    'setDelay = 10',
+    'Saso_Skill02_03',
+    'setHit = o_hit',
+    'setDelay = 10',
+    'Saso_Skill02_04',
+    'setHit = o_hit',
+    'setDelay = 10',
+    'Saso_Skill02_05',
+    'setHit = o_hit',
+    'setDelay = 10',
+]

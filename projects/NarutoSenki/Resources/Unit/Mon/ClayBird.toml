@@ -1,0 +1,36 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'ClayBird'
+hp = 6000
+speed = 340
+
+[Idle]
+frame = [
+    'ClayBird_Move_001',
+    'ClayBird_Move_002',
+]
+
+[Walk]
+frame = [
+    'ClayBird_Move_001',
+    'ClayBird_Move_002',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 260
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'ClayBird_Move_003',
+    'ClayBird_Move_004',
+    'setHit = n_hit',
+    'ClayBird_Move_005',
+    'setDestroy = 0',
+]

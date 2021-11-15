@@ -174,12 +174,12 @@ class Shino : public Hero
 
 	void changeAction() override
 	{
-		setNAttackAction(createAnimation(skillSPC1Array, 10, false, true));
+		setActionTo<ActionFlag::NAttack, ActionFlag::Spc01>();
 	}
 
 	void resumeAction(float dt) override
 	{
-		setNAttackAction(createAnimation(nattackArray, 10, false, true));
+		setActionTo<ActionFlag::NAttack, ActionFlag::NAttack>();
 		CharacterBase::resumeAction(dt);
 	}
 };

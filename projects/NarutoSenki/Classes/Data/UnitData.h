@@ -77,7 +77,7 @@ static inline const AnimationInfo &getAnimDataByActionFlag(ActionFlag flag) noex
 	case ActionFlag::Float:
 		return Regular;
 	default: // Skill
-		return Regular;
+		return Skill;
 	}
 }
 

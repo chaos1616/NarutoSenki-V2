@@ -1,0 +1,35 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'WaterBullet'
+
+[Idle]
+frame = [
+    'WaterBullet_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 260
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'WaterBullet_Move_01',
+    'setHit = c_hit',
+    'WaterBullet_Move_02',
+    'setHit = c_hit',
+    'WaterBullet_Move_03',
+    'setHit = c_hit',
+    'WaterBullet_Move_04',
+    'setHit = c_hit',
+    'WaterBullet_Move_05',
+    'setHit = c_hit',
+    'WaterBullet_Move_06',
+    'setHit = c_hit',
+    'setDestroy = 0',
+]

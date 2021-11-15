@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{33,42}</string>
             </dict>
-            <key>KotetsuFlog_KnockDown_01</key>
+            <key>KotetsuFlog_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,190},{32,48}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{32,50}</string>
             </dict>
-            <key>KotetsuFlog_KnockDown_02</key>
+            <key>KotetsuFlog_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,112},{54,30}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{54,50}</string>
             </dict>
-            <key>KotetsuFlog_KnockDown_03</key>
+            <key>KotetsuFlog_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{66,48},{58,30}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{58,50}</string>
             </dict>
-            <key>KotetsuFlog_KnockDown_04</key>
+            <key>KotetsuFlog_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{65,80},{61,18}}</string>

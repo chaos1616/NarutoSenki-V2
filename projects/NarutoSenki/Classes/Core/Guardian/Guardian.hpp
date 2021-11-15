@@ -101,9 +101,9 @@ class Guardian : public Hero
 		{
 			_hpBar->setPositionY(120);
 		}
-		setWalkAction(createAnimation(skillSPC1Array, 10, true, false));
-		setNAttackAction(createAnimation(skillSPC2Array, 10, false, true));
-		setIdleAction(createAnimation(skillSPC3Array, 5, true, false));
+		setActionTo<ActionFlag::Walk, ActionFlag::Spc01>();
+		setActionTo<ActionFlag::NAttack, ActionFlag::Spc02>();
+		setActionTo<ActionFlag::Idle, ActionFlag::Spc03>();
 	}
 
 private:

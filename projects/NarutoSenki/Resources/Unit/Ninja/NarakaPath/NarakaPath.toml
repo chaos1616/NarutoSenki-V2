@@ -1,0 +1,154 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'NarakaPath'
+hp = 20000
+hpBar.y = 83
+speed = 224
+
+[Idle]
+frame = [
+    'NarakaPath_Idle_01',
+]
+
+[Walk]
+frame = [
+    'NarakaPath_Walk_01',
+    'NarakaPath_Walk_02',
+    'NarakaPath_Walk_03',
+    'NarakaPath_Walk_04',
+    'NarakaPath_Walk_05',
+    'NarakaPath_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'NarakaPath_Hurt_01',
+    'setDelay = 10',
+    'NarakaPath_Hurt_02',
+]
+
+[AirHurt]
+frame = [
+    'NarakaPath_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'NarakaPath_Knockdown_01',
+    'setDelay = 10',
+    'NarakaPath_Knockdown_02',
+    'setDelay = 60',
+    'NarakaPath_Knockdown_03',
+    'NarakaPath_Knockdown_04',
+    'NarakaPath_Knockdown_05',
+]
+
+[Float]
+frame = [
+    'NarakaPath_Float_01',
+    'setDelay = 10',
+    'NarakaPath_Float_02',
+    'setDelay = 10',
+    'NarakaPath_Float_03',
+]
+
+[Dead]
+frame = [
+    'NarakaPath_Knockdown_01',
+    'NarakaPath_Knockdown_02',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 260
+rangeX = 0
+rangeY = 16
+
+frame = [
+    'NarakaPath_NAttack_01',
+    'NarakaPath_NAttack_02',
+    'NarakaPath_NAttack_03',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'NarakaPath_NAttack_04',
+    'NarakaPath_NAttack_05',
+    'NarakaPath_NAttack_06',
+    'NarakaPath_NAttack_07',
+    'setMove = 8',
+    'NarakaPath_NAttack_08',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'NarakaPath_NAttack_09',
+    'NarakaPath_NAttack_10',
+    'NarakaPath_NAttack_11',
+    'NarakaPath_NAttack_12',
+    'setSound = Audio/Pain/NarakaPath_combo.ogg',
+    'setMove = 16',
+    'NarakaPath_NAttack_13',
+    'setHit = l_hit',
+    'setSound = Audio/Effect/combo3.ogg',
+    'NarakaPath_NAttack_14',
+]
+
+[Skill01]
+type = 'sBuff'
+rangeX = 0
+rangeY = 15
+cd = 1
+
+frame = [
+    'setSound = Audio/Pain/NarakaPath_skill1.ogg',
+    'NarakaPath_Skill01_01',
+    'setDelay = 10',
+    'NarakaPath_Skill01_02',
+    'setSkillEffect = Kujiyose',
+    'setClone = 0',
+    'setDelay = 50',
+]
+
+[Skill02]
+type = 'abAttack'
+value = 900
+rangeX = 192
+rangeY = 64
+cd = 1
+
+frame = [
+    'setSound = Audio/Pain/NarakaPath_skill2.ogg',
+    'NarakaPath_Skill01_01',
+    'setDelay = 10',
+    'NarakaPath_Skill01_02',
+    'setSkillEffect = Kujiyose',
+    'setClone = -1',
+    'setDelay = 50',
+]
+
+[Skill03]
+type = 'aAttack'
+value = 320
+rangeX = 160
+rangeY = 64
+cd = 25
+
+frame = [
+    'NarakaPath_Skill01_01',
+]
+
+[Spc01]
+type = 'aAttack'
+value = 260
+rangeX = 32
+rangeY = 48
+
+frame = [
+    'NarakaPath_Hurt_01',
+    'setHit = c_hit',
+    'setDelay = 10',
+    'NarakaPath_Hurt_02',
+    'setHit = c_hit',
+]

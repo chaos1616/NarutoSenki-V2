@@ -1,0 +1,88 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'AnimalPath'
+hp = 6000
+hpBar.y = 77
+speed = 224
+
+[Idle]
+frame = [
+    'AnimalPath_Idle_01',
+]
+
+[Walk]
+frame = [
+    'AnimalPath_Walk_01',
+    'AnimalPath_Walk_02',
+    'AnimalPath_Walk_03',
+    'AnimalPath_Walk_04',
+    'AnimalPath_Walk_05',
+    'AnimalPath_Walk_06',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 160
+rangeX = 0
+rangeY = 16
+
+frame = [
+    'AnimalPath_NAttack_01',
+    'AnimalPath_NAttack_02',
+    'setMove = 16',
+    'setDelay = 10',
+    'AnimalPath_NAttack_03',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'AnimalPath_NAttack_04',
+    'setDelay = 10',
+]
+
+[Skill01]
+type = 'aAttack'
+value = 2000
+rangeX = 32
+rangeY = 32
+cd = 10
+
+frame = [
+    'AnimalPath_Skill01_01',
+    'setSound = Audio/Pain/AnimalPath_skill1.ogg',
+    'setDelay = 10',
+    'AnimalPath_Skill01_02',
+    'setDelay = 10',
+    'AnimalPath_Skill01_03',
+    'setSkillEffect = smk',
+    'setDelay = 10',
+    'AnimalPath_Skill01_04',
+    'setHit = a_hit',
+    'setDelay = 30',
+    'AnimalPath_Skill01_03',
+]
+
+[Skill02]
+type = 'abAttack'
+value = 900
+rangeX = 192
+rangeY = 64
+cd = 15
+
+frame = [
+    'AnimalPath_Skill01_01',
+]
+
+[Skill03]
+type = 'aAttack'
+value = 320
+rangeX = 160
+rangeY = 64
+cd = 25
+
+frame = [
+    'AnimalPath_Skill01_01',
+]

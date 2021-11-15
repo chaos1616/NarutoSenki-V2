@@ -1,0 +1,20 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'OuterTower'
+hp = 40000
+hpBar.y = 100
+
+[Idle]
+frame = [
+    'tower',
+]
+
+[Dead]
+frame = [
+    'tower',
+]

@@ -1,0 +1,300 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Hiruzen'
+hp = 5000
+hpBar.y = 70
+speed = 224
+
+[Idle]
+frame = [
+    'Hiruzen_Idle_001',
+    'Hiruzen_Idle_002',
+    'Hiruzen_Idle_003',
+    'Hiruzen_Idle_004',
+]
+
+[Walk]
+frame = [
+    'Hiruzen_Walk_01',
+    'Hiruzen_Walk_02',
+    'Hiruzen_Walk_03',
+    'Hiruzen_Walk_04',
+    'Hiruzen_Walk_05',
+    'Hiruzen_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Hiruzen_Hurt_01',
+    'Hiruzen_Hurt_02',
+    'setSound = Audio/Hiruzen/Hiruzen_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Hiruzen_AirHurt_001',
+]
+
+[Knockdown]
+frame = [
+    'Hiruzen_Knockdown_001',
+    'setDelay = 10',
+    'Hiruzen_Knockdown_002',
+    'Hiruzen_Knockdown_003',
+    'setDelay = 60',
+    'Hiruzen_Knockdown_004',
+    'Hiruzen_Knockdown_005',
+]
+
+[Float]
+frame = [
+    'Hiruzen_Float_001',
+    'setDelay = 10',
+    'Hiruzen_Float_002',
+    'setDelay = 10',
+    'Hiruzen_Float_003',
+]
+
+[Dead]
+frame = [
+    'Hiruzen_Knockdown_001',
+    'Hiruzen_Knockdown_002',
+    'Hiruzen_Knockdown_003',
+    'setSound = Audio/Hiruzen/Hiruzen_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Hiruzen_NAttack_001',
+    'Hiruzen_NAttack_002',
+    'Hiruzen_NAttack_003',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Hiruzen_NAttack_004',
+    'setDelay = 10',
+    'Hiruzen_NAttack_005',
+    'setMove = 8',
+    'Hiruzen_NAttack_006',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'setDelay = 10',
+    'Hiruzen_NAttack_007',
+    'Hiruzen_NAttack_008',
+    'setSound = Audio/Hiruzen/Hiruzen_combo.ogg',
+    'Hiruzen_NAttack_009',
+    'setMove = 16',
+    'Hiruzen_NAttack_010',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setHit = l_hit',
+    'setDelay = 10',
+]
+
+[Skill01]
+type = 'aAttack'
+value = 360
+rangeX = 32
+rangeY = 32
+cd = 10
+combatPoint = 1120
+
+frame = [
+    'setSound = Audio/Hiruzen/Hiruzen_skill1.ogg',
+    'Hiruzen_Skill01_001',
+    'setMon = DotonPillar',
+    'Hiruzen_Skill01_002',
+    'setDelay = 20',
+]
+
+[Skill02]
+type = 'Bullet'
+cd = 15
+combatPoint = 2080
+
+frame = [
+    'Hiruzen_Skill02_001',
+    'Hiruzen_Skill02_002',
+    'setSound = Audio/Effect/poof.ogg',
+    'Hiruzen_Skill02_004',
+    'Hiruzen_Skill02_006',
+    'Hiruzen_Skill02_007',
+    'Hiruzen_Skill02_008',
+    'setSound = Audio/Effect/kong.ogg',
+    'setBullet = HugeSRK',
+    'setSound = Audio/Hiruzen/Hiruzen_skill2.ogg',
+    'setDelay = 20',
+    'Hiruzen_Skill02_009',
+    'setDelay = 10',
+    'Hiruzen_Skill02_010',
+    'setDelay = 20',
+]
+
+[Skill03]
+type = 'cBuff'
+cd = 25
+combatPoint = 2240
+
+frame = [
+    'Hiruzen_Skill03_001',
+    'Hiruzen_Skill03_003',
+    'setSkillEffect = Kujiyose',
+    'setSound = Audio/Effect/poof.ogg',
+    'Hiruzen_Skill03_005',
+    'Hiruzen_Skill03_006',
+    'Hiruzen_Skill03_007',
+    'Hiruzen_Skill03_008',
+    'setBuff = 17',
+]
+
+[Skill04]
+type = 'cAttack'
+value = 360
+rangeX = 0
+rangeY = 48
+combatPoint = 3180
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Hiruzen_Skill04_001',
+    'setDelay = 10',
+    'Hiruzen_Skill04_002',
+    'setSound = Audio/Hiruzen/Hiruzen_skill4_1.ogg',
+    'setMove = 8',
+    'Hiruzen_Skill04_003',
+    'setHit = o_hit',
+    'setDSound = Audio/Effect/damage_o.ogg',
+    'setDelay = 10',
+    'Hiruzen_Skill04_004',
+    'setDelay = 10',
+    'Hiruzen_Skill04_005',
+    'setHit = c_hit',
+    'setSound = Audio/Effect/stick_damage.ogg',
+    'Hiruzen_Skill04_006',
+    'Hiruzen_Skill04_007',
+    'setHit = c_hit',
+    'Hiruzen_Skill04_008',
+    'Hiruzen_Skill04_009',
+    'setHit = c_hit',
+    'setDelay = 10',
+    'Hiruzen_Skill04_010',
+    'setSound = Audio/Hiruzen/Hiruzen_skill4_2.ogg',
+    'Hiruzen_Skill04_011',
+    'setHit = f_hit',
+    'Hiruzen_Skill04_012',
+    'Hiruzen_Skill04_013',
+    'Hiruzen_Skill04_014',
+    'setJump = true',
+    'Hiruzen_Skill04_015',
+    'setDelay = 20',
+    'Hiruzen_Skill04_016',
+    'setDelay = 10',
+    'Hiruzen_Skill04_017',
+    'setDelay = 10',
+    'Hiruzen_Skill04_018',
+    'setSound = Audio/Hiruzen/Hiruzen_skill4_3.ogg',
+    'setMon = Tuji2',
+    'Hiruzen_Skill04_019',
+    'setDelay = 30',
+]
+
+[Skill05]
+type = 'cAttack'
+value = 2960
+rangeX = 0
+rangeY = 48
+combatPoint = 11840
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setCmd = setInvincible',
+    'Hiruzen_Skill05_002',
+    'Hiruzen_Skill05_003',
+    'Hiruzen_Skill05_004',
+    'setOugis = 10',
+    'Hiruzen_Skill05_005',
+    'Hiruzen_Skill05_006',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'setDelay = 10',
+    'Hiruzen_Skill05_007',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'setDelay = 10',
+    'Hiruzen_Skill05_008',
+    'setSound = Audio/Hiruzen/Hiruzen_skill5.ogg',
+    'setHit = c_hit',
+    'setDelay = 10',
+    'Hiruzen_Skill05_009',
+    'setHit = c_hit',
+    'setDelay = 10',
+    'Hiruzen_Skill05_008',
+    'Hiruzen_Skill05_007',
+    'setCmd = setDead',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+value = 660
+rangeX = 16
+rangeY = 32
+cd = 10
+anim = {base = 'Idle'}
+frame = [
+    'Hiruzen_Skill10_001',
+    'setDelay = 10',
+    'Hiruzen_Skill10_002',
+    'Hiruzen_Skill10_003',
+    'setDelay = 10',
+]
+
+[Spc02]
+cd = 15
+anim = {base = 'Walk'}
+frame = [
+    'Hiruzen_Skill11_001',
+    'Hiruzen_Skill11_002',
+    'Hiruzen_Skill11_003',
+    'Hiruzen_Skill11_004',
+    'Hiruzen_Skill11_005',
+    'Hiruzen_Skill11_006',
+]
+
+[Spc03]
+type = 'cAttack'
+value = 560
+rangeX = 16
+rangeY = 48
+anim = {base = 'NAttack'}
+frame = [
+    'setSound = Audio/Hiruzen/Hiruzen_skill3_1.ogg',
+    'Hiruzen_Skill12_001',
+    'Hiruzen_Skill12_002',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'setActionResume = 20',
+    'Hiruzen_Skill12_003',
+    'Hiruzen_Skill12_002',
+    'Hiruzen_Skill12_001',
+    'setHit = ab_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Hiruzen_Skill12_004',
+    'setSound = Audio/Hiruzen/Hiruzen_skill3_2.ogg',
+    'Hiruzen_Skill12_005',
+    'Hiruzen_Skill12_006',
+    'setHit = c_hit',
+    'Hiruzen_Skill12_007',
+    'Hiruzen_Skill12_008',
+    'Hiruzen_Skill12_009',
+    'setHit = b_hit',
+    'setDSound = Audio/Effect/damage_h.ogg',
+]

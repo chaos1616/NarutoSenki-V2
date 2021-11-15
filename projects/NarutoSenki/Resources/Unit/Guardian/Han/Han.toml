@@ -1,0 +1,173 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Han'
+hp = 120000
+hpBar.y = 78
+speed = 224
+
+[Idle]
+frame = [
+    'Han_Idle_001',
+    'Han_Idle_002',
+    'Han_Idle_003',
+]
+
+[Walk]
+frame = [
+    'Han_Walk_01',
+    'setShadow = 10',
+    'Han_Walk_02',
+    'Han_Walk_03',
+    'setShadow = 10',
+    'Han_Walk_04',
+    'Han_Walk_05',
+    'setShadow = 10',
+    'Han_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Han_Hurt_01',
+    'Han_Hurt_02',
+    'setSound = Audio/Han/Han_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Han_AirHurt_001',
+]
+
+[Knockdown]
+frame = [
+    'Han_Knockdown_001',
+    'setDelay = 10',
+    'Han_Knockdown_002',
+    'Han_Knockdown_003',
+    'setDelay = 60',
+]
+
+[Float]
+frame = [
+    'Han_Float_001',
+    'setDelay = 10',
+    'Han_Float_002',
+    'setDelay = 10',
+    'Han_Float_003',
+]
+
+[Dead]
+frame = [
+    'Han_Knockdown_001',
+    'Han_Knockdown_002',
+    'Han_Knockdown_003',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 460
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Han_NAttack_001',
+    'setSound = Audio/Han/Han_combo.ogg',
+    'Han_NAttack_002',
+    'setDelay = 10',
+    'Han_NAttack_003',
+    'Han_NAttack_004',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = l_hit',
+    'setDelay = 10',
+]
+
+[Skill01]
+type = 'cBuff'
+rangeX = 0
+rangeY = 5
+cd = 1
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setCmd = setInvincible',
+    'Han_Skill01_001',
+    'setOugis = 10',
+    'Han_Skill01_001',
+    'Han_Skill01_002',
+    'Han_Skill01_003',
+    'Han_Skill01_004',
+    'Han_Skill01_005',
+    'Han_Skill01_006',
+    'setDelay = 10',
+    'Han_Skill01_007',
+    'setDelay = 10',
+    'setBuff = 17',
+    'setCmd = addHP',
+    'setCmd = reInvincible',
+    'Han_Skill01_008',
+    'setDelay = 10',
+]
+
+[Skill02]
+type = 'cAttack'
+value = 2560
+rangeX = 0
+rangeY = 48
+cd = 10
+
+frame = [
+    'Han_Skill02_001',
+    'setSound = Audio/Han/Han_combo2.ogg',
+    'setJump = true',
+    'Han_Skill02_002',
+    'setHit = f_hit',
+    'Han_Skill02_003',
+    'Han_Skill02_004',
+    'Han_Skill02_005',
+    'Han_Skill02_006',
+    'Han_Skill02_007',
+    'setDelay = 20',
+]
+
+[Spc01]
+value = 660
+rangeX = 16
+rangeY = 32
+cd = 10
+anim = {base = 'Walk'}
+frame = [
+    'Han_Skill10_001',
+    'Han_Skill10_002',
+    'Han_Skill10_003',
+    'Han_Skill10_004',
+]
+
+[Spc02]
+type = 'aAttack'
+value = 200
+rangeX = 0
+rangeY = 48
+cd = 15
+anim = {base = 'NAttack'}
+frame = [
+    'Han_Skill11_001',
+    'setSound = Audio/Han/Han_combo2.ogg',
+    'setDelay = 20',
+    'Han_Skill11_002',
+    'setMove = 8',
+    'Han_Skill11_003',
+    'setHit = l_hit',
+    'Han_Skill11_004',
+    'setDelay = 20',
+]
+
+[Spc03]
+anim = {base = 'Idle'}
+frame = [
+    'Han_Skill12_001',
+]

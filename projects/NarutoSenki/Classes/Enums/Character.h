@@ -35,20 +35,21 @@
 
 enum class Role : uint8_t
 {
-	// Hero of Com
+	// Hero of Com and guardian
 	Com,
 	// Hero of Player
 	Player,
 	// Com & Player
-	Hero,
+	Hero, // = Com | Player, // FIXME: Make role enum support bit mask
 	Flog,
 	Tower,
-	// Projectile
+	// TODO: Rename to Projectile
 	Bullet,
 	// 分身
 	Clone,
 	// 傀儡
 	Kugutsu,
+	// NOTE: Skill items
 	Mon,
 	// 口寄せ
 	Summon,
@@ -155,6 +156,7 @@ enum class ActionFlag : uint32_t
 	Skill03 = 1UL << 10UL,
 	Skill04 = 1UL << 11UL,
 	Skill05 = 1UL << 12UL,
+	AllBasics = Dead | Idle | Walk | Hurt | AirHurt | Knockdown | Float | NAttack | Skill01 | Skill02 | Skill03 | Skill04 | Skill05,
 	// Custom Actions
 	Spc01 = 1UL << 13UL,
 	Spc02 = 1UL << 14UL,
@@ -232,6 +234,27 @@ constexpr uint32_t kActionFlagHash[] = {
 };
 
 constexpr size_t kActionFlagHashSize = std::size(kActionFlagHash);
+
+static inline ActionFlag animBaseType2ActionFlag(const std::string &base) noexcept
+{
+	using namespace HashUtils;
+
+	switch (hash32(base))
+	{
+	case hash32("Idle"):
+		return ActionFlag::Idle;
+	case hash32("Walk"):
+		return ActionFlag::Walk;
+	case hash32("Hurt"):
+		return ActionFlag::Hurt;
+	case hash32("Knockdown"):
+		return ActionFlag::Knockdown;
+	case hash32("NAttack"):
+		return ActionFlag::NAttack;
+	default:
+		return ActionFlag::None;
+	}
+}
 
 static inline ActionFlag string2ActionFlag(const std::string &name) noexcept
 {

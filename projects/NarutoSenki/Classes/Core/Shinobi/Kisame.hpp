@@ -161,9 +161,9 @@ class Kisame : public Hero
 		_nAttackRangeX = 32;
 		_nAttackRangeY = 48;
 
-		setIdleAction(createAnimation(skillSPC1Array, 5, true, false));
-		setWalkAction(createAnimation(skillSPC2Array, 10, true, false));
-		setNAttackAction(createAnimation(skillSPC3Array, 10, false, true));
+		setActionTo<ActionFlag::Idle, ActionFlag::Spc01>();
+		setActionTo<ActionFlag::Walk, ActionFlag::Spc02>();
+		setActionTo<ActionFlag::NAttack, ActionFlag::Spc03>();
 
 		setWalkSpeed(112);
 		_originSpeed = 112;
@@ -187,9 +187,9 @@ class Kisame : public Hero
 		_nAttackRangeX = 16;
 		_nAttackRangeY = 48;
 
-		setIdleAction(createAnimation(idleArray, 5, true, false));
-		setWalkAction(createAnimation(walkArray, 10, true, false));
-		setNAttackAction(createAnimation(nattackArray, 10, false, true));
+		setActionTo<ActionFlag::Idle, ActionFlag::Idle>();
+		setActionTo<ActionFlag::Walk, ActionFlag::Walk>();
+		setActionTo<ActionFlag::NAttack, ActionFlag::NAttack>();
 
 		_skillChangeBuffValue = 0;
 

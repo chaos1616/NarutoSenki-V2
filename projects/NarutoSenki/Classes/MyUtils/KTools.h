@@ -9,7 +9,6 @@
 class KTools
 {
 public:
-	static bool readXMLToArray(const string &filePath, CCArray *&array);
 	static void prepareFileOGG(const string &listName, bool unload = false);
 
 	static void initTableInDB();

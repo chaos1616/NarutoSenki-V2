@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{62,62}</string>
             </dict>
-            <key>SageJiraiya_KnockDown_02</key>
+            <key>SageJiraiya_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{956,580},{89,63}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{89,63}</string>
             </dict>
-            <key>SageJiraiya_KnockDown_03</key>
+            <key>SageJiraiya_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{409,812},{97,39}}</string>

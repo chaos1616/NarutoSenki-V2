@@ -1,0 +1,80 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'FemalePainFlog'
+hp = 3000
+hpBar.y = 40
+speed = 160
+
+[Idle]
+frame = [
+    'FemalePainFlog_Idle_01',
+    'FemalePainFlog_Walk_01',
+]
+
+[Walk]
+frame = [
+    'FemalePainFlog_Walk_01',
+    'FemalePainFlog_Walk_02',
+    'setDelay = 10',
+    'FemalePainFlog_Walk_03',
+    'setDelay = 10',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'FemalePainFlog_Knockdown_01',
+]
+
+[AirHurt]
+frame = [
+    'FemalePainFlog_Knockdown_01',
+]
+
+[Knockdown]
+frame = [
+    'FemalePainFlog_Knockdown_01',
+    'FemalePainFlog_Knockdown_02',
+    'FemalePainFlog_Knockdown_03',
+    'setDelay = 10',
+    'FemalePainFlog_Knockdown_04',
+    'setDelay = 60',
+    'FemalePainFlog_Idle_01',
+]
+
+[Float]
+frame = [
+    'FemalePainFlog_Float_01',
+    'setDelay = 10',
+    'FemalePainFlog_Knockdown_02',
+    'setDelay = 30',
+]
+
+[Dead]
+frame = [
+    'FemalePainFlog_Knockdown_01',
+    'FemalePainFlog_Knockdown_02',
+    'FemalePainFlog_Knockdown_03',
+    'FemalePainFlog_Knockdown_04',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 20
+rangeX = 8
+rangeY = 8
+frame = [
+    'FemalePainFlog_NAttack_01',
+    'setDelay = 10',
+    'FemalePainFlog_NAttack_02',
+    'setDelay = 10',
+    'FemalePainFlog_NAttack_03',
+    'FemalePainFlog_NAttack_04',
+    'setHit = n_hit',
+    'setDelay = 10',
+]

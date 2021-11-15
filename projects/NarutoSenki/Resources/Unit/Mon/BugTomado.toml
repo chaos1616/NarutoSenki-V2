@@ -1,0 +1,55 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'BugTomado'
+
+[Idle]
+frame = [
+    'BugTomado_Move_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 860
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'BugTomado_Move_001',
+    'setSound = Audio/Shino/Shino_skill2_1.ogg',
+    'BugTomado_Move_002',
+    'setHit = o_hit',
+    'BugTomado_Move_003',
+    'BugTomado_Move_004',
+    'setHit = c_hit',
+    'BugTomado_Move_005',
+    'BugTomado_Move_006',
+    'setHit = o_hit',
+    'BugTomado_Move_007',
+    'BugTomado_Move_008',
+    'setHit = c_hit',
+    'BugTomado_Move_009',
+    'BugTomado_Move_004',
+    'setHit = o_hit',
+    'BugTomado_Move_005',
+    'BugTomado_Move_006',
+    'setHit = c_hit',
+    'BugTomado_Move_007',
+    'BugTomado_Move_008',
+    'setHit = o_hit',
+    'BugTomado_Move_009',
+    'BugTomado_Move_010',
+    'setHit = c_hit',
+    'BugTomado_Move_011',
+    'BugTomado_Move_012',
+    'setHit = o_hit',
+    'BugTomado_Move_013',
+    'BugTomado_Move_014',
+    'setHit = c_hit',
+    'BugTomado_Move_015',
+    'setDestroy = 0',
+]

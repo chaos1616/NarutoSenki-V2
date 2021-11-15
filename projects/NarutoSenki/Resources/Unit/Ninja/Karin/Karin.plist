@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{48,74}</string>
             </dict>
-            <key>Karin_KnockDown_01</key>
+            <key>Karin_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,763},{71,32}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{71,32}</string>
             </dict>
-            <key>Karin_KnockDown_02</key>
+            <key>Karin_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{237,590},{77,22}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{77,22}</string>
             </dict>
-            <key>Karin_KnockDown_03</key>
+            <key>Karin_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{369,696},{71,31}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{71,31}</string>
             </dict>
-            <key>Karin_KnockDown_04</key>
+            <key>Karin_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{143,795},{53,42}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{53,42}</string>
             </dict>
-            <key>Karin_KnockDown_05</key>
+            <key>Karin_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{75,800},{35,47}}</string>

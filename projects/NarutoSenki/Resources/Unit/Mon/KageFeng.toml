@@ -1,0 +1,33 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'KageFeng'
+
+[Idle]
+frame = [
+    'KageFeng_Move_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 1460
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'setCmd = findTarget',
+    'setCmd = setTransport',
+    'KageFeng_Move_001',
+    'KageFeng_Move_002',
+    'KageFeng_Move_003',
+    'setHit = sl_hit',
+    'setDSound = Audio/Effect/blade_damage2.ogg',
+    'KageFeng_Move_004',
+    'KageFeng_Move_002',
+    'KageFeng_Move_001',
+    'setDestroy = 0',
+]

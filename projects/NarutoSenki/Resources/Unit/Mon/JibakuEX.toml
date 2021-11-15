@@ -1,0 +1,46 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'JibakuEX'
+
+[Idle]
+frame = [
+    'JibakuEX_Move_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 400
+rangeX = 280
+rangeY = 128
+
+frame = [
+    'JibakuEX_Move_001',
+    'setHit = ab_hit',
+    'JibakuEX_Move_002',
+    'setHit = ab_hit',
+    'JibakuEX_Move_003',
+    'setHit = ab_hit',
+    'JibakuEX_Move_004',
+    'setHit = ab_hit',
+    'JibakuEX_Move_005',
+    'setHit = ab_hit',
+    'JibakuEX_Move_006',
+    'setSound = Audio/Effect/bom.ogg',
+    'setHit = ab_hit',
+    'JibakuEX_Move_007',
+    'setHit = ab_hit',
+    'JibakuEX_Move_008',
+    'setHit = ab_hit',
+    'JibakuEX_Move_009',
+    'JibakuEX_Move_010',
+    'setHit = c_hit',
+    'JibakuEX_Move_011',
+    'JibakuEX_Move_012',
+    'JibakuEX_Move_013',
+    'setDestroy = 0',
+]

@@ -1,0 +1,35 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Mouse'
+speed = 224
+
+[Idle]
+frame = [
+    'Mouse_Walk_01',
+]
+
+[Walk]
+frame = [
+    'Mouse_Walk_01',
+    'Mouse_Walk_02',
+    'Mouse_Walk_03',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 360
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'ink_boom01',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/stick_damage.ogg',
+    'ink_boom02',
+    'setDestroy = 0',
+]

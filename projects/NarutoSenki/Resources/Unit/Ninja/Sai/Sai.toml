@@ -1,0 +1,236 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Sai'
+hp = 5000
+hpBar.y = 75
+speed = 224
+
+[Idle]
+frame = [
+    'Sai_Idle_01',
+    'Sai_Idle_02',
+    'Sai_Idle_03',
+    'Sai_Idle_04',
+]
+
+[Walk]
+frame = [
+    'Sai_Walk_01',
+    'Sai_Walk_02',
+    'Sai_Walk_03',
+    'Sai_Walk_04',
+    'Sai_Walk_05',
+    'Sai_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Sai_Hurt_01',
+    'Sai_Hurt_02',
+    'setSound = Audio/Sai/sai_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Sai_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Sai_Knockdown_01',
+    'Sai_Knockdown_02',
+    'setDelay = 10',
+    'Sai_Knockdown_03',
+    'setDelay = 60',
+    'Sai_Knockdown_04',
+    'Sai_Knockdown_05',
+]
+
+[Float]
+frame = [
+    'Sai_Float_01',
+    'setDelay = 10',
+    'Sai_Float_02',
+    'setDelay = 10',
+    'Sai_Float_03',
+]
+
+[Dead]
+frame = [
+    'Sai_Knockdown_01',
+    'Sai_Knockdown_02',
+    'Sai_Knockdown_03',
+    'setSound = Audio/Sai/sai_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Sai_NAttack_01',
+    'Sai_NAttack_02',
+    'setSound = Audio/Effect/combo1.ogg',
+    'Sai_NAttack_03',
+    'setHit = n_hit',
+    'Sai_NAttack_04',
+    'Sai_NAttack_05',
+    'setMove = 8',
+    'Sai_NAttack_06',
+    'Sai_NAttack_07',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'Sai_NAttack_08',
+    'setSound = Audio/Sai/sai_combo.ogg',
+    'Sai_NAttack_09',
+    'Sai_NAttack_10',
+    'setSound = Audio/Effect/kong.ogg',
+    'setHit = bl_hit',
+    'setMove = 16',
+    'Sai_NAttack_11',
+    'Sai_NAttack_12',
+    'Sai_NAttack_13',
+    'Sai_NAttack_14',
+]
+
+[Skill01]
+type = 'cBuff'
+rangeX = 0
+rangeY = 6
+cd = 15
+
+frame = [
+    'setSound = Audio/Sai/sai_skill1.ogg',
+    'Sai_Skill01_05',
+    'setDelay = 40',
+    'setBuff = 17',
+]
+
+[Skill02]
+type = 'Summon'
+cd = 20
+combatPoint = 1560
+
+frame = [
+    'setSound = Audio/Sai/sai_skill2.ogg',
+    'Sai_Skill02_01',
+    'Sai_Skill02_02',
+    'setMove = 16',
+    'Sai_Skill02_05',
+    'setSound = Audio/Sai/sai_skill2_1.ogg',
+    'Sai_Skill02_06',
+    'Sai_Skill02_07',
+    'setSound = Audio/Sai/ink_tiger.ogg',
+    'setMon = Tiger',
+]
+
+[Skill03]
+type = 'cAttack'
+value = 360
+rangeX = 16
+rangeY = 48
+cd = 25
+combatPoint = 2160
+
+frame = [
+    'Sai_Skill04_01',
+    'setSound = Audio/Sai/sai_skill4.ogg',
+    'Sai_Skill04_02',
+    'setMon = InkBird',
+    'Sai_Skill04_03',
+    'Sai_Skill04_04',
+    'setHit = bf_hit',
+    'Sai_Skill04_05',
+    'Sai_Skill04_06',
+    'Sai_Skill04_07',
+    'setSound = Audio/Sai/sai_skill4_1.ogg',
+]
+
+[Skill04]
+type = 'cBuff'
+rangeX = 0
+rangeY = 8
+combatPoint = 4320
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setCmd = setInvincible',
+    'setSound = Audio/Sai/sai_skill3.ogg',
+    'setSound = Audio/Effect/ougis.ogg',
+    'setSkillEffect = smk',
+    'setBuff = 18',
+    'setCmd = reInvincible',
+]
+
+[Skill05]
+type = 'cAttack'
+value = 960
+rangeX = 0
+rangeY = 48
+combatPoint = 9120
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setCmd = setInvincible',
+    'Sai_Skill05_001',
+    'setOugis = 10',
+    'setDelay = 10',
+    'Sai_Skill05_002',
+    'setMove = 16',
+    'setDelay = 10',
+    'Sai_Skill05_003',
+    'setHit = o2_hit',
+    'setDSound = Audio/Effect/damage_o.ogg',
+    'setDelay = 20',
+    'Sai_Skill05_004',
+    'Sai_Skill05_005',
+    'Sai_Skill05_006',
+    'Sai_Skill05_007',
+    'Sai_Skill05_008',
+    'setSound = Audio/Sai/sai_skill5.ogg',
+    'setMon = InkDragon',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+type = 'Summon'
+anim = {base = 'NAttack'}
+frame = [
+    'Sai_Skill10_01',
+    'Sai_Skill10_02',
+    'Sai_Skill10_03',
+    'Sai_Skill10_04',
+    'setMon = Snake',
+]
+
+[Spc02]
+anim = {base = 'Idle'}
+frame = [
+    'Sai_Skill11_01',
+    'Sai_Skill11_02',
+    'Sai_Skill11_03',
+    'Sai_Skill11_04',
+    'Sai_Skill11_05',
+    'Sai_Skill11_06',
+]
+
+[Spc03]
+type = 'Summon'
+anim = {base = 'Walk', fps = 5}
+frame = [
+    'Sai_Skill12_01',
+    'Sai_Skill12_02',
+    'Sai_Skill12_03',
+    'Sai_Skill12_04',
+    'Sai_Skill12_05',
+    'Sai_Skill12_06',
+    'setMon = Mouse',
+]

@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{64,83}</string>
             </dict>
-            <key>Minato_KnockDown_01</key>
+            <key>Minato_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{754,799},{71,41}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{71,41}</string>
             </dict>
-            <key>Minato_KnockDown_02</key>
+            <key>Minato_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{605,741},{74,57}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{74,57}</string>
             </dict>
-            <key>Minato_KnockDown_03</key>
+            <key>Minato_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{657,546},{77,24}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{77,24}</string>
             </dict>
-            <key>Minato_KnockDown_04</key>
+            <key>Minato_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{831,916},{54,54}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{54,54}</string>
             </dict>
-            <key>Minato_KnockDown_05</key>
+            <key>Minato_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{385,696},{48,56}}</string>

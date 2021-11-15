@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{46,71}</string>
             </dict>
-            <key>Sai_KnockDown_01</key>
+            <key>Sai_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{347,311},{61,36}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{61,50}</string>
             </dict>
-            <key>Sai_KnockDown_02</key>
+            <key>Sai_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{288,538},{77,24}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{77,50}</string>
             </dict>
-            <key>Sai_KnockDown_03</key>
+            <key>Sai_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{359,231},{78,26}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{78,50}</string>
             </dict>
-            <key>Sai_KnockDown_04</key>
+            <key>Sai_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{359,150},{79,26}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{79,50}</string>
             </dict>
-            <key>Sai_KnockDown_05</key>
+            <key>Sai_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{281,791},{42,50}}</string>

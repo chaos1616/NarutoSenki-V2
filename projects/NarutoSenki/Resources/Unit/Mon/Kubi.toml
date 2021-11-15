@@ -1,0 +1,52 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Kubi'
+
+[Idle]
+frame = [
+    'Kubi_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 120
+rangeX = 32
+rangeY = 48
+anim = {loop = true}
+
+frame = [
+    'Kubi_Move_01',
+    'setHit = o_hit',
+    'Kubi_Move_02',
+    'Kubi_Move_03',
+    'setHit = o_hit',
+    'Kubi_Move_04',
+    'Kubi_Move_01',
+    'setHit = o_hit',
+    'Kubi_Move_02',
+    'Kubi_Move_03',
+    'setHit = ab_hit',
+    'Kubi_Move_04',
+    'setHit = ab_hit',
+    'Kubi_Move_01',
+    'setHit = ab_hit',
+    'Kubi_Move_02',
+    'setHit = ab_hit',
+    'Kubi_Move_03',
+    'setHit = ab_hit',
+    'Kubi_Move_04',
+    'setHit = ab_hit',
+    'Kubi_Move_01',
+    'setHit = ab_hit',
+    'Kubi_Move_02',
+    'setHit = ab_hit',
+    'Kubi_Move_03',
+    'setHit = ab_hit',
+    'Kubi_Move_04',
+    'setHit = ab_hit',
+]

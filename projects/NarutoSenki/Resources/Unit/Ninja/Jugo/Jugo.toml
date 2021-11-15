@@ -1,0 +1,274 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Jugo'
+hp = 5000
+hpBar.y = 80
+speed = 224
+
+[Idle]
+frame = [
+    'Jugo_Idle_01',
+    'Jugo_Idle_02',
+    'Jugo_Idle_03',
+    'Jugo_Idle_04',
+]
+
+[Walk]
+frame = [
+    'Jugo_Walk_01',
+    'Jugo_Walk_02',
+    'Jugo_Walk_03',
+    'Jugo_Walk_04',
+    'Jugo_Walk_05',
+    'Jugo_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Jugo_Hurt_01',
+    'Jugo_Hurt_02',
+    'setSound = Audio/Jugo/Jugo_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Jugo_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Jugo_Knockdown_01',
+    'Jugo_Knockdown_02',
+    'setDelay = 10',
+    'Jugo_Knockdown_03',
+    'setDelay = 60',
+    'Jugo_Knockdown_04',
+    'Jugo_Knockdown_05',
+    'Jugo_Knockdown_06',
+]
+
+[Float]
+frame = [
+    'Jugo_Float_01',
+    'setDelay = 10',
+    'Jugo_Float_02',
+    'setDelay = 10',
+    'Jugo_Float_03',
+]
+
+[Dead]
+frame = [
+    'Jugo_Knockdown_01',
+    'Jugo_Knockdown_02',
+    'Jugo_Knockdown_03',
+    'setSound = Audio/Jugo/Jugo_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 80
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Jugo_NAttack_01',
+    'Jugo_NAttack_02',
+    'Jugo_NAttack_03',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Jugo_NAttack_04',
+    'Jugo_NAttack_05',
+    'Jugo_NAttack_06',
+    'Jugo_NAttack_07',
+    'Jugo_NAttack_08',
+    'setMove = 8',
+    'Jugo_NAttack_09',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'Jugo_NAttack_10',
+    'Jugo_NAttack_11',
+    'Jugo_NAttack_12',
+    'Jugo_NAttack_13',
+    'setSound = Audio/Jugo/Jugo_combo.ogg',
+    'setMove = 16',
+    'setDelay = 10',
+    'Jugo_NAttack_14',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setHit = l_hit',
+    'Jugo_NAttack_15',
+]
+
+[Skill01]
+type = 'aAttack'
+value = 1060
+rangeX = 0
+rangeY = 48
+cd = 10
+combatPoint = 1060
+
+frame = [
+    'Jugo_Skill01_01',
+    'setSound = Audio/Jugo/Jugo_skill1.ogg',
+    'Jugo_Skill01_02',
+    'Jugo_Skill01_03',
+    'setChargeB = 192',
+    'setDelay = 10',
+    'Jugo_Skill01_04',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+]
+
+[Skill02]
+type = 'aAttack'
+value = 660
+rangeX = 0
+rangeY = 48
+cd = 15
+combatPoint = 1320
+
+frame = [
+    'setSound = Audio/Jugo/Jugo_skill2.ogg',
+    'Jugo_Skill02_01',
+    'setCharge = 280',
+    'Jugo_Skill02_02',
+    'Jugo_Skill02_03',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_o.ogg',
+    'Jugo_Skill02_04',
+    'Jugo_Skill02_06',
+    'Jugo_Skill02_07',
+    'setMon = Crash',
+    'Jugo_Skill02_08',
+    'setHit = b_hit',
+    'setDSound = Audio/Effect/damage_h.ogg',
+    'Jugo_Skill02_10',
+]
+
+[Skill03]
+type = 'cBuff'
+rangeX = 0
+rangeY = 25
+cd = 25
+combatPoint = 2460
+
+frame = [
+    'setSound = Audio/Jugo/Jugo_skill3.ogg',
+    'Jugo_Skill03_02',
+    'Jugo_Skill03_04',
+    'setDelay = 10',
+    'Jugo_Skill03_05',
+    'setBuff = 17',
+]
+
+[Skill04]
+type = 'aAttack'
+value = 1560
+rangeX = 16
+rangeY = 48
+combatPoint = 3120
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setSound = Audio/Jugo/Jugo_skill4_1.ogg',
+    'Jugo_Skill04_01',
+    'Jugo_Skill04_02',
+    'Jugo_Skill04_03',
+    'setMove = 32',
+    'Jugo_Skill04_04',
+    'setHit = f_hit',
+    'setDSound = Audio/Effect/damage_o2.ogg',
+    'setDelay = 10',
+    'Jugo_Skill04_05',
+    'setDelay = 10',
+    'Jugo_Skill04_06',
+    'setJump = true',
+    'setDelay = 40',
+    'Jugo_Skill04_14',
+    'Jugo_Skill04_15',
+    'setDelay = 10',
+    'Jugo_Skill04_16',
+    'setSound = Audio/Jugo/Jugo_skill4_2.ogg',
+    'setMon = Crash2',
+    'setHit = b_hit',
+    'setDSound = Audio/Effect/damage_k.ogg',
+    'Jugo_Skill04_17',
+    'setDelay = 10',
+    'Jugo_Skill04_18',
+]
+
+[Skill05]
+type = 'aAttack'
+value = 2660
+rangeX = 0
+rangeY = 48
+combatPoint = 7980
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Jugo_Skill05_01',
+    'setDelay = 10',
+    'setCmd = setInvincible',
+    'Jugo_Skill05_02',
+    'setOugis = 10',
+    'Jugo_Skill05_03',
+    'Jugo_Skill05_04',
+    'Jugo_Skill05_05',
+    'setSound = Audio/Jugo/Jugo_skill5.ogg',
+    'Jugo_Skill05_06',
+    'Jugo_Skill05_07',
+    'setSound = Audio/Effect/break_sound3.ogg',
+    'setHit = a_hit',
+    'Jugo_Skill05_08',
+    'Jugo_Skill05_09',
+    'setHit = a_hit',
+    'Jugo_Skill05_10',
+    'Jugo_Skill05_11',
+    'setHit = a_hit',
+    'Jugo_Skill05_12',
+    'Jugo_Skill05_13',
+    'Jugo_Skill05_14',
+    'Jugo_Skill05_15',
+    'Jugo_Skill05_16',
+    'Jugo_Skill05_17',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+anim = {base = 'Idle'}
+frame = [
+    'Jugo_Skill10_01',
+]
+
+[Spc02]
+anim = {base = 'Walk'}
+frame = [
+    'Jugo_Run_01',
+    'Jugo_Run_02',
+    'Jugo_Run_03',
+]
+
+[Spc03]
+type = 'aAttack'
+rangeX = 0
+rangeY = 32
+anim = {base = 'NAttack'}
+frame = [
+    'Jugo_Skill11_02',
+    'setDelay = 10',
+    'Jugo_Skill11_03',
+    'setSound = Audio/Jugo/Jugo_skill10.ogg',
+    'Jugo_Skill11_04',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_h.ogg',
+    'setActionResume = 20',
+    'setDelay = 10',
+    'Jugo_Skill11_05',
+    'setDelay = 10',
+    'Jugo_Skill11_06',
+]

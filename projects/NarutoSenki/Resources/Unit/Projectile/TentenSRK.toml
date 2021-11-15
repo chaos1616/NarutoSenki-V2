@@ -1,0 +1,26 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'TentenSRK'
+
+[Idle]
+frame = [
+    'TentenSRK_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 160
+rangeX = 32
+rangeY = 0
+anim = {loop = true}
+frame = [
+    'TentenSRK_Move_01',
+    'setHit = bl_hit',
+    'TentenSRK_Move_02',
+    'setHit = bl_hit',
+]

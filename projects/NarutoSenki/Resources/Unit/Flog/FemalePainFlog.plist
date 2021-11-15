@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{33,43}</string>
             </dict>
-            <key>FemalePainFlog_KnockDown_01</key>
+            <key>FemalePainFlog_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{112,197},{38,44}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{38,44}</string>
             </dict>
-            <key>FemalePainFlog_KnockDown_02</key>
+            <key>FemalePainFlog_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{63,2},{57,34}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{57,44}</string>
             </dict>
-            <key>FemalePainFlog_KnockDown_03</key>
+            <key>FemalePainFlog_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,225},{62,28}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{62,44}</string>
             </dict>
-            <key>FemalePainFlog_KnockDown_04</key>
+            <key>FemalePainFlog_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,160},{63,18}}</string>

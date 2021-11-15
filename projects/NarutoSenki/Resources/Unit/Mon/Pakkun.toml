@@ -1,0 +1,37 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Pakkun'
+speed = 224
+
+[Idle]
+frame = [
+    'Pakkun_Idle_01',
+]
+
+[Walk]
+frame = [
+    'Pakkun_Walk_01',
+    'Pakkun_Walk_02',
+    'Pakkun_Walk_03',
+    'Pakkun_Walk_04',
+    'Pakkun_Walk_05',
+    'Pakkun_Walk_06',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 1860
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'Pakkun_Nattack_01',
+    'Pakkun_Nattack_02',
+    'setHit = c_hit',
+    'setDestroy = 0',
+]

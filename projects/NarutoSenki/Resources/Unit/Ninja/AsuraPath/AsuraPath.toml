@@ -1,0 +1,85 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'AsuraPath'
+hp = 8000
+hpBar.y = 81
+speed = 224
+
+[Idle]
+frame = [
+    'AsuraPath_Idle_01',
+]
+
+[Walk]
+frame = [
+    'AsuraPath_Walk_01',
+    'AsuraPath_Walk_02',
+    'AsuraPath_Walk_03',
+    'AsuraPath_Walk_04',
+    'AsuraPath_Walk_05',
+    'AsuraPath_Walk_06',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 120
+rangeX = 0
+rangeY = 16
+
+frame = [
+    'AsuraPath_NAttack_01',
+    'AsuraPath_NAttack_02',
+    'AsuraPath_NAttack_03',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'AsuraPath_NAttack_04',
+    'setDelay = 20',
+    'setHit = n_hit',
+    'setDelay = 20',
+]
+
+[Skill01]
+type = 'Summon'
+rangeX = 0
+rangeY = 15
+cd = 1
+
+frame = [
+    'AsuraPath_Skill01_01',
+    'setDelay = 10',
+    'AsuraPath_Skill01_02',
+    'setDelay = 10',
+    'AsuraPath_Skill01_03',
+    'setDelay = 10',
+    'AsuraPath_Skill01_04',
+    'setSound = Audio/Pain/AsuraPath_skill1.ogg',
+    'setMon = Rocket',
+    'setDelay = 50',
+]
+
+[Skill02]
+type = 'abAttack'
+value = 900
+rangeX = 192
+rangeY = 64
+cd = 15
+
+frame = [
+    'AsuraPath_Skill01_01',
+]
+
+[Skill03]
+type = 'aAttack'
+value = 320
+rangeX = 160
+rangeY = 64
+cd = 25
+
+frame = [
+    'AsuraPath_Skill01_01',
+]

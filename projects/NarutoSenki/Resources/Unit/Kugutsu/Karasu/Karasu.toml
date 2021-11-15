@@ -1,0 +1,108 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Karasu'
+hp = 8000
+hpBar.y = 75
+speed = 320
+
+[Idle]
+frame = [
+    'Karasu_Idle_01',
+    'setDelay = 10',
+    'Karasu_Idle_02',
+    'setDelay = 10',
+    'Karasu_Idle_03',
+    'setDelay = 10',
+]
+
+[Walk]
+frame = [
+    'Karasu_Walk_01',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Karasu_Hurt_01',
+    'Karasu_Hurt_02',
+]
+
+[AirHurt]
+frame = [
+    'Karasu_Hurt_02',
+]
+
+[Knockdown]
+frame = [
+    'Karasu_Knockdown_01',
+    'setDelay = 10',
+    'Karasu_Knockdown_02',
+    'Karasu_Knockdown_03',
+    'setDelay = 60',
+    'Karasu_Knockdown_04',
+]
+
+[Float]
+frame = [
+    'Karasu_Hurt_02',
+    'setDelay = 10',
+    'Karasu_Knockdown_01',
+    'setDelay = 10',
+    'Karasu_Knockdown_01',
+]
+
+[Dead]
+frame = [
+    'Karasu_Knockdown_01',
+    'Karasu_Knockdown_02',
+    'resumeSkill = 1',
+]
+
+[NAttack]
+type = 'aAttack'
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Karasu_NAttack_01',
+    'setHit = n_hit',
+    'setDelay = 40',
+    'Karasu_NAttack_02',
+    'setHit = n_hit',
+    'setDelay = 40',
+    'Karasu_NAttack_03',
+    'setHit = n_hit',
+    'setDelay = 40',
+]
+
+[Skill02]
+type = 'aAttack'
+value = 660
+rangeX = 16
+rangeY = 48
+cd = 15
+
+frame = [
+    'Karasu_Skill02_02',
+    'Karasu_Skill02_03',
+    'setSound = Audio/Effect/kugutsu.ogg',
+    'setJump = true',
+    'setDelay = 30',
+    'Karasu_Skill02_04',
+    'setHit = bl_hit',
+    'Karasu_Skill02_05',
+    'setHit = bl_hit',
+    'setDelay = 10',
+    'Karasu_Skill02_06',
+    'setHit = bl_hit',
+    'setDelay = 10',
+    'Karasu_Skill02_02',
+    'setDelay = 10',
+    'Karasu_Skill02_02',
+    'setDelay = 10',
+]

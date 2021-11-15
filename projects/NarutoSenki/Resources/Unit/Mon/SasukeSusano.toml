@@ -1,0 +1,33 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'SasukeSusano'
+
+[Idle]
+frame = [
+    'SasukeSusano_Move_01',
+    'setDelay = 20',
+    'SasukeSusano_Move_02',
+    'setDelay = 10',
+    'SasukeSusano_Move_03',
+    'setDelay = 10',
+    'SasukeSusano_Move_02',
+    'setDelay = 10',
+]
+
+[NAttack]
+type = 'aAttack'
+
+frame = [
+    'SasukeSusano_Move_04',
+    'SasukeSusano_Move_05',
+    'SasukeSusano_Move_06',
+    'setDelay = 10',
+    'SasukeSusano_Move_07',
+    'SasukeSusano_Move_08',
+    'setDelay = 20',
+]

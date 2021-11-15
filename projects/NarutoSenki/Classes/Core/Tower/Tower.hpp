@@ -20,55 +20,31 @@ public:
 		return true;
 	}
 
-	void setID(const string &name, Role role, Group group)
+	void setID(const string &name, Role role, Group group) override
 	{
 		clearActionData();
 		setName(name);
 		setRole(role);
 		setGroup(group);
 
-		CCArray *animationArray = CCArray::create();
-		const char *filePath;
-
+		string fpath;
 		if (getName() == TowerEnum::KonohaCenter || getName() == TowerEnum::AkatsukiCenter)
-			filePath = "Unit/Tower/CenterData.xml";
+			fpath = "Unit/Tower/InnerTower.toml";
 		else
-			filePath = "Unit/Tower/TowerData.xml";
+			fpath = "Unit/Tower/OuterTower.toml";
+		auto metadata = UnitParser::fromToml(fpath);
+		genActionBy(metadata);
+		// init action
+		setAction(ActionFlag::Idle | ActionFlag::Dead);
 
-		KTools::readXMLToArray(filePath, animationArray);
-
-		CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
-		CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-		idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-		string unitName;
-		uint32_t maxHP;
-		int tmpWidth;
-		int tmpHeight;
-		uint32_t tmpSpeed;
-		int tmpCombatPoint;
-
-		readData(tmpData, unitName, maxHP, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
-
-		setMaxHPValue(maxHP, false);
-		setHPValue(maxHP, false);
+		setMaxHP(metadata.hp);
+		setHP(metadata.hp);
 		setCKR(0);
 		setCKR2(0);
-		setHeight(tmpHeight);
-		setWalkSpeed(tmpSpeed);
+		setHPBarHeight(metadata.hpBarY);
+		setWalkSpeed(metadata.speed);
 
-		// init DeadFrame
-		tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
-		deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
-
-		initAction();
 		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", nullptr);
-	}
-
-	void initAction()
-	{
-		setIdleAction(createAnimation(idleArray, 5, true, false));
-		setDeadAction(createAnimation(deadArray, 10, false, false));
 	}
 
 	void setHPbar()
@@ -78,7 +54,7 @@ public:
 		else
 			_hpBar = HPBar::create("hp_bar.png");
 		_hpBar->getHPBAR()->setPosition(Vec2(1, 1));
-		_hpBar->setPositionY(getHeight());
+		_hpBar->setPositionY(getHPBarHeight());
 		_hpBar->setDelegate(this);
 		addChild(_hpBar);
 	}

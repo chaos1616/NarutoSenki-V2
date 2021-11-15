@@ -1,0 +1,35 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Rocket'
+speed = 224
+
+[Idle]
+frame = [
+    'Rocket_Move_01',
+]
+
+[Walk]
+frame = [
+    'Rocket_Move_01',
+    'Rocket_Move_01_1',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 360
+rangeX = 32
+rangeY = 32
+
+frame = [
+    'Rocket_Move_02',
+    'setHit = a_hit',
+    'Rocket_Move_03',
+    'Rocket_Move_04',
+    'Rocket_Move_05',
+    'setDestroy = 0',
+]

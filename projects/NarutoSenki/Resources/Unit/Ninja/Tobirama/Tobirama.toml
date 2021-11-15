@@ -1,0 +1,283 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Tobirama'
+hp = 5000
+hpBar.y = 86
+speed = 224
+
+[Idle]
+frame = [
+    'Tobirama_Idle_01',
+    'Tobirama_Idle_02',
+    'Tobirama_Idle_03',
+    'Tobirama_Idle_04',
+]
+
+[Walk]
+frame = [
+    'Tobirama_Walk_01',
+    'Tobirama_Walk_02',
+    'Tobirama_Walk_03',
+    'Tobirama_Walk_04',
+    'Tobirama_Walk_05',
+    'Tobirama_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Tobirama_Hurt_01',
+    'Tobirama_Hurt_02',
+    'setSound = Audio/Tobirama/Tobirama_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Tobirama_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Tobirama_Knockdown_01',
+    'setDelay = 10',
+    'Tobirama_Knockdown_02',
+    'setDelay = 60',
+    'Tobirama_Knockdown_03',
+    'Tobirama_Knockdown_04',
+    'Tobirama_Knockdown_05',
+]
+
+[Float]
+frame = [
+    'Tobirama_Float_01',
+    'setDelay = 10',
+    'Tobirama_Float_02',
+    'setDelay = 10',
+    'Tobirama_Float_03',
+]
+
+[Dead]
+frame = [
+    'Tobirama_Knockdown_01',
+    'Tobirama_Knockdown_02',
+    'setSound = Audio/Tobirama/Tobirama_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Tobirama_NAttack_01',
+    'Tobirama_NAttack_02',
+    'Tobirama_NAttack_03',
+    'Tobirama_NAttack_04',
+    'Tobirama_NAttack_05',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/combo1.ogg',
+    'Tobirama_NAttack_06',
+    'Tobirama_NAttack_07',
+    'Tobirama_NAttack_08',
+    'setMove = 8',
+    'Tobirama_NAttack_09',
+    'Tobirama_NAttack_10',
+    'setMove = 8',
+    'Tobirama_NAttack_11',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/combo2.ogg',
+    'Tobirama_NAttack_12',
+    'Tobirama_NAttack_13',
+    'Tobirama_NAttack_14',
+    'Tobirama_NAttack_15',
+    'setMove = 16',
+    'Tobirama_NAttack_16',
+    'Tobirama_NAttack_17',
+    'setSound = Audio/Tobirama/Tobirama_combo.ogg',
+    'setHit = l_hit',
+    'Tobirama_NAttack_18',
+    'Tobirama_NAttack_19',
+]
+
+[Skill01]
+type = 'Summon'
+cd = 10
+combatPoint = 960
+
+frame = [
+    'setSound = Audio/Tobirama/Tobirama_skill1.ogg',
+    'Tobirama_Skill05_01',
+    'Tobirama_Skill05_02',
+    'Tobirama_Skill05_03',
+    'setMon = FakeTobirama',
+]
+
+[Skill02]
+type = 'cAttack'
+value = 560
+rangeX = 0
+rangeY = 48
+cd = 15
+combatPoint = 1680
+
+frame = [
+    'setSound = Audio/Tobirama/Tobirama_skill2.ogg',
+    'Tobirama_Skill02_03',
+    'Tobirama_Skill02_04',
+    'Tobirama_Skill02_05',
+    'Tobirama_Skill02_06',
+    'Tobirama_Skill02_07',
+    'Tobirama_Skill02_08',
+    'Tobirama_Skill02_09',
+    'setHit = o_hit',
+    'Tobirama_Skill02_10',
+    'setHit = o_hit',
+    'Tobirama_Skill02_11',
+    'setHit = o_hit',
+    'Tobirama_Skill02_12',
+]
+
+[Skill03]
+type = 'Summon'
+cd = 25
+combatPoint = 2580
+
+frame = [
+    'setSound = Audio/Tobirama/Tobirama_skill3.ogg',
+    'Tobirama_Skill03_03',
+    'Tobirama_Skill03_04',
+    'Tobirama_Skill03_05',
+    'Tobirama_Skill03_06',
+    'setMon = SuiRyuDan',
+    'setDelay = 70',
+]
+
+[Skill04]
+type = 'aAttack'
+value = 460
+rangeX = 16
+rangeY = 32
+combatPoint = 3360
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Tobirama_Skill04_01',
+    'setSound = Audio/Tobirama/Tobirama_skill4.ogg',
+    'Tobirama_Skill04_02',
+    'setMove = 64',
+    'Tobirama_Skill04_03',
+    'Tobirama_Skill04_04',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_o.ogg',
+    'Tobirama_Skill04_05',
+    'Tobirama_Skill04_06',
+    'setShadow = 10',
+    'setDelay = 10',
+    'Tobirama_Skill04_07',
+    'setShadow = 10',
+    'setHit = bf_hit',
+    'setDSound = Audio/Effect/damage_o2.ogg',
+    'Tobirama_Skill04_08',
+    'setJump = true',
+    'Tobirama_Skill04_09',
+    'setShadow = 10',
+    'setHit = c_hit',
+    'Tobirama_Skill04_10',
+    'Tobirama_Skill04_11',
+    'setShadow = 10',
+    'setHit = c_hit',
+    'setDelay = 10',
+    'Tobirama_Skill04_12',
+    'setShadow = 10',
+    'setDelay = 10',
+    'Tobirama_Skill04_13',
+    'setSound = Audio/Tobirama/Tobirama_skill4_1.ogg',
+    'setSound = Audio/Effect/water_effect.ogg',
+    'Tobirama_Skill04_14',
+    'setMon = Suiji',
+    'setDelay = 10',
+]
+
+[Skill05]
+type = 'aAttack'
+value = 1260
+rangeX = 32
+rangeY = 48
+combatPoint = 9080
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Tobirama_Skill05_01',
+    'setCmd = setInvincible',
+    'Tobirama_Skill05_02',
+    'setOugis = 10',
+    'Tobirama_Skill05_03',
+    'setCmd = findTarget',
+    'setSkillEffect = Hiraishin2',
+    'setSound = Audio/Effect/hiraishin_effect.ogg',
+    'setCmd = setTransport',
+    'Tobirama_Skill05_04',
+    'Tobirama_Skill05_05',
+    'Tobirama_Skill05_06',
+    'Tobirama_Skill05_07',
+    'setMove = 16',
+    'setSound = Audio/Tobirama/Tobirama_skill5_1.ogg',
+    'setHit = o_hit',
+    'setDSound = Audio/Effect/damage_o.ogg',
+    'Tobirama_Skill05_08',
+    'Tobirama_Skill05_09',
+    'setCmd = findTarget',
+    'setSkillEffect = Hiraishin2',
+    'setSound = Audio/Effect/hiraishin_effect.ogg',
+    'setCmd = setTransport',
+    'Tobirama_Skill05_10',
+    'Tobirama_Skill05_11',
+    'Tobirama_Skill05_12',
+    'Tobirama_Skill05_13',
+    'setMove = 16',
+    'setSound = Audio/Tobirama/Tobirama_skill5_2.ogg',
+    'setHit = o_hit',
+    'setDSound = Audio/Effect/damage_o.ogg',
+    'Tobirama_Skill05_14',
+    'Tobirama_Skill05_15',
+    'setCmd = findTarget',
+    'setSkillEffect = Hiraishin2',
+    'setSound = Audio/Effect/hiraishin_effect.ogg',
+    'setCmd = setTransport',
+    'Tobirama_Skill05_16',
+    'Tobirama_Skill05_17',
+    'Tobirama_Skill05_18',
+    'Tobirama_Skill05_19',
+    'setSound = Audio/Tobirama/Tobirama_skill5_3.ogg',
+    'setHit = f_hit',
+    'setDSound = Audio/Effect/damage_o2.ogg',
+    'setJump = true',
+    'Tobirama_Skill05_19_1',
+    'Tobirama_Skill05_20',
+    'Tobirama_Skill05_21',
+    'Tobirama_Skill05_22',
+    'setDelay = 50',
+    'setCmd = findTarget',
+    'setSkillEffect = Hiraishin2',
+    'setSound = Audio/HokageMinato/HokageMinato_skill1_1.ogg',
+    'setCmd = setTransport',
+    'Tobirama_Skill05_23',
+    'Tobirama_Skill05_24',
+    'Tobirama_Skill05_25',
+    'Tobirama_Skill05_26',
+    'Tobirama_Skill05_27',
+    'Tobirama_Skill05_28',
+    'Tobirama_Skill05_29',
+    'setSound = Audio/Tobirama/Tobirama_skill5_4.ogg',
+    'Tobirama_Skill05_30',
+    'Tobirama_Skill05_31',
+    'setMon = Suijin',
+    'setDelay = 80',
+    'setCmd = reInvincible',
+]

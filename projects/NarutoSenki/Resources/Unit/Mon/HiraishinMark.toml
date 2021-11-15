@@ -1,0 +1,24 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'HiraishinMark'
+
+[Idle]
+frame = [
+    'HiraishinMark_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 560
+rangeX = 32
+rangeY = 48
+
+frame = [
+    'HiraishinMark_Move_02',
+    'setDestroy = 0',
+]

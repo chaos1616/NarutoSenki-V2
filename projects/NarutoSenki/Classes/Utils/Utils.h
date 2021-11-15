@@ -13,3 +13,5 @@
 #include "Utils/Macros/Property.h"
 #include "Utils/Macros/SafePtrProperty.h"
 #include "Utils/Macros/ValuePropperty.h"
+
+#include "Utils/StringHelper.hpp"

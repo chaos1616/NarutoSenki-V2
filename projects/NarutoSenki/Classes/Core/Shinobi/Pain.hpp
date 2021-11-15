@@ -307,14 +307,14 @@ class Pain : public Hero
 
 	void changeAction() override
 	{
-		// TODO: New Pain
+		// TODO: New Nagato
 		// if (getName() == HeroEnum::Nagato)
 		// {
 		// 	if (_skillChangeBuffValue == 17)
 		// 	{
-		// 		setSkill1Action(createAnimation(skillSPC1Array, 10, false, true));
-		// 		setSkill2Action(createAnimation(skillSPC2Array, 10, false, true));
-		// 		setSkill3Action(createAnimation(skillSPC3Array, 10, false, true));
+		// 		setActionTo<ActionFlag::Skill01, ActionFlag::Spc01>();
+		// 		setActionTo<ActionFlag::Skill02, ActionFlag::Spc02>();
+		// 		setActionTo<ActionFlag::Skill03, ActionFlag::Spc03>();
 		// 		setTempAttackValue1(getSAttackValue1());
 		// 		setSAttackValue1(_spcAttackValue1);
 		// 		setSAttackValue2(_spcAttackValue2);
@@ -334,32 +334,32 @@ class Pain : public Hero
 		// }
 	}
 
-	void setActionResume() override
-	{
-		// TODO: New Pain
-		// if (getName() == HeroEnum::Nagato)
-		// {
-		// 	if (_skillChangeBuffValue == 17)
-		// 	{
-		// 		this->setSkill1Action(createAnimation(skill1Array, 10, false, true));
-		// 		this->setSkill2Action(createAnimation(skill2Array, 10, false, true));
-		// 		this->setSkill3Action(createAnimation(skill3Array, 10, false, true));
+	// void setActionResume() override
+	// {
+	// 	// TODO: New Nagato
+	// 	if (getName() == HeroEnum::Nagato)
+	// 	{
+	// 		if (_skillChangeBuffValue == 17)
+	// 		{
+	// 			setActionTo<ActionFlag::Skill01, ActionFlag::Skill01>();
+	// 			setActionTo<ActionFlag::Skill02, ActionFlag::Skill02>();
+	// 			setActionTo<ActionFlag::Skill03, ActionFlag::Skill03>();
 
-		// 		if (isPlayer())
-		// 		{
-		// 			auto cache = SpriteFrameCache::sharedSpriteFrameCache();
-		// 			auto frame = cache->spriteFrameByName("Nagato_skill1.png");
-		// 			getGameLayer()->getHudLayer()->skill1Button->setDisplayFrame(frame);
-		// 			frame = cache->spriteFrameByName("Nagato_skill2.png");
-		// 			getGameLayer()->getHudLayer()->skill2Button->setDisplayFrame(frame);
-		// 			frame = cache->spriteFrameByName("Nagato_skill3.png");
-		// 			getGameLayer()->getHudLayer()->skill3Button->setDisplayFrame(frame);
-		// 		}
-		// 	}
+	// 			if (isPlayer())
+	// 			{
+	// 				auto cache = SpriteFrameCache::sharedSpriteFrameCache();
+	// 				auto frame = cache->spriteFrameByName("Nagato_skill1.png");
+	// 				getGameLayer()->getHudLayer()->skill1Button->setDisplayFrame(frame);
+	// 				frame = cache->spriteFrameByName("Nagato_skill2.png");
+	// 				getGameLayer()->getHudLayer()->skill2Button->setDisplayFrame(frame);
+	// 				frame = cache->spriteFrameByName("Nagato_skill3.png");
+	// 				getGameLayer()->getHudLayer()->skill3Button->setDisplayFrame(frame);
+	// 			}
+	// 		}
 
-		// 	_skillChangeBuffValue = 0;
-		// }
-	}
+	// 		_skillChangeBuffValue = 0;
+	// 	}
+	// }
 
 	Hero *createClone(int cloneTime) override
 	{

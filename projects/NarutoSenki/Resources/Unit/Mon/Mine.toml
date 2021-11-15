@@ -1,0 +1,31 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Mine'
+
+[Idle]
+frame = [
+    'Mine_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 1260
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'setCmd = reInvisible',
+    'Mine_NAttack_01',
+    'setDelay = 10',
+    'Mine_NAttack_03',
+    'Mine_NAttack_04',
+    'setHit = b_hit',
+    'Mine_NAttack_05',
+    'Mine_NAttack_06',
+    'setDestroy = 0',
+]

@@ -1,0 +1,37 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Spider'
+speed = 320
+
+[Idle]
+frame = [
+    'Spider_Walk_01',
+]
+
+[Walk]
+frame = [
+    'Spider_Walk_01',
+    'Spider_Walk_02',
+    'Spider_Walk_03',
+    'Spider_Walk_04',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 360
+rangeX = 32
+rangeY = 48
+
+frame = [
+    'bom_01',
+    'setHit = n_hit',
+    'bom_02',
+    'bom_03',
+    'bom_04',
+    'setDestroy = 0',
+]

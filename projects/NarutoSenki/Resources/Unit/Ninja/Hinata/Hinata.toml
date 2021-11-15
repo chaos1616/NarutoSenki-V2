@@ -1,0 +1,335 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Hinata'
+hp = 5500
+hpBar.y = 70
+speed = 224
+
+[Idle]
+frame = [
+    'Hinata_Idle_01',
+    'Hinata_Idle_02',
+    'Hinata_Idle_03',
+    'Hinata_Idle_04',
+]
+
+[Walk]
+frame = [
+    'Hinata_Walk_01',
+    'Hinata_Walk_02',
+    'Hinata_Walk_03',
+    'Hinata_Walk_04',
+    'Hinata_Walk_05',
+    'Hinata_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Hinata_Hurt_01',
+    'Hinata_Hurt_02',
+    'setSound = Audio/Hinata/hinata_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Hinata_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Hinata_Knockdown_01',
+    'Hinata_Knockdown_02',
+    'setDelay = 10',
+    'Hinata_Knockdown_03',
+    'setDelay = 60',
+    'Hinata_Knockdown_04',
+    'Hinata_Knockdown_05',
+    'Hinata_Knockdown_06',
+]
+
+[Float]
+frame = [
+    'Hinata_Float_01',
+    'setDelay = 10',
+    'Hinata_Float_02',
+    'setDelay = 10',
+    'Hinata_Float_03',
+]
+
+[Dead]
+frame = [
+    'Hinata_Knockdown_01',
+    'Hinata_Knockdown_02',
+    'Hinata_Knockdown_03',
+    'setSound = Audio/Hinata/hinata_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Hinata_NAttack_01',
+    'Hinata_NAttack_02',
+    'Hinata_NAttack_03',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Hinata_NAttack_04',
+    'Hinata_NAttack_05',
+    'Hinata_NAttack_06',
+    'Hinata_NAttack_07',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'Hinata_NAttack_08',
+    'Hinata_NAttack_09',
+    'Hinata_NAttack_10',
+    'Hinata_NAttack_11',
+    'Hinata_NAttack_12',
+    'setSound = Audio/Hinata/hinata_combo.ogg',
+    'setMove = 16',
+    'Hinata_NAttack_13',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setHit = l_hit',
+    'Hinata_NAttack_14',
+]
+
+[Skill01]
+type = 'hsBuff'
+rangeX = 0
+rangeY = 10
+cd = 15
+
+frame = [
+    'setSound = Audio/Hinata/hinata_skill01.ogg',
+    'Hinata_Skill01_001',
+    'Hinata_Skill01_002',
+    'Hinata_Skill01_003',
+    'Hinata_Skill01_004',
+    'setSound = Audio/Effect/baiyan.ogg',
+    'Hinata_Skill01_005',
+    'Hinata_Skill01_006',
+    'setBuff = 200',
+]
+
+[Skill02]
+type = 'aAttack'
+value = 560
+rangeX = 0
+rangeY = 48
+cd = 15
+combatPoint = 1120
+
+frame = [
+    'Hinata_Skill02_02',
+    'setSound = Audio/Hinata/hinata_skill02_1.ogg',
+    'Hinata_Skill02_03',
+    'setMove = 16',
+    'Hinata_Skill02_04',
+    'setHit = c_hit',
+    'Hinata_Skill02_05',
+    'Hinata_Skill02_06',
+    'Hinata_Skill02_07',
+    'setChargeB = 128',
+    'Hinata_Skill02_08',
+    'setSound = Audio/Hinata/hinata_skill02_2.ogg',
+    'setHit = f_hit',
+    'Hinata_Skill02_09',
+]
+
+[Skill03]
+type = 'aAttack'
+value = 160
+rangeX = 16
+rangeY = 48
+cd = 25
+combatPoint = 3240
+
+frame = [
+    'setSound = Audio/Hinata/hinata_skill03.ogg',
+    'Hinata_Skill03_02',
+    'Hinata_Skill03_03',
+    'setSkillEffect = Bagua',
+    'setDelay = 40',
+    'Hinata_Skill03_04',
+    'setMove = 16',
+    'setHit = s_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Hinata_Skill03_05',
+    'Hinata_Skill03_06',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Hinata_Skill03_07',
+    'setMove = 8',
+    'Hinata_Skill03_08',
+    'setHit = s_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Hinata_Skill03_09',
+    'Hinata_Skill03_10',
+    'setMove = 8',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Hinata_Skill03_11',
+    'Hinata_Skill03_12',
+    'setHit = s_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Hinata_Skill03_04',
+    'setMove = 8',
+    'Hinata_Skill03_05',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Hinata_Skill03_06',
+    'Hinata_Skill03_07',
+    'setMove = 8',
+    'setHit = s_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Hinata_Skill03_08',
+    'Hinata_Skill03_09',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Hinata_Skill03_10',
+    'setMove = 8',
+    'Hinata_Skill03_11',
+    'setHit = s_hit',
+    'setDSound = Audio/Effect/damage_c.ogg',
+    'Hinata_Skill03_13',
+    'Hinata_Skill03_14',
+]
+
+[Skill04]
+type = 'aAttack'
+value = 660
+rangeX = 64
+rangeY = 48
+combatPoint = 3300
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Hinata_Skill04_01',
+    'setShadow = 10',
+    'setHit = f_hit',
+    'setJump = true',
+    'Hinata_Skill04_02',
+    'setShadow = 10',
+    'setDelay = 10',
+    'Hinata_Skill04_03',
+    'setSound = Audio/Hinata/hinata_skill04.ogg',
+    'setCmd = setInvincible',
+    'Hinata_Skill04_04',
+    'stopJump = 60',
+    'setMon = Tenmu',
+    'Hinata_Skill04_05',
+    'Hinata_Skill04_06',
+    'setCmd = reInvincible',
+    'Hinata_Skill04_07',
+    'Hinata_Skill04_08',
+    'Hinata_Skill04_09',
+]
+
+[Skill05]
+type = 'aAttack'
+value = 760
+rangeX = 16
+rangeY = 48
+combatPoint = 9120
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Hinata_Skill10_01',
+    'setCmd = setInvincible',
+    'setOugis = 10',
+    'Hinata_Skill10_02',
+    'setSkillEffect = Bagua',
+    'Hinata_Skill05_001',
+    'setSound = Audio/Hinata/hinata_skill5_2.ogg',
+    'Hinata_Skill05_002',
+    'setShadow = 10',
+    'setChargeB = 128',
+    'setHit = f_hit',
+    'setDSound = Audio/Effect/damage_o2.ogg',
+    'Hinata_Skill05_003',
+    'Hinata_Skill05_004',
+    'setShadow = 10',
+    'setHit = c_hit',
+    'Hinata_Skill05_005',
+    'Hinata_Skill05_006',
+    'setShadow = 10',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Hinata_Skill05_007',
+    'Hinata_Skill05_008',
+    'Hinata_Skill05_009',
+    'Hinata_Skill05_010',
+    'Hinata_Skill05_011',
+    'setShadow = 10',
+    'Hinata_Skill05_012',
+    'setSound = Audio/Hinata/hinata_skill5_3.ogg',
+    'setChargeB = 32',
+    'Hinata_Skill05_013',
+    'setHit = b_hit',
+    'setSound = Audio/Effect/damage_o.ogg',
+    'Hinata_Skill05_014',
+    'Hinata_Skill05_012',
+    'setSound = Audio/Hinata/hinata_skill5_3.ogg',
+    'setChargeB = 32',
+    'Hinata_Skill05_013',
+    'Hinata_Skill05_014',
+    'setHit = b_hit',
+    'setSound = Audio/Effect/damage_o.ogg',
+    'Hinata_Skill05_015',
+    'setChargeB = 32',
+    'Hinata_Skill05_016',
+    'Hinata_Skill05_017',
+    'setSound = Audio/Hinata/hinata_skill5_4.ogg',
+    'Hinata_Skill05_018',
+    'setHit = f_hit',
+    'setSound = Audio/Effect/damage_o2.ogg',
+    'Hinata_Skill05_019',
+    'Hinata_Skill05_021',
+    'setSound = Audio/Hinata/hinata_skill5_1.ogg',
+    'Hinata_Skill05_022',
+    'setShadow = 10',
+    'setHit = ac_hit',
+    'setChargeB = 48',
+    'Hinata_Skill05_023',
+    'Hinata_Skill05_024',
+    'setShadow = 10',
+    'setHit = ac_hit',
+    'setSound = Audio/Effect/damage_i.ogg',
+    'Hinata_Skill05_025',
+    'Hinata_Skill05_026',
+    'setShadow = 10',
+    'setHit = ac_hit',
+    'setSound = Audio/Effect/damage_i.ogg',
+    'Hinata_Skill05_027',
+    'Hinata_Skill05_022',
+    'setShadow = 10',
+    'setHit = ac_hit',
+    'setSound = Audio/Effect/damage_i.ogg',
+    'setChargeB = 48',
+    'Hinata_Skill05_023',
+    'Hinata_Skill05_024',
+    'setShadow = 10',
+    'setHit = ac_hit',
+    'setSound = Audio/Effect/damage_i.ogg',
+    'Hinata_Skill05_025',
+    'Hinata_Skill05_026',
+    'setShadow = 10',
+    'setHit = ac_hit',
+    'setSound = Audio/Effect/damage_i.ogg',
+    'Hinata_Skill05_027',
+    'Hinata_Skill05_028',
+    'Hinata_Skill05_029',
+    'Hinata_Skill05_030',
+    'setSound = Audio/Hinata/hinata_skill5_6.ogg',
+    'Hinata_Skill05_031',
+    'Hinata_Skill05_032',
+    'setCmd = reInvincible',
+]

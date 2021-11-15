@@ -1,0 +1,138 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Parents'
+hp = 8000
+hpBar.y = 75
+speed = 224
+
+[Idle]
+frame = [
+    'Parents_Idle_01',
+    'Parents_Idle_02',
+    'Parents_Idle_03',
+    'Parents_Idle_04',
+]
+
+[Walk]
+frame = [
+    'Parents_Walk_01',
+    'setDelay = 10',
+    'Parents_Walk_02',
+    'setDelay = 10',
+]
+
+[Hurt]
+frame = [
+    'Parents_Idle_01',
+]
+
+[AirHurt]
+frame = [
+    'Parents_Idle_01',
+]
+
+[Knockdown]
+frame = [
+    'Parents_Idle_01',
+]
+
+[Float]
+frame = [
+    'Parents_Idle_01',
+]
+
+[Dead]
+frame = [
+    'Parents_Idle_01',
+]
+
+[NAttack]
+type = 'nAttack'
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Parents_Move_001',
+    'Parents_Move_002',
+    'Parents_Move_003',
+    'Parents_Move_004',
+    'setHit = l_hit',
+    'Parents_Move_005',
+]
+
+[Skill01]
+type = 'aAttack'
+value = 660
+rangeX = 0
+rangeY = 48
+cd = 15
+
+frame = [
+    'Parents_Skill01_001',
+    'setMove = 32',
+    'Parents_Skill01_002',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/blade_damage2.ogg',
+    'Parents_Skill01_003',
+    'Parents_Skill01_004',
+    'Parents_Skill01_005',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/blade_damage2.ogg',
+    'Parents_Skill01_006',
+    'Parents_Skill01_001',
+    'setMove = 32',
+    'Parents_Skill01_002',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/blade_damage2.ogg',
+    'Parents_Skill01_003',
+]
+
+[Skill02]
+type = 'cBuff'
+value = 660
+rangeX = 16
+rangeY = 48
+cd = 25
+
+frame = [
+    'Parents_Skill02_001',
+    'setBuff = 18',
+]
+
+[Skill03]
+type = 'cAttack'
+value = 300
+rangeX = 32
+rangeY = 48
+cd = 25
+
+frame = [
+    'Parents_Skill03_001',
+    'Parents_Skill03_002',
+]
+
+[Spc01]
+anim = {base = 'Walk'}
+frame = [
+    'Parents_Skill10_001',
+]
+
+[Spc02]
+type = 'cAttack'
+value = 1960
+
+frame = [
+    'Parents_Skill11_001',
+    'Parents_Skill11_002',
+    'Parents_Skill11_003',
+    'setHit = ct_hit',
+    'setDSound = Audio/Effect/blade_damage.ogg',
+    'Parents_Skill11_004',
+    'setDelay = 190',
+    'setActionResume = 20',
+]

@@ -1,0 +1,39 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'FakeDeidara'
+
+[Idle]
+frame = [
+    'Deidara_Skill03_02',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 2260
+rangeX = 96
+rangeY = 48
+
+frame = [
+    'setSound = Audio/Deidara/deidara_skill3.ogg',
+    'Deidara_Skill03_02',
+    'Deidara_Skill03_04',
+    'Deidara_Skill03_05',
+    'Deidara_Skill03_06',
+    'Deidara_Skill03_07',
+    'setSound = Audio/Effect/bom.ogg',
+    'setHit = a_hit',
+    'Deidara_Skill03_08',
+    'Deidara_Skill03_09',
+    'Deidara_Skill03_10',
+    'Deidara_Skill03_11',
+    'Deidara_Skill03_12',
+    'Deidara_Skill03_13',
+    'Deidara_Skill03_14',
+    'Deidara_Skill03_15',
+    'setDestroy = 0',
+]

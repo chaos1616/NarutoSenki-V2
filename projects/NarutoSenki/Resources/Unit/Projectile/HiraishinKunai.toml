@@ -1,0 +1,40 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'HiraishinKunai'
+
+[Idle]
+frame = [
+    'HiraishinKunai_Move_01',
+    'HiraishinKunai_Move_02',
+    'HiraishinKunai_Move_03',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 240
+rangeX = 32
+rangeY = 0
+anim = {loop = true}
+frame = [
+    'HiraishinKunai_Move_01',
+    'setHit = bl_hit',
+    'setDelay = 10',
+    'HiraishinKunai_Move_02',
+    'setHit = bl_hit',
+    'setDelay = 10',
+    'HiraishinKunai_Move_01',
+    'setHit = bl_hit',
+    'setDelay = 10',
+    'HiraishinKunai_Move_02',
+    'setHit = bl_hit',
+    'setDelay = 10',
+    'HiraishinKunai_Move_03',
+    'setHit = bl_hit',
+    'HiraishinKunai_Move_04',
+    'setHit = bl_hit',
+]

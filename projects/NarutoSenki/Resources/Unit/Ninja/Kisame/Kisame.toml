@@ -1,0 +1,263 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Kisame'
+hp = 6000
+hpBar.y = 85
+speed = 224
+
+[Idle]
+frame = [
+    'Kisame_Idle_001',
+    'Kisame_Idle_002',
+    'Kisame_Idle_003',
+    'Kisame_Idle_004',
+]
+
+[Walk]
+frame = [
+    'Kisame_Walk_01',
+    'Kisame_Walk_02',
+    'Kisame_Walk_03',
+    'Kisame_Walk_04',
+    'Kisame_Walk_05',
+    'Kisame_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Kisame_Hurt_01',
+    'Kisame_Hurt_02',
+    'setSound = Audio/Kisame/Kisame_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Kisame_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Kisame_Knockdown_01',
+    'setDelay = 10',
+    'Kisame_Knockdown_02',
+    'Kisame_Knockdown_03',
+    'setDelay = 60',
+    'Kisame_Knockdown_04',
+]
+
+[Float]
+frame = [
+    'Kisame_Float_01',
+    'setDelay = 10',
+    'Kisame_Float_02',
+    'setDelay = 10',
+    'Kisame_Float_03',
+]
+
+[Dead]
+frame = [
+    'Kisame_Knockdown_02',
+    'Kisame_Knockdown_03',
+    'setSound = Audio/Kisame/Kisame_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 80
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Kisame_NAttack_01',
+    'Kisame_NAttack_02',
+    'setDelay = 10',
+    'Kisame_NAttack_03',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Kisame_NAttack_04',
+    'Kisame_NAttack_05',
+    'Kisame_NAttack_06',
+    'setMove = 8',
+    'setDelay = 10',
+    'Kisame_NAttack_07',
+    'setHit =  -->n_hit',
+    'setDelay = 10',
+    'Kisame_NAttack_08',
+    'Kisame_NAttack_09',
+    'setSound = Audio/Kisame/Kisame_combo.ogg',
+    'setMove = 16',
+    'setDelay = 10',
+    'Kisame_NAttack_10',
+    'setHit = l_hit',
+    'setSound = Audio/Effect/kong.ogg',
+    'setDelay = 10',
+]
+
+[Skill01]
+type = 'Summon'
+value = 460
+cd = 10
+combatPoint = 1040
+
+frame = [
+    'setSound = Audio/Kisame/Kisame_skill1.ogg',
+    'Kisame_Skill01_001',
+    'setMon = Shark2',
+    'setDelay = 40',
+]
+
+[Skill02]
+type = 'Summon'
+cd = 15
+combatPoint = 1840
+
+frame = [
+    'setSound = Audio/Kisame/Kisame_skill2.ogg',
+    'Kisame_Skill02_004',
+    'setMon = Shark',
+    'Kisame_Skill02_005',
+    'setDelay = 50',
+]
+
+[Skill03]
+type = 'cBuff'
+cd = 25
+combatPoint = 3440
+
+frame = [
+    'setSound = Audio/Kisame/Kisame_skill3.ogg',
+    'Kisame_Skill03_001',
+    'setDelay = 10',
+    'Kisame_Skill03_002',
+    'Kisame_Skill03_003',
+    'Kisame_Skill03_004',
+    'Kisame_Skill03_005',
+    'setBuff = 17',
+    'setDelay = 20',
+]
+
+[Skill04]
+type = 'Summon'
+rangeX = 0
+rangeY = 3
+combatPoint = 3440
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Kisame_Skill04_001',
+    'setJump = true',
+    'setSound = Audio/Kisame/Kisame_skill4.ogg',
+    'Kisame_Skill04_001',
+    'setDelay = 10',
+    'setMon = Steam',
+    'setDelay = 10',
+    'setSound = Audio/Effect/water_effect.ogg',
+    'stopJump = 40',
+    'Kisame_Skill04_002',
+    'Kisame_Skill04_003',
+    'setDelay = 20',
+    'Kisame_Skill04_004',
+    'setDelay = 10',
+]
+
+[Skill05]
+type = 'aAttack'
+value = 1160
+rangeX = 0
+rangeY = 48
+combatPoint = 9280
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setCmd = setInvincible',
+    'Kisame_Skill05_02',
+    'setOugis = 10',
+    'Kisame_Skill05_01',
+    'Kisame_Skill05_03',
+    'Kisame_Skill05_04',
+    'Kisame_Skill05_05',
+    'setChargeB = 280',
+    'Kisame_Skill05_06',
+    'setSound = Audio/Kisame/Kisame_skill5.ogg',
+    'setHit = o_hit',
+    'Kisame_Skill05_07',
+    'Kisame_Skill05_08',
+    'setHit = o_hit',
+    'Kisame_Skill05_09',
+    'Kisame_Skill05_10',
+    'setHit = o_hit',
+    'setChargeB = 280',
+    'Kisame_Skill05_06',
+    'Kisame_Skill05_07',
+    'setHit = o_hit',
+    'Kisame_Skill05_08',
+    'Kisame_Skill05_09',
+    'setHit = o_hit',
+    'Kisame_Skill05_10',
+    'setChargeB = 280',
+    'Kisame_Skill05_06',
+    'setHit = o_hit',
+    'Kisame_Skill05_07',
+    'Kisame_Skill05_08',
+    'setHit = o_hit',
+    'Kisame_Skill05_09',
+    'Kisame_Skill05_10',
+    'setHit = f_hit',
+    'setDSound = Audio/Effect/damage_o2.ogg',
+    'setChargeB = 192',
+    'Kisame_Skill05_05',
+    'Kisame_Skill05_04',
+    'Kisame_Skill05_11',
+    'Kisame_Skill05_12',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+rangeX = 32
+rangeY = 48
+anim = {base = 'Idle'}
+frame = [
+    'Kisame_Skill10_001',
+    'Kisame_Skill10_002',
+    'Kisame_Skill10_003',
+    'Kisame_Skill10_004',
+]
+
+[Spc02]
+anim = {base = 'Walk'}
+frame = [
+    'Kisame_Skill11_001',
+    'Kisame_Skill11_002',
+    'Kisame_Skill11_003',
+    'Kisame_Skill11_004',
+    'Kisame_Skill11_005',
+    'Kisame_Skill11_005',
+]
+
+[Spc03]
+type = 'cAttack'
+anim = {base = 'NAttack'}
+frame = [
+    'Kisame_Skill12_001',
+    'setSound = Audio/Kisame/Kisame_skill10.ogg',
+    'Kisame_Skill12_002',
+    'setCharge = 280',
+    'Kisame_Skill12_003',
+    'setHit = o_hit',
+    'Kisame_Skill12_004',
+    'Kisame_Skill12_005',
+    'setSound = Audio/Kisame/Kisame_skill10_1.ogg',
+    'setHit = ab_hit',
+    'Kisame_Skill12_006',
+    'Kisame_Skill12_007',
+    'setHit = ab_hit',
+    'Kisame_Skill12_008',
+    'setHit = ac_hit',
+    'setActionResume = 20',
+]

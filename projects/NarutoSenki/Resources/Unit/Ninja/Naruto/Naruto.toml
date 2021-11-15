@@ -1,0 +1,304 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Naruto'
+hp = 6500
+hpBar.y = 68
+speed = 224
+
+[Idle]
+frame = [
+    'Naruto_Idle_001',
+    'Naruto_Idle_002',
+    'Naruto_Idle_003',
+    'Naruto_Idle_004',
+]
+
+[Walk]
+frame = [
+    'Naruto_Walk_01',
+    'Naruto_Walk_02',
+    'Naruto_Walk_03',
+    'Naruto_Walk_04',
+    'Naruto_Walk_05',
+    'Naruto_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Naruto_Hurt_01',
+    'Naruto_Hurt_02',
+    'setSound = Audio/Naruto/naruto_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Naruto_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Naruto_Knockdown_01',
+    'Naruto_Knockdown_02',
+    'setDelay = 10',
+    'Naruto_Knockdown_03',
+    'setDelay = 60',
+    'Naruto_Knockdown_04',
+    'Naruto_Knockdown_05',
+    'Naruto_Knockdown_06',
+]
+
+[Float]
+frame = [
+    'Naruto_Float_01',
+    'setDelay = 10',
+    'Naruto_Float_02',
+    'setDelay = 10',
+    'Naruto_Float_03',
+]
+
+[Dead]
+frame = [
+    'Naruto_Knockdown_01',
+    'Naruto_Knockdown_02',
+    'Naruto_Knockdown_03',
+    'setSound = Audio/Naruto/naruto_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 100
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Naruto_NAttack_01',
+    'Naruto_NAttack_02',
+    'Naruto_NAttack_03',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Naruto_NAttack_04',
+    'Naruto_NAttack_05',
+    'Naruto_NAttack_06',
+    'Naruto_NAttack_07',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'Naruto_NAttack_08',
+    'setMove = 16',
+    'Naruto_NAttack_09',
+    'Naruto_NAttack_10',
+    'Naruto_NAttack_11',
+    'setSound = Audio/Naruto/naruto_combo.ogg',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setHit = l_hit',
+]
+
+[Skill01]
+type = 'cAttack'
+value = 660
+rangeX = 16
+rangeY = 48
+cd = 10
+combatPoint = 1320
+
+frame = [
+    'setSound = Audio/Effect/rasen.ogg',
+    'Naruto_Skill01_02',
+    'Naruto_Skill01_03',
+    'setSkillEffect = smk',
+    'Naruto_Skill01_05',
+    'setCharge = 280',
+    'Naruto_Skill01_06',
+    'setDelay = 10',
+    'setSound = Audio/Naruto/naruto_skill1.ogg',
+    'Naruto_Skill01_07',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'setDelay = 10',
+    'Naruto_Skill01_08',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'setDelay = 10',
+    'Naruto_Skill01_09',
+]
+
+[Skill02]
+type = 'Summon'
+rangeX = 0
+rangeY = 10
+cd = 15
+
+frame = [
+    'setSound = Audio/Naruto/naruto_skill2.ogg',
+    'Naruto_Skill02_02',
+    'Naruto_Skill02_03',
+    'Naruto_Skill02_04',
+    'setDelay = 10',
+    'setClone = 10',
+]
+
+[Skill03]
+type = 'cAttack'
+value = 660
+rangeX = 0
+rangeY = 48
+cd = 25
+combatPoint = 1980
+
+frame = [
+    'setSound = Audio/Naruto/naruto_skill3.ogg',
+    'Naruto_Skill03_02',
+    'Naruto_Skill03_04',
+    'Naruto_Skill03_05',
+    'Naruto_Skill03_07',
+    'setCharge = 280',
+    'Naruto_Skill03_08',
+    'setDelay = 10',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'Naruto_Skill03_09',
+    'Naruto_Skill03_10',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'Naruto_Skill03_11',
+    'Naruto_Skill03_12',
+    'setHit = b_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+]
+
+[Skill04]
+type = 'oAttack'
+value = 360
+rangeX = 0
+rangeY = 48
+combatPoint = 2880
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Naruto_Skill05_005',
+    'setSound = Audio/Effect/poof.ogg',
+    'Naruto_Skill05_008',
+    'setShadow = 10',
+    'Naruto_Skill05_009',
+    'setShadow = 10',
+    'Naruto_Skill05_010',
+    'setShadow = 10',
+    'setSound = Audio/Effect/poof.ogg',
+    'setSound = Audio/Naruto/naruto_skill4.ogg',
+    'Naruto_Skill05_011',
+    'setShadow = 10',
+    'setHit = o_hit',
+    'setDSound = Audio/Effect/damage_o.ogg',
+    'Naruto_Skill05_012',
+    'setShadow = 10',
+    'Naruto_Skill05_013',
+    'setShadow = 10',
+    'Naruto_Skill05_014',
+    'setShadow = 10',
+    'Naruto_Skill05_015',
+    'setShadow = 10',
+    'setCmd = setInvincible',
+    'Naruto_Skill05_016',
+    'setShadow = 10',
+    'setHit = f_hit',
+    'setDSound = Audio/Effect/damage_o2.ogg',
+    'Naruto_Skill05_017',
+    'setShadow = 10',
+    'Naruto_Skill05_018',
+    'setShadow = 10',
+    'setSound = Audio/Effect/rasen.ogg',
+    'Naruto_Skill05_019',
+    'setShadow = 10',
+    'Naruto_Skill05_020',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'Naruto_Skill05_021',
+    'setHit = ac_hit',
+    'Naruto_Skill05_022',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'Naruto_Skill05_023',
+    'setSound = Audio/Naruto/naruto_skill4_1.ogg',
+    'setHit = ac_hit',
+    'Naruto_Skill05_024',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_rasen.ogg',
+    'setCmd = reInvincible',
+]
+
+[Skill05]
+type = 'cBuff'
+rangeX = 0
+rangeY = 9
+combatPoint = 5000
+
+frame = [
+    'setCmd = setInvincible',
+    'setSound = Audio/Effect/ougis.ogg',
+    'Naruto_Skill04_001',
+    'setDelay = 10',
+    'Naruto_Skill04_002',
+    'setOugis = 10',
+    'Naruto_Skill04_003',
+    'setBuff = 17',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+anim = {base = 'Idle'}
+frame = [
+    'Naruto_Skill10_001',
+    'setDelay = 10',
+    'Naruto_Skill10_002',
+    'setDelay = 10',
+    'Naruto_Skill10_003',
+]
+
+[Spc02]
+anim = {base = 'Walk'}
+frame = [
+    'Naruto_Skill11_001',
+    'setShadow = 10',
+    'Naruto_Skill11_002',
+    'Naruto_Skill11_003',
+    'setShadow = 10',
+    'Naruto_Skill11_004',
+    'setDelay = 10',
+]
+
+[Spc03]
+type = 'aAttack'
+rangeX = 0
+rangeY = 48
+anim = {base = 'NAttack'}
+frame = [
+    'Naruto_Skill12_001',
+    'setSound = Audio/Naruto/naruto_skill12.ogg',
+    'Naruto_Skill12_002',
+    'Naruto_Skill12_003',
+    'setChargeB = 128',
+    'Naruto_Skill12_004',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'Naruto_Skill12_005',
+    'Naruto_Skill12_006',
+    'Naruto_Skill12_007',
+]
+
+[Spc04]
+anim = {base = 'Knockdown'}
+frame = [
+    'setCmd = setInvincible',
+    'Naruto_Skill04_001',
+    'Naruto_Skill13_001',
+    'Naruto_Skill13_002',
+    'setSound = Audio/Naruto/naruto_skill5.ogg',
+    'setSkillEffect = smk',
+    'setTransform = 40',
+    'setCmd = reInvincible',
+]

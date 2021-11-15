@@ -1,0 +1,253 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Kimimaro'
+hp = 5500
+hpBar.y = 80
+speed = 224
+
+[Idle]
+frame = [
+    'Kimimaro_Idle_01',
+    'Kimimaro_Idle_02',
+    'Kimimaro_Idle_03',
+    'Kimimaro_Idle_04',
+    'Kimimaro_Idle_05',
+]
+
+[Walk]
+frame = [
+    'Kimimaro_Walk_01',
+    'Kimimaro_Walk_02',
+    'Kimimaro_Walk_03',
+    'Kimimaro_Walk_04',
+    'Kimimaro_Walk_05',
+    'Kimimaro_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Kimimaro_Hurt_01',
+    'Kimimaro_Hurt_02',
+    'setSound = Audio/Kimimaro/Kimimaro_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Kimimaro_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Kimimaro_Knockdown_01',
+    'setDelay = 10',
+    'Kimimaro_Knockdown_02',
+    'setDelay = 60',
+    'Kimimaro_Knockdown_03',
+    'Kimimaro_Knockdown_04',
+]
+
+[Float]
+frame = [
+    'Kimimaro_Float_01',
+    'setDelay = 10',
+    'Kimimaro_Float_02',
+    'setDelay = 10',
+    'Kimimaro_Float_03',
+]
+
+[Dead]
+frame = [
+    'Kimimaro_Knockdown_01',
+    'Kimimaro_Knockdown_02',
+    'setSound = Audio/Kimimaro/Kimimaro_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 0
+rangeY = 16
+
+frame = [
+    'Kimimaro_NAttack_02',
+    'setMove = 8',
+    'Kimimaro_NAttack_03',
+    'setSound = Audio/Effect/kong.ogg',
+    'setHit = n_hit',
+    'Kimimaro_NAttack_01',
+    'Kimimaro_NAttack_04',
+    'Kimimaro_NAttack_05',
+    'setSound = Audio/Kimimaro/Kimimaro_combo.ogg',
+    'setMove = 16',
+    'Kimimaro_NAttack_06',
+    'setSound = Audio/Effect/kong.ogg',
+    'setHit = bl_hit',
+    'setDelay = 10',
+    'setHit = bl_hit',
+    'setDelay = 10',
+]
+
+[Skill01]
+type = 'cAttack'
+value = 460
+rangeX = 64
+rangeY = 32
+cd = 10
+
+frame = [
+    'Kimimaro_Skill01_01',
+    'setSound = Audio/Kimimaro/Kimimaro_skill1.ogg',
+    'Kimimaro_Skill01_02',
+    'Kimimaro_Skill01_03',
+    'Kimimaro_Skill01_04',
+    'Kimimaro_Skill01_05',
+    'Kimimaro_Skill01_06',
+    'setBullet = BoneBullet',
+    'setDelay = 40',
+]
+
+[Skill02]
+type = 'Bullet'
+rangeX = 0
+rangeY = 10
+cd = 15
+
+frame = [
+    'Kimimaro_Skill02_01',
+    'setSound = Audio/Kimimaro/Kimimaro_skill2.ogg',
+    'setDelay = 10',
+    'Kimimaro_Skill02_02',
+    'setBullet = Bone',
+    'setDelay = 10',
+]
+
+[Skill03]
+type = 'aAttack'
+value = 560
+rangeX = 0
+rangeY = 32
+cd = 25
+
+frame = [
+    'setSound = Audio/Kimimaro/Kimimaro_skill3.ogg',
+    'Kimimaro_Skill03_01',
+    'setHit = c_hit',
+    'setSound = Audio/Effect/blade_damage2.ogg',
+    'setMove = 32',
+    'Kimimaro_Skill03_02',
+    'Kimimaro_Skill03_03',
+    'setHit = l_hit',
+    'setSound = Audio/Effect/blade_damage2.ogg',
+    'Kimimaro_Skill03_04',
+    'setMove = 16',
+    'Kimimaro_Skill03_05',
+    'setHit = c_hit',
+    'setSound = Audio/Effect/blade_damage2.ogg',
+    'Kimimaro_Skill03_06',
+    'Kimimaro_Skill03_07',
+    'setHit = l_hit',
+    'setSound = Audio/Effect/blade_damage2.ogg',
+    'setMove = 16',
+    'Kimimaro_Skill03_08',
+    'Kimimaro_Skill03_09',
+    'setHit = c_hit',
+    'setSound = Audio/Effect/blade_damage2.ogg',
+    'Kimimaro_Skill03_10',
+    'setMove = 16',
+    'Kimimaro_Skill03_11',
+    'setHit = l_hit',
+    'setSound = Audio/Effect/blade_damage2.ogg',
+    'Kimimaro_Skill03_12',
+    'Kimimaro_Skill03_13',
+]
+
+[Skill04]
+type = 'aAttack'
+value = 860
+rangeX = 0
+rangeY = 32
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Kimimaro_Skill04_01',
+    'setSound = Audio/Kimimaro/Kimimaro_skill4_1.ogg',
+    'Kimimaro_Skill04_001',
+    'Kimimaro_Skill04_002',
+    'Kimimaro_Skill04_02',
+    'Kimimaro_Skill04_03',
+    'Kimimaro_Skill04_04',
+    'Kimimaro_Skill04_05',
+    'Kimimaro_Skill04_06',
+    'setSound = Audio/Kimimaro/Kimimaro_skill4_2.ogg',
+    'setHit = o_hit',
+    'setChargeB = 224',
+    'Kimimaro_Skill04_07',
+    'Kimimaro_Skill04_08',
+    'setHit = o_hit',
+    'setChargeB = 224',
+    'Kimimaro_Skill04_05',
+    'Kimimaro_Skill04_06',
+    'setHit = o_hit',
+    'setChargeB = 224',
+    'Kimimaro_Skill04_07',
+    'Kimimaro_Skill04_08',
+    'setHit = o_hit',
+    'setChargeB = 224',
+    'Kimimaro_Skill04_09',
+    'Kimimaro_Skill04_10',
+    'Kimimaro_Skill04_11',
+    'Kimimaro_Skill04_12',
+    'Kimimaro_Skill04_13',
+    'Kimimaro_Skill04_02',
+    'Kimimaro_Skill04_002',
+    'Kimimaro_Skill04_001',
+    'Kimimaro_Skill04_01',
+]
+
+[Skill05]
+type = 'aAttack'
+value = 2200
+rangeX = 0
+rangeY = 48
+combatPoint = 8000
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Kimimaro_Skill05_001',
+    'setCmd = setInvincible',
+    'setOugis = 10',
+    'Kimimaro_Skill05_002',
+    'Kimimaro_Skill05_01',
+    'Kimimaro_Skill05_02',
+    'Kimimaro_Skill05_03',
+    'setSound = Audio/Kimimaro/Kimimaro_skill5.ogg',
+    'Kimimaro_Skill05_04',
+    'Kimimaro_Skill05_05',
+    'Kimimaro_Skill05_06',
+    'setHit = c_hit',
+    'Kimimaro_Skill05_07',
+    'setHit = c_hit',
+    'Kimimaro_Skill05_08',
+    'setHit = c_hit',
+    'Kimimaro_Skill05_09',
+    'setHit = c_hit',
+    'Kimimaro_Skill05_04',
+    'Kimimaro_Skill05_03',
+    'Kimimaro_Skill05_02',
+    'Kimimaro_Skill05_01',
+    'Kimimaro_Skill05_10',
+    '          Jugo_Skill05_16',
+    '          Jugo_Skill05_17',
+    'setSound =             Audio/Jugo/Jugo_skill11.ogg',
+    '          Jugo_Skill05_18',
+    'setDelay =           20',
+    '             Jugo_Skill05_14',
+    'setTransform =           40',
+    'setCmd =         -->reInvincible',
+]

@@ -182,7 +182,7 @@ class Deidara : public Hero
 	{
 		if (_skillChangeBuffValue == 17)
 		{
-			setNAttackAction(createAnimation(skillSPC1Array, 10, false, true));
+			setActionTo<ActionFlag::NAttack, ActionFlag::Spc01>();
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
@@ -194,8 +194,8 @@ class Deidara : public Hero
 
 			lockOugisButtons();
 
-			setIdleAction(createAnimation(skillSPC2Array, 5, true, false));
-			setWalkAction(createAnimation(skillSPC3Array, 5, true, false));
+			setActionTo<ActionFlag::Idle, ActionFlag::Spc02>();
+			setActionTo<ActionFlag::Walk, ActionFlag::Spc03>();
 
 			if (_hpBar)
 			{
@@ -209,7 +209,7 @@ class Deidara : public Hero
 	{
 		if (_skillChangeBuffValue == 17)
 		{
-			setNAttackAction(createAnimation(nattackArray, 10, false, true));
+			setActionTo<ActionFlag::NAttack, ActionFlag::NAttack>();
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
@@ -220,8 +220,8 @@ class Deidara : public Hero
 
 			unlockOugisButtons();
 
-			setIdleAction(createAnimation(idleArray, 5, true, false));
-			setWalkAction(createAnimation(walkArray, 10, true, false));
+			setActionTo<ActionFlag::Idle, ActionFlag::Idle>();
+			setActionTo<ActionFlag::Walk, ActionFlag::Walk>();
 
 			if (_state != State::DEAD)
 			{
@@ -230,7 +230,7 @@ class Deidara : public Hero
 			}
 			if (_hpBar)
 			{
-				_hpBar->setPositionY(getHeight());
+				_hpBar->setPositionY(getHPBarHeight());
 			}
 
 			unschedule(schedule_selector(Deidara::setMonPer));
@@ -247,7 +247,7 @@ class Deidara : public Hero
 
 		if (_skillChangeBuffValue == 17)
 		{
-			setNAttackAction(createAnimation(nattackArray, 10, false, true));
+			setActionTo<ActionFlag::NAttack, ActionFlag::NAttack>();
 		}
 		else if (_skillChangeBuffValue == 18)
 		{
@@ -258,12 +258,12 @@ class Deidara : public Hero
 
 			unlockOugisButtons();
 
-			setIdleAction(createAnimation(idleArray, 5, true, false));
-			setWalkAction(createAnimation(walkArray, 10, true, false));
+			setActionTo<ActionFlag::Idle, ActionFlag::Idle>();
+			setActionTo<ActionFlag::Walk, ActionFlag::Walk>();
 
 			if (_hpBar)
 			{
-				_hpBar->setPositionY(getHeight());
+				_hpBar->setPositionY(getHPBarHeight());
 			}
 			unschedule(schedule_selector(Deidara::setMonPer));
 		}

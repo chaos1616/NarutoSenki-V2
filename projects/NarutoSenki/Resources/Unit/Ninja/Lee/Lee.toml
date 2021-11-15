@@ -1,0 +1,283 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Lee'
+hp = 5500
+hpBar.y = 72
+speed = 224
+
+[Idle]
+frame = [
+    'Lee_Idle_01',
+    'Lee_Idle_02',
+    'Lee_Idle_03',
+    'Lee_Idle_04',
+]
+
+[Walk]
+frame = [
+    'Lee_Walk_01',
+    'Lee_Walk_02',
+    'Lee_Walk_03',
+    'Lee_Walk_04',
+    'Lee_Walk_05',
+    'Lee_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Lee_Hurt_01',
+    'Lee_Hurt_02',
+    'setSound = Audio/Lee/Lee_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Lee_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Lee_Knockdown_01',
+    'Lee_Knockdown_02',
+    'setDelay = 10',
+    'Lee_Knockdown_03',
+    'setDelay = 60',
+    'Lee_Knockdown_04',
+]
+
+[Float]
+frame = [
+    'Lee_Float_01',
+    'setDelay = 10',
+    'Lee_Float_02',
+    'setDelay = 10',
+    'Lee_Float_03',
+]
+
+[Dead]
+frame = [
+    'Lee_Knockdown_01',
+    'Lee_Knockdown_02',
+    'Lee_Knockdown_03',
+    'setSound = Audio/Lee/Lee_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 0
+rangeY = 16
+
+frame = [
+    'Lee_NAttack_01',
+    'Lee_NAttack_02',
+    'Lee_NAttack_03',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Lee_NAttack_04',
+    'Lee_NAttack_05',
+    'Lee_NAttack_06',
+    'setMove = 8',
+    'Lee_NAttack_07',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'Lee_NAttack_08',
+    'Lee_NAttack_09',
+    'Lee_NAttack_10',
+    'Lee_NAttack_11',
+    'setSound = Audio/Lee/Lee_combo.ogg',
+    'setMove = 16',
+    'Lee_NAttack_12',
+    'Lee_NAttack_13',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setHit = l_hit',
+    'Lee_NAttack_14',
+    'Lee_NAttack_15',
+]
+
+[Skill01]
+type = 'cBuff'
+cd = 15
+
+frame = [
+    'setSound = Audio/Lee/Lee_skill1.ogg',
+    'Lee_Skill03_001',
+    'Lee_Skill03_002',
+    'Lee_Skill03_003',
+    'setBuff = 17',
+]
+
+[Skill02]
+type = 'aAttack'
+value = 560
+rangeX = 0
+rangeY = 48
+cd = 15
+combatPoint = 1120
+
+frame = [
+    'setSound = Audio/Lee/Lee_skill2.ogg',
+    'Lee_Skill01_001',
+    'Lee_Skill01_002',
+    'setChargeB = 96',
+    'Lee_Skill01_003',
+    'Lee_Skill01_004',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'Lee_Skill01_005',
+    'Lee_Skill01_002',
+    'setChargeB = 96',
+    'Lee_Skill01_003',
+    'Lee_Skill01_004',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'Lee_Skill01_006',
+    'Lee_Skill01_007',
+]
+
+[Skill03]
+type = 'aAttack'
+value = 360
+rangeX = 0
+rangeY = 48
+cd = 25
+combatPoint = 2520
+
+frame = [
+    'Lee_Skill02_001',
+    'Lee_Skill02_002',
+    'setHit = c_hit',
+    'setSound = Audio/Lee/Lee_skill3_2.ogg',
+    'Lee_Skill02_003',
+    'setDSound = Audio/Lee/Lee_skill3_3.ogg',
+    'Lee_Skill02_004',
+    'setHit = c_hit',
+    'Lee_Skill02_005',
+    'Lee_Skill02_006',
+    'setHit = c_hit',
+    'setDSound = Audio/Lee/Lee_skill3_3.ogg',
+    'Lee_Skill02_007',
+    'Lee_Skill02_008',
+    'setHit = c_hit',
+    'Lee_Skill02_009',
+    'setDSound = Audio/Lee/Lee_skill3_3.ogg',
+    'Lee_Skill02_010',
+    'setHit = f_hit',
+    'Lee_Skill02_011',
+    'setJump = true',
+    'Lee_Skill02_012',
+    'setSound = Audio/Lee/Lee_skill3_1.ogg',
+    'setDelay = 10',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Lee_Skill02_013',
+    'setDelay = 10',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Lee_Skill02_014',
+    'Lee_Skill02_015',
+    'Lee_Skill02_016',
+    'setDelay = 20',
+]
+
+[Skill04]
+type = 'aAttack'
+value = 1560
+rangeX = 0
+rangeY = 48
+combatPoint = 3120
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Lee_Skill04_01',
+    'Lee_Skill04_02',
+    'setSound = Audio/Lee/Lee_skill4_1.ogg',
+    'Lee_Skill04_001',
+    'setCmd = setInvincible',
+    'setHit = ct_hit',
+    'Lee_Skill04_002',
+    'setDelay = 10',
+    'Lee_Skill04_003',
+    'Lee_Skill04_004',
+    'Lee_Skill04_005',
+    'Lee_Skill04_006',
+    'Lee_Skill04_007',
+    'Lee_Skill04_008',
+    'setSound = Audio/Lee/Lee_skill4_2.ogg',
+    'Lee_Skill04_009',
+    'Lee_Skill04_010',
+    'setCmd = reInvincible',
+    'Lee_Skill04_011',
+    'Lee_Skill04_012',
+    'setSound = Audio/Effect/break_sound3.ogg',
+    'setHit = f_hit',
+    'Lee_Skill04_013',
+    'Lee_Skill04_014',
+]
+
+[Skill05]
+type = 'aAttack'
+value = 660
+rangeX = 0
+rangeY = 48
+combatPoint = 8000
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Lee_Skill06_001',
+    'setCmd = setInvincible',
+    'setDSound = Audio/Effect/damage_k.ogg',
+    'Lee_Skill06_002',
+    'setSound = Audio/Lee/Lee_skill5_1.ogg',
+    'Lee_Skill06_003',
+    'Lee_Skill06_004',
+    'setSound = Audio/Lee/Lee_skill5_2.ogg',
+    'setCmd = findTarget',
+    'setCmd = setTransport',
+    'setHit = f_hit',
+    'Lee_Skill05_001',
+    'setSound = Audio/Lee/Lee_skill10.ogg',
+    'setHit = ac_hit',
+    'Lee_Skill05_002',
+    'Lee_Skill05_003',
+    'setHit = ac_hit',
+    'setSound = Audio/Effect/damage_i.ogg',
+    'Lee_Skill05_004',
+    'Lee_Skill05_005',
+    'setHit = c_hit',
+    'setSound = Audio/Effect/damage_i.ogg',
+    'Lee_Skill05_006',
+    'Lee_Skill05_007',
+    'setHit = ac_hit',
+    'setSound = Audio/Effect/damage_i.ogg',
+    'Lee_Skill05_008',
+    'Lee_Skill05_009',
+    'setHit = ac_hit',
+    'setDSound = Audio/Effect/damage_i.ogg',
+    'Lee_Skill05_010',
+    'Lee_Skill05_011',
+    'setHit = ac_hit',
+    'setSound = Audio/Effect/damage_i.ogg',
+    'Lee_Skill05_012',
+    'Lee_Skill05_013',
+    'setHit = c_hit',
+    'setSound = Audio/Effect/damage_i.ogg',
+    'Lee_Skill05_014',
+    'Lee_Skill05_015',
+    'setOugis = 10',
+    'Lee_Skill05_016',
+    'Lee_Skill05_017',
+    'Lee_Skill05_018',
+    'setSound = Audio/Effect/break_sound3.ogg',
+    'setMon = LeeBom',
+    'Lee_Skill05_019',
+    'setDelay = 30',
+    'Lee_Skill05_020',
+    'setCmd = reInvincible',
+]

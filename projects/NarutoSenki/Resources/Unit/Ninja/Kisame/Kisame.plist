@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{43,95}</string>
             </dict>
-            <key>Kisame_KnockDown_01</key>
+            <key>Kisame_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{917,92},{103,60}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{103,60}</string>
             </dict>
-            <key>Kisame_KnockDown_02</key>
+            <key>Kisame_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{752,468},{87,49}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{87,49}</string>
             </dict>
-            <key>Kisame_KnockDown_03</key>
+            <key>Kisame_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{273,328},{96,25}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{96,25}</string>
             </dict>
-            <key>Kisame_KnockDown_04</key>
+            <key>Kisame_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{754,288},{78,51}}</string>

@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{40,67}</string>
             </dict>
-            <key>Lee_KnockDown_01</key>
+            <key>Lee_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{330,542},{55,37}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{55,37}</string>
             </dict>
-            <key>Lee_KnockDown_02</key>
+            <key>Lee_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{798,496},{68,39}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{68,39}</string>
             </dict>
-            <key>Lee_KnockDown_03</key>
+            <key>Lee_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{993,475},{71,25}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{71,25}</string>
             </dict>
-            <key>Lee_KnockDown_04</key>
+            <key>Lee_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{171,136},{35,50}}</string>

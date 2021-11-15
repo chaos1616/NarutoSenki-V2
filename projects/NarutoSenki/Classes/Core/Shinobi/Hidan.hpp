@@ -200,9 +200,9 @@ class Hidan : public Hero
 		_isArmored = true;
 		_isTaunt = true;
 		_isOnlySkillLocked = true;
-		setIdleAction(createAnimation(skillSPC1Array, 5, true, false));
-		setWalkAction(createAnimation(skillSPC2Array, 10, true, false));
-		setNAttackAction(createAnimation(skillSPC3Array, 10, false, true));
+		setActionTo<ActionFlag::Idle, ActionFlag::Spc01>();
+		setActionTo<ActionFlag::Walk, ActionFlag::Spc02>();
+		setActionTo<ActionFlag::NAttack, ActionFlag::Spc03>();
 
 		lockOugisButtons();
 	}
@@ -214,9 +214,9 @@ class Hidan : public Hero
 		_isOnlySkillLocked = false;
 		unlockOugisButtons();
 
-		setNAttackAction(createAnimation(nattackArray, 10, false, true));
-		setIdleAction(createAnimation(idleArray, 5, true, false));
-		setWalkAction(createAnimation(walkArray, 10, true, false));
+		setActionTo<ActionFlag::NAttack, ActionFlag::NAttack>();
+		setActionTo<ActionFlag::Idle, ActionFlag::Idle>();
+		setActionTo<ActionFlag::Walk, ActionFlag::Walk>();
 
 		if (hasMonsterArrayAny())
 		{

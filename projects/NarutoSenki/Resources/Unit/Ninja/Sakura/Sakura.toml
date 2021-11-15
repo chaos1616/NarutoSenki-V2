@@ -1,0 +1,320 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Sakura'
+hp = 6000
+hpBar.y = 70
+speed = 224
+
+[Idle]
+frame = [
+    'Sakura_Idle_01',
+    'Sakura_Idle_02',
+    'Sakura_Idle_03',
+    'Sakura_Idle_04',
+]
+
+[Walk]
+frame = [
+    'Sakura_Walk_01',
+    'Sakura_Walk_02',
+    'Sakura_Walk_03',
+    'Sakura_Walk_04',
+    'Sakura_Walk_05',
+    'Sakura_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Sakura_Hurt_01',
+    'Sakura_Hurt_02',
+    'setSound = Audio/Sakura/sakura_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Sakura_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Sakura_Knockdown_01',
+    'setDelay = 10',
+    'Sakura_Knockdown_02',
+    'Sakura_Knockdown_03',
+    'setDelay = 60',
+    'Sakura_Knockdown_04',
+    'Sakura_Knockdown_05',
+    'Sakura_Knockdown_06',
+    'Sakura_Knockdown_07',
+]
+
+[Float]
+frame = [
+    'Sakura_Float_01',
+    'Sakura_Float_02',
+    'Sakura_Float_03',
+]
+
+[Dead]
+frame = [
+    'Sakura_Knockdown_01',
+    'Sakura_Knockdown_02',
+    'Sakura_Knockdown_03',
+    'setSound = Audio/Sakura/sakura_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 140
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Sakura_NAttack_01',
+    'Sakura_NAttack_02',
+    'Sakura_NAttack_03',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Sakura_NAttack_04',
+    'Sakura_NAttack_05',
+    'Sakura_NAttack_06',
+    'setMove = 8',
+    'Sakura_NAttack_07',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = n_hit',
+    'Sakura_NAttack_04',
+    'Sakura_NAttack_08',
+    'Sakura_NAttack_09',
+    'setSound = Audio/Sakura/sakura_combo.ogg',
+    'Sakura_NAttack_10',
+    'setMove = 16',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setHit = l_hit',
+    'Sakura_NAttack_11',
+    'Sakura_NAttack_12',
+    'Sakura_NAttack_13',
+    'Sakura_NAttack_04',
+]
+
+[Skill01]
+type = 'hBuff'
+rangeX = 0
+rangeY = 10
+cd = 15
+
+frame = [
+    'setSound = Audio/Sakura/sakura_skill1.ogg',
+    'Sakura_Skill01_03',
+    'Sakura_Skill01_05',
+    'setBuff = 600',
+    'Sakura_Skill01_06',
+    'Sakura_Skill01_07',
+    'Sakura_Skill01_08',
+    'Sakura_Skill01_10',
+]
+
+[Skill02]
+type = 'aAttack'
+value = 560
+rangeX = 16
+rangeY = 48
+cd = 10
+combatPoint = 1680
+
+frame = [
+    'Sakura_Skill02_01',
+    'setSound = Audio/Sakura/sakura_skill2.ogg',
+    'Sakura_Skill02_02',
+    'setSound = Audio/Effect/break_sound.ogg',
+    'setHit = a_hit',
+    'Sakura_Skill02_03',
+    'Sakura_Skill02_04',
+    'setHit = a_hit',
+    'Sakura_Skill02_05',
+    'setHit = a_hit',
+    'Sakura_Skill02_07',
+]
+
+[Skill03]
+type = 'cBuff'
+rangeX = 0
+rangeY = 6
+cd = 25
+
+frame = [
+    'setSound = Audio/Sakura/sakura_skill3.ogg',
+    'Sakura_Skill03_02',
+    'Sakura_Skill03_04',
+    'Sakura_Skill03_05',
+    'Sakura_Skill03_06',
+    'Sakura_Skill03_08',
+    'Sakura_Skill03_10',
+    'setBuff = 17',
+]
+
+[Skill04]
+type = 'aAttack'
+value = 300
+rangeX = 16
+rangeY = 32
+combatPoint = 3780
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Sakura_Skill04_01',
+    'setSound = Audio/Sakura/sakura_skill4_1.ogg',
+    'Sakura_Skill04_02',
+    'Sakura_Skill04_03',
+    'Sakura_Skill04_04',
+    'Sakura_Skill04_05',
+    'setShadow = 10',
+    'setMove = 32',
+    'Sakura_Skill04_06',
+    'setShadow = 10',
+    'setHit = c_hit',
+    'setSound = Audio/Effect/damage_o.ogg',
+    'Sakura_Skill04_07',
+    'setHit = c_hit',
+    'setDelay = 10',
+    'setHit = c_hit',
+    'Sakura_Skill04_08',
+    'Sakura_Skill04_09',
+    'setDelay = 10',
+    'setHit = f_hit',
+    'setSound = Audio/Effect/damage_o2.ogg',
+    'setJump = true',
+    'Sakura_Skill04_10',
+    'setShadow = 10',
+    'setDelay = 10',
+    'setHit = c_hit',
+    'Sakura_Skill04_11',
+    'setShadow = 10',
+    'setHit = c_hit',
+    'setDelay = 10',
+    'Sakura_Skill04_12',
+    'setShadow = 10',
+    'setHit = c_hit',
+    'Sakura_Skill04_13',
+    'setShadow = 10',
+    'setSound = Audio/Sakura/sakura_skill4_2.ogg',
+    'Sakura_Skill04_14',
+    'Sakura_Skill04_15',
+    'setMon = Tuji',
+    'setSound = Audio/Effect/break_sound2.ogg',
+    'setDelay = 20',
+]
+
+[Skill05]
+type = 'aAttack'
+value = 860
+rangeX = 16
+rangeY = 48
+combatPoint = 9020
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setCmd = setInvincible',
+    'Sakura_Skill05_04',
+    'setOugis = 10',
+    'Sakura_Skill05_05',
+    'Sakura_Skill05_06',
+    'setShadow = 10',
+    'Sakura_Skill05_06',
+    'setSound = Audio/Sakura/sakura_skill5.ogg',
+    'Sakura_Skill05_07',
+    'setMove = 32',
+    'Sakura_Skill05_08',
+    'Sakura_Skill05_09',
+    'setSound = Audio/Effect/damage_o.ogg',
+    'setHit = c_hit',
+    'setDelay = 10',
+    'Sakura_Skill05_10',
+    'setHit = o2_hit',
+    'Sakura_Skill05_10_1',
+    'setDelay = 20',
+    'Sakura_Skill05_11',
+    'setMove = 32',
+    'Sakura_Skill05_12',
+    'setShadow = 10',
+    'setSound = Audio/Effect/rush.ogg',
+    'Sakura_Skill05_13',
+    'setShadow = 10',
+    'Sakura_Skill05_14',
+    'setShadow = 10',
+    'Sakura_Skill05_15',
+    'setSound = Audio/Sakura/sakura_skill5_1.ogg',
+    'setHit = c_hit',
+    'Sakura_Skill05_16',
+    'setHit = f_hit',
+    'setJump = true',
+    'setDelay = 10',
+    'Sakura_Skill05_17',
+    'setSound = Audio/Sakura/sakura_skill5_2.ogg',
+    'setHit = ac_hit',
+    'setDelay = 10',
+    'Sakura_Skill05_18',
+    'setHit = ac_hit',
+    'setDelay = 10',
+    'Sakura_Skill05_19',
+    'setHit = ac_hit',
+    'setDelay = 10',
+    'Sakura_Skill05_21',
+    'setDelay = 10',
+    'Sakura_Skill05_22',
+    'setCmd = setTransport',
+    'setDelay = 10',
+    'Sakura_Skill05_23',
+    'setDelay = 10',
+    'Sakura_Skill05_24',
+    'setSound = Audio/Sakura/sakura_skill2.ogg',
+    'setDelay = 10',
+    'Sakura_Skill05_25',
+    'setSound = Audio/Sakura/sakura_skill5_3.ogg',
+    'setMon = SakuraBom',
+    'setDelay = 20',
+    'Sakura_Skill05_26',
+    'setDelay = 20',
+    'setCmd = reTransport',
+    'setSound = Audio/Sakura/sakura_skill5_4.ogg',
+    'Sakura_Skill05_27',
+    'setDelay = 10',
+    'Sakura_Skill05_28',
+    'Sakura_Skill05_29',
+    'setDelay = 20',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+type = 'nAttack'
+rangeX = 16
+rangeY = 48
+cd = 10
+
+frame = [
+    'Sakura_Skill10_001',
+    'Sakura_Skill10_002',
+    'Sakura_Skill10_003',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = l_hit',
+    'Sakura_Skill10_004',
+    'Sakura_Skill10_005',
+    'setMove = 8',
+    'Sakura_Skill10_006',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setHit = l_hit',
+    'Sakura_Skill10_007',
+    'Sakura_Skill10_008',
+    'setSound = Audio/Sakura/sakura_combo2.ogg',
+    'setMove = 8',
+    'Sakura_Skill10_009',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setHit = l_hit',
+    'Sakura_Skill10_010',
+    'Sakura_Skill10_011',
+]

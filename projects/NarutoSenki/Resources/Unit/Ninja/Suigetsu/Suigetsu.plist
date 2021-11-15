@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{49,65}</string>
             </dict>
-            <key>Suigetsu_KnockDown_01</key>
+            <key>Suigetsu_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{137,120},{80,33}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{80,59}</string>
             </dict>
-            <key>Suigetsu_KnockDown_02</key>
+            <key>Suigetsu_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{532,311},{79,19}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{79,59}</string>
             </dict>
-            <key>Suigetsu_KnockDown_03</key>
+            <key>Suigetsu_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{300,243},{81,11}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{81,59}</string>
             </dict>
-            <key>Suigetsu_KnockDown_04</key>
+            <key>Suigetsu_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{764,193},{71,25}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{71,59}</string>
             </dict>
-            <key>Suigetsu_KnockDown_05</key>
+            <key>Suigetsu_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{347,467},{59,45}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{59,59}</string>
             </dict>
-            <key>Suigetsu_KnockDown_06</key>
+            <key>Suigetsu_Knockdown_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{66,631},{49,59}}</string>

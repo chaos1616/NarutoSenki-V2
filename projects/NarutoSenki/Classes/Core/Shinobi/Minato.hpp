@@ -226,7 +226,7 @@ class Minato : public Hero
 	{
 		if (_skillChangeBuffValue == 17)
 		{
-			setSkill1Action(createAnimation(skillSPC1Array, 10, false, true));
+			setActionTo<ActionFlag::Skill01, ActionFlag::Spc01>();
 
 			if (isPlayer())
 			{
@@ -245,7 +245,7 @@ class Minato : public Hero
 			_nAttackRangeX = 16;
 			_nAttackRangeY = 48;
 
-			setNAttackAction(createAnimation(skillSPC3Array, 10, false, true));
+			setActionTo<ActionFlag::NAttack, ActionFlag::Spc03>();
 		}
 	}
 
@@ -254,7 +254,7 @@ class Minato : public Hero
 		setNAttackValue(getNAttackValue() - 200);
 		_nAttackRangeX = 16;
 		_nAttackRangeY = 48;
-		setNAttackAction(createAnimation(nattackArray, 10, false, true));
+		setActionTo<ActionFlag::NAttack, ActionFlag::NAttack>();
 
 		_markPoint = Vec2(0, 0);
 		_startPoint = Vec2(0, 0);
@@ -263,7 +263,7 @@ class Minato : public Hero
 
 	void setActionResume() override
 	{
-		setSkill1Action(createAnimation(skill1Array, 10, false, true));
+		setActionTo<ActionFlag::Skill01, ActionFlag::Skill01>();
 		_skillChangeBuffValue = 0;
 	}
 };

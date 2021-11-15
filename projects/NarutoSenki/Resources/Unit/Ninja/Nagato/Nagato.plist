@@ -185,7 +185,7 @@
                 <key>sourceSize</key>
                 <string>{34,81}</string>
             </dict>
-            <key>Nagato_KnockDown_01</key>
+            <key>Nagato_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{332,291},{77,40}}</string>
@@ -198,7 +198,7 @@
                 <key>sourceSize</key>
                 <string>{77,40}</string>
             </dict>
-            <key>Nagato_KnockDown_02</key>
+            <key>Nagato_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{385,73},{82,35}}</string>
@@ -211,7 +211,7 @@
                 <key>sourceSize</key>
                 <string>{82,35}</string>
             </dict>
-            <key>Nagato_KnockDown_03</key>
+            <key>Nagato_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{149,552},{62,47}}</string>
@@ -224,7 +224,7 @@
                 <key>sourceSize</key>
                 <string>{62,47}</string>
             </dict>
-            <key>Nagato_KnockDown_04</key>
+            <key>Nagato_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{316,514},{52,52}}</string>
@@ -237,7 +237,7 @@
                 <key>sourceSize</key>
                 <string>{52,52}</string>
             </dict>
-            <key>Nagato_KnockDown_05</key>
+            <key>Nagato_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{302,568},{39,66}}</string>

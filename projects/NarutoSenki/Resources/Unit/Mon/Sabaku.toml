@@ -1,0 +1,45 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Sabaku'
+
+[Idle]
+frame = [
+    'Sabaku_Move_03',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 660
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'setCmd = findTarget',
+    'setCmd = setTransport',
+    'Sabaku_Move_03',
+    'setHit = s_hit',
+    'Sabaku_Move_04',
+    'Sabaku_Move_05',
+    'setHit = s_hit',
+    'Sabaku_Move_06',
+    'Sabaku_Move_07',
+    'setHit = s_hit',
+    'Sabaku_Move_08',
+    'Sabaku_Move_09',
+    'setHit = s_hit',
+    'Sabaku_Move_10',
+    'Sabaku_Move_11',
+    'setHit = ct_hit',
+    'Sabaku_Move_12',
+    'Sabaku_Move_13',
+    'Sabaku_Move_14',
+    'Sabaku_Move_15',
+    'Sabaku_Move_16',
+    'setDelay = 250',
+    'setDestroy = 0',
+]

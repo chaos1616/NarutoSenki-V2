@@ -3,18 +3,7 @@
 #include "HudLayer.h"
 #include "LoadLayer.h"
 
-Monster::Monster()
-{
-}
-
-Monster::~Monster()
-{
-	CC_SAFE_RELEASE(idleArray);
-	CC_SAFE_RELEASE(walkArray);
-	CC_SAFE_RELEASE(deadArray);
-	CC_SAFE_RELEASE(nattackArray);
-}
-
+// TODO: Rename to `Skill`
 bool Monster::init()
 {
 	RETURN_FALSE_IF(!Sprite::init());
@@ -32,76 +21,21 @@ void Monster::setID(const string &name, Role role, Group group)
 	setRole(role);
 	setGroup(group);
 
-	CCArray *animationArray = CCArray::create();
-	auto filePath = format("Unit/Mon/{}.xml", name);
-	KTools::readXMLToArray(filePath, animationArray);
+	auto fpath = format("Unit/Mon/{}.toml", name);
+	auto metadata = UnitParser::fromToml(fpath);
+	genActionBy(metadata);
+	// init action
+	setAction(ActionFlag::Idle | ActionFlag::Walk | ActionFlag::Dead | ActionFlag::NAttack);
 
-	CCArray *tmpAction = (CCArray *)(animationArray->objectAtIndex(0));
-	CCArray *tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-	idleArray = (CCArray *)(tmpAction->objectAtIndex(1));
-	idleArray->retain();
-
-	string unitName;
-	uint32_t maxHP;
-	int tmpWidth;
-	int tmpHeight;
-	uint32_t tmpSpeed;
-	int tmpCombatPoint;
-
-	readData(tmpData, unitName, maxHP, tmpWidth, tmpHeight, tmpSpeed, tmpCombatPoint);
-
-	setMaxHPValue(maxHP, false);
-	setHPValue(maxHP, false);
+	setMaxHP(metadata.hp);
+	setHP(metadata.hp);
 	setCKR(0);
 	setCKR2(0);
-	setHeight(tmpHeight);
-	setWalkSpeed(tmpSpeed);
-
-	// init WalkFrame
-	tmpAction = (CCArray *)(animationArray->objectAtIndex(1));
-	walkArray = (CCArray *)(tmpAction->objectAtIndex(1));
-	walkArray->retain();
-
-	// init DeadFrame
-	tmpAction = (CCArray *)(animationArray->objectAtIndex(6));
-	deadArray = (CCArray *)(tmpAction->objectAtIndex(1));
-	deadArray->retain();
-
-	// init nAttack data & Frame Array
-	tmpAction = (CCArray *)(animationArray->objectAtIndex(7));
-	tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
-
-	uint32_t tmpValue;
-	uint32_t tmpCD;
-	readData(tmpData, _nAttackType, tmpValue, _nAttackRangeX, _nAttackRangeY, tmpCD, tmpCombatPoint);
-	setNAttackValue(tmpValue);
-	nattackArray = (CCArray *)(tmpAction->objectAtIndex(1));
-	nattackArray->retain();
-
-	initAction();
+	setHPBarHeight(metadata.hpBarY);
+	setWalkSpeed(metadata.speed);
 }
 
-void Monster::initAction()
-{
-	setIdleAction(createAnimation(idleArray, 5, true, false));
-	setWalkAction(createAnimation(walkArray, 10, true, false));
-	setDeadAction(createAnimation(deadArray, 10, false, false));
-
-	if (getName() == SkillEnum::Kage ||
-		getName() == SkillEnum::KageHand ||
-		getName() == SkillEnum::FutonSRK ||
-		getName() == SkillEnum::FutonSRK2 ||
-		getName() == SkillEnum::Kubi)
-	{
-		setNAttackAction(createAnimation(nattackArray, 10, false, false));
-	}
-	else
-	{
-		setNAttackAction(createAnimation(nattackArray, 10, false, true));
-	}
-}
-
-void Monster::setHPbar()
+void Monster::setHPbar() // Mon does not have hp bar
 {
 	if (getGameLayer()->playerGroup != getGroup())
 	{
@@ -112,7 +46,7 @@ void Monster::setHPbar()
 		_hpBar = HPBar::create("hp_bar_b.png");
 	}
 
-	_hpBar->setPositionY(getHeight());
+	_hpBar->setPositionY(getHPBarHeight());
 	_hpBar->setDelegate(this);
 	addChild(_hpBar);
 	changeHPbar();
@@ -251,6 +185,7 @@ void Monster::setAI(float dt)
 		}
 		else if (abs(sp.x) > 32 || abs(sp.y) > 16)
 		{
+			// Traps AI
 			if (charName != "Dogs" &&
 				charName != "Mine" &&
 				charName != "Traps" &&
@@ -305,7 +240,7 @@ void Monster::dealloc()
 	unschedule(schedule_selector(CharacterBase::setAI));
 	setState(State::DEAD);
 
-	if (getName() == SkillEnum::FutonSRK || getName() == SkillEnum::FutonSRK2)
+	if (getName() == SkillEnum::FutonSRK || getName() == SkillEnum::FutonSRK2) // TODO: improve
 	{
 		auto call = CallFunc::create(std::bind(&Monster::removeFromParent, this));
 		auto seq = newSequence(getDeadAction(), call);
@@ -342,7 +277,7 @@ void Monster::dealloc()
 			_master->removeMon(this);
 	}
 
-	if (getName() == SkillEnum::KageHand || getName() == SkillEnum::Kage)
+	if (getName() == SkillEnum::KageHand || getName() == SkillEnum::Kage) // TODO: improve
 	{
 		auto call = CallFunc::create(std::bind(&Monster::setResume, this));
 		auto call2 = CallFunc::create(std::bind(&Monster::removeFromParent, this));

@@ -1,0 +1,180 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Roshi'
+hp = 120000
+hpBar.y = 78
+speed = 224
+
+[Idle]
+frame = [
+    'Roshi_Idle_001',
+    'Roshi_Idle_002',
+    'Roshi_Idle_003',
+    'Roshi_Idle_004',
+    'Roshi_Idle_005',
+]
+
+[Walk]
+frame = [
+    'Roshi_Walk_01',
+    'setShadow = 10',
+    'Roshi_Walk_02',
+    'Roshi_Walk_03',
+    'setShadow = 10',
+    'Roshi_Walk_04',
+    'Roshi_Walk_05',
+    'setShadow = 10',
+    'Roshi_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Roshi_Hurt_01',
+    'Roshi_Hurt_02',
+]
+
+[AirHurt]
+frame = [
+    'Roshi_AirHurt_001',
+]
+
+[Knockdown]
+frame = [
+    'Roshi_Knockdown_001',
+    'setDelay = 10',
+    'Roshi_Knockdown_002',
+    'Roshi_Knockdown_003',
+    'setDelay = 60',
+]
+
+[Float]
+frame = [
+    'Roshi_Float_001',
+    'setDelay = 10',
+    'Roshi_Float_002',
+    'setDelay = 10',
+    'Roshi_Float_003',
+]
+
+[Dead]
+frame = [
+    'Roshi_Knockdown_001',
+    'Roshi_Knockdown_002',
+    'Roshi_Knockdown_003',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 460
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Roshi_NAttack_001',
+    'setSound = Audio/Roshi/Roshi_combo.ogg',
+    'Roshi_NAttack_002',
+    'setDelay = 10',
+    'Roshi_NAttack_003',
+    'Roshi_NAttack_004',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = l_hit',
+    'setDelay = 10',
+]
+
+[Skill01]
+type = 'cBuff'
+rangeX = 0
+rangeY = 5
+cd = 1
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setCmd = setInvincible',
+    'Roshi_Skill01_001',
+    'setOugis = 10',
+    'Roshi_Skill01_001',
+    'Roshi_Skill01_002',
+    'Roshi_Skill01_003',
+    'Roshi_Skill01_004',
+    'Roshi_Skill01_005',
+    'Roshi_Skill01_006',
+    'Roshi_Skill01_007',
+    'setDelay = 10',
+    'Roshi_Skill01_008',
+    'setDelay = 10',
+    'setBuff = 17',
+    'setCmd = addHP',
+    'setCmd = reInvincible',
+    'Roshi_Skill01_009',
+    'setDelay = 10',
+]
+
+[Skill02]
+type = 'cAttack'
+value = 2560
+rangeX = 0
+rangeY = 48
+cd = 10
+
+frame = [
+    'Roshi_Skill02_001',
+    'Roshi_Skill02_002',
+    'Roshi_Skill02_003',
+    'setSound = Audio/Effect/weishoupao.ogg',
+    'Roshi_Skill02_004',
+    'setHit = b_hit',
+    'Roshi_Skill02_005',
+    'Roshi_Skill02_006',
+    'Roshi_Skill02_001',
+]
+
+[Spc01]
+value = 660
+rangeX = 16
+rangeY = 32
+cd = 10
+anim = {base = 'Walk'}
+frame = [
+    'Roshi_Skill10_001',
+    'Roshi_Skill10_002',
+    'Roshi_Skill10_003',
+    'Roshi_Skill10_004',
+    'Roshi_Skill10_005',
+    'Roshi_Skill10_006',
+]
+
+[Spc02]
+type = 'aAttack'
+value = 200
+rangeX = 0
+rangeY = 48
+cd = 15
+anim = {base = 'NAttack'}
+frame = [
+    'Roshi_Skill11_001',
+    'setSound = Audio/Roshi/Roshi_combo2.ogg',
+    'setDelay = 20',
+    'Roshi_Skill11_002',
+    'setMove = 8',
+    'Roshi_Skill11_003',
+    'setHit = l_hit',
+    'Roshi_Skill11_004',
+    'setDelay = 20',
+]
+
+[Spc03]
+anim = {base = 'Idle'}
+frame = [
+    'Roshi_Skill12_001',
+    'setDelay = 10',
+    'Roshi_Skill12_002',
+    'setDelay = 10',
+    'Roshi_Skill12_003',
+    'setDelay = 10',
+]

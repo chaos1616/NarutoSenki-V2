@@ -1,0 +1,34 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'FireRain'
+
+[Idle]
+frame = [
+    'FireRain_Move_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 460
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'FireRain_Move_001',
+    'setHit = ac_hit',
+    'FireRain_Move_002',
+    'FireRain_Move_003',
+    'setHit = ac_hit',
+    'FireRain_Move_004',
+    'FireRain_Move_005',
+    'setHit = ac_hit',
+    'FireRain_Move_006',
+    'FireRain_Move_007',
+    'setHit = c_hit',
+    'setDestroy = 0',
+]

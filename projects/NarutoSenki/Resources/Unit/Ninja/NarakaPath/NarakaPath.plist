@@ -94,7 +94,7 @@
                 <key>sourceSize</key>
                 <string>{34,83}</string>
             </dict>
-            <key>NarakaPath_KnockDown_01</key>
+            <key>NarakaPath_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{381,36},{81,40}}</string>
@@ -107,7 +107,7 @@
                 <key>sourceSize</key>
                 <string>{81,74}</string>
             </dict>
-            <key>NarakaPath_KnockDown_02</key>
+            <key>NarakaPath_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{104,65},{85,36}}</string>
@@ -120,7 +120,7 @@
                 <key>sourceSize</key>
                 <string>{85,74}</string>
             </dict>
-            <key>NarakaPath_KnockDown_03</key>
+            <key>NarakaPath_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{464,56},{62,46}}</string>
@@ -133,7 +133,7 @@
                 <key>sourceSize</key>
                 <string>{62,74}</string>
             </dict>
-            <key>NarakaPath_KnockDown_04</key>
+            <key>NarakaPath_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,311},{53,54}}</string>
@@ -146,7 +146,7 @@
                 <key>sourceSize</key>
                 <string>{53,74}</string>
             </dict>
-            <key>NarakaPath_KnockDown_05</key>
+            <key>NarakaPath_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{72,195},{39,68}}</string>

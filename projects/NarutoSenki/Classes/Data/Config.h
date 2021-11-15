@@ -35,6 +35,16 @@ extern int Cheats;
 #define kSkillEffectOrder 300
 #define kFontOrder 400
 
+#define __FOREACH(__Tp, __Container) \
+	for (__Tp : __Container)         \
+	{
+#define __FOREACH_END }
+
+#define __TRY try
+#define __CATCH(__Catch) catch (__Catch)
+
+// namespace
+
 #define DETAIL_NS_BEGIN \
 	namespace detail    \
 	{

@@ -101,9 +101,9 @@ class Akamaru : public Hero
 	{
 		_powerUPBuffValue = 360;
 		setNAttackValue(getNAttackValue() + _powerUPBuffValue);
-		setIdleAction(createAnimation(skillSPC1Array, 5, true, false));
-		setWalkAction(createAnimation(skillSPC2Array, 10, true, false));
-		setNAttackAction(createAnimation(skillSPC3Array, 10, false, true));
+		setActionTo<ActionFlag::Idle, ActionFlag::Spc01>();
+		setActionTo<ActionFlag::Walk, ActionFlag::Spc02>();
+		setActionTo<ActionFlag::NAttack, ActionFlag::Spc03>();
 
 		if (_state == State::NATTACK)
 		{
@@ -117,9 +117,9 @@ class Akamaru : public Hero
 		if (_powerUPBuffValue)
 		{
 			setNAttackValue(getNAttackValue() - _powerUPBuffValue);
-			setIdleAction(createAnimation(idleArray, 5, true, false));
-			setWalkAction(createAnimation(walkArray, 10, true, false));
-			setNAttackAction(createAnimation(nattackArray, 10, false, true));
+			setActionTo<ActionFlag::Idle, ActionFlag::Idle>();
+			setActionTo<ActionFlag::Walk, ActionFlag::Walk>();
+			setActionTo<ActionFlag::NAttack, ActionFlag::NAttack>();
 			_powerUPBuffValue = 0;
 
 			if (isFreeState())

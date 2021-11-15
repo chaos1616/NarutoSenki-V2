@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{33,46}</string>
             </dict>
-            <key>IzumoFlog_KnockDown_01</key>
+            <key>IzumoFlog_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,139},{35,46}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{35,46}</string>
             </dict>
-            <key>IzumoFlog_KnockDown_02</key>
+            <key>IzumoFlog_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{65,68},{57,27}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{57,27}</string>
             </dict>
-            <key>IzumoFlog_KnockDown_03</key>
+            <key>IzumoFlog_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{66,2},{60,18}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{60,18}</string>
             </dict>
-            <key>IzumoFlog_KnockDown_04</key>
+            <key>IzumoFlog_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{66,2},{60,18}}</string>

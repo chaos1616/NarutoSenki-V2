@@ -1,0 +1,42 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Shenwei'
+
+[Idle]
+frame = [
+    'Shenwei_Move_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 660
+rangeX = 196
+rangeY = 128
+
+frame = [
+    'Shenwei_Move_001',
+    'setHit = s_hit',
+    'Shenwei_Move_002',
+    'Shenwei_Move_003',
+    'setHit = s_hit',
+    'Shenwei_Move_004',
+    'Shenwei_Move_005',
+    'setHit = s_hit',
+    'Shenwei_Move_006',
+    'Shenwei_Move_001',
+    'setHit = s_hit',
+    'Shenwei_Move_002',
+    'Shenwei_Move_003',
+    'setHit = s_hit',
+    'Shenwei_Move_004',
+    'Shenwei_Move_005',
+    'setHit = s_hit',
+    'Shenwei_Move_006',
+    'setHit = ct_hit',
+    'setDestroy = 0',
+]

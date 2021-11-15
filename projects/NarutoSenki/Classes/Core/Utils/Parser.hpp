@@ -8,22 +8,20 @@
 	{
 #define PARSER_NS_END }
 
-PARSER_NS_BEGIN
-
 struct ActionData
 {
 	using FrameVector = vector<pair<string, string>>;
 
 	ActionFlag flag;
-	bool hasData;
+	// bool hasData;
 
 	string type;
-	bool isDouble;
 	u16 value;
 	u16 rangeX;
 	u16 rangeY;
 	u16 cooldown;
 	u16 combatPoint;
+	// bool isDouble;
 
 	ActionConstant::AnimationInfo info;
 	FrameVector frames;
@@ -57,6 +55,8 @@ struct UnitMetadata
 	}
 };
 
+PARSER_NS_BEGIN
+
 class ParserCache
 {
 private:
@@ -89,13 +89,18 @@ public:
 
 DETAIL_NS_BEGIN
 
+enum Keyword : char
+{
+	Override = '@',
+};
+
 // TODO: Make parser metadata cache
 
 static const std::string nullstr;
 
-static void ParseCoreData(const toml::value &v, UnitMetadata &metadata)
+static void ParseCoreData(toml::value &v, UnitMetadata &metadata)
 {
-	const auto &tab = v.as_table();
+	auto &tab = v.as_table();
 	const auto end = tab.end();
 
 	tomlex::try_set(tab, "name", metadata.name);
@@ -107,6 +112,7 @@ static void ParseCoreData(const toml::value &v, UnitMetadata &metadata)
 		const auto &hpBar = hpBarIter->second.as_table();
 		// tomlex::try_set_or<i16>(hpBar, "x", metadata.hpBarX, 0);
 		tomlex::try_set_or<i16>(hpBar, "y", metadata.hpBarY, 0);
+		tab.erase(hpBarIter);
 	}
 	else
 	{
@@ -115,7 +121,7 @@ static void ParseCoreData(const toml::value &v, UnitMetadata &metadata)
 	tomlex::try_set_or<u16>(tab, "speed", metadata.speed, kDefaultSpeed);
 }
 
-static void ParseAction(const toml::value &v, UnitMetadata &metadata)
+static void ParseAction(toml::value &v, UnitMetadata &metadata)
 {
 	for (const auto &[key, value] : v.as_table())
 	{
@@ -123,7 +129,10 @@ static void ParseAction(const toml::value &v, UnitMetadata &metadata)
 			continue;
 		auto flag = ActionConstant::string2ActionFlag(key);
 		if (flag == ActionFlag::None)
+		{
+			CCLOGERROR("Does not support action `%s`", key.c_str());
 			continue;
+		}
 		// parse data
 		const auto &tab = value.as_table();
 		const auto end = tab.end();
@@ -138,34 +147,45 @@ static void ParseAction(const toml::value &v, UnitMetadata &metadata)
 		tomlex::try_set_or<u16>(tab, "cd", data.cooldown, 0);
 		tomlex::try_set_or<u16>(tab, "combatPoint", data.combatPoint, 0);
 		// parse animation data
-		const auto &defaultInfo = ActionConstant::getAnimDataByActionFlag(data.flag);
 		if (auto animIter = tab.find("anim"); animIter != end)
 		{
 			const auto &anim = animIter->second.as_table();
+			if (auto base = anim.find("base"); base != anim.end())
+			{
+				auto baseAnimType = ActionConstant::animBaseType2ActionFlag(base->second.as_string());
+				if (baseAnimType != ActionFlag::None)
+					flag = baseAnimType;
+				else
+					CCLOGERROR("Does not support override `%s` animation", data.type);
+			}
+			const auto &defaultInfo = ActionConstant::getAnimDataByActionFlag(flag);
 			tomlex::try_set_or<uint8_t>(anim, "fps", data.info.fps, defaultInfo.fps);
 			tomlex::try_set_or<bool>(anim, "loop", data.info.isLoop, defaultInfo.isLoop);
-			tomlex::try_set_or<bool>(anim, "returnIdle", data.info.isReturnToIdle, defaultInfo.isReturnToIdle);
+			if (!data.info.isLoop)
+				tomlex::try_set_or<bool>(anim, "returnIdle", data.info.isReturnToIdle, defaultInfo.isReturnToIdle);
 		}
 		else
 		{
-			data.info = defaultInfo;
+			// set default animation config
+			data.info = ActionConstant::getAnimDataByActionFlag(flag);
 		}
 
 		// parse frame data
-		auto frame = toml::find<vector<string>>(value, "frame");
-		if (!frame.empty())
+		if (auto frameIter = tab.find("frame"); frameIter != end)
 		{
+			const auto &frame = frameIter->second.as_array();
 			auto &frameVector = data.frames;
 			frameVector.resize(frame.size());
 			size_t i = 0;
-			for (const auto &f : frame)
+			for (const auto &_ : frame)
 			{
+				const string &f = _.as_string();
 				auto found = f.find_first_of('=', 1);
 				if (found != string::npos) // parse event
 				{
-					auto eventName = tomlex::trim(f.substr(0, found));
-					auto eventValue = tomlex::trim(f.substr(found + 1, f.length() - found - 1));
-					frameVector[i++] = make_pair(eventName, f);
+					auto eventName = std::trim(f.substr(0, found));
+					auto eventValue = std::trim(f.substr(found + 1, f.length() - found - 1));
+					frameVector[i++] = make_pair(eventName, eventValue);
 				}
 				else
 				{
@@ -192,7 +212,7 @@ static inline UnitMetadata fromToml(const string &fname, bool cache = false)
 		CCLOGERROR("[ERROR] UnitParser::fromToml not found file %s", path.c_str());
 		return {};
 	}
-	const auto data = toml::parse(path);
+	auto data = toml::parse(path);
 
 	UnitMetadata metadata;
 	detail::ParseCoreData(data, metadata);

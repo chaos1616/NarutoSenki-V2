@@ -1,0 +1,40 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Kusuri'
+
+[Idle]
+frame = [
+    'Kusuri_Move_001',
+]
+
+[Walk]
+frame = [
+    'Kusuri_Move_001',
+]
+
+[Dead]
+frame = [
+    'Kusuri_Move_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 1060
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'Kusuri_Move_001',
+    'Kusuri_Move_002',
+    'Kusuri_Move_003',
+    'Kusuri_Move_004',
+    'Kusuri_Move_005',
+    'setHit = b_hit',
+    'setDSound = Audio/Effect/damage_h.ogg',
+    'setDestroy = 0',
+]

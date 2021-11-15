@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{36,70}</string>
             </dict>
-            <key>Tenten_KnockDown_01</key>
+            <key>Tenten_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{155,488},{68,29}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{68,29}</string>
             </dict>
-            <key>Tenten_KnockDown_02</key>
+            <key>Tenten_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,459},{72,25}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{72,25}</string>
             </dict>
-            <key>Tenten_KnockDown_03</key>
+            <key>Tenten_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{316,647},{57,33}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{57,33}</string>
             </dict>
-            <key>Tenten_KnockDown_04</key>
+            <key>Tenten_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{176,682},{36,48}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{38,48}</string>
             </dict>
-            <key>Tenten_KnockDown_05</key>
+            <key>Tenten_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{133,555},{38,61}}</string>

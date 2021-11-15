@@ -1,0 +1,286 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Sasuke'
+hp = 5500
+hpBar.y = 70
+speed = 224
+
+[Idle]
+frame = [
+    'Sasuke_Idle_01',
+    'Sasuke_Idle_02',
+    'Sasuke_Idle_03',
+    'Sasuke_Idle_04',
+    'Sasuke_Idle_05',
+    'Sasuke_Idle_06',
+]
+
+[Walk]
+frame = [
+    'Sasuke_Walk_01',
+    'Sasuke_Walk_02',
+    'Sasuke_Walk_03',
+    'Sasuke_Walk_04',
+    'Sasuke_Walk_05',
+    'Sasuke_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Sasuke_Hurt_01',
+    'Sasuke_Hurt_02',
+    'setSound = Audio/Sasuke/sasuke_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Sasuke_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Sasuke_Knockdown_01',
+    'setDelay = 10',
+    'Sasuke_Knockdown_02',
+    'Sasuke_Knockdown_03',
+    'setDelay = 60',
+    'Sasuke_Knockdown_04',
+    'Sasuke_Knockdown_05',
+    'Sasuke_Knockdown_06',
+]
+
+[Float]
+frame = [
+    'Sasuke_Float_01',
+    'setDelay = 10',
+    'Sasuke_Float_02',
+    'setDelay = 10',
+    'Sasuke_Float_03',
+]
+
+[Dead]
+frame = [
+    'Sasuke_Knockdown_01',
+    'Sasuke_Knockdown_02',
+    'Sasuke_Knockdown_03',
+    'setSound = Audio/Sasuke/sasuke_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 80
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Sasuke_NAttack_01',
+    'Sasuke_NAttack_02',
+    'setDelay = 10',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/combo1.ogg',
+    'Sasuke_NAttack_03',
+    'Sasuke_NAttack_04',
+    'setMove = 8',
+    'setDelay = 10',
+    'Sasuke_NAttack_05',
+    'setDelay = 10',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/kong.ogg',
+    'Sasuke_NAttack_06',
+    'Sasuke_NAttack_07',
+    'Sasuke_NAttack_08',
+    'setSound = Audio/Sasuke/sasuke_combo.ogg',
+    'setMove = 16',
+    'Sasuke_NAttack_09',
+    'Sasuke_NAttack_10',
+    'setHit = bl_hit',
+    'setSound = Audio/Effect/kong.ogg',
+    'Sasuke_NAttack_11',
+    'setDelay = 20',
+]
+
+[Skill01]
+type = 'aAttack'
+value = 560
+rangeX = 0
+rangeY = 48
+cd = 10
+combatPoint = 1320
+
+frame = [
+    'setSound = Audio/Sasuke/sasuke_skill1.ogg',
+    'Sasuke_Skill01_01',
+    'Sasuke_Skill01_02',
+    'setSound = Audio/Sasuke/sasuke_skill1_1.ogg',
+    'setChargeB = 196',
+    'Sasuke_Skill01_03',
+    'setHit = bc_hit',
+    'setDelay = 10',
+    'Sasuke_Skill01_04',
+    'setHit = bc_hit',
+    'Sasuke_Skill01_05',
+]
+
+[Skill02]
+type = 'aAttack'
+value = 760
+rangeX = 16
+rangeY = 32
+cd = 15
+combatPoint = 1520
+
+frame = [
+    'Sasuke_Skill02_01',
+    'setSound = Audio/Sasuke/sasuke_skill2.ogg',
+    'Sasuke_Skill02_02',
+    'setSound = Audio/Sasuke/sasuke_skill2_2.ogg',
+    'Sasuke_Skill02_03',
+    'Sasuke_Skill02_04',
+    'setHit = bc_hit',
+    'setChargeB = 192',
+    'Sasuke_Skill02_05',
+    'Sasuke_Skill02_06',
+    'setHit = bc_hit',
+    'Sasuke_Skill02_07',
+]
+
+[Skill03]
+type = 'tBuff'
+rangeX = 0
+rangeY = 15
+cd = 25
+
+frame = [
+    'setSound = Audio/Sasuke/sasuke_skill3.ogg',
+    'Sasuke_Skill03_001',
+    'Sasuke_Skill03_002',
+    'setSkillEffect = sharingan2',
+    'Sasuke_Skill03_003',
+    'setSound = Audio/Effect/srg2.ogg',
+    'Sasuke_Skill03_004',
+    'Sasuke_Skill03_005',
+    'setDelay = 20',
+    'setBuff = 17',
+]
+
+[Skill04]
+type = 'Summon'
+combatPoint = 3040
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Sasuke_Skill04_08',
+    'setSound = Audio/Sasuke/sasuke_skill4.ogg',
+    'setMon = Qilin',
+    'setDelay = 40',
+    'Sasuke_Skill04_09',
+    'Sasuke_Skill04_10',
+    'setDelay = 30',
+]
+
+[Skill05]
+type = 'cBuff'
+rangeX = 0
+rangeY = 13
+combatPoint = 5000
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setCmd = setInvincible',
+    'Sasuke_Skill05_01',
+    'setDelay = 10',
+    'setOugis = 10',
+    'Sasuke_Skill05_02',
+    'setDelay = 10',
+    'Sasuke_Skill05_03',
+    'Sasuke_Skill05_04',
+    'Sasuke_Skill05_05',
+    'setDelay = 10',
+    'Sasuke_Skill05_06',
+    'setDelay = 10',
+    'Sasuke_Skill05_07',
+    'setDelay = 10',
+    'setBuff = 18',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+type = 'aAttack'
+value = 260
+rangeX = 0
+rangeY = 48
+anim = {base = 'Idle'}
+frame = [
+    'Sasuke_Skill10_001',
+    'Sasuke_Skill10_002',
+    'Sasuke_Skill10_003',
+    'Sasuke_Skill10_004',
+]
+
+[Spc02]
+anim = {base = 'Walk'}
+frame = [
+    'Sasuke_Skill11_001',
+    'setShadow = 10',
+    'Sasuke_Skill11_002',
+    'Sasuke_Skill11_003',
+    'setShadow = 10',
+    'Sasuke_Skill11_004',
+    'Sasuke_Skill11_005',
+    'Sasuke_Skill11_006',
+]
+
+[Spc03]
+type = 'aAttack'
+rangeX = 0
+rangeY = 48
+anim = {base = 'NAttack'}
+frame = [
+    'Sasuke_Skill12_001',
+    'setSound = Audio/Sasuke/sasuke_skill11.ogg',
+    'setDelay = 10',
+    'Sasuke_Skill12_002',
+    'Sasuke_Skill12_003',
+    'setChargeB = 128',
+    'Sasuke_Skill12_004',
+    'setHit = ac_hit',
+    'Sasuke_Skill12_005',
+    'Sasuke_Skill12_006',
+]
+
+[Spc04]
+anim = {base = 'Knockdown'}
+frame = [
+    'setCmd = setInvincible',
+    'Sasuke_Skill09_01',
+    'Sasuke_Skill09_02',
+    'Sasuke_Skill09_03',
+    'setDelay = 10',
+    'Sasuke_Skill09_04',
+    'setDelay = 10',
+    'Sasuke_Skill09_05',
+    'Sasuke_Skill09_06',
+    'Sasuke_Skill09_07',
+    'Sasuke_Skill09_08',
+    'Sasuke_Skill09_09',
+    'setTransform = 40',
+    'setCmd = reInvincible',
+]
+
+[Spc05]
+anim = {base = 'Hurt', returnIdle = true}
+frame = [
+    'Sasuke_Skill08_01',
+    'setHit = bc_hit',
+    'Sasuke_Skill08_02',
+    'setSound = Audio/Sasuke/sasuke_skill10.ogg',
+    'Sasuke_Skill08_03',
+    'setHit = bc_hit',
+    'Sasuke_Skill08_04',
+]

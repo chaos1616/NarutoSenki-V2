@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{75,79}</string>
             </dict>
-            <key>Jiraiya_KnockDown_01</key>
+            <key>Jiraiya_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{799,133},{101,71}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{101,79}</string>
             </dict>
-            <key>Jiraiya_KnockDown_02</key>
+            <key>Jiraiya_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,317},{92,63}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{92,63}</string>
             </dict>
-            <key>Jiraiya_KnockDown_03</key>
+            <key>Jiraiya_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{797,286},{102,40}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{102,40}</string>
             </dict>
-            <key>Jiraiya_KnockDown_04</key>
+            <key>Jiraiya_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{512,545},{73,71}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{73,71}</string>
             </dict>
-            <key>Jiraiya_KnockDown_05</key>
+            <key>Jiraiya_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{540,255},{91,70}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{91,78}</string>
             </dict>
-            <key>Jiraiya_KnockDown_06</key>
+            <key>Jiraiya_Knockdown_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{161,667},{65,70}}</string>

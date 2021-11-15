@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{55,69}</string>
             </dict>
-            <key>Hinata_KnockDown_01</key>
+            <key>Hinata_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{511,401},{69,46}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{69,48}</string>
             </dict>
-            <key>Hinata_KnockDown_02</key>
+            <key>Hinata_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{539,449},{58,41}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{58,41}</string>
             </dict>
-            <key>Hinata_KnockDown_03</key>
+            <key>Hinata_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{922,116},{76,27}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{76,27}</string>
             </dict>
-            <key>Hinata_KnockDown_04</key>
+            <key>Hinata_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{94,442},{51,38}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{53,40}</string>
             </dict>
-            <key>Hinata_KnockDown_05</key>
+            <key>Hinata_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{147,442},{38,41}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{38,41}</string>
             </dict>
-            <key>Hinata_KnockDown_06</key>
+            <key>Hinata_Knockdown_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{292,380},{42,63}}</string>

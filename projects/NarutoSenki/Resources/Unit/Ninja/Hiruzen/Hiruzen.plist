@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{70,65}</string>
             </dict>
-            <key>Hiruzen_KnockDown_001</key>
+            <key>Hiruzen_Knockdown_001</key>
             <dict>
                 <key>frame</key>
                 <string>{{645,727},{59,50}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{59,50}</string>
             </dict>
-            <key>Hiruzen_KnockDown_002</key>
+            <key>Hiruzen_Knockdown_002</key>
             <dict>
                 <key>frame</key>
                 <string>{{576,237},{69,39}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{69,39}</string>
             </dict>
-            <key>Hiruzen_KnockDown_003</key>
+            <key>Hiruzen_Knockdown_003</key>
             <dict>
                 <key>frame</key>
                 <string>{{652,421},{77,23}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{77,23}</string>
             </dict>
-            <key>Hiruzen_KnockDown_004</key>
+            <key>Hiruzen_Knockdown_004</key>
             <dict>
                 <key>frame</key>
                 <string>{{917,284},{70,26}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{70,26}</string>
             </dict>
-            <key>Hiruzen_KnockDown_005</key>
+            <key>Hiruzen_Knockdown_005</key>
             <dict>
                 <key>frame</key>
                 <string>{{718,237},{38,46}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{38,46}</string>
             </dict>
-            <key>Hiruzen_KnockDown_006</key>
+            <key>Hiruzen_Knockdown_006</key>
             <dict>
                 <key>frame</key>
                 <string>{{509,237},{40,65}}</string>

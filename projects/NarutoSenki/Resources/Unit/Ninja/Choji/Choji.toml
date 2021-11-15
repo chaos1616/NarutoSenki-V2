@@ -1,0 +1,296 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Choji'
+hp = 6000
+hpBar.y = 78
+speed = 224
+
+[Idle]
+frame = [
+    'Choji_Idle_01',
+    'setDelay = 10',
+    'Choji_Idle_02',
+    'setDelay = 10',
+    'Choji_Idle_03',
+]
+
+[Walk]
+frame = [
+    'Choji_Walk_01',
+    'Choji_Walk_02',
+    'Choji_Walk_03',
+    'Choji_Walk_04',
+    'Choji_Walk_05',
+    'Choji_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Choji_Hurt_01',
+    'Choji_Hurt_02',
+    'setSound = Audio/Choji/Choji_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Choji_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Choji_Knockdown_01',
+    'setDelay = 10',
+    'Choji_Knockdown_02',
+    'Choji_Knockdown_03',
+    'setDelay = 60',
+    'Choji_Knockdown_04',
+    'Choji_Knockdown_05',
+    'Choji_Knockdown_06',
+]
+
+[Float]
+frame = [
+    'Choji_Float_01',
+    'Choji_Float_02',
+    'Choji_Float_03',
+]
+
+[Dead]
+frame = [
+    'Choji_Knockdown_01',
+    'Choji_Knockdown_02',
+    'Choji_Knockdown_03',
+    'setSound = Audio/Choji/Choji_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 80
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Choji_NAttack_01',
+    'setDelay = 10',
+    'Choji_NAttack_02',
+    'setDelay = 10',
+    'Choji_NAttack_03',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Choji_NAttack_04',
+    'setDelay = 10',
+    'Choji_NAttack_05',
+    'setMove = 8',
+    'Choji_NAttack_06',
+    'setHit = n_hit',
+    'setSound = Audio/Effect/combo2.ogg',
+    'setDelay = 10',
+    'Choji_NAttack_07',
+    'Choji_NAttack_08',
+    'setDelay = 10',
+    'Choji_NAttack_09',
+    'setMove = 16',
+    'setSound = Audio/Choji/Choji_combo.ogg',
+    'Choji_NAttack_10',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setHit = l_hit',
+    'setDelay = 10',
+]
+
+[Skill01]
+type = 'dcBuff'
+rangeX = 0
+rangeY = 15
+cd = 20
+
+frame = [
+    'Choji_Skill01_02',
+    'setSound = Audio/Choji/Choji_skill1.ogg',
+    'setDelay = 10',
+    'Choji_Skill01_03',
+    'setDelay = 30',
+    'setBuff = 200',
+]
+
+[Skill02]
+type = 'aAttack'
+value = 360
+rangeX = 16
+rangeY = 48
+cd = 15
+combatPoint = 1440
+
+frame = [
+    'setSound = Audio/Choji/Choji_skill2.ogg',
+    'Choji_Skill02_04',
+    'Choji_Skill02_05',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'Choji_Skill02_06',
+    'Choji_Skill02_08',
+    'setHit = c_hit',
+    'Choji_Skill02_09',
+    'Choji_Skill02_05',
+    'setChargeB = 196',
+    'Choji_Skill02_06',
+    'setHit = c_hit',
+    'setDSound = Audio/Effect/damage_l.ogg',
+    'Choji_Skill02_07',
+    'Choji_Skill02_08',
+    'setHit = c_hit',
+    'Choji_Skill02_09',
+    'Choji_Skill02_10',
+    'setDelay = 10',
+]
+
+[Skill03]
+type = 'aAttack'
+value = 960
+rangeX = 0
+rangeY = 48
+cd = 25
+combatPoint = 1920
+
+frame = [
+    'setSound = Audio/Choji/Choji_skill3.ogg',
+    'Choji_Skill03_01',
+    'Choji_Skill03_02',
+    'setJump = true',
+    'setDelay = 30',
+    'setSkillEffect = smk',
+    'Choji_Skill03_03',
+    'setDelay = 30',
+    'Choji_Skill03_04',
+    'Choji_Skill03_05',
+    'setHit = b_hit',
+    'setDSound = Audio/Effect/damage_h.ogg',
+    'Choji_Skill03_06',
+    'Choji_Skill03_07',
+    'setHit = b_hit',
+    'Choji_Skill03_08',
+    'setSkillEffect = smk',
+]
+
+[Skill04]
+type = 'Summon'
+combatPoint = 3480
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Choji_Skill04_02',
+    'setSound = Audio/Choji/Choji_skill4.ogg',
+    'setSkillEffect = smk',
+    'Choji_Skill04_03',
+    'setDelay = 20',
+    'Choji_Skill04_04',
+    'Choji_Skill04_05',
+    'setDelay = 10',
+    'Choji_Skill04_06',
+    'setDelay = 10',
+    'Choji_Skill04_07',
+    'setDelay = 10',
+    'Choji_Skill04_08',
+    'setMon = ChuiDi',
+    'setDelay = 60',
+    'setSkillEffect = smk',
+    'setDelay = 10',
+]
+
+[Skill05]
+type = 'cBuff'
+value = 460
+rangeX = 0
+rangeY = 15
+combatPoint = 8000
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'setCmd = setInvincible',
+    'Choji_Skill05_01',
+    'setOugis = 10',
+    'Choji_Skill05_02',
+    'setDelay = 20',
+    'setSkillEffect = smk',
+    'setBuff = 18',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+type = 'nAttack'
+value = 100
+rangeX = 0
+rangeY = 16
+
+frame = [
+    'Choji_Skill10_001',
+    'setDelay = 10',
+    'Choji_Skill10_002',
+    'setDelay = 10',
+    'Choji_Skill10_003',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = l_hit',
+    'Choji_Skill10_004',
+    'setDelay = 10',
+    'Choji_Skill10_005',
+    'setMove = 16',
+    'Choji_Skill10_006',
+    'setSound = Audio/Choji/Choji_combo.ogg',
+    'Choji_Skill10_007',
+    'setDelay = 10',
+    'Choji_Skill10_008',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setDelay = 10',
+]
+
+[Spc02]
+value = 660
+anim = {base = 'Walk', fps = 5}
+frame = [
+    'Choji_Skill11_001',
+    'Choji_Skill11_002',
+    'Choji_Skill11_003',
+    'Choji_Skill11_004',
+    'Choji_Skill11_005',
+    'Choji_Skill11_006',
+]
+
+[Spc03]
+type = 'nAttack'
+value = 100
+rangeX = 0
+rangeY = 48
+anim = {base = 'NAttack'}
+frame = [
+    'Choji_Skill10_001',
+    'setDelay = 10',
+    'Choji_Skill10_002',
+    'Choji_Skill10_003',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = l_hit',
+    'setDelay = 10',
+    'Choji_Skill10_004',
+    'Choji_Skill10_005',
+    'setSound = Audio/Choji/Choji_skill10.ogg',
+    'setMove = 16',
+    'Choji_Skill10_006',
+    'Choji_Skill10_007',
+    'setHit = l_hit',
+    'Choji_Skill10_008',
+    'setSound = Audio/Effect/combo3.ogg',
+    'setDelay = 10',
+]
+
+[Spc04]
+anim = {base = 'Idle'}
+frame = [
+    'Choji_Skill09_001',
+    'Choji_Skill09_002',
+    'Choji_Skill09_003',
+    'Choji_Skill09_004',
+]

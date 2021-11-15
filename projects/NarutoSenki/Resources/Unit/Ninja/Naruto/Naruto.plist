@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{63,66}</string>
             </dict>
-            <key>Naruto_KnockDown_01</key>
+            <key>Naruto_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{496,284},{58,41}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{58,69}</string>
             </dict>
-            <key>Naruto_KnockDown_02</key>
+            <key>Naruto_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{496,344},{68,35}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{68,69}</string>
             </dict>
-            <key>Naruto_KnockDown_03</key>
+            <key>Naruto_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{511,194},{75,28}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{75,28}</string>
             </dict>
-            <key>Naruto_KnockDown_04</key>
+            <key>Naruto_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{901,317},{37,48}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{37,48}</string>
             </dict>
-            <key>Naruto_KnockDown_05</key>
+            <key>Naruto_Knockdown_05</key>
             <dict>
                 <key>frame</key>
                 <string>{{871,437},{62,51}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{62,51}</string>
             </dict>
-            <key>Naruto_KnockDown_06</key>
+            <key>Naruto_Knockdown_06</key>
             <dict>
                 <key>frame</key>
                 <string>{{198,324},{42,58}}</string>

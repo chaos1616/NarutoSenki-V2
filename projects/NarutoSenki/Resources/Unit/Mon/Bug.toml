@@ -1,0 +1,35 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Bug'
+speed = 320
+
+[Idle]
+frame = [
+    'Bug_Move_001',
+]
+
+[Walk]
+frame = [
+    'Bug_Move_001',
+    'Bug_Move_002',
+    'Bug_Move_003',
+    'Bug_Move_004',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 260
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Bug_Move_004',
+    'setHit = a_hit',
+    'setSound = Audio/Effect/stick_damage.ogg',
+    'setDestroy = 0',
+]

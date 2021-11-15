@@ -1,0 +1,37 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'SuiRyuDan'
+
+[Idle]
+frame = [
+    'SuiRyuDan_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 860
+rangeX = 16
+rangeY = 56
+
+frame = [
+    'setSound = Audio/Effect/suiryudan.ogg',
+    'SuiRyuDan_Move_01',
+    'SuiRyuDan_Move_02',
+    'setChargeB = 96',
+    'SuiRyuDan_Move_03',
+    'SuiRyuDan_Move_04',
+    'setHit = a_hit',
+    'SuiRyuDan_Move_06',
+    'SuiRyuDan_Move_07',
+    'setHit = a_hit',
+    'SuiRyuDan_Move_08',
+    'SuiRyuDan_Move_09',
+    'setHit = a_hit',
+    'SuiRyuDan_Move_10',
+    'setDestroy = 0',
+]

@@ -1,0 +1,246 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'Gaara'
+hp = 5000
+hpBar.y = 74
+speed = 224
+
+[Idle]
+frame = [
+    'Gaara_Idle_01',
+    'Gaara_Idle_02',
+    'Gaara_Idle_03',
+    'Gaara_Idle_04',
+    'Gaara_Idle_05',
+    'Gaara_Idle_06',
+]
+
+[Walk]
+frame = [
+    'Gaara_Walk_01',
+    'Gaara_Walk_02',
+    'Gaara_Walk_03',
+    'Gaara_Walk_04',
+    'Gaara_Walk_05',
+    'Gaara_Walk_06',
+]
+
+[Hurt]
+frame = [
+    'setMove = 32',
+    'Gaara_Hurt_01',
+    'Gaara_Hurt_02',
+    'setSound = Audio/Gaara/Gaara_hurt.ogg',
+]
+
+[AirHurt]
+frame = [
+    'Gaara_AirHurt_01',
+]
+
+[Knockdown]
+frame = [
+    'Gaara_Knockdown_01',
+    'setDelay = 10',
+    'Gaara_Knockdown_02',
+    'setDelay = 60',
+    'Gaara_Knockdown_03',
+    'setDelay = 30',
+]
+
+[Float]
+frame = [
+    'Gaara_Float_01',
+    'setDelay = 10',
+    'Gaara_Float_02',
+    'setDelay = 10',
+    'Gaara_Float_03',
+]
+
+[Dead]
+frame = [
+    'Gaara_Knockdown_01',
+    'Gaara_Knockdown_02',
+    'setSound = Audio/Gaara/Gaara_dead.ogg',
+]
+
+[NAttack]
+type = 'nAttack'
+value = 60
+rangeX = 16
+rangeY = 48
+
+frame = [
+    'Gaara_NAttack_01',
+    'Gaara_NAttack_02',
+    'setDelay = 10',
+    'Gaara_NAttack_03',
+    'setSound = Audio/Effect/combo1.ogg',
+    'setHit = n_hit',
+    'Gaara_NAttack_04',
+    'Gaara_NAttack_05',
+    'setDelay = 10',
+    'Gaara_NAttack_06',
+    'setMove = 8',
+    'Gaara_NAttack_07',
+    'setHit = n_hit',
+    'Gaara_NAttack_08',
+    'Gaara_NAttack_09',
+    'setSound = Audio/Gaara/Gaara_combo.ogg',
+    'setHit = n_hit',
+    'Gaara_NAttack_10',
+    'Gaara_NAttack_11',
+    'Gaara_NAttack_12',
+    'Gaara_NAttack_13',
+    'setHit = l_hit',
+    'Gaara_NAttack_14',
+]
+
+[Skill01]
+type = 'cAttack'
+value = 460
+rangeX = 0
+rangeY = 48
+cd = 10
+combatPoint = 1380
+
+frame = [
+    'Gaara_Skill01_01',
+    'setSound = Audio/Gaara/Gaara_skill0.ogg',
+    'setMove = 8',
+    'Gaara_Skill01_02',
+    'Gaara_Skill01_03',
+    'setSound = Audio/Gaara/Gaara_skill0_1.ogg',
+    'Gaara_Skill01_04',
+    'setHit = c_hit',
+    'Gaara_Skill01_05',
+    'Gaara_Skill01_06',
+    'setHit = c_hit',
+    'Gaara_Skill01_05',
+    'Gaara_Skill01_04',
+    'setHit = c_hit',
+    'Gaara_Skill01_03',
+]
+
+[Skill02]
+type = 'summon'
+rangeX = 16
+rangeY = 32
+cd = 15
+combatPoint = 1560
+
+frame = [
+    'Gaara_Skill03_01',
+    'setSound = Audio/Gaara/Gaara_skill2.ogg',
+    'Gaara_Skill03_02',
+    'Gaara_Skill03_03',
+    'setMon = SandHand',
+    'setDelay = 10',
+    'Gaara_Skill03_04',
+    'setDelay = 10',
+]
+
+[Skill03]
+type = 'Summon'
+cd = 25
+combatPoint = 1980
+
+frame = [
+    'Gaara_Skill02_001',
+    'setSound = Audio/Gaara/Gaara_skill3.ogg',
+    'setMon = SandBall',
+    'Gaara_Skill02_002',
+    'Gaara_Skill02_003',
+    'Gaara_Skill02_004',
+    'Gaara_Skill02_005',
+    'Gaara_Skill02_006',
+]
+
+[Skill04]
+type = 'Summon'
+combatPoint = 3300
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Gaara_Skill06_01',
+    'setDelay = 10',
+    'Gaara_Skill06_02',
+    'Gaara_Skill06_03',
+    'Gaara_Skill06_04',
+    'setMon = Sabaku',
+    'Gaara_Skill06_05',
+    'setSound = Audio/Gaara/Gaara_skill5.ogg',
+    'Gaara_Skill06_06',
+    'Gaara_Skill06_07',
+    'Gaara_Skill06_08',
+    'Gaara_Skill06_09',
+    'Gaara_Skill06_10',
+    'Gaara_Skill06_08',
+    'Gaara_Skill06_09',
+    'Gaara_Skill06_10',
+]
+
+[Skill05]
+type = 'cBuff'
+rangeX = 0
+rangeY = 12
+combatPoint = 8000
+
+frame = [
+    'setSound = Audio/Effect/ougis.ogg',
+    'Gaara_Skill06_06',
+    'setCmd = setInvincible',
+    'Gaara_Skill06_07',
+    'setOugis = 10',
+    'Gaara_Skill06_08',
+    'setSkillEffect = smk',
+    'setBuff = 17',
+    'setCmd = reInvincible',
+]
+
+[Spc01]
+cd = 10
+anim = {base = 'Idle'}
+frame = [
+    'Gaara_Skill10_01',
+    'Gaara_Skill10_02',
+    'Gaara_Skill10_03',
+    'Gaara_Skill10_04',
+    'Gaara_Skill10_05',
+    'Gaara_Skill10_06',
+]
+
+[Spc02]
+cd = 10
+anim = {base = 'Walk'}
+frame = [
+    'Gaara_Skill10_01',
+    'Gaara_Skill10_02',
+    'Gaara_Skill10_03',
+    'Gaara_Skill10_04',
+    'Gaara_Skill10_05',
+    'Gaara_Skill10_06',
+]
+
+[Spc03]
+type = 'Summon'
+cd = 10
+anim = {base = 'NAttack'}
+frame = [
+    'Gaara_Skill12_001',
+    'setSound = Audio/Gaara/Gaara_skill1.ogg',
+    'setMon = SandWave',
+    'Gaara_Skill12_002',
+    'setDelay = 10',
+    'Gaara_Skill12_003',
+    'setDelay = 10',
+    'Gaara_Skill12_004',
+    'Gaara_Skill12_005',
+    'setDelay = 10',
+    'Gaara_Skill12_006',
+]

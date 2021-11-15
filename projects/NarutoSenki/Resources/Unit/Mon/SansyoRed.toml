@@ -1,0 +1,32 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'SansyoRed'
+
+[Idle]
+frame = [
+    'SansyoRed_Move_001',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 2000
+rangeX = 32
+rangeY = 48
+
+frame = [
+    'SansyoRed_Move_001',
+    'SansyoRed_Move_002',
+    'SansyoRed_Move_003',
+    'SansyoRed_Move_004',
+    'setSound = Audio/Orochimaru/Orochimaru_skill5_1.ogg',
+    'SansyoRed_Move_005',
+    'setHit = b_hit',
+    'SansyoRed_Move_006',
+    'setDelay = 200',
+    'setDestroy = 0',
+]

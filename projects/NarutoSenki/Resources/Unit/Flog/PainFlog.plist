@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{33,47}</string>
             </dict>
-            <key>PainFlog_KnockDown_01</key>
+            <key>PainFlog_Knockdown_01</key>
             <dict>
                 <key>frame</key>
                 <string>{{220,51},{32,51}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{32,51}</string>
             </dict>
-            <key>PainFlog_KnockDown_02</key>
+            <key>PainFlog_Knockdown_02</key>
             <dict>
                 <key>frame</key>
                 <string>{{69,50},{55,35}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{55,51}</string>
             </dict>
-            <key>PainFlog_KnockDown_03</key>
+            <key>PainFlog_Knockdown_03</key>
             <dict>
                 <key>frame</key>
                 <string>{{153,48},{65,27}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{65,51}</string>
             </dict>
-            <key>PainFlog_KnockDown_04</key>
+            <key>PainFlog_Knockdown_04</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,50},{65,19}}</string>

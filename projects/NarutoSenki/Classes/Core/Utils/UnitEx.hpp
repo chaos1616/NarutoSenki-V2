@@ -4,7 +4,7 @@
 namespace UnitEx
 {
 	template <typename T>
-	typename std::enable_if<std::is_base_of<CharacterBase, T>::value, void>::type
+	typename std::enable_if_t<std::is_base_of_v<CharacterBase, T>, void>
 	clearMainTarget(CharacterBase *target, const vector<T *> &list)
 	{
 		for (auto unit : list)

@@ -1,0 +1,34 @@
+#
+# Copyright (C) 2013-2016 Zakume
+# Copyright (C) 2020~     Re
+#
+# https://game.naruto.re
+#
+
+name = 'KageBom'
+
+[Idle]
+frame = [
+    'KageBom_Move_01',
+]
+
+[NAttack]
+type = 'aAttack'
+value = 1960
+rangeX = 0
+rangeY = 48
+
+frame = [
+    'KageBom_Move_01',
+    'setHit = ct_hit',
+    'KageBom_Move_02',
+    'KageBom_Move_03',
+    'KageBom_Move_04',
+    'setDelay = 280',
+    'KageBom_Move_05',
+    'setSound = Audio/Effect/bom.ogg',
+    'setHit = o2_hit',
+    'KageBom_Move_06',
+    'KageBom_Move_07',
+    'setDestroy = 0',
+]
