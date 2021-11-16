@@ -36,31 +36,31 @@ namespace UnitEvent
 
 using namespace HashUtils;
 
+mk_hconst(setActionResume);
+mk_hconst(setActionResume2);
 mk_hconst(setAttackBox);
-mk_hconst(setSound);
-mk_hconst(setDSound);
-mk_hconst(setDelay);
-mk_hconst(setMove);
-mk_hconst(setSkillEffect);
-mk_hconst(setJump);
+mk_hconst(setBuff);
+mk_hconst(setBullet);
 mk_hconst(setCharge);
 mk_hconst(setChargeB);
 mk_hconst(setClone);
-mk_hconst(setMon);
-mk_hconst(setFont);
-mk_hconst(setBuff);
 mk_hconst(setCmd);
+mk_hconst(setDelay);
 mk_hconst(setDestroy);
-mk_hconst(setBullet);
-mk_hconst(setMonAttack);
-mk_hconst(setTrap);
-mk_hconst(setActionResume);
-mk_hconst(setActionResume2);
-mk_hconst(setShadow);
-mk_hconst(setTransform);
-mk_hconst(setOugis);
-mk_hconst(stopJump);
 mk_hconst(setFlipped);
+mk_hconst(setFont);
+mk_hconst(setJump);
+mk_hconst(stopJump);
+mk_hconst(setMon);
+mk_hconst(setMonAttack);
+mk_hconst(setMove);
+mk_hconst(setOugis);
+mk_hconst(setShadow);
+mk_hconst(setSkillEffect);
+mk_hconst(setSound);
+mk_hconst(setDSound);
+mk_hconst(setTransform);
+mk_hconst(setTrap);
 
 } // namespace UnitEvent
 
@@ -298,13 +298,9 @@ void CharacterBase::genActionBy(const UnitMetadata &data)
 	if (action.info.isLoop)
 	{
 		if (onlyOneSprite)
-		{
 			seq = Sequence::create(list);
-		}
 		else
-		{
 			seq = RepeatForever::create(Sequence::create(list));
-		}
 	}
 	else
 	{
