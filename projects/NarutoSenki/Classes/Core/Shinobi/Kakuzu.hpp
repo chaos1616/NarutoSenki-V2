@@ -4,6 +4,15 @@
 
 class Kakuzu : public Hero
 {
+	enum class KakuzuKugutsu
+	{
+		None,
+		MaskRaiton = 1 << 0,
+		MaskFuton = 1 << 1,
+		MaskKaton = 1 << 2,
+		All = MaskRaiton | MaskFuton | MaskKaton
+	};
+
 	void dead() override
 	{
 		CharacterBase::dead();
@@ -245,45 +254,35 @@ class Kakuzu : public Hero
 
 	Hero *createClone(int cloneTime) override
 	{
-		bool isRaiton = false;
-		bool isFuton = false;
-		bool isKaton = false;
-		int countMon = 0;
+		KakuzuKugutsu flag;
+		int kugutsuNum = 0;
 
 		for (auto mo : _monsterArray)
 		{
 			if (mo->getName() == KugutsuEnum::MaskRaiton)
 			{
-				countMon++;
-				isRaiton = true;
+				kugutsuNum++;
+				flag |= KakuzuKugutsu::MaskRaiton;
 			}
-			if (mo->getName() == KugutsuEnum::MaskFuton)
+			else if (mo->getName() == KugutsuEnum::MaskFuton)
 			{
-				countMon++;
-				isFuton = true;
+				kugutsuNum++;
+				flag |= KakuzuKugutsu::MaskFuton;
 			}
-			if (mo->getName() == KugutsuEnum::MaskKaton)
+			else if (mo->getName() == KugutsuEnum::MaskKaton)
 			{
-				countMon++;
-				isKaton = true;
+				kugutsuNum++;
+				flag |= KakuzuKugutsu::MaskKaton;
 			}
 		}
 
 		Hero *clone = nullptr;
-		if (hearts > 0 && (!isRaiton || !isKaton || !isFuton))
+		if (hearts > 0 && flag != KakuzuKugutsu::All)
 		{
-			if (!isRaiton)
-			{
-				clone = createKugutsuHero<Mask>(KugutsuEnum::MaskRaiton);
-			}
-			else if (!isFuton)
-			{
-				clone = createKugutsuHero<Mask>(KugutsuEnum::MaskFuton);
-			}
-			else if (!isKaton)
-			{
-				clone = createKugutsuHero<Mask>(KugutsuEnum::MaskKaton);
-			}
+			if (notHasFlag(flag, KakuzuKugutsu::MaskRaiton)) clone = createKugutsuHero<Mask>(KugutsuEnum::MaskRaiton);
+			else if (notHasFlag(flag, KakuzuKugutsu::MaskFuton)) clone = createKugutsuHero<Mask>(KugutsuEnum::MaskFuton);
+			else if (notHasFlag(flag, KakuzuKugutsu::MaskKaton)) clone = createKugutsuHero<Mask>(KugutsuEnum::MaskKaton);
+
 			clone->_isArmored = true;
 			_monsterArray.push_back(clone);
 
@@ -294,7 +293,7 @@ class Kakuzu : public Hero
 				_heartEffect->setDisplayFrame(frame);
 			}
 
-			if (hearts < 1 || countMon >= 2)
+			if (hearts < 1 || kugutsuNum >= 2)
 			{
 				lockSkill4Button();
 			}

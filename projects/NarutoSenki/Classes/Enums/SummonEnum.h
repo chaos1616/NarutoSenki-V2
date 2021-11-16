@@ -3,19 +3,21 @@
 
 namespace SummonEnum
 {
-	// Kiba
-	mk_const(Akamaru);
 
-	// Deidara
-	mk_const(Centipede);
+// Kiba
+mk_const(Akamaru);
 
-	// Kakashi
-	mk_const(DogWall);
+// Deidara
+mk_const(Centipede);
 
-	// Naruto
-	mk_const(Kurama);
+// Kakashi
+mk_const(DogWall);
 
-	// Tsunade
-	mk_const(Slug);
-	mk_const(SmallSlug);
+// Naruto
+mk_const(Kurama);
+
+// Tsunade
+mk_const(Slug);
+mk_const(SmallSlug);
+
 } // namespace SummonEnum

@@ -3,7 +3,6 @@
 
 struct SkillData
 {
-public:
 	Value attackValue;
 	string attackType;
 	u16 attackRangeX;

@@ -1,15 +1,15 @@
 #pragma once
+#include "Data/UnitData.h"
 #include "GameOver.h"
 #include "GearLayer.h"
 #include "PauseLayer.h"
-#include "Data/UnitData.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-#include "glfw3.h"
 #include <windows.h>
+#include "glfw3.h"
 #define _isPressed(vk_code) (GetAsyncKeyState(vk_code) & 0x8000 ? 1 : 0)
-#define isKeyDown(vk_code) (GetAsyncKeyState(vk_code) & 0x8000 ? 1 : 0)
-#define getKeyUp(vk_code) (GetAsyncKeyState(vk_code) & 0x8000 ? 0 : 1)
+#define isKeyDown(vk_code)	(GetAsyncKeyState(vk_code) & 0x8000 ? 1 : 0)
+#define getKeyUp(vk_code)	(GetAsyncKeyState(vk_code) & 0x8000 ? 0 : 1)
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #include "glfw3.h"
 #define _isPressed(__WINDOW__, __KEY__) glfwGetKey(__WINDOW__, __KEY__)

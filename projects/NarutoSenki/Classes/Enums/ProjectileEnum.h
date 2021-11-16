@@ -3,11 +3,13 @@
 
 namespace ProjectileEnum
 {
-	mk_const(Amaterasu);
 
-	mk_const(SusanoTama);
+mk_const(Amaterasu);
 
-	mk_const(HiraishinKunai);
+mk_const(SusanoTama);
 
-	mk_const(Shintenshin);
+mk_const(HiraishinKunai);
+
+mk_const(Shintenshin);
+
 } // namespace ProjectileEnum

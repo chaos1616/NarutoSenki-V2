@@ -383,8 +383,15 @@ public:
 	 * 	-> IGameModeHandler::onCharacterInit()
 	 */
 
-	virtual bool isEnableSkill04() { return true; }
-	virtual bool isEnableSkill05() { return true; }
+	virtual bool isEnableSkill04()
+	{
+		return true;
+	}
+
+	virtual bool isEnableSkill05()
+	{
+		return true;
+	}
 
 	template <typename THero>
 	static typename std::enable_if_t<std::is_base_of_v<Hero, THero>, THero *>

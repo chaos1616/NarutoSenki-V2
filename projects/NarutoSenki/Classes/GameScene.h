@@ -1,5 +1,5 @@
-#include "StartMenu.h"
 #include "MyUtils/KTools.h"
+#include "StartMenu.h"
 
 class GameScene : public Scene
 {

@@ -19,7 +19,7 @@ bool PauseLayer::init(RenderTexture *snapshoot)
 	Layer *blend = LayerColor::create(ccc4(0, 0, 0, 150), winSize.width, winSize.height);
 	addChild(blend, 1);
 
-	//produce the menu_bar
+	// produce the menu_bar
 	Sprite *menu_bar_b = Sprite::create("menu_bar2.png");
 	menu_bar_b->setAnchorPoint(Vec2(0, 0));
 	FULL_SCREEN_SPRITE(menu_bar_b);

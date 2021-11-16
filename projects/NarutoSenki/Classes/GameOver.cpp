@@ -1,6 +1,6 @@
 #include "GameOver.h"
-#include "GameLayer.h"
 #include "Core/Hero.hpp"
+#include "GameLayer.h"
 #include "GameMode/GameModeImpl.h"
 
 GameOver::GameOver()

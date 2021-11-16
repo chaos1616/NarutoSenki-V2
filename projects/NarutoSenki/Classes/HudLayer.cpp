@@ -1,6 +1,6 @@
+#include "HudLayer.h"
 #include "Core/Hero.hpp"
 #include "GameLayer.h"
-#include "HudLayer.h"
 #include "MyUtils/CCShake.h"
 
 MiniIcon::MiniIcon()

@@ -4,7 +4,8 @@
 
 // TODO: Use wyhash instead
 
-namespace HashUtils {
+namespace HashUtils
+{
 
 DETAIL_NS_BEGIN
 

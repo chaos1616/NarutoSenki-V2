@@ -13,34 +13,34 @@
 extern int Cheats;
 #define kMaxCheats 7
 
-#define kFlogCount 6
-#define kComCount 5
+#define kFlogCount	6
+#define kComCount	5
 #define MapPosCount 3
 
 // UI
 
 // Layer order
-#define kBgOrder 0
+#define kBgOrder		0
 #define kGameLayerOrder 1
-#define kHudLayerOrder 2
+#define kHudLayerOrder	2
 
 // Game layer children order
-#define kMapOrder -5000
-#define kShadowOrder -4000
-#define kCutOrder 1000
-#define kcharacterOrder 2
-#define kBulletOrder 3
+#define kMapOrder		   -5000
+#define kShadowOrder	   -4000
+#define kCutOrder		   1000
+#define kcharacterOrder	   2
+#define kBulletOrder	   3
 #define kDamageEffectOrder 100
-#define kNumberOrder 200
-#define kSkillEffectOrder 300
-#define kFontOrder 400
+#define kNumberOrder	   200
+#define kSkillEffectOrder  300
+#define kFontOrder		   400
 
 #define __FOREACH(__Tp, __Container) \
 	for (__Tp : __Container)         \
 	{
 #define __FOREACH_END }
 
-#define __TRY try
+#define __TRY			 try
 #define __CATCH(__Catch) catch (__Catch)
 
 // namespace

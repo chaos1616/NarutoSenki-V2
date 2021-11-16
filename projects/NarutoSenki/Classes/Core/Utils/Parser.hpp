@@ -1,12 +1,7 @@
 #pragma once
-#include "Defines.h"
 #include "Data/UnitData.h"
+#include "Defines.h"
 #include "Utils/TomlHelper.hpp"
-
-#define PARSER_NS_BEGIN  \
-	namespace UnitParser \
-	{
-#define PARSER_NS_END }
 
 struct ActionData
 {
@@ -55,7 +50,8 @@ struct UnitMetadata
 	}
 };
 
-PARSER_NS_BEGIN
+namespace UnitParser
+{
 
 class ParserCache
 {
@@ -222,7 +218,4 @@ static inline UnitMetadata fromToml(const string &fname, bool cache = false)
 	return metadata;
 }
 
-PARSER_NS_END
-
-#undef PARSER_NS_BEGIN
-#undef PARSER_NS_END
+} // namespace UnitParser

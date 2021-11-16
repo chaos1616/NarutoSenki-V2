@@ -3,6 +3,8 @@
 
 namespace TowerEnum
 {
-	mk_const(KonohaCenter);
-	mk_const(AkatsukiCenter);
+
+mk_const(KonohaCenter);
+mk_const(AkatsukiCenter);
+
 } // namespace TowerEnum

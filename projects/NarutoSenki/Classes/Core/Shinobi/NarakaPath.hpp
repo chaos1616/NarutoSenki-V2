@@ -7,6 +7,15 @@
 
 class NarakaPath : public Hero
 {
+	enum class NarakaKugutsu
+	{
+		None,
+		AnimalPath = 1 << 0,
+		AsuraPath = 1 << 1,
+		HumanPath = 1 << 2,
+		PertaPath = 1 << 3,
+	};
+
 	void perform() override
 	{
 		if (notFindHero(0))
@@ -59,47 +68,30 @@ class NarakaPath : public Hero
 				}
 				else if (isFreeState())
 				{
-					bool isHaveKugutsu1 = false;
-					bool isHaveKugutsu2 = false;
-					bool isHaveKugutsu3 = false;
-					bool isHaveKugutsu4 = false;
-
+					NarakaKugutsu flag;
 					if (hasMonsterArrayAny())
 					{
 						for (auto mo : _monsterArray)
 						{
-							if (mo->getName() == HeroEnum::AnimalPath)
-							{
-								isHaveKugutsu1 = true;
-							}
-							else if (mo->getName() == HeroEnum::AsuraPath)
-							{
-								isHaveKugutsu2 = true;
-							}
-							else if (mo->getName() == HeroEnum::HumanPath)
-							{
-								isHaveKugutsu3 = true;
-							}
-
-							else if (mo->getName() == HeroEnum::PertaPath)
-							{
-								isHaveKugutsu4 = true;
-							}
+							if (mo->getName() == HeroEnum::AnimalPath) flag |= NarakaKugutsu::AnimalPath;
+							else if (mo->getName() == HeroEnum::AsuraPath) flag |= NarakaKugutsu::AsuraPath;
+							else if (mo->getName() == HeroEnum::HumanPath) flag |= NarakaKugutsu::HumanPath;
+							else if (mo->getName() == HeroEnum::PertaPath) flag |= NarakaKugutsu::PertaPath;
 						}
 					}
 
-					if (_isCanSkill1 && !isHaveKugutsu1)
+					if (_isCanSkill1 && notHasFlag(flag, NarakaKugutsu::AnimalPath))
 					{
 						attack(SKILL1);
 						scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sAttackCD1);
 					}
-					else if (_isCanSkill2 && !isHaveKugutsu2)
+					else if (_isCanSkill2 && notHasFlag(flag, NarakaKugutsu::AsuraPath))
 					{
 						changeSide(sp);
 						attack(SKILL2);
 						scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sAttackCD2);
 					}
-					else if (_isCanSkill3 && !isHaveKugutsu4)
+					else if (_isCanSkill3 && notHasFlag(flag, NarakaKugutsu::PertaPath))
 					{
 
 						this->changeSide(sp);
@@ -132,14 +124,10 @@ class NarakaPath : public Hero
 		Hero *clone = nullptr;
 
 		// TODO: How to balance the hero
-		if (cloneTime == 0)
-			clone = createSummonHero<AnimalPath>(HeroEnum::AnimalPath);
-		else if (cloneTime == -1)
-			clone = createSummonHero<AsuraPath>(HeroEnum::AsuraPath);
-		else if (cloneTime == -2)
-			clone = createSummonHero<PertaPath>(HeroEnum::PertaPath);
-		else if (cloneTime == -3)
-			clone = createSummonHero<HumanPath>(HeroEnum::HumanPath);
+		if (cloneTime == 0) clone = createSummonHero<AnimalPath>(HeroEnum::AnimalPath);
+		else if (cloneTime == -1) clone = createSummonHero<AsuraPath>(HeroEnum::AsuraPath);
+		else if (cloneTime == -2) clone = createSummonHero<PertaPath>(HeroEnum::PertaPath);
+		else if (cloneTime == -3) clone = createSummonHero<HumanPath>(HeroEnum::HumanPath);
 
 		_monsterArray.push_back(clone);
 		clone->_isArmored = true;

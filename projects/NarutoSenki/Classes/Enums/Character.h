@@ -11,26 +11,26 @@
 #include "Utils/Hash.h"
 
 // Roles
-#define kRoleCom "Com"
+#define kRoleCom	"Com"
 #define kRolePlayer "Player"
-#define kRoleTower "Tower"
+#define kRoleTower	"Tower"
 #define kRoleBullet "Bullet"
 // Special
 #define kRoleHero "Hero"
 // 分身		Clone
 #define kRoleClone "Clone"
-#define kRoleFlog "Flog"
+#define kRoleFlog  "Flog"
 // 傀儡		Kugutsu
 #define kRoleKugutsu "Kugutsu"
-#define kRoleMon "Mon"
+#define kRoleMon	 "Mon"
 // 口寄せ	Summon
 #define kRoleSummon "Summon"
 
-#define kGroupKonoha "Konoha"
+#define kGroupKonoha   "Konoha"
 #define kGroupAkatsuki "Akatsuki"
 
 // Tile maps (Made with Tiled)
-#define GetMapPath(mapId) format("Maps/{}.tmx", mapId).c_str()
+#define GetMapPath(mapId)	format("Maps/{}.tmx", mapId).c_str()
 #define GetMapBgPath(mapId) format("Maps/map_bg{}.png", mapId).c_str()
 
 enum class Role : uint8_t
@@ -92,8 +92,10 @@ enum class GearType : uint8_t
 
 namespace AttackType
 {
-	mk_const(nAttack);
-	mk_const(aAttack);
+
+mk_const(nAttack);
+mk_const(aAttack);
+
 } // namespace AttackType
 
 namespace BuffType
@@ -103,29 +105,33 @@ namespace BuffType
 
 namespace FlogEnum
 {
-	// Konoha Flogs
-	mk_const(KotetsuFlog); // LV 1
-	mk_const(IzumoFlog);   // LV 2
-	mk_const(KakashiFlog); // LV 3
 
-	// Akatsuki Flogs
-	mk_const(FemalePainFlog); // LV 1
-	mk_const(PainFlog);		  // LV 2
-	mk_const(ObitoFlog);	  // LV 3
+// Konoha Flogs
+mk_const(KotetsuFlog); // LV 1
+mk_const(IzumoFlog);   // LV 2
+mk_const(KakashiFlog); // LV 3
+
+// Akatsuki Flogs
+mk_const(FemalePainFlog); // LV 1
+mk_const(PainFlog);		  // LV 2
+mk_const(ObitoFlog);	  // LV 3
+
 } // namespace FlogEnum
 
 namespace GuardianEnum
 {
-	mk_const(Han);
-	mk_const(Roshi);
+
+mk_const(Han);
+mk_const(Roshi);
+
 } // namespace GuardianEnum
 
 #define make_path(name, type, ext) "Unit/" type "/" name ext
 // Unit path rules
-#define mk_ninja_plist(name) make_path(name "/" name, "Ninja", ".plist")
-#define mk_flog_plist(name) make_path(name, "Flog", ".plist")
-#define mk_guardian_plist(name) make_path(name "/" name, "Guardian", ".plist")
-#define mk_kugutsu_plist(name) make_path(name "/" name, "Kugutsu", ".plist")
+#define mk_ninja_plist(name)	 make_path(name "/" name, "Ninja", ".plist")
+#define mk_flog_plist(name)		 make_path(name, "Flog", ".plist")
+#define mk_guardian_plist(name)	 make_path(name "/" name, "Guardian", ".plist")
+#define mk_kugutsu_plist(name)	 make_path(name "/" name, "Kugutsu", ".plist")
 #define mk_kuchiyose_plist(name) make_path(name "/" name, "Kuchiyose", ".plist")
 
 // Flogs
@@ -156,7 +162,8 @@ enum class ActionFlag : uint32_t
 	Skill03 = 1UL << 10UL,
 	Skill04 = 1UL << 11UL,
 	Skill05 = 1UL << 12UL,
-	AllBasics = Dead | Idle | Walk | Hurt | AirHurt | Knockdown | Float | NAttack | Skill01 | Skill02 | Skill03 | Skill04 | Skill05,
+	AllBasics = Dead | Idle | Walk | Hurt | AirHurt | Knockdown | Float |
+				NAttack | Skill01 | Skill02 | Skill03 | Skill04 | Skill05,
 	// Custom Actions
 	Spc01 = 1UL << 13UL,
 	Spc02 = 1UL << 14UL,
@@ -241,18 +248,12 @@ static inline ActionFlag animBaseType2ActionFlag(const std::string &base) noexce
 
 	switch (hash32(base))
 	{
-	case hash32("Idle"):
-		return ActionFlag::Idle;
-	case hash32("Walk"):
-		return ActionFlag::Walk;
-	case hash32("Hurt"):
-		return ActionFlag::Hurt;
-	case hash32("Knockdown"):
-		return ActionFlag::Knockdown;
-	case hash32("NAttack"):
-		return ActionFlag::NAttack;
-	default:
-		return ActionFlag::None;
+	case hash32("Idle"): return ActionFlag::Idle;
+	case hash32("Walk"): return ActionFlag::Walk;
+	case hash32("Hurt"): return ActionFlag::Hurt;
+	case hash32("Knockdown"): return ActionFlag::Knockdown;
+	case hash32("NAttack"): return ActionFlag::NAttack;
+	default: return ActionFlag::None;
 	}
 }
 
@@ -261,8 +262,7 @@ static inline ActionFlag string2ActionFlag(const std::string &name) noexcept
 	auto hash = HashUtils::hash32(name);
 	for (size_t i = 0; i < kActionFlagHashSize; i++)
 	{
-		if (kActionFlagHash[i] == hash)
-			return static_cast<ActionFlag>(1 << i);
+		if (kActionFlagHash[i] == hash) return static_cast<ActionFlag>(1 << i);
 	}
 	return ActionFlag::None;
 }

@@ -111,10 +111,11 @@ public:
 	virtual void onCharacterDead(CharacterBase *c) = 0;
 	virtual void onCharacterReborn(CharacterBase *c) = 0;
 
-	inline const GameData &getGameData() { return gd; }
-	inline int getOldCheats() { return oldCheats; }
-	inline void setOldCheats(int val) { oldCheats = val; }
-	inline void resetCheats()
+	const GameData &getGameData() { return gd; }
+	int getOldCheats() { return oldCheats; }
+	void setOldCheats(int val) { oldCheats = val; }
+
+	void resetCheats()
 	{
 		if (oldCheats != -1)
 		{
@@ -122,7 +123,8 @@ public:
 			oldCheats = -1;
 		}
 	}
-	inline const vector<HeroData> &getHerosArray() { return heroDataVector; }
+
+	const vector<HeroData> &getHerosArray() { return heroDataVector; }
 
 protected:
 	// IGameModeHandler()
@@ -163,29 +165,29 @@ protected:
 	}
 
 	// init hero
-	inline void addHero(const char *name, Role role, Group group, uint32_t lv = 1)
+	void addHero(const char *name, Role role, Group group, uint32_t lv = 1)
 	{
 		heroDataVector.push_back({name, role, group});
 		heroVector.push_back(name);
 	}
 
-	inline void addHeros(int count, const char *name, Role role, Group group, uint32_t lv = 1)
+	void addHeros(int count, const char *name, Role role, Group group, uint32_t lv = 1)
 	{
 		for (int i = 0; i < count; i++)
 			addHero(name, role, group, lv);
 	}
 
-	inline void addKonohaHero(const vector<string> &heros, const char *name, Role role, uint32_t lv = 1)
+	void addKonohaHero(const vector<string> &heros, const char *name, Role role, uint32_t lv = 1)
 	{
 		addHero(name, role, Group::Konoha, lv);
 	}
 
-	inline void addAkatsukiHero(const vector<string> &heros, const char *name, Role role, uint32_t lv = 1)
+	void addAkatsukiHero(const vector<string> &heros, const char *name, Role role, uint32_t lv = 1)
 	{
 		addHero(name, role, Group::Akatsuki, lv);
 	}
 
-	inline void initHeros(uint32_t playerCount, uint32_t enemyCount)
+	void initHeros(uint32_t playerCount, uint32_t enemyCount)
 	{
 		initHeros(playerCount, enemyCount, nullptr, kDefaultGroup);
 	}
@@ -310,7 +312,7 @@ protected:
 		}
 	}
 
-	inline void setPlayerTeamByGroup(Group group)
+	void setPlayerTeamByGroup(Group group)
 	{
 		gd.playerGroup = group;
 	}
@@ -356,17 +358,17 @@ protected:
 		return defaultChar;
 	}
 
-	inline const char *getSelectedOrRandomHero()
+	const char *getSelectedOrRandomHero()
 	{
 		return selectLayer->_playerSelect ? selectLayer->_playerSelect : getRandomHero();
 	}
 
-	inline const char *getSelectOrRandomHeroExcept(const char *except)
+	const char *getSelectOrRandomHeroExcept(const char *except)
 	{
 		return selectLayer->_playerSelect ? selectLayer->_playerSelect : getRandomHeroExcept(except);
 	}
 
-	inline const char *getSelectOrRandomHeroExceptAll(const vector<string> &excepts, const char *defaultChar = "Naruto")
+	const char *getSelectOrRandomHeroExceptAll(const vector<string> &excepts, const char *defaultChar = "Naruto")
 	{
 		return selectLayer->_playerSelect ? selectLayer->_playerSelect : getRandomHeroExceptAll(excepts, defaultChar);
 	}

@@ -1,7 +1,7 @@
 #pragma once
 #include "cocos2d.h"
-#include "../../../scripting/lua/cocos2dx_support/CCLuaEngine.h"
 #include "Utils/CCDeprecated.h"
+#include "../../../scripting/lua/cocos2dx_support/CCLuaEngine.h"
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 #include <format>
@@ -20,7 +20,7 @@ using namespace std;
 #define typeof(varType) typeid(varType).name()
 
 #define to_uint(str) strtoul(str, nullptr, 10)
-#define to_int(str) atoi(str)
+#define to_int(str)	 atoi(str)
 
 #define RETURN_FALSE_IF(var) \
 	if (var)                 \
@@ -31,7 +31,7 @@ using namespace std;
 		return true;
 
 #define get_luastack LuaEngine::defaultEngine()->getLuaStack()
-#define lua_getL auto L = LuaEngine::defaultEngine()->getLuaStack()->getLuaState();
+#define lua_getL	 auto L = LuaEngine::defaultEngine()->getLuaStack()->getLuaState();
 
 #define lua_call_func(func_name) \
 	lua_getL;                    \

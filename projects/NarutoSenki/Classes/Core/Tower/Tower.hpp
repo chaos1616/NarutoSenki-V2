@@ -1,7 +1,7 @@
 #pragma once
 #include "CharacterBase.h"
-#include "Core/Warrior/Flog.hpp"
 #include "Core/Utils/UnitEx.hpp"
+#include "Core/Warrior/Flog.hpp"
 #include "HPBar.h"
 #include "HudLayer.h"
 

@@ -3,8 +3,8 @@
 
 namespace Internal
 {
-	static void initAllSystems()
-	{
-		CommandSystem::reset();
-	}
+static void initAllSystems()
+{
+	CommandSystem::reset();
+}
 } // namespace Internal

@@ -106,7 +106,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 		eglView->enterFullscreen(0, 0);
 	}
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-	//TODO: Support Fullscreen
+	// TODO: Support Fullscreen
 	eglView->setFrameSize(width, height);
 	eglView->setTitle(title);
 	eglView->setIcon("icon.png");

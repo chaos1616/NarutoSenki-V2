@@ -1,11 +1,11 @@
-#include "Defines.h"
-#include "CharacterBase.h"
 #include "GameLayer.h"
 #include "BGLayer.h"
+#include "CharacterBase.h"
+#include "Core/Provider.hpp"
+#include "Defines.h"
+#include "GameMode/GameModeImpl.h"
 #include "HudLayer.h"
 #include "StartMenu.h"
-#include "Core/Provider.hpp"
-#include "GameMode/GameModeImpl.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 static GLFWwindow *_window;

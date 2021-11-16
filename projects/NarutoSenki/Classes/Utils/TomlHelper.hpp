@@ -2,13 +2,8 @@
 #include "toml.hpp"
 
 // toml extension
-
-#define TOMLEX_NS_BEGIN \
-	namespace tomlex    \
-	{
-#define TOMLEX_NS_END }
-
-TOMLEX_NS_BEGIN
+namespace tomlex
+{
 
 template <typename T>
 inline T get(const toml::table::const_iterator &v)
@@ -47,7 +42,4 @@ inline bool try_set_or(const toml::table &tab, const toml::key &ky, T &v, const 
 	}
 }
 
-TOMLEX_NS_END
-
-#undef TOMLEX_NS_BEGIN
-#undef TOMLEX_NS_END
+} // namespace tomlex

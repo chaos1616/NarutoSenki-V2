@@ -66,3 +66,25 @@ hasFlag(T a, T b) noexcept
 	using _Base = std::underlying_type_t<T>;
 	return static_cast<_Base>(a & b) != static_cast<_Base>(0);
 }
+
+template <typename T>
+inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, bool>
+notHasFlag(T a, T b) noexcept
+{
+	using _Base = std::underlying_type_t<T>;
+	return static_cast<_Base>(a & b) == static_cast<_Base>(0);
+}
+
+template <typename T>
+inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, void>
+setFlag(T &a, T b) noexcept
+{
+	a |= b;
+}
+
+template <typename T>
+inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, void>
+unsetFlag(T &a, T b) noexcept
+{
+	a &= ~b;
+}

@@ -144,411 +144,413 @@ void CharacterBase::acceptAttack(Ref *object)
 			}
 		}
 
-		if (isHitX)
+		if (!isHitX)
 		{
-			float attackerPosY;
-			float currentPosY;
-			if (attacker->_state == State::JUMP)
-				attackerPosY = attacker->_originY;
-			else
-				attackerPosY = attacker->getPositionY();
+			return;
+		}
 
-			if (_state == State::FLOAT || _state == State::JUMP || _state == State::AIRHURT)
-				currentPosY = _originY;
-			else
-				currentPosY = getPositionY();
+		float attackerPosY;
+		float currentPosY;
+		if (attacker->_state == State::JUMP)
+			attackerPosY = attacker->_originY;
+		else
+			attackerPosY = attacker->getPositionY();
 
-			if (abs(currentPosY - attackerPosY) <= attacker->_attackRangeY)
+		if (_state == State::FLOAT || _state == State::JUMP || _state == State::AIRHURT)
+			currentPosY = _originY;
+		else
+			currentPosY = getPositionY();
+
+		if (abs(currentPosY - attackerPosY) > attacker->_attackRangeY)
+		{
+			return;
+		}
+
+		auto hitType = attacker->_effectType;
+
+		attacker->_isHitOne = true;
+		// record the slayer
+		_slayer = attacker;
+
+		// flog hurt
+		if (isFlog())
+		{
+			if (hitType == "o_hit")
 			{
-				auto hitType = attacker->_effectType;
-
-				// hit or not !
-				attacker->_isHitOne = true;
-
-				// record the slayer
-				_slayer = attacker;
-
-				// flog hurt
-				if (isFlog())
-				{
-					if (hitType == "o_hit")
-					{
-						setKnockLength(48);
-						setKnockDirection(attacker->_isFlipped);
-						hurt();
-					}
-					else if (hitType == "ac_hit")
-					{
-						airHurt();
-					}
-					else if (hitType == "f_hit" || hitType == "bf_hit")
-					{
-						autoFlip(attacker);
-						floatUP(64, true);
-					}
-					else if (hitType == "f2_hit")
-					{
-						autoFlip(attacker);
-						floatUP(128, true);
-					}
-					else if (hitType == "b_hit")
-					{
-						autoFlip(attacker);
-						floatUP(16, false);
-					}
-					else if (hitType == "ab_hit")
-					{
-						absorb(attacker->getPosition(), true);
-					}
-					else if (hitType == "s_hit")
-					{
-						absorb(attacker->getPosition(), false);
-					}
-				}
-				// hero hurt
-				else if (isPlayerOrCom() || isClone())
-				{
-					if (hitType == "l_hit")
-					{
-						if (!_isArmored)
-						{
-							setKnockLength(32);
-						}
-						hurt();
-					}
-					else if (hitType == "c_hit" ||
-							 hitType == "bc_hit")
-					{
-						if (!_isArmored)
-						{
-							setKnockLength(1);
-						}
-
-						if (attacker->getName() == HeroEnum::Kakuzu && _sticker)
-						{
-							CharacterBase *stHero = _sticker;
-							if (stHero->getName() == HeroEnum::Kakuzu && stHero->hearts <= 4)
-							{
-								attacker->hearts += 1;
-
-								if (attacker->_heartEffect)
-								{
-									auto frame = getSpriteFrame("Heart_Effect_{:02d}", attacker->hearts);
-									attacker->_heartEffect->setDisplayFrame(frame);
-								}
-							}
-
-							if (attacker->isPlayer() && attacker->hearts > 0)
-							{
-								int monCount = 0;
-								for (auto mo : attacker->getMonsterArray())
-								{
-									if (mo->getName() != "Traps")
-									{
-										monCount++;
-									}
-								}
-
-								if (monCount < 3 && attacker->getLV() >= 2)
-								{
-									getGameLayer()->getHudLayer()->skill4Button->unLock();
-								}
-							}
-						}
-						else if (attacker->getName() == HeroEnum::Nagato && _sticker)
-						{
-							CharacterBase *stHero = _sticker;
-							if (stHero->getName() == HeroEnum::Nagato && stHero->hearts <= 2)
-								attacker->hearts += 1;
-						}
-
-						hurt();
-					}
-					else if (hitType == "ts_hit")
-					{
-						if (!_isArmored)
-						{
-							setKnockLength(1);
-						}
-						if (hurt() &&
-							(!attacker->_isCatchOne || attacker->getName() == SkillEnum::FakeMinato))
-						{
-							attacker->_isCatchOne = true;
-							if (attacker->_master)
-							{
-								if (attacker->getName() == SkillEnum::FakeMinato)
-								{
-									setPosition(Vec2(attacker->_master->_isFlipped ? attacker->_master->getPositionX() - 64 : attacker->_master->getPositionX() + 64,
-													 attacker->_master->getPositionY() + 2));
-								}
-								else
-								{
-									setPosition(Vec2(attacker->_master->_isFlipped ? attacker->_master->getPositionX() - 48 : attacker->_master->getPositionX() + 48,
-													 attacker->_master->getPositionY()));
-								}
-
-								CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", this);
-								getGameLayer()->reorderChild(this, -getPositionY());
-							}
-						}
-					}
-					else if (hitType == "sl_hit")
-					{
-						if (!_isArmored)
-						{
-							setKnockLength(1);
-						}
-						hurt();
-						if (getWalkSpeed() == 224)
-						{
-							setWalkSpeed(112);
-							schedule(schedule_selector(CharacterBase::disableDebuff), 3);
-						}
-					}
-					else if (hitType == "ac_hit")
-					{
-						if (_state == State::FLOAT || _state == State::AIRHURT)
-						{
-							airHurt();
-						}
-						else
-						{
-							if (!_isArmored)
-							{
-								setKnockLength(1);
-							}
-							hurt();
-						}
-					}
-					else if (hitType == "o_hit")
-					{
-						if (_state != State::OATTACK ||
-							(_state == State::OATTACK &&
-							 (attacker->_state == State::O2ATTACK ||
-							  attacker->_state == State::OATTACK)))
-						{
-							if (!_isArmored)
-							{
-								setKnockLength(48);
-							}
-							setKnockDirection(attacker->_isFlipped);
-							hardHurt(500, true, false, false, false);
-						}
-					}
-					else if (hitType == "o2_hit")
-					{
-						if (!_isArmored)
-						{
-							setKnockLength(1);
-						}
-						setKnockDirection(attacker->_isFlipped);
-						hardHurt(1000, true, false, false, true);
-					}
-					else if (hitType == "ob_hit")
-					{
-						if (!_isArmored)
-						{
-							setKnockLength(1);
-						}
-						setKnockDirection(attacker->_isFlipped);
-						hardHurt(2000, true, false, false, true);
-
-						if (_dehealBuffEffect)
-						{
-							_dehealBuffValue += 1000;
-						}
-						else
-						{
-							_dehealBuffValue = 1000;
-							setBuffEffect("dhBuff");
-							schedule(schedule_selector(CharacterBase::dehealBuff), 1);
-						}
-						scheduleOnce(schedule_selector(CharacterBase::disableBuff), 5);
-					}
-					else if (hitType == "ct_hit")
-					{
-						if (_state != State::OATTACK ||
-							(_state == State::OATTACK &&
-							 (attacker->_state == State::O2ATTACK ||
-							  attacker->_state == State::OATTACK)))
-						{
-							if (attacker->_isCatchOne == false ||
-								attacker->getName() == SkillEnum::Shenwei)
-							{
-								if (attacker->_master)
-								{
-									if (attacker->getName() == SkillEnum::Kuroari ||
-										attacker->getName() == SkillEnum::Shenwei ||
-										attacker->getName() == SkillEnum::Sabaku ||
-										attacker->getName() == SkillEnum::Shenwei2)
-									{
-										if (hardHurt(3000, false, true, false, false))
-										{
-											attacker->_isCatchOne = true;
-											scheduleOnce(schedule_selector(CharacterBase::reCatched), 2.9f);
-										}
-									}
-									else if (attacker->getName() == SkillEnum::SandBall)
-									{
-										if (hardHurt(1000, false, true, false, false))
-										{
-											attacker->_isCatchOne = true;
-											scheduleOnce(schedule_selector(CharacterBase::reCatched), 0.9f);
-										}
-									}
-									else if (attacker->_master->getName() == HeroEnum::Shikamaru)
-									{
-										bool underAttack = false;
-										if (attacker->getName() == SkillEnum::KageHand)
-										{
-											underAttack = hardHurt(6000, false, false, true, false);
-											if (underAttack)
-											{
-												attacker->stopAllActions();
-												attacker->schedule(schedule_selector(CharacterBase::getSticker), 0.1f);
-												lbAttackerId = attacker->_master->getCharId();
-												schedule(schedule_selector(CharacterBase::lostBlood), 1.0f);
-												lostBloodValue = 400;
-												scheduleOnce(schedule_selector(CharacterBase::removeLostBlood), 6.0f);
-											}
-										}
-										else if (attacker->getName() == SkillEnum::QuanRen ||
-												 attacker->getName() == SkillEnum::KageBom)
-										{
-											underAttack = hardHurt(3000, false, false, true, false);
-										}
-
-										if (underAttack)
-										{
-											attacker->_isCatchOne = true;
-											setPosition(Vec2(attacker->getPositionX(), attacker->getPositionY() + 1));
-											getGameLayer()->reorderChild(this, -getPositionY());
-										}
-									}
-									else if (attacker->_master->getName() == HeroEnum::Itachi ||
-											 attacker->_master->getName() == HeroEnum::Chiyo)
-									{
-										bool underAttack = false;
-
-										if (attacker->_master->getName() == HeroEnum::Chiyo)
-										{
-											underAttack = hardHurt(2000, false, false, true, false);
-										}
-										else
-										{
-											underAttack = hardHurt(3000, false, false, true, false);
-										}
-										if (underAttack)
-										{
-											attacker->_isCatchOne = true;
-											setPosition(Vec2(attacker->getPositionX() + 2, attacker->getPositionY() - 2));
-											getGameLayer()->reorderChild(this, -getPositionY());
-										}
-									}
-									else if (attacker->_master->getName() == HeroEnum::Nagato)
-									{
-										bool underAttack = false;
-
-										if (attacker->getName() == HeroEnum::NarakaPath)
-											underAttack = hardHurt(2000, false, false, true, false);
-
-										if (underAttack)
-										{
-											attacker->_isCatchOne = true;
-											setPosition(Vec2(getPositionX() + (_isFlipped ? -30 : 30), getPositionY() - 10));
-											getGameLayer()->reorderChild(this, -getPositionY());
-										}
-									}
-								}
-								else
-								{
-									if (attacker->getName() == HeroEnum::Lee ||
-										attacker->getName() == HeroEnum::RockLee)
-									{
-										if (hardHurt(1000, false, true, false, false))
-										{
-											attacker->_isCatchOne = true;
-											scheduleOnce(schedule_selector(CharacterBase::reCatched), 1.1f);
-										}
-									}
-									else if (attacker->getName() == HeroEnum::Kakuzu)
-									{
-										bool underAttack = false;
-
-										if (!_isArmored)
-										{
-											setKnockLength(1);
-										}
-										underAttack = hardHurt(1500, false, false, true, true);
-
-										if (underAttack)
-										{
-											attacker->_isCatchOne = true;
-											setPosition(Vec2(attacker->getPositionX() + (attacker->_isFlipped ? -28 : 28), attacker->getPositionY() - 1));
-											setFlipX(attacker->_isFlipped ? false : true);
-											getGameLayer()->reorderChild(this, -getPositionY());
-										}
-									}
-									else if (attacker->getName() == HeroEnum::Tobi)
-									{
-										if (!_isArmored)
-										{
-											setKnockLength(1);
-										}
-										hardHurt(1000, true, false, false, false);
-									}
-								}
-							}
-						}
-					}
-					else if (hitType == "f_hit" || hitType == "bf_hit")
-					{
-						autoFlip(attacker);
-						if (_state != State::OATTACK ||
-							(_state == State::OATTACK &&
-							 (attacker->_state == State::O2ATTACK ||
-							  attacker->_state == State::OATTACK)))
-						{
-							floatUP(64, true);
-						}
-					}
-					else if (hitType == "f2_hit")
-					{
-						autoFlip(attacker);
-						if (_state != State::OATTACK ||
-							(_state == State::OATTACK &&
-							 (attacker->_state == State::O2ATTACK ||
-							  attacker->_state == State::OATTACK)))
-						{
-							floatUP(128, true);
-						}
-					}
-					else if (hitType == "b_hit")
-					{
-						autoFlip(attacker);
-
-						if (_state != State::OATTACK ||
-							(_state == State::OATTACK &&
-							 (attacker->_state == State::O2ATTACK ||
-							  attacker->_state == State::OATTACK)))
-						{
-							floatUP(16, false);
-						}
-					}
-					else if (hitType == "ab_hit")
-					{
-						absorb(attacker->getPosition(), true);
-					}
-					else if (hitType == "s_hit")
-					{
-						absorb(attacker->getPosition(), false);
-					}
-				}
-
-				if (onHit(attacker))
-					setDamage(attacker);
+				setKnockLength(48);
+				setKnockDirection(attacker->_isFlipped);
+				hurt();
+			}
+			else if (hitType == "ac_hit")
+			{
+				airHurt();
+			}
+			else if (hitType == "f_hit" || hitType == "bf_hit")
+			{
+				autoFlip(attacker);
+				floatUP(64, true);
+			}
+			else if (hitType == "f2_hit")
+			{
+				autoFlip(attacker);
+				floatUP(128, true);
+			}
+			else if (hitType == "b_hit")
+			{
+				autoFlip(attacker);
+				floatUP(16, false);
+			}
+			else if (hitType == "ab_hit")
+			{
+				absorb(attacker->getPosition(), true);
+			}
+			else if (hitType == "s_hit")
+			{
+				absorb(attacker->getPosition(), false);
 			}
 		}
+		// hero hurt
+		else if (isPlayerOrCom() || isClone())
+		{
+			if (hitType == "l_hit")
+			{
+				if (!_isArmored)
+				{
+					setKnockLength(32);
+				}
+				hurt();
+			}
+			else if (hitType == "c_hit" ||
+					 hitType == "bc_hit")
+			{
+				if (!_isArmored)
+				{
+					setKnockLength(1);
+				}
+
+				if (attacker->getName() == HeroEnum::Kakuzu && _sticker)
+				{
+					CharacterBase *stHero = _sticker;
+					if (stHero->getName() == HeroEnum::Kakuzu && stHero->hearts <= 4)
+					{
+						attacker->hearts += 1;
+
+						if (attacker->_heartEffect)
+						{
+							auto frame = getSpriteFrame("Heart_Effect_{:02d}", attacker->hearts);
+							attacker->_heartEffect->setDisplayFrame(frame);
+						}
+					}
+
+					if (attacker->isPlayer() && attacker->hearts > 0)
+					{
+						int monCount = 0;
+						for (auto mo : attacker->getMonsterArray())
+						{
+							if (mo->getName() != "Traps")
+							{
+								monCount++;
+							}
+						}
+
+						if (monCount < 3 && attacker->getLV() >= 2)
+						{
+							getGameLayer()->getHudLayer()->skill4Button->unLock();
+						}
+					}
+				}
+				else if (attacker->getName() == HeroEnum::Nagato && _sticker)
+				{
+					CharacterBase *stHero = _sticker;
+					if (stHero->getName() == HeroEnum::Nagato && stHero->hearts <= 2)
+						attacker->hearts += 1;
+				}
+
+				hurt();
+			}
+			else if (hitType == "ts_hit")
+			{
+				if (!_isArmored)
+				{
+					setKnockLength(1);
+				}
+				if (hurt() &&
+					(!attacker->_isCatchOne || attacker->getName() == SkillEnum::FakeMinato))
+				{
+					attacker->_isCatchOne = true;
+					if (attacker->_master)
+					{
+						if (attacker->getName() == SkillEnum::FakeMinato)
+						{
+							setPosition(Vec2(attacker->_master->_isFlipped ? attacker->_master->getPositionX() - 64 : attacker->_master->getPositionX() + 64,
+											 attacker->_master->getPositionY() + 2));
+						}
+						else
+						{
+							setPosition(Vec2(attacker->_master->_isFlipped ? attacker->_master->getPositionX() - 48 : attacker->_master->getPositionX() + 48,
+											 attacker->_master->getPositionY()));
+						}
+
+						CCNotificationCenter::sharedNotificationCenter()->postNotification("updateMap", this);
+						getGameLayer()->reorderChild(this, -getPositionY());
+					}
+				}
+			}
+			else if (hitType == "sl_hit")
+			{
+				if (!_isArmored)
+				{
+					setKnockLength(1);
+				}
+				hurt();
+				if (getWalkSpeed() == 224)
+				{
+					setWalkSpeed(112);
+					schedule(schedule_selector(CharacterBase::disableDebuff), 3);
+				}
+			}
+			else if (hitType == "ac_hit")
+			{
+				if (_state == State::FLOAT || _state == State::AIRHURT)
+				{
+					airHurt();
+				}
+				else
+				{
+					if (!_isArmored)
+					{
+						setKnockLength(1);
+					}
+					hurt();
+				}
+			}
+			else if (hitType == "o_hit")
+			{
+				if (_state != State::OATTACK ||
+					(_state == State::OATTACK &&
+					 (attacker->_state == State::O2ATTACK ||
+					  attacker->_state == State::OATTACK)))
+				{
+					if (!_isArmored)
+					{
+						setKnockLength(48);
+					}
+					setKnockDirection(attacker->_isFlipped);
+					hardHurt(500, true, false, false, false);
+				}
+			}
+			else if (hitType == "o2_hit")
+			{
+				if (!_isArmored)
+				{
+					setKnockLength(1);
+				}
+				setKnockDirection(attacker->_isFlipped);
+				hardHurt(1000, true, false, false, true);
+			}
+			else if (hitType == "ob_hit")
+			{
+				if (!_isArmored)
+				{
+					setKnockLength(1);
+				}
+				setKnockDirection(attacker->_isFlipped);
+				hardHurt(2000, true, false, false, true);
+
+				if (_dehealBuffEffect)
+				{
+					_dehealBuffValue += 1000;
+				}
+				else
+				{
+					_dehealBuffValue = 1000;
+					setBuffEffect("dhBuff");
+					schedule(schedule_selector(CharacterBase::dehealBuff), 1);
+				}
+				scheduleOnce(schedule_selector(CharacterBase::disableBuff), 5);
+			}
+			else if (hitType == "ct_hit")
+			{
+				if (_state != State::OATTACK ||
+					(_state == State::OATTACK &&
+					 (attacker->_state == State::O2ATTACK ||
+					  attacker->_state == State::OATTACK)))
+				{
+					if (attacker->_isCatchOne == false ||
+						attacker->getName() == SkillEnum::Shenwei)
+					{
+						if (attacker->_master)
+						{
+							if (attacker->getName() == SkillEnum::Kuroari ||
+								attacker->getName() == SkillEnum::Shenwei ||
+								attacker->getName() == SkillEnum::Sabaku ||
+								attacker->getName() == SkillEnum::Shenwei2)
+							{
+								if (hardHurt(3000, false, true, false, false))
+								{
+									attacker->_isCatchOne = true;
+									scheduleOnce(schedule_selector(CharacterBase::reCatched), 2.9f);
+								}
+							}
+							else if (attacker->getName() == SkillEnum::SandBall)
+							{
+								if (hardHurt(1000, false, true, false, false))
+								{
+									attacker->_isCatchOne = true;
+									scheduleOnce(schedule_selector(CharacterBase::reCatched), 0.9f);
+								}
+							}
+							else if (attacker->_master->getName() == HeroEnum::Shikamaru)
+							{
+								bool underAttack = false;
+								if (attacker->getName() == SkillEnum::KageHand)
+								{
+									underAttack = hardHurt(6000, false, false, true, false);
+									if (underAttack)
+									{
+										attacker->stopAllActions();
+										attacker->schedule(schedule_selector(CharacterBase::getSticker), 0.1f);
+										lbAttackerId = attacker->_master->getCharId();
+										schedule(schedule_selector(CharacterBase::lostBlood), 1.0f);
+										lostBloodValue = 400;
+										scheduleOnce(schedule_selector(CharacterBase::removeLostBlood), 6.0f);
+									}
+								}
+								else if (attacker->getName() == SkillEnum::QuanRen ||
+										 attacker->getName() == SkillEnum::KageBom)
+								{
+									underAttack = hardHurt(3000, false, false, true, false);
+								}
+
+								if (underAttack)
+								{
+									attacker->_isCatchOne = true;
+									setPosition(Vec2(attacker->getPositionX(), attacker->getPositionY() + 1));
+									getGameLayer()->reorderChild(this, -getPositionY());
+								}
+							}
+							else if (attacker->_master->getName() == HeroEnum::Itachi ||
+									 attacker->_master->getName() == HeroEnum::Chiyo)
+							{
+								bool underAttack = false;
+
+								if (attacker->_master->getName() == HeroEnum::Chiyo)
+								{
+									underAttack = hardHurt(2000, false, false, true, false);
+								}
+								else
+								{
+									underAttack = hardHurt(3000, false, false, true, false);
+								}
+								if (underAttack)
+								{
+									attacker->_isCatchOne = true;
+									setPosition(Vec2(attacker->getPositionX() + 2, attacker->getPositionY() - 2));
+									getGameLayer()->reorderChild(this, -getPositionY());
+								}
+							}
+							else if (attacker->_master->getName() == HeroEnum::Nagato)
+							{
+								bool underAttack = false;
+
+								if (attacker->getName() == HeroEnum::NarakaPath)
+									underAttack = hardHurt(2000, false, false, true, false);
+
+								if (underAttack)
+								{
+									attacker->_isCatchOne = true;
+									setPosition(Vec2(getPositionX() + (_isFlipped ? -30 : 30), getPositionY() - 10));
+									getGameLayer()->reorderChild(this, -getPositionY());
+								}
+							}
+						}
+						else
+						{
+							if (attacker->getName() == HeroEnum::Lee ||
+								attacker->getName() == HeroEnum::RockLee)
+							{
+								if (hardHurt(1000, false, true, false, false))
+								{
+									attacker->_isCatchOne = true;
+									scheduleOnce(schedule_selector(CharacterBase::reCatched), 1.1f);
+								}
+							}
+							else if (attacker->getName() == HeroEnum::Kakuzu)
+							{
+								bool underAttack = false;
+
+								if (!_isArmored)
+								{
+									setKnockLength(1);
+								}
+								underAttack = hardHurt(1500, false, false, true, true);
+
+								if (underAttack)
+								{
+									attacker->_isCatchOne = true;
+									setPosition(Vec2(attacker->getPositionX() + (attacker->_isFlipped ? -28 : 28), attacker->getPositionY() - 1));
+									setFlipX(attacker->_isFlipped ? false : true);
+									getGameLayer()->reorderChild(this, -getPositionY());
+								}
+							}
+							else if (attacker->getName() == HeroEnum::Tobi)
+							{
+								if (!_isArmored)
+								{
+									setKnockLength(1);
+								}
+								hardHurt(1000, true, false, false, false);
+							}
+						}
+					}
+				}
+			}
+			else if (hitType == "f_hit" || hitType == "bf_hit")
+			{
+				autoFlip(attacker);
+				if (_state != State::OATTACK ||
+					(_state == State::OATTACK &&
+					 (attacker->_state == State::O2ATTACK ||
+					  attacker->_state == State::OATTACK)))
+				{
+					floatUP(64, true);
+				}
+			}
+			else if (hitType == "f2_hit")
+			{
+				autoFlip(attacker);
+				if (_state != State::OATTACK ||
+					(_state == State::OATTACK &&
+					 (attacker->_state == State::O2ATTACK ||
+					  attacker->_state == State::OATTACK)))
+				{
+					floatUP(128, true);
+				}
+			}
+			else if (hitType == "b_hit")
+			{
+				autoFlip(attacker);
+
+				if (_state != State::OATTACK ||
+					(_state == State::OATTACK &&
+					 (attacker->_state == State::O2ATTACK ||
+					  attacker->_state == State::OATTACK)))
+				{
+					floatUP(16, false);
+				}
+			}
+			else if (hitType == "ab_hit")
+			{
+				absorb(attacker->getPosition(), true);
+			}
+			else if (hitType == "s_hit")
+			{
+				absorb(attacker->getPosition(), false);
+			}
+		}
+
+		if (onHit(attacker))
+			setDamage(attacker);
 	}
 }
 

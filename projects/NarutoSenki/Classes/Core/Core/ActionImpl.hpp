@@ -4,29 +4,33 @@
 
 // Detailed implementation of Action module of unit base class
 
-// NOTE: DO NOT FORMAT THIS FILE
+#define SET_NATTACK_ACTION_DATA_FN(__Data) \
+	{                                      \
+		_nAttackType = __Data.type;        \
+		_nAttackValue = __Data.value;      \
+		_nAttackRangeX = __Data.rangeX;    \
+		_nAttackRangeY = __Data.rangeY;    \
+	}
 
-#define SET_NATTACK_ACTION_DATA_FN(__Action) \
-	_nAttackType = __Action.type;            \
-	_nAttackValue = __Action.value;          \
-	_nAttackRangeX = __Action.rangeX;        \
-	_nAttackRangeY = __Action.rangeY;
+#define SET_SKILL_ACTION_DATA_FN(__Id, __Data)          \
+	{                                                   \
+		_sAttackType##__Id = __Data.type;               \
+		_sAttackValue##__Id = __Data.value;             \
+		_sAttackRangeX##__Id = __Data.rangeX;           \
+		_sAttackRangeY##__Id = __Data.rangeY;           \
+		_sAttackCD##__Id = __Data.cooldown;             \
+		_sAttackCombatPoint##__Id = __Data.combatPoint; \
+	}
+// _sAttack##__Id##isDouble = __Data.isDouble;
 
-#define SET_SKILL_ACTION_DATA_FN(__Id, __Action) \
-	_sAttackType##__Id = __Action.type;          \
-	_sAttackValue##__Id = __Action.value;        \
-	_sAttackRangeX##__Id = __Action.rangeX;      \
-	_sAttackRangeY##__Id = __Action.rangeY;      \
-	_sAttackCD##__Id = __Action.cooldown;        \
-	_sAttackCombatPoint##__Id = __Action.combatPoint;
-// _sAttack##__Id##isDouble = __Action.isDouble;
-
-#define SET_SPC_SKILL_ACTION_DATA_FN(__Id, __Action) \
-	_spcAttackType##__Id = __Action.type;            \
-	_spcAttackValue##__Id = __Action.value;          \
-	_spcAttackRangeX##__Id = __Action.rangeX;        \
-	_spcAttackRangeY##__Id = __Action.rangeY;        \
-	_spcAttackCD##__Id = __Action.cooldown;
+#define SET_SPC_SKILL_ACTION_DATA_FN(__Id, __Data) \
+	{                                              \
+		_spcAttackType##__Id = __Data.type;        \
+		_spcAttackValue##__Id = __Data.value;      \
+		_spcAttackRangeX##__Id = __Data.rangeX;    \
+		_spcAttackRangeY##__Id = __Data.rangeY;    \
+		_spcAttackCD##__Id = __Data.cooldown;      \
+	}
 
 void CharacterBase::genActionBy(const UnitMetadata &data)
 {
@@ -241,6 +245,7 @@ void CharacterBase::genActionBy(const UnitMetadata &data)
 	}
 	default:
 	{
+		CCLOGERROR("Does not support command %s = %s", key.c_str(), value.c_str());
 	}
 	break;
 	}
@@ -261,9 +266,13 @@ void CharacterBase::genActionBy(const UnitMetadata &data)
 	if (action.info.isLoop)
 	{
 		if (onlyOneSprite)
+		{
 			seq = Sequence::create(list);
+		}
 		else
+		{
 			seq = RepeatForever::create(Sequence::create(list));
+		}
 	}
 	else
 	{
@@ -280,38 +289,15 @@ void CharacterBase::genActionBy(const UnitMetadata &data)
 	// set action data
 	if (action.flag >= ActionFlag::NAttack && action.flag <= ActionFlag::Spc03)
 	{
-		switch (action.flag)
-		{
-		case ActionFlag::NAttack:
-			SET_NATTACK_ACTION_DATA_FN(action);
-			break;
-		case ActionFlag::Skill01:
-			SET_SKILL_ACTION_DATA_FN(1, action);
-			break;
-		case ActionFlag::Skill02:
-			SET_SKILL_ACTION_DATA_FN(2, action);
-			break;
-		case ActionFlag::Skill03:
-			SET_SKILL_ACTION_DATA_FN(3, action);
-			break;
-		case ActionFlag::Skill04:
-			SET_SKILL_ACTION_DATA_FN(4, action);
-			break;
-		case ActionFlag::Skill05:
-			SET_SKILL_ACTION_DATA_FN(5, action);
-			break;
-		case ActionFlag::Spc01:
-			SET_SPC_SKILL_ACTION_DATA_FN(1, action);
-			break;
-		case ActionFlag::Spc02:
-			SET_SPC_SKILL_ACTION_DATA_FN(2, action);
-			break;
-		case ActionFlag::Spc03:
-			SET_SPC_SKILL_ACTION_DATA_FN(3, action);
-			break;
-		default:
-			break;
-		}
+		if (action.flag == ActionFlag::NAttack) SET_NATTACK_ACTION_DATA_FN(action)
+		else if (action.flag == ActionFlag::Skill01) SET_SKILL_ACTION_DATA_FN(1, action)
+		else if (action.flag == ActionFlag::Skill02) SET_SKILL_ACTION_DATA_FN(2, action)
+		else if (action.flag == ActionFlag::Skill03) SET_SKILL_ACTION_DATA_FN(3, action)
+		else if (action.flag == ActionFlag::Skill04) SET_SKILL_ACTION_DATA_FN(4, action)
+		else if (action.flag == ActionFlag::Skill05) SET_SKILL_ACTION_DATA_FN(5, action)
+		else if (action.flag == ActionFlag::Spc01) SET_SPC_SKILL_ACTION_DATA_FN(1, action)
+		else if (action.flag == ActionFlag::Spc02) SET_SPC_SKILL_ACTION_DATA_FN(2, action)
+		else if (action.flag == ActionFlag::Spc03) SET_SPC_SKILL_ACTION_DATA_FN(3, action)
 	}
 
 	// cleanup temp variables
@@ -322,32 +308,19 @@ void CharacterBase::genActionBy(const UnitMetadata &data)
 
 void CharacterBase::setAction(ActionFlag flags)
 {
-	if (hasFlag(flags, ActionFlag::Dead))
-		setDeadAction(_actionMap.at(ActionFlag::Dead));
-	if (hasFlag(flags, ActionFlag::Idle))
-		setIdleAction(_actionMap.at(ActionFlag::Idle));
-	if (hasFlag(flags, ActionFlag::Walk))
-		setWalkAction(_actionMap.at(ActionFlag::Walk));
-	if (hasFlag(flags, ActionFlag::Hurt))
-		setHurtAction(_actionMap.at(ActionFlag::Hurt));
-	if (hasFlag(flags, ActionFlag::AirHurt))
-		setAirHurtAction(_actionMap.at(ActionFlag::AirHurt));
-	if (hasFlag(flags, ActionFlag::Knockdown))
-		setKnockdownAction(_actionMap.at(ActionFlag::Knockdown));
-	if (hasFlag(flags, ActionFlag::Float))
-		setFloatAction(_actionMap.at(ActionFlag::Float));
-	if (hasFlag(flags, ActionFlag::NAttack))
-		setNAttackAction(_actionMap.at(ActionFlag::NAttack));
-	if (hasFlag(flags, ActionFlag::Skill01))
-		setSkill1Action(_actionMap.at(ActionFlag::Skill01));
-	if (hasFlag(flags, ActionFlag::Skill02))
-		setSkill2Action(_actionMap.at(ActionFlag::Skill02));
-	if (hasFlag(flags, ActionFlag::Skill03))
-		setSkill3Action(_actionMap.at(ActionFlag::Skill03));
-	if (hasFlag(flags, ActionFlag::Skill04))
-		setSkill4Action(_actionMap.at(ActionFlag::Skill04));
-	if (hasFlag(flags, ActionFlag::Skill05))
-		setSkill5Action(_actionMap.at(ActionFlag::Skill05));
+	if (hasFlag(flags, ActionFlag::Dead)) setDeadAction(_actionMap.at(ActionFlag::Dead));
+	if (hasFlag(flags, ActionFlag::Idle)) setIdleAction(_actionMap.at(ActionFlag::Idle));
+	if (hasFlag(flags, ActionFlag::Walk)) setWalkAction(_actionMap.at(ActionFlag::Walk));
+	if (hasFlag(flags, ActionFlag::Hurt)) setHurtAction(_actionMap.at(ActionFlag::Hurt));
+	if (hasFlag(flags, ActionFlag::AirHurt)) setAirHurtAction(_actionMap.at(ActionFlag::AirHurt));
+	if (hasFlag(flags, ActionFlag::Knockdown)) setKnockdownAction(_actionMap.at(ActionFlag::Knockdown));
+	if (hasFlag(flags, ActionFlag::Float)) setFloatAction(_actionMap.at(ActionFlag::Float));
+	if (hasFlag(flags, ActionFlag::NAttack)) setNAttackAction(_actionMap.at(ActionFlag::NAttack));
+	if (hasFlag(flags, ActionFlag::Skill01)) setSkill1Action(_actionMap.at(ActionFlag::Skill01));
+	if (hasFlag(flags, ActionFlag::Skill02)) setSkill2Action(_actionMap.at(ActionFlag::Skill02));
+	if (hasFlag(flags, ActionFlag::Skill03)) setSkill3Action(_actionMap.at(ActionFlag::Skill03));
+	if (hasFlag(flags, ActionFlag::Skill04)) setSkill4Action(_actionMap.at(ActionFlag::Skill04));
+	if (hasFlag(flags, ActionFlag::Skill05)) setSkill5Action(_actionMap.at(ActionFlag::Skill05));
 }
 
 // TODO: Impl in header file
