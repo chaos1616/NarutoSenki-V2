@@ -6,33 +6,6 @@
 
 namespace Command
 {
-using namespace HashUtils;
-
-constexpr auto setAttackBox = hash32("setAttackBox");
-constexpr auto setSound = hash32("setSound");
-constexpr auto setDSound = hash32("setDSound");
-constexpr auto setDelay = hash32("setDelay");
-constexpr auto setMove = hash32("setMove");
-constexpr auto setSkillEffect = hash32("setSkillEffect");
-constexpr auto setJump = hash32("setJump");
-constexpr auto setCharge = hash32("setCharge");
-constexpr auto setChargeB = hash32("setChargeB");
-constexpr auto setClone = hash32("setClone");
-constexpr auto setMon = hash32("setMon");
-constexpr auto setFont = hash32("setFont");
-constexpr auto setBuff = hash32("setBuff");
-constexpr auto setCmd = hash32("setCmd");
-constexpr auto setDestroy = hash32("setDestroy");
-constexpr auto setBullet = hash32("setBullet");
-constexpr auto setMonAttack = hash32("setMonAttack");
-constexpr auto setTrap = hash32("setTrap");
-constexpr auto setActionResume = hash32("setActionResume");
-constexpr auto setActionResume2 = hash32("setActionResume2");
-constexpr auto setShadow = hash32("setShadow");
-constexpr auto setTransform = hash32("setTransform");
-constexpr auto setOugis = hash32("setOugis");
-constexpr auto stopJump = hash32("stopJump");
-constexpr auto setFlipped = hash32("setFlipped");
 
 mk_const(addHP);
 mk_const(setInvincible);
@@ -50,6 +23,7 @@ mk_const(setTrade);
 mk_const(addExtern);
 mk_const(pauseJump);
 mk_const(setCounter);
+
 } // namespace Command
 
 using CommandHandler = std::function<void(CharacterBase *)>;

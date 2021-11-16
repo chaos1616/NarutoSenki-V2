@@ -1,6 +1,5 @@
 #pragma once
 #include "CharacterBase.h"
-#include "System/CommandSystem.hpp"
 
 // Detailed implementation of Action module of unit base class
 
@@ -31,6 +30,39 @@
 		_spcAttackRangeY##__Id = __Data.rangeY;    \
 		_spcAttackCD##__Id = __Data.cooldown;      \
 	}
+
+namespace UnitEvent
+{
+
+using namespace HashUtils;
+
+constexpr auto setAttackBox = hash32("setAttackBox");
+constexpr auto setSound = hash32("setSound");
+constexpr auto setDSound = hash32("setDSound");
+constexpr auto setDelay = hash32("setDelay");
+constexpr auto setMove = hash32("setMove");
+constexpr auto setSkillEffect = hash32("setSkillEffect");
+constexpr auto setJump = hash32("setJump");
+constexpr auto setCharge = hash32("setCharge");
+constexpr auto setChargeB = hash32("setChargeB");
+constexpr auto setClone = hash32("setClone");
+constexpr auto setMon = hash32("setMon");
+constexpr auto setFont = hash32("setFont");
+constexpr auto setBuff = hash32("setBuff");
+constexpr auto setCmd = hash32("setCmd");
+constexpr auto setDestroy = hash32("setDestroy");
+constexpr auto setBullet = hash32("setBullet");
+constexpr auto setMonAttack = hash32("setMonAttack");
+constexpr auto setTrap = hash32("setTrap");
+constexpr auto setActionResume = hash32("setActionResume");
+constexpr auto setActionResume2 = hash32("setActionResume2");
+constexpr auto setShadow = hash32("setShadow");
+constexpr auto setTransform = hash32("setTransform");
+constexpr auto setOugis = hash32("setOugis");
+constexpr auto stopJump = hash32("stopJump");
+constexpr auto setFlipped = hash32("setFlipped");
+
+} // namespace UnitEvent
 
 void CharacterBase::genActionBy(const UnitMetadata &data)
 {
@@ -63,52 +95,52 @@ void CharacterBase::genActionBy(const UnitMetadata &data)
 
 	switch (HashUtils::hash32(key))
 	{
-	case Command::setAttackBox:
+	case UnitEvent::setAttackBox:
 	{
 		auto call = CallFunc::create(std::bind(&CharacterBase::setAttackBox, this, value));
 		list.pushBack(call);
 	}
 	break;
-	case Command::setSound:
+	case UnitEvent::setSound:
 	{
 		auto call = CallFunc::create(std::bind(&CharacterBase::setSound, this, value));
 		list.pushBack(call);
 	}
 	break;
-	case Command::setDSound:
+	case UnitEvent::setDSound:
 	{
 		auto call = CallFunc::create(std::bind(&CharacterBase::setDSound, this, value));
 		list.pushBack(call);
 	}
 	break;
-	case Command::setDelay:
+	case UnitEvent::setDelay:
 	{
 		float delayTime = std::stoi(value);
 		auto delay = DelayTime::create(delayTime / 100.0f);
 		list.pushBack(delay);
 	}
 	break;
-	case Command::setMove:
+	case UnitEvent::setMove:
 	{
 		int moveLength = std::stoi(value);
 		auto call = CallFunc::create(std::bind(&CharacterBase::setMove, this, moveLength));
 		list.pushBack(call);
 	}
 	break;
-	case Command::setSkillEffect:
+	case UnitEvent::setSkillEffect:
 	{
 		auto call = CallFunc::create(std::bind(&CharacterBase::setSkillEffect, this, value));
 		list.pushBack(call);
 	}
 	break;
-	case Command::setJump:
+	case UnitEvent::setJump:
 	{
 		bool jumpDirection = std::stobool(value);
 		auto call = CallFunc::create(std::bind(&CharacterBase::setJump, this, jumpDirection));
 		list.pushBack(call);
 	}
 	break;
-	case Command::setCharge:
+	case UnitEvent::setCharge:
 	{
 		auto call = CallFunc::create(std::bind(&CharacterBase::getCollider, this));
 		list.pushBack(call);
@@ -117,27 +149,27 @@ void CharacterBase::genActionBy(const UnitMetadata &data)
 		list.pushBack(call);
 	}
 	break;
-	case Command::setChargeB:
+	case UnitEvent::setChargeB:
 	{
 		int moveLength = std::stoi(value);
 		auto call = CallFunc::create(std::bind(&CharacterBase::setChargeB, this, moveLength));
 		list.pushBack(call);
 	}
 	break;
-	case Command::setClone:
+	case UnitEvent::setClone:
 	{
 		int cloneTime = std::stoi(value);
 		auto call = CallFunc::create(std::bind(&CharacterBase::setClone, this, cloneTime));
 		list.pushBack(call);
 	}
 	break;
-	case Command::setMon:
+	case UnitEvent::setMon:
 	{
 		auto call = CallFunc::create(std::bind(&CharacterBase::setMon, this, value));
 		list.pushBack(call);
 	}
 	break;
-	case Command::setFont:
+	case UnitEvent::setFont:
 	{
 		// const char *split = ",";
 		// char *p;
@@ -155,57 +187,57 @@ void CharacterBase::genActionBy(const UnitMetadata &data)
 		// list.pushBack(call);
 	}
 	break;
-	case Command::setBuff:
+	case UnitEvent::setBuff:
 	{
 		int buffValue = std::stoi(value);
 		auto call = CallFunc::create(std::bind(&CharacterBase::setBuff, this, buffValue));
 		list.pushBack(call);
 	}
 	break;
-	case Command::setCmd:
+	case UnitEvent::setCmd:
 	{
 		auto call = CallFunc::create(std::bind(&CharacterBase::setCommand, this, value));
 		list.pushBack(call);
 	}
 	break;
-	case Command::setDestroy:
+	case UnitEvent::setDestroy:
 	{
 		auto call = CallFunc::create(std::bind(&CharacterBase::dealloc, this));
 		list.pushBack(call);
 	}
 	break;
-	case Command::setBullet:
+	case UnitEvent::setBullet:
 	{
 		auto call = CallFunc::create(std::bind(&CharacterBase::setBullet, this, value));
 		list.pushBack(call);
 	}
 	break;
-	case Command::setMonAttack:
+	case UnitEvent::setMonAttack:
 	{
 		int skillNum = std::stoi(value);
 		auto call = CallFunc::create(std::bind(&CharacterBase::setMonAttack, this, skillNum));
 		list.pushBack(call);
 	}
 	break;
-	case Command::setTrap:
+	case UnitEvent::setTrap:
 	{
 		auto call = CallFunc::create(std::bind(&CharacterBase::setTrap, this, value));
 		list.pushBack(call);
 	}
 	break;
-	case Command::setActionResume:
+	case UnitEvent::setActionResume:
 	{
 		auto call = CallFunc::create(std::bind(&CharacterBase::setActionResume, this));
 		list.pushBack(call);
 	}
 	break;
-	case Command::setActionResume2:
+	case UnitEvent::setActionResume2:
 	{
 		auto call = CallFunc::create(std::bind(&CharacterBase::setActionResume2, this));
 		list.pushBack(call);
 	}
 	break;
-	case Command::setShadow:
+	case UnitEvent::setShadow:
 	{
 		if (spriteFrames.size() == 0)
 		{
@@ -219,33 +251,33 @@ void CharacterBase::genActionBy(const UnitMetadata &data)
 		}
 	}
 	break;
-	case Command::setTransform:
+	case UnitEvent::setTransform:
 	{
 		auto call = CallFunc::create(std::bind(&CharacterBase::setTransform, this));
 		list.pushBack(call);
 	}
 	break;
-	case Command::setOugis:
+	case UnitEvent::setOugis:
 	{
 		auto call = CallFunc::create(std::bind(&CharacterBase::setOugis, this));
 		list.pushBack(call);
 	}
 	break;
-	case Command::stopJump:
+	case UnitEvent::stopJump:
 	{
 		int stopTime = std::stoi(value);
 		auto call = CallFunc::create(std::bind(&CharacterBase::stopJump, this, stopTime));
 		list.pushBack(call);
 	}
 	break;
-	case Command::setFlipped:
+	case UnitEvent::setFlipped:
 	{
 		auto call = CallFunc::create(std::bind(&CharacterBase::setCharFlip, this));
 		list.pushBack(call);
 	}
 	default:
 	{
-		CCLOGERROR("Does not support command %s = %s", key.c_str(), value.c_str());
+		CCLOGERROR("Does not support UnitEvent %s = %s", key.c_str(), value.c_str());
 	}
 	break;
 	}
