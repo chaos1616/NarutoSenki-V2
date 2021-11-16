@@ -37,6 +37,7 @@
                 "${workspaceFolder}/CocosDenshion/**",
                 "${workspaceFolder}/extensions/**",
                 "${workspaceFolder}/external/**",
+                "${workspaceFolder}/external/sqlite3/include",
                 "${workspaceFolder}/scripting/lua/cocos2dx_support",
                 "${workspaceFolder}/scripting/lua/luajit/include",
                 "${workspaceFolder}/projects/NarutoSenki/Classes/**"
