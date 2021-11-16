@@ -36,31 +36,31 @@ namespace UnitEvent
 
 using namespace HashUtils;
 
-constexpr auto setAttackBox = hash32("setAttackBox");
-constexpr auto setSound = hash32("setSound");
-constexpr auto setDSound = hash32("setDSound");
-constexpr auto setDelay = hash32("setDelay");
-constexpr auto setMove = hash32("setMove");
-constexpr auto setSkillEffect = hash32("setSkillEffect");
-constexpr auto setJump = hash32("setJump");
-constexpr auto setCharge = hash32("setCharge");
-constexpr auto setChargeB = hash32("setChargeB");
-constexpr auto setClone = hash32("setClone");
-constexpr auto setMon = hash32("setMon");
-constexpr auto setFont = hash32("setFont");
-constexpr auto setBuff = hash32("setBuff");
-constexpr auto setCmd = hash32("setCmd");
-constexpr auto setDestroy = hash32("setDestroy");
-constexpr auto setBullet = hash32("setBullet");
-constexpr auto setMonAttack = hash32("setMonAttack");
-constexpr auto setTrap = hash32("setTrap");
-constexpr auto setActionResume = hash32("setActionResume");
-constexpr auto setActionResume2 = hash32("setActionResume2");
-constexpr auto setShadow = hash32("setShadow");
-constexpr auto setTransform = hash32("setTransform");
-constexpr auto setOugis = hash32("setOugis");
-constexpr auto stopJump = hash32("stopJump");
-constexpr auto setFlipped = hash32("setFlipped");
+mk_hconst(setAttackBox);
+mk_hconst(setSound);
+mk_hconst(setDSound);
+mk_hconst(setDelay);
+mk_hconst(setMove);
+mk_hconst(setSkillEffect);
+mk_hconst(setJump);
+mk_hconst(setCharge);
+mk_hconst(setChargeB);
+mk_hconst(setClone);
+mk_hconst(setMon);
+mk_hconst(setFont);
+mk_hconst(setBuff);
+mk_hconst(setCmd);
+mk_hconst(setDestroy);
+mk_hconst(setBullet);
+mk_hconst(setMonAttack);
+mk_hconst(setTrap);
+mk_hconst(setActionResume);
+mk_hconst(setActionResume2);
+mk_hconst(setShadow);
+mk_hconst(setTransform);
+mk_hconst(setOugis);
+mk_hconst(stopJump);
+mk_hconst(setFlipped);
 
 } // namespace UnitEvent
 
