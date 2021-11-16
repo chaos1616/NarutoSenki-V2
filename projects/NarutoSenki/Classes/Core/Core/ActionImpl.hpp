@@ -98,7 +98,7 @@ void CharacterBase::genActionBy(const UnitMetadata &data)
 		break;
 		case Command::setJump:
 		{
-			bool jumpDirection = std::stbool(value);
+			bool jumpDirection = std::stobool(value);
 			auto call = CallFunc::create(std::bind(&CharacterBase::setJump, this, jumpDirection));
 			list.pushBack(call);
 		}

@@ -16,7 +16,7 @@ inline std::string trim(const std::string &s)
 
 // TODO: std::trim_sub
 
-inline bool stbool(const std::string &s)
+inline bool stobool(const std::string &s)
 {
 	return s == "true";
 }

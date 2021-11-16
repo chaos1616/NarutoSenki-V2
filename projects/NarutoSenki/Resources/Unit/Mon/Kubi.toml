@@ -18,7 +18,6 @@ value = 120
 rangeX = 32
 rangeY = 48
 anim = {loop = true}
-
 frame = [
     'Kubi_Move_01',
     'setHit = o_hit',
