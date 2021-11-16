@@ -49,205 +49,207 @@ void CharacterBase::genActionBy(const UnitMetadata &data)
 	{
 		auto frame = getSpriteFrame(value);
 		spriteFrames.pushBack(frame);
+		continue;
 	}
-	else
+	// else
+	// {
+	tempAnimation = Animation::createWithSpriteFrames(spriteFrames, fdelay);
+	tempAction = Animate::create(tempAnimation);
+	list.pushBack(tempAction);
+
+	switch (HashUtils::hash32(key))
 	{
-		tempAnimation = Animation::createWithSpriteFrames(spriteFrames, fdelay);
-		tempAction = Animate::create(tempAnimation);
-		list.pushBack(tempAction);
-
-		switch (HashUtils::hash32(key))
-		{
-		case Command::setAttackBox:
-		{
-			auto call = CallFunc::create(std::bind(&CharacterBase::setAttackBox, this, value));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setSound:
-		{
-			auto call = CallFunc::create(std::bind(&CharacterBase::setSound, this, value));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setDSound:
-		{
-			auto call = CallFunc::create(std::bind(&CharacterBase::setDSound, this, value));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setDelay:
-		{
-			float delayTime = std::stoi(value);
-			auto delay = DelayTime::create(delayTime / 100.0f);
-			list.pushBack(delay);
-		}
-		break;
-		case Command::setMove:
-		{
-			int moveLength = std::stoi(value);
-			auto call = CallFunc::create(std::bind(&CharacterBase::setMove, this, moveLength));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setSkillEffect:
-		{
-			auto call = CallFunc::create(std::bind(&CharacterBase::setSkillEffect, this, value));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setJump:
-		{
-			bool jumpDirection = std::stobool(value);
-			auto call = CallFunc::create(std::bind(&CharacterBase::setJump, this, jumpDirection));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setCharge:
-		{
-			auto call = CallFunc::create(std::bind(&CharacterBase::getCollider, this));
-			list.pushBack(call);
-			int moveLength = std::stoi(value);
-			call = CallFunc::create(std::bind(&CharacterBase::setCharge, this, moveLength));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setChargeB:
-		{
-			int moveLength = std::stoi(value);
-			auto call = CallFunc::create(std::bind(&CharacterBase::setChargeB, this, moveLength));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setClone:
-		{
-			int cloneTime = std::stoi(value);
-			auto call = CallFunc::create(std::bind(&CharacterBase::setClone, this, cloneTime));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setMon:
-		{
-			auto call = CallFunc::create(std::bind(&CharacterBase::setMon, this, value));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setFont:
-		{
-			// const char *split = ",";
-			// char *p;
-			// char str[] = char[strlen(value)];
-			// strcpy(str, value);
-			// p = strtok(str, split);
-			// vector<string> valueVector;
-			// while (p != nullptr)
-			// {
-			// 	valueVector.push_back(p);
-			// 	p = strtok(nullptr, split);
-			// }
-
-			// auto call = CallFunc::create(std::bind(&CharacterBase::setFontEffect, this, valueVector));
-			// list.pushBack(call);
-		}
-		break;
-		case Command::setBuff:
-		{
-			int buffValue = std::stoi(value);
-			auto call = CallFunc::create(std::bind(&CharacterBase::setBuff, this, buffValue));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setCmd:
-		{
-			auto call = CallFunc::create(std::bind(&CharacterBase::setCommand, this, value));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setDestroy:
-		{
-			auto call = CallFunc::create(std::bind(&CharacterBase::dealloc, this));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setBullet:
-		{
-			auto call = CallFunc::create(std::bind(&CharacterBase::setBullet, this, value));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setMonAttack:
-		{
-			int skillNum = std::stoi(value);
-			auto call = CallFunc::create(std::bind(&CharacterBase::setMonAttack, this, skillNum));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setTrap:
-		{
-			auto call = CallFunc::create(std::bind(&CharacterBase::setTrap, this, value));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setActionResume:
-		{
-			auto call = CallFunc::create(std::bind(&CharacterBase::setActionResume, this));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setActionResume2:
-		{
-			auto call = CallFunc::create(std::bind(&CharacterBase::setActionResume2, this));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setShadow:
-		{
-			if (spriteFrames.size() == 0)
-			{
-				CCLOGERROR("`setShadow` can only be used after at least one sprite");
-			}
-			else
-			{
-				auto frame = spriteFrames.at(spriteFrames.size() - 1);
-				auto call = CallFunc::create(std::bind(&CharacterBase::setShadow, this, frame));
-				list.pushBack(call);
-			}
-		}
-		break;
-		case Command::setTransform:
-		{
-			auto call = CallFunc::create(std::bind(&CharacterBase::setTransform, this));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setOugis:
-		{
-			auto call = CallFunc::create(std::bind(&CharacterBase::setOugis, this));
-			list.pushBack(call);
-		}
-		break;
-		case Command::stopJump:
-		{
-			int stopTime = std::stoi(value);
-			auto call = CallFunc::create(std::bind(&CharacterBase::stopJump, this, stopTime));
-			list.pushBack(call);
-		}
-		break;
-		case Command::setFlipped:
-		{
-			auto call = CallFunc::create(std::bind(&CharacterBase::setCharFlip, this));
-			list.pushBack(call);
-		}
-		default:
-		{
-		}
-		break;
-		}
-
-		spriteFrames.clear();
+	case Command::setAttackBox:
+	{
+		auto call = CallFunc::create(std::bind(&CharacterBase::setAttackBox, this, value));
+		list.pushBack(call);
 	}
+	break;
+	case Command::setSound:
+	{
+		auto call = CallFunc::create(std::bind(&CharacterBase::setSound, this, value));
+		list.pushBack(call);
+	}
+	break;
+	case Command::setDSound:
+	{
+		auto call = CallFunc::create(std::bind(&CharacterBase::setDSound, this, value));
+		list.pushBack(call);
+	}
+	break;
+	case Command::setDelay:
+	{
+		float delayTime = std::stoi(value);
+		auto delay = DelayTime::create(delayTime / 100.0f);
+		list.pushBack(delay);
+	}
+	break;
+	case Command::setMove:
+	{
+		int moveLength = std::stoi(value);
+		auto call = CallFunc::create(std::bind(&CharacterBase::setMove, this, moveLength));
+		list.pushBack(call);
+	}
+	break;
+	case Command::setSkillEffect:
+	{
+		auto call = CallFunc::create(std::bind(&CharacterBase::setSkillEffect, this, value));
+		list.pushBack(call);
+	}
+	break;
+	case Command::setJump:
+	{
+		bool jumpDirection = std::stobool(value);
+		auto call = CallFunc::create(std::bind(&CharacterBase::setJump, this, jumpDirection));
+		list.pushBack(call);
+	}
+	break;
+	case Command::setCharge:
+	{
+		auto call = CallFunc::create(std::bind(&CharacterBase::getCollider, this));
+		list.pushBack(call);
+		int moveLength = std::stoi(value);
+		call = CallFunc::create(std::bind(&CharacterBase::setCharge, this, moveLength));
+		list.pushBack(call);
+	}
+	break;
+	case Command::setChargeB:
+	{
+		int moveLength = std::stoi(value);
+		auto call = CallFunc::create(std::bind(&CharacterBase::setChargeB, this, moveLength));
+		list.pushBack(call);
+	}
+	break;
+	case Command::setClone:
+	{
+		int cloneTime = std::stoi(value);
+		auto call = CallFunc::create(std::bind(&CharacterBase::setClone, this, cloneTime));
+		list.pushBack(call);
+	}
+	break;
+	case Command::setMon:
+	{
+		auto call = CallFunc::create(std::bind(&CharacterBase::setMon, this, value));
+		list.pushBack(call);
+	}
+	break;
+	case Command::setFont:
+	{
+		// const char *split = ",";
+		// char *p;
+		// char str[] = char[strlen(value)];
+		// strcpy(str, value);
+		// p = strtok(str, split);
+		// vector<string> valueVector;
+		// while (p != nullptr)
+		// {
+		// 	valueVector.push_back(p);
+		// 	p = strtok(nullptr, split);
+		// }
+
+		// auto call = CallFunc::create(std::bind(&CharacterBase::setFontEffect, this, valueVector));
+		// list.pushBack(call);
+	}
+	break;
+	case Command::setBuff:
+	{
+		int buffValue = std::stoi(value);
+		auto call = CallFunc::create(std::bind(&CharacterBase::setBuff, this, buffValue));
+		list.pushBack(call);
+	}
+	break;
+	case Command::setCmd:
+	{
+		auto call = CallFunc::create(std::bind(&CharacterBase::setCommand, this, value));
+		list.pushBack(call);
+	}
+	break;
+	case Command::setDestroy:
+	{
+		auto call = CallFunc::create(std::bind(&CharacterBase::dealloc, this));
+		list.pushBack(call);
+	}
+	break;
+	case Command::setBullet:
+	{
+		auto call = CallFunc::create(std::bind(&CharacterBase::setBullet, this, value));
+		list.pushBack(call);
+	}
+	break;
+	case Command::setMonAttack:
+	{
+		int skillNum = std::stoi(value);
+		auto call = CallFunc::create(std::bind(&CharacterBase::setMonAttack, this, skillNum));
+		list.pushBack(call);
+	}
+	break;
+	case Command::setTrap:
+	{
+		auto call = CallFunc::create(std::bind(&CharacterBase::setTrap, this, value));
+		list.pushBack(call);
+	}
+	break;
+	case Command::setActionResume:
+	{
+		auto call = CallFunc::create(std::bind(&CharacterBase::setActionResume, this));
+		list.pushBack(call);
+	}
+	break;
+	case Command::setActionResume2:
+	{
+		auto call = CallFunc::create(std::bind(&CharacterBase::setActionResume2, this));
+		list.pushBack(call);
+	}
+	break;
+	case Command::setShadow:
+	{
+		if (spriteFrames.size() == 0)
+		{
+			CCLOGERROR("`setShadow` can only be used after at least one sprite");
+		}
+		else
+		{
+			auto frame = spriteFrames.at(spriteFrames.size() - 1);
+			auto call = CallFunc::create(std::bind(&CharacterBase::setShadow, this, frame));
+			list.pushBack(call);
+		}
+	}
+	break;
+	case Command::setTransform:
+	{
+		auto call = CallFunc::create(std::bind(&CharacterBase::setTransform, this));
+		list.pushBack(call);
+	}
+	break;
+	case Command::setOugis:
+	{
+		auto call = CallFunc::create(std::bind(&CharacterBase::setOugis, this));
+		list.pushBack(call);
+	}
+	break;
+	case Command::stopJump:
+	{
+		int stopTime = std::stoi(value);
+		auto call = CallFunc::create(std::bind(&CharacterBase::stopJump, this, stopTime));
+		list.pushBack(call);
+	}
+	break;
+	case Command::setFlipped:
+	{
+		auto call = CallFunc::create(std::bind(&CharacterBase::setCharFlip, this));
+		list.pushBack(call);
+	}
+	default:
+	{
+	}
+	break;
+	}
+
+	spriteFrames.clear();
+	// }
 
 	__FOREACH_END
+
 	if (!spriteFrames.empty())
 	{
 		tempAnimation = Animation::createWithSpriteFrames(spriteFrames, fdelay);
