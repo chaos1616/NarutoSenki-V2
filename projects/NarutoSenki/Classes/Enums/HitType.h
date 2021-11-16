@@ -4,25 +4,25 @@
 namespace HitType
 {
 
-mk_const(n_hit);
-mk_const(b_hit);
+mk_hconst(n_hit);
+mk_hconst(b_hit);
 
-mk_const(l_hit);
-mk_const(f_hit);
-mk_const(f2_hit);
-mk_const(c_hit);
-mk_const(o_hit);
-mk_const(o2_hit);
-mk_const(ob_hit);
-mk_const(ab_hit);
-mk_const(ac_hit);
-mk_const(ct_hit);
-mk_const(ts_hit);
-mk_const(s_hit);
+mk_hconst(l_hit);
+mk_hconst(f_hit);
+mk_hconst(f2_hit);
+mk_hconst(c_hit);
+mk_hconst(o_hit);
+mk_hconst(o2_hit);
+mk_hconst(ob_hit);
+mk_hconst(ab_hit);
+mk_hconst(ac_hit);
+mk_hconst(ct_hit);
+mk_hconst(ts_hit);
+mk_hconst(s_hit);
 
-mk_const(bl_hit);
-mk_const(bc_hit);
-mk_const(bf_hit);
-mk_const(sl_hit);
+mk_hconst(bl_hit);
+mk_hconst(bc_hit);
+mk_hconst(bf_hit);
+mk_hconst(sl_hit);
 
 } // namespace HitType
