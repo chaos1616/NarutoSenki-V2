@@ -455,8 +455,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 		{
 			realValue = attackValue + criticalValue;
 		}
-		else if ((attacker->_master ||
-				  attacker->_state == State::NATTACK) &&
+		else if ((attacker->_master || attacker->_state == State::NATTACK) &&
 				 attacker->hasArmorBroken)
 		{
 			realValue = attackValue + criticalValue;
@@ -695,7 +694,8 @@ void CharacterBase::removeDamageDisplay()
 
 void CharacterBase::setDamgeEffect(const string &type)
 {
-	if (isPlayer() || abs((getPosition() - getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2)
+	if (isPlayer() ||
+		abs((getPosition() - getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2)
 	{
 		if (damageEffectCount < 2)
 		{
@@ -792,7 +792,7 @@ bool CharacterBase::setGear(GearType type)
 {
 	uint32_t gearCost;
 	// The cost of [ 00 03 06 ] is 500
-	if (static_cast<uint32_t>(type) % 3 == 0)
+	if (type % 3 == 0)
 		gearCost = 500;
 	else
 		gearCost = 1000;

@@ -117,17 +117,23 @@ private:
 		on(Command::findTarget, [](CharacterBase *thiz) {
 			if (thiz->notFindHero(0))
 			{
-				if (thiz->notFindFlog(0) || thiz->getName() == HeroEnum::RikudoNaruto ||
+				if (thiz->notFindFlog(0) ||
+					thiz->getName() == HeroEnum::RikudoNaruto ||
 					thiz->getName() == HeroEnum::SageNaruto)
+				{
 					thiz->_mainTarget = nullptr;
+				}
 			}
 
 			if (thiz->_mainTarget == nullptr) return;
 			auto target = thiz->_mainTarget;
 
-			if (thiz->getName() == SkillEnum::Dogs || thiz->getName() == SkillEnum::Yominuma ||
-				thiz->getName() == SkillEnum::SandBall || thiz->getName() == SkillEnum::Sabaku ||
-				thiz->getName() == SkillEnum::Yataikuzu || thiz->getName() == HeroEnum::Lee ||
+			if (thiz->getName() == SkillEnum::Dogs ||
+				thiz->getName() == SkillEnum::Yominuma ||
+				thiz->getName() == SkillEnum::SandBall ||
+				thiz->getName() == SkillEnum::Sabaku ||
+				thiz->getName() == SkillEnum::Yataikuzu ||
+				thiz->getName() == HeroEnum::Lee ||
 				thiz->getName() == HeroEnum::RockLee)
 			{
 				thiz->_markPoint = Vec2(target->getPositionX(),
@@ -259,10 +265,13 @@ private:
 					{
 						if (hero->_hpBar)
 						{
-							if (hero->getHP() <= 2000) hero->setDamage(thiz, "c_hit", hero->getHP(), false);
-							else hero->setDamage(thiz, "c_hit", 2000, false);
+							if (hero->getHP() <= 2000)
+								hero->setDamage(thiz, "c_hit", hero->getHP(), false);
+							else
+								hero->setDamage(thiz, "c_hit", 2000, false);
 
-							if (hero->isPlayer()) getGameLayer()->setHPLose(hero->getHpPercent());
+							if (hero->isPlayer())
+								getGameLayer()->setHPLose(hero->getHpPercent());
 						}
 					}
 				}
@@ -271,10 +280,13 @@ private:
 			{
 				if (thiz->_hpBar)
 				{
-					if (thiz->getHP() <= 2000) thiz->setDamage(thiz, "c_hit", thiz->getHP(), false);
-					else thiz->setDamage(thiz, "c_hit", 2000, false);
+					if (thiz->getHP() <= 2000)
+						thiz->setDamage(thiz, "c_hit", thiz->getHP(), false);
+					else
+						thiz->setDamage(thiz, "c_hit", 2000, false);
 
-					if (thiz->isPlayer()) getGameLayer()->setHPLose(thiz->getHpPercent());
+					if (thiz->isPlayer())
+						getGameLayer()->setHPLose(thiz->getHpPercent());
 				}
 			}
 
@@ -283,7 +295,9 @@ private:
 		on(Command::setRevive, [](CharacterBase *thiz) {
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
-				if (thiz->getGroup() == hero->getGroup() && hero->isPlayerOrCom() && hero->_state == State::DEAD &&
+				if (thiz->getGroup() == hero->getGroup() &&
+					hero->isPlayerOrCom() &&
+					hero->_state == State::DEAD &&
 					hero->rebornSprite)
 				{
 					hero->unschedule(schedule_selector(Hero::reborn));
@@ -294,7 +308,10 @@ private:
 		on(Command::setTrade, [](CharacterBase *thiz) {
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
-				if (hero->hearts > 0 && hero->_state == State::DEAD && hero->rebornSprite && hero->isPlayerOrCom() &&
+				if (hero->hearts > 0 &&
+					hero->_state == State::DEAD &&
+					hero->rebornSprite &&
+					hero->isPlayerOrCom() &&
 					hero->getName() != HeroEnum::Kakuzu)
 				{
 					Vec2 sp = hero->getPosition() - thiz->getPosition();
