@@ -34,8 +34,6 @@
 namespace UnitEvent
 {
 
-using namespace HashUtils;
-
 mk_hconst(setActionResume);
 mk_hconst(setActionResume2);
 mk_hconst(setAttackBox);

@@ -8,7 +8,6 @@
 #include "Enums/SummonEnum.h"
 #include "Enums/TowerEnum.h"
 #include "Utils/Cocos2dxHelper.hpp"
-#include "Utils/Hash.h"
 
 // Roles
 #define kRoleCom	"Com"

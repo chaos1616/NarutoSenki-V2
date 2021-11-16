@@ -212,9 +212,9 @@ void HudLayer::initHeroInterface()
 	auto winWidth = winSize.width;
 	auto winHeight = winSize.height;
 	float mScaleX = 1.0f;
-	float mScaleY = 1.0f;
 
 #if DEBUG || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+	float mScaleY = 1.0f;
 	mScaleX = winWidth / 570;
 	mScaleY = winHeight / 320;
 	// init the joyStick

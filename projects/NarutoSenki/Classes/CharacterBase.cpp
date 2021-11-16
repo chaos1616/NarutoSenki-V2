@@ -857,6 +857,8 @@ bool CharacterBase::setGear(GearType type)
 			setMaxHPValue(getMaxHP() + 6000);
 			hasArmor = true;
 			break;
+		default:
+			break;
 		}
 
 		return true;

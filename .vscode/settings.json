@@ -46,7 +46,6 @@
     },
     "C_Cpp.autoAddFileAssociations": false,
     "C_Cpp.autocompleteAddParentheses": true,
-    "C_Cpp.clang_format_path": "tools/clang-format",
     "C_Cpp.errorSquiggles": "Enabled",
     "C_Cpp.experimentalFeatures": "Enabled"
 }

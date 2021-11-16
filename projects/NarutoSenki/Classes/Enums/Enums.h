@@ -1,4 +1,5 @@
 #pragma once
+#include "Utils/Hash.h"
 
 // make a constexpr
 #define mk_const(var) constexpr auto var = #var

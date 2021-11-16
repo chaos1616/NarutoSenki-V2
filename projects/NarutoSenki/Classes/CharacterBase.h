@@ -275,7 +275,7 @@ public:
 	void oAttack(ABType type);
 	bool hurt();
 	bool hardHurt(int delayTime, bool isHurtAction, bool isCatch, bool isStick, bool isStun);
-	// bool				hardHurt(int delayTime, bool isHurtAction, HardHurtState state);
+	// bool hardHurt(int delayTime, bool isHurtAction, HardHurtState state);
 	void absorb(Vec2 position, bool isImmediate);
 	void jump(){}; // No reference
 	void knockdown();
@@ -402,7 +402,7 @@ public:
 	void setDamgeDisplay(int value, const char *font);
 
 	void setSkillEffect(const string &type);
-	// void				setItemEffect(const string &type);
+	// void setItemEffect(const string &type);
 	void setDamgeEffect(const string &type);
 	void setMonAttack(int skillNum);
 	void setTransform();

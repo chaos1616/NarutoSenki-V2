@@ -158,12 +158,6 @@ public:
 	static int getMapCount();
 
 private:
-	void onEnter();
-	void onExit();
-
-	void setKeyEventHandler();
-	void removeKeyEventHandler();
-
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	int _lastPressedMovementKey;
 
@@ -172,6 +166,12 @@ private:
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	static void LPFN_ACCELEROMETER_KEYHOOK(UINT message, WPARAM wParam, LPARAM lParam);
 #endif
+
+	void onEnter();
+	void onExit();
+
+	void setKeyEventHandler();
+	void removeKeyEventHandler();
 
 	void invokeAllCallbacks();
 
