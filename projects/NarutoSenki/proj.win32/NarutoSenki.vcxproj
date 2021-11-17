@@ -129,6 +129,7 @@ xcopy /Y /Q "$(SolutionDir)$(Configuration).win32\*.exe" "$(SolutionDir)projects
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libExtensions.lib;libcocos2d.lib;libCocosDenshion.lib;opengl32.lib;glew32.lib;pthreadVCE2.lib;sqlite3.lib;glfw3.lib;liblua.lib;lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -155,7 +156,6 @@ xcopy /Y /Q "$(SolutionDir)$(Configuration).win32\*.exe" "$(SolutionDir)projects
   <ItemGroup>
     <ClCompile Include="..\..\..\cocos2dx\support\tinyxml2\tinyxml2.cpp" />
     <ClCompile Include="..\Classes\ActionButton.cpp" />
-    <ClCompile Include="..\Classes\CharacterBase.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\BGLayer.cpp" />
     <ClCompile Include="..\Classes\CreditsLayer.cpp" />
@@ -169,23 +169,24 @@ xcopy /Y /Q "$(SolutionDir)$(Configuration).win32\*.exe" "$(SolutionDir)projects
     <ClCompile Include="..\Classes\HudLayer.cpp" />
     <ClCompile Include="..\Classes\JoyStick.cpp" />
     <ClCompile Include="..\Classes\LoadLayer.cpp" />
+    <ClCompile Include="..\Classes\PauseLayer.cpp" />
+    <ClCompile Include="..\Classes\SelectLayer.cpp" />
+    <ClCompile Include="..\Classes\StartMenu.cpp" />
+    <ClCompile Include="..\Classes\Core\Unit.cpp" />
     <ClCompile Include="..\Classes\MyUtils\CCScrewLayer.cpp" />
     <ClCompile Include="..\Classes\MyUtils\CCShake.cpp" />
     <ClCompile Include="..\Classes\MyUtils\CCStrokeLabel.cpp" />
     <ClCompile Include="..\Classes\MyUtils\KTools.cpp" />
     <ClCompile Include="..\Classes\MyUtils\MD5ChecksumDefines.cpp" />
-    <ClCompile Include="..\Classes\PauseLayer.cpp" />
-    <ClCompile Include="..\Classes\SelectLayer.cpp" />
-    <ClCompile Include="..\Classes\StartMenu.cpp" />
     <ClCompile Include="..\Classes\UI\GameModeLayer.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\cocos2dx\support\tinyxml2\tinyxml2.h" />
     <ClInclude Include="..\Classes\ActionButton.h" />
-    <ClInclude Include="..\Classes\CharacterBase.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\BGLayer.h" />
+    <ClInclude Include="..\Classes\Core\Unit.h" />
     <ClInclude Include="..\Classes\CreditsLayer.h" />
     <ClInclude Include="..\Classes\Defines.h" />
     <ClInclude Include="..\Classes\Effect.h" />

@@ -31,12 +31,12 @@ class Slug : public Hero
 						if (_isCanSkill1)
 						{
 							attack(SKILL1);
-							scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sAttackCD1);
+							scheduleOnce(schedule_selector(Unit::enableSkill1), _sAttackCD1);
 						}
 						else if (_isCanSkill2)
 						{
 							attack(SKILL2);
-							scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sAttackCD2);
+							scheduleOnce(schedule_selector(Unit::enableSkill2), _sAttackCD2);
 						}
 						else
 						{

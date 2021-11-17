@@ -36,7 +36,7 @@ class AnimalPath : public Hero
 						if (_isCanSkill1 && _mainTarget->isNotTower())
 						{
 							attack(SKILL1);
-							scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sAttackCD1);
+							scheduleOnce(schedule_selector(Unit::enableSkill1), _sAttackCD1);
 						}
 						else
 						{
@@ -66,7 +66,7 @@ class AnimalPath : public Hero
 					if (_isCanSkill1)
 					{
 						attack(SKILL1);
-						scheduleOnce(schedule_selector(CharacterBase::enableSkill1), 10.0f);
+						scheduleOnce(schedule_selector(Unit::enableSkill1), 10.0f);
 					}
 					else
 					{

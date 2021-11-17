@@ -146,7 +146,7 @@ class Tsunade : public Hero
 
 		_isArmored = true;
 		_healBuffValue = 3000;
-		schedule(schedule_selector(CharacterBase::healBuff), 1);
+		schedule(schedule_selector(Unit::healBuff), 1);
 
 		setActionTo<ActionFlag::Idle, ActionFlag::Spc01>();
 		setActionTo<ActionFlag::Walk, ActionFlag::Spc02>();
@@ -176,7 +176,7 @@ class Tsunade : public Hero
 			_state = State::WALK;
 			idle();
 		}
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 
 	Hero *createClone(int cloneTime) override

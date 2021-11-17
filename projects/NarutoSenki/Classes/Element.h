@@ -1,9 +1,9 @@
 #pragma once
-#include "CharacterBase.h"
+#include "Core/Unit.h"
 #include "GameLayer.h"
 #include "HPBar.h"
 
-class Monster : public CharacterBase
+class Monster : public Unit
 {
 public:
 	bool init();

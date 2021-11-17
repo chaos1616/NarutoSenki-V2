@@ -64,8 +64,8 @@ void HPBar::loseHP(float percent)
 
 	if (percent <= 0)
 	{
-		CharacterBase *_slayer = _delegate->_slayer;
-		CharacterBase *currentSlayer;
+		Unit *_slayer = _delegate->_slayer;
+		Unit *currentSlayer;
 
 		if (_delegate->isFlog())
 		{

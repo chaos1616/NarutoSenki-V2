@@ -69,7 +69,7 @@ class AsuraPath : public Hero
 					{
 						changeSide(sp);
 						attack(SKILL1);
-						scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sAttackCD1);
+						scheduleOnce(schedule_selector(Unit::enableSkill1), _sAttackCD1);
 					}
 					else
 					{
@@ -89,7 +89,7 @@ class AsuraPath : public Hero
 	// {
 	// 	if (hasMonsterArrayAny())
 	// 	{
-	// 		vector<CharacterBase *> removeList;
+	// 		vector<Unit *> removeList;
 	// 		auto &monsterArray = getMonsterArray();
 	// 		for (auto mo : monsterArray)
 	// 		{

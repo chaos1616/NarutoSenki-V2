@@ -1,8 +1,8 @@
 #pragma once
-#include "CharacterBase.h"
+#include "Core/Unit.h"
 #include "HPBar.h"
 
-class Flog : public CharacterBase
+class Flog : public Unit
 {
 public:
 	float _mainPosY = 0;
@@ -48,7 +48,7 @@ public:
 
 		setKillNum(0);
 
-		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", nullptr);
+		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(Unit::acceptAttack), "acceptAttack", nullptr);
 	}
 
 	void setHPbar()

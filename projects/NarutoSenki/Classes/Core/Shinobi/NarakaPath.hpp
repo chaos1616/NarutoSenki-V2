@@ -83,20 +83,20 @@ class NarakaPath : public Hero
 					if (_isCanSkill1 && notHasFlag(flag, NarakaKugutsu::AnimalPath))
 					{
 						attack(SKILL1);
-						scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sAttackCD1);
+						scheduleOnce(schedule_selector(Unit::enableSkill1), _sAttackCD1);
 					}
 					else if (_isCanSkill2 && notHasFlag(flag, NarakaKugutsu::AsuraPath))
 					{
 						changeSide(sp);
 						attack(SKILL2);
-						scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sAttackCD2);
+						scheduleOnce(schedule_selector(Unit::enableSkill2), _sAttackCD2);
 					}
 					else if (_isCanSkill3 && notHasFlag(flag, NarakaKugutsu::PertaPath))
 					{
 
 						this->changeSide(sp);
 						this->attack(SKILL3);
-						this->scheduleOnce(schedule_selector(CharacterBase::enableSkill3), _sAttackCD3);
+						this->scheduleOnce(schedule_selector(Unit::enableSkill3), _sAttackCD3);
 					}
 					else
 					{

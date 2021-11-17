@@ -241,7 +241,7 @@ class Hidan : public Hero
 			_state = State::WALK;
 			idle();
 		}
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 
 	void setActionResume() override
@@ -263,7 +263,7 @@ class Hidan : public Hero
 	 * Callbacks
 	 */
 
-	bool onHit(CharacterBase *attacker) override
+	bool onHit(Unit *attacker) override
 	{
 		if (_skillChangeBuffValue <= 0)
 			return true;
@@ -310,7 +310,7 @@ class Hidan : public Hero
 		return true;
 	}
 
-	bool onBulletHit(CharacterBase *attacker) override
+	bool onBulletHit(Unit *attacker) override
 	{
 		if (_skillChangeBuffValue <= 0)
 			return true;

@@ -1,9 +1,9 @@
 #pragma once
-#include "CharacterBase.h"
+#include "Core/Unit.h"
 #include "HPBar.h"
 
 // TODO: Rename to 'Projectile'
-class Bullet : public CharacterBase
+class Bullet : public Unit
 {
 public:
 	CREATE_FUNC(Bullet);

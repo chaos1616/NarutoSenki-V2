@@ -164,7 +164,7 @@ class Tobi : public Hero
 						if (hero->getName() == HeroEnum::Konan ||
 							hero->getName() == HeroEnum::Deidara)
 						{
-							hero->unschedule(schedule_selector(CharacterBase::disableBuff));
+							hero->unschedule(schedule_selector(Unit::disableBuff));
 						}
 
 						hero->setOpacity(255);
@@ -194,7 +194,7 @@ class Tobi : public Hero
 
 		if (_state == State::WALK)
 			idle();
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 
 	void setActionResume() override
@@ -215,7 +215,7 @@ class Tobi : public Hero
 	 * Callbacks
 	 */
 
-	bool onAcceptAttack(CharacterBase *attacker) override
+	bool onAcceptAttack(Unit *attacker) override
 	{
 		if (_skillChangeBuffValue &&
 			(_state == State::IDLE ||
@@ -224,7 +224,7 @@ class Tobi : public Hero
 		{
 			if (getOpacity() == 255)
 			{
-				scheduleOnce(schedule_selector(CharacterBase::disableBuff), 0.2f);
+				scheduleOnce(schedule_selector(Unit::disableBuff), 0.2f);
 			}
 
 			setOpacity(150);

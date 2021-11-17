@@ -5,7 +5,7 @@ class Ino : public Hero
 {
 	void dead() override
 	{
-		CharacterBase::dead();
+		Unit::dead();
 
 		// TODO: Support Ino controlled by the player can control other characters
 		// if (isPlayer())
@@ -179,7 +179,7 @@ class Ino : public Hero
 			auto action = getAction(ActionFlag::Spc01);
 			stopAllActions();
 			runAction(action);
-			scheduleOnce(schedule_selector(CharacterBase::resumeAction), 15);
+			scheduleOnce(schedule_selector(Unit::resumeAction), 15);
 			_isArmored = true;
 			_isInvincible = false;
 		}
@@ -187,7 +187,7 @@ class Ino : public Hero
 		if (isPlayer())
 		{
 			target->_isAI = false;
-			target->unschedule(schedule_selector(CharacterBase::setAI));
+			target->unschedule(schedule_selector(Unit::setAI));
 			// Set controlled character to player
 			getGameLayer()->controlChar = target;
 			getGameLayer()->currentPlayer = target;
@@ -240,7 +240,7 @@ class Ino : public Hero
 		}
 
 		_isArmored = false;
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 
 	void setActionResume() override

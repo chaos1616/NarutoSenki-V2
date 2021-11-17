@@ -1,11 +1,11 @@
 #pragma once
-#include "CharacterBase.h"
+#include "Core/Unit.h"
 
 // Detailed implementation of Physics module of unit base class
 
-void CharacterBase::acceptAttack(Ref *object)
+void Unit::acceptAttack(Ref *object)
 {
-	auto attacker = (CharacterBase *)object;
+	auto attacker = (Unit *)object;
 	bool isCannotMiss = false;
 
 	if (!onAcceptAttack(attacker))
@@ -13,7 +13,7 @@ void CharacterBase::acceptAttack(Ref *object)
 
 	if (attacker->getName() == HeroEnum::Hiruzen && attacker->_state == State::O2ATTACK)
 	{
-		isCannotMiss = true; // TODO: Add this as a parameter of CharacterBase::acceptAttack
+		isCannotMiss = true; // TODO: Add this as a parameter of Unit::acceptAttack
 	}
 
 	if (getGroup() == attacker->getGroup() ||
@@ -74,7 +74,7 @@ void CharacterBase::acceptAttack(Ref *object)
 			if (!_isHitOne)
 			{
 				_isHitOne = true;
-				auto call = CallFunc::create(std::bind(&CharacterBase::disableShack, this));
+				auto call = CallFunc::create(std::bind(&Unit::disableShack, this));
 				auto delay = DelayTime::create(0.5f);
 				auto seq = newSequence(CCShake::createWithStrength(0.1f, 2, 0), delay, call);
 				runAction(seq);
@@ -230,7 +230,7 @@ void CharacterBase::acceptAttack(Ref *object)
 
 				if (attacker->getName() == HeroEnum::Kakuzu && _sticker)
 				{
-					CharacterBase *stHero = _sticker;
+					Unit *stHero = _sticker;
 					if (stHero->getName() == HeroEnum::Kakuzu && stHero->hearts <= 4)
 					{
 						attacker->hearts += 1;
@@ -261,7 +261,7 @@ void CharacterBase::acceptAttack(Ref *object)
 				}
 				else if (attacker->getName() == HeroEnum::Nagato && _sticker)
 				{
-					CharacterBase *stHero = _sticker;
+					Unit *stHero = _sticker;
 					if (stHero->getName() == HeroEnum::Nagato && stHero->hearts <= 2)
 						attacker->hearts += 1;
 				}
@@ -306,7 +306,7 @@ void CharacterBase::acceptAttack(Ref *object)
 				if (getWalkSpeed() == 224)
 				{
 					setWalkSpeed(112);
-					schedule(schedule_selector(CharacterBase::disableDebuff), 3);
+					schedule(schedule_selector(Unit::disableDebuff), 3);
 				}
 			}
 			else if (hitType == "ac_hit")
@@ -365,9 +365,9 @@ void CharacterBase::acceptAttack(Ref *object)
 				{
 					_dehealBuffValue = 1000;
 					setBuffEffect("dhBuff");
-					schedule(schedule_selector(CharacterBase::dehealBuff), 1);
+					schedule(schedule_selector(Unit::dehealBuff), 1);
 				}
-				scheduleOnce(schedule_selector(CharacterBase::disableBuff), 5);
+				scheduleOnce(schedule_selector(Unit::disableBuff), 5);
 			}
 			else if (hitType == "ct_hit")
 			{
@@ -389,7 +389,7 @@ void CharacterBase::acceptAttack(Ref *object)
 								if (hardHurt(3000, false, true, false, false))
 								{
 									attacker->_isCatchOne = true;
-									scheduleOnce(schedule_selector(CharacterBase::reCatched), 2.9f);
+									scheduleOnce(schedule_selector(Unit::reCatched), 2.9f);
 								}
 							}
 							else if (attacker->getName() == SkillEnum::SandBall)
@@ -397,7 +397,7 @@ void CharacterBase::acceptAttack(Ref *object)
 								if (hardHurt(1000, false, true, false, false))
 								{
 									attacker->_isCatchOne = true;
-									scheduleOnce(schedule_selector(CharacterBase::reCatched), 0.9f);
+									scheduleOnce(schedule_selector(Unit::reCatched), 0.9f);
 								}
 							}
 							else if (attacker->_master->getName() == HeroEnum::Shikamaru)
@@ -409,11 +409,11 @@ void CharacterBase::acceptAttack(Ref *object)
 									if (underAttack)
 									{
 										attacker->stopAllActions();
-										attacker->schedule(schedule_selector(CharacterBase::getSticker), 0.1f);
+										attacker->schedule(schedule_selector(Unit::getSticker), 0.1f);
 										lbAttackerId = attacker->_master->getCharId();
-										schedule(schedule_selector(CharacterBase::lostBlood), 1.0f);
+										schedule(schedule_selector(Unit::lostBlood), 1.0f);
 										lostBloodValue = 400;
-										scheduleOnce(schedule_selector(CharacterBase::removeLostBlood), 6.0f);
+										scheduleOnce(schedule_selector(Unit::removeLostBlood), 6.0f);
 									}
 								}
 								else if (attacker->getName() == SkillEnum::QuanRen ||
@@ -472,7 +472,7 @@ void CharacterBase::acceptAttack(Ref *object)
 								if (hardHurt(1000, false, true, false, false))
 								{
 									attacker->_isCatchOne = true;
-									scheduleOnce(schedule_selector(CharacterBase::reCatched), 1.1f);
+									scheduleOnce(schedule_selector(Unit::reCatched), 1.1f);
 								}
 							}
 							else if (attacker->getName() == HeroEnum::Kakuzu)
@@ -554,7 +554,7 @@ void CharacterBase::acceptAttack(Ref *object)
 	}
 }
 
-Rect CharacterBase::setHalfBox()
+Rect Unit::setHalfBox()
 {
 	Rect halfbox = Rect(_isFlipped ? getPositionX() - getContentSize().width / 2 : getPositionX(),
 						getPositionY() + getContentSize().height / 2,
@@ -563,7 +563,7 @@ Rect CharacterBase::setHalfBox()
 	return halfbox;
 }
 
-Rect CharacterBase::setHitBox()
+Rect Unit::setHitBox()
 {
 	Rect hitbox = boundingBox();
 	return hitbox;

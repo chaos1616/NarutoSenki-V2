@@ -3,8 +3,8 @@ EXECUTABLE = NarutoSenki
 SOURCES = main.cpp \
 	../Classes/AppDelegate.cpp \
 	../Classes/ActionButton.cpp \
-	../Classes/CharacterBase.cpp \
 	../Classes/BGLayer.cpp \
+	../Classes/Core/Unit.cpp \
 	../Classes/CreditsLayer.cpp \
 	../Classes/Effect.cpp \
 	../Classes/Element.cpp \

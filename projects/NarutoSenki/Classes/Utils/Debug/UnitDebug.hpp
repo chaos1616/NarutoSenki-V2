@@ -5,9 +5,9 @@
 
 DEBUG_NS_BEGIN
 
-#include "CharacterBase.h"
+#include "Core/Unit.h"
 
-void PrintDamgeInfo(CharacterBase *attacked, CharacterBase *realAttacker, CharacterBase *attacker, int attackValue, uint32_t damage, const string &effectType)
+void PrintDamgeInfo(Unit *attacked, Unit *realAttacker, Unit *attacker, int attackValue, uint32_t damage, const string &effectType)
 {
 	if (attacked->isFlog() || attacker->isFlog())
 		return;

@@ -1,11 +1,11 @@
 #pragma once
-#include "CharacterBase.h"
+#include "Core/Unit.h"
 #include "Core/Utils/UnitEx.hpp"
 #include "Core/Warrior/Flog.hpp"
 #include "HPBar.h"
 #include "HudLayer.h"
 
-class Tower : public CharacterBase
+class Tower : public Unit
 {
 public:
 	CREATE_FUNC(Tower);
@@ -44,7 +44,7 @@ public:
 		setHPBarHeight(metadata.hpBarY);
 		setWalkSpeed(metadata.speed);
 
-		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", nullptr);
+		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(Unit::acceptAttack), "acceptAttack", nullptr);
 	}
 
 	void setHPbar()
@@ -61,7 +61,7 @@ public:
 
 	void dealloc()
 	{
-		unschedule(schedule_selector(CharacterBase::setAI));
+		unschedule(schedule_selector(Unit::setAI));
 		setState(State::DEAD);
 		stopAllActions();
 

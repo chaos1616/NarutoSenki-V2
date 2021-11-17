@@ -1,12 +1,12 @@
 #pragma once
-#include "CharacterBase.h"
+#include "Core/Unit.h"
 
 namespace UnitEx
 {
 
 template <typename T>
-typename std::enable_if_t<std::is_base_of_v<CharacterBase, T>, void>
-clearMainTarget(CharacterBase *target, const vector<T *> &list)
+typename std::enable_if_t<std::is_base_of_v<Unit, T>, void>
+clearMainTarget(Unit *target, const vector<T *> &list)
 {
 	for (auto unit : list)
 	{

@@ -33,7 +33,7 @@ bool MiniIcon::init(const char *szImage, bool isNotification)
 
 void MiniIcon::updateMap(Ref *sender)
 {
-	auto poster = (CharacterBase *)sender;
+	auto poster = (Unit *)sender;
 
 	if (getCharId() == poster->getCharId())
 	{

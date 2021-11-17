@@ -1,5 +1,4 @@
 #include "Core/Hero.hpp"
-#include "Defines.h"
 #include "HudLayer.h"
 #include "LoadLayer.h"
 
@@ -114,7 +113,7 @@ void Monster::setAI(float dt)
 					// if (_monsterArray.empty())
 					// {
 					setMon(SkillEnum::KageHand);
-					unschedule(schedule_selector(CharacterBase::setAI));
+					unschedule(schedule_selector(Unit::setAI));
 					// }
 					return; // Need to return because _monsterArray is always empty
 				}
@@ -204,7 +203,7 @@ void Monster::setAI(float dt)
 				if (_mainTarget->isPlayerOrCom())
 				{
 					attack(NAttack);
-					unschedule(schedule_selector(CharacterBase::setAI));
+					unschedule(schedule_selector(Unit::setAI));
 				}
 			}
 			else
@@ -214,7 +213,7 @@ void Monster::setAI(float dt)
 
 				if (charName != SummonEnum::SmallSlug)
 				{
-					unschedule(schedule_selector(CharacterBase::setAI));
+					unschedule(schedule_selector(Unit::setAI));
 				}
 			}
 		}
@@ -237,7 +236,7 @@ void Monster::setAI(float dt)
 void Monster::dealloc()
 {
 	stopAllActions();
-	unschedule(schedule_selector(CharacterBase::setAI));
+	unschedule(schedule_selector(Unit::setAI));
 	setState(State::DEAD);
 
 	if (getName() == SkillEnum::FutonSRK || getName() == SkillEnum::FutonSRK2) // TODO: improve
@@ -251,7 +250,7 @@ void Monster::dealloc()
 	{
 		_master->_isCanSkill1 = false;
 		_master->setActionResume();
-		_master->scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sAttackCD1);
+		_master->scheduleOnce(schedule_selector(Unit::enableSkill1), _sAttackCD1);
 
 		if (_master->isPlayer())
 		{

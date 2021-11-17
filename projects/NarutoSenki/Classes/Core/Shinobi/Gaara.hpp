@@ -154,7 +154,7 @@ class Gaara : public Hero
 		{
 			_hpBar->setPositionY(getHPBarHeight());
 		}
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 
 	void setActionResume() override

@@ -48,9 +48,6 @@
     <ClCompile Include="..\Classes\StartMenu.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\CharacterBase.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\BGLayer.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
@@ -114,12 +111,13 @@
     <ClCompile Include="..\..\..\cocos2dx\support\tinyxml2\tinyxml2.cpp">
       <Filter>Utils\support</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Core\Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
       <Filter>win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\CharacterBase.h">
+    <ClInclude Include="..\Classes\Core\Unit.h">
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">

@@ -214,7 +214,7 @@ class Sai : public Hero
 
 			unschedule(schedule_selector(Sai::setMonPer));
 		}
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 
 	void setActionResume() override

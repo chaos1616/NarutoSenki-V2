@@ -1,11 +1,11 @@
 #pragma once
-#include "CharacterBase.h"
 #include "Core/Hero.hpp"
+#include "Core/Unit.h"
 
 // Detailed implementation of AI module of unit base class
 
 // [For AI] 检查己方Inner Tower附近是否有敌人
-bool CharacterBase::checkBase()
+bool Unit::checkBase()
 {
 	for (auto target : getGameLayer()->_CharacterArray)
 	{
@@ -66,7 +66,7 @@ bool CharacterBase::checkBase()
 }
 
 // [For AI] 血量充足后，使AI前进
-void CharacterBase::stepOn()
+void Unit::stepOn()
 {
 	Vec2 moveDirection;
 
@@ -79,7 +79,7 @@ void CharacterBase::stepOn()
 }
 
 // [For AI] 使AI撤退，只有横向移动方向
-bool CharacterBase::stepBack()
+bool Unit::stepBack()
 {
 	if (_isControlled)
 		return false;
@@ -103,7 +103,7 @@ bool CharacterBase::stepBack()
 }
 
 // [For AI] 使AI撤退
-bool CharacterBase::stepBack2()
+bool Unit::stepBack2()
 {
 	if (_isControlled)
 		return false;
@@ -190,7 +190,7 @@ bool CharacterBase::stepBack2()
 }
 
 // [For AI] 检查角色是否需要使用【拉面】回血，若血量低于界限，则返回true
-bool CharacterBase::checkRetri()
+bool Unit::checkRetri()
 {
 	if (_isCanItem1 && getCoin() >= 50)
 	{

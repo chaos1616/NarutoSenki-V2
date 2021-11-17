@@ -209,7 +209,7 @@ void LoadLayer::perloadCharIMG(const string &name)
 	}
 }
 
-void LoadLayer::unloadCharIMG(CharacterBase *c)
+void LoadLayer::unloadCharIMG(Unit *c)
 {
 	if (c == nullptr || c->isClone() || c->isSummon())
 	{

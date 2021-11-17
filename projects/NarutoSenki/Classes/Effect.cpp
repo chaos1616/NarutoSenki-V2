@@ -1,8 +1,8 @@
 #include "Effect.h"
-#include "CharacterBase.h"
+#include "Core/Unit.h"
 #include "GameLayer.h"
 
-bool Effect::init(const string &name, CharacterBase *attacker)
+bool Effect::init(const string &name, Unit *attacker)
 {
 	RETURN_FALSE_IF(!Sprite::init());
 
@@ -76,7 +76,7 @@ bool Effect::init(const string &name, CharacterBase *attacker)
 			 name == "speedUp")
 	{
 		auto effectAction = createEffectAnimation(name + "_", 4, 5, false);
-		auto call = CallFunc::create(std::bind(&CharacterBase::disableEffect, at));
+		auto call = CallFunc::create(std::bind(&Unit::disableEffect, at));
 		auto seq = newSequence(effectAction, call);
 		runAction(seq);
 	}
@@ -285,7 +285,7 @@ void Effect::removeFontEffect()
 	removeFromParent();
 }
 
-Effect *Effect::create(const string &szImage, CharacterBase *attacker)
+Effect *Effect::create(const string &szImage, Unit *attacker)
 {
 	Effect *ef = new Effect();
 	if (ef && ef->init(szImage, attacker))

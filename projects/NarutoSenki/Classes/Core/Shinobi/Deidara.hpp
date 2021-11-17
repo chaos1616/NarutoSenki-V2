@@ -235,7 +235,7 @@ class Deidara : public Hero
 
 			unschedule(schedule_selector(Deidara::setMonPer));
 		}
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 
 	void setActionResume() override

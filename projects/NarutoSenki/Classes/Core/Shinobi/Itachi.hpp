@@ -199,7 +199,7 @@ class Itachi : public Hero
 			}
 			_monsterArray.clear();
 		}
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 
 	void setActionResume() override

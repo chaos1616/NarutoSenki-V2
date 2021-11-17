@@ -184,7 +184,7 @@ class Sasuke : public Hero
 							if (hero->getName() == HeroEnum::Konan ||
 								hero->getName() == HeroEnum::Deidara)
 							{
-								hero->unschedule(schedule_selector(CharacterBase::disableBuff));
+								hero->unschedule(schedule_selector(Unit::disableBuff));
 							}
 
 							hero->setOpacity(255);
@@ -266,7 +266,7 @@ class Sasuke : public Hero
 
 			setActionTo<ActionFlag::Knockdown, ActionFlag::Knockdown>();
 		}
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 
 	inline void setActionResume_Sasuke()
@@ -439,7 +439,7 @@ class Sasuke : public Hero
 							if (hero->getName() == HeroEnum::Konan ||
 								hero->getName() == HeroEnum::Deidara)
 							{
-								hero->unschedule(schedule_selector(CharacterBase::disableBuff));
+								hero->unschedule(schedule_selector(Unit::disableBuff));
 							}
 
 							hero->setOpacity(255);
@@ -525,7 +525,7 @@ class Sasuke : public Hero
 				idle();
 			}
 		}
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 
 	inline void setActionResume_SasukeImmortal()

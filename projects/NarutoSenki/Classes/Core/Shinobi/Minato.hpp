@@ -258,7 +258,7 @@ class Minato : public Hero
 
 		_markPoint = Vec2(0, 0);
 		_startPoint = Vec2(0, 0);
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 
 	void setActionResume() override

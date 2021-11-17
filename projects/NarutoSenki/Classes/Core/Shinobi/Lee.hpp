@@ -24,7 +24,7 @@ class Lee : public Hero
 
 	void dead() override
 	{
-		CharacterBase::dead();
+		Unit::dead();
 
 		if (htLv > 0)
 		{
@@ -166,7 +166,7 @@ class Lee : public Hero
 
 	void setRestore2(float dt) override
 	{
-		CharacterBase::setRestore2(dt);
+		Unit::setRestore2(dt);
 
 		uint32_t hp = getHP();
 

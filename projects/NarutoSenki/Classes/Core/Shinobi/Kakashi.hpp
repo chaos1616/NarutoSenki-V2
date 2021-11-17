@@ -141,7 +141,7 @@ class Kakashi : public Hero
 						if (hero->getName() == HeroEnum::Konan ||
 							hero->getName() == HeroEnum::Deidara)
 						{
-							hero->unschedule(schedule_selector(CharacterBase::disableBuff));
+							hero->unschedule(schedule_selector(Unit::disableBuff));
 						}
 
 						hero->setOpacity(255);
@@ -182,7 +182,7 @@ class Kakashi : public Hero
 			frame = getSpriteFrame("Kakashi_skill2.png");
 			getGameLayer()->getHudLayer()->skill2Button->setDisplayFrame(frame);
 		}
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 
 	Hero *createClone(int cloneTime) override

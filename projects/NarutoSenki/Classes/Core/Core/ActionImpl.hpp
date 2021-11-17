@@ -1,5 +1,5 @@
 #pragma once
-#include "CharacterBase.h"
+#include "Core/Unit.h"
 
 // Detailed implementation of Action module of unit base class
 
@@ -62,7 +62,7 @@ mk_hconst(setTrap);
 
 } // namespace UnitEvent
 
-void CharacterBase::genActionBy(const UnitMetadata &data)
+void Unit::genActionBy(const UnitMetadata &data)
 {
 	Vector<SpriteFrame *> spriteFrames;
 	Vector<FiniteTimeAction *> list;
@@ -95,19 +95,19 @@ void CharacterBase::genActionBy(const UnitMetadata &data)
 	{
 	case UnitEvent::setAttackBox:
 	{
-		auto call = CallFunc::create(std::bind(&CharacterBase::setAttackBox, this, value));
+		auto call = CallFunc::create(std::bind(&Unit::setAttackBox, this, value));
 		list.pushBack(call);
 	}
 	break;
 	case UnitEvent::setSound:
 	{
-		auto call = CallFunc::create(std::bind(&CharacterBase::setSound, this, value));
+		auto call = CallFunc::create(std::bind(&Unit::setSound, this, value));
 		list.pushBack(call);
 	}
 	break;
 	case UnitEvent::setDSound:
 	{
-		auto call = CallFunc::create(std::bind(&CharacterBase::setDSound, this, value));
+		auto call = CallFunc::create(std::bind(&Unit::setDSound, this, value));
 		list.pushBack(call);
 	}
 	break;
@@ -121,49 +121,49 @@ void CharacterBase::genActionBy(const UnitMetadata &data)
 	case UnitEvent::setMove:
 	{
 		int moveLength = std::stoi(value);
-		auto call = CallFunc::create(std::bind(&CharacterBase::setMove, this, moveLength));
+		auto call = CallFunc::create(std::bind(&Unit::setMove, this, moveLength));
 		list.pushBack(call);
 	}
 	break;
 	case UnitEvent::setSkillEffect:
 	{
-		auto call = CallFunc::create(std::bind(&CharacterBase::setSkillEffect, this, value));
+		auto call = CallFunc::create(std::bind(&Unit::setSkillEffect, this, value));
 		list.pushBack(call);
 	}
 	break;
 	case UnitEvent::setJump:
 	{
 		bool jumpDirection = std::stobool(value);
-		auto call = CallFunc::create(std::bind(&CharacterBase::setJump, this, jumpDirection));
+		auto call = CallFunc::create(std::bind(&Unit::setJump, this, jumpDirection));
 		list.pushBack(call);
 	}
 	break;
 	case UnitEvent::setCharge:
 	{
-		auto call = CallFunc::create(std::bind(&CharacterBase::getCollider, this));
+		auto call = CallFunc::create(std::bind(&Unit::getCollider, this));
 		list.pushBack(call);
 		int moveLength = std::stoi(value);
-		call = CallFunc::create(std::bind(&CharacterBase::setCharge, this, moveLength));
+		call = CallFunc::create(std::bind(&Unit::setCharge, this, moveLength));
 		list.pushBack(call);
 	}
 	break;
 	case UnitEvent::setChargeB:
 	{
 		int moveLength = std::stoi(value);
-		auto call = CallFunc::create(std::bind(&CharacterBase::setChargeB, this, moveLength));
+		auto call = CallFunc::create(std::bind(&Unit::setChargeB, this, moveLength));
 		list.pushBack(call);
 	}
 	break;
 	case UnitEvent::setClone:
 	{
 		int cloneTime = std::stoi(value);
-		auto call = CallFunc::create(std::bind(&CharacterBase::setClone, this, cloneTime));
+		auto call = CallFunc::create(std::bind(&Unit::setClone, this, cloneTime));
 		list.pushBack(call);
 	}
 	break;
 	case UnitEvent::setMon:
 	{
-		auto call = CallFunc::create(std::bind(&CharacterBase::setMon, this, value));
+		auto call = CallFunc::create(std::bind(&Unit::setMon, this, value));
 		list.pushBack(call);
 	}
 	break;
@@ -181,57 +181,57 @@ void CharacterBase::genActionBy(const UnitMetadata &data)
 		// 	p = strtok(nullptr, split);
 		// }
 
-		// auto call = CallFunc::create(std::bind(&CharacterBase::setFontEffect, this, valueVector));
+		// auto call = CallFunc::create(std::bind(&Unit::setFontEffect, this, valueVector));
 		// list.pushBack(call);
 	}
 	break;
 	case UnitEvent::setBuff:
 	{
 		int buffValue = std::stoi(value);
-		auto call = CallFunc::create(std::bind(&CharacterBase::setBuff, this, buffValue));
+		auto call = CallFunc::create(std::bind(&Unit::setBuff, this, buffValue));
 		list.pushBack(call);
 	}
 	break;
 	case UnitEvent::setCmd:
 	{
-		auto call = CallFunc::create(std::bind(&CharacterBase::setCommand, this, value));
+		auto call = CallFunc::create(std::bind(&Unit::setCommand, this, value));
 		list.pushBack(call);
 	}
 	break;
 	case UnitEvent::setDestroy:
 	{
-		auto call = CallFunc::create(std::bind(&CharacterBase::dealloc, this));
+		auto call = CallFunc::create(std::bind(&Unit::dealloc, this));
 		list.pushBack(call);
 	}
 	break;
 	case UnitEvent::setBullet:
 	{
-		auto call = CallFunc::create(std::bind(&CharacterBase::setBullet, this, value));
+		auto call = CallFunc::create(std::bind(&Unit::setBullet, this, value));
 		list.pushBack(call);
 	}
 	break;
 	case UnitEvent::setMonAttack:
 	{
 		int skillNum = std::stoi(value);
-		auto call = CallFunc::create(std::bind(&CharacterBase::setMonAttack, this, skillNum));
+		auto call = CallFunc::create(std::bind(&Unit::setMonAttack, this, skillNum));
 		list.pushBack(call);
 	}
 	break;
 	case UnitEvent::setTrap:
 	{
-		auto call = CallFunc::create(std::bind(&CharacterBase::setTrap, this, value));
+		auto call = CallFunc::create(std::bind(&Unit::setTrap, this, value));
 		list.pushBack(call);
 	}
 	break;
 	case UnitEvent::setActionResume:
 	{
-		auto call = CallFunc::create(std::bind(&CharacterBase::setActionResume, this));
+		auto call = CallFunc::create(std::bind(&Unit::setActionResume, this));
 		list.pushBack(call);
 	}
 	break;
 	case UnitEvent::setActionResume2:
 	{
-		auto call = CallFunc::create(std::bind(&CharacterBase::setActionResume2, this));
+		auto call = CallFunc::create(std::bind(&Unit::setActionResume2, this));
 		list.pushBack(call);
 	}
 	break;
@@ -244,33 +244,33 @@ void CharacterBase::genActionBy(const UnitMetadata &data)
 		else
 		{
 			auto frame = spriteFrames.at(spriteFrames.size() - 1);
-			auto call = CallFunc::create(std::bind(&CharacterBase::setShadow, this, frame));
+			auto call = CallFunc::create(std::bind(&Unit::setShadow, this, frame));
 			list.pushBack(call);
 		}
 	}
 	break;
 	case UnitEvent::setTransform:
 	{
-		auto call = CallFunc::create(std::bind(&CharacterBase::setTransform, this));
+		auto call = CallFunc::create(std::bind(&Unit::setTransform, this));
 		list.pushBack(call);
 	}
 	break;
 	case UnitEvent::setOugis:
 	{
-		auto call = CallFunc::create(std::bind(&CharacterBase::setOugis, this));
+		auto call = CallFunc::create(std::bind(&Unit::setOugis, this));
 		list.pushBack(call);
 	}
 	break;
 	case UnitEvent::stopJump:
 	{
 		int stopTime = std::stoi(value);
-		auto call = CallFunc::create(std::bind(&CharacterBase::stopJump, this, stopTime));
+		auto call = CallFunc::create(std::bind(&Unit::stopJump, this, stopTime));
 		list.pushBack(call);
 	}
 	break;
 	case UnitEvent::setFlipped:
 	{
-		auto call = CallFunc::create(std::bind(&CharacterBase::setCharFlip, this));
+		auto call = CallFunc::create(std::bind(&Unit::setCharFlip, this));
 		list.pushBack(call);
 	}
 	default:
@@ -304,7 +304,7 @@ void CharacterBase::genActionBy(const UnitMetadata &data)
 	{
 		if (action.info.isReturnToIdle)
 		{
-			auto call = CallFunc::create(std::bind(&CharacterBase::idle, this));
+			auto call = CallFunc::create(std::bind(&Unit::idle, this));
 			list.pushBack(call);
 		}
 
@@ -328,7 +328,7 @@ void CharacterBase::genActionBy(const UnitMetadata &data)
 	}
 }
 
-void CharacterBase::setAction(ActionFlag flags)
+void Unit::setAction(ActionFlag flags)
 {
 	if (hasFlag(flags, ActionFlag::Dead)) setDeadAction(_actionMap.at(ActionFlag::Dead));
 	if (hasFlag(flags, ActionFlag::Idle)) setIdleAction(_actionMap.at(ActionFlag::Idle));
@@ -345,7 +345,7 @@ void CharacterBase::setAction(ActionFlag flags)
 	if (hasFlag(flags, ActionFlag::Skill05)) setSkill5Action(_actionMap.at(ActionFlag::Skill05));
 }
 
-void CharacterBase::setSkillData(ActionFlag flags)
+void Unit::setSkillData(ActionFlag flags)
 {
 	if (hasFlag(flags, ActionFlag::NAttack)) setSkillData(ActionFlag::NAttack, getSkillData(ActionFlag::NAttack));
 	if (hasFlag(flags, ActionFlag::Skill01)) setSkillData(ActionFlag::Skill01, getSkillData(ActionFlag::Skill01));
@@ -358,7 +358,7 @@ void CharacterBase::setSkillData(ActionFlag flags)
 	if (hasFlag(flags, ActionFlag::Spc03)) setSkillData(ActionFlag::Spc03, getSkillData(ActionFlag::Spc03));
 }
 
-void CharacterBase::setSkillData(ActionFlag flag, const SkillData &data)
+void Unit::setSkillData(ActionFlag flag, const SkillData &data)
 {
 	if (flag == ActionFlag::NAttack) SET_NATTACK_ACTION_DATA_FN(data)
 	else if (flag == ActionFlag::Skill01) SET_SKILL_ACTION_DATA_FN(1, data)
@@ -371,7 +371,7 @@ void CharacterBase::setSkillData(ActionFlag flag, const SkillData &data)
 	else if (flag == ActionFlag::Spc03) SET_SPC_SKILL_ACTION_DATA_FN(3, data)
 }
 
-void CharacterBase::setSkillDataTo(ActionFlag from, ActionFlag to)
+void Unit::setSkillDataTo(ActionFlag from, ActionFlag to)
 {
 	if (from == ActionFlag::NAttack) setSkillData(from, getSkillData(to));
 	else if (from == ActionFlag::Skill01) setSkillData(from, getSkillData(to));

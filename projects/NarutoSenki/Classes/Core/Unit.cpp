@@ -1,4 +1,3 @@
-#include "CharacterBase.h"
 #include "Core/Provider.hpp"
 #include "GameLayer.h"
 #include "GameMode/GameModeImpl.h"
@@ -15,7 +14,7 @@ const SkillData SkillData::Null = {
 	.isDouble = false,
 };
 
-CharacterBase::CharacterBase()
+Unit::Unit()
 {
 	_state = State::WALK;
 
@@ -154,7 +153,7 @@ CharacterBase::CharacterBase()
 	_affectedByTower = false;
 }
 
-void CharacterBase::updateDataByLVOnly()
+void Unit::updateDataByLVOnly()
 {
 	uint32_t maxHP = getMaxHP();
 	uint32_t nAtkValue = getNAttackValue();
@@ -204,7 +203,7 @@ void CharacterBase::updateDataByLVOnly()
 	setNAttackValue(nAtkValue);
 }
 
-void CharacterBase::update(float dt)
+void Unit::update(float dt)
 {
 	if (_healBuffEffect)
 	{
@@ -261,7 +260,7 @@ void CharacterBase::update(float dt)
 					_isHealing = true;
 					if (getHpPercent() < 1.0f)
 					{
-						scheduleOnce(schedule_selector(CharacterBase::setRestore), 1.0f);
+						scheduleOnce(schedule_selector(Unit::setRestore), 1.0f);
 					}
 				}
 				else if (isAkatsukiGroup() && getPositionX() >= 85 * 32)
@@ -269,7 +268,7 @@ void CharacterBase::update(float dt)
 					_isHealing = true;
 					if (getHpPercent() < 1.0f)
 					{
-						scheduleOnce(schedule_selector(CharacterBase::setRestore), 1.0f);
+						scheduleOnce(schedule_selector(Unit::setRestore), 1.0f);
 					}
 				}
 				else
@@ -343,7 +342,7 @@ void CharacterBase::update(float dt)
 	}
 }
 
-void CharacterBase::updateHpBarPosition(float dt)
+void Unit::updateHpBarPosition(float dt)
 {
 	if (_hpBar)
 	{
@@ -352,7 +351,7 @@ void CharacterBase::updateHpBarPosition(float dt)
 	}
 }
 
-void CharacterBase::setCharFlip()
+void Unit::setCharFlip()
 {
 	if (_isFlipped)
 	{
@@ -366,7 +365,7 @@ void CharacterBase::setCharFlip()
 	}
 }
 
-void CharacterBase::setShadow(SpriteFrame *frame)
+void Unit::setShadow(SpriteFrame *frame)
 {
 	auto charN = Sprite::createWithSpriteFrame(frame);
 	charN->setVisible(false);
@@ -384,59 +383,59 @@ void CharacterBase::setShadow(SpriteFrame *frame)
 	charN->setFlipX(_isFlipped);
 	charN->setPosition(getPosition());
 	auto delay = DelayTime::create(0.1f);
-	auto call = CallFunc::create(std::bind(&CharacterBase::enableShadow, this, charN));
+	auto call = CallFunc::create(std::bind(&Unit::enableShadow, this, charN));
 	auto seq = newSequence(delay, call);
 	charN->runAction(seq);
 	getGameLayer()->addChild(charN, -getPositionY() - 1);
 }
 
-void CharacterBase::enableShadow(Sprite *charN)
+void Unit::enableShadow(Sprite *charN)
 {
 	charN->setVisible(true);
 	auto delay = DelayTime::create(0.1f);
-	auto call = CallFunc::create(std::bind(&CharacterBase::disableShadow, this, charN));
+	auto call = CallFunc::create(std::bind(&Unit::disableShadow, this, charN));
 	auto seq = newSequence(delay, call);
 	charN->runAction(seq);
 }
 
-void CharacterBase::disableShadow(Sprite *charN)
+void Unit::disableShadow(Sprite *charN)
 {
 	charN->stopAllActions();
 	charN->removeFromParent();
 }
 
-void CharacterBase::setOugis()
+void Unit::setOugis()
 {
 	getGameLayer()->setOugis(this);
 }
 
-void CharacterBase::disableHpBar(float dt)
+void Unit::disableHpBar(float dt)
 {
 	if (_hpBar)
 		_hpBar->setVisible(false);
 }
 
-void CharacterBase::setDamage(CharacterBase *attacker)
+void Unit::setDamage(Unit *attacker)
 {
 	setDamage(attacker, attacker->_effectType, attacker->_attackValue, _isFlipped);
 }
 
-void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType, int attackValue, bool isFlipped)
+void Unit::setDamage(Unit *attacker, const string &effectType, int attackValue, bool isFlipped)
 {
 	if (isTower())
 	{
 		if (_hpBar)
 			_hpBar->setVisible(true);
 
-		unschedule(schedule_selector(CharacterBase::disableHpBar));
-		scheduleOnce(schedule_selector(CharacterBase::disableHpBar), 2.0f);
+		unschedule(schedule_selector(Unit::disableHpBar));
+		scheduleOnce(schedule_selector(Unit::disableHpBar), 2.0f);
 	}
 
 	int criticalValue;
 	uint32_t realValue;
 
 	_slayer = attacker;
-	CharacterBase *currentAttacker;
+	Unit *currentAttacker;
 	if (attacker->_master)
 		currentAttacker = attacker->_master;
 	else
@@ -630,7 +629,7 @@ void CharacterBase::setDamage(CharacterBase *attacker, const string &effectType,
 	}
 }
 
-void CharacterBase::setCoinDisplay(int num)
+void Unit::setCoinDisplay(int num)
 {
 	Sprite *coinDisplay = Sprite::create();
 
@@ -648,18 +647,18 @@ void CharacterBase::setCoinDisplay(int num)
 
 	auto mv = MoveBy::create(0.5f, Vec2(0, 12));
 	auto fadeOut = FadeOut::create(0.8f);
-	auto call = CallFunc::create(std::bind(&CharacterBase::removeCoinDisplay, this, coinDisplay));
+	auto call = CallFunc::create(std::bind(&Unit::removeCoinDisplay, this, coinDisplay));
 	auto sp = Spawn::create(fadeOut, mv, nullptr);
 	auto seq = newSequence(sp, call);
 	coinDisplay->runAction(seq);
 }
 
-void CharacterBase::removeCoinDisplay(Sprite *coinDisplay)
+void Unit::removeCoinDisplay(Sprite *coinDisplay)
 {
 	coinDisplay->removeFromParent();
 }
 
-void CharacterBase::setDamgeDisplay(int value, const char *font)
+void Unit::setDamgeDisplay(int value, const char *font)
 {
 	if (_damageArray.size() < 6)
 	{
@@ -681,7 +680,7 @@ void CharacterBase::setDamgeDisplay(int value, const char *font)
 		_damageArray.push_back(damageFont);
 
 		auto sd = ScaleBy::create(0.2f, 0.5f);
-		auto call = CallFunc::create(std::bind(&CharacterBase::removeDamageDisplay, this));
+		auto call = CallFunc::create(std::bind(&Unit::removeDamageDisplay, this));
 		auto mv = MoveBy::create(0.4f, Vec2(0, 12));
 		auto fadeOut = FadeOut::create(0.4f);
 		auto sp = Spawn::create(fadeOut, mv, nullptr);
@@ -690,7 +689,7 @@ void CharacterBase::setDamgeDisplay(int value, const char *font)
 	}
 }
 
-void CharacterBase::removeDamageDisplay()
+void Unit::removeDamageDisplay()
 {
 	if (_damageArray.size() > 0)
 	{
@@ -700,7 +699,7 @@ void CharacterBase::removeDamageDisplay()
 	}
 }
 
-void CharacterBase::setDamgeEffect(const string &type)
+void Unit::setDamgeEffect(const string &type)
 {
 	if (isPlayer() ||
 		abs((getPosition() - getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2)
@@ -723,7 +722,7 @@ void CharacterBase::setDamgeEffect(const string &type)
 	}
 }
 
-void CharacterBase::setSkillEffect(const string &type)
+void Unit::setSkillEffect(const string &type)
 {
 	if (isPlayer() ||
 		abs((getPosition() - getGameLayer()->currentPlayer->getPosition()).x) < winSize.width / 2)
@@ -745,7 +744,7 @@ void CharacterBase::setSkillEffect(const string &type)
 	}
 }
 
-void CharacterBase::setItem(ABType type)
+void Unit::setItem(ABType type)
 {
 	if (_isControlled)
 		return;
@@ -796,7 +795,7 @@ void CharacterBase::setItem(ABType type)
 	}
 }
 
-bool CharacterBase::setGear(GearType type)
+bool Unit::setGear(GearType type)
 {
 	uint32_t gearCost;
 	// The cost of [ 00 03 06 ] is 500
@@ -877,7 +876,7 @@ bool CharacterBase::setGear(GearType type)
 	}
 }
 
-void CharacterBase::useGear(GearType type)
+void Unit::useGear(GearType type)
 {
 	if (_isControlled)
 		return;
@@ -897,7 +896,7 @@ void CharacterBase::useGear(GearType type)
 				_speedItemEffect = Effect::create("speedUp", this);
 				addChild(_speedItemEffect);
 
-				scheduleOnce(schedule_selector(CharacterBase::enableGear00), 15.0f);
+				scheduleOnce(schedule_selector(Unit::enableGear00), 15.0f);
 				if (isPlayer() || getGroup() == getGameLayer()->currentPlayer->getGroup())
 					setOpacity(150);
 				else
@@ -911,7 +910,7 @@ void CharacterBase::useGear(GearType type)
 				_isVisable = false;
 
 				setSound("Audio/Effect/suzou_effect.ogg");
-				schedule(schedule_selector(CharacterBase::disableGear1), 3.0f);
+				schedule(schedule_selector(Unit::disableGear1), 3.0f);
 			}
 		}
 	}
@@ -919,12 +918,12 @@ void CharacterBase::useGear(GearType type)
 	{
 		_isCanGear03 = false;
 		setMon("Traps");
-		scheduleOnce(schedule_selector(CharacterBase::enableGear03), 15.0f);
+		scheduleOnce(schedule_selector(Unit::enableGear03), 15.0f);
 	}
 	else if (type == GearType::Gear06)
 	{
 		_isCanGear06 = false;
-		scheduleOnce(schedule_selector(CharacterBase::enableGear06), 15.0f);
+		scheduleOnce(schedule_selector(Unit::enableGear06), 15.0f);
 
 		if (!_isInvincible && !_isArmored)
 		{
@@ -950,7 +949,7 @@ void CharacterBase::useGear(GearType type)
 				idle();
 
 				setSkillEffect("tishen");
-				scheduleOnce(schedule_selector(CharacterBase::disableGear2), 1.0f);
+				scheduleOnce(schedule_selector(Unit::disableGear2), 1.0f);
 				setSound("Audio/Effect/poof2.ogg");
 
 				if (isPlayer() || getGroup() == getGameLayer()->currentPlayer->getGroup())
@@ -969,7 +968,7 @@ void CharacterBase::useGear(GearType type)
 	}
 }
 
-void CharacterBase::disableGear1(float dt)
+void Unit::disableGear1(float dt)
 {
 	if (!_isVisable && _state != State::HURT)
 	{
@@ -984,7 +983,7 @@ void CharacterBase::disableGear1(float dt)
 	}
 	else
 	{
-		unschedule(schedule_selector(CharacterBase::disableGear1));
+		unschedule(schedule_selector(Unit::disableGear1));
 		if (getWalkSpeed() == 320)
 		{
 			setWalkSpeed(224);
@@ -992,7 +991,7 @@ void CharacterBase::disableGear1(float dt)
 	}
 }
 
-void CharacterBase::disableGear2(float dt)
+void Unit::disableGear2(float dt)
 {
 	setOpacity(255);
 	setVisible(true);
@@ -1004,31 +1003,31 @@ void CharacterBase::disableGear2(float dt)
 		_shadow->setVisible(true);
 }
 
-void CharacterBase::disableGear3(float dt)
+void Unit::disableGear3(float dt)
 {
 }
 
-void CharacterBase::enableGear00(float dt)
+void Unit::enableGear00(float dt)
 {
 	_isCanGear00 = true;
 }
 
-void CharacterBase::enableGear03(float dt)
+void Unit::enableGear03(float dt)
 {
 	_isCanGear03 = true;
 }
 
-void CharacterBase::enableGear06(float dt)
+void Unit::enableGear06(float dt)
 {
 	_isCanGear06 = true;
 }
 
-void CharacterBase::addCoin(uint32_t num)
+void Unit::addCoin(uint32_t num)
 {
 	setCoin(getCoin() + num);
 }
 
-void CharacterBase::minusCoin(uint32_t num)
+void Unit::minusCoin(uint32_t num)
 {
 	if (getCoin() > num)
 		setCoin(getCoin() - num);
@@ -1036,7 +1035,7 @@ void CharacterBase::minusCoin(uint32_t num)
 		setCoin(0);
 }
 
-void CharacterBase::setRestore(float dt)
+void Unit::setRestore(float dt)
 {
 	if (_hpBar)
 	{
@@ -1049,7 +1048,7 @@ void CharacterBase::setRestore(float dt)
 	}
 }
 
-void CharacterBase::setRestore2(float dt)
+void Unit::setRestore2(float dt)
 {
 	if (_hpBar)
 	{
@@ -1069,7 +1068,7 @@ void CharacterBase::setRestore2(float dt)
 	}
 }
 
-void CharacterBase::disableEffect()
+void Unit::disableEffect()
 {
 	if (_healItemEffect)
 	{
@@ -1084,7 +1083,7 @@ void CharacterBase::disableEffect()
 	}
 }
 
-void CharacterBase::setSound(const string &file)
+void Unit::setSound(const string &file)
 {
 	if (UserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 	{
@@ -1110,7 +1109,7 @@ void CharacterBase::setSound(const string &file)
 	}
 }
 
-void CharacterBase::setDSound(const string &file)
+void Unit::setDSound(const string &file)
 {
 	if (UserDefault::sharedUserDefault()->getBoolForKey("isVoice"))
 	{
@@ -1136,7 +1135,7 @@ void CharacterBase::setDSound(const string &file)
 	}
 }
 
-void CharacterBase::setAttackBox(const string &effectType)
+void Unit::setAttackBox(const string &effectType)
 {
 	_effectType = effectType;
 
@@ -1168,7 +1167,7 @@ void CharacterBase::setAttackBox(const string &effectType)
 		{
 			getGameLayer()->_isShacking = true;
 			Scene *f = Director::sharedDirector()->getRunningScene();
-			auto call = CallFunc::create(std::bind(&CharacterBase::disableShack, this));
+			auto call = CallFunc::create(std::bind(&Unit::disableShack, this));
 			f->runAction(newSequence(CCShake::create(0.05f, 12), call));
 		}
 		if (getGameLayer()->_isAttackButtonRelease && _state == State::NATTACK && !_isOnlySkillLocked && !_isAI)
@@ -1179,11 +1178,11 @@ void CharacterBase::setAttackBox(const string &effectType)
 	}
 }
 
-void CharacterBase::getSticker(float dt)
+void Unit::getSticker(float dt)
 {
 	for (auto hero : getGameLayer()->_CharacterArray)
 	{
-		CharacterBase *tempSticker = nullptr;
+		Unit *tempSticker = nullptr;
 		if (hero->_sticker)
 		{
 			tempSticker = hero->_sticker;
@@ -1194,11 +1193,11 @@ void CharacterBase::getSticker(float dt)
 		}
 	}
 
-	unschedule(schedule_selector(CharacterBase::getSticker));
+	unschedule(schedule_selector(Unit::getSticker));
 	dealloc();
 }
 
-void CharacterBase::disableShack()
+void Unit::disableShack()
 {
 	getGameLayer()->_isShacking = false;
 	if (isTower())
@@ -1207,7 +1206,7 @@ void CharacterBase::disableShack()
 	}
 }
 
-void CharacterBase::setMove(int moveLength)
+void Unit::setMove(int moveLength)
 {
 	if (getKnockLength())
 	{
@@ -1237,7 +1236,7 @@ void CharacterBase::setMove(int moveLength)
 	}
 }
 
-void CharacterBase::setJump(bool jumpDirection)
+void Unit::setJump(bool jumpDirection)
 {
 	if (_state != State::FLOAT &&
 		_state != State::AIRHURT &&
@@ -1263,7 +1262,7 @@ void CharacterBase::setJump(bool jumpDirection)
 	}
 }
 
-void CharacterBase::setCharge(int moveLength)
+void Unit::setCharge(int moveLength)
 {
 	if ((getPositionX() < getGameLayer()->currentMap->getTileSize().width && _isFlipped) ||
 		(getPositionX() > (getGameLayer()->currentMap->getMapSize().width - 1) * getGameLayer()->currentMap->getTileSize().width && !_isFlipped))
@@ -1278,7 +1277,7 @@ void CharacterBase::setCharge(int moveLength)
 }
 
 // without getCollider
-void CharacterBase::setChargeB(int moveLength)
+void Unit::setChargeB(int moveLength)
 {
 	if ((getPositionX() < getGameLayer()->currentMap->getTileSize().width && _isFlipped) ||
 		(getPositionX() > (getGameLayer()->currentMap->getMapSize().width - 1) * getGameLayer()->currentMap->getTileSize().width && !_isFlipped))
@@ -1295,19 +1294,19 @@ void CharacterBase::setChargeB(int moveLength)
 	}
 }
 
-void CharacterBase::setCommand(const string &cmd)
+void Unit::setCommand(const string &cmd)
 {
 	CommandSystem::invoke(cmd, this);
 }
 
-void CharacterBase::setBuff(int buffValue)
+void Unit::setBuff(int buffValue)
 {
 	float buffStayTime = _attackRangeY;
 
 	if (_attackType == "hBuff")
 	{
 		_healBuffValue = buffValue;
-		schedule(schedule_selector(CharacterBase::healBuff), 1);
+		schedule(schedule_selector(Unit::healBuff), 1);
 		setBuffEffect("hBuff");
 	}
 	else if (_attackType == "sBuff" ||
@@ -1316,7 +1315,7 @@ void CharacterBase::setBuff(int buffValue)
 			 _attackType == "dcBuff")
 	{
 		_skillUPBuffValue = buffValue;
-		scheduleOnce(schedule_selector(CharacterBase::disableBuff), buffStayTime);
+		scheduleOnce(schedule_selector(Unit::disableBuff), buffStayTime);
 		setBuffEffect(_attackType);
 
 		setSAttackValue1(getSAttackValue1() + _skillUPBuffValue);
@@ -1337,7 +1336,7 @@ void CharacterBase::setBuff(int buffValue)
 							if (hero->getName() == HeroEnum::Konan ||
 								hero->getName() == HeroEnum::Deidara)
 							{
-								hero->unschedule(schedule_selector(CharacterBase::disableBuff));
+								hero->unschedule(schedule_selector(Unit::disableBuff));
 							}
 
 							hero->setOpacity(255);
@@ -1368,44 +1367,44 @@ void CharacterBase::setBuff(int buffValue)
 		{
 			if (_skillChangeBuffValue == 17)
 			{
-				scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
+				scheduleOnce(schedule_selector(Unit::resumeAction), buffStayTime);
 			}
 			else if (_skillChangeBuffValue == 18)
 			{
-				unschedule(schedule_selector(CharacterBase::resumeAction));
+				unschedule(schedule_selector(Unit::resumeAction));
 				setActionTo<ActionFlag::NAttack, ActionFlag::NAttack>();
-				scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
+				scheduleOnce(schedule_selector(Unit::resumeAction), buffStayTime);
 			}
 		}
 		else if (getName() == HeroEnum::Kiba)
 		{
 			if (_skillChangeBuffValue == 18)
 			{
-				scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
+				scheduleOnce(schedule_selector(Unit::resumeAction), buffStayTime);
 			}
 		}
 		else if ((getName() == HeroEnum::ImmortalSasuke ||
 				  getName() == HeroEnum::Sasuke) &&
 				 _skillChangeBuffValue == 18)
 		{
-			unschedule(schedule_selector(CharacterBase::resumeAction));
-			unschedule(schedule_selector(CharacterBase::disableBuff));
+			unschedule(schedule_selector(Unit::resumeAction));
+			unschedule(schedule_selector(Unit::disableBuff));
 
 			_isTaunt = false;
 			// setHurtAction(createAnimation(hurtArray, 10, false, true));
-			auto call = CallFunc::create(std::bind(&CharacterBase::idle, this));
+			auto call = CallFunc::create(std::bind(&Unit::idle, this));
 			auto autoReturnIdleHurtAction = Sequence::create(getAction(ActionFlag::Hurt), call);
 			setHurtAction(autoReturnIdleHurtAction);
 			// setActionTo<ActionFlag::Hurt, ActionFlag::Hurt>();
 			disableBuff(0);
 
-			scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
+			scheduleOnce(schedule_selector(Unit::resumeAction), buffStayTime);
 		}
 		else if (getName() == HeroEnum::Minato)
 		{
 			if (_skillChangeBuffValue == 18)
 			{
-				scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
+				scheduleOnce(schedule_selector(Unit::resumeAction), buffStayTime);
 			}
 		}
 		else
@@ -1422,7 +1421,7 @@ void CharacterBase::setBuff(int buffValue)
 				getName() != HeroEnum::RockLee &&
 				getName() != HeroEnum::Nagato)
 			{
-				scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
+				scheduleOnce(schedule_selector(Unit::resumeAction), buffStayTime);
 			}
 		}
 
@@ -1431,8 +1430,8 @@ void CharacterBase::setBuff(int buffValue)
 	else if (_attackType == "tBuff")
 	{
 		_skillChangeBuffValue = buffValue;
-		scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
-		scheduleOnce(schedule_selector(CharacterBase::disableBuff), buffStayTime);
+		scheduleOnce(schedule_selector(Unit::resumeAction), buffStayTime);
+		scheduleOnce(schedule_selector(Unit::disableBuff), buffStayTime);
 		setBuffEffect(_attackType);
 
 		changeAction();
@@ -1444,7 +1443,7 @@ void CharacterBase::setBuff(int buffValue)
 	// 	{
 	// 		if (_skillChangeBuffValue == 18 && hearts == 1)
 	// 		{
-	// 			scheduleOnce(schedule_selector(CharacterBase::resumeAction), buffStayTime);
+	// 			scheduleOnce(schedule_selector(Unit::resumeAction), buffStayTime);
 	// 		}
 	// 	}
 	// 	changeAction2();
@@ -1463,7 +1462,7 @@ void CharacterBase::setBuff(int buffValue)
 			_shadow->setVisible(false);
 
 		_isVisable = false;
-		scheduleOnce(schedule_selector(CharacterBase::disableBuff), buffStayTime);
+		scheduleOnce(schedule_selector(Unit::disableBuff), buffStayTime);
 	}
 	else if (_attackType == "GroupHeal" ||
 			 _attackType == "GroupBuff")
@@ -1473,14 +1472,14 @@ void CharacterBase::setBuff(int buffValue)
 		else
 			_healBuffValue = buffValue;
 
-		schedule(schedule_selector(CharacterBase::healBuff), 1);
+		schedule(schedule_selector(Unit::healBuff), 1);
 	}
 
 	if (isPlayer())
 		getGameLayer()->getHudLayer()->setBuffDisplay(_attackType, buffStayTime);
 }
 
-void CharacterBase::setBuffEffect(const string &type)
+void Unit::setBuffEffect(const string &type)
 {
 	if (_skillBuffEffect)
 	{
@@ -1525,7 +1524,7 @@ void CharacterBase::setBuffEffect(const string &type)
 	}
 }
 
-void CharacterBase::removeBuffEffect(const string &type)
+void Unit::removeBuffEffect(const string &type)
 {
 	if (type == "hBuff" && _healBuffEffect)
 	{
@@ -1572,7 +1571,7 @@ void CharacterBase::removeBuffEffect(const string &type)
 	}
 }
 
-void CharacterBase::disableBuff(float dt)
+void Unit::disableBuff(float dt)
 {
 	if (_skillUPBuffValue)
 	{
@@ -1608,7 +1607,7 @@ void CharacterBase::disableBuff(float dt)
 	}
 }
 
-void CharacterBase::disableDebuff(float dt)
+void Unit::disableDebuff(float dt)
 {
 	if ((getName() == HeroEnum::ImmortalSasuke || getName() == HeroEnum::Itachi) && _isArmored)
 	{
@@ -1619,7 +1618,7 @@ void CharacterBase::disableDebuff(float dt)
 		setWalkSpeed(224);
 }
 
-void CharacterBase::healBuff(float dt)
+void Unit::healBuff(float dt)
 {
 	cc_timeval timeVal;
 	CCTime::gettimeofdayCocos2d(&timeVal, 0);
@@ -1638,7 +1637,7 @@ void CharacterBase::healBuff(float dt)
 
 	if (_buffStartTime && curTime - _buffStartTime >= limitTime)
 	{
-		unschedule(schedule_selector(CharacterBase::healBuff));
+		unschedule(schedule_selector(Unit::healBuff));
 		removeBuffEffect("hBuff");
 		_healBuffValue = 0;
 		_buffStartTime = 0;
@@ -1728,7 +1727,7 @@ void CharacterBase::healBuff(float dt)
 	}
 }
 
-void CharacterBase::dehealBuff(float dt)
+void Unit::dehealBuff(float dt)
 {
 	cc_timeval timeVal;
 	CCTime::gettimeofdayCocos2d(&timeVal, 0);
@@ -1739,7 +1738,7 @@ void CharacterBase::dehealBuff(float dt)
 
 	if (_debuffStartTime && abs(_debuffStartTime - curTime) > 10000)
 	{
-		unschedule(schedule_selector(CharacterBase::dehealBuff));
+		unschedule(schedule_selector(Unit::dehealBuff));
 		setWalkSpeed(_originSpeed);
 		removeBuffEffect("dhBuff");
 		_dehealBuffValue = 0;
@@ -1763,7 +1762,7 @@ void CharacterBase::dehealBuff(float dt)
 }
 
 // FIXME: Only for Shikamaru's KageHand
-void CharacterBase::lostBlood(float dt)
+void Unit::lostBlood(float dt)
 {
 	if (lbAttackerId == -1)
 		return;
@@ -1787,18 +1786,18 @@ void CharacterBase::lostBlood(float dt)
 		getGameLayer()->setHPLose(getHpPercent());
 }
 
-void CharacterBase::removeLostBlood(float dt)
+void Unit::removeLostBlood(float dt)
 {
 	lostBloodValue = 0;
 	lbAttackerId = -1;
-	unschedule(schedule_selector(CharacterBase::lostBlood));
+	unschedule(schedule_selector(Unit::lostBlood));
 }
 
-void CharacterBase::changeAction()
+void Unit::changeAction()
 {
 }
 
-void CharacterBase::changeAction2()
+void Unit::changeAction2()
 {
 	if (getName() == HeroEnum::Minato)
 	{
@@ -1818,7 +1817,7 @@ void CharacterBase::changeAction2()
 }
 
 // Release catched characters
-void CharacterBase::reCatched(float dt)
+void Unit::reCatched(float dt)
 {
 	setVisible(true);
 	_isVisable = true;
@@ -1827,16 +1826,16 @@ void CharacterBase::reCatched(float dt)
 		_shadow->setVisible(true);
 }
 
-void CharacterBase::resumeAction(float dt)
+void Unit::resumeAction(float dt)
 {
 	_skillChangeBuffValue = 0;
 }
 
-void CharacterBase::setActionResume()
+void Unit::setActionResume()
 {
 }
 
-void CharacterBase::setActionResume2()
+void Unit::setActionResume2()
 {
 	if (getName() == HeroEnum::Minato)
 	{
@@ -1853,17 +1852,17 @@ void CharacterBase::setActionResume2()
 	// }
 }
 
-void CharacterBase::getCollider()
+void Unit::getCollider()
 {
-	schedule(schedule_selector(CharacterBase::stopMove), 0.0f);
+	schedule(schedule_selector(Unit::stopMove), 0.0f);
 }
 
-void CharacterBase::stopMove(float dt)
+void Unit::stopMove(float dt)
 {
 	if (getPositionX() <= getGameLayer()->currentMap->getTileSize().width ||
 		getPositionX() >= (getGameLayer()->currentMap->getMapSize().width - 1) * getGameLayer()->currentMap->getTileSize().width)
 	{
-		unschedule(schedule_selector(CharacterBase::stopMove));
+		unschedule(schedule_selector(Unit::stopMove));
 		getActionManager()->removeAction(_moveAction);
 		return;
 	}
@@ -1877,7 +1876,7 @@ void CharacterBase::stopMove(float dt)
 			if (abs(distanceX) <= atkRangeX &&
 				abs(hero->getPositionY() - getPositionY()) <= _attackRangeY)
 			{
-				unschedule(schedule_selector(CharacterBase::stopMove));
+				unschedule(schedule_selector(Unit::stopMove));
 				getActionManager()->removeAction(_moveAction);
 				return;
 			}
@@ -1885,16 +1884,16 @@ void CharacterBase::stopMove(float dt)
 	}
 }
 
-void CharacterBase::stopJump(int stopTime)
+void Unit::stopJump(int stopTime)
 {
 	if (_state == State::JUMP)
 	{
 		getActionManager()->pauseTarget(this);
-		scheduleOnce(schedule_selector(CharacterBase::resumePauseStuff), stopTime / 100.0f);
+		scheduleOnce(schedule_selector(Unit::resumePauseStuff), stopTime / 100.0f);
 	}
 }
 
-void CharacterBase::setBullet(const string &bulletName)
+void Unit::setBullet(const string &bulletName)
 {
 	auto bullet = Bullet::create();
 	bullet->setID(bulletName, Role::Bullet, _group);
@@ -1934,7 +1933,7 @@ void CharacterBase::setBullet(const string &bulletName)
 			bullet->setNAttackValue(bullet->getNAttackValue() + _skillUPBuffValue);
 
 		bullet->scheduleOnce(schedule_selector(Bullet::setAttack), 0.5f);
-		scheduleOnce(schedule_selector(CharacterBase::setBulletGroup), 0.2f);
+		scheduleOnce(schedule_selector(Unit::setBulletGroup), 0.2f);
 		bullet->setEaseIn(224, 5.0f);
 	}
 	else if (bulletName == "FlyKnife" ||
@@ -1978,7 +1977,7 @@ void CharacterBase::setBullet(const string &bulletName)
 	}
 }
 
-void CharacterBase::setBulletGroup(float dt)
+void Unit::setBulletGroup(float dt)
 {
 	for (int i = 0; i < 2; i++)
 	{
@@ -2018,12 +2017,12 @@ void CharacterBase::setBulletGroup(float dt)
 	}
 }
 
-Hero *CharacterBase::createClone(int cloneTime)
+Hero *Unit::createClone(int cloneTime)
 {
 	return nullptr;
 }
 
-void CharacterBase::setClone(int cloneTime)
+void Unit::setClone(int cloneTime)
 {
 	Hero *clone = createClone(cloneTime);
 	if (clone == nullptr)
@@ -2099,12 +2098,12 @@ void CharacterBase::setClone(int cloneTime)
 	}
 }
 
-void CharacterBase::removeClone(float dt)
+void Unit::removeClone(float dt)
 {
 	dead();
 }
 
-void CharacterBase::removeAllClones()
+void Unit::removeAllClones()
 {
 	auto &unitArray = getGameLayer()->_CharacterArray;
 	for (auto c : unitArray)
@@ -2116,7 +2115,7 @@ void CharacterBase::removeAllClones()
 	}
 }
 
-void CharacterBase::setMon(const string &monName)
+void Unit::setMon(const string &monName)
 {
 	// FIXME: Use in mon master config
 	// float monsterStayTime = _attackRangeY;
@@ -2515,7 +2514,7 @@ void CharacterBase::setMon(const string &monName)
 	}
 }
 
-void CharacterBase::setMonPer(float dt)
+void Unit::setMonPer(float dt)
 {
 	auto monster = Monster::create();
 
@@ -2542,7 +2541,7 @@ void CharacterBase::setMonPer(float dt)
 	getGameLayer()->addChild(monster, -monster->getPositionY());
 }
 
-void CharacterBase::setTrap(const string &trapName)
+void Unit::setTrap(const string &trapName)
 {
 	if (trapName == "Amaterasu")
 	{
@@ -2558,7 +2557,7 @@ void CharacterBase::setTrap(const string &trapName)
 						if (hero->getName() == HeroEnum::Konan ||
 							hero->getName() == HeroEnum::Deidara)
 						{
-							hero->unschedule(schedule_selector(CharacterBase::disableBuff));
+							hero->unschedule(schedule_selector(Unit::disableBuff));
 						}
 
 						hero->setOpacity(255);
@@ -2673,12 +2672,12 @@ void CharacterBase::setTrap(const string &trapName)
 	}
 }
 
-void CharacterBase::removeSelf(float dt)
+void Unit::removeSelf(float dt)
 {
 	dealloc();
 }
 
-void CharacterBase::setMonAttack(int skillNum)
+void Unit::setMonAttack(int skillNum)
 {
 	for (auto mo : _monsterArray)
 	{
@@ -2728,10 +2727,10 @@ void CharacterBase::setMonAttack(int skillNum)
 	}
 }
 
-void CharacterBase::setTransform()
+void Unit::setTransform()
 {
 	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "acceptAttack");
-	unschedule(schedule_selector(CharacterBase::dehealBuff));
+	unschedule(schedule_selector(Unit::dehealBuff));
 
 	if (getName() == HeroEnum::Lee ||
 		getName() == HeroEnum::RockLee)
@@ -2742,7 +2741,7 @@ void CharacterBase::setTransform()
 	{
 		if (_skillUPBuffValue)
 		{
-			unschedule(schedule_selector(CharacterBase::disableBuff));
+			unschedule(schedule_selector(Unit::disableBuff));
 			disableBuff(0.1f);
 		}
 
@@ -2789,13 +2788,13 @@ void CharacterBase::setTransform()
 		getGameLayer()->setHPLose(getHpPercent());
 }
 
-float CharacterBase::getHpPercent()
+float Unit::getHpPercent()
 {
 	float percent = 1.0f * getHP() / getMaxHP();
 	return percent;
 }
 
-void CharacterBase::attack(ABType type)
+void Unit::attack(ABType type)
 {
 	if (isPlayer() && type == NAttack)
 	{
@@ -2906,7 +2905,7 @@ void CharacterBase::attack(ABType type)
 	}
 }
 
-void CharacterBase::nAttack()
+void Unit::nAttack()
 {
 	if (_state == State::IDLE || _state == State::WALK)
 	{
@@ -2926,7 +2925,7 @@ void CharacterBase::nAttack()
 	}
 }
 
-void CharacterBase::sAttack(ABType type)
+void Unit::sAttack(ABType type)
 {
 	if (_state == State::IDLE || _state == State::WALK || _state == State::NATTACK)
 	{
@@ -2935,7 +2934,7 @@ void CharacterBase::sAttack(ABType type)
 			if (getName() == HeroEnum::Konan ||
 				getName() == HeroEnum::Deidara)
 			{
-				unschedule(schedule_selector(CharacterBase::disableBuff));
+				unschedule(schedule_selector(Unit::disableBuff));
 			}
 
 			setOpacity(255);
@@ -2964,7 +2963,7 @@ void CharacterBase::sAttack(ABType type)
 			}
 			_isCanSkill1 = false;
 
-			scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sAttackCD1);
+			scheduleOnce(schedule_selector(Unit::enableSkill1), _sAttackCD1);
 			break;
 		case SKILL2:
 			if (_isCanSkill2)
@@ -2979,7 +2978,7 @@ void CharacterBase::sAttack(ABType type)
 
 			_isCanSkill2 = false;
 
-			scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sAttackCD2);
+			scheduleOnce(schedule_selector(Unit::enableSkill2), _sAttackCD2);
 
 			break;
 		case SKILL3:
@@ -2994,7 +2993,7 @@ void CharacterBase::sAttack(ABType type)
 			}
 			_isCanSkill3 = false;
 
-			scheduleOnce(schedule_selector(CharacterBase::enableSkill3), _sAttackCD3);
+			scheduleOnce(schedule_selector(Unit::enableSkill3), _sAttackCD3);
 			break;
 		default:
 			break;
@@ -3002,7 +3001,7 @@ void CharacterBase::sAttack(ABType type)
 	}
 }
 
-void CharacterBase::oAttack(ABType type)
+void Unit::oAttack(ABType type)
 {
 	if (_state == State::IDLE || _state == State::WALK || _state == State::NATTACK)
 	{
@@ -3015,7 +3014,7 @@ void CharacterBase::oAttack(ABType type)
 			if (getName() == HeroEnum::Konan ||
 				getName() == HeroEnum::Deidara)
 			{
-				unschedule(schedule_selector(CharacterBase::disableBuff));
+				unschedule(schedule_selector(Unit::disableBuff));
 			}
 
 			setOpacity(255);
@@ -3045,7 +3044,7 @@ void CharacterBase::oAttack(ABType type)
 	}
 }
 
-bool CharacterBase::checkHasMovement()
+bool Unit::checkHasMovement()
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	// DRIVEND BY JOYSTICK
@@ -3055,7 +3054,7 @@ bool CharacterBase::checkHasMovement()
 #endif
 }
 
-void CharacterBase::idle()
+void Unit::idle()
 {
 	if (_state != State::IDLE && _state != State::DEAD)
 	{
@@ -3072,7 +3071,7 @@ void CharacterBase::idle()
 		_sticker = nullptr;
 		_knockDirection = false;
 
-		unschedule(schedule_selector(CharacterBase::stopMove));
+		unschedule(schedule_selector(Unit::stopMove));
 
 		bool _isPlayer = isPlayer();
 
@@ -3102,7 +3101,7 @@ void CharacterBase::idle()
 	}
 }
 
-void CharacterBase::walk(Vec2 direction)
+void Unit::walk(Vec2 direction)
 {
 	if (_state == State::IDLE || _state == State::WALK || (_state == State::NATTACK && isNotPlayer()))
 	{
@@ -3165,7 +3164,7 @@ void CharacterBase::walk(Vec2 direction)
 	}
 }
 
-bool CharacterBase::hurt()
+bool Unit::hurt()
 {
 	if (_state != State::SATTACK &&
 		_state != State::JUMP &&
@@ -3217,7 +3216,7 @@ bool CharacterBase::hurt()
 		stopAllActions();
 		if (_hurtAction)
 		{
-			auto call = CallFunc::create(std::bind(&CharacterBase::idle, this));
+			auto call = CallFunc::create(std::bind(&Unit::idle, this));
 			auto seq = newSequence(_hurtAction, call);
 			runAction(seq);
 		}
@@ -3226,7 +3225,7 @@ bool CharacterBase::hurt()
 	return false;
 }
 
-bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, bool isStick, bool isStun)
+bool Unit::hardHurt(int delayTime, bool isHurtAction, bool isCatch, bool isStick, bool isStun)
 {
 	if ((_state != State::JUMP || isStick) &&
 		_state != State::O2ATTACK &&
@@ -3338,14 +3337,14 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 
 		if (isStun)
 		{
-			auto call = CallFunc::create(std::bind(&CharacterBase::setSkillEffect, this, "stun"));
+			auto call = CallFunc::create(std::bind(&Unit::setSkillEffect, this, "stun"));
 			list.pushBack(call);
 		}
 
 		auto delay = DelayTime::create(delayTime / 1000.0f);
 		list.pushBack(delay);
 
-		auto call = CallFunc::create(std::bind(&CharacterBase::idle, this));
+		auto call = CallFunc::create(std::bind(&Unit::idle, this));
 		list.pushBack(call);
 
 		auto seq = Sequence::create(list);
@@ -3357,7 +3356,7 @@ bool CharacterBase::hardHurt(int delayTime, bool isHurtAction, bool isCatch, boo
 	return false;
 }
 
-void CharacterBase::airHurt()
+void Unit::airHurt()
 {
 	if (_state == State::FLOAT || _state == State::AIRHURT)
 	{
@@ -3369,21 +3368,21 @@ void CharacterBase::airHurt()
 		if (_state == State::AIRHURT)
 		{
 			getActionManager()->removeAction(_airHurtAction);
-			unschedule(schedule_selector(CharacterBase::resumePauseStuff));
+			unschedule(schedule_selector(Unit::resumePauseStuff));
 		}
 		_state = State::AIRHURT;
 		runAction(_airHurtAction);
 		getActionManager()->pauseTarget(this);
-		scheduleOnce(schedule_selector(CharacterBase::resumePauseStuff), 0.2f);
+		scheduleOnce(schedule_selector(Unit::resumePauseStuff), 0.2f);
 	}
 }
 
-void CharacterBase::resumePauseStuff(float dt)
+void Unit::resumePauseStuff(float dt)
 {
 	getActionManager()->resumeTarget(this);
 }
 
-void CharacterBase::absorb(Vec2 position, bool isImmediate)
+void Unit::absorb(Vec2 position, bool isImmediate)
 {
 	if (_state == State::IDLE ||
 		_state == State::WALK ||
@@ -3415,14 +3414,14 @@ void CharacterBase::absorb(Vec2 position, bool isImmediate)
 			list.pushBack(mv);
 		}
 
-		auto call = CallFunc::create(std::bind(&CharacterBase::idle, this));
+		auto call = CallFunc::create(std::bind(&Unit::idle, this));
 		list.pushBack(call);
 		auto seq = Sequence::create(list);
 		runAction(seq);
 	}
 }
 
-void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
+void Unit::floatUP(float floatHeight, bool isCancelSkill)
 {
 	if (_state == State::SATTACK && !isCancelSkill)
 	{
@@ -3492,7 +3491,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 		else
 			_floatAwayAction = JumpTo::create(0.3f, Vec2(posX + (_isFlipped ? 8 : -8), posY), 16, 1);
 
-		auto call = CallFunc::create(std::bind(&CharacterBase::knockdown, this));
+		auto call = CallFunc::create(std::bind(&Unit::knockdown, this));
 		_floatUPAction = newSequence(_floatAwayAction, call);
 
 		runAction(_floatUPAction);
@@ -3500,7 +3499,7 @@ void CharacterBase::floatUP(float floatHeight, bool isCancelSkill)
 	}
 }
 
-void CharacterBase::knockdown()
+void Unit::knockdown()
 {
 	if (_state != State::KNOCKDOWN && _state != State::DEAD)
 	{
@@ -3511,7 +3510,7 @@ void CharacterBase::knockdown()
 	}
 }
 
-void CharacterBase::dead()
+void Unit::dead()
 {
 	getGameModeHandler()->onCharacterDead(this);
 	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "acceptAttack");
@@ -3558,7 +3557,7 @@ void CharacterBase::dead()
 
 		if (_controller->_state != State::DEAD)
 		{
-			_controller->unschedule(schedule_selector(CharacterBase::resumeAction));
+			_controller->unschedule(schedule_selector(Unit::resumeAction));
 			_controller->idle();
 			_controller->_isArmored = false;
 		}
@@ -3576,9 +3575,9 @@ void CharacterBase::dead()
 	}
 
 	removeLostBlood(0.1f);
-	unschedule(schedule_selector(CharacterBase::stopMove));
-	unschedule(schedule_selector(CharacterBase::setAI));
-	unschedule(schedule_selector(CharacterBase::disableHpBar));
+	unschedule(schedule_selector(Unit::stopMove));
+	unschedule(schedule_selector(Unit::setAI));
+	unschedule(schedule_selector(Unit::disableHpBar));
 
 	if (isPlayer())
 	{
@@ -3590,9 +3589,9 @@ void CharacterBase::dead()
 	// kill all buffEffect
 	if (isPlayerOrCom())
 	{
-		unschedule(schedule_selector(CharacterBase::healBuff));
+		unschedule(schedule_selector(Unit::healBuff));
 		_buffStartTime = 0;
-		unschedule(schedule_selector(CharacterBase::dehealBuff));
+		unschedule(schedule_selector(Unit::dehealBuff));
 
 		if (getName() != HeroEnum::RockLee &&
 			getName() != HeroEnum::Lee)
@@ -3649,8 +3648,8 @@ void CharacterBase::dead()
 	if (_state == State::FLOAT || _state == State::AIRHURT)
 	{
 		_state = State::DEAD;
-		unschedule(schedule_selector(CharacterBase::removeClone));
-		schedule(schedule_selector(CharacterBase::checkActionFinish), 0.0f);
+		unschedule(schedule_selector(Unit::removeClone));
+		schedule(schedule_selector(Unit::checkActionFinish), 0.0f);
 		return;
 	}
 	else if (_state == State::JUMP)
@@ -3670,7 +3669,7 @@ void CharacterBase::dead()
 
 	if (isNotClone() && isNotSummon())
 	{
-		auto call = CallFunc::create(std::bind(&CharacterBase::dealloc, this));
+		auto call = CallFunc::create(std::bind(&Unit::dealloc, this));
 
 		if (isFlog())
 		{
@@ -3686,22 +3685,22 @@ void CharacterBase::dead()
 	}
 	else
 	{
-		unschedule(schedule_selector(CharacterBase::removeClone));
+		unschedule(schedule_selector(Unit::removeClone));
 		setSkillEffect("smk");
 		dealloc();
 	}
 }
 
-void CharacterBase::checkActionFinish(float dt)
+void Unit::checkActionFinish(float dt)
 {
 	if (getActionManager()->numberOfRunningActionsInTarget(this) == 0)
 	{
-		unschedule(schedule_selector(CharacterBase::checkActionFinish));
+		unschedule(schedule_selector(Unit::checkActionFinish));
 		stopAllActions();
 
 		Vector<FiniteTimeAction *> list;
 		auto fadeOut = FadeOut::create(0.5f);
-		auto call = CallFunc::create(std::bind(&CharacterBase::dealloc, this));
+		auto call = CallFunc::create(std::bind(&Unit::dealloc, this));
 		if (_deadAction)
 		{
 			list.pushBack(_deadAction);
@@ -3716,26 +3715,26 @@ void CharacterBase::checkActionFinish(float dt)
 	}
 }
 
-void CharacterBase::dealloc()
+void Unit::dealloc()
 {
 }
 
-void CharacterBase::reborn(float dt)
+void Unit::reborn(float dt)
 {
 	getGameModeHandler()->onCharacterReborn(this);
 }
 
-void CharacterBase::setAI(float dt)
+void Unit::setAI(float dt)
 {
 }
 
-void CharacterBase::doAI()
+void Unit::doAI()
 {
 	_isAI = true;
-	schedule(schedule_selector(CharacterBase::setAI), 0.1f);
+	schedule(schedule_selector(Unit::setAI), 0.1f);
 }
 
-void CharacterBase::changeSide(Vec2 sp)
+void Unit::changeSide(Vec2 sp)
 {
 	if (sp.x > 0)
 	{
@@ -3759,7 +3758,7 @@ void CharacterBase::changeSide(Vec2 sp)
 	}
 }
 
-void CharacterBase::changeGroup()
+void Unit::changeGroup()
 {
 	if (isKonohaGroup())
 		setGroup(Group::Akatsuki);
@@ -3788,8 +3787,8 @@ void CharacterBase::changeGroup()
 }
 
 template <typename T>
-typename std::enable_if_t<std::is_base_of_v<CharacterBase, T>, void>
-CharacterBase::changeGroupBy(const vector<T *> &list)
+typename std::enable_if_t<std::is_base_of_v<Unit, T>, void>
+Unit::changeGroupBy(const vector<T *> &list)
 {
 	for (auto target : list)
 	{
@@ -3814,7 +3813,7 @@ CharacterBase::changeGroupBy(const vector<T *> &list)
 	}
 }
 
-void CharacterBase::autoFlip(CharacterBase *attacker)
+void Unit::autoFlip(Unit *attacker)
 {
 	if (_isFlipped == attacker->_isFlipped)
 	{
@@ -3831,22 +3830,22 @@ void CharacterBase::autoFlip(CharacterBase *attacker)
 	}
 }
 
-void CharacterBase::enableItem1(float dt)
+void Unit::enableItem1(float dt)
 {
 	_isCanItem1 = true;
 }
 
-void CharacterBase::enableSkill1(float dt)
+void Unit::enableSkill1(float dt)
 {
 	_isCanSkill1 = true;
 }
 
-void CharacterBase::enableSkill2(float dt)
+void Unit::enableSkill2(float dt)
 {
 	_isCanSkill2 = true;
 }
 
-void CharacterBase::enableSkill3(float dt)
+void Unit::enableSkill3(float dt)
 {
 	_isCanSkill3 = true;
 }
@@ -3855,7 +3854,7 @@ void CharacterBase::enableSkill3(float dt)
  * Utilities
  */
 
-void CharacterBase::increaseAllCkrs(uint32_t value, bool enableLv2, bool enableLv4)
+void Unit::increaseAllCkrs(uint32_t value, bool enableLv2, bool enableLv4)
 {
 	if (_level >= 2 && enableLv2)
 	{
@@ -3882,12 +3881,12 @@ void CharacterBase::increaseAllCkrs(uint32_t value, bool enableLv2, bool enableL
 	}
 }
 
-void CharacterBase::increaseHpAndUpdateUI(uint32_t value)
+void Unit::increaseHpAndUpdateUI(uint32_t value)
 {
 	setHPValue(MIN(getHP() + value, getMaxHP()));
 }
 
-void CharacterBase::updateHpBar()
+void Unit::updateHpBar()
 {
 	if (_hpBar)
 		_hpBar->loseHP(getHpPercent());

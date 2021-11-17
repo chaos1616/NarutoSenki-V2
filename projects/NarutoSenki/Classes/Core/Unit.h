@@ -24,14 +24,14 @@ enum class State : uint16_t
 class HPBar;
 class Hero;
 
-class CharacterBase : public Sprite
+class Unit : public Sprite
 {
 	friend class CommandSystem;
 
 	using ActionMap = Map<ActionFlag, FiniteTimeAction *>;
 
 public:
-	CharacterBase();
+	Unit();
 
 	virtual void setID(const string &name, Role role, Group group) = 0;
 	virtual void setHPbar() {}
@@ -50,9 +50,9 @@ public:
 	PROP_UInt(_killNum, KillNum);
 	PROP_UInt(_coin, Coin);
 
-	CharacterBase *_slayer;
-	CharacterBase *_sticker;
-	RefPtr<CharacterBase> _mainTarget;
+	Unit *_slayer;
+	Unit *_sticker;
+	RefPtr<Unit> _mainTarget;
 
 	bool isHurtingTower;
 
@@ -149,9 +149,9 @@ public:
 	VPROP(int, _rebornTime, RebornTime);
 	VPROP(Vec2, _spawnPoint, SpawnPoint);
 
-	VPROP(CharacterBase *, _master, Master);
-	VPROP(CharacterBase *, _controller, Controller);
-	VPROP(CharacterBase *, _secmaster, SecMaster);
+	VPROP(Unit *, _master, Master);
+	VPROP(Unit *, _controller, Controller);
+	VPROP(Unit *, _secmaster, SecMaster);
 
 	PROP_REF(string, _attackType, AttackType);
 	uint32_t _attackValue;
@@ -233,7 +233,7 @@ public:
 
 	vector<CCLabelBMFont *> _damageArray;
 	uint32_t damageEffectCount;
-	PROP_Vector(vector<CharacterBase *>, _monsterArray, MonsterArray);
+	PROP_Vector(vector<Unit *>, _monsterArray, MonsterArray);
 
 	// movement
 	PROP(Vec2, _velocity, Velocity);
@@ -291,7 +291,7 @@ public:
 
 private:
 	template <typename T>
-	typename std::enable_if_t<std::is_base_of_v<CharacterBase, T>, void>
+	typename std::enable_if_t<std::is_base_of_v<Unit, T>, void>
 	changeGroupBy(const vector<T *> &list);
 
 public:
@@ -365,7 +365,7 @@ public:
 	void setAction(ActionFlag flags);
 	// Reset all actions to default
 	//
-	// same as CharacterBase::setAction
+	// same as Unit::setAction
 	void resetAction(ActionFlag flags) { return setAction(flags); }
 	// Set action `from` to `to`
 	template <ActionFlag from, ActionFlag to>
@@ -391,7 +391,7 @@ public:
 	void setSkillData(ActionFlag flags);
 	// Reset all skill data to default
 	//
-	// same as CharacterBase::setSkillData
+	// same as Unit::setSkillData
 	void resetSkillData(ActionFlag flags) { return setSkillData(flags); }
 	// Set skill data to `data`
 	void setSkillData(ActionFlag flag, const SkillData &data);
@@ -426,8 +426,8 @@ public:
 	void stopJump(int stopTime);
 	void setCharFlip();
 	void setAttackBox(const string &effectType);
-	inline void setDamage(CharacterBase *attacker);
-	void setDamage(CharacterBase *attacker, const string &effectType, int attackValue, bool isFlipped);
+	inline void setDamage(Unit *attacker);
+	void setDamage(Unit *attacker, const string &effectType, int attackValue, bool isFlipped);
 	void setDamgeDisplay(int value, const char *font);
 
 	void setSkillEffect(const string &type);
@@ -472,13 +472,13 @@ protected:
 	bool findEnemy2(Role role);
 	bool findTargetEnemy(Role role, bool isTowerDected);
 	template <typename T>
-	typename std::enable_if_t<std::is_base_of_v<CharacterBase, T>, bool>
+	typename std::enable_if_t<std::is_base_of_v<Unit, T>, bool>
 	findEnemyBy(const vector<T *> &list, int searchRange, bool masterRange = false);
 	template <typename T>
-	typename std::enable_if_t<std::is_base_of_v<CharacterBase, T>, bool>
+	typename std::enable_if_t<std::is_base_of_v<Unit, T>, bool>
 	findEnemy2By(const vector<T *> &list);
 	template <typename T>
-	typename std::enable_if_t<std::is_base_of_v<CharacterBase, T>, bool>
+	typename std::enable_if_t<std::is_base_of_v<Unit, T>, bool>
 	findTargetEnemyBy(const vector<T *> &list, bool isTowerDected);
 	bool checkBase();
 
@@ -488,7 +488,7 @@ protected:
 	void stepOn();
 	void changeSide(Vec2 sp);
 
-	inline void autoFlip(CharacterBase *attacker);
+	inline void autoFlip(Unit *attacker);
 
 	void removeDamageDisplay();
 
@@ -580,7 +580,7 @@ public:
 	bool isAkatsukiGroup() { return _group == Group::Akatsuki; }
 	// monster extensions
 	bool hasMonsterArrayAny() { return !_monsterArray.empty(); }
-	void removeMon(CharacterBase *mo)
+	void removeMon(Unit *mo)
 	{
 		if (hasMonsterArrayAny())
 			std::erase(_monsterArray, mo);
@@ -733,7 +733,7 @@ protected:
 			stepOn();
 		}
 	}
-	Vec2 getDirByMoveTo(CharacterBase *target)
+	Vec2 getDirByMoveTo(Unit *target)
 	{
 		return (target->getPosition() - getPosition()).getNormalized();
 	}
@@ -752,11 +752,11 @@ protected:
 	 * Callbacks
 	 */
 protected:
-	virtual bool onAcceptAttack(CharacterBase *attacker) { return true; }
-	// Returns true will call CharacterBase::setDamage(attacker), false otherwise.
-	virtual bool onHit(CharacterBase *attacker) { return true; }
-	// Returns true will call CharacterBase::setDamage(attacker), false otherwise.
-	virtual bool onBulletHit(CharacterBase *attacker) { return true; }
+	virtual bool onAcceptAttack(Unit *attacker) { return true; }
+	// Returns true will call Unit::setDamage(attacker), false otherwise.
+	virtual bool onHit(Unit *attacker) { return true; }
+	// Returns true will call Unit::setDamage(attacker), false otherwise.
+	virtual bool onBulletHit(Unit *attacker) { return true; }
 
 	virtual void onSetTrap(const string &trapType) {}
 

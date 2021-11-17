@@ -128,7 +128,7 @@ class Akamaru : public Hero
 				idle();
 			}
 		}
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 
 	void dealloc() override

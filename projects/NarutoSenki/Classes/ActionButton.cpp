@@ -1,5 +1,5 @@
 #include "ActionButton.h"
-#include "CharacterBase.h"
+#include "Core/Unit.h"
 #include "HudLayer.h"
 
 ActionButton::ActionButton()

@@ -1,10 +1,10 @@
 #pragma once
-#include "CharacterBase.h"
 #include "Core/Hero.hpp"
+#include "Core/Unit.h"
 
 // Detailed implementation of FindTarget module of unit base class
 
-bool CharacterBase::findEnemy(Role role, int searchRange, bool masterRange)
+bool Unit::findEnemy(Role role, int searchRange, bool masterRange)
 {
 	if (role == Role::Hero)
 	{
@@ -26,9 +26,9 @@ bool CharacterBase::findEnemy(Role role, int searchRange, bool masterRange)
 }
 
 template <typename T>
-typename std::enable_if_t<std::is_base_of_v<CharacterBase, T>, bool>
+typename std::enable_if_t<std::is_base_of_v<Unit, T>, bool>
 // template find ememy
-CharacterBase::findEnemyBy(const vector<T *> &list, int searchRange, bool masterRange)
+Unit::findEnemyBy(const vector<T *> &list, int searchRange, bool masterRange)
 {
 	float distance;
 	float curDistance = 0;
@@ -95,7 +95,7 @@ CharacterBase::findEnemyBy(const vector<T *> &list, int searchRange, bool master
 }
 
 // NOTE: Use half the window width as the search range
-bool CharacterBase::findEnemy2(Role role)
+bool Unit::findEnemy2(Role role)
 {
 	if (role == Role::Hero)
 	{
@@ -117,9 +117,9 @@ bool CharacterBase::findEnemy2(Role role)
 }
 
 template <typename T>
-typename std::enable_if_t<std::is_base_of_v<CharacterBase, T>, bool>
+typename std::enable_if_t<std::is_base_of_v<Unit, T>, bool>
 // template find ememy 2
-CharacterBase::findEnemy2By(const vector<T *> &list)
+Unit::findEnemy2By(const vector<T *> &list)
 {
 	float distance;
 	float curDistance = 0;
@@ -196,7 +196,7 @@ CharacterBase::findEnemy2By(const vector<T *> &list)
 	return findSome;
 }
 
-bool CharacterBase::findTargetEnemy(Role role, bool isTowerDected)
+bool Unit::findTargetEnemy(Role role, bool isTowerDected)
 {
 	if (role == Role::Hero)
 	{
@@ -214,8 +214,8 @@ bool CharacterBase::findTargetEnemy(Role role, bool isTowerDected)
 }
 
 template <typename T>
-typename std::enable_if_t<std::is_base_of_v<CharacterBase, T>, bool>
-CharacterBase::findTargetEnemyBy(const vector<T *> &list, bool isTowerDected)
+typename std::enable_if_t<std::is_base_of_v<Unit, T>, bool>
+Unit::findTargetEnemyBy(const vector<T *> &list, bool isTowerDected)
 {
 	Vec2 sp;
 	bool findSome = false;

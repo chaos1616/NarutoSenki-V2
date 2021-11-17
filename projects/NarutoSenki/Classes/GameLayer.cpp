@@ -1,8 +1,6 @@
 #include "GameLayer.h"
 #include "BGLayer.h"
-#include "CharacterBase.h"
 #include "Core/Provider.hpp"
-#include "Defines.h"
 #include "GameMode/GameModeImpl.h"
 #include "HudLayer.h"
 #include "StartMenu.h"
@@ -268,7 +266,7 @@ Hero *GameLayer::addHero(const string &name, Role role, Group group, Vec2 spawnP
 	hero->setShadows();
 	hero->idle();
 	hero->setCharId(charId);
-	hero->schedule(schedule_selector(CharacterBase::setRestore2), 1.0f);
+	hero->schedule(schedule_selector(Unit::setRestore2), 1.0f);
 
 	addChild(hero, -hero->getPositionY());
 	_CharacterArray.push_back(hero);
@@ -830,7 +828,7 @@ void GameLayer::checkBackgroundMusic(float dt)
 	}
 }
 
-void GameLayer::setOugis(CharacterBase *sender)
+void GameLayer::setOugis(Unit *sender)
 {
 	if (!_hudLayer->ougisLayer)
 	{
@@ -923,13 +921,13 @@ Vec2 GameLayer::getCustomSpawnPoint(HeroData &data)
 	return data.group == Group::Konoha ? Vec2(432, 80) : Vec2(2608, 80);
 }
 
-void GameLayer::clearAllFlogsMainTarget(CharacterBase *target)
+void GameLayer::clearAllFlogsMainTarget(Unit *target)
 {
 	UnitEx::clearMainTarget(target, _KonohaFlogArray);
 	UnitEx::clearMainTarget(target, _AkatsukiFlogArray);
 }
 
-void GameLayer::clearAllUnitsMainTarget(CharacterBase *target)
+void GameLayer::clearAllUnitsMainTarget(Unit *target)
 {
 	clearAllFlogsMainTarget(target);
 	UnitEx::clearMainTarget(target, _CharacterArray);

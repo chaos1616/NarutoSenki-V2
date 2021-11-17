@@ -1,14 +1,14 @@
 #pragma once
 #include "Defines.h"
 
-class CharacterBase;
+class Unit;
 
 class Effect : public Sprite
 {
 public:
-	bool init(const string &szImage, CharacterBase *attacker);
+	bool init(const string &szImage, Unit *attacker);
 
-	static Effect *create(const string &szImage, CharacterBase *attacker);
+	static Effect *create(const string &szImage, Unit *attacker);
 
 private:
 	FiniteTimeAction *createEffectAnimation(const string &file, size_t frameCount, uint8_t fps, bool isLoop);
@@ -16,5 +16,5 @@ private:
 	void removeEffect();
 	void removeFontEffect();
 
-	CharacterBase *at = nullptr;
+	Unit *at = nullptr;
 };

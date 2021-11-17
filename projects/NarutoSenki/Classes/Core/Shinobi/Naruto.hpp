@@ -217,7 +217,7 @@ class Naruto : public Hero
 		}
 
 		setActionTo<ActionFlag::Knockdown, ActionFlag::Knockdown>();
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 
 	inline Hero *createClone_Naruto(int cloneTime)
@@ -391,7 +391,7 @@ class Naruto : public Hero
 			setNAttackValue(getTempAttackValue1());
 			setTempAttackValue1(0);
 		}
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 
 	inline Hero *createClone_SageNaruto(int cloneTime)
@@ -575,7 +575,7 @@ class Naruto : public Hero
 			setNAttackValue(getTempAttackValue1());
 			setTempAttackValue1(0);
 		}
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 
 	inline Hero *createClone_RikudoNaruto(int cloneTime)

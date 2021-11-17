@@ -15,7 +15,7 @@ class Kakuzu : public Hero
 
 	void dead() override
 	{
-		CharacterBase::dead();
+		Unit::dead();
 
 		if (_heartEffect)
 		{
@@ -242,7 +242,7 @@ class Kakuzu : public Hero
 	{
 		removeBuffEffect("sBuff");
 
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 
 	void setActionResume() override
@@ -308,7 +308,7 @@ class Kakuzu : public Hero
 
 	bool isEnableSkill04() override { return hearts > 1; }
 
-	bool onHit(CharacterBase *attacker) override
+	bool onHit(Unit *attacker) override
 	{
 		if (_skillChangeBuffValue >= 0)
 		{

@@ -54,13 +54,13 @@ class Guardian : public Hero
 				{
 					changeSide(sp);
 					attack(SKILL1);
-					scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sAttackCD1);
+					scheduleOnce(schedule_selector(Unit::enableSkill1), _sAttackCD1);
 				}
 				else if (_isCanSkill2 && _skillChangeBuffValue)
 				{
 					changeSide(sp);
 					attack(SKILL2);
-					scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sAttackCD2);
+					scheduleOnce(schedule_selector(Unit::enableSkill2), _sAttackCD2);
 				}
 				else
 				{

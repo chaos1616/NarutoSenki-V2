@@ -218,6 +218,6 @@ class Konan : public Hero
 		{
 			_hpBar->setPositionY(getHPBarHeight());
 		}
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 };

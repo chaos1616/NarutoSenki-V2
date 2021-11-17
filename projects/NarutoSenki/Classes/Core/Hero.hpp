@@ -3,7 +3,7 @@
 
 typedef std::function<void()> AIHandler;
 
-class Hero : public CharacterBase
+class Hero : public Unit
 {
 	friend class CommandSystem;
 
@@ -103,7 +103,7 @@ public:
 			setName(name);
 		}
 
-		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", nullptr);
+		CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(Unit::acceptAttack), "acceptAttack", nullptr);
 	}
 
 	void setShadows()
@@ -206,7 +206,7 @@ public:
 			return;
 		}
 
-		CharacterBase::reborn(dt);
+		Unit::reborn(dt);
 		// If the character has changed, then cleanup and return
 		if (changeCharId > -1)
 		{
@@ -223,7 +223,7 @@ public:
 
 		if (getPosition().equals(getSpawnPoint()))
 		{
-			CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CharacterBase::acceptAttack), "acceptAttack", nullptr);
+			CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(Unit::acceptAttack), "acceptAttack", nullptr);
 			setOpacity(255);
 			setHPValue(getMaxHP(), false);
 			setHPbar();
@@ -313,7 +313,7 @@ public:
 
 		if (isClone() || isKugutsu() || isSummon())
 		{
-			unschedule(schedule_selector(CharacterBase::setAI));
+			unschedule(schedule_selector(Unit::setAI));
 
 			std::erase(getGameLayer()->_CharacterArray, this);
 			getGameLayer()->clearAllFlogsMainTarget(this);
@@ -359,7 +359,7 @@ public:
 
 	void doAI()
 	{
-		CharacterBase::doAI();
+		Unit::doAI();
 		// Initial default AI handler
 		aiHandler = std::bind(&Hero::perform, this);
 	}
@@ -379,7 +379,7 @@ public:
 
 	/** Call on IGameModeHandler::onCharacterInit()
 	 * @call_order:
-	 * 	-> CharacterBase::setID()
+	 * 	-> Unit::setID()
 	 * 	-> IGameModeHandler::onCharacterInit()
 	 */
 

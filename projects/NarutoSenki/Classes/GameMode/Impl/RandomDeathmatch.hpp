@@ -42,11 +42,11 @@ public:
 	{
 	}
 
-	void onCharacterInit(CharacterBase *c)
+	void onCharacterInit(Unit *c)
 	{
 	}
 
-	void onCharacterDead(CharacterBase *c)
+	void onCharacterDead(Unit *c)
 	{
 		// CCLOG("[Character Dead] Name: %s, Role: %s, Group: %s", c->getName().c_str(), c->getRole(), c->getGroup());
 
@@ -65,12 +65,12 @@ public:
 				count--;
 				liveCount--;
 				setRandomHero(c);
-				c->unschedule(schedule_selector(CharacterBase::resumeAction));
+				c->unschedule(schedule_selector(Unit::resumeAction));
 			}
 		}
 	}
 
-	void onCharacterReborn(CharacterBase *c)
+	void onCharacterReborn(Unit *c)
 	{
 		// CCLOG("[Character Reborn] Name: %s, Role: %s, Group: %s", c->getName().c_str(), c->getRole(), c->getGroup());
 
@@ -218,7 +218,7 @@ public:
 	}
 
 private:
-	void setRandomHero(CharacterBase *c)
+	void setRandomHero(Unit *c)
 	{
 		auto index = getIndexByHero(c);
 		if (index == -1)
@@ -232,7 +232,7 @@ private:
 		heroVector.at(index) = newChar;
 	}
 
-	inline int getIndexByHero(CharacterBase *c)
+	inline int getIndexByHero(Unit *c)
 	{
 		return (int)heroVector.size() < c->getCharId() ? -1 : c->getCharId() - 1;
 	}

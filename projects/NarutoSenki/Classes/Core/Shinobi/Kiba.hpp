@@ -192,7 +192,7 @@ class Kiba : public Hero
 			_state = State::WALK;
 			idle();
 		}
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 
 	void setActionResume() override

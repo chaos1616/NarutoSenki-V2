@@ -18,7 +18,7 @@
 #endif
 
 class BGLayer;
-class CharacterBase;
+class Unit;
 class Hero;
 class Flog;
 class Tower;
@@ -44,7 +44,7 @@ public:
 	~GameLayer();
 
 	TMXTiledMap *currentMap;
-	CharacterBase *currentPlayer;
+	Unit *currentPlayer;
 
 	uint32_t _second;
 	uint32_t _minute;
@@ -121,11 +121,11 @@ public:
 	void resetStatusBar();
 	void setCoin(const char *value);
 	void removeOugisMark(int type);
-	void setOugis(CharacterBase *sender);
+	void setOugis(Unit *sender);
 	void removeOugis();
 
-	CharacterBase *ougisChar;
-	CharacterBase *controlChar;
+	Unit *ougisChar;
+	Unit *controlChar;
 	Layer *blend;
 
 	void onLeft();
@@ -150,8 +150,8 @@ public:
 	bool _isPause;
 	GearLayer *_gearLayer;
 
-	void clearAllFlogsMainTarget(CharacterBase *target);
-	void clearAllUnitsMainTarget(CharacterBase *target);
+	void clearAllFlogsMainTarget(Unit *target);
+	void clearAllUnitsMainTarget(Unit *target);
 
 	CREATE_FUNC(GameLayer);
 	static bool checkHasAnyMovement();

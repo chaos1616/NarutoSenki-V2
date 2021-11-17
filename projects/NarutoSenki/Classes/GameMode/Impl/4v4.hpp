@@ -26,15 +26,15 @@ public:
 	{
 	}
 
-	void onCharacterInit(CharacterBase *c)
+	void onCharacterInit(Unit *c)
 	{
 	}
 
-	void onCharacterDead(CharacterBase *c)
+	void onCharacterDead(Unit *c)
 	{
 	}
 
-	void onCharacterReborn(CharacterBase *c)
+	void onCharacterReborn(Unit *c)
 	{
 	}
 };

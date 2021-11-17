@@ -3,7 +3,7 @@
 #include "GameLayer.h"
 #include "HudLayer.h"
 
-class CharacterBase;
+class Unit;
 class Hero;
 
 class LoadLayer : public Layer
@@ -29,7 +29,7 @@ public:
 
 	CREATE_FUNC(LoadLayer);
 	static void perloadCharIMG(const string &name);
-	static void unloadCharIMG(CharacterBase *player);
+	static void unloadCharIMG(Unit *player);
 	static void unloadAllCharsIMG(const vector<Hero *> &players);
 
 private:

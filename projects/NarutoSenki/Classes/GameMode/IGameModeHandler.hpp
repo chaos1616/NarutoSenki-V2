@@ -107,9 +107,9 @@ public:
 	virtual void onGameOver() = 0;
 
 	// callbacks
-	virtual void onCharacterInit(CharacterBase *c) = 0;
-	virtual void onCharacterDead(CharacterBase *c) = 0;
-	virtual void onCharacterReborn(CharacterBase *c) = 0;
+	virtual void onCharacterInit(Unit *c) = 0;
+	virtual void onCharacterDead(Unit *c) = 0;
+	virtual void onCharacterReborn(Unit *c) = 0;
 
 	const GameData &getGameData() { return gd; }
 	int getOldCheats() { return oldCheats; }

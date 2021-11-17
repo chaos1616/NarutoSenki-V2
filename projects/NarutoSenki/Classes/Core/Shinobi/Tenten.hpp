@@ -158,6 +158,6 @@ class Tenten : public Hero
 	void resumeAction(float dt) override
 	{
 		setActionTo<ActionFlag::NAttack, ActionFlag::NAttack>();
-		CharacterBase::resumeAction(dt);
+		Unit::resumeAction(dt);
 	}
 };

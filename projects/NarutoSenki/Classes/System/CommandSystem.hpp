@@ -26,7 +26,7 @@ mk_const(setCounter);
 
 } // namespace Command
 
-using CommandHandler = std::function<void(CharacterBase *)>;
+using CommandHandler = std::function<void(Unit *)>;
 
 class CommandSystem
 {
@@ -39,7 +39,7 @@ public:
 		cmdMap.insert(std::make_pair(cmd, handler));
 	}
 
-	static inline void invoke(const string &cmd, CharacterBase *thiz)
+	static inline void invoke(const string &cmd, Unit *thiz)
 	{
 		auto it_find = cmdMap.find(cmd);
 		if (it_find != cmdMap.end())
@@ -81,7 +81,7 @@ public:
 private:
 	static void init()
 	{
-		on(Command::addExtern, [](CharacterBase *thiz) {
+		on(Command::addExtern, [](Unit *thiz) {
 			Vector<SpriteFrame *> spriteFrames;
 
 			if (thiz->getName() == HeroEnum::Tenten)
@@ -103,18 +103,18 @@ private:
 			tempChar->setPosition(thiz->getPosition());
 			getGameLayer()->addChild(tempChar, -thiz->_originY);
 
-			auto call = CallFunc::create(std::bind(&CharacterBase::disableShadow, thiz, tempChar));
+			auto call = CallFunc::create(std::bind(&Unit::disableShadow, thiz, tempChar));
 			auto seq = newSequence(tempAction, call);
 			tempChar->runAction(seq);
 		});
-		on(Command::addHP, [](CharacterBase *thiz) {
+		on(Command::addHP, [](Unit *thiz) {
 			if (thiz->_hpBar)
 			{
 				thiz->setHPValue(thiz->getMaxHP());
 				thiz->_hpBar->setPositionY(thiz->getHPBarHeight());
 			}
 		});
-		on(Command::findTarget, [](CharacterBase *thiz) {
+		on(Command::findTarget, [](Unit *thiz) {
 			if (thiz->notFindHero(0))
 			{
 				if (thiz->notFindFlog(0) ||
@@ -155,35 +155,35 @@ private:
 										target->_originY ? target->_originY : target->getPositionY());
 			}
 		});
-		on(Command::pauseJump, [](CharacterBase *thiz) {
+		on(Command::pauseJump, [](Unit *thiz) {
 			// pause jump
 			thiz->getActionManager()->addAction(thiz->_jumpUPAction, thiz, false);
 		});
-		on(Command::setDead, [](CharacterBase *thiz) {
+		on(Command::setDead, [](Unit *thiz) {
 			thiz->_isSuicide = true;
 			thiz->dead();
 		});
-		on(Command::setGainCKR, [](CharacterBase *thiz) {
+		on(Command::setGainCKR, [](Unit *thiz) {
 			uint32_t boundValue = 1500;
 			thiz->increaseAllCkrs(boundValue, true, !thiz->_isControlled);
 		});
-		on(Command::setInvincible, [](CharacterBase *thiz) {
+		on(Command::setInvincible, [](Unit *thiz) {
 			// set character invincible
 			thiz->_isInvincible = true;
 		});
-		on(Command::reInvincible, [](CharacterBase *thiz) {
+		on(Command::reInvincible, [](Unit *thiz) {
 			// unset character invincible
 			thiz->_isInvincible = false;
 		});
-		on(Command::setInvisible, [](CharacterBase *thiz) {
+		on(Command::setInvisible, [](Unit *thiz) {
 			thiz->setVisible(false);
 			thiz->_isVisable = false;
 		});
-		on(Command::reInvisible, [](CharacterBase *thiz) {
+		on(Command::reInvisible, [](Unit *thiz) {
 			thiz->setVisible(true);
 			thiz->_isVisable = true;
 		});
-		on(Command::setTransport, [](CharacterBase *thiz) {
+		on(Command::setTransport, [](Unit *thiz) {
 			int tsPosX = thiz->getPositionX();
 			int tsPosY = thiz->getPositionY();
 
@@ -237,12 +237,12 @@ private:
 				getGameLayer()->reorderChild(thiz, -tsPosY);
 			}
 		});
-		on(Command::reTransport, [](CharacterBase *thiz) {
+		on(Command::reTransport, [](Unit *thiz) {
 			thiz->setPosition(Vec2(thiz->getPositionX(), thiz->_originY));
 			thiz->_originY = 0;
 		});
 		// For special characters
-		on(Command::setCounter, [](CharacterBase *thiz) {
+		on(Command::setCounter, [](Unit *thiz) {
 			bool _isCounter = false;
 			if (thiz->hasMonsterArrayAny())
 			{
@@ -292,7 +292,7 @@ private:
 
 			thiz->setActionResume();
 		});
-		on(Command::setRevive, [](CharacterBase *thiz) {
+		on(Command::setRevive, [](Unit *thiz) {
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
 				if (thiz->getGroup() == hero->getGroup() &&
@@ -305,7 +305,7 @@ private:
 				}
 			}
 		});
-		on(Command::setTrade, [](CharacterBase *thiz) {
+		on(Command::setTrade, [](Unit *thiz) {
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
 				if (hero->hearts > 0 &&
@@ -343,7 +343,7 @@ private:
 				}
 			}
 		});
-		on(Command::setTransport2, [](CharacterBase *thiz) {
+		on(Command::setTransport2, [](Unit *thiz) {
 			int tsPosX = thiz->getPositionX();
 			int tsPosY = thiz->getPositionY();
 
