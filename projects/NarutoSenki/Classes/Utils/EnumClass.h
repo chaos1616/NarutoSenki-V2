@@ -4,103 +4,105 @@
 // NOTE: Enabled bit mask operators for all integer types enums
 
 template <typename T, typename V>
-inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>> && std::is_integral_v<V>, V>
-operator/(T a, V b) noexcept
+constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>> && std::is_integral_v<V>, V>
+operator/(T __lhs, V __rhs) noexcept
 {
 	using _Base = std::underlying_type_t<T>;
-	return static_cast<_Base>(a) / b;
+	return static_cast<_Base>(__lhs) / __rhs;
 }
 
 template <typename T, typename V>
-inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>> && std::is_integral_v<V>, V>
-operator%(T a, V b) noexcept
+constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>> && std::is_integral_v<V>, V>
+operator%(T __lhs, V __rhs) noexcept
 {
 	using _Base = std::underlying_type_t<T>;
-	return static_cast<_Base>(a) % b;
+	return static_cast<_Base>(__lhs) % __rhs;
 }
 
 template <typename T>
-inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, T>
-operator~(T a) noexcept
+constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, T>
+operator~(T __lhs) noexcept
 {
 	using _Base = std::underlying_type_t<T>;
-	return static_cast<T>(~static_cast<_Base>(a));
+	return static_cast<T>(~static_cast<_Base>(__lhs));
 }
 
 template <typename T>
-inline constexpr std::enable_if_t<std::is_integral_v<std::underlying_type_t<T>>, T>
-operator|(T a, T b) noexcept
+constexpr std::enable_if_t<std::is_integral_v<std::underlying_type_t<T>>, T>
+operator|(T __lhs, T __rhs) noexcept
 {
 	using _Base = std::underlying_type_t<T>;
-	return static_cast<T>(static_cast<_Base>(a) | static_cast<_Base>(b));
+	return static_cast<T>(static_cast<_Base>(__lhs) | static_cast<_Base>(__rhs));
 }
 
 template <typename T>
-inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, T>
-operator&(T a, T b) noexcept
+constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, T>
+operator&(T __lhs, T __rhs) noexcept
 {
 	using _Base = std::underlying_type_t<T>;
-	return static_cast<T>(static_cast<_Base>(a) & static_cast<_Base>(b));
+	return static_cast<T>(static_cast<_Base>(__lhs) & static_cast<_Base>(__rhs));
 }
 
 template <typename T>
-inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, T>
-operator^(T a, T b) noexcept
+constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, T>
+operator^(T __lhs, T __rhs) noexcept
 {
 	using _Base = std::underlying_type_t<T>;
-	return static_cast<T>(static_cast<_Base>(a) ^ static_cast<_Base>(b));
+	return static_cast<T>(static_cast<_Base>(__lhs) ^ static_cast<_Base>(__rhs));
 }
 
 template <typename T>
-inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, T &>
-operator|=(T &a, T b) noexcept
+constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, T &>
+operator|=(T &__lhs, T __rhs) noexcept
 {
-	using _Base = std::underlying_type_t<T>;
-	return reinterpret_cast<T &>(reinterpret_cast<_Base &>(a) |= static_cast<_Base>(b));
+	return __lhs = __lhs | __rhs;
 }
 
 template <typename T>
-inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, T &>
-operator&=(T &a, T b) noexcept
+constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, T &>
+operator&=(T &__lhs, T __rhs) noexcept
 {
-	using _Base = std::underlying_type_t<T>;
-	return reinterpret_cast<T &>(reinterpret_cast<_Base &>(a) &= static_cast<_Base>(b));
+	return __lhs = __lhs & __rhs;
 }
 
 template <typename T>
-inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, T &>
-operator^=(T &a, T b) noexcept
+constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, T &>
+operator^=(T &__lhs, T __rhs) noexcept
 {
-	using _Base = std::underlying_type_t<T>;
-	return reinterpret_cast<T &>(reinterpret_cast<_Base &>(a) ^= static_cast<_Base>(b));
+	return __lhs = __lhs ^ __rhs;
 }
 
 template <typename T>
-inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, bool>
-hasFlag(T a, T b) noexcept
+constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, bool>
+hasFlag(T __lhs, T __rhs) noexcept
 {
-	using _Base = std::underlying_type_t<T>;
-	return static_cast<_Base>(a & b) != static_cast<_Base>(0);
+	return (__lhs & __rhs) != T{};
 }
 
 template <typename T>
-inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, bool>
-notHasFlag(T a, T b) noexcept
+constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, bool>
+hasAllFlags(T __lhs, T flags) noexcept
 {
-	using _Base = std::underlying_type_t<T>;
-	return static_cast<_Base>(a & b) == static_cast<_Base>(0);
+	return (__lhs & flags) == flags;
 }
 
 template <typename T>
-inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, void>
-setFlag(T &a, T b) noexcept
+constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, bool>
+notHasFlag(T __lhs, T __rhs) noexcept
 {
-	a |= b;
+	return (__lhs & __rhs) == T{};
 }
 
 template <typename T>
-inline constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, void>
-unsetFlag(T &a, T b) noexcept
+constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, void>
+setFlag(T &__lhs, T __rhs) noexcept
 {
-	a &= ~b;
+	__lhs |= __rhs;
+}
+
+template <typename T>
+constexpr std::enable_if_t<std::is_enum_v<T> && std::is_integral_v<std::underlying_type_t<T>>, void>
+unsetFlag(T &__lhs, T __rhs) noexcept
+{
+	__lhs &= ~__rhs;
 }
