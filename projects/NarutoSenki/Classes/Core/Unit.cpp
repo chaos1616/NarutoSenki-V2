@@ -1357,7 +1357,7 @@ void Unit::setBuff(int buffValue)
 			}
 		}
 	}
-	else if (_attackType == "cBuff")
+	else if (_attackType == "cBuff") // change action buff
 	{
 		_skillChangeBuffValue = buffValue;
 
@@ -1427,7 +1427,7 @@ void Unit::setBuff(int buffValue)
 
 		changeAction();
 	}
-	else if (_attackType == "tBuff")
+	else if (_attackType == "tBuff") // change action buff
 	{
 		_skillChangeBuffValue = buffValue;
 		scheduleOnce(schedule_selector(Unit::resumeAction), buffStayTime);
