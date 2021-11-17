@@ -9,5 +9,6 @@ struct SkillData
 	u16 rangeY;
 
 	u16 cooldown;
-	i32 combatPoint;
+	u16 combatPoint;
+	bool isDouble;
 };

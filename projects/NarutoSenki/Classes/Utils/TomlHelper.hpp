@@ -1,5 +1,8 @@
 #pragma once
+#include "cocos2d.h"
 #include "toml.hpp"
+
+using namespace cocos2d;
 
 // toml extension
 namespace tomlex
@@ -27,6 +30,23 @@ inline bool try_set(const toml::table &tab, const toml::key &ky, T &v)
 
 template <typename T>
 inline bool try_set_or(const toml::table &tab, const toml::key &ky, T &v, const T &opt)
+{
+	const auto end = tab.end();
+
+	if (const auto iter = tab.find(ky); iter != end)
+	{
+		v = get<T>(iter->second);
+		return true;
+	}
+	else
+	{
+		v = opt;
+		return false;
+	}
+}
+
+template <typename T>
+inline bool try_set_or(const toml::table &tab, const toml::key &ky, Value &v, const T &opt)
 {
 	const auto end = tab.end();
 

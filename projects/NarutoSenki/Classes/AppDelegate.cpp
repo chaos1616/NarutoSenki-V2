@@ -19,7 +19,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	auto pEngine = LuaEngine::defaultEngine();
 	CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);
 
-	auto pStack = pEngine->getLuaStack();
+	// auto pStack = pEngine->getLuaStack();
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 	pEngine->addSearchPath("../lua");

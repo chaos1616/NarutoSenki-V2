@@ -1,4 +1,5 @@
 #pragma once
+#include "Core/Data/Skill.h"
 #include "Data/UnitData.h"
 #include "Utils/TomlHelper.hpp"
 
@@ -34,6 +35,7 @@ struct UnitMetadata
 	i16 hpBarY;
 
 	vector<ActionData> actions;
+	vector<SkillData> skills;
 
 	bool getAction(ActionFlag flag, ActionData &action) noexcept
 	{
@@ -136,12 +138,19 @@ static void ParseAction(toml::value &v, UnitMetadata &metadata)
 		ActionData data = {
 			.flag = flag,
 		};
-		tomlex::try_set(tab, "type", data.type);
-		tomlex::try_set_or<u16>(tab, "value", data.value, 0);
-		tomlex::try_set_or<u16>(tab, "rangeX", data.rangeX, 0);
-		tomlex::try_set_or<u16>(tab, "rangeY", data.rangeY, 0);
-		tomlex::try_set_or<u16>(tab, "cd", data.cooldown, 0);
-		tomlex::try_set_or<u16>(tab, "combatPoint", data.combatPoint, 0);
+		SkillData skill;
+		bool hasData = false;
+		hasData |= tomlex::try_set(tab, "type", skill.type);
+		hasData |= tomlex::try_set_or<u16>(tab, "value", skill.value, 0);
+		hasData |= tomlex::try_set_or<u16>(tab, "rangeX", skill.rangeX, 0);
+		hasData |= tomlex::try_set_or<u16>(tab, "rangeY", skill.rangeY, 0);
+		hasData |= tomlex::try_set_or<u16>(tab, "cd", skill.cooldown, 0);
+		hasData |= tomlex::try_set_or<u16>(tab, "combatPoint", skill.combatPoint, 0);
+		hasData |= tomlex::try_set_or<bool>(tab, "isDouble", skill.isDouble, false);
+		if (hasData)
+		{
+			metadata.skills.push_back(skill); // TODO: Use skill vector instead of declear variables
+		}
 		// parse animation data
 		if (auto animIter = tab.find("anim"); animIter != end)
 		{
