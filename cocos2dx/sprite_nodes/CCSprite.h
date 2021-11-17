@@ -104,17 +104,7 @@ public:
      * @param   pszFileName The string which indicates a path to image file, e.g., "scene1/monster.png".
      * @return  A valid sprite object that is marked as autoreleased.
      */
-    static CCSprite* create(const char *pszFileName);
-    
-	static CCSprite *create(const std::string &fileName)
-	{
-		return create(fileName.c_str());
-	}
-
-	static CCSprite *createWithSpriteFrameName(const std::string &frameName)
-	{
-		return createWithSpriteFrameName(frameName.c_str());
-	}
+    static CCSprite* create(const std::string &fileName);
 
     /**
      * Creates a sprite with an image filename and a rect.
@@ -163,7 +153,7 @@ public:
      * @param   pszSpriteFrameName A null terminated string which indicates the sprite frame name.
      * @return  A valid sprite object that is marked as autoreleased.
      */
-    static CCSprite* createWithSpriteFrameName(const char *pszSpriteFrameName);
+    static CCSprite* createWithSpriteFrameName(const std::string &spriteFrameName);
     
     /// @}  end of creators group
     

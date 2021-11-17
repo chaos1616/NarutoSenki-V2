@@ -142,11 +142,6 @@ public:
      You should retain the returned copy if you are going to use it.
      @js getSpriteFrame
      */
-    CCSpriteFrame* spriteFrameByName(const char *pszName)
-	{
-		return spriteFrameByName(pszName);
-	}
-
     CCSpriteFrame* spriteFrameByName(const std::string &pszName);
 
 public:

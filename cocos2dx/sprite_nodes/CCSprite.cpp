@@ -82,10 +82,10 @@ CCSprite *CCSprite::createWithTexture(CCTexture2D *pTexture, const CCRect &rect)
     return NULL;
 }
 
-CCSprite *CCSprite::create(const char *pszFileName)
+CCSprite *CCSprite::create(const std::string &fileName)
 {
     CCSprite *pobSprite = new CCSprite();
-    if (pobSprite && pobSprite->initWithFile(pszFileName))
+    if (pobSprite && pobSprite->initWithFile(fileName.c_str()))
     {
         pobSprite->autorelease();
         return pobSprite;
@@ -118,15 +118,15 @@ CCSprite *CCSprite::createWithSpriteFrame(CCSpriteFrame *pSpriteFrame)
     return NULL;
 }
 
-CCSprite *CCSprite::createWithSpriteFrameName(const char *pszSpriteFrameName)
+CCSprite *CCSprite::createWithSpriteFrameName(const std::string &spriteFrameName)
 {
-    CCSpriteFrame *pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(pszSpriteFrameName);
+    CCSpriteFrame *pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(spriteFrameName);
 
 #if COCOS2D_DEBUG > 0
     if (pFrame == NULL)
     {
         char msg[256] = {0};
-        sprintf(msg, "Invalid spriteFrameName: %s", pszSpriteFrameName);
+        sprintf(msg, "Invalid spriteFrameName: %s", spriteFrameName.c_str());
     }
 #endif
 

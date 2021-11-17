@@ -3,6 +3,9 @@
 
 struct SkillData
 {
+	static const SkillData Null;
+
+	ActionFlag flag;
 	string type;
 	Value value;
 	u16 rangeX;

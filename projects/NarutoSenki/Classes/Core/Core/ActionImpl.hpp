@@ -3,32 +3,32 @@
 
 // Detailed implementation of Action module of unit base class
 
-#define SET_NATTACK_ACTION_DATA_FN(__Data) \
-	{                                      \
-		_nAttackType = __Data.type;        \
-		_nAttackValue = __Data.value;      \
-		_nAttackRangeX = __Data.rangeX;    \
-		_nAttackRangeY = __Data.rangeY;    \
+#define SET_NATTACK_ACTION_DATA_FN(__Skill) \
+	{                                       \
+		_nAttackType = __Skill.type;        \
+		_nAttackValue = __Skill.value;      \
+		_nAttackRangeX = __Skill.rangeX;    \
+		_nAttackRangeY = __Skill.rangeY;    \
 	}
 
-#define SET_SKILL_ACTION_DATA_FN(__Id, __Data)          \
-	{                                                   \
-		_sAttackType##__Id = __Data.type;               \
-		_sAttackValue##__Id = __Data.value;             \
-		_sAttackRangeX##__Id = __Data.rangeX;           \
-		_sAttackRangeY##__Id = __Data.rangeY;           \
-		_sAttackCD##__Id = __Data.cooldown;             \
-		_sAttackCombatPoint##__Id = __Data.combatPoint; \
+#define SET_SKILL_ACTION_DATA_FN(__Id, __Skill)          \
+	{                                                    \
+		_sAttackType##__Id = __Skill.type;               \
+		_sAttackValue##__Id = __Skill.value;             \
+		_sAttackRangeX##__Id = __Skill.rangeX;           \
+		_sAttackRangeY##__Id = __Skill.rangeY;           \
+		_sAttackCD##__Id = __Skill.cooldown;             \
+		_sAttackCombatPoint##__Id = __Skill.combatPoint; \
+		_sAttack##__Id##isDouble = __Skill.isDouble;     \
 	}
-// _sAttack##__Id##isDouble = __Data.isDouble;
 
-#define SET_SPC_SKILL_ACTION_DATA_FN(__Id, __Data) \
-	{                                              \
-		_spcAttackType##__Id = __Data.type;        \
-		_spcAttackValue##__Id = __Data.value;      \
-		_spcAttackRangeX##__Id = __Data.rangeX;    \
-		_spcAttackRangeY##__Id = __Data.rangeY;    \
-		_spcAttackCD##__Id = __Data.cooldown;      \
+#define SET_SPC_SKILL_ACTION_DATA_FN(__Id, __Skill) \
+	{                                               \
+		_spcAttackType##__Id = __Skill.type;        \
+		_spcAttackValue##__Id = __Skill.value;      \
+		_spcAttackRangeX##__Id = __Skill.rangeX;    \
+		_spcAttackRangeY##__Id = __Skill.rangeY;    \
+		_spcAttackCD##__Id = __Skill.cooldown;      \
 	}
 
 namespace UnitEvent
@@ -311,25 +311,21 @@ void CharacterBase::genActionBy(const UnitMetadata &data)
 		seq = Sequence::create(list);
 	}
 
+	_actionFlag |= action.flag;
 	_actionMap.insert(action.flag, seq);
-	// set action data
-	if (action.flag >= ActionFlag::NAttack && action.flag <= ActionFlag::Spc03)
-	{
-		if (action.flag == ActionFlag::NAttack) SET_NATTACK_ACTION_DATA_FN(action)
-		else if (action.flag == ActionFlag::Skill01) SET_SKILL_ACTION_DATA_FN(1, action)
-		else if (action.flag == ActionFlag::Skill02) SET_SKILL_ACTION_DATA_FN(2, action)
-		else if (action.flag == ActionFlag::Skill03) SET_SKILL_ACTION_DATA_FN(3, action)
-		else if (action.flag == ActionFlag::Skill04) SET_SKILL_ACTION_DATA_FN(4, action)
-		else if (action.flag == ActionFlag::Skill05) SET_SKILL_ACTION_DATA_FN(5, action)
-		else if (action.flag == ActionFlag::Spc01) SET_SPC_SKILL_ACTION_DATA_FN(1, action)
-		else if (action.flag == ActionFlag::Spc02) SET_SPC_SKILL_ACTION_DATA_FN(2, action)
-		else if (action.flag == ActionFlag::Spc03) SET_SPC_SKILL_ACTION_DATA_FN(3, action)
-	}
 
 	// cleanup temp variables
 	list.clear();
 
 	__FOREACH_END
+
+	if (!data.skills.empty())
+	{
+		_skills = data.skills;
+		// set action data
+		if (_actionFlag != ActionFlag::None)
+			setSkillData(_actionFlag);
+	}
 }
 
 void CharacterBase::setAction(ActionFlag flags)
@@ -363,10 +359,44 @@ void CharacterBase::setAction(ActionFlag flags)
 // {
 // }
 
-// template <ActionFlag from, ActionFlag to>
-// constexpr void CharacterBase::setSkillDataTo(const SkillData &data)
-// {
-// }
+void CharacterBase::setSkillData(ActionFlag flags)
+{
+	if (hasFlag(flags, ActionFlag::NAttack)) setSkillData(ActionFlag::NAttack, getSkillData(ActionFlag::NAttack));
+	if (hasFlag(flags, ActionFlag::Skill01)) setSkillData(ActionFlag::Skill01, getSkillData(ActionFlag::Skill01));
+	if (hasFlag(flags, ActionFlag::Skill02)) setSkillData(ActionFlag::Skill02, getSkillData(ActionFlag::Skill02));
+	if (hasFlag(flags, ActionFlag::Skill03)) setSkillData(ActionFlag::Skill03, getSkillData(ActionFlag::Skill03));
+	if (hasFlag(flags, ActionFlag::Skill04)) setSkillData(ActionFlag::Skill04, getSkillData(ActionFlag::Skill04));
+	if (hasFlag(flags, ActionFlag::Skill05)) setSkillData(ActionFlag::Skill05, getSkillData(ActionFlag::Skill05));
+	if (hasFlag(flags, ActionFlag::Spc01)) setSkillData(ActionFlag::Spc01, getSkillData(ActionFlag::Spc01));
+	if (hasFlag(flags, ActionFlag::Spc02)) setSkillData(ActionFlag::Spc02, getSkillData(ActionFlag::Spc02));
+	if (hasFlag(flags, ActionFlag::Spc03)) setSkillData(ActionFlag::Spc03, getSkillData(ActionFlag::Spc03));
+}
+
+void CharacterBase::setSkillData(ActionFlag flag, const SkillData &data)
+{
+	if (flag == ActionFlag::NAttack) SET_NATTACK_ACTION_DATA_FN(data)
+	else if (flag == ActionFlag::Skill01) SET_SKILL_ACTION_DATA_FN(1, data)
+	else if (flag == ActionFlag::Skill02) SET_SKILL_ACTION_DATA_FN(2, data)
+	else if (flag == ActionFlag::Skill03) SET_SKILL_ACTION_DATA_FN(3, data)
+	else if (flag == ActionFlag::Skill04) SET_SKILL_ACTION_DATA_FN(4, data)
+	else if (flag == ActionFlag::Skill05) SET_SKILL_ACTION_DATA_FN(5, data)
+	else if (flag == ActionFlag::Spc01) SET_SPC_SKILL_ACTION_DATA_FN(1, data)
+	else if (flag == ActionFlag::Spc02) SET_SPC_SKILL_ACTION_DATA_FN(2, data)
+	else if (flag == ActionFlag::Spc03) SET_SPC_SKILL_ACTION_DATA_FN(3, data)
+}
+
+void CharacterBase::setSkillDataTo(ActionFlag from, ActionFlag to)
+{
+	if (from == ActionFlag::NAttack) setSkillData(from, getSkillData(to));
+	else if (from == ActionFlag::Skill01) setSkillData(from, getSkillData(to));
+	else if (from == ActionFlag::Skill02) setSkillData(from, getSkillData(to));
+	else if (from == ActionFlag::Skill03) setSkillData(from, getSkillData(to));
+	else if (from == ActionFlag::Skill04) setSkillData(from, getSkillData(to));
+	else if (from == ActionFlag::Skill05) setSkillData(from, getSkillData(to));
+	else if (from == ActionFlag::Spc01) setSkillData(from, getSkillData(to));
+	else if (from == ActionFlag::Spc02) setSkillData(from, getSkillData(to));
+	else if (from == ActionFlag::Spc03) setSkillData(from, getSkillData(to));
+}
 
 #undef SET_NATTACK_ACTION_DATA_FN
 #undef SET_SKILL_ACTION_DATA_FN

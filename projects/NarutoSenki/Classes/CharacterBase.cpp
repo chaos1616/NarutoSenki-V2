@@ -7,6 +7,14 @@
 #include "System/CommandSystem.hpp"
 #include "Utils/Debug/UnitDebug.hpp"
 
+const SkillData SkillData::Null = {
+	.value = Value::Null,
+	.rangeX = 0,
+	.rangeY = 0,
+	.cooldown = 0,
+	.isDouble = false,
+};
+
 CharacterBase::CharacterBase()
 {
 	_state = State::WALK;

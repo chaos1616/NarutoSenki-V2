@@ -1,6 +1,6 @@
 #pragma once
 #include "Core/Data/Skill.h"
-#include "Data/UnitData.h"
+#include "Core/Data/UnitData.h"
 #include "Utils/TomlHelper.hpp"
 
 struct ActionData
@@ -8,15 +8,6 @@ struct ActionData
 	using FrameVector = vector<pair<string, string>>;
 
 	ActionFlag flag;
-	// bool hasData;
-
-	string type;
-	u16 value;
-	u16 rangeX;
-	u16 rangeY;
-	u16 cooldown;
-	u16 combatPoint;
-	// bool isDouble;
 
 	ActionConstant::AnimationInfo info;
 	FrameVector frames;
@@ -149,6 +140,7 @@ static void ParseAction(toml::value &v, UnitMetadata &metadata)
 		hasData |= tomlex::try_set_or<bool>(tab, "isDouble", skill.isDouble, false);
 		if (hasData)
 		{
+			skill.flag = flag;
 			metadata.skills.push_back(skill); // TODO: Use skill vector instead of declear variables
 		}
 		// parse animation data
@@ -161,7 +153,7 @@ static void ParseAction(toml::value &v, UnitMetadata &metadata)
 				if (baseAnimType != ActionFlag::None)
 					flag = baseAnimType;
 				else
-					CCLOGERROR("Does not support override `%s` animation", data.type.c_str());
+					CCLOGERROR("Does not support override `%s` animation", skill.type.c_str());
 			}
 			const auto &defaultInfo = ActionConstant::getAnimDataByActionFlag(flag);
 			tomlex::try_set_or<uint8_t>(anim, "fps", data.info.fps, defaultInfo.fps);

@@ -89,8 +89,8 @@ class CCSprite : public CCNodeRGBA
 	static CCSprite* createWithTexture(CCTexture2D *pTexture);
 	static CCSprite* createWithTexture(CCTexture2D *pTexture, CCRect rect);
 	static CCSprite* createWithSpriteFrame(CCSpriteFrame *pSpriteFrame);
-	static CCSprite* createWithSpriteFrameName(const char *pszSpriteFrameName);
+	static CCSprite* createWithSpriteFrameName(const std::string &pszSpriteFrameName);
 	static CCSprite* create(const char *pszFileName, CCRect rect);
-	static CCSprite* create(const char *pszFileName);
+	static CCSprite* create(const std::string &pszFileName);
 	static CCSprite* create();
 };

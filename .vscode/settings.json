@@ -47,5 +47,6 @@
     "C_Cpp.autoAddFileAssociations": false,
     "C_Cpp.autocompleteAddParentheses": true,
     "C_Cpp.errorSquiggles": "Enabled",
-    "C_Cpp.experimentalFeatures": "Enabled"
+    "C_Cpp.experimentalFeatures": "Enabled",
+    "cmake.configureOnOpen": false
 }

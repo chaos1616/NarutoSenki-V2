@@ -1,6 +1,5 @@
 #pragma once
 #include "Core/Utils/Parser.hpp"
-#include "Data/UnitData.h"
 #include "Effect.h"
 #include "GameLayer.h"
 #include "HudLayer.h"
@@ -205,6 +204,7 @@ public:
 	int _sAttackRangeX5;
 	int _sAttackRangeY5;
 	uint32_t _sAttackCD5;
+	bool _sAttack5isDouble;
 	int _sAttackCombatPoint5;
 
 	PROP_UInt(_spcAttackValue1, SpcAttackValue1);
@@ -384,6 +384,28 @@ public:
 		else if constexpr (from == ActionFlag::Skill03) setSkill3Action(_actionMap.at(to));
 		else if constexpr (from == ActionFlag::Skill04) setSkill4Action(_actionMap.at(to));
 		else if constexpr (from == ActionFlag::Skill05) setSkill5Action(_actionMap.at(to));
+	}
+	// Set all skill data to default
+	//
+	// if not found skill data then set to SkillData::Null
+	void setSkillData(ActionFlag flags);
+	// Set all skill data to default
+	//
+	// same as CharacterBase::setSkillData
+	void resetSkillData(ActionFlag flags) { return setSkillData(flags); }
+	// Set all skill data
+	void setSkillData(ActionFlag flag, const SkillData &data);
+	// Set skill data `from` to `to`
+	//
+	// if not found skill data then set to SkillData::Null
+	void setSkillDataTo(ActionFlag from, ActionFlag to);
+	// Get skill data by action flag
+	constexpr const SkillData &getSkillData(ActionFlag flag)
+	{
+		auto begin = _skills.begin();
+		auto end = _skills.end();
+		auto found = std::find_if(begin, end, [flag](const SkillData &s) { return s.flag == flag; });
+		return found != end ? *found : SkillData::Null;
 	}
 
 	void setSound(const string &file);
@@ -735,6 +757,7 @@ protected:
 	{
 		_actionFlag = ActionFlag::None;
 		_actionMap.clear();
+		_skills.clear();
 	}
 
 	FiniteTimeAction *getAction(ActionFlag flag)
@@ -745,6 +768,7 @@ protected:
 private:
 	ActionFlag _actionFlag;
 	ActionMap _actionMap;
+	vector<SkillData> _skills;
 
 	bool _affectedByTower;
 };

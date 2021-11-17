@@ -21979,22 +21979,23 @@ static int tolua_Cocos2d_CCSprite_createWithSpriteFrameName00(lua_State* tolua_S
  tolua_Error tolua_err;
  if (
      !tolua_isusertable(tolua_S,1,"CCSprite",0,&tolua_err) ||
-     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  const char* pszSpriteFrameName = ((const char*)  tolua_tostring(tolua_S,2,0));
+  const std::string pszSpriteFrameName = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
   {
    CCSprite* tolua_ret = (CCSprite*)  CCSprite::createWithSpriteFrameName(pszSpriteFrameName);
     int nID = (tolua_ret) ? (int)tolua_ret->m_uID : -1;
     int* pLuaID = (tolua_ret) ? &tolua_ret->m_nLuaID : NULL;
     toluafix_pushusertype_ccobject(tolua_S, nID, pLuaID, (void*)tolua_ret,"CCSprite");
+   tolua_pushcppstring(tolua_S,(const char*)pszSpriteFrameName);
   }
  }
- return 1;
+ return 2;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'createWithSpriteFrameName'.",&tolua_err);
@@ -22044,21 +22045,22 @@ static int tolua_Cocos2d_CCSprite_create01(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertable(tolua_S,1,"CCSprite",0,&tolua_err) ||
-     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
-  const char* pszFileName = ((const char*)  tolua_tostring(tolua_S,2,0));
+  const std::string pszFileName = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
   {
    CCSprite* tolua_ret = (CCSprite*)  CCSprite::create(pszFileName);
     int nID = (tolua_ret) ? (int)tolua_ret->m_uID : -1;
     int* pLuaID = (tolua_ret) ? &tolua_ret->m_nLuaID : NULL;
     toluafix_pushusertype_ccobject(tolua_S, nID, pLuaID, (void*)tolua_ret,"CCSprite");
+   tolua_pushcppstring(tolua_S,(const char*)pszFileName);
   }
  }
- return 1;
+ return 2;
 tolua_lerror:
  return tolua_Cocos2d_CCSprite_create00(tolua_S);
 }
@@ -24020,7 +24022,7 @@ static int tolua_Cocos2d_CCSpriteFrameCache_spriteFrameByName00(lua_State* tolua
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"CCSpriteFrameCache",0,&tolua_err) ||
-     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -24028,7 +24030,7 @@ static int tolua_Cocos2d_CCSpriteFrameCache_spriteFrameByName00(lua_State* tolua
 #endif
  {
   CCSpriteFrameCache* self = (CCSpriteFrameCache*)  tolua_tousertype(tolua_S,1,0);
-  const char* pszName = ((const char*)  tolua_tostring(tolua_S,2,0));
+  const std::string pszName = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'spriteFrameByName'", NULL);
 #endif
@@ -24037,9 +24039,10 @@ static int tolua_Cocos2d_CCSpriteFrameCache_spriteFrameByName00(lua_State* tolua
     int nID = (tolua_ret) ? (int)tolua_ret->m_uID : -1;
     int* pLuaID = (tolua_ret) ? &tolua_ret->m_nLuaID : NULL;
     toluafix_pushusertype_ccobject(tolua_S, nID, pLuaID, (void*)tolua_ret,"CCSpriteFrame");
+   tolua_pushcppstring(tolua_S,(const char*)pszName);
   }
  }
- return 1;
+ return 2;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'spriteFrameByName'.",&tolua_err);
