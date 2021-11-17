@@ -62,9 +62,9 @@
 #include "Kuchiyose/Saso.hpp"
 #include "Kuchiyose/Slug.hpp"
 
-#define __begin__ if(0) {}
-#define is(var) else if (name == var)
-#define is_or(var1, var2) else if (name == var1 || name == var2)
+#define __begin__ auto _h = HashUtils::hash32(name); if(0) {}
+#define is(var) else if (_h == HashUtils::hash32(var))
+#define is_or(var1, var2) else if (_h == HashUtils::hash32(var1) || _h == HashUtils::hash32(var2))
 #define is_role(_Role) if (role == _Role)
 
 // TODO: Impl a default AI logic
@@ -138,12 +138,11 @@ public:
 		is("Tobirama")						ptr = new Tobirama();
 		is("Tsunade")						ptr = new Tsunade();
 		is_or("Roshi", "Han")				ptr = new Guardian();
-		else								ptr = new DefaultAI();
 
 		if (!ptr)
 		{
-			CCLOG("Not found character [ %s ]", name.c_str());
-			return nullptr;
+			CCLOGERROR("No implementation of character `%s` found", name.c_str());
+			ptr = new DefaultAI();
 		}
 
 		if (ptr->init())
@@ -153,7 +152,7 @@ public:
 		}
 		else
 		{
-			CCLOG("Set character %s not found", name.c_str());
+			CCLOG("Init character %s failed", name.c_str());
 			delete ptr;
 			ptr = nullptr;
 		}
