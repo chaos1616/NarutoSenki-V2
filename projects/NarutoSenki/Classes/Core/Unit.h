@@ -5,6 +5,18 @@
 #include "HudLayer.h"
 #include "MyUtils/KTools.h"
 
+#define UI_BTN_LOCK_MACRO(__ID)                                            \
+	void lockSkill##__ID##Button()                                         \
+	{                                                                      \
+		if (isPlayer())                                                    \
+			getGameLayer()->getHudLayer()->skill##__ID##Button->setLock(); \
+	}                                                                      \
+	void unlockSkill##__ID##Button()                                       \
+	{                                                                      \
+		if (isPlayer())                                                    \
+			getGameLayer()->getHudLayer()->skill##__ID##Button->unLock();  \
+	}
+
 enum class State : uint16_t
 {
 	DEAD,
@@ -42,7 +54,6 @@ public:
 	PPROP(Role, _role, Role);
 	PPROP(Group, _group, Group);
 	VPROP(int, _charId, CharId);
-
 	VPROP(State, _state, State);
 
 	uint32_t _deadNum;
@@ -497,26 +508,11 @@ public:
 	// UI
 	void updateHpBar();
 	void updateDataByLVOnly();
-	void lockSkill4Button()
-	{
-		if (isPlayer())
-			getGameLayer()->getHudLayer()->skill4Button->setLock();
-	}
-	void unlockSkill4Button()
-	{
-		if (isPlayer())
-			getGameLayer()->getHudLayer()->skill4Button->unLock();
-	}
-	void lockSkill5Button()
-	{
-		if (isPlayer())
-			getGameLayer()->getHudLayer()->skill5Button->setLock();
-	}
-	void unlockSkill5Button()
-	{
-		if (isPlayer())
-			getGameLayer()->getHudLayer()->skill5Button->unLock();
-	}
+	UI_BTN_LOCK_MACRO(1);
+	UI_BTN_LOCK_MACRO(2);
+	UI_BTN_LOCK_MACRO(3);
+	UI_BTN_LOCK_MACRO(4);
+	UI_BTN_LOCK_MACRO(5);
 	void lockOugisButtons()
 	{
 		if (isPlayer())
@@ -779,3 +775,5 @@ private:
 
 	bool _affectedByTower;
 };
+
+#undef UI_BTN_LOCK_MACRO
