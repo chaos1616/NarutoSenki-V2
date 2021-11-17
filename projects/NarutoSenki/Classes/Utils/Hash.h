@@ -22,33 +22,15 @@ inline constexpr uint64_t hash64(const char *str, size_t n, uint64_t basis = 146
 } // namespace detail
 
 template <size_t N>
-inline constexpr uint32_t hash32(const char (&s)[N])
-{
-	return detail::hash32(s, N - 1);
-}
+inline constexpr uint32_t hash32(const char (&s)[N]){ return detail::hash32(s, N - 1); }
 
 template <size_t N>
-inline constexpr uint64_t hash64(const char (&s)[N])
-{
-	return detail::hash64(s, N - 1);
-}
+inline constexpr uint64_t hash64(const char (&s)[N]){ return detail::hash64(s, N - 1); }
 
-static inline uint32_t hash32(const char *s, size_t len)
-{
-	return detail::hash32(s, len);
-}
-static inline uint32_t hash32(const std::string &s)
-{
-	return detail::hash32(s.c_str(), s.length());
-}
+static inline uint32_t hash32(const char *s, size_t len) { return detail::hash32(s, len); }
+static inline uint32_t hash32(const std::string &s) { return detail::hash32(s.c_str(), s.length()); }
 
-static inline uint64_t hash64(const char *s, size_t len)
-{
-	return detail::hash64(s, len);
-}
-static inline uint64_t hash64(const std::string &s)
-{
-	return detail::hash64(s.c_str(), s.length());
-}
+static inline uint64_t hash64(const char *s, size_t len) { return detail::hash64(s, len); }
+static inline uint64_t hash64(const std::string &s) { return detail::hash64(s.c_str(), s.length()); }
 
 } // namespace HashUtils

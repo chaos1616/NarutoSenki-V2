@@ -19,4 +19,9 @@ inline bool stobool(const std::string &s)
 	return s == "true";
 }
 
+inline bool stonull(const std::string &s)
+{
+	return s == "null";
+}
+
 } // namespace std

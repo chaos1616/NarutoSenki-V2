@@ -1,6 +1,5 @@
 #pragma once
 #include "Data/UnitData.h"
-#include "Defines.h"
 #include "Utils/TomlHelper.hpp"
 
 struct ActionData
@@ -83,7 +82,8 @@ public:
 	}
 };
 
-DETAIL_NS_BEGIN
+namespace detail
+{
 
 enum Keyword : char
 {
@@ -193,7 +193,7 @@ static void ParseAction(toml::value &v, UnitMetadata &metadata)
 	}
 }
 
-DETAIL_NS_END
+} // namespace detail
 
 static inline bool fromCache(const string &unitName, UnitMetadata &metadata)
 {

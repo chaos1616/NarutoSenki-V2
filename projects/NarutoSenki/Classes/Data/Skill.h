@@ -3,10 +3,10 @@
 
 struct SkillData
 {
-	Value attackValue;
-	string attackType;
-	u16 attackRangeX;
-	u16 attackRangeY;
+	string type;
+	Value value;
+	u16 rangeX;
+	u16 rangeY;
 
 	u16 cooldown;
 	i32 combatPoint;

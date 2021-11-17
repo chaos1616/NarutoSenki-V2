@@ -45,11 +45,6 @@ extern int Cheats;
 
 // namespace
 
-#define DETAIL_NS_BEGIN \
-	namespace detail    \
-	{
-#define DETAIL_NS_END }
-
 #define ACTION_CONSTANT_NS_BEGIN \
 	namespace ActionConstant     \
 	{

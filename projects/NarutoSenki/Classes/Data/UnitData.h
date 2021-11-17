@@ -26,7 +26,7 @@ struct HeroData
 	}
 };
 
-enum class UnitKind
+enum class UnitKind : uint8_t
 {
 	Ninja,
 	Flog,
