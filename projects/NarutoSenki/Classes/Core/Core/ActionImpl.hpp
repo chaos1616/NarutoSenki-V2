@@ -345,20 +345,6 @@ void CharacterBase::setAction(ActionFlag flags)
 	if (hasFlag(flags, ActionFlag::Skill05)) setSkill5Action(_actionMap.at(ActionFlag::Skill05));
 }
 
-// TODO: Impl in header file
-// template <ActionFlag from, ActionFlag to>
-// inline constexpr void CharacterBase::setActionTo(const SkillData &data)
-// {
-// 	setActionTo<from, to>();
-// 	setSkillData<from, to>();
-// }
-
-// TODO: Impl in header file
-// template <ActionFlag from, ActionFlag to>
-// inline constexpr void CharacterBase::setActionAndDataTo()
-// {
-// }
-
 void CharacterBase::setSkillData(ActionFlag flags)
 {
 	if (hasFlag(flags, ActionFlag::NAttack)) setSkillData(ActionFlag::NAttack, getSkillData(ActionFlag::NAttack));

@@ -407,6 +407,13 @@ public:
 		auto found = std::find_if(begin, end, [flag](const SkillData &s) { return s.flag == flag; });
 		return found != end ? *found : SkillData::Null;
 	}
+	// Set action and skill data `from` to `to`
+	template <ActionFlag from, ActionFlag to>
+	constexpr void setActionAndSkillDataTo()
+	{
+		setActionTo<from, to>();
+		setSkillData(from, to);
+	}
 
 	void setSound(const string &file);
 	void setDSound(const string &file);
