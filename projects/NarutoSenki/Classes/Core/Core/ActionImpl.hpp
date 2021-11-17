@@ -36,7 +36,6 @@ namespace UnitEvent
 
 mk_hconst(setActionResume);
 mk_hconst(setActionResume2);
-mk_hconst(setAttackBox);
 mk_hconst(setBuff);
 mk_hconst(setBullet);
 mk_hconst(setCharge);
@@ -47,6 +46,7 @@ mk_hconst(setDelay);
 mk_hconst(setDestroy);
 mk_hconst(setFlipped);
 mk_hconst(setFont);
+mk_hconst(setHit);
 mk_hconst(setJump);
 mk_hconst(stopJump);
 mk_hconst(setMon);
@@ -93,7 +93,7 @@ void Unit::genActionBy(const UnitMetadata &data)
 
 	switch (HashUtils::hash32(key))
 	{
-	case UnitEvent::setAttackBox:
+	case UnitEvent::setHit:
 	{
 		auto call = CallFunc::create(std::bind(&Unit::setAttackBox, this, value));
 		list.pushBack(call);
