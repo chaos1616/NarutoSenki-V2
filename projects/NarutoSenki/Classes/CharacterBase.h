@@ -363,7 +363,7 @@ public:
 	// setIdleAction(getAction(ActionFlag::Idle));
 	// setWalkAction(getAction(ActionFlag::Walk));
 	void setAction(ActionFlag flags);
-	// Set all actions to default
+	// Reset all actions to default
 	//
 	// same as CharacterBase::setAction
 	void resetAction(ActionFlag flags) { return setAction(flags); }
@@ -389,11 +389,11 @@ public:
 	//
 	// if not found skill data then set to SkillData::Null
 	void setSkillData(ActionFlag flags);
-	// Set all skill data to default
+	// Reset all skill data to default
 	//
 	// same as CharacterBase::setSkillData
 	void resetSkillData(ActionFlag flags) { return setSkillData(flags); }
-	// Set all skill data
+	// Set skill data to `data`
 	void setSkillData(ActionFlag flag, const SkillData &data);
 	// Set skill data `from` to `to`
 	//
