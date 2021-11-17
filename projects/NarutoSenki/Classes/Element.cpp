@@ -107,7 +107,7 @@ void Monster::setAI(float dt)
 			{
 				Vec2 sp = hero->getPosition() - getPosition();
 				float distanceY = hero->_originY ? abs(getPositionY() - hero->_originY) : abs(sp.y);
-				float distanceX = _isFlipped ? hero->getPositionX() - getPositionX() + getContentSize().width : hero->getPositionX() - getPositionX() - getContentSize().width;
+				float distanceX = isFlip() ? hero->getPositionX() - getPositionX() + getContentSize().width : hero->getPositionX() - getPositionX() - getContentSize().width;
 				if (abs(distanceX) < 32 && distanceY < 48)
 				{
 					// if (_monsterArray.empty())
@@ -291,7 +291,7 @@ void Monster::dealloc()
 
 void Monster::setDirectMove(int length, float delay, bool isReverse)
 {
-	Vec2 direction = Vec2(_isFlipped ? getPosition().x - length : getPosition().x + length, getPositionY());
+	Vec2 direction = Vec2(isFlip() ? getPosition().x - length : getPosition().x + length, getPositionY());
 	Vec2 direction2 = getPosition();
 	auto mv = MoveTo::create(delay, direction);
 	auto call = CallFunc::create(std::bind(&Monster::dealloc, this));
@@ -312,7 +312,7 @@ void Monster::setDirectMove(int length, float delay, bool isReverse)
 
 void Monster::setEaseIn(int length, float delay)
 {
-	Vec2 direction = Vec2(_isFlipped ? getPosition().x - length : getPosition().x + length,
+	Vec2 direction = Vec2(isFlip() ? getPosition().x - length : getPosition().x + length,
 						  getPositionY());
 	auto mv = MoveTo::create(1.0f, direction);
 	auto eo = EaseIn::create(mv, delay);
@@ -324,7 +324,7 @@ void Monster::setEaseIn(int length, float delay)
 
 void Monster::setDirectMoveBy(int length, float delay)
 {
-	// Vec2 direction = Vec2(_isFlipped ? getPosition().x - length : getPosition().x + length,
+	// Vec2 direction = Vec2(isFlip() ? getPosition().x - length : getPosition().x + length,
 	// 					  getPositionY());
 
 	if (_mainTarget)
@@ -338,7 +338,7 @@ void Monster::setDirectMoveBy(int length, float delay)
 	}
 	else
 	{
-		auto mv = MoveBy::create(0.1f, Vec2(_isFlipped ? -16 : 16, 0));
+		auto mv = MoveBy::create(0.1f, Vec2(isFlip() ? -16 : 16, 0));
 
 		runAction(RepeatForever::create(mv));
 	}

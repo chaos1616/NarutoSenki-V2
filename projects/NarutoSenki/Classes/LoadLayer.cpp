@@ -36,8 +36,8 @@ bool LoadLayer::init()
 	// produce the cloud
 	Sprite *cloud_left = newSprite("cloud.png");
 	cloud_left->setPosition(Vec2(0, 15));
-	cloud_left->setFlipX(true);
-	cloud_left->setFlipY(true);
+	cloud_left->setFlippedX(true);
+	cloud_left->setFlippedY(true);
 	cloud_left->setAnchorPoint(Vec2(0, 0));
 	addChild(cloud_left, 1);
 
@@ -297,7 +297,7 @@ void LoadLayer::unloadAllCharsIMG(const vector<Hero *> &players)
 void LoadLayer::setLoadingAnimation(const char *player, int index)
 {
 	auto loadingAvator = newSprite(format("{}_Walk_01", player));
-	loadingAvator->setFlipX(true);
+	loadingAvator->setFlippedX(true);
 	loadingAvator->setPosition(Vec2(winSize.width - 100 + index * 16, 30));
 	loadingAvator->setAnchorPoint(Vec2(0, 0));
 

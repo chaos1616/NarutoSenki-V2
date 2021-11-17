@@ -188,7 +188,7 @@ class Kakashi : public Hero
 	Hero *createClone(int cloneTime) override
 	{
 		auto clone = createSummonHero<DogWall>(SummonEnum::DogWall);
-		clone->setPosition(Vec2(getPositionX() + (_isFlipped ? -56 : 56), getPositionY()));
+		clone->setPosition(Vec2(getPositionX() + (isFlip() ? -56 : 56), getPositionY()));
 		clone->setAnchorPoint(Vec2(0.5f, 0.1f));
 		clone->_isArmored = true;
 		return clone;

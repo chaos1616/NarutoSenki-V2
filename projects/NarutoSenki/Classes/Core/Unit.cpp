@@ -62,7 +62,6 @@ Unit::Unit()
 
 	_hurtFromLeft = false;
 	_hurtFromRight = false;
-	_isFlipped = false;
 	_isHitOne = false;
 	_isCatchOne = false;
 	_isHealing = false;
@@ -207,11 +206,11 @@ void Unit::update(float dt)
 {
 	if (_healBuffEffect)
 	{
-		_healBuffEffect->setPositionX(getContentSize().width / 2 + (_isFlipped ? 2 : -2));
+		_healBuffEffect->setPositionX(getContentSize().width / 2 + (isFlip() ? 2 : -2));
 	}
 	if (_powerBuffEffect)
 	{
-		_powerBuffEffect->setPositionX(getContentSize().width / 2 + (_isFlipped ? 2 : -2));
+		_powerBuffEffect->setPositionX(getContentSize().width / 2 + (isFlip() ? 2 : -2));
 	}
 	if (_skillBuffEffect)
 	{
@@ -220,18 +219,18 @@ void Unit::update(float dt)
 
 	if (_heartEffect)
 	{
-		_heartEffect->setPositionX(getContentSize().width / 2 + (_isFlipped ? 22 : -22));
+		_heartEffect->setPositionX(getContentSize().width / 2 + (isFlip() ? 22 : -22));
 	}
 
 	if (_healItemEffect)
 	{
-		_healItemEffect->setPosition(Vec2(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
+		_healItemEffect->setPosition(Vec2(isFlip() ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
 										  _hpBarHeight));
 	}
 
 	if (_speedItemEffect)
 	{
-		_speedItemEffect->setPosition(Vec2(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
+		_speedItemEffect->setPosition(Vec2(isFlip() ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
 										   _hpBarHeight));
 	}
 
@@ -353,16 +352,10 @@ void Unit::updateHpBarPosition(float dt)
 
 void Unit::setCharFlip()
 {
-	if (_isFlipped)
-	{
-		setFlipX(false);
-		_isFlipped = false; // TODO: Upgrade to V4 then use Sprite::_isFlippedX instead
-	}
+	if (isFlip())
+		setFlippedX(false);
 	else
-	{
-		setFlipX(true);
-		_isFlipped = true;
-	}
+		setFlippedX(true);
 }
 
 void Unit::setShadow(SpriteFrame *frame)
@@ -380,7 +373,7 @@ void Unit::setShadow(SpriteFrame *frame)
 
 	charN->setOpacity(180);
 	charN->setAnchorPoint(Vec2(0.5, 0));
-	charN->setFlipX(_isFlipped);
+	charN->setFlippedX(isFlip());
 	charN->setPosition(getPosition());
 	auto delay = DelayTime::create(0.1f);
 	auto call = CallFunc::create(std::bind(&Unit::enableShadow, this, charN));
@@ -417,7 +410,7 @@ void Unit::disableHpBar(float dt)
 
 void Unit::setDamage(Unit *attacker)
 {
-	setDamage(attacker, attacker->_effectType, attacker->_attackValue, _isFlipped);
+	setDamage(attacker, attacker->_effectType, attacker->_attackValue, isFlip());
 }
 
 void Unit::setDamage(Unit *attacker, const string &effectType, int attackValue, bool isFlipped)
@@ -787,7 +780,7 @@ void Unit::setItem(ABType type)
 		if (!_isHealing && !_healItemEffect)
 		{
 			_healItemEffect = Effect::create("hp_restore", this);
-			_healItemEffect->setPosition(Vec2(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
+			_healItemEffect->setPosition(Vec2(isFlip() ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
 											  _hpBarHeight));
 			addChild(_healItemEffect);
 			//_isHealing=true;
@@ -1042,7 +1035,7 @@ void Unit::setRestore(float dt)
 		increaseHpAndUpdateUI(800);
 
 		_healItemEffect = Effect::create("hp_restore", this);
-		_healItemEffect->setPosition(Vec2(_isFlipped ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
+		_healItemEffect->setPosition(Vec2(isFlip() ? getContentSize().width / 2 + 16 : getContentSize().width / 2 - 16,
 										  _hpBarHeight));
 		addChild(_healItemEffect);
 	}
@@ -1230,7 +1223,7 @@ void Unit::setMove(int moveLength)
 		}
 		else
 		{
-			mv = MoveBy::create(0.1f, Vec2(_isFlipped ? -moveLength : moveLength, 0));
+			mv = MoveBy::create(0.1f, Vec2(isFlip() ? -moveLength : moveLength, 0));
 			runAction(mv);
 		}
 	}
@@ -1251,11 +1244,11 @@ void Unit::setJump(bool jumpDirection)
 
 		if (jumpDirection) // Jump forward
 		{
-			_jumpUPAction = JumpTo::create(0.8f, Vec2(posX + (_isFlipped ? -64 : 64), posY), 64, 1);
+			_jumpUPAction = JumpTo::create(0.8f, Vec2(posX + (isFlip() ? -64 : 64), posY), 64, 1);
 		}
 		else // Jump back
 		{
-			_jumpUPAction = JumpTo::create(0.8f, Vec2(posX + (_isFlipped ? 64 : -64), posY), 64, 1);
+			_jumpUPAction = JumpTo::create(0.8f, Vec2(posX + (isFlip() ? 64 : -64), posY), 64, 1);
 		}
 
 		runAction(_jumpUPAction);
@@ -1264,14 +1257,14 @@ void Unit::setJump(bool jumpDirection)
 
 void Unit::setCharge(int moveLength)
 {
-	if ((getPositionX() < getGameLayer()->currentMap->getTileSize().width && _isFlipped) ||
-		(getPositionX() > (getGameLayer()->currentMap->getMapSize().width - 1) * getGameLayer()->currentMap->getTileSize().width && !_isFlipped))
+	if ((getPositionX() < getGameLayer()->currentMap->getTileSize().width && isFlip()) ||
+		(getPositionX() > (getGameLayer()->currentMap->getMapSize().width - 1) * getGameLayer()->currentMap->getTileSize().width && !isFlip()))
 	{
 		return;
 	}
 	else
 	{
-		_moveAction = MoveBy::create(0.1f, Vec2(_isFlipped ? -moveLength * kSpeedBase : moveLength * kSpeedBase, 0));
+		_moveAction = MoveBy::create(0.1f, Vec2(isFlip() ? -moveLength * kSpeedBase : moveLength * kSpeedBase, 0));
 		runAction(_moveAction);
 	}
 }
@@ -1279,8 +1272,8 @@ void Unit::setCharge(int moveLength)
 // without getCollider
 void Unit::setChargeB(int moveLength)
 {
-	if ((getPositionX() < getGameLayer()->currentMap->getTileSize().width && _isFlipped) ||
-		(getPositionX() > (getGameLayer()->currentMap->getMapSize().width - 1) * getGameLayer()->currentMap->getTileSize().width && !_isFlipped))
+	if ((getPositionX() < getGameLayer()->currentMap->getTileSize().width && isFlip()) ||
+		(getPositionX() > (getGameLayer()->currentMap->getMapSize().width - 1) * getGameLayer()->currentMap->getTileSize().width && !isFlip()))
 	{
 		return;
 	}
@@ -1289,7 +1282,7 @@ void Unit::setChargeB(int moveLength)
 		float delay = (_state == State::OATTACK || _state == State::O2ATTACK)
 						  ? 0.4f
 						  : 0.1f;
-		_moveAction = MoveBy::create(delay, Vec2(_isFlipped ? -moveLength * kSpeedBase : moveLength * kSpeedBase, 0));
+		_moveAction = MoveBy::create(delay, Vec2(isFlip() ? -moveLength * kSpeedBase : moveLength * kSpeedBase, 0));
 		runAction(_moveAction);
 	}
 }
@@ -1893,87 +1886,86 @@ void Unit::stopJump(int stopTime)
 	}
 }
 
-void Unit::setBullet(const string &bulletName)
+void Unit::setBullet(const string &name)
 {
-	auto bullet = Bullet::create();
-	bullet->setID(bulletName, Role::Bullet, _group);
-	bullet->idle();
-	bullet->_master = _master ? _master : this;
+	auto projectile = Bullet::create();
+	projectile->setID(name, Role::Bullet, _group);
+	projectile->idle();
+	projectile->_master = _master ? _master : this;
 
-	if (_isFlipped)
+	if (isFlip())
 	{
-		bullet->setFlipX(true);
-		bullet->_isFlipped = true;
+		projectile->setFlippedX(true);
 	}
 
-	getGameLayer()->addChild(bullet, -getPositionY());
+	getGameLayer()->addChild(projectile, -getPositionY());
 
-	if (bulletName == "PaperSrk")
+	if (name == "PaperSrk")
 	{
-		bullet->setScale(0.8f);
-		bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -32 : 32),
+		projectile->setScale(0.8f);
+		projectile->setPosition(Vec2(getPositionX() + (isFlip() ? -32 : 32),
 								 getPositionY() + 52));
-		bullet->attack(NAttack);
-		bullet->setMove(192, 2.0f, false);
+		projectile->attack(NAttack);
+		projectile->setMove(192, 2.0f, false);
 	}
-	else if (bulletName == "PaperSpear")
+	else if (name == "PaperSpear")
 	{
-		bullet->setScale(0.8f);
-		bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -68 : 68),
+		projectile->setScale(0.8f);
+		projectile->setPosition(Vec2(getPositionX() + (isFlip() ? -68 : 68),
 								 getPositionY() + 42));
-		bullet->attack(NAttack);
-		bullet->setMove(192, 2.0f, false);
+		projectile->attack(NAttack);
+		projectile->setMove(192, 2.0f, false);
 	}
-	else if (bulletName == "HugeSRK")
+	else if (name == "HugeSRK")
 	{
-		bullet->setScale(0.8f);
-		bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -76 : 76),
+		projectile->setScale(0.8f);
+		projectile->setPosition(Vec2(getPositionX() + (isFlip() ? -76 : 76),
 								 getPositionY() + getHPBarHeight() / 2));
 		if (_skillUPBuffValue)
-			bullet->setNAttackValue(bullet->getNAttackValue() + _skillUPBuffValue);
+			projectile->setNAttackValue(projectile->getNAttackValue() + _skillUPBuffValue);
 
-		bullet->scheduleOnce(schedule_selector(Bullet::setAttack), 0.5f);
+		projectile->scheduleOnce(schedule_selector(Bullet::setAttack), 0.5f);
 		scheduleOnce(schedule_selector(Unit::setBulletGroup), 0.2f);
-		bullet->setEaseIn(224, 5.0f);
+		projectile->setEaseIn(224, 5.0f);
 	}
-	else if (bulletName == "FlyKnife" ||
-			 bulletName == "TentenSRK")
+	else if (name == "FlyKnife" ||
+			 name == "TentenSRK")
 	{
-		bullet->setScale(0.8f);
-		bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -32 : 32),
+		projectile->setScale(0.8f);
+		projectile->setPosition(Vec2(getPositionX() + (isFlip() ? -32 : 32),
 								 getPositionY() + getHPBarHeight() / 2));
 
-		bullet->setEaseIn(224, 2.0f);
-		bullet->attack(NAttack);
+		projectile->setEaseIn(224, 2.0f);
+		projectile->attack(NAttack);
 	}
-	else if (bulletName == ProjectileEnum::HiraishinKunai ||
-			 bulletName == ProjectileEnum::Shintenshin)
+	else if (name == ProjectileEnum::HiraishinKunai ||
+			 name == ProjectileEnum::Shintenshin)
 	{
-		if (bulletName == ProjectileEnum::HiraishinKunai)
+		if (name == ProjectileEnum::HiraishinKunai)
 		{
-			bullet->setScale(0.8f);
-			bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -42 : 42),
+			projectile->setScale(0.8f);
+			projectile->setPosition(Vec2(getPositionX() + (isFlip() ? -42 : 42),
 									 getPositionY() + getHPBarHeight() / 2));
 		}
 		else
 		{
-			bullet->setAnchorPoint(Vec2(0.5f, 0));
-			bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -42 : 42),
+			projectile->setAnchorPoint(Vec2(0.5f, 0));
+			projectile->setPosition(Vec2(getPositionX() + (isFlip() ? -42 : 42),
 									 getPositionY()));
 		}
 
-		bullet->_originY = getPositionY();
-		bullet->setEaseIn(196, 2.0f);
-		bullet->attack(NAttack);
-		_monsterArray.push_back(bullet);
+		projectile->_originY = getPositionY();
+		projectile->setEaseIn(196, 2.0f);
+		projectile->attack(NAttack);
+		_monsterArray.push_back(projectile);
 	}
 	else
 	{
-		bullet->setPosition(Vec2(getPositionX() + (_isFlipped ? -32 : 32),
+		projectile->setPosition(Vec2(getPositionX() + (isFlip() ? -32 : 32),
 								 getPositionY() + getContentSize().height / 2));
 
-		bullet->attack(NAttack);
-		bullet->setMove(192, 2.0f, false);
+		projectile->attack(NAttack);
+		projectile->setMove(192, 2.0f, false);
 	}
 }
 
@@ -1981,39 +1973,38 @@ void Unit::setBulletGroup(float dt)
 {
 	for (int i = 0; i < 2; i++)
 	{
-		auto bullet = Bullet::create();
+		auto projectile = Bullet::create();
 		float rangeX = 0;
 
-		bullet->setID("HugeSRK", Role::Bullet, _group);
+		projectile->setID("HugeSRK", Role::Bullet, _group);
 		rangeX = 76;
 
-		bullet->_master = this;
-		bullet->setScale(0.8f);
+		projectile->_master = this;
+		projectile->setScale(0.8f);
 
-		if (_isFlipped)
+		if (isFlip())
 		{
-			bullet->setFlipX(true);
-			bullet->_isFlipped = true;
+			projectile->setFlippedX(true);
 		}
 		if (i == 0)
 		{
-			Vec2 location = Vec2(getPositionX() + (_isFlipped ? -rangeX : rangeX), getPositionY() + (getHPBarHeight() / 2 + 23));
-			bullet->setPosition(location);
+			Vec2 location = Vec2(getPositionX() + (isFlip() ? -rangeX : rangeX), getPositionY() + (getHPBarHeight() / 2 + 23));
+			projectile->setPosition(location);
 		}
 		else
 		{
-			Vec2 location = Vec2(getPositionX() + (_isFlipped ? -rangeX : rangeX), getPositionY() + (getHPBarHeight() / 2 - 23));
-			bullet->setPosition(location);
+			Vec2 location = Vec2(getPositionX() + (isFlip() ? -rangeX : rangeX), getPositionY() + (getHPBarHeight() / 2 - 23));
+			projectile->setPosition(location);
 		}
-		getGameLayer()->addChild(bullet, kSkillEffectOrder);
-		bullet->idle();
+		getGameLayer()->addChild(projectile, kSkillEffectOrder);
+		projectile->idle();
 		if (_skillUPBuffValue)
 		{
-			bullet->setNAttackValue(bullet->getNAttackValue() + _skillUPBuffValue);
+			projectile->setNAttackValue(projectile->getNAttackValue() + _skillUPBuffValue);
 		}
 
-		bullet->scheduleOnce(schedule_selector(Bullet::setAttack), 0.5f);
-		bullet->setEaseIn(352, 5.0f);
+		projectile->scheduleOnce(schedule_selector(Bullet::setAttack), 0.5f);
+		projectile->setEaseIn(352, 5.0f);
 	}
 }
 
@@ -2041,7 +2032,7 @@ void Unit::setClone(int cloneTime)
 		clone->setMaster(this);
 	}
 
-	clone->setPosition(Vec2(getPositionX() + (_isFlipped ? -32 : 32), getPositionY() - 1));
+	clone->setPosition(Vec2(getPositionX() + (isFlip() ? -32 : 32), getPositionY() - 1));
 
 	if ((getName() == HeroEnum::SageNaruto || getName() == HeroEnum::Naruto) ||
 		(getName() == HeroEnum::RikudoNaruto && cloneTime == 10))
@@ -2084,8 +2075,7 @@ void Unit::setClone(int cloneTime)
 		clone->hasArmor = true;
 	}
 
-	clone->setFlipX(_isFlipped);
-	clone->_isFlipped = _isFlipped;
+	clone->setFlippedX(isFlip());
 	clone->setSkillEffect("smk");
 	clone->idle();
 	getGameLayer()->_CharacterArray.push_back(clone);
@@ -2142,9 +2132,8 @@ void Unit::setMon(const string &monName)
 	}
 
 	monster->idle();
-	monster->setPosition(Vec2(getPositionX() + (_isFlipped ? -32 : 32), _originY ? _originY : getPositionY()));
-	monster->setFlipX(_isFlipped);
-	monster->_isFlipped = _isFlipped;
+	monster->setPosition(Vec2(getPositionX() + (isFlip() ? -32 : 32), _originY ? _originY : getPositionY()));
+	monster->setFlippedX(isFlip());
 
 	if (monName == "FakeDeidara" ||
 		monName == "FakeKisame" || // DEPRECATED:
@@ -2187,23 +2176,23 @@ void Unit::setMon(const string &monName)
 	else if (monName == "Crash" ||
 			 monName == "Crash2")
 	{
-		monster->setPosition(Vec2(getPositionX() + (_isFlipped ? -32 : 32), _originY ? _originY : getPositionY()));
+		monster->setPosition(Vec2(getPositionX() + (isFlip() ? -32 : 32), _originY ? _originY : getPositionY()));
 		monster->setAnchorPoint(Vec2(0.5, 0.25f));
 		monster->attack(NAttack);
 	}
 	else if (monName == "SansyoRed")
 	{
-		monster->setPosition(Vec2(_isFlipped ? getPositionX() - 240 : getPositionX() + 240, getPositionY() - 32));
+		monster->setPosition(Vec2(isFlip() ? getPositionX() - 240 : getPositionX() + 240, getPositionY() - 32));
 		monster->attack(NAttack);
 	}
 	else if (monName == "SansyoGreen")
 	{
-		monster->setPosition(Vec2(_isFlipped ? getPositionX() - 144 : getPositionX() + 144, getPositionY() - 32 + 1));
+		monster->setPosition(Vec2(isFlip() ? getPositionX() - 144 : getPositionX() + 144, getPositionY() - 32 + 1));
 		monster->attack(NAttack);
 	}
 	else if (monName == "SansyoBlue")
 	{
-		monster->setPosition(Vec2(_isFlipped ? getPositionX() - 48 : getPositionX() + 48, getPositionY() - 32 + 2));
+		monster->setPosition(Vec2(isFlip() ? getPositionX() - 48 : getPositionX() + 48, getPositionY() - 32 + 2));
 		monster->attack(NAttack);
 	}
 	else if (monName == SummonEnum::SmallSlug)
@@ -2229,13 +2218,13 @@ void Unit::setMon(const string &monName)
 	else if (monName == "PaperRain" ||
 			 monName == "Steam")
 	{
-		monster->setPosition(Vec2(_isFlipped ? getPositionX() - 16 : getPositionX() + 16, _originY));
+		monster->setPosition(Vec2(isFlip() ? getPositionX() - 16 : getPositionX() + 16, _originY));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (monName == "FireRain")
 	{
-		monster->setPosition(Vec2(_isFlipped ? getPositionX() - 75 : getPositionX() + 75, _originY - 1));
+		monster->setPosition(Vec2(isFlip() ? getPositionX() - 75 : getPositionX() + 75, _originY - 1));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
@@ -2244,7 +2233,7 @@ void Unit::setMon(const string &monName)
 			 monName == "Suiji")
 	{
 		monster->setPositionY(getPositionY() - 24);
-		monster->setPositionX(getPositionX() + (_isFlipped ? -64 : 64));
+		monster->setPositionX(getPositionX() + (isFlip() ? -64 : 64));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
@@ -2258,27 +2247,27 @@ void Unit::setMon(const string &monName)
 			 monName == "JibakuEX" ||
 			 monName == "Shenwei")
 	{
-		monster->setPosition(Vec2(getPositionX() + (_isFlipped ? -96 : 96), getPositionY()));
+		monster->setPosition(Vec2(getPositionX() + (isFlip() ? -96 : 96), getPositionY()));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (monName == "Bikyu")
 	{
-		monster->setFlipX(_isFlipped);
+		monster->setFlippedX(isFlip());
 		monster->hasArmorBroken = true;
-		monster->setPosition(Vec2(getPositionX() + (_isFlipped ? -(16 + getContentSize().width) : (16 + getContentSize().width)), getPositionY() - 32));
+		monster->setPosition(Vec2(getPositionX() + (isFlip() ? -(16 + getContentSize().width) : (16 + getContentSize().width)), getPositionY() - 32));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (monName == "Qilin")
 	{
-		monster->setPosition(Vec2(getPositionX() + (_isFlipped ? -4 : 4), getPositionY() - 6));
+		monster->setPosition(Vec2(getPositionX() + (isFlip() ? -4 : 4), getPositionY() - 6));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
 	else if (monName == "Laser") // TODO: New Nagato
 	{
-		monster->setPosition(Vec2(getPositionX() + (_isFlipped ? -100 : 100), getPositionY()));
+		monster->setPosition(Vec2(getPositionX() + (isFlip() ? -100 : 100), getPositionY()));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
@@ -2315,13 +2304,13 @@ void Unit::setMon(const string &monName)
 			 monName == "Tsukuyomi" ||
 			 monName == "Shark")
 	{
-		monster->setPosition(Vec2(getPositionX() + (_isFlipped == true ? -48 : 48), getPositionY() - 4));
+		monster->setPosition(Vec2(getPositionX() + (isFlip() == true ? -48 : 48), getPositionY() - 4));
 		monster->attack(NAttack);
 	}
 	else if (monName == "Suijin" ||
 			 monName == "BugPillar")
 	{
-		monster->setPosition(Vec2(getPositionX() + (_isFlipped == true ? -64 : 64), getPositionY() + 1));
+		monster->setPosition(Vec2(getPositionX() + (isFlip() == true ? -64 : 64), getPositionY() + 1));
 		monster->attack(NAttack);
 	}
 	else if (monName == "Mine")
@@ -2337,8 +2326,8 @@ void Unit::setMon(const string &monName)
 	else if (monName == "Kage")
 	{
 		_isCatchOne = true;
-		monster->setPosition(Vec2(getPositionX() + (_isFlipped ? -getContentSize().width / 2 + 4 : getContentSize().width / 2 - 4), getPositionY()));
-		if (_isFlipped)
+		monster->setPosition(Vec2(getPositionX() + (isFlip() ? -getContentSize().width / 2 + 4 : getContentSize().width / 2 - 4), getPositionY()));
+		if (isFlip())
 		{
 			monster->setAnchorPoint(Vec2(1, 0));
 		}
@@ -2354,7 +2343,7 @@ void Unit::setMon(const string &monName)
 	}
 	else if (monName == "KageHand")
 	{
-		Vec2 dir = Vec2(_isFlipped ? getPositionX() - getContentSize().width : getPositionX() + getContentSize().width, getPositionY());
+		Vec2 dir = Vec2(isFlip() ? getPositionX() - getContentSize().width : getPositionX() + getContentSize().width, getPositionY());
 		monster->setPosition(dir);
 		stopAllActions();
 
@@ -2372,7 +2361,7 @@ void Unit::setMon(const string &monName)
 	}
 	else if (monName == "QuanRen")
 	{
-		monster->setPosition(Vec2(_isFlipped ? getPositionX() - 64 : getPositionX() + 64, _originY));
+		monster->setPosition(Vec2(isFlip() ? getPositionX() - 64 : getPositionX() + 64, _originY));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
@@ -2400,7 +2389,7 @@ void Unit::setMon(const string &monName)
 	}
 	else if (monName == "InkDragon")
 	{
-		monster->setPosition(Vec2(_isFlipped ? getPositionX() - 128 : getPositionX() + 128, getPositionY()));
+		monster->setPosition(Vec2(isFlip() ? getPositionX() - 128 : getPositionX() + 128, getPositionY()));
 		monster->attack(NAttack);
 		monster->setDirectMove(156, 2.0f, false);
 	}
@@ -2412,18 +2401,18 @@ void Unit::setMon(const string &monName)
 	else if (monName == "FutonSRK2" ||
 			 monName == "FutonSRK")
 	{
-		monster->setPosition(Vec2(getPositionX() + (_isFlipped == true ? -48 : 48), getPositionY()));
+		monster->setPosition(Vec2(getPositionX() + (isFlip() == true ? -48 : 48), getPositionY()));
 
 		monster->attack(NAttack);
 		bool isFollow = false;
 		Vec2 moveDirection;
 		if (_mainTarget)
 		{
-			if (_mainTarget->getPositionX() > getPositionX() && !_isFlipped)
+			if (_mainTarget->getPositionX() > getPositionX() && !isFlip())
 			{
 				isFollow = true;
 			}
-			else if (_mainTarget->getPositionX() <= getPositionX() && _isFlipped)
+			else if (_mainTarget->getPositionX() <= getPositionX() && isFlip())
 			{
 				isFollow = true;
 			}
@@ -2436,7 +2425,7 @@ void Unit::setMon(const string &monName)
 		}
 		else
 		{
-			if (_isFlipped)
+			if (isFlip())
 				moveDirection = Vec2(-1, 0).getNormalized();
 			else
 				moveDirection = Vec2(1, 0).getNormalized();
@@ -2465,14 +2454,14 @@ void Unit::setMon(const string &monName)
 	{
 		monster->attack(NAttack);
 		monster->setAnchorPoint(Vec2(0.5f, 0.28f));
-		monster->setPosition(Vec2(getPositionX() + (_isFlipped == true ? -24 : 24), getPositionY()));
+		monster->setPosition(Vec2(getPositionX() + (isFlip() == true ? -24 : 24), getPositionY()));
 		monster->setEaseIn(224, 1.0f);
 	}
 	else if (monName == "Wave")
 	{
 		monster->attack(NAttack);
 		monster->setAnchorPoint(Vec2(0.5f, 0.1f));
-		monster->setPosition(Vec2(getPositionX() + (_isFlipped == true ? -24 : 24), getPositionY()));
+		monster->setPosition(Vec2(getPositionX() + (isFlip() == true ? -24 : 24), getPositionY()));
 		monster->setEaseIn(224, 1.0f);
 	}
 	else if (monName == "InkBird" ||
@@ -2491,14 +2480,14 @@ void Unit::setMon(const string &monName)
 
 	if (monName == "ItachiSusano")
 	{
-		monster->setFlipX(_isFlipped);
+		monster->setFlippedX(isFlip());
 		monster->setAnchorPoint(Vec2(0.5f, 0));
 		monster->setPosition(Vec2(146 / 2 - 10, -40));
 		addChild(monster, -1000);
 	}
 	else if (monName == "SasukeSusano")
 	{
-		monster->setFlipX(_isFlipped);
+		monster->setFlippedX(isFlip());
 		monster->setAnchorPoint(Vec2(0.5f, 0));
 		monster->setPosition(Vec2(141 / 2, -6));
 		addChild(monster, -1000);
@@ -2531,9 +2520,8 @@ void Unit::setMonPer(float dt)
 	monster->setMaster(this);
 
 	monster->idle();
-	monster->setPosition(Vec2(getPositionX() + (_isFlipped ? -32 : 32), _originY ? _originY : getPositionY()));
-	monster->setFlipX(_isFlipped);
-	monster->_isFlipped = _isFlipped;
+	monster->setPosition(Vec2(getPositionX() + (isFlip() ? -32 : 32), _originY ? _originY : getPositionY()));
+	monster->setFlippedX(isFlip());
 
 	_monsterArray.push_back(monster);
 	monster->doAI();
@@ -2631,7 +2619,7 @@ void Unit::setTrap(const string &trapName)
 						auto trap = Bullet::create();
 						trap->_master = this;
 						trap->setID(trapName, Role::Mon, _group);
-						trap->setPosition(Vec2(getPositionX() + (_isFlipped ? -112 : 112), getPositionY() + (48 - i * 24)));
+						trap->setPosition(Vec2(getPositionX() + (isFlip() ? -112 : 112), getPositionY() + (48 - i * 24)));
 						trap->idle();
 						trap->attack(NAttack);
 						trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 2.5f);
@@ -2645,7 +2633,7 @@ void Unit::setTrap(const string &trapName)
 						auto trap = Bullet::create();
 						trap->_master = this;
 						trap->setID(trapName, Role::Mon, _group);
-						trap->setPosition(Vec2(getPositionX() + (_isFlipped ? -80 : 80), getPositionY() + (32 - i * 24)));
+						trap->setPosition(Vec2(getPositionX() + (isFlip() ? -80 : 80), getPositionY() + (32 - i * 24)));
 						trap->idle();
 						trap->attack(NAttack);
 						trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 2.5f);
@@ -2657,7 +2645,7 @@ void Unit::setTrap(const string &trapName)
 					auto trap = Bullet::create();
 					trap->_master = this;
 					trap->setID(trapName, Role::Mon, _group);
-					trap->setPosition(Vec2(getPositionX() + (_isFlipped ? -48 : 48), getPositionY() + 22));
+					trap->setPosition(Vec2(getPositionX() + (isFlip() ? -48 : 48), getPositionY() + 22));
 					trap->idle();
 					trap->attack(NAttack);
 					trap->scheduleOnce(schedule_selector(Bullet::removeSelf), 2.5f);
@@ -3130,12 +3118,10 @@ void Unit::walk(Vec2 direction)
 		// NOTE: FIXED when direction.x is zero but still set to flipped
 		if (direction.x != 0)
 		{
-			_isFlipped = direction.x > 0 ? false : true;
-			setFlipX(_isFlipped);
+			auto isFlip = direction.x > 0 ? false : true;
+			setFlippedX(isFlip);
 			if (_healBuffEffect)
-			{
-				_healBuffEffect->setFlipX(_isFlipped);
-			}
+				_healBuffEffect->setFlippedX(isFlip);
 		}
 
 		if (getName() == HeroEnum::Itachi ||
@@ -3147,14 +3133,13 @@ void Unit::walk(Vec2 direction)
 				if (mo->getName() == "ItachiSusano" ||
 					mo->getName() == "SasukeSusano")
 				{
-					mo->setFlipX(_isFlipped);
+					mo->setFlippedX(isFlip());
 				}
 				else if (mo->getName() == KugutsuEnum::Parents)
 				{
 					if (mo->_state == State::IDLE)
 					{
-						mo->setFlipX(_isFlipped);
-						mo->_isFlipped = _isFlipped;
+						mo->setFlippedX(isFlip());
 					}
 				}
 			}
@@ -3485,11 +3470,11 @@ void Unit::floatUP(float floatHeight, bool isCancelSkill)
 		ActionInterval *_floatAwayAction;
 
 		if (floatHeight == 64)
-			_floatAwayAction = JumpTo::create(0.8f, Vec2(posX + (_isFlipped ? 64 : -64), posY), 64, 1);
+			_floatAwayAction = JumpTo::create(0.8f, Vec2(posX + (isFlip() ? 64 : -64), posY), 64, 1);
 		else if (floatHeight == 128)
-			_floatAwayAction = JumpTo::create(1.0f, Vec2(posX + (_isFlipped ? 128 : -128), posY), 64, 1);
+			_floatAwayAction = JumpTo::create(1.0f, Vec2(posX + (isFlip() ? 128 : -128), posY), 64, 1);
 		else
-			_floatAwayAction = JumpTo::create(0.3f, Vec2(posX + (_isFlipped ? 8 : -8), posY), 16, 1);
+			_floatAwayAction = JumpTo::create(0.3f, Vec2(posX + (isFlip() ? 8 : -8), posY), 16, 1);
 
 		auto call = CallFunc::create(std::bind(&Unit::knockdown, this));
 		_floatUPAction = newSequence(_floatAwayAction, call);
@@ -3737,23 +3722,15 @@ void Unit::doAI()
 void Unit::changeSide(Vec2 sp)
 {
 	if (sp.x > 0)
-	{
-		setFlipX(false);
-		_isFlipped = false;
-	}
+		setFlippedX(false);
 	else
-	{
-		setFlipX(true);
-		_isFlipped = true;
-	}
+		setFlippedX(true);
 
 	if (getName() == HeroEnum::Itachi || getName() == HeroEnum::ImmortalSasuke)
 	{
 		for (auto mo : _monsterArray)
 		{
-			if (mo->getName() == "ItachiSusano" || getName() == "SasukeSusano")
-				mo->_isFlipped = _isFlipped;
-			mo->setFlipX(_isFlipped);
+			mo->setFlippedX(isFlip());
 		}
 	}
 }
@@ -3815,18 +3792,12 @@ Unit::changeGroupBy(const vector<T *> &list)
 
 void Unit::autoFlip(Unit *attacker)
 {
-	if (_isFlipped == attacker->_isFlipped)
+	if (isFlip() == attacker->isFlip())
 	{
-		if (_isFlipped)
-		{
-			setFlipX(false);
-			_isFlipped = false;
-		}
+		if (isFlip())
+			setFlippedX(false);
 		else
-		{
-			setFlipX(true);
-			_isFlipped = true;
-		}
+			setFlippedX(true);
 	}
 }
 

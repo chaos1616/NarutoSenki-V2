@@ -152,9 +152,9 @@ class Karin : public Hero
 				trap->setID(trapType, Role::Mon, getGroup());
 
 				if (i == 0)
-					trap->setPosition(Vec2(getPositionX() + (_isFlipped ? -24 : 24), getPositionY() - 24));
+					trap->setPosition(Vec2(getPositionX() + (isFlip() ? -24 : 24), getPositionY() - 24));
 				else if (i == 1)
-					trap->setPosition(Vec2(getPositionX() + (_isFlipped ? 24 : -24), getPositionY() - 24));
+					trap->setPosition(Vec2(getPositionX() + (isFlip() ? 24 : -24), getPositionY() - 24));
 				else if (i == 2)
 					trap->setPosition(Vec2(getPositionX(), getPositionY() + 24));
 

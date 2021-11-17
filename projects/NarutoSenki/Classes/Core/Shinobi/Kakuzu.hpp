@@ -316,7 +316,7 @@ class Kakuzu : public Hero
 			{
 				if (attacker->getState() != State::DEAD)
 				{
-					attacker->setDamage(this, attacker->getEffectType(), attacker->_attackValue / 2, attacker->_isFlipped);
+					attacker->setDamage(this, attacker->getEffectType(), attacker->_attackValue / 2, attacker->isFlip());
 				}
 			}
 		}

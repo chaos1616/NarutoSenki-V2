@@ -13,7 +13,7 @@ bool PauseLayer::init(RenderTexture *snapshoot)
 	Texture2D *bgTexture = snapshoot->getSprite()->getTexture();
 	Sprite *bg = Sprite::createWithTexture(bgTexture);
 	bg->setAnchorPoint(Vec2(0, 0));
-	bg->setFlipY(true);
+	bg->setFlippedY(true);
 	addChild(bg, 0);
 
 	Layer *blend = LayerColor::create(ccc4(0, 0, 0, 150), winSize.width, winSize.height);

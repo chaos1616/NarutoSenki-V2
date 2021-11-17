@@ -61,7 +61,7 @@ bool CCStrokeLabel::init()
 		m_sprite = Sprite::createWithTexture(rt->getSprite()->getTexture());
 		setContentSize(m_sprite->getContentSize());
 		m_sprite->setPosition(Vec2(0, 0));
-		m_sprite->setFlipY(true);
+		m_sprite->setFlippedY(true);
 		addChild(m_sprite);
 	} while (0);
 

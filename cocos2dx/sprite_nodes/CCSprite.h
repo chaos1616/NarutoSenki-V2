@@ -474,12 +474,14 @@ public:
      * @js isFlippedX
      */
     bool isFlipX(void);
+    bool isFlippedX(void) { return isFlipX(); }
     /**
      * Sets whether the sprite should be flipped horizontally or not.
      *
      * @param bFlipX true if the sprite should be flipped horizaontally, false otherwise.
      */
     void setFlipX(bool bFlipX);
+    void setFlippedX(bool bFlipX) { setFlipX(bFlipX); }
     
     /** 
      * Return the flag which indicates whether the sprite is flipped vertically or not.
@@ -493,12 +495,14 @@ public:
      * @js isFlippedY
      */
     bool isFlipY(void);
+	bool isFlippedY(void) { return isFlipY(); }
     /**
      * Sets whether the sprite should be flipped vertically or not.
      *
      * @param bFlipY true if the sprite should be flipped vertically, flase otherwise.
      */
     void setFlipY(bool bFlipY);
+	void setFlippedY(bool bFlipY) { setFlipY(bFlipY); }
     
     /// @} End of Sprite properties getter/setters
     

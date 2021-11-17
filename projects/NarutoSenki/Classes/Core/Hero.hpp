@@ -246,18 +246,16 @@ public:
 
 			if (isKonohaGroup())
 			{
-				if (_isFlipped)
+				if (isFlip())
 				{
-					setFlipX(false);
-					_isFlipped = false;
+					setFlippedX(false);
 				}
 			}
 			else
 			{
-				if (!_isFlipped)
+				if (!isFlip())
 				{
-					setFlipX(true);
-					_isFlipped = true;
+					setFlippedX(true);
 				}
 			}
 			idle();

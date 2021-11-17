@@ -14,8 +14,8 @@ bool CreditsLayer::init()
 	// produce the cloud
 	auto cloud_left = newSprite("cloud.png");
 	cloud_left->setPosition(Vec2(0, 15));
-	cloud_left->setFlipX(true);
-	cloud_left->setFlipY(true);
+	cloud_left->setFlippedX(true);
+	cloud_left->setFlippedY(true);
 	cloud_left->setAnchorPoint(Vec2(0, 0));
 	addChild(cloud_left, 1);
 

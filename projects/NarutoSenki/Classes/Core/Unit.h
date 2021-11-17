@@ -56,7 +56,6 @@ public:
 
 	bool isHurtingTower;
 
-	bool _isFlipped;
 	bool _isHitOne;
 	bool _isCatchOne;
 	bool _isHealing;
@@ -263,8 +262,8 @@ public:
 	void updateHpBarPosition(float dt);
 	void acceptAttack(Ref *object);
 
+	bool isFlip() const { return Sprite::m_bFlipX; }
 	float getHpPercent();
-
 	bool checkHasMovement();
 
 	void idle();
@@ -400,7 +399,7 @@ public:
 	// if not found skill data then set to SkillData::Null
 	void setSkillDataTo(ActionFlag from, ActionFlag to);
 	// Get skill data by action flag
-	constexpr const SkillData &getSkillData(ActionFlag flag)
+	const SkillData &getSkillData(ActionFlag flag)
 	{
 		auto begin = _skills.begin();
 		auto end = _skills.end();
@@ -411,8 +410,9 @@ public:
 	template <ActionFlag from, ActionFlag to>
 	constexpr void setActionAndSkillDataTo()
 	{
-		setActionTo<from, to>();
-		setSkillData(from, to);
+		// TODO
+		// setActionTo<from, to>();
+		// setSkillData(from, to);
 	}
 
 	void setSound(const string &file);
@@ -441,7 +441,7 @@ public:
 	void setClone(int cloneTime);
 	void setMon(const string &monName);
 	void setMonPer(float dt);
-	void setBullet(const string &bulletName);
+	void setBullet(const string &name);
 	void setBulletGroup(float dt);
 	void setTrap(const string &trapName);
 

@@ -33,7 +33,7 @@ public:
 
 	void setMove(int length, float delay, bool isReverse)
 	{
-		Vec2 direction = Vec2(_isFlipped ? getPosition().x - length : getPosition().x + length, getPositionY());
+		Vec2 direction = Vec2(isFlip() ? getPosition().x - length : getPosition().x + length, getPositionY());
 		Vec2 direction2 = getPosition();
 		auto mv = MoveTo::create(delay, direction);
 		auto call = CallFunc::create(std::bind(&Bullet::dealloc, this));
@@ -54,7 +54,7 @@ public:
 
 	void setEaseIn(int length, float delay)
 	{
-		Vec2 direction = Vec2(_isFlipped ? getPosition().x - length : getPosition().x + length, getPositionY());
+		Vec2 direction = Vec2(isFlip() ? getPosition().x - length : getPosition().x + length, getPositionY());
 		auto mv = MoveTo::create(1.0f, direction);
 		auto eo = EaseIn::create(mv, delay);
 		auto call = CallFunc::create(std::bind(&Bullet::dealloc, this));

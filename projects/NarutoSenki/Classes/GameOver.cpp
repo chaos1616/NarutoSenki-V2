@@ -26,7 +26,7 @@ bool GameOver::init(RenderTexture *snapshoot)
 	auto bgTexture = snapshoot->getSprite()->getTexture();
 	auto bg = Sprite::createWithTexture(bgTexture);
 	bg->setAnchorPoint(Vec2(0, 0));
-	bg->setFlipY(true);
+	bg->setFlippedY(true);
 	addChild(bg, 0);
 
 	auto blend = LayerColor::create(ccc4(0, 0, 0, 150), winSize.width, winSize.height);
@@ -90,7 +90,7 @@ void GameOver::listResult()
 		currPlayer->getName() == HeroEnum::Chiyo ||
 		currPlayer->getName() == HeroEnum::Kisame)
 	{
-		half->setFlipX(true);
+		half->setFlippedX(true);
 	}
 
 	half->setAnchorPoint(Vec2(0, 0));

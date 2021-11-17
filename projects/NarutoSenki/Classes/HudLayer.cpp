@@ -1224,7 +1224,7 @@ void HudLayer::setOugis(const string &name, Group group)
 			startPosX = winSize.width + 48;
 			endPosX = winSize.width;
 			CutBg = newSprite(cutPath2);
-			CutBg->setFlipX(true);
+			CutBg->setFlippedX(true);
 			CutBg->setAnchorPoint(Vec2(1, 0.5f));
 		}
 
@@ -1252,7 +1252,7 @@ void HudLayer::setOugis(const string &name, Group group)
 		}
 		else
 		{
-			CutLine->setFlipX(true);
+			CutLine->setFlippedX(true);
 			CutLine->setAnchorPoint(Vec2(1, 0.5f));
 			CutLine->setPosition(Vec2(winSize.width + 48, winSize.height / 2));
 			CutLine->runAction(tempAction);
@@ -1270,7 +1270,7 @@ void HudLayer::setOugis(const string &name, Group group)
 		}
 		else
 		{
-			CutLineUP->setFlipX(true);
+			CutLineUP->setFlippedX(true);
 			CutLineUP->setAnchorPoint(Vec2(1, 0.5f));
 			CutLineUP->setPosition(Vec2(winSize.width + 48, winSize.height / 2 + 2));
 			CutLineUP->runAction(MoveTo::create(0.3f, Vec2(winSize.width + 1, winSize.height / 2 + 1)));
@@ -1302,7 +1302,7 @@ void HudLayer::setOugis(const string &name, Group group)
 		}
 		else
 		{
-			CutLineDown->setFlipX(true);
+			CutLineDown->setFlippedX(true);
 			CutLineDown->setAnchorPoint(Vec2(1, 0));
 			CutLineDown->setPosition(Vec2(winSize.width + 48, winSize.height / 2 - CutBg->getContentSize().height / 2));
 			CutLineDown->runAction(MoveTo::create(0.3f, Vec2(winSize.width, winSize.height / 2 - CutBg->getContentSize().height / 2)));

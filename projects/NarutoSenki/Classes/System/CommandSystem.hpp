@@ -151,7 +151,7 @@ private:
 			}
 			else
 			{
-				thiz->_markPoint = Vec2(target->_isFlipped ? target->getPositionX() + 32 : target->getPositionX() - 32,
+				thiz->_markPoint = Vec2(target->isFlip() ? target->getPositionX() + 32 : target->getPositionX() - 32,
 										target->_originY ? target->_originY : target->getPositionY());
 			}
 		});
@@ -189,16 +189,10 @@ private:
 
 			if (thiz->_mainTarget)
 			{
-				if (thiz->_mainTarget->_isFlipped)
-				{
-					thiz->setFlipX(true);
-					thiz->_isFlipped = true;
-				}
+				if (thiz->_mainTarget->isFlip())
+					thiz->setFlippedX(true);
 				else
-				{
-					thiz->setFlipX(false);
-					thiz->_isFlipped = false;
-				}
+					thiz->setFlippedX(false);
 			}
 
 			if (thiz->getName() == HeroEnum::Sakura)

@@ -78,7 +78,6 @@ public:
 
 	SpriteBatchNode *skillEffectBatch;
 	SpriteBatchNode *damageEffectBatch;
-	SpriteBatchNode *bulletBatch;
 	SpriteBatchNode *shadowBatch;
 
 	bool init();

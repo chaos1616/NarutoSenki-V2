@@ -286,13 +286,13 @@ class Hidan : public Hero
 		{
 			if (attacker->getMaster() && attacker->getMaster()->getState() != State::DEAD)
 			{
-				attacker->getMaster()->setDamage(this, attacker->getEffectType(), attacker->_attackValue, attacker->_isFlipped);
+				attacker->getMaster()->setDamage(this, attacker->getEffectType(), attacker->_attackValue, attacker->isFlip());
 			}
 			else if (!attacker->getMaster())
 			{
 				if (attacker->getState() != State::DEAD)
 				{
-					attacker->setDamage(this, attacker->getEffectType(), attacker->_attackValue, attacker->_isFlipped);
+					attacker->setDamage(this, attacker->getEffectType(), attacker->_attackValue, attacker->isFlip());
 				}
 			}
 
@@ -300,7 +300,7 @@ class Hidan : public Hero
 			{
 				if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->getState() != State::DEAD)
 				{
-					hero->setDamage(this, attacker->getEffectType(), attacker->_attackValue / 2, attacker->_isFlipped);
+					hero->setDamage(this, attacker->getEffectType(), attacker->_attackValue / 2, attacker->isFlip());
 				}
 			}
 
@@ -333,14 +333,14 @@ class Hidan : public Hero
 		{
 			if (attacker->getMaster() && attacker->getMaster()->getState() != State::DEAD)
 			{
-				attacker->getMaster()->setDamage(this, attacker->getEffectType(), attacker->_attackValue, attacker->_isFlipped);
+				attacker->getMaster()->setDamage(this, attacker->getEffectType(), attacker->_attackValue, attacker->isFlip());
 			}
 
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
 				if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->getState() != State::DEAD)
 				{
-					hero->setDamage(this, attacker->getEffectType(), attacker->_attackValue / 2, attacker->_isFlipped);
+					hero->setDamage(this, attacker->getEffectType(), attacker->_attackValue / 2, attacker->isFlip());
 				}
 			}
 

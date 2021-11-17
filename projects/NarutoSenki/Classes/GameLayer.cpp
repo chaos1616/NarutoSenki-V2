@@ -259,8 +259,7 @@ Hero *GameLayer::addHero(const string &name, Role role, Group group, Vec2 spawnP
 	hero->setWalkSpeed(0);
 	if (group == Group::Akatsuki)
 	{
-		hero->_isFlipped = true;
-		hero->setFlipX(true);
+		hero->setFlippedX(true);
 	}
 	hero->setHPbar();
 	hero->setShadows();
@@ -397,8 +396,7 @@ void GameLayer::initTower()
 		else
 		{
 			tower->setID(name, Role::Tower, Group::Akatsuki);
-			tower->setFlipX(true);
-			tower->_isFlipped = true;
+			tower->setFlippedX(true);
 		}
 		float posX = metaX + metaWidth / 2;
 		float posY = metaY + metaHeight / 2;

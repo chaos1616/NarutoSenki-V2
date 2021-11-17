@@ -47,12 +47,12 @@ void Unit::acceptAttack(Ref *object)
 
 			float atkRangeX = attacker->_attackRangeX + attacker->getContentSize().width / 2 + getContentSize().width / 2;
 
-			if (!attacker->_isFlipped && distanceX < 0 && -distanceX < atkRangeX)
+			if (!attacker->isFlip() && distanceX < 0 && -distanceX < atkRangeX)
 			{
 				_hurtFromLeft = true;
 				isHitX = true;
 			}
-			else if (attacker->_isFlipped && distanceX > 0 && distanceX < atkRangeX)
+			else if (attacker->isFlip() && distanceX > 0 && distanceX < atkRangeX)
 			{
 				_hurtFromRight = true;
 				isHitX = true;
@@ -132,12 +132,12 @@ void Unit::acceptAttack(Ref *object)
 		}
 		else
 		{
-			if (!attacker->_isFlipped && distanceX < 0 && -distanceX < atkRangeX)
+			if (!attacker->isFlip() && distanceX < 0 && -distanceX < atkRangeX)
 			{
 				_hurtFromLeft = true;
 				isHitX = true;
 			}
-			else if (attacker->_isFlipped && distanceX > 0 && distanceX < atkRangeX)
+			else if (attacker->isFlip() && distanceX > 0 && distanceX < atkRangeX)
 			{
 				_hurtFromRight = true;
 				isHitX = true;
@@ -178,7 +178,7 @@ void Unit::acceptAttack(Ref *object)
 			if (hitType == "o_hit")
 			{
 				setKnockLength(48);
-				setKnockDirection(attacker->_isFlipped);
+				setKnockDirection(attacker->isFlip());
 				hurt();
 			}
 			else if (hitType == "ac_hit")
@@ -282,12 +282,12 @@ void Unit::acceptAttack(Ref *object)
 					{
 						if (attacker->getName() == SkillEnum::FakeMinato)
 						{
-							setPosition(Vec2(attacker->_master->_isFlipped ? attacker->_master->getPositionX() - 64 : attacker->_master->getPositionX() + 64,
+							setPosition(Vec2(attacker->_master->isFlip() ? attacker->_master->getPositionX() - 64 : attacker->_master->getPositionX() + 64,
 											 attacker->_master->getPositionY() + 2));
 						}
 						else
 						{
-							setPosition(Vec2(attacker->_master->_isFlipped ? attacker->_master->getPositionX() - 48 : attacker->_master->getPositionX() + 48,
+							setPosition(Vec2(attacker->_master->isFlip() ? attacker->_master->getPositionX() - 48 : attacker->_master->getPositionX() + 48,
 											 attacker->_master->getPositionY()));
 						}
 
@@ -335,7 +335,7 @@ void Unit::acceptAttack(Ref *object)
 					{
 						setKnockLength(48);
 					}
-					setKnockDirection(attacker->_isFlipped);
+					setKnockDirection(attacker->isFlip());
 					hardHurt(500, true, false, false, false);
 				}
 			}
@@ -345,7 +345,7 @@ void Unit::acceptAttack(Ref *object)
 				{
 					setKnockLength(1);
 				}
-				setKnockDirection(attacker->_isFlipped);
+				setKnockDirection(attacker->isFlip());
 				hardHurt(1000, true, false, false, true);
 			}
 			else if (hitType == "ob_hit")
@@ -354,7 +354,7 @@ void Unit::acceptAttack(Ref *object)
 				{
 					setKnockLength(1);
 				}
-				setKnockDirection(attacker->_isFlipped);
+				setKnockDirection(attacker->isFlip());
 				hardHurt(2000, true, false, false, true);
 
 				if (_dehealBuffEffect)
@@ -459,7 +459,7 @@ void Unit::acceptAttack(Ref *object)
 								if (underAttack)
 								{
 									attacker->_isCatchOne = true;
-									setPosition(Vec2(getPositionX() + (_isFlipped ? -30 : 30), getPositionY() - 10));
+									setPosition(Vec2(getPositionX() + (isFlip() ? -30 : 30), getPositionY() - 10));
 									getGameLayer()->reorderChild(this, -getPositionY());
 								}
 							}
@@ -488,8 +488,8 @@ void Unit::acceptAttack(Ref *object)
 								if (underAttack)
 								{
 									attacker->_isCatchOne = true;
-									setPosition(Vec2(attacker->getPositionX() + (attacker->_isFlipped ? -28 : 28), attacker->getPositionY() - 1));
-									setFlipX(attacker->_isFlipped ? false : true);
+									setPosition(Vec2(attacker->getPositionX() + (attacker->isFlip() ? -28 : 28), attacker->getPositionY() - 1));
+									setFlippedX(attacker->isFlip() ? false : true);
 									getGameLayer()->reorderChild(this, -getPositionY());
 								}
 							}
@@ -556,7 +556,7 @@ void Unit::acceptAttack(Ref *object)
 
 Rect Unit::setHalfBox()
 {
-	Rect halfbox = Rect(_isFlipped ? getPositionX() - getContentSize().width / 2 : getPositionX(),
+	Rect halfbox = Rect(isFlip() ? getPositionX() - getContentSize().width / 2 : getPositionX(),
 						getPositionY() + getContentSize().height / 2,
 						getContentSize().width / 2,
 						getContentSize().height / 2);
