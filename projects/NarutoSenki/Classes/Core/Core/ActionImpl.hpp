@@ -275,7 +275,7 @@ void Unit::genActionBy(const UnitMetadata &data)
 	}
 	default:
 	{
-		CCLOGERROR("Does not support UnitEvent %s = %s", key.c_str(), value.c_str());
+		CCLOGERROR("Does not support UnitEvent `%s = %s`", key.c_str(), value.c_str());
 	}
 	break;
 	}

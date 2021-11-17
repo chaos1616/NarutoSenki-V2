@@ -41,10 +41,10 @@ public:
 
 	static inline void invoke(const string &cmd, Unit *thiz)
 	{
-		auto it_find = cmdMap.find(cmd);
-		if (it_find != cmdMap.end())
+		auto find = cmdMap.find(cmd);
+		if (find != cmdMap.end())
 		{
-			auto handler = it_find->second;
+			auto handler = find->second;
 			handler(thiz);
 		}
 		else
@@ -69,13 +69,9 @@ public:
 		init();
 
 		if (cmdMap.size() > 0)
-		{
 			CCLOG("[ Command System ] Count: %lu ", cmdMap.size());
-		}
 		else
-		{
 			CCLOG("[ Command System ] Initial error, not found any command");
-		}
 	}
 
 private:
