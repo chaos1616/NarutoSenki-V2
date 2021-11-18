@@ -1904,7 +1904,7 @@ void Unit::setBullet(const string &name)
 	{
 		projectile->setScale(0.8f);
 		projectile->setPosition(Vec2(getPositionX() + (isFlip() ? -32 : 32),
-								 getPositionY() + 52));
+									 getPositionY() + 52));
 		projectile->attack(NAttack);
 		projectile->setMove(192, 2.0f, false);
 	}
@@ -1912,7 +1912,7 @@ void Unit::setBullet(const string &name)
 	{
 		projectile->setScale(0.8f);
 		projectile->setPosition(Vec2(getPositionX() + (isFlip() ? -68 : 68),
-								 getPositionY() + 42));
+									 getPositionY() + 42));
 		projectile->attack(NAttack);
 		projectile->setMove(192, 2.0f, false);
 	}
@@ -1920,7 +1920,7 @@ void Unit::setBullet(const string &name)
 	{
 		projectile->setScale(0.8f);
 		projectile->setPosition(Vec2(getPositionX() + (isFlip() ? -76 : 76),
-								 getPositionY() + getHPBarHeight() / 2));
+									 getPositionY() + getHPBarHeight() / 2));
 		if (_skillUPBuffValue)
 			projectile->setNAttackValue(projectile->getNAttackValue() + _skillUPBuffValue);
 
@@ -1933,7 +1933,7 @@ void Unit::setBullet(const string &name)
 	{
 		projectile->setScale(0.8f);
 		projectile->setPosition(Vec2(getPositionX() + (isFlip() ? -32 : 32),
-								 getPositionY() + getHPBarHeight() / 2));
+									 getPositionY() + getHPBarHeight() / 2));
 
 		projectile->setEaseIn(224, 2.0f);
 		projectile->attack(NAttack);
@@ -1945,13 +1945,13 @@ void Unit::setBullet(const string &name)
 		{
 			projectile->setScale(0.8f);
 			projectile->setPosition(Vec2(getPositionX() + (isFlip() ? -42 : 42),
-									 getPositionY() + getHPBarHeight() / 2));
+										 getPositionY() + getHPBarHeight() / 2));
 		}
 		else
 		{
 			projectile->setAnchorPoint(Vec2(0.5f, 0));
 			projectile->setPosition(Vec2(getPositionX() + (isFlip() ? -42 : 42),
-									 getPositionY()));
+										 getPositionY()));
 		}
 
 		projectile->_originY = getPositionY();
@@ -1962,7 +1962,7 @@ void Unit::setBullet(const string &name)
 	else
 	{
 		projectile->setPosition(Vec2(getPositionX() + (isFlip() ? -32 : 32),
-								 getPositionY() + getContentSize().height / 2));
+									 getPositionY() + getContentSize().height / 2));
 
 		projectile->attack(NAttack);
 		projectile->setMove(192, 2.0f, false);
