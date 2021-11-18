@@ -274,7 +274,7 @@ public:
 	void acceptAttack(Ref *object);
 
 	bool isFlip() const { return Sprite::m_bFlipX; }
-	float getHpPercent();
+	float getHpPercent() { return 1.0f * getHP() / getMaxHP(); }
 	bool checkHasMovement();
 
 	void idle();

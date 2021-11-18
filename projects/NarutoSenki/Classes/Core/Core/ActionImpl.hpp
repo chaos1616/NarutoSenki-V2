@@ -38,6 +38,7 @@ mk_hconst(setActionResume);
 mk_hconst(setActionResume2);
 mk_hconst(setBuff);
 mk_hconst(setBullet);
+mk_hconst(setChangeAction);
 mk_hconst(setCharge);
 mk_hconst(setChargeB);
 mk_hconst(setClone);
@@ -93,6 +94,13 @@ void Unit::genActionBy(const UnitMetadata &data)
 
 	switch (HashUtils::hash32(key))
 	{
+	case UnitEvent::setChangeAction:
+	{
+		// TODO:
+		// auto call = CallFunc::create(std::bind(&Unit::changeAction, this));
+		// list.pushBack(call);
+	}
+	break;
 	case UnitEvent::setHit:
 	{
 		auto call = CallFunc::create(std::bind(&Unit::setAttackBox, this, value));

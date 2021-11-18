@@ -2776,12 +2776,6 @@ void Unit::setTransform()
 		getGameLayer()->setHPLose(getHpPercent());
 }
 
-float Unit::getHpPercent()
-{
-	float percent = 1.0f * getHP() / getMaxHP();
-	return percent;
-}
-
 void Unit::attack(ABType type)
 {
 	if (isPlayer() && type == NAttack)
