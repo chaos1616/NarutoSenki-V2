@@ -1,9 +1,9 @@
 #pragma once
 #include "Hero.hpp"
-#include "Shinobi/Bunshin/NarutoClone.hpp"
-#include "Shinobi/Bunshin/SageNarutoClone.hpp"
-#include "Shinobi/Bunshin/RikudoNarutoClone.hpp"
 #include "Kuchiyose/Kurama.hpp"
+#include "Shinobi/Bunshin/NarutoClone.hpp"
+#include "Shinobi/Bunshin/RikudoNarutoClone.hpp"
+#include "Shinobi/Bunshin/SageNarutoClone.hpp"
 
 class Naruto : public Hero
 {
@@ -535,11 +535,8 @@ class Naruto : public Hero
 		setActionTo<ActionFlag::Walk, ActionFlag::Spc02>();
 		setActionTo<ActionFlag::NAttack, ActionFlag::Spc03>();
 
-		if (getName() == HeroEnum::RikudoNaruto)
-		{
-			setTempAttackValue1(getNAttackValue());
-			setNAttackValue(560);
-		}
+		setTempAttackValue1(getNAttackValue());
+		setNAttackValue(560);
 
 		setWalkSpeed(320);
 		_originSpeed = 320;
