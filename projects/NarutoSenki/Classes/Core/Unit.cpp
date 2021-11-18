@@ -55,6 +55,7 @@ Unit::Unit()
 	_sAttack2isDouble = false;
 	_sAttack3isDouble = false;
 	_sAttack4isDouble = false;
+	_sAttack5isDouble = false;
 
 	_moveAction = nullptr;
 	_jumpUPAction = nullptr;
@@ -2151,7 +2152,7 @@ void Unit::setMon(const string &monName)
 	else if (monName == "LeeBom")
 	{
 		// monster->setAnchorPoint(Vec2(0.5,0.5f));
-		monster->setPosition(Vec2(getPositionX(), getPositionY()));
+		monster->setPosition(getPosition());
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
@@ -2169,7 +2170,7 @@ void Unit::setMon(const string &monName)
 	}
 	else if (monName == "Kaiten")
 	{
-		monster->setPosition(Vec2(getPositionX(), getPositionY()));
+		monster->setPosition(getPosition());
 		monster->setAnchorPoint(Vec2(0.5, 0.25f));
 		monster->attack(NAttack);
 	}
@@ -2232,8 +2233,8 @@ void Unit::setMon(const string &monName)
 			 monName == "Tuji2" ||
 			 monName == "Suiji")
 	{
-		monster->setPositionY(getPositionY() - 24);
-		monster->setPositionX(getPositionX() + (isFlip() ? -64 : 64));
+		monster->setPosition(Vec2(getPositionX() + (isFlip() ? -64 : 64),
+								  getPositionY() - 24));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
@@ -2253,9 +2254,9 @@ void Unit::setMon(const string &monName)
 	}
 	else if (monName == "Bikyu")
 	{
-		monster->setFlippedX(isFlip());
 		monster->hasArmorBroken = true;
-		monster->setPosition(Vec2(getPositionX() + (isFlip() ? -(16 + getContentSize().width) : (16 + getContentSize().width)), getPositionY() - 32));
+		monster->setPosition(Vec2(getPositionX() + (isFlip() ? -(16 + getContentSize().width) : (16 + getContentSize().width)),
+								  getPositionY() - 32));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
 	}
@@ -2304,13 +2305,13 @@ void Unit::setMon(const string &monName)
 			 monName == "Tsukuyomi" ||
 			 monName == "Shark")
 	{
-		monster->setPosition(Vec2(getPositionX() + (isFlip() == true ? -48 : 48), getPositionY() - 4));
+		monster->setPosition(Vec2(getPositionX() + (isFlip() ? -48 : 48), getPositionY() - 4));
 		monster->attack(NAttack);
 	}
 	else if (monName == "Suijin" ||
 			 monName == "BugPillar")
 	{
-		monster->setPosition(Vec2(getPositionX() + (isFlip() == true ? -64 : 64), getPositionY() + 1));
+		monster->setPosition(Vec2(getPositionX() + (isFlip() ? -64 : 64), getPositionY() + 1));
 		monster->attack(NAttack);
 	}
 	else if (monName == "Mine")
@@ -2326,7 +2327,8 @@ void Unit::setMon(const string &monName)
 	else if (monName == "Kage")
 	{
 		_isCatchOne = true;
-		monster->setPosition(Vec2(getPositionX() + (isFlip() ? -getContentSize().width / 2 + 4 : getContentSize().width / 2 - 4), getPositionY()));
+		monster->setPosition(Vec2(getPositionX() + (isFlip() ? -getContentSize().width / 2 + 4 : getContentSize().width / 2 - 4),
+								  getPositionY()));
 		if (isFlip())
 		{
 			monster->setAnchorPoint(Vec2(1, 0));
@@ -2343,7 +2345,8 @@ void Unit::setMon(const string &monName)
 	}
 	else if (monName == "KageHand")
 	{
-		Vec2 dir = Vec2(isFlip() ? getPositionX() - getContentSize().width : getPositionX() + getContentSize().width, getPositionY());
+		Vec2 dir = Vec2(isFlip() ? getPositionX() - getContentSize().width : getPositionX() + getContentSize().width,
+						getPositionY());
 		monster->setPosition(dir);
 		stopAllActions();
 
@@ -2355,7 +2358,7 @@ void Unit::setMon(const string &monName)
 	{
 		if (_master)
 			_master->_monsterArray.push_back(monster);
-		monster->setPosition(Vec2(getPositionX(), getPositionY()));
+		monster->setPosition(getPosition());
 		monster->setAnchorPoint(Vec2(0.5f, 0.15f));
 		monster->attack(NAttack);
 	}
@@ -2377,7 +2380,7 @@ void Unit::setMon(const string &monName)
 	}
 	else if (monName == "CircleMark")
 	{
-		monster->setPosition(Vec2(getPositionX(), getPositionY()));
+		monster->setPosition(getPosition());
 		monster->setAnchorPoint(Vec2(0.5f, 0.5f));
 		_monsterArray.push_back(monster);
 		monster->attack(NAttack);
@@ -2480,14 +2483,12 @@ void Unit::setMon(const string &monName)
 
 	if (monName == "ItachiSusano")
 	{
-		monster->setFlippedX(isFlip());
 		monster->setAnchorPoint(Vec2(0.5f, 0));
 		monster->setPosition(Vec2(146 / 2 - 10, -40));
 		addChild(monster, -1000);
 	}
 	else if (monName == "SasukeSusano")
 	{
-		monster->setFlippedX(isFlip());
 		monster->setAnchorPoint(Vec2(0.5f, 0));
 		monster->setPosition(Vec2(141 / 2, -6));
 		addChild(monster, -1000);
