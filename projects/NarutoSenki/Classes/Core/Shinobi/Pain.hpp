@@ -305,34 +305,34 @@ class Pain : public Hero
 		checkHealingState();
 	}
 
-	void changeAction() override
-	{
-		// TODO: New Nagato
-		// if (getName() == HeroEnum::Nagato)
-		// {
-		// 	if (_skillChangeBuffValue == 17)
-		// 	{
-		// 		setActionTo<ActionFlag::Skill01, ActionFlag::Spc01>();
-		// 		setActionTo<ActionFlag::Skill02, ActionFlag::Spc02>();
-		// 		setActionTo<ActionFlag::Skill03, ActionFlag::Spc03>();
-		// 		setTempAttackValue1(getSAttackValue1());
-		// 		setSAttackValue1(_spcAttackValue1);
-		// 		setSAttackValue2(_spcAttackValue2);
-		// 		setSAttackValue3(_spcAttackValue3);
+	// void changeAction() override
+	// {
+	// 	// TODO: New Nagato
+	// 	if (getName() == HeroEnum::Nagato)
+	// 	{
+	// 		if (_skillChangeBuffValue == 17)
+	// 		{
+	// 			setActionTo<ActionFlag::Skill01, ActionFlag::Spc01>();
+	// 			setActionTo<ActionFlag::Skill02, ActionFlag::Spc02>();
+	// 			setActionTo<ActionFlag::Skill03, ActionFlag::Spc03>();
+	// 			setTempAttackValue1(getSAttackValue1());
+	// 			setSAttackValue1(_spcAttackValue1);
+	// 			setSAttackValue2(_spcAttackValue2);
+	// 			setSAttackValue3(_spcAttackValue3);
 
-		// 		if (isPlayer())
-		// 		{
-		// 			auto cache = SpriteFrameCache::sharedSpriteFrameCache();
-		// 			auto frame = cache->spriteFrameByName("Nagato_skill1_1.png");
-		// 			getGameLayer()->getHudLayer()->skill1Button->setDisplayFrame(frame);
-		// 			frame = cache->spriteFrameByName("Nagato_skill2_1.png");
-		// 			getGameLayer()->getHudLayer()->skill2Button->setDisplayFrame(frame);
-		// 			frame = cache->spriteFrameByName("Nagato_skill3_1.png");
-		// 			getGameLayer()->getHudLayer()->skill3Button->setDisplayFrame(frame);
-		// 		}
-		// 	}
-		// }
-	}
+	// 			if (isPlayer())
+	// 			{
+	// 				auto cache = SpriteFrameCache::sharedSpriteFrameCache();
+	// 				auto frame = cache->spriteFrameByName("Nagato_skill1_1.png");
+	// 				getGameLayer()->getHudLayer()->skill1Button->setDisplayFrame(frame);
+	// 				frame = cache->spriteFrameByName("Nagato_skill2_1.png");
+	// 				getGameLayer()->getHudLayer()->skill2Button->setDisplayFrame(frame);
+	// 				frame = cache->spriteFrameByName("Nagato_skill3_1.png");
+	// 				getGameLayer()->getHudLayer()->skill3Button->setDisplayFrame(frame);
+	// 			}
+	// 		}
+	// 	}
+	// }
 
 	// void setActionResume() override
 	// {
