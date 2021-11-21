@@ -141,8 +141,8 @@ class Itachi : public Hero
 	{
 		setActionTo<ActionFlag::Idle, ActionFlag::Spc01>();
 		setActionTo<ActionFlag::Walk, ActionFlag::Spc02>();
-		setActionTo<ActionFlag::NAttack, ActionFlag::Spc03>();
 		setActionTo<ActionFlag::Knockdown, ActionFlag::Spc04>();
+		setActionTo<ActionFlag::NAttack, ActionFlag::Spc03>();
 		setWalkSpeed(112);
 		_originSpeed = 112;
 

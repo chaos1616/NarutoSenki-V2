@@ -179,6 +179,7 @@ class Konan : public Hero
 		_isAllAttackLocked = true;
 		_isArmored = true;
 
+		// TODO: Support basic actions could change the following values
 		_attackType = _spcAttackType2;
 		_attackValue = getSpcAttackValue2();
 		_attackRangeX = _spcAttackRangeX2;

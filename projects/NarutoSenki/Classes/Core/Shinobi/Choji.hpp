@@ -142,9 +142,9 @@ class Choji : public Hero
 	void changeAction() override
 	{
 		_isArmored = true;
-		setActionTo<ActionFlag::NAttack, ActionFlag::Spc03>();
 		setActionTo<ActionFlag::Idle, ActionFlag::Spc04>();
 		setActionTo<ActionFlag::Walk, ActionFlag::Spc02>();
+		setActionTo<ActionFlag::NAttack, ActionFlag::Spc03>();
 
 		_originNAttackType = _nAttackType;
 		_nAttackType = _spcAttackType3;
