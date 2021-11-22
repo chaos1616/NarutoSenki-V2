@@ -321,7 +321,7 @@ bool StartMenu::init()
 	Sprite *avator = newSprite("avator1.png");
 	avator->setAnchorPoint(Vec2(0, 0));
 	avator->setOpacity(0);
-	avator->setPosition(Vec2(winSize.width - avator->getContentSize().width, 19));
+	avator->setPosition(Vec2(winSize.width - 311, 19));
 	addChild(avator, 1);
 
 	Vector<SpriteFrame *> frames;

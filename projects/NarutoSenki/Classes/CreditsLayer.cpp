@@ -55,7 +55,7 @@ bool CreditsLayer::init()
 	addChild(credit01);
 
 	auto credit02 = newSprite("credits02.png");
-	credit02->setPosition(Vec2(winSize.width / 2 + 15, winSize.height / 2 - 60));
+	credit02->setPosition(Vec2(winSize.width / 2, winSize.height / 2 - 50));
 	addChild(credit02);
 
 	if (UserDefault::sharedUserDefault()->getBoolForKey("isBGM"))

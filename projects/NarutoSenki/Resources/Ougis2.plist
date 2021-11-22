@@ -17,7 +17,7 @@
                 <key>spriteSourceSize</key>
                 <string>{226,196}</string>
                 <key>textureRect</key>
-                <string>{{460,973},{226,196}}</string>
+                <string>{{1189,851},{226,196}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -34,9 +34,9 @@
                 <key>spriteSourceSize</key>
                 <string>{223,238}</string>
                 <key>textureRect</key>
-                <string>{{1037,220},{223,238}}</string>
+                <string>{{414,256},{223,238}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Choji_CutIn.png</key>
             <dict>
@@ -51,9 +51,9 @@
                 <key>spriteSourceSize</key>
                 <string>{230,227}</string>
                 <key>textureRect</key>
-                <string>{{683,721},{230,227}}</string>
+                <string>{{639,249},{230,227}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Deidara_CutIn.png</key>
             <dict>
@@ -68,9 +68,9 @@
                 <key>spriteSourceSize</key>
                 <string>{224,193}</string>
                 <key>textureRect</key>
-                <string>{{1515,257},{224,193}}</string>
+                <string>{{1417,842},{224,193}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Gaara_CutIn.png</key>
             <dict>
@@ -85,9 +85,9 @@
                 <key>spriteSourceSize</key>
                 <string>{250,194}</string>
                 <key>textureRect</key>
-                <string>{{242,265},{250,194}}</string>
+                <string>{{1533,440},{250,194}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Han_CutIn.png</key>
             <dict>
@@ -102,7 +102,7 @@
                 <key>spriteSourceSize</key>
                 <string>{238,215}</string>
                 <key>textureRect</key>
-                <string>{{1276,233},{238,215}}</string>
+                <string>{{1538,223},{238,215}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -119,7 +119,7 @@
                 <key>spriteSourceSize</key>
                 <string>{271,216}</string>
                 <key>textureRect</key>
-                <string>{{769,0},{271,216}}</string>
+                <string>{{1027,0},{271,216}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -136,9 +136,9 @@
                 <key>spriteSourceSize</key>
                 <string>{219,253}</string>
                 <key>textureRect</key>
-                <string>{{1041,0},{219,253}}</string>
+                <string>{{250,524},{219,253}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Hiruzen_CutIn.png</key>
             <dict>
@@ -153,9 +153,9 @@
                 <key>spriteSourceSize</key>
                 <string>{253,235}</string>
                 <key>textureRect</key>
-                <string>{{0,533},{253,235}}</string>
+                <string>{{772,0},{253,235}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>ImmortalSasuke_CutIn.png</key>
             <dict>
@@ -170,7 +170,7 @@
                 <key>spriteSourceSize</key>
                 <string>{205,220}</string>
                 <key>textureRect</key>
-                <string>{{1502,482},{205,220}}</string>
+                <string>{{871,237},{205,220}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -187,9 +187,9 @@
                 <key>spriteSourceSize</key>
                 <string>{263,219}</string>
                 <key>textureRect</key>
-                <string>{{0,1036},{263,219}}</string>
+                <string>{{1300,0},{263,219}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Itachi_CutIn.png</key>
             <dict>
@@ -204,9 +204,9 @@
                 <key>spriteSourceSize</key>
                 <string>{214,164}</string>
                 <key>textureRect</key>
-                <string>{{1106,444},{214,164}}</string>
+                <string>{{1785,609},{214,164}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Jiraiya_CutIn.png</key>
             <dict>
@@ -221,9 +221,9 @@
                 <key>spriteSourceSize</key>
                 <string>{239,202}</string>
                 <key>textureRect</key>
-                <string>{{647,248},{239,202}}</string>
+                <string>{{948,889},{239,202}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Jugo_CutIn.png</key>
             <dict>
@@ -238,9 +238,9 @@
                 <key>spriteSourceSize</key>
                 <string>{237,232}</string>
                 <key>textureRect</key>
-                <string>{{443,502},{237,232}}</string>
+                <string>{{244,779},{237,232}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Kakashi_CutIn.png</key>
             <dict>
@@ -255,9 +255,9 @@
                 <key>spriteSourceSize</key>
                 <string>{232,222}</string>
                 <key>textureRect</key>
-                <string>{{460,740},{232,222}}</string>
+                <string>{{679,478},{232,222}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Kakuzu_CutIn.png</key>
             <dict>
@@ -272,9 +272,9 @@
                 <key>spriteSourceSize</key>
                 <string>{223,186}</string>
                 <key>textureRect</key>
-                <string>{{850,217},{223,186}}</string>
+                <string>{{483,966},{223,186}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Kankuro_CutIn.png</key>
             <dict>
@@ -289,9 +289,9 @@
                 <key>spriteSourceSize</key>
                 <string>{238,221}</string>
                 <key>textureRect</key>
-                <string>{{220,1036},{238,221}}</string>
+                <string>{{1565,0},{238,221}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Karin_CutIn.png</key>
             <dict>
@@ -306,9 +306,9 @@
                 <key>spriteSourceSize</key>
                 <string>{192,208}</string>
                 <key>textureRect</key>
-                <string>{{1110,1080},{192,208}}</string>
+                <string>{{1805,0},{192,208}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Kiba_CutIn.png</key>
             <dict>
@@ -323,9 +323,9 @@
                 <key>spriteSourceSize</key>
                 <string>{248,239}</string>
                 <key>textureRect</key>
-                <string>{{0,787},{248,239}}</string>
+                <string>{{0,535},{248,239}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Kimimaro_CutIn.png</key>
             <dict>
@@ -340,7 +340,7 @@
                 <key>spriteSourceSize</key>
                 <string>{241,254}</string>
                 <key>textureRect</key>
-                <string>{{280,0},{241,254}}</string>
+                <string>{{281,0},{241,254}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -357,9 +357,9 @@
                 <key>spriteSourceSize</key>
                 <string>{223,196}</string>
                 <key>textureRect</key>
-                <string>{{913,905},{223,196}}</string>
+                <string>{{1778,223},{223,196}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Konan_CutIn.png</key>
             <dict>
@@ -374,7 +374,7 @@
                 <key>spriteSourceSize</key>
                 <string>{161,190}</string>
                 <key>textureRect</key>
-                <string>{{1107,659},{161,190}}</string>
+                <string>{{1643,833},{161,190}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -391,9 +391,9 @@
                 <key>spriteSourceSize</key>
                 <string>{232,210}</string>
                 <key>textureRect</key>
-                <string>{{676,488},{232,210}}</string>
+                <string>{{1095,435},{232,210}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Minato_CutIn.png</key>
             <dict>
@@ -408,24 +408,24 @@
                 <key>spriteSourceSize</key>
                 <string>{246,209}</string>
                 <key>textureRect</key>
-                <string>{{437,255},{246,209}}</string>
+                <string>{{1290,221},{246,209}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Nagato_CutIn.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>anchor</key>
-                <string>{0.5,0.5}</string>
+                <string>{0.5,0.504854}</string>
                 <key>spriteOffset</key>
-                <string>{0,0}</string>
+                <string>{0,-2}</string>
                 <key>spriteSize</key>
-                <string>{202,208}</string>
+                <string>{202,206}</string>
                 <key>spriteSourceSize</key>
-                <string>{202,208}</string>
+                <string>{202,206}</string>
                 <key>textureRect</key>
-                <string>{{1110,871},{202,208}}</string>
+                <string>{{1329,432},{202,206}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -442,7 +442,7 @@
                 <key>spriteSourceSize</key>
                 <string>{184,181}</string>
                 <key>textureRect</key>
-                <string>{{1509,1087},{184,181}}</string>
+                <string>{{1806,775},{184,181}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -459,7 +459,7 @@
                 <key>spriteSourceSize</key>
                 <string>{225,219}</string>
                 <key>textureRect</key>
-                <string>{{687,952},{225,219}}</string>
+                <string>{{703,702},{225,219}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -476,9 +476,9 @@
                 <key>spriteSourceSize</key>
                 <string>{210,215}</string>
                 <key>textureRect</key>
-                <string>{{1269,660},{210,215}}</string>
+                <string>{{1078,218},{210,215}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Pain_CutIn.png</key>
             <dict>
@@ -493,9 +493,9 @@
                 <key>spriteSourceSize</key>
                 <string>{231,195}</string>
                 <key>textureRect</key>
-                <string>{{911,673},{231,195}}</string>
+                <string>{{1537,636},{231,195}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>RikudoNaruto_CutIn.png</key>
             <dict>
@@ -527,9 +527,9 @@
                 <key>spriteSourceSize</key>
                 <string>{232,210}</string>
                 <key>textureRect</key>
-                <string>{{676,488},{232,210}}</string>
+                <string>{{1095,435},{232,210}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Roshi_CutIn.png</key>
             <dict>
@@ -544,7 +544,7 @@
                 <key>spriteSourceSize</key>
                 <string>{241,267}</string>
                 <key>textureRect</key>
-                <string>{{0,265},{241,267}}</string>
+                <string>{{0,266},{241,267}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -561,7 +561,7 @@
                 <key>spriteSourceSize</key>
                 <string>{182,202}</string>
                 <key>textureRect</key>
-                <string>{{1523,884},{182,202}}</string>
+                <string>{{1162,647},{182,202}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -578,7 +578,7 @@
                 <key>spriteSourceSize</key>
                 <string>{218,228}</string>
                 <key>textureRect</key>
-                <string>{{887,444},{218,228}}</string>
+                <string>{{483,736},{218,228}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -595,7 +595,7 @@
                 <key>spriteSourceSize</key>
                 <string>{209,186}</string>
                 <key>textureRect</key>
-                <string>{{1313,884},{209,186}}</string>
+                <string>{{1785,421},{209,186}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -612,9 +612,9 @@
                 <key>spriteSourceSize</key>
                 <string>{161,185}</string>
                 <key>textureRect</key>
-                <string>{{913,1129},{161,185}}</string>
+                <string>{{1806,958},{161,185}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Sasuke_CutIn.png</key>
             <dict>
@@ -629,7 +629,7 @@
                 <key>spriteSourceSize</key>
                 <string>{230,210}</string>
                 <key>textureRect</key>
-                <string>{{1271,449},{230,210}}</string>
+                <string>{{930,677},{230,210}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -646,7 +646,7 @@
                 <key>spriteSourceSize</key>
                 <string>{206,238}</string>
                 <key>textureRect</key>
-                <string>{{236,533},{206,238}}</string>
+                <string>{{471,496},{206,238}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -663,7 +663,7 @@
                 <key>spriteSourceSize</key>
                 <string>{169,256}</string>
                 <key>textureRect</key>
-                <string>{{1538,0},{169,256}}</string>
+                <string>{{243,266},{169,256}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -680,7 +680,7 @@
                 <key>spriteSourceSize</key>
                 <string>{189,200}</string>
                 <key>textureRect</key>
-                <string>{{1319,1071},{189,200}}</string>
+                <string>{{1346,640},{189,200}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -697,9 +697,9 @@
                 <key>spriteSourceSize</key>
                 <string>{180,216}</string>
                 <key>textureRect</key>
-                <string>{{1485,703},{180,216}}</string>
+                <string>{{913,459},{180,216}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Tobi_CutIn.png</key>
             <dict>
@@ -714,7 +714,7 @@
                 <key>spriteSourceSize</key>
                 <string>{242,232}</string>
                 <key>textureRect</key>
-                <string>{{1295,0},{242,232}}</string>
+                <string>{{0,776},{242,232}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -731,9 +731,9 @@
                 <key>spriteSourceSize</key>
                 <string>{238,219}</string>
                 <key>textureRect</key>
-                <string>{{240,772},{238,219}}</string>
+                <string>{{708,923},{238,219}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Tsunade_CutIn.png</key>
             <dict>
@@ -748,7 +748,7 @@
                 <key>spriteSourceSize</key>
                 <string>{246,247}</string>
                 <key>textureRect</key>
-                <string>{{522,0},{246,247}}</string>
+                <string>{{524,0},{246,247}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -764,9 +764,9 @@
             <key>realTextureFileName</key>
             <string>Ougis2.png</string>
             <key>size</key>
-            <string>{1708,1299}</string>
+            <string>{2001,1152}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:1753b27f4409df21e118889844d0b460:b749e51e0091531c9c58ad7d53972c30:e3c3161075e594ab2abf9ef6e2cb229b$</string>
+            <string>$TexturePacker:SmartUpdate:d850649e6ab7ab8ac384f1c8bf57cfbd:b749e51e0091531c9c58ad7d53972c30:e3c3161075e594ab2abf9ef6e2cb229b$</string>
             <key>textureFileName</key>
             <string>Ougis2.png</string>
         </dict>
