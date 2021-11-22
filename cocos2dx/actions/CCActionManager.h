@@ -103,6 +103,7 @@ public:
      * - If you are running 7 Sequences of 2 actions, it will return 7.
      */
     unsigned int numberOfRunningActionsInTarget(CCObject *pTarget);
+	unsigned int getNumberOfRunningActionsInTarget(CCObject *pTarget) { return numberOfRunningActionsInTarget(pTarget); }
 
     /** Pauses the target: all running actions and newly added actions will be paused.
     */

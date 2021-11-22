@@ -3673,7 +3673,7 @@ void Unit::dead()
 
 void Unit::checkActionFinish(float dt)
 {
-	if (getActionManager()->numberOfRunningActionsInTarget(this) == 0)
+	if (getActionManager()->getNumberOfRunningActionsInTarget(this) == 0)
 	{
 		unschedule(schedule_selector(Unit::checkActionFinish));
 		stopAllActions();
