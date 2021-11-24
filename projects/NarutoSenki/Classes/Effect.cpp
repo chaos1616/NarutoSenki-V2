@@ -231,11 +231,11 @@ bool Effect::init(const string &name, Unit *attacker)
 	return true;
 }
 
-FiniteTimeAction *Effect::createEffectAnimation(const string &file, size_t frameCount, uint8_t fps, bool isLoop)
+FiniteTimeAction *Effect::createEffectAnimation(const string &file, uint16_t frameCount, uint8_t fps, bool isLoop)
 {
-	Vector<SpriteFrame *> spriteFrames(frameCount);
+	Vector<SpriteFrame *> spriteFrames;
 
-	for (size_t i = 1; i < frameCount + 1; i++)
+	for (uint16_t i = 1; i < frameCount + 1; i++)
 	{
 		auto frame = getSpriteFrame("{}{:02d}", file, i);
 		spriteFrames.pushBack(frame);

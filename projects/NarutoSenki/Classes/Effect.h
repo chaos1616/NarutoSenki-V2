@@ -11,7 +11,7 @@ public:
 	static Effect *create(const string &szImage, Unit *attacker);
 
 private:
-	FiniteTimeAction *createEffectAnimation(const string &file, size_t frameCount, uint8_t fps, bool isLoop);
+	FiniteTimeAction *createEffectAnimation(const string &file, uint16_t frameCount, uint8_t fps, bool isLoop);
 	FiniteTimeAction *createFontAnimation();
 	void removeEffect();
 	void removeFontEffect();
