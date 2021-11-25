@@ -130,12 +130,12 @@ public:
 	int gearCKRValue;
 	uint32_t gearRecoverValue;
 
-	// 忍び：Kakuzu ability
+	// 忍び: Kakuzu ability
 	uint32_t hearts;
 	// Gear02 ability
 	bool isAttackGainCKR;
-	// 口寄せ：Bikyu ability
-	// 忍び：Guardian & Naruto-Rikutou & Naruto-Sage ability
+	// 口寄せ: Bikyu ability
+	// 忍び: Guardian & Naruto-Rikutou & Naruto-Sage ability
 	bool hasArmorBroken;
 	// Gear ability
 	bool hasArmor;
