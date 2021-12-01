@@ -6,59 +6,35 @@ SRCDIR=$DIR/LuaJIT
 cd "$SRCDIR"
 
 # NOTE: You should setup NDK_ROOT path first
-NDK=$NDK_ROOT
-NDKABI=24
-NDKVER=$NDK/toolchains/arm-linux-androideabi-4.9
-NDKP=$NDKVER/prebuilt/${host_os}-x86_64/bin/arm-linux-androideabi-
-NDKF="--sysroot $NDK/platforms/android-$NDKABI/arch-arm"
+NDKDIR=$NDK_ROOT
+NDKBIN=${NDKDIR}toolchains/llvm/prebuilt/linux-x86_64/bin
+NDKABI=21
+make clean
+
+# Android/ARM64, aarch64
+DESTDIR=$DIR/android/arm64-v8a
+NDKCROSS=$NDKBIN/aarch64-linux-android-
+NDKCC=$NDKBIN/aarch64-linux-android${NDKABI}-clang
+make -j HOST_CC="clang -m64" CROSS=$NDKCROSS \
+     STATIC_CC=$NDKCC DYNAMIC_CC="$NDKCC -fPIC" \
+     TARGET_LD=$NDKCC TARGET_AR="$NDKBIN/llvm-ar rcus" \
+     TARGET_STRIP=$NDKBIN/llvm-strip
+
+if [ -f $SRCDIR/src/libluajit.a ]; then
+    cp $SRCDIR/src/libluajit.a $DESTDIR/libluajit.a
+fi;
+
+make clean
 
 # Android/ARM, armeabi-v7a (ARMv7 VFP)
-NDKARCH="-march=armv7-a -mfloat-abi=softfp -Wl,--fix-cortex-a8"
 DESTDIR=$DIR/android/armeabi-v7a
-rm "$DESTDIR"/*.a
-make clean
-make -j HOST_CC="clang -m32" CROSS=$NDKP TARGET_SYS=Linux TARGET_FLAGS="$NDKF $NDKARCH"
+NDKCROSS=$NDKBIN/arm-linux-androideabi-
+NDKCC=$NDKBIN/armv7a-linux-androideabi${NDKABI}-clang
+make -j HOST_CC="clang -m32" CROSS=$NDKCROSS \
+     STATIC_CC=$NDKCC DYNAMIC_CC="$NDKCC -fPIC" \
+     TARGET_LD=$NDKCC TARGET_AR="$NDKBIN/llvm-ar rcus" \
+     TARGET_STRIP=$NDKBIN/llvm-strip
 
 if [ -f $SRCDIR/src/libluajit.a ]; then
-    mv $SRCDIR/src/libluajit.a $DESTDIR/libluajit.a
-fi;
-
-# Android/ARM, arm64-v8a
-NDKARCH="-march=armv8-a"
-NDKF="--sysroot $NDK/platforms/android-$NDKABI/arch-arm64"
-NDKVER=$NDK/toolchains/aarch64-linux-android-4.9
-NDKP=$NDKVER/prebuilt/${host_os}-x86_64/bin/aarch64-linux-android-
-DESTDIR=$DIR/android/arm64-v8a
-rm "$DESTDIR"/*.a
-make clean
-make -j HOST_CC="clang -m64" CROSS=$NDKP TARGET_SYS=Linux TARGET_FLAGS="$NDKF $NDKARCH"
-
-if [ -f $SRCDIR/src/libluajit.a ]; then
-    mv $SRCDIR/src/libluajit.a $DESTDIR/libluajit.a
-fi;
-
-# Android/x86, x86 (i686 SSE3)
-DESTDIR=$DIR/android/x86
-NDKVER=$NDK/toolchains/x86-4.9
-NDKP=$NDKVER/prebuilt/${host_os}-x86_64/bin/i686-linux-android-
-NDKF="--sysroot $NDK/platforms/android-$NDKABI/arch-x86"
-rm "$DESTDIR"/*.a
-make clean
-make -j HOST_CC="clang -m32" CROSS=$NDKP TARGET_SYS=Linux TARGET_FLAGS="$NDKF"
-
-if [ -f $SRCDIR/src/libluajit.a ]; then
-    mv $SRCDIR/src/libluajit.a $DESTDIR/libluajit.a
-fi;
-
-# Android/x86_64, x86_64 (i686 SSE3)
-DESTDIR=$DIR/android/x86_64
-NDKVER=$NDK/toolchains/x86_64-4.9
-NDKP=$NDKVER/prebuilt/${host_os}-x86_64/bin/x86_64-linux-android-
-NDKF="--sysroot $NDK/platforms/android-$NDKABI/arch-x86_64"
-rm "$DESTDIR"/*.a
-make clean
-make -j HOST_CC="clang -m64" CROSS=$NDKP TARGET_SYS=Linux TARGET_FLAGS="$NDKF"
-
-if [ -f $SRCDIR/src/libluajit.a ]; then
-    mv $SRCDIR/src/libluajit.a $DESTDIR/libluajit.a
+    cp $SRCDIR/src/libluajit.a $DESTDIR/libluajit.a
 fi;
