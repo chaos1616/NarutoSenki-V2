@@ -42,7 +42,7 @@
 #include <utility>       // std::swap
 
 #ifdef __cpp_lib_bit_cast
-#include <bit>           // std::bitcast
+#  include <bit>  // std::bitcast
 #endif
 
 #include "core.h"
@@ -836,14 +836,14 @@ template <typename Char, size_t N> struct fixed_string {
 
 // Converts a compile-time string to basic_string_view.
 template <typename Char, size_t N>
-FMT_CONSTEXPR auto compile_string_to_view(const Char (&s)[N])
+constexpr auto compile_string_to_view(const Char (&s)[N])
     -> basic_string_view<Char> {
   // Remove trailing NUL character if needed. Won't be present if this is used
   // with a raw character array (i.e. not defined as a string).
   return {s, N - (std::char_traits<Char>::to_int_type(s[N - 1]) == 0 ? 1 : 0)};
 }
 template <typename Char>
-FMT_CONSTEXPR auto compile_string_to_view(detail::std_string_view<Char> s)
+constexpr auto compile_string_to_view(detail::std_string_view<Char> s)
     -> basic_string_view<Char> {
   return {s.data(), s.size()};
 }
@@ -905,7 +905,7 @@ constexpr const char* digits2(size_t value) {
 
 // Sign is a template parameter to workaround a bug in gcc 4.8.
 template <typename Char, typename Sign> constexpr Char sign(Sign s) {
-#if !FMT_GCC_VERSION || FMT_GCC_VERSION > 408
+#if !FMT_GCC_VERSION || FMT_GCC_VERSION >= 604
   static_assert(std::is_same<Sign, sign_t>::value, "");
 #endif
   return static_cast<Char>("\0-+ "[s]);
@@ -970,11 +970,14 @@ FMT_CONSTEXPR auto count_digits(UInt n) -> int {
   if (num_bits<UInt>() == 32)
     return (FMT_BUILTIN_CLZ(static_cast<uint32_t>(n) | 1) ^ 31) / BITS + 1;
 #endif
-  int num_digits = 0;
-  do {
-    ++num_digits;
-  } while ((n >>= BITS) != 0);
-  return num_digits;
+  // Lambda avoids unreachable code warnings from NVHPC.
+  return [](UInt m) {
+    int num_digits = 0;
+    do {
+      ++num_digits;
+    } while ((m >>= BITS) != 0);
+    return num_digits;
+  }(n);
 }
 
 template <> auto count_digits<4>(detail::fallback_uintptr n) -> int;
@@ -1720,7 +1723,7 @@ inline auto write_significand(Char* out, UInt significand, int significand_size,
   out += significand_size + 1;
   Char* end = out;
   int floating_size = significand_size - integral_size;
-  for(int i = floating_size / 2; i > 0; --i) {
+  for (int i = floating_size / 2; i > 0; --i) {
     out -= 2;
     copy2(out, digits2(significand % 100));
     significand /= 100;
@@ -2082,7 +2085,7 @@ FMT_CONSTEXPR auto write(OutputIt out, T value) -> OutputIt {
   return base_iterator(out, it);
 }
 
-// FMT_ENABLE_IF() condition separated to workaround MSVC bug
+// FMT_ENABLE_IF() condition separated to workaround an MSVC bug.
 template <
     typename Char, typename OutputIt, typename T,
     bool check =
@@ -2133,18 +2136,28 @@ auto write(OutputIt out, const T* value,
   return write_ptr<Char>(out, to_uintptr(value), &specs);
 }
 
-template <typename Char, typename OutputIt, typename T>
-FMT_CONSTEXPR auto write(OutputIt out, const T& value) ->
-    typename std::enable_if<
-        mapped_type_constant<T, basic_format_context<OutputIt, Char>>::value ==
-            type::custom_type,
-        OutputIt>::type {
-  using context_type = basic_format_context<OutputIt, Char>;
+// A write overload that handles implicit conversions.
+template <typename Char, typename OutputIt, typename T,
+          typename Context = basic_format_context<OutputIt, Char>>
+FMT_CONSTEXPR auto write(OutputIt out, const T& value) -> enable_if_t<
+    std::is_class<T>::value && !is_string<T>::value &&
+        !std::is_same<T, Char>::value &&
+        !std::is_same<const T&,
+                      decltype(arg_mapper<Context>().map(value))>::value,
+    OutputIt> {
+  return write<Char>(out, arg_mapper<Context>().map(value));
+}
+
+template <typename Char, typename OutputIt, typename T,
+          typename Context = basic_format_context<OutputIt, Char>>
+FMT_CONSTEXPR auto write(OutputIt out, const T& value)
+    -> enable_if_t<mapped_type_constant<T, Context>::value == type::custom_type,
+                   OutputIt> {
   using formatter_type =
-      conditional_t<has_formatter<T, context_type>::value,
-                    typename context_type::template formatter_type<T>,
+      conditional_t<has_formatter<T, Context>::value,
+                    typename Context::template formatter_type<T>,
                     fallback_formatter<T, Char>>;
-  context_type ctx(out, {}, {});
+  auto ctx = Context(out, {}, {});
   return formatter_type().format(value, ctx);
 }
 
@@ -2850,7 +2863,7 @@ inline auto to_string(const T& value) -> std::string {
 }
 
 template <typename T, FMT_ENABLE_IF(std::is_integral<T>::value)>
-inline auto to_string(T value) -> std::string {
+FMT_NODISCARD inline auto to_string(T value) -> std::string {
   // The buffer should be large enough to store the number including the sign
   // or "false" for bool.
   constexpr int max_size = detail::digits10<T>() + 2;
@@ -2860,7 +2873,7 @@ inline auto to_string(T value) -> std::string {
 }
 
 template <typename Char, size_t SIZE>
-auto to_string(const basic_memory_buffer<Char, SIZE>& buf)
+FMT_NODISCARD auto to_string(const basic_memory_buffer<Char, SIZE>& buf)
     -> std::basic_string<Char> {
   auto size = buf.size();
   detail::assume(size < std::basic_string<Char>().max_size());
