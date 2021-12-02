@@ -27,11 +27,8 @@ LOCAL_SRC_FILES := narutosenki/main.cpp \
 		../../../Classes/PauseLayer.cpp \
 		../../../Classes/SelectLayer.cpp \
 		../../../Classes/StartMenu.cpp \
-		../../../Classes/MyUtils/CCScrewLayer.cpp \
 		../../../Classes/MyUtils/CCShake.cpp \
-		../../../Classes/MyUtils/CCStrokeLabel.cpp \
 		../../../Classes/MyUtils/KTools.cpp \
-		../../../Classes/MyUtils/MD5ChecksumDefines.cpp \
 		../../../Classes/UI/GameModeLayer.cpp \
         ../../../../../external/sqlite3/src/sqlite3.c \
 

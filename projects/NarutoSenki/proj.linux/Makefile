@@ -20,11 +20,8 @@ SOURCES = main.cpp \
 	../Classes/SelectLayer.cpp \
 	../Classes/StartMenu.cpp \
 	../Classes/UI/GameModeLayer.cpp \
-	../Classes/MyUtils/CCScrewLayer.cpp \
 	../Classes/MyUtils/CCShake.cpp \
-	../Classes/MyUtils/CCStrokeLabel.cpp \
-	../Classes/MyUtils/KTools.cpp \
-	../Classes/MyUtils/MD5ChecksumDefines.cpp \
+	../Classes/MyUtils/KTools.cpp
 
 SHAREDLIBS += -lcocos2d -lcocosdenshion -lsqlite3 -llua -lluajit
 COCOS_LIBS = $(LIB_DIR)/libcocos2d.so \

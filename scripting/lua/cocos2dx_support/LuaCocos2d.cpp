@@ -67972,36 +67972,6 @@ static int tolua_Cocos2d_KTools_readRecordTimeFromSQL00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: encodeData of class  KTools */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_KTools_encodeData00
-static int tolua_Cocos2d_KTools_encodeData00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"KTools",0,&tolua_err) ||
-     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  string data = ((string)  tolua_tocppstring(tolua_S,2,0));
-  {
-   string tolua_ret = (string)  KTools::encodeData(data);
-   tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'encodeData'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: create of class  CCTips */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_CCTips_create00
 static int tolua_Cocos2d_CCTips_create00(lua_State* tolua_S)
@@ -72036,7 +72006,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"readWinNumFromSQL",tolua_Cocos2d_KTools_readWinNumFromSQL00);
    tolua_function(tolua_S,"readCoinFromSQL",tolua_Cocos2d_KTools_readCoinFromSQL00);
    tolua_function(tolua_S,"readRecordTimeFromSQL",tolua_Cocos2d_KTools_readRecordTimeFromSQL00);
-   tolua_function(tolua_S,"encodeData",tolua_Cocos2d_KTools_encodeData00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"CCTips","CCTips","CCSprite",NULL);
   tolua_beginmodule(tolua_S,"CCTips");

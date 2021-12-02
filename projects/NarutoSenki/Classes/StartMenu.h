@@ -1,7 +1,5 @@
 #pragma once
 #include "CreditsLayer.h"
-#include "MyUtils/CCScrewLayer.h"
-#include "MyUtils/CCStrokeLabel.h"
 #include "MyUtils/KTools.h"
 #include "SelectLayer.h"
 #include "UI/GameModeLayer.h"

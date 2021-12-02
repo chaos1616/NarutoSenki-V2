@@ -1,9 +1,5 @@
 #include "KTools.h"
-#include "MyUtils/CMD5Checksum.h"
 #include "Utils/Cocos2dxHelper.hpp"
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-#include "../../../cocos2dx/platform/android/jni/JniHelper.h"
-#endif
 
 int isExisted(void *para, int n_column, char **column_value, char **column_name)
 {
@@ -45,19 +41,17 @@ void KTools::initTableInDB()
 	int result = sqlite3_open(path.c_str(), &pDB);
 	if (result != SQLITE_OK)
 	{
-		CCLOG("open sql file Failed!");
+		CCLOG("open sql file failed!");
 		return;
 	}
 
 	string sql = "drop table IF EXISTS Achievement";
-
 	sqlite3_exec(pDB, sql.c_str(), nullptr, nullptr, &errorMsg);
 
 	sql = "create table if not exists CharRecord (name char(20)  primary key ,column1 char(10),column2 char(10),column3 char(10))";
 	sqlite3_exec(pDB, sql.c_str(), nullptr, nullptr, &errorMsg);
 
 	sql = "select * from  GameRecord";
-
 	sqlite3_exec(pDB, sql.c_str(), nullptr, nullptr, &errorMsg);
 
 	if (errorMsg != nullptr)
@@ -147,6 +141,7 @@ void KTools::initColumeInDB()
 		sql = format("update GameRecord set coin='{}'", coin);
 		sqlite3_exec(pDB, sql.c_str(), nullptr, nullptr, &errorMsg);
 	}
+	sqlite3_close(pDB);
 }
 
 void KTools::prepareFileOGG(const string &listName, bool unload /* =false */)
@@ -202,7 +197,7 @@ sqlite3 *KTools::prepareTableInDB()
 
 	if (result != SQLITE_OK)
 	{
-		CCMessageBox(path.c_str(), "open sql file Failed!");
+		CCMessageBox(path.c_str(), "open sql file failed!");
 		return nullptr;
 	}
 
@@ -222,12 +217,11 @@ bool KTools::saveToSQLite(const char *table /* ="GameRecord"*/, const char *colu
 		string sql = format("update {} set {}='{}'", table, column, coin);
 		sqlite3_exec(pDB, sql.c_str(), nullptr, nullptr, &errorMsg);
 
+		sqlite3_close(pDB);
 		if (errorMsg != nullptr)
 		{
-			sqlite3_close(pDB);
 			return false;
 		}
-
 		return true;
 	}
 
@@ -287,11 +281,11 @@ string KTools::readSQLite(const char *table, const char *column, const char *val
 			}
 		}
 
-		if (!is_same(targetColumn, "column3") &&
-			!is_same(targetColumn, "column4"))
-		{
-			target = std::to_string(to_int(target.c_str()));
-		}
+		// if (!is_same(targetColumn, "column3") &&
+		// 	!is_same(targetColumn, "column4"))
+		// {
+		// 	target = std::to_string(to_int(target));
+		// }
 
 		sqlite3_free_table(result);
 		sqlite3_close(pDB);
@@ -331,16 +325,7 @@ void KTools::saveSQLite(const char *table, const char *relatedColumn, const char
 			}
 		}
 
-		string saveValue;
-		if (isPlus)
-		{
-			saveValue = targetValue + target;
-			sql = format(("update {} set {}='{}' where {}='{}'"), table, targetColumn, saveValue, relatedColumn, columnValue);
-		}
-		else
-		{
-			saveValue = targetValue;
-		}
+		string saveValue = isPlus ? (targetValue + target) : targetValue;
 		int key = rand() % 50 + 40;
 		encode(saveValue, key);
 		sql = format("update {} set {}='{}' where {}='{}'", table, targetColumn, saveValue, relatedColumn, columnValue);
@@ -390,20 +375,6 @@ const char *KTools::readRecordTimeFromSQL(const char *heroName)
 	return recordTime;
 }
 
-string KTools::encodeData(string data)
-{
-	// SHA1 *sha1;
-	// unsigned char *digest;
-	string dataMD5 = CMD5Checksum::GetMD5OfString(data);
-
-	// sha1=new SHA1;
-	////sha1->addBytes( "goldlion" ,strlen( "goldlion" ));//
-	// string result=(char*) digest;
-	// delete sha1;
-	// free(digest);
-	return dataMD5;
-}
-
 bool CCTips::init(const char *tips)
 {
 	RETURN_FALSE_IF(!Sprite::init());
@@ -435,7 +406,7 @@ void CCTips::onDestroy()
 
 CCTips *CCTips::create(const char *tips)
 {
-	CCTips *ab = new CCTips();
+	CCTips *ab = new (std::nothrow) CCTips();
 	if (ab && ab->init(tips))
 	{
 		ab->autorelease();

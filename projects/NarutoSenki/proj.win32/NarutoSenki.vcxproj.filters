@@ -96,15 +96,6 @@
     <ClCompile Include="..\Classes\GameLayer.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\MyUtils\CCStrokeLabel.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MyUtils\MD5ChecksumDefines.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MyUtils\CCScrewLayer.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\UI\GameModeLayer.cpp">
       <Filter>Classes\UI</Filter>
     </ClCompile>

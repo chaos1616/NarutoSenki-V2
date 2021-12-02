@@ -28,8 +28,6 @@ public:
 	static int readWinNumFromSQL(const char *heroName);
 	static int readCoinFromSQL();
 	static const char *readRecordTimeFromSQL(const char *heroName);
-
-	static string encodeData(string data);
 };
 
 class CCTips : public Sprite

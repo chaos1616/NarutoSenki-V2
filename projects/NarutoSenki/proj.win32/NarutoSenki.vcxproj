@@ -173,11 +173,8 @@ xcopy /Y /Q "$(SolutionDir)$(Configuration).win32\*.exe" "$(SolutionDir)projects
     <ClCompile Include="..\Classes\SelectLayer.cpp" />
     <ClCompile Include="..\Classes\StartMenu.cpp" />
     <ClCompile Include="..\Classes\Core\Unit.cpp" />
-    <ClCompile Include="..\Classes\MyUtils\CCScrewLayer.cpp" />
     <ClCompile Include="..\Classes\MyUtils\CCShake.cpp" />
-    <ClCompile Include="..\Classes\MyUtils\CCStrokeLabel.cpp" />
     <ClCompile Include="..\Classes\MyUtils\KTools.cpp" />
-    <ClCompile Include="..\Classes\MyUtils\MD5ChecksumDefines.cpp" />
     <ClCompile Include="..\Classes\UI\GameModeLayer.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
