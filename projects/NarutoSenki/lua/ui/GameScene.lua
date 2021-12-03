@@ -116,9 +116,5 @@ function GameScene:onPush()
     local menuLayer = StartMenu:create()
     menuLayer:setCheats(self.cheats)
     menuScene:addChild(menuLayer)
-
-    -- for auto call c++ layer StartMenu::init after lua called
-    hook.registerInitHandlerOnly(menuLayer)
-
     director.replaceSceneWithFade(menuScene, 1.0)
 end

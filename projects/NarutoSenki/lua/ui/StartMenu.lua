@@ -80,9 +80,7 @@ function enterSelectLayer(gameMode, enableCustomSelect)
     _G.enableCustomSelect = enableCustomSelect
     local selectScene = CCScene:create()
     local selectLayer = SelectLayer:create()
-
     hook.registerInitHandlerOnly(selectLayer)
-
     selectScene:addChild(selectLayer)
     director.replaceSceneWithFade(selectScene, 1.25)
 end
@@ -90,8 +88,6 @@ end
 function onGameOver()
     local menuScene = CCScene:create()
     local menuLayer = StartMenu:create()
-
-    hook.registerInitHandlerOnly(menuLayer)
     menuScene:addChild(menuLayer)
     director.replaceSceneWithFade(menuScene, 1.25)
 end
