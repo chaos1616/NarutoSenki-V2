@@ -676,20 +676,10 @@ void GameLayer::onPause()
 {
 	if (_isPause)
 		return;
-
 	_isPause = true;
-	RenderTexture *snapshoot = RenderTexture::create(winSize.width, winSize.height);
-	Scene *f = Director::sharedDirector()->getRunningScene();
-	Ref *pObject = f->getChildren()->objectAtIndex(0);
-	BGLayer *bg = (BGLayer *)pObject;
-	snapshoot->begin();
-	bg->visit();
-
-	visit();
-	snapshoot->end();
 
 	Scene *pscene = Scene::create();
-	PauseLayer *layer = PauseLayer::create(snapshoot);
+	PauseLayer *layer = PauseLayer::create(createSnapshoot());
 	pscene->addChild(layer);
 	Director::sharedDirector()->pushScene(pscene);
 }
@@ -702,18 +692,8 @@ void GameLayer::onGear()
 		return;
 	_isGear = true;
 
-	RenderTexture *snapshoot = RenderTexture::create(winSize.width, winSize.height);
-	Scene *f = Director::sharedDirector()->getRunningScene();
-	Ref *pObject = f->getChildren()->objectAtIndex(0);
-	BGLayer *bg = (BGLayer *)pObject;
-	snapshoot->begin();
-	bg->visit();
-
-	visit();
-	snapshoot->end();
-
 	Scene *pscene = Scene::create();
-	GearLayer *layer = GearLayer::create(snapshoot);
+	GearLayer *layer = GearLayer::create(createSnapshoot());
 	_gearLayer = layer;
 	layer->updatePlayerGear();
 	pscene->addChild(layer);
@@ -735,19 +715,10 @@ void GameLayer::onGameOver(bool isWin)
 		Director::sharedDirector()->popScene();
 	}
 
-	RenderTexture *snapshoot = RenderTexture::create(winSize.width, winSize.height);
-	Scene *f = Director::sharedDirector()->getRunningScene();
-	Ref *pObject = f->getChildren()->objectAtIndex(0);
-	BGLayer *bg = (BGLayer *)pObject;
-	snapshoot->begin();
-	bg->visit();
-	visit();
-	snapshoot->end();
-
 	getGameModeHandler()->Internal_GameOver();
 
 	Scene *pscene = Scene::create();
-	GameOver *layer = GameOver::create(snapshoot);
+	GameOver *layer = GameOver::create(createSnapshoot());
 	layer->setWin(isWin);
 	pscene->addChild(layer);
 	Director::sharedDirector()->pushScene(pscene);
@@ -900,6 +871,19 @@ int GameLayer::getMapCount()
 		mapCount++;
 	CCLOG("===== Found %d maps =====", mapCount);
 	return mapCount;
+}
+
+RenderTexture *GameLayer::createSnapshoot()
+{
+	auto snapshoot = RenderTexture::create(winSize.width, winSize.height);
+	auto f = Director::sharedDirector()->getRunningScene();
+	auto bg = dynamic_cast<BGLayer *>(f->getChildren()->objectAtIndex(0));
+	CC_ASSERT(bg != nullptr);
+	snapshoot->begin();
+	bg->visit();
+	visit();
+	snapshoot->end();
+	return snapshoot;
 }
 
 void GameLayer::invokeAllCallbacks()

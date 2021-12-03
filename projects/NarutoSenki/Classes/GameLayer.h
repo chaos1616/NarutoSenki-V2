@@ -165,6 +165,7 @@ private:
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	static void LPFN_ACCELEROMETER_KEYHOOK(UINT message, WPARAM wParam, LPARAM lParam);
 #endif
+	RenderTexture *createSnapshoot();
 
 	void onEnter();
 	void onExit();
