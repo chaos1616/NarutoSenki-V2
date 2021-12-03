@@ -86,7 +86,7 @@ frame = [
     'setMove = 8',
     'setDelay = 10',
     'Kisame_NAttack_07',
-    'setHit =  -->n_hit',
+    'setHit = n_hit',
     'setDelay = 10',
     'Kisame_NAttack_08',
     'Kisame_NAttack_09',
